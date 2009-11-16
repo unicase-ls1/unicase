@@ -25,8 +25,8 @@ import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.meeditor.mecontrols.MEFileChooserControl;
 import org.unicase.ui.meeditor.mecontrols.MEFileSizeControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
-import org.unicase.ui.meeditor.mecontrols.RTEditor;
 import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
 import org.unicase.ui.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
@@ -147,8 +147,7 @@ public class ControlFactory {
 	}
 
 	private MEControl createMERichTextControl(EAttribute feature) {
-		// return new MERichTextControl(feature, editingDomain, modelElement, toolkit);
-		return new RTEditor(feature, editingDomain, modelElement, toolkit);
+		return new MERichTextControl(feature, editingDomain, modelElement, toolkit);
 	}
 
 	// Create Control for Use Case Steps

@@ -5,10 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
@@ -20,18 +16,14 @@ import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.Bullet;
-import org.eclipse.swt.custom.PaintObjectEvent;
-import org.eclipse.swt.custom.PaintObjectListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GlyphMetrics;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.TextLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -56,6 +48,8 @@ public class MERichTextControl extends AbstractMEControl {
 	private EAttribute attribute;
 
 	private AdapterImpl eAdapter;
+
+	private final String bulletString = "  \u2022 ";
 
 	/**
 	 * Default constructor.
@@ -131,49 +125,20 @@ public class MERichTextControl extends AbstractMEControl {
 		spec.grabExcessVerticalSpace = true;
 		spec.heightHint = 200;
 		text.setLayoutData(spec);
-
-		text.addPaintObjectListener(new PaintObjectListener() {
-			public void paintObject(PaintObjectEvent event) {
-				Display display = event.display;
-				StyleRange style = event.style;
-				Font font = style.font;
-				if (font == null) {
-					font = text.getFont();
-				}
-				TextLayout layout = new TextLayout(display);
-				layout.setAscent(event.ascent);
-				layout.setDescent(event.descent);
-				layout.setFont(font);
-				layout.setText("\u2023 1." + event.bulletIndex + ")");
-				layout.draw(event.gc, event.x + 10, event.y);
-				layout.dispose();
-			}
-		});
 	}
 
 	private void createToolBar() {
 		toolBar = new ToolBar(composite, SWT.NULL);
-		ToolItem bulletsItem = new ToolItem(toolBar, SWT.PUSH);
-		ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
-		bulletsItem.setImage(descriptor.createImage());
-		bulletsItem.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				Point selectionRange = text.getSelectionRange();
-				int x = selectionRange.x;
-				int y = selectionRange.y;
-				int startLine = text.getLineAtOffset(x);
-				int endLine = text.getLineAtOffset(x + y);
-				for (int i = startLine; i <= endLine; i++) {
-					if (text.getLineBullet(i) == null) {
-						bullet(i, 1);
-					} else {
-						unbullet(i, 1);
-					}
-
-				}
-			}
-		});
+		// final ToolItem bulletsItem = new ToolItem(toolBar, SWT.PUSH);
+		// ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
+		// bulletsItem.setImage(descriptor.createImage());
+		// bulletsItem.addSelectionListener(new SelectionAdapter() {
+		//
+		// @Override
+		// public void widgetSelected(SelectionEvent event) {
+		// toggleBullet();
+		// }
+		// });
 
 		if (shoudShowExpand) {
 			ToolItem textItem = new ToolItem(toolBar, SWT.PUSH);
@@ -191,6 +156,66 @@ public class MERichTextControl extends AbstractMEControl {
 				}
 			});
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private void toggleBullet() {
+		int size = text.getText().length();
+		StringBuilder newText = new StringBuilder();
+		int newOffset = 0;
+		if (!text.getSelectionText().equals("")) {
+			Point selectionRange = text.getSelectionRange();
+			int start = selectionRange.x;
+			int length = selectionRange.y;
+
+			String before = "";
+			if (start > 0) {
+				before = text.getText(0, start - 1);
+			}
+			String target = text.getSelectionText();
+
+			String after = "";
+			if (start + length < size) {
+				after = text.getText(start + length, size - 1);
+			}
+			newText.append(before);
+			if (!target.contains(bulletString)) {
+				newText.append("\n");
+				newText.append(bulletString);
+				newText.append(target);
+				newOffset = newText.length();
+				newText.append("\n");
+			} else {
+				newText.append(target.replaceFirst(bulletString, ""));
+				newOffset = newText.length();
+			}
+			newText.append(after);
+		} else {
+			int pos = text.getCaretOffset();
+			int line = text.getLineAtOffset(pos);
+			String target = text.getLine(line);
+			String before = "";
+			int start = text.getOffsetAtLine(line);
+			if (start > 0) {
+				before = text.getText(0, start - 1);
+			}
+			String after = "";
+			if (line + 1 < text.getLineCount()) {
+				start = text.getOffsetAtLine(line + 1);
+				int end = size - 1;
+				if (start < end) {
+					after = text.getText(start, end);
+				}
+			}
+			newText.append(before);
+			newText.append(bulletString);
+			newText.append(target);
+			newText.append("\n");
+			newOffset = newText.length();
+			newText.append(after);
+		}
+		viewer.getDocument().set(newText.toString());
+		text.setCaretOffset(newOffset);
 	}
 
 	/**
@@ -221,32 +246,16 @@ public class MERichTextControl extends AbstractMEControl {
 	}
 
 	private void save() {
-		List<Integer> bulletedLines = new ArrayList<Integer>();
-		for (int i = 0; i < text.getLineCount(); i++) {
-			if (text.getLineBullet(i) != null) {
-				bulletedLines.add(i);
-			}
-		}
-		StringBuffer txt = new StringBuffer();
-		for (Integer bulletedLine : bulletedLines) {
-			txt.append(bulletedLine + ",");
-		}
-		txt.append(";,");
-		txt.append("\n");
-		txt.append("%BEGINNTEXT%");
-		txt.append(text.getText());
-		final String value = txt.toString();
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				getModelElement().eSet(attribute, value);
+				getModelElement().eSet(attribute, text.getText());
 			}
 		}.run();
 	}
 
 	private void load() {
 
-		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
 		final StringBuffer value = new StringBuffer();
 		new UnicaseCommand() {
@@ -260,31 +269,7 @@ public class MERichTextControl extends AbstractMEControl {
 			}
 		}.run();
 		txt = value.toString();
-
-		String[] split = txt.split("%BEGINNTEXT%");
-
-		if (split.length == 1) {
-			viewer.getDocument().set("");
-		} else {
-
-			StringTokenizer stringTokenizer = new StringTokenizer(split[0], ",");
-			while (stringTokenizer.hasMoreElements()) {
-				String nextElement = (String) stringTokenizer.nextElement();
-				if (nextElement.equals(";")) {
-					break;
-				} else {
-					bulletedLines.add(Integer.parseInt(nextElement));
-				}
-			}
-			viewer.getDocument().set(split[1]);
-		}
-		for (int i = 0; i < text.getLineCount(); i++) {
-			text.setLineBullet(i, 1, null);
-		}
-		for (Integer line : bulletedLines) {
-			bullet(line, 1);
-		}
-
+		viewer.getDocument().set(txt);
 	}
 
 	/**

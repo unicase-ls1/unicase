@@ -19,7 +19,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
-import org.unicase.ui.meeditor.mecontrols.RTEditor;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -76,9 +76,9 @@ public class MEDescriptionPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		textControl = new RTEditor(ModelPackage.eINSTANCE.getUnicaseModelElement_Description(), domain, modelElement,
-			toolkit);
-		// ((MERichTextControl) textControl).setShowExpand(false);
+		textControl = new MERichTextControl(ModelPackage.eINSTANCE.getUnicaseModelElement_Description(), domain,
+			modelElement, toolkit);
+		((MERichTextControl) textControl).setShowExpand(false);
 		Control textWidget = textControl.createControl(body, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
