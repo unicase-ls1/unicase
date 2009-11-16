@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.views.scm;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -124,8 +125,11 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			LogMessage logMessage = changePackage.getLogMessage();
 			builder.append(" [");
 			builder.append(logMessage.getAuthor());
-			builder.append(" @ ");
-			builder.append(dateFormat.format(logMessage.getClientDate()));
+			Date clientDate = logMessage.getClientDate();
+			if (clientDate != null) {
+				builder.append(" @ ");
+				builder.append(dateFormat.format(clientDate));
+			}
 			builder.append("] ");
 			builder.append(logMessage.getMessage());
 		}
@@ -169,8 +173,11 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		if (logMessage != null) {
 			builder.append(" [");
 			builder.append(logMessage.getAuthor());
-			builder.append(" @ ");
-			builder.append(dateFormat.format(logMessage.getClientDate()));
+			Date clientDate = logMessage.getClientDate();
+			if (clientDate != null) {
+				builder.append(" @ ");
+				builder.append(dateFormat.format(clientDate));
+			}
 			builder.append("] ");
 			builder.append(logMessage.getMessage());
 		}
