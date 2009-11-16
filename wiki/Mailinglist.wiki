@@ -1,5 +1,5 @@
 If you have editing access to this wiki you are already member of the UNICASE mailinglist.
 
-Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ] and the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/mailinglist/ mailinglist archive].
+Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
 
 You can send emails to the mailinglist by using the following *email address:* _unicase@teambruegge.informatik.tu-muenchen.de_
