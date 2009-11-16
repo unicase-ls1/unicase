@@ -79,9 +79,6 @@ The update site should be tested locally on four different instances of eclipse:
  * Eclipse instances of Ganymede, which has UNICASE installed in.
 In each instance of eclipse do the following:
 Open your update manager in eclipse and add the site {{{file://<path-to-your-workspace>/<name-of-your-update-site-project>}}} or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
-
-[http://unicase.googlecode.com/files/Picture%206.png]
-
 After successfully testing the update site , you can then easily copy it to:
 {{{http://wwwbruegge.in.tum.de/static/unicase-beta}}} for final deployment. 
 
