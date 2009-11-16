@@ -47,3 +47,13 @@ To build your update site you simply open the site.xml and add the new feature y
 After building your update site, you need to update the name of the repository to UNICASE in the files: artifacts.xml and Content.xml. 
 
 [http://unicase.googlecode.com/files/cd5d.png]
+
+Now the feature is ready to be deployed, but before the deployment we need to commit all the changes to repository and create a tag for the new release.  
+
+ * Create a tag for the release:
+
+[http://unicase.googlecode.com/files/1b723.png]
+
+Configure the tag according to the release version number, e.g. in this case set the "To URL" to:  {{{https://wwwbruegge.in.tum.de/repos/unicase/tags/XXX.internal}} (replace XXX with the with your version number).
+
+[http://unicase.googlecode.com/files/2afc4.png]
