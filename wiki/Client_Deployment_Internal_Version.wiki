@@ -71,11 +71,12 @@ In the export dialog, for destination enter a suitable directory:
 Press Finish to export the deployable feature.
 
 *Step 7:*
+
 The update site should be tested locally on four different instances of eclipse:
-* New eclipse instances of Galileo, that doesn’t have UNICASE installed in.
-* New eclipse instances of Ganymede, that doesn’t have UNICASE installed in.
-* Eclipse instances of Galileo, which has UNICASE installed in.
-* Eclipse instances of Ganymede, which has UNICASE installed in.
+ * New eclipse instances of Galileo, that doesn’t have UNICASE installed in.
+ * New eclipse instances of Ganymede, that doesn’t have UNICASE installed in.
+ * Eclipse instances of Galileo, which has UNICASE installed in.
+ * Eclipse instances of Ganymede, which has UNICASE installed in.
 
 [http://unicase.googlecode.com/files/Picture%206.png]
 
