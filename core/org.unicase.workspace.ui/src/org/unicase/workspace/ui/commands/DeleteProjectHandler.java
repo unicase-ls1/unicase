@@ -21,7 +21,6 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.dashboard.DashboardEditorInput;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -89,14 +88,18 @@ public class DeleteProjectHandler extends AbstractHandler {
 									editorReference.getEditor(false), false);
 						}
 					}
-					if (editorReference.getEditorInput() instanceof DashboardEditorInput) {
-						DashboardEditorInput editorInput = (DashboardEditorInput) editorReference
-								.getEditorInput();
-						if (projectSpace.equals(editorInput.getProjectSpace())) {
-							wbpage.closeEditor(
-									editorReference.getEditor(false), false);
-						}
-					}
+					// TODO: AS: add delete project observer / ext.point
+
+					// if (editorReference.getEditorInput() instanceof
+					// DashboardEditorInput) {
+					// DashboardEditorInput editorInput = (DashboardEditorInput)
+					// editorReference
+					// .getEditorInput();
+					// if (projectSpace.equals(editorInput.getProjectSpace())) {
+					// wbpage.closeEditor(
+					// editorReference.getEditor(false), false);
+					// }
+					// }
 				} catch (PartInitException e) {
 					// Just print the stacktrace
 					e.printStackTrace();

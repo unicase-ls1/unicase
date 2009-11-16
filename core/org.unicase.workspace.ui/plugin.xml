@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="org.unicase.workspace.ui.dashboard.widgets" name="Dashboard Widgets" schema="schema/dashboardWidgets.exsd"/>
-  <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.unicase.workspace.ui.dashboard.DashboardEditor"
-            default="false"
-            id="org.unicase.workspace.ui.dashboard"
-            name="Dashboard">
-      </editor>
-   </extension>
   <extension
         point="org.eclipse.ui.handlers">
      <handler
@@ -169,11 +159,6 @@
            name="showHistory">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ShowDashboardHandler"
-           id="org.unicase.workspace.ui.showDashboard"
-           name="showDashboard">
-     </command>
-     <command
            defaultHandler="org.unicase.workspace.ui.commands.CompareProjectsHandler"
            id="org.unicase.workspace.ui.compareProjects"
            name="compareProjects">
@@ -308,21 +293,6 @@
               commandId="org.unicase.workspace.ui.showHistory"
               icon="icons/historyview.png"
               label="Show History"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.ui.showDashboard"
-              icon="icons/dashboard.png"
-              label="Open Dashboard"
               style="push">
            <visibleWhen
                  checkEnabled="false">
@@ -745,12 +715,6 @@
               sequence="Alt+P">
         </key>
         <key
-              commandId="org.unicase.workspace.ui.showDashboard"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+D">
-        </key>
-        <key
               commandId="org.unicase.ui.common.validate"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
@@ -805,40 +769,6 @@
          </command>
       </menuContribution>
    </extension>
-        <extension
-              point="org.eclipse.ui.propertyPages">
-           <page
-                 class="org.unicase.workspace.ui.prefs.UnicasePropertyPage"
-                 id="org.unicase.workspace.ui.generalProperties"
-                 name="General">
-              <enabledWhen>
-                 <instanceof
-                       value="org.unicase.metamodel.Project">
-                 </instanceof>
-              </enabledWhen>
-           </page>
-           <page
-                 class="org.unicase.workspace.ui.prefs.DashboardPropertyPage"
-                 id="org.unicase.workspace.ui.dashboardProperties"
-                 name="Dashboard">
-              <enabledWhen>
-                 <instanceof
-                       value="org.unicase.metamodel.Project">
-                 </instanceof>
-              </enabledWhen>
-           </page>
-           <page
-                 category="org.unicase.workspace.ui.dashboardProperties"
-                 class="org.unicase.workspace.ui.prefs.DashboardWidgetsPropertyPage"
-                 id="org.unicase.workspace.ui.dashboardWidgetProperties"
-                 name="Widgets">
-              <enabledWhen>
-                 <instanceof
-                       value="org.unicase.metamodel.Project">
-                 </instanceof>
-              </enabledWhen>
-           </page>
-        </extension>
         
            <extension
          point="org.eclipse.ui.views">
@@ -876,22 +806,5 @@
         </enablement>
      </decorator>
   </extension>
-   <extension
-         point="org.unicase.workspace.ui.dashboard.widgets">
-      <widget
-            class="org.unicase.workspace.ui.dashboard.widgets.DashboardEventWidget"
-            name="Events Widget"
-            position="2">
-      </widget>
-      <widget
-            class="org.unicase.workspace.ui.dashboard.widgets.DashboardTaskWidget"
-            name="Task Widget"
-            position="1">
-      </widget>
-      <widget
-            class="org.unicase.workspace.ui.dashboard.widgets.DashboardRelatedTasksWidget"
-            name="Related Tasks Widget"
-            position="3">
-      </widget>
-   </extension>
+
 </plugin>
