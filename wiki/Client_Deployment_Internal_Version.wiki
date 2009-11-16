@@ -37,7 +37,7 @@ Configure the plug-ins to be included in the feature. This can be done through f
 *Step 5:*
 
 In this step you need to build your update site. First you need to delete the content of the update site folder and rebuild it again. Therefore, you need to delete the artifacts.xml , content.xml amd index.html. 
-
+[http://unicase.googlecode.com/files/cd5b.png]
 
 To build your update site you simply open the site.xml and add the new feature you want to publish, i.e. the UNICASE feature and then press the build all button 
    
