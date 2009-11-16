@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.commands;
+package org.unicase.ui.dashboard;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -14,10 +14,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.ui.dashboard.view.DashboardEditor;
+import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.dashboard.DashboardEditor;
-import org.unicase.workspace.ui.dashboard.DashboardEditorInput;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -28,8 +28,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ShowDashboardHandler extends AbstractHandler {
 
-	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.ui.dashboardInput";
-	private static final String DASHBOARD_ID = "org.unicase.workspace.ui.dashboard";
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
+	private static final String DASHBOARD_ID = "org.unicase.ui.dashboard";
 
 	/**
 	 * {@inheritDoc}

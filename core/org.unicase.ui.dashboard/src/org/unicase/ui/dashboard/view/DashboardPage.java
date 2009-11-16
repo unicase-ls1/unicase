@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard;
+package org.unicase.ui.dashboard.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,11 +44,11 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
+import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.dashboard.widgets.AbstractDashboardWidget;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -171,7 +171,7 @@ public class DashboardPage extends FormPage {
 		widgets = new ArrayList<AbstractDashboardWidget>();
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(
-						"org.unicase.workspace.ui.dashboard.widgets");
+						"org.unicase.ui.dashboard.widgets");
 		final HashMap<AbstractDashboardWidget, Integer> widgetsMap = new HashMap<AbstractDashboardWidget, Integer>();
 		for (IConfigurationElement e : config) {
 			Object o;

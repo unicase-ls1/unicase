@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard;
+package org.unicase.ui.dashboard.view;
 
 import java.text.SimpleDateFormat;
 
@@ -15,8 +15,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.ui.dashboard.Activator;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.Activator;
 
 /**
  * A dashboard entry widget for the update notifications.

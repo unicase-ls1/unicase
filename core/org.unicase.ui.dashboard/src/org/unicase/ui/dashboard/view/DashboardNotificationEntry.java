@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard;
+package org.unicase.ui.dashboard.view;
 
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
@@ -56,13 +56,13 @@ import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.common.widgets.MECommentWidget;
 import org.unicase.ui.common.widgets.MECommentWidgetListener;
+import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;

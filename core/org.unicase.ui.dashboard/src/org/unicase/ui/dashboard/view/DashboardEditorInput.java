@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard;
+package org.unicase.ui.dashboard.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +14,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.ui.dashboard.Activator;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.Activator;
 
 /**
  * The editor input for the dashboard.

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard.widgets;
+package org.unicase.ui.dashboard.view.widgets;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,9 +40,9 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
+import org.unicase.ui.dashboard.view.DashboardPage;
+import org.unicase.ui.dashboard.view.DashboardToolbarAction;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.dashboard.DashboardPage;
-import org.unicase.workspace.ui.dashboard.DashboardToolbarAction;
 import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
