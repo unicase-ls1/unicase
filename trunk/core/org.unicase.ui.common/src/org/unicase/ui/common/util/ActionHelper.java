@@ -59,8 +59,8 @@ public final class ActionHelper {
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
 
-	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.ui.dashboardInput";
-	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.ui.showDashboard";
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
+	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
 
 	private ActionHelper() {
 
