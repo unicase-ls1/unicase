@@ -76,7 +76,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		final PatternFilter patternFilter = new PatternFilter();
 		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK
 				| SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL,
-				patternFilter, true);
+				patternFilter);
 
 		gridData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
 		gridData.horizontalSpan = 2;
@@ -192,7 +192,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		tv.setContentProvider(src);
 		tv.setLabelProvider(new ImportLabelProvider(wizard.getController()));
 		tv.setInput(src.getElements(null)); // argument is a non-null that will
-											// be ignored
+		// be ignored
 
 		this.setTitle(wizard.getController().getTitle());
 		this.setMessage(wizard.getController().getMessage());
