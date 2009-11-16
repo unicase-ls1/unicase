@@ -133,8 +133,8 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	private void processReviewAssignments(String featureName,
 			ReferenceOperation referenceOperation, ModelElement modelElement,
 			Set<Group> groupsOfOrgUnit, EClass clazz) {
-		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE
-				.getWorkItem_Reviewer().getName())) {
+		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Reviewer().getName())
+				&& clazz.isInstance(modelElement)) {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation)
 					.getNewValue();
 			ModelElement orgUnit = getProjectSpace().getProject()
@@ -154,7 +154,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = getProjectSpace().getProject()
 						.getModelElement(wiId);
-				if (wi != null) {
+				if (wi != null && clazz.isInstance(wi)) {
 					reviewerItems.get(clazz).put((WorkItem) wi,
 							referenceOperation);
 					getExcludedOperations().add(
@@ -167,8 +167,8 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	private void processAssignments(String featureName,
 			ReferenceOperation referenceOperation, ModelElement modelElement,
 			Set<Group> groupsOfOrgUnit, EClass clazz) {
-		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE
-				.getWorkItem_Assignee().getName())) {
+		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())
+				&& clazz.isInstance(modelElement)) {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation)
 					.getNewValue();
 			ModelElement orgUnit = getProjectSpace().getProject()
@@ -190,7 +190,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = getProjectSpace().getProject()
 						.getModelElement(wiId);
-				if (wi != null) {
+				if (wi != null && clazz.isInstance(wi)) {
 					assigneeItems.get(clazz).put((WorkItem) wi,
 							referenceOperation);
 					getExcludedOperations().add(
