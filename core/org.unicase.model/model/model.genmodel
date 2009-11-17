@@ -612,5 +612,65 @@
       <genClasses ecoreClass="model.ecore#//activity/ActivityInitial"/>
       <genClasses ecoreClass="model.ecore#//activity/ActivityEnd"/>
     </nestedGenPackages>
+    <nestedGenPackages prefix="Implementation" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//implementation">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//implementation/IPrimitiveType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/String"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/Boolean"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/Integer"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/Date"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/Double"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//implementation/IPrimitiveType/Enumeration"/>
+      </genEnums>
+      <genClasses ecoreClass="model.ecore#//implementation/IPackage">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IPackage/namespace"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/IPackage/parentPackage"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IPackage/subPackages"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IPackage/classes"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IPackage/enumerations"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//implementation/IClass">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/parentPackage"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IClass/abstract"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/superClasses"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/subClasses"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/attributes"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/outgoingReferences"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/incomingReferences"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="model.ecore#//implementation/IFeature">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IFeature/minimumMultiplicity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IFeature/maximumMultiplicity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IFeature/transient"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//implementation/IAttribute">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/IAttribute/parentClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IAttribute/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IAttribute/type"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IAttribute/enumeration"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//implementation/IReference">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/IReference/parentClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IReference/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IReference/containment"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IReference/oppositeReference"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//implementation/IEnumeration">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/IEnumeration/parentPackage"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IEnumeration/literals"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IEnumeration/attributes"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//implementation/ILiteral">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//implementation/ILiteral/parentEnumeration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/ILiteral/literal"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
