@@ -115,7 +115,7 @@ public interface MethodArgument extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Signature</em>' attribute.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Signature()
-	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getSignature();

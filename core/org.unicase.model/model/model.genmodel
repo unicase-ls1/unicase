@@ -160,6 +160,8 @@
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Class/methods"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/demoParticipations"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Class/implementationClasses"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Package">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Package/containedPackageElements"/>
@@ -640,6 +642,8 @@
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/outgoingReferences"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/incomingReferences"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//implementation/IClass/analysisClasses"/>
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//implementation/IFeature">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//implementation/IFeature/minimumMultiplicity"/>

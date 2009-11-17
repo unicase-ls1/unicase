@@ -34,6 +34,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.implementation.ImplementationPackage;
+import org.unicase.model.implementation.impl.ImplementationPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
@@ -184,6 +186,10 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ImplementationPackageImpl theImplementationPackage = (ImplementationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI) instanceof ImplementationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI)
+			: ImplementationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theChangePackage.createPackageContents();
@@ -203,6 +209,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theImplementationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theChangePackage.initializePackageContents();
@@ -222,6 +229,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theImplementationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theChangePackage.freeze();

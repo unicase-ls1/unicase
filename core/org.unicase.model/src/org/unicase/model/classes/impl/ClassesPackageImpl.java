@@ -43,6 +43,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.implementation.ImplementationPackage;
+import org.unicase.model.implementation.impl.ImplementationPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
@@ -248,6 +250,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ImplementationPackageImpl theImplementationPackage = (ImplementationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI) instanceof ImplementationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI)
+			: ImplementationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
@@ -267,6 +273,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theImplementationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
@@ -286,6 +293,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theImplementationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theClassesPackage.freeze();
@@ -374,6 +382,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 */
 	public EReference getClass_DemoParticipations() {
 		return (EReference) classEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getClass_ImplementationClasses() {
+		return (EReference) classEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -863,6 +880,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(classEClass, CLASS__ATTRIBUTES);
 		createEReference(classEClass, CLASS__METHODS);
 		createEReference(classEClass, CLASS__DEMO_PARTICIPATIONS);
+		createEReference(classEClass, CLASS__IMPLEMENTATION_CLASSES);
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
@@ -952,6 +970,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getEPackage(RequirementPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
+		ImplementationPackage theImplementationPackage = (ImplementationPackage) EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
@@ -1005,6 +1025,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getClass_DemoParticipations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getClass_ImplementationClasses(), theImplementationPackage.getIClass(), theImplementationPackage
+			.getIClass_AnalysisClasses(), "implementationClasses", null, 0, -1, org.unicase.model.classes.Class.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getClass_ImplementationClasses().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1131,7 +1156,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethodArgument_Signature(), ecorePackage.getEString(), "signature", null, 0, 1,
-			MethodArgument.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+			MethodArgument.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethodArgument_Label(), ecorePackage.getEString(), "label", null, 0, 1, MethodArgument.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

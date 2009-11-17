@@ -415,12 +415,21 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__DEMO_PARTICIPATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Implementation Classes</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__IMPLEMENTATION_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
+	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class. <!--
@@ -1609,6 +1618,17 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_DemoParticipations();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getImplementationClasses
+	 * <em>Implementation Classes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Implementation Classes</em>'.
+	 * @see org.unicase.model.classes.Class#getImplementationClasses()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_ImplementationClasses();
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.classes.Package <em>Package</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2237,6 +2257,13 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__DEMO_PARTICIPATIONS = eINSTANCE.getClass_DemoParticipations();
+		/**
+		 * The meta object literal for the '<em><b>Implementation Classes</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference CLASS__IMPLEMENTATION_CLASSES = eINSTANCE.getClass_ImplementationClasses();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

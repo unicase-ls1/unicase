@@ -6,6 +6,7 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.model.implementation.IClass;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
@@ -22,6 +23,7 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getImplementationClasses <em>Implementation Classes</em>}</li>
  * </ul>
  * </p>
  * 
@@ -182,4 +184,23 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Scenario> getDemoParticipations();
+
+	/**
+	 * Returns the value of the '<em><b>Implementation Classes</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.implementation.IClass}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.implementation.IClass#getAnalysisClasses <em>Analysis Classes</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implementation Classes</em>' reference list isn't clear, there really should be more
+	 * of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Implementation Classes</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_ImplementationClasses()
+	 * @see org.unicase.model.implementation.IClass#getAnalysisClasses
+	 * @model opposite="analysisClasses" keys="identifier"
+	 * @generated
+	 */
+	EList<IClass> getImplementationClasses();
 } // Class

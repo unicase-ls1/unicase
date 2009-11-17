@@ -31,6 +31,7 @@ import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.implementation.ImplementationFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -360,6 +361,24 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIPackage()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIClass()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIAttribute()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIReference()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIEnumeration()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createILiteral()));
 	}
 
 	/**
