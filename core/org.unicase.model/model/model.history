@@ -7312,5 +7312,400 @@
         dataValue="org.unicase.model.change" oldDataValue="org.unicase.model.rationale"/>
     <changes xsi:type="history:Set" element="model.ecore#//classes/MethodArgument/signature"
         featureName="unique" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
+        element="model.ecore#//implementation">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation" featureName="name"
+          dataValue="implementation"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation" featureName="nsURI"
+          dataValue="http://unicase.org/model/implementation"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation" featureName="nsPrefix"
+          dataValue="org.unicase.model.implementation"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IPackage">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage"
+          featureName="name" dataValue="IPackage"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IPackage"
+          featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPackage"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IPackage/namespace">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/namespace"
+          featureName="name" dataValue="namespace"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/namespace"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPackage"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IPackage/subPackages">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/subPackages"
+          featureName="name" dataValue="subPackages"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/subPackages"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/subPackages"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/subPackages"
+          featureName="eType" referenceValue="model.ecore#//implementation/IPackage"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPackage"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IPackage/parentPackage">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/parentPackage"
+          featureName="name" dataValue="parentPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/parentPackage"
+          featureName="eType" referenceValue="model.ecore#//implementation/IPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/parentPackage"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IPackage/subPackages"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/subPackages"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IPackage/parentPackage"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IClass">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass"
+          featureName="name" dataValue="IClass"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass"
+          featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/parentPackage">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/parentPackage"
+          featureName="name" dataValue="parentPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/parentPackage"
+          featureName="eType" referenceValue="model.ecore#//implementation/IPackage"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPackage"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IPackage/classes">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/classes"
+          featureName="name" dataValue="classes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/classes"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/classes"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/classes"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/classes"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/parentPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/parentPackage"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IPackage/classes"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/abstract">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/abstract"
+          featureName="name" dataValue="abstract"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/abstract"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/superClasses">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/superClasses"
+          featureName="name" dataValue="superClasses"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/superClasses"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/superClasses"
+          featureName="unsettable" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/superClasses"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/subClasses">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/subClasses"
+          featureName="name" dataValue="subClasses"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/subClasses"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/subClasses"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/subClasses"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/superClasses"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/superClasses"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/subClasses"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IFeature">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature"
+          featureName="name" dataValue="IFeature"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature"
+          featureName="abstract" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IFeature"
+          featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IFeature"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IFeature/minimumMultiplicity">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/minimumMultiplicity"
+          featureName="name" dataValue="minimumMultiplicity"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/minimumMultiplicity"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IFeature"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IFeature/maximumMultiplicity">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/maximumMultiplicity"
+          featureName="name" dataValue="maximumMultiplicity"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/maximumMultiplicity"
+          featureName="defaultValueLiteral" dataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/maximumMultiplicity"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IFeature"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IFeature/transient">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/transient"
+          featureName="name" dataValue="transient"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IFeature/transient"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IAttribute">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute"
+          featureName="name" dataValue="IAttribute"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IAttribute"
+          featureName="eSuperTypes" referenceValue="model.ecore#//implementation/IFeature"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/attributes">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="name" dataValue="attributes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="resolveProxies" dataValue="false" oldDataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="eType" referenceValue="model.ecore#//implementation/IAttribute"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IAttribute"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IAttribute/parentClass">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/parentClass"
+          featureName="name" dataValue="parentClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/parentClass"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/parentClass"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/attributes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/attributes"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IAttribute/parentClass"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IAttribute"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IAttribute/id">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/id"
+          featureName="name" dataValue="id"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/id"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IReference">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference"
+          featureName="name" dataValue="IReference"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IReference"
+          featureName="eSuperTypes" referenceValue="model.ecore#//implementation/IFeature"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/outgoingReferences">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="name" dataValue="outgoingReferences"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="resolveProxies" dataValue="false" oldDataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="eType" referenceValue="model.ecore#//implementation/IReference"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/incomingReferences">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/incomingReferences"
+          featureName="name" dataValue="incomingReferences"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/incomingReferences"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/incomingReferences"
+          featureName="eType" referenceValue="model.ecore#//implementation/IReference"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IReference"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IReference/parentClass">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/parentClass"
+          featureName="name" dataValue="parentClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/parentClass"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/parentClass"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/outgoingReferences"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/outgoingReferences"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IReference/parentClass"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IReference"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IReference/type">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/type"
+          featureName="name" dataValue="type"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/type"
+          featureName="unsettable" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/type"
+          featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/type"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/incomingReferences"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/incomingReferences"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IReference/type"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IReference"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IReference/containment">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/containment"
+          featureName="name" dataValue="containment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/containment"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IReference"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IReference/oppositeReference">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/oppositeReference"
+          featureName="name" dataValue="oppositeReference"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IReference/oppositeReference"
+          featureName="eType" referenceValue="model.ecore#//implementation/IReference"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IEnumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration"
+          featureName="name" dataValue="IEnumeration"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/IEnumeration"
+          featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPackage"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IPackage/enumerations">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/enumerations"
+          featureName="name" dataValue="enumerations"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/enumerations"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/enumerations"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/enumerations"
+          featureName="eType" referenceValue="model.ecore#//implementation/IEnumeration"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IAttribute"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IAttribute/enumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/enumeration"
+          featureName="name" dataValue="enumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/enumeration"
+          featureName="unsettable" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/enumeration"
+          featureName="eType" referenceValue="model.ecore#//implementation/IEnumeration"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IEnumeration"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IEnumeration/parentPackage">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/parentPackage"
+          featureName="name" dataValue="parentPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/parentPackage"
+          featureName="eType" referenceValue="model.ecore#//implementation/IPackage"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/parentPackage"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IPackage/enumerations"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPackage/enumerations"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IEnumeration/parentPackage"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IEnumeration"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IEnumeration/attributes">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/attributes"
+          featureName="name" dataValue="attributes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/attributes"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/attributes"
+          featureName="eType" referenceValue="model.ecore#//implementation/IAttribute"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/attributes"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IAttribute/enumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/enumeration"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IEnumeration/attributes"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/ILiteral">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral"
+          featureName="name" dataValue="ILiteral"/>
+      <changes xsi:type="history:Add" element="model.ecore#//implementation/ILiteral"
+          featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IEnumeration"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IEnumeration/literals">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="name" dataValue="literals"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="resolveProxies" dataValue="false" oldDataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="eType" referenceValue="model.ecore#//implementation/ILiteral"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/ILiteral"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/ILiteral/parentEnumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral/parentEnumeration"
+          featureName="name" dataValue="parentEnumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral/parentEnumeration"
+          featureName="eType" referenceValue="model.ecore#//implementation/IEnumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral/parentEnumeration"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/IEnumeration/literals"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IEnumeration/literals"
+          featureName="eOpposite" referenceValue="model.ecore#//implementation/ILiteral/parentEnumeration"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/ILiteral"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/ILiteral/literal">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral/literal"
+          featureName="name" dataValue="literal"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/ILiteral/literal"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation" referenceName="eClassifiers"
+        element="model.ecore#//implementation/IPrimitiveType">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType"
+          featureName="name" dataValue="IPrimitiveType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IAttribute"
+        referenceName="eStructuralFeatures" element="model.ecore#//implementation/IAttribute/type">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/type"
+          featureName="name" dataValue="type"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IAttribute/type"
+          featureName="eType" referenceValue="model.ecore#//implementation/IPrimitiveType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/String">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/String"
+          featureName="name" dataValue="String"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/String"
+          featureName="literal" dataValue="String"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/Boolean">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Boolean"
+          featureName="name" dataValue="Boolean"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Boolean"
+          featureName="value" dataValue="1" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Boolean"
+          featureName="literal" dataValue="Boolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/Integer">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Integer"
+          featureName="name" dataValue="Integer"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Integer"
+          featureName="value" dataValue="2" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Integer"
+          featureName="literal" dataValue="Integer"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/Date">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Date"
+          featureName="name" dataValue="Date"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Date"
+          featureName="value" dataValue="3" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Date"
+          featureName="literal" dataValue="Date"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/Double">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Double"
+          featureName="name" dataValue="Double"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Double"
+          featureName="value" dataValue="4" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Double"
+          featureName="literal" dataValue="Double"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//implementation/IPrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//implementation/IPrimitiveType/Enumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Enumeration"
+          featureName="name" dataValue="Enumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Enumeration"
+          featureName="value" dataValue="5" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Enumeration"
+          featureName="literal" dataValue="Enumeration"/>
+    </changes>
   </releases>
 </history:History>
