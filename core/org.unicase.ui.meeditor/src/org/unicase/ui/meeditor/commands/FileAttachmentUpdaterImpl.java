@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor.commands;
 
 import org.unicase.emfstore.filetransfer.FileInformation;
@@ -10,6 +15,11 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.filetransfer.FileTransferOnDone;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Updates file attachments on file upload completion.
+ * 
+ * @author pfeifferc
+ */
 public final class FileAttachmentUpdaterImpl implements FileTransferOnDone {
 
 	private ProjectSpace projectSpace;
