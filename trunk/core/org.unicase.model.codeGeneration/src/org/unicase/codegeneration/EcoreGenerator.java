@@ -1,4 +1,4 @@
-package org.unicase.model.codegeneration;
+package org.unicase.codegeneration;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
