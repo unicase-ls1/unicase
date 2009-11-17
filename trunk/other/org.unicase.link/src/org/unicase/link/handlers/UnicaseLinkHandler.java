@@ -14,6 +14,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 
 
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -41,10 +42,17 @@ public class UnicaseLinkHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+		
+		ModelElement me = ActionHelper.getModelElement(event);
 
-		UnicaseModelElement me = ActionHelper.getModelElement(event);
 		//remove spaces from the model element name
-		String meName = me.getName().replaceAll(" ", "");;				
+		String meName;
+		if (me instanceof UnicaseModelElement){
+			meName =  ((UnicaseModelElement)me).getName().replaceAll(" ", "");				
+		} else {
+			//If this is not a unicase model, we use the identifier (whatever this is) as name
+			meName = me.getIdentifier();
+		}
 		String meId = me.getModelElementId().getId();
 		
 		ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
