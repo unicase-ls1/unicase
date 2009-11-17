@@ -13,12 +13,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech, denglerm
  */
-public class DiagramTypeTester extends org.unicase.ui.common.diagram.part.DiagramTypeTester {
+public class DiagramTypeTester extends org.unicase.ui.unicasecommon.diagram.part.DiagramTypeTester {
 
 	/**
 	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],

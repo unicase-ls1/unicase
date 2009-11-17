@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.metamodel.edit,
  org.unicase.workspace.edit,
  org.eclipse.ui,
- org.unicase.ui.common
+ org.unicase.ui.dashboard
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace.ui,

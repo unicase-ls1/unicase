@@ -14,8 +14,8 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.TreeView;
+import org.unicase.ui.unicasecommon.navigator.TreeView;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 
 /**
  * This is the handler for ShowMEInNavigator command. It shows location of currently open model element or currently
@@ -31,7 +31,7 @@ public class ShowMEInNavigatorHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		UnicaseModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}

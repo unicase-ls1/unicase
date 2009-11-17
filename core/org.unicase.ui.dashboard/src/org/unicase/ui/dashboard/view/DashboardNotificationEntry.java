@@ -36,9 +36,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
@@ -50,20 +47,18 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
-import org.unicase.ui.common.widgets.MECommentWidget;
-import org.unicase.ui.common.widgets.MECommentWidgetListener;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
+import org.unicase.ui.unicasecommon.widgets.MECommentWidget;
+import org.unicase.ui.unicasecommon.widgets.MECommentWidgetListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -474,23 +469,24 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			showOperations.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent event) {
-					IWorkbenchPage page = PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getActivePage();
-					HistoryBrowserView historyBrowserView = null;
-					String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
-					try {
-						historyBrowserView = (HistoryBrowserView) page
-								.showView(viewId);
-					} catch (PartInitException e) {
-						DialogHandler.showExceptionDialog(e);
-					}
-					if (historyBrowserView != null) {
-						historyBrowserView.setInput(getProjectSpace(),
-								modelElement);
-						historyBrowserView
-								.highlightOperations(getNotification()
-										.getRelatedOperations());
-					}
+					//TODO: FIX
+//					IWorkbenchPage page = PlatformUI.getWorkbench()
+//							.getActiveWorkbenchWindow().getActivePage();
+//					HistoryBrowserView historyBrowserView = null;
+//					String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
+//					try {
+//						historyBrowserView = (HistoryBrowserView) page
+//								.showView(viewId);
+//					} catch (PartInitException e) {
+//						DialogHandler.showExceptionDialog(e);
+//					}
+//					if (historyBrowserView != null) {
+//						historyBrowserView.setInput(getProjectSpace(),
+//								modelElement);
+//						historyBrowserView
+//								.highlightOperations(getNotification()
+//										.getRelatedOperations());
+//					}
 				}
 			});
 		}

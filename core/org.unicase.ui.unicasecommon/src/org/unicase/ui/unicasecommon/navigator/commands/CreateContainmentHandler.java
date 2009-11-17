@@ -16,8 +16,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -49,7 +51,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 			// add this newly created model element to corresponding containment
 			// feature of
 			// selected ME
-			final UnicaseModelElement selectedME = ActionHelper.getSelectedModelElement();
+			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
 
 			final String sourceID = this.getClass().getName();
 			if (selectedME != null) {
@@ -69,7 +71,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 							EList<EObject> eList = (EList<EObject>) object;
 							eList.add(newMEInstance);
 
-							ActionHelper.openModelElement(newMEInstance, sourceID);
+							UnicaseActionHelper.openModelElement(newMEInstance, sourceID);
 						}
 
 					}
@@ -80,7 +82,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 		return null;
 	}
 
-	private EReference getStructuralFeature(UnicaseModelElement selectedME, EClass newMEType) {
+	private EReference getStructuralFeature(ModelElement selectedME, EClass newMEType) {
 		List<EReference> containments = selectedME.eClass().getEAllContainments();
 		EReference ref = null;
 		for (EReference containment : containments) {

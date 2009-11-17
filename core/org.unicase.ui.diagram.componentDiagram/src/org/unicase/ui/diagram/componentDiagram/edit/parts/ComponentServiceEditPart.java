@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.figures.BorderItemLocatorEx;
+import org.unicase.ui.unicasecommon.diagram.figures.BorderItemLocatorEx;
 
 /**
  * @generated
@@ -69,6 +69,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if (child instanceof IBorderItemEditPart) {
 					return new BorderItemSelectionEditPolicy();
@@ -80,10 +81,12 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}

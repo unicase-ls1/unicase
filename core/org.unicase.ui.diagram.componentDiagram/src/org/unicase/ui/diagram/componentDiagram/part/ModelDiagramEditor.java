@@ -43,7 +43,8 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class ModelDiagramEditor extends org.unicase.ui.common.diagram.part.ModelDiagramEditor implements IGotoMarker {
+public class ModelDiagramEditor extends org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor implements
+	IGotoMarker {
 
 	/**
 	 * @generated
@@ -117,8 +118,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.part.Model
 	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
-				.getDocumentProvider();
+			return ModelDiagramEditorPlugin.getInstance().getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
 	}

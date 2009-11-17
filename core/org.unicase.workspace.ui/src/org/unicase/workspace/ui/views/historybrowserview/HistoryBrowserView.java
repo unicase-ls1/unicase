@@ -69,7 +69,7 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
@@ -563,7 +563,7 @@ public class HistoryBrowserView extends ViewPart implements
 		String label = "History for ";
 		Project project = projectSpace.getProject();
 		if (me != null) {
-			label += UnicaseUiUtil.getNameForModelElement(me);
+			label += UiUtil.getNameForModelElement(me);
 			groupByMe.setChecked(false);
 			showRoots.setChecked(false);
 			contentProvider = new SCMContentProvider.Detailed(viewer, project);

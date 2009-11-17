@@ -22,6 +22,7 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -40,7 +41,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
-	private UnicaseModelElement selectedME;
+	private ModelElement selectedME;
 
 	/**
 	 * . {@inheritDoc}

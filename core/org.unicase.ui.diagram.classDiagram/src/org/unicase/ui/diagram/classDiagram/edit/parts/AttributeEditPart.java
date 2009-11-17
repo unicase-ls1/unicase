@@ -50,7 +50,7 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.common.diagram.OnFirstCharTextDirectEditManager;
+import org.unicase.ui.unicasecommon.diagram.OnFirstCharTextDirectEditManager;
 
 /**
  * @generated
@@ -311,7 +311,7 @@ public class AttributeEditPart extends CompartmentEditPart implements ITextAware
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new OnFirstCharTextDirectEditManager(this, OnFirstCharTextDirectEditManager
-				.getTextCellEditorClass(this), org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
+				.getTextCellEditorClass(this), ModelEditPartFactory
 				.getTextCellEditorLocator(this)));
 		}
 		return manager;

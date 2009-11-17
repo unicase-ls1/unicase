@@ -163,10 +163,10 @@ public class UseCaseNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public void setLabel(org.unicase.ui.common.diagram.figures.Label figure) {
+	public void setLabel(org.unicase.ui.unicasecommon.diagram.figures.Label label) {
 		unregisterVisuals();
-		setFigure(figure);
-		defaultText = getLabelTextHelper(figure);
+		setFigure(label);
+		defaultText = getLabelTextHelper(label);
 		registerVisuals();
 		refreshVisuals();
 	}

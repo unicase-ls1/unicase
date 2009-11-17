@@ -30,10 +30,10 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
+import org.unicase.ui.unicasecommon.diagram.figures.CenterLayout;
+import org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.figures.CenterLayout;
-import org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure;
 
 /**
  * @generated
@@ -68,6 +68,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy() {
+			@Override
 			public Command getCommand(Request request) {
 				if (understandsRequest(request)) {
 					if (request instanceof CreateViewAndElementRequest) {
@@ -106,6 +107,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
 					if (child instanceof ITextAwareEditPart) {
@@ -137,19 +139,19 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart) {
-			((org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart) childEditPart)
+		if (childEditPart instanceof ClassNameEditPart) {
+			((ClassNameEditPart) childEditPart)
 				.setLabel(getPrimaryShape().getFigureClassFigure_name());
 			return true;
 		}
-		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+		if (childEditPart instanceof ClassClassNode_attributesEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
 				.getFigure());
 			return true;
 		}
-		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+		if (childEditPart instanceof ClassClassNode_methodsEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
@@ -164,15 +166,15 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+		if (childEditPart instanceof ClassClassNode_attributesEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane
-				.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
+				.remove(((ClassClassNode_attributesEditPart) childEditPart)
 					.getFigure());
 			return true;
 		}
-		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+		if (childEditPart instanceof ClassClassNode_methodsEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
@@ -210,10 +212,10 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
-		if (editPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
+		if (editPart instanceof ClassClassNode_attributesEditPart) {
 			return getPrimaryShape().getFigureClassFigure_attributes();
 		}
-		if (editPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
+		if (editPart instanceof ClassClassNode_methodsEditPart) {
 			return getPrimaryShape().getFigureClassFigure_methods();
 		}
 		return super.getContentPaneFor(editPart);
@@ -342,7 +344,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 			classFigure_Header0.add(fFigureClassFigure_name);
 
-			fFigureClassFigure_attributes = new ConfigurableRectangleFigure();
+			fFigureClassFigure_attributes = new org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure();
 
 			fFigureClassFigure_attributes.setBorders("EW");
 

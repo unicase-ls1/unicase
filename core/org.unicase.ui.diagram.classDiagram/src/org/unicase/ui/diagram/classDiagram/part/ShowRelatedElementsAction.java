@@ -15,9 +15,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.diagram.classDiagram.edit.commands.ShowRelatedElementsCommand;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

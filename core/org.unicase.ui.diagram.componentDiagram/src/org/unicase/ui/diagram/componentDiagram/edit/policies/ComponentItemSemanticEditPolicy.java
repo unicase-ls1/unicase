@@ -6,7 +6,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
+import org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated
@@ -32,6 +32,7 @@ public class ComponentItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 			: getCompleteCreateRelationshipCommand(req);
@@ -76,6 +77,7 @@ public class ComponentItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:

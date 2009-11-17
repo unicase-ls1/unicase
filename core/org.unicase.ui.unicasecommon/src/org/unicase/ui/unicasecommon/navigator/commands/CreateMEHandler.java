@@ -22,6 +22,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -94,7 +95,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 						}
 					});
 				}
-				ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+				UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 			}
 		}
 		return null;

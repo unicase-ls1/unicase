@@ -16,8 +16,7 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.emf.databinding.edit;visibility:=reexport,
  org.eclipse.emf.transaction.ui;visibility:=reexport,
  org.eclipse.jface.databinding;visibility:=reexport,
- org.unicase.workspace.edit;visibility:=reexport,
- org.unicase.model.edit;visibility:=reexport
+ org.unicase.workspace.edit;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
@@ -27,22 +26,12 @@ Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.decorators,
- org.unicase.ui.common.diagram,
- org.unicase.ui.common.diagram.commands,
- org.unicase.ui.common.diagram.edit.parts,
- org.unicase.ui.common.diagram.figures,
- org.unicase.ui.common.diagram.part,
- org.unicase.ui.common.diagram.providers,
- org.unicase.ui.common.diagram.requests,
- org.unicase.ui.common.diagram.util,
  org.unicase.ui.common.dialogs,
  org.unicase.ui.common.dnd,
  org.unicase.ui.common.exceptions,
- org.unicase.ui.common.filter,
  org.unicase.ui.common.perspectives,
  org.unicase.ui.common.preferences,
- org.unicase.ui.common.util,
- org.unicase.ui.common.widgets
+ org.unicase.ui.common.util
 Bundle-ClassPath: .,
  lib/nebula_cdatetime_0.9.0.jar,
  lib/org.sharemedia.ui.sat.jar

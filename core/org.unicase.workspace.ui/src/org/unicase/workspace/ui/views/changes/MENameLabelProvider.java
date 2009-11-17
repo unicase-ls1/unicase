@@ -15,7 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 
 /**
  * Label provider for the model element column in the viewer.
@@ -76,7 +76,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 					.getModelElementId());
 			// hack for missing model elements
 			if (me != null) {
-				cell.setText(UnicaseUiUtil.getNameForModelElement(me));
+				cell.setText(UiUtil.getNameForModelElement(me));
 				cell.setImage(emfProvider.getImage(me));
 			} else {
 				cell.setText(deleted);

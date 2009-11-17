@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.figures.CenterLayout;
-import org.unicase.ui.common.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.figures.CenterLayout;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -115,8 +115,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseNameEditPart) {
-			((org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseNameEditPart) childEditPart)
+		if (childEditPart instanceof UseCaseNameEditPart) {
+			((UseCaseNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape().getUseCaseFigure_name());
 			return true;
 		}

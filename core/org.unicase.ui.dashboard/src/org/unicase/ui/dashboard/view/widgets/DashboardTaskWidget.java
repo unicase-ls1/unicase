@@ -38,10 +38,10 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.dashboard.view.DashboardToolbarAction;
+import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.NoCurrentUserException;
 

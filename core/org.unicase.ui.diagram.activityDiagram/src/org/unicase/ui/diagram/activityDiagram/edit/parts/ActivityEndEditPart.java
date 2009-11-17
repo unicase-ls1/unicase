@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.figures.CenterLayout;
+import org.unicase.ui.unicasecommon.diagram.figures.CenterLayout;
 
 /**
  * @generated
@@ -49,6 +49,7 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -65,6 +66,7 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -73,10 +75,12 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -113,6 +117,7 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -136,6 +141,7 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -188,6 +194,7 @@ public class ActivityEndEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}

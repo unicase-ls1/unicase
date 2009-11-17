@@ -7,7 +7,7 @@ package org.unicase.ui.diagram.stateDiagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
+import org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated

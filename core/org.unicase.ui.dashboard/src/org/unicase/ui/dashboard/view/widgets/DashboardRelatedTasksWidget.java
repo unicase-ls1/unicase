@@ -29,10 +29,10 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
-import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.ui.dashboard.view.DashboardPage;
+import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.NoCurrentUserException;
 

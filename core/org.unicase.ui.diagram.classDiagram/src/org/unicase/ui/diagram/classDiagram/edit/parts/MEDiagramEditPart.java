@@ -11,11 +11,11 @@ import org.unicase.ui.diagram.classDiagram.edit.policies.MEDiagramShowElementsEd
 
 /**
  * @generated
- * @extends org.unicase.ui.common.diagram.MEDiagramEditPart
- * @implements org.unicase.ui.common.diagram.MEDiagramEditPart
- * @ilovegmf public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
+ * @extends MEDiagramEditPart
+ * @implements MEDiagramEditPart
+ * @ilovegmf public class MEDiagramEditPart extends MEDiagramEditPart {
  */
-public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart {
+public class MEDiagramEditPart extends org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPart {
 
 	/**
 	 * @generated

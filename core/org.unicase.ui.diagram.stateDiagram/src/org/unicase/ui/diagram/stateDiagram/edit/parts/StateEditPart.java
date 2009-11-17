@@ -27,8 +27,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.figures.CenterLayout;
-import org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure;
+import org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout;
+import org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure;
 
 /**
  * @generated
@@ -60,6 +60,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -77,6 +78,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
 					if (child instanceof ITextAwareEditPart) {
@@ -142,6 +144,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -152,6 +155,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -162,6 +166,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -181,6 +186,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -209,6 +215,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -219,6 +226,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID));
@@ -374,6 +382,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}

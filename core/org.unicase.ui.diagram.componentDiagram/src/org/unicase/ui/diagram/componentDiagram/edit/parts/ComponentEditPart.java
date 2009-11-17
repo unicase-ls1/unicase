@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -73,6 +73,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -81,10 +82,12 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -111,9 +114,8 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentNameEditPart) {
-			((org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentNameEditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureComponentFigure_name());
+		if (childEditPart instanceof ComponentNameEditPart) {
+			((ComponentNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureComponentFigure_name());
 			return true;
 		}
 		return false;
@@ -130,6 +132,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -140,6 +143,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -150,6 +154,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -209,6 +214,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));

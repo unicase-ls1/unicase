@@ -16,16 +16,17 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ui.common.diagram.providers.ModelingAssistantProvider;
 
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends
+	org.unicase.ui.unicasecommon.diagram.providers.ModelingAssistantProvider {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart) {
@@ -43,6 +44,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
@@ -51,6 +53,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
@@ -59,6 +62,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
@@ -68,6 +72,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
@@ -76,6 +81,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return Collections.EMPTY_LIST;
@@ -84,6 +90,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
 		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
@@ -91,6 +98,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
 		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
@@ -98,6 +106,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean isApplicableElement(EObject element, Collection types) {
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
 		return types.contains(type);
@@ -106,6 +115,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(

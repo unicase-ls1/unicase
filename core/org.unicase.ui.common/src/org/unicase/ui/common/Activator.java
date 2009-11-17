@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 
 /**
  * . The activator class controls the plug-in life cycle
@@ -48,7 +48,7 @@ public class Activator extends AbstractUIPlugin {
 
 			public void logging(IStatus status, String plugin) {
 				if (status.getSeverity() == Status.ERROR) {
-					UnicaseUiUtil.showReportErrorDialog(status);
+					UiUtil.showReportErrorDialog(status);
 				}
 
 			}
@@ -59,7 +59,7 @@ public class Activator extends AbstractUIPlugin {
 
 			public void logging(IStatus status, String plugin) {
 				if (status.getSeverity() == Status.ERROR) {
-					UnicaseUiUtil.showReportErrorDialog(status);
+					UiUtil.showReportErrorDialog(status);
 				}
 			}
 

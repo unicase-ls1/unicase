@@ -4,7 +4,7 @@ Bundle-Name: unicase Tableview Plug-in
 Bundle-SymbolicName: org.unicase.ui.tableview;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.tableview.Activator
-Require-Bundle: org.unicase.ui.common;bundle-version="1.0.0.qualifier"
+Require-Bundle: org.unicase.ui.unicasecommon
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

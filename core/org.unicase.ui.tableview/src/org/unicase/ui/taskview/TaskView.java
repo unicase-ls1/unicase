@@ -40,19 +40,20 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.common.filter.TeamFilter;
-import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.common.util.OrgUnitHelper;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
+import org.unicase.ui.unicasecommon.filter.TeamFilter;
+import org.unicase.ui.unicasecommon.filter.UserFilter;
+import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -166,7 +167,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				User noUser = OrganizationFactory.eINSTANCE.createUser();
 				noUser.setName("[no user]");
 				users.add(noUser);
-				Object[] userArray = UnicaseUiUtil.showMESelectionDialog(TaskView.this.getSite().getShell(), users,
+				Object[] userArray = UiUtil.showMESelectionDialog(TaskView.this.getSite().getShell(), users,
 					"Select user", false);
 				if (userArray.length > 0) {
 					selectedUser = (User) userArray[0];
@@ -364,7 +365,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
