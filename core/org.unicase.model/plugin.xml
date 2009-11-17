@@ -514,6 +514,14 @@
            uri="http://unicase.org/model/activity">
      </package>
   </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.implementation.ImplementationPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/implementation">
+     </package>
+  </extension>
   
 
 
