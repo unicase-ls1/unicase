@@ -7707,5 +7707,69 @@
       <changes xsi:type="history:Set" element="model.ecore#//implementation/IPrimitiveType/Enumeration"
           featureName="literal" dataValue="Enumeration"/>
     </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Create" target="model.ecore#//implementation/IClass"
+          referenceName="eStructuralFeatures" element="model.ecore#//implementation/IClass/analysisClasses">
+        <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/analysisClasses"
+            featureName="name" dataValue="analysisClasses"/>
+        <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/analysisClasses"
+            featureName="eType" referenceValue="model.ecore#//classes/Class"/>
+        <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/analysisClasses"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      </changes>
+      <operation name="newReference">
+        <parameters name="eClass">
+          <referenceValue element="model.ecore#//implementation/IClass"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>analysisClasses</dataValue>
+        </parameters>
+        <parameters name="type">
+          <referenceValue element="model.ecore#//classes/Class"/>
+        </parameters>
+        <parameters name="lowerBound">
+          <dataValue>0</dataValue>
+        </parameters>
+        <parameters name="upperBound">
+          <dataValue>-1</dataValue>
+        </parameters>
+        <parameters name="containment">
+          <dataValue>false</dataValue>
+        </parameters>
+        <parameters name="opposite"/>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Create" target="model.ecore#//classes/Class" referenceName="eStructuralFeatures"
+          element="model.ecore#//classes/Class/implementationClasses">
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Class/implementationClasses"
+            featureName="name" dataValue="implementationClasses"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Class/implementationClasses"
+            featureName="eType" referenceValue="model.ecore#//implementation/IClass"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Class/implementationClasses"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Class/implementationClasses"
+            featureName="eOpposite" referenceValue="model.ecore#//implementation/IClass/analysisClasses"/>
+      </changes>
+      <changes xsi:type="history:Set" element="model.ecore#//implementation/IClass/analysisClasses"
+          featureName="eOpposite" referenceValue="model.ecore#//classes/Class/implementationClasses"/>
+      <operation name="newOppositeReference">
+        <parameters name="reference">
+          <referenceValue element="model.ecore#//implementation/IClass/analysisClasses"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>implementationClasses</dataValue>
+        </parameters>
+        <parameters name="lowerBound">
+          <dataValue>0</dataValue>
+        </parameters>
+        <parameters name="upperBound">
+          <dataValue>-1</dataValue>
+        </parameters>
+        <parameters name="changeable">
+          <dataValue>true</dataValue>
+        </parameters>
+      </operation>
+    </changes>
   </releases>
 </history:History>
