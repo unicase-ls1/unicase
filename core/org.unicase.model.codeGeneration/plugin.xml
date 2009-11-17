@@ -11,7 +11,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.unicase.model.codegeneration.GenerateEcoreHandler"
+            class="org.unicase.codegeneration.GenerateEcoreHandler"
             commandId="org.unicase.model.codeGeneration.command.generateEcore">
          <enabledWhen>
             <with

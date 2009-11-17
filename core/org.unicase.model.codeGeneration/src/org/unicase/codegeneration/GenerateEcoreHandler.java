@@ -1,4 +1,4 @@
-package org.unicase.model.codegeneration;
+package org.unicase.codegeneration;
 
 import java.io.File;
 import java.io.IOException;
