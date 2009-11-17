@@ -46,7 +46,7 @@ public interface ChangePackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.model.rationale";
+	String eNS_PREFIX = "org.unicase.model.change";
 
 	/**
 	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->

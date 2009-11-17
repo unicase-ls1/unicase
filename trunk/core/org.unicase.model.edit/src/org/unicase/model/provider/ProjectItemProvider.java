@@ -26,6 +26,7 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.implementation.ImplementationFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -288,6 +289,24 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIPackage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIClass()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIAttribute()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIReference()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIEnumeration()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ImplementationFactory.eINSTANCE.createILiteral()));
 	}
 
 	/**

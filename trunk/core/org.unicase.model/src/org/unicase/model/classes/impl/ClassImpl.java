@@ -18,6 +18,8 @@ import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Method;
+import org.unicase.model.implementation.IClass;
+import org.unicase.model.implementation.ImplementationPackage;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
@@ -35,6 +37,7 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getImplementationClasses <em>Implementation Classes</em>}</li>
  * </ul>
  * </p>
  * 
@@ -117,6 +120,16 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * @ordered
 	 */
 	protected EList<Scenario> demoParticipations;
+
+	/**
+	 * The cached value of the '{@link #getImplementationClasses() <em>Implementation Classes</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getImplementationClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IClass> implementationClasses;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -248,6 +261,19 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * 
 	 * @generated
 	 */
+	public EList<IClass> getImplementationClasses() {
+		if (implementationClasses == null) {
+			implementationClasses = new EObjectWithInverseResolvingEList.ManyInverse<IClass>(IClass.class, this,
+				ClassesPackage.CLASS__IMPLEMENTATION_CLASSES, ImplementationPackage.ICLASS__ANALYSIS_CLASSES);
+		}
+		return implementationClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -271,6 +297,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
+				msgs);
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementationClasses()).basicAdd(otherEnd,
 				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -300,6 +329,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			return ((InternalEList<?>) getImplementationClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -328,6 +359,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return getMethods();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return getDemoParticipations();
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			return getImplementationClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,6 +406,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			getDemoParticipations().clear();
 			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
 			return;
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			getImplementationClasses().clear();
+			getImplementationClasses().addAll((Collection<? extends IClass>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -409,6 +446,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			getDemoParticipations().clear();
 			return;
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			getImplementationClasses().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -437,6 +477,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return methods != null && !methods.isEmpty();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return demoParticipations != null && !demoParticipations.isEmpty();
+		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
+			return implementationClasses != null && !implementationClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

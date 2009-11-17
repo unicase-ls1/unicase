@@ -37,6 +37,8 @@ import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
+import org.unicase.model.implementation.ImplementationPackage;
+import org.unicase.model.implementation.impl.ImplementationPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
@@ -209,6 +211,10 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(UtilPackage.eNS_URI)
 			: UtilPackage.eINSTANCE);
+		ImplementationPackageImpl theImplementationPackage = (ImplementationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI) instanceof ImplementationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ImplementationPackage.eNS_URI)
+			: ImplementationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theActivityPackage.createPackageContents();
@@ -228,6 +234,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		theAttachmentPackage.createPackageContents();
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
+		theImplementationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theActivityPackage.initializePackageContents();
@@ -247,6 +254,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		theAttachmentPackage.initializePackageContents();
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
+		theImplementationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theActivityPackage.freeze();

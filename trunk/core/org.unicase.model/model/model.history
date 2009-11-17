@@ -7771,5 +7771,47 @@
         </parameters>
       </operation>
     </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IPackage/parentPackage"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IPackage/subPackages"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IPackage/classes"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IPackage/enumerations"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/parentPackage"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/superClasses"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/subClasses"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/attributes"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/outgoingReferences"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/incomingReferences"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IClass/analysisClasses"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IAttribute/parentClass"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IAttribute/enumeration"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IReference/parentClass"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IReference/type"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IReference/oppositeReference"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IEnumeration/parentPackage"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IEnumeration/literals"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/IEnumeration/attributes"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//implementation/ILiteral/parentEnumeration"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//classes/Class/implementationClasses"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
   </releases>
 </history:History>

@@ -33,6 +33,7 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.implementation.ImplementationFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -380,6 +381,24 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIPackage()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIClass()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIAttribute()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIReference()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createIEnumeration()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ImplementationFactory.eINSTANCE.createILiteral()));
 	}
 
 	/**
