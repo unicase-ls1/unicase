@@ -2,4 +2,6 @@ If you have editing access to this wiki you are already member of the UNICASE ma
 
 Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
 
-You can send emails to the mailinglist by using the following *email address:* _unicase@teambruegge.informatik.tu-muenchen.de_
+You can send emails to the mailinglist by using the following 
+    * *Developer email address:* _unicase-dev@googlegroups.come_
+    * *Report Bugs:* _ unicase-bugs@googlegroups.com_
