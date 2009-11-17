@@ -50,6 +50,8 @@ import org.unicase.emfstore.esmodel.versioning.events.Validate;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl;
 import org.unicase.metamodel.MetamodelPackage;
 
 /**
@@ -286,6 +288,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
+		SemanticPackageImpl theSemanticPackage = (SemanticPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(SemanticPackage.eNS_URI) instanceof SemanticPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(SemanticPackage.eNS_URI) : SemanticPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
@@ -304,6 +309,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
+		theSemanticPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
@@ -314,6 +320,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
+		theSemanticPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();

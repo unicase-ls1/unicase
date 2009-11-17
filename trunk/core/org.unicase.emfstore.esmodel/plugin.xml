@@ -65,6 +65,14 @@
             class="org.unicase.emfstore.esmodel.url.UrlPackage"
             genModel="model/esmodel.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage"
+            genModel="model/esmodel.genmodel"
+            uri="http://unicase.org/esmodel/versioning/operations/semantic">
+      </package>
+   </extension>
 
 
 </plugin>

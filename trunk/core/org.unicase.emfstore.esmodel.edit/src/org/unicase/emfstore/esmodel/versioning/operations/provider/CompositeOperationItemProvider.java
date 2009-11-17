@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation}
@@ -223,6 +224,9 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+			SemanticFactory.eINSTANCE.createExtractToSuperclassOperation()));
 	}
 
 }

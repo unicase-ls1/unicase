@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object. <!--
@@ -156,6 +157,9 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			SemanticFactory.eINSTANCE.createExtractToSuperclassOperation()));
 	}
 
 }

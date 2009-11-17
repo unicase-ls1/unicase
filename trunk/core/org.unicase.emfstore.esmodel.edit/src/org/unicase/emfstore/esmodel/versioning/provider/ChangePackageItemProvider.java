@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.ChangePackage} object. <!--
@@ -169,6 +170,9 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+			SemanticFactory.eINSTANCE.createExtractToSuperclassOperation()));
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
 			EventsFactory.eINSTANCE.createEvent()));
