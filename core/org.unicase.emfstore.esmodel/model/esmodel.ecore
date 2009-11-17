@@ -193,6 +193,21 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
             eType="#//versioning/operations/AbstractOperation"/>
       </eClassifiers>
+      <eSubpackages name="semantic" nsURI="http://unicase.org/esmodel/versioning/operations/semantic"
+          nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">
+        <eClassifiers xsi:type="ecore:EClass" name="SemanticCompositeOperation" abstract="true"
+            eSuperTypes="#//versioning/operations/CompositeOperation"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ExtractToSuperclassOperation"
+            eSuperTypes="#//versioning/operations/semantic/SemanticCompositeOperation">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" upperBound="-1"
+              eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+              eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="targetPackage" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+        </eClassifiers>
+      </eSubpackages>
     </eSubpackages>
     <eSubpackages name="events" nsURI="http://unicase.org/esmodel/versioning/events"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.events">

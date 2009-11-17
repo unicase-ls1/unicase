@@ -3,23 +3,18 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.esmodel.accesscontrol.roles.impl;
+package org.unicase.emfstore.esmodel.versioning.operations.semantic.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
@@ -31,8 +26,10 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl;
 import org.unicase.metamodel.MetamodelPackage;
 
 /**
@@ -40,41 +37,20 @@ import org.unicase.metamodel.MetamodelPackage;
  * 
  * @generated
  */
-public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
+public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	private EClass roleEClass = null;
+	private EClass semanticCompositeOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	private EClass readerRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass writerRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass projectAdminRoleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass serverAdminEClass = null;
+	private EClass extractToSuperclassOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -85,12 +61,12 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage#eNS_URI
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private RolesPackageImpl() {
-		super(eNS_URI, RolesFactory.eINSTANCE);
+	private SemanticPackageImpl() {
+		super(eNS_URI, SemanticFactory.eINSTANCE);
 	}
 
 	/**
@@ -103,23 +79,23 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * <p>
-	 * This method is used to initialize {@link RolesPackage#eINSTANCE} when that field is accessed. Clients should not
-	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This method is used to initialize {@link SemanticPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static RolesPackage init() {
+	public static SemanticPackage init() {
 		if (isInited)
-			return (RolesPackage) EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
+			return (SemanticPackage) EPackage.Registry.INSTANCE.getEPackage(SemanticPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
+		SemanticPackageImpl theSemanticPackage = (SemanticPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SemanticPackageImpl ? EPackage.Registry.INSTANCE
 			.get(eNS_URI)
-			: new RolesPackageImpl());
+			: new SemanticPackageImpl());
 
 		isInited = true;
 
@@ -136,15 +112,15 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
-		SemanticPackageImpl theSemanticPackage = (SemanticPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(SemanticPackage.eNS_URI) instanceof SemanticPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(SemanticPackage.eNS_URI) : SemanticPackage.eINSTANCE);
 		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
 		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
@@ -153,33 +129,33 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 			: UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theRolesPackage.createPackageContents();
+		theSemanticPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
-		theSemanticPackage.createPackageContents();
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
+		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
 		theUrlPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theRolesPackage.initializePackageContents();
+		theSemanticPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
-		theSemanticPackage.initializePackageContents();
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
+		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
 		theUrlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theRolesPackage.freeze();
+		theSemanticPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(RolesPackage.eNS_URI, theRolesPackage);
-		return theRolesPackage;
+		EPackage.Registry.INSTANCE.put(SemanticPackage.eNS_URI, theSemanticPackage);
+		return theSemanticPackage;
 	}
 
 	/**
@@ -187,8 +163,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getRole() {
-		return roleEClass;
+	public EClass getSemanticCompositeOperation() {
+		return semanticCompositeOperationEClass;
 	}
 
 	/**
@@ -196,8 +172,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getRole_Projects() {
-		return (EReference) roleEClass.getEStructuralFeatures().get(0);
+	public EClass getExtractToSuperclassOperation() {
+		return extractToSuperclassOperationEClass;
 	}
 
 	/**
@@ -205,8 +181,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getReaderRole() {
-		return readerRoleEClass;
+	public EAttribute getExtractToSuperclassOperation_SuperClassName() {
+		return (EAttribute) extractToSuperclassOperationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -214,8 +190,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getWriterRole() {
-		return writerRoleEClass;
+	public EReference getExtractToSuperclassOperation_SubClasses() {
+		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -223,8 +199,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getProjectAdminRole() {
-		return projectAdminRoleEClass;
+	public EReference getExtractToSuperclassOperation_Features() {
+		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -232,8 +208,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getServerAdmin() {
-		return serverAdminEClass;
+	public EReference getExtractToSuperclassOperation_TargetPackage() {
+		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -241,8 +217,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * 
 	 * @generated
 	 */
-	public RolesFactory getRolesFactory() {
-		return (RolesFactory) getEFactoryInstance();
+	public SemanticFactory getSemanticFactory() {
+		return (SemanticFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -264,16 +240,13 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		roleEClass = createEClass(ROLE);
-		createEReference(roleEClass, ROLE__PROJECTS);
+		semanticCompositeOperationEClass = createEClass(SEMANTIC_COMPOSITE_OPERATION);
 
-		readerRoleEClass = createEClass(READER_ROLE);
-
-		writerRoleEClass = createEClass(WRITER_ROLE);
-
-		projectAdminRoleEClass = createEClass(PROJECT_ADMIN_ROLE);
-
-		serverAdminEClass = createEClass(SERVER_ADMIN);
+		extractToSuperclassOperationEClass = createEClass(EXTRACT_TO_SUPERCLASS_OPERATION);
+		createEAttribute(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__SUPER_CLASS_NAME);
+		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__SUB_CLASSES);
+		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__FEATURES);
+		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__TARGET_PACKAGE);
 	}
 
 	/**
@@ -300,8 +273,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI);
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+			.getEPackage(OperationsPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
 
@@ -310,49 +283,27 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		readerRoleEClass.getESuperTypes().add(this.getRole());
-		writerRoleEClass.getESuperTypes().add(this.getRole());
-		projectAdminRoleEClass.getESuperTypes().add(this.getRole());
-		serverAdminEClass.getESuperTypes().add(this.getRole());
+		semanticCompositeOperationEClass.getESuperTypes().add(theOperationsPackage.getCompositeOperation());
+		extractToSuperclassOperationEClass.getESuperTypes().add(this.getSemanticCompositeOperation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRole_Projects(), theEsmodelPackage.getProjectId(), null, "projects", null, 0, -1, Role.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		getRole_Projects().getEKeys().add(theMetamodelPackage.getUniqueIdentifier_Id());
+		initEClass(semanticCompositeOperationEClass, SemanticCompositeOperation.class, "SemanticCompositeOperation",
+			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canAdministrate", 0, 1, IS_UNIQUE,
-			IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canCreate", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canDelete", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canModify", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canRead", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(readerRoleEClass, ReaderRole.class, "ReaderRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(writerRoleEClass, WriterRole.class, "WriterRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(projectAdminRoleEClass, ProjectAdminRole.class, "ProjectAdminRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(serverAdminEClass, ServerAdmin.class, "ServerAdmin", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(extractToSuperclassOperationEClass, ExtractToSuperclassOperation.class,
+			"ExtractToSuperclassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExtractToSuperclassOperation_SuperClassName(), ecorePackage.getEString(), "superClassName",
+			null, 0, 1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractToSuperclassOperation_SubClasses(), theMetamodelPackage.getModelElementId(), null,
+			"subClasses", null, 0, -1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractToSuperclassOperation_Features(), theMetamodelPackage.getModelElementId(), null,
+			"features", null, 0, -1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractToSuperclassOperation_TargetPackage(), theMetamodelPackage.getModelElementId(), null,
+			"targetPackage", null, 0, 1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
-} // RolesPackageImpl
+} // SemanticPackageImpl

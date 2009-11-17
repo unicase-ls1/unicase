@@ -25,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent} object.
@@ -202,6 +203,9 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			SemanticFactory.eINSTANCE.createExtractToSuperclassOperation()));
 	}
 
 	/**

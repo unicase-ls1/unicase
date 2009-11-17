@@ -151,6 +151,18 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/OperationGroup/operations"/>
         </genClasses>
+        <nestedGenPackages prefix="Semantic" basePackage="org.unicase.emfstore.esmodel.versioning.operations"
+            disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations/semantic">
+          <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation"/>
+          <genClasses ecoreClass="esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/superClassName"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/subClasses"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/features"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/targetPackage"/>
+          </genClasses>
+        </nestedGenPackages>
       </nestedGenPackages>
       <nestedGenPackages prefix="Events" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/events">

@@ -38,6 +38,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl;
 import org.unicase.metamodel.MetamodelPackage;
 
 /**
@@ -187,6 +189,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
+		SemanticPackageImpl theSemanticPackage = (SemanticPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(SemanticPackage.eNS_URI) instanceof SemanticPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(SemanticPackage.eNS_URI) : SemanticPackage.eINSTANCE);
 		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
@@ -207,6 +212,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		theOperationsPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
+		theSemanticPackage.createPackageContents();
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
@@ -217,6 +223,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		theOperationsPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
+		theSemanticPackage.initializePackageContents();
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
@@ -696,8 +703,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		SemanticPackage theSemanticPackage = (SemanticPackage) EPackage.Registry.INSTANCE
+			.getEPackage(SemanticPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theSemanticPackage);
 
 		// Create type parameters
 
