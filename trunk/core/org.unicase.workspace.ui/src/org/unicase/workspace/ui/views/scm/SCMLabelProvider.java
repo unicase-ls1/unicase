@@ -31,7 +31,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
@@ -90,13 +90,12 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				ret = changePackageVisualizationHelper
 						.getDescription((AbstractOperation) value);
 			} else if (value instanceof ModelElement) {
-				ret = UnicaseUiUtil
-						.getNameForModelElement(((ModelElement) value));
+				ret = UiUtil.getNameForModelElement(((ModelElement) value));
 			} else if (value instanceof ModelElementId) {
 				ModelElement modelElement = changePackageVisualizationHelper
 						.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
-					ret = UnicaseUiUtil.getNameForModelElement(modelElement);
+					ret = UiUtil.getNameForModelElement(modelElement);
 				} else {
 					return ELEMENT_NOT_FOUND;
 				}

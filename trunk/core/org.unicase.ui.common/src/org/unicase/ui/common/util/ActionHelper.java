@@ -14,15 +14,11 @@ import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -30,15 +26,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.diagram.DiagramType;
-import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
@@ -72,9 +63,9 @@ public final class ActionHelper {
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
 	 */
-	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
+	public static ModelElement getModelElement(ExecutionEvent event) {
 
-		UnicaseModelElement me = null;
+		ModelElement me = null;
 
 		// ZH: determine the place from which
 		// the command is run (UC Navigator context menu or MEEeditor)
@@ -84,22 +75,22 @@ public final class ActionHelper {
 		if (partId != null && partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor().getEditorInput();
+			.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(ModelElement.class);
 
-			if (obj instanceof UnicaseModelElement) {
-				me = (UnicaseModelElement) obj;
+			if (obj instanceof ModelElement) {
+				me = (ModelElement) obj;
 			}
 
 		} else {
 			// extract model element from current selection in navigator
 
 			EObject eObject = getSelection(event);
-			if (!(eObject instanceof UnicaseModelElement)) {
+			if (!(eObject instanceof ModelElement)) {
 				return null;
 			}
 
-			me = (UnicaseModelElement) eObject;
+			me = (ModelElement) eObject;
 		}
 
 		return me;
@@ -121,7 +112,7 @@ public final class ActionHelper {
 			@Override
 			protected void doRun() {
 				Usersession usersession = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-					.getUsersession();
+				.getUsersession();
 				if (usersession != null) {
 					creator.append(usersession.getACUser().getName());
 				}
@@ -141,42 +132,11 @@ public final class ActionHelper {
 	public static void openModelElement(final ModelElement me, final String sourceView) {
 		if (me == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
-				"The model element you are trying to open was deleted!");
+			"The model element you are trying to open was deleted!");
 			return;
 		}
-
-		if (me instanceof Comment) {
-			ModelElement modelElement = ((Comment) me).getFirstParent();
-			openDiscussion(modelElement, false);
-			return;
-		}
-
-		boolean openWithMeDiagram = false;
-		if (me instanceof MEDiagram) {
-			openWithMeDiagram = true;
-		}
-		final boolean isDiagram = openWithMeDiagram;
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace();
-				String readView;
-				if (isDiagram) {
-					readView = "org.unicase.ui.MEDiagramEditor";
-				} else {
-					readView = "org.unicase.ui.meeditor.MEEditor";
-				}
-				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
-			}
-		}.run();
-
-		if (openWithMeDiagram) {
-			openMEDiagram((MEDiagram) me, false);
-		} else {
-			openMEwithMEEditor(me);
-		}
-
+		// TODO: EXTENSION POINT
+		openMEwithMEEditor(me);
 	}
 
 	/**
@@ -216,7 +176,11 @@ public final class ActionHelper {
 		// END SUPRESS CATCH EXCEPTION
 	}
 
-	private static void openMEwithMEEditor(ModelElement me) {
+	/**
+	 *  TODO: do private again!
+	 * @param me model element
+	 */
+	public static void openMEwithMEEditor(ModelElement me) {
 		// this method opens a model element indirectly using IEvaluationContext
 		// variable
 		// the variable is here set to ME which must be opened,
@@ -266,7 +230,7 @@ public final class ActionHelper {
 			@Override
 			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace();
+				.getActiveProjectSpace();
 				String readView = "org.unicase.ui.meeditor.MEEditor";
 				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
 			}
@@ -295,50 +259,6 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
-		}
-	}
-
-	/**
-	 * This method opens the MEDiagram.
-	 * 
-	 * @param diagram MEDiagram to open
-	 * @param withMEEditor If the diagram is open in the meeditor
-	 */
-	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
-		if (withMEEditor) {
-			openMEwithMEEditor(diagram);
-			return;
-		}
-
-		String id = null;
-		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
-		}
-
-		if (id == null) {
-			throw new RuntimeException("Unsupported diagram type");
-		}
-		URI uri = EcoreUtil.getURI(diagram);
-		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
-		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
-
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
-				"org.eclipse.ui.views.PropertySheet");
-		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
-				.getMessage(), e.getStatus());
 		}
 	}
 
@@ -415,13 +335,13 @@ public final class ActionHelper {
 	 * 
 	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
-	public static UnicaseModelElement getSelectedModelElement() {
+	public static ModelElement getSelectedModelElement() {
 		Object obj = getSelection();
-		if (obj instanceof UnicaseModelElement) {
-			return (UnicaseModelElement) obj;
+		if (obj instanceof ModelElement) {
+			return (ModelElement) obj;
 		} else if (obj instanceof DelegatingWrapperItemProvider) {
-			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof UnicaseModelElement) {
-				return (UnicaseModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
+			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof ModelElement) {
+				return (ModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
 			} else {
 				return null;
 			}

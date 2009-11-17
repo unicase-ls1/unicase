@@ -31,7 +31,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.util.UiUtil;
 
 /**
  * A helper class for the visualization of change packages.
@@ -364,8 +364,7 @@ public class ChangePackageVisualizationHelper {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(modelElement.eClass().getName());
 		stringBuilder.append(" \"");
-		stringBuilder
-				.append(UnicaseUiUtil.getNameForModelElement(modelElement));
+		stringBuilder.append(UiUtil.getNameForModelElement(modelElement));
 		stringBuilder.append("\" ");
 		String elementClassAndName = stringBuilder.toString();
 		if (op.isDelete()) {
@@ -593,9 +592,8 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return "(unkown element)";
 		}
-		return modelElement.eClass().getName()
-				+ " \""
-				+ trim(UnicaseUiUtil.getNameForModelElement(modelElement), true)
+		return modelElement.eClass().getName() + " \""
+				+ trim(UiUtil.getNameForModelElement(modelElement), true)
 				+ "\"";
 	}
 }

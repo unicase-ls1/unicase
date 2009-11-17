@@ -35,10 +35,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.CollectionFilter;
 import org.unicase.ui.diagram.classDiagram.edit.commands.AddRelatedElementsCommand;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

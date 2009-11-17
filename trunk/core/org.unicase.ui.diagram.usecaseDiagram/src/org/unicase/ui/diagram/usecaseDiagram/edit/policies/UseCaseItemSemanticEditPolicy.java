@@ -11,7 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
+import org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated

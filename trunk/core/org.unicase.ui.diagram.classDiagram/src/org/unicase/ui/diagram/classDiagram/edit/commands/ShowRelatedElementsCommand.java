@@ -32,14 +32,14 @@ import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.impl.ClassImpl;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.commands.CommandFactory;
-import org.unicase.ui.common.diagram.commands.CreateConnectionViewCommandProvider;
-import org.unicase.ui.common.diagram.commands.CreateNodeViewCommandProvider;
-import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
-import org.unicase.ui.common.diagram.util.ViewAdapter;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.diagram.classDiagram.part.ShowRelatedElementsController;
+import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;
+import org.unicase.ui.unicasecommon.diagram.commands.CreateConnectionViewCommandProvider;
+import org.unicase.ui.unicasecommon.diagram.commands.CreateNodeViewCommandProvider;
+import org.unicase.ui.unicasecommon.diagram.requests.ShowRelatedElementsModeRequest;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.util.ViewAdapter;
 
 /**
  * @author schroech

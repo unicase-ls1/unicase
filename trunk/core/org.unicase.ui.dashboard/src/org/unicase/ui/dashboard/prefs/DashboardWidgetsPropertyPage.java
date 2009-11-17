@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.unicase.workspace.ui.Activator;
+import org.unicase.ui.dashboard.Activator;
 
 /**
  * A property page for the dashboard widgets.

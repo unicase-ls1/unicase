@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @generated

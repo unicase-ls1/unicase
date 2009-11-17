@@ -9,12 +9,12 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.ui.unicasecommon.TreeViewerColumnSorter;
 
 /**
  * Utility for task tables.

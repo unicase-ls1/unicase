@@ -16,7 +16,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ui.common.diagram.providers.ModelingAssistantProvider;
+import org.unicase.ui.unicasecommon.diagram.providers.ModelingAssistantProvider;
 
 /**
  * @generated

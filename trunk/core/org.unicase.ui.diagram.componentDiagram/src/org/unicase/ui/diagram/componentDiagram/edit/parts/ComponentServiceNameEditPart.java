@@ -95,6 +95,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -115,6 +116,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -181,6 +183,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -188,6 +191,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -359,6 +363,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		try {
@@ -387,6 +392,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -432,6 +438,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -445,6 +452,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -452,6 +460,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -467,6 +476,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -480,10 +490,12 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -502,6 +514,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -537,6 +550,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -553,7 +567,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	public class InterfaceNameLabelFigure extends org.unicase.ui.common.diagram.figures.Label {
+	public class InterfaceNameLabelFigure extends Label {
 
 		/**
 		 * @generated
@@ -572,6 +586,7 @@ public class ComponentServiceNameEditPart extends LabelEditPart implements IText
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}

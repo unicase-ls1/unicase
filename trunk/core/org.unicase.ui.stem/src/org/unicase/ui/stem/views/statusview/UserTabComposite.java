@@ -30,7 +30,6 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
@@ -40,6 +39,7 @@ import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelPro
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
+import org.unicase.ui.unicasecommon.TreeViewerColumnSorter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;

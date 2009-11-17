@@ -11,7 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.editors.TemplateEditor;
-import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
+import org.unicase.ui.unicasecommon.dialogs.METypeTreeSelectionDialog;
 
 /**
  * The handler for the AddModelElement command.

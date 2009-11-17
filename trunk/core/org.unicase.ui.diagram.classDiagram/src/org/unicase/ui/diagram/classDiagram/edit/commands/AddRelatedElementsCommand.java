@@ -24,16 +24,16 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.commands.CommandFactory;
-import org.unicase.ui.common.diagram.commands.CreateNodeViewCommandProvider;
-import org.unicase.ui.common.diagram.util.CommandUtility;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association1EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association2EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association3EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association4EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.diagram.classDiagram.part.ShowRelatedElementsController;
+import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;
+import org.unicase.ui.unicasecommon.diagram.commands.CreateNodeViewCommandProvider;
+import org.unicase.ui.unicasecommon.diagram.util.CommandUtility;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

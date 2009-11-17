@@ -55,9 +55,9 @@ import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.stem.Activator;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -542,7 +542,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			}
 
 			public void drop(DropTargetEvent event) {
-				UnicaseModelElement me = ActionHelper.getSelectedModelElement();
+				UnicaseModelElement me = UnicaseActionHelper.getSelectedModelElement();
 				if (me != null) {
 					setInput(me);
 				}

@@ -26,7 +26,7 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

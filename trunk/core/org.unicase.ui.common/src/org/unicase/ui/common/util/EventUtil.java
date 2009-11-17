@@ -7,13 +7,11 @@ package org.unicase.ui.common.util;
 
 import java.util.Calendar;
 
-import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.Annotation;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -68,30 +66,6 @@ public abstract class EventUtil {
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(presentationSwitchEvent);
-				}
-			}.run();
-
-		}
-
-	}
-
-	/**
-	 * @param me The annotated model element
-	 * @param annotation the new annoation
-	 */
-	public static void logAnnotationEvent(ModelElement me, Annotation annotation) {
-		final AnnotationEvent annotationEvent = EventsFactory.eINSTANCE.createAnnotationEvent();
-		annotationEvent.setAnnotatedElement(me.getModelElementId());
-		annotationEvent.setAnnotation(annotation.getModelElementId());
-		annotationEvent.setTimestamp(Calendar.getInstance().getTime());
-		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace();
-		if (activeProjectSpace != null) {
-
-			new UnicaseCommand() {
-				@Override
-				protected void doRun() {
-					activeProjectSpace.addEvent(annotationEvent);
 				}
 			}.run();
 

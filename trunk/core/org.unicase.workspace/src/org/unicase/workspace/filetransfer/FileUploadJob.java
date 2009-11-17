@@ -22,6 +22,7 @@ import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * File Upload Job class is responsible for uploading files to the server in the Eclipse Worker thread.
@@ -144,9 +145,13 @@ public class FileUploadJob extends FileTransferJob {
 						onDone.setFileInformation(getFileInformation());
 					}
 
+					/**
+					 * @see org.eclipse.core.runtime.ISafeRunnable#handleException(java.lang.Throwable)
+					 */
 					public void handleException(Throwable exception) {
-						// TODO: log
-						exception.printStackTrace();
+						WorkspaceUtil.logException("Exception on ModelElementId: "
+							+ getFileInformation().getFileIdentifier(), new FileTransferException(exception
+							.getMessage(), exception));
 					}
 
 				};

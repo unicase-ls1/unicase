@@ -13,9 +13,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.MEEditorInput;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.METhreadPage;
+import org.unicase.ui.unicasecommon.MEEditorInput;
+import org.unicase.ui.unicasecommon.meeditor.MEEditor;
+import org.unicase.ui.unicasecommon.meeditor.METhreadPage;
 
 /**
  * This handler is to be executed indirectly using IHandlerService.executeCommand() method. The Command itself does not

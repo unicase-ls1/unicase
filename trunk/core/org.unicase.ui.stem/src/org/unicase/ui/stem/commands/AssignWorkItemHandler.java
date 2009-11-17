@@ -15,11 +15,12 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * This is handler for assign work item to users on user tab of status view.
+ * users on user tab of status view.
  * 
  * @author Hodaie
  */
@@ -32,7 +33,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		UnicaseModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if (!(me instanceof OrgUnit)) {
 			return null;
 		}

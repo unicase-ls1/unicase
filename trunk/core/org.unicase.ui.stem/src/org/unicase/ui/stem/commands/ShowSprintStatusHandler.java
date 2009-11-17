@@ -13,8 +13,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.sprintstatus.SprintStatusView;
+import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
 
 /**
  * This is the handler to open the sprint status view.
@@ -31,7 +31,7 @@ public class ShowSprintStatusHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		UnicaseModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 
 		try {
 			SprintStatusView sprintStatusView = (SprintStatusView) page.showView(SprintStatusView.ID);

@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.figures.CenterLayout;
-import org.unicase.ui.common.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.figures.CenterLayout;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -52,6 +52,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -68,6 +69,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -76,10 +78,12 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -106,9 +110,8 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart) {
-			((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart) childEditPart)
-				.setLabel(getPrimaryShape().getActivityFigureName());
+		if (childEditPart instanceof ActivityNameEditPart) {
+			((ActivityNameEditPart) childEditPart).setLabel(getPrimaryShape().getActivityFigureName());
 			return true;
 		}
 		return false;
@@ -125,6 +128,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -135,6 +139,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -145,6 +150,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -164,6 +170,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -192,6 +199,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -202,6 +210,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID));
@@ -250,6 +259,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}

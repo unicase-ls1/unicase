@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPart;
 
 /**
  * @generated
@@ -21,7 +22,7 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
-	private org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart mySelectedElement;
+	private MEDiagramEditPart mySelectedElement;
 
 	/**
 	 * @generated
@@ -53,7 +54,7 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1
 				&& structuredSelection.getFirstElement() instanceof org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart) {
-				mySelectedElement = (org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart) structuredSelection
+				mySelectedElement = (MEDiagramEditPart) structuredSelection
 					.getFirstElement();
 			}
 		}

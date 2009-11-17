@@ -17,7 +17,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.test.SetupHelper;
