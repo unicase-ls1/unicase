@@ -37,7 +37,6 @@ import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.unicase.ui.unicasecommon.meeditor.MEURLControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
