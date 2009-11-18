@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * @author pfeifferc
@@ -18,13 +18,13 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public class FileRequestHandler {
 
 	private FileInformation fileInformation;
-	private ProjectSpaceImpl projectSpace;
+	private ProjectSpace projectSpace;
 
 	/**
 	 * @param fileInformation pending file transfer
 	 * @param projectSpace project space
 	 */
-	public FileRequestHandler(FileInformation fileInformation, ProjectSpaceImpl projectSpace) {
+	public FileRequestHandler(FileInformation fileInformation, ProjectSpace projectSpace) {
 		this.fileInformation = fileInformation;
 		this.projectSpace = projectSpace;
 	}
