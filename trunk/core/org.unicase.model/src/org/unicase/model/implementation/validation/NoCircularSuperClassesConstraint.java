@@ -5,9 +5,6 @@
  */
 package org.unicase.model.implementation.validation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -37,7 +34,7 @@ public class NoCircularSuperClassesConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof IClass) {
 				IClass c = (IClass) eObj;
-				if (getAllSuperClasses(c).contains(c)) {
+				if (isCircular(c)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(c,
 						"superClasses");
 					ctx.addResult(errorFeature);
@@ -48,12 +45,12 @@ public class NoCircularSuperClassesConstraint extends AbstractModelConstraint {
 		return ctx.createSuccessStatus();
 	}
 
-	private List<IClass> getAllSuperClasses(IClass c) {
-		List<IClass> superClasses = new ArrayList<IClass>();
-		superClasses.addAll(c.getSuperClasses());
-		for (IClass s : c.getSuperClasses()) {
-			superClasses.addAll(getAllSuperClasses(s));
+	private boolean isCircular(IClass c) {
+		for (IClass s : ImplementationValidationHelper.getAllSuperClasses(c)) {
+			if (s.getSuperClasses().contains(c)) {
+				return true;
+			}
 		}
-		return superClasses;
+		return false;
 	}
 }
