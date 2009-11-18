@@ -355,6 +355,28 @@
            </constraint>
         </constraints>
      </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/implementation">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.implementation.validation.WellFormedNameConstraint"
+                 id="org.unicase.model.implementation.WellFormedName"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name &apos;&apos;{0}&apos;&apos; is not well formed
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
   </extension>
   <extension
         point="org.eclipse.emf.validation.constraintBindings">
