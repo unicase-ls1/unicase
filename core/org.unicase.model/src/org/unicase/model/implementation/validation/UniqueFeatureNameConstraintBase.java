@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.implementation.IClass;
-import org.unicase.model.implementation.IFeature;
 
 /**
  * Base class for constraints which check uniqueness of feature names.
@@ -36,16 +35,6 @@ public abstract class UniqueFeatureNameConstraintBase extends UniqueNameConstrai
 	 */
 	@Override
 	protected List<? extends UnicaseModelElement> getComparisonElements(IClass context) {
-		return getAllFeatures(context);
-	}
-
-	private List<IFeature> getAllFeatures(IClass c) {
-		List<IFeature> features = new ArrayList<IFeature>();
-		features.addAll(c.getAttributes());
-		features.addAll(c.getOutgoingReferences());
-		for (IClass superClass : c.getSuperClasses()) {
-			features.addAll(getAllFeatures(superClass));
-		}
-		return features;
+		return ImplementationValidationHelper.getAllFeatures(context);
 	}
 }

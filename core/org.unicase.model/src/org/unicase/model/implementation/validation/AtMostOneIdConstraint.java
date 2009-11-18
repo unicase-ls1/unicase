@@ -5,9 +5,6 @@
  */
 package org.unicase.model.implementation.validation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
@@ -46,7 +43,7 @@ public class AtMostOneIdConstraint extends AbstractModelConstraint {
 
 	private int getNumberOfIdAttributes(IClass c) {
 		int n = 0;
-		for (IAttribute attribute : getAllAttributes(c)) {
+		for (IAttribute attribute : ImplementationValidationHelper.getAllAttributes(c)) {
 			if (attribute.isId()) {
 				n++;
 			}
@@ -54,12 +51,4 @@ public class AtMostOneIdConstraint extends AbstractModelConstraint {
 		return n;
 	}
 
-	private List<IAttribute> getAllAttributes(IClass c) {
-		List<IAttribute> features = new ArrayList<IAttribute>();
-		features.addAll(c.getAttributes());
-		for (IClass superClass : c.getSuperClasses()) {
-			features.addAll(getAllAttributes(superClass));
-		}
-		return features;
-	}
 }
