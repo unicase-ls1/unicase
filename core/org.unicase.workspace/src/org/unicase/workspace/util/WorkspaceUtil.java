@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
@@ -22,8 +23,10 @@ import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.Activator;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -229,5 +232,18 @@ public final class WorkspaceUtil {
 			return (ModelElement) objectByUri;
 		}
 		return null;
+	}
+
+	/**
+	 * Delete the test workspace.
+	 * 
+	 * @throws IOException if deletion fails
+	 */
+	public static void deleteTestWorkspace() throws IOException {
+		boolean isTesting = Configuration.isTesting();
+		Configuration.setTesting(true);
+		String workspaceDirectory = Configuration.getWorkspaceDirectory();
+		FileUtil.deleteFolder(new File(workspaceDirectory));
+		Configuration.setTesting(isTesting);
 	}
 }
