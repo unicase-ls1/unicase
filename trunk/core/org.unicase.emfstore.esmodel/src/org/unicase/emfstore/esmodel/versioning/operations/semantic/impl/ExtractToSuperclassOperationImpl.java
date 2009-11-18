@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Extract To Superclass Operation</b></em>'. <!--
@@ -326,6 +327,10 @@ public class ExtractToSuperclassOperationImpl extends SemanticCompositeOperation
 		result.append(superClassName);
 		result.append(')');
 		return result.toString();
+	}
+
+	public void semanticApply(Project project) {
+		throw new UnsupportedOperationException();
 	}
 
 } // ExtractToSuperclassOperationImpl
