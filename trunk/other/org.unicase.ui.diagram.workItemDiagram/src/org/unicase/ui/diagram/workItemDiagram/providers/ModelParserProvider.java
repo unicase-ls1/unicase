@@ -39,7 +39,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createActionItemName_5001Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+				.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -65,7 +65,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createIssueName_5002Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+				.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -91,7 +91,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createBugReportName_5003Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+				.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.workItemDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;

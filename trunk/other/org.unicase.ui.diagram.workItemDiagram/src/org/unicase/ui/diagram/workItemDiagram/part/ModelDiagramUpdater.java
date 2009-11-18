@@ -10,7 +10,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.rationale.Issue;

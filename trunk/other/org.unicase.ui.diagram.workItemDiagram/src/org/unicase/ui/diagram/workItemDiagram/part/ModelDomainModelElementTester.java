@@ -20,7 +20,7 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		}
 		EObject eObject = (EObject) receiver;
 		EClass eClass = eObject.eClass();
-		if (eClass == ModelPackage.eINSTANCE.getModelElement()) {
+		if (eClass == ModelPackage.eINSTANCE.getUnicaseModelElement()) {
 			return true;
 		}
 		if (eClass == ModelPackage.eINSTANCE.getProject()) {

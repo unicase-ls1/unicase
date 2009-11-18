@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.task.provider.ActionItemItemProvider;
-import org.unicase.ui.common.diagram.figures.Label;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @generated
