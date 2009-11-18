@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -329,6 +330,19 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	public void endCompositeOperation() {
 		projectSpace.notifyOperationExecuted(compositeOperation);
 		this.compositeOperation = null;
+	}
+
+	/**
+	 * Replace and complete the current composite operation.
+	 * 
+	 * @param semanticCompositeOperation the semantic operation that replaces the composite operation
+	 */
+	public void endCompositeOperation(SemanticCompositeOperation semanticCompositeOperation) {
+		List<AbstractOperation> operations = projectSpace.getOperations();
+		operations.remove(operations.size() - 1);
+		operations.add(semanticCompositeOperation);
+		compositeOperation = semanticCompositeOperation;
+		endCompositeOperation();
 	}
 
 	/**

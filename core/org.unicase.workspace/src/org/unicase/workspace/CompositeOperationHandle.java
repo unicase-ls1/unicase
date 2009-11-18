@@ -8,6 +8,7 @@ package org.unicase.workspace;
 import java.util.Date;
 
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.impl.ProjectChangeTracker;
@@ -77,5 +78,19 @@ public class CompositeOperationHandle {
 		compositeOperation.setReversed(false);
 		compositeOperation.setModelElementId(modelElementId);
 		changeTracker.endCompositeOperation();
+	}
+
+	/**
+	 * Completes a the given semantic composite operation.
+	 * 
+	 * @param semanticCompositeOperation a semanticCompositeOperation that was executed and represents the composite
+	 * @throws InvalidHandleException if the handle is invalid
+	 */
+	public void end(SemanticCompositeOperation semanticCompositeOperation) throws InvalidHandleException {
+		checkAndCloseHandle();
+		semanticCompositeOperation.setClientDate(new Date());
+		semanticCompositeOperation.setReversed(false);
+		semanticCompositeOperation.getSubOperations().addAll(compositeOperation.getSubOperations());
+		changeTracker.endCompositeOperation(semanticCompositeOperation);
 	}
 }
