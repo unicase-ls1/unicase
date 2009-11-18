@@ -53,7 +53,7 @@ public class ValidateHandler extends AbstractHandler {
 				.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 
-		IStatus status = validator.validate(projectSpace);
+		IStatus status = validator.validate(projectSpace.getProject());
 
 		ValidationClientSelector.setRunning(false);
 
