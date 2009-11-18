@@ -27,13 +27,14 @@ import org.unicase.model.implementation.IPackage;
 import org.unicase.model.implementation.IPrimitiveType;
 import org.unicase.model.implementation.IReference;
 
+/**
+ * Generate an Ecore model from an implementation model
+ * 
+ * @author herrmama
+ */
 public class EcoreGenerator {
 
 	private Map<UnicaseModelElement, EObject> mapping;
-
-	/*
-	 * Transform containment hierarchy
-	 */
 
 	public List<EPackage> generate(List<IPackage> packages) {
 		mapping = new IdentityHashMap<UnicaseModelElement, EObject>();
@@ -41,6 +42,10 @@ public class EcoreGenerator {
 		link(packages);
 		return ePackages;
 	}
+
+	/*
+	 * Transform containment hierarchy
+	 */
 
 	private List<EPackage> generatePackages(List<IPackage> packages) {
 		List<EPackage> ePackages = new ArrayList<EPackage>();
@@ -67,10 +72,40 @@ public class EcoreGenerator {
 		return ePackage;
 	}
 
-	private void initModelElement(UnicaseModelElement mElement,
-			ENamedElement eElement) {
-		eElement.setName(mElement.getName());
-		mapping.put(mElement, eElement);
+	private EClass generateClass(IClass c) {
+		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
+		initModelElement(c, eClass);
+		eClass.setAbstract(c.isAbstract());
+
+		for (IAttribute attribute : c.getAttributes()) {
+			eClass.getEStructuralFeatures().add(generateAttribute(attribute));
+		}
+		for (IReference reference : c.getOutgoingReferences()) {
+			eClass.getEStructuralFeatures().add(generateReference(reference));
+		}
+
+		return eClass;
+	}
+
+	private EReference generateReference(IReference reference) {
+		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
+		initFeature(reference, eReference);
+		eReference.setContainment(reference.isContainment());
+		return eReference;
+	}
+
+	private EStructuralFeature generateAttribute(IAttribute attribute) {
+		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+		initFeature(attribute, eAttribute);
+		eAttribute.setID(attribute.isId());
+		return eAttribute;
+	}
+
+	private void initFeature(IFeature feature, EStructuralFeature eFeature) {
+		initModelElement(feature, eFeature);
+		eFeature.setLowerBound(feature.getMinimumMultiplicity());
+		eFeature.setUpperBound(feature.getMaximumMultiplicity());
+		eFeature.setTransient(feature.isTransient());
 	}
 
 	private EEnum generateEnumeration(IEnumeration enumeration) {
@@ -93,53 +128,14 @@ public class EcoreGenerator {
 		return eEnumLiteral;
 	}
 
-	private EClass generateClass(IClass c) {
-		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-		initModelElement(c, eClass);
-		eClass.setAbstract(c.isAbstract());
-
-		for (IAttribute attribute : c.getAttributes()) {
-			eClass.getEStructuralFeatures().add(generateAttribute(attribute));
-		}
-		for (IReference reference : c.getOutgoingReferences()) {
-			eClass.getEStructuralFeatures().add(generateReference(reference));
-		}
-
-		return eClass;
-	}
-
-	private void initFeature(IFeature feature, EStructuralFeature eFeature) {
-		initModelElement(feature, eFeature);
-		eFeature.setLowerBound(feature.getMinimumMultiplicity());
-		eFeature.setUpperBound(feature.getMaximumMultiplicity());
-		eFeature.setTransient(feature.isTransient());
-	}
-
-	private EReference generateReference(IReference reference) {
-		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-		initFeature(reference, eReference);
-		eReference.setContainment(reference.isContainment());
-		return eReference;
-	}
-
-	private EStructuralFeature generateAttribute(IAttribute attribute) {
-		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-		initFeature(attribute, eAttribute);
-		eAttribute.setID(attribute.isId());
-		return eAttribute;
+	private void initModelElement(UnicaseModelElement mElement, ENamedElement eElement) {
+		eElement.setName(mElement.getName());
+		mapping.put(mElement, eElement);
 	}
 
 	/*
 	 * Transform cross references
 	 */
-
-	private EObject get(UnicaseModelElement source) {
-		EObject target = mapping.get(source);
-		if (target == null) {
-			throw new NotSelfContainedException(source);
-		}
-		return target;
-	}
 
 	private void link(List<IPackage> packages) {
 		for (IPackage p : packages) {
@@ -196,7 +192,14 @@ public class EcoreGenerator {
 	private void linkReference(IReference reference) {
 		EReference eReference = (EReference) get(reference);
 		eReference.setEType((EClassifier) get(reference.getType()));
-		eReference.setEOpposite((EReference) get(reference
-				.getOppositeReference()));
+		eReference.setEOpposite((EReference) get(reference.getOppositeReference()));
+	}
+
+	private EObject get(UnicaseModelElement source) {
+		EObject target = mapping.get(source);
+		if (target == null) {
+			throw new NotSelfContainedException(source);
+		}
+		return target;
 	}
 }
