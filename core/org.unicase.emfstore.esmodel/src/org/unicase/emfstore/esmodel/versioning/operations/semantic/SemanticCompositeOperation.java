@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations.semantic;
 
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Composite Operation</b></em>'. <!-- end-user-doc
@@ -16,4 +17,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
  * @generated
  */
 public interface SemanticCompositeOperation extends CompositeOperation {
+
+	/**
+	 * Apply the operation semantically on the given project. This means that the context of the operation is
+	 * reevaluated for the given project.
+	 * 
+	 * @param project the project to apply the operation on.
+	 */
+	public void semanticApply(Project project);
 } // SemanticCompositeOperation
