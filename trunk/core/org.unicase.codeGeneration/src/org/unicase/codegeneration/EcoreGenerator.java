@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.codegeneration;
 
 import java.util.ArrayList;
@@ -28,7 +33,7 @@ import org.unicase.model.implementation.IPrimitiveType;
 import org.unicase.model.implementation.IReference;
 
 /**
- * Generate an Ecore model from an implementation model
+ * Generate an Ecore model from an implementation model.
  * 
  * @author herrmama
  */
@@ -36,6 +41,12 @@ public class EcoreGenerator {
 
 	private Map<UnicaseModelElement, EObject> mapping;
 
+	/**
+	 * Generate a list of ECore Package from UNICASE implementation packages.
+	 * 
+	 * @param packages the implementation packages
+	 * @return the ecore packages
+	 */
 	public List<EPackage> generate(List<IPackage> packages) {
 		mapping = new IdentityHashMap<UnicaseModelElement, EObject>();
 		List<EPackage> ePackages = generatePackages(packages);

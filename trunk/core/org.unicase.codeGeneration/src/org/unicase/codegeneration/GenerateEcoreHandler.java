@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.codegeneration;
 
 import java.io.File;
@@ -24,13 +29,15 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.implementation.IPackage;
 
 /**
- * Handler for the command to generate Ecore from the implementation model
+ * Handler for the command to generate Ecore from the implementation model.
  * 
  * @author herrmama
  */
 public class GenerateEcoreHandler extends AbstractHandler {
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -54,7 +61,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Get the selected implementation packages
+	 * Get the selected implementation packages.
 	 */
 	@SuppressWarnings("unchecked")
 	private List<IPackage> getPackages(IStructuredSelection structuredSelection) {
@@ -66,7 +73,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Generate and save and Ecore model from the implementation packages
+	 * Generate and save and Ecore model from the implementation packages.
 	 */
 	private void generateEcore(List<IPackage> packages) {
 		EcoreGenerator generator = new EcoreGenerator();
@@ -89,7 +96,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Remove packages which are contained by others
+	 * Remove packages which are contained by others.
 	 */
 	private void reduce(List<IPackage> packages) {
 		for (Iterator<IPackage> i = packages.iterator(); i.hasNext();) {
@@ -101,7 +108,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Check whether a package is contained in a number of packages
+	 * Check whether a package is contained in a number of packages.
 	 */
 	private boolean contains(IPackage p, List<IPackage> packages) {
 		while (p != null) {
