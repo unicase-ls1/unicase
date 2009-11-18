@@ -260,6 +260,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @return the adapter
 	 * @author shterev
 	 */
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
