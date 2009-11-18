@@ -8,20 +8,17 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "org.unicase.model.codeGeneration";
 
-	// The shared instance
-	private static Activator plugin;
-	
 	/**
-	 * The constructor
+	 * The shared instance
 	 */
-	public Activator() {
-	}
+	private static Activator plugin;
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -30,8 +27,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -42,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

@@ -23,13 +23,19 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.implementation.IPackage;
 
-
+/**
+ * Handler for the command to generate Ecore from the implementation model
+ * 
+ * @author herrmama
+ */
 public class GenerateEcoreHandler extends AbstractHandler {
 
+	/**
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event)
-				.getActivePage();
+		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
 		ISelection selection = activePage.getSelection();
 		if (selection != null & selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -39,15 +45,18 @@ public class GenerateEcoreHandler extends AbstractHandler {
 			try {
 				generateEcore(packages);
 			} catch (NotSelfContainedException e) {
-				MessageDialog.openError(Display.getDefault().getActiveShell(),
-						"Error",
-						"The selected packages are not self contained.");
+				MessageDialog.openError(Display.getDefault().getActiveShell(), "Error",
+					"The selected packages are not self contained.");
 			}
 		}
 
 		return null;
 	}
 
+	/**
+	 * Get the selected implementation packages
+	 */
+	@SuppressWarnings("unchecked")
 	private List<IPackage> getPackages(IStructuredSelection structuredSelection) {
 		List<IPackage> packages = new ArrayList<IPackage>();
 		for (Iterator i = structuredSelection.iterator(); i.hasNext();) {
@@ -56,12 +65,14 @@ public class GenerateEcoreHandler extends AbstractHandler {
 		return packages;
 	}
 
+	/**
+	 * Generate and save and Ecore model from the implementation packages
+	 */
 	private void generateEcore(List<IPackage> packages) {
 		EcoreGenerator generator = new EcoreGenerator();
 		List<EPackage> ePackages = generator.generate(packages);
 
-		FileDialog dialog = new FileDialog(Display.getDefault()
-				.getActiveShell());
+		FileDialog dialog = new FileDialog(Display.getDefault().getActiveShell());
 		dialog.setFilterExtensions(new String[] { "*.ecore" });
 		String path = dialog.open();
 		if (path != null) {
@@ -77,6 +88,9 @@ public class GenerateEcoreHandler extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * Remove packages which are contained by others
+	 */
 	private void reduce(List<IPackage> packages) {
 		for (Iterator<IPackage> i = packages.iterator(); i.hasNext();) {
 			IPackage p = i.next();
@@ -86,6 +100,9 @@ public class GenerateEcoreHandler extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * Check whether a package is contained in a number of packages
+	 */
 	private boolean contains(IPackage p, List<IPackage> packages) {
 		while (p != null) {
 			if (packages.contains(p)) {
