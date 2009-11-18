@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.model.implementation.validation;
 
 import org.eclipse.core.runtime.IStatus;
@@ -10,13 +15,15 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether the name of an element from the implementation model is a well-formed Java identifier
+ * Checks whether the name of an element from the implementation model is a well-formed Java identifier.
  * 
  * @author herrmama
  */
 public class WellFormedNameConstraint extends AbstractModelConstraint {
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.validation.AbstractModelConstraint#validate(org.eclipse.emf.validation.IValidationContext)
 	 */
 	@Override
@@ -40,7 +47,7 @@ public class WellFormedNameConstraint extends AbstractModelConstraint {
 	}
 
 	/**
-	 * Checks whether a name is a well-formed Java identifier
+	 * Checks whether a name is a well-formed Java identifier.
 	 */
 	private boolean isWellFormed(String name) {
 		boolean result = false;
