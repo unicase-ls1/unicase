@@ -39,7 +39,7 @@ public class WellFormedNameConstraint extends AbstractModelConstraint {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						element, "name");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { name });
+					return ctx.createFailureStatus(new Object[] { "'" + name + "'" });
 				}
 			}
 		}
