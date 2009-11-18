@@ -47,7 +47,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * @generated
  */
 public class ModelDocumentProvider extends
-		org.unicase.ui.common.diagram.part.ModelDocumentProvider implements
+		org.unicase.ui.unicasecommon.diagram.part.ModelDocumentProvider implements
 		IDiagramDocumentProvider {
 
 	/**

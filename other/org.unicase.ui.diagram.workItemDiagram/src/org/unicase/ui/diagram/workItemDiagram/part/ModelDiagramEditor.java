@@ -44,7 +44,7 @@ import org.eclipse.ui.part.ShowInContext;
  * @generated
  */
 public class ModelDiagramEditor extends
-		org.unicase.ui.common.diagram.part.ModelDiagramEditor implements
+		org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor implements
 		IGotoMarker {
 
 	/**

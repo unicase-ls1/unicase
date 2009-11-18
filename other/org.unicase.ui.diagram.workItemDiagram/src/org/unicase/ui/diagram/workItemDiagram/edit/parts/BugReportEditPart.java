@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.bug.provider.BugReportItemProvider;
-import org.unicase.ui.common.diagram.figures.Label;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @generated
@@ -110,8 +110,8 @@ public class BugReportEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.diagram.workItemDiagram.edit.parts.BugReportNameEditPart) {
-			((org.unicase.ui.diagram.workItemDiagram.edit.parts.BugReportNameEditPart) childEditPart)
+		if (childEditPart instanceof BugReportNameEditPart) {
+			((BugReportNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape().getWorkItemFigureName());
 			return true;
 		}
