@@ -34,10 +34,10 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationaleFactoryImpl;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.unicase.ui.unicasecommon.meeditor.ControlFactory;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

@@ -289,7 +289,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 * 
 		 * @param element the selected element
 		 * @return a string with date details and relevance if provided
-		 * @see org.unicase.ui.meeditor.mecontrols.MESuggestedSelectionDialog.DateDetailsLabelProvider#getText(java.lang.Object)
+		 * @see org.unicase.ui.unicasecommon.meeditor.mecontrols.MESuggestedSelectionDialog.DateDetailsLabelProvider#getText(java.lang.Object)
 		 */
 		@Override
 		public String getText(Object element) {

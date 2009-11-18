@@ -29,7 +29,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
-import org.unicase.ui.meeditor.mecontrols.MESuggestedSelectionDialog;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.MESuggestedSelectionDialog;
 import org.unicase.workspace.Configuration;
 
 /**

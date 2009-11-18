@@ -44,8 +44,6 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationalePackage;
-import org.unicase.ui.meeditor.AnnotationPositionDescriptor;
-import org.unicase.ui.meeditor.AnnotationPriorityDescriptor;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
