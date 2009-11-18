@@ -39,7 +39,7 @@ public class WellFormedNamespaceConstraint extends AbstractModelConstraint {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						element, "namespace");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { namespace });
+					return ctx.createFailureStatus(new Object[] { "'" + namespace + "'" });
 				}
 			}
 		}
@@ -53,7 +53,8 @@ public class WellFormedNamespaceConstraint extends AbstractModelConstraint {
 		boolean result = false;
 		if (name != null) {
 			int length = name.length();
-			if (length > 0 && Character.isJavaIdentifierStart(name.codePointAt(0))) {
+			if (length > 0 && Character.isJavaIdentifierStart(name.codePointAt(0))
+				&& Character.isJavaIdentifierPart(name.codePointAt(length - 1))) {
 				result = true;
 				for (int i = Character.offsetByCodePoints(name, 0, 1); i < length; i = Character.offsetByCodePoints(
 					name, i, 1)) {
