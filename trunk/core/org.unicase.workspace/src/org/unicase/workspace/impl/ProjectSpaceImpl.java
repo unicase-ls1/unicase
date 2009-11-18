@@ -150,7 +150,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated
 	 * @ordered
 	 */
-	protected ProjectId projectId;
+	public ProjectId projectId;
 
 	/**
 	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc -->
@@ -2508,9 +2508,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * @param file to be added to the projectspace
-	 * @return file identifier to retrieve file with
-	 * @throws FileTransferException if any error occurs
+	 * {@inheritDoc}
 	 */
 	public String addFile(File file) throws FileTransferException {
 		if (file.isDirectory()) {
@@ -2529,9 +2527,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * @param fileIdentifier file identifier string
-	 * @return handler
-	 * @throws FileTransferException if any error occurs retrieving the files
+	 * {@inheritDoc}
 	 */
 	public FileRequestHandler getFile(String fileIdentifier) throws FileTransferException {
 		// create model element id to identify file

@@ -532,34 +532,6 @@
      </menuContribution>
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
-        <command
-              commandId="org.unicase.ui.navigator.newMEWizard"
-              icon="icons/NewModelElement.png"
-              label="New model element..."
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.LeafSection">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <dynamic
-              class="org.unicase.ui.unicasecommon.navigator.commands.DynamicMECreationCommands"
-              id="org.unicase.ui.navigator.dynamicMECreationCommands">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.LeafSection">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </dynamic>
         <dynamic
               class="org.unicase.ui.unicasecommon.navigator.commands.DynamicContainmentCommands"
               id="org.unicase.ui.navigator.dynamicContainmentCommands">

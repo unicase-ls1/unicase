@@ -34,6 +34,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
+import org.unicase.workspace.filetransfer.FileRequestHandler;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.OperationListener;
@@ -749,5 +750,19 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return if transfer exists
 	 */
 	boolean hasFileTransfer(FileInformation fileInformation, boolean upload);
+
+	/**
+	 * @param file to be added to the projectspace
+	 * @return file identifier to retrieve file with
+	 * @throws FileTransferException if any error occurs
+	 */
+	String addFile(File file) throws FileTransferException;
+
+	/**
+	 * @param fileIdentifier file identifier string
+	 * @return handler
+	 * @throws FileTransferException if any error occurs retrieving the files
+	 */
+	FileRequestHandler getFile(String fileIdentifier) throws FileTransferException;
 
 } // ProjectContainer
