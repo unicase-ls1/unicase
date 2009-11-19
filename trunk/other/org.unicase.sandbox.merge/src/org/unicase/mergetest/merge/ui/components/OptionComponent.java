@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import org.eclipse.emf.transaction.NotificationFilter.Custom;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.MouseEvent;
@@ -51,7 +53,7 @@ public class OptionComponent {
 		refreshButtonColor();
 	}
 
-	private String generateOptionDescription(ConflictOption option) {
+	private String generatePrefix(ConflictOption option) {
 		String result = "";
 		switch (option.getType()) {
 		case MyOperation:
@@ -66,8 +68,6 @@ public class OptionComponent {
 		case Custom:
 			break;
 		}
-		result += DecisionUtil.cutString(option.getOptionLabel(),
-				DecisionConfig.OPTION_LENGTH, true);
 		return result;
 	}
 
@@ -124,10 +124,23 @@ public class OptionComponent {
 			setLayout(layout);
 			setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-			Label option1 = new Label(this, SWT.NONE);
+//			StyledText styledText = new StyledText(this, SWT.NONE);
+			
+			String result = generatePrefix(option);
+			result += DecisionUtil.cutString(option.getOptionLabel(),
+					DecisionConfig.OPTION_LENGTH, true);
 
-			String result = generateOptionDescription(option);
-			option1.setText(result);
+			Label label = new Label(this, SWT.NONE);
+			label.setText(result);
+			
+//			StyleRange prefixRange = new StyleRange();
+//		    prefixRange.start = 0;
+//		    prefixRange.length = result.length();
+//		    prefixRange.fontStyle = SWT.ITALIC;
+//			styledText.setText(result);
+//			styledText.setEditable(false);
+//			styledText.setBackground(getBackground());
+//			styledText.setStyleRange(prefixRange);
 
 			OptionMouseListener listener = new OptionMouseListener(this);
 			OptionComponent.this.addMouseListener(this, listener);
