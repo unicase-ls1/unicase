@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.part;
 
 import java.io.IOException;
@@ -93,6 +98,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void addPages() {
 		addPage(myFileCreationPage);
 		addPage(diagramRootElementSelectionPage);
@@ -101,6 +107,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean performFinish() {
 		List affectedFiles = new LinkedList();
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -113,6 +120,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 			org.unicase.ui.diagram.activityDiagram.part.Messages.ModelNewDiagramFileWizard_InitDiagramCommand,
 			affectedFiles) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 				throws ExecutionException {
 				int diagramVID = org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
@@ -161,6 +169,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected String getSelectionTitle() {
 			return org.unicase.ui.diagram.activityDiagram.part.Messages.ModelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
@@ -168,6 +177,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean validatePage() {
 			if (selectedModelElement == null) {
 				setErrorMessage(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
