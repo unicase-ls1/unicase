@@ -1,6 +1,7 @@
 package org.unicase.mergetest.merge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -10,14 +11,10 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.conflicts.AttributeConflict;
-import org.unicase.mergetest.merge.conflict.conflicts.DeleteConflict;
-import org.unicase.mergetest.merge.conflict.conflicts.LinkConflict;
-import org.unicase.mergetest.merge.conflict.conflicts.MultiReferenceConflict;
+import org.unicase.mergetest.merge.conflict.conflicts.DeletionConflict;
 import org.unicase.mergetest.merge.conflict.conflicts.SingleReferenceConflict;
 import org.unicase.mergetest.merge.util.DecisionUtil;
 import org.unicase.metamodel.ModelElement;
@@ -86,7 +83,13 @@ public class DecisionManager {
 //						conflicts.add(new MultiReferenceConflict((MultiReferenceOperation) myOperation, (MultiReferenceOperation) theirOperation));
 //				
 //					}
-
+					else if (DecisionUtil.isDelete(myOperation) || DecisionUtil.isDelete(theirOperation)) {
+						if(DecisionUtil.isDelete(myOperation)) {
+							conflicts.add(new DeletionConflict(myOperation, Arrays.asList(theirOperation,myOperation),true,this));
+						} else {
+							conflicts.add(new DeletionConflict(theirOperation, Arrays.asList(myOperation,theirOperation),false,this));
+						}
+					}
 				}
 			}
 		}

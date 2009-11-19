@@ -90,8 +90,7 @@ public class MergeSandboxController {
 		cg("User2", User.class).setLeafSection(
 				cg("LeafSection2", LeafSection.class));
 		sg("User2", User.class).delete();
-
-		// sg("LeafSection1",LeafSection.class).delete();
+		sg("LeafSection1",LeafSection.class).delete();
 	}
 
 	//

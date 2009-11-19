@@ -88,11 +88,7 @@ public class MergeWizardPage extends WizardPage {
 
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
-			// decisionBoxes.add(new DecisionBox(composite, conflict));
-			if (conflict instanceof AttributeConflict
-					|| conflict instanceof SingleReferenceConflict) {
-				new DecisionBox(composite, colorSwitcher.getColor(), conflict);
-			}
+			new DecisionBox(composite, decisionManager,colorSwitcher.getColor(), conflict);
 		}
 
 		debugButton(composite);

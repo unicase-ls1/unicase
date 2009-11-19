@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Display;
 
 public class DecisionConfig {
 
-	public static final int OPTION_LENGTH = 40;
+	public static final int OPTION_LENGTH = 50;
 	
 	public static final String SEPERATOR = "#";
 	
@@ -17,6 +17,8 @@ public class DecisionConfig {
 	public static final String WIDGET_MULTILINE = "org.unicase.merge.widget.multiline";
 
 	public static final String WIDGET_MULTILINE_EDITABLE = WIDGET_MULTILINE+SEPERATOR+EDITABLE;
+
+	public static final String WIDGET_OTHERINVOLVED = "org.unicase.merge.widget.otherinvolved";
 	
 	
 

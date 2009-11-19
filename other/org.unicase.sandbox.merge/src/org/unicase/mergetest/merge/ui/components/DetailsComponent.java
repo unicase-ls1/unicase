@@ -12,6 +12,7 @@ import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.ui.DecisionBox;
 import org.unicase.mergetest.merge.ui.widgets.MultilineWidget;
+import org.unicase.mergetest.merge.ui.widgets.OtherInvolvedWidget;
 import org.unicase.mergetest.merge.util.DecisionConfig;
 
 public class DetailsComponent extends Section {
@@ -51,7 +52,7 @@ public class DetailsComponent extends Section {
 		layout.rightMargin = 0;
 		layout.leftMargin = 0;
 		client.setLayout(layout);
-		client.setBackground(getBackground());
+		client.setBackground(this.getBackground());
 
 		for (ConflictOption option : conflict.getOptions()) {
 			if (!option.isDetailsProvider()) {
@@ -60,6 +61,9 @@ public class DetailsComponent extends Section {
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
 				new MultilineWidget(client, option);
+			} else if (option.getDetailProvider().startsWith(
+					DecisionConfig.WIDGET_OTHERINVOLVED)){
+				new OtherInvolvedWidget(client,parent.getDecisionManager(),option);
 			}
 		}
 
