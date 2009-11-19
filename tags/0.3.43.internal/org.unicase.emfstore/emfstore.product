@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pde version="3.4"?>
+<?pde version="3.5"?>
 
-<product name="emfstore" id="org.unicase.emfstore.emfstore" application="org.unicase.emfstore.emfstore" version="0.3.24.qualifier" useFeatures="false">
-
+<product name="emfstore" uid="org.unicase.emfstore" id="org.unicase.emfstore.product" application="org.unicase.emfstore.emfstore" version="0.3.24.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -13,14 +12,12 @@
 
    <windowImages/>
 
-
    <launcher name="emfstore">
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -32,11 +29,14 @@
       <plugin id="edu.tum.cs.cope.declaration.registry"/>
       <plugin id="edu.tum.cs.cope.migration"/>
       <plugin id="edu.tum.cs.cope.migration.execution"/>
+      <plugin id="javax.servlet"/>
+      <plugin id="javax.transaction" fragment="true"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
       <plugin id="org.apache.ant"/>
       <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.codehaus.groovy"/>
+      <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filesystem"/>
@@ -45,11 +45,14 @@
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
+      <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
+      <plugin id="org.eclipse.core.variables"/>
       <plugin id="org.eclipse.emf"/>
       <plugin id="org.eclipse.emf.common"/>
       <plugin id="org.eclipse.emf.ecore"/>
       <plugin id="org.eclipse.emf.ecore.change"/>
+      <plugin id="org.eclipse.emf.ecore.edit"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.emf.transaction"/>
@@ -59,14 +62,19 @@
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.gmf.runtime.notation"/>
+      <plugin id="org.eclipse.gmf.runtime.notation.edit"/>
       <plugin id="org.eclipse.ocl"/>
       <plugin id="org.eclipse.ocl.ecore"/>
       <plugin id="org.eclipse.osgi"/>
+      <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.persistence.jpa.equinox.weaving" fragment="true"/>
       <plugin id="org.junit"/>
       <plugin id="org.unicase.emfstore"/>
       <plugin id="org.unicase.emfstore.esmodel"/>
       <plugin id="org.unicase.model"/>
+      <plugin id="org.unicase.model.edit"/>
       <plugin id="org.unicase.model.migrator"/>
    </plugins>
+
 
 </product>
