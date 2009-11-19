@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.componentDiagram.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +30,7 @@ public class ComponentServiceCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
@@ -36,6 +42,7 @@ public class ComponentServiceCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -43,6 +50,7 @@ public class ComponentServiceCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		ComponentService newElement = ComponentFactory.eINSTANCE.createComponentService();
 
