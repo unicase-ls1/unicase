@@ -1,7 +1,0 @@
-# Tracing options for the org.unicase.ui.diagram.usecaseDiagram plug-in
-
-# Common issues
-org.unicase.ui.diagram.usecaseDiagram/debug=false
-
-# Visual IDs
-org.unicase.ui.diagram.usecaseDiagram/debug/visualID=false
