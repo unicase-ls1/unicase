@@ -52,7 +52,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.TreeContentProvider;
 import org.unicase.ui.navigator.TreeLabelProvider;
-import org.unicase.ui.unicasecommon.dnd.UCDropAdapter;
+import org.unicase.ui.unicasecommon.common.dnd.UCDropAdapter;
 import org.unicase.ui.unicasecommon.meeditor.MEEditor;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;

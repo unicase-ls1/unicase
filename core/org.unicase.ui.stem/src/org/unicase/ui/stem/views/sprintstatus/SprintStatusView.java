@@ -26,7 +26,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.stem.Activator;
-import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
  * A view that displays the status of a given sprint (work package). It is mainly used to plan the sprint and

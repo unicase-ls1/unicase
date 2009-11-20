@@ -9,19 +9,20 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.navigator;visibility:=reexport,
  org.unicase.ui.meeditor;visibility:=reexport,
  org.unicase.model.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.ui.unicasecommon,
- org.unicase.ui.unicasecommon.diagram,
+Bundle-ActivationPolicy: lazy
+Export-Package: org.unicase.ui.unicasecommon.common,
+ org.unicase.ui.unicasecommon.common.diagram,
+ org.unicase.ui.unicasecommon.common.dialogs,
+ org.unicase.ui.unicasecommon.common.dnd,
+ org.unicase.ui.unicasecommon.common.filter,
+ org.unicase.ui.unicasecommon.common.util,
+ org.unicase.ui.unicasecommon.common.widgets,
  org.unicase.ui.unicasecommon.diagram.commands,
  org.unicase.ui.unicasecommon.diagram.edit.parts,
  org.unicase.ui.unicasecommon.diagram.figures,
  org.unicase.ui.unicasecommon.diagram.part,
  org.unicase.ui.unicasecommon.diagram.providers,
  org.unicase.ui.unicasecommon.diagram.requests,
- org.unicase.ui.unicasecommon.diagram.util,
- org.unicase.ui.unicasecommon.dialogs,
- org.unicase.ui.unicasecommon.dnd,
- org.unicase.ui.unicasecommon.filter,
- org.unicase.ui.unicasecommon.util,
- org.unicase.ui.unicasecommon.widgets
+ org.unicase.ui.unicasecommon.diagram.util
+Import-Package: org.unicase.ui.unicasecommon.common

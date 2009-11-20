@@ -13,7 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
-import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**

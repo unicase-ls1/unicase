@@ -14,7 +14,7 @@ import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
-import org.unicase.ui.unicasecommon.TreeViewerColumnSorter;
+import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 
 /**
  * Utility for task tables.

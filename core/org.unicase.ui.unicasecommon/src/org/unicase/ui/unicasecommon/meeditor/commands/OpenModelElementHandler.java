@@ -13,7 +13,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.unicasecommon.MEEditorInput;
+import org.unicase.ui.unicasecommon.meeditor.MEEditorInput;
 
 /**
  * @author Hodaie This handler handles openModelEelement command. This handler is to be executed indirectly using

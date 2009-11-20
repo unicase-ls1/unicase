@@ -27,7 +27,6 @@ import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.ui.unicasecommon.MEEditorInput;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
