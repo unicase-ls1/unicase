@@ -20,8 +20,10 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.AccessControlException;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.test.SetupHelper;
 
@@ -178,14 +180,13 @@ public class ServerInterfaceTest extends ServerTests {
 	@Test
 	public void getChangesTest() throws EmfStoreException {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		// CreateDeleteOperation createCreateDeleteOperation =
-		// OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-		// createCreateDeleteOperation.setDelete(true);
-		//		
-		// ModelElement modelElement = (ModelElement) EcoreUtil.copy(getGeneratedProject().getModelElements().get(0));
-		// createCreateDeleteOperation.setModelElementId(modelElement.getModelElementId());
-		// createCreateDeleteOperation.setModelElement(modelElement);
-		// changePackage.getOperations().add(createCreateDeleteOperation);
+
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
+		attributeOperation.setModelElementId(getGeneratedProject().getAllModelElements().get(0).getModelElementId());
+		attributeOperation.setFeatureName("name");
+		attributeOperation.setNewValue("nameeee");
+
+		changePackage.getOperations().add(attributeOperation);
 
 		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
 			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);
@@ -197,7 +198,9 @@ public class ServerInterfaceTest extends ServerTests {
 
 		assertTrue(changes.size() == 1);
 		for (ChangePackage cp : changes) {
-			assertTrue(SerializationUtil.eObjectToString(changePackage).equals(SerializationUtil.eObjectToString(cp)));
+			assertTrue(cp.getOperations().size() == 1);
+			assertTrue(SerializationUtil.eObjectToString(cp.getOperations().get(0)).equals(
+				SerializationUtil.eObjectToString(attributeOperation)));
 		}
 
 	}
@@ -289,7 +292,7 @@ public class ServerInterfaceTest extends ServerTests {
 			getConnectionManager().resolveUser(getSessionId(), null);
 			// if no exception is thrown at this point, the test fails.
 			Assert.assertTrue(false);
-		} catch (AccessControlException e) {
+		} catch (UnknownSessionException e) {
 			Assert.assertTrue(true);
 		}
 		// relogin for next test

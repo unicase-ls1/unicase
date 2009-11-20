@@ -7,7 +7,7 @@ package org.unicase.workspace.connectionmanager.xmlrpc;
 
 import java.util.List;
 
-import org.unicase.emfstore.connection.xmlrpc.XmlRpcConnectionHander;
+import org.unicase.emfstore.connection.xmlrpc.XmlRpcConnectionHandler;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -45,7 +45,7 @@ public class XmlRpcConnectionManager extends AbstractConnectionManager<XmlRpcCli
 	 */
 	public SessionId logIn(String username, String password, ServerInfo serverInfo, ClientVersionInfo clientVersionInfo)
 		throws EmfStoreException {
-		XmlRpcClientManager clientManager = new XmlRpcClientManager(XmlRpcConnectionHander.EMFSTORE);
+		XmlRpcClientManager clientManager = new XmlRpcClientManager(XmlRpcConnectionHandler.EMFSTORE);
 		clientManager.initConnection(serverInfo);
 		SessionId id = clientManager.callWithResult("logIn", SessionId.class, username, password, clientVersionInfo);
 		addConnectionProxy(id, clientManager);

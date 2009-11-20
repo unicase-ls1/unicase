@@ -6,9 +6,7 @@
 package org.unicase.workspace.test.server;
 
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.test.SetupHelper;
 
 /**
  * Has to be implemented.
@@ -25,7 +23,7 @@ public class InvalidAuthenticationTest extends ServerTests {
 	 */
 	@Test
 	public void doNothing() throws EmfStoreException {
-		SessionId login = login(SetupHelper.getServerInfo(), "reader", "foo");
-		login.getId();
+		// SessionId login = login(SetupHelper.getServerInfo(), "reader", "foo");
+		// login.getId();
 	}
 }
