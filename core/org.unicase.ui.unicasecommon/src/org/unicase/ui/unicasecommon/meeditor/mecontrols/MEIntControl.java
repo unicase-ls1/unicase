@@ -48,7 +48,8 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		spinner = new Spinner(parent, style);
-
+		spinner.setMinimum(-1000);
+		spinner.setMaximum(1000);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null, null);
