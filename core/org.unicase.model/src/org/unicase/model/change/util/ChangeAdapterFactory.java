@@ -18,7 +18,6 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.change.MergingSolution;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.Solution;
@@ -76,11 +75,6 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ChangeSwitch<Adapter> modelSwitch = new ChangeSwitch<Adapter>() {
-		@Override
-		public Adapter caseModelChangePackage(ModelChangePackage object) {
-			return createModelChangePackageAdapter();
-		}
-
 		@Override
 		public Adapter caseMergingIssue(MergingIssue object) {
 			return createMergingIssueAdapter();
@@ -162,20 +156,6 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.change.ModelChangePackage
-	 * <em>Model Change Package</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.change.ModelChangePackage
-	 * @generated
-	 */
-	public Adapter createModelChangePackageAdapter() {
-		return null;
 	}
 
 	/**

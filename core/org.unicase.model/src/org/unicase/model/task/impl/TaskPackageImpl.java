@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
@@ -151,7 +152,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
+		EsmodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -342,7 +343,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_AssociatedChangePackages() {
+	public EReference getWorkItem_Predecessors() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -351,7 +352,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_Predecessors() {
+	public EReference getWorkItem_Successors() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -360,7 +361,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_Successors() {
+	public EReference getWorkItem_Assignee() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -369,7 +370,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_Assignee() {
+	public EReference getWorkItem_Reviewer() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -378,7 +379,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_Reviewer() {
+	public EReference getWorkItem_Participants() {
 		return (EReference) workItemEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -387,17 +388,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getWorkItem_Participants() {
-		return (EReference) workItemEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EAttribute getWorkItem_DueDate() {
-		return (EAttribute) workItemEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -406,7 +398,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Estimate() {
-		return (EAttribute) workItemEClass.getEStructuralFeatures().get(8);
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -415,7 +407,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Effort() {
-		return (EAttribute) workItemEClass.getEStructuralFeatures().get(9);
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -424,7 +416,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Priority() {
-		return (EAttribute) workItemEClass.getEStructuralFeatures().get(10);
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -433,7 +425,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Resolved() {
-		return (EAttribute) workItemEClass.getEStructuralFeatures().get(11);
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -520,7 +512,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		workItemEClass = createEClass(WORK_ITEM);
 		createEReference(workItemEClass, WORK_ITEM__CONTAINING_WORKPACKAGE);
-		createEReference(workItemEClass, WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES);
 		createEReference(workItemEClass, WORK_ITEM__PREDECESSORS);
 		createEReference(workItemEClass, WORK_ITEM__SUCCESSORS);
 		createEReference(workItemEClass, WORK_ITEM__ASSIGNEE);
@@ -569,7 +560,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
 
@@ -611,10 +601,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getWorkItem_ContainingWorkpackage().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage.getModelChangePackage(), null,
-			"associatedChangePackages", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_AssociatedChangePackages().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this.getWorkItem_Successors(), "predecessors",
 			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

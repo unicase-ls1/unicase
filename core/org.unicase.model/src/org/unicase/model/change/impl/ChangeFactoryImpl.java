@@ -15,7 +15,6 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.change.MergingSolution;
-import org.unicase.model.change.ModelChangePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -58,8 +57,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE:
-			return createModelChangePackage();
 		case ChangePackage.MERGING_ISSUE:
 			return createMergingIssue();
 		case ChangePackage.MERGING_PROPOSAL:
@@ -69,16 +66,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public ModelChangePackage createModelChangePackage() {
-		ModelChangePackageImpl modelChangePackage = new ModelChangePackageImpl();
-		return modelChangePackage;
 	}
 
 	/**

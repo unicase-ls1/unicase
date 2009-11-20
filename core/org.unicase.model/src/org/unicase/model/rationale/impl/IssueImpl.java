@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -42,8 +41,6 @@ import org.unicase.model.task.WorkPackage;
  * <ul>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked <em>Checked</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssociatedChangePackages <em>Associated Change Packages
- * </em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
@@ -73,16 +70,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @ordered
 	 */
 	protected static final boolean CHECKED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getAssociatedChangePackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
 	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
@@ -381,19 +368,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__CONTAINING_WORKPACKAGE,
 				newContainingWorkpackage, newContainingWorkpackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<ModelChangePackage> getAssociatedChangePackages() {
-		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
-				RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES);
-		}
-		return associatedChangePackages;
 	}
 
 	/**
@@ -899,8 +873,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			if (resolve)
 				return getContainingWorkpackage();
 			return basicGetContainingWorkpackage();
-		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-			return getAssociatedChangePackages();
 		case RationalePackage.ISSUE__PREDECESSORS:
 			return getPredecessors();
 		case RationalePackage.ISSUE__SUCCESSORS:
@@ -953,10 +925,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return;
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
-			return;
-		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case RationalePackage.ISSUE__PREDECESSORS:
 			getPredecessors().clear();
@@ -1023,9 +991,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) null);
 			return;
-		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			return;
 		case RationalePackage.ISSUE__PREDECESSORS:
 			getPredecessors().clear();
 			return;
@@ -1084,8 +1049,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return isChecked() != CHECKED_EDEFAULT;
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
-		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case RationalePackage.ISSUE__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case RationalePackage.ISSUE__SUCCESSORS:
@@ -1137,8 +1100,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			switch (derivedFeatureID) {
 			case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 				return TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE;
-			case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-				return TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 			case RationalePackage.ISSUE__PREDECESSORS:
 				return TaskPackage.WORK_ITEM__PREDECESSORS;
 			case RationalePackage.ISSUE__SUCCESSORS:
@@ -1185,8 +1146,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			switch (baseFeatureID) {
 			case TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE:
 				return RationalePackage.ISSUE__CONTAINING_WORKPACKAGE;
-			case TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-				return RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES;
 			case TaskPackage.WORK_ITEM__PREDECESSORS:
 				return RationalePackage.ISSUE__PREDECESSORS;
 			case TaskPackage.WORK_ITEM__SUCCESSORS:

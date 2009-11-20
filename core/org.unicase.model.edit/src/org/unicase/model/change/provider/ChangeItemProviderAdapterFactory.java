@@ -72,29 +72,6 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.change.ModelChangePackage} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ModelChangePackageItemProvider modelChangePackageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.change.ModelChangePackage}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelChangePackageAdapter() {
-		if (modelChangePackageItemProvider == null) {
-			modelChangePackageItemProvider = new ModelChangePackageItemProvider(this);
-		}
-
-		return modelChangePackageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.change.MergingIssue} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -257,8 +234,6 @@ public class ChangeItemProviderAdapterFactory extends ChangeAdapterFactory imple
 	 * @generated
 	 */
 	public void dispose() {
-		if (modelChangePackageItemProvider != null)
-			modelChangePackageItemProvider.dispose();
 		if (mergingIssueItemProvider != null)
 			mergingIssueItemProvider.dispose();
 		if (mergingProposalItemProvider != null)

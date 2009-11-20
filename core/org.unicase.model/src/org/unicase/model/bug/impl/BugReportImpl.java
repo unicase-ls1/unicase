@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -22,7 +21,6 @@ import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -38,7 +36,6 @@ import org.unicase.model.task.WorkPackage;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
@@ -60,16 +57,6 @@ import org.unicase.model.task.WorkPackage;
  * @generated
  */
 public class BugReportImpl extends AnnotationImpl implements BugReport {
-	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getAssociatedChangePackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ModelChangePackage> associatedChangePackages;
-
 	/**
 	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -384,19 +371,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
 				newContainingWorkpackage, newContainingWorkpackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<ModelChangePackage> getAssociatedChangePackages() {
-		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
-				BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES);
-		}
-		return associatedChangePackages;
 	}
 
 	/**
@@ -876,8 +850,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			if (resolve)
 				return getContainingWorkpackage();
 			return basicGetContainingWorkpackage();
-		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
-			return getAssociatedChangePackages();
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			return getPredecessors();
 		case BugPackage.BUG_REPORT__SUCCESSORS:
@@ -927,10 +899,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
-			return;
-		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			getPredecessors().clear();
@@ -995,9 +963,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) null);
 			return;
-		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			return;
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			getPredecessors().clear();
 			return;
@@ -1057,8 +1022,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
-		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case BugPackage.BUG_REPORT__SUCCESSORS:

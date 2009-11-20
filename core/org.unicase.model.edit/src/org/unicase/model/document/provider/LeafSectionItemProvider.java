@@ -276,9 +276,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,

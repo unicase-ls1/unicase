@@ -6,6 +6,7 @@
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Solution;
 
 /**
@@ -24,19 +25,19 @@ import org.unicase.model.rationale.Solution;
  */
 public interface MergingSolution extends Solution {
 	/**
-	 * Returns the value of the '<em><b>Applied Changes</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.change.ModelChangePackage}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Applied Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Applied Changes</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Applied Operations</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Applied Changes</em>' reference list.
-	 * @see org.unicase.model.change.ChangePackage#getMergingSolution_AppliedChanges()
-	 * @model keys="identifier"
+	 * @return the value of the '<em>Applied Operations</em>' containment reference list.
+	 * @see org.unicase.model.change.ChangePackage#getMergingSolution_AppliedOperations()
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<ModelChangePackage> getAppliedChanges();
+	EList<AbstractOperation> getAppliedOperations();
 
 } // MergingSolution

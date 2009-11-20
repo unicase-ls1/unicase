@@ -6,6 +6,7 @@
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Proposal;
 
 /**
@@ -25,45 +26,19 @@ import org.unicase.model.rationale.Proposal;
  */
 public interface MergingProposal extends Proposal {
 	/**
-	 * Returns the value of the '<em><b>Conflicting Proposals</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.change.MergingProposal}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pending Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Conflicting Proposals</em>' reference list isn't clear, there really should be more of
-	 * a description here...
+	 * If the meaning of the '<em>Pending Operations</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Conflicting Proposals</em>' reference list.
-	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_ConflictingProposals()
-	 * @model keys="identifier"
+	 * @return the value of the '<em>Pending Operations</em>' containment reference list.
+	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingOperations()
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<MergingProposal> getConflictingProposals();
-
-	/**
-	 * Returns the value of the '<em><b>Pending Changes</b></em>' reference. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pending Changes</em>' reference isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Pending Changes</em>' reference.
-	 * @see #setPendingChanges(ModelChangePackage)
-	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingChanges()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	ModelChangePackage getPendingChanges();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.change.MergingProposal#getPendingChanges
-	 * <em>Pending Changes</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Pending Changes</em>' reference.
-	 * @see #getPendingChanges()
-	 * @generated
-	 */
-	void setPendingChanges(ModelChangePackage value);
+	EList<AbstractOperation> getPendingOperations();
 
 } // MergingProposal

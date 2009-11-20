@@ -5,6 +5,7 @@
  */
 package org.unicase.model.change;
 
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.model.rationale.Issue;
 
 /**
@@ -12,7 +13,8 @@ import org.unicase.model.rationale.Issue;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.change.MergingIssue#getResolvingRevision <em>Resolving Revision</em>}</li>
+ * <li>{@link org.unicase.model.change.MergingIssue#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.model.change.MergingIssue#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
  * 
@@ -22,29 +24,55 @@ import org.unicase.model.rationale.Issue;
  */
 public interface MergingIssue extends Issue {
 	/**
-	 * Returns the value of the '<em><b>Resolving Revision</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resolving Revision</em>' attribute isn't clear, there really should be more of a
+	 * If the meaning of the '<em>Base Version</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Resolving Revision</em>' attribute.
-	 * @see #setResolvingRevision(int)
-	 * @see org.unicase.model.change.ChangePackage#getMergingIssue_ResolvingRevision()
-	 * @model
+	 * @return the value of the '<em>Base Version</em>' containment reference.
+	 * @see #setBaseVersion(PrimaryVersionSpec)
+	 * @see org.unicase.model.change.ChangePackage#getMergingIssue_BaseVersion()
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	int getResolvingRevision();
+	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.change.MergingIssue#getResolvingRevision
-	 * <em>Resolving Revision</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.change.MergingIssue#getBaseVersion <em>Base Version</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>Resolving Revision</em>' attribute.
-	 * @see #getResolvingRevision()
+	 * @param value the new value of the '<em>Base Version</em>' containment reference.
+	 * @see #getBaseVersion()
 	 * @generated
 	 */
-	void setResolvingRevision(int value);
+	void setBaseVersion(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Version</em>' containment reference isn't clear, there really should be more of
+	 * a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Target Version</em>' containment reference.
+	 * @see #setTargetVersion(PrimaryVersionSpec)
+	 * @see org.unicase.model.change.ChangePackage#getMergingIssue_TargetVersion()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	PrimaryVersionSpec getTargetVersion();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.change.MergingIssue#getTargetVersion <em>Target Version</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Target Version</em>' containment reference.
+	 * @see #getTargetVersion()
+	 * @generated
+	 */
+	void setTargetVersion(PrimaryVersionSpec value);
 
 } // MergingIssue

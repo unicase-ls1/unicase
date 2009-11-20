@@ -9,7 +9,6 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 
@@ -19,7 +18,6 @@ import org.unicase.model.organization.User;
  * The following features are supported:
  * <ul>
  * <li>{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.task.WorkItem#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}</li>
@@ -67,22 +65,6 @@ public interface WorkItem extends Annotation {
 	 * @generated
 	 */
 	void setContainingWorkpackage(WorkPackage value);
-
-	/**
-	 * Returns the value of the '<em><b>Associated Change Packages</b></em>' reference list. The list contents are of
-	 * type {@link org.unicase.model.change.ModelChangePackage}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Associated Change Packages</em>' reference list isn't clear, there really should be
-	 * more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Associated Change Packages</em>' reference list.
-	 * @see org.unicase.model.task.TaskPackage#getWorkItem_AssociatedChangePackages()
-	 * @model keys="identifier"
-	 * @generated
-	 */
-	EList<ModelChangePackage> getAssociatedChangePackages();
 
 	/**
 	 * Returns the value of the '<em><b>Predecessors</b></em>' reference list. The list contents are of type

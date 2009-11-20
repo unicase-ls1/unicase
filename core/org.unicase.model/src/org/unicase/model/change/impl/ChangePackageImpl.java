@@ -5,13 +5,14 @@
  */
 package org.unicase.model.change.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.emfstore.esmodel.EsmodelPackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -24,7 +25,6 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.change.MergingSolution;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.component.ComponentPackage;
@@ -59,13 +59,6 @@ import org.unicase.model.util.impl.UtilPackageImpl;
  * @generated
  */
 public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass modelChangePackageEClass = null;
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -134,7 +127,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
+		EsmodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -244,33 +237,6 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getModelChangePackage() {
-		return modelChangePackageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getModelChangePackage_SourceVersion() {
-		return (EAttribute) modelChangePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getModelChangePackage_TargetVersion() {
-		return (EAttribute) modelChangePackageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getMergingIssue() {
 		return mergingIssueEClass;
 	}
@@ -280,8 +246,17 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMergingIssue_ResolvingRevision() {
-		return (EAttribute) mergingIssueEClass.getEStructuralFeatures().get(0);
+	public EReference getMergingIssue_BaseVersion() {
+		return (EReference) mergingIssueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getMergingIssue_TargetVersion() {
+		return (EReference) mergingIssueEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -298,17 +273,8 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergingProposal_ConflictingProposals() {
+	public EReference getMergingProposal_PendingOperations() {
 		return (EReference) mergingProposalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getMergingProposal_PendingChanges() {
-		return (EReference) mergingProposalEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -325,7 +291,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergingSolution_AppliedChanges() {
+	public EReference getMergingSolution_AppliedOperations() {
 		return (EReference) mergingSolutionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -357,19 +323,15 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		isCreated = true;
 
 		// Create classes and their features
-		modelChangePackageEClass = createEClass(MODEL_CHANGE_PACKAGE);
-		createEAttribute(modelChangePackageEClass, MODEL_CHANGE_PACKAGE__SOURCE_VERSION);
-		createEAttribute(modelChangePackageEClass, MODEL_CHANGE_PACKAGE__TARGET_VERSION);
-
 		mergingIssueEClass = createEClass(MERGING_ISSUE);
-		createEAttribute(mergingIssueEClass, MERGING_ISSUE__RESOLVING_REVISION);
+		createEReference(mergingIssueEClass, MERGING_ISSUE__BASE_VERSION);
+		createEReference(mergingIssueEClass, MERGING_ISSUE__TARGET_VERSION);
 
 		mergingProposalEClass = createEClass(MERGING_PROPOSAL);
-		createEReference(mergingProposalEClass, MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
-		createEReference(mergingProposalEClass, MERGING_PROPOSAL__PENDING_CHANGES);
+		createEReference(mergingProposalEClass, MERGING_PROPOSAL__PENDING_OPERATIONS);
 
 		mergingSolutionEClass = createEClass(MERGING_SOLUTION);
-		createEReference(mergingSolutionEClass, MERGING_SOLUTION__APPLIED_CHANGES);
+		createEReference(mergingSolutionEClass, MERGING_SOLUTION__APPLIED_OPERATIONS);
 	}
 
 	/**
@@ -396,56 +358,43 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
+			.getEPackage(VersioningPackage.eNS_URI);
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+			.getEPackage(OperationsPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		modelChangePackageEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		mergingIssueEClass.getESuperTypes().add(theRationalePackage.getIssue());
 		mergingProposalEClass.getESuperTypes().add(theRationalePackage.getProposal());
 		mergingSolutionEClass.getESuperTypes().add(theRationalePackage.getSolution());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelChangePackageEClass, ModelChangePackage.class, "ModelChangePackage", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelChangePackage_SourceVersion(), ecorePackage.getEInt(), "sourceVersion", null, 0, 1,
-			ModelChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelChangePackage_TargetVersion(), ecorePackage.getEInt(), "targetVersion", null, 0, 1,
-			ModelChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-
 		initEClass(mergingIssueEClass, MergingIssue.class, "MergingIssue", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMergingIssue_ResolvingRevision(), ecorePackage.getEInt(), "resolvingRevision", null, 0, 1,
-			MergingIssue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEReference(getMergingIssue_BaseVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"baseVersion", null, 0, 1, MergingIssue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergingIssue_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"targetVersion", null, 0, 1, MergingIssue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergingProposalEClass, MergingProposal.class, "MergingProposal", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMergingProposal_ConflictingProposals(), this.getMergingProposal(), null,
-			"conflictingProposals", null, 0, -1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMergingProposal_ConflictingProposals().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMergingProposal_PendingChanges(), this.getModelChangePackage(), null, "pendingChanges", null,
-			0, 1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMergingProposal_PendingChanges().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMergingProposal_PendingOperations(), theOperationsPackage.getAbstractOperation(), null,
+			"pendingOperations", null, 0, -1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergingSolutionEClass, MergingSolution.class, "MergingSolution", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMergingSolution_AppliedChanges(), this.getModelChangePackage(), null, "appliedChanges", null,
-			0, -1, MergingSolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMergingSolution_AppliedChanges().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMergingSolution_AppliedOperations(), theOperationsPackage.getAbstractOperation(), null,
+			"appliedOperations", null, 0, -1, MergingSolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // ChangePackageImpl
