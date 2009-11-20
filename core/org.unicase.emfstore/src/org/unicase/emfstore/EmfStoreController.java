@@ -32,7 +32,7 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.xmlrpc.XmlRpcAdminConnectionHander;
-import org.unicase.emfstore.connection.xmlrpc.XmlRpcConnectionHander;
+import org.unicase.emfstore.connection.xmlrpc.XmlRpcConnectionHandler;
 import org.unicase.emfstore.core.AdminEmfStoreImpl;
 import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.core.helper.HistoryCache;
@@ -175,7 +175,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		connectionHandlers.add(rmiAdminConnectionHandler);
 
 		// crate XML RPC connection handlers
-		XmlRpcConnectionHander xmlRpcConnectionHander = new XmlRpcConnectionHander();
+		XmlRpcConnectionHandler xmlRpcConnectionHander = new XmlRpcConnectionHandler();
 		xmlRpcConnectionHander.init(emfStore, accessControl);
 		connectionHandlers.add(xmlRpcConnectionHander);
 

@@ -15,7 +15,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * 
  * @author wesendon
  */
-public class XmlRpcConnectionHander implements ConnectionHandler<EmfStore> {
+public class XmlRpcConnectionHandler implements ConnectionHandler<EmfStore> {
 
 	/**
 	 * String interface identifier.
@@ -69,7 +69,10 @@ public class XmlRpcConnectionHander implements ConnectionHandler<EmfStore> {
 	 * {@inheritDoc}
 	 */
 	public void stop(boolean force) {
-		// TODO OW
+		XmlRpcWebserverManager webserverManager = XmlRpcWebserverManager.getInstance();
+		if (!webserverManager.removeHandler(EMFSTORE)) {
+			webserverManager.stopServer();
+		}
 	}
 
 }

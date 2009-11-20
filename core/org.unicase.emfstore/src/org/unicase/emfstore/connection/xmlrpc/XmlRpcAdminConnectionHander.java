@@ -57,7 +57,10 @@ public class XmlRpcAdminConnectionHander implements ConnectionHandler<AdminEmfSt
 	 * {@inheritDoc}
 	 */
 	public void stop(boolean force) {
-		// TODO OW
+		XmlRpcWebserverManager webserverManager = XmlRpcWebserverManager.getInstance();
+		if (!webserverManager.removeHandler(ADMINEMFSTORE)) {
+			webserverManager.stopServer();
+		}
 	}
 
 }

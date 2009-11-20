@@ -39,11 +39,11 @@ import org.unicase.metamodel.Project;
 public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 
 	private EmfStore getEmfStore() {
-		return XmlRpcConnectionHander.getEmfStore();
+		return XmlRpcConnectionHandler.getEmfStore();
 	}
 
 	private AuthenticationControl getAccessControl() {
-		return XmlRpcConnectionHander.getAccessControl();
+		return XmlRpcConnectionHandler.getAccessControl();
 	}
 
 	/**

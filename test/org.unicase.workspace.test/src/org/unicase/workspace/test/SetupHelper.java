@@ -99,7 +99,11 @@ public class SetupHelper {
 		if (server != null) {
 			server.stop();
 		}
-
+		try {
+			// give the server some time to unbind from it's ips. Not the nicest solution ...
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 	}
 
 	/**
@@ -117,7 +121,6 @@ public class SetupHelper {
 			FileUtil.copyFile(SetupHelper.class.getResourceAsStream("user.properties"), file);
 		} catch (IOException e) {
 			e.printStackTrace();
-			// TODO: throw exception instead of catching?
 		}
 	}
 
