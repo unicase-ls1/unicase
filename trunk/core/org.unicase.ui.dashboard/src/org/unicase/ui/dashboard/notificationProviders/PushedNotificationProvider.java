@@ -19,7 +19,7 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.preferences.DashboardKey;

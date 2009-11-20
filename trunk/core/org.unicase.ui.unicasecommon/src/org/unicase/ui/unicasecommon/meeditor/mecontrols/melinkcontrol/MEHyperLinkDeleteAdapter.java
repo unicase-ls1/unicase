@@ -12,7 +12,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
-import org.unicase.ui.unicasecommon.commands.DeleteModelElementCommand;
+import org.unicase.ui.unicasecommon.common.commands.DeleteModelElementCommand;
 
 /**
  * A mouse adapter regarding deletion of model elements.

@@ -22,7 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.util.NoCurrentUserException;

@@ -23,7 +23,7 @@
       </view>
       <view
             category="org.unicase"
-            class="org.unicase.ui.unicasecommon.views.Preview"
+            class="org.unicase.ui.unicasecommon.common.views.Preview"
             icon="icons/user_comment.png"
             id="org.unicase.ui.common.views.previewID"
             name="Preview"
@@ -123,7 +123,7 @@
       </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.NewDocumentHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.NewDocumentHandler"
             id="org.unicase.ui.common.newDocument"
             name="New Document">
       </command>
@@ -138,13 +138,13 @@
             name="Open with MEEditor">
       </command>
       <command
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.AddCommentHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.AddCommentHandler"
             id="org.unicase.ui.common.commands.addComment"
             name="addComment">
       </command>
       <command
             categoryId="org.unicase.ui.common.commands.addAnnotations"
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.AddAnnotationHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.AddAnnotationHandler"
             id="org.unicase.ui.common.commands.annotateIssue"
             name="annotateIssue">
       </command>
@@ -154,13 +154,13 @@
       </category>
       <command
             categoryId="org.unicase.ui.common.commands.addAnnotations"
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.AddAnnotationHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.AddAnnotationHandler"
             id="org.unicase.ui.common.commands.annotateActionItem"
             name="annotateActionItem">
       </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.OpenMEShortcutHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.OpenMEShortcutHandler"
             id="org.unicase.ui.common.handlers.open_me_ID"
             name="Open Modelelements Selectiondialog">
       </command>
@@ -169,7 +169,7 @@
             name="Validate">
       </command>
       <command
-            defaultHandler="org.unicase.ui.unicasecommon.handlers.SubscriptionHandler"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.SubscriptionHandler"
             id="org.unicase.ui.common.commands.subscribeToModelElement"
             name="subscribeToModelElement">
       </command>
@@ -194,11 +194,11 @@
             commandId="org.unicase.ui.navigator.followupMeeting">
       </handler>
       <handler
-            class="org.unicase.ui.unicasecommon.handlers.DeleteModelelementHandler"
+            class="org.unicase.ui.unicasecommon.common.handlers.DeleteModelelementHandler"
             commandId="org.unicase.ui.common.deleteModelelement">
       </handler>
       <handler
-            class="org.unicase.ui.unicasecommon.handlers.OpenDiagramWithMEEditorHandler"
+            class="org.unicase.ui.unicasecommon.common.handlers.OpenDiagramWithMEEditorHandler"
             commandId="org.unicase.ui.common.openDiagramWithMEEditor">
       </handler>
    </extension>
@@ -216,7 +216,7 @@
    <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser
-            class="org.unicase.ui.unicasecommon.diagram.MEDiagramResource"
+            class="org.unicase.ui.unicasecommon.common.diagram.MEDiagramResource"
             contentTypeIdentifier="MEDiagram">
       </parser>
    </extension>
@@ -631,7 +631,7 @@
         point="org.eclipse.ui.decorators">
      <decorator
            adaptable="true"
-           class="org.unicase.ui.unicasecommon.decorators.StateDecorator"
+           class="org.unicase.ui.unicasecommon.common.decorators.StateDecorator"
            id="org.unicase.ui.common.decorators.StateDecorator"
            label="State Decorator"
            lightweight="true"
@@ -839,7 +839,7 @@
             id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
          <action
-               class="org.unicase.ui.unicasecommon.diagram.DeleteFromDiagramContextMenuAction"
+               class="org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramContextMenuAction"
                enablesFor="1"
                icon="icons/delete_edit.gif"
                id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
@@ -851,7 +851,7 @@
             id="OpenMEEComponentID"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
          <action
-               class="org.unicase.ui.unicasecommon.diagram.OpenMEEditorAction"
+               class="org.unicase.ui.unicasecommon.common.diagram.OpenMEEditorAction"
                enablesFor="1"
                   icon="icons/application_edit.png"
                id="OpenMEEComponentID"

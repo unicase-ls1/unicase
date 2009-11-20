@@ -57,7 +57,7 @@ import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.stem.Activator;
-import org.unicase.ui.unicasecommon.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;

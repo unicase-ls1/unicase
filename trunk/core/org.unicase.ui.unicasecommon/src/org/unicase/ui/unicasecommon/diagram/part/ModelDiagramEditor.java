@@ -44,7 +44,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.unicasecommon.diagram.DeleteFromDiagramAction;
+import org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramAction;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 

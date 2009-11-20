@@ -7,7 +7,7 @@ package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.organization.User;
-import org.unicase.ui.unicasecommon.filter.TeamFilter;
+import org.unicase.ui.unicasecommon.common.filter.TeamFilter;
 
 /**
  * Class to filter the iteration planning view to my team.
