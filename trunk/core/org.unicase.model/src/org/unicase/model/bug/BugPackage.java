@@ -185,15 +185,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__CONTAINING_WORKPACKAGE = TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES = TaskPackage.WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
-
-	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 

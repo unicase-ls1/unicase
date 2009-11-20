@@ -186,22 +186,13 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__CONTAINING_WORKPACKAGE = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
+	int WORK_ITEM__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -209,7 +200,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
+	int WORK_ITEM__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -217,7 +208,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+	int WORK_ITEM__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -225,7 +216,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__REVIEWER = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
+	int WORK_ITEM__REVIEWER = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Participants</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -234,7 +225,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
+	int WORK_ITEM__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -242,7 +233,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+	int WORK_ITEM__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -250,7 +241,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
+	int WORK_ITEM__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -258,7 +249,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
+	int WORK_ITEM__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -266,7 +257,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__PRIORITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
+	int WORK_ITEM__PRIORITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -274,7 +265,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
+	int WORK_ITEM__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -283,7 +274,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class. <!--
@@ -414,15 +405,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -670,15 +652,6 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
-
-	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -923,15 +896,6 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MILESTONE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1271,18 +1235,6 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_ContainingWorkpackage();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.task.WorkItem#getAssociatedChangePackages <em>Associated Change Packages</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the reference list '<em>Associated Change Packages</em>'.
-	 * @see org.unicase.model.task.WorkItem#getAssociatedChangePackages()
-	 * @see #getWorkItem()
-	 * @generated
-	 */
-	EReference getWorkItem_AssociatedChangePackages();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getPredecessors
 	 * <em>Predecessors</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1543,14 +1495,6 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE.getWorkItem_ContainingWorkpackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Associated Change Packages</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE.getWorkItem_AssociatedChangePackages();
 
 		/**
 		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference list feature. <!-- begin-user-doc

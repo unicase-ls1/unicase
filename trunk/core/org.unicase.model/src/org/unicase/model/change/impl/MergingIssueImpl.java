@@ -6,8 +6,11 @@
 package org.unicase.model.change.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.rationale.impl.IssueImpl;
@@ -17,7 +20,8 @@ import org.unicase.model.rationale.impl.IssueImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getResolvingRevision <em>Resolving Revision</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
  * 
@@ -25,24 +29,24 @@ import org.unicase.model.rationale.impl.IssueImpl;
  */
 public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	/**
-	 * The default value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute. <!--
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getResolvingRevision()
+	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int RESOLVING_REVISION_EDEFAULT = 0;
+	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The cached value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute. <!--
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getResolvingRevision()
+	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
 	 */
-	protected int resolvingRevision = RESOLVING_REVISION_EDEFAULT;
+	protected PrimaryVersionSpec targetVersion;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -68,8 +72,26 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * 
 	 * @generated
 	 */
-	public int getResolvingRevision() {
-		return resolvingRevision;
+	public PrimaryVersionSpec getBaseVersion() {
+		if (baseVersion != null && baseVersion.eIsProxy()) {
+			InternalEObject oldBaseVersion = (InternalEObject) baseVersion;
+			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
+			if (baseVersion != oldBaseVersion) {
+				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
+				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__BASE_VERSION, null, null);
+				if (newBaseVersion.eInternalContainer() == null) {
+					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- ChangePackage.MERGING_ISSUE__BASE_VERSION, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ChangePackage.MERGING_ISSUE__BASE_VERSION, oldBaseVersion, baseVersion));
+			}
+		}
+		return baseVersion;
 	}
 
 	/**
@@ -77,12 +99,142 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * 
 	 * @generated
 	 */
-	public void setResolvingRevision(int newResolvingRevision) {
-		int oldResolvingRevision = resolvingRevision;
-		resolvingRevision = newResolvingRevision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_ISSUE__RESOLVING_REVISION,
-				oldResolvingRevision, resolvingRevision));
+	public PrimaryVersionSpec basicGetBaseVersion() {
+		return baseVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldBaseVersion = baseVersion;
+		baseVersion = newBaseVersion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ChangePackage.MERGING_ISSUE__BASE_VERSION, oldBaseVersion, newBaseVersion);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
+		if (newBaseVersion != baseVersion) {
+			NotificationChain msgs = null;
+			if (baseVersion != null)
+				msgs = ((InternalEObject) baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__BASE_VERSION, null, msgs);
+			if (newBaseVersion != null)
+				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__BASE_VERSION, null, msgs);
+			msgs = basicSetBaseVersion(newBaseVersion, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_ISSUE__BASE_VERSION,
+				newBaseVersion, newBaseVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PrimaryVersionSpec getTargetVersion() {
+		if (targetVersion != null && targetVersion.eIsProxy()) {
+			InternalEObject oldTargetVersion = (InternalEObject) targetVersion;
+			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
+			if (targetVersion != oldTargetVersion) {
+				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
+				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__TARGET_VERSION, null, null);
+				if (newTargetVersion.eInternalContainer() == null) {
+					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- ChangePackage.MERGING_ISSUE__TARGET_VERSION, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ChangePackage.MERGING_ISSUE__TARGET_VERSION, oldTargetVersion, targetVersion));
+			}
+		}
+		return targetVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PrimaryVersionSpec basicGetTargetVersion() {
+		return targetVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldTargetVersion = targetVersion;
+		targetVersion = newTargetVersion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ChangePackage.MERGING_ISSUE__TARGET_VERSION, oldTargetVersion, newTargetVersion);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
+		if (newTargetVersion != targetVersion) {
+			NotificationChain msgs = null;
+			if (targetVersion != null)
+				msgs = ((InternalEObject) targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__TARGET_VERSION, null, msgs);
+			if (newTargetVersion != null)
+				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- ChangePackage.MERGING_ISSUE__TARGET_VERSION, null, msgs);
+			msgs = basicSetTargetVersion(newTargetVersion, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_ISSUE__TARGET_VERSION,
+				newTargetVersion, newTargetVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
+			return basicSetBaseVersion(null, msgs);
+		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
+			return basicSetTargetVersion(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -93,8 +245,14 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			return getResolvingRevision();
+		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
+			if (resolve)
+				return getBaseVersion();
+			return basicGetBaseVersion();
+		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
+			if (resolve)
+				return getTargetVersion();
+			return basicGetTargetVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,8 +265,11 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			setResolvingRevision((Integer) newValue);
+		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
+			setBaseVersion((PrimaryVersionSpec) newValue);
+			return;
+		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
+			setTargetVersion((PrimaryVersionSpec) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,8 +283,11 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			setResolvingRevision(RESOLVING_REVISION_EDEFAULT);
+		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
+			setBaseVersion((PrimaryVersionSpec) null);
+			return;
+		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
+			setTargetVersion((PrimaryVersionSpec) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -137,27 +301,12 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			return resolvingRevision != RESOLVING_REVISION_EDEFAULT;
+		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
+			return baseVersion != null;
+		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
+			return targetVersion != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (resolvingRevision: ");
-		result.append(resolvingRevision);
-		result.append(')');
-		return result.toString();
 	}
 
 } // MergingIssueImpl

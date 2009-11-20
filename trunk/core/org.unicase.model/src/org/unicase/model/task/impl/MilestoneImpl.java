@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -35,8 +34,6 @@ import org.unicase.model.task.WorkPackage;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}
- * </li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
@@ -54,15 +51,6 @@ import org.unicase.model.task.WorkPackage;
  * @generated
  */
 public class MilestoneImpl extends AnnotationImpl implements Milestone {
-	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getAssociatedChangePackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
 	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -282,19 +270,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE,
 				newContainingWorkpackage, newContainingWorkpackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<ModelChangePackage> getAssociatedChangePackages() {
-		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
-				TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES);
-		}
-		return associatedChangePackages;
 	}
 
 	/**
@@ -677,8 +652,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			if (resolve)
 				return getContainingWorkpackage();
 			return basicGetContainingWorkpackage();
-		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
-			return getAssociatedChangePackages();
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			return getPredecessors();
 		case TaskPackage.MILESTONE__SUCCESSORS:
@@ -720,10 +693,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		switch (featureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
-			return;
-		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			getPredecessors().clear();
@@ -777,9 +746,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) null);
 			return;
-		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			return;
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			getPredecessors().clear();
 			return;
@@ -827,8 +793,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		switch (featureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
-		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.MILESTONE__SUCCESSORS:

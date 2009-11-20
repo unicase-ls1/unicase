@@ -175,8 +175,6 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
-          upperBound="-1" eType="#//change/ModelChangePackage" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" upperBound="-1"
           eType="#//task/WorkItem" eOpposite="#//task/WorkItem/successors" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -1119,22 +1117,21 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.change">
-    <eClassifiers xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MergingIssue" eSuperTypes="#//rationale/Issue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolvingRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MergingProposal" eSuperTypes="#//rationale/Proposal">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="conflictingProposals"
-          upperBound="-1" eType="#//change/MergingProposal" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pendingChanges" eType="#//change/ModelChangePackage"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pendingOperations" upperBound="-1"
+          eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MergingSolution" eSuperTypes="#//rationale/Solution">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1"
-          eType="#//change/ModelChangePackage" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedOperations" upperBound="-1"
+          eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">

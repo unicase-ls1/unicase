@@ -193,22 +193,13 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__CONTAINING_WORKPACKAGE = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__ASSOCIATED_CHANGE_PACKAGES = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Predecessors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
+	int ISSUE__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -216,7 +207,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
+	int ISSUE__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -224,7 +215,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
+	int ISSUE__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -232,7 +223,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__REVIEWER = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
+	int ISSUE__REVIEWER = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Participants</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -241,7 +232,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -249,7 +240,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
+	int ISSUE__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -257,7 +248,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
+	int ISSUE__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -265,7 +256,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
+	int ISSUE__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -273,7 +264,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PRIORITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
+	int ISSUE__PRIORITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -281,7 +272,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
+	int ISSUE__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -290,7 +281,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 13;
+	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Solution</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -299,7 +290,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 14;
+	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Criteria</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -307,7 +298,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 15;
+	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -315,7 +306,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
+	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -323,7 +314,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 17;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class. <!--

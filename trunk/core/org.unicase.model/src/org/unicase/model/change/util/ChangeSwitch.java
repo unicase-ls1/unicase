@@ -18,7 +18,6 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.change.MergingSolution;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.Solution;
@@ -89,19 +88,6 @@ public class ChangeSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ChangePackage.MODEL_CHANGE_PACKAGE: {
-			ModelChangePackage modelChangePackage = (ModelChangePackage) theEObject;
-			T result = caseModelChangePackage(modelChangePackage);
-			if (result == null)
-				result = caseUnicaseModelElement(modelChangePackage);
-			if (result == null)
-				result = caseModelElement(modelChangePackage);
-			if (result == null)
-				result = caseIdentifiableElement(modelChangePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ChangePackage.MERGING_ISSUE: {
 			MergingIssue mergingIssue = (MergingIssue) theEObject;
 			T result = caseMergingIssue(mergingIssue);
@@ -160,20 +146,6 @@ public class ChangeSwitch<T> {
 		default:
 			return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Change Package</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Change Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelChangePackage(ModelChangePackage object) {
-		return null;
 	}
 
 	/**

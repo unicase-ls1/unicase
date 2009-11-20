@@ -4609,35 +4609,35 @@
             dataValue="org.unicase.model.rationale"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
-          element="model.ecore#//change/ModelChangePackage">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage"
+          element="#//@releases.4/@changes.68/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.68/@element"
             featureName="name" dataValue="ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/ModelChangePackage"
+        <changes xsi:type="history:Add" element="#//@releases.4/@changes.68/@element"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures"
-          element="model.ecore#//task/WorkItem/associatedChangePackages">
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
+          element="#//@releases.4/@changes.106/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.106/@element"
             featureName="name" dataValue="associatedChangePackages"/>
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.106/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/associatedChangePackages"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.106/@element"
+            featureName="eType" referenceValue="#//@releases.4/@changes.68/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.4/@changes.106/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//change/ModelChangePackage"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/ModelChangePackage/sourceVersion">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/sourceVersion"
+      <changes xsi:type="history:Create" target="#//@releases.4/@changes.68/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.68/@element/sourceVersion">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.68/@element/sourceVersion"
             featureName="name" dataValue="sourceVersion"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/sourceVersion"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.68/@element/sourceVersion"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//change/ModelChangePackage"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/ModelChangePackage/targetVersion">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/targetVersion"
+      <changes xsi:type="history:Create" target="#//@releases.4/@changes.68/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.68/@element/targetVersion">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.68/@element/targetVersion"
             featureName="name" dataValue="targetVersion"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/targetVersion"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.68/@element/targetVersion"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4648,10 +4648,10 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Issue"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/resolvingRevision">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/resolvingRevision"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.69/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.69/@element"
             featureName="name" dataValue="resolvingRevision"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/resolvingRevision"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.69/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4662,23 +4662,23 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Proposal"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/conflictingProposals">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.70/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.70/@element"
             featureName="name" dataValue="conflictingProposals"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.70/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.70/@element"
             featureName="eType" referenceValue="model.ecore#//change/MergingProposal"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Add" element="#//@releases.4/@changes.70/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingChanges">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingChanges"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.71/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.71/@element"
             featureName="name" dataValue="pendingChanges"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingChanges"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/pendingChanges"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.71/@element"
+            featureName="eType" referenceValue="#//@releases.4/@changes.68/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.4/@changes.71/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4689,14 +4689,14 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Solution"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingSolution/appliedChanges">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
+          referenceName="eStructuralFeatures" element="#//@releases.4/@changes.72/@element">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.72/@element"
             featureName="name" dataValue="appliedChanges"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.72/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingSolution/appliedChanges"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.72/@element"
+            featureName="eType" referenceValue="#//@releases.4/@changes.68/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.4/@changes.72/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
@@ -6395,13 +6395,13 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/comments"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/associatedChangePackages"
+      <changes xsi:type="history:Remove" element="#//@releases.4/@changes.106/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingProposal/conflictingProposals"
+      <changes xsi:type="history:Remove" element="#//@releases.4/@changes.70/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingProposal/pendingChanges"
+      <changes xsi:type="history:Remove" element="#//@releases.4/@changes.71/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingSolution/appliedChanges"
+      <changes xsi:type="history:Remove" element="#//@releases.4/@changes.72/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/packages"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
@@ -6572,7 +6572,7 @@
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/containingWorkpackage"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/associatedChangePackages"
+      <changes xsi:type="history:Add" element="#//@releases.4/@changes.106/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/predecessors"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -6748,11 +6748,11 @@
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/commentedElement"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/conflictingProposals"
+      <changes xsi:type="history:Add" element="#//@releases.4/@changes.70/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/pendingChanges"
+      <changes xsi:type="history:Add" element="#//@releases.4/@changes.71/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingSolution/appliedChanges"
+      <changes xsi:type="history:Add" element="#//@releases.4/@changes.72/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/packages"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -7813,5 +7813,148 @@
         featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:Add" element="model.ecore#//classes/Class/implementationClasses"
         featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//change" referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.106/@element"
+          featureName="eType" oldReferenceValue="#//@releases.4/@changes.68/@element"/>
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.71/@element"
+          featureName="eType" oldReferenceValue="#//@releases.4/@changes.68/@element"/>
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.72/@element"
+          featureName="eType" oldReferenceValue="#//@releases.4/@changes.68/@element"/>
+      <element xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="model.ecore#//UnicaseModelElement">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </element>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EAttribute" name="resolvingRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="conflictingProposals" upperBound="-1"
+          eType="ecore:EClass model.ecore#//change/MergingProposal" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="pendingChanges" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="#//@releases.4/@changes.92/@element"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.92/@element"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.92/@element"
+        featureName="defaultValueLiteral" dataValue=""/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.92/@element"
+        featureName="name" dataValue="baseRevision"/>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="#//@releases.4/@changes.93/@element"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.93/@element"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.93/@element"
+        featureName="name" dataValue="targetVersion"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.92/@element"
+        featureName="name" dataValue="baseVersion" oldDataValue="baseRevision"/>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures" element="#//@releases.4/@changes.83/@element"/>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.83/@element"
+        featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" upperBound="-1"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingOperations"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+        featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+        featureName="containment" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+        featureName="name" dataValue="pendingOperations"/>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures" element="#//@releases.4/@changes.91/@element">
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
+          featureName="name" dataValue="pendingOperations"/>
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+    </changes>
+    <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
+        featureName="name" dataValue="executedOperations" oldDataValue="pendingOperations"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="executedOperations" upperBound="-1"
+          eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          containment="true"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EAttribute" name="baseVersion" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+          defaultValueLiteral=""/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/baseVersion">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="name" dataValue="pendingOperations"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="upperBound" dataValue="1" oldDataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="name" dataValue="BaseVersionSpec" oldDataValue="pendingOperations"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="name" dataValue="baseVersion" oldDataValue="BaseVersionSpec"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+        oldReferenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="eType" oldReferenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/targetVersion">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+          featureName="name" dataValue="baseVersion"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+        featureName="name" dataValue="targetVersion" oldDataValue="baseVersion"/>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingSolution/appliedOperations">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="name" dataValue="pendingOperations"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+        featureName="name" dataValue="appliedOperations" oldDataValue="pendingOperations"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="associatedChangePackages" upperBound="-1"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
   </releases>
 </history:History>

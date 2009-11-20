@@ -296,9 +296,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-			ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,

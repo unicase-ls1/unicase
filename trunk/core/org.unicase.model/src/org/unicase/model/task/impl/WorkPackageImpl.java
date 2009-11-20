@@ -18,11 +18,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -39,8 +37,6 @@ import org.unicase.model.task.util.MEState;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssociatedChangePackages <em>Associated Change Packages
- * </em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li>
@@ -60,15 +56,6 @@ import org.unicase.model.task.util.MEState;
  * @generated
  */
 public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
-	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getAssociatedChangePackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
 	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -324,19 +311,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE,
 				newContainingWorkpackage, newContainingWorkpackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<ModelChangePackage> getAssociatedChangePackages() {
-		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
-				TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES);
-		}
-		return associatedChangePackages;
 	}
 
 	/**
@@ -769,8 +743,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			if (resolve)
 				return getContainingWorkpackage();
 			return basicGetContainingWorkpackage();
-		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
-			return getAssociatedChangePackages();
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
 			return getPredecessors();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:
@@ -816,10 +788,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
-			return;
-		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
 			getPredecessors().clear();
@@ -879,9 +847,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) null);
 			return;
-		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
-			getAssociatedChangePackages().clear();
-			return;
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
 			getPredecessors().clear();
 			return;
@@ -935,8 +900,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		switch (featureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
-		case TaskPackage.WORK_PACKAGE__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case TaskPackage.WORK_PACKAGE__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.WORK_PACKAGE__SUCCESSORS:

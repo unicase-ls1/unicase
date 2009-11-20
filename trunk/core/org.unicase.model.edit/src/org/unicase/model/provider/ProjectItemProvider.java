@@ -204,9 +204,6 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ChangeFactory.eINSTANCE.createModelChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
