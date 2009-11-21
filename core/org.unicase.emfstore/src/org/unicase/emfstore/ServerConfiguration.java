@@ -51,6 +51,16 @@ public final class ServerConfiguration {
 	public static final String RMI_ENCRYPTION_DEFAULT = "true";
 
 	/**
+	 * Option for defining port of XML RPC.
+	 */
+	public static final String XML_RPC_PORT = "emfstore.connection.xmlrpc.port";
+
+	/**
+	 * Default port of XML RPC.
+	 */
+	public static final String XML_RPC_PORT_DEFAULT = "8080";
+
+	/**
 	 * Password of keystore, in which the certificate for rmi encryption and password decryption is saved.
 	 * 
 	 * @see #KEYSTORE_ALIAS

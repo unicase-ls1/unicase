@@ -14,11 +14,15 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
 import org.apache.xmlrpc.server.XmlRpcServerConfigImpl;
 import org.apache.xmlrpc.webserver.WebServer;
+import org.unicase.emfstore.EmfStoreController;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeConverterFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
@@ -35,9 +39,17 @@ public final class XmlRpcWebserverManager {
 	private static XmlRpcWebserverManager instance;
 	private WebServer webServer;
 	private final int port;
+	private Log logger;
 
 	private XmlRpcWebserverManager() {
-		port = 8080;
+		logger = LogFactory.getLog(XmlRpcWebserverManager.class);
+		int tmp = 8080;
+		try {
+			tmp = Integer.getInteger(ServerConfiguration.XML_RPC_PORT);
+		} catch (NumberFormatException e) {
+			tmp = Integer.getInteger(ServerConfiguration.XML_RPC_PORT_DEFAULT);
+		}
+		port = tmp;
 	}
 
 	/**
@@ -72,14 +84,14 @@ public final class XmlRpcWebserverManager {
 							null);
 						serverSocketFactory = context.getServerSocketFactory();
 					} catch (NoSuchAlgorithmException e) {
-						// OW: TODO
-						e.printStackTrace();
+						logger.error("Couldn't initialize server socket.");
+						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					} catch (KeyManagementException e) {
-						// OW: TODO
-						e.printStackTrace();
+						logger.error("Couldn't initialize server socket.");
+						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					} catch (ServerKeyStoreException e) {
-						// OW: TODO
-						e.printStackTrace();
+						logger.error("Couldn't initialize server socket.");
+						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					}
 					return serverSocketFactory.createServerSocket(pPort, backlog, addr);
 				}
