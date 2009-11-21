@@ -45,9 +45,9 @@ public final class XmlRpcWebserverManager {
 		logger = LogFactory.getLog(XmlRpcWebserverManager.class);
 		int tmp = 8080;
 		try {
-			tmp = Integer.getInteger(ServerConfiguration.XML_RPC_PORT);
+			tmp = Integer.valueOf(ServerConfiguration.getProperties().getProperty(ServerConfiguration.XML_RPC_PORT));
 		} catch (NumberFormatException e) {
-			tmp = Integer.getInteger(ServerConfiguration.XML_RPC_PORT_DEFAULT);
+			tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEFAULT);
 		}
 		port = tmp;
 	}
