@@ -18,9 +18,9 @@ import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.metamodel.ModelElement;
 
 /**
- * Super class of all EmfstoreInterfaces. Emfstore interfaces perform sanity checks, runs accesscontrol and then
- * delegates the method call to the relating subinterface which actually implements the functionality. With
- * {@link InternalCommand} it is possible to acces the interface without accesscontrol.
+ * Super class of all EmfstoreInterfaces. Emfstore interfaces performs sanity checks, runs accesscontrol and then
+ * delegates the method call to the relating subinterface which actually implements the functionality. Using
+ * {@link InternalCommand} it is possible to access the interface without accesscontrol.
  * 
  * @see AbstractSubEmfstoreInterface
  * @see org.unicase.emfstore.EmfStoreInterface
@@ -188,12 +188,15 @@ public abstract class AbstractEmfstoreInterface {
 	}
 
 	/**
-	 * Applys a sanity check {@link #sanityCheckObject(Object)} to all given objects.
+	 * Applies a sanity check {@link #sanityCheckObject(Object)} to all given objects. Elements will be checked in the
+	 * same order as the input. This allows you to check attributes as well. E.g.: <code>sanityCheckObjects(element,
+	 * element.getAttribute())</code>. Due to the order, it is important to enter the element BEFORE the attribute,
+	 * otherwise a NPE would occur, if the element would be null.
 	 * 
 	 * @param objects objects to check
 	 * @throws InvalidInputException is thrown if the check fails
 	 */
-	protected void sanityCheckObjects(Object[] objects) throws InvalidInputException {
+	protected void sanityCheckObjects(Object... objects) throws InvalidInputException {
 		for (Object object : objects) {
 			sanityCheckObject(object);
 		}
@@ -206,7 +209,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param object object to check
 	 * @throws InvalidInputException is thrown if the check fails
 	 */
-	protected void sanityCheckObject(Object object) throws InvalidInputException {
+	private void sanityCheckObject(Object object) throws InvalidInputException {
 		if (object == null) {
 			throw new InvalidInputException();
 		}

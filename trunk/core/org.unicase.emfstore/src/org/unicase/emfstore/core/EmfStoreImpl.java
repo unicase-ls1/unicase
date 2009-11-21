@@ -75,7 +75,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId, HistoryQuery historyQuery)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, historyQuery });
+		sanityCheckObjects(sessionId, projectId, historyQuery);
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(HistorySubInterfaceImpl.class).getHistoryInfo(projectId, historyQuery);
 	}
@@ -85,7 +85,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public void addTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec, tag });
+		sanityCheckObjects(sessionId, projectId, versionSpec, tag);
 		checkProjectAdminAccess(sessionId, projectId);
 		getSubInterface(HistorySubInterfaceImpl.class).addTag(projectId, versionSpec, tag);
 	}
@@ -95,7 +95,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public void removeTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec, tag });
+		sanityCheckObjects(sessionId, projectId, versionSpec, tag);
 		checkProjectAdminAccess(sessionId, projectId);
 		getSubInterface(HistorySubInterfaceImpl.class).removeTag(projectId, versionSpec, tag);
 	}
@@ -105,7 +105,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectInfo createEmptyProject(SessionId sessionId, String name, String description, LogMessage logMessage)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, name, description, logMessage });
+		sanityCheckObjects(sessionId, name, description, logMessage);
 		checkServerAdminAccess(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).createProject(name, description, logMessage);
 	}
@@ -115,7 +115,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage,
 		Project project) throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, name, description, logMessage, project });
+		sanityCheckObjects(sessionId, name, description, logMessage, project);
 		checkServerAdminAccess(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).createProject(name, description, logMessage, project);
 	}
@@ -124,7 +124,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * {@inheritDoc}
 	 */
 	public void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId });
+		sanityCheckObjects(sessionId, projectId);
 		checkServerAdminAccess(sessionId);
 		getSubInterface(ProjectSubInterfaceImpl.class).deleteProject(projectId, deleteFiles);
 	}
@@ -135,7 +135,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
 		PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage, LogMessage logMessage)
 		throws EmfStoreException, InvalidVersionSpecException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, baseVersionSpec, changePackage, logMessage });
+		sanityCheckObjects(sessionId, projectId, baseVersionSpec, changePackage, logMessage);
 		checkWriteAccess(sessionId, projectId, null);
 		return getSubInterface(VersionSubInterfaceImpl.class).createVersion(projectId, baseVersionSpec, changePackage,
 			logMessage);
@@ -146,7 +146,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId, VersionSpec source,
 		VersionSpec target) throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, source, target });
+		sanityCheckObjects(sessionId, projectId, source, target);
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(VersionSubInterfaceImpl.class).getChanges(projectId, source, target);
 	}
@@ -156,7 +156,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec });
+		sanityCheckObjects(sessionId, projectId, versionSpec);
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(projectId, versionSpec);
 	}
@@ -166,7 +166,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec });
+		sanityCheckObjects(sessionId, projectId, versionSpec);
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId, versionSpec);
 	}
@@ -175,7 +175,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * {@inheritDoc}
 	 */
 	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
-		sanityCheckObject(sessionId);
+		sanityCheckObjects(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).getProjectList(sessionId);
 	}
 
@@ -184,7 +184,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectHistory });
+		sanityCheckObjects(sessionId, projectHistory);
 		checkServerAdminAccess(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).importProjectHistoryToServer(projectHistory);
 	}
@@ -194,7 +194,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId });
+		sanityCheckObjects(sessionId, projectId);
 		checkServerAdminAccess(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).exportProjectHistoryFromServer(projectId);
 	}
@@ -203,7 +203,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * {@inheritDoc}
 	 */
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
-		sanityCheckObject(sessionId);
+		sanityCheckObjects(sessionId);
 		return getSubInterface(UserSubInterfaceImpl.class).resolveUser(sessionId, id);
 	}
 
@@ -212,7 +212,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, fileInformation });
+		sanityCheckObjects(sessionId, projectId, fileInformation);
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(FileTransferSubInterfaceImpl.class).readChunk(projectId, fileInformation);
 	}
@@ -222,7 +222,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk, fileChunk.getFileInformation() });
+		sanityCheckObjects(sessionId, projectId, fileChunk, fileChunk.getFileInformation());
 		checkWriteAccess(sessionId, projectId, null);
 		return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);
 	}
@@ -232,7 +232,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user, ProjectId projectId)
 		throws EmfStoreException {
-		sanityCheckObjects(new Object[] { projectId, user, changedProperty });
+		sanityCheckObjects(projectId, user, changedProperty);
 		checkWriteAccess(sessionId, projectId, null);
 		getSubInterface(ProjectPropertiesSubInterfaceImpl.class).setProperty(changedProperty, user, projectId);
 	}
