@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
  * Filter Validations to Team.

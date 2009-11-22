@@ -38,7 +38,7 @@ import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.unicasecommon.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;

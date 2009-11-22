@@ -35,7 +35,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.util.UiUtil;
-import org.unicase.ui.unicasecommon.dialogs.METypeTreeSelectionDialog;
+import org.unicase.ui.unicasecommon.common.dialogs.METypeTreeSelectionDialog;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.views.Query.QueryRangeType;
 

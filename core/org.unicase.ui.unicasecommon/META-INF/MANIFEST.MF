@@ -24,5 +24,6 @@ Export-Package: org.unicase.ui.unicasecommon.common,
  org.unicase.ui.unicasecommon.diagram.part,
  org.unicase.ui.unicasecommon.diagram.providers,
  org.unicase.ui.unicasecommon.diagram.requests,
- org.unicase.ui.unicasecommon.diagram.util
+ org.unicase.ui.unicasecommon.diagram.util,
+ org.unicase.ui.unicasecommon.meeditor
 Import-Package: org.unicase.ui.unicasecommon.common
