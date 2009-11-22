@@ -2,6 +2,7 @@ package org.unicase.mergetest.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 import org.unicase.mergetest.merge.conflict.Conflict;
@@ -13,22 +14,18 @@ import org.unicase.mergetest.merge.util.DecisionConfig;
 
 public class AttributeConflict extends Conflict {
 
-	private AttributeOperation myOperation;
-	private AttributeOperation theirOperation;
-
-	public AttributeConflict(AttributeOperation myOperation,
-			AttributeOperation theirOperation, DecisionManager decisionManager) {
-		this.myOperation = myOperation;
-		this.theirOperation = theirOperation;
-		init(decisionManager);
+	public AttributeConflict(List<AbstractOperation> myOperations,
+			List<AbstractOperation> theirOperations,
+			DecisionManager decisionManager) {
+		super(myOperations, theirOperations, decisionManager);
 	}
 
 	public AttributeOperation getMyOperation() {
-		return myOperation;
+		return (AttributeOperation) operationsA.get(0);
 	}
 
 	public AttributeOperation getTheirOperation() {
-		return theirOperation;
+		return (AttributeOperation) operationsB.get(0);
 	}
 
 	protected ConflictDescription initConflictDescription() {
@@ -43,7 +40,7 @@ public class AttributeConflict extends Conflict {
 		conflictDescription.add("myvalue", getMyOperation().getNewValue());
 		conflictDescription
 				.add("theirvalue", getTheirOperation().getNewValue());
-		
+
 		conflictDescription.setImage("attribute.gif");
 
 		return conflictDescription;
@@ -51,19 +48,28 @@ public class AttributeConflict extends Conflict {
 
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		ConflictOption myOption = new ConflictOption(getMyOperation().getNewValue()
-				.toString(), ConflictOption.OptionType.MyOperation);
+		String myNewValue = getMyOperation().getNewValue().toString();
+		ConflictOption myOption = new ConflictOption(
+				(myNewValue == null || myNewValue.length() < 1) ? "(unset)"
+						: myNewValue, ConflictOption.OptionType.MyOperation);
 		myOption.setDetailProvider(DecisionConfig.WIDGET_MULTILINE);
+		myOption.addOperations(operationsA);
 		options.add(myOption);
-		
-		ConflictOption theirOption = new ConflictOption(getTheirOperation().getNewValue()
-				.toString(), ConflictOption.OptionType.TheirOperation);
+
+		String theirNewValue = getTheirOperation().getNewValue().toString();
+		ConflictOption theirOption = new ConflictOption(
+				(theirNewValue == null || theirNewValue.length() < 1) ? "(unset)"
+						: theirNewValue, ConflictOption.OptionType.TheirOperation);
 		theirOption.setDetailProvider(DecisionConfig.WIDGET_MULTILINE);
+		theirOption.addOperations(operationsB);
 		options.add(theirOption);
-		
+
 		MergeTextOption mergeOption = new MergeTextOption();
 		mergeOption.add(myOption);
 		mergeOption.add(theirOption);
+		
+		//TODO figure out options
+		
 		options.add(mergeOption);
 	}
 

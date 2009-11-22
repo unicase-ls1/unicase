@@ -5,8 +5,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Display;
@@ -14,6 +12,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
@@ -24,7 +23,7 @@ public class DecisionUtil {
 	public static Image getImage(String path) {
 		return getImageDescriptor(path).createImage();
 	}
-	
+
 	public static ImageDescriptor getImageDescriptor(String path) {
 		final String key = path;
 		ImageDescriptor regImage = JFaceResources.getImageRegistry()
@@ -41,7 +40,7 @@ public class DecisionUtil {
 	}
 
 	public static String cutString(String result, int length, boolean addPoints) {
-		if(result == null) {
+		if (result == null) {
 			return "";
 		}
 		if (result.length() > length) {
@@ -71,7 +70,8 @@ public class DecisionUtil {
 	}
 
 	public static boolean isComposite(AbstractOperation operation) {
-		return operation instanceof CompositeOperation;
+		return operation instanceof CompositeOperation
+				&& ((CompositeOperation) operation).getMainOperation() == null;
 	}
 
 	public static boolean isReference(AbstractOperation operation) {
@@ -80,7 +80,7 @@ public class DecisionUtil {
 	}
 
 	public static boolean isCompositeRef(AbstractOperation operation) {
-		return isComposite(operation)
+		return operation instanceof CompositeOperation
 				&& ((CompositeOperation) operation).getMainOperation() != null;
 	}
 
@@ -90,6 +90,10 @@ public class DecisionUtil {
 
 	public static boolean isMultiRef(AbstractOperation operation) {
 		return operation instanceof MultiReferenceOperation;
+	}
+
+	public static boolean isMultiMoveRef(AbstractOperation operation) {
+		return operation instanceof MultiReferenceMoveOperation;
 	}
 
 	public static boolean isAttribute(AbstractOperation operation) {
