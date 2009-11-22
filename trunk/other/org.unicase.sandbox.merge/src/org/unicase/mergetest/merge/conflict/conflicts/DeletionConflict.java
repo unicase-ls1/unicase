@@ -12,22 +12,20 @@ import org.unicase.mergetest.merge.util.DecisionConfig;
 
 public class DeletionConflict extends Conflict {
 
-	private final AbstractOperation deletingOperation;
-	private final List<AbstractOperation> listOfDeleted;
 	private final boolean meCausingDelete;
 
-	public DeletionConflict(AbstractOperation deletingOperation,
-			List<AbstractOperation> listOfDeleted, boolean meCausingDelete, DecisionManager decisionManager) {
-		this.deletingOperation = deletingOperation;
-		this.listOfDeleted = listOfDeleted;
+	public DeletionConflict(List<AbstractOperation> deletingOperation,
+			List<AbstractOperation> deletedOperations, boolean meCausingDelete,
+			DecisionManager decisionManager) {
+		super(deletingOperation, deletedOperations, decisionManager,false);
 		this.meCausingDelete = meCausingDelete;
-		init(decisionManager);
+		init();
 	}
 
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
-				getMyOperation().getModelElementId()), "", "Jürgen");
+				getDeletingOperation().getModelElementId()), "", "Jürgen");
 	}
 
 	@Override
@@ -47,8 +45,8 @@ public class DeletionConflict extends Conflict {
 
 		ConflictDescription conflictDescription = new ConflictDescription(
 				description);
-		conflictDescription.add("modelelement", getDecisionManager().getModelElementName(deletingOperation.getModelElementId()));
-		conflictDescription.add("firstother", getDecisionManager().getModelElementName(listOfDeleted.get(0).getModelElementId()));
+		conflictDescription.add("modelelement", getDecisionManager().getModelElementName(getDeletingOperation().getModelElementId()));
+		conflictDescription.add("firstother", getDecisionManager().getModelElementName(getDeletedOperations().get(0).getModelElementId()));
 		
 		conflictDescription.add("otherinvolved", generateOthers());
 		
@@ -58,8 +56,8 @@ public class DeletionConflict extends Conflict {
 	}
 
 	private String generateOthers() {
-		if(listOfDeleted.size()>1) {
-			return " and "+(listOfDeleted.size()-1)+" other elements";
+		if(getDeletedOperations().size()>1) {
+			return " and "+(getDeletedOperations().size()-1)+" other elements";
 		}
 		return "";
 	}
@@ -71,19 +69,21 @@ public class DeletionConflict extends Conflict {
 		if (meCausingDelete) {
 			myOption = new ConflictOption(generateDeleteMessage(),
 					ConflictOption.OptionType.MyOperation);
-
+			myOption.addOperations(getDeletingOperations());
+			
 			theirOption = new ConflictOption(generateKeepMessage(),
 					ConflictOption.OptionType.MyOperation);
-			theirOption.addOperations(listOfDeleted);
+			theirOption.addOperations(getDeletedOperations());
 			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
 			myOption = new ConflictOption(generateKeepMessage(),
 					ConflictOption.OptionType.MyOperation);
-			myOption.addOperations(listOfDeleted);
+			myOption.addOperations(getDeletedOperations());
 			myOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 			
 			theirOption = new ConflictOption(generateDeleteMessage(),
 					ConflictOption.OptionType.TheirOperation);
+			theirOption.addOperations(getDeletingOperations());
 		}
 		options.add(myOption);
 		options.add(theirOption);
@@ -92,9 +92,9 @@ public class DeletionConflict extends Conflict {
 	private String generateKeepMessage() {
 		String result = "Recover "
 				+ getDecisionManager().getModelElementName(
-						listOfDeleted.get(0).getModelElementId());
-		if (listOfDeleted.size() > 1) {
-			result += "and " + (listOfDeleted.size() - 1) + "other Elements";
+						getDeletedOperations().get(0).getModelElementId());
+		if (getDeletedOperations().size() > 1) {
+			result += " and " + (getDeletedOperations().size() - 1) + "other elements";
 		}
 		return result;
 	}
@@ -102,11 +102,18 @@ public class DeletionConflict extends Conflict {
 	private String generateDeleteMessage() {
 		return "Delete "
 				+ getDecisionManager().getModelElementName(
-						deletingOperation.getModelElementId());
+						getDeletingOperation().getModelElementId());
 	}
 
-	private AbstractOperation getMyOperation() {
-		return (meCausingDelete) ? deletingOperation : listOfDeleted.get(0);
+	private AbstractOperation getDeletingOperation() {
+		return operationsA.get(0);
 	}
-
+	
+	private List<AbstractOperation> getDeletingOperations() {
+		return operationsA;
+	}
+	
+	private List<AbstractOperation> getDeletedOperations() {
+		return operationsB;
+	}
 }

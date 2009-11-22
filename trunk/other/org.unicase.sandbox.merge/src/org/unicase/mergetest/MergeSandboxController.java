@@ -20,18 +20,21 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.rmi.RMIConnectionManagerImpl;
 import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -42,6 +45,15 @@ public class MergeSandboxController {
 
 	private Project createProject() {
 		Project project = MetamodelFactory.eINSTANCE.createProject();
+
+		CompositeSection compositeSection = DocumentFactory.eINSTANCE
+				.createCompositeSection();
+		CompositeSection compositeSection2 = DocumentFactory.eINSTANCE
+				.createCompositeSection();
+
+		project.addModelElement(compositeSection);
+		project.addModelElement(compositeSection2);
+
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		project.addModelElement(section);
@@ -57,40 +69,62 @@ public class MergeSandboxController {
 
 		ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
 		project.addModelElement(actionItem);
-		actionItem.setAssignee(user3);
 
 		nameMEs(project);
 		return project;
 	}
 
 	private void doChanges() {
-		cg("User1", User.class).setFirstName("Günther");
-		sg("User1", User.class).setFirstName("Horst");
+		// cg("User1", User.class).setFirstName("Günther");
+		// sg("User1", User.class).setFirstName("Horst");
+		//
+		// cg("User1", User.class).setLeafSection(
+		// cg("LeafSection1", LeafSection.class));
+		// sg("User1", User.class).setLeafSection(
+		// sg("LeafSection2", LeafSection.class));
 
-		cg("User1", User.class).setLeafSection(
-				cg("LeafSection1", LeafSection.class));
-		sg("User1", User.class).setLeafSection(
-				sg("LeafSection2", LeafSection.class));
+		// cg("User3", User.class).getAssignments().add(
+		// cg("ActionItem1", ActionItem.class));
+		//		
+		// sg("User3", User.class).getAssignments().add(
+		// sg("ActionItem1", ActionItem.class));
+		// sg("User3", User.class).getAssignments().remove(
+		// sg("ActionItem1", ActionItem.class));
 
-		cg("User3", User.class).getAssignments().remove(
-				cg("ActionItem1", ActionItem.class));
-		sg("User3", User.class).getAssignments().remove(
-				sg("ActionItem1", ActionItem.class));
-		sg("User3", User.class).getAssignments().add(
-				sg("ActionItem1", ActionItem.class));
+		cg("LeafSection1", LeafSection.class).setParent(
+				cg("CompositeSection1", CompositeSection.class));
+		sg("LeafSection1", LeafSection.class).setParent(
+				sg("CompositeSection1", CompositeSection.class));
+		sg("LeafSection1", LeafSection.class).setParent(null);
 
-		cg("User3", User.class)
-				.setDescription(
-						"Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
-		sg("User3", User.class)
-				.setDescription(
-						"Goethe - Was Ihr den Geist der Zeiten heißt, das ist im Grund der Herren eigener Geist, in dem die Zeiten sich nur spiegeln.");
-
-
-		cg("User2", User.class).setLeafSection(
-				cg("LeafSection2", LeafSection.class));
-		sg("User2", User.class).delete();
-		sg("LeafSection1",LeafSection.class).delete();
+		// cg("User3", User.class)
+		// .setDescription(
+		// "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+		 sg("User3", User.class)
+		 .setDescription(
+		 "Goethe - Was Ihr den Geist der Zeiten heißt, das ist im Grund der Herren eigener Geist, in dem die Zeiten sich nur spiegeln.");
+		//
+		//
+//		 cg("User2", User.class).setLeafSection(
+//		 cg("LeafSection2", LeafSection.class));
+//		 sg("User2", User.class).delete();
+		// sg("LeafSection1",LeafSection.class).delete();
+	
+	
+		CompositeOperationHandle compositeOperation = client.beginCompositeOperation();
+		 cg("User3", User.class)
+		 .setDescription(
+		 "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+		 try {
+			compositeOperation.end("Literature Composite", "Literature Composite knows the best Literature.", cg("User3", User.class).getModelElementId());
+		} catch (InvalidHandleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	
+	
 	}
 
 	//
