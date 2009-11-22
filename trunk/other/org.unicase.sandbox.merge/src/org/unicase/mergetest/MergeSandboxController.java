@@ -75,21 +75,21 @@ public class MergeSandboxController {
 	}
 
 	private void doChanges() {
-		// cg("User1", User.class).setFirstName("Günther");
-		// sg("User1", User.class).setFirstName("Horst");
-		//
-		// cg("User1", User.class).setLeafSection(
-		// cg("LeafSection1", LeafSection.class));
-		// sg("User1", User.class).setLeafSection(
-		// sg("LeafSection2", LeafSection.class));
+		cg("User1", User.class).setFirstName("Günther");
+		sg("User1", User.class).setFirstName("Horst");
 
-		// cg("User3", User.class).getAssignments().add(
-		// cg("ActionItem1", ActionItem.class));
-		//		
-		// sg("User3", User.class).getAssignments().add(
-		// sg("ActionItem1", ActionItem.class));
-		// sg("User3", User.class).getAssignments().remove(
-		// sg("ActionItem1", ActionItem.class));
+		cg("User1", User.class).setLeafSection(
+				cg("LeafSection1", LeafSection.class));
+		sg("User1", User.class).setLeafSection(
+				sg("LeafSection2", LeafSection.class));
+
+		 cg("User3", User.class).getAssignments().add(
+		 cg("ActionItem1", ActionItem.class));
+				
+		 sg("User3", User.class).getAssignments().add(
+		 sg("ActionItem1", ActionItem.class));
+		 sg("User3", User.class).getAssignments().remove(
+		 sg("ActionItem1", ActionItem.class));
 
 		cg("LeafSection1", LeafSection.class).setParent(
 				cg("CompositeSection1", CompositeSection.class));
@@ -97,9 +97,9 @@ public class MergeSandboxController {
 				sg("CompositeSection1", CompositeSection.class));
 		sg("LeafSection1", LeafSection.class).setParent(null);
 
-		// cg("User3", User.class)
-		// .setDescription(
-		// "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+		 cg("User3", User.class)
+		 .setDescription(
+		 "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
 		 sg("User3", User.class)
 		 .setDescription(
 		 "Goethe - Was Ihr den Geist der Zeiten heißt, das ist im Grund der Herren eigener Geist, in dem die Zeiten sich nur spiegeln.");
@@ -111,16 +111,16 @@ public class MergeSandboxController {
 		// sg("LeafSection1",LeafSection.class).delete();
 	
 	
-		CompositeOperationHandle compositeOperation = client.beginCompositeOperation();
-		 cg("User3", User.class)
-		 .setDescription(
-		 "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
-		 try {
-			compositeOperation.end("Literature Composite", "Literature Composite knows the best Literature.", cg("User3", User.class).getModelElementId());
-		} catch (InvalidHandleException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		CompositeOperationHandle compositeOperation = client.beginCompositeOperation();
+//		 cg("User3", User.class)
+//		 .setDescription(
+//		 "Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+//		 try {
+//			compositeOperation.end("Literature Composite", "Literature Composite knows the best Literature.", cg("User3", User.class).getModelElementId());
+//		} catch (InvalidHandleException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 	
@@ -161,6 +161,7 @@ public class MergeSandboxController {
 		} catch (ChangeConflictException e) {
 			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
 					.createPrimaryVersionSpec();
+			System.out.println("!!!entering merge!!!");
 			client.merge(versionSpec, conflictResolver);
 		}
 		// dialog.open();

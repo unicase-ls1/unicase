@@ -22,34 +22,35 @@ import org.unicase.workspace.observers.ConflictResolver;
  */
 public class MergeWizard extends Wizard implements ConflictResolver {
 
-	private final Project project;
-	private final List<ChangePackage> theirChangePackages;
-	private final ChangePackage myChangePackage;
-	
+	private DecisionManager decisionManager;
+
 	/**
 	 * Default constructor.
-	 * @param myChangePackage 
-	 * @param theirChangePackages 
-	 * @param project 
+	 * 
+	 * @param myChangePackage
+	 * @param theirChangePackages
+	 * @param project
 	 */
-	public MergeWizard(Project project, List<ChangePackage> theirChangePackages, ChangePackage myChangePackage) {
+	public MergeWizard(Project project,
+			List<ChangePackage> theirChangePackages,
+			ChangePackage myChangePackage) {
 		super();
-		this.project = project;
-		this.theirChangePackages = theirChangePackages;
-		this.myChangePackage = myChangePackage;
 		setWindowTitle("Merge Wizard");
-		setDefaultPageImageDescriptor(DecisionUtil.getImageDescriptor("merge_wizard.gif"));
+		setDefaultPageImageDescriptor(DecisionUtil
+				.getImageDescriptor("merge_wizard.gif"));
+
+		decisionManager = new DecisionManager(project, myChangePackage,
+				theirChangePackages);
+
 	}
 
-	
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void addPages() {
 		super.addPages();
-		addPage(new MergeWizardPage("Merge Operation",project, theirChangePackages, myChangePackage));
+		addPage(new MergeWizardPage(decisionManager));
 	}
 
 	/**
