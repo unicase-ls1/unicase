@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.navigator;
 
 import java.util.Collection;
@@ -77,6 +82,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup) {
 			org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup anotherGroup = (org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup) obj;
@@ -90,6 +96,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

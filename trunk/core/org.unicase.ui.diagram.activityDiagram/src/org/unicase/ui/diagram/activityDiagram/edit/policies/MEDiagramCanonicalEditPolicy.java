@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.policies;
 
 import java.util.Collection;
@@ -39,6 +44,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
@@ -52,6 +58,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean shouldDeleteView(View view) {
 		return true;
 	}
@@ -59,6 +66,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
@@ -77,6 +85,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getDefaultFactoryHint() {
 		return null;
 	}
@@ -84,6 +93,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
@@ -95,6 +105,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getSemanticConnectionsList() {
 		return Collections.EMPTY_LIST;
 	}
@@ -102,6 +113,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getSourceElement(EObject relationship) {
 		return null;
 	}
@@ -109,6 +121,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getTargetElement(EObject relationship) {
 		return null;
 	}
@@ -116,6 +129,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean shouldIncludeConnection(Edge connector, Collection children) {
 		return false;
 	}
@@ -123,6 +137,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshSemantic() {
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());

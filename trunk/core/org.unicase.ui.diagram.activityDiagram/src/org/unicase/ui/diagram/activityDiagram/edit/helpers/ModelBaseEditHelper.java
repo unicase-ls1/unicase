@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.helpers;
 
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -22,6 +27,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getInsteadCommand(IEditCommandRequest req) {
 		ICommand epCommand = (ICommand) req.getParameter(EDIT_POLICY_COMMAND);
 		req.setParameter(EDIT_POLICY_COMMAND, null);
@@ -41,6 +47,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
 		return null;
 	}
@@ -48,6 +55,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
@@ -55,6 +63,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
 	}
@@ -62,6 +71,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -52,6 +57,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -68,6 +74,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -76,10 +83,12 @@ public class BranchEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -116,6 +125,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -139,6 +149,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -185,6 +196,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected void fillShape(Graphics graphics) {
 			Rectangle bounds = getBounds();
 			graphics.pushState();
@@ -196,6 +208,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected void outlineShape(Graphics graphics) {
 			Rectangle bounds = getBounds();
 			graphics.pushState();
@@ -234,7 +247,7 @@ public class BranchEditPart extends ShapeNodeEditPart {
 			if (xScale == 1 && yScale == 1) {
 				return myTemplate.toIntArray();
 			}
-			int[] scaled = (int[]) myTemplate.toIntArray().clone();
+			int[] scaled = myTemplate.toIntArray().clone();
 			for (int i = 0; i < scaled.length; i += 2) {
 				scaled[i] = (int) Math.floor(scaled[i] * xScale);
 				scaled[i + 1] = (int) Math.floor(scaled[i + 1] * yScale);

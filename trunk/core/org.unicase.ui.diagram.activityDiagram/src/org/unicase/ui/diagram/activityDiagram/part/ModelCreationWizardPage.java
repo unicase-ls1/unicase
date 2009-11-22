@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.part;
 
 import org.eclipse.core.runtime.IPath;
@@ -60,6 +65,7 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		setFileName(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil.getUniqueFileName(
@@ -70,6 +76,7 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.expressions;
 
 import java.lang.ref.WeakReference;
@@ -96,6 +101,7 @@ public class ModelOCLFactory {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected Object doEvaluate(Object context, Map env) {
 			Query oclQuery = getQuery();
 			if (oclQuery == null) {
@@ -133,6 +139,7 @@ public class ModelOCLFactory {
 
 					private boolean usesAllInstances = false;
 
+					@Override
 					public Object visitOperationCallExp(OperationCallExp oc) {
 						if (!usesAllInstances) {
 							usesAllInstances = PredefinedType.ALL_INSTANCES == oc.getOperationCode();

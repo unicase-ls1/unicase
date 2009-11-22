@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -15,6 +20,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		EObject semanticElement = getSemanticElement(semanticAdapter);
 		if (org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(diagramKind)
@@ -27,6 +33,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Class getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		if (containerView == null) {
 			return null;
@@ -138,6 +145,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Class getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		if (!org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.isKnownElementType(elementType)
