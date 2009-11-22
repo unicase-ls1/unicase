@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.part;
 
 import java.util.ArrayList;
@@ -78,6 +83,7 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -88,6 +94,7 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;

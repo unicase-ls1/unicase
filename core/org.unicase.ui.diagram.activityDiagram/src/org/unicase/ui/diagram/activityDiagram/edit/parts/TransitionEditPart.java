@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -31,6 +36,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeB
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -47,6 +53,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeB
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -61,6 +68,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new Arrow();
 	}

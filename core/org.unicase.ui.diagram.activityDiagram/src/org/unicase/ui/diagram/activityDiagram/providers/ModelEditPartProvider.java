@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.providers;
 
 import java.lang.ref.WeakReference;
@@ -100,6 +105,7 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public synchronized IGraphicalEditPart createGraphicEditPart(View view) {
 		if (isAllowCaching()) {
 			IGraphicalEditPart part = getCachedPart(view);
@@ -115,6 +121,7 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public synchronized boolean provides(IOperation operation) {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();

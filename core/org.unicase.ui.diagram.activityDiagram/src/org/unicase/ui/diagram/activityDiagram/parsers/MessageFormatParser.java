@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.parsers;
 
 import java.text.FieldPosition;
@@ -66,6 +71,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getViewPattern() {
 		String pattern = super.getViewPattern();
 		return pattern != null ? pattern : getDefaultPattern();
@@ -74,6 +80,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setViewPattern(String viewPattern) {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
@@ -99,6 +106,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditorPattern() {
 		String pattern = super.getEditorPattern();
 		return pattern != null ? pattern : getDefaultPattern();
@@ -107,6 +115,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setEditorPattern(String editorPattern) {
 		super.setEditorPattern(editorPattern);
 		editorProcessor = null;
@@ -132,6 +141,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditPattern() {
 		String pattern = super.getEditPattern();
 		return pattern != null ? pattern : getDefaultPattern();
@@ -140,6 +150,7 @@ public class MessageFormatParser extends org.unicase.ui.diagram.activityDiagram.
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setEditPattern(String editPattern) {
 		super.setEditPattern(editPattern);
 		editProcessor = null;

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.policies;
 
 import java.util.Collections;
@@ -62,6 +67,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
@@ -87,6 +93,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Object editHelperContext = completedRequest.getEditHelperContext();
@@ -255,6 +262,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @deprecated use getGEFWrapper() instead
 	 * @generated
 	 */
+	@Deprecated
 	protected final Command getMSLWrapper(ICommand cmd) {
 		// XXX deprecated: use getGEFWrapper() instead
 		return getGEFWrapper(cmd);

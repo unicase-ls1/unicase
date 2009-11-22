@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.view.factories;
 
 import java.util.ArrayList;
@@ -18,6 +23,7 @@ public class ForkViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		styles.add(NotationFactory.eINSTANCE.createShapeStyle());
@@ -27,6 +33,7 @@ public class ForkViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
 		int index, boolean persisted) {
 		if (semanticHint == null) {

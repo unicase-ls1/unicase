@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.part;
 
 import java.io.IOException;
@@ -156,6 +161,7 @@ public class ModelDiagramEditorUtil {
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
 			org.unicase.ui.diagram.activityDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramCommandLabel,
 			Collections.EMPTY_LIST) {
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 				throws ExecutionException {
 				MEDiagram model = createInitialModel();

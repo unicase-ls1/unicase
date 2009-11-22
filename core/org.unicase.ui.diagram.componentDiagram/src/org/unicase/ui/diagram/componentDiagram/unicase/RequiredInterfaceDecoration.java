@@ -16,7 +16,7 @@ public class RequiredInterfaceDecoration extends PolylineDecoration {
 	private static final Point TEMP_POINT = new Point();
 	private static final Rectangle TEMP_RECTANGLE = new Rectangle();
 
-	private final int GAP = 3;
+	private static final int GAP = 3;
 	private int myRadius;
 	private int myAngle;
 

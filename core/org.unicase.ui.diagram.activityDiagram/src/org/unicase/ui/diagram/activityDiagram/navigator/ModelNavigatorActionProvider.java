@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.navigator;
 
 import java.util.Iterator;
@@ -41,6 +46,7 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(ICommonActionExtensionSite aSite) {
 		super.init(aSite);
 		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
@@ -61,6 +67,7 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void fillActionBars(IActionBars actionBars) {
 		if (!myContribute) {
 			return;
@@ -75,6 +82,7 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void fillContextMenu(IMenuManager menu) {
 	}
 
@@ -128,6 +136,7 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public void run() {
 			if (myDiagram == null || myDiagram.eResource() == null) {
 				return;

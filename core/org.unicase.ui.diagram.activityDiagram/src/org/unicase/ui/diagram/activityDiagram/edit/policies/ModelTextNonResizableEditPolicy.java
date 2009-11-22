@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.policies;
 
 import java.util.Collections;
@@ -34,6 +39,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -47,6 +53,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -62,6 +69,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -78,6 +86,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -91,6 +100,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -141,6 +151,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
+			@Override
 			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -191,6 +202,7 @@ public class ModelTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);

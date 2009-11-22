@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.diagram.activityDiagram.edit.commands;
 
 import java.util.List;
@@ -30,6 +35,7 @@ public class ModelReorientConnectionViewCommand extends AbstractTransactionalCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getAffectedFiles() {
 		View view = (View) edgeAdaptor.getAdapter(View.class);
 		if (view != null) {
@@ -55,6 +61,7 @@ public class ModelReorientConnectionViewCommand extends AbstractTransactionalCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in ModelReorientConnectionViewCommand"; //$NON-NLS-1$
 		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
