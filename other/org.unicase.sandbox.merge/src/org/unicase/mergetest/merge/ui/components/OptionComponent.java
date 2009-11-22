@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
+import org.unicase.mergetest.merge.ui.DecisionBox;
 import org.unicase.mergetest.merge.util.DecisionConfig;
 import org.unicase.mergetest.merge.util.DecisionUtil;
 
@@ -33,8 +34,10 @@ public class OptionComponent {
 
 	private Group group;
 	private final Conflict conflict;
+	private final DecisionBox parent;
 
-	public OptionComponent(Composite parent, Conflict conflict) {
+	public OptionComponent(DecisionBox parent, Conflict conflict) {
+		this.parent = parent;
 		this.conflict = conflict;
 		group = new Group(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();

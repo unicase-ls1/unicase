@@ -84,7 +84,14 @@ public class DescriptionComponent extends Composite {
 			String[] split = string.split("\\]");
 			if(split.length>1) {
 				Object  obj = conflict.getValues().get(split[0]);				
-				String tmp = (String) ((obj instanceof ModelElement)?labelProvider.getText(obj):obj);
+				String tmp = "";
+				if(obj instanceof ModelElement) {
+					tmp = labelProvider.getText(obj);
+				} else if(obj != null) {
+					tmp = obj.toString();
+				} else {
+					tmp = "";
+				}
 				tmp = DecisionUtil.cutString(tmp, 50, true);
 				split[0] = "::"+tmp; 
 			}

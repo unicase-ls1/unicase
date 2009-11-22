@@ -124,13 +124,14 @@ public abstract class Conflict {
 			}
 		}
 		throw new IllegalStateException("No TheirOperations found.");
+//		return new ArrayList<AbstractOperation>();
 	}
 	
 	public List<AbstractOperation> getAcceptedMine() {
 		if(!isResolved()) {
 			throw new IllegalStateException("Can't call this method, unless conflict is resolved.");
 		}
-		if(solution.getType()!=OptionType.TheirOperation) {
+		if(solution.getType()==OptionType.TheirOperation) {
 			return new ArrayList<AbstractOperation>();
 		} else {
 			return solution.getOperations();
