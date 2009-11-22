@@ -359,7 +359,7 @@ public class EmfStoreController implements IApplication, Runnable {
 			properties.load(fis);
 			ServerConfiguration.setProperties(properties);
 			fis.close();
-			logger.info("Property file read.");
+			logger.info("Property file read. (" + propertyFile.getAbsolutePath() + ")");
 		} catch (IOException e) {
 			logger.warn("Property initialization failed, using default properties.");
 		}
