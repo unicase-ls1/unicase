@@ -43,6 +43,10 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public MEEditorInput(UnicaseModelElement me) {
 		super();
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager.getLabelDecorator());
 		this.modelElement = me;
 		if (labelProvider.getLabelProvider().getText(modelElement) == null) {
 			final Shell activeShell = Display.getCurrent().getActiveShell();
@@ -69,10 +73,6 @@ public class MEEditorInput implements IEditorInput {
 				}
 			}.run();
 		}
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager.getLabelDecorator());
 	}
 
 	/**
