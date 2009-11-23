@@ -66,6 +66,9 @@ public final class URIServer extends Thread implements IStartup {
 		
 	}
 
+	/**
+	 * Starts the uriServer thread.
+	 */
 	public void run() {
 		ServerSocket serverSocket = null;
 				
@@ -87,9 +90,13 @@ public final class URIServer extends Thread implements IStartup {
 			}
 		}
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void earlyStartup() {
-		// start the server immediately after the workbench has been started 
-		//instance.start();		
+		//TODO: handle early startup?
 	}
+
+
 }

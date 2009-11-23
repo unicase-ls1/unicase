@@ -7,8 +7,6 @@ package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.link.trigger.URLMessageHandler;
-
 import it.sauronsoftware.junique.JUnique;
 import it.sauronsoftware.junique.AlreadyLockedException;
 
@@ -28,7 +26,7 @@ import it.sauronsoftware.junique.AlreadyLockedException;
  * 
  * @author fxulusoy
  */
-public class LinkTrigger {
+public final class LinkTrigger {
 	
 	/**
 	 * Constructor of LinkTrigger.

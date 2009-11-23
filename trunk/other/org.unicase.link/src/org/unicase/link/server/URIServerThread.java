@@ -58,7 +58,10 @@ public class URIServerThread extends Thread {
 		super("URIServerThread " + socket.getPort());
 		clientSocket = socket;
 	}
-
+	
+	/**
+	 * Starts the URI Server thread.
+	 */
 	public void run() {
 		try {
 			String inputLine, outputLine;
@@ -105,7 +108,7 @@ public class URIServerThread extends Thread {
 							Display.getDefault().asyncExec(new Runnable() {
 								public void run() {
 									ActionHelper.openModelElement(e, EXTERNAL_URL);
-								}});; 
+								}});
 						}
 					}
 				} else {					
