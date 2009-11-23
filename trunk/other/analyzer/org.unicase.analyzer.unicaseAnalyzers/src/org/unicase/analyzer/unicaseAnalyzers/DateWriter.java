@@ -14,34 +14,31 @@ import java.util.List;
 
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
-/** Be careful! The Date of Version 0 might not be correct!
+/**
+ * Be careful! The Date of Version 0 might not be correct!
+ * 
  * @author liya
- *
  */
 public class DateWriter implements DataAnalyzer {
 
-	private VersionIterator projectIterator;
 	private Date date;
-	private DateFormat format;
-	private Calendar calendar;
+	private final DateFormat format;
+	private final Calendar calendar;
+
 	/**
 	 * Constructor of DateWriter.
-	 * @param projectIterator VersionIterator
 	 */
-	public DateWriter(){
-//		this.projectIterator = projectIterator;
+	public DateWriter() {
+		// this.projectIterator = projectIterator;
 		this.date = new Date();
 		this.format = new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
 		this.calendar = Calendar.getInstance();
 	}
-	
-	
+
 	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
@@ -55,37 +52,41 @@ public class DateWriter implements DataAnalyzer {
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
-//		if(projectIterator instanceof TimeIterator){
-//			TimeIterator it = (TimeIterator) projectIterator;
-			//FIXME add the getDateSpec()  method in TimeIterator 
-			//This writes the time from the iterator, instead of version
-			//calendar.setTime(it.getDateSpec().getDate()); 
-//		}
-//		else{
-			List<ChangePackage> changepackages = data.getChangePackages();
-			if(data.getChangePackages() != null && data.getChangePackages().size() != 0) {
-				ChangePackage changePackage = changepackages.get(changepackages.size()-1);
-				if( changePackage !=null) {
-					setTime(changePackage);
-				}
+		// if(projectIterator instanceof TimeIterator){
+		// TimeIterator it = (TimeIterator) projectIterator;
+		// FIXME add the getDateSpec() method in TimeIterator
+		// This writes the time from the iterator, instead of version
+		// calendar.setTime(it.getDateSpec().getDate());
+		// }
+		// else{
+		List<ChangePackage> changepackages = data.getChangePackages();
+		if (data.getChangePackages() != null && data.getChangePackages().size() != 0) {
+			ChangePackage changePackage = changepackages.get(changepackages.size() - 1);
+			if (changePackage != null) {
+				setTime(changePackage);
 			}
-//		}
+		}
+		// }
 		date = calendar.getTime();
 		values.add(format.format(date));
 		return values;
 	}
-	
-	private void setTime(ChangePackage changePackage){
-		if(changePackage.getLogMessage() != null) {
-			if(changePackage.getLogMessage().getDate() != null) {
+
+	private void setTime(ChangePackage changePackage) {
+		if (changePackage.getLogMessage() != null) {
+			if (changePackage.getLogMessage().getDate() != null) {
 				calendar.setTime(changePackage.getLogMessage().getDate());
+			} else {
+				calendar.setTime(changePackage.getLogMessage().getClientDate());
 			}
+		} else {
+
 		}
 	}
 
-
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
 	 */
 	public boolean isGlobal() {
