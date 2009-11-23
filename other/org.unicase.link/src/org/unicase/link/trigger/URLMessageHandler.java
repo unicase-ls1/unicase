@@ -33,6 +33,8 @@ public class URLMessageHandler implements MessageHandler {
 	 * Delegates the message(URL) handling to <code>URIEvaluator</code> class.
 	 * 
 	 * @see it.sauronsoftware.junique.MessageHandler#handle(java.lang.String)
+	 * @param message TODO: javadoc for message
+	 * @return TODO: javadoc for return
 	 */
 	public String handle(final String message) {
 		StringTokenizer strTokenizer = new StringTokenizer(message, " ");

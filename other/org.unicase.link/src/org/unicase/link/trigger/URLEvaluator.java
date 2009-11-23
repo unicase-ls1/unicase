@@ -21,14 +21,14 @@ import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 
 /**
- * <code>URLEvaluator</code> class
+ * TODO: javadoc.
  * 
  * @author fxulusoy
  */
 public class URLEvaluator {
 
 	/**
-	 * Constructor of <code>URLEvaluator</code>
+	 * Constructor of <code>URLEvaluator</code>.
 	 */
 	public URLEvaluator() {
 		
@@ -37,7 +37,7 @@ public class URLEvaluator {
 	/**
 	 * Opens the related model element which is given by url argument.
 	 * 
-	 * @param url
+	 * @param url TODO: javadoc for param url
 	 */
 	public void execute(String url) {
 		try {
@@ -69,7 +69,7 @@ public class URLEvaluator {
 							public void run() {
 								ActionHelper.openModelElement(model, "asd");
 							}
-						});; 
+						});
 					} else {
 						// inform client, that the model is not available
 						Display.getDefault().asyncExec(new Runnable() {
