@@ -11,7 +11,7 @@ We use checkstyle to check code against our coding guidelines and for code forma
 
 *Please configure checkstyle as follows (also see screenshot below):*
 
-   #  Open preferences.
+   # Open preferences.
    # Select "Checkstyle".
    # Select "New..."
    # Choose "Configuration relative to Project" as type.
