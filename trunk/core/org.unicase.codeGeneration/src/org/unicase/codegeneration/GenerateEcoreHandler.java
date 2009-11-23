@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IWorkbenchPage;
@@ -79,7 +80,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 		EcoreGenerator generator = new EcoreGenerator();
 		List<EPackage> ePackages = generator.generate(packages);
 
-		FileDialog dialog = new FileDialog(Display.getDefault().getActiveShell());
+		FileDialog dialog = new FileDialog(Display.getDefault().getActiveShell(), SWT.SAVE);
 		dialog.setFilterExtensions(new String[] { "*.ecore" });
 		String path = dialog.open();
 		if (path != null) {
