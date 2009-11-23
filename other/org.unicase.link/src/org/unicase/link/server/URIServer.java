@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.server;
 
 import java.io.IOException;
@@ -14,18 +19,23 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author emueller
  */
-public class URIServer extends Thread implements IStartup {
+public final class URIServer extends Thread implements IStartup {
 	
 	// TODO: make this configurable via a preference page
 	private static final int PORT = 2008;
 	
 	/**
-	 * Determines whether the server should listen for client requests
+	 * Determines whether the server should listen for client requests.
 	 */
 	private boolean isListening = true;
 	
 	private static URIServer instance = new URIServer();
 	
+	
+	/**
+	 * TODO: Javadoc.
+	 * @return -insert doc-
+	 */
 	public static URIServer getInstance() {
 		if (instance == null) {
 			instance = new URIServer();

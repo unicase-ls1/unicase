@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Platform;
@@ -10,7 +15,8 @@ import it.sauronsoftware.junique.AlreadyLockedException;
 /**
  * <code>LinkTrigger</code> is executed at the point of UNICASE loading. It
  * controls run attempts of the UNICASE. There should be always one running 
- * instance of UNICASE. <br>There are two use cases: <br> 
+ * ins
+ * tance of UNICASE. <br>There are two use cases: <br> 
  * 1-) UNICASE is not running and you click a UNCASE link.
  * <br>
  * UNICASE is opened and related model element is opened.<br><br>
