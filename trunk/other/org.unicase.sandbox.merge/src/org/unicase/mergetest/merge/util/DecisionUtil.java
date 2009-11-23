@@ -54,6 +54,10 @@ public class DecisionUtil {
 		}
 	}
 
+	public static String stripNewLine(String text) {
+		return text.replaceAll("\n\r|\r\n|\n \r|\r \n|\n|\r", " ");
+	}
+	
 	public static AdapterFactoryLabelProvider getLabelProvider() {
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(

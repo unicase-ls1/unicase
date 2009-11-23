@@ -75,16 +75,11 @@ public class MergeWizardPage extends WizardPage {
 	 */
 	public void createControl(final Composite parent) {
 		parent.setLayout(new FillLayout());
-		
-//		Composite container = new Composite(parent, SWT.NONE);
-//		RowLayout layout = new RowLayout(SWT.VERTICAL);
-//		container.setLayout(layout);
-//
-//		TableWrapData wrapData = new TableWrapData();
-//		wrapData.
+
 //		
 //		createTopBar(container);
 //		
+		
 		final ScrolledComposite scrolledComposite = new ScrolledComposite(parent,
 				SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);

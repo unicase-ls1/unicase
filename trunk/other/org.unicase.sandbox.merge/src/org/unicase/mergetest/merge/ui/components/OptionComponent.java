@@ -130,7 +130,7 @@ public class OptionComponent {
 //			StyledText styledText = new StyledText(this, SWT.NONE);
 			
 			String result = generatePrefix(option);
-			result += DecisionUtil.cutString(option.getOptionLabel(),
+			result += DecisionUtil.cutString(option.getStrippedOptionLabel(),
 					DecisionConfig.OPTION_LENGTH, true);
 
 			Label label = new Label(this, SWT.NONE);

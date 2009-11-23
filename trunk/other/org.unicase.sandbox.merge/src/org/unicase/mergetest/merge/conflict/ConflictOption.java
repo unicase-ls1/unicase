@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.mergetest.merge.util.DecisionUtil;
 
 public class ConflictOption {
 
@@ -24,6 +25,10 @@ public class ConflictOption {
 
 	public String getOptionLabel() {
 		return option;
+	}
+	
+	public String getStrippedOptionLabel() {
+		return DecisionUtil.stripNewLine(getOptionLabel());
 	}
 	
 	public String getFullOptionLabel() {
