@@ -70,24 +70,4 @@ public class DetailsComponent extends Section {
 
 		setClient(client);
 	}
-
-	public static boolean detailsNeeded(Conflict conflict) {
-		if (!conflict.hasDetails()) {
-			return false;
-		}
-		for (ConflictOption option : conflict.getOptions()) {
-			if (!option.isDetailsProvider()) {
-				continue;
-			}
-			if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_MULTILINE)) {
-				if (option.getOptionLabel().length() > DecisionConfig.OPTION_LENGTH) {
-					return true;
-				}
-			} else {
-				return true;
-			}
-		}
-		return false;
-	}
 }

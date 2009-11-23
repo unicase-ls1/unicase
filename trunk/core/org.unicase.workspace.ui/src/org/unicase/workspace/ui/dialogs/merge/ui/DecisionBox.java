@@ -12,6 +12,7 @@ import org.unicase.workspace.ui.dialogs.merge.ui.components.ContextComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.DescriptionComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.DetailsComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.OptionComponent;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class DecisionBox extends Composite {
 
@@ -40,7 +41,7 @@ public class DecisionBox extends Composite {
 		new OptionComponent(this, conflict);
 		new DescriptionComponent(this, conflict);
 
-		if (DetailsComponent.detailsNeeded(conflict)) {
+		if (DecisionUtil.detailsNeeded(conflict)) {
 			new DetailsComponent(this, conflict);
 		}
 

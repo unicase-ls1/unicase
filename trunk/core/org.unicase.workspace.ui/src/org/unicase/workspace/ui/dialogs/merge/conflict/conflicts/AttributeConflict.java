@@ -11,6 +11,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class AttributeConflict extends Conflict {
 
@@ -28,6 +29,7 @@ public class AttributeConflict extends Conflict {
 		return (AttributeOperation) operationsB.get(0);
 	}
 
+	@Override
 	protected ConflictDescription initConflictDescription() {
 		ConflictDescription conflictDescription = new ConflictDescription(
 				"You changed the [attribute] attribute of [modelelement] to [myvalue]."
@@ -65,19 +67,22 @@ public class AttributeConflict extends Conflict {
 		theirOption.addOperations(operationsB);
 		options.add(theirOption);
 
-		MergeTextOption mergeOption = new MergeTextOption();
-		mergeOption.add(myOption);
-		mergeOption.add(theirOption);
+		if (DecisionUtil.detailsNeeded(this)) {
+			MergeTextOption mergeOption = new MergeTextOption();
+			mergeOption.add(myOption);
+			mergeOption.add(theirOption);
+			options.add(mergeOption);
+		}
 
 		// TODO figure out options
 
-		options.add(mergeOption);
 	}
 
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId()), getMyOperation()
-				.getFeatureName(), "Jürgen");
+				.getFeatureName(), getDecisionManager().getAuthorForOperation(
+				getTheirOperation()));
 	}
 }

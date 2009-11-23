@@ -27,7 +27,8 @@ public class MultiReferenceConflict extends Conflict {
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId()), getMyOperation()
-				.getFeatureName(), "Jürgen");
+				.getFeatureName(), getDecisionManager().getAuthorForOperation(
+				getTheirOperation()));
 	}
 
 	@Override
@@ -82,6 +83,10 @@ public class MultiReferenceConflict extends Conflict {
 
 	private MultiReferenceOperation getMyOperation() {
 		return (meAdding) ? getAddingOperation() : getRemovingOperation();
+	}
+
+	private MultiReferenceOperation getTheirOperation() {
+		return (!meAdding) ? getAddingOperation() : getRemovingOperation();
 	}
 
 	private MultiReferenceOperation getAddingOperation() {

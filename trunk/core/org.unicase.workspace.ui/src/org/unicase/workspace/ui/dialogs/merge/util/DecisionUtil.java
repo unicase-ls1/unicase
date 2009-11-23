@@ -15,6 +15,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.workspace.ui.Activator;
+import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 
 public class DecisionUtil {
 
@@ -112,5 +114,25 @@ public class DecisionUtil {
 
 	public static boolean isCreateDelete(AbstractOperation operation) {
 		return operation instanceof CreateDeleteOperation;
+	}
+
+	public static boolean detailsNeeded(Conflict conflict) {
+		if (!conflict.hasDetails()) {
+			return false;
+		}
+		for (ConflictOption option : conflict.getOptions()) {
+			if (!option.isDetailsProvider()) {
+				continue;
+			}
+			if (option.getDetailProvider().startsWith(
+					DecisionConfig.WIDGET_MULTILINE)) {
+				if (option.getOptionLabel().length() > DecisionConfig.OPTION_LENGTH) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
 	}
 }
