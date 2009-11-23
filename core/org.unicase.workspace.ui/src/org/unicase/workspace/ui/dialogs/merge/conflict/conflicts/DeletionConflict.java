@@ -25,7 +25,8 @@ public class DeletionConflict extends Conflict {
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
-				getDeletingOperation().getModelElementId()), "", "Jürgen");
+				getDeletingOperation().getModelElementId()), "",
+				getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class DeletionConflict extends Conflict {
 			myOption.addOperations(getDeletingOperations());
 
 			theirOption = new ConflictOption(generateKeepMessage(),
-					ConflictOption.OptionType.MyOperation);
+					ConflictOption.OptionType.TheirOperation);
 			theirOption.addOperations(getDeletedOperations());
 			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
@@ -124,5 +125,10 @@ public class DeletionConflict extends Conflict {
 
 	private List<AbstractOperation> getDeletedOperations() {
 		return operationsB;
+	}
+
+	private AbstractOperation getTheirOperation() {
+		return (meCausingDelete) ? getDeletedOperations().get(0)
+				: getDeletingOperation();
 	}
 }

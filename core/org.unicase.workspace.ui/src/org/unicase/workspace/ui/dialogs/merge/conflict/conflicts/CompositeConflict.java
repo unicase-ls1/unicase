@@ -26,7 +26,8 @@ public class CompositeConflict extends Conflict {
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
-				getCompositeOperation().getModelElementId()), "", "Jürgen");
+				getCompositeOperation().getModelElementId()), "",
+				getDecisionManager().getAuthorForOperation(getOtherOperation()));
 	}
 
 	@Override

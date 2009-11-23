@@ -39,10 +39,8 @@ import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
  */
 public class MergeWizardPage extends WizardPage {
 
-	
-	
-	public  static final String PAGE_NAME = "Resolve Conflicts";
-	
+	public static final String PAGE_NAME = "Resolve Conflicts";
+
 	private ArrayList<DecisionBox> decisionBoxes;
 	private DecisionManager decisionManager;
 
@@ -58,8 +56,9 @@ public class MergeWizardPage extends WizardPage {
 	protected MergeWizardPage(DecisionManager decisionManager) {
 		super(PAGE_NAME);
 		this.decisionManager = decisionManager;
-		setTitle("First Merge Page");
-		setDescription("This wizard will lead you through the process of merging.");
+		setTitle("Merge Conflicts");
+		setDescription("Some of your changes conflict with changes from the repository."
+				+ "\nIn order to resolve these issues, select an option for every conflict.");
 	}
 
 	/**
@@ -68,12 +67,12 @@ public class MergeWizardPage extends WizardPage {
 	public void createControl(final Composite parent) {
 		parent.setLayout(new FillLayout());
 
-//		
-//		createTopBar(container);
-//		
-		
-		final ScrolledComposite scrolledComposite = new ScrolledComposite(parent,
-				SWT.H_SCROLL | SWT.V_SCROLL);
+		//		
+		// createTopBar(container);
+		//		
+
+		final ScrolledComposite scrolledComposite = new ScrolledComposite(
+				parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		scrolledComposite.setBackground(Display.getCurrent().getSystemColor(
@@ -88,38 +87,41 @@ public class MergeWizardPage extends WizardPage {
 
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
-			decisionBoxes.add(new DecisionBox(client, decisionManager,colorSwitcher.getColor(), conflict));
+			decisionBoxes.add(new DecisionBox(client, decisionManager,
+					colorSwitcher.getColor(), conflict));
 		}
 
-		debugButton(client);
+		// debugButton(client);
 
 		scrolledComposite.setContent(client);
-		
+
 		Point computeSize = parent.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 		computeSize.x = parent.getBounds().width;
 		scrolledComposite.setMinSize(computeSize);
 
-//		scrolledComposite.addControlListener(new ControlListener() {
-//			public void controlResized(ControlEvent e) {
-//				Point computeSize = scrolledComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-//				computeSize.x = parent.getBounds().width;
-//				scrolledComposite.setMinSize(computeSize);
-//			}
-//			public void controlMoved(ControlEvent e) {
-//				
-//			}
-//		});
+		// scrolledComposite.addControlListener(new ControlListener() {
+		// public void controlResized(ControlEvent e) {
+		// Point computeSize = scrolledComposite.computeSize(SWT.DEFAULT,
+		// SWT.DEFAULT);
+		// computeSize.x = parent.getBounds().width;
+		// scrolledComposite.setMinSize(computeSize);
+		// }
+		// public void controlMoved(ControlEvent e) {
+		//				
+		// }
+		// });
 
 		setControl(parent);
 	}
 
 	private void createTopBar(Composite parent) {
 		Composite row = new Composite(parent, SWT.NONE);
-		parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
+		parent.setBackground(Display.getCurrent()
+				.getSystemColor(SWT.COLOR_BLUE));
 		row.setLayout(new RowLayout(SWT.HORIZONTAL));
 		Label label = new Label(row, SWT.None);
 		label.setText("Hier kommt viel hin");
-		
+
 	}
 
 	//

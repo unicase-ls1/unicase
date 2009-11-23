@@ -5,14 +5,7 @@
  */
 package org.unicase.workspace.ui.dialogs.merge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.wizard.Wizard;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
@@ -20,28 +13,17 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
  * 
  * @author wesendon
  */
-public class MergeWizard extends Wizard implements ConflictResolver {
+public class MergeWizard extends Wizard {
 
 	private DecisionManager decisionManager;
 
-	/**
-	 * Default constructor.
-	 * 
-	 * @param myChangePackage
-	 * @param theirChangePackages
-	 * @param project
-	 */
-	public MergeWizard(Project project,
-			List<ChangePackage> theirChangePackages,
-			ChangePackage myChangePackage) {
+	public MergeWizard(DecisionManager decisionManager) {
 		super();
 		setWindowTitle("Merge Wizard");
 		setDefaultPageImageDescriptor(DecisionUtil
 				.getImageDescriptor("merge_wizard.gif"));
 
-		decisionManager = new DecisionManager(project, myChangePackage,
-				theirChangePackages);
-
+		this.decisionManager = decisionManager;
 	}
 
 	/**
@@ -58,35 +40,10 @@ public class MergeWizard extends Wizard implements ConflictResolver {
 	 */
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
+		if (decisionManager.isResolved()) {
+			decisionManager.calcResult();
+			return true;
+		}
 		return false;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public List<AbstractOperation> getAcceptedMine() {
-		return new ArrayList<AbstractOperation>();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public List<AbstractOperation> getRejectedTheirs() {
-		return new ArrayList<AbstractOperation>();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean resolveConflicts(Project project,
-			List<ChangePackage> theirChangePackages,
-			ChangePackage myChangePackage) {
-
-		System.out.println(theirChangePackages);
-		System.out.println(myChangePackage);
-
-		return false;
-	}
-
 }

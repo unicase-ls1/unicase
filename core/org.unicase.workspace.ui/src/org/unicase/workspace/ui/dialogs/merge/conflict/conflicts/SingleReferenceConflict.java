@@ -25,7 +25,8 @@ public class SingleReferenceConflict extends Conflict {
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId()), getMyOperation()
-				.getFeatureName(), "Jürgen");
+				.getFeatureName(), getDecisionManager().getAuthorForOperation(
+				getTheirOperation()));
 	}
 
 	@Override
@@ -53,12 +54,15 @@ public class SingleReferenceConflict extends Conflict {
 
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
+
+		// My Option
 		ModelElementId newValue = getMyOperation().getNewValue();
 		ConflictOption myOption = new ConflictOption(
 				(newValue == null) ? "(unset)" : getDecisionManager()
 						.getModelElementName(newValue), OptionType.MyOperation);
 		myOption.addOperations(operationsA);
 
+		// Their Option
 		ModelElementId theirNewValue = getTheirOperation().getNewValue();
 		ConflictOption theirOption = new ConflictOption(
 				(theirNewValue == null) ? "(unset)" : getDecisionManager()

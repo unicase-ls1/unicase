@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -331,5 +332,21 @@ public class DecisionManager {
 				theirOps.add(their);
 			}
 		}
+	}
+
+	public String getAuthorForOperation(AbstractOperation theirOperation) {
+		for (ChangePackage cp : theirChangePackages) {
+			for (AbstractOperation ao : cp.getOperations()) {
+				if (ao.equals(theirOperation)) {
+					LogMessage log = cp.getLogMessage();
+					if (log == null) {
+						return "";
+					}
+					return (log.getAuthor() == null) ? "" : log.getAuthor();
+
+				}
+			}
+		}
+		return "";
 	}
 }
