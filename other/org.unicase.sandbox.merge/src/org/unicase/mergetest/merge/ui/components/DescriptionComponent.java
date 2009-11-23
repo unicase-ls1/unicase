@@ -92,6 +92,7 @@ public class DescriptionComponent extends Composite {
 				} else {
 					tmp = "";
 				}
+				tmp = DecisionUtil.stripNewLine(tmp);
 				tmp = DecisionUtil.cutString(tmp, 50, true);
 				split[0] = "::"+tmp; 
 			}
