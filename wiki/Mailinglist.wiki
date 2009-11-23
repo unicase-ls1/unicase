@@ -4,5 +4,5 @@ Before posting a question to the list please consider the [http://code.google.co
 
 You can send emails to the mailinglist by using the following: 
 
-    * *Developer Mailinglist:*     _unicase-dev@googlegroups.come_
+    * *Developer Mailinglist:*     _unicase-dev@googlegroups.com_
     * *Report Bugs:*     _unicase-bugs@googlegroups.com_
