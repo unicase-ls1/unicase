@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.evaluator;
 
 import java.io.IOException;
@@ -5,7 +10,6 @@ import java.util.Date;
 import java.util.Set;
 
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
@@ -16,13 +20,23 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-
+/**
+ * TODO: javadoc
+ * TODO: @author?
+ */
 public class URIEvaluator {
-
+	
+	/**
+	 * The constructor.
+	 */
 	public URIEvaluator() {
 		
 	}
 	
+	/**
+	 * TODO: Javadoc for handleArguments.
+	 * @param args -insert doc-
+	 */
 	public void handleArguments(String args) {
 
 		try {
@@ -46,8 +60,6 @@ public class URIEvaluator {
 							currProjectSpace = space;
 						}
 					}
-					EList<ModelElement> modelElements = 
-						currProjectSpace.getProject().getAllModelElements();
 					
 					final ModelElement model = currProjectSpace.getProject().getModelElement(
 						modElmUrl.getModelElementUrlFragment().getModelElementId());
@@ -57,7 +69,7 @@ public class URIEvaluator {
 							public void run() {
 								ActionHelper.openModelElement(model, "asd");
 							}
-						});; 
+						});
 					} else {
 						// inform client, that the model is not available
 						Display.getDefault().asyncExec(new Runnable() {

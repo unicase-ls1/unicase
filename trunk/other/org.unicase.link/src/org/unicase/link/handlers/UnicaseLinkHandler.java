@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.handlers;
 
 import java.awt.Toolkit;
@@ -17,7 +22,6 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
 
 
@@ -38,6 +42,10 @@ public class UnicaseLinkHandler extends AbstractHandler {
 	/**
 	 * the command has been executed, so extract extract the needed information
 	 * from the application context.
+	 * TODO: insert javadoc for param and return
+	 * @param event -insert doc-
+	 * @return -insert doc-
+	 * @throws ExecutionException -insert doc-
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
@@ -59,7 +67,7 @@ public class UnicaseLinkHandler extends AbstractHandler {
 			.getActiveProjectSpace();
 				
 		//remove spaces from the project name
-		String projectName = ps.getProjectName().replaceAll(" ", "");;
+		String projectName = ps.getProjectName().replaceAll(" ", "");
 		String projectId = ps.getProjectId().getId();
 				
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
