@@ -42,12 +42,12 @@ public class EMFStoreConnection {
 	 * TODO: javadoc.
 	 * @param url -insert doc-
 	 */
-	public void checkout(final ModelElementUrl url){
+	public void checkout(final ProjectInfo project, final Usersession session){
 	
 	ServerRequestCommandHandler handler = new ServerRequestCommandHandler(){      
         @Override
         protected Object run() throws EmfStoreException {
-            checkoutProject(url);
+            checkoutProject(project, session);
             return null;
          
         }
@@ -68,7 +68,7 @@ public class EMFStoreConnection {
 	 * @param url - Unicase url of the searched model element, containing the project part 
 	 */
 		
-	public void checkoutProject(ModelElementUrl url){
+	public void checkoutProjectFromServer(ModelElementUrl url){
 		try {
 			Set<ServerInfo> serverInfos = WorkspaceManager.getInstance()
 			.getCurrentWorkspace().resolve(url.getServerUrl());
@@ -95,10 +95,8 @@ public class EMFStoreConnection {
 
 							lastSession = server.getLastUsersession();
 						}
-						ProjectSpace projectSpace = lastSession.checkout(project);
+						this.checkout(project, lastSession);
 						
-						WorkspaceUtil.logCheckout(projectSpace, projectSpace
-						.getBaseVersion());
 						
 					}
 				}
@@ -107,11 +105,21 @@ public class EMFStoreConnection {
 
 		} catch (ServerUrlResolutionException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
-		} catch (EmfStoreException e) {
-			WorkspaceUtil.logException(e.getMessage(), e);
-		}
+		} 
 		
 	}
 		
+	private void checkoutProject(ProjectInfo project, Usersession session){
+		ProjectSpace projectSpace = null;
+		try {
+			projectSpace = session.checkout(project);
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		WorkspaceUtil.logCheckout(projectSpace, projectSpace
+		.getBaseVersion());
+	}
 	
 }
