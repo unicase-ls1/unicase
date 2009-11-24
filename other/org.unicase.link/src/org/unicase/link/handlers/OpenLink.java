@@ -1,12 +1,17 @@
 package org.unicase.link.handlers;
 
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.Set;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
+import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
+import org.unicase.link.util.ProjectProxy;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -22,41 +27,9 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *
  */
 public class OpenLink {
+	
 	private static final String EXTERNAL_URL = "EXTERNAL_URL"; 
 
-	
-	public static ProjectSpace getLatestProjectSpace(ProjectUrlFragment projectUrl){
-		
-		ProjectSpace currProjectSpace = null;
-		try {
-			Set<ProjectSpace> set = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().resolve(projectUrl);
-						
-			if (!set.isEmpty()) {
-				
-				// fetch latest project
-				currProjectSpace = set.iterator().next();
-				
-				for (ProjectSpace space : set) {
-					Date lastUpdated = space.getLastUpdated();
-					Date currProjectDate = currProjectSpace.getLastUpdated();
-					
-					if (lastUpdated.after(currProjectDate)) {
-						currProjectSpace = space;
-					}
-				}
-			}	
-				
-
-	}
-		catch (ProjectUrlResolutionException e) {
-			//WorkspaceUtil.logException(e.getMessage(), e);
-			return null;
-		} 
-		
-return currProjectSpace;
-}
-	
 	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment meUrl){
 		
 		
@@ -66,33 +39,50 @@ return currProjectSpace;
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
 						ActionHelper.openModelElement(me, EXTERNAL_URL);
-					}});; 
+					}});;
 			}
 		}
-	
+
+	/**
+	 * Opens the model element with the specified URL in the MEEditor view.
+	 * If the passed URL is invalid a MessageBox will be shown to the user 
+	 * informing him about the invalid URL.
+	 * 
+	 * @param url The ModelElementUrl of the model element to be opened.
+	 */
 	public static void openURL(ModelElementUrl url){
 		ProjectSpace projectSpace = null; 
 						
-		projectSpace = OpenLink.getLatestProjectSpace(
-				url.getProjectUrlFragment());
+		projectSpace = ProjectProxy.getInstance().getLatestProjectSpace(url);
 		
 		if(projectSpace != null){
 			OpenLink.openME(projectSpace, 
 					url.getModelElementUrlFragment());
 		}
-		else{
-			EMFStoreConnection esConnection = new EMFStoreConnection();
-			esConnection.checkout(url);
-			projectSpace = OpenLink.getLatestProjectSpace(
-					url.getProjectUrlFragment());
-			if(projectSpace != null){
-				OpenLink.openME(projectSpace, url.getModelElementUrlFragment());
-			}
-		}
-	
-
 	}
 	
-	
-	
+	/**
+	 * Opens the model element with the specified URL in the MEEditor view.
+	 * If the passed URL is invalid a MessageBox will be shown to the user 
+	 * informing him about the invalid URL.
+	 * 
+	 * @param url The UNICASE URL of the model element to be opened.
+	 */
+	public static void openURL(String url) {
+		try {
+			ModelElementUrl modElmUrl = UrlFactoryImpl.eINSTANCE
+				.createModelElementUrl(url);
+			openURL(modElmUrl);
+		} catch (MalformedURLException e) {
+			// invalid URL has been passed, inform user
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					MessageDialog.openError(
+							Display.getDefault().getActiveShell(),
+							"Malformed URL",
+							"The unicase URL you tried to open is not valid.");
+					
+				}}); 
+		}
+	}
 }
