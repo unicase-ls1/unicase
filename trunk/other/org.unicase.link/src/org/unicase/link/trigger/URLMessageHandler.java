@@ -30,10 +30,10 @@ public class URLMessageHandler implements MessageHandler {
 	}
 	
 	/**
-	 * Delegates the message(URL) handling to <code>URIEvaluator</code> class.
+	 * Delegates the message(URL) handling to <code>URLEvaluator</code> class.
 	 * 
 	 * @see it.sauronsoftware.junique.MessageHandler#handle(java.lang.String)
-	 * @param message TODO: javadoc for message
+	 * @param message is an argument which is send by other instance of UNICASE.
 	 * @return TODO: javadoc for return
 	 */
 	public String handle(final String message) {

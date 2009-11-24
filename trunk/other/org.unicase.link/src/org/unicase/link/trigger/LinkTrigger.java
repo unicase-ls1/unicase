@@ -29,6 +29,12 @@ import it.sauronsoftware.junique.AlreadyLockedException;
 public final class LinkTrigger {
 	
 	/**
+	 * The Application ID. It is used to lock UNICASE application to enable to
+	 * run one instance of UNICASE.
+	 */
+	public static final String APPLICATION_ID = "org.unicase.link";
+	
+	/**
 	 * Constructor of LinkTrigger.
 	 */
 	private LinkTrigger() {
@@ -42,9 +48,8 @@ public final class LinkTrigger {
 	 */
 	public static boolean setup() {
 		boolean isRunning = false;
-		String id = "org.unicase.link";
 		try {
-			JUnique.acquireLock(id, new URLMessageHandler());
+			JUnique.acquireLock(APPLICATION_ID, new URLMessageHandler());
 			isRunning = true;
 		} catch (AlreadyLockedException e) {
 			// One instance of an application is still running.
@@ -66,7 +71,7 @@ public final class LinkTrigger {
 					}
 				});
 			} else {
-				JUnique.sendMessage(id, args[2]);
+				JUnique.sendMessage(APPLICATION_ID, args[2]);
 			}
 		}
 		return isRunning;

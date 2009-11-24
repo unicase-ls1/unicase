@@ -21,7 +21,8 @@ import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 
 /**
- * TODO: javadoc.
+ * It is responsible for opening requested model element with a link.
+ * 
  * 
  * @author fxulusoy
  */
@@ -35,9 +36,10 @@ public class URLEvaluator {
 	}
 	
 	/**
-	 * Opens the related model element which is given by url argument.
+	 * Opens the related model element which is given by an url argument.
 	 * 
-	 * @param url TODO: javadoc for param url
+	 * @param url It is an URL for a model element in an UNICASE project.
+	 *            
 	 */
 	public void execute(String url) {
 		try {
