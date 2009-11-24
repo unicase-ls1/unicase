@@ -273,7 +273,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		}
 		if (resource == null) {
 			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
-			WorkspaceUtil.logException(message, new IllegalStateException(message));
+			WorkspaceUtil.logWarning(message, new IllegalStateException(message));
 			return;
 		}
 		try {
