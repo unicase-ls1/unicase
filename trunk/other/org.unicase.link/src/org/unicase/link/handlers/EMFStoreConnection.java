@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.handlers;
 
 import java.util.Set;
@@ -33,7 +38,10 @@ import org.unicase.workspace.ui.dialogs.LoginDialog;
  */
 
 public class EMFStoreConnection {
-
+	/**
+	 * TODO: javadoc.
+	 * @param url -insert doc-
+	 */
 	public void checkout(final ModelElementUrl url){
 	
 	ServerRequestCommandHandler handler = new ServerRequestCommandHandler(){      
@@ -56,11 +64,11 @@ public class EMFStoreConnection {
 }
 
 	/**
-	 * Check out the project
-	 * @param url - Unicase url of the searched model element 
+	 * Check out the project containing the model with the url.
+	 * @param url - Unicase url of the searched model element, containing the project part 
 	 */
 		
-	public  void checkoutProject(ModelElementUrl url){
+	public void checkoutProject(ModelElementUrl url){
 		try {
 			Set<ServerInfo> serverInfos = WorkspaceManager.getInstance()
 			.getCurrentWorkspace().resolve(url.getServerUrl());
