@@ -70,8 +70,6 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			fireNotification(notification);
 			break;
 		case Notification.REMOVE:
-			// fire notification must be triggered before a (possible) delete!
-			fireNotification(notification);
 			// model element is removed from containment hierachy
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
@@ -81,6 +79,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 				}
 
 			}
+			fireNotification(notification);
 			break;
 		case Notification.SET:
 			// model element is added to containment hierachy
@@ -91,8 +90,6 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			fireNotification(notification);
 			break;
 		case Notification.REMOVE_MANY:
-			// fire notification must be triggered before a (possible) delete!
-			fireNotification(notification);
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
 				if (oldValue instanceof List<?>) {
@@ -103,6 +100,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 					}
 				}
 			}
+			fireNotification(notification);
 			break;
 		default:
 			// There's no add or delete operation. Just fire notification.
