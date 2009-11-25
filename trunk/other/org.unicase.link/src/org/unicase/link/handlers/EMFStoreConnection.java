@@ -10,9 +10,10 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -29,7 +30,8 @@ import org.unicase.workspace.ui.dialogs.LoginDialog;
  * If the user is not logged in on the server, 
  * login dialog will be opened
  * 
- * @author svetlana, emueller
+ * @author svetlana 
+ * @author emueller
  *
  */
 public class EMFStoreConnection {
@@ -41,60 +43,104 @@ public class EMFStoreConnection {
 	public ProjectSpace checkoutProjectFromServer(ModelElementUrl url){
 		try {
 			Set<ServerInfo> serverInfos = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().resolve(url.getServerUrl());
-			
+			.getCurrentWorkspace().resolve(url.getServerUrl());
+
 			EList<ProjectInfo> projectInfos = null;
-			
-			for(ServerInfo server: serverInfos){
-				// TODO: make sure we've logged in ourselves
+
+			for (ServerInfo server: serverInfos) {
 				projectInfos =  server.getProjectInfos();
-				
+				final Usersession lastSession = getLatestUsersession(server);
+
 				if (projectInfos == null) {
 					continue;
-				}
+				} 
 
-				// look for the project					
-				for (ProjectInfo project: projectInfos){
+				for (final ProjectInfo project: projectInfos) {
+
 					if(project.getProjectId().getId().
-						equals(url.getProjectUrlFragment().getProjectId().getId())) {
-											
-					Usersession lastSession = getLatestUsersession(server);
-					
-					CheckoutProjectHandler checkoutHandler = 
-						new CheckoutProjectHandler(lastSession, project);
-					
-					try {
-						// TODO: p always null..
-						ProjectSpace p = (ProjectSpace) checkoutHandler
-							.execute(new ExecutionEvent());
-						
-						return p;
-					} catch (ExecutionException e) {
-						DialogHandler.showErrorDialog(e.getMessage());   
+							equals(url.getProjectUrlFragment().getProjectId().getId())) {
+
+						final CheckoutProjectHandler handler = 
+							new CheckoutProjectHandler(lastSession, project);
+
+						Display.getDefault().asyncExec(new Runnable() {
+							public void run() {
+								try {
+									handler.execute(new ExecutionEvent());
+								} catch (ExecutionException e) {
+									MessageDialog.openError(
+											PlatformUI.getWorkbench()
+											.getActiveWorkbenchWindow().getShell(),
+											"Error",
+									"An error occured while checking out the project.");
+									WorkspaceUtil.logException("Project checkout error", e);
+								}
+							}
+						});
 					}
-				}
-			}			
-		}
+				}			
+			}
 
 		} catch (ServerUrlResolutionException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
-		} 
-		
+		}
+
 		return null;
 	}
 	
-	private Usersession getLatestUsersession(ServerInfo serverInfo) {
-		Usersession lastSession = serverInfo.getLastUsersession();		
-		
-		if(lastSession == null || !lastSession.isLoggedIn()){
-			LoginDialog loginDialog = new LoginDialog(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), lastSession,
-					serverInfo);
-			loginDialog.open();
-
-			lastSession = serverInfo.getLastUsersession();
+	/**
+	 * Returns the latest user session with the given server.
+	 * If no user session ever has been established, a login dialog will
+	 * appear, such that a user session will be created.
+	 *  
+	 * @param serverInfo The server for which to retrieve a user session. 
+	 * @return a user session
+	 */
+	private Usersession getLatestUsersession(final ServerInfo serverInfo) {
+		final Usersession lastSession = serverInfo.getLastUsersession();
+				
+		if(lastSession == null || !lastSession.isLoggedIn()){		
+			// TODO: dialog either does not disappear after clicking OK, 
+			ShowLoginDialog dlg = new ShowLoginDialog();
+			dlg.showLoginDialog(serverInfo);
 		}
 		
 		return lastSession;
+	}
+	
+	// TODO: This class should serve as a work-around for displaying
+	//		 the login dialog; work in progress..
+	class ShowLoginDialog {
+		
+		private LoginDialog loginDialog;
+		private boolean loginSuccessfull;
+		private Usersession userSession;
+		
+		public ShowLoginDialog() {
+			
+		}
+		
+		void showLoginDialog(final ServerInfo serverInfo) {
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					loginDialog = new LoginDialog(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), null,
+							serverInfo);
+					loginDialog.open();
+				}
+			});
+		}
+		
+		Usersession getUsersession() {
+			if (loginSuccessfull) {
+				return userSession;
+			}
+			
+			return null;
+		}
+		
+		LoginDialog getDialog() {
+			return loginDialog;
+		}
 	}
 }

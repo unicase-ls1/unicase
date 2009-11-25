@@ -8,6 +8,13 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 
+/**
+ * Utility class for retrieving a project independent of whether
+ * it has been checked out or not.
+ * 
+ * @author emueller
+ * @author svetlana
+ */
 public class ProjectProxy {
 	
 	private static ProjectProxy projectProxy = null;
