@@ -9,8 +9,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.link.handlers.OpenLink;
 import org.unicase.link.trigger.*;
+import org.unicase.link.util.OpenLink;
 
 /**
  * 

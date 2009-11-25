@@ -1,4 +1,4 @@
-package org.unicase.link.handlers;
+package org.unicase.link.util;
 
 import java.net.MalformedURLException;
 import java.util.Observable;
@@ -8,21 +8,23 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
-import org.unicase.link.util.ProjectProxy;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * Help class for resolving project or
- * model element in a workspace
+ * Utility class for opening model elements. Also acts as a listener
+ * for JUnique messages changes, which provide us with unicase URLs
+ * of model elements to be opened.
  * 
- * @author svetlana, emueller
+ * @author svetlana 
+ * @author emueller
  *
  */
 public class OpenLink implements Observer {
 	
 	private static final String EXTERNAL_URL = "EXTERNAL_URL";
+	
 	private static OpenLink instance = null;
 	
 	public static OpenLink getInstance() {
@@ -36,7 +38,8 @@ public class OpenLink implements Observer {
 	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment meUrl){
 		
 		
-		final ModelElement me = projectSpace.getProject().getModelElement(meUrl.getModelElementId());
+		final ModelElement me = projectSpace.getProject()
+									.getModelElement(meUrl.getModelElementId());
 		if(me != null){
 				// when the according element is found, open it 
 				Display.getDefault().asyncExec(new Runnable() {
@@ -89,8 +92,10 @@ public class OpenLink implements Observer {
 	}
 
 	/**
-	 * @param
-	 * @param
+	 * Callback method for the JUnique library
+	 * 
+	 * @param o the observable 
+	 * @param arg the model element URL to be opened 
 	 */
 	public void update(Observable o, Object arg) {
 		// TODO: error case regarding arg
