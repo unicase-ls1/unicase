@@ -8,6 +8,7 @@ package org.unicase.workspace.ui.dialogs.merge;
 import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
@@ -19,7 +20,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
@@ -65,18 +65,17 @@ public class MergeWizardPage extends WizardPage {
 	 * {@inheritDoc}
 	 */
 	public void createControl(final Composite parent) {
-		parent.setLayout(new FillLayout());
+		parent.setLayout(new GridLayout());
 
-		//		
-		// createTopBar(container);
-		//		
+		Composite topBar = createTopBar(parent);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(topBar);
 
 		final ScrolledComposite scrolledComposite = new ScrolledComposite(
 				parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
-		scrolledComposite.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_BLUE));
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+				.grab(true, true).applyTo(scrolledComposite);
 
 		final Composite client = new Composite(scrolledComposite, SWT.NONE);
 		client.setLayout(new GridLayout());
@@ -114,14 +113,13 @@ public class MergeWizardPage extends WizardPage {
 		setControl(parent);
 	}
 
-	private void createTopBar(Composite parent) {
+	private Composite createTopBar(Composite parent) {
 		Composite row = new Composite(parent, SWT.NONE);
-		parent.setBackground(Display.getCurrent()
-				.getSystemColor(SWT.COLOR_BLUE));
 		row.setLayout(new RowLayout(SWT.HORIZONTAL));
+		row.setSize(SWT.DEFAULT, 200);
 		Label label = new Label(row, SWT.None);
 		label.setText("Hier kommt viel hin");
-
+		return row;
 	}
 
 	//
