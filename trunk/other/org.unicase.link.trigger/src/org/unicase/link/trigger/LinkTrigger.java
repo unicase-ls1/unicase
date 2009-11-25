@@ -6,6 +6,8 @@
 package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.ui.IStartup;
+
 import it.sauronsoftware.junique.JUnique;
 import it.sauronsoftware.junique.AlreadyLockedException;
 
@@ -33,27 +35,42 @@ public final class LinkTrigger {
 	 */
 	public static final String APPLICATION_ID = "org.unicase.link";
 	
+	private static LinkTrigger instance = null; 
+	private static String handedUrl = null;
+	
+	
+	private URLMessageHandler urlMessageHandler; 
+	
 	/**
 	 * Constructor of LinkTrigger.
 	 */
-	private LinkTrigger() {
+	public LinkTrigger() {
+		urlMessageHandler = new URLMessageHandler();
 	}
-	
-	private static String handedUrl = null;
-	
+
 	public static String getHandedUrl(){
 		return handedUrl;
 	}
+	
+	public static LinkTrigger getInstance() {	
+		if (instance == null) {
+			instance = new LinkTrigger();
+			instance.setup();
+		}
+		
+		return instance;
+	}
+	
 	/**
 	 * Locks the application id and sets up a trigger to get arguments from
 	 * other run attempts of UNICASE.
 	 * 
 	 * @return true if id is not locked. Otherwise, false
 	 */
-	public static boolean setup() {
+	private boolean setup() {
 		boolean isRunning = false;
 		try {
-			JUnique.acquireLock(APPLICATION_ID, new URLMessageHandler());
+			JUnique.acquireLock(APPLICATION_ID, getInstance().getUrlMessageHandler());
 			isRunning = true;
 		} catch (AlreadyLockedException e) {
 			// One instance of an application is still running.
@@ -74,6 +91,10 @@ public final class LinkTrigger {
 			}
 		}
 		return isRunning;
+	}
+
+	public URLMessageHandler getUrlMessageHandler() {
+		return urlMessageHandler;
 	}
 
 }
