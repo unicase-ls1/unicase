@@ -7,8 +7,8 @@ Bundle-Activator: org.unicase.link.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.model;bundle-version="1.0.0",
- org.unicase.ui.common;bundle-version="1.0.0"
-Bundle-ActivationPolicy: lazy
+ org.unicase.ui.common;bundle-version="1.0.0",
+ org.unicase.link.trigger;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
  lib/junique-1.0.2.jar

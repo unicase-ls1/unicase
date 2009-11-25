@@ -1,34 +1,37 @@
 package org.unicase.link.handlers;
 
 import java.net.MalformedURLException;
-import java.util.Date;
-import java.util.Set;
-
+import java.util.Observable;
+import java.util.Observer;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
-import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.impl.UrlFactoryImpl;
 import org.unicase.link.util.ProjectProxy;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Help class for resolving project or
  * model element in a workspace
  * 
- * @author svetlana
+ * @author svetlana, emueller
  *
  */
-public class OpenLink {
+public class OpenLink implements Observer {
 	
-	private static final String EXTERNAL_URL = "EXTERNAL_URL"; 
+	private static final String EXTERNAL_URL = "EXTERNAL_URL";
+	private static OpenLink instance = null;
+	
+	public static OpenLink getInstance() {
+		if (instance == null) {
+			instance = new OpenLink();
+		}
+		
+		return instance;
+	}
 
 	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment meUrl){
 		
@@ -39,7 +42,7 @@ public class OpenLink {
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
 						ActionHelper.openModelElement(me, EXTERNAL_URL);
-					}});;
+					}});
 			}
 		}
 
@@ -80,9 +83,18 @@ public class OpenLink {
 					MessageDialog.openError(
 							Display.getDefault().getActiveShell(),
 							"Malformed URL",
-							"The unicase URL you tried to open is not valid.");
-					
+							"The unicase URL you tried to open is not valid.");	
 				}}); 
 		}
+	}
+
+	/**
+	 * @param
+	 * @param
+	 */
+	public void update(Observable o, Object arg) {
+		// TODO: error case regarding arg
+		String url = (String) arg;
+		openURL(url);
 	}
 }

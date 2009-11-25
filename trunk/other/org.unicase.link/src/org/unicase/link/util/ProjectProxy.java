@@ -2,11 +2,8 @@ package org.unicase.link.util;
 
 import java.util.Date;
 import java.util.Set;
-
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.link.handlers.EMFStoreConnection;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
@@ -57,7 +54,8 @@ public class ProjectProxy {
 				}
 			}	
 		} catch (ProjectUrlResolutionException e) {
-			getInstance().emfStoreConnection.checkoutProjectFromServer(url);					
+			currProjectSpace = getInstance().emfStoreConnection
+				.checkoutProjectFromServer(url);					
 		} 
 				
 		return currProjectSpace;
