@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Plugin;
@@ -5,33 +10,38 @@ import org.eclipse.ui.IStartup;
 import org.osgi.framework.BundleContext;
 
 /**
- * The activator class controls the plug-in life cycle
+ * The activator class controls the plug-in life cycle.
  */
 public class Activator extends Plugin implements IStartup {
 
-	// The plug-in ID
+	/**
+	 *  The plug-in ID.
+	 */
 	public static final String PLUGIN_ID = "org.unicase.link.trigger";
 
 	// The shared instance
 	private static Activator plugin;
 	
 	/**
-	 * The constructor
+	 * The constructor.
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+
+	// BEGIN SUPRESS CATCH EXCEPTION
+	 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * {@inheritDoc}
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
@@ -39,8 +49,10 @@ public class Activator extends Plugin implements IStartup {
 		super.stop(context);
 	}
 
+	// END SUPRESS CATCH EXCEPTION
+	
 	/**
-	 * Returns the shared instance
+	 * Returns the shared instance.
 	 *
 	 * @return the shared instance
 	 */
@@ -48,6 +60,9 @@ public class Activator extends Plugin implements IStartup {
 		return plugin;
 	}
 
+	/**
+	 * Creates an instance of LinkTrigger and sets it up.
+	 */
 	public void earlyStartup() {
 		LinkTrigger.getInstance();
 	}

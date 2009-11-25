@@ -15,7 +15,7 @@ import it.sauronsoftware.junique.MessageHandler;
  * <code>URIMessageHandler</code> is specific message handler for UNICASE
  * link arguments.
  * 
- * @author fxulusoy
+ * @author fxulusoy, jfinis
  */
 public class URLMessageHandler extends Observable implements MessageHandler {
 

@@ -6,7 +6,6 @@
 package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.ui.IStartup;
 
 import it.sauronsoftware.junique.JUnique;
 import it.sauronsoftware.junique.AlreadyLockedException;
@@ -25,7 +24,7 @@ import it.sauronsoftware.junique.AlreadyLockedException;
  * New instance of UNICASE is not opened. But, the clicked link is send to 
  * current running UNICASE instance.  
  * 
- * @author fxulusoy
+ * @author fxulusoy, jfinis
  */
 public final class LinkTrigger {
 	
@@ -35,8 +34,8 @@ public final class LinkTrigger {
 	 */
 	public static final String APPLICATION_ID = "org.unicase.link";
 	
-	private static LinkTrigger instance = null; 
-	private static String handedUrl = null;
+	private static LinkTrigger instance; 
+	private static String handedUrl;
 	
 	
 	private URLMessageHandler urlMessageHandler; 
@@ -44,14 +43,25 @@ public final class LinkTrigger {
 	/**
 	 * Constructor of LinkTrigger.
 	 */
-	public LinkTrigger() {
+	private LinkTrigger() {
 		urlMessageHandler = new URLMessageHandler();
 	}
 
+	/**
+	 * Gets the URL handed to this eclipse instance on startup.
+	 * If this eclipse instance wasn't started with a URL,
+	 * this function will return null.
+	 * @return The URL with which this eclipse instance was started.
+	 */
 	public static String getHandedUrl(){
 		return handedUrl;
 	}
 	
+	
+	/**
+	 * Gets the singleton instance.
+	 * @return the singleton
+	 */
 	public static LinkTrigger getInstance() {	
 		if (instance == null) {
 			instance = new LinkTrigger();
@@ -93,6 +103,12 @@ public final class LinkTrigger {
 		return isRunning;
 	}
 
+	/**
+	 * Returns the URL Message handler of this LinkTrigger.
+	 * The message handler implements the Observable interface
+	 * and will notify any observers whenever a UNICASE URL is received.
+	 * @return The url message handler associated with this LinTrigger
+	 */
 	public URLMessageHandler getUrlMessageHandler() {
 		return urlMessageHandler;
 	}
