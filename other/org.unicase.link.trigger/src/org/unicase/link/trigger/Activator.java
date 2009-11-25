@@ -1,12 +1,13 @@
 package org.unicase.link.trigger;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.ui.IStartup;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends Plugin {
+public class Activator extends Plugin implements IStartup {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.unicase.link.trigger";
@@ -47,4 +48,7 @@ public class Activator extends Plugin {
 		return plugin;
 	}
 
+	public void earlyStartup() {
+		LinkTrigger.getInstance();
+	}
 }
