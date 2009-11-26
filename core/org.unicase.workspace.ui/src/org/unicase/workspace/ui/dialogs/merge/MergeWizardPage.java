@@ -30,6 +30,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 
 /**
@@ -114,12 +116,52 @@ public class MergeWizardPage extends WizardPage {
 	}
 
 	private Composite createTopBar(Composite parent) {
-		Composite row = new Composite(parent, SWT.NONE);
-		row.setLayout(new RowLayout(SWT.HORIZONTAL));
-		row.setSize(SWT.DEFAULT, 200);
-		Label label = new Label(row, SWT.None);
-		label.setText("Hier kommt viel hin");
-		return row;
+		Composite composite = new Composite(parent, SWT.NONE);
+		composite.setLayout(new RowLayout(SWT.HORIZONTAL));
+		composite.setSize(SWT.DEFAULT, 200);
+
+		Button accecptMine = new Button(composite, SWT.PUSH);
+		accecptMine.setText("Keep All My Changes");
+		accecptMine.addSelectionListener(new SelectAllSelectionListener(
+				OptionType.MyOperation));
+
+		Button accecptTheirs = new Button(composite, SWT.PUSH);
+		accecptTheirs.setText("Keep All Their Changes");
+		accecptTheirs.addSelectionListener(new SelectAllSelectionListener(
+				OptionType.TheirOperation));
+
+		// ProgressBar progressBar = new ProgressBar(composite, SWT.SMOOTH);
+		// progressBar.setSelection(0);
+
+		return composite;
+	}
+
+	private final class SelectAllSelectionListener implements SelectionListener {
+
+		private final OptionType type;
+
+		public SelectAllSelectionListener(OptionType type) {
+			this.type = type;
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			select();
+		}
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			select();
+		}
+
+		private void select() {
+			for (DecisionBox box : decisionBoxes) {
+				for (ConflictOption option : box.getConflict().getOptions()) {
+					if (option.getType().equals(type)) {
+						box.setSolution(option);
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	//

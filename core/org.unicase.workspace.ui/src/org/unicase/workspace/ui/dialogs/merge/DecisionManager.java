@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
@@ -272,12 +273,42 @@ public class DecisionManager {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		return adapterFactoryLabelProvider.getText(project
-				.getModelElement(modelElementId));
+		return adapterFactoryLabelProvider
+				.getText(getModelElement(modelElementId));
 	}
 
 	public ModelElement getModelElement(ModelElementId modelElementId) {
-		return project.getModelElement(modelElementId);
+		ModelElement modelElement = project.getModelElement(modelElementId);
+		if (modelElement == null) {
+			for (AbstractOperation ao : myChangePackage.getOperations()) {
+				if (ao instanceof CreateDeleteOperation) {
+					ModelElement tmp = ((CreateDeleteOperation) ao)
+							.getModelElement();
+					if (tmp != null
+							&& tmp.getModelElementId().equals(modelElementId)) {
+						modelElement = tmp;
+						break;
+					}
+				}
+			}
+			if (modelElement == null) {
+				for (ChangePackage cp : theirChangePackages) {
+					for (AbstractOperation ao : cp.getOperations()) {
+						if (ao instanceof CreateDeleteOperation) {
+							ModelElement tmp = ((CreateDeleteOperation) ao)
+									.getModelElement();
+							if (tmp != null
+									&& tmp.getModelElementId().equals(
+											modelElementId)) {
+								modelElement = tmp;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		return modelElement;
 	}
 
 	private class Conflicting {
@@ -336,14 +367,25 @@ public class DecisionManager {
 
 	public String getAuthorForOperation(AbstractOperation theirOperation) {
 		for (ChangePackage cp : theirChangePackages) {
-			for (AbstractOperation ao : cp.getOperations()) {
-				if (ao.equals(theirOperation)) {
-					LogMessage log = cp.getLogMessage();
-					if (log == null) {
-						return "";
-					}
-					return (log.getAuthor() == null) ? "" : log.getAuthor();
+			for (AbstractOperation op : cp.getOperations()) {
+				List<AbstractOperation> tmpList = new ArrayList<AbstractOperation>();
+				if (op instanceof CompositeOperation) {
+					tmpList.add(op);
+					tmpList
+							.addAll(((CompositeOperation) op)
+									.getSubOperations());
+				} else {
+					tmpList.add(op);
+				}
+				for (AbstractOperation ao : tmpList) {
+					if (ao.equals(theirOperation)) {
+						LogMessage log = cp.getLogMessage();
+						if (log == null) {
+							return "";
+						}
+						return (log.getAuthor() == null) ? "" : log.getAuthor();
 
+					}
 				}
 			}
 		}

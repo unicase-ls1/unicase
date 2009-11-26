@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.ContextComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.DescriptionComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.DetailsComponent;
@@ -18,6 +19,10 @@ public class DecisionBox extends Composite {
 
 	private final Conflict conflict;
 	private final DecisionManager decisionManager;
+	private ContextComponent contextComponent;
+	private DescriptionComponent descriptionComponent;
+	private OptionComponent optionComponent;
+	private DetailsComponent detailsComponent;
 
 	public DecisionBox(Composite parent, DecisionManager decisionManager,
 			Color color, Conflict conflict) {
@@ -37,12 +42,12 @@ public class DecisionBox extends Composite {
 			setBackground(color);
 		}
 
-		new ContextComponent(this, conflict);
-		new OptionComponent(this, conflict);
-		new DescriptionComponent(this, conflict);
+		contextComponent = new ContextComponent(this, conflict);
+		optionComponent = new OptionComponent(this, conflict);
+		descriptionComponent = new DescriptionComponent(this, conflict);
 
 		if (DecisionUtil.detailsNeeded(conflict)) {
-			new DetailsComponent(this, conflict);
+			detailsComponent = new DetailsComponent(this, conflict);
 		}
 
 		for (Control control : getChildren()) {
@@ -54,7 +59,16 @@ public class DecisionBox extends Composite {
 		return decisionManager;
 	}
 
+	public void setSolution(ConflictOption option) {
+		conflict.setSolution(option);
+		optionComponent.refreshButtonColor();
+	}
+
 	public void layoutPage() {
 		getParent().getParent().layout();
+	}
+
+	public Conflict getConflict() {
+		return conflict;
 	}
 }

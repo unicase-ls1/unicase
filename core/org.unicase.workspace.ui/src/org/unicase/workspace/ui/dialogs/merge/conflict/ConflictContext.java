@@ -8,12 +8,13 @@ public class ConflictContext {
 	private final String attribute;
 	private final String opponent;
 
-	public ConflictContext(ModelElement modelElement, String attribute, String opponent) {
+	public ConflictContext(ModelElement modelElement, String attribute,
+			String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = attribute;
 		this.opponent = opponent;
 	}
-	
+
 	public ConflictContext(ModelElement modelElement, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = null;
@@ -31,16 +32,16 @@ public class ConflictContext {
 	public String getOpponent() {
 		return opponent;
 	}
-	
+
 	public String getModelElementTitleLabel() {
 		return "ModelElement";
 	}
-	
+
 	public String getAttributeTitleLabel() {
 		return "Attribute";
 	}
-	
+
 	public String getOpponentTitleLabel() {
-		return "Author";
+		return "Opponenet";
 	}
 }
