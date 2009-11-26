@@ -115,11 +115,21 @@ public class HistoryBrowserView extends ViewPart implements
 						manager.add(new Separator());
 					} catch (AccessControlException e) {
 						// do nothing
+						System.out.println("");
 					}
 
 				}
 				manager.add(checkoutAction);
-				manager.add(revertAction);
+				AccessControlHelper helper = new AccessControlHelper(
+						projectSpace.getUsersession());
+				try {
+					helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+							.copy(projectSpace.getProjectId()));
+					manager.add(revertAction);
+				} catch (AccessControlException e) {
+					// do nothing
+					System.out.println("");
+				}
 			}
 		}
 	}
@@ -560,7 +570,6 @@ public class HistoryBrowserView extends ViewPart implements
 	public void setInput(ProjectSpace projectSpace, ModelElement me) {
 		noProjectHint.dispose();
 		this.parent.layout();
-
 		this.projectSpace = projectSpace;
 		modelElement = me;
 		currentEnd = -1;
@@ -834,14 +843,6 @@ public class HistoryBrowserView extends ViewPart implements
 		checkoutAction.setText("Checkout this revision");
 		checkoutAction.setToolTipText("Checkout this revision of the project");
 
-		// AccessControlHelper accessControl = null;
-		// if (accessControl == null) {
-		// accessControl = new AccessControlHelper(projectSpace
-		// .getUsersession());
-		// }
-		//
-		// try {
-		// accessControl.checkServerAdminAccess();
 		revertAction = new Action() {
 			@Override
 			public void run() {
