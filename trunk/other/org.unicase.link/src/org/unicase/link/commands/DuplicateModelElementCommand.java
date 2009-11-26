@@ -31,22 +31,10 @@ public class DuplicateModelElementCommand extends UnicaseCommand {
 	protected void doRun() {
 
 		final ModelElement clone = ModelUtil.copy(me);
+		
 		UnicaseModelElement ume = (UnicaseModelElement) clone;
 		ume.setLeafSection(((UnicaseModelElement)me).getLeafSection());
-		
-		ModelElement cME = ((UnicaseModelElement)me).getContainerModelElement();
-		Set<ModelElement> elements = cME.getContainedElements();
-		elements.add(ume);
-		
-		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				ps.getProject().addModelElement(clone);
-			}
-		}.run();
-		
+				
 		
 	}
 

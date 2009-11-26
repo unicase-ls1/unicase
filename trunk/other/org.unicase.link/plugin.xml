@@ -67,7 +67,7 @@
             locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
          <command
                commandId="org.unicase.link.commands.duplicateCommand"
-               icon="icons/unicase_link.png"
+               icon="icons/sample.gif"
                id="org.unicase.link.toolbars.duplicateCommand"
                tooltip="Duplicate Action Item">
          </command>
@@ -76,7 +76,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.link.commands.duplicateCommand"
-               icon="icons/unicase_link.png"
+               icon="icons/sample.gif"
                label="Duplicate Model Element"
                style="push">
          </command>

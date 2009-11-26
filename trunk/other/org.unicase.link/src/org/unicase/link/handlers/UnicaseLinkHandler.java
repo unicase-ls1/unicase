@@ -56,20 +56,23 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		//remove spaces from the model element name
 		String meName;
 		if (me instanceof UnicaseModelElement){
-			meName =  ((UnicaseModelElement)me).getName().replaceAll(" ", "");				
+			meName =  ((UnicaseModelElement)me).getName().replaceAll(" ", "");			
 		} else {
 			//If this is not a unicase model, we use the identifier (whatever this is) as name
 			meName = me.getIdentifier();
 		}
+		
+		//ModelElement clone = (ModelElement) EcoreUtil.copy(me);
+		
 		String meId = me.getModelElementId().getId();
 		
-		ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
+		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();
 				
 		//remove spaces from the project name
 		String projectName = ps.getProjectName().replaceAll(" ", "");
-		String projectId = ps.getProjectId().getId();
-				
+		String projectId = ps.getProjectId().getId();	
+		
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 		
