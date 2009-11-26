@@ -11,7 +11,8 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.mergetest.merge.MergeWizard;
+import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
+import org.unicase.workspace.ui.dialogs.merge.MergeWizard;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.observers.ConflictResolver;
 
@@ -60,9 +61,9 @@ public class MergeProjectHandler implements ConflictResolver {
 	public boolean resolveConflicts(Project project,
 			List<ChangePackage> theirChangePackages,
 			ChangePackage myChangePackage) {
-//		 mergeDialog.setChanges(myChangePackage, theirChangePackages);
-//		 mergeDialog.open();
-		MergeWizard wizard = new MergeWizard(project,theirChangePackages,myChangePackage);
+		DecisionManager decisionManager = new DecisionManager(project,
+				myChangePackage, theirChangePackages);
+		MergeWizard wizard = new MergeWizard(decisionManager);
 		dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 		dialog.setPageSize(800, 500);
 		dialog.setBlockOnOpen(true);
