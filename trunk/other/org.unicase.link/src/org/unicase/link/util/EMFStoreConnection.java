@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.handlers;
+package org.unicase.link.util;
 
 import java.util.Set;
 
@@ -123,10 +123,16 @@ public class EMFStoreConnection {
 		void showLoginDialog(final ServerInfo serverInfo) {
 			Display.getDefault().syncExec(new Runnable() {
 				public void run() {
-					loginDialog = new LoginDialog(PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getShell(), null,
+					loginDialog = new LoginDialog(
+							PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+							null,
 							serverInfo);
-					loginDialog.open();
+					
+					int ret = loginDialog.open();
+					
+					if (ret == LoginDialog.OK) {
+						userSession = loginDialog.getSession();
+					}
 				}
 			});
 		}

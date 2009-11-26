@@ -3,7 +3,6 @@ package org.unicase.link.util;
 import java.util.Date;
 import java.util.Set;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.link.handlers.EMFStoreConnection;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;

@@ -12,6 +12,6 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.workspace.ui;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
- lib/junique-1.0.2.jar
+ lib/url_register.jar
 Import-Package: org.unicase.workspace.ui.commands,
  org.unicase.workspace.ui.dialogs
