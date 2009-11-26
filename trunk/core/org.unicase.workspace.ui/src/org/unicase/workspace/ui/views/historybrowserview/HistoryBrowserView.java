@@ -116,8 +116,10 @@ public class HistoryBrowserView extends ViewPart implements
 					} catch (AccessControlException e) {
 						// do nothing
 					}
-					manager.add(checkoutAction);
+
 				}
+				manager.add(checkoutAction);
+				manager.add(revertAction);
 			}
 		}
 	}
@@ -196,6 +198,8 @@ public class HistoryBrowserView extends ViewPart implements
 	private Action checkoutAction;
 
 	private boolean isUnlinkedFromNavigator;
+
+	private Action revertAction;
 
 	/**
 	 * Constructor.
@@ -829,6 +833,36 @@ public class HistoryBrowserView extends ViewPart implements
 		};
 		checkoutAction.setText("Checkout this revision");
 		checkoutAction.setToolTipText("Checkout this revision of the project");
+
+		// AccessControlHelper accessControl = null;
+		// if (accessControl == null) {
+		// accessControl = new AccessControlHelper(projectSpace
+		// .getUsersession());
+		// }
+		//
+		// try {
+		// accessControl.checkServerAdminAccess();
+		revertAction = new Action() {
+			@Override
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
+				revertCommit(versionSpec);
+			}
+		};
+		revertAction.setText("Revert this revision");
+		revertAction
+				.setToolTipText("Revert this revision of the project, the reversed changes between the previous revision has been applied");
+
+		// } catch (AccessControlException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 		addTagAction = new Action() {
 			@Override
