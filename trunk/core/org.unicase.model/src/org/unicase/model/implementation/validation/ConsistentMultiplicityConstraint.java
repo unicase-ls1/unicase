@@ -36,8 +36,7 @@ public class ConsistentMultiplicityConstraint extends AbstractModelConstraint {
 				IFeature feature = (IFeature) eObj;
 				int minimumMultiplicity = feature.getMinimumMultiplicity();
 				int maximumMultiplicity = feature.getMaximumMultiplicity();
-				boolean valid = minimumMultiplicity <= maximumMultiplicity
-					|| maximumMultiplicity == -1;
+				boolean valid = minimumMultiplicity <= maximumMultiplicity || maximumMultiplicity == -1;
 				if (!valid) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						feature, "minimumMultiplicity");
@@ -45,8 +44,7 @@ public class ConsistentMultiplicityConstraint extends AbstractModelConstraint {
 					errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(feature,
 						"maximumMultiplicity");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { minimumMultiplicity,
-						maximumMultiplicity });
+					return ctx.createFailureStatus(new Object[] { minimumMultiplicity, maximumMultiplicity });
 				}
 			}
 		}
