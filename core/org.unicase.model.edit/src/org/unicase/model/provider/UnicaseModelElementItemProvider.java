@@ -58,6 +58,7 @@ public class UnicaseModelElementItemProvider extends ModelElementItemProvider im
 			addDescriptionPropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
+			addCommentsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,19 @@ public class UnicaseModelElementItemProvider extends ModelElementItemProvider im
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_attachments_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ATTACHMENTS, true, false,
 			true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Comments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCommentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_comments_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_comments_feature",
+				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS, true, false,
+			false, null, null, null));
 	}
 
 	/**
