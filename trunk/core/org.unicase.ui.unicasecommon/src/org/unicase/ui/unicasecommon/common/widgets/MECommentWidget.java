@@ -30,6 +30,7 @@ import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Standard widget to show a comment and all its replies.
@@ -83,9 +84,9 @@ public class MECommentWidget extends Composite {
 			try {
 				currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(comment));
 			} catch (NoCurrentUserException e1) {
-				return;
+				WorkspaceUtil.logWarning("You don't have a valid user! ", e1);
 			} catch (CannotMatchUserInProjectException e1) {
-				return;
+				WorkspaceUtil.logWarning("Your user cannot be matched in the project! ", e1);
 			}
 		}
 
