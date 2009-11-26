@@ -25,10 +25,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.mergetest.merge.MergeWizard;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
+import org.unicase.workspace.ui.dialogs.merge.MergeWizard;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class ShowConflictsDialog extends TitleAreaDialog {
@@ -111,10 +112,12 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 								ConflictDetector conflictDetector = new ConflictDetector();
 								conflictDetector.filterToConflictInvolved(myChanges, theirChanges);
 								
-								MergeWizard wizard = new MergeWizard(analyzeConflict
+								DecisionManager decisionManager = new DecisionManager(analyzeConflict
 										.getProject(v[0]),analyzeConflict
-										.getChanges(v[1], v[2]),analyzeConflict
-										.getChanges(v[0] - 1, v[0]).get(0));
+										.getChanges(v[0] - 1, v[0]).get(0),analyzeConflict
+										.getChanges(v[1], v[2]));
+								
+								MergeWizard wizard = new MergeWizard(decisionManager);
 								
 //								MergeWizard wizard = new MergeWizard(analyzeConflict.getProject(v[0]), theirChanges, myChanges);
 								
@@ -122,11 +125,11 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 								dialog.create();
 								dialog.open();
 								
-								mergeDialog.setChanges(analyzeConflict
-								.getChanges(v[0] - 1, v[0]).get(0), analyzeConflict
-												.getChanges(v[1], v[2]));
-								mergeDialog.open();
-								
+//								mergeDialog.setChanges(analyzeConflict
+//								.getChanges(v[0] - 1, v[0]).get(0), analyzeConflict
+//												.getChanges(v[1], v[2]));
+//								mergeDialog.open();
+//								
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
