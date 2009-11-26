@@ -13,12 +13,21 @@
             categoryId="org.unicase.link.commands.category"
             id="org.unicase.link.commands.sampleCommand">
       </command>
+      <command
+            categoryId="org.unicase.link.commands.category"
+            id="org.unicase.link.commands.duplicateCommand"
+            name="Duplicate Command">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="org.unicase.link.commands.sampleCommand"
             class="org.unicase.link.handlers.UnicaseLinkHandler">
+      </handler>
+      <handler
+            class="org.unicase.link.handlers.DuplicateModelElementHandler"
+            commandId="org.unicase.link.commands.duplicateCommand">
       </handler>
    </extension>
    <extension
@@ -53,6 +62,24 @@
                   tooltip="Generate unicase specific protocol link"
                   id="org.unicase.link.toolbars.sampleCommand">
             </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <command
+               commandId="org.unicase.link.commands.duplicateCommand"
+               icon="icons/unicase_link.png"
+               id="org.unicase.link.toolbars.duplicateCommand"
+               tooltip="Duplicate Action Item">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.link.commands.duplicateCommand"
+               icon="icons/unicase_link.png"
+               label="Duplicate Model Element"
+               style="push">
+         </command>
       </menuContribution>
    </extension>
    <extension
