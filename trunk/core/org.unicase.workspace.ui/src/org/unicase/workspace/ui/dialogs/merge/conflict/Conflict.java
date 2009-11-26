@@ -6,6 +6,7 @@ import java.util.List;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.conflict.options.IssueOption;
 
 public abstract class Conflict {
 
@@ -59,8 +60,7 @@ public abstract class Conflict {
 		if (!allowOtherOptions()) {
 			return;
 		}
-		options.add(new ConflictOption("Create Issue",
-				ConflictOption.OptionType.Issue));
+		options.add(new IssueOption("Enter Name ..."));
 	}
 
 	protected boolean allowOtherOptions() {

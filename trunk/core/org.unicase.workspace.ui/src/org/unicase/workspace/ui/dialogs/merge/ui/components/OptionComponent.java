@@ -73,7 +73,7 @@ public class OptionComponent {
 		}
 	}
 
-	private void refreshButtonColor() {
+	public void refreshButtonColor() {
 		for (Control composite : group.getChildren()) {
 			if (composite instanceof CompositeExtension) {
 				if (conflict.isResolved()
@@ -101,9 +101,17 @@ public class OptionComponent {
 		}
 	}
 
+	private void extraAction(CompositeExtension composite) {
+		if (composite.getOption().optionChosen()) {
+			composite.setText();
+			composite.layout();
+		}
+	}
+
 	private final class CompositeExtension extends Composite {
 
 		private final ConflictOption option;
+		private Label label;
 
 		private CompositeExtension(Conflict conflict, ConflictOption option) {
 			super(group, SWT.BORDER | SWT.INHERIT_FORCE);
@@ -115,12 +123,8 @@ public class OptionComponent {
 
 			// StyledText styledText = new StyledText(this, SWT.NONE);
 
-			String result = generatePrefix(option);
-			result += DecisionUtil.cutString(option.getStrippedOptionLabel(),
-					DecisionConfig.OPTION_LENGTH, true);
-
-			Label label = new Label(this, SWT.NONE);
-			label.setText(result);
+			label = new Label(this, SWT.NONE);
+			setText();
 
 			// StyleRange prefixRange = new StyleRange();
 			// prefixRange.start = 0;
@@ -133,6 +137,13 @@ public class OptionComponent {
 
 			OptionMouseListener listener = new OptionMouseListener(this);
 			OptionComponent.this.addMouseListener(this, listener);
+		}
+
+		private void setText() {
+			String result = generatePrefix(option);
+			result += DecisionUtil.cutString(option.getStrippedOptionLabel(),
+					DecisionConfig.OPTION_LENGTH, true);
+			label.setText(result);
 		}
 
 		public ConflictOption getOption() {
@@ -172,6 +183,9 @@ public class OptionComponent {
 					conflict.setSolution(null);
 				} else {
 					conflict.setSolution(composite.getOption());
+				}
+				if (composite.getOption().hasExtraAction()) {
+					extraAction(composite);
 				}
 				refreshButtonColor();
 				break;

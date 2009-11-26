@@ -53,6 +53,9 @@ public class DecisionUtil {
 	}
 
 	public static String stripNewLine(String text) {
+		if (text == null) {
+			return "";
+		}
 		return text.replaceAll("\n\r|\r\n|\n \r|\r \n|\n|\r", " ");
 	}
 

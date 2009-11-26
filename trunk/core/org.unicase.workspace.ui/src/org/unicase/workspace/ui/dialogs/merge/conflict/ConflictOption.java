@@ -8,8 +8,8 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class ConflictOption {
 
-	private final String option;
-	private final OptionType type;
+	private String option;
+	private OptionType type;
 	private String detailProvider;
 	private List<AbstractOperation> operations;
 
@@ -25,6 +25,10 @@ public class ConflictOption {
 
 	public String getOptionLabel() {
 		return option;
+	}
+
+	public void setOptionLabel(String option) {
+		this.option = option;
 	}
 
 	public String getStrippedOptionLabel() {
@@ -57,5 +61,18 @@ public class ConflictOption {
 
 	public String getDetailProvider() {
 		return detailProvider;
+	}
+
+	public boolean hasExtraAction() {
+		return false;
+	}
+
+	/**
+	 * Called if Option is chosen.
+	 * 
+	 * @return if true, Option will be updated
+	 */
+	public boolean optionChosen() {
+		return false;
 	}
 }
