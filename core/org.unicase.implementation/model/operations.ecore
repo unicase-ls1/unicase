@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="operations"
+    nsURI="operations" nsPrefix="operations">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtractSuperClassOperation" eSuperTypes="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
+    <eOperations name="getSubClasses" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//implementation/IClass">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getSubClasses());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getTargetPackage" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//implementation/IPackage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElement(project, getTargetPackage());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getSuperSuperClasses" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//implementation/IClass">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getSuperSuperClasses());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleSuperSuperClasses" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//implementation/IClass">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClassName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPackage" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superSuperClasses" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

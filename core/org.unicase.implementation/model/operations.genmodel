@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.implementation/src"
+    modelPluginID="org.unicase.implementation" modelName="Operations" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+  <foreignModel>operations.ecore</foreignModel>
+  <genPackages prefix="Operations" basePackage="org.unicase.implementation" disposableProviderFactory="true"
+      ecorePackage="operations.ecore#/">
+    <genClasses ecoreClass="operations.ecore#//ExtractSuperClassOperation">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference operations.ecore#//ExtractSuperClassOperation/subClasses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute operations.ecore#//ExtractSuperClassOperation/superClassName"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference operations.ecore#//ExtractSuperClassOperation/targetPackage"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference operations.ecore#//ExtractSuperClassOperation/superSuperClasses"/>
+      <genOperations ecoreOperation="operations.ecore#//ExtractSuperClassOperation/getSubClasses">
+        <genParameters ecoreParameter="operations.ecore#//ExtractSuperClassOperation/getSubClasses/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="operations.ecore#//ExtractSuperClassOperation/getTargetPackage">
+        <genParameters ecoreParameter="operations.ecore#//ExtractSuperClassOperation/getTargetPackage/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="operations.ecore#//ExtractSuperClassOperation/getSuperSuperClasses">
+        <genParameters ecoreParameter="operations.ecore#//ExtractSuperClassOperation/getSuperSuperClasses/project"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
