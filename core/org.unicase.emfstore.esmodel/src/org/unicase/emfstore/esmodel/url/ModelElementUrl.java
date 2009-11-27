@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ModelElementUrl extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Server Url</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Url</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Url</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Server Url</em>' containment reference.
 	 * @see #setServerUrl(ServerUrl)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrl_ServerUrl()
@@ -42,9 +42,8 @@ public interface ModelElementUrl extends EObject {
 	ServerUrl getServerUrl();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getServerUrl <em>Server Url</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getServerUrl <em>Server Url</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Server Url</em>' containment reference.
 	 * @see #getServerUrl()
 	 * @generated
@@ -52,13 +51,13 @@ public interface ModelElementUrl extends EObject {
 	void setServerUrl(ServerUrl value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Url Fragment</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Url Fragment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Url Fragment</em>' containment reference isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Url Fragment</em>' containment reference.
 	 * @see #setProjectUrlFragment(ProjectUrlFragment)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrl_ProjectUrlFragment()
@@ -68,9 +67,8 @@ public interface ModelElementUrl extends EObject {
 	ProjectUrlFragment getProjectUrlFragment();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getProjectUrlFragment
-	 * <em>Project Url Fragment</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getProjectUrlFragment <em>Project Url Fragment</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Url Fragment</em>' containment reference.
 	 * @see #getProjectUrlFragment()
 	 * @generated
@@ -78,14 +76,14 @@ public interface ModelElementUrl extends EObject {
 	void setProjectUrlFragment(ProjectUrlFragment value);
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Url Fragment</b></em>' containment reference. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Model Element Url Fragment</b></em>' containment reference.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Model Element Url Fragment</em>' containment reference isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element Url Fragment</em>' containment reference.
 	 * @see #setModelElementUrlFragment(ModelElementUrlFragment)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrl_ModelElementUrlFragment()
@@ -95,9 +93,8 @@ public interface ModelElementUrl extends EObject {
 	ModelElementUrlFragment getModelElementUrlFragment();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getModelElementUrlFragment
-	 * <em>Model Element Url Fragment</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrl#getModelElementUrlFragment <em>Model Element Url Fragment</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model Element Url Fragment</em>' containment reference.
 	 * @see #getModelElementUrlFragment()
 	 * @generated

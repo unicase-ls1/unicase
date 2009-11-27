@@ -18,20 +18,18 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#isBidirectional <em>
- * Bidirectional</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOppositeFeatureName <em>
- * Opposite Feature Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#isBidirectional <em>Bidirectional</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOppositeFeatureName <em>Opposite Feature Name</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ReferenceOperationImpl extends FeatureOperationImpl implements ReferenceOperation {
 	/**
-	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
@@ -39,9 +37,9 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	protected static final boolean BIDIRECTIONAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
@@ -81,7 +79,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReferenceOperationImpl() {
@@ -90,7 +87,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +96,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isBidirectional() {
@@ -109,20 +104,17 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBidirectional(boolean newBidirectional) {
 		boolean oldBidirectional = bidirectional;
 		bidirectional = newBidirectional;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL,
-				oldBidirectional, bidirectional));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL, oldBidirectional, bidirectional));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getOppositeFeatureName() {
@@ -131,96 +123,86 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOppositeFeatureName(String newOppositeFeatureName) {
 		String oldOppositeFeatureName = oppositeFeatureName;
 		oppositeFeatureName = newOppositeFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME, oldOppositeFeatureName,
-				oppositeFeatureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME, oldOppositeFeatureName, oppositeFeatureName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			return isBidirectional();
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			return getOppositeFeatureName();
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				return isBidirectional();
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				return getOppositeFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			setBidirectional((Boolean) newValue);
-			return;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			setOppositeFeatureName((String) newValue);
-			return;
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				setBidirectional((Boolean)newValue);
+				return;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				setOppositeFeatureName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			setBidirectional(BIDIRECTIONAL_EDEFAULT);
-			return;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			setOppositeFeatureName(OPPOSITE_FEATURE_NAME_EDEFAULT);
-			return;
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				setBidirectional(BIDIRECTIONAL_EDEFAULT);
+				return;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				setOppositeFeatureName(OPPOSITE_FEATURE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			return bidirectional != BIDIRECTIONAL_EDEFAULT;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			return OPPOSITE_FEATURE_NAME_EDEFAULT == null ? oppositeFeatureName != null
-				: !OPPOSITE_FEATURE_NAME_EDEFAULT.equals(oppositeFeatureName);
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				return bidirectional != BIDIRECTIONAL_EDEFAULT;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				return OPPOSITE_FEATURE_NAME_EDEFAULT == null ? oppositeFeatureName != null : !OPPOSITE_FEATURE_NAME_EDEFAULT.equals(oppositeFeatureName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (bidirectional: ");

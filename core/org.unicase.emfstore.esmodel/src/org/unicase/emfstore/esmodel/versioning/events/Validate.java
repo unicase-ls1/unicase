@@ -7,7 +7,8 @@ package org.unicase.emfstore.esmodel.versioning.events;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Validate</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getValidate()
  * @model
  * @generated

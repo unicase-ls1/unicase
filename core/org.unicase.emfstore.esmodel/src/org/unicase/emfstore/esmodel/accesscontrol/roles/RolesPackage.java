@@ -18,44 +18,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory
  * @model kind="package"
  * @generated
  */
 public interface RolesPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "roles";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/esmodel/accesscontrol/roles";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.accesscontrol.roles";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	RolesPackage eINSTANCE = org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl <em>Role</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl <em>Role</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getRole()
 	 * @generated
@@ -63,26 +61,25 @@ public interface RolesPackage extends EPackage {
 	int ROLE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ROLE__PROJECTS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Role</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Role</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ROLE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl
-	 * <em>Reader Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl <em>Reader Role</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getReaderRole()
 	 * @generated
@@ -90,9 +87,9 @@ public interface RolesPackage extends EPackage {
 	int READER_ROLE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -108,9 +105,8 @@ public interface RolesPackage extends EPackage {
 	int READER_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl
-	 * <em>Writer Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl <em>Writer Role</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getWriterRole()
 	 * @generated
@@ -118,9 +114,9 @@ public interface RolesPackage extends EPackage {
 	int WRITER_ROLE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -136,9 +132,8 @@ public interface RolesPackage extends EPackage {
 	int WRITER_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl
-	 * <em>Project Admin Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl <em>Project Admin Role</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getProjectAdminRole()
 	 * @generated
@@ -146,27 +141,26 @@ public interface RolesPackage extends EPackage {
 	int PROJECT_ADMIN_ROLE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ADMIN_ROLE__PROJECTS = ROLE__PROJECTS;
 
 	/**
-	 * The number of structural features of the '<em>Project Admin Role</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Project Admin Role</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ADMIN_ROLE_FEATURE_COUNT = ROLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl
-	 * <em>Server Admin</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl <em>Server Admin</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getServerAdmin()
 	 * @generated
@@ -174,9 +168,9 @@ public interface RolesPackage extends EPackage {
 	int SERVER_ADMIN = 4;
 
 	/**
-	 * The feature id for the '<em><b>Projects</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -194,7 +188,6 @@ public interface RolesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role <em>Role</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Role</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role
 	 * @generated
@@ -202,10 +195,9 @@ public interface RolesPackage extends EPackage {
 	EClass getRole();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects <em>Projects</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects <em>Projects</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Projects</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects()
 	 * @see #getRole()
@@ -214,9 +206,8 @@ public interface RolesPackage extends EPackage {
 	EReference getRole_Projects();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole
-	 * <em>Reader Role</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole <em>Reader Role</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reader Role</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole
 	 * @generated
@@ -224,9 +215,8 @@ public interface RolesPackage extends EPackage {
 	EClass getReaderRole();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole
-	 * <em>Writer Role</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole <em>Writer Role</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Writer Role</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole
 	 * @generated
@@ -234,9 +224,8 @@ public interface RolesPackage extends EPackage {
 	EClass getWriterRole();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole
-	 * <em>Project Admin Role</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole <em>Project Admin Role</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Project Admin Role</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole
 	 * @generated
@@ -244,9 +233,8 @@ public interface RolesPackage extends EPackage {
 	EClass getProjectAdminRole();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin
-	 * <em>Server Admin</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin <em>Server Admin</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Server Admin</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin
 	 * @generated
@@ -254,8 +242,8 @@ public interface RolesPackage extends EPackage {
 	EClass getServerAdmin();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -270,14 +258,12 @@ public interface RolesPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl
-		 * <em>Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl <em>Role</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getRole()
 		 * @generated
@@ -293,9 +279,8 @@ public interface RolesPackage extends EPackage {
 		EReference ROLE__PROJECTS = eINSTANCE.getRole_Projects();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl
-		 * <em>Reader Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl <em>Reader Role</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ReaderRoleImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getReaderRole()
 		 * @generated
@@ -303,9 +288,8 @@ public interface RolesPackage extends EPackage {
 		EClass READER_ROLE = eINSTANCE.getReaderRole();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl
-		 * <em>Writer Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl <em>Writer Role</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.WriterRoleImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getWriterRole()
 		 * @generated
@@ -313,10 +297,8 @@ public interface RolesPackage extends EPackage {
 		EClass WRITER_ROLE = eINSTANCE.getWriterRole();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl
-		 * <em>Project Admin Role</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl <em>Project Admin Role</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ProjectAdminRoleImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getProjectAdminRole()
 		 * @generated
@@ -324,10 +306,8 @@ public interface RolesPackage extends EPackage {
 		EClass PROJECT_ADMIN_ROLE = eINSTANCE.getProjectAdminRole();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl <em>Server Admin</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl <em>Server Admin</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.ServerAdminImpl
 		 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl#getServerAdmin()
 		 * @generated
