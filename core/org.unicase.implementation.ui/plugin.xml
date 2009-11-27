@@ -39,5 +39,43 @@
          </command>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.unicase.model.codeGeneration.command.generateEcore"
+            name="Generate Ecore">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.ui.implementation.GenerateEcoreHandler"
+            commandId="org.unicase.model.codeGeneration.command.generateEcore">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <adapt
+                        type="org.unicase.model.implementation.IPackage">
+                  </adapt>
+               </iterate>
+               <count
+                     value="+">
+               </count>
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+         <command
+               commandId="org.unicase.model.codeGeneration.command.generateEcore"
+               label="Generate Ecore"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
