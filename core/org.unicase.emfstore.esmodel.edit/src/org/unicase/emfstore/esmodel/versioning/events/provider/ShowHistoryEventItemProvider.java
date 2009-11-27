@@ -25,15 +25,16 @@ import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ShowHistoryEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ShowHistoryEventItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +42,8 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,9 +58,9 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +76,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,8 +88,8 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	}
 
 	/**
-	 * This returns ShowHistoryEvent.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns ShowHistoryEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,17 +98,16 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ShowHistoryEvent)object).getTimestamp();
+		Date labelValue = ((ShowHistoryEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ShowHistoryEvent_type") :
-			getString("_UI_ShowHistoryEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ShowHistoryEvent_type")
+			: getString("_UI_ShowHistoryEvent_type") + " " + label;
 	}
 
 	/**
@@ -121,45 +122,39 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ShowHistoryEvent.class)) {
-			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
-			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
-			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
+		case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
+		case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION,
-				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.SHOW_HISTORY_EVENT__MODEL_ELEMENT,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_HISTORY_EVENT__MODEL_ELEMENT,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,14 +162,12 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION ||
-			childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION;
+		boolean qualify = childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION
+			|| childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

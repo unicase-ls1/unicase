@@ -14,7 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DiagramLayoutOperationImpl extends AttributeOperationImpl implements DiagramLayoutOperation {
@@ -30,6 +30,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLayoutOperationImpl() {
@@ -38,6 +39,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

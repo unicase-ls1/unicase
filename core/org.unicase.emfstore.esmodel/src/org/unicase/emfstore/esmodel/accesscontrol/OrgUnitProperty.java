@@ -28,12 +28,12 @@ public interface OrgUnitProperty extends EObject {
 	public final static String ARRAY_SEPARATOR = "%%";
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage#getOrgUnitProperty_Name()
@@ -43,8 +43,9 @@ public interface OrgUnitProperty extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getName <em>Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -52,13 +53,13 @@ public interface OrgUnitProperty extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage#getOrgUnitProperty_Value()
@@ -68,8 +69,9 @@ public interface OrgUnitProperty extends EObject {
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getValue <em>Value</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
@@ -77,13 +79,13 @@ public interface OrgUnitProperty extends EObject {
 	void setValue(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(ProjectId)
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage#getOrgUnitProperty_Project()
@@ -93,8 +95,9 @@ public interface OrgUnitProperty extends EObject {
 	ProjectId getProject();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getProject <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getProject
+	 * <em>Project</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated

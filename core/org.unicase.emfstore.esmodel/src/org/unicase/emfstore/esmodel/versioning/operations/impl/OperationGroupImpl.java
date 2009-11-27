@@ -53,9 +53,9 @@ public class OperationGroupImpl extends EObjectImpl implements OperationGroup {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -64,6 +64,7 @@ public class OperationGroupImpl extends EObjectImpl implements OperationGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationGroupImpl() {
@@ -72,6 +73,7 @@ public class OperationGroupImpl extends EObjectImpl implements OperationGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,6 +83,7 @@ public class OperationGroupImpl extends EObjectImpl implements OperationGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -89,99 +92,109 @@ public class OperationGroupImpl extends EObjectImpl implements OperationGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.OPERATION_GROUP__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.OPERATION_GROUP__NAME, oldName,
+				name));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectResolvingEList<AbstractOperation>(AbstractOperation.class, this, OperationsPackage.OPERATION_GROUP__OPERATIONS);
+			operations = new EObjectResolvingEList<AbstractOperation>(AbstractOperation.class, this,
+				OperationsPackage.OPERATION_GROUP__OPERATIONS);
 		}
 		return operations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.OPERATION_GROUP__NAME:
-				return getName();
-			case OperationsPackage.OPERATION_GROUP__OPERATIONS:
-				return getOperations();
+		case OperationsPackage.OPERATION_GROUP__NAME:
+			return getName();
+		case OperationsPackage.OPERATION_GROUP__OPERATIONS:
+			return getOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.OPERATION_GROUP__NAME:
-				setName((String)newValue);
-				return;
-			case OperationsPackage.OPERATION_GROUP__OPERATIONS:
-				getOperations().clear();
-				getOperations().addAll((Collection<? extends AbstractOperation>)newValue);
-				return;
+		case OperationsPackage.OPERATION_GROUP__NAME:
+			setName((String) newValue);
+			return;
+		case OperationsPackage.OPERATION_GROUP__OPERATIONS:
+			getOperations().clear();
+			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.OPERATION_GROUP__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case OperationsPackage.OPERATION_GROUP__OPERATIONS:
-				getOperations().clear();
-				return;
+		case OperationsPackage.OPERATION_GROUP__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case OperationsPackage.OPERATION_GROUP__OPERATIONS:
+			getOperations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.OPERATION_GROUP__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case OperationsPackage.OPERATION_GROUP__OPERATIONS:
-				return operations != null && !operations.isEmpty();
+		case OperationsPackage.OPERATION_GROUP__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case OperationsPackage.OPERATION_GROUP__OPERATIONS:
+			return operations != null && !operations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

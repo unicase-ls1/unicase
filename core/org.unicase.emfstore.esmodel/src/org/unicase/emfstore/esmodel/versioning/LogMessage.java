@@ -11,30 +11,29 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Log Message</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage()
  * @model
  * @generated
  */
 public interface LogMessage extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Message</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Message</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Message</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Message</em>' attribute.
 	 * @see #setMessage(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage_Message()
@@ -44,8 +43,9 @@ public interface LogMessage extends EObject {
 	String getMessage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Message</em>' attribute.
 	 * @see #getMessage()
 	 * @generated
@@ -53,13 +53,13 @@ public interface LogMessage extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Author</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Author</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Author</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Author</em>' attribute.
 	 * @see #setAuthor(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage_Author()
@@ -69,8 +69,9 @@ public interface LogMessage extends EObject {
 	String getAuthor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Author</em>' attribute.
 	 * @see #getAuthor()
 	 * @generated
@@ -78,12 +79,12 @@ public interface LogMessage extends EObject {
 	void setAuthor(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Date</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage_Date()
@@ -93,8 +94,9 @@ public interface LogMessage extends EObject {
 	Date getDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Date</em>' attribute.
 	 * @see #getDate()
 	 * @generated
@@ -102,13 +104,13 @@ public interface LogMessage extends EObject {
 	void setDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Client Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Client Date</em>' attribute.
 	 * @see #setClientDate(Date)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getLogMessage_ClientDate()
@@ -118,8 +120,9 @@ public interface LogMessage extends EObject {
 	Date getClientDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate <em>Client Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getClientDate
+	 * <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Client Date</em>' attribute.
 	 * @see #getClientDate()
 	 * @generated

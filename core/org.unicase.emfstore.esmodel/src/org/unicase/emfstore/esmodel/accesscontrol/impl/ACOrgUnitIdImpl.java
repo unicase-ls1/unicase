@@ -21,6 +21,7 @@ import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitIdImpl() {
@@ -29,6 +30,7 @@ public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

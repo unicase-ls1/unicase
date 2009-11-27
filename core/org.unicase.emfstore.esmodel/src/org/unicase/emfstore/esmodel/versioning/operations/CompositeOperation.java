@@ -29,14 +29,14 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompositeOperation extends AbstractOperation {
 	/**
-	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Operations</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Sub Operations</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_SubOperations()
 	 * @model containment="true" resolveProxies="true"
@@ -45,13 +45,13 @@ public interface CompositeOperation extends AbstractOperation {
 	EList<AbstractOperation> getSubOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Main Operation</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Main Operation</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Main Operation</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Main Operation</em>' reference.
 	 * @see #setMainOperation(AbstractOperation)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_MainOperation()
@@ -61,8 +61,10 @@ public interface CompositeOperation extends AbstractOperation {
 	AbstractOperation getMainOperation();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getMainOperation <em>Main Operation</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getMainOperation
+	 * <em>Main Operation</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Main Operation</em>' reference.
 	 * @see #getMainOperation()
 	 * @generated
@@ -70,13 +72,13 @@ public interface CompositeOperation extends AbstractOperation {
 	void setMainOperation(AbstractOperation value);
 
 	/**
-	 * Returns the value of the '<em><b>Composite Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Composite Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Composite Name</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Composite Name</em>' attribute.
 	 * @see #setCompositeName(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_CompositeName()
@@ -86,8 +88,10 @@ public interface CompositeOperation extends AbstractOperation {
 	String getCompositeName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName <em>Composite Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName
+	 * <em>Composite Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Composite Name</em>' attribute.
 	 * @see #getCompositeName()
 	 * @generated
@@ -95,13 +99,13 @@ public interface CompositeOperation extends AbstractOperation {
 	void setCompositeName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Composite Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Composite Description</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Composite Description</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Composite Description</em>' attribute.
 	 * @see #setCompositeDescription(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_CompositeDescription()
@@ -111,8 +115,10 @@ public interface CompositeOperation extends AbstractOperation {
 	String getCompositeDescription();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription <em>Composite Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeDescription
+	 * <em>Composite Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Composite Description</em>' attribute.
 	 * @see #getCompositeDescription()
 	 * @generated
@@ -120,13 +126,13 @@ public interface CompositeOperation extends AbstractOperation {
 	void setCompositeDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Reversed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Reversed</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reversed</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Reversed</em>' attribute.
 	 * @see #setReversed(boolean)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_Reversed()
@@ -136,8 +142,9 @@ public interface CompositeOperation extends AbstractOperation {
 	boolean isReversed();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed <em>Reversed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#isReversed
+	 * <em>Reversed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Reversed</em>' attribute.
 	 * @see #isReversed()
 	 * @generated
