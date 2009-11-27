@@ -35,17 +35,17 @@ import org.unicase.model.implementation.util.ImplementationAdapterFactory;
 public class ImplementationItemProviderAdapterFactory extends ImplementationAdapterFactory implements
 	ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ImplementationItemProviderAdapterFactory() {
@@ -74,15 +74,14 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.implementation.IPackage} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IPackageItemProvider iPackageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.IPackage}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.IPackage}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,9 +102,9 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	protected IClassItemProvider iClassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.IClass}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.IClass}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,15 +119,14 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.implementation.IAttribute} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IAttributeItemProvider iAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.IAttribute}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.IAttribute}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,15 +141,14 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.implementation.IReference} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IReferenceItemProvider iReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.IReference}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.IReference}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,15 +163,14 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.implementation.IEnumeration} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IEnumerationItemProvider iEnumerationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.IEnumeration}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.IEnumeration}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,15 +185,14 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.implementation.ILiteral} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ILiteralItemProvider iLiteralItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.implementation.ILiteral}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.implementation.ILiteral}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,8 +205,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -219,8 +214,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -229,7 +224,6 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,9 +232,9 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -250,7 +244,6 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,8 +259,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -275,8 +268,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -284,9 +277,9 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -298,8 +291,8 @@ public class ImplementationItemProviderAdapterFactory extends ImplementationAdap
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {
