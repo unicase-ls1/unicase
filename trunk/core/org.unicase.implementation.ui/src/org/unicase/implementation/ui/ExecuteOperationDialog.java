@@ -1,4 +1,4 @@
-package org.unicase.ui.implementation;
+package org.unicase.implementation.ui;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
