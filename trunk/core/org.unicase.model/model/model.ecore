@@ -292,6 +292,7 @@
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//classes/PackageElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="instantiationType" eType="#//classes/InstantiationType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
           upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/identifiedClasses"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
@@ -354,9 +355,6 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="implementationClasses"
-          upperBound="-1" eType="#//implementation/IClass" eOpposite="#//implementation/IClass/analysisClasses"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//classes/PackageElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
@@ -440,6 +438,7 @@
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
       <eLiterals name="UNDIRECTED_ASSOCIATION" literal="Undirected Association"/>
@@ -494,6 +493,12 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationType" eType="#//classes/PrimitiveType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementationEnumeration"
+          eType="#//classes/Enumeration" eOpposite="#//classes/Enumeration/attributes"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="VisibilityType">
       <eLiterals name="UNDEFINED" literal="Undefined"/>
@@ -627,6 +632,32 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//classes/PackageElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
+          eType="#//classes/Literal" containment="true" eOpposite="#//classes/Literal/enumeration"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//classes/Attribute" eOpposite="#//classes/Attribute/implementationEnumeration"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="InstantiationType">
+      <eLiterals name="Concrete"/>
+      <eLiterals name="Abstract" value="1"/>
+      <eLiterals name="Interface" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
+      <eLiterals name="String"/>
+      <eLiterals name="Boolean" value="1"/>
+      <eLiterals name="Integer" value="2"/>
+      <eLiterals name="Date" value="3"/>
+      <eLiterals name="Double" value="4"/>
+      <eLiterals name="Enumeration" value="5"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//UnicaseModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" eType="#//classes/Enumeration"
+          eOpposite="#//classes/Enumeration/literals"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="literal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
@@ -1461,94 +1492,5 @@
     <eClassifiers xsi:type="ecore:EClass" name="Branch" eSuperTypes="#//activity/ActivityObject"/>
     <eClassifiers xsi:type="ecore:EClass" name="ActivityInitial" eSuperTypes="#//activity/ActivityObject"/>
     <eClassifiers xsi:type="ecore:EClass" name="ActivityEnd" eSuperTypes="#//activity/ActivityObject"/>
-  </eSubpackages>
-  <eSubpackages name="implementation" nsURI="http://unicase.org/model/implementation"
-      nsPrefix="org.unicase.model.implementation">
-    <eClassifiers xsi:type="ecore:EClass" name="IPackage" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//implementation/IPackage"
-          eOpposite="#//implementation/IPackage/subPackages" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subPackages" upperBound="-1"
-          eType="#//implementation/IPackage" containment="true" eOpposite="#//implementation/IPackage/parentPackage"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
-          eType="#//implementation/IClass" containment="true" eOpposite="#//implementation/IClass/parentPackage"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="enumerations" upperBound="-1"
-          eType="#//implementation/IEnumeration" containment="true" eOpposite="#//implementation/IEnumeration/parentPackage"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IClass" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//implementation/IPackage"
-          eOpposite="#//implementation/IPackage/classes" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="superClasses" upperBound="-1"
-          eType="#//implementation/IClass" unsettable="true" eOpposite="#//implementation/IClass/subClasses"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" upperBound="-1"
-          eType="#//implementation/IClass" eOpposite="#//implementation/IClass/superClasses"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-          eType="#//implementation/IAttribute" containment="true" resolveProxies="false"
-          eOpposite="#//implementation/IAttribute/parentClass" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingReferences" upperBound="-1"
-          eType="#//implementation/IReference" containment="true" resolveProxies="false"
-          eOpposite="#//implementation/IReference/parentClass" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="incomingReferences" upperBound="-1"
-          eType="#//implementation/IReference" eOpposite="#//implementation/IReference/type"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="analysisClasses" upperBound="-1"
-          eType="#//classes/Class" eOpposite="#//classes/Class/implementationClasses"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IFeature" abstract="true" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumMultiplicity"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumMultiplicity"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IAttribute" eSuperTypes="#//implementation/IFeature">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentClass" eType="#//implementation/IClass"
-          eOpposite="#//implementation/IClass/attributes" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//implementation/IPrimitiveType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" eType="#//implementation/IEnumeration"
-          unsettable="true" eOpposite="#//implementation/IEnumeration/attributes"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IReference" eSuperTypes="#//implementation/IFeature">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentClass" eType="#//implementation/IClass"
-          eOpposite="#//implementation/IClass/outgoingReferences" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//implementation/IClass"
-          unsettable="true" eOpposite="#//implementation/IClass/incomingReferences"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="containment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="oppositeReference" eType="#//implementation/IReference"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IEnumeration" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//implementation/IPackage"
-          eOpposite="#//implementation/IPackage/enumerations" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
-          eType="#//implementation/ILiteral" containment="true" resolveProxies="false"
-          eOpposite="#//implementation/ILiteral/parentEnumeration" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-          eType="#//implementation/IAttribute" eOpposite="#//implementation/IAttribute/enumeration"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ILiteral" eSuperTypes="#//UnicaseModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentEnumeration" eType="#//implementation/IEnumeration"
-          eOpposite="#//implementation/IEnumeration/literals" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="literal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="IPrimitiveType">
-      <eLiterals name="String"/>
-      <eLiterals name="Boolean" value="1"/>
-      <eLiterals name="Integer" value="2"/>
-      <eLiterals name="Date" value="3"/>
-      <eLiterals name="Double" value="4"/>
-      <eLiterals name="Enumeration" value="5"/>
-    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
