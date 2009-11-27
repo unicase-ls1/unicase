@@ -61,17 +61,21 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Copy a model element. The new model element has a new unique id.
-	 * 
+	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
+	 * Cross-referenced elements will not be copied.
 	 * @param modelElement the model element
-	 * @return a copy of the given model element
+	 * @return a copy of the given model element and its containment tree
 	 */
 	public static ModelElement copy(ModelElement modelElement) {
 		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
 		// reset id
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		copy.setIdentifier(modelElementId.getId());
-		// FIXME what about the containment tree is it copied, do we have to change ids too?
+		//reset ids of containment children
+		for (ModelElement child: copy.getAllContainedModelElements()) {
+			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
+			child.setIdentifier(childId.getId());
+		}
 		return copy;
 	}
 
@@ -399,15 +403,7 @@ public final class ModelUtil {
 	 * @return plain text string
 	 */
 	public static String getPlainTextFromRichText(String richText) {
-		String ret = "";
-		String description = richText;
-		if (description != null && description.length() > 0) {
-			String[] split = description.split(BEGINTEXT_TOKEN);
-			if (split.length > 1) {
-				ret = split[split.length - 1];
-			}
-		}
-		return ret;
+		return richText;
 	}
 
 	/**
