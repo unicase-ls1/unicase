@@ -11,7 +11,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.unicase.ui.implementation.ExtractSuperClassHandler"
+            class="org.unicase.implementation.ui.ExtractSuperClassHandler"
             commandId="org.unicase.implementation.ui.command.ExtractSuperClass">
          <activeWhen>
             <with
@@ -49,7 +49,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.unicase.ui.implementation.GenerateEcoreHandler"
+            class="org.unicase.implementation.ui.GenerateEcoreHandler"
             commandId="org.unicase.model.codeGeneration.command.generateEcore">
          <enabledWhen>
             <with
