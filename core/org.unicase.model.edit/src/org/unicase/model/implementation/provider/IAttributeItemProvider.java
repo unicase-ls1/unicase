@@ -31,8 +31,8 @@ import org.unicase.model.implementation.ImplementationPackage;
 public class IAttributeItemProvider extends IFeatureItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,8 +58,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Parent Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Parent Class feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParentClassPropertyDescriptor(Object object) {
@@ -70,8 +70,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
@@ -83,8 +83,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -96,8 +96,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Enumeration feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Enumeration feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEnumerationPropertyDescriptor(Object object) {
@@ -108,8 +108,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns IAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns IAttribute.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -118,8 +118,8 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,9 +150,9 @@ public class IAttributeItemProvider extends IFeatureItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
