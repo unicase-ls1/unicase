@@ -35,17 +35,17 @@ import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsAdapter
 public class OperationsItemProviderAdapterFactory extends OperationsAdapterFactory implements
 	ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationsItemProviderAdapterFactory() {
@@ -72,9 +72,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation} instances.
-	 * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation} instances. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompositeOperationItemProvider compositeOperationItemProvider;
@@ -95,9 +96,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation} instances.
-	 * <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation} instances. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationItemProvider createDeleteOperationItemProvider;
@@ -105,6 +107,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	/**
 	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,9 +120,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation} instances.
-	 * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation} instances. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttributeOperationItemProvider attributeOperationItemProvider;
@@ -149,8 +153,9 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected SingleReferenceOperationItemProvider singleReferenceOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation}
+	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,9 +168,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} instances.
-	 * <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} instances. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiReferenceOperationItemProvider multiReferenceOperationItemProvider;
@@ -173,6 +179,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	/**
 	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,9 +201,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected MultiReferenceMoveOperationItemProvider multiReferenceMoveOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,9 +217,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation} instances.
-	 * <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation} instances. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLayoutOperationItemProvider diagramLayoutOperationItemProvider;
@@ -219,6 +228,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	/**
 	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,9 +241,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId} instances.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId} instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationIdItemProvider operationIdItemProvider;
@@ -254,9 +265,10 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.operations.OperationGroup} instances.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.OperationGroup} instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationGroupItemProvider operationGroupItemProvider;
@@ -277,8 +289,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -286,8 +298,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -296,6 +308,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -304,9 +317,9 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -316,13 +329,14 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -331,8 +345,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -340,8 +354,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -349,9 +363,9 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -363,20 +377,29 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (compositeOperationItemProvider != null) compositeOperationItemProvider.dispose();
-		if (createDeleteOperationItemProvider != null) createDeleteOperationItemProvider.dispose();
-		if (attributeOperationItemProvider != null) attributeOperationItemProvider.dispose();
-		if (singleReferenceOperationItemProvider != null) singleReferenceOperationItemProvider.dispose();
-		if (multiReferenceOperationItemProvider != null) multiReferenceOperationItemProvider.dispose();
-		if (multiReferenceMoveOperationItemProvider != null) multiReferenceMoveOperationItemProvider.dispose();
-		if (diagramLayoutOperationItemProvider != null) diagramLayoutOperationItemProvider.dispose();
-		if (operationIdItemProvider != null) operationIdItemProvider.dispose();
-		if (operationGroupItemProvider != null) operationGroupItemProvider.dispose();
+		if (compositeOperationItemProvider != null)
+			compositeOperationItemProvider.dispose();
+		if (createDeleteOperationItemProvider != null)
+			createDeleteOperationItemProvider.dispose();
+		if (attributeOperationItemProvider != null)
+			attributeOperationItemProvider.dispose();
+		if (singleReferenceOperationItemProvider != null)
+			singleReferenceOperationItemProvider.dispose();
+		if (multiReferenceOperationItemProvider != null)
+			multiReferenceOperationItemProvider.dispose();
+		if (multiReferenceMoveOperationItemProvider != null)
+			multiReferenceMoveOperationItemProvider.dispose();
+		if (diagramLayoutOperationItemProvider != null)
+			diagramLayoutOperationItemProvider.dispose();
+		if (operationIdItemProvider != null)
+			operationIdItemProvider.dispose();
+		if (operationGroupItemProvider != null)
+			operationGroupItemProvider.dispose();
 	}
 
 }

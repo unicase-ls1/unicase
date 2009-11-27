@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 public class PerspectiveEventImpl extends EventImpl implements PerspectiveEvent {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PerspectiveEventImpl() {
@@ -28,6 +29,7 @@ public class PerspectiveEventImpl extends EventImpl implements PerspectiveEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
