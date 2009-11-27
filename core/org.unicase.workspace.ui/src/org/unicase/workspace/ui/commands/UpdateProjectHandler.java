@@ -119,7 +119,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 		try {
 			PrimaryVersionSpec targetVersion = projectSpace
 					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			projectSpace.merge(targetVersion, new MergeProjectHandler(
+			projectSpace.merge(targetVersion, new MergeProjectHandler2(
 					conflictException));
 		} catch (EmfStoreException e) {
 			WorkspaceUtil
