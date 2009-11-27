@@ -18,11 +18,10 @@ import org.unicase.emfstore.esmodel.VersionInfo;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl#getEmfStoreVersionString <em>Emf Store Version String
- * </em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl#getEmfStoreVersionString <em>Emf Store Version String</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
@@ -48,7 +47,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionInfoImpl() {
@@ -57,7 +55,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +64,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getEmfStoreVersionString() {
@@ -76,15 +72,13 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEmfStoreVersionString(String newEmfStoreVersionString) {
 		String oldEmfStoreVersionString = emfStoreVersionString;
 		emfStoreVersionString = newEmfStoreVersionString;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING, oldEmfStoreVersionString, emfStoreVersionString));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING, oldEmfStoreVersionString, emfStoreVersionString));
 	}
 
 	// begin of custom code
@@ -112,72 +106,65 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			return getEmfStoreVersionString();
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				return getEmfStoreVersionString();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			setEmfStoreVersionString((String) newValue);
-			return;
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				setEmfStoreVersionString((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			setEmfStoreVersionString(EMF_STORE_VERSION_STRING_EDEFAULT);
-			return;
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				setEmfStoreVersionString(EMF_STORE_VERSION_STRING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			return EMF_STORE_VERSION_STRING_EDEFAULT == null ? emfStoreVersionString != null
-				: !EMF_STORE_VERSION_STRING_EDEFAULT.equals(emfStoreVersionString);
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				return EMF_STORE_VERSION_STRING_EDEFAULT == null ? emfStoreVersionString != null : !EMF_STORE_VERSION_STRING_EDEFAULT.equals(emfStoreVersionString);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (emfStoreVersionString: ");

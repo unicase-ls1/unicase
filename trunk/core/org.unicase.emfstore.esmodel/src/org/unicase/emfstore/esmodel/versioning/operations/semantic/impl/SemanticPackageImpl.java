@@ -5,10 +5,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.semantic.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
@@ -26,7 +24,6 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
@@ -44,13 +41,6 @@ public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage
 	 * @generated
 	 */
 	private EClass semanticCompositeOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass extractToSuperclassOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -172,51 +162,6 @@ public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage
 	 * 
 	 * @generated
 	 */
-	public EClass getExtractToSuperclassOperation() {
-		return extractToSuperclassOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getExtractToSuperclassOperation_SuperClassName() {
-		return (EAttribute) extractToSuperclassOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getExtractToSuperclassOperation_SubClasses() {
-		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getExtractToSuperclassOperation_Features() {
-		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getExtractToSuperclassOperation_TargetPackage() {
-		return (EReference) extractToSuperclassOperationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public SemanticFactory getSemanticFactory() {
 		return (SemanticFactory) getEFactoryInstance();
 	}
@@ -241,12 +186,6 @@ public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage
 
 		// Create classes and their features
 		semanticCompositeOperationEClass = createEClass(SEMANTIC_COMPOSITE_OPERATION);
-
-		extractToSuperclassOperationEClass = createEClass(EXTRACT_TO_SUPERCLASS_OPERATION);
-		createEAttribute(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__SUPER_CLASS_NAME);
-		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__SUB_CLASSES);
-		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__FEATURES);
-		createEReference(extractToSuperclassOperationEClass, EXTRACT_TO_SUPERCLASS_OPERATION__TARGET_PACKAGE);
 	}
 
 	/**
@@ -275,8 +214,6 @@ public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage
 		// Obtain other dependent packages
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -284,26 +221,10 @@ public class SemanticPackageImpl extends EPackageImpl implements SemanticPackage
 
 		// Add supertypes to classes
 		semanticCompositeOperationEClass.getESuperTypes().add(theOperationsPackage.getCompositeOperation());
-		extractToSuperclassOperationEClass.getESuperTypes().add(this.getSemanticCompositeOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(semanticCompositeOperationEClass, SemanticCompositeOperation.class, "SemanticCompositeOperation",
 			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(extractToSuperclassOperationEClass, ExtractToSuperclassOperation.class,
-			"ExtractToSuperclassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExtractToSuperclassOperation_SuperClassName(), ecorePackage.getEString(), "superClassName",
-			null, 0, 1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtractToSuperclassOperation_SubClasses(), theMetamodelPackage.getModelElementId(), null,
-			"subClasses", null, 0, -1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtractToSuperclassOperation_Features(), theMetamodelPackage.getModelElementId(), null,
-			"features", null, 0, -1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtractToSuperclassOperation_TargetPackage(), theMetamodelPackage.getModelElementId(), null,
-			"targetPackage", null, 0, 1, ExtractToSuperclassOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // SemanticPackageImpl

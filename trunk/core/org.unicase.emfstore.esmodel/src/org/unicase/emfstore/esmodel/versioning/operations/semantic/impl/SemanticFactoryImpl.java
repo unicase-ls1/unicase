@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
 
@@ -55,21 +54,9 @@ public class SemanticFactoryImpl extends EFactoryImpl implements SemanticFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case SemanticPackage.EXTRACT_TO_SUPERCLASS_OPERATION:
-			return createExtractToSuperclassOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public ExtractToSuperclassOperation createExtractToSuperclassOperation() {
-		ExtractToSuperclassOperationImpl extractToSuperclassOperation = new ExtractToSuperclassOperationImpl();
-		return extractToSuperclassOperation;
 	}
 
 	/**

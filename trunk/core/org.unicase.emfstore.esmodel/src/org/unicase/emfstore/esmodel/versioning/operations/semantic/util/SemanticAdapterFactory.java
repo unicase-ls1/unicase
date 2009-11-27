@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
 import org.unicase.metamodel.IdentifiableElement;
@@ -73,11 +72,6 @@ public class SemanticAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseExtractToSuperclassOperation(ExtractToSuperclassOperation object) {
-			return createExtractToSuperclassOperationAdapter();
-		}
-
-		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -122,21 +116,6 @@ public class SemanticAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSemanticCompositeOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation
-	 * <em>Extract To Superclass Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.ExtractToSuperclassOperation
-	 * @generated
-	 */
-	public Adapter createExtractToSuperclassOperationAdapter() {
 		return null;
 	}
 

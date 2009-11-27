@@ -9,29 +9,29 @@ import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>URL Event</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement <em>Source Model Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView <em>Source View</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement <em>Source Model Element</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView <em>Source View</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getURLEvent()
  * @model
  * @generated
  */
 public interface URLEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Source Model Element</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Model Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Model Element</em>' containment reference isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Model Element</em>' containment reference.
 	 * @see #setSourceModelElement(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getURLEvent_SourceModelElement()
@@ -41,9 +41,8 @@ public interface URLEvent extends Event {
 	ModelElementId getSourceModelElement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement
-	 * <em>Source Model Element</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement <em>Source Model Element</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source Model Element</em>' containment reference.
 	 * @see #getSourceModelElement()
 	 * @generated
@@ -51,13 +50,13 @@ public interface URLEvent extends Event {
 	void setSourceModelElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Source View</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source View</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source View</em>' attribute.
 	 * @see #setSourceView(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getURLEvent_SourceView()
@@ -67,9 +66,8 @@ public interface URLEvent extends Event {
 	String getSourceView();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView
-	 * <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source View</em>' attribute.
 	 * @see #getSourceView()
 	 * @generated
@@ -77,13 +75,13 @@ public interface URLEvent extends Event {
 	void setSourceView(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Source URL</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source URL</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source URL</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source URL</em>' containment reference.
 	 * @see #setSourceURL(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getURLEvent_SourceURL()
@@ -93,9 +91,8 @@ public interface URLEvent extends Event {
 	ModelElementId getSourceURL();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL
-	 * <em>Source URL</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source URL</em>' containment reference.
 	 * @see #getSourceURL()
 	 * @generated
