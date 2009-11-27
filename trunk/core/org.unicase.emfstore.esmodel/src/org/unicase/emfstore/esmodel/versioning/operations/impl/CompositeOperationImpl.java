@@ -449,8 +449,13 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		// reverse subOperations and add in reverse order
 		EList<AbstractOperation> copiedSubOperations = compositeOperation.getSubOperations();
 		for (AbstractOperation abstractOperation : getSubOperations()) {
-			copiedSubOperations.add(0, abstractOperation.reverse());
+			AbstractOperation reversedSubOperation = abstractOperation.reverse();
+			copiedSubOperations.add(0, reversedSubOperation);
+			if (getMainOperation().getIdentifier().equals(abstractOperation.getIdentifier())) {
+				compositeOperation.setMainOperation(reversedSubOperation);
+			}
 		}
+
 		return compositeOperation;
 	}
 
