@@ -364,7 +364,7 @@
         <constraints
               categories="org.unicase.model">
            <constraint
-                 class="org.unicase.model.classes.validation.WellFormedNameConstraint"
+                 class="org.unicase.model.classes.validation.WellFormedModelElementNameConstraint"
                  id="org.unicase.model.classes.validation.WellFormedNameConstraint"
                  lang="Java"
                  mode="Batch"
@@ -490,6 +490,36 @@
                  statusCode="1">
               <message>
                  The minimum multiplicity must be less than or equal to the maximum multiplicity.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.WellFormedAssociationSourceRoleConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedAssociationSourceRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Source Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The source role {0} is not well formed.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.WellFormedAssociationTargetRoleConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedAssociationTargetRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Target Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The target role {0} is not well formed.
               </message>
               <target
                     class="Association">
