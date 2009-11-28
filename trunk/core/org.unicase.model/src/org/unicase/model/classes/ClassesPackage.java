@@ -343,13 +343,22 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__INCOMING_DEPENDENCIES = PACKAGE_ELEMENT__INCOMING_DEPENDENCIES;
 
 	/**
+	 * The feature id for the '<em><b>Instantiation Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__INSTANTIATION_TYPE = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__PARTICIPATED_USE_CASES = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+	int CLASS__PARTICIPATED_USE_CASES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -358,7 +367,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS__SUPER_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Sub Classes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -367,7 +376,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUB_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+	int CLASS__SUB_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -376,7 +385,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INCOMING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
+	int CLASS__INCOMING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -385,7 +394,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OUTGOING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS__OUTGOING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -394,7 +403,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Methods</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -403,7 +412,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Demo Participations</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -412,16 +421,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DEMO_PARTICIPATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Classes</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__IMPLEMENTATION_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
+	int CLASS__DEMO_PARTICIPATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -766,13 +766,21 @@ public interface ClassesPackage extends EPackage {
 	int ASSOCIATION__TARGET_ROLE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Transient</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TRANSIENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Association</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int ASSOCIATION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class. <!--
@@ -952,13 +960,47 @@ public interface ClassesPackage extends EPackage {
 	int ATTRIBUTE__LABEL = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__ID = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__IMPLEMENTATION_TYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Enumeration</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__IMPLEMENTATION_ENUMERATION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Transient</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__TRANSIENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Attribute</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int ATTRIBUTE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class. <!--
@@ -1480,6 +1522,308 @@ public interface ClassesPackage extends EPackage {
 	int DEPENDENCY_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.EnumerationImpl <em>Enumeration</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.classes.impl.EnumerationImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getEnumeration()
+	 * @generated
+	 */
+	int ENUMERATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__IDENTIFIER = PACKAGE_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__CREATOR = PACKAGE_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__CREATION_DATE = PACKAGE_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__DESCRIPTION = PACKAGE_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__ANNOTATIONS = PACKAGE_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__ATTACHMENTS = PACKAGE_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__INCOMING_DOCUMENT_REFERENCES = PACKAGE_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__LEAF_SECTION = PACKAGE_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__STATE = PACKAGE_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__APPLIED_STEREOTYPE_INSTANCES = PACKAGE_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__COMMENTS = PACKAGE_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Parent Package</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__PARENT_PACKAGE = PACKAGE_ELEMENT__PARENT_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OUTGOING_DEPENDENCIES = PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__INCOMING_DEPENDENCIES = PACKAGE_ELEMENT__INCOMING_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Literals</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__LITERALS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Enumeration</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.impl.LiteralImpl <em>Literal</em>}' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.classes.impl.LiteralImpl
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getLiteral()
+	 * @generated
+	 */
+	int LITERAL = 9;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Enumeration</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ENUMERATION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Literal</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__LITERAL = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Literal</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1487,7 +1831,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 8;
+	int ASSOCIATION_TYPE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.VisibilityType <em>Visibility Type</em>}' enum. <!--
@@ -1497,7 +1841,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getVisibilityType()
 	 * @generated
 	 */
-	int VISIBILITY_TYPE = 9;
+	int VISIBILITY_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.ScopeType <em>Scope Type</em>}' enum. <!--
@@ -1507,7 +1851,7 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getScopeType()
 	 * @generated
 	 */
-	int SCOPE_TYPE = 10;
+	int SCOPE_TYPE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.ArgumentDirectionType
@@ -1517,7 +1861,27 @@ public interface ClassesPackage extends EPackage {
 	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getArgumentDirectionType()
 	 * @generated
 	 */
-	int ARGUMENT_DIRECTION_TYPE = 11;
+	int ARGUMENT_DIRECTION_TYPE = 13;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.InstantiationType <em>Instantiation Type</em>}'
+	 * enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.classes.InstantiationType
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getInstantiationType()
+	 * @generated
+	 */
+	int INSTANTIATION_TYPE = 14;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.classes.PrimitiveType <em>Primitive Type</em>}' enum. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.classes.PrimitiveType
+	 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPrimitiveType()
+	 * @generated
+	 */
+	int PRIMITIVE_TYPE = 15;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Class <em>Class</em>}'. <!-- begin-user-doc
@@ -1528,6 +1892,17 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getClass_();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Class#getInstantiationType
+	 * <em>Instantiation Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Instantiation Type</em>'.
+	 * @see org.unicase.model.classes.Class#getInstantiationType()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EAttribute getClass_InstantiationType();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getParticipatedUseCases
@@ -1616,17 +1991,6 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClass_DemoParticipations();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getImplementationClasses
-	 * <em>Implementation Classes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the reference list '<em>Implementation Classes</em>'.
-	 * @see org.unicase.model.classes.Class#getImplementationClasses()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_ImplementationClasses();
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.classes.Package <em>Package</em>}'. <!--
@@ -1795,6 +2159,17 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getAssociation_TargetRole();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Association#isTransient
+	 * <em>Transient</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Transient</em>'.
+	 * @see org.unicase.model.classes.Association#isTransient()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_Transient();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Attribute <em>Attribute</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1891,6 +2266,51 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttribute_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#isId <em>Id</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.unicase.model.classes.Attribute#isId()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#getImplementationType
+	 * <em>Implementation Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Implementation Type</em>'.
+	 * @see org.unicase.model.classes.Attribute#getImplementationType()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_ImplementationType();
+
+	/**
+	 * Returns the meta object for the reference '
+	 * {@link org.unicase.model.classes.Attribute#getImplementationEnumeration <em>Implementation Enumeration</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Implementation Enumeration</em>'.
+	 * @see org.unicase.model.classes.Attribute#getImplementationEnumeration()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EReference getAttribute_ImplementationEnumeration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Attribute#isTransient
+	 * <em>Transient</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Transient</em>'.
+	 * @see org.unicase.model.classes.Attribute#isTransient()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Transient();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.Method <em>Method</em>}'. <!-- begin-user-doc
@@ -2132,6 +2552,71 @@ public interface ClassesPackage extends EPackage {
 	EReference getDependency_Target();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.Enumeration <em>Enumeration</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Enumeration</em>'.
+	 * @see org.unicase.model.classes.Enumeration
+	 * @generated
+	 */
+	EClass getEnumeration();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.classes.Enumeration#getLiterals <em>Literals</em>}'. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Literals</em>'.
+	 * @see org.unicase.model.classes.Enumeration#getLiterals()
+	 * @see #getEnumeration()
+	 * @generated
+	 */
+	EReference getEnumeration_Literals();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Enumeration#getAttributes
+	 * <em>Attributes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Attributes</em>'.
+	 * @see org.unicase.model.classes.Enumeration#getAttributes()
+	 * @see #getEnumeration()
+	 * @generated
+	 */
+	EReference getEnumeration_Attributes();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.classes.Literal <em>Literal</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Literal</em>'.
+	 * @see org.unicase.model.classes.Literal
+	 * @generated
+	 */
+	EClass getLiteral();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.model.classes.Literal#getEnumeration
+	 * <em>Enumeration</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the container reference '<em>Enumeration</em>'.
+	 * @see org.unicase.model.classes.Literal#getEnumeration()
+	 * @see #getLiteral()
+	 * @generated
+	 */
+	EReference getLiteral_Enumeration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Literal#getLiteral <em>Literal</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Literal</em>'.
+	 * @see org.unicase.model.classes.Literal#getLiteral()
+	 * @see #getLiteral()
+	 * @generated
+	 */
+	EAttribute getLiteral_Literal();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2172,6 +2657,26 @@ public interface ClassesPackage extends EPackage {
 	EEnum getArgumentDirectionType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.classes.InstantiationType <em>Instantiation Type</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Instantiation Type</em>'.
+	 * @see org.unicase.model.classes.InstantiationType
+	 * @generated
+	 */
+	EEnum getInstantiationType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.classes.PrimitiveType <em>Primitive Type</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Primitive Type</em>'.
+	 * @see org.unicase.model.classes.PrimitiveType
+	 * @generated
+	 */
+	EEnum getPrimitiveType();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -2201,6 +2706,13 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CLASS = eINSTANCE.getClass_();
+		/**
+		 * The meta object literal for the '<em><b>Instantiation Type</b></em>' attribute feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute CLASS__INSTANTIATION_TYPE = eINSTANCE.getClass_InstantiationType();
 		/**
 		 * The meta object literal for the ' <em><b>Participated Use Cases</b></em>' reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
@@ -2257,13 +2769,6 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__DEMO_PARTICIPATIONS = eINSTANCE.getClass_DemoParticipations();
-		/**
-		 * The meta object literal for the '<em><b>Implementation Classes</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference CLASS__IMPLEMENTATION_CLASSES = eINSTANCE.getClass_ImplementationClasses();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2376,6 +2881,13 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EAttribute ASSOCIATION__TARGET_ROLE = eINSTANCE.getAssociation_TargetRole();
 		/**
+		 * The meta object literal for the '<em><b>Transient</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__TRANSIENT = eINSTANCE.getAssociation_Transient();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -2440,6 +2952,34 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__LABEL = eINSTANCE.getAttribute_Label();
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__ID = eINSTANCE.getAttribute_Id();
+		/**
+		 * The meta object literal for the '<em><b>Implementation Type</b></em>' attribute feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__IMPLEMENTATION_TYPE = eINSTANCE.getAttribute_ImplementationType();
+		/**
+		 * The meta object literal for the '<em><b>Implementation Enumeration</b></em>' reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ATTRIBUTE__IMPLEMENTATION_ENUMERATION = eINSTANCE.getAttribute_ImplementationEnumeration();
+		/**
+		 * The meta object literal for the '<em><b>Transient</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__TRANSIENT = eINSTANCE.getAttribute_Transient();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodImpl <em>Method</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2601,6 +3141,52 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EReference DEPENDENCY__TARGET = eINSTANCE.getDependency_Target();
 		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.EnumerationImpl <em>Enumeration</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.classes.impl.EnumerationImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getEnumeration()
+		 * @generated
+		 */
+		EClass ENUMERATION = eINSTANCE.getEnumeration();
+		/**
+		 * The meta object literal for the '<em><b>Literals</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ENUMERATION__LITERALS = eINSTANCE.getEnumeration_Literals();
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ENUMERATION__ATTRIBUTES = eINSTANCE.getEnumeration_Attributes();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.impl.LiteralImpl <em>Literal</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.classes.impl.LiteralImpl
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getLiteral()
+		 * @generated
+		 */
+		EClass LITERAL = eINSTANCE.getLiteral();
+		/**
+		 * The meta object literal for the '<em><b>Enumeration</b></em>' container reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference LITERAL__ENUMERATION = eINSTANCE.getLiteral_Enumeration();
+		/**
+		 * The meta object literal for the '<em><b>Literal</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute LITERAL__LITERAL = eINSTANCE.getLiteral_Literal();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.AssociationType <em>Association Type</em>}'
 		 * enum. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -2636,6 +3222,24 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ARGUMENT_DIRECTION_TYPE = eINSTANCE.getArgumentDirectionType();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.InstantiationType
+		 * <em>Instantiation Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.classes.InstantiationType
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getInstantiationType()
+		 * @generated
+		 */
+		EEnum INSTANTIATION_TYPE = eINSTANCE.getInstantiationType();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.classes.PrimitiveType <em>Primitive Type</em>}'
+		 * enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.classes.PrimitiveType
+		 * @see org.unicase.model.classes.impl.ClassesPackageImpl#getPrimitiveType()
+		 * @generated
+		 */
+		EEnum PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
 
 	}
 

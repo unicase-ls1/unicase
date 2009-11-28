@@ -6,7 +6,6 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.implementation.IClass;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
@@ -15,6 +14,7 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are supported:
  * <ul>
+ * <li>{@link org.unicase.model.classes.Class#getInstantiationType <em>Instantiation Type</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
@@ -23,7 +23,6 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
- * <li>{@link org.unicase.model.classes.Class#getImplementationClasses <em>Implementation Classes</em>}</li>
  * </ul>
  * </p>
  * 
@@ -32,6 +31,35 @@ import org.unicase.model.requirement.UseCase;
  * @generated
  */
 public interface Class extends PackageElement {
+
+	/**
+	 * Returns the value of the '<em><b>Instantiation Type</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.classes.InstantiationType}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instantiation Type</em>' attribute isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Instantiation Type</em>' attribute.
+	 * @see org.unicase.model.classes.InstantiationType
+	 * @see #setInstantiationType(InstantiationType)
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_InstantiationType()
+	 * @model
+	 * @generated
+	 */
+	InstantiationType getInstantiationType();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Class#getInstantiationType <em>Instantiation Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Instantiation Type</em>' attribute.
+	 * @see org.unicase.model.classes.InstantiationType
+	 * @see #getInstantiationType()
+	 * @generated
+	 */
+	void setInstantiationType(InstantiationType value);
 
 	/**
 	 * Returns the value of the '<em><b>Participated Use Cases</b></em>' reference list. The list contents are of type
@@ -184,23 +212,4 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Scenario> getDemoParticipations();
-
-	/**
-	 * Returns the value of the '<em><b>Implementation Classes</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.implementation.IClass}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.implementation.IClass#getAnalysisClasses <em>Analysis Classes</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implementation Classes</em>' reference list isn't clear, there really should be more
-	 * of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Implementation Classes</em>' reference list.
-	 * @see org.unicase.model.classes.ClassesPackage#getClass_ImplementationClasses()
-	 * @see org.unicase.model.implementation.IClass#getAnalysisClasses
-	 * @model opposite="analysisClasses" keys="identifier"
-	 * @generated
-	 */
-	EList<IClass> getImplementationClasses();
 } // Class

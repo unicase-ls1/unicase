@@ -7,19 +7,20 @@ package org.unicase.model.classes.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.InstantiationType;
 import org.unicase.model.classes.Method;
-import org.unicase.model.implementation.IClass;
-import org.unicase.model.implementation.ImplementationPackage;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
@@ -29,6 +30,7 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getInstantiationType <em>Instantiation Type</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
@@ -37,13 +39,30 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getImplementationClasses <em>Implementation Classes</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
 public class ClassImpl extends PackageElementImpl implements org.unicase.model.classes.Class {
+	/**
+	 * The default value of the '{@link #getInstantiationType() <em>Instantiation Type</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getInstantiationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final InstantiationType INSTANTIATION_TYPE_EDEFAULT = InstantiationType.CONCRETE;
+	/**
+	 * The cached value of the '{@link #getInstantiationType() <em>Instantiation Type</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getInstantiationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected InstantiationType instantiationType = INSTANTIATION_TYPE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getParticipatedUseCases() <em>Participated Use Cases</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -122,16 +141,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	protected EList<Scenario> demoParticipations;
 
 	/**
-	 * The cached value of the '{@link #getImplementationClasses() <em>Implementation Classes</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getImplementationClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IClass> implementationClasses;
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -148,6 +157,28 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	@Override
 	protected EClass eStaticClass() {
 		return ClassesPackage.Literals.CLASS;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public InstantiationType getInstantiationType() {
+		return instantiationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setInstantiationType(InstantiationType newInstantiationType) {
+		InstantiationType oldInstantiationType = instantiationType;
+		instantiationType = newInstantiationType == null ? INSTANTIATION_TYPE_EDEFAULT : newInstantiationType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.CLASS__INSTANTIATION_TYPE,
+				oldInstantiationType, instantiationType));
 	}
 
 	/**
@@ -261,19 +292,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * 
 	 * @generated
 	 */
-	public EList<IClass> getImplementationClasses() {
-		if (implementationClasses == null) {
-			implementationClasses = new EObjectWithInverseResolvingEList.ManyInverse<IClass>(IClass.class, this,
-				ClassesPackage.CLASS__IMPLEMENTATION_CLASSES, ImplementationPackage.ICLASS__ANALYSIS_CLASSES);
-		}
-		return implementationClasses;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -297,9 +315,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
-				msgs);
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementationClasses()).basicAdd(otherEnd,
 				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -329,8 +344,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			return ((InternalEList<?>) getImplementationClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -343,6 +356,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case ClassesPackage.CLASS__INSTANTIATION_TYPE:
+			return getInstantiationType();
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return getParticipatedUseCases();
 		case ClassesPackage.CLASS__SUPER_CLASSES:
@@ -359,8 +374,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return getMethods();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return getDemoParticipations();
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			return getImplementationClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -374,6 +387,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case ClassesPackage.CLASS__INSTANTIATION_TYPE:
+			setInstantiationType((InstantiationType) newValue);
+			return;
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			getParticipatedUseCases().clear();
 			getParticipatedUseCases().addAll((Collection<? extends UseCase>) newValue);
@@ -406,10 +422,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			getDemoParticipations().clear();
 			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
 			return;
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			getImplementationClasses().clear();
-			getImplementationClasses().addAll((Collection<? extends IClass>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -422,6 +434,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case ClassesPackage.CLASS__INSTANTIATION_TYPE:
+			setInstantiationType(INSTANTIATION_TYPE_EDEFAULT);
+			return;
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			getParticipatedUseCases().clear();
 			return;
@@ -446,9 +461,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			getDemoParticipations().clear();
 			return;
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			getImplementationClasses().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -461,6 +473,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case ClassesPackage.CLASS__INSTANTIATION_TYPE:
+			return instantiationType != INSTANTIATION_TYPE_EDEFAULT;
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			return participatedUseCases != null && !participatedUseCases.isEmpty();
 		case ClassesPackage.CLASS__SUPER_CLASSES:
@@ -477,10 +491,25 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return methods != null && !methods.isEmpty();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return demoParticipations != null && !demoParticipations.isEmpty();
-		case ClassesPackage.CLASS__IMPLEMENTATION_CLASSES:
-			return implementationClasses != null && !implementationClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (instantiationType: ");
+		result.append(instantiationType);
+		result.append(')');
+		return result.toString();
 	}
 
 } // ClassImpl

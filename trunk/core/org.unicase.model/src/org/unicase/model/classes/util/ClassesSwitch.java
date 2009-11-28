@@ -16,6 +16,8 @@ import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Dependency;
+import org.unicase.model.classes.Enumeration;
+import org.unicase.model.classes.Literal;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.PackageElement;
@@ -192,6 +194,34 @@ public class ClassesSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ClassesPackage.ENUMERATION: {
+			Enumeration enumeration = (Enumeration) theEObject;
+			T result = caseEnumeration(enumeration);
+			if (result == null)
+				result = casePackageElement(enumeration);
+			if (result == null)
+				result = caseUnicaseModelElement(enumeration);
+			if (result == null)
+				result = caseModelElement(enumeration);
+			if (result == null)
+				result = caseIdentifiableElement(enumeration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ClassesPackage.LITERAL: {
+			Literal literal = (Literal) theEObject;
+			T result = caseLiteral(literal);
+			if (result == null)
+				result = caseUnicaseModelElement(literal);
+			if (result == null)
+				result = caseModelElement(literal);
+			if (result == null)
+				result = caseIdentifiableElement(literal);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -300,6 +330,32 @@ public class ClassesSwitch<T> {
 	 * @generated
 	 */
 	public T caseDependency(Dependency object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enumeration</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enumeration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnumeration(Enumeration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLiteral(Literal object) {
 		return null;
 	}
 

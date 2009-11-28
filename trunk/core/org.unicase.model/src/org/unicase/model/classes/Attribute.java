@@ -20,6 +20,10 @@ import org.unicase.model.UnicaseModelElement;
  * <li>{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}</li>
  * <li>{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}</li>
  * <li>{@link org.unicase.model.classes.Attribute#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.Attribute#isId <em>Id</em>}</li>
+ * <li>{@link org.unicase.model.classes.Attribute#getImplementationType <em>Implementation Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.Attribute#getImplementationEnumeration <em>Implementation Enumeration</em>}</li>
+ * <li>{@link org.unicase.model.classes.Attribute#isTransient <em>Transient</em>}</li>
  * </ul>
  * </p>
  * 
@@ -233,5 +237,114 @@ public interface Attribute extends UnicaseModelElement {
 	 * @generated
 	 */
 	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(boolean)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Id()
+	 * @model
+	 * @generated
+	 */
+	boolean isId();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#isId <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #isId()
+	 * @generated
+	 */
+	void setId(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Implementation Type</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.classes.PrimitiveType}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implementation Type</em>' attribute isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Implementation Type</em>' attribute.
+	 * @see org.unicase.model.classes.PrimitiveType
+	 * @see #setImplementationType(PrimitiveType)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_ImplementationType()
+	 * @model
+	 * @generated
+	 */
+	PrimitiveType getImplementationType();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getImplementationType
+	 * <em>Implementation Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Implementation Type</em>' attribute.
+	 * @see org.unicase.model.classes.PrimitiveType
+	 * @see #getImplementationType()
+	 * @generated
+	 */
+	void setImplementationType(PrimitiveType value);
+
+	/**
+	 * Returns the value of the '<em><b>Implementation Enumeration</b></em>' reference. It is bidirectional and its
+	 * opposite is '{@link org.unicase.model.classes.Enumeration#getAttributes <em>Attributes</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implementation Enumeration</em>' reference isn't clear, there really should be more of
+	 * a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Implementation Enumeration</em>' reference.
+	 * @see #setImplementationEnumeration(Enumeration)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_ImplementationEnumeration()
+	 * @see org.unicase.model.classes.Enumeration#getAttributes
+	 * @model opposite="attributes" keys="identifier"
+	 * @generated
+	 */
+	Enumeration getImplementationEnumeration();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getImplementationEnumeration
+	 * <em>Implementation Enumeration</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Implementation Enumeration</em>' reference.
+	 * @see #getImplementationEnumeration()
+	 * @generated
+	 */
+	void setImplementationEnumeration(Enumeration value);
+
+	/**
+	 * Returns the value of the '<em><b>Transient</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transient</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Transient</em>' attribute.
+	 * @see #setTransient(boolean)
+	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Transient()
+	 * @model
+	 * @generated
+	 */
+	boolean isTransient();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#isTransient <em>Transient</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Transient</em>' attribute.
+	 * @see #isTransient()
+	 * @generated
+	 */
+	void setTransient(boolean value);
 
 } // Attribute

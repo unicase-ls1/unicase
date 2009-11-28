@@ -18,21 +18,22 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Class} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Class} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class ClassItemProvider extends PackageElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,6 +50,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInstantiationTypePropertyDescriptor(object);
 			addParticipatedUseCasesPropertyDescriptor(object);
 			addSuperClassesPropertyDescriptor(object);
 			addSubClassesPropertyDescriptor(object);
@@ -57,9 +59,21 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			addAttributesPropertyDescriptor(object);
 			addMethodsPropertyDescriptor(object);
 			addDemoParticipationsPropertyDescriptor(object);
-			addImplementationClassesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Instantiation Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addInstantiationTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_instantiationType_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_instantiationType_feature", "_UI_Class_type"),
+			ClassesPackage.Literals.CLASS__INSTANTIATION_TYPE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -77,8 +91,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Super Classes feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Super Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSuperClassesPropertyDescriptor(Object object) {
@@ -89,8 +103,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Sub Classes feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Sub Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSubClassesPropertyDescriptor(Object object) {
@@ -129,8 +143,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Attributes feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attributes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAttributesPropertyDescriptor(Object object) {
@@ -141,8 +155,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Methods feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Methods feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
@@ -166,25 +180,11 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Implementation Classes feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addImplementationClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Class_implementationClasses_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Class_implementationClasses_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__IMPLEMENTATION_CLASSES, true, false, true, null, null, null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,6 +199,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,8 +211,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns Class.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Class.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,6 +242,9 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(org.unicase.model.classes.Class.class)) {
+		case ClassesPackage.CLASS__INSTANTIATION_TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case ClassesPackage.CLASS__ATTRIBUTES:
 		case ClassesPackage.CLASS__METHODS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -250,9 +254,9 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

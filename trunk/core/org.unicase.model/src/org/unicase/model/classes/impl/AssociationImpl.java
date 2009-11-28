@@ -27,6 +27,7 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#isTransient <em>Transient</em>}</li>
  * </ul>
  * </p>
  * 
@@ -152,6 +153,26 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 	 * @ordered
 	 */
 	protected String targetRole = TARGET_ROLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TRANSIENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean transient_ = TRANSIENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -422,6 +443,28 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 	 * 
 	 * @generated
 	 */
+	public boolean isTransient() {
+		return transient_;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setTransient(boolean newTransient) {
+		boolean oldTransient = transient_;
+		transient_ = newTransient;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TRANSIENT, oldTransient,
+				transient_));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -481,6 +524,8 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 			return getSourceRole();
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
 			return getTargetRole();
+		case ClassesPackage.ASSOCIATION__TRANSIENT:
+			return isTransient();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -513,6 +558,9 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 			return;
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
 			setTargetRole((String) newValue);
+			return;
+		case ClassesPackage.ASSOCIATION__TRANSIENT:
+			setTransient((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -547,6 +595,9 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
 			setTargetRole(TARGET_ROLE_EDEFAULT);
 			return;
+		case ClassesPackage.ASSOCIATION__TRANSIENT:
+			setTransient(TRANSIENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -575,6 +626,8 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null : !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
 			return TARGET_ROLE_EDEFAULT == null ? targetRole != null : !TARGET_ROLE_EDEFAULT.equals(targetRole);
+		case ClassesPackage.ASSOCIATION__TRANSIENT:
+			return transient_ != TRANSIENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -600,6 +653,8 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 		result.append(sourceRole);
 		result.append(", targetRole: ");
 		result.append(targetRole);
+		result.append(", transient: ");
+		result.append(transient_);
 		result.append(')');
 		return result.toString();
 	}

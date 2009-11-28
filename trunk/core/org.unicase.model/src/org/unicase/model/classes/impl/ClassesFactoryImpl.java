@@ -18,8 +18,12 @@ import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Dependency;
+import org.unicase.model.classes.Enumeration;
+import org.unicase.model.classes.InstantiationType;
+import org.unicase.model.classes.Literal;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
+import org.unicase.model.classes.PrimitiveType;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 
@@ -78,6 +82,10 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 			return createMethodArgument();
 		case ClassesPackage.DEPENDENCY:
 			return createDependency();
+		case ClassesPackage.ENUMERATION:
+			return createEnumeration();
+		case ClassesPackage.LITERAL:
+			return createLiteral();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -99,6 +107,10 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 			return createScopeTypeFromString(eDataType, initialValue);
 		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
 			return createArgumentDirectionTypeFromString(eDataType, initialValue);
+		case ClassesPackage.INSTANTIATION_TYPE:
+			return createInstantiationTypeFromString(eDataType, initialValue);
+		case ClassesPackage.PRIMITIVE_TYPE:
+			return createPrimitiveTypeFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -120,6 +132,10 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 			return convertScopeTypeToString(eDataType, instanceValue);
 		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
 			return convertArgumentDirectionTypeToString(eDataType, instanceValue);
+		case ClassesPackage.INSTANTIATION_TYPE:
+			return convertInstantiationTypeToString(eDataType, instanceValue);
+		case ClassesPackage.PRIMITIVE_TYPE:
+			return convertPrimitiveTypeToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -193,6 +209,26 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	public Dependency createDependency() {
 		DependencyImpl dependency = new DependencyImpl();
 		return dependency;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Enumeration createEnumeration() {
+		EnumerationImpl enumeration = new EnumerationImpl();
+		return enumeration;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Literal createLiteral() {
+		LiteralImpl literal = new LiteralImpl();
+		return literal;
 	}
 
 	/**
@@ -280,6 +316,50 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * @generated
 	 */
 	public String convertArgumentDirectionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public InstantiationType createInstantiationTypeFromString(EDataType eDataType, String initialValue) {
+		InstantiationType result = InstantiationType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertInstantiationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PrimitiveType createPrimitiveTypeFromString(EDataType eDataType, String initialValue) {
+		PrimitiveType result = PrimitiveType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertPrimitiveTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
