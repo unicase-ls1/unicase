@@ -10,8 +10,8 @@ import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isSingleR
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -30,6 +30,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.DeletionConflic
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.ReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.SingleReferenceConflict;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class DecisionManager {
 
@@ -68,9 +69,15 @@ public class DecisionManager {
 		ArrayList<Conflicting> conflicting = new ArrayList<Conflicting>();
 
 		// Collect all conflicting
-		for (AbstractOperation myOperation : myOperations) {
+		ListIterator<AbstractOperation> myIterator = myOperations
+				.listIterator(myOperations.size());
+		while (myIterator.hasPrevious()) {
+			AbstractOperation myOperation = myIterator.previous();
 			boolean involved = false;
-			for (AbstractOperation theirOperation : theirOperations) {
+			ListIterator<AbstractOperation> theirIterator = theirOperations
+					.listIterator(theirOperations.size());
+			while (theirIterator.hasPrevious()) {
+				AbstractOperation theirOperation = theirIterator.previous();
 				if (conflictDetector.doConflict(myOperation, theirOperation)) {
 					involved = true;
 					boolean conflictingYet = false;
@@ -270,11 +277,13 @@ public class DecisionManager {
 	}
 
 	public String getModelElementName(ModelElementId modelElementId) {
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		return adapterFactoryLabelProvider
-				.getText(getModelElement(modelElementId));
+		return getModelElementName(getModelElement(modelElementId));
+	}
+
+	public String getModelElementName(ModelElement modelElement) {
+		AdapterFactoryLabelProvider adapterFactory = DecisionUtil
+				.getAdapterFactory();
+		return adapterFactory.getText(modelElement);
 	}
 
 	public ModelElement getModelElement(ModelElementId modelElementId) {

@@ -3,12 +3,14 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class DeletionConflict extends Conflict {
 
@@ -34,26 +36,22 @@ public class DeletionConflict extends Conflict {
 		String description = "";
 
 		if (meCausingDelete) {
-			description = "You have delted the element [modelelement]."
-					+ " This deletion conflicts with the change on [firstother]"
+			description = "You have deleted the element [modelelement]."
+					+ " This deletion conflicts with a change on the [firstother]"
 					+ " element" + generateOthers()
-					+ ". Either confirm your delete or keep"
-					+ " the changes from the repository.";
+					+ ". Please choose an option.";
 		} else {
 			description = "The element [modelelement] was deleted on the repository which conflicts with"
 					+ " the change on your element [firstother]"
-					+ generateOthers()
-					+ "."
-					+ "Deny the deletion or drop your changes.";
+					+ generateOthers() + ". Please choose an option.";
 		}
 
 		ConflictDescription conflictDescription = new ConflictDescription(
 				description);
-		conflictDescription.add("modelelement",
-				getDecisionManager().getModelElementName(
-						getDeletingOperation().getModelElementId()));
+		conflictDescription.add("modelelement", getDecisionManager()
+				.getModelElement(getDeletingOperation().getModelElementId()));
 		conflictDescription.add("firstother", getDecisionManager()
-				.getModelElementName(
+				.getModelElement(
 						getDeletedOperations().get(0).getModelElementId()));
 
 		conflictDescription.add("otherinvolved", generateOthers());
@@ -99,20 +97,22 @@ public class DeletionConflict extends Conflict {
 	}
 
 	private String generateKeepMessage() {
-		String result = "Recover "
-				+ getDecisionManager().getModelElementName(
-						getDeletedOperations().get(0).getModelElementId());
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getDeletedOperations().get(0).getModelElementId());
+
+		String result = "Recover " + DecisionUtil.getClassAndName(modelElement);
 		if (getDeletedOperations().size() > 1) {
 			result += " and " + (getDeletedOperations().size() - 1)
-					+ "other elements";
+					+ " other elements";
 		}
 		return result;
 	}
 
 	private String generateDeleteMessage() {
-		return "Delete "
-				+ getDecisionManager().getModelElementName(
-						getDeletingOperation().getModelElementId());
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getDeletingOperation().getModelElementId());
+
+		return "Delete " + DecisionUtil.getClassAndName(modelElement);
 	}
 
 	private AbstractOperation getDeletingOperation() {

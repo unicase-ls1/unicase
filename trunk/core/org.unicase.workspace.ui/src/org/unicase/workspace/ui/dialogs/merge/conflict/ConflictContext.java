@@ -42,6 +42,6 @@ public class ConflictContext {
 	}
 
 	public String getOpponentTitleLabel() {
-		return "Opponenet";
+		return "Opponent";
 	}
 }

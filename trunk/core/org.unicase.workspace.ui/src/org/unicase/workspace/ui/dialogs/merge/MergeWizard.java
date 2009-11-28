@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.ui.dialogs.merge;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
@@ -21,7 +22,7 @@ public class MergeWizard extends Wizard {
 		super();
 		setWindowTitle("Merge Wizard");
 		setDefaultPageImageDescriptor(DecisionUtil
-				.getImageDescriptor("merge_wizard.gif"));
+				.getImageDescriptor("merge_wizard2.gif"));
 
 		this.decisionManager = decisionManager;
 	}
@@ -44,6 +45,10 @@ public class MergeWizard extends Wizard {
 			decisionManager.calcResult();
 			return true;
 		}
+		MessageDialog.openInformation(getShell(),
+				"Resolve all conflicts first",
+				"You have to resolve all conflicts in order to finish."
+						+ "\nTherefore choose an option for every conflict.");
 		return false;
 	}
 }

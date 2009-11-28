@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultiReferenceConflict extends Conflict {
 
@@ -35,9 +37,13 @@ public class MultiReferenceConflict extends Conflict {
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
 		if (meAdding) {
-			description = "You have added [target] to the [featurename] reference of the element [element]. This item was removed on the repository.";
+			description = "You have added [target] to the [featurename]"
+					+ " reference of the element [element]."
+					+ " This item was removed on the repository.";
 		} else {
-			description = "The element [target] was added to the [featurename] reference of the element [element] on the repository. You chose to remove it, please decide.";
+			description = "The element [target] was added to the [featurename] reference"
+					+ " of the [element] element on the repository."
+					+ " You chose to remove it, please decide.";
 		}
 		ConflictDescription confDescription = new ConflictDescription(
 				description);
@@ -57,23 +63,27 @@ public class MultiReferenceConflict extends Conflict {
 		ConflictOption myOption = null;
 		ConflictOption theirOption = null;
 		if (meAdding) {
-			String target = getDecisionManager().getModelElementName(
+			ModelElement target = getDecisionManager().getModelElement(
 					getMyOperation().getReferencedModelElements().get(0));
-			myOption = new ConflictOption("Add " + target,
+			myOption = new ConflictOption("Add "
+					+ DecisionUtil.getClassAndName(target),
 					OptionType.MyOperation);
 			myOption.addOperations(getAddingOperations());
 
-			theirOption = new ConflictOption("Remove " + target,
+			theirOption = new ConflictOption("Remove "
+					+ DecisionUtil.getClassAndName(target),
 					OptionType.TheirOperation);
 			theirOption.addOperations(getRemovingOperations());
 		} else {
-			String target = getDecisionManager().getModelElementName(
+			ModelElement target = getDecisionManager().getModelElement(
 					getMyOperation().getReferencedModelElements().get(0));
-			myOption = new ConflictOption("Remove " + target,
+			myOption = new ConflictOption("Remove "
+					+ DecisionUtil.getClassAndName(target),
 					OptionType.MyOperation);
 			myOption.addOperations(getRemovingOperations());
 
-			theirOption = new ConflictOption("Add " + target,
+			theirOption = new ConflictOption("Add "
+					+ DecisionUtil.getClassAndName(target),
 					OptionType.TheirOperation);
 			theirOption.addOperations(getAddingOperations());
 		}

@@ -12,6 +12,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class SingleReferenceConflict extends Conflict {
 
@@ -32,7 +33,7 @@ public class SingleReferenceConflict extends Conflict {
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		String description = "You have changed the reference [reference] of [modelelement] to [myvalue]."
-				+ "This reference was set to [theirvalue] on the repository. Please decide!";
+				+ "This reference was set to [theirvalue] on the repository. Please decide.";
 		ConflictDescription conflictDescription = new ConflictDescription(
 				description);
 		conflictDescription.add("reference", getMyOperation().getFeatureName());
@@ -58,16 +59,17 @@ public class SingleReferenceConflict extends Conflict {
 		// My Option
 		ModelElementId newValue = getMyOperation().getNewValue();
 		ConflictOption myOption = new ConflictOption(
-				(newValue == null) ? "(unset)" : getDecisionManager()
-						.getModelElementName(newValue), OptionType.MyOperation);
+				(newValue == null) ? "(unset)" : DecisionUtil
+						.getClassAndName(getDecisionManager().getModelElement(
+								newValue)), OptionType.MyOperation);
 		myOption.addOperations(operationsA);
 
 		// Their Option
 		ModelElementId theirNewValue = getTheirOperation().getNewValue();
 		ConflictOption theirOption = new ConflictOption(
-				(theirNewValue == null) ? "(unset)" : getDecisionManager()
-						.getModelElementName(theirNewValue),
-				OptionType.TheirOperation);
+				(theirNewValue == null) ? "(unset)" : DecisionUtil
+						.getClassAndName(getDecisionManager().getModelElement(
+								theirNewValue)), OptionType.TheirOperation);
 		theirOption.addOperations(operationsB);
 
 		options.add(myOption);

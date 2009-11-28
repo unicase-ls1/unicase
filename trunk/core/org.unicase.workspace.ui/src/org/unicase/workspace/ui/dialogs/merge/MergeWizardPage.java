@@ -26,13 +26,13 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 
 /**
  * Represents the main page of the merge wizard.
@@ -191,9 +191,8 @@ public class MergeWizardPage extends WizardPage {
 
 		public Color getColor() {
 			color = !color;
-			return (color) ? Display.getCurrent().getSystemColor(
-					SWT.COLOR_WHITE) : new Color(Display.getCurrent(), 240,
-					250, 254);
+			return (color) ? DecisionConfig.getFirstDecisionBoxColor()
+					: DecisionConfig.getSecondDecisionBoxColor();
 		}
 	}
 
