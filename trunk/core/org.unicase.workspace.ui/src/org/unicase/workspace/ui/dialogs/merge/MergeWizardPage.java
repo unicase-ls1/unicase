@@ -96,9 +96,14 @@ public class MergeWizardPage extends WizardPage {
 
 		scrolledComposite.setContent(client);
 
-		Point computeSize = parent.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		computeSize.x = parent.getBounds().width;
+		Point computeSize = calcParentSize(parent);
 		scrolledComposite.setMinSize(computeSize);
+		// scrolledComposite.addControlListener(new ControlAdapter() {
+		// @Override
+		// public void controlResized(ControlEvent e) {
+		// scrolledComposite.setMinSize(calcParentSize(parent));
+		// }
+		// });
 
 		// scrolledComposite.addControlListener(new ControlListener() {
 		// public void controlResized(ControlEvent e) {
@@ -113,6 +118,12 @@ public class MergeWizardPage extends WizardPage {
 		// });
 
 		setControl(parent);
+	}
+
+	private Point calcParentSize(final Composite parent) {
+		Point computeSize = parent.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		computeSize.x = parent.getBounds().width;
+		return computeSize;
 	}
 
 	private Composite createTopBar(Composite parent) {

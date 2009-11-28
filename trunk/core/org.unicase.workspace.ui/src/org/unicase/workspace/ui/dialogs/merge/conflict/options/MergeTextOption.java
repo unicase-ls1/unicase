@@ -61,4 +61,8 @@ public class MergeTextOption extends ConflictOption {
 	public void setMergedText(String text) {
 		this.text = text;
 	}
+
+	public String getMergedText() {
+		return text;
+	}
 }
