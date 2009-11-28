@@ -82,8 +82,8 @@ Open your update manager in eclipse and add the site {{{file://<path-to-your-wor
 
 [http://unicase.googlecode.com/files/updatesitetesting.png]
 
-After successfully testing the update site , you can then easily copy it to:
-{{{http://unicase.googlecode.com/svn/updatesite/internal/}}} for final deployment. 
+After successfully testing the update site , you can then check in the update site to :
+{{{http://unicase.googlecode.com/svn/updatesite/internal/}}} for final deployment using any SVN explorer untility. 
 
  * *Important Note:*
 Before copying the newly deployed feature to the server for final deployment, make sure to acquire a backup of the previously deployed feature in order not lose any data.   
