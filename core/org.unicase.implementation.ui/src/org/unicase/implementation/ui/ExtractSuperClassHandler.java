@@ -22,9 +22,18 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.classes.Class;
 import org.unicase.workspace.util.SemanticCommand;
 
+/**
+ * Handler for extract to superclass operation.
+ * @author herrmi
+ *
+ */
 public class ExtractSuperClassHandler extends AbstractHandler {
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event)

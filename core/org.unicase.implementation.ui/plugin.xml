@@ -18,7 +18,7 @@
                   variable="selection">
                <iterate>
                   <adapt
-                        type="org.unicase.model.implementation.IClass">
+                        type="org.unicase.model.classes.Class">
                   </adapt>
                </iterate>
                <count
@@ -56,7 +56,7 @@
                   variable="selection">
                <iterate>
                   <adapt
-                        type="org.unicase.model.implementation.IPackage">
+                        type="org.unicase.model.classes.Package">
                   </adapt>
                </iterate>
                <count
