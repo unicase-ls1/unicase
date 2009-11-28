@@ -34,8 +34,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
-import org.unicase.model.implementation.ImplementationPackage;
-import org.unicase.model.implementation.impl.ImplementationPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
@@ -173,10 +171,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
-		ImplementationPackageImpl theImplementationPackage = (ImplementationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ImplementationPackage.eNS_URI) instanceof ImplementationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ImplementationPackage.eNS_URI)
-			: ImplementationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDiagramPackage.createPackageContents();
@@ -196,7 +190,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
-		theImplementationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDiagramPackage.initializePackageContents();
@@ -216,7 +209,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
-		theImplementationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDiagramPackage.freeze();

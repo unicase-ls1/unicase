@@ -26,16 +26,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Attribute} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Attribute} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AttributeItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttributeItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,13 +59,17 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 			addDefaultValuePropertyDescriptor(object);
 			addPropertiesPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addImplementationTypePropertyDescriptor(object);
+			addImplementationEnumerationPropertyDescriptor(object);
+			addTransientPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Defining Class feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Defining Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
@@ -77,8 +81,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Visibility feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Visibility feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
@@ -90,8 +94,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Scope feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Scope feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
@@ -103,8 +107,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -116,8 +120,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Default Value feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Default Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
@@ -129,8 +133,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Properties feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
@@ -142,8 +146,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Label feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
@@ -155,8 +159,63 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns Attribute.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_id_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Attribute_id_feature", "_UI_Attribute_type"),
+			ClassesPackage.Literals.ATTRIBUTE__ID, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Implementation Type feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addImplementationTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_implementationType_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_implementationType_feature",
+				"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__IMPLEMENTATION_TYPE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Implementation Enumeration feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addImplementationEnumerationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_implementationEnumeration_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Attribute_implementationEnumeration_feature",
+				"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__IMPLEMENTATION_ENUMERATION, true, false,
+			true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Transient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addTransientPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_transient_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Attribute_transient_feature", "_UI_Attribute_type"),
+			ClassesPackage.Literals.ATTRIBUTE__TRANSIENT, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns Attribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,6 +253,9 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
 		case ClassesPackage.ATTRIBUTE__PROPERTIES:
 		case ClassesPackage.ATTRIBUTE__LABEL:
+		case ClassesPackage.ATTRIBUTE__ID:
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE:
+		case ClassesPackage.ATTRIBUTE__TRANSIENT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
@@ -201,9 +263,9 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,8 +274,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

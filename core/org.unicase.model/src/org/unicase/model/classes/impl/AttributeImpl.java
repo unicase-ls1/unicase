@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Enumeration;
+import org.unicase.model.classes.PrimitiveType;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.UnicaseModelElementImpl;
@@ -33,6 +35,11 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#isId <em>Id</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationType <em>Implementation Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationEnumeration <em>Implementation Enumeration
+ * </em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#isTransient <em>Transient</em>}</li>
  * </ul>
  * </p>
  * 
@@ -161,6 +168,68 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	 * @ordered
 	 */
 	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ID_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isId()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean id = ID_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getImplementationType() <em>Implementation Type</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getImplementationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PrimitiveType IMPLEMENTATION_TYPE_EDEFAULT = PrimitiveType.STRING;
+	/**
+	 * The cached value of the '{@link #getImplementationType() <em>Implementation Type</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getImplementationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected PrimitiveType implementationType = IMPLEMENTATION_TYPE_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getImplementationEnumeration() <em>Implementation Enumeration</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getImplementationEnumeration()
+	 * @generated
+	 * @ordered
+	 */
+	protected Enumeration implementationEnumeration;
+	/**
+	 * The default value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TRANSIENT_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean transient_ = TRANSIENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -328,6 +397,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		return signature;
 	}
 
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be parsed, label attribute stays null and
 	 * signature is used instead. <!-- end-user-doc -->
@@ -390,6 +460,144 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 					getLabel()));
 			}
 		}
+	}
+
+	// end of custom code
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setId(boolean newId) {
+		boolean oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PrimitiveType getImplementationType() {
+		return implementationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setImplementationType(PrimitiveType newImplementationType) {
+		PrimitiveType oldImplementationType = implementationType;
+		implementationType = newImplementationType == null ? IMPLEMENTATION_TYPE_EDEFAULT : newImplementationType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE,
+				oldImplementationType, implementationType));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Enumeration getImplementationEnumeration() {
+		if (implementationEnumeration != null && implementationEnumeration.eIsProxy()) {
+			InternalEObject oldImplementationEnumeration = (InternalEObject) implementationEnumeration;
+			implementationEnumeration = (Enumeration) eResolveProxy(oldImplementationEnumeration);
+			if (implementationEnumeration != oldImplementationEnumeration) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION, oldImplementationEnumeration,
+						implementationEnumeration));
+			}
+		}
+		return implementationEnumeration;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Enumeration basicGetImplementationEnumeration() {
+		return implementationEnumeration;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetImplementationEnumeration(Enumeration newImplementationEnumeration,
+		NotificationChain msgs) {
+		Enumeration oldImplementationEnumeration = implementationEnumeration;
+		implementationEnumeration = newImplementationEnumeration;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION, oldImplementationEnumeration,
+				newImplementationEnumeration);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setImplementationEnumeration(Enumeration newImplementationEnumeration) {
+		if (newImplementationEnumeration != implementationEnumeration) {
+			NotificationChain msgs = null;
+			if (implementationEnumeration != null)
+				msgs = ((InternalEObject) implementationEnumeration).eInverseRemove(this,
+					ClassesPackage.ENUMERATION__ATTRIBUTES, Enumeration.class, msgs);
+			if (newImplementationEnumeration != null)
+				msgs = ((InternalEObject) newImplementationEnumeration).eInverseAdd(this,
+					ClassesPackage.ENUMERATION__ATTRIBUTES, Enumeration.class, msgs);
+			msgs = basicSetImplementationEnumeration(newImplementationEnumeration, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION,
+				newImplementationEnumeration, newImplementationEnumeration));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isTransient() {
+		return transient_;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setTransient(boolean newTransient) {
+		boolean oldTransient = transient_;
+		transient_ = newTransient;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__TRANSIENT, oldTransient,
+				transient_));
 	}
 
 	/**
@@ -484,6 +692,11 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetDefiningClass((org.unicase.model.classes.Class) otherEnd, msgs);
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			if (implementationEnumeration != null)
+				msgs = ((InternalEObject) implementationEnumeration).eInverseRemove(this,
+					ClassesPackage.ENUMERATION__ATTRIBUTES, Enumeration.class, msgs);
+			return basicSetImplementationEnumeration((Enumeration) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -498,6 +711,8 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		switch (featureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
 			return basicSetDefiningClass(null, msgs);
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			return basicSetImplementationEnumeration(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -543,6 +758,16 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 			return getProperties();
 		case ClassesPackage.ATTRIBUTE__LABEL:
 			return getLabel();
+		case ClassesPackage.ATTRIBUTE__ID:
+			return isId();
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE:
+			return getImplementationType();
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			if (resolve)
+				return getImplementationEnumeration();
+			return basicGetImplementationEnumeration();
+		case ClassesPackage.ATTRIBUTE__TRANSIENT:
+			return isTransient();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -575,6 +800,18 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 			return;
 		case ClassesPackage.ATTRIBUTE__LABEL:
 			setLabel((String) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__ID:
+			setId((Boolean) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE:
+			setImplementationType((PrimitiveType) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			setImplementationEnumeration((Enumeration) newValue);
+			return;
+		case ClassesPackage.ATTRIBUTE__TRANSIENT:
+			setTransient((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -609,6 +846,18 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		case ClassesPackage.ATTRIBUTE__LABEL:
 			setLabel(LABEL_EDEFAULT);
 			return;
+		case ClassesPackage.ATTRIBUTE__ID:
+			setId(ID_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE:
+			setImplementationType(IMPLEMENTATION_TYPE_EDEFAULT);
+			return;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			setImplementationEnumeration((Enumeration) null);
+			return;
+		case ClassesPackage.ATTRIBUTE__TRANSIENT:
+			setTransient(TRANSIENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -637,6 +886,14 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
 		case ClassesPackage.ATTRIBUTE__LABEL:
 			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+		case ClassesPackage.ATTRIBUTE__ID:
+			return id != ID_EDEFAULT;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_TYPE:
+			return implementationType != IMPLEMENTATION_TYPE_EDEFAULT;
+		case ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION:
+			return implementationEnumeration != null;
+		case ClassesPackage.ATTRIBUTE__TRANSIENT:
+			return transient_ != TRANSIENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -664,6 +921,12 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		result.append(properties);
 		result.append(", label: ");
 		result.append(label);
+		result.append(", id: ");
+		result.append(id);
+		result.append(", implementationType: ");
+		result.append(implementationType);
+		result.append(", transient: ");
+		result.append(transient_);
 		result.append(')');
 		return result.toString();
 	}

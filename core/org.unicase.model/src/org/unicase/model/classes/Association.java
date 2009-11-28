@@ -19,6 +19,7 @@ import org.unicase.model.UnicaseModelElement;
  * <li>{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
  * <li>{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}</li>
  * <li>{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}</li>
+ * <li>{@link org.unicase.model.classes.Association#isTransient <em>Transient</em>}</li>
  * </ul>
  * </p>
  * 
@@ -222,5 +223,31 @@ public interface Association extends UnicaseModelElement {
 	 * @generated
 	 */
 	void setTargetRole(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Transient</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transient</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Transient</em>' attribute.
+	 * @see #setTransient(boolean)
+	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Transient()
+	 * @model
+	 * @generated
+	 */
+	boolean isTransient();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#isTransient <em>Transient</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Transient</em>' attribute.
+	 * @see #isTransient()
+	 * @generated
+	 */
+	void setTransient(boolean value);
 
 } // Association

@@ -34,8 +34,8 @@ import org.unicase.model.requirement.SystemFunction;
 public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SystemFunctionItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,8 +63,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Input feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Input feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addInputPropertyDescriptor(Object object) {
@@ -76,8 +76,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Output feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Output feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addOutputPropertyDescriptor(Object object) {
@@ -89,8 +89,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Exception feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Exception feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addExceptionPropertyDescriptor(Object object) {
@@ -102,8 +102,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Workspace feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Workspace feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addWorkspacePropertyDescriptor(Object object) {
@@ -115,8 +115,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Usecases feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Usecases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUsecasesPropertyDescriptor(Object object) {
@@ -128,9 +128,9 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirement feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Non Functional Requirement feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementPropertyDescriptor(Object object) {
@@ -143,8 +143,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns SystemFunction.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SystemFunction.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,9 +184,9 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,8 +195,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

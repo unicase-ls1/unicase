@@ -7869,7 +7869,7 @@
     <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
         referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingOperations"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
         featureName="upperBound" dataValue="-1" oldDataValue="1"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
@@ -7885,14 +7885,14 @@
       <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
           featureName="containment" dataValue="true" oldDataValue="false"/>
       <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
     </changes>
     <changes xsi:type="history:Set" element="#//@releases.4/@changes.91/@element"
         featureName="name" dataValue="executedOperations" oldDataValue="pendingOperations"/>
     <changes xsi:type="history:Delete" target="model.ecore#//change/MergingSolution"
         referenceName="eStructuralFeatures">
       <element xsi:type="ecore:EReference" name="executedOperations" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
           containment="true"/>
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#//change/MergingIssue"
@@ -7913,7 +7913,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
           featureName="containment" dataValue="true" oldDataValue="false"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
     </changes>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
         featureName="upperBound" dataValue="1" oldDataValue="-1"/>
@@ -7922,10 +7922,10 @@
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
         featureName="name" dataValue="baseVersion" oldDataValue="BaseVersionSpec"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
-        oldReferenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+        oldReferenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
-        featureName="eType" oldReferenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+        featureName="eType" oldReferenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
     <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
         referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/targetVersion">
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
@@ -7934,9 +7934,9 @@
           featureName="containment" dataValue="true" oldDataValue="false"/>
     </changes>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+        featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
         featureName="name" dataValue="targetVersion" oldDataValue="baseVersion"/>
     <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
@@ -7948,7 +7948,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
           featureName="containment" dataValue="true" oldDataValue="false"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+          featureName="eType" referenceValue="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
     </changes>
     <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
         featureName="name" dataValue="appliedOperations" oldDataValue="pendingOperations"/>

@@ -79,6 +79,22 @@ public interface ClassesFactory extends EFactory {
 	Dependency createDependency();
 
 	/**
+	 * Returns a new object of class '<em>Enumeration</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Enumeration</em>'.
+	 * @generated
+	 */
+	Enumeration createEnumeration();
+
+	/**
+	 * Returns a new object of class '<em>Literal</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Literal</em>'.
+	 * @generated
+	 */
+	Literal createLiteral();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

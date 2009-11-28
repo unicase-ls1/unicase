@@ -36,8 +36,6 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
-import org.unicase.model.implementation.ImplementationPackage;
-import org.unicase.model.implementation.impl.ImplementationPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
@@ -196,10 +194,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
-		ImplementationPackageImpl theImplementationPackage = (ImplementationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ImplementationPackage.eNS_URI) instanceof ImplementationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ImplementationPackage.eNS_URI)
-			: ImplementationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -219,7 +213,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
-		theImplementationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
@@ -239,7 +232,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
-		theImplementationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -494,8 +486,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		UtilPackage theUtilPackage = (UtilPackage) EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI);
 		ActivityPackage theActivityPackage = (ActivityPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI);
-		ImplementationPackage theImplementationPackage = (ImplementationPackage) EPackage.Registry.INSTANCE
-			.getEPackage(ImplementationPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
 
@@ -516,7 +506,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theProfilePackage);
 		getESubpackages().add(theUtilPackage);
 		getESubpackages().add(theActivityPackage);
-		getESubpackages().add(theImplementationPackage);
 
 		// Create type parameters
 

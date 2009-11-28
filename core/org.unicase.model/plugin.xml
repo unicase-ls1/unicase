@@ -364,7 +364,7 @@
         <constraints
               categories="org.unicase.model">
            <constraint
-                 class="org.unicase.model.implementation.validation.WellFormedNameConstraint"
+                 class="org.unicase.model.classes.validation.WellFormedNameConstraint"
                  id="org.unicase.model.implementation.validation.WellFormedNameConstraint"
                  lang="Java"
                  mode="Batch"
@@ -376,7 +376,7 @@
               </message>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.UniqueClassNameConstraint"
+                 class="org.unicase.model.classes.validation.UniquePackageElementNameConstraint"
                  id="org.unicase.model.implementation.validation.UniqueClassNameConstraint"
                  lang="Java"
                  mode="Batch"
@@ -391,22 +391,7 @@
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.UniqueEnumerationNameConstraint"
-                 id="org.unicase.model.implementation.validation.UniqueEnumerationNameConstraint"
-                 lang="Java"
-                 mode="Batch"
-                 name="Unique Enumeration Name"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The name {0} is not unique within the parent package.
-              </message>
-              <target
-                    class="IEnumeration">
-              </target>
-           </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.UniqueLiteralNameConstraint"
+                 class="org.unicase.model.classes.validation.UniqueLiteralNameConstraint"
                  id="org.unicase.model.implementation.validation.UniqueLiteralNameConstraint"
                  lang="Java"
                  mode="Batch"
@@ -421,52 +406,7 @@
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.UniquePackageNameConstraint"
-                 id="org.unicase.model.constraint2"
-                 lang="Java"
-                 mode="Batch"
-                 name="Unique Package Name"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The name {0} is not unique within the parent package.
-              </message>
-              <target
-                    class="IPackage">
-              </target>
-           </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.UniqueAttributeNameConstraint"
-                 id="org.unicase.model.implementation.validation.UniqueAttributeNameConstraint"
-                 lang="Java"
-                 mode="Batch"
-                 name="Unique Attribute Name"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The name {0} is not unique within the parent class.
-              </message>
-              <target
-                    class="IAttribute">
-              </target>
-           </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.UniqueReferenceNameConstraint"
-                 id="org.unicase.model.implementation.validation.UniqueReferenceNameConstraint"
-                 lang="Java"
-                 mode="Batch"
-                 name="Unique Reference Name"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The name {0} is not unique within the parent class.
-              </message>
-              <target
-                    class="IReference">
-              </target>
-           </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.MissingEnumerationConstraint"
+                 class="org.unicase.model.classes.validation.MissingEnumerationConstraint"
                  id="org.unicase.model.implementation.validation.MissingEnumerationConstraint"
                  lang="Java"
                  mode="Batch"
@@ -481,7 +421,7 @@
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.AtMostOneIdConstraint"
+                 class="org.unicase.model.classes.validation.AtMostOneIdConstraint"
                  id="org.unicase.model.implementation.validation.AtMostOneIdConstraint"
                  lang="Java"
                  mode="Batch"
@@ -496,7 +436,7 @@
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.NoCircularSuperClassesConstraint"
+                 class="org.unicase.model.classes.validation.NoCircularSuperClassesConstraint"
                  id="org.unicase.model.implementation.validation.NoCircularSuperClassesConstraint"
                  lang="Java"
                  mode="Batch"
@@ -511,22 +451,7 @@
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.ConsistentOppositeConstraint"
-                 id="org.unicase.model.constraint6"
-                 lang="Java"
-                 mode="Batch"
-                 name="Consistent Opposite"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The opposite of the opposite must be this reference.
-              </message>
-              <target
-                    class="IReference">
-              </target>
-           </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.ValidMinimumMultiplicityConstraint"
+                 class="org.unicase.model.classes.validation.ValidMinimumMultiplicityConstraint"
                  id="org.unicase.model.implementation.validation.ValidMinimumMultiplicityConstraint"
                  lang="Java"
                  mode="Batch"
@@ -534,14 +459,14 @@
                  severity="ERROR"
                  statusCode="1">
               <message>
-                 The minimum multiplicity {0} must be greater than or equal to 0.
+                 The minimum multiplicity must be greater than or equal to 0.
               </message>
               <target
                     class="IFeature">
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.ValidMaximumMultiplicityConstraint"
+                 class="org.unicase.model.classes.validation.ValidMaximumMultiplicityConstraint"
                  id="org.unicase.model.implementation.validation.ValidMaximumMultiplicityConstraint"
                  lang="Java"
                  mode="Batch"
@@ -549,14 +474,14 @@
                  severity="ERROR"
                  statusCode="1">
               <message>
-                 The maximum multiplicity {0} must be -1, or greater than 0.
+                 The maximum multiplicity must be -1, or greater than 0.
               </message>
               <target
                     class="IFeature">
               </target>
            </constraint>
            <constraint
-                 class="org.unicase.model.implementation.validation.ConsistentMultiplicityConstraint"
+                 class="org.unicase.model.classes.validation.ConsistentMultiplicityConstraint"
                  id="org.unicase.model.constraint8"
                  lang="Java"
                  mode="Batch"
@@ -564,28 +489,13 @@
                  severity="ERROR"
                  statusCode="1">
               <message>
-                 The minimum multiplicity {0} must be less than or equal to the maximum multiplicity {1}.
+                 The minimum multiplicity must be less than or equal to the maximum multiplicity.
               </message>
               <target
                     class="IFeature">
               </target>
            </constraint>
-           <constraint
-                 class="org.unicase.model.implementation.validation.WellFormedNamespaceConstraint"
-                 id="org.unicase.model.constraint9"
-                 lang="Java"
-                 mode="Batch"
-                 name="Well Formed Namespace"
-                 severity="ERROR"
-                 statusCode="1">
-              <message>
-                 The namespace {0} is not well formed.
-              </message>
-              <target
-                    class="IPackage">
-              </target>
-           </constraint>
-        </constraints>
+          </constraints>
      </constraintProvider>
   </extension>
   <extension
@@ -746,15 +656,4 @@
            uri="http://unicase.org/model/activity">
      </package>
   </extension>
-  <extension
-        point="org.eclipse.emf.ecore.generated_package">
-     <package
-           class="org.unicase.model.implementation.ImplementationPackage"
-           genModel="model/model.genmodel"
-           uri="http://unicase.org/model/implementation">
-     </package>
-  </extension>
-  
-
-
 </plugin>
