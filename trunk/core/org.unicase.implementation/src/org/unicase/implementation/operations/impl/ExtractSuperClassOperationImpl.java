@@ -230,7 +230,11 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		return OperationHelper.getElements(project, getSuperSuperClasses());
 	}
 
+	// begin of custom code
 	/**
+	 * Retrieve all Super super classes that could be selected.
+	 * {@inheritDoc}
+	 * 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -250,7 +254,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		}
 		return classes;
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

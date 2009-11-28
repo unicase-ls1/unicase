@@ -19,6 +19,11 @@ import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompo
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.Project;
 
+/**
+ * Dialog for the execution of an operaiton.
+ * @author herrmi
+ *
+ */
 public class ExecuteOperationDialog extends TitleAreaDialog {
 
 	private final SemanticCompositeOperation operation;
@@ -29,6 +34,11 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 
 	private ComposedAdapterFactory adapterFactory;
 
+	/**
+	 * Constructor.
+	 * @param operation the operation
+	 * @param project the project
+	 */
 	public ExecuteOperationDialog(SemanticCompositeOperation operation,
 			Project project) {
 		super(Display.getDefault().getActiveShell());
@@ -47,6 +57,10 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		shell.setSize(400, 300);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		parent = (Composite) super.createDialogArea(parent);
@@ -66,6 +80,10 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		return parent;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#createContents(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
@@ -73,6 +91,9 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		return contents;
 	}
 
+	/**
+	 * 
+	 */
 	void validate() {
 		Diagnostic diagnostic = OperationHelper.validate(operation, project);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR) {
@@ -84,6 +105,10 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.dialogs.TrayDialog#close()
+	 */
 	@Override
 	public boolean close() {
 		labelProvider.dispose();
@@ -91,12 +116,18 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		return super.close();
 	}
 
-	/** Returns labelProvider. */
+	/**
+	 * Returns the labelProvider.
+	 * @return the label provider
+	 */
 	public AdapterFactoryLabelProvider getLabelProvider() {
 		return labelProvider;
 	}
 
-	/** Returns adapterFactory. */
+	/** 
+	 * Returns the adapter factory. 
+	 * @return the adapter factory 
+	 */
 	public ComposedAdapterFactory getAdapterFactory() {
 		return adapterFactory;
 	}

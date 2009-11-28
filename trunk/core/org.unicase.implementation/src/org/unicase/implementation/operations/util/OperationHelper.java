@@ -25,8 +25,25 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
-public class OperationHelper {
+/**
+ * Helper class for Operations.
+ * @author herrmi
+ *
+ */
+public final class OperationHelper {
 
+	private OperationHelper() {
+		//NOTHING TO DO
+	}
+	
+	/**
+	 * Get a model element of a type V from the given project.
+	 * @param <V> the type of the model element
+	 * @param project the project
+	 * @param id the id of the model element
+	 * @return the modelelement or null if it is not in the project
+	 */
+	@SuppressWarnings("unchecked")
 	public static <V> V getElement(Project project, ModelElementId id) {
 		if (id == null) {
 			return null;
@@ -34,6 +51,14 @@ public class OperationHelper {
 		return (V) project.getModelElement(id);
 	}
 
+	/**
+	 * Get a list of model elements from a certain type from the given project.
+	 * @param <V> the type
+	 * @param project the project
+	 * @param ids the list of ids of the model element to retrieve
+	 * @return a list of model elements, may contain null if an element is not in the project
+	 */
+	@SuppressWarnings("unchecked")
 	public static <V> EList<V> getElements(Project project,
 			List<ModelElementId> ids) {
 		EList<V> elements = new BasicEList<V>();
@@ -43,6 +68,11 @@ public class OperationHelper {
 		return elements;
 	}
 
+	/**
+	 * Get the id of a model element.
+	 * @param element the element
+	 * @return the id or null if the element is null
+	 */
 	public static ModelElementId getId(ModelElement element) {
 		if (element == null) {
 			return null;
@@ -50,6 +80,11 @@ public class OperationHelper {
 		return element.getModelElementId();
 	}
 
+	/**
+	 * Get the ids of all given model elements. 
+	 * @param elements the elements
+	 * @return a list of ids
+	 */
 	public static List<ModelElementId> getIds(
 			List<? extends ModelElement> elements) {
 		List<ModelElementId> ids = new ArrayList<ModelElementId>();
@@ -59,6 +94,13 @@ public class OperationHelper {
 		return ids;
 	}
 
+	/**
+	 * Validates a semantic composite operation in the context of a project.
+	 * @param operation the operation
+	 * @param project the project
+	 * @return the validation results
+	 */
+	@SuppressWarnings("unchecked")
 	public static Diagnostic validate(
 			SemanticCompositeOperation operation,
 			Project project) {
@@ -102,21 +144,21 @@ public class OperationHelper {
 		return diagnostic;
 	}
 
+	/**
+	 * Get all possible values for a given feature of an operation in the conext of a project.
+	 * @param operation the operation
+	 * @param feature the feature
+	 * @param project the project
+	 * @return a list of possible values
+	 */
+	@SuppressWarnings("unchecked")
 	public static List getPossibleValues(SemanticCompositeOperation operation,
 			EStructuralFeature feature, Project project) {
 		EOperation method = OperationHelper.getPossibleOperation(feature);
 		if (method != null) {
 			try {
 				return OperationHelper.invokeOperation(operation, method, project);
-			} catch (SecurityException e) {
-				// ignore
-			} catch (NoSuchMethodException e) {
-				// ignore
-			} catch (IllegalArgumentException e) {
-				// ignore
-			} catch (IllegalAccessException e) {
-				// ignore
-			} catch (InvocationTargetException e) {
+			} catch (OperationInvokationException e) {
 				// ignore
 			}
 		}
@@ -150,18 +192,30 @@ public class OperationHelper {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static <V> V invokeOperation(EObject element, EOperation operation,
-			Object... parameters) throws SecurityException,
-			NoSuchMethodException, IllegalArgumentException,
-			IllegalAccessException, InvocationTargetException {
+			Object... parameters) throws OperationInvokationException {
 		Class[] parameterTypes = new Class[parameters.length];
 		for (int i = 0, n = parameters.length; i < n; i++) {
 			parameterTypes[i] = parameters[i].getClass();
 		}
-		Method method = operation.getClass().getMethod(operation.getName(),
-				Project.class);
-		Object result = method.invoke(element, parameters);
-		return (V) result;
+		Method method;
+		try {
+			method = operation.getClass().getMethod(operation.getName(),
+					Project.class);
+			Object result = method.invoke(element, parameters);
+			return (V) result;
+		} catch (SecurityException e) {
+			throw new OperationInvokationException(element, operation, e);
+		} catch (NoSuchMethodException e) {
+			throw new OperationInvokationException(element, operation, e);
+		} catch (IllegalArgumentException e) {
+			throw new OperationInvokationException(element, operation, e);
+		} catch (IllegalAccessException e) {
+			throw new OperationInvokationException(element, operation, e);
+		} catch (InvocationTargetException e) {
+			throw new OperationInvokationException(element, operation, e);
+		}
 	}
 
 	private static String firstUpper(String name) {

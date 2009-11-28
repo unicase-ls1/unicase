@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -37,7 +38,152 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
+/**
+ * Viewer for operation parameters.
+ * @author herrmi
+ *
+ */
 public class ParameterViewer extends TableViewer {
+
+	/**
+	 * Editing support for operations.
+	 * @author herrmi
+	 *
+	 */
+	private final class ValueEditingSupport extends EditingSupport {
+		private ValueEditingSupport(ColumnViewer viewer) {
+			super(viewer);
+		}
+
+		@Override
+		protected boolean canEdit(Object element) {
+			EStructuralFeature feature = (EStructuralFeature) element;
+			return operation.eClass().getEStructuralFeatures().get(0) != feature;
+		}
+
+		@Override
+		protected CellEditor getCellEditor(Object element) {
+			final EStructuralFeature feature = (EStructuralFeature) element;
+
+			if (feature instanceof EAttribute) {
+				return getAttributeCellEditor((EAttribute) feature);
+			}
+			return getReferenceCellEditor((EReference) feature);
+		}
+
+		private CellEditor getReferenceCellEditor(final EReference reference) {
+			if (reference.isMany()) {
+				return new ExtendedDialogCellEditor(getTable(),
+						valueLabelProvider) {
+
+					@SuppressWarnings("unchecked")
+					@Override
+					protected Object openDialogBox(Control cellEditorWindow) {
+
+						FeatureEditorDialog dialog = new FeatureEditorDialog(
+								cellEditorWindow.getShell(), labelProvider,
+								operation, reference.getEType(),
+								(List) getFeatureValue(reference),
+								getEditorTitle(reference), OperationHelper
+										.getPossibleValues(operation,
+												reference, project));
+
+						dialog.open();
+						return dialog.getResult();
+					}
+
+				};
+			}
+			return new ExtendedComboBoxCellEditor(getTable(),
+					OperationHelper.getPossibleValues(operation, reference,
+							project), valueLabelProvider, true);
+		}
+
+		private CellEditor getAttributeCellEditor(final EAttribute attribute) {
+			if (attribute.isMany()) {
+				return new ExtendedDialogCellEditor(getTable(),
+						valueLabelProvider) {
+
+					@SuppressWarnings("unchecked")
+					@Override
+					protected Object openDialogBox(Control cellEditorWindow) {
+						FeatureEditorDialog dialog = new FeatureEditorDialog(
+								cellEditorWindow.getShell(), labelProvider,
+								attribute, (EDataType) attribute.getEType(),
+								(List) getFeatureValue(attribute),
+								getEditorTitle(attribute), null);
+						dialog.open();
+						return dialog.getResult();
+					}
+
+				};
+			}
+			EDataType dataType = (EDataType) attribute.getEType();
+			if (dataType.getInstanceClass() == Boolean.class
+					|| dataType.getInstanceClass() == Boolean.TYPE) {
+				return new ExtendedComboBoxCellEditor(getTable(),
+						Arrays.asList(new Object[] { Boolean.FALSE,
+								Boolean.TRUE }), valueLabelProvider, false);
+			}
+			return new PropertyDescriptor.EDataTypeCellEditor(
+					(EDataType) attribute.getEType(), getTable());
+		}
+
+		@Override
+		protected Object getValue(Object element) {
+			EStructuralFeature feature = (EStructuralFeature) element;
+			return getFeatureValue(feature);
+		}
+
+		@Override
+		protected void setValue(Object element, Object value) {
+			EStructuralFeature feature = (EStructuralFeature) element;
+			setFeatureValue(feature, value);
+			refresh();
+		}
+	}
+
+	/**
+	 * Label provider for operation parameters.
+	 * @author herrmi
+	 *
+	 */
+	private final class ValueLabelProvider extends LabelProvider {
+		@SuppressWarnings("unchecked")
+		@Override
+		public Image getImage(Object element) {
+			if (element instanceof Collection) {
+				Collection collection = (Collection) element;
+				if (!collection.isEmpty()) {
+					return dialog.getLabelProvider().getImage(
+							collection.iterator()
+							.next());
+				}
+			} else {
+				if (element != null) {
+					return dialog.getLabelProvider().getImage(element);
+				}
+			}
+			return null;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public String getText(Object element) {
+			if (element instanceof Collection) {
+				String label = "";
+				Collection c = (Collection) element;
+				for (Iterator i = c.iterator(); i.hasNext();) {
+					label += dialog.getLabelProvider().getText(i.next());
+					if (i.hasNext()) {
+						label += ", ";
+					}
+				}
+				return label;
+			}
+			return dialog.getLabelProvider().getText(element);
+		}
+	}
 
 	private final Project project;
 
@@ -47,6 +193,12 @@ public class ParameterViewer extends TableViewer {
 
 	private final ExecuteOperationDialog dialog;
 
+	/**
+	 * Constructor.
+	 * @param dialog the dialog
+	 * @param parent the parent composite
+	 * @param project the project to run in
+	 */
 	public ParameterViewer(ExecuteOperationDialog dialog, Composite parent,
 			Project project) {
 		super(parent, SWT.FULL_SELECTION | SWT.BORDER);
@@ -57,43 +209,7 @@ public class ParameterViewer extends TableViewer {
 	}
 
 	private void init() {
-		valueLabelProvider = new LabelProvider() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public Image getImage(Object element) {
-				if (element instanceof Collection) {
-					Collection collection = (Collection) element;
-					if (!collection.isEmpty()) {
-						return dialog.getLabelProvider().getImage(
-								collection.iterator()
-								.next());
-					}
-				} else {
-					if (element != null) {
-						return dialog.getLabelProvider().getImage(element);
-					}
-				}
-				return null;
-			}
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public String getText(Object element) {
-				if (element instanceof Collection) {
-					String label = "";
-					Collection c = (Collection) element;
-					for (Iterator i = c.iterator(); i.hasNext();) {
-						label += dialog.getLabelProvider().getText(i.next());
-						if (i.hasNext()) {
-							label += ", ";
-						}
-					}
-					return label;
-				}
-				return dialog.getLabelProvider().getText(element);
-			}
-		};
+		valueLabelProvider = new ValueLabelProvider();
 
 		initContentProvider();
 		initNameColumn();
@@ -156,103 +272,20 @@ public class ParameterViewer extends TableViewer {
 			}
 		});
 
-		valueColumn.setEditingSupport(new EditingSupport(this) {
-
-			@Override
-			protected boolean canEdit(Object element) {
-				EStructuralFeature feature = (EStructuralFeature) element;
-				return operation.eClass().getEStructuralFeatures().get(0) != feature;
-			}
-
-			@Override
-			protected CellEditor getCellEditor(Object element) {
-				final EStructuralFeature feature = (EStructuralFeature) element;
-
-				if (feature instanceof EAttribute) {
-					return getAttributeCellEditor((EAttribute) feature);
-				}
-				return getReferenceCellEditor((EReference) feature);
-			}
-
-			private CellEditor getReferenceCellEditor(final EReference reference) {
-				if (reference.isMany()) {
-					return new ExtendedDialogCellEditor(getTable(),
-							valueLabelProvider) {
-
-						@Override
-						protected Object openDialogBox(Control cellEditorWindow) {
-
-							FeatureEditorDialog dialog = new FeatureEditorDialog(
-									cellEditorWindow.getShell(), labelProvider,
-									operation, reference.getEType(),
-									(List) getFeatureValue(reference),
-									getEditorTitle(reference), OperationHelper
-											.getPossibleValues(operation,
-													reference, project));
-
-							dialog.open();
-							return dialog.getResult();
-						}
-
-					};
-				}
-				return new ExtendedComboBoxCellEditor(getTable(),
-						OperationHelper.getPossibleValues(operation, reference,
-								project), valueLabelProvider, true);
-			}
-
-			private CellEditor getAttributeCellEditor(final EAttribute attribute) {
-				if (attribute.isMany()) {
-					return new ExtendedDialogCellEditor(getTable(),
-							valueLabelProvider) {
-
-						@SuppressWarnings("unchecked")
-						@Override
-						protected Object openDialogBox(Control cellEditorWindow) {
-							FeatureEditorDialog dialog = new FeatureEditorDialog(
-									cellEditorWindow.getShell(), labelProvider,
-									attribute, (EDataType) attribute.getEType(),
-									(List) getFeatureValue(attribute),
-									getEditorTitle(attribute), null);
-							dialog.open();
-							return dialog.getResult();
-						}
-
-					};
-				}
-				EDataType dataType = (EDataType) attribute.getEType();
-				if (dataType.getInstanceClass() == Boolean.class
-						|| dataType.getInstanceClass() == Boolean.TYPE) {
-					return new ExtendedComboBoxCellEditor(getTable(),
-							Arrays.asList(new Object[] { Boolean.FALSE,
-									Boolean.TRUE }), valueLabelProvider, false);
-				}
-				return new PropertyDescriptor.EDataTypeCellEditor(
-						(EDataType) attribute.getEType(), getTable());
-			}
-
-			@Override
-			protected Object getValue(Object element) {
-				EStructuralFeature feature = (EStructuralFeature) element;
-				return getFeatureValue(feature);
-			}
-
-			@Override
-			protected void setValue(Object element, Object value) {
-				EStructuralFeature feature = (EStructuralFeature) element;
-				setFeatureValue(feature, value);
-				refresh();
-			}
-
-		});
+		valueColumn.setEditingSupport(new ValueEditingSupport(this));
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.viewers.AbstractTableViewer#inputChanged(java.lang.Object, java.lang.Object)
+	 */
 	@Override
 	protected void inputChanged(Object input, Object oldInput) {
 		this.operation = (SemanticCompositeOperation) input;
 		super.inputChanged(input, oldInput);
 	}
 
+	@SuppressWarnings("unchecked")
 	private Object getFeatureValue(EStructuralFeature feature) {
 		Object value = operation.eGet(feature);
 		if (feature instanceof EReference) {
@@ -266,6 +299,7 @@ public class ParameterViewer extends TableViewer {
 		return value;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setFeatureValue(EStructuralFeature feature, Object value) {
 		if (feature instanceof EReference) {
 			if (feature.isMany()) {
