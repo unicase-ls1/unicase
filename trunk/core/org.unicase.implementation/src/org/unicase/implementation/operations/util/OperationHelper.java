@@ -158,7 +158,7 @@ public final class OperationHelper {
 		if (method != null) {
 			try {
 				return OperationHelper.invokeOperation(operation, method, project);
-			} catch (OperationInvokationException e) {
+			} catch (OperationInvocationException e) {
 				// ignore
 			}
 		}
@@ -194,7 +194,7 @@ public final class OperationHelper {
 
 	@SuppressWarnings("unchecked")
 	private static <V> V invokeOperation(EObject element, EOperation operation,
-			Object... parameters) throws OperationInvokationException {
+			Object... parameters) throws OperationInvocationException {
 		Class[] parameterTypes = new Class[parameters.length];
 		for (int i = 0, n = parameters.length; i < n; i++) {
 			parameterTypes[i] = parameters[i].getClass();
@@ -206,15 +206,15 @@ public final class OperationHelper {
 			Object result = method.invoke(element, parameters);
 			return (V) result;
 		} catch (SecurityException e) {
-			throw new OperationInvokationException(element, operation, e);
+			throw new OperationInvocationException(element, operation, e);
 		} catch (NoSuchMethodException e) {
-			throw new OperationInvokationException(element, operation, e);
+			throw new OperationInvocationException(element, operation, e);
 		} catch (IllegalArgumentException e) {
-			throw new OperationInvokationException(element, operation, e);
+			throw new OperationInvocationException(element, operation, e);
 		} catch (IllegalAccessException e) {
-			throw new OperationInvokationException(element, operation, e);
+			throw new OperationInvocationException(element, operation, e);
 		} catch (InvocationTargetException e) {
-			throw new OperationInvokationException(element, operation, e);
+			throw new OperationInvocationException(element, operation, e);
 		}
 	}
 
