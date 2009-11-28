@@ -6,20 +6,29 @@
 package org.unicase.model.classes.validation;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether the name of an element from the implementation model is a well-formed Java identifier.
+ * Checks whether an attribute's value of an element is a well-formed Java identifier.
  * 
- * @author herrmama
+ * @author herrmi
  */
-public class WellFormedNameConstraint extends AbstractModelConstraint {
+public abstract class WellFormedNameConstraintBase extends AbstractModelConstraint {
+
+	private EAttribute nameAttribute;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param nameAttribute attribute to obtain the name
+	 */
+	protected WellFormedNameConstraintBase(EAttribute nameAttribute) {
+		this.nameAttribute = nameAttribute;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -32,18 +41,26 @@ public class WellFormedNameConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof UnicaseModelElement) {
-				UnicaseModelElement element = (UnicaseModelElement) eObj;
-				String name = element.getName();
+			if (applies(eObj)) {
+				String name = (String) eObj.eGet(nameAttribute);
 				if (!isWellFormed(name)) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						element, "name");
-					ctx.addResult(errorFeature);
+					ctx.addResult(nameAttribute);
 					return ctx.createFailureStatus(new Object[] { "'" + name + "'" });
 				}
 			}
 		}
 		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * Check whether this constraint applies to the element.
+	 * 
+	 * @param element Element
+	 * @return true if it applies, false otherwise
+	 */
+	protected boolean applies(EObject element) {
+		return element.eClass() == nameAttribute.getEContainingClass()
+			|| element.eClass().getEAllSuperTypes().contains(nameAttribute.getEContainingClass());
 	}
 
 	/**
