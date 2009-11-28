@@ -12,16 +12,19 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.Enumeration;
@@ -68,13 +71,13 @@ public class EcoreGenerator {
 	private EPackage generatePackage(Package p) {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		initModelElement(p, ePackage);
-		//FIXME
-//		ePackage.setNsPrefix(p.getNamespace());
-//		ePackage.setNsURI(p.getNamespace());
+		String namespace = getNamespace(p);
+		ePackage.setNsPrefix(namespace);
+		ePackage.setNsURI(namespace);
 
 		for (PackageElement packageElement: p.getContainedPackageElements()) {
 			if (packageElement instanceof Package) {
-				ePackage.getESubpackages().add(generatePackage((Package)packageElement));
+				ePackage.getESubpackages().add(generatePackage((Package) packageElement));
 			}
 			if (packageElement instanceof Class) {
 				ePackage.getEClassifiers().add(generateClass((Class) packageElement));
@@ -87,6 +90,14 @@ public class EcoreGenerator {
 		return ePackage;
 	}
 
+	private String getNamespace(Package p) {
+		String namespace = p.getName();
+		if (p.getParentPackage() != null) {
+			namespace = getNamespace(p.getParentPackage()) + "." + namespace;
+		}
+		return namespace;
+	}
+
 	private EClass generateClass(Class c) {
 		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
 		initModelElement(c, eClass);
@@ -95,31 +106,13 @@ public class EcoreGenerator {
 		for (Attribute attribute : c.getAttributes()) {
 			eClass.getEStructuralFeatures().add(generateAttribute(attribute));
 		}
-		//FIXME
-//		for (Association association : c.getOutgoingReferences()) {
-//			eClass.getEStructuralFeatures().add(generateReference(reference));
-//		}
-//		for (Association association : c.getIncomingReferences()) {
-//			eClass.getEStructuralFeatures().add(generateReference(reference));
-//		}
-		
 
 		return eClass;
 	}
 
-//	private EReference generateReference(Reference reference) {
-//		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-//		initFeature(reference, eReference);
-//		eFeature.setLowerBound(feature.getMinimumMultiplicity());
-//		eFeature.setUpperBound(feature.getMaximumMultiplicity());
-//		eFeature.setTransient(feature.isTransient());
-//		
-//		eReference.setContainment(reference.isContainment());
-//		return eReference;
-//	}
-
 	private EStructuralFeature generateAttribute(Attribute attribute) {
 		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+		initModelElement(attribute, eAttribute);
 		eAttribute.setTransient(attribute.isTransient());
 		eAttribute.setID(attribute.isId());
 		return eAttribute;
@@ -147,6 +140,10 @@ public class EcoreGenerator {
 
 	private void initModelElement(UnicaseModelElement mElement, ENamedElement eElement) {
 		eElement.setName(mElement.getName());
+		map(mElement, eElement);
+	}
+
+	private void map(UnicaseModelElement mElement, ENamedElement eElement) {
 		mapping.put(mElement, eElement);
 	}
 
@@ -180,22 +177,21 @@ public class EcoreGenerator {
 		for (Attribute attribute : c.getAttributes()) {
 			linkAttribute(attribute);
 		}
-		//FIXME
-//		for (Reference reference : c.getOutgoingReferences()) {
-//			linkReference(reference);
-//		}
+		for (Association association : c.getOutgoingAssociations()) {
+			linkAssociation(association);
+		}
 	}
 
 	private void linkAttribute(Attribute attribute) {
 		EAttribute eAttribute = (EAttribute) get(attribute);
 		if (attribute.getImplementationType() == PrimitiveType.ENUMERATION) {
-			eAttribute.setEType((EClassifier) get(attribute.getImplementationEnumeration()));
+			eAttribute.setEType((EDataType) get(attribute.getImplementationEnumeration()));
 		} else {
 			eAttribute.setEType(getPrimitiveType(attribute.getImplementationType()));
 		}
 	}
 
-	private EClassifier getPrimitiveType(PrimitiveType type) {
+	private EDataType getPrimitiveType(PrimitiveType type) {
 		switch (type) {
 		case BOOLEAN:
 			return EcorePackage.Literals.EBOOLEAN;
@@ -212,11 +208,39 @@ public class EcoreGenerator {
 		}
 	}
 
-//	private void linkReference(Reference reference) {
-//		EReference eReference = (EReference) get(reference);
-//		eReference.setEType((EClassifier) get(reference.getType()));
-//		eReference.setEOpposite((EReference) get(reference.getOppositeReference()));
-//	}
+	private void linkAssociation(Association association) {
+		EClass sourceClass = (EClass) get(association.getSource());
+		EClass targetClass = (EClass) get(association.getTarget());
+
+		EReference targetReference = EcoreFactory.eINSTANCE.createEReference();
+		targetReference.setName(association.getTargetRole());
+		targetReference.setEType(targetClass);
+		targetReference.setContainment(association.getType() == AssociationType.COMPOSITION);
+		targetReference.setTransient(association.isTransient());
+		targetReference.setLowerBound(getLowerBound(association.getTargetMultiplicity()));
+		targetReference.setUpperBound(getUpperBound(association.getTargetMultiplicity()));
+		sourceClass.getEStructuralFeatures().add(targetReference);
+
+		if (association.getType() != AssociationType.DIRECTED_ASSOCIATION) {
+			EReference sourceReference = EcoreFactory.eINSTANCE.createEReference();
+			sourceReference.setName(association.getSourceRole());
+			sourceReference.setEType(sourceClass);
+			sourceReference.setTransient(association.isTransient());
+			sourceReference.setLowerBound(getLowerBound(association.getSourceMultiplicity()));
+			sourceReference.setUpperBound(getUpperBound(association.getSourceMultiplicity()));
+			targetClass.getEStructuralFeatures().add(sourceReference);
+		}
+	}
+
+	private int getLowerBound(String multiplicity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private int getUpperBound(String multiplicity) {
+		// TODO Auto-generated method stub
+		return -1;
+	}
 
 	private EObject get(UnicaseModelElement source) {
 		EObject target = mapping.get(source);
