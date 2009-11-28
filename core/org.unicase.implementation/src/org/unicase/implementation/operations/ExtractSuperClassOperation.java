@@ -9,8 +9,6 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.model.implementation.IClass;
-import org.unicase.model.implementation.IPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,7 +121,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSubClasses());'"
 	 * @generated
 	 */
-	EList<IClass> getSubClasses(Project project);
+	EList<org.unicase.model.classes.Class> getSubClasses(Project project);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,7 +130,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getTargetPackage());'"
 	 * @generated
 	 */
-	IPackage getTargetPackage(Project project);
+	org.unicase.model.classes.Package getTargetPackage(Project project);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,7 +138,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSuperSuperClasses());'"
 	 * @generated
 	 */
-	EList<IClass> getSuperSuperClasses(Project project);
+	EList<org.unicase.model.classes.Class> getSuperSuperClasses(Project project);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,6 +146,6 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 * @model
 	 * @generated
 	 */
-	EList<IClass> getPossibleSuperSuperClasses(Project project);
+	EList<org.unicase.model.classes.Class> getPossibleSuperSuperClasses(Project project);
 
 } // ExtractSuperClassOperation

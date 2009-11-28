@@ -29,7 +29,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.implementation.operations.util.EcoreGenerator;
 import org.unicase.implementation.operations.util.NotSelfContainedException;
-import org.unicase.model.implementation.IPackage;
+import org.unicase.model.classes.Package;
 
 /**
  * Handler for the command to generate Ecore from the implementation model.
@@ -49,7 +49,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 		ISelection selection = activePage.getSelection();
 		if (selection != null & selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			List<IPackage> packages = getPackages(structuredSelection);
+			List<Package> packages = getPackages(structuredSelection);
 			reduce(packages);
 
 			try {
@@ -67,10 +67,10 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	 * Get the selected implementation packages.
 	 */
 	@SuppressWarnings("unchecked")
-	private List<IPackage> getPackages(IStructuredSelection structuredSelection) {
-		List<IPackage> packages = new ArrayList<IPackage>();
+	private List<Package> getPackages(IStructuredSelection structuredSelection) {
+		List<Package> packages = new ArrayList<Package>();
 		for (Iterator i = structuredSelection.iterator(); i.hasNext();) {
-			packages.add((IPackage) i.next());
+			packages.add((Package) i.next());
 		}
 		return packages;
 	}
@@ -78,7 +78,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	/**
 	 * Generate and save and Ecore model from the implementation packages.
 	 */
-	private void generateEcore(List<IPackage> packages) {
+	private void generateEcore(List<Package> packages) {
 		EcoreGenerator generator = new EcoreGenerator();
 		List<EPackage> ePackages = generator.generate(packages);
 
@@ -101,9 +101,9 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	/**
 	 * Remove packages which are contained by others.
 	 */
-	private void reduce(List<IPackage> packages) {
-		for (Iterator<IPackage> i = packages.iterator(); i.hasNext();) {
-			IPackage p = i.next();
+	private void reduce(List<Package> packages) {
+		for (Iterator<Package> i = packages.iterator(); i.hasNext();) {
+			Package p = i.next();
 			if (contains(p.getParentPackage(), packages)) {
 				i.remove();
 			}
@@ -113,7 +113,7 @@ public class GenerateEcoreHandler extends AbstractHandler {
 	/**
 	 * Check whether a package is contained in a number of packages.
 	 */
-	private boolean contains(IPackage p, List<IPackage> packages) {
+	private boolean contains(Package p, List<Package> packages) {
 		while (p != null) {
 			if (packages.contains(p)) {
 				return true;

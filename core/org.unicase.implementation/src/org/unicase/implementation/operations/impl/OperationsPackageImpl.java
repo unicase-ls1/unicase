@@ -17,7 +17,7 @@ import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.implementation.ImplementationPackage;
+import org.unicase.model.classes.ClassesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -203,7 +203,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		// Obtain other dependent packages
 		SemanticPackage theSemanticPackage = (SemanticPackage)EPackage.Registry.INSTANCE.getEPackage(SemanticPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
-		ImplementationPackage theImplementationPackage = (ImplementationPackage)EPackage.Registry.INSTANCE.getEPackage(ImplementationPackage.eNS_URI);
+		ClassesPackage theClassesPackage = (ClassesPackage)EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -219,16 +219,16 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEReference(getExtractSuperClassOperation_TargetPackage(), theMetamodelPackage.getModelElementId(), null, "targetPackage", null, 1, 1, ExtractSuperClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtractSuperClassOperation_SuperSuperClasses(), theMetamodelPackage.getModelElementId(), null, "superSuperClasses", null, 0, -1, ExtractSuperClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(extractSuperClassOperationEClass, theImplementationPackage.getIClass(), "getSubClasses", 1, -1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getClass_(), "getSubClasses", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(extractSuperClassOperationEClass, theImplementationPackage.getIPackage(), "getTargetPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getPackage(), "getTargetPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(extractSuperClassOperationEClass, theImplementationPackage.getIClass(), "getSuperSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getClass_(), "getSuperSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(extractSuperClassOperationEClass, theImplementationPackage.getIClass(), "getPossibleSuperSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getClass_(), "getPossibleSuperSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource

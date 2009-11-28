@@ -18,19 +18,18 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.implementation.IAttribute;
-import org.unicase.model.implementation.IClass;
-import org.unicase.model.implementation.IEnumeration;
-import org.unicase.model.implementation.IFeature;
-import org.unicase.model.implementation.ILiteral;
-import org.unicase.model.implementation.IPackage;
-import org.unicase.model.implementation.IPrimitiveType;
-import org.unicase.model.implementation.IReference;
+import org.unicase.model.classes.Attribute;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.Enumeration;
+import org.unicase.model.classes.InstantiationType;
+import org.unicase.model.classes.Literal;
+import org.unicase.model.classes.Package;
+import org.unicase.model.classes.PackageElement;
+import org.unicase.model.classes.PrimitiveType;
 
 /**
  * Generate an Ecore model from an implementation model.
@@ -47,7 +46,7 @@ public class EcoreGenerator {
 	 * @param packages the implementation packages
 	 * @return the ecore packages
 	 */
-	public List<EPackage> generate(List<IPackage> packages) {
+	public List<EPackage> generate(List<Package> packages) {
 		mapping = new IdentityHashMap<UnicaseModelElement, EObject>();
 		List<EPackage> ePackages = generatePackages(packages);
 		link(packages);
@@ -58,80 +57,87 @@ public class EcoreGenerator {
 	 * Transform containment hierarchy
 	 */
 
-	private List<EPackage> generatePackages(List<IPackage> packages) {
+	private List<EPackage> generatePackages(List<Package> packages) {
 		List<EPackage> ePackages = new ArrayList<EPackage>();
-		for (IPackage p : packages) {
+		for (Package p : packages) {
 			ePackages.add(generatePackage(p));
 		}
 		return ePackages;
 	}
 
-	private EPackage generatePackage(IPackage p) {
+	private EPackage generatePackage(Package p) {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		initModelElement(p, ePackage);
-		ePackage.setNsPrefix(p.getNamespace());
-		ePackage.setNsURI(p.getNamespace());
+		//FIXME
+//		ePackage.setNsPrefix(p.getNamespace());
+//		ePackage.setNsURI(p.getNamespace());
 
-		ePackage.getESubpackages().addAll(generatePackages(p.getSubPackages()));
-		for (IClass c : p.getClasses()) {
-			ePackage.getEClassifiers().add(generateClass(c));
-		}
-		for (IEnumeration enumeration : p.getEnumerations()) {
-			ePackage.getEClassifiers().add(generateEnumeration(enumeration));
+		for (PackageElement packageElement: p.getContainedPackageElements()) {
+			if (packageElement instanceof Package) {
+				ePackage.getESubpackages().add(generatePackage((Package)packageElement));
+			}
+			if (packageElement instanceof Class) {
+				ePackage.getEClassifiers().add(generateClass((Class) packageElement));
+			}
+			if (packageElement instanceof Enumeration) {
+				ePackage.getEClassifiers().add(generateEnumeration((Enumeration) packageElement));
+			}
 		}
 
 		return ePackage;
 	}
 
-	private EClass generateClass(IClass c) {
+	private EClass generateClass(Class c) {
 		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
 		initModelElement(c, eClass);
-		eClass.setAbstract(c.isAbstract());
+		eClass.setAbstract(c.getInstantiationType().equals(InstantiationType.ABSTRACT));
 
-		for (IAttribute attribute : c.getAttributes()) {
+		for (Attribute attribute : c.getAttributes()) {
 			eClass.getEStructuralFeatures().add(generateAttribute(attribute));
 		}
-		for (IReference reference : c.getOutgoingReferences()) {
-			eClass.getEStructuralFeatures().add(generateReference(reference));
-		}
+		//FIXME
+//		for (Association association : c.getOutgoingReferences()) {
+//			eClass.getEStructuralFeatures().add(generateReference(reference));
+//		}
+//		for (Association association : c.getIncomingReferences()) {
+//			eClass.getEStructuralFeatures().add(generateReference(reference));
+//		}
+		
 
 		return eClass;
 	}
 
-	private EReference generateReference(IReference reference) {
-		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-		initFeature(reference, eReference);
-		eReference.setContainment(reference.isContainment());
-		return eReference;
-	}
+//	private EReference generateReference(Reference reference) {
+//		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
+//		initFeature(reference, eReference);
+//		eFeature.setLowerBound(feature.getMinimumMultiplicity());
+//		eFeature.setUpperBound(feature.getMaximumMultiplicity());
+//		eFeature.setTransient(feature.isTransient());
+//		
+//		eReference.setContainment(reference.isContainment());
+//		return eReference;
+//	}
 
-	private EStructuralFeature generateAttribute(IAttribute attribute) {
+	private EStructuralFeature generateAttribute(Attribute attribute) {
 		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-		initFeature(attribute, eAttribute);
+		eAttribute.setTransient(attribute.isTransient());
 		eAttribute.setID(attribute.isId());
 		return eAttribute;
 	}
 
-	private void initFeature(IFeature feature, EStructuralFeature eFeature) {
-		initModelElement(feature, eFeature);
-		eFeature.setLowerBound(feature.getMinimumMultiplicity());
-		eFeature.setUpperBound(feature.getMaximumMultiplicity());
-		eFeature.setTransient(feature.isTransient());
-	}
-
-	private EEnum generateEnumeration(IEnumeration enumeration) {
+	private EEnum generateEnumeration(Enumeration enumeration) {
 		EEnum eEnum = EcoreFactory.eINSTANCE.createEEnum();
 		initModelElement(enumeration, eEnum);
 
-		for (ILiteral literal : enumeration.getLiterals()) {
+		for (Literal literal : enumeration.getLiterals()) {
 			eEnum.getELiterals().add(generateLiteral(literal));
 		}
 
 		return eEnum;
 	}
 
-	private EEnumLiteral generateLiteral(ILiteral literal) {
-		IEnumeration enumeration = (IEnumeration) literal.eContainer();
+	private EEnumLiteral generateLiteral(Literal literal) {
+		Enumeration enumeration = (Enumeration) literal.eContainer();
 		EEnumLiteral eEnumLiteral = EcoreFactory.eINSTANCE.createEEnumLiteral();
 		initModelElement(literal, eEnumLiteral);
 		eEnumLiteral.setLiteral(literal.getLiteral());
@@ -148,42 +154,48 @@ public class EcoreGenerator {
 	 * Transform cross references
 	 */
 
-	private void link(List<IPackage> packages) {
-		for (IPackage p : packages) {
+	private void link(List<Package> packages) {
+		for (Package p : packages) {
 			linkPackage(p);
 		}
 	}
 
-	private void linkPackage(IPackage p) {
-		link(p.getSubPackages());
-		for (IClass c : p.getClasses()) {
-			linkClass(c);
+	private void linkPackage(Package p) {
+		for (PackageElement packageElement : p.getContainedPackageElements()) {
+			if (packageElement instanceof Class) {
+				linkClass((Class) packageElement);
+			}
+			if (packageElement instanceof Package) {
+				linkPackage((Package) packageElement);
+			}
+			
 		}
 	}
 
-	private void linkClass(IClass c) {
+	private void linkClass(Class c) {
 		EClass eClass = (EClass) get(c);
-		for (IClass s : c.getSuperClasses()) {
+		for (Class s : c.getSuperClasses()) {
 			eClass.getESuperTypes().add((EClass) get(s));
 		}
-		for (IAttribute attribute : c.getAttributes()) {
+		for (Attribute attribute : c.getAttributes()) {
 			linkAttribute(attribute);
 		}
-		for (IReference reference : c.getOutgoingReferences()) {
-			linkReference(reference);
-		}
+		//FIXME
+//		for (Reference reference : c.getOutgoingReferences()) {
+//			linkReference(reference);
+//		}
 	}
 
-	private void linkAttribute(IAttribute attribute) {
+	private void linkAttribute(Attribute attribute) {
 		EAttribute eAttribute = (EAttribute) get(attribute);
-		if (attribute.getType() == IPrimitiveType.ENUMERATION) {
-			eAttribute.setEType((EClassifier) get(attribute.getEnumeration()));
+		if (attribute.getImplementationType() == PrimitiveType.ENUMERATION) {
+			eAttribute.setEType((EClassifier) get(attribute.getImplementationEnumeration()));
 		} else {
-			eAttribute.setEType(getPrimitiveType(attribute.getType()));
+			eAttribute.setEType(getPrimitiveType(attribute.getImplementationType()));
 		}
 	}
 
-	private EClassifier getPrimitiveType(IPrimitiveType type) {
+	private EClassifier getPrimitiveType(PrimitiveType type) {
 		switch (type) {
 		case BOOLEAN:
 			return EcorePackage.Literals.EBOOLEAN;
@@ -200,11 +212,11 @@ public class EcoreGenerator {
 		}
 	}
 
-	private void linkReference(IReference reference) {
-		EReference eReference = (EReference) get(reference);
-		eReference.setEType((EClassifier) get(reference.getType()));
-		eReference.setEOpposite((EReference) get(reference.getOppositeReference()));
-	}
+//	private void linkReference(Reference reference) {
+//		EReference eReference = (EReference) get(reference);
+//		eReference.setEType((EClassifier) get(reference.getType()));
+//		eReference.setEOpposite((EReference) get(reference.getOppositeReference()));
+//	}
 
 	private EObject get(UnicaseModelElement source) {
 		EObject target = mapping.get(source);
