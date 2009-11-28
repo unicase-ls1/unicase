@@ -33,6 +33,8 @@ import org.unicase.model.classes.Literal;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 import org.unicase.model.classes.PrimitiveType;
+import org.unicase.model.classes.validation.ImplementationValidationHelper;
+import org.unicase.model.classes.validation.MultiplicityParseResult;
 
 /**
  * Generate an Ecore model from an implementation model.
@@ -217,8 +219,10 @@ public class EcoreGenerator {
 		targetReference.setEType(targetClass);
 		targetReference.setContainment(association.getType() == AssociationType.COMPOSITION);
 		targetReference.setTransient(association.isTransient());
-		targetReference.setLowerBound(getLowerBound(association.getTargetMultiplicity()));
-		targetReference.setUpperBound(getUpperBound(association.getTargetMultiplicity()));
+		MultiplicityParseResult targetMultiplicity = ImplementationValidationHelper.parseMultiplicity(association
+			.getTargetMultiplicity());
+		targetReference.setLowerBound(targetMultiplicity.getMinimumMultiplicity());
+		targetReference.setUpperBound(targetMultiplicity.getMaximumMultiplicity());
 		sourceClass.getEStructuralFeatures().add(targetReference);
 
 		if (association.getType() != AssociationType.DIRECTED_ASSOCIATION) {
@@ -226,20 +230,12 @@ public class EcoreGenerator {
 			sourceReference.setName(association.getSourceRole());
 			sourceReference.setEType(sourceClass);
 			sourceReference.setTransient(association.isTransient());
-			sourceReference.setLowerBound(getLowerBound(association.getSourceMultiplicity()));
-			sourceReference.setUpperBound(getUpperBound(association.getSourceMultiplicity()));
+			MultiplicityParseResult sourceMultiplicity = ImplementationValidationHelper.parseMultiplicity(association
+				.getTargetMultiplicity());
+			sourceReference.setLowerBound(sourceMultiplicity.getMinimumMultiplicity());
+			sourceReference.setUpperBound(sourceMultiplicity.getMaximumMultiplicity());
 			targetClass.getEStructuralFeatures().add(sourceReference);
 		}
-	}
-
-	private int getLowerBound(String multiplicity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private int getUpperBound(String multiplicity) {
-		// TODO Auto-generated method stub
-		return -1;
 	}
 
 	private EObject get(UnicaseModelElement source) {
