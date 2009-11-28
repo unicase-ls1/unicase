@@ -19,7 +19,7 @@ import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.Project;
-import org.unicase.model.implementation.IClass;
+import org.unicase.model.classes.Class;
 import org.unicase.workspace.util.SemanticCommand;
 
 public class ExtractSuperClassHandler extends AbstractHandler {
@@ -34,7 +34,7 @@ public class ExtractSuperClassHandler extends AbstractHandler {
 
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 
-			List<IClass> subClasses = SelectionHelper
+			List<Class> subClasses = SelectionHelper
 					.getSelectedElements(structuredSelection);
 
 			ExtractSuperClassOperation operation = OperationsFactory.eINSTANCE

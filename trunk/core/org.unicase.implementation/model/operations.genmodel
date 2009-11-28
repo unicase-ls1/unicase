@@ -21,6 +21,9 @@
       <genOperations ecoreOperation="operations.ecore#//ExtractSuperClassOperation/getSuperSuperClasses">
         <genParameters ecoreParameter="operations.ecore#//ExtractSuperClassOperation/getSuperSuperClasses/project"/>
       </genOperations>
+      <genOperations ecoreOperation="operations.ecore#//ExtractSuperClassOperation/getPossibleSuperSuperClasses">
+        <genParameters ecoreParameter="operations.ecore#//ExtractSuperClassOperation/getPossibleSuperSuperClasses/project"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

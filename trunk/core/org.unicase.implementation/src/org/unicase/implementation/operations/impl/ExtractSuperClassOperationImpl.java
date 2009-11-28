@@ -24,9 +24,10 @@ import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.model.implementation.IClass;
-import org.unicase.model.implementation.IPackage;
-import org.unicase.model.implementation.ImplementationFactory;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.classes.InstantiationType;
+import org.unicase.model.classes.Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -207,7 +208,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IClass> getSubClasses(Project project) {
+	public EList<org.unicase.model.classes.Class> getSubClasses(Project project) {
 		return OperationHelper.getElements(project, getSubClasses());
 	}
 
@@ -216,7 +217,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IPackage getTargetPackage(Project project) {
+	public org.unicase.model.classes.Package getTargetPackage(Project project) {
 		return OperationHelper.getElement(project, getTargetPackage());
 	}
 
@@ -225,7 +226,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IClass> getSuperSuperClasses(Project project) {
+	public EList<org.unicase.model.classes.Class> getSuperSuperClasses(Project project) {
 		return OperationHelper.getElements(project, getSuperSuperClasses());
 	}
 
@@ -234,14 +235,14 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated NOT
 	 */
-	public EList<IClass> getPossibleSuperSuperClasses(Project project) {
-		Iterator<IClass> i = getSubClasses(project).iterator();
-		EList<IClass> classes = new BasicEList<IClass>(i.next()
+	public EList<Class> getPossibleSuperSuperClasses(Project project) {
+		Iterator<Class> i = getSubClasses(project).iterator();
+		EList<Class> classes = new BasicEList<Class>(i.next()
 				.getSuperClasses());
 		while (i.hasNext()) {
-			IClass subClass = i.next();
-			for (Iterator<IClass> j = classes.iterator(); j.hasNext();) {
-				IClass c = j.next();
+			Class subClass = i.next();
+			for (Iterator<Class> j = classes.iterator(); j.hasNext();) {
+				Class c = j.next();
 				if (!subClass.getSuperClasses().contains(c)) {
 					j.remove();
 				}
@@ -376,18 +377,18 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	public void semanticApply(Project project) {
-		List<IClass> subClasses = getSubClasses(project);
-		IPackage targetPackage = getTargetPackage(project);
+		List<Class> subClasses = getSubClasses(project);
+		Package targetPackage = getTargetPackage(project);
 		String superClassName = getSuperClassName();
-		List<IClass> superSuperClasses = getSuperSuperClasses(project);
+		List<Class> superSuperClasses = getSuperSuperClasses(project);
 		
-		IClass superClass = ImplementationFactory.eINSTANCE.createIClass();
-		targetPackage.getClasses().add(superClass);
+		Class superClass = ClassesFactory.eINSTANCE.createClass();
+		targetPackage.getContainedPackageElements().add(superClass);
 		superClass.setName(superClassName);
-		superClass.setAbstract(true);
+		superClass.setInstantiationType(InstantiationType.ABSTRACT);
 		superClass.getSuperClasses().addAll(superSuperClasses);
 
-		for (IClass subClass : subClasses) {
+		for (Class subClass : subClasses) {
 			subClass.getSuperClasses().removeAll(superSuperClasses);
 			subClass.getSuperClasses().add(superClass);
 		}
