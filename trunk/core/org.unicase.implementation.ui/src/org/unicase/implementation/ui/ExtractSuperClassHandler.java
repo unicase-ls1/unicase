@@ -23,9 +23,9 @@ import org.unicase.model.classes.Class;
 import org.unicase.workspace.util.SemanticCommand;
 
 /**
- * Handler for extract to superclass operation.
+ * Handler for extract superclass operation.
+ * 
  * @author herrmi
- *
  */
 public class ExtractSuperClassHandler extends AbstractHandler {
 

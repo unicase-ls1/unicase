@@ -20,9 +20,9 @@ import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.Project;
 
 /**
- * Dialog for the execution of an operaiton.
+ * Dialog for the execution of an operation.
+ * 
  * @author herrmi
- *
  */
 public class ExecuteOperationDialog extends TitleAreaDialog {
 
@@ -92,7 +92,7 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * 
+	 * Update the constraints of the operation.
 	 */
 	void validate() {
 		Diagnostic diagnostic = OperationHelper.validate(operation, project);
