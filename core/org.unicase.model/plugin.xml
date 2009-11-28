@@ -359,13 +359,13 @@
            cache="true"
            mode="Batch">
         <package
-              namespaceUri="http://unicase.org/model/implementation">
+              namespaceUri="http://unicase.org/model/classes">
         </package>
         <constraints
               categories="org.unicase.model">
            <constraint
                  class="org.unicase.model.classes.validation.WellFormedNameConstraint"
-                 id="org.unicase.model.implementation.validation.WellFormedNameConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedNameConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Well Formed Name"
@@ -377,7 +377,7 @@
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.UniquePackageElementNameConstraint"
-                 id="org.unicase.model.implementation.validation.UniqueClassNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueClassNameConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Unique Class Name"
@@ -387,12 +387,12 @@
                  The name {0} is not unique within the parent package.
               </message>
               <target
-                    class="IClass">
+                    class="Class">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.UniqueLiteralNameConstraint"
-                 id="org.unicase.model.implementation.validation.UniqueLiteralNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueLiteralNameConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Unique Literal Name"
@@ -402,12 +402,12 @@
                  The name {0} is not unique within the parent enumeration.
               </message>
               <target
-                    class="ILiteral">
+                    class="Literal">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.MissingEnumerationConstraint"
-                 id="org.unicase.model.implementation.validation.MissingEnumerationConstraint"
+                 id="org.unicase.model.classes.validation.MissingEnumerationConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Missing Enumeration"
@@ -417,12 +417,12 @@
                  If the attribute&apos;s type is enumeration, an enumeration has to be set.
               </message>
               <target
-                    class="IAttribute">
+                    class="Attribute">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.AtMostOneIdConstraint"
-                 id="org.unicase.model.implementation.validation.AtMostOneIdConstraint"
+                 id="org.unicase.model.classes.validation.AtMostOneIdConstraint"
                  lang="Java"
                  mode="Batch"
                  name="At Most One Id"
@@ -432,12 +432,12 @@
                  A class must have at most one attribute which is id.
               </message>
               <target
-                    class="IClass">
+                    class="Class">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.NoCircularSuperClassesConstraint"
-                 id="org.unicase.model.implementation.validation.NoCircularSuperClassesConstraint"
+                 id="org.unicase.model.classes.validation.NoCircularSuperClassesConstraint"
                  lang="Java"
                  mode="Batch"
                  name="No Circular Super Classes"
@@ -447,12 +447,12 @@
                  A class may not be a super class of itself.
               </message>
               <target
-                    class="IClass">
+                    class="Class">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.ValidMinimumMultiplicityConstraint"
-                 id="org.unicase.model.implementation.validation.ValidMinimumMultiplicityConstraint"
+                 id="org.unicase.model.classes.validation.ValidMinimumMultiplicityConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Valid Minimum Multiplicity"
@@ -462,12 +462,12 @@
                  The minimum multiplicity must be greater than or equal to 0.
               </message>
               <target
-                    class="IFeature">
+                    class="Association">
               </target>
            </constraint>
            <constraint
                  class="org.unicase.model.classes.validation.ValidMaximumMultiplicityConstraint"
-                 id="org.unicase.model.implementation.validation.ValidMaximumMultiplicityConstraint"
+                 id="org.unicase.model.classes.validation.ValidMaximumMultiplicityConstraint"
                  lang="Java"
                  mode="Batch"
                  name="Valid Maximum Multiplicity"
@@ -477,7 +477,7 @@
                  The maximum multiplicity must be -1, or greater than 0.
               </message>
               <target
-                    class="IFeature">
+                    class="Association">
               </target>
            </constraint>
            <constraint
@@ -492,7 +492,7 @@
                  The minimum multiplicity must be less than or equal to the maximum multiplicity.
               </message>
               <target
-                    class="IFeature">
+                    class="Association">
               </target>
            </constraint>
           </constraints>
