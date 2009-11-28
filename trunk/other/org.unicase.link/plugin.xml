@@ -59,20 +59,4 @@
          point="org.eclipse.ui.startup">
       <startup></startup>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-      		category="org.unicase.ui.common.unicase"
-            class="org.unicase.link.preferences.UnicaseLinkPreferencePage"
-            id="org.unicase.link.preferences.UnicaseLinkPreferencePage"
-            name="Unicase URL">
-      </page>
-   </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="org.unicase.link.preferences.PreferenceInitializer">
-      </initializer>
-   </extension>
-
 </plugin>
