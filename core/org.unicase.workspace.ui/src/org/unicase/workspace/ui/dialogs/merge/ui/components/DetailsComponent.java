@@ -60,7 +60,7 @@ public class DetailsComponent extends Section {
 			}
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
-				new MultilineWidget(client, option);
+				new MultilineWidget(client, parent, option);
 			} else if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_OTHERINVOLVED)) {
 				new OtherInvolvedWidget(client, parent.getDecisionManager(),

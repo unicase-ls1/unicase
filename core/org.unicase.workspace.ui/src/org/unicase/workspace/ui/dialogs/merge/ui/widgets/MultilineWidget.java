@@ -2,8 +2,8 @@ package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
@@ -11,12 +11,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
+import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultilineWidget extends Composite {
 
-	public MultilineWidget(Composite parent, final ConflictOption option) {
+	public MultilineWidget(Composite parent, final DecisionBox decisionBox,
+			final ConflictOption option) {
 		super(parent, SWT.NONE);
 		setLayout(new TableWrapLayout());
 		setBackground(parent.getBackground());
@@ -56,14 +58,14 @@ public class MultilineWidget extends Composite {
 				DecisionConfig.EDITABLE);
 		myAttribute.setEditable(isEditable);
 		if (isEditable && option instanceof MergeTextOption) {
-			((MergeTextOption) option).setMergedText(myAttribute.getText());
-			myAttribute.addFocusListener(new FocusListener() {
-				public void focusLost(FocusEvent e) {
-					((MergeTextOption) option).setMergedText(myAttribute
-							.getText());
-				}
-
-				public void focusGained(FocusEvent e) {
+			myAttribute.addModifyListener(new ModifyListener() {
+				public void modifyText(ModifyEvent e) {
+					String newText = myAttribute.getText();
+					String oldText = ((MergeTextOption) option).getMergedText();
+					if (newText != null && !newText.equals(oldText)) {
+						((MergeTextOption) option).setMergedText(newText);
+						decisionBox.setSolution(option);
+					}
 				}
 			});
 		}
