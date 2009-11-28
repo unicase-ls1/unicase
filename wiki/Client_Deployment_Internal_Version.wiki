@@ -87,4 +87,4 @@ After successfully testing the update site , you can then check in the update si
 http://unicase.googlecode.com/svn/updatesite/internal/ for final deployment using any SVN explorer untility. 
 <br>
 
-   * *Important Note:* Once you check in the update site to the SVN repository, please don't forget to create a new tag from this at http://unicase.googlecode.com/svn/tags/updatesite/ location of the form *{{{http://unicase.googlecode.com/svn/tags/updatesite/X.X.XX.internal}}}*.
+   * *Important Note:* Once you check in the update site to the SVN repository, please don't forget to create a new tag from this at http://unicase.googlecode.com/svn/tags/updatesite/ location, of the form *{{{http://unicase.googlecode.com/svn/tags/updatesite/X.X.XX.internal}}}*.
