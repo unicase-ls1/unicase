@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
@@ -137,5 +138,20 @@ public class DecisionUtil {
 			}
 		}
 		return false;
+	}
+
+	public static String getClassAndName(ModelElement modelElement) {
+		if (modelElement == null) {
+			return "";
+		}
+		String name = getAdapterFactory().getText(modelElement);
+		return modelElement.eClass().getName() + ": " + name;
+	}
+
+	public static AdapterFactoryLabelProvider getAdapterFactory() {
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		return adapterFactoryLabelProvider;
 	}
 }

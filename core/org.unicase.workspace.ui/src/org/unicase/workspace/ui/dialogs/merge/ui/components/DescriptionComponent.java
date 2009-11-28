@@ -59,6 +59,7 @@ public class DescriptionComponent extends Composite {
 		StyledText styledDescription = new StyledText(group, SWT.WRAP
 				| SWT.MULTI | SWT.READ_ONLY);
 		styledDescription.setEditable(false);
+		styledDescription.setEnabled(false);
 		styledDescription.setText(description);
 		styledDescription.setWordWrap(true);
 		styledDescription.setStyleRanges(styleRanges
@@ -87,6 +88,7 @@ public class DescriptionComponent extends Composite {
 				String tmp = "";
 				if (obj instanceof ModelElement) {
 					tmp = labelProvider.getText(obj);
+					tmp = ((ModelElement) obj).eClass().getName() + ": " + tmp;
 				} else if (obj != null) {
 					tmp = obj.toString();
 				} else {

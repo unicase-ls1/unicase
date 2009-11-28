@@ -1,14 +1,16 @@
 package org.unicase.workspace.ui.dialogs.merge.ui.components;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
@@ -85,7 +87,7 @@ public class OptionComponent {
 				} else {
 					setColor((Composite) composite, DecisionConfig
 							.getDefaultColor(), DecisionConfig
-							.getDefaultColor());
+							.getDefaultTextColor());
 				}
 			}
 		}
@@ -111,7 +113,7 @@ public class OptionComponent {
 	private final class CompositeExtension extends Composite {
 
 		private final ConflictOption option;
-		private Label label;
+		private StyledText styledText;
 
 		private CompositeExtension(Conflict conflict, ConflictOption option) {
 			super(group, SWT.BORDER | SWT.INHERIT_FORCE);
@@ -121,29 +123,37 @@ public class OptionComponent {
 			setLayout(layout);
 			setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-			// StyledText styledText = new StyledText(this, SWT.NONE);
+			styledText = new StyledText(this, SWT.READ_ONLY);
+			styledText
+					.setCursor(new Cursor(this.getDisplay(), SWT.CURSOR_HAND));
 
-			label = new Label(this, SWT.NONE);
+			// label = new Label(this, SWT.NONE);
+			// setText();
+
+			styledText.setEditable(false);
+			styledText.setEnabled(false);
+			styledText.setBackground(getBackground());
 			setText();
-
-			// StyleRange prefixRange = new StyleRange();
-			// prefixRange.start = 0;
-			// prefixRange.length = result.length();
-			// prefixRange.fontStyle = SWT.ITALIC;
-			// styledText.setText(result);
-			// styledText.setEditable(false);
-			// styledText.setBackground(getBackground());
-			// styledText.setStyleRange(prefixRange);
 
 			OptionMouseListener listener = new OptionMouseListener(this);
 			OptionComponent.this.addMouseListener(this, listener);
 		}
 
 		private void setText() {
-			String result = generatePrefix(option);
-			result += DecisionUtil.cutString(option.getStrippedOptionLabel(),
-					DecisionConfig.OPTION_LENGTH, true);
-			label.setText(result);
+			String prefix = generatePrefix(option);
+
+			String result = DecisionUtil.cutString(option
+					.getStrippedOptionLabel(), DecisionConfig.OPTION_LENGTH,
+					true);
+			styledText.setText(prefix + " " + result);
+
+			if (prefix != null || prefix != "") {
+				StyleRange prefixRange = new StyleRange();
+				prefixRange.start = 0;
+				prefixRange.length = prefix.length();
+				prefixRange.fontStyle = SWT.ITALIC;
+				styledText.setStyleRange(prefixRange);
+			}
 		}
 
 		public ConflictOption getOption() {
@@ -156,6 +166,8 @@ public class OptionComponent {
 
 		public OptionMouseListener(CompositeExtension composite) {
 			this.composite = composite;
+			composite.setCursor(new Cursor(composite.getDisplay(),
+					SWT.CURSOR_HAND));
 		}
 
 		public void handleEvent(Event event) {
@@ -170,10 +182,10 @@ public class OptionComponent {
 						&& conflict.getSolution() == composite.getOption()) {
 					setColor(composite, DecisionConfig
 							.getOptionSelectedBackEnter(), DecisionConfig
-							.getDefaultColor());
+							.getDefaultTextColor());
 				} else {
 					setColor(composite, DecisionConfig.getOptionEnteredColor(),
-							DecisionConfig.getDefaultColor());
+							DecisionConfig.getDefaultTextColor());
 				}
 				break;
 

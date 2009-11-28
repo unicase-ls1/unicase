@@ -10,6 +10,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class CompositeConflict extends Conflict {
 
@@ -40,7 +41,7 @@ public class CompositeConflict extends Conflict {
 		}
 		ConflictDescription desc = new ConflictDescription(description);
 		desc.add("compdescription", getCompositeOperation().getDescription());
-		desc.add("opposite", getDecisionManager().getModelElementName(
+		desc.add("opposite", getDecisionManager().getModelElement(
 				getOtherOperation().getModelElementId()));
 
 		desc.setImage("composite.gif");
@@ -53,24 +54,29 @@ public class CompositeConflict extends Conflict {
 		ConflictOption myOption = null;
 		ConflictOption theirOption = null;
 		if (meCausing) {
-			myOption = new ConflictOption(getCompositeOperation()
-					.getCompositeName(), OptionType.MyOperation);
+			String compName = getCompositeOperation().getCompositeName();
+			myOption = new ConflictOption((compName == null) ? "" : compName,
+					OptionType.MyOperation);
 			myOption.addOperations(operationsA);
 
 			theirOption = new ConflictOption("Change related to "
-					+ getDecisionManager().getModelElementName(
-							getOtherOperation().getModelElementId()),
+					+ DecisionUtil.getClassAndName(getDecisionManager()
+							.getModelElement(
+									getOtherOperation().getModelElementId())),
 					OptionType.TheirOperation);
 			theirOption.addOperations(operationsB);
 		} else {
 			myOption = new ConflictOption("Change related to "
-					+ getDecisionManager().getModelElementName(
-							getOtherOperation().getModelElementId()),
+					+ DecisionUtil.getClassAndName(getDecisionManager()
+							.getModelElement(
+									getOtherOperation().getModelElementId())),
 					OptionType.MyOperation);
 			myOption.addOperations(operationsB);
 
-			theirOption = new ConflictOption(getCompositeOperation()
-					.getCompositeName(), OptionType.TheirOperation);
+			String compName = getCompositeOperation().getCompositeName();
+			theirOption = new ConflictOption(
+					(compName == null) ? "" : compName,
+					OptionType.TheirOperation);
 			theirOption.addOperations(operationsA);
 		}
 		options.add(myOption);

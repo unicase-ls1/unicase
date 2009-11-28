@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
@@ -32,13 +33,15 @@ public class AttributeConflict extends Conflict {
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		ConflictDescription conflictDescription = new ConflictDescription(
-				"You changed the [attribute] attribute of [modelelement] to [myvalue]."
+				"You have changed the [attribute] attribute of [modelelement] to [myvalue]."
 						+ " This attribute was changed to [theirvalue] on the repository."
-						+ " Please decide which value you want to keep.");
+		/* + " Please decide which value you want to keep." */);
 
 		conflictDescription.add("attribute", getMyOperation().getFeatureName());
-		conflictDescription.add("modelelement", getDecisionManager()
-				.getModelElement(getMyOperation().getModelElementId()));
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId());
+		// conflictDescription.add("type", modelElement.eClass().getName());
+		conflictDescription.add("modelelement", modelElement);
 		conflictDescription.add("myvalue", getMyOperation().getNewValue());
 		conflictDescription
 				.add("theirvalue", getTheirOperation().getNewValue());
