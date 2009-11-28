@@ -13,7 +13,7 @@
       <handler
             class="org.unicase.implementation.ui.ExtractSuperClassHandler"
             commandId="org.unicase.implementation.ui.command.ExtractSuperClass">
-         <activeWhen>
+         <enabledWhen>
             <with
                   variable="selection">
                <iterate>
@@ -25,7 +25,7 @@
                      value="+">
                </count>
             </with>
-         </activeWhen>
+         </enabledWhen>
       </handler>
    </extension>
    <extension
@@ -36,6 +36,19 @@
                commandId="org.unicase.implementation.ui.command.ExtractSuperClass"
                label="Extract Super Class"
                style="push">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.unicase.model.classes.Class">
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="+">
+                  </count>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
@@ -74,6 +87,19 @@
                commandId="org.unicase.model.codeGeneration.command.generateEcore"
                label="Generate Ecore"
                style="push">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.unicase.model.classes.Package">
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="+">
+                  </count>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
