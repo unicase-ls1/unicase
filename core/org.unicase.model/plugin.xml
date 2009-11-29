@@ -525,6 +525,81 @@
                     class="Association">
               </target>
            </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.AssociationSourceSetConstraint"
+                 id="org.unicase.model.classes.validation.AssociationSourceSetConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Association Source Set"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The association source is not set.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.AssociationTargetSetConstraint"
+                 id="org.unicase.model.classes.validation.AssociationTargetSetConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Association Target Set"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The association target is not set.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAttributeNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAttributeNameConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Attribute Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Attribute">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAssociationTargetRoleConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAssociationTargetRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Association Target Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The target role {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAssociationSourceRoleConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAssociationSourceRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Association Source Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The source role {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
           </constraints>
      </constraintProvider>
   </extension>
