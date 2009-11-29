@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.unicase.link_feature"
+      label="Link Feature"
+      version="1.0.0.qualifier"
+      provider-name="unicase.org">
+
+   <description url="http://www.example.com/description">
+      Testfeature of our link-project
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="linkFeatureSite" url="http://unicase.org/update/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.unicase.model" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="org.unicase.client" version="0.3.38.internal"/>
+      <import plugin="org.eclipse.ui" version="3.4.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.unicase.link.trigger" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.unicase.workspace.ui" version="1.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.unicase.link"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
