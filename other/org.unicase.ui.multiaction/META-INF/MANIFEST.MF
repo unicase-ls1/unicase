@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Multiaction
 Bundle-SymbolicName: org.unicase.ui.multiaction;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.ui.navigator.multiaction.Activator
+Bundle-Activator: org.unicase.ui.multiaction.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
