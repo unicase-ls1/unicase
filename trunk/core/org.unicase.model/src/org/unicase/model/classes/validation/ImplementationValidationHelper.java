@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.model.classes.Association;
+import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 
@@ -61,18 +62,37 @@ public final class ImplementationValidationHelper {
 	}
 
 	/**
-	 * Get all associations of a clazz.
+	 * Get all outgoing associations of a class.
 	 * 
 	 * @param clazz Class
-	 * @return Attributes
+	 * @return Associations
 	 */
-	public static List<Association> getAllAssociations(Class clazz) {
+	public static List<Association> getAllOutgoingAssociations(Class clazz) {
 		List<Class> classes = ImplementationValidationHelper.getAllSuperClasses(clazz);
 		classes.add(clazz);
 		List<Association> associations = new ArrayList<Association>();
 		for (Class c : classes) {
-			associations.addAll(c.getIncomingAssociations());
 			associations.addAll(c.getOutgoingAssociations());
+		}
+		return associations;
+	}
+
+	/**
+	 * Get all incoming associations of a class.
+	 * 
+	 * @param clazz Class
+	 * @return Associations
+	 */
+	public static List<Association> getAllIncomingAssociations(Class clazz) {
+		List<Class> classes = ImplementationValidationHelper.getAllSuperClasses(clazz);
+		classes.add(clazz);
+		List<Association> associations = new ArrayList<Association>();
+		for (Class c : classes) {
+			for (Association a : c.getIncomingAssociations()) {
+				if (a.getType() != AssociationType.DIRECTED_ASSOCIATION) {
+					associations.add(a);
+				}
+			}
 		}
 		return associations;
 	}

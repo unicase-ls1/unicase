@@ -96,8 +96,8 @@ public abstract class UniqueNameConstraintBase<C extends EObject> extends Abstra
 
 	private boolean isUnique(UnicaseModelElement element, List<? extends UnicaseModelElement> elements) {
 		for (UnicaseModelElement e : elements) {
-			if (element.getName().equals(e.getName())) {
-				if (e != element) {
+			if (element.getName() != null && e.getName() != null) {
+				if (e != element && element.getName().equals(e.getName())) {
 					return false;
 				}
 			}
