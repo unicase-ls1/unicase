@@ -14,28 +14,29 @@
       </command>
   
   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
   
+   <extension
+         point="org.eclipse.ui.handlers">  
             <handler
-            class="org.unicase.ui.multiaction."
+            class="org.unicase.ui.multiaction.navigator.commands.MultiactionWizardHandler"
             commandId="org.unicase.ui.navigator.multiactionItem">
      	 </handler>
      </extension>    
+     
     <extension
 	point="org.eclipse.ui.menus">
     <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">	
        <command
-	          commandId="org.unicase.ui.navigator.followupMeeting"
-	          label="Follow-up meeting..."
+	          commandId="org.unicase.ui.navigator.multiactionItem"
+	          label="Multiple Asignees..."
 	          style="push">
 	       <visibleWhen
 	             checkEnabled="false">
 	          <iterate
 	                ifEmpty="false">
 	             <instanceof
-	                   value="org.unicase.model.meeting.Meeting">
+	                   value="org.unicase.model.task.ActionItem">
 	             </instanceof>
 	          </iterate>
 	       </visibleWhen>
@@ -43,39 +44,5 @@
         
      </menuContribution>
 
-         <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
-       <dynamic
-              class="org.unicase.ui.unicasecommon.navigator.commands.DynamicContainmentCommands"
-              id="org.unicase.ui.navigator.dynamicContainmentCommands">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-        </dynamic>
-        
-        <command
-              commandId="org.unicase.ui.navigator.followupMeeting"
-              label="Follow-up meeting..."
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.meeting.Meeting">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.ui.navigator.createModelElementCommands"
-              visible="true">
-        </separator>
-     </menuContribution> 
      </extension>
 </plugin>
