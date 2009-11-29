@@ -193,8 +193,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/type"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/sourceMultiplicity"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/targetMultiplicity"/>
-        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/sourceRole"/>
-        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/targetRole"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/sourceRole"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/targetRole"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//classes/Association/transient"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Attribute">

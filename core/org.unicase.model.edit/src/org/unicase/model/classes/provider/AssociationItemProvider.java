@@ -58,6 +58,8 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 			addTypePropertyDescriptor(object);
 			addSourceMultiplicityPropertyDescriptor(object);
 			addTargetMultiplicityPropertyDescriptor(object);
+			addSourceRolePropertyDescriptor(object);
+			addTargetRolePropertyDescriptor(object);
 			addTransientPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -125,6 +127,32 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetMultiplicity_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Association_targetMultiplicity_feature",
 				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TARGET_MULTIPLICITY, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source Role feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSourceRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_sourceRole_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Association_sourceRole_feature", "_UI_Association_type"),
+			ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Role feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addTargetRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetRole_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Association_targetRole_feature", "_UI_Association_type"),
+			ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
