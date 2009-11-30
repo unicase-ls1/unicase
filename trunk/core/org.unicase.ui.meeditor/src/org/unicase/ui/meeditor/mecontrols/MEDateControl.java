@@ -36,7 +36,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl {
+public class MEDateControl extends AbstractMEControl {
 
 	private AdapterImpl adapterImpl;
 	private EAttribute attribute;
@@ -68,12 +68,13 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		dateComposite = getToolkit().createComposite(parent);
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(dateComposite);

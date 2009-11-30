@@ -25,7 +25,7 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author helming
  */
-public class METextControl extends AbstractMEControl implements MEControl {
+public class METextControl extends AbstractMEControl {
 
 	private Text text;
 
@@ -55,7 +55,7 @@ public class METextControl extends AbstractMEControl implements MEControl {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
@@ -63,6 +63,7 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 * 
 	 * @return A Text Control. {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
 		if (!itemPropertyDescriptor.canSetProperty(getModelElement())) {

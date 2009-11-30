@@ -75,12 +75,13 @@ public class MERichTextControl extends AbstractMEControl {
 				return PRIORITY;
 			}
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
