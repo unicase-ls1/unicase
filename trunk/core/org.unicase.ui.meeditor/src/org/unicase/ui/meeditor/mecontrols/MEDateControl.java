@@ -61,7 +61,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	@Override
 	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
 		EditingDomain editingDomain, FormToolkit toolkit) {
-		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
 
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Date.class)) {

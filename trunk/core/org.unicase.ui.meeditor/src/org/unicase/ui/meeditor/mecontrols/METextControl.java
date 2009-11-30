@@ -9,7 +9,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -19,6 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Standard widgets to edit a single line text attribute.
@@ -33,20 +33,29 @@ public class METextControl extends AbstractMEControl implements MEControl {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
+	private static final int PRIORITY = 1;
+
 	/**
-	 * Default Constructor.
-	 * 
-	 * @param attribute the attribute which is shown in the Text Control
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
-	 * @param itemPropertyDescriptor the property descriptor
+	 * Standard Constructor.
 	 */
-	public METextControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain,
-		IItemPropertyDescriptor itemPropertyDescriptor) {
-		super(editingDomain, modelElement, toolkit);
-		this.attribute = attribute;
-		this.itemPropertyDescriptor = itemPropertyDescriptor;
+	public METextControl() {
+		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**
