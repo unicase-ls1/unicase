@@ -1,15 +1,23 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.multiaction;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.Project;
 import org.unicase.model.document.LeafSection;
-import org.unicase.model.meeting.CompositeMeetingSection;
-import org.unicase.model.meeting.IssueMeetingSection;
-import org.unicase.model.meeting.Meeting;
-import org.unicase.model.meeting.MeetingFactory;
-import org.unicase.model.meeting.WorkItemMeetingSection;
+import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
@@ -23,26 +31,14 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * 
  * @author jfinis
- * This class generates a multi action workpackage
+ * This static class contains utility methods for creating multi-asignee-actions.
  *
  */
-public class MultiActionGenerator {
+public final class MultiActionGenerator {
 	
-	private static MultiActionGenerator theInstance;
 	private MultiActionGenerator(){}
 	
-	/**
-	 * Gets the singleton instance.
-	 * @return the singleton.
-	 */
-	public static MultiActionGenerator getInstance(){
-		if (theInstance == null){
-			theInstance = new MultiActionGenerator();
-		}
-		return theInstance;
-	}
-	
-	private void copyValues(ActionItem from, WorkItem to){
+	private static void copyValues(ActionItem from, WorkItem to){
 		if(to instanceof ActionItem){
 			ActionItem toA = (ActionItem)to;
 			toA.setActivity(from.getActivity());
@@ -56,7 +52,6 @@ public class MultiActionGenerator {
 		to.setEffort(from.getEffort());
 		to.setEstimate(from.getEstimate());
 		to.setIdentifier(from.getIdentifier());
-		to.setLeafSection(from.getLeafSection());
 		to.setName(from.getName());
 		to.setPriority(from.getPriority());
 		to.setResolved(from.isResolved());
@@ -73,33 +68,105 @@ public class MultiActionGenerator {
 		
 	}
 	
-	public WorkPackage generateMultiAction(ActionItem baseAction,EList<OrgUnit> assignees){
+	/**
+	 * private recursive method used by flattenOrgList.
+	 * Not to be used anywhere else.
+	 * @param out The resulting user set
+	 * @param visitedGroups A set containing visited groups
+	 * @param toAdd A list to be flattened recursively
+	 */
+	private static void flattenRecursive(Set<User> out, Set<Group> visitedGroups, List<OrgUnit> toAdd){
+		for(OrgUnit o: toAdd){
+			if(o instanceof User){
+				out.add((User) o);
+			} else if(o instanceof Group){
+				//Track visited groups for circular-group-looping-recursion-avoidance
+				if(!visitedGroups.contains((Group) o)){
+					visitedGroups.add((Group) o);
+					flattenRecursive(out, visitedGroups,((Group) o).getOrgUnits());
+				}
+			} 
+		}
+	}
+	
+	/**
+	 * Flattens an organization list, i.e. a list of user and/or groups.
+	 * The flattened list is returned as a user list.
+	 * Flattening means all groups are "unpacked" recursively and all users in them
+	 * are added to the result list.
+	 * The method keeps track of visited groups, so cycles between groups will not
+	 * create an endlessly looping recursion (resulting in a stack overflow).
+	 * @param in a List of OrgUnits to be flattened
+	 * @return the flattened List
+	 */
+	public static List<User> flattenOrgList(List<OrgUnit> in){
+		LinkedHashSet<User> out = new LinkedHashSet<User>();
+		HashSet<Group> visited = new HashSet<Group>();
+		flattenRecursive(out,visited,in);
+		EList<User> result = new BasicEList<User>();
+		result.addAll(out);
+		return result;
+	}
+	
+	/**
+	 * The core action that is execute when the MultiactionWizard is finished.
+	 * 
+	 * It splits an action item into many copies (one for each User in the assignee input list).
+	 * The copies are exact copies of the old action item, only the assignee is set to the one taken from the list.
+	 * In addition, a WorkPackage is created at the location of the input actionItem.
+	 * This WorkPackage also gets copied most values from the input actionItem.
+	 * All copies of actionItem are inserted into the newly created work package. 
+	 * Finally, the input actionItem is deleted.
+	 * 
+	 * All this is done in a composite operation, so the history isn't spammed with a huge amount of actions.
+	 * 
+	 * @param baseAction An action item to be assigned to many users, will be split and deleted.
+	 * @param assignees A list of assignees for this task
+	 * @return The resulting WorkPackage containing all newly created ActionItems.
+	 */
+	public static WorkPackage generateMultiAction(ActionItem baseAction,List<User> assignees){
+		//Leaf Section
+		//Project
+		//Work Package
 		final WorkPackage result = TaskFactory.eINSTANCE.createWorkPackage();
-		final WorkPackage parentPackage = (WorkPackage) baseAction.eContainer();
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(parentPackage.getProject());
-
+		final EObject parentPackage = baseAction.eContainer();
+		final Project project = baseAction.getProject();
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
+		
 		//Begin composite operation
 		CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 		
-		for(OrgUnit curAssignee: assignees){
-			//Create copied action item
-			ActionItem curAI = TaskFactory.eINSTANCE.createActionItem();
-			curAI.setAssignee(curAssignee);
-			
-			//Copy values (not good if ActionItem gets new attributes, a .clone method would be better...)
-			copyValues(baseAction,curAI);
-			
-			//Add to resulting section
-			result.getContainedWorkItems().add(curAI);
-			
+		//Add resulting work package into parent
+		if(parentPackage instanceof Project){
+			project.addModelElement(result);	
+		} else if(parentPackage instanceof LeafSection){
+			((LeafSection)parentPackage).getModelElements().add(result);
+		} else if(parentPackage instanceof WorkPackage){
+			((WorkPackage)parentPackage).getContainedWorkItems().add(result);
 		}
-		
+
 		//Set values for the resulting work package to those of the old Work Item
 		copyValues(baseAction,result);
 		
-		//Add resulting work package into parent
-		parentPackage.getContainedWorkItems().add(result);
+		for(User curAssignee: assignees){
+			//Create copied action item
+			ActionItem curAI = TaskFactory.eINSTANCE.createActionItem();
+			
+			//Add to resulting section
+			result.getContainedWorkItems().add(curAI);
 		
+			//Set assignee
+			curAI.setAssignee(curAssignee);
+		
+			//Copy values (not good if ActionItem gets new attributes, a .clone method would be better...)
+			copyValues(baseAction,curAI);
+				
+			curAI.setName(curAI.getName() + " (" + curAssignee.getName() + ")");
+		}
+		
+
+	
+				
 		//Delete old action item
 		baseAction.delete();
 		
@@ -114,90 +181,5 @@ public class MultiActionGenerator {
 		return result;
 	}
 	
-
-	private void createFollowupMeeting() {
-		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(leafSection.getProject());
-
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
-				followupMeeting.setName(namePage.getMeetingName());
-				followupMeeting.setDescription(namePage.getMeetingDescription());
-				leafSection.getModelElements().add(followupMeeting);
-				addMeetingSections(followupMeeting);
-				addMeetingSubSections(followupMeeting);
-				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
-				addMeetingStatusItems(followupMeeting, statusItems);
-				try {
-					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
-						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", followupMeeting
-						.getModelElementId());
-				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException("Composite Operation failed!", e);
-				}
-			}
-		}.run();
-
-		UnicaseActionHelper.openModelElement(followupMeeting, this.getClass().getName());
-	}
-
-	private void addMeetingStatusItems(Meeting meeting, List<WorkItem> statusItems) {
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
-		WorkItemMeetingSection workItemMeetingSection = (WorkItemMeetingSection) informationExchangeSection
-			.getSubsections().get(0);
-		for (WorkItem workItem : statusItems) {
-			workItemMeetingSection.getIncludedWorkItems().add(workItem);
-		}
-	}
-
-	private void addMeetingSections(Meeting meeting) {
-		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE.createIssueMeetingSection();
-
-		// set attributes
-		objectiveSection.setName("Objective");
-		informationExchangeSection.setName("Information sharing");
-		wrapUpSection.setName("Wrap up");
-		discussionSection.setName("Discussion");
-
-		informationExchangeSection.setAllocatedTime(30);
-		discussionSection.setAllocatedTime(50);
-		wrapUpSection.setAllocatedTime(10);
-
-		// set links
-		meeting.getSections().add(objectiveSection);
-		meeting.getSections().add(informationExchangeSection);
-		meeting.getSections().add(discussionSection);
-		meeting.getSections().add(wrapUpSection);
-
-		meeting.setIdentifiedIssuesSection(discussionSection);
-	}
-
-	private void addMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
-		WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
-
-		workItemsSection.setName("Action items");
-		newWorkItemsSection.setName("New action items");
-		miscSection.setName("Misc");
-		meetingCritiqueSection.setName("Meeting critique");
-
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting.getSections().get(3);
-
-		// set links
-		informationExchangeSection.getSubsections().add(workItemsSection);
-		informationExchangeSection.getSubsections().add(miscSection);
-		wrapUpSection.getSubsections().add(newWorkItemsSection);
-		wrapUpSection.getSubsections().add(meetingCritiqueSection);
-
-		meeting.setIdentifiedWorkItemsSection(newWorkItemsSection);
-	}
 
 }

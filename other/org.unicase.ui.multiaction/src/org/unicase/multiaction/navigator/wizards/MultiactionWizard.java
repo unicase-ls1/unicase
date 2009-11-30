@@ -5,13 +5,10 @@
  */
 package org.unicase.multiaction.navigator.wizards;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.multiaction.MultiActionGenerator;
@@ -19,15 +16,22 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * @author naughton Wizard for creating a follow-up meeting.
+ * @author jfinis Wizard for assigning an action item to a group of users.
  */
 public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 
 	private ActionItem selectedActionItem;
-	private EList<OrgUnit> assignees;
 	private boolean canFinish;
-	private ChooseAsigneePage assigneePage;
+	private ChooseAssigneePage assigneePage;
 
+	/**
+	 * Returns the action item that was selected to be assigned to a group.
+	 * @return the action item to be assigned to a group
+	 */
+	public ActionItem getSelectedActionItem() {
+		return selectedActionItem;
+	}
+	
 	/**
 	 * Sets if the wizard can be finished.
 	 * 
@@ -44,7 +48,7 @@ public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public void addPages() {
-		assigneePage = new ChooseAsigneePage("chooseAssignees");
+		assigneePage = new ChooseAssigneePage("chooseAssignees",this);
 		addPage(assigneePage);
 	}
 
@@ -73,21 +77,21 @@ public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 			}
 		} else {
 			throw new IllegalArgumentException("Nothing selected!");
-		}
-		assignees = new BasicEList<OrgUnit>();
+		}		
 	}
 
 	/**
-	 * . ({@inheritDoc})
+	 * Upon finishing, the old action item is split into many action items and a containing work package
+	 * and the work package is opened in the MEEditor. ({@inheritDoc})
 	 */
 	@Override
 	public boolean performFinish() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				WorkPackage wp = MultiActionGenerator.getInstance().generateMultiAction(selectedActionItem, assignees);
+				WorkPackage wp = MultiActionGenerator.generateMultiAction(selectedActionItem, assigneePage.getSelected());
 				UnicaseActionHelper.openModelElement(wp, this.getClass().getName());
-
+				
 			}
 		}.run();		
 		
