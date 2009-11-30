@@ -5,9 +5,9 @@
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -21,15 +21,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
+import org.unicase.ui.meeditor.mecontrols.METextControl;
 
 /**
  * @author hamid Control for an email attribute. Includes a button to send an email.
  */
 public class MEEmailControl extends AbstractMEControl {
-	private METextAreaControl meAreaControl;
+	private METextControl meAreaControl;
 
 	/**
 	 * Default constructor.
@@ -39,14 +40,24 @@ public class MEEmailControl extends AbstractMEControl {
 	 * @param modelElement The user
 	 * @param editingDomain the edititng domain
 	 */
-	public MEEmailControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
-		meAreaControl = new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		EStructuralFeature structuralFeature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+		if (structuralFeature.getName().equalsIgnoreCase("email")) {
+			meAreaControl = new METextControl();
+			meAreaControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+			return 2;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(2, false);
