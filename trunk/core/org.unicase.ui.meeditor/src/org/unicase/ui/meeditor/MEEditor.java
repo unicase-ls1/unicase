@@ -13,7 +13,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -25,6 +24,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -56,13 +56,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					updateIcon(input);
-					if (msg.getFeature() instanceof EAttribute
-						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
-						// setPartName(modelElement.getShortName());
-						if (mePage != null) {
-							mePage.updateSectionTitle();
-						}
+					setPartName((new ShortLabelProvider()).getText(modelElement));
+					if (mePage != null) {
+						mePage.updateSectionTitle();
 					}
+
 				}
 			});
 
