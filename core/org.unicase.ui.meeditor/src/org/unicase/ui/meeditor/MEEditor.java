@@ -3,18 +3,18 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor;
+package org.unicase.ui.meeditor;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
@@ -24,9 +24,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -59,7 +58,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					updateIcon(input);
 					if (msg.getFeature() instanceof EAttribute
 						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
-						setPartName(modelElement.getShortName());
+						// setPartName(modelElement.getShortName());
 						if (mePage != null) {
 							mePage.updateSectionTitle();
 						}
@@ -79,12 +78,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 
-	private UnicaseModelElement modelElement;
+	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
-	private METhreadPage commentsPage;
-	private MEDescriptionPage descriptionPage;
 
 	private ModelElementChangeListener eAdapter;
 
@@ -110,30 +107,29 @@ public class MEEditor extends SharedHeaderFormEditor {
 		} else {
 			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
 		}
-		commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
-		descriptionPage = new MEDescriptionPage(this, "Description", "Description", editingDomain, modelElement);
+
 		try {
 			addPage(mePage);
-			addPage(descriptionPage);
-			addPage(commentsPage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}
-
-	/**
-	 * Shows the history page for the opened model element.
-	 */
-	public void showHistoryPage() {
-		MEHistoryPage historyPage = new MEHistoryPage(this, "History", "History", modelElement);
-		try {
-			addPage(historyPage);
-			setActivePage("History");
-		} catch (PartInitException e) {
-			WorkspaceUtil.log("Error while opening the history tab", e, IStatus.WARNING);
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.pages");
+		for (IConfigurationElement e : config) {
+			try {
+				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
+				newPage.init(this, editingDomain, modelElement);
+				addPage(newPage);
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
+			}
 		}
+		// commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
+		// descriptionPage = new MEDescriptionPage(this, "Description", "Description", editingDomain, modelElement);
+		// addPage(descriptionPage);
+		// addPage(commentsPage);
+
 	}
 
 	/**
@@ -171,7 +167,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setInput(input);
 			final MEEditorInput meInput = (MEEditorInput) input;
 			modelElement = meInput.getModelElement();
-			setPartName(modelElement.getShortName());
+			// setPartName(modelElement.getShortName());
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
@@ -214,10 +210,12 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * Initializes the editing domain for this model element.
 	 */
 	protected void initializeEditingDomain() {
-		this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		adapterFactory.addAdapterFactory(new ModelItemProviderAdapterFactory());
-		this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+		// TODO: Check if obsolete:
+		// this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		// adapterFactory.addAdapterFactory(new ModelItemProviderAdapterFactory());
+		// this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		// this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// command stack that will notify this editor as commands are executed
 		this.editingDomain = Configuration.getEditingDomain();
@@ -287,4 +285,5 @@ public class MEEditor extends SharedHeaderFormEditor {
 			mePage.getManagedForm().getForm().setImage(titleImage);
 		}
 	}
+
 }

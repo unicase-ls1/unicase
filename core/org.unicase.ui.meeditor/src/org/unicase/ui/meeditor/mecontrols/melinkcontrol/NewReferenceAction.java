@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -78,10 +76,10 @@ public class NewReferenceAction extends Action {
 					newClass = (EClass) result;
 				}
 			}
-			final UnicaseModelElement newMEInstance;
+			final ModelElement newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newClass);
+			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
 			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {
@@ -128,10 +126,10 @@ public class NewReferenceAction extends Action {
 		}
 
 		/**
-		 * @param newMEInstance {@link UnicaseModelElement} the new modelElement instance.
+		 * @param newMEInstance {@link ModelElement} the new modelElement instance.
 		 * @return EReference the Container
 		 */
-		private EReference getParentReference(final UnicaseModelElement newMEInstance) {
+		private EReference getParentReference(final ModelElement newMEInstance) {
 			// the value of the 'EAll Containments' reference list.
 			List<EReference> eallcontainments = modelElement.eContainer().eClass().getEAllContainments();
 			EReference reference = null;
@@ -152,7 +150,7 @@ public class NewReferenceAction extends Action {
 	}
 
 	private EReference eReference;
-	private UnicaseModelElement modelElement;
+	private ModelElement modelElement;
 
 	/**
 	 * Default constructor.
@@ -161,8 +159,7 @@ public class NewReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public NewReferenceAction(UnicaseModelElement modelElement, EReference eReference,
-		IItemPropertyDescriptor descriptor) {
+	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

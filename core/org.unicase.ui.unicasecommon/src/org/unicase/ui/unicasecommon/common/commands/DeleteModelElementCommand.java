@@ -19,7 +19,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.unicasecommon.meeditor.MEEditorInput;
+import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 

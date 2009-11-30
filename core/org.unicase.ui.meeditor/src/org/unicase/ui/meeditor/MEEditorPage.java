@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor;
+package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -41,14 +40,11 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.RationalePackage;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.METextControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.METextControl;
 
 /**
  * The editor page for the {@link MEEditor}.
@@ -60,7 +56,7 @@ import org.unicase.ui.unicasecommon.meeditor.mecontrols.uccontrol.UseCaseStepsCo
 public class MEEditorPage extends FormPage {
 
 	private EditingDomain editingDomain;
-	private UnicaseModelElement modelElement;
+	private ModelElement modelElement;
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
 
@@ -68,9 +64,10 @@ public class MEEditorPage extends FormPage {
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> leftColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private List<IItemPropertyDescriptor> rightColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
+	private List<IItemPropertyDescriptor> bottomAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private Composite leftColumnComposite;
 	private Composite rightColumnComposite;
-	private Composite bottom;
+	private Composite bottomComposite;
 	private EStructuralFeature problemFeature;
 
 	/**
@@ -82,8 +79,7 @@ public class MEEditorPage extends FormPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain,
-		UnicaseModelElement modelElement) {
+	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -99,7 +95,7 @@ public class MEEditorPage extends FormPage {
 	 * @param modelElement the modelElement
 	 */
 	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain,
-		UnicaseModelElement modelElement) {
+		ModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -116,7 +112,7 @@ public class MEEditorPage extends FormPage {
 	 *@param problemFeature the problemFeature
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, TransactionalEditingDomain editingDomain,
-		UnicaseModelElement modelElement, EStructuralFeature problemFeature) {
+		ModelElement modelElement, EStructuralFeature problemFeature) {
 		this(editor, id, title, editingDomain, modelElement);
 		this.problemFeature = problemFeature;
 	}
@@ -155,11 +151,12 @@ public class MEEditorPage extends FormPage {
 		int[] topWeights = { 50, 50 };
 		topSash.setWeights(topWeights);
 
-		bottom = toolkit.createComposite(globalSash);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 5, 5).applyTo(bottom);
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottom);
+		bottomComposite = toolkit.createComposite(globalSash);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 5, 5).applyTo(
+			bottomComposite);
+		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottomComposite);
 
-		updateSectionTitle();
+		// updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
 
@@ -168,8 +165,9 @@ public class MEEditorPage extends FormPage {
 		// Create attributes
 		createAttributes(leftColumnComposite, leftColumnAttributes);
 		createAttributes(rightColumnComposite, rightColumnAttributes);
+		createAttributes(bottomComposite, bottomAttributes);
 		// Create special ME Control
-		createSpecificMEControls();
+		// createSpecificMEControls();
 		createToolbar();
 		form.pack();
 	}
@@ -229,6 +227,8 @@ public class MEEditorPage extends FormPage {
 					leftColumnAttributes.add(itemPropertyDescriptor);
 				} else if (value.equals("right")) {
 					rightColumnAttributes.add(itemPropertyDescriptor);
+				} else if (value.equals("bottom")) {
+					bottomAttributes.add(itemPropertyDescriptor);
 				}
 			}
 
@@ -246,16 +246,10 @@ public class MEEditorPage extends FormPage {
 			};
 			Collections.sort(leftColumnAttributes, comparator);
 			Collections.sort(rightColumnAttributes, comparator);
+			Collections.sort(bottomAttributes, comparator);
 
 		}
 
-	}
-
-	private boolean isCommentFeature(Object feature) {
-		if (feature instanceof EReference) {
-			return ((EReference) feature).getEType().equals(RationalePackage.eINSTANCE.getComment());
-		}
-		return false;
 	}
 
 	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
@@ -273,8 +267,7 @@ public class MEEditorPage extends FormPage {
 			}
 			meControls.add(meControl);
 			Control control;
-			if (!itemPropertyDescriptor.isMany(modelElement)
-				|| isCommentFeature(itemPropertyDescriptor.getFeature(modelElement))) {
+			if (!itemPropertyDescriptor.isMany(modelElement)) {
 				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
 					.getDisplayName(modelElement));
 				label.setData(modelElement);
@@ -287,13 +280,9 @@ public class MEEditorPage extends FormPage {
 					((AbstractMEControl) meControl).applyCustomLayoutData();
 				}
 			} else {
-				if (meControl instanceof UseCaseStepsControl) {
-					control = meControl.createControl(bottom, SWT.WRAP);
-				} else {
-					control = meControl.createControl(attributeComposite, SWT.WRAP);
-					control.setData(modelElement);
-					FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
-				}
+				control = meControl.createControl(attributeComposite, SWT.WRAP);
+				control.setData(modelElement);
+				FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
 				GridDataFactory.fillDefaults().span(2, 1).grab(true, false).align(SWT.FILL, SWT.BEGINNING)
 					.indent(10, 0).applyTo(control);
 			}
@@ -341,7 +330,7 @@ public class MEEditorPage extends FormPage {
 			if (meControl != null) {
 				meControls.add(meControl);
 				Control control;
-				control = meControl.createControl(bottom, SWT.WRAP);
+				control = meControl.createControl(bottomComposite, SWT.WRAP);
 				// control.setLayoutData(new
 				// TableWrapData(TableWrapData.FILL_GRAB));
 				GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).indent(10, 0)

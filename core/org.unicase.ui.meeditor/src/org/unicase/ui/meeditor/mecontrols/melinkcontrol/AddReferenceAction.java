@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,9 +27,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MESuggestedSelectionDialog;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -55,8 +54,8 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			Collection<UnicaseModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
-				new BasicEList<UnicaseModelElement>());
+			Collection<ModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
+				new BasicEList<ModelElement>());
 			allElements.remove(modelElement);
 			Object object = modelElement.eGet(eReference);
 
@@ -81,9 +80,9 @@ public class AddReferenceAction extends Action {
 
 			// take care of circular references
 			if (eReference.isContainment()) {
-				Iterator<UnicaseModelElement> iter = allElements.iterator();
+				Iterator<ModelElement> iter = allElements.iterator();
 				while (iter.hasNext()) {
-					UnicaseModelElement me = iter.next();
+					ModelElement me = iter.next();
 					if (EcoreUtil.isAncestor(me, modelElement)) {
 						iter.remove();
 					}
@@ -103,7 +102,7 @@ public class AddReferenceAction extends Action {
 					List<EObject> list = new ArrayList<EObject>();
 					for (Object result : results) {
 						if (result instanceof EObject) {
-							list.add((UnicaseModelElement) result);
+							list.add((ModelElement) result);
 							progressDialog.getProgressMonitor().worked(10);
 						}
 					}
@@ -123,7 +122,7 @@ public class AddReferenceAction extends Action {
 	}
 
 	private EReference eReference;
-	private UnicaseModelElement modelElement;
+	private ModelElement modelElement;
 
 	/**
 	 * Default constructor.
@@ -132,8 +131,7 @@ public class AddReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public AddReferenceAction(UnicaseModelElement modelElement, EReference eReference,
-		IItemPropertyDescriptor descriptor) {
+	public AddReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

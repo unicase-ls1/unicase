@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * This class is responsible for displaying the file size of the FileAttachment file size attribute value.

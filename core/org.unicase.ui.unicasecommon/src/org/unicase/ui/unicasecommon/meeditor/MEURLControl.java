@@ -38,7 +38,7 @@ import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;

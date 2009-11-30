@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -21,8 +21,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -89,10 +89,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction((UnicaseModelElement) getModelElement(),
-			eReference, itemPropertyDescriptor);
-		final NewReferenceAction newAction = new NewReferenceAction((UnicaseModelElement) getModelElement(),
-			eReference, itemPropertyDescriptor);
+		final AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
+			itemPropertyDescriptor);
+		final NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
+			itemPropertyDescriptor);
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(addAction.getImageDescriptor().createImage());
@@ -127,7 +127,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 			@Override
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
-				UnicaseModelElement me = (UnicaseModelElement) getModelElement();
+				ModelElement me = (ModelElement) getModelElement();
 				if (opposite != null) {
 					meControl = new MELinkControl(getEditingDomain(), opposite, getToolkit(), me, eReference);
 					meControl.createControl(linkArea, style);

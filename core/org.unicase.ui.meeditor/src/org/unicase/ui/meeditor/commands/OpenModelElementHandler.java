@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.commands;
+package org.unicase.ui.meeditor.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.unicasecommon.meeditor.MEEditorInput;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
  * @author Hodaie This handler handles openModelEelement command. This handler is to be executed indirectly using
@@ -39,7 +39,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 		// This variable is already set, in the method which calls to execute
 		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
-		UnicaseModelElement me = (UnicaseModelElement) o;
+		ModelElement me = (ModelElement) o;
 
 		EStructuralFeature problemFeature;
 
