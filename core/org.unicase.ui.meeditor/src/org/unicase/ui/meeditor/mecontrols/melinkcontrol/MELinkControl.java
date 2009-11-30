@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -49,7 +50,7 @@ public class MELinkControl extends AbstractMEControl {
 
 	private Composite linkComposite;
 	private EObject contextModelElement;
-	private EReference reference;
+	private EReference eReference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
 	private ModelElementChangeListener observer;
@@ -57,25 +58,36 @@ public class MELinkControl extends AbstractMEControl {
 	private ImageHyperlink imageHyperlink;
 	private ImageHyperlink urlHyperlink;
 
+	private static final int PRIORITY = 1;
+
 	/**
-	 * Default constructor.
-	 * 
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
-	 * @param contextModelElement the context model element
-	 * @param reference the reference link
+	 * Standard Constructor.
 	 */
-	public MELinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
-		EObject contextModelElement, EReference reference) {
-		super(editingDomain, modelElement, toolkit);
-		this.contextModelElement = contextModelElement;
-		this.reference = reference;
+	public MELinkControl() {
+		super();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+			this.eReference = (EReference) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3 + getNumberOfAdditionalControlComponents(), false));
@@ -127,7 +139,7 @@ public class MELinkControl extends AbstractMEControl {
 		hyperlink = getToolkit().createHyperlink(linkComposite, (shortLabelProvider.getText(getModelElement())), style);
 		hyperlink.setToolTipText(shortLabelProvider.getText(getModelElement()));
 		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
-			(ModelElement) contextModelElement, reference.getName());
+			(ModelElement) contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 
@@ -135,14 +147,14 @@ public class MELinkControl extends AbstractMEControl {
 
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
-		if (reference.isContainment() && (getModelElement() instanceof NonDomainElement)) {
+		if (eReference.isContainment() && (getModelElement() instanceof NonDomainElement)) {
 			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
 		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
 		}
 		deleteLink.setImage(deleteImage);
 
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, getModelElement()));
 		return linkComposite;
 	}
 
