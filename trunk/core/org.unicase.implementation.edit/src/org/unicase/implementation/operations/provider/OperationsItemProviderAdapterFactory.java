@@ -142,6 +142,29 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PushDownAttributeOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PushDownAttributeOperationItemProvider pushDownAttributeOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.PushDownAttributeOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPushDownAttributeOperationAdapter() {
+		if (pushDownAttributeOperationItemProvider == null) {
+			pushDownAttributeOperationItemProvider = new PushDownAttributeOperationItemProvider(this);
+		}
+
+		return pushDownAttributeOperationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,6 +266,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 		if (extractSuperClassOperationItemProvider != null) extractSuperClassOperationItemProvider.dispose();
 		if (inlineClassOperationItemProvider != null) inlineClassOperationItemProvider.dispose();
 		if (partitionAssociationOperationItemProvider != null) partitionAssociationOperationItemProvider.dispose();
+		if (pushDownAttributeOperationItemProvider != null) pushDownAttributeOperationItemProvider.dispose();
 	}
 
 }

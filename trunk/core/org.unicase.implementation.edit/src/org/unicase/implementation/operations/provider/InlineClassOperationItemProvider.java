@@ -174,6 +174,11 @@ public class InlineClassOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPushDownAttributeOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
 	}

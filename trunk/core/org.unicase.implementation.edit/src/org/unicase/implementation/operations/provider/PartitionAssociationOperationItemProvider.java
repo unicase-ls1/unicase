@@ -174,6 +174,11 @@ public class PartitionAssociationOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPushDownAttributeOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(OperationsPackage.Literals.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
 	}

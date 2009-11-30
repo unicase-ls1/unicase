@@ -7,6 +7,14 @@
             id="org.unicase.implementation.ui.command.ExtractSuperClass"
             name="Extract Super Class">
       </command>
+      <command
+            id="org.unicase.implementation.ui.command.InlineClass"
+            name="Inline Class">
+      </command>
+      <command
+            id="org.unicase.implementation.ui.command.PartitionAssociatin"
+            name="Partition Association">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -23,6 +31,40 @@
                </iterate>
                <count
                      value="+">
+               </count>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.InlineClassHandler"
+            commandId="org.unicase.implementation.ui.command.InlineClass">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <adapt
+                        type="org.unicase.model.classes.Association">
+                  </adapt>
+               </iterate>
+               <count
+                     value="1">
+               </count>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.PartitionAssociationHandler"
+            commandId="org.unicase.implementation.ui.command.PartitionAssociatin">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <adapt
+                        type="org.unicase.model.classes.Association">
+                  </adapt>
+               </iterate>
+               <count
+                     value="1">
                </count>
             </with>
          </enabledWhen>
@@ -46,6 +88,42 @@
                   </iterate>
                   <count
                         value="+">
+                  </count>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.implementation.ui.command.InlineClass"
+               label="Inline Class"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.unicase.model.classes.Association">
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.implementation.ui.command.PartitionAssociatin"
+               label="Partition Association"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.unicase.model.classes.Association">
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="1">
                   </count>
                </with>
             </visibleWhen>
