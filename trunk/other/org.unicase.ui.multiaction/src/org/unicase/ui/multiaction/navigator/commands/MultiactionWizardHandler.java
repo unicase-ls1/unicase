@@ -16,12 +16,12 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.multiaction.navigator.wizards.MultiactionWizard;
 
 /**
- * @author naughton This is the handler for "Follow-up Meeting" context menu command. The command is only shown on
- *         Meetings. The handler initializes and shows the FollowupMeetingWizard
+ * @author jfinis This is the handler for the "Assign to group" context menu command. The command is only shown on
+ *         ActionItems. The handler initializes and shows the MultiActionWizard.
  */
 public class MultiactionWizardHandler extends AbstractHandler implements IHandler {
 
-	private static final String WIZARD_TITLE = "Create Multi Asignee Action Item";
+	private static final String WIZARD_TITLE = "Assign ActionItem to Group";
 
 	/***
 	 * . ({@inheritDoc})

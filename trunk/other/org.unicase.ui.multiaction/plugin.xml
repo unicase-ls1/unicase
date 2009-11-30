@@ -27,9 +27,14 @@
 	point="org.eclipse.ui.menus">
     <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">	
+        <separator
+              name="org.unicase.ui.common.commands.annotateActionItemSeperator"
+              visible="true">
+      	 </separator>
        <command
 	          commandId="org.unicase.ui.navigator.multiactionItem"
-	          label="Multiple Asignees..."
+	          label="Assign to group..."
+	          icon="icons/team.png"
 	          style="push">
 	       <visibleWhen
 	             checkEnabled="false">
