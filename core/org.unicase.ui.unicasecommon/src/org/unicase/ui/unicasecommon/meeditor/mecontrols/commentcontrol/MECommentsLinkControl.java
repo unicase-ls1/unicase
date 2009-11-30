@@ -8,10 +8,11 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -33,9 +34,9 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -44,7 +45,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class MECommentsLinkControl extends AbstractMEControl implements MEControl {
+public class MECommentsLinkControl extends AbstractMEControl {
 
 	private ProjectChangeObserver observerImpl;
 	private EReference reference;
@@ -63,10 +64,21 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 	 * @param modelElement see {@link AbstractMEControl}
 	 * @param editingDomain see {@link AbstractMEControl}
 	 */
-	public MECommentsLinkControl(EReference reference, FormToolkit toolkit, EObject modelElement,
-		EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
-		this.reference = reference;
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+		if (!(feature instanceof EReference)) {
+			return AbstractMEControl.DO_NOT_RENDER;
+		}
+		this.reference = (EReference) feature;
+
+		if (!reference.getEReferenceType().equals(RationalePackage.eINSTANCE.getComment())) {
+			return AbstractMEControl.DO_NOT_RENDER;
+		}
+
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
@@ -98,11 +110,14 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 			project = WorkspaceManager.getProjectSpace(me).getProject();
 			project.addProjectChangeObserver(observerImpl);
 		}
+
+		return 2;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		commentComposite = getToolkit().createComposite(parent);
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(commentComposite);

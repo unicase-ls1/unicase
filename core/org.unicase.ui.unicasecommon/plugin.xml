@@ -889,4 +889,13 @@
           type="java.lang.String">
     </widget>
  </extension>
+ <extension
+       point="org.unicase.ui.meeditor.referencecontrols">
+    <widget
+          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol.MECommentsLinkControl"
+          name="org.unicase.ui.unicasecommon.commentlinkcontrol"
+          showLabel="true"
+          type="org.unicase.model.rationale.Comment">
+    </widget>
+ </extension>
 </plugin>
