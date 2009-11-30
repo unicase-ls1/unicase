@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
@@ -32,7 +31,7 @@ public abstract class AbstractMEControl {
 	/**
 	 * the modelElement.
 	 */
-	private EObject modelElement;
+	private ModelElement modelElement;
 	/**
 	 * the editingDomain.
 	 */
@@ -55,14 +54,14 @@ public abstract class AbstractMEControl {
 	/**
 	 * @return the modelElement
 	 */
-	public EObject getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
 	/**
 	 * @param modelElement the modelElement to set
 	 */
-	public void setModelElement(EObject modelElement) {
+	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 
