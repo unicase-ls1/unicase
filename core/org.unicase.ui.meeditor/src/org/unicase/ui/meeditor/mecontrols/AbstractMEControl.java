@@ -8,6 +8,8 @@ package org.unicase.ui.meeditor.mecontrols;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 
@@ -16,7 +18,12 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author helming
  */
-public abstract class AbstractMEControl implements MEControl {
+public abstract class AbstractMEControl {
+
+	/**
+	 * The default constant in case the widgets decides it shouldn't render the attribute.
+	 */
+	public static final int DO_NOT_RENDER = Integer.MIN_VALUE;
 
 	/**
 	 * gui toolkit used for rendering.
@@ -88,7 +95,7 @@ public abstract class AbstractMEControl implements MEControl {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
-		return MEControl.DO_NOT_RENDER;
+		return DO_NOT_RENDER;
 	}
 
 	/**
@@ -104,5 +111,14 @@ public abstract class AbstractMEControl implements MEControl {
 	public void applyCustomLayoutData() {
 		// by default none. must me implemented by the subclass.
 	}
+
+	/**
+	 * Creates the widget for this control.
+	 * 
+	 * @param attributeComposite the parent composite
+	 * @param style the style
+	 * @return the widget
+	 */
+	public abstract Control createControl(Composite attributeComposite, int style);
 
 }

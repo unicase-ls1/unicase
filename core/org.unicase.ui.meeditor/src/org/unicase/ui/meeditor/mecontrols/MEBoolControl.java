@@ -24,7 +24,7 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author helming
  */
-public class MEBoolControl extends AbstractMEControl implements MEControl {
+public class MEBoolControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
@@ -52,7 +52,7 @@ public class MEBoolControl extends AbstractMEControl implements MEControl {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
@@ -60,6 +60,7 @@ public class MEBoolControl extends AbstractMEControl implements MEControl {
 	 * 
 	 * @return Control
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		check = getToolkit().createButton(parent, "", SWT.CHECK);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);

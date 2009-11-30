@@ -23,7 +23,7 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author helming
  */
-public class MEIntControl extends AbstractMEControl implements MEControl {
+public class MEIntControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
@@ -51,7 +51,7 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
@@ -59,6 +59,7 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 	 * 
 	 * @return A spinner for the int value.
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		spinner = new Spinner(parent, style);
 		spinner.setMinimum(-1000);

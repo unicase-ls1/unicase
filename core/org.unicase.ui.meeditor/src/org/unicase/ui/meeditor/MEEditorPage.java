@@ -44,7 +44,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 
 /**
@@ -59,7 +58,7 @@ public class MEEditorPage extends FormPage {
 	private EditingDomain editingDomain;
 	private ModelElement modelElement;
 	private FormToolkit toolkit;
-	private List<MEControl> meControls = new ArrayList<MEControl>();
+	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
 
 	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
@@ -263,7 +262,7 @@ public class MEEditorPage extends FormPage {
 		ControlFactory controlFactory = new ControlFactory(editingDomain, modelElement, this.getEditor().getToolkit());
 
 		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
-			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
+			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
 			if (meControl == null) {
 				continue;
 			}
@@ -279,7 +278,7 @@ public class MEEditorPage extends FormPage {
 				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 					control);
 				if (meControl instanceof AbstractMEControl) {
-					((AbstractMEControl) meControl).applyCustomLayoutData();
+					(meControl).applyCustomLayoutData();
 				}
 			} else {
 				control = meControl.createControl(attributeComposite, SWT.WRAP);
@@ -303,7 +302,7 @@ public class MEEditorPage extends FormPage {
 	 */
 	@Override
 	public void dispose() {
-		for (MEControl control : meControls) {
+		for (AbstractMEControl control : meControls) {
 			control.dispose();
 		}
 		super.dispose();
@@ -317,7 +316,7 @@ public class MEEditorPage extends FormPage {
 	public void setFocus() {
 		super.setFocus();
 		// set keyboard focus on the first Text control
-		for (MEControl meControl : this.meControls) {
+		for (AbstractMEControl meControl : this.meControls) {
 			if (meControl instanceof METextControl) {
 				((METextControl) meControl).setFocus();
 				break;
@@ -327,8 +326,8 @@ public class MEEditorPage extends FormPage {
 
 	private void createSpecificMEControls() {
 		if (this.modelElement instanceof Issue) {
-			MEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl((Issue) this.modelElement,
-				toolkit, editingDomain);
+			AbstractMEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl(
+				(Issue) this.modelElement, toolkit, editingDomain);
 			if (meControl != null) {
 				meControls.add(meControl);
 				Control control;

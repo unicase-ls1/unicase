@@ -8,10 +8,7 @@ package org.unicase.ui.meeditor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -108,18 +105,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			addPage(mePage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
-			e.printStackTrace();
-		}
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.pages");
-		for (IConfigurationElement e : config) {
-			try {
-				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
-				newPage.init(this, editingDomain, modelElement);
-				addPage(newPage);
-			} catch (CoreException e1) {
-				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
-			}
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 		// commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
 		// descriptionPage = new MEDescriptionPage(this, "Description", "Description", editingDomain, modelElement);
