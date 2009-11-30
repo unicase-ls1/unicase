@@ -259,8 +259,7 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected UnicaseModelElementImpl() {
 		super();
 		changeListeners = new ArrayList<ModelElementChangeListener>();
-		// TODO AS activate this when the models on the server are fixed.
-		// name = "new " + eClass().getName();
+		name = "new " + eClass().getName();
 	}
 
 	// end of custom code

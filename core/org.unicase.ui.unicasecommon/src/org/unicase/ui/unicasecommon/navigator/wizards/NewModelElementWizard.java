@@ -73,7 +73,6 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
-			newMEInstance.setName("new " + newMEType.getName());
 
 			if (newMEInstance instanceof MEDiagram) {
 				((MEDiagram) newMEInstance).setType(this.newDiagramType);

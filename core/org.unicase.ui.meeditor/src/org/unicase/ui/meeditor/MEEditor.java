@@ -13,7 +13,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
@@ -77,7 +76,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public static final String ID = "org.unicase.ui.meeditor";
 
 	private ModelElement modelElement;
-	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
 
@@ -165,7 +163,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setInput(input);
 			final MEEditorInput meInput = (MEEditorInput) input;
 			modelElement = meInput.getModelElement();
-			// setPartName(modelElement.getShortName());
+			setPartName((new ShortLabelProvider()).getText(modelElement));
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
@@ -209,38 +207,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	protected void initializeEditingDomain() {
 
-		// TODO: Check if obsolete:
-		// this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		// adapterFactory.addAdapterFactory(new ModelItemProviderAdapterFactory());
-		// this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		// this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-		// command stack that will notify this editor as commands are executed
 		this.editingDomain = Configuration.getEditingDomain();
-
-		// this.commandStack = editingDomain.getCommandStack();
-		// // Add a listener to set the editor dirty of commands have been executed
-		// editingDomain.getCommandStack().execute(
-		// new RecordingCommand(editingDomain) {
-		//
-		// @Override
-		// protected void doExecute() {
-		// editingDomain.getCommandStack()
-		// .addCommandStackListener(
-		// new CommandStackListener() {
-		//
-		// public void commandStackChanged(
-		// EventObject event) {
-		// //JH: Fix Hack
-		// if (!checkingDirty) {
-		// editorDirtyStateChanged();
-		// }
-		// }
-		// });
-		//
-		// }
-		//
-		// });
 
 	}
 
