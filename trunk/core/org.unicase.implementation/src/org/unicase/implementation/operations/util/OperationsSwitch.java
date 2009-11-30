@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.IdentifiableElement;
@@ -100,6 +101,26 @@ public class OperationsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperationsPackage.INLINE_CLASS_OPERATION: {
+				InlineClassOperation inlineClassOperation = (InlineClassOperation)theEObject;
+				T result = caseInlineClassOperation(inlineClassOperation);
+				if (result == null) result = caseSemanticCompositeOperation(inlineClassOperation);
+				if (result == null) result = caseCompositeOperation(inlineClassOperation);
+				if (result == null) result = caseAbstractOperation(inlineClassOperation);
+				if (result == null) result = caseIdentifiableElement(inlineClassOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: {
+				PartitionAssociationOperation partitionAssociationOperation = (PartitionAssociationOperation)theEObject;
+				T result = casePartitionAssociationOperation(partitionAssociationOperation);
+				if (result == null) result = caseSemanticCompositeOperation(partitionAssociationOperation);
+				if (result == null) result = caseCompositeOperation(partitionAssociationOperation);
+				if (result == null) result = caseAbstractOperation(partitionAssociationOperation);
+				if (result == null) result = caseIdentifiableElement(partitionAssociationOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -116,6 +137,36 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseExtractSuperClassOperation(ExtractSuperClassOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInlineClassOperation(InlineClassOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Partition Association Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Partition Association Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePartitionAssociationOperation(PartitionAssociationOperation object) {
 		return null;
 	}
 

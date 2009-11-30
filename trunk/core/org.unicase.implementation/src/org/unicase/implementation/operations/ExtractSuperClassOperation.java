@@ -148,4 +148,13 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 */
 	EList<org.unicase.model.classes.Class> getPossibleSuperSuperClasses(Project project);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='A class or enumeration with that name already exists.'"
+	 * @generated
+	 */
+	boolean validateSuperClassName(Project project);
+
 } // ExtractSuperClassOperation

@@ -34,6 +34,24 @@ public interface OperationsFactory extends EFactory {
 	ExtractSuperClassOperation createExtractSuperClassOperation();
 
 	/**
+	 * Returns a new object of class '<em>Inline Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inline Class Operation</em>'.
+	 * @generated
+	 */
+	InlineClassOperation createInlineClassOperation();
+
+	/**
+	 * Returns a new object of class '<em>Partition Association Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Partition Association Operation</em>'.
+	 * @generated
+	 */
+	PartitionAssociationOperation createPartitionAssociationOperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

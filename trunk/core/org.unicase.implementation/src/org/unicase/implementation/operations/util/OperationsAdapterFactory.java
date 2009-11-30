@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.IdentifiableElement;
@@ -77,6 +78,14 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 				return createExtractSuperClassOperationAdapter();
 			}
 			@Override
+			public Adapter caseInlineClassOperation(InlineClassOperation object) {
+				return createInlineClassOperationAdapter();
+			}
+			@Override
+			public Adapter casePartitionAssociationOperation(PartitionAssociationOperation object) {
+				return createPartitionAssociationOperationAdapter();
+			}
+			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
 				return createIdentifiableElementAdapter();
 			}
@@ -123,6 +132,34 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtractSuperClassOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.InlineClassOperation <em>Inline Class Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.implementation.operations.InlineClassOperation
+	 * @generated
+	 */
+	public Adapter createInlineClassOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.PartitionAssociationOperation <em>Partition Association Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.implementation.operations.PartitionAssociationOperation
+	 * @generated
+	 */
+	public Adapter createPartitionAssociationOperationAdapter() {
 		return null;
 	}
 

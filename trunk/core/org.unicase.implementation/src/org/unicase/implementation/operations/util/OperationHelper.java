@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
@@ -108,6 +110,14 @@ public final class OperationHelper {
 		BasicDiagnostic diagnostic = new BasicDiagnostic();
 		EObjectValidator.INSTANCE.validate_EveryDefaultConstraint(operation, diagnostic, null);
 		
+		validatePossibleValues(operation, project, diagnostic);
+		validateConstraints(operation, project, diagnostic);
+
+		return diagnostic;
+	}
+
+	private static void validatePossibleValues(SemanticCompositeOperation operation, Project project,
+		BasicDiagnostic diagnostic) {
 		for (EReference reference : operation.eClass().getEReferences()) {
 			EOperation method = OperationHelper.getPossibleOperation(reference);
 			if (method != null) {
@@ -140,8 +150,23 @@ public final class OperationHelper {
 				}
 			}
 		}
+	}
 
-		return diagnostic;
+	private static void validateConstraints(SemanticCompositeOperation operation, Project project,
+		BasicDiagnostic diagnostic) {
+		for (EOperation method : operation.eClass().getEOperations()) {
+			if (method.getName().startsWith("validate")) {
+				try {
+					boolean result = invokeOperation(operation, method, project);
+					if (!result) {
+						diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0,
+							EcoreUtil.getAnnotation(method, EcorePackage.eNS_URI, "documentation"), new Object[0]));
+					}
+				} catch (OperationInvocationException e) {
+					// ignore
+				}
+			}
+		}
 	}
 
 	/**
@@ -201,7 +226,7 @@ public final class OperationHelper {
 		}
 		Method method;
 		try {
-			method = operation.getClass().getMethod(operation.getName(),
+			method = element.getClass().getMethod(operation.getName(),
 					Project.class);
 			Object result = method.invoke(element, parameters);
 			return (V) result;

@@ -13,8 +13,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
+import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.PartitionAssociationOperation;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.classes.ClassesPackage;
@@ -32,6 +34,20 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass extractSuperClassOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inlineClassOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass partitionAssociationOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -147,6 +163,42 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInlineClassOperation() {
+		return inlineClassOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInlineClassOperation_Association() {
+		return (EReference)inlineClassOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPartitionAssociationOperation() {
+		return partitionAssociationOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPartitionAssociationOperation_Association() {
+		return (EReference)partitionAssociationOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory)getEFactoryInstance();
 	}
@@ -175,6 +227,12 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		createEAttribute(extractSuperClassOperationEClass, EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME);
 		createEReference(extractSuperClassOperationEClass, EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE);
 		createEReference(extractSuperClassOperationEClass, EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES);
+
+		inlineClassOperationEClass = createEClass(INLINE_CLASS_OPERATION);
+		createEReference(inlineClassOperationEClass, INLINE_CLASS_OPERATION__ASSOCIATION);
+
+		partitionAssociationOperationEClass = createEClass(PARTITION_ASSOCIATION_OPERATION);
+		createEReference(partitionAssociationOperationEClass, PARTITION_ASSOCIATION_OPERATION__ASSOCIATION);
 	}
 
 	/**
@@ -211,6 +269,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		// Add supertypes to classes
 		extractSuperClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		inlineClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		partitionAssociationOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extractSuperClassOperationEClass, ExtractSuperClassOperation.class, "ExtractSuperClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -231,8 +291,97 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getClass_(), "getPossibleSuperSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(extractSuperClassOperationEClass, ecorePackage.getEBoolean(), "validateSuperClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(inlineClassOperationEClass, InlineClassOperation.class, "InlineClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInlineClassOperation_Association(), theMetamodelPackage.getModelElementId(), null, "association", null, 1, 1, InlineClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, theClassesPackage.getAssociation(), "getAssociation", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, ecorePackage.getEBoolean(), "validateAssociationComposition", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, ecorePackage.getEBoolean(), "validateAssociationMultiplicity", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, ecorePackage.getEBoolean(), "validateInlineClassSubClasses", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, ecorePackage.getEBoolean(), "validateInlineClassAssociationTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(partitionAssociationOperationEClass, PartitionAssociationOperation.class, "PartitionAssociationOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPartitionAssociationOperation_Association(), theMetamodelPackage.getModelElementId(), null, "association", null, 1, 1, PartitionAssociationOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(partitionAssociationOperationEClass, theClassesPackage.getAssociation(), "getAssociation", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(partitionAssociationOperationEClass, ecorePackage.getEBoolean(), "validateAssociationTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(partitionAssociationOperationEClass, ecorePackage.getEBoolean(), "validateAssociationMultiplicity", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";					
+		addAnnotation
+		  (extractSuperClassOperationEClass.getEOperations().get(4), 
+		   source, 
+		   new String[] {
+			 "documentation", "A class or enumeration with that name already exists."
+		   });			
+		addAnnotation
+		  (inlineClassOperationEClass.getEOperations().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The association must be a composition."
+		   });		
+		addAnnotation
+		  (inlineClassOperationEClass.getEOperations().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "The multiplicity of the association must be 1-to-1."
+		   });		
+		addAnnotation
+		  (inlineClassOperationEClass.getEOperations().get(3), 
+		   source, 
+		   new String[] {
+			 "documentation", "The class to be inlined must not have sub classes."
+		   });		
+		addAnnotation
+		  (inlineClassOperationEClass.getEOperations().get(4), 
+		   source, 
+		   new String[] {
+			 "documentation", "The class to be inlined must not be target of another association."
+		   });			
+		addAnnotation
+		  (partitionAssociationOperationEClass.getEOperations().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of the reference must be abstract."
+		   });		
+		addAnnotation
+		  (partitionAssociationOperationEClass.getEOperations().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "The reference must be multi-valued."
+		   });
 	}
 
 } //OperationsPackageImpl
