@@ -10,11 +10,13 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
  * Simple handler for checking out projects.
  * 
  * @author emueller
- * @author svetlana
+ * @author svetlana nogina
  */
 public class CheckoutProjectHandler extends ServerRequestCommandHandler{
 
 	private ProjectInfo projectInfo;
+	
+	private ProjectSpace projectspace;
 	
 	/**
 	 * Creates a checkout handler.
@@ -28,13 +30,20 @@ public class CheckoutProjectHandler extends ServerRequestCommandHandler{
 		super();
 		setTaskTitle("Checking out project...");
 		this.projectInfo = projectInfo;
+		this.projectspace = null;
+		
 		setUsersession(userSession);	
 	}
 	
 	@Override
 	protected Object run() throws EmfStoreException {
-		ProjectSpace pSpace = getUsersession().checkout(projectInfo);
-		return pSpace;
+		projectspace = getUsersession().checkout(projectInfo);
+		
+		return projectspace;
+	}
+	
+	public ProjectSpace getProjectSpace(){
+		return projectspace;
 	}
 
 }
