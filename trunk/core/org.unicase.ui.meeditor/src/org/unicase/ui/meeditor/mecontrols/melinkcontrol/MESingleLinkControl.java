@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -34,7 +33,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 	private Composite composite;
 
-	private final EReference eReference;
+	private EReference eReference;
 
 	private Composite linkArea;
 
@@ -49,36 +48,36 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
-	/**
-	 * Default constructor.
-	 * 
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
-	 * @param reference the reference link
-	 * @param itemPropertyDescriptor the item property descriptor
-	 */
-	public MESingleLinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
-		EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
-		super(editingDomain, modelElement, toolkit);
-		this.eReference = reference;
-		this.itemPropertyDescriptor = itemPropertyDescriptor;
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(eReference) && !msg.isTouch()) {
-					updateLink();
-				}
-				super.notifyChanged(msg);
-			}
+	private static final int PRIORITY = 1;
 
-		};
-		modelElement.eAdapters().add(eAdapter);
+	/**
+	 * Standard Constructor.
+	 */
+	public MESingleLinkControl() {
+		super();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+			this.eReference = (EReference) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Control createControl(final Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
 		// composite.setLayout(new GridLayout(3, false));
@@ -129,7 +128,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				ModelElement me = (ModelElement) getModelElement();
 				if (opposite != null) {
-					meControl = new MELinkControl(getEditingDomain(), opposite, getToolkit(), me, eReference);
+					meControl = new MELinkControl();
+					meControl.init(itemPropertyDescriptor, me, getEditingDomain(), getToolkit());
 					meControl.createControl(linkArea, style);
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");

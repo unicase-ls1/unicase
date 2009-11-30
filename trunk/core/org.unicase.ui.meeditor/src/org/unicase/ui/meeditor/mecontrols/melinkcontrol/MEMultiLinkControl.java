@@ -8,8 +8,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -92,8 +90,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				for (EObject object : eList) {
 					if (object instanceof ModelElement) {
 						ModelElement me = (ModelElement) object;
-						MELinkControl meControl = new MELinkControl(getEditingDomain(), me, getToolkit(),
-							getModelElement(), eReference);
+						MELinkControl meControl = new MELinkControl();
+						meControl.init(MEMultiLinkControl.this.descriptor, me, getEditingDomain(), getToolkit());
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style);
 						linkControls.add(meControl);
 					}
@@ -113,7 +111,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		}
 	}
 
-	private final EReference eReference;
+	private EReference eReference;
 
 	private int style;
 	private IItemPropertyDescriptor descriptor;
@@ -135,32 +133,30 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	private DropTarget sectionDropTarget;
 
-	/**
-	 * Default constructor. Default constructor.
-	 * 
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
-	 * @param reference the reference link
-	 * @param descriptor ?
-	 */
-	public MEMultiLinkControl(EObject modelElement, EReference reference, FormToolkit toolkit,
-		EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
-		super(editingDomain, modelElement, toolkit);
-		this.eReference = reference;
-		this.descriptor = descriptor;
-		linkControls = new ArrayList<MELinkControl>();
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(eReference) && !msg.isTouch()) {
-					rebuildLinkSection();
-				}
-				super.notifyChanged(msg);
-			}
+	private static final int PRIORITY = 1;
 
-		};
-		this.getModelElement().eAdapters().add(eAdapter);
+	/**
+	 * Standard Constructor.
+	 */
+	public MEMultiLinkControl() {
+		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+			this.eReference = (EReference) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
@@ -186,6 +182,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(final Composite parent, int style) {
 		this.style = style;
 		tableLayout = new GridLayout(1, false);

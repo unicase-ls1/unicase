@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="org.unicase.ui.meeditor.attributecontrols" name="org.unicase.ui.meeditor.attributecontrols" schema="schema/org.unicase.ui.meeditor.attributecontrol.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols" schema="schema/org.unicase.ui.meeditor.referencecontrol.exsd"/>
+   <extension-point id="org.unicase.ui.meeditor.linkcontrols" name="org.unicase.ui.meeditor.linkcontrols" schema="schema/org.unicase.ui.meeditor.linkcontrols.exsd"/>
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
@@ -58,5 +59,26 @@
             id="org.unicase.ui.meeditor"
             name="Model Element Editor">
       </editor>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.linkcontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
+            name="org.unicase.ui.meeditor.mesinglelinkcontrol"
+            showLabel="true"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl"
+            name="org.unicase.ui.meeditor.memultilinkcontrol"
+            showLabel="false"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl"
+            name="org.unicase.ui.meeditor.melinkcontrol"
+            showLabel="true"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
    </extension>
 </plugin>
