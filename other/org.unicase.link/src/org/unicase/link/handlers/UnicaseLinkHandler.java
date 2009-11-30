@@ -12,6 +12,8 @@ import java.awt.datatransfer.StringSelection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -23,7 +25,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-
 
 /**
  * This handler handles "create unicase link" button click events. 
@@ -38,7 +39,8 @@ public class UnicaseLinkHandler extends AbstractHandler {
 	 */
 	public UnicaseLinkHandler() {
 	}
-
+	
+	
 	/**
 	 * the command has been executed, so extract extract the needed information
 	 * from the application context.
@@ -86,11 +88,18 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		clipboard.setContents(stringSelection, stringSelection);
 
 		
-		MessageDialog.openInformation(
+		/*MessageDialog.openInformation(
 				window.getShell(),
-				"Link",
+			"Link",
 				info);
-		
+		 */
+		Display display = Display.getCurrent();
+		Shell shell = new Shell(display);
+		shell.open ();
+		while (!shell.isDisposed ()) {
+			if (!display.readAndDispatch ()) display.sleep ();
+		}
+		display.dispose ();
 		return null;
 	}
 }
