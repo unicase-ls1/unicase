@@ -1,5 +1,6 @@
 package org.unicase.workspace.ui.dialogs.merge.conflict.options;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -14,16 +15,18 @@ import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.document.LeafSection;
+import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
-import org.unicase.workspace.util.UnicaseCommand;
 
 public class IssueOption extends CustomConflictOption {
 
 	private Conflict conflict;
+	private AbstractOperation issueOperation;
 
 	public IssueOption() {
 		super("Enter Name...");
@@ -60,60 +63,72 @@ public class IssueOption extends CustomConflictOption {
 		return true;
 	}
 
-	@Override
-	public void callResultAction() {
+	public void createOperation() {
+		Project project = conflict.getDecisionManager().getProject();
+		ConflictOption myOption = conflict
+				.getOptionOfType(OptionType.MyOperation);
+		List<AbstractOperation> myOperations = myOption.getOperations();
+		ConflictOption theirOption = conflict
+				.getOptionOfType(OptionType.TheirOperation);
+		List<AbstractOperation> theirOptions = theirOption.getOperations();
 
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				Project project = conflict.getDecisionManager().getProject();
-				ConflictOption myOption = conflict
-						.getOptionOfType(OptionType.MyOperation);
-				List<AbstractOperation> myOperations = myOption.getOperations();
-				ConflictOption theirOption = conflict
-						.getOptionOfType(OptionType.TheirOperation);
-				List<AbstractOperation> theirOptions = theirOption
-						.getOperations();
-
-				ProjectSpace projectSpace = WorkspaceManager
-						.getProjectSpace(project);
-				EObject eContainer = project;
-				if (myOperations.size() > 0) {
-					ModelElement modelElement = project
-							.getModelElement(myOperations.get(0)
-									.getModelElementId());
-					if (modelElement != null) {
-						eContainer = modelElement.eContainer();
-					}
-
-				}
-
-				MergingIssue mergeIssue = ChangeFactory.eINSTANCE
-						.createMergingIssue();
-				addToContainer(mergeIssue, eContainer);
-				mergeIssue.setName(getStrippedOptionLabel());
-				mergeIssue.setDescription(conflict.getConflictDescription()
-						.getResolvedDescription());
-
-				MergingProposal myProposal = ChangeFactory.eINSTANCE
-						.createMergingProposal();
-				mergeIssue.getProposals().add(myProposal);
-				myProposal.setName("My Changes");
-				for (AbstractOperation myOp : myOperations) {
-					myProposal.getPendingOperations().add(
-							(AbstractOperation) EcoreUtil.copy(myOp));
-				}
-
-				MergingProposal theirProposal = ChangeFactory.eINSTANCE
-						.createMergingProposal();
-				mergeIssue.getProposals().add(theirProposal);
-				theirProposal.setName("Changes from Repository");
-				for (AbstractOperation theirOp : theirOptions) {
-					theirProposal.getPendingOperations().add(
-							(AbstractOperation) EcoreUtil.copy(theirOp));
-				}
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
+		EObject eContainer = project;
+		if (myOperations.size() > 0) {
+			ModelElement modelElement = project.getModelElement(myOperations
+					.get(0).getModelElementId());
+			if (modelElement != null) {
+				eContainer = modelElement;
 			}
-		}.run();
+
+		}
+
+		CompositeOperationHandle compositeOperation = projectSpace
+				.beginCompositeOperation();
+
+		MergingIssue mergeIssue = ChangeFactory.eINSTANCE.createMergingIssue();
+		addToContainer(mergeIssue, eContainer);
+		mergeIssue.setName(getStrippedOptionLabel());
+		mergeIssue.setDescription(conflict.getConflictDescription()
+				.getResolvedDescription());
+
+		MergingProposal myProposal = ChangeFactory.eINSTANCE
+				.createMergingProposal();
+		mergeIssue.getProposals().add(myProposal);
+		myProposal.setName("My Changes");
+		for (AbstractOperation myOp : myOperations) {
+			myProposal.getPendingOperations().add(
+					(AbstractOperation) EcoreUtil.copy(myOp));
+		}
+
+		MergingProposal theirProposal = ChangeFactory.eINSTANCE
+				.createMergingProposal();
+		mergeIssue.getProposals().add(theirProposal);
+		theirProposal.setName("Changes from Repository");
+		for (AbstractOperation theirOp : theirOptions) {
+			theirProposal.getPendingOperations().add(
+					(AbstractOperation) EcoreUtil.copy(theirOp));
+		}
+
+		try {
+			compositeOperation.end("", "", mergeIssue.getModelElementId());
+		} catch (InvalidHandleException e) {
+			// fail silently
+		}
+
+		List<AbstractOperation> ops = projectSpace.getOperations();
+		AbstractOperation ab = ops.get(ops.size() - 1);
+		issueOperation = (AbstractOperation) EcoreUtil.copy(ab);
+	}
+
+	@Override
+	public List<AbstractOperation> getOperations() {
+		ArrayList<AbstractOperation> result = new ArrayList<AbstractOperation>();
+		createOperation();
+		if (issueOperation != null) {
+			result.add(issueOperation);
+		}
+		return result;
 	}
 
 	private void addToContainer(UnicaseModelElement modelElement,

@@ -485,7 +485,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		for (AbstractOperation abstractOperation : getSubOperations()) {
 			AbstractOperation reversedSubOperation = abstractOperation.reverse();
 			copiedSubOperations.add(0, reversedSubOperation);
-			if (getMainOperation().getIdentifier().equals(abstractOperation.getIdentifier())) {
+			if (getMainOperation() != null
+				&& getMainOperation().getIdentifier().equals(abstractOperation.getIdentifier())) {
 				compositeOperation.setMainOperation(reversedSubOperation);
 			}
 		}
