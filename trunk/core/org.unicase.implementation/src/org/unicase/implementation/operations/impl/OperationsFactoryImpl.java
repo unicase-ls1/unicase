@@ -62,6 +62,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: return createExtractSuperClassOperation();
 			case OperationsPackage.INLINE_CLASS_OPERATION: return createInlineClassOperation();
 			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: return createPartitionAssociationOperation();
+			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION: return createPushDownAttributeOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -95,6 +96,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public PartitionAssociationOperation createPartitionAssociationOperation() {
 		PartitionAssociationOperationImpl partitionAssociationOperation = new PartitionAssociationOperationImpl();
 		return partitionAssociationOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PushDownAttributeOperation createPushDownAttributeOperation() {
+		PushDownAttributeOperationImpl pushDownAttributeOperation = new PushDownAttributeOperationImpl();
+		return pushDownAttributeOperation;
 	}
 
 	/**

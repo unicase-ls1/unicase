@@ -471,6 +471,134 @@ public interface OperationsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl <em>Push Down Attribute Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl
+	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getPushDownAttributeOperation()
+	 * @generated
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__IDENTIFIER = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__DESCRIPTION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__MODEL_ELEMENT_ID = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Accepted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__ACCEPTED = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__CLIENT_DATE = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__CLIENT_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__SUB_OPERATIONS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__SUB_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Main Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__MAIN_OPERATION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__MAIN_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Composite Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__COMPOSITE_NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Composite Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__COMPOSITE_DESCRIPTION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__REVERSED = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__REVERSED;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Push Down Attribute Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_DOWN_ATTRIBUTE_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.implementation.operations.ExtractSuperClassOperation <em>Extract Super Class Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,6 +693,27 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPartitionAssociationOperation_Association();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.implementation.operations.PushDownAttributeOperation <em>Push Down Attribute Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Push Down Attribute Operation</em>'.
+	 * @see org.unicase.implementation.operations.PushDownAttributeOperation
+	 * @generated
+	 */
+	EClass getPushDownAttributeOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.implementation.operations.PushDownAttributeOperation#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Attribute</em>'.
+	 * @see org.unicase.implementation.operations.PushDownAttributeOperation#getAttribute()
+	 * @see #getPushDownAttributeOperation()
+	 * @generated
+	 */
+	EReference getPushDownAttributeOperation_Attribute();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -665,6 +814,24 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PARTITION_ASSOCIATION_OPERATION__ASSOCIATION = eINSTANCE.getPartitionAssociationOperation_Association();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl <em>Push Down Attribute Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl
+		 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getPushDownAttributeOperation()
+		 * @generated
+		 */
+		EClass PUSH_DOWN_ATTRIBUTE_OPERATION = eINSTANCE.getPushDownAttributeOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE = eINSTANCE.getPushDownAttributeOperation_Attribute();
 
 	}
 

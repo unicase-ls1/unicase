@@ -17,6 +17,7 @@ import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
+import org.unicase.implementation.operations.PushDownAttributeOperation;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.classes.ClassesPackage;
@@ -48,6 +49,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass partitionAssociationOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pushDownAttributeOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -199,6 +207,24 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPushDownAttributeOperation() {
+		return pushDownAttributeOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPushDownAttributeOperation_Attribute() {
+		return (EReference)pushDownAttributeOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory)getEFactoryInstance();
 	}
@@ -233,6 +259,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		partitionAssociationOperationEClass = createEClass(PARTITION_ASSOCIATION_OPERATION);
 		createEReference(partitionAssociationOperationEClass, PARTITION_ASSOCIATION_OPERATION__ASSOCIATION);
+
+		pushDownAttributeOperationEClass = createEClass(PUSH_DOWN_ATTRIBUTE_OPERATION);
+		createEReference(pushDownAttributeOperationEClass, PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE);
 	}
 
 	/**
@@ -271,6 +300,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		extractSuperClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		inlineClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		partitionAssociationOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		pushDownAttributeOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extractSuperClassOperationEClass, ExtractSuperClassOperation.class, "ExtractSuperClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -322,6 +352,12 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(partitionAssociationOperationEClass, ecorePackage.getEBoolean(), "validateAssociationMultiplicity", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(pushDownAttributeOperationEClass, PushDownAttributeOperation.class, "PushDownAttributeOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushDownAttributeOperation_Attribute(), theMetamodelPackage.getModelElementId(), null, "attribute", null, 1, 1, PushDownAttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(pushDownAttributeOperationEClass, theClassesPackage.getAttribute(), "getAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
@@ -381,7 +417,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		   source, 
 		   new String[] {
 			 "documentation", "The reference must be multi-valued."
-		   });
+		   });	
 	}
 
 } //OperationsPackageImpl
