@@ -76,6 +76,13 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="showLabel" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
