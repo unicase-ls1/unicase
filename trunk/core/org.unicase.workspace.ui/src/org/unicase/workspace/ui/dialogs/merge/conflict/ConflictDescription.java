@@ -36,6 +36,12 @@ public class ConflictDescription {
 	}
 
 	public String getResolvedDescription() {
+		String result = description;
+		for (String token : values.keySet()) {
+			String tmp = "[" + token + "]";
+			Object value = values.get(token);
+			result.replace(tmp, (value != null) ? value.toString() : "");
+		}
 		return description;
 	}
 }
