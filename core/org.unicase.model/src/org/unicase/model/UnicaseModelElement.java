@@ -250,9 +250,4 @@ public interface UnicaseModelElement extends ModelElement {
 
 	// end custom code
 
-	/**
-	 * @return the shortened name for this model element
-	 */
-	String getShortName();
-
 } // ModelElement

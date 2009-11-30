@@ -787,19 +787,4 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 		return result.toString();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getShortName() {
-		int limit = 30;
-		String name = getName();
-		if (name == null) {
-			name = "";
-		}
-		if (name.length() > limit + 5) {
-			name = name.substring(0, limit).concat("[...]");
-		}
-		return name;
-	}
-
 } // ModelElementImpl

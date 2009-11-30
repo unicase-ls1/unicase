@@ -33,6 +33,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -98,8 +99,10 @@ public class MELinkControl extends AbstractMEControl {
 
 					public void run() {
 						if (hyperlink != null && !hyperlink.isDisposed()) {
-							hyperlink.setText(((ModelElement) getModelElement()).getShortName());
-							hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
+							ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+							String text = shortLabelProvider.getText(getModelElement());
+							hyperlink.setText(text);
+							hyperlink.setToolTipText(text);
 							updateAdditionalControlComponents();
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
