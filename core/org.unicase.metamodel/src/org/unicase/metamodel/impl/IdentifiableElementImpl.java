@@ -25,7 +25,7 @@ import org.unicase.metamodel.MetamodelPackage;
  * 
  * @generated
  */
-public class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
+public abstract class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

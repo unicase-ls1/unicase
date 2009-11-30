@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
-import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.AudioComment;
@@ -114,8 +113,6 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(proposal);
 			if (result == null)
-				result = caseNonDomainElement(proposal);
-			if (result == null)
 				result = caseModelElement(proposal);
 			if (result == null)
 				result = caseIdentifiableElement(proposal);
@@ -128,8 +125,6 @@ public class RationaleSwitch<T> {
 			T result = caseSolution(solution);
 			if (result == null)
 				result = caseUnicaseModelElement(solution);
-			if (result == null)
-				result = caseNonDomainElement(solution);
 			if (result == null)
 				result = caseModelElement(solution);
 			if (result == null)
@@ -157,8 +152,6 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(assessment);
 			if (result == null)
-				result = caseNonDomainElement(assessment);
-			if (result == null)
 				result = caseModelElement(assessment);
 			if (result == null)
 				result = caseIdentifiableElement(assessment);
@@ -171,8 +164,6 @@ public class RationaleSwitch<T> {
 			T result = caseComment(comment);
 			if (result == null)
 				result = caseUnicaseModelElement(comment);
-			if (result == null)
-				result = caseNonDomainElement(comment);
 			if (result == null)
 				result = caseModelElement(comment);
 			if (result == null)
@@ -361,20 +352,6 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkItem(WorkItem object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

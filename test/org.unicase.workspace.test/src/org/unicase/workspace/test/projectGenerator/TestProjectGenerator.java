@@ -278,7 +278,7 @@ public class TestProjectGenerator {
 		}
 
 		// do not create non domain elements
-		if (ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass)) {
+		if (MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass)) {
 			return;
 		}
 

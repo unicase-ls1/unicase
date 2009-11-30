@@ -17,7 +17,6 @@ import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.ActivityPackage;
@@ -79,13 +78,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass attachmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass nonDomainElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -372,15 +364,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getNonDomainElement() {
-		return nonDomainElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getProject() {
 		return projectEClass;
 	}
@@ -429,8 +412,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		attachmentEClass = createEClass(ATTACHMENT);
 		createEReference(attachmentEClass, ATTACHMENT__REFERRING_MODEL_ELEMENTS);
-
-		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
 
 		projectEClass = createEClass(PROJECT);
 	}
@@ -577,9 +558,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		getAttachment_ReferringModelElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-
-		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

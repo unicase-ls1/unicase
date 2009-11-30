@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.NonDomainElement;
 import org.unicase.ui.common.MEClassLabelProvider;
 
 /**

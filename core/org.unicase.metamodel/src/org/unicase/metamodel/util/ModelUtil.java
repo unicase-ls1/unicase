@@ -63,6 +63,7 @@ public final class ModelUtil {
 	/**
 	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
 	 * Cross-referenced elements will not be copied.
+	 * 
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
@@ -71,8 +72,8 @@ public final class ModelUtil {
 		// reset id
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		copy.setIdentifier(modelElementId.getId());
-		//reset ids of containment children
-		for (ModelElement child: copy.getAllContainedModelElements()) {
+		// reset ids of containment children
+		for (ModelElement child : copy.getAllContainedModelElements()) {
 			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
 			child.setIdentifier(childId.getId());
 		}

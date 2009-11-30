@@ -15,7 +15,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="Default Value Literal&#x9;"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IdentifiableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="IdentifiableElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
   </eClassifiers>
@@ -23,4 +23,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelVersion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="releaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
 </ecore:EPackage>

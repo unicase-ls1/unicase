@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
-import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
@@ -123,11 +122,6 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIssue(Issue object) {
 			return createIssueAdapter();
-		}
-
-		@Override
-		public Adapter caseNonDomainElement(NonDomainElement object) {
-			return createNonDomainElementAdapter();
 		}
 
 		@Override
@@ -290,20 +284,6 @@ public class ChangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIssueAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.NonDomainElement
-	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.NonDomainElement
-	 * @generated
-	 */
-	public Adapter createNonDomainElementAdapter() {
 		return null;
 	}
 

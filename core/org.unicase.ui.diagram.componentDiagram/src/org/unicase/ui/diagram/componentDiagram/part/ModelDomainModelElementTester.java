@@ -46,7 +46,7 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == MetamodelPackage.eINSTANCE.getModelElementId()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getNonDomainElement()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getNonDomainElement()) {
 			return true;
 		}
 		if (eClass == MetamodelPackage.eINSTANCE.getModelVersion()) {

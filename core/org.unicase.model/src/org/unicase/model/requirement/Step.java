@@ -5,7 +5,6 @@
  */
 package org.unicase.model.requirement;
 
-import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -24,7 +23,7 @@ import org.unicase.model.UnicaseModelElement;
  * @model
  * @generated
  */
-public interface Step extends UnicaseModelElement, NonDomainElement {
+public interface Step extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>User Step</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

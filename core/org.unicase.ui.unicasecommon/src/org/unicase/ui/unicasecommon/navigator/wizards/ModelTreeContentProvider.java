@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -124,7 +123,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	private boolean isNonDomainElement(Object object) {
 
-		return object instanceof EClass && ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
+		return object instanceof EClass
+			&& MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
 	}
 
 	/**

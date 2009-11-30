@@ -95,29 +95,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.IdentifiableElement} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected IdentifiableElementItemProvider identifiableElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.metamodel.IdentifiableElement}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createIdentifiableElementAdapter() {
-		if (identifiableElementItemProvider == null) {
-			identifiableElementItemProvider = new IdentifiableElementItemProvider(this);
-		}
-
-		return identifiableElementItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelElementId} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -259,8 +236,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	public void dispose() {
 		if (projectItemProvider != null)
 			projectItemProvider.dispose();
-		if (identifiableElementItemProvider != null)
-			identifiableElementItemProvider.dispose();
 		if (modelElementIdItemProvider != null)
 			modelElementIdItemProvider.dispose();
 		if (modelVersionItemProvider != null)

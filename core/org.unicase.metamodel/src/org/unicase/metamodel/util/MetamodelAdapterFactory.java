@@ -14,6 +14,7 @@ import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.UniqueIdentifier;
 
@@ -96,6 +97,11 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseModelVersion(ModelVersion object) {
 			return createModelVersionAdapter();
+		}
+
+		@Override
+		public Adapter caseNonDomainElement(NonDomainElement object) {
+			return createNonDomainElementAdapter();
 		}
 
 		@Override
@@ -194,6 +200,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelVersionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.NonDomainElement
+	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.NonDomainElement
+	 * @generated
+	 */
+	public Adapter createNonDomainElementAdapter() {
 		return null;
 	}
 
