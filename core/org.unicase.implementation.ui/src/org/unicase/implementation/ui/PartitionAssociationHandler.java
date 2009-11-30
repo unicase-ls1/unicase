@@ -5,20 +5,21 @@
  */
 package org.unicase.implementation.ui;
 
-import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.PartitionAssociationOperation;
 
 /**
- * Handler for {@link ExtractSuperClassOperation}.
+ * Handler for the {@link PartitionAssociationOperation}.
  * 
  * @author herrmi
  */
-public class ExtractSuperClassHandler extends OperationHandlerBase {
+public class PartitionAssociationHandler extends OperationHandlerBase {
 
 	/**
 	 * Constructor.
 	 */
-	protected ExtractSuperClassHandler() {
-		super(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION);
+	protected PartitionAssociationHandler() {
+		super(OperationsPackage.Literals.PARTITION_ASSOCIATION_OPERATION);
 	}
+
 }

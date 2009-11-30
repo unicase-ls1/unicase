@@ -27,19 +27,19 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 
-import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.PushDownAttributeOperation;
 
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.implementation.operations.InlineClassOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.implementation.operations.PushDownAttributeOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InlineClassOperationItemProvider
+public class PushDownAttributeOperationItemProvider
 	extends SemanticCompositeOperationItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -53,7 +53,7 @@ public class InlineClassOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InlineClassOperationItemProvider(AdapterFactory adapterFactory) {
+	public PushDownAttributeOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -84,7 +84,7 @@ public class InlineClassOperationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION);
+			childrenFeatures.add(OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -103,14 +103,14 @@ public class InlineClassOperationItemProvider
 	}
 
 	/**
-	 * This returns InlineClassOperation.gif.
+	 * This returns PushDownAttributeOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InlineClassOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushDownAttributeOperation"));
 	}
 
 	/**
@@ -121,10 +121,10 @@ public class InlineClassOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InlineClassOperation)object).getName();
+		String label = ((PushDownAttributeOperation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_InlineClassOperation_type") :
-			getString("_UI_InlineClassOperation_type") + " " + label;
+			getString("_UI_PushDownAttributeOperation_type") :
+			getString("_UI_PushDownAttributeOperation_type") + " " + label;
 	}
 
 	/**
@@ -138,8 +138,8 @@ public class InlineClassOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InlineClassOperation.class)) {
-			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
+		switch (notification.getFeatureID(PushDownAttributeOperation.class)) {
+			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,7 +179,7 @@ public class InlineClassOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION,
+				(OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 

@@ -5,20 +5,20 @@
  */
 package org.unicase.implementation.ui;
 
-import org.unicase.implementation.operations.ExtractSuperClassOperation;
+import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 
 /**
- * Handler for {@link ExtractSuperClassOperation}.
+ * Handler for the {@link InlineClassOperation}.
  * 
  * @author herrmi
  */
-public class ExtractSuperClassHandler extends OperationHandlerBase {
+public class InlineClassHandler extends OperationHandlerBase {
 
 	/**
 	 * Constructor.
 	 */
-	protected ExtractSuperClassHandler() {
-		super(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION);
+	protected InlineClassHandler() {
+		super(OperationsPackage.Literals.INLINE_CLASS_OPERATION);
 	}
 }
