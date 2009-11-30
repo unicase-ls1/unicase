@@ -32,25 +32,25 @@
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <!--<menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
-         <menu
-               label="Sample Menu"
-               mnemonic="M"
-               id="org.unicase.link.menus.sampleMenu">
+     
+       <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+       
             <command
                   commandId="org.unicase.link.commands.sampleCommand"
-                  mnemonic="S"
+                  label="Generate UNICASE link"
+                  icon="icons/unicase_link.png"
+                  mnemonic="U"
                   id="org.unicase.link.menus.sampleCommand">
             </command>
-         </menu>
-      </menuContribution>-->
+        
+      </menuContribution>
       <menuContribution
-      		locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+      		locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.common.deleteModelElement">
             <command
                   commandId="org.unicase.link.commands.sampleCommand"
                   icon="icons/unicase_link.png"
-                  tooltip="Generate unicase specific protocol link"
+                  tooltip="Generate UNICASE specific protocol link"
                   id="org.unicase.link.toolbars.sampleCommand">
             </command>
       </menuContribution>
