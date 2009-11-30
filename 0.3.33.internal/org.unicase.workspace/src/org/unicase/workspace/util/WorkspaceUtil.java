@@ -1,0 +1,212 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
+package org.unicase.workspace.util;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
+import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.util.ModelUtil;
+import org.unicase.workspace.Activator;
+import org.unicase.workspace.ProjectSpace;
+
+/**
+ * Workspace utility class.
+ * 
+ * @author koegel
+ */
+public final class WorkspaceUtil {
+
+	private static final String BEGINNTEXT = "%BEGINNTEXT%";
+
+	/**
+	 * Private constructor.
+	 */
+	private WorkspaceUtil() {
+		// nothing to do
+	}
+
+	/**
+	 * Log an exception to the error log.
+	 * 
+	 * @param message the message
+	 * @param e the exception
+	 */
+	public static void logException(String message, Exception e) {
+		log(message, e, IStatus.ERROR);
+	}
+
+	/**
+	 * Log a warning to the error log.
+	 * 
+	 * @param message the message
+	 * @param e the exception
+	 */
+	public static void logWarning(String message, Exception e) {
+		log(message, e, IStatus.WARNING);
+	}
+
+	/**
+	 * Log a warning to the error log.
+	 * 
+	 * @param message the message
+	 * @param exception the exception or null f not applicable
+	 * @param statusInt the status constant as defined in {@link IStatus}
+	 */
+	public static void log(String message, Exception exception, int statusInt) {
+		Activator activator = Activator.getDefault();
+		Status status = new Status(statusInt, activator.getBundle().getSymbolicName(), statusInt, message, exception);
+		activator.getLog().log(status);
+	}
+
+	/**
+	 * Log a checkout event to the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @param baseVersion the base version that was checked out
+	 */
+	public static void logCheckout(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion) {
+		CheckoutEvent checkoutEvent = EventsFactory.eINSTANCE.createCheckoutEvent();
+		checkoutEvent.setBaseVersion(ModelUtil.clone(baseVersion));
+		checkoutEvent.setTimestamp(new Date());
+		projectSpace.addEvent(checkoutEvent);
+	}
+
+	/**
+	 * Log a update event to the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @param baseVersion the base version of the project space
+	 * @param targetVersion the target version to update to
+	 */
+	public static void logUpdate(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion,
+		PrimaryVersionSpec targetVersion) {
+		UpdateEvent updateEvent = EventsFactory.eINSTANCE.createUpdateEvent();
+		updateEvent.setBaseVersion(ModelUtil.clone(baseVersion));
+		updateEvent.setTargetVersion(ModelUtil.clone(targetVersion));
+		updateEvent.setTimestamp(new Date());
+		projectSpace.addEvent(updateEvent);
+	}
+
+	/**
+	 * Log a read event to the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @param modelElement the model element that is read
+	 * @param sourceView the view the read originates
+	 * @param readView the view the model element is shown in
+	 */
+	public static void logReadEvent(ProjectSpace projectSpace, ModelElementId modelElement, String sourceView,
+		String readView) {
+		ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
+		readEvent.setModelElement(modelElement);
+		readEvent.setReadView(readView);
+		readEvent.setSourceView(sourceView);
+		readEvent.setTimestamp(new Date());
+		if (projectSpace == null) {
+			logWarning("Read event could not be logged since given project space was null", new NullPointerException());
+			return;
+		}
+		projectSpace.addEvent(readEvent);
+	}
+
+	/**
+	 * Log a trace event to the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @param sourceElement the source element of the trace
+	 * @param targetElement the target event of the trace
+	 * @param featureName the feature reference which was traced.
+	 */
+	public static void logTraceEvent(ProjectSpace projectSpace, ModelElementId sourceElement,
+		ModelElementId targetElement, String featureName) {
+		TraceEvent traceEvent = EventsFactory.eINSTANCE.createTraceEvent();
+		traceEvent.setSourceElement(sourceElement);
+		traceEvent.setTargetElement(targetElement);
+		traceEvent.setTimestamp(new Date());
+		traceEvent.setFeatureName(featureName);
+		projectSpace.addEvent(traceEvent);
+	}
+
+	/**
+	 * Clean a formatted text from the list formatting.
+	 * 
+	 * @param text the text which shall be cleaned
+	 * @return a string only containing the plain text
+	 */
+	public static String cleanFormatedText(String text) {
+
+		text = text.replaceAll("\n", "");
+		Pattern ulsPattern = Pattern.compile("<ul>(.*)<\\/ul>", Pattern.DOTALL);
+		Matcher ulsMatcher = ulsPattern.matcher(text);
+
+		while (ulsMatcher.find()) {
+			String lis = ulsMatcher.group(0);
+
+			// Pattern lisPattern = Pattern.compile("<li>(.*)<\\/li>", Pattern.DOTALL);
+			Pattern lisPattern = Pattern.compile("<li><P  style=\"margin: 4;\"align = \"left\">([^<]*)<\\/P>",
+				Pattern.DOTALL);
+			Matcher lisMatcher = lisPattern.matcher(lis);
+			while (lisMatcher.find()) {
+				String li = lisMatcher.group(0);
+				li = li.replaceAll("<[^<]*>", "");
+				System.out.println("   \u2022 " + li);
+			}
+		}
+
+		return text;
+	}
+
+	/**
+	 * Opens a file with the default program used on the current computer. This is just the same as Desktop.open() of
+	 * java 1.6. This should work with - Mac os X, - windows xp, - as well as the most linux distributions
+	 * 
+	 * @param fileUrl the url of the file which shall be opened
+	 */
+	public static void openFile(String fileUrl) {
+		String lcOSName = System.getProperty("os.name").toLowerCase();
+		String cmd = "";
+
+		if (lcOSName.startsWith("mac os x")) {
+			// fileUrl = "'" + fileUrl + "'";
+			cmd = "open";
+		} else if (lcOSName.startsWith("linux")) {
+			// fileUrl = "'" + fileUrl + "'";
+			// works for ubuntu and the most common linux systems
+			cmd = "xdg-open";
+		} else if (lcOSName.startsWith("windows")) {
+			cmd = "not empty";
+		} else {
+			// bad luck .. java 1.5 ;(
+			// fall through
+		}
+
+		if (!cmd.equals("")) {
+			try {
+				if (lcOSName.startsWith("windows")) {
+					cmd = "cmd.exe /c start \"\" \"" + fileUrl + "\"";
+					Runtime.getRuntime().exec(cmd);
+				} else {
+					Runtime.getRuntime().exec(new String[] { cmd, fileUrl });
+				}
+			} catch (IOException e) {
+				WorkspaceUtil
+					.log("could not open the file with the system dependant command: " + cmd, e, IStatus.ERROR);
+			}
+		}
+	}
+}
