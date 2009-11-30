@@ -14,7 +14,7 @@ public class ConflictOption {
 	private List<AbstractOperation> operations;
 
 	public enum OptionType {
-		MyOperation, TheirOperation, Issue, Custom
+		MyOperation, TheirOperation, Custom
 	};
 
 	public ConflictOption(String option, OptionType type) {
@@ -63,16 +63,24 @@ public class ConflictOption {
 		return detailProvider;
 	}
 
-	public boolean hasExtraAction() {
+	public boolean hasExtraOptionAction() {
 		return false;
 	}
 
 	/**
-	 * Called if Option is chosen.
+	 * Called if Option is chosen in the UI.
 	 * 
 	 * @return if true, Option will be updated
 	 */
 	public boolean optionChosen() {
 		return false;
+	}
+
+	public boolean hasExtraResultAction() {
+		return false;
+	}
+
+	public void callResultAction() {
+
 	}
 }

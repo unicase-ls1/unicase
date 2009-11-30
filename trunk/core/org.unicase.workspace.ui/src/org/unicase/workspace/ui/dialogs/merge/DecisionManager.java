@@ -24,6 +24,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.AttributeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.CompositeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.DeletionConflict;
@@ -258,6 +259,7 @@ public class DecisionManager {
 				}
 			}
 		}
+		ArrayList<ConflictOption> extraActions = new ArrayList<ConflictOption>();
 		for (Conflict conflict : conflicts) {
 			// Collect other accepted, which were generated in the merge process
 			for (AbstractOperation ao : conflict.getAcceptedMine()) {
@@ -269,6 +271,14 @@ public class DecisionManager {
 			if (rejected.size() > 0) {
 				rejectedTheirs.addAll(rejected);
 			}
+
+			if (conflict.getSolution().hasExtraResultAction()) {
+				extraActions.add(conflict.getSolution());
+			}
+		}
+
+		for (ConflictOption solution : extraActions) {
+			solution.callResultAction();
 		}
 	}
 
@@ -399,5 +409,9 @@ public class DecisionManager {
 			}
 		}
 		return "";
+	}
+
+	public Project getProject() {
+		return project;
 	}
 }

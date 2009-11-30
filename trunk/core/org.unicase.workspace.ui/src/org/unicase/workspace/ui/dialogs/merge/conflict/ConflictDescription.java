@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ConflictDescription {
 
-	private Map<String,Object> values;
+	private Map<String, Object> values;
 	private final String description;
 	private String imageName;
 
@@ -13,15 +13,15 @@ public class ConflictDescription {
 		this.description = description;
 		values = new HashMap<String, Object>();
 	}
-	
+
 	public void add(String key, Object value) {
 		values.put(key, value);
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public Map<String, Object> getValues() {
 		return values;
 	}
@@ -29,9 +29,13 @@ public class ConflictDescription {
 	public String getImage() {
 		return imageName;
 	}
-	
+
 	public void setImage(String name) {
 		this.imageName = name;
-		
+
+	}
+
+	public String getResolvedDescription() {
+		return description;
 	}
 }

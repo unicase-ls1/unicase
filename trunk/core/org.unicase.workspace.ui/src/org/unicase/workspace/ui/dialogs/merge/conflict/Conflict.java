@@ -3,10 +3,12 @@ package org.unicase.workspace.ui.dialogs.merge.conflict;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
-import org.unicase.workspace.ui.dialogs.merge.conflict.options.IssueOption;
 
 public abstract class Conflict {
 
@@ -53,14 +55,37 @@ public abstract class Conflict {
 		conflictDescription = initConflictDescription();
 		options = new ArrayList<ConflictOption>();
 		initConflictOptions(options);
-		initDefaultConflictOptions(options);
+		initAdditionalConflictOptions(options);
 	}
 
-	private void initDefaultConflictOptions(ArrayList<ConflictOption> options2) {
+	private void initAdditionalConflictOptions(
+			ArrayList<ConflictOption> options2) {
 		if (!allowOtherOptions()) {
 			return;
 		}
-		options.add(new IssueOption("Enter Name ..."));
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.unicase.workspace.ui.merge.customoption");
+
+		for (IConfigurationElement e : config) {
+			try {
+				Object object = e.createExecutableExtension("class");
+				if (object instanceof CustomConflictOptionFactory) {
+
+					CustomConflictOptionFactory factory = (CustomConflictOptionFactory) object;
+					if (factory.isApplicableConflict(this)) {
+						CustomConflictOption customConflictOption = factory
+								.createCustomConflictOption(this);
+						if (customConflictOption != null) {
+							options.add(customConflictOption);
+						}
+					}
+
+				}
+			} catch (CoreException e1) {
+				// fail silently
+			}
+		}
 	}
 
 	protected boolean allowOtherOptions() {
@@ -138,5 +163,14 @@ public abstract class Conflict {
 		} else {
 			return solution.getOperations();
 		}
+	}
+
+	public ConflictOption getOptionOfType(OptionType type) {
+		for (ConflictOption option : getOptions()) {
+			if (option.getType().equals(type)) {
+				return option;
+			}
+		}
+		return null;
 	}
 }
