@@ -60,7 +60,7 @@ public class IssueOption extends CustomConflictOption {
 
 	@Override
 	public boolean hasExtraResultAction() {
-		return true;
+		return false;
 	}
 
 	public void createOperation() {
@@ -111,7 +111,8 @@ public class IssueOption extends CustomConflictOption {
 		}
 
 		try {
-			compositeOperation.end("", "", mergeIssue.getModelElementId());
+			compositeOperation.end("Created Merge Issue",
+					"Created a merge issue.", mergeIssue.getModelElementId());
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
@@ -123,8 +124,10 @@ public class IssueOption extends CustomConflictOption {
 
 	@Override
 	public List<AbstractOperation> getOperations() {
+		if (issueOperation == null) {
+			createOperation();
+		}
 		ArrayList<AbstractOperation> result = new ArrayList<AbstractOperation>();
-		createOperation();
 		if (issueOperation != null) {
 			result.add(issueOperation);
 		}
