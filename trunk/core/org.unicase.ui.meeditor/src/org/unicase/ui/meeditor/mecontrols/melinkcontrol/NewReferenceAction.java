@@ -24,6 +24,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -57,7 +58,7 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz, ModelPackage.eINSTANCE);
+			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz, MetamodelPackage.eINSTANCE);
 			if (subclasses.size() == 1) {
 				newClass = subclasses.get(0);
 			} else {
@@ -80,7 +81,6 @@ public class NewReferenceAction extends Action {
 
 			EPackage ePackage = newClass.getEPackage();
 			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
-			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {
 				// Returns the value of the Container
