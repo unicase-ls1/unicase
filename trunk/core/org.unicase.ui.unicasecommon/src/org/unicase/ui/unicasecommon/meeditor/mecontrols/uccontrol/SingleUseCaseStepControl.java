@@ -35,11 +35,11 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.unicasecommon.meeditor.ControlFactory;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MERichTextControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
+import org.unicase.ui.meeditor.ControlFactory;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
+import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

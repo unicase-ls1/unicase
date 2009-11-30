@@ -3,46 +3,56 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols;
+package org.unicase.ui.meeditor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * This is the standard Control to edit boolean values.
  * 
- * @author shterev
+ * @author helming
  */
-public class MEEnumControl extends AbstractMEControl implements MEControl {
+public class MEBoolControl extends AbstractMEControl implements MEControl {
 
 	private EAttribute attribute;
 
-	private Combo combo;
+	private Button check;
+
+	private static final int PRIORITY = 1;
 
 	/**
-	 * Standard Constructor. {@inheritDoc}
-	 * 
-	 * @param attribute the boolean attribute
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
+	 * Standard Constructor.
 	 */
-	public MEEnumControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
-		this.attribute = attribute;
+	public MEBoolControl() {
+		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(boolean.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**
@@ -51,15 +61,11 @@ public class MEEnumControl extends AbstractMEControl implements MEControl {
 	 * @return Control
 	 */
 	public Control createControl(Composite parent, int style) {
-		combo = new Combo(parent, style | SWT.DROP_DOWN | SWT.READ_ONLY);
+		check = getToolkit().createButton(parent, "", SWT.CHECK);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
-		EList<EEnumLiteral> list = ((EEnum) attribute.getEType()).getELiterals();
-		for (EEnumLiteral literal : list) {
-			combo.add(literal.getLiteral());
-		}
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeSelection(combo), model, null, null);
-		return combo;
+		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
+		return check;
 	}
 
 }

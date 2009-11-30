@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol;
+package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 
@@ -32,13 +32,10 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.model.NonDomainElement;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
-import org.unicase.ui.unicasecommon.meeditor.MEURLControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -92,8 +89,8 @@ public class MELinkControl extends AbstractMEControl {
 		};
 		labelProvider.addListener(labelProviderListener);
 
-		ArrayList<UnicaseModelElement> list = new ArrayList<UnicaseModelElement>();
-		list.add((UnicaseModelElement) getModelElement());
+		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
+		list.add((ModelElement) getModelElement());
 		observer = new ModelElementChangeListener() {
 
 			public void onChange(Notification notification) {
@@ -101,8 +98,8 @@ public class MELinkControl extends AbstractMEControl {
 
 					public void run() {
 						if (hyperlink != null && !hyperlink.isDisposed()) {
-							hyperlink.setText(((UnicaseModelElement) getModelElement()).getShortName());
-							hyperlink.setToolTipText(((UnicaseModelElement) getModelElement()).getShortName());
+							hyperlink.setText(((ModelElement) getModelElement()).getShortName());
+							hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
 							updateAdditionalControlComponents();
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
@@ -113,21 +110,21 @@ public class MELinkControl extends AbstractMEControl {
 			}
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				((UnicaseModelElement) getModelElement()).removeModelElementChangeListener(observer);
+				((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
 			}
 		};
-		((UnicaseModelElement) getModelElement()).addModelElementChangeListener(observer);
+		((ModelElement) getModelElement()).addModelElementChangeListener(observer);
 
 		Image image = labelProvider.getImage(getModelElement());
 		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
 		imageHyperlink.setData(getModelElement().eClass());
 		ModelElementClassTooltip.enableFor(imageHyperlink);
-		hyperlink = getToolkit().createHyperlink(linkComposite,
-			((UnicaseModelElement) getModelElement()).getShortName(), style);
-		hyperlink.setToolTipText(((UnicaseModelElement) getModelElement()).getShortName());
-		IHyperlinkListener listener = new MEHyperLinkAdapter((UnicaseModelElement) getModelElement(),
-			(UnicaseModelElement) contextModelElement, reference.getName());
+		hyperlink = getToolkit().createHyperlink(linkComposite, ((ModelElement) getModelElement()).getShortName(),
+			style);
+		hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
+		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
+			(ModelElement) contextModelElement, reference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 
@@ -152,7 +149,7 @@ public class MELinkControl extends AbstractMEControl {
 	 * @param style Style
 	 */
 	private void setupAdditionalControlComponents(int style) {
-		if (((UnicaseModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
+		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			urlHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
 				.createImage();
@@ -171,9 +168,9 @@ public class MELinkControl extends AbstractMEControl {
 						return;
 					}
 					Program.launch(url);
-					UnicaseModelElement urlAttachement = (UnicaseModelElement) getModelElement();
-					MEURLControl.logEvent(((UnicaseModelElement) contextModelElement).getModelElementId(),
-						urlAttachement.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
+					ModelElement urlAttachement = (ModelElement) getModelElement();
+					MEURLControl.logEvent(((ModelElement) contextModelElement).getModelElementId(), urlAttachement
+						.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
 						"org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
@@ -188,7 +185,7 @@ public class MELinkControl extends AbstractMEControl {
 	 * @return Number of controls
 	 */
 	private int getNumberOfAdditionalControlComponents() {
-		if (((UnicaseModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
+		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			return 1;
 		}
 		return 0;
@@ -217,7 +214,7 @@ public class MELinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			((UnicaseModelElement) getModelElement()).removeModelElementChangeListener(observer);
+			((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
 		}
 		labelProvider.removeListener(labelProviderListener);
 		labelProvider.dispose();

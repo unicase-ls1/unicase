@@ -3,11 +3,13 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor.mecontrols;
+package org.unicase.ui.meeditor.mecontrols;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Abstract class for the ME controls.
@@ -73,16 +75,20 @@ public abstract class AbstractMEControl implements MEControl {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param editingDomain the editing domain
-	 * @param modelElement the ME
-	 * @param toolkit gui toolkit used for rendering
 	 */
-	public AbstractMEControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
+	public AbstractMEControl() {
 		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**

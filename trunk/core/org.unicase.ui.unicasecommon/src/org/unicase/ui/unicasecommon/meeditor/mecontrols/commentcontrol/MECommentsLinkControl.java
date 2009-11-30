@@ -34,8 +34,8 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 

@@ -3,12 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor;
+package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the annotation in the genmodel.
@@ -22,7 +22,7 @@ public class AnnotationPositionDescriptor implements IAttributeDescriptor<String
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getValue(IItemPropertyDescriptor propertyDescriptor, UnicaseModelElement modelElement) {
+	public String getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement) {
 		EAnnotation priority = ((EStructuralFeature) propertyDescriptor.getFeature(modelElement))
 			.getEAnnotation("org.unicase.ui.meeditor");
 		if (priority == null || priority.getDetails() == null) {

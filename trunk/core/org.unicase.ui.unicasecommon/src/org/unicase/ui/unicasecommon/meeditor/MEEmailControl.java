@@ -22,8 +22,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.METextAreaControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
 
 /**
  * @author hamid Control for an email attribute. Includes a button to send an email.

@@ -12,6 +12,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.ui.meeditor.MEEditor;
 
 /**
  * The history page for the {@link MEEditor}.

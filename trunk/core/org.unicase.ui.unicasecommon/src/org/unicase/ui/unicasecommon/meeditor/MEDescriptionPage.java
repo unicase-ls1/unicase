@@ -18,8 +18,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.MERichTextControl;
+import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.workspace.Configuration;
 
 /**

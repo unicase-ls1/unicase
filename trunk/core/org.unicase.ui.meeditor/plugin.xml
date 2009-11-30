@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.ui.meeditor.attributecontrols" name="org.unicase.ui.meeditor.attributecontrols" schema="schema/org.unicase.ui.meeditor.attributecontrol.exsd"/>
+   <extension-point id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols" schema="schema/org.unicase.ui.meeditor.referencecontrol.exsd"/>
+   <extension
+         point="org.unicase.workspace.filetransfer.ondone">
+      <updatefileattachments
+            listener="org.unicase.ui.meeditor.commands.FileAttachmentUpdaterImpl">
+      </updatefileattachments>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.MEBoolControl"
+            name="org.unicase.ui.meeditor.meboolcontrol"
+            type="java.lang.Boolean">
+      </widget>
+   </extension>
+</plugin>

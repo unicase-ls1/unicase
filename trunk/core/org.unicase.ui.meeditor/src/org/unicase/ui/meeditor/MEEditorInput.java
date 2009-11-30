@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.meeditor;
+package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -20,8 +20,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
@@ -32,7 +30,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class MEEditorInput implements IEditorInput {
 
-	private UnicaseModelElement modelElement;
+	private ModelElement modelElement;
 	private EStructuralFeature problemFeature;
 	private DecoratingLabelProvider labelProvider;
 
@@ -41,7 +39,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param me the modelElement
 	 */
-	public MEEditorInput(UnicaseModelElement me) {
+	public MEEditorInput(ModelElement me) {
 		super();
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -65,13 +63,6 @@ public class MEEditorInput implements IEditorInput {
 				}
 
 			}
-			final String finalName = newName;
-			new UnicaseCommand() {
-				@Override
-				protected void doRun() {
-					modelElement.setName(finalName);
-				}
-			}.run();
 		}
 	}
 
@@ -90,7 +81,7 @@ public class MEEditorInput implements IEditorInput {
 	 * @param me the modelElement
 	 * @param problemFeature the feature having a problem
 	 */
-	public MEEditorInput(UnicaseModelElement me, EStructuralFeature problemFeature) {
+	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
 		this(me);
 		this.problemFeature = problemFeature;
 	}
@@ -138,7 +129,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @return the modelElement
 	 */
-	public UnicaseModelElement getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
@@ -147,7 +138,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param modelElement the modelElement
 	 */
-	public void setModelElement(UnicaseModelElement modelElement) {
+	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 

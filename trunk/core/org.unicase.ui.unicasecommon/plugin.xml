@@ -893,4 +893,20 @@
           name="Unicase">
     </page>
  </extension>
+ <extension
+       point="org.unicase.ui.meeditor.mecontrol">
+    <AttributeWidget
+          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEDateControl"
+          name="org.unicase.ui.unicasecommon.MEDateControl"
+          type="java.util.Date">
+    </AttributeWidget>
+ </extension>
+ <extension
+       point="org.unicase.ui.meeditor.mecontrol">
+    <ReferenceWidget
+          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
+          name="org.unicase.ui.unicasecommon.MESingleLinkControl"
+          type="org.unicase.metamodel.ModelElement">
+    </ReferenceWidget>
+ </extension>
 </plugin>
