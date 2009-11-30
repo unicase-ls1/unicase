@@ -160,7 +160,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.SINGLE);
+		viewer = new TreeViewer(parent, SWT.MULTI);
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 			.getLabelDecorator()));

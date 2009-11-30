@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
@@ -60,8 +59,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 		case MetamodelPackage.PROJECT:
 			return createProject();
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT:
-			return createIdentifiableElement();
 		case MetamodelPackage.MODEL_ELEMENT_ID:
 			return createModelElementId();
 		case MetamodelPackage.MODEL_VERSION:
@@ -79,16 +76,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Project createProject() {
 		ProjectImpl project = new ProjectImpl();
 		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public IdentifiableElement createIdentifiableElement() {
-		IdentifiableElementImpl identifiableElement = new IdentifiableElementImpl();
-		return identifiableElement;
 	}
 
 	/**

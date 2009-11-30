@@ -14,7 +14,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UnicaseModelElement;
 
@@ -119,13 +118,6 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelPackage.NON_DOMAIN_ELEMENT: {
-			NonDomainElement nonDomainElement = (NonDomainElement) theEObject;
-			T result = caseNonDomainElement(nonDomainElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ModelPackage.PROJECT: {
 			Project project = (Project) theEObject;
 			T result = caseProject(project);
@@ -217,20 +209,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseMetamodel_Project(org.unicase.metamodel.Project object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

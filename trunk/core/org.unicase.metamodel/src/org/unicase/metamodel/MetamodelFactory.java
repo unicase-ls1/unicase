@@ -31,14 +31,6 @@ public interface MetamodelFactory extends EFactory {
 	Project createProject();
 
 	/**
-	 * Returns a new object of class '<em>Identifiable Element</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Identifiable Element</em>'.
-	 * @generated
-	 */
-	IdentifiableElement createIdentifiableElement();
-
-	/**
 	 * Returns a new object of class '<em>Model Element Id</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Model Element Id</em>'.

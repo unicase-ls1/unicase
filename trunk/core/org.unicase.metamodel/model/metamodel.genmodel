@@ -27,5 +27,6 @@
     <genClasses ecoreClass="metamodel.ecore#//ModelVersion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelVersion/releaseNumber"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//NonDomainElement"/>
   </genPackages>
 </genmodel:GenModel>

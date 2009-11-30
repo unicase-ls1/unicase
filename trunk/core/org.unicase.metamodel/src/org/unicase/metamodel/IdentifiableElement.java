@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * 
  * @see org.unicase.metamodel.MetamodelPackage#getIdentifiableElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface IdentifiableElement extends EObject {

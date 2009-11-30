@@ -231,6 +231,25 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int MODEL_VERSION_FEATURE_COUNT = 1;
 
+	/**
+	 * The meta object id for the '{@link org.unicase.metamodel.NonDomainElement <em>Non Domain Element</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.metamodel.NonDomainElement
+	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getNonDomainElement()
+	 * @generated
+	 */
+	int NON_DOMAIN_ELEMENT = 6;
+
+	/**
+	 * The number of structural features of the '<em>Non Domain Element</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
+
 	int RELEASE_NUMBER = 3;
 
 	/**
@@ -361,6 +380,16 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getModelVersion_ReleaseNumber();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.metamodel.NonDomainElement <em>Non Domain Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Non Domain Element</em>'.
+	 * @see org.unicase.metamodel.NonDomainElement
+	 * @generated
+	 */
+	EClass getNonDomainElement();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -488,6 +517,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_VERSION__RELEASE_NUMBER = eINSTANCE.getModelVersion_ReleaseNumber();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.metamodel.NonDomainElement <em>Non Domain Element</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.metamodel.NonDomainElement
+		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getNonDomainElement()
+		 * @generated
+		 */
+		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
 
 	}
 

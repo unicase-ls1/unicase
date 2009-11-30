@@ -443,25 +443,6 @@ public interface ModelPackage extends EPackage {
 	int ATTACHMENT_FEATURE_COUNT = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.NonDomainElement
-	 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
-	 * @generated
-	 */
-	int NON_DOMAIN_ELEMENT = 3;
-
-	/**
-	 * The number of structural features of the '<em>Non Domain Element</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -469,7 +450,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 	 * @generated
 	 */
-	int PROJECT = 4;
+	int PROJECT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -643,16 +624,6 @@ public interface ModelPackage extends EPackage {
 	EReference getAttachment_ReferringModelElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Non Domain Element</em>'.
-	 * @see org.unicase.model.NonDomainElement
-	 * @generated
-	 */
-	EClass getNonDomainElement();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -802,16 +773,6 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE.getAttachment_ReferringModelElements();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.model.NonDomainElement
-		 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
-		 * @generated
-		 */
-		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
