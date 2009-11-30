@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
@@ -59,6 +60,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: return createExtractSuperClassOperation();
+			case OperationsPackage.INLINE_CLASS_OPERATION: return createInlineClassOperation();
+			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: return createPartitionAssociationOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -72,6 +75,26 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public ExtractSuperClassOperation createExtractSuperClassOperation() {
 		ExtractSuperClassOperationImpl extractSuperClassOperation = new ExtractSuperClassOperationImpl();
 		return extractSuperClassOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InlineClassOperation createInlineClassOperation() {
+		InlineClassOperationImpl inlineClassOperation = new InlineClassOperationImpl();
+		return inlineClassOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PartitionAssociationOperation createPartitionAssociationOperation() {
+		PartitionAssociationOperationImpl partitionAssociationOperation = new PartitionAssociationOperationImpl();
+		return partitionAssociationOperation;
 	}
 
 	/**

@@ -96,6 +96,52 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.InlineClassOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InlineClassOperationItemProvider inlineClassOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.InlineClassOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInlineClassOperationAdapter() {
+		if (inlineClassOperationItemProvider == null) {
+			inlineClassOperationItemProvider = new InlineClassOperationItemProvider(this);
+		}
+
+		return inlineClassOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PartitionAssociationOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PartitionAssociationOperationItemProvider partitionAssociationOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.PartitionAssociationOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPartitionAssociationOperationAdapter() {
+		if (partitionAssociationOperationItemProvider == null) {
+			partitionAssociationOperationItemProvider = new PartitionAssociationOperationItemProvider(this);
+		}
+
+		return partitionAssociationOperationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,6 +241,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	public void dispose() {
 		if (extractSuperClassOperationItemProvider != null) extractSuperClassOperationItemProvider.dispose();
+		if (inlineClassOperationItemProvider != null) inlineClassOperationItemProvider.dispose();
+		if (partitionAssociationOperationItemProvider != null) partitionAssociationOperationItemProvider.dispose();
 	}
 
 }

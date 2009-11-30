@@ -258,6 +258,16 @@ public class ExtractSuperClassOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
 

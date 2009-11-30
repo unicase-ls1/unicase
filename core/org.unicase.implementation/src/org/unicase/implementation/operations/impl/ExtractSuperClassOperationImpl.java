@@ -26,8 +26,10 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.classes.Enumeration;
 import org.unicase.model.classes.InstantiationType;
 import org.unicase.model.classes.Package;
+import org.unicase.model.classes.PackageElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -254,6 +256,28 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		}
 		return classes;
 	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public boolean validateSuperClassName(Project project) {
+		Package targetPackage = getTargetPackage(project);
+		String superClassName = getSuperClassName();
+
+		if (superClassName != null && targetPackage != null) {
+			for (PackageElement element : targetPackage.getContainedPackageElements()) {
+				if (element instanceof Class || element instanceof Enumeration) {
+					if (superClassName.equals(element.getName())) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
 	// end of custom code
 	
 	/**
