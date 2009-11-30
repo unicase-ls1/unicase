@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«EXTENSION xpt::diagram::ViewmapAttributesUtils»
+
+«DEFINE FloatingLabelViewFactory FOR gmfgen::GenLabel-»
+«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().notationViewFactoriesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «notationViewFactoryClassName» extends org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractLabelViewFactory {
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.gmf.runtime.notation.View createView(org.eclipse.core.runtime.IAdaptable semanticAdapter,
+			org.eclipse.gmf.runtime.notation.View containerView, String semanticHint, int index, boolean persisted,
+			org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+		org.eclipse.gmf.runtime.notation.Node view = (org.eclipse.gmf.runtime.notation.Node) super.createView(
+				semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		«EXPAND offset-»
+		return view;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.util.List createStyles(org.eclipse.gmf.runtime.notation.View view) {
+		java.util.List styles = new java.util.ArrayList();
+		«EXPAND xpt::diagram::views::Utils::addTextStyle("styles") FOR modelFacet-»
+		«EXPAND xpt::diagram::views::Utils::addCustomStyles("styles")-»
+		return styles;
+	}
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE offset FOR gmfgen::GenLabel-»
+«ENDDEFINE»
+
+«DEFINE offset FOR gmfgen::GenLinkLabel-»
+	«LET labelOffsetX(viewmap, 0) AS x-»
+	«LET labelOffsetY(viewmap, 0) AS y-»
+	«IF x != 0 || y != 0-»
+		«EXPAND offset(x, y)-»
+	«ENDIF-»
+	«ENDLET-»
+	«ENDLET-»
+«ENDDEFINE»
+
+«DEFINE offset FOR gmfgen::GenExternalNodeLabel-»
+	«EXPAND offset(0, 5)-»
+«ENDDEFINE»
+
+«DEFINE offset(Integer x, Integer y) FOR gmfgen::GenLabel-»
+	org.eclipse.gmf.runtime.notation.Location location = (org.eclipse.gmf.runtime.notation.Location) view.getLayoutConstraint();
+	org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode mapMode =
+			org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(containerView.getDiagram().getMeasurementUnit());
+	location.setX(mapMode.DPtoLP(«x»));
+	location.setY(mapMode.DPtoLP(«y»));
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenLabel»«ENDDEFINE»
