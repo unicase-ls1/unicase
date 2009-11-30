@@ -5,11 +5,10 @@
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -36,11 +35,9 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -54,6 +51,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author nagel
  */
 public class MEURLControl extends AbstractMEControl {
+	private static final int PRIORITY = 1;
 
 	/**
 	 * Recording command to edit a URL.
@@ -80,18 +78,20 @@ public class MEURLControl extends AbstractMEControl {
 	private Composite linkComposite;
 	private Hyperlink hyperlink;
 	private ModelElementChangeObserver observer;
+	private UrlAttachment urlattachement;
 
 	@Override
 	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
 		EditingDomain editingDomain, FormToolkit toolkit) {
 		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EStructuralFeature) {
-			if (((EStructuralFeature) feature).getName().equalsIgnoreCase("url")) {
-
+		if (modelElement instanceof UrlAttachment && feature instanceof EAttribute) {
+			if (((EAttribute) feature).getName().equalsIgnoreCase("url")) {
+				this.urlattachement = (UrlAttachment) modelElement;
+				return PRIORITY;
 			}
 		}
-		return MEControl.DO_NOT_RENDER;
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 	/**
@@ -99,12 +99,11 @@ public class MEURLControl extends AbstractMEControl {
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.MEControl#createControl(org.eclipse.swt.widgets.Composite, int)
 	 */
+	@Override
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(2, false));
 
-		ArrayList<UnicaseModelElement> list = new ArrayList<UnicaseModelElement>();
-		list.add((UnicaseModelElement) getModelElement());
 		observer = new ModelElementChangeObserver() {
 
 			@Override
@@ -113,7 +112,7 @@ public class MEURLControl extends AbstractMEControl {
 
 					public void run() {
 						if (!hyperlink.isDisposed()) {
-							String url = ((UrlAttachment) getModelElement()).getUrl();
+							String url = urlattachement.getUrl();
 							if (url == null) {
 								url = "";
 							}
@@ -130,10 +129,11 @@ public class MEURLControl extends AbstractMEControl {
 				// nothing to do
 			}
 		};
-		((UnicaseModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
-		observer.observeElement((UnicaseModelElement) getModelElement());
 
-		String url = ((UrlAttachment) getModelElement()).getUrl();
+		getModelElement().getProject().addProjectChangeObserver(observer);
+		observer.observeElement(getModelElement());
+
+		String url = urlattachement.getUrl();
 		if (url == null) {
 			url = "";
 		}
@@ -141,12 +141,12 @@ public class MEURLControl extends AbstractMEControl {
 		hyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
-				String url = ((UrlAttachment) getModelElement()).getUrl();
+				String url = urlattachement.getUrl();
 				if (url == null) {
 					return;
 				}
 				Program.launch(url);
-				UnicaseModelElement modelElement = (UnicaseModelElement) getModelElement();
+				ModelElement modelElement = getModelElement();
 				logEvent(modelElement.getModelElementId(), modelElement.getModelElementId(), WorkspaceManager
 					.getProjectSpace(modelElement), "org.unicase.ui.meeditor");
 				super.linkActivated(event);
@@ -159,13 +159,12 @@ public class MEURLControl extends AbstractMEControl {
 			@Override
 			public void run() {
 				InputDialog input = new InputDialog(parent.getShell(), "Edit URL", "Please enter the URL",
-					((UrlAttachment) getModelElement()).getUrl(), null);
+					urlattachement.getUrl(), null);
 				input.setBlockOnOpen(true);
 				int result = input.open();
 				if (result == InputDialog.OK) {
 					TransactionalEditingDomain domain = Configuration.getEditingDomain();
-					domain.getCommandStack().execute(
-						new SetURLCommand(domain, input.getValue(), (UrlAttachment) getModelElement()));
+					domain.getCommandStack().execute(new SetURLCommand(domain, input.getValue(), urlattachement));
 				}
 			}
 
@@ -215,7 +214,7 @@ public class MEURLControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			Project project = ((UnicaseModelElement) getModelElement()).getProject();
+			Project project = (getModelElement().getProject());
 			if (project != null) {
 				project.removeProjectChangeObserver(observer);
 			}
