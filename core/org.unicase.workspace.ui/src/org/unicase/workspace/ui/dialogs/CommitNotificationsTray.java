@@ -23,6 +23,7 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -47,6 +48,8 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -287,6 +290,31 @@ public class CommitNotificationsTray extends DialogTray {
 				}
 			});
 
+			ChangePackage changePackage = VersioningFactory.eINSTANCE
+					.createChangePackage();
+			for (AbstractOperation ao : commitDialog.getOperations()) {
+				changePackage.getOperations().add(
+						(AbstractOperation) EcoreUtil.copy(ao));
+			}
+			final ChangePackageVisualizationHelper operationsHelper = new ChangePackageVisualizationHelper(
+					Arrays.asList(changePackage), projectSpace.getProject());
+
+			final LabelProvider operationsLabelProvider = new LabelProvider() {
+				@Override
+				public Image getImage(Object element) {
+					return userLabelProvider.getImage(element);
+				}
+
+				@Override
+				public String getText(Object element) {
+					if (element instanceof AbstractOperation) {
+						return operationsHelper
+								.getDescription((AbstractOperation) element);
+					}
+					return "Not an operation.";
+				}
+			};
+
 			Label operationLabel = new Label(root, SWT.WRAP);
 			operationLabel.setText("Operation");
 			final TableViewer operationViewer = new TableViewer(root);
@@ -294,7 +322,7 @@ public class CommitNotificationsTray extends DialogTray {
 			operationViewer.getTable().getVerticalBar().setVisible(false);
 			GridDataFactory.fillDefaults().hint(50, 15).grab(true, false)
 					.applyTo(operationViewer.getTable());
-			operationViewer.setLabelProvider(userLabelProvider);
+			operationViewer.setLabelProvider(operationsLabelProvider);
 			operationViewer.setContentProvider(new ArrayContentProvider());
 			Button operationButton = new Button(root, SWT.PUSH);
 			GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
@@ -304,7 +332,7 @@ public class CommitNotificationsTray extends DialogTray {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-							getShell(), userLabelProvider);
+							getShell(), operationsLabelProvider);
 					dialog.setMultipleSelection(false);
 					dialog.setElements(commitDialog.getOperations().toArray(
 							new AbstractOperation[0]));
