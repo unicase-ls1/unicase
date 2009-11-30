@@ -4,10 +4,11 @@ import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.TableWrapData;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
@@ -31,7 +32,9 @@ public class MultilineWidget extends Composite {
 
 		Composite titleComposite = new Composite(column, SWT.NONE);
 		titleComposite.setBackground(getBackground());
-		titleComposite.setLayout(new GridLayout());
+		titleComposite.setLayout(new FillLayout());
+		titleComposite
+				.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
 		String title = "";
 		switch (option.getType()) {
@@ -50,6 +53,8 @@ public class MultilineWidget extends Composite {
 		titl.setText(title);
 		titl.setBackground(getBackground());
 		titl.setFont(fontRegistry.get("titleLabel"));
+		// GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+		// .grab(true, true).applyTo(titl);
 
 		final Text myAttribute = new Text(column, SWT.MULTI | SWT.WRAP);
 		myAttribute.setText(option.getFullOptionLabel());

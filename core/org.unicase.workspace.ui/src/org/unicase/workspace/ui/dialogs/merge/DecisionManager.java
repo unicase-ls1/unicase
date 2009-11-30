@@ -32,6 +32,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceC
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.ReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.SingleReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
+import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 public class DecisionManager {
 
@@ -413,5 +414,10 @@ public class DecisionManager {
 
 	public Project getProject() {
 		return project;
+	}
+
+	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
+		return new ChangePackageVisualizationHelper(theirChangePackages,
+				project);
 	}
 }
