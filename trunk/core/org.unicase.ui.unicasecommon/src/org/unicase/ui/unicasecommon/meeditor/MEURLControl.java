@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
@@ -39,6 +40,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -79,15 +81,17 @@ public class MEURLControl extends AbstractMEControl {
 	private Hyperlink hyperlink;
 	private ModelElementChangeObserver observer;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param toolkit the toolkit
-	 * @param modelElement the model element
-	 * @param editingDomain the editing domain
-	 */
-	public MEURLControl(FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EStructuralFeature) {
+			if (((EStructuralFeature) feature).getName().equalsIgnoreCase("url")) {
+
+			}
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**
