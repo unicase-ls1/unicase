@@ -20,6 +20,7 @@ import org.unicase.model.task.WorkItem;
  * <li>{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}</li>
  * <li>{@link org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li>
  * <li>{@link org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Issue#getAssessments <em>Assessments</em>}</li>
  * </ul>
  * </p>
  * 
@@ -120,5 +121,21 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @generated
 	 */
 	void setActivity(ActivityType value);
+
+	/**
+	 * Returns the value of the '<em><b>Assessments</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.rationale.Assessment}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assessments</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Assessments</em>' reference list.
+	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Assessments()
+	 * @model changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	EList<Assessment> getAssessments();
 
 } // Issue

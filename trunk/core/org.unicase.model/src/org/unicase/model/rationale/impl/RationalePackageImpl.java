@@ -307,6 +307,15 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * 
 	 * @generated
 	 */
+	public EReference getIssue_Assessments() {
+		return (EReference) issueEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getProposal() {
 		return proposalEClass;
 	}
@@ -497,6 +506,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEReference(issueEClass, ISSUE__SOLUTION);
 		createEReference(issueEClass, ISSUE__CRITERIA);
 		createEAttribute(issueEClass, ISSUE__ACTIVITY);
+		createEReference(issueEClass, ISSUE__ASSESSMENTS);
 
 		proposalEClass = createEClass(PROPOSAL);
 		createEReference(proposalEClass, PROPOSAL__ASSESSMENTS);
@@ -586,6 +596,9 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		getIssue_Criteria().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(), "activity", null, 0, 1, Issue.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIssue_Assessments(), this.getAssessment(), null, "assessments", null, 0, -1, Issue.class,
+			!IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			IS_DERIVED, IS_ORDERED);
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProposal_Assessments(), this.getAssessment(), this.getAssessment_Proposal(), "assessments",

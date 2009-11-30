@@ -309,12 +309,21 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 15;
 
 	/**
+	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__ASSESSMENTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
+
+	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 17;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class. <!--
@@ -1095,6 +1104,17 @@ public interface RationalePackage extends EPackage {
 	EAttribute getIssue_Activity();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Issue#getAssessments
+	 * <em>Assessments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Assessments</em>'.
+	 * @see org.unicase.model.rationale.Issue#getAssessments()
+	 * @see #getIssue()
+	 * @generated
+	 */
+	EReference getIssue_Assessments();
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.rationale.Proposal <em>Proposal</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1352,6 +1372,14 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ISSUE__ACTIVITY = eINSTANCE.getIssue_Activity();
+
+		/**
+		 * The meta object literal for the '<em><b>Assessments</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ISSUE__ASSESSMENTS = eINSTANCE.getIssue_Assessments();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}'

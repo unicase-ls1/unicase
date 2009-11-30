@@ -71,6 +71,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
+			addAssessmentsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -160,6 +161,18 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 			"_UI_PropertyDescriptor_description", "_UI_Issue_activity_feature", "_UI_Issue_type"),
 			RationalePackage.Literals.ISSUE__ACTIVITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Assessments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addAssessmentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Issue_assessments_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Issue_assessments_feature", "_UI_Issue_type"),
+			RationalePackage.Literals.ISSUE__ASSESSMENTS, false, false, false, null, null, null));
 	}
 
 	/**
