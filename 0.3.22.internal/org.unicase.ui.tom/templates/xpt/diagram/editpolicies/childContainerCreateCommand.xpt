@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+ 
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«EXTENSION xpt::GenModelUtils»
+
+«DEFINE childContainerCreateCommand FOR List[gmfgen::GenNode]-»
+	«IF !isEmpty()-»
+
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+	«EXPAND childNodeCreateCommand FOREACH this-»
+	return super.getCreateCommand(req);
+}
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE childNodeCreateCommand FOR gmfgen::GenNode-»
+	«EXPAND childNodeCreateCommand(this) FOR modelFacet-»
+«ENDDEFINE»
+
+«DEFINE childNodeCreateCommand(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-»
+if («node.getDiagram().getElementTypesQualifiedClassName()».«node.getUniqueIdentifier()» == req.getElementType()) {
+		«IF !isPhantomElement()-»
+	if (req.getContainmentFeature() == null) {
+		req.setContainmentFeature(«IF null != containmentMetaFeature»«EXPAND MetaModel::MetaFeature FOR containmentMetaFeature»«ELSE»/* FIXME no containment feature found in the genmodel, toolsmith need to specify correct one here manually */«ENDIF»);
+	}
+		«ENDIF-»
+	return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req));
+}
+«ENDDEFINE»
