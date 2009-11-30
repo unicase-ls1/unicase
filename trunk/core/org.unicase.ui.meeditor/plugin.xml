@@ -29,6 +29,18 @@
             showLabel="true"
             type="java.lang.Enum">
       </widget>
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.MERichTextControl"
+            name="org.unicase.ui.meeditor.merichtextcontrol"
+            showLabel="true"
+            type="java.lang.String">
+      </widget>
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.METextControl"
+            name="org.unicase.ui.meeditor.metextcontrol"
+            showLabel="true"
+            type="java.lang.String">
+      </widget>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
