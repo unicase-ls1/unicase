@@ -398,6 +398,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/criteria"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//rationale/Issue/activity"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//rationale/Issue/assessments"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//rationale/Proposal">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/Proposal/assessments"/>

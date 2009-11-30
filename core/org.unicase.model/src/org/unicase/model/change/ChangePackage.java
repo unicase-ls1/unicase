@@ -308,6 +308,15 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__ACTIVITY = RationalePackage.ISSUE__ACTIVITY;
 
 	/**
+	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ASSESSMENTS = RationalePackage.ISSUE__ASSESSMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

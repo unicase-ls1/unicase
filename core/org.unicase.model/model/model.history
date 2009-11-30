@@ -8298,5 +8298,19 @@
           featureName="eSuperTypes" referenceValue="#//@releases.4/@changes.158/@element"/>
       <element xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
     </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue" referenceName="eStructuralFeatures"
+        element="model.ecore#//rationale/Issue/assessments"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="derived" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="volatile" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="changeable" dataValue="false" oldDataValue="true"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="eType" referenceValue="model.ecore#//rationale/Assessment"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="name" dataValue="assessments"/>
   </releases>
 </history:History>

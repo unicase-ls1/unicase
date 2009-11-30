@@ -23,6 +23,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
@@ -55,6 +56,7 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getActivity <em>Activity</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssessments <em>Assessments</em>}</li>
  * </ul>
  * </p>
  * 
@@ -660,6 +662,20 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * 
 	 * @generated
 	 */
+	public EList<Assessment> getAssessments() {
+		// TODO: implement this method to return the 'Assessments' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and
+		// org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
 			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
@@ -907,6 +923,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return getCriteria();
 		case RationalePackage.ISSUE__ACTIVITY:
 			return getActivity();
+		case RationalePackage.ISSUE__ASSESSMENTS:
+			return getAssessments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1077,6 +1095,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return criteria != null && !criteria.isEmpty();
 		case RationalePackage.ISSUE__ACTIVITY:
 			return activity != ACTIVITY_EDEFAULT;
+		case RationalePackage.ISSUE__ASSESSMENTS:
+			return !getAssessments().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
