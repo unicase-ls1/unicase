@@ -76,19 +76,20 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 		
+		String info = "Link was copied to the clipboard! ";
 		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
 			+ projectId + "/" + meName + "%" + meId;
 
 		//place the link on the system clipboard
 		StringSelection stringSelection = new StringSelection(link);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		clipboard.setContents( stringSelection, stringSelection);
+		clipboard.setContents(stringSelection, stringSelection);
 
 		
 		MessageDialog.openInformation(
 				window.getShell(),
 				"Link",
-				link);
+				info);
 		
 		return null;
 	}
