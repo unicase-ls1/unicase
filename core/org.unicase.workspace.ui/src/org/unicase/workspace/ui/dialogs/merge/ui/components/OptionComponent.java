@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
@@ -53,10 +54,14 @@ public class OptionComponent {
 		case TheirOperation:
 			result = "Keep Their Value: ";
 			break;
-		case Issue:
-			result = "Create Issue: ";
-			break;
 		case Custom:
+			if (option instanceof CustomConflictOption) {
+				String optionPrefix = ((CustomConflictOption) option)
+						.getOptionPrefix();
+				if (optionPrefix != null) {
+					result = optionPrefix;
+				}
+			}
 			break;
 		}
 		return result;
@@ -196,7 +201,7 @@ public class OptionComponent {
 				} else {
 					conflict.setSolution(composite.getOption());
 				}
-				if (composite.getOption().hasExtraAction()) {
+				if (composite.getOption().hasExtraOptionAction()) {
 					extraAction(composite);
 				}
 				refreshButtonColor();
