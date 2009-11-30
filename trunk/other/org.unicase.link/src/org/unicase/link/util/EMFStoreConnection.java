@@ -30,7 +30,7 @@ import org.unicase.workspace.ui.dialogs.LoginDialog;
  * If the user is not logged in on the server, 
  * login dialog will be opened
  * 
- * @author svetlana 
+ * @author svetlana nogina
  * @author emueller
  *
  */
@@ -49,8 +49,15 @@ public class EMFStoreConnection {
 
 			for (ServerInfo server: serverInfos) {
 				projectInfos =  server.getProjectInfos();
-				final Usersession lastSession = getLatestUsersession(server);
-
+				//final Usersession lastSession = getLatestUsersession(server);
+				Usersession currSession = null;
+				EList<Usersession> sessions = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+				for(Usersession session: sessions){
+					if(session.getServerInfo().getUrl().equals(server.getUrl())){
+						 currSession = session;
+					}
+				}
+				
 				if (projectInfos == null) {
 					continue;
 				} 
@@ -59,14 +66,17 @@ public class EMFStoreConnection {
 
 					if(project.getProjectId().getId().
 							equals(url.getProjectUrlFragment().getProjectId().getId())) {
-
+						
+						final Usersession lastSession = currSession;
+												
 						final CheckoutProjectHandler handler = 
 							new CheckoutProjectHandler(lastSession, project);
 
-						Display.getDefault().asyncExec(new Runnable() {
+						Display.getDefault().syncExec(new Runnable() {
 							public void run() {
 								try {
 									handler.execute(new ExecutionEvent());
+									
 								} catch (ExecutionException e) {
 									MessageDialog.openError(
 											PlatformUI.getWorkbench()
@@ -77,6 +87,8 @@ public class EMFStoreConnection {
 								}
 							}
 						});
+						
+						return handler.getProjectSpace();
 					}
 				}			
 			}
@@ -102,7 +114,8 @@ public class EMFStoreConnection {
 		if(lastSession == null || !lastSession.isLoggedIn()){		
 			// TODO: dialog either does not disappear after clicking OK, 
 			ShowLoginDialog dlg = new ShowLoginDialog();
-			dlg.showLoginDialog(serverInfo);
+			dlg.showLoginDialog(serverInfo);			
+			return dlg.getUsersession();
 		}
 		
 		return lastSession;
@@ -123,16 +136,10 @@ public class EMFStoreConnection {
 		void showLoginDialog(final ServerInfo serverInfo) {
 			Display.getDefault().syncExec(new Runnable() {
 				public void run() {
-					loginDialog = new LoginDialog(
-							PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-							null,
+					loginDialog = new LoginDialog(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), null,
 							serverInfo);
-					
-					int ret = loginDialog.open();
-					
-					if (ret == LoginDialog.OK) {
-						userSession = loginDialog.getSession();
-					}
+					loginDialog.open();
 				}
 			});
 		}
@@ -148,5 +155,6 @@ public class EMFStoreConnection {
 		LoginDialog getDialog() {
 			return loginDialog;
 		}
-	}
+		
+		}
 }
