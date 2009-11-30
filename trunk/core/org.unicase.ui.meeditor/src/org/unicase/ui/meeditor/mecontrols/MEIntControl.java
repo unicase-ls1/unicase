@@ -9,13 +9,14 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Standard widgets to edit a integer attribute.
@@ -28,17 +29,29 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 
 	private Spinner spinner;
 
+	private static final int PRIORITY = 1;
+
 	/**
-	 * default constructor.
-	 * 
-	 * @param attribute the integer attribute
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
+	 * Standard Constructor.
 	 */
-	public MEIntControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
-		this.attribute = attribute;
+	public MEIntControl() {
+		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Integer.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**

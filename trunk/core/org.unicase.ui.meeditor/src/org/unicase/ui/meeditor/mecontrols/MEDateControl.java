@@ -7,11 +7,10 @@ package org.unicase.ui.meeditor.mecontrols;
 
 import java.util.Date;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -29,6 +28,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -46,28 +46,29 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	private ImageHyperlink dateDeleteButton;
 	private Label dateDummy;
 
-	/**
-	 * default constructor.
-	 * 
-	 * @param attribute the date attribute
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
-	 */
-	public MEDateControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
-		this.attribute = attribute;
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(MEDateControl.this.attribute)) {
-					update();
-				}
-				super.notifyChanged(msg);
-			}
+	private static final int PRIORITY = 1;
 
-		};
-		modelElement.eAdapters().add(adapterImpl);
+	/**
+	 * Standard Constructor.
+	 */
+	public MEDateControl() {
+		super();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Date.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**
