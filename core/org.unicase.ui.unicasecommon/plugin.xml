@@ -84,21 +84,11 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
-      <command
-            defaultHandler="org.unicase.ui.unicasecommon.meeditor.commands.OpenModelElementDiscussionHandler"
-            id="org.unicase.ui.meeditor.openModelElementDiscussion"
-            name="OpenModelElementDiscussion">
-      </command>
             <commandParameterType
             converter="org.unicase.ui.unicasecommon.navigator.commands.DiagramTypeConverter"
             id="org.unicase.ui.navigator.diagramType"
             type="org.unicase.model.diagram.DiagramType">
       </commandParameterType>
-            <command
-                  defaultHandler="org.unicase.ui.unicasecommon.meeditor.commands.OpenModelElementHandler"
-                  id="org.unicase.ui.meeditor.openModelElement"
-                  name="OpenModelElement">
-            </command>
       <command
             id="org.unicase.ui.navigator.newLeafSection"
             name="newLeafSection">
@@ -206,12 +196,6 @@
     <!--    -->
    <extension
          point="org.eclipse.ui.editors">
-      <editor
-            class="org.unicase.ui.unicasecommon.meeditor.MEEditor"
-            default="false"
-            id="org.unicase.ui.meeditor"
-            name="Model Element Editor">
-      </editor>
    </extension>
    <extension
          point="org.eclipse.emf.ecore.content_parser">
@@ -892,21 +876,5 @@
           id="org.unicase.ui.common.unicase"
           name="Unicase">
     </page>
- </extension>
- <extension
-       point="org.unicase.ui.meeditor.mecontrol">
-    <AttributeWidget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEDateControl"
-          name="org.unicase.ui.unicasecommon.MEDateControl"
-          type="java.util.Date">
-    </AttributeWidget>
- </extension>
- <extension
-       point="org.unicase.ui.meeditor.mecontrol">
-    <ReferenceWidget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
-          name="org.unicase.ui.unicasecommon.MESingleLinkControl"
-          type="org.unicase.metamodel.ModelElement">
-    </ReferenceWidget>
  </extension>
 </plugin>

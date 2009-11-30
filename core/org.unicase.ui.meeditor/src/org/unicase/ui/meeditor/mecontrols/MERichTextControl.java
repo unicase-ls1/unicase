@@ -5,11 +5,10 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.Document;
@@ -34,6 +33,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -51,30 +51,31 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private final String bulletString = "  \u2022 ";
 
+	private static final int PRIORITY = 2;
+
 	/**
-	 * Default constructor.
-	 * 
-	 * @param feature The displayed feature
-	 * @param editingDomain the editing domain
-	 * @param modelElement the modelelement
-	 * @param toolkit the toolkit
+	 * Standard Constructor.
 	 */
-	public MERichTextControl(EAttribute feature, EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
-		super(editingDomain, modelElement, toolkit);
-		this.attribute = feature;
+	public MERichTextControl() {
+		super();
+	}
 
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(MERichTextControl.this.attribute)) {
-					load();
-				}
-				super.notifyChanged(msg);
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
+			this.attribute = (EAttribute) feature;
+			if (itemPropertyDescriptor.isMultiLine(feature)) {
+				return PRIORITY;
 			}
-		};
-		getModelElement().eAdapters().add(eAdapter);
-
-		shoudShowExpand = true;
+		}
+		return MEControl.DO_NOT_RENDER;
 	}
 
 	/**

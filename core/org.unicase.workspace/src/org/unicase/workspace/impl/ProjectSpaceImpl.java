@@ -86,7 +86,6 @@ import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileRequestHandler;
 import org.unicase.workspace.filetransfer.FileTransferJob;
-import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.filetransfer.FileTransferUtil;
 import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.notification.NotificationGenerator;
@@ -129,8 +128,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver,
-	FileTransferObserver {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
