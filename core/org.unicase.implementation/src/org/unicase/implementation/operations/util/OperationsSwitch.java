@@ -121,6 +121,16 @@ public class OperationsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION: {
+				PushDownAttributeOperation pushDownAttributeOperation = (PushDownAttributeOperation)theEObject;
+				T result = casePushDownAttributeOperation(pushDownAttributeOperation);
+				if (result == null) result = caseSemanticCompositeOperation(pushDownAttributeOperation);
+				if (result == null) result = caseCompositeOperation(pushDownAttributeOperation);
+				if (result == null) result = caseAbstractOperation(pushDownAttributeOperation);
+				if (result == null) result = caseIdentifiableElement(pushDownAttributeOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -167,6 +177,21 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T casePartitionAssociationOperation(PartitionAssociationOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Push Down Attribute Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Push Down Attribute Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePushDownAttributeOperation(PushDownAttributeOperation object) {
 		return null;
 	}
 

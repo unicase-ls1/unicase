@@ -251,8 +251,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 
 		contextClass.getAttributes().addAll(attributes);
 		contextClass.getOutgoingAssociations().addAll(associations);
-		project.deleteModelElement(association);
-		project.deleteModelElement(inlinedClass);
+		association.delete();
+		inlinedClass.delete();
 	}
 
 } //InlineClassOperationImpl

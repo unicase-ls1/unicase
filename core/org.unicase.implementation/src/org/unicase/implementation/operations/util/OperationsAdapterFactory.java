@@ -86,6 +86,10 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 				return createPartitionAssociationOperationAdapter();
 			}
 			@Override
+			public Adapter casePushDownAttributeOperation(PushDownAttributeOperation object) {
+				return createPushDownAttributeOperationAdapter();
+			}
+			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
 				return createIdentifiableElementAdapter();
 			}
@@ -160,6 +164,20 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPartitionAssociationOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.PushDownAttributeOperation <em>Push Down Attribute Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.implementation.operations.PushDownAttributeOperation
+	 * @generated
+	 */
+	public Adapter createPushDownAttributeOperationAdapter() {
 		return null;
 	}
 

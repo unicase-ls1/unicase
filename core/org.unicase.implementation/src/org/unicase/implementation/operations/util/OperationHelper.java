@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -172,14 +171,13 @@ public final class OperationHelper {
 	/**
 	 * Get all possible values for a given feature of an operation in the conext of a project.
 	 * @param operation the operation
-	 * @param feature the feature
+	 * @param reference the feature
 	 * @param project the project
 	 * @return a list of possible values
 	 */
 	@SuppressWarnings("unchecked")
-	public static List getPossibleValues(SemanticCompositeOperation operation,
-			EStructuralFeature feature, Project project) {
-		EOperation method = OperationHelper.getPossibleOperation(feature);
+	public static List getPossibleValues(SemanticCompositeOperation operation, EReference reference, Project project) {
+		EOperation method = OperationHelper.getPossibleOperation(reference);
 		if (method != null) {
 			try {
 				return OperationHelper.invokeOperation(operation, method, project);
@@ -187,23 +185,22 @@ public final class OperationHelper {
 				// ignore
 			}
 		}
-		EClass type = OperationHelper.getType(feature);
+		EClass type = OperationHelper.getType(reference);
 		return project.getAllModelElementsbyClass(type, new BasicEList());
 	}
 
-	private static EClass getType(EStructuralFeature feature) {
-		String name = "get" + firstUpper(feature.getName());
-		EOperation operation = getOperation(feature.getEContainingClass(),
-				name);
+	private static EClass getType(EReference reference) {
+		String name = "get" + firstUpper(reference.getName());
+		EOperation operation = getOperation(reference.getEContainingClass(), name);
 		if (operation == null) {
 			return null;
 		}
 		return (EClass) operation.getEType();
 	}
 
-	private static EOperation getPossibleOperation(EStructuralFeature feature) {
-		String name = "getPossible" + firstUpper(feature.getName());
-		EOperation operation = getOperation(feature.getEContainingClass(),
+	private static EOperation getPossibleOperation(EReference reference) {
+		String name = "getPossible" + firstUpper(reference.getName());
+		EOperation operation = getOperation(reference.getEContainingClass(),
 				name);
 		return operation;
 	}

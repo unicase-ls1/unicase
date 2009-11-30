@@ -6,6 +6,8 @@
  */
 package org.unicase.implementation.operations.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -225,14 +227,20 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 		for(Class subClass : target.getSubClasses()) {
 			String name = subClass.getName().substring(0, 1).toLowerCase() + subClass.getName().substring(1);
 			Association subAssociation = ClassesFactory.eINSTANCE.createAssociation();
+			((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 
 			subAssociation.setType(association.getType());
+
 			subAssociation.setTarget(subClass);
 			subAssociation.setTargetRole(name);
+			subAssociation.setTargetMultiplicity(association.getTargetMultiplicity());
+
 			subAssociation.setSource(association.getSource());
+			subAssociation.setSourceRole(association.getSourceRole());
+			subAssociation.setSourceMultiplicity(association.getSourceMultiplicity());
 		}
 		                 	
-		project.deleteModelElement(association);
+		association.delete();
 	}
 
 } //PartitionAssociationOperationImpl
