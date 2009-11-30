@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Workspace Model Edit Plug-in
+Bundle-SymbolicName: org.unicase.workspace.edit; singleton:=true
+Bundle-Version: 0.3.25.internal
+Bundle-ClassPath: .
+Bundle-Activator: org.unicase.workspace.provider.WorkspaceEditPlugin$Implementation
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.unicase.workspace.provider
+Require-Bundle: org.eclipse.ui;visibility:=reexport,
+ org.eclipse.emf.transaction,
+ org.eclipse.gmf.runtime.notation.edit,
+ org.eclipse.emf.edit.ui,
+ org.unicase.workspace;bundle-version="0.3.25.internal";visibility:=reexport,
+ org.unicase.ui.common;bundle-version="0.3.25.internal";visibility:=reexport,
+ org.unicase.emfstore.esmodel.edit;bundle-version="0.3.25.internal";visibility:=reexport,
+ org.eclipse.core.expressions,
+ org.eclipse.ui.forms;bundle-version="3.3.100"
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.edit.ui.provider
