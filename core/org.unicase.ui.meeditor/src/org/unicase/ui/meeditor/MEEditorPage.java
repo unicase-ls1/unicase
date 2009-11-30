@@ -277,9 +277,7 @@ public class MEEditorPage extends FormPage {
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
 				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 					control);
-				if (meControl instanceof AbstractMEControl) {
-					(meControl).applyCustomLayoutData();
-				}
+				meControl.applyCustomLayoutData();
 			} else {
 				control = meControl.createControl(attributeComposite, SWT.WRAP);
 				control.setData(modelElement);
@@ -324,21 +322,23 @@ public class MEEditorPage extends FormPage {
 		}
 	}
 
-	private void createSpecificMEControls() {
-		if (this.modelElement instanceof Issue) {
-			AbstractMEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl(
-				(Issue) this.modelElement, toolkit, editingDomain);
-			if (meControl != null) {
-				meControls.add(meControl);
-				Control control;
-				control = meControl.createControl(bottomComposite, SWT.WRAP);
-				// control.setLayoutData(new
-				// TableWrapData(TableWrapData.FILL_GRAB));
-				GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).indent(10, 0)
-					.applyTo(control);
-			}
-		}
+	// FIXME AS JH: add as a derived feature
 
-	}
+	// private void createSpecificMEControls() {
+	// if (this.modelElement instanceof Issue) {
+	// AbstractMEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl(
+	// (Issue) this.modelElement, toolkit, editingDomain);
+	// if (meControl != null) {
+	// meControls.add(meControl);
+	// Control control;
+	// control = meControl.createControl(bottomComposite, SWT.WRAP);
+	// // control.setLayoutData(new
+	// // TableWrapData(TableWrapData.FILL_GRAB));
+	// GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).indent(10, 0)
+	// .applyTo(control);
+	// }
+	// }
+	//
+	// }
 
 }
