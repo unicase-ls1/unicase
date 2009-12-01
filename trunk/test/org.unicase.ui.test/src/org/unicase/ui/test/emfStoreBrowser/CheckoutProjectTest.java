@@ -1,4 +1,4 @@
-package org.unicase.ui.test.navigator;
+package org.unicase.ui.test.emfStoreBrowser;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
