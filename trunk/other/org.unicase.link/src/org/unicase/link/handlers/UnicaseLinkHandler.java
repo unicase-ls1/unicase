@@ -26,6 +26,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 
 
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.link.util.LinkDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
@@ -83,7 +84,6 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 		
-		String window_info = "Copy to clipboard! ";
 		//String info = "Link was copied to the clipboard! ";
 		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
 			+ projectId + "/" + meName + "%" + meId;
@@ -93,29 +93,10 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(stringSelection, stringSelection);
 
-		
-		/*MessageDialog.openInformation(
-				window.getShell(),
-			"Link",
-				info);
-		 */
-
 		Display display = Display.getCurrent();
-		Shell shell = new Shell(display);
-		shell.setText(window_info);
-		GridLayout gridLayout = new GridLayout(1,false);
-		shell.setLayout(gridLayout);
-		Text t = new Text(shell,SWT.CENTER|SWT.WRAP);
-		t.setText(link);
-		t.setEditable(false);
-		t.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true,true));
-		shell.setLocation(200, 200);
-		shell.setSize(500,150);
-		shell.open();
-		while (!shell.isDisposed ()) {
-			if (!display.readAndDispatch ()) display.sleep ();
-		}
-		//display.dispose ();
+		LinkDialog dlg = new LinkDialog(display.getActiveShell(), 
+				"The link has been copied to the clipboard.", link);
+		dlg.open();
 		return null;
 	}
 }
