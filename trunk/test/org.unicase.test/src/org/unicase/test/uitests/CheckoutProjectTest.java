@@ -16,7 +16,7 @@ import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
-public class CreateNewProject {
+public class CheckoutProjectTest {
 
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
@@ -25,14 +25,14 @@ public class CreateNewProject {
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
+
 		// bot.getFinder();
 		SetupHelper.startSever();
 
 	}
 
 	@Test
-	public void canCreateANewProject() throws Exception {
-		Logger logger = Logger.getLogger("LoggerTest");
+	public void checkoutProject() throws Exception {
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
 		shell.activate();
@@ -41,34 +41,45 @@ public class CreateNewProject {
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].getText();
-		logger.addHandler(new FileHandler("createnewprojectlog.txt"));
-		int countofelem = (items[0].expand().rowCount());
-		boolean flag = true;
-		int testprojectposition = -1;
-		SWTBotTreeItem[] subitem = items[0].getItems();
-		for (int i = 0; i < countofelem && flag == true; i++) {
-			if (subitem[i].getText().equalsIgnoreCase("testproject")) {
-				flag = false;
-				testprojectposition = i;
-				logger.info("testproject exists " + testprojectposition);
-			}
+		Logger logger = Logger.getLogger("LoggerTest");
+		logger.addHandler(new FileHandler("checkoutlog.txt"));
 
-		}
-		if (flag || countofelem == 0) {
-			logger.info("creating a new project called :testproject");
+		int countofelem = (items[0].expand().rowCount());
+		if (countofelem == 0) {
+			logger.info("the project list is empty");
 			items[0].select().contextMenu("Create new project...").click();
 			bot.textWithLabel("Name:").typeText("testproject");
 			bot.button("OK").click();
 			items[0].expand();
 		} else {
-			logger.info("testproject already exists");
+			logger.info("the project list is not empty");
+			SWTBotTreeItem[] subitem = items[0].getItems();
+			subitem[0].select().contextMenu("Checkout").click();
+			try {
+				// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
+
+				bot.menu("Window").menu("Open Perspective").menu("Other...").click();
+				SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
+				openPerspectiveShell.activate();
+				bot.table().select("Unicase");
+				bot.button("OK").click();
+
+				// TBotPrespective= bot.perspectives();
+			} catch (Exception e) {
+				logger.info("Output" + e);
+			}
+
+			// SWTBotView[] Allviews= bot.
+			// logger.info(bot.viewById("org.unicase.ui.navigator").getTitle());
+			// ("Unicase Navigator").show();
 		}
 
 	}
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(2000);
+		bot.sleep(5000);
 		SetupHelper.stopServer();
 	}
+
 }

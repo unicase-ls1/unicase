@@ -16,7 +16,7 @@ import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
-public class EditModelElementDescp {
+public class EditModelElementDescriptionTest {
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 	private static Logger logger;
