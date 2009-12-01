@@ -37,7 +37,6 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -66,13 +65,13 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 	private Composite includeComposite;
 	private Composite textComposite;
 
-	private MEControl textControlName;
-	private MEControl textControlDescription;
+	private AbstractMEControl textControlName;
+	private AbstractMEControl textControlDescription;
 	private Control cName;
 	private Control cDescription;
 
 	private Label includeTextLabel;
-	private MEControl includeLinkControl;
+	private AbstractMEControl includeLinkControl;
 	private Control cIncludeLink;
 
 	/**
@@ -86,7 +85,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 	 */
 	public SingleUseCaseStepControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
 		EObject contextModelElement, final EReference reference) {
-		super(editingDomain, modelElement, toolkit);
+
 		this.reference = reference;
 		this.contextModelElement = contextModelElement;
 		eAdapter = new AdapterImpl() {
@@ -116,6 +115,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 	 * @param style represents the style that should be used
 	 * @return the control representing an single use case step
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		parentStyle = style;
 		parentComposite = parent;
