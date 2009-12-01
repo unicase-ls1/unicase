@@ -133,7 +133,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * 
 	 * @return the value of the '<em>Assessments</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Assessments()
-	 * @model changeable="false" volatile="true" derived="true"
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();

@@ -8312,5 +8312,7 @@
         featureName="upperBound" dataValue="-1" oldDataValue="1"/>
     <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
         featureName="name" dataValue="assessments"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+        featureName="transient" dataValue="true" oldDataValue="false"/>
   </releases>
 </history:History>
