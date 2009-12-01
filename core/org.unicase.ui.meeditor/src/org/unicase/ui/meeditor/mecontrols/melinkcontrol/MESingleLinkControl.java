@@ -44,8 +44,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 	private Label labelWidget;
 	private AdapterImpl eAdapter;
 
-	private IItemPropertyDescriptor itemPropertyDescriptor;
-
 	private static final int PRIORITY = 1;
 
 	/**
@@ -70,9 +68,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 		updateLink();
 
 		final AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
-			itemPropertyDescriptor);
+			getItemPropertyDescriptor());
 		final NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
-			itemPropertyDescriptor);
+			getItemPropertyDescriptor());
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(addAction.getImageDescriptor().createImage());
@@ -110,7 +108,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 				ModelElement me = getModelElement();
 				if (opposite != null) {
 					meControl = new MELinkControl();
-					meControl.createControl(linkArea, style, itemPropertyDescriptor, me, getEditingDomain(),
+					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), me, getEditingDomain(),
 						getToolkit());
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
@@ -139,8 +137,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference
-			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+		if (feature instanceof EReference && !((EReference) feature).isMany()
+			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())) {
 			this.eReference = (EReference) feature;
 			return PRIORITY;
 		}

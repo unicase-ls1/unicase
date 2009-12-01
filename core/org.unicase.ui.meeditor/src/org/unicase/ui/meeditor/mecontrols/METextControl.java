@@ -29,8 +29,6 @@ public class METextControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
-	private IItemPropertyDescriptor itemPropertyDescriptor;
-
 	private static final int PRIORITY = 1;
 
 	/**
@@ -41,7 +39,7 @@ public class METextControl extends AbstractMEControl {
 	@Override
 	public Control createControl(Composite parent, int style) {
 		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
-		if (!itemPropertyDescriptor.canSetProperty(getModelElement())) {
+		if (!getItemPropertyDescriptor().canSetProperty(getModelElement())) {
 			text.setEditable(false);
 		}
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
@@ -67,7 +65,6 @@ public class METextControl extends AbstractMEControl {
 
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
-		this.itemPropertyDescriptor = itemPropertyDescriptor;
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
 			this.attribute = (EAttribute) feature;
