@@ -6,7 +6,6 @@
 package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.unicase.metamodel.ModelElement;
 
@@ -15,11 +14,9 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author shterev
  */
-public abstract class AbstractMEEditorPage extends FormPage {
+public abstract class AbstractMEEditorPage {
 
-	public AbstractMEEditorPage(FormEditor editor, String id, String title) {
-		super(editor, id, title);
-	}
+	private FormPage page;
 
 	/**
 	 * Default init.
@@ -32,4 +29,11 @@ public abstract class AbstractMEEditorPage extends FormPage {
 	 */
 	public abstract void init(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement);
 
+	public FormPage getPage() {
+		return page;
+	}
+
+	protected void setPage(FormPage page) {
+		this.page = page;
+	}
 }
