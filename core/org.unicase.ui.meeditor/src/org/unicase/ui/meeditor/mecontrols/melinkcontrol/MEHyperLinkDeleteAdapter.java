@@ -10,7 +10,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
+import org.unicase.ui.meeditor.commands.DeleteModelElementCommand;
 
 /**
  * A mouse adapter regarding deletion of model elements.
