@@ -49,7 +49,7 @@ public class MEIntControl extends AbstractMEControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Integer.class)) {
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(int.class)) {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
