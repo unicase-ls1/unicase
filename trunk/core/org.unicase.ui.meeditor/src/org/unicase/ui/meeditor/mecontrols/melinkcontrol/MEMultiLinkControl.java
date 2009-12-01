@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -91,8 +90,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 					if (object instanceof ModelElement) {
 						ModelElement me = (ModelElement) object;
 						MELinkControl meControl = new MELinkControl();
-						meControl.init(MEMultiLinkControl.this.descriptor, me, getEditingDomain(), getToolkit());
-						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style);
+						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
+							MEMultiLinkControl.this.descriptor, me, getEditingDomain(), getToolkit());
 						linkControls.add(meControl);
 					}
 				}
@@ -135,31 +134,6 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	private static final int PRIORITY = 1;
 
-	/**
-	 * Standard Constructor.
-	 */
-	public MEMultiLinkControl() {
-		super();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference
-			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())
-			&& ((EReference) feature).isMany()) {
-			this.eReference = (EReference) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
 		ToolBar toolbar = toolBarManager.createControl(section);
@@ -185,6 +159,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.eReference = (EReference) feature;
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
@@ -242,6 +218,18 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		if (sectionDropTarget != null) {
 			sectionDropTarget.dispose();
 		}
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())
+			&& ((EReference) feature).isMany()) {
+
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 }

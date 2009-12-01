@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -25,7 +24,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
@@ -57,28 +55,10 @@ public class MECommentsLinkControl extends AbstractMEControl {
 	private Project project;
 
 	/**
-	 * default constructor.
-	 * 
-	 * @param reference the comments reference
-	 * @param toolkit see {@link AbstractMEControl}
-	 * @param modelElement see {@link AbstractMEControl}
-	 * @param editingDomain see {@link AbstractMEControl}
+	 * {@inheritDoc}
 	 */
 	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
-		if (!(feature instanceof EReference)) {
-			return AbstractMEControl.DO_NOT_RENDER;
-		}
-		this.reference = (EReference) feature;
-
-		if (!reference.getEReferenceType().equals(RationalePackage.eINSTANCE.getComment())) {
-			return AbstractMEControl.DO_NOT_RENDER;
-		}
-
+	public Control createControl(Composite parent, int style) {
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
@@ -105,20 +85,11 @@ public class MECommentsLinkControl extends AbstractMEControl {
 
 		};
 
-		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(modelElement)) {
-			UnicaseModelElement me = (UnicaseModelElement) modelElement;
+		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(getModelElement())) {
+			UnicaseModelElement me = (UnicaseModelElement) getModelElement();
 			project = WorkspaceManager.getProjectSpace(me).getProject();
 			project.addProjectChangeObserver(observerImpl);
 		}
-
-		return 2;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Control createControl(Composite parent, int style) {
 		commentComposite = getToolkit().createComposite(parent);
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(commentComposite);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentComposite);
@@ -142,7 +113,7 @@ public class MECommentsLinkControl extends AbstractMEControl {
 		commentsLink.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				ActionHelper.openDiscussion((UnicaseModelElement) getModelElement(), false);
+				ActionHelper.openDiscussion(getModelElement(), false);
 			}
 		});
 
@@ -195,5 +166,20 @@ public class MECommentsLinkControl extends AbstractMEControl {
 			i += sizeOf(c);
 		}
 		return i;
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+		if (!(feature instanceof EReference)) {
+			return AbstractMEControl.DO_NOT_RENDER;
+		}
+		this.reference = (EReference) feature;
+
+		if (!reference.getEReferenceType().equals(RationalePackage.eINSTANCE.getComment())) {
+			return AbstractMEControl.DO_NOT_RENDER;
+		}
+
+		return 2;
 	}
 }

@@ -10,7 +10,6 @@ import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -27,7 +26,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -50,22 +48,11 @@ public class MEDateControl extends AbstractMEControl {
 	private static final int PRIORITY = 1;
 
 	/**
-	 * Standard Constructor.
-	 */
-	public MEDateControl() {
-		super();
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		this.attribute = (EAttribute) feature;
+	public Control createControl(Composite parent, int style) {
+		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(getModelElement());
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -76,15 +63,7 @@ public class MEDateControl extends AbstractMEControl {
 			}
 
 		};
-		modelElement.eAdapters().add(adapterImpl);
-		return PRIORITY;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Control createControl(Composite parent, int style) {
+		getModelElement().eAdapters().add(adapterImpl);
 		dateComposite = getToolkit().createComposite(parent);
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(dateComposite);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(dateComposite);
@@ -185,5 +164,10 @@ public class MEDateControl extends AbstractMEControl {
 				dateComposite.getParent().getParent().layout(true);
 			}
 		}.run();
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		return PRIORITY;
 	}
 }

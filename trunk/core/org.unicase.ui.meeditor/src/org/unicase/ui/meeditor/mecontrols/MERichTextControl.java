@@ -8,7 +8,6 @@ package org.unicase.ui.meeditor.mecontrols;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -33,7 +32,6 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
@@ -53,42 +51,6 @@ public class MERichTextControl extends AbstractMEControl {
 	private final String bulletString = "  \u2022 ";
 
 	private static final int PRIORITY = 2;
-
-	/**
-	 * Standard Constructor.
-	 */
-	public MERichTextControl() {
-		super();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
-			this.attribute = (EAttribute) feature;
-			if (itemPropertyDescriptor.isMultiLine(feature)) {
-				return PRIORITY;
-			}
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
-	/**
-	 * Alternative init method for a specific feature. It's <b>NOT<n> intended for a use in a extension.
-	 */
-	public int init(EAttribute feature, ModelElement modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
-		setModelElement(modelElement);
-		setEditingDomain(editingDomain);
-		setToolkit(toolkit);
-		this.attribute = feature;
-		return PRIORITY;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -331,5 +293,17 @@ public class MERichTextControl extends AbstractMEControl {
 	@Override
 	public void applyCustomLayoutData() {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(composite);
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
+			this.attribute = (EAttribute) feature;
+			if (itemPropertyDescriptor.isMultiLine(feature)) {
+				return PRIORITY;
+			}
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 }

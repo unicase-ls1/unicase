@@ -29,6 +29,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
@@ -251,23 +252,25 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 			cDescription.dispose();
 		}
 
-		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getModelElement(), getToolkit());
+		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(),
 			"name");
-		textControlName = cFactory.createControl(pDescriptorName);
-		cName = textControlName.createControl(textComposite, parentStyle);
+		textControlName = cFactory.createControl(pDescriptorName, getModelElement());
+		cName = textControlName.createControl(textComposite, parentStyle, pDescriptorName, getModelElement(),
+			getEditingDomain(), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 16).grab(true, false).applyTo(cName);
 
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(
 			getModelElement(), "description");
-		textControlDescription = cFactory.createControl(pDescriptorDescription);
+		textControlDescription = cFactory.createControl(pDescriptorDescription, getModelElement());
 
 		if (textControlDescription instanceof MERichTextControl) {
 			MERichTextControl meRichTextControl = (MERichTextControl) textControlDescription;
 			meRichTextControl.setShowExpand(false);
 		}
 
-		cDescription = textControlDescription.createControl(textComposite, parentStyle);
+		cDescription = textControlDescription.createControl(textComposite, parentStyle, pDescriptorDescription,
+			getModelElement(), getEditingDomain(), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
 
 		cDescription.setBackground(mainComposite.getBackground());
@@ -295,7 +298,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 		}
 
 		final IItemPropertyDescriptor pDescriptorIncluded;
-		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getModelElement(), getToolkit());
+		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 
 		if (((Step) getModelElement()).isUserStep()) {
 			// TODO getting the right descriptor is currently hard coded. Maybe should be changed.
@@ -312,8 +315,9 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 			includeTextLabel.setBackground(backGroundColor);
 		}
 
-		includeLinkControl = cFactory.createControl(pDescriptorIncluded);
-		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle);
+		includeLinkControl = cFactory.createControl(pDescriptorIncluded, getModelElement());
+		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle, pDescriptorIncluded,
+			getModelElement(), getEditingDomain(), getToolkit());
 		cIncludeLink.setBackground(mainComposite.getBackground());
 
 		includeComposite.layout();
@@ -393,6 +397,12 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 			cName.setFocus();
 		}
 
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

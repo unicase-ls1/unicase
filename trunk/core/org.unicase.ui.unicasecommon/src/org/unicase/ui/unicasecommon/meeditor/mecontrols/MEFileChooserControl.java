@@ -16,7 +16,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -35,7 +34,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
@@ -73,17 +71,6 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private Button upload;
 
 	private Link fileName;
-
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-		if (!(modelElement instanceof FileAttachment)) {
-			return DO_NOT_RENDER;
-		}
-		fileAttachment = (FileAttachment) getModelElement();
-		return PRIORITY;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -445,5 +432,14 @@ public class MEFileChooserControl extends AbstractMEControl {
 		return FileTransferUtil.findCachedFile(FileTransferUtil
 			.constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(FileTransferUtil
 			.constructCacheFolder(projectId)));
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		if (!(modelElement instanceof FileAttachment)) {
+			return DO_NOT_RENDER;
+		}
+		fileAttachment = (FileAttachment) getModelElement();
+		return PRIORITY;
 	}
 }

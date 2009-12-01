@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -105,9 +106,9 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		textControl = new MERichTextControl();
-		textControl.init(ModelPackage.eINSTANCE.getUnicaseModelElement_Description(), modelElement, domain, toolkit);
 		(textControl).setShowExpand(false);
-		textWidget = textControl.createControl(body, SWT.NONE);
+		textWidget = textControl.createControl(body, SWT.NONE, (IItemPropertyDescriptor) ModelPackage.eINSTANCE
+			.getUnicaseModelElement_Description(), modelElement, domain, toolkit);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
 

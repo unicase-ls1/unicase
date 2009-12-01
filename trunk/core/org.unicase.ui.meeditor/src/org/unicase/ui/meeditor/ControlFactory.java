@@ -6,15 +6,13 @@
 package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -29,39 +27,11 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author shterev
  */
 public class ControlFactory {
-	private final ModelElement modelElement;
 	private final EditingDomain editingDomain;
 	private FormToolkit toolkit;
 	private HashMap<Class<?>, ArrayList<AbstractMEControl>> controlRegistry;
 
-	/**
-	 * Compares two MEControls according to the priority they returned.
-	 * 
-	 * @author shterev
-	 */
-	private class ControlComparator implements Comparator<AbstractMEControl> {
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public int compare(AbstractMEControl o1, AbstractMEControl o2) {
-			Integer i1 = priorityRegistry.get(o1);
-			Integer i2 = priorityRegistry.get(o2);
-			if (i1 == null && i2 != null) {
-				return -1;
-			} else if (i1 != null && i2 == null) {
-				return 1;
-			} else if (i1 == null && i2 == null) {
-				return 0;
-			} else {
-				return i2.intValue() - i1.intValue();
-			}
-		}
-
-	}
-
 	private HashMap<AbstractMEControl, Integer> priorityRegistry;
-	private ControlComparator controlComparator;
 
 	/**
 	 * Default constructor.
@@ -70,20 +40,37 @@ public class ControlFactory {
 	 * @param modelElement the model element
 	 * @param toolkit the gui toolkit
 	 */
-	public ControlFactory(EditingDomain editingDomain, ModelElement modelElement, FormToolkit toolkit) {
+	public ControlFactory(EditingDomain editingDomain, FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
-		this.modelElement = modelElement;
 		this.toolkit = toolkit;
+		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
+		initializeAttributeControls();
 	}
 
-	private void addToControlRegistry(Class<?> clazz, AbstractMEControl control, int priority) {
-		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(clazz);
-		if (priorityQueue == null) {
-			priorityQueue = new ArrayList<AbstractMEControl>();
-			controlRegistry.put(clazz, priorityQueue);
+	private void initializeAttributeControls() {
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.attributecontrols");
+		for (IConfigurationElement e : config) {
+			String type = e.getAttribute("type");
+			try {
+				Class<?> resolvedType = Class.forName(type);
+				AbstractMEControl control = (AbstractMEControl) e.createExecutableExtension("class");
+				boolean showLabel = Boolean.parseBoolean(e.getAttribute("showLabel"));
+				control.setShowLabel(showLabel);
+				ArrayList<AbstractMEControl> list = controlRegistry.get(resolvedType);
+				if (list == null) {
+					list = new ArrayList<AbstractMEControl>();
+				}
+				list.add(control);
+				controlRegistry.put(resolvedType, list);
+
+			} catch (ClassNotFoundException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			} catch (CoreException e2) {
+				WorkspaceUtil.logException(e2.getMessage(), e2);
+			}
 		}
-		priorityQueue.add(control);
-		priorityRegistry.put(control, priority);
+
 	}
 
 	/**
@@ -92,14 +79,13 @@ public class ControlFactory {
 	 * @param itemPropertyDescriptor the descriptor
 	 * @return the {@link AbstractMEControl}
 	 */
-	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
-		controlComparator = new ControlComparator();
-		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
+	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+
 		priorityRegistry = new HashMap<AbstractMEControl, Integer>();
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
-			return createAttribute(itemPropertyDescriptor, feature);
+			return createAttribute(itemPropertyDescriptor, feature, modelElement);
 		}
 		// else if (feature instanceof EReference) {
 		// return createReferenceControl(itemPropertyDescriptor, feature);
@@ -108,117 +94,53 @@ public class ControlFactory {
 		return null;
 	}
 
-	private AbstractMEControl createReferenceControl(IItemPropertyDescriptor itemPropertyDescriptor,
-		EStructuralFeature feature) {
-		Class<?> instanceClass = ((EReference) feature).getEReferenceType().getInstanceClass();
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.referencecontrols");
-		for (IConfigurationElement e : config) {
-			try {
-				String type = e.getAttribute("type");
-				Class<?> resolvedType = Class.forName(type);
-				if (resolvedType.isAssignableFrom(instanceClass)) {
-					AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
-					Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
-					newControl.setShowLabel(showLabel);
-					int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-					addToControlRegistry(instanceClass, newControl, prio);
-				}
-			} catch (CoreException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
-			} catch (ClassNotFoundException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
-			}
-		}
-		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
-		if (priorityQueue != null) {
-			Collections.sort(priorityQueue, controlComparator);
-			AbstractMEControl ret = priorityQueue.get(0);
-			return ret;
-		}
-		return null;
-	}
-
-	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature) {
+	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor,
+		EStructuralFeature feature, ModelElement modelElement) {
 		Class<?> instanceClass = ((EAttribute) feature).getEAttributeType().getInstanceClass();
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.attributecontrols");
-		for (IConfigurationElement e : config) {
-			try {
-				String type = e.getAttribute("type");
-				Class<?> resolvedType = Class.forName(type);
-				if (resolvedType.getSimpleName().equalsIgnoreCase(instanceClass.getSimpleName())) {
-					AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
-					Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
-					newControl.setShowLabel(showLabel);
-					int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-					addToControlRegistry(instanceClass, newControl, prio);
+		// Test which controls have a fitting type
+		// TODO: could be chached?
+		Set<Class<?>> keySet = controlRegistry.keySet();
+		ArrayList<AbstractMEControl> candidates = new ArrayList<AbstractMEControl>();
+		for (Class<?> clazz : keySet) {
+			if (instanceClass.isPrimitive()) {
+				try {
+					Class<?> primitive = (Class<?>) clazz.getField("TYPE").get(null);
+					if (primitive.equals(instanceClass)) {
+						candidates.addAll(controlRegistry.get(clazz));
+					}
+
+				} catch (IllegalArgumentException e) {
+					// Do nothing
+				} catch (SecurityException e) {
+					// Do nothing
+				} catch (IllegalAccessException e) {
+					// Do nothing
+				} catch (NoSuchFieldException e) {
+					// Do nothing
 				}
-			} catch (CoreException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
-			} catch (ClassNotFoundException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
+			}
+			if (clazz.isAssignableFrom(instanceClass)) {
+				candidates.addAll(controlRegistry.get(clazz));
 			}
 		}
-		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
-		if (priorityQueue != null) {
-			Collections.sort(priorityQueue, controlComparator);
-			AbstractMEControl ret = priorityQueue.get(0);
-			return ret;
-		}
-		return null;
+		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
+		return control;
+
 	}
 
-	// private AbstractMEControl createAttributeControl(IItemPropertyDescriptor itemPropertyDescriptor,
-	// EStructuralFeature
-	// feature) {
-	// if (feature.getName().equalsIgnoreCase("fileName")) {
-	// return createMEFileChooserControl((EAttribute) feature);
-	// }
-	// if (feature.getName().equalsIgnoreCase("fileSize")) {
-	// return createMEFileSizeControl((EAttribute) feature);
-	// }
-	// if (feature.getName().equalsIgnoreCase("email")) {
-	// return createMEEmailControl((EAttribute) feature);
-	//
-	// }
-	// if (feature.getName().equalsIgnoreCase("url")) {
-	// return createMEURLControl();
-	// }
-	// if (itemPropertyDescriptor.isMultiLine(modelElement)) {
-	// return createMERichTextControl((EAttribute) feature);
-	// }
-	// return createGenericAttributeControl(itemPropertyDescriptor, feature);
-	// }
-	//
-	// private AbstractMEControl createGenericAttributeControl(IItemPropertyDescriptor itemPropertyDescriptor,
-	// EStructuralFeature feature) {
-	// if (feature.getEType().getInstanceClass().equals(boolean.class)) {
-	// return createMEBoolControl((EAttribute) feature);
-	// }
-	// if (feature.getEType().getInstanceClass().equals(int.class)) {
-	// return createMEIntControl((EAttribute) feature);
-	// }
-	// if (feature.getEType().getInstanceClass().equals(Date.class)) {
-	// return createMEDateControl((EAttribute) feature);
-	// }
-	// if (feature.getEType() instanceof EEnum) {
-	// return createMEEnumControl((EAttribute) feature);
-	// }
-	// return createMETextControl((EAttribute) feature, itemPropertyDescriptor);
-	// }
+	private AbstractMEControl getBestCandidate(ArrayList<AbstractMEControl> candidates,
+		IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature, ModelElement modelElement) {
+		int bestValue = 0;
+		AbstractMEControl bestCandidate = null;
+		for (AbstractMEControl abstractMEControl : candidates) {
 
-	/**
-	 * Create Control for AssessmentMatrix.
-	 * 
-	 * @param modelElement the model element
-	 * @param toolkit the tool kit
-	 * @param editingDomain the editing domain
-	 * @return a AbstractMEControl
-	 */
-	// public static AbstractMEControl createMEIssueAssessmentMatrixControl(Issue modelElement, FormToolkit toolkit,
-	// EditingDomain editingDomain) {
-	//
-	// return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
-	// }
+			int newValue = abstractMEControl.canRender(itemPropertyDescriptor, modelElement);
+			if (newValue > bestValue) {
+				bestCandidate = abstractMEControl;
+				bestValue = newValue;
+			}
+		}
+		return bestCandidate;
+	}
+
 }
