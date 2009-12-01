@@ -597,7 +597,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(), "activity", null, 0, 1, Issue.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIssue_Assessments(), this.getAssessment(), null, "assessments", null, 0, -1, Issue.class,
-			!IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			IS_DERIVED, IS_ORDERED);
 
 		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
