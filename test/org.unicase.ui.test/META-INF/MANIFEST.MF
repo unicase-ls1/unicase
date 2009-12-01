@@ -7,7 +7,6 @@ Bundle-Activator: org.unicase.ui.test.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.apache.commons.logging;bundle-version="1.0.4",
  org.unicase.ui.common,
  org.unicase.workspace.test,
  org.eclipse.swtbot.eclipse.core,
@@ -15,6 +14,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.swtbot.eclipse.spy,
  org.eclipse.swtbot.eclipse.ui,
  org.eclipse.swtbot.junit4_x,
- org.eclipse.swtbot.swt.finder
+ org.eclipse.swtbot.swt.finder,
+ org.apache.log4j;bundle-version="1.2.13"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Import-Package: org.junit,
+ org.junit.runner,
+ org.junit.runners

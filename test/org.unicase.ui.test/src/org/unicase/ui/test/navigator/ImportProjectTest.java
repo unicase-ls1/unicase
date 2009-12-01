@@ -36,7 +36,7 @@ public class ImportProjectTest {
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
 		shell.activate();
-		bot.tree().expandNode("unicase").select("EmfStore Browser");
+		bot.tree().expandNode("Unicase").select("EmfStore Browser");
 		bot.button("OK").click();
 
 		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
