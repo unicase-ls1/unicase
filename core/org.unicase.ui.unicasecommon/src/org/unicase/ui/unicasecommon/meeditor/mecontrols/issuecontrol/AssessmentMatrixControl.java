@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -23,7 +22,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.metamodel.ModelElement;
@@ -67,15 +65,17 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	private HashMap<Proposal, Label> allSumLabels = new HashMap<Proposal, Label>();
 	private HashMap<Proposal, Composite> allSumLabelContainer = new HashMap<Proposal, Composite>();
 
+	/**
+	 * Method is responsible to create the assessment matrix control.
+	 * 
+	 * @param parent containing parent composite
+	 * @param style used style
+	 * @return the corresponding control
+	 */
 	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-		if (!(modelElement instanceof Issue)) {
-			return DO_NOT_RENDER;
-		}
+	public Control createControl(Composite parent, int style) {
 
-		issue = (Issue) modelElement;
+		issue = (Issue) getModelElement();
 
 		eAdapter = new AdapterImpl() {
 			@Override
@@ -87,7 +87,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 		adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		modelElement.eAdapters().add(eAdapter);
+		getModelElement().eAdapters().add(eAdapter);
 
 		if (issue != null) {
 			EList<Proposal> props = issue.getProposals();
@@ -109,18 +109,6 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				}
 			}
 		}
-		return PRIORITY;
-	}
-
-	/**
-	 * Method is responsible to create the assessment matrix control.
-	 * 
-	 * @param parent containing parent composite
-	 * @param style used style
-	 * @return the corresponding control
-	 */
-	@Override
-	public Control createControl(Composite parent, int style) {
 		int numberOfCriteria = 0;
 		mainComposite = parent;
 		parentStyle = style;
@@ -245,14 +233,16 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				Criterion criterion = criteria.get(i);
 				Assessment assessment = getAssessment(currentProposal, criterion);
 				if (assessment != null) {
-					ControlFactory cFactory = new ControlFactory(getEditingDomain(), assessment, getToolkit());
+					ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 					final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
 						.getPropertyDescriptor(assessment, "value");
-					AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue);
+					AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue,
+						assessment);
 					this.assessmentControls.add(assessmentControlDescription);
 
 					Composite comp = getToolkit().createComposite(matrixSection);
-					assessmentControlDescription.createControl(comp, parentStyle);
+					assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue,
+						getModelElement(), getEditingDomain(), getToolkit());
 					comp.setLayout(new GridLayout(1, true));
 					GridData gridData = new GridData();
 					gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
@@ -500,6 +490,15 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			}
 		}
 
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		if (!(modelElement instanceof Issue)) {
+			return DO_NOT_RENDER;
+		}
+
+		return PRIORITY;
 	}
 
 }

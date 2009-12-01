@@ -39,12 +39,16 @@ public abstract class AbstractMEControl {
 
 	private boolean showLabel;
 
+	private IItemPropertyDescriptor itemPropertyDescriptor;
+
 	/**
 	 * @return the toolkit
 	 */
 	public FormToolkit getToolkit() {
 		return toolkit;
 	}
+
+	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement);
 
 	/**
 	 * @param toolkit the toolkit to set
@@ -91,17 +95,6 @@ public abstract class AbstractMEControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		this.editingDomain = editingDomain;
-		this.modelElement = modelElement;
-		this.toolkit = toolkit;
-		return DO_NOT_RENDER;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void dispose() {
 
 	}
@@ -120,7 +113,17 @@ public abstract class AbstractMEControl {
 	 * @param style the style
 	 * @return the widget
 	 */
-	public abstract Control createControl(Composite attributeComposite, int style);
+	public Control createControl(Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
+		ModelElement modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
+		this.editingDomain = editingDomain;
+		this.modelElement = modelElement;
+		this.toolkit = toolkit;
+		this.setItemPropertyDescriptor(itemPropertyDescriptor);
+		return createControl(parent, style);
+
+	}
+
+	protected abstract Control createControl(Composite parent, int style);
 
 	/**
 	 * @return if the label for this control should be shown.
@@ -134,6 +137,14 @@ public abstract class AbstractMEControl {
 	 */
 	public void setShowLabel(boolean show) {
 		this.showLabel = show;
+	}
+
+	public void setItemPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
+		this.itemPropertyDescriptor = itemPropertyDescriptor;
+	}
+
+	public IItemPropertyDescriptor getItemPropertyDescriptor() {
+		return itemPropertyDescriptor;
 	}
 
 }

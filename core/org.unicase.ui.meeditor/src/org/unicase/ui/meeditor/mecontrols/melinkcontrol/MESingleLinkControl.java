@@ -8,7 +8,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -19,7 +18,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -61,23 +59,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference
-			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
-			this.eReference = (EReference) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public Control createControl(final Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
 		// composite.setLayout(new GridLayout(3, false));
@@ -88,9 +69,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
+		final AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
 			itemPropertyDescriptor);
-		final NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
+		final NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
 			itemPropertyDescriptor);
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
@@ -126,11 +107,11 @@ public class MESingleLinkControl extends AbstractMEControl {
 			@Override
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
-				ModelElement me = (ModelElement) getModelElement();
+				ModelElement me = getModelElement();
 				if (opposite != null) {
 					meControl = new MELinkControl();
-					meControl.init(itemPropertyDescriptor, me, getEditingDomain(), getToolkit());
-					meControl.createControl(linkArea, style);
+					meControl.createControl(linkArea, style, itemPropertyDescriptor, me, getEditingDomain(),
+						getToolkit());
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setBackground(parent.getBackground());
@@ -153,5 +134,16 @@ public class MESingleLinkControl extends AbstractMEControl {
 			meControl.dispose();
 		}
 
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+			this.eReference = (EReference) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 }

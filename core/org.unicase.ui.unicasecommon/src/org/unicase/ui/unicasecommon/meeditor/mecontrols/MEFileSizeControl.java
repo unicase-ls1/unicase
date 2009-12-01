@@ -15,6 +15,7 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -24,6 +25,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -113,6 +115,12 @@ public class MEFileSizeControl extends AbstractMEControl {
 			}
 			return "infinite";
 		}
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -9,7 +9,6 @@ import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -27,7 +26,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
@@ -80,20 +78,6 @@ public class MEURLControl extends AbstractMEControl {
 	private ModelElementChangeObserver observer;
 	private UrlAttachment urlattachement;
 
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (modelElement instanceof UrlAttachment && feature instanceof EAttribute) {
-			if (((EAttribute) feature).getName().equalsIgnoreCase("url")) {
-				this.urlattachement = (UrlAttachment) modelElement;
-				return PRIORITY;
-			}
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -103,7 +87,7 @@ public class MEURLControl extends AbstractMEControl {
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(2, false));
-
+		this.urlattachement = (UrlAttachment) getModelElement();
 		observer = new ModelElementChangeObserver() {
 
 			@Override
@@ -222,5 +206,16 @@ public class MEURLControl extends AbstractMEControl {
 		if (linkComposite != null) {
 			linkComposite.dispose();
 		}
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (modelElement instanceof UrlAttachment && feature instanceof EAttribute) {
+			if (((EAttribute) feature).getName().equalsIgnoreCase("url")) {
+				return PRIORITY;
+			}
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 }

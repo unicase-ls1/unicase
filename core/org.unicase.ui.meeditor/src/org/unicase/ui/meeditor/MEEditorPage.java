@@ -259,10 +259,10 @@ public class MEEditorPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 			attributeComposite);
 
-		ControlFactory controlFactory = new ControlFactory(editingDomain, modelElement, this.getEditor().getToolkit());
+		ControlFactory controlFactory = new ControlFactory(editingDomain, this.getEditor().getToolkit());
 
 		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
-			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
+			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor, modelElement);
 			if (meControl == null) {
 				continue;
 			}
@@ -273,13 +273,15 @@ public class MEEditorPage extends FormPage {
 					.getDisplayName(modelElement));
 				label.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
-				control = meControl.createControl(attributeComposite, SWT.WRAP);
+				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
+					editingDomain, toolkit);
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
 				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 					control);
 				meControl.applyCustomLayoutData();
 			} else {
-				control = meControl.createControl(attributeComposite, SWT.WRAP);
+				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
+					editingDomain, toolkit);
 				control.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
 				GridDataFactory.fillDefaults().span(2, 1).grab(true, false).align(SWT.FILL, SWT.BEGINNING)

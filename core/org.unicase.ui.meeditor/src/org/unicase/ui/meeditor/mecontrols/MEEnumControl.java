@@ -12,14 +12,12 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 
 /**
@@ -34,29 +32,6 @@ public class MEEnumControl extends AbstractMEControl {
 	private Combo combo;
 
 	private static final int PRIORITY = 1;
-
-	/**
-	 * Standard Constructor.
-	 */
-	public MEEnumControl() {
-		super();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Enum.class)) {
-			this.attribute = (EAttribute) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
 
 	/**
 	 * returns a check button without Label. {@inheritDoc}
@@ -74,6 +49,16 @@ public class MEEnumControl extends AbstractMEControl {
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(combo), model, null, null);
 		return combo;
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Enum.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 }

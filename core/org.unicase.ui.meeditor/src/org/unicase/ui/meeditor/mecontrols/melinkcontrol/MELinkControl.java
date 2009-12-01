@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -27,7 +26,6 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
@@ -58,34 +56,12 @@ public class MELinkControl extends AbstractMEControl {
 	private static final int PRIORITY = 1;
 
 	/**
-	 * Standard Constructor.
-	 */
-	public MELinkControl() {
-		super();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference
-			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
-			this.eReference = (EReference) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.eReference = (EReference) feature;
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
@@ -169,5 +145,16 @@ public class MELinkControl extends AbstractMEControl {
 		if (linkComposite != null) {
 			linkComposite.dispose();
 		}
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 }

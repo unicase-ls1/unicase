@@ -9,14 +9,12 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 
 /**
@@ -33,29 +31,6 @@ public class MEBoolControl extends AbstractMEControl {
 	private static final int PRIORITY = 1;
 
 	/**
-	 * Standard Constructor.
-	 */
-	public MEBoolControl() {
-		super();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(boolean.class)) {
-			this.attribute = (EAttribute) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
-	}
-
-	/**
 	 * returns a check button without Label. {@inheritDoc}
 	 * 
 	 * @return Control
@@ -67,6 +42,16 @@ public class MEBoolControl extends AbstractMEControl {
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
 		return check;
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(boolean.class)) {
+			this.attribute = (EAttribute) feature;
+			return PRIORITY;
+		}
+		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
 }

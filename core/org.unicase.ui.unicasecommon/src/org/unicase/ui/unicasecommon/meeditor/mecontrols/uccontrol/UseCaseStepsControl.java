@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.layout.GridData;
@@ -21,7 +20,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.metamodel.ModelElement;
@@ -40,34 +38,6 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class UseCaseStepsControl extends AbstractMEControl {
 
 	private static final int PRIORITY = 2;
-
-	@Override
-	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
-		EditingDomain editingDomain, FormToolkit toolkit) {
-		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference && ((EReference) feature).getEType().getInstanceClass().equals(Step.class)
-			&& ((EReference) feature).getName().equals("useCaseSteps")) {
-			return DO_NOT_RENDER;
-		}
-
-		this.eReference = (EReference) feature;
-		descriptor = itemPropertyDescriptor;
-
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
-					setFocusedStep(msg);
-					currentStepList = new ArrayList<Step>(((UseCase) msg.getNotifier()).getUseCaseSteps());
-					rebuildStepList();
-				}
-				super.notifyChanged(msg);
-			}
-		};
-		modelElement.eAdapters().add(eAdapter);
-		return PRIORITY;
-	}
 
 	/**
 	 * HyperLink listener class for add step hyperlink.
@@ -188,6 +158,21 @@ public class UseCaseStepsControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, final int style) {
+		descriptor = getItemPropertyDescriptor();
+		this.eReference = (EReference) descriptor.getFeature(getModelElement());
+
+		eAdapter = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
+					setFocusedStep(msg);
+					currentStepList = new ArrayList<Step>(((UseCase) msg.getNotifier()).getUseCaseSteps());
+					rebuildStepList();
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		getModelElement().eAdapters().add(eAdapter);
 		this.parentStyle = style;
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(getModelElement()));
@@ -307,6 +292,17 @@ public class UseCaseStepsControl extends AbstractMEControl {
 		addSystemStepLink.setLayoutData(gdSystemLink);
 
 		return buttonControl;
+	}
+
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference && ((EReference) feature).getEType().getInstanceClass().equals(Step.class)
+			&& ((EReference) feature).getName().equals("useCaseSteps")) {
+			return DO_NOT_RENDER;
+		}
+
+		return PRIORITY;
 	}
 
 }
