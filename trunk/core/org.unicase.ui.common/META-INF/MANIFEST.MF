@@ -29,7 +29,6 @@ Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.unicase.ui.common.dialogs,
  org.unicase.ui.common.dnd,
  org.unicase.ui.common.exceptions,
- org.unicase.ui.common.perspectives,
  org.unicase.ui.common.preferences,
  org.unicase.ui.common.util
 Bundle-ClassPath: .,
