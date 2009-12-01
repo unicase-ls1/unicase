@@ -6,6 +6,7 @@
 package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -44,13 +46,18 @@ public class ControlFactory {
 		this.editingDomain = editingDomain;
 		this.toolkit = toolkit;
 		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
-		initializeAttributeControls();
+		initializeMEControls();
 	}
 
-	private void initializeAttributeControls() {
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+	private void initializeMEControls() {
+		IConfigurationElement[] attributecontrols = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.meeditor.attributecontrols");
-		for (IConfigurationElement e : config) {
+		IConfigurationElement[] referencecontrols = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.referencecontrols");
+		ArrayList<IConfigurationElement> allControls = new ArrayList<IConfigurationElement>();
+		allControls.addAll(Arrays.asList(attributecontrols));
+		allControls.addAll(Arrays.asList(referencecontrols));
+		for (IConfigurationElement e : allControls) {
 			String type = e.getAttribute("type");
 			try {
 				Class<?> resolvedType = Class.forName(type);
@@ -86,12 +93,25 @@ public class ControlFactory {
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 			return createAttribute(itemPropertyDescriptor, feature, modelElement);
+		} else if (feature instanceof EReference) {
+			return createReferenceControl(itemPropertyDescriptor, (EReference) feature, modelElement);
 		}
-		// else if (feature instanceof EReference) {
-		// return createReferenceControl(itemPropertyDescriptor, feature);
-		// }
 
 		return null;
+	}
+
+	private AbstractMEControl createReferenceControl(IItemPropertyDescriptor itemPropertyDescriptor,
+		EReference feature, ModelElement modelElement) {
+		Class<?> instanceClass = feature.getEType().getInstanceClass();
+		Set<Class<?>> keySet = controlRegistry.keySet();
+		ArrayList<AbstractMEControl> candidates = new ArrayList<AbstractMEControl>();
+		for (Class<?> clazz : keySet) {
+			if (clazz.isAssignableFrom(instanceClass)) {
+				candidates.addAll(controlRegistry.get(clazz));
+			}
+		}
+		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
+		return control;
 	}
 
 	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor,

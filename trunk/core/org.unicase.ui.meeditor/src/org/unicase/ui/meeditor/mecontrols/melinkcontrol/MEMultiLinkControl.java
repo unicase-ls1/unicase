@@ -91,7 +91,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						ModelElement me = (ModelElement) object;
 						MELinkControl meControl = new MELinkControl();
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
-							MEMultiLinkControl.this.descriptor, me, getEditingDomain(), getToolkit());
+							getItemPropertyDescriptor(), me, getEditingDomain(), getToolkit());
 						linkControls.add(meControl);
 					}
 				}
@@ -148,8 +148,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction(getModelElement(), eReference, descriptor));
-		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, descriptor));
+		toolBarManager.add(new AddReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor()));
+		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor()));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
@@ -159,12 +159,13 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		linkControls = new ArrayList<MELinkControl>();
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.eReference = (EReference) feature;
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		section.setText(descriptor.getDisplayName(getModelElement()));
+		section.setText(getItemPropertyDescriptor().getDisplayName(getModelElement()));
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
 		composite.setLayout(tableLayout);
