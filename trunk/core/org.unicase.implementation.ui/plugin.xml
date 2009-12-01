@@ -160,7 +160,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
          <command
                commandId="org.unicase.model.codeGeneration.command.generateEcore"
                label="Generate Ecore"
