@@ -7,6 +7,7 @@ package org.unicase.ui.meeditor.mecontrols;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -64,11 +65,19 @@ public class MEDateControl extends AbstractMEControl {
 		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
 
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Date.class)) {
-			this.attribute = (EAttribute) feature;
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
+		this.attribute = (EAttribute) feature;
+		adapterImpl = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature() != null && msg.getFeature().equals(MEDateControl.this.attribute)) {
+					update();
+				}
+				super.notifyChanged(msg);
+			}
+
+		};
+		modelElement.eAdapters().add(adapterImpl);
+		return PRIORITY;
 	}
 
 	/**

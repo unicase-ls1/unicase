@@ -268,7 +268,7 @@ public class MEEditorPage extends FormPage {
 			}
 			meControls.add(meControl);
 			Control control;
-			if (!itemPropertyDescriptor.isMany(modelElement)) {
+			if (meControl.getShowLabel()) {
 				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
 					.getDisplayName(modelElement));
 				label.setData(modelElement);

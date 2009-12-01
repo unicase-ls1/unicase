@@ -22,7 +22,7 @@ public abstract class AbstractMEControl {
 	/**
 	 * The default constant in case the widgets decides it shouldn't render the attribute.
 	 */
-	public static final int DO_NOT_RENDER = Integer.MIN_VALUE;
+	public static final int DO_NOT_RENDER = -1;
 
 	/**
 	 * gui toolkit used for rendering.
@@ -36,6 +36,8 @@ public abstract class AbstractMEControl {
 	 * the editingDomain.
 	 */
 	private EditingDomain editingDomain;
+
+	private boolean showLabel;
 
 	/**
 	 * @return the toolkit
@@ -119,5 +121,19 @@ public abstract class AbstractMEControl {
 	 * @return the widget
 	 */
 	public abstract Control createControl(Composite attributeComposite, int style);
+
+	/**
+	 * @return if the label for this control should be shown.
+	 */
+	public boolean getShowLabel() {
+		return this.showLabel;
+	}
+
+	/**
+	 * Sets if the label should be shown.
+	 */
+	public void setShowLabel(boolean show) {
+		this.showLabel = show;
+	}
 
 }
