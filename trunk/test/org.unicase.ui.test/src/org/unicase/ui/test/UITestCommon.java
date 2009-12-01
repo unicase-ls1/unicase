@@ -3,34 +3,36 @@
  * </copyright>
  */
 
-package org.unicase.ui.test.daigram;
+package org.unicase.ui.test;
 
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
-import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
-import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.unicase.workspace.test.SetupHelper;
 
-public class DiagramTestCommon {
+public class UITestCommon {
 	
 	private static SWTWorkbenchBot bot;
-	private static String view;
+	
 
-	public static void openView(SWTWorkbenchBot bot, String view){
-		
-		DiagramTestCommon.bot = bot;
-		DiagramTestCommon.view = view;
-		
+	public static void openView(SWTWorkbenchBot bot, String node, String view){
+	
+		UITestCommon.bot = bot;
 		bot.menu("Window").menu("Show View").menu("Other...").click();
         SWTBotShell shell1 = bot.shell("Show View");
         shell1.activate();
-        bot.tree().expandNode("Unicase").select(view);
+        bot.tree().expandNode(node).select(view);
         bot.button("OK").click();
+
+	}
+	
+	
+	public static void openPerspective(SWTWorkbenchBot bot, String perspective){
+		
+		UITestCommon.bot = bot;
+		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
+		SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
+		openPerspectiveShell.activate();
+		bot.table().select(perspective);
+		bot.button("OK").click();
 
 	}
 	

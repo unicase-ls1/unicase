@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
@@ -20,6 +21,8 @@ public class CheckoutProjectTest {
 
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
+	private static final String UNICASE_NODE = "Unicase";
+	private static final String BROWSER = "EmfStore Browser";
 
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -33,24 +36,20 @@ public class CheckoutProjectTest {
 
 	@Test
 	public void checkoutProject() throws Exception {
-		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-		SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
-		openPerspectiveShell.activate();
-		bot.table().select("Unicase");
-		bot.button("OK").click();
 		
-		bot.menu("Window").menu("Show View").menu("Other...").click();
-		SWTBotShell shell = bot.shell("Show View");
-		shell.activate();
-		bot.tree().expandNode("Unicase").select("EmfStore Browser");
-		bot.button("OK").click();
-		SWTBotView viewById = bot.activeView();
-		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
-		items[0].getText();
+		
 		Logger logger = Logger.getLogger("LoggerTest");
 		logger.addHandler(new FileHandler("checkoutlog.txt"));
-
-		int countofelem = (items[0].expand().rowCount());
+		
+		UITestCommon.openPerspective(bot, UNICASE_NODE);
+		UITestCommon.openView(bot, UNICASE_NODE, BROWSER);
+		
+		SWTBotView viewById = bot.activeView();
+		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
+		items[0].doubleClick();
+		// need to be fixed here to give the password automatically !
+		bot.sleep(8000);
+		int countofelem = (items[0].getItems().length);
 		if (countofelem == 0) {
 			logger.info("the project list is empty");
 			items[0].select().contextMenu("Create new project...").click();
@@ -64,11 +63,7 @@ public class CheckoutProjectTest {
 			try {
 				// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
 
-				bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-				openPerspectiveShell = bot.shell("Open Perspective");
-				openPerspectiveShell.activate();
-				bot.table().select("Unicase");
-				bot.button("OK").click();
+				UITestCommon.openPerspective(bot, UNICASE_NODE);
 
 				// TBotPrespective= bot.perspectives();
 			} catch (Exception e) {

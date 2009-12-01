@@ -14,14 +14,19 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class DiagramTest {
 
     private static SWTWorkbenchBot bot;
-    private static final String BROWSER = "EmfStore Browser";
+ 
     private static final String NAVIGATOR = "Unicase Navigator";
+    private static final String GENERAL_NODE = "General";
+    private static final String UNICASE_NODE = "Unicase";
+    private static final String PALETTE = "Palette";
+    
    
 
     @BeforeClass
@@ -35,8 +40,8 @@ public class DiagramTest {
     @Test
     public void testDiagram() throws Exception {
         
-        DiagramTestCommon.openView(bot, BROWSER);
-        DiagramTestCommon.openView(bot, NAVIGATOR);
+    	UITestCommon.openPerspective(bot, UNICASE_NODE);
+        UITestCommon.openView(bot, UNICASE_NODE, NAVIGATOR);
         
         SWTBotView viewById = bot.activeView();
         SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
@@ -45,11 +50,8 @@ public class DiagramTest {
         subitem = items[3].expand().getItems();
         subitem[0].doubleClick();
 
-        bot.menu("Window").menu("Show View").menu("Other...").click();
-        SWTBotShell shell3 = bot.shell("Show View");
-        shell3.activate();
-        bot.tree().expandNode("General").select("Palette");
-        bot.button("OK").click();
+        UITestCommon.openView(bot, GENERAL_NODE, PALETTE);
+        
         bot.sleep(20000);
         viewById = bot.activeView();
 
