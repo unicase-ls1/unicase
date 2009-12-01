@@ -54,11 +54,11 @@ public class MEEnumControl extends AbstractMEControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(Enum.class)) {
+		if (feature instanceof EAttribute
+			&& (EEnum.class).isAssignableFrom(((EAttribute) feature).getEType().getClass())) {
 			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
-
 }
