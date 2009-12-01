@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            class="org.unicase.rap.Application"
+            parameter="hello"
+            id="org.unicase.rap.Application">
+      </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RAP Perspective"
+            class="org.unicase.rap.Perspective"
+            id="org.unicase.rap.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.rap.View"
+            id="org.unicase.rap.View"
+            name="Main View"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
