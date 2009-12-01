@@ -5,9 +5,10 @@
  */
 package org.unicase.ui.meeditor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -31,7 +32,7 @@ public class ControlFactory {
 	private final ModelElement modelElement;
 	private final EditingDomain editingDomain;
 	private FormToolkit toolkit;
-	private HashMap<Class<? extends Object>, PriorityQueue<AbstractMEControl>> controlRegistry;
+	private HashMap<Class<?>, ArrayList<AbstractMEControl>> controlRegistry;
 
 	/**
 	 * Compares two MEControls according to the priority they returned.
@@ -46,12 +47,14 @@ public class ControlFactory {
 		public int compare(AbstractMEControl o1, AbstractMEControl o2) {
 			Integer i1 = priorityRegistry.get(o1);
 			Integer i2 = priorityRegistry.get(o2);
-			if (i1 == null) {
+			if (i1 == null && i2 != null) {
 				return -1;
-			} else if (i2 == null) {
+			} else if (i1 != null && i2 == null) {
 				return 1;
+			} else if (i1 == null && i2 == null) {
+				return 0;
 			} else {
-				return i1.intValue() - i2.intValue();
+				return i2.intValue() - i1.intValue();
 			}
 		}
 
@@ -71,16 +74,12 @@ public class ControlFactory {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
-
-		controlComparator = new ControlComparator();
-		controlRegistry = new HashMap<Class<? extends Object>, PriorityQueue<AbstractMEControl>>();
-		priorityRegistry = new HashMap<AbstractMEControl, Integer>();
 	}
 
-	private void addToControlRegistry(Class<? extends Object> clazz, AbstractMEControl control, int priority) {
-		PriorityQueue<AbstractMEControl> priorityQueue = controlRegistry.get(clazz);
+	private void addToControlRegistry(Class<?> clazz, AbstractMEControl control, int priority) {
+		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(clazz);
 		if (priorityQueue == null) {
-			priorityQueue = new PriorityQueue<AbstractMEControl>(10, controlComparator);
+			priorityQueue = new ArrayList<AbstractMEControl>();
 			controlRegistry.put(clazz, priorityQueue);
 		}
 		priorityQueue.add(control);
@@ -93,8 +92,10 @@ public class ControlFactory {
 	 * @param itemPropertyDescriptor the descriptor
 	 * @return the {@link AbstractMEControl}
 	 */
-	@SuppressWarnings("unchecked")
 	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
+		controlComparator = new ControlComparator();
+		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
+		priorityRegistry = new HashMap<AbstractMEControl, Integer>();
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
@@ -107,10 +108,10 @@ public class ControlFactory {
 					Class<?> resolvedType = Class.forName(type);
 					if (resolvedType.getSimpleName().equalsIgnoreCase(instanceClass.getSimpleName())) {
 						AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
+						Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
+						newControl.setShowLabel(showLabel);
 						int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
 						addToControlRegistry(instanceClass, newControl, prio);
-					} else {
-						controlRegistry.put(instanceClass, new PriorityQueue<AbstractMEControl>());
 					}
 				} catch (CoreException e1) {
 					WorkspaceUtil.logException(e1.getMessage(), e1);
@@ -118,39 +119,44 @@ public class ControlFactory {
 					WorkspaceUtil.logException(e1.getMessage(), e1);
 				}
 			}
-			AbstractMEControl ret = controlRegistry.get(instanceClass).peek();
-			controlRegistry.clear();
-			priorityRegistry.clear();
-			return ret;
+			ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
+			if (priorityQueue != null) {
+				Collections.sort(priorityQueue, controlComparator);
+				AbstractMEControl ret = priorityQueue.get(0);
+				return ret;
+			}
 		} else if (feature instanceof EReference) {
 			Class<?> instanceClass = ((EReference) feature).getEReferenceType().getInstanceClass();
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
 				"org.unicase.ui.meeditor.referencecontrols");
 			for (IConfigurationElement e : config) {
 				try {
-					Class<? extends ModelElement> type = (Class<? extends ModelElement>) e
-						.createExecutableExtension("type");
-					if (type.equals(instanceClass)) {
+					String type = e.getAttribute("type");
+					Class<?> resolvedType = Class.forName(type);
+					if (isSuperclass(resolvedType, instanceClass)) {
 						AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
+						Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
+						newControl.setShowLabel(showLabel);
 						int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
 						addToControlRegistry(instanceClass, newControl, prio);
-					} else {
-						controlRegistry.put(instanceClass, new PriorityQueue<AbstractMEControl>());
 					}
 				} catch (CoreException e1) {
 					WorkspaceUtil.logException(e1.getMessage(), e1);
+				} catch (ClassNotFoundException e1) {
+					WorkspaceUtil.logException(e1.getMessage(), e1);
 				}
 			}
-			controlRegistry.put(instanceClass, new PriorityQueue<AbstractMEControl>());
-			AbstractMEControl ret = controlRegistry.get(instanceClass).peek();
-			controlRegistry.clear();
-			priorityRegistry.clear();
-			return ret;
+			ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
+			if (priorityQueue != null) {
+				Collections.sort(priorityQueue, controlComparator);
+				AbstractMEControl ret = priorityQueue.get(0);
+				return ret;
+			}
 		}
 
 		return null;
-		// TODO: Add other types
 	}
+
 	// private AbstractMEControl createAttributeControl(IItemPropertyDescriptor itemPropertyDescriptor,
 	// EStructuralFeature
 	// feature) {
@@ -203,4 +209,14 @@ public class ControlFactory {
 	//
 	// return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
 	// }
+	private boolean isSuperclass(Class<?> c1, Class<?> c2) {
+		Class<?> temp = c2;
+		while (temp != null) {
+			if (temp.getCanonicalName().equals(c1.getCanonicalName())) {
+				return true;
+			}
+			temp = temp.getSuperclass();
+		}
+		return false;
+	}
 }
