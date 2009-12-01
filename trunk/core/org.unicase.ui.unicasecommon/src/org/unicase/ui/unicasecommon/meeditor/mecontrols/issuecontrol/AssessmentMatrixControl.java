@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -27,6 +26,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -36,7 +36,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationaleFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -48,6 +47,8 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private static final int MAX_LENGTH_CRITERIA_NAME = 20;
+
+	private static final int PRIORITY = 2;
 
 	private AdapterImpl eAdapter;
 
@@ -61,20 +62,19 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	private Issue issue;
 
 	private AdapterFactoryItemDelegator adapterFactoryItemDelegator;
-	private ArrayList<MEControl> assessmentControls = new ArrayList<MEControl>();
+	private ArrayList<AbstractMEControl> assessmentControls = new ArrayList<AbstractMEControl>();
 
 	private HashMap<Proposal, Label> allSumLabels = new HashMap<Proposal, Label>();
 	private HashMap<Proposal, Composite> allSumLabelContainer = new HashMap<Proposal, Composite>();
 
-	/**
-	 * Public constructor to create the assessment matrix control.
-	 * 
-	 * @param modelElement represents the corresponding issue
-	 * @param toolkit the used toolkit
-	 * @param editingDomain the used editingDomain
-	 */
-	public AssessmentMatrixControl(EObject modelElement, FormToolkit toolkit, EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+		if (!(modelElement instanceof Issue)) {
+			return DO_NOT_RENDER;
+		}
+
 		issue = (Issue) modelElement;
 
 		eAdapter = new AdapterImpl() {
@@ -109,7 +109,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				}
 			}
 		}
-
+		return PRIORITY;
 	}
 
 	/**
@@ -119,6 +119,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	 * @param style used style
 	 * @return the corresponding control
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		int numberOfCriteria = 0;
 		mainComposite = parent;
@@ -154,7 +155,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		matrixSection.dispose();
-		for (MEControl assessmentControl : this.assessmentControls) {
+		for (AbstractMEControl assessmentControl : this.assessmentControls) {
 			assessmentControl.dispose();
 		}
 		assessmentControls.clear();
@@ -185,7 +186,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private void rebuildMatrix() {
 		matrixSection.dispose();
-		for (MEControl assessmentControl : this.assessmentControls) {
+		for (AbstractMEControl assessmentControl : this.assessmentControls) {
 			assessmentControl.dispose();
 		}
 		assessmentControls.clear();
@@ -247,7 +248,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 					ControlFactory cFactory = new ControlFactory(getEditingDomain(), assessment, getToolkit());
 					final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
 						.getPropertyDescriptor(assessment, "value");
-					MEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue);
+					AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue);
 					this.assessmentControls.add(assessmentControlDescription);
 
 					Composite comp = getToolkit().createComposite(matrixSection);
