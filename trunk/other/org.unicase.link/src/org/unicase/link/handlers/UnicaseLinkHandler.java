@@ -5,6 +5,7 @@
  */
 package org.unicase.link.handlers;
 
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -12,8 +13,12 @@ import java.awt.datatransfer.StringSelection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -78,7 +83,8 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 		
-		String info = "Link was copied to the clipboard! ";
+		String window_info = "Copy to clipboard! ";
+		//String info = "Link was copied to the clipboard! ";
 		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
 			+ projectId + "/" + meName + "%" + meId;
 
@@ -93,13 +99,23 @@ public class UnicaseLinkHandler extends AbstractHandler {
 			"Link",
 				info);
 		 */
+
 		Display display = Display.getCurrent();
 		Shell shell = new Shell(display);
-		shell.open ();
+		shell.setText(window_info);
+		GridLayout gridLayout = new GridLayout(1,false);
+		shell.setLayout(gridLayout);
+		Text t = new Text(shell,SWT.CENTER|SWT.WRAP);
+		t.setText(link);
+		t.setEditable(false);
+		t.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true,true));
+		shell.setLocation(200, 200);
+		shell.setSize(500,150);
+		shell.open();
 		while (!shell.isDisposed ()) {
 			if (!display.readAndDispatch ()) display.sleep ();
 		}
-		display.dispose ();
+		//display.dispose ();
 		return null;
 	}
 }
