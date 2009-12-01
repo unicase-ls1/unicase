@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -79,6 +80,17 @@ public class MERichTextControl extends AbstractMEControl {
 	}
 
 	/**
+	 * Alternative init method for a specific feature. It's <b>NOT<n> intended for a use in a extension.
+	 */
+	public int init(EAttribute feature, ModelElement modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
+		setModelElement(modelElement);
+		setEditingDomain(editingDomain);
+		setToolkit(toolkit);
+		this.attribute = feature;
+		return PRIORITY;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -88,6 +100,18 @@ public class MERichTextControl extends AbstractMEControl {
 		composite.setLayout(new GridLayout());
 		createToolBar();
 		createStyledText();
+		eAdapter = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature() != null && msg.getFeature().equals(MERichTextControl.this.attribute)) {
+					load();
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		getModelElement().eAdapters().add(eAdapter);
+
+		shoudShowExpand = true;
 		load();
 
 		return composite;

@@ -117,7 +117,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			try {
 				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
 				newPage.init(this, editingDomain, modelElement);
-				addPage(newPage);
+				addPage(newPage.getPage());
 			} catch (CoreException e1) {
 				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
 			}

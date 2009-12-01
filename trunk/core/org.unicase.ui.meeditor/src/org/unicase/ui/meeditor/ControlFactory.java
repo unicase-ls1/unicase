@@ -133,7 +133,7 @@ public class ControlFactory {
 				try {
 					String type = e.getAttribute("type");
 					Class<?> resolvedType = Class.forName(type);
-					if (isSuperclass(resolvedType, instanceClass)) {
+					if (resolvedType.isAssignableFrom(instanceClass)) {
 						AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
 						Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
 						newControl.setShowLabel(showLabel);
@@ -209,14 +209,4 @@ public class ControlFactory {
 	//
 	// return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
 	// }
-	private boolean isSuperclass(Class<?> c1, Class<?> c2) {
-		Class<?> temp = c2;
-		while (temp != null) {
-			if (temp.getCanonicalName().equals(c1.getCanonicalName())) {
-				return true;
-			}
-			temp = temp.getSuperclass();
-		}
-		return false;
-	}
 }
