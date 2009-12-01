@@ -28,17 +28,18 @@ import org.unicase.metamodel.Project;
 
 /**
  * Helper class for Operations.
+ * 
  * @author herrmi
- *
  */
 public final class OperationHelper {
 
 	private OperationHelper() {
-		//NOTHING TO DO
+		// NOTHING TO DO
 	}
-	
+
 	/**
 	 * Get a model element of a type V from the given project.
+	 * 
 	 * @param <V> the type of the model element
 	 * @param project the project
 	 * @param id the id of the model element
@@ -54,14 +55,14 @@ public final class OperationHelper {
 
 	/**
 	 * Get a list of model elements from a certain type from the given project.
+	 * 
 	 * @param <V> the type
 	 * @param project the project
 	 * @param ids the list of ids of the model element to retrieve
 	 * @return a list of model elements, may contain null if an element is not in the project
 	 */
 	@SuppressWarnings("unchecked")
-	public static <V> EList<V> getElements(Project project,
-			List<ModelElementId> ids) {
+	public static <V> EList<V> getElements(Project project, List<ModelElementId> ids) {
 		EList<V> elements = new BasicEList<V>();
 		for (ModelElementId id : ids) {
 			elements.add((V) getElement(project, id));
@@ -71,6 +72,7 @@ public final class OperationHelper {
 
 	/**
 	 * Get the id of a model element.
+	 * 
 	 * @param element the element
 	 * @return the id or null if the element is null
 	 */
@@ -82,12 +84,12 @@ public final class OperationHelper {
 	}
 
 	/**
-	 * Get the ids of all given model elements. 
+	 * Get the ids of all given model elements.
+	 * 
 	 * @param elements the elements
 	 * @return a list of ids
 	 */
-	public static List<ModelElementId> getIds(
-			List<? extends ModelElement> elements) {
+	public static List<ModelElementId> getIds(List<? extends ModelElement> elements) {
 		List<ModelElementId> ids = new ArrayList<ModelElementId>();
 		for (ModelElement element : elements) {
 			ids.add(getId(element));
@@ -97,54 +99,44 @@ public final class OperationHelper {
 
 	/**
 	 * Validates a semantic composite operation in the context of a project.
+	 * 
 	 * @param operation the operation
 	 * @param project the project
 	 * @return the validation results
 	 */
-	@SuppressWarnings("unchecked")
-	public static Diagnostic validate(
-			SemanticCompositeOperation operation,
-			Project project) {
-		
+
+	public static Diagnostic validate(SemanticCompositeOperation operation, Project project) {
+
 		BasicDiagnostic diagnostic = new BasicDiagnostic();
 		EObjectValidator.INSTANCE.validate_EveryDefaultConstraint(operation, diagnostic, null);
-		
+
 		validatePossibleValues(operation, project, diagnostic);
 		validateConstraints(operation, project, diagnostic);
 
 		return diagnostic;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void validatePossibleValues(SemanticCompositeOperation operation, Project project,
 		BasicDiagnostic diagnostic) {
 		for (EReference reference : operation.eClass().getEReferences()) {
 			EOperation method = OperationHelper.getPossibleOperation(reference);
 			if (method != null) {
-				List possibleValues = getPossibleValues(operation, reference,
-						project);
+				List possibleValues = getPossibleValues(operation, reference, project);
 				if (reference.isMany()) {
 					List value = getElements(project, (List<ModelElementId>) operation.eGet(reference));
-					for(Object v : value) {
-						if(!possibleValues.contains(v)) {
-							diagnostic.add(new BasicDiagnostic(
-									Diagnostic.ERROR,
-									EObjectValidator.DIAGNOSTIC_SOURCE, 0,
-									"The value of parameter '"
-											+ reference.getName()
-											+ "' is not allowed.",
-									new Object[0]));
+					for (Object v : value) {
+						if (!possibleValues.contains(v)) {
+							diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0,
+								"The value of parameter '" + reference.getName() + "' is not allowed.", new Object[0]));
 							break;
 						}
 					}
 				} else {
-					Object value = getElement(project,
-							(ModelElementId) operation.eGet(reference));
+					Object value = getElement(project, (ModelElementId) operation.eGet(reference));
 					if (value != null && !possibleValues.contains(value)) {
-						diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-								EObjectValidator.DIAGNOSTIC_SOURCE, 0,
-								"The value of parameter '"
-										+ reference.getName()
-										+ "' is not allowed.", new Object[0]));
+						diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0,
+							"The value of parameter '" + reference.getName() + "' is not allowed.", new Object[0]));
 					}
 				}
 			}
@@ -170,6 +162,7 @@ public final class OperationHelper {
 
 	/**
 	 * Get all possible values for a given feature of an operation in the conext of a project.
+	 * 
 	 * @param operation the operation
 	 * @param reference the feature
 	 * @param project the project
@@ -200,8 +193,7 @@ public final class OperationHelper {
 
 	private static EOperation getPossibleOperation(EReference reference) {
 		String name = "getPossible" + firstUpper(reference.getName());
-		EOperation operation = getOperation(reference.getEContainingClass(),
-				name);
+		EOperation operation = getOperation(reference.getEContainingClass(), name);
 		return operation;
 	}
 
@@ -215,16 +207,15 @@ public final class OperationHelper {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <V> V invokeOperation(EObject element, EOperation operation,
-			Object... parameters) throws OperationInvocationException {
+	private static <V> V invokeOperation(EObject element, EOperation operation, Object... parameters)
+		throws OperationInvocationException {
 		Class[] parameterTypes = new Class[parameters.length];
 		for (int i = 0, n = parameters.length; i < n; i++) {
 			parameterTypes[i] = parameters[i].getClass();
 		}
 		Method method;
 		try {
-			method = element.getClass().getMethod(operation.getName(),
-					Project.class);
+			method = element.getClass().getMethod(operation.getName(), Project.class);
 			Object result = method.invoke(element, parameters);
 			return (V) result;
 		} catch (SecurityException e) {

@@ -32,26 +32,30 @@ import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Extract Super Class Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Extract Super Class Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSubClasses <em>Sub Classes</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperClassName <em>Super Class Name</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getTargetPackage <em>Target Package</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperSuperClasses <em>Super Super Classes</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSubClasses <em>Sub Classes
+ * </em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperClassName <em>Super
+ * Class Name</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getTargetPackage <em>Target
+ * Package</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperSuperClasses <em>Super
+ * Super Classes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationImpl implements ExtractSuperClassOperation {
+public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationImpl implements
+	ExtractSuperClassOperation {
 	/**
-	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubClasses()
 	 * @generated
 	 * @ordered
@@ -59,9 +63,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected EList<ModelElementId> subClasses;
 
 	/**
-	 * The default value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperClassName()
 	 * @generated
 	 * @ordered
@@ -69,9 +73,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected static final String SUPER_CLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperClassName()
 	 * @generated
 	 * @ordered
@@ -79,9 +83,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected String superClassName = SUPER_CLASS_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTargetPackage() <em>Target Package</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetPackage() <em>Target Package</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetPackage()
 	 * @generated
 	 * @ordered
@@ -89,9 +93,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected ModelElementId targetPackage;
 
 	/**
-	 * The cached value of the '{@link #getSuperSuperClasses() <em>Super Super Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperSuperClasses() <em>Super Super Classes</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperSuperClasses()
 	 * @generated
 	 * @ordered
@@ -99,8 +103,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected EList<ModelElementId> superSuperClasses;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExtractSuperClassOperationImpl() {
@@ -108,8 +112,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,20 +122,21 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getSubClasses() {
 		if (subClasses == null) {
-			subClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES);
+			subClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES);
 		}
 		return subClasses;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSuperClassName() {
@@ -139,20 +144,21 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuperClassName(String newSuperClassName) {
 		String oldSuperClassName = superClassName;
 		superClassName = newSuperClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME, oldSuperClassName, superClassName));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME, oldSuperClassName, superClassName));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getTargetPackage() {
@@ -160,54 +166,62 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetPackage(ModelElementId newTargetPackage, NotificationChain msgs) {
 		ModelElementId oldTargetPackage = targetPackage;
 		targetPackage = newTargetPackage;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, oldTargetPackage, newTargetPackage);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, oldTargetPackage, newTargetPackage);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetPackage(ModelElementId newTargetPackage) {
 		if (newTargetPackage != targetPackage) {
 			NotificationChain msgs = null;
 			if (targetPackage != null)
-				msgs = ((InternalEObject)targetPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject) targetPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
 			if (newTargetPackage != null)
-				msgs = ((InternalEObject)newTargetPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject) newTargetPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
 			msgs = basicSetTargetPackage(newTargetPackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, newTargetPackage, newTargetPackage));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, newTargetPackage, newTargetPackage));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getSuperSuperClasses() {
 		if (superSuperClasses == null) {
-			superSuperClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES);
+			superSuperClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES);
 		}
 		return superSuperClasses;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSubClasses(Project project) {
@@ -215,8 +229,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getTargetPackage(Project project) {
@@ -224,8 +238,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSuperSuperClasses(Project project) {
@@ -234,17 +248,14 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 
 	// begin of custom code
 	/**
-	 * Retrieve all Super super classes that could be selected.
-	 * {@inheritDoc}
-	 * 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Retrieve all Super super classes that could be selected. {@inheritDoc} <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated NOT
 	 */
 	public EList<Class> getPossibleSuperSuperClasses(Project project) {
 		Iterator<Class> i = getSubClasses(project).iterator();
-		EList<Class> classes = new BasicEList<Class>(i.next()
-				.getSuperClasses());
+		EList<Class> classes = new BasicEList<Class>(i.next().getSuperClasses());
 		while (i.hasNext()) {
 			Class subClass = i.next();
 			for (Iterator<Class> j = classes.iterator(); j.hasNext();) {
@@ -279,124 +290,126 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	// end of custom code
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-				return ((InternalEList<?>)getSubClasses()).basicRemove(otherEnd, msgs);
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-				return basicSetTargetPackage(null, msgs);
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-				return ((InternalEList<?>)getSuperSuperClasses()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
+			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
+			return basicSetTargetPackage(null, msgs);
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
+			return ((InternalEList<?>) getSuperSuperClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-				return getSubClasses();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
-				return getSuperClassName();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-				return getTargetPackage();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-				return getSuperSuperClasses();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
+			return getSubClasses();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
+			return getSuperClassName();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
+			return getTargetPackage();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
+			return getSuperSuperClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-				getSubClasses().clear();
-				getSubClasses().addAll((Collection<? extends ModelElementId>)newValue);
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
-				setSuperClassName((String)newValue);
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-				setTargetPackage((ModelElementId)newValue);
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-				getSuperSuperClasses().clear();
-				getSuperSuperClasses().addAll((Collection<? extends ModelElementId>)newValue);
-				return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
+			getSubClasses().clear();
+			getSubClasses().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
+			setSuperClassName((String) newValue);
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
+			setTargetPackage((ModelElementId) newValue);
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
+			getSuperSuperClasses().clear();
+			getSuperSuperClasses().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-				getSubClasses().clear();
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
-				setSuperClassName(SUPER_CLASS_NAME_EDEFAULT);
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-				setTargetPackage((ModelElementId)null);
-				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-				getSuperSuperClasses().clear();
-				return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
+			getSubClasses().clear();
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
+			setSuperClassName(SUPER_CLASS_NAME_EDEFAULT);
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
+			setTargetPackage((ModelElementId) null);
+			return;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
+			getSuperSuperClasses().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-				return subClasses != null && !subClasses.isEmpty();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
-				return SUPER_CLASS_NAME_EDEFAULT == null ? superClassName != null : !SUPER_CLASS_NAME_EDEFAULT.equals(superClassName);
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-				return targetPackage != null;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-				return superSuperClasses != null && !superSuperClasses.isEmpty();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
+			return subClasses != null && !subClasses.isEmpty();
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
+			return SUPER_CLASS_NAME_EDEFAULT == null ? superClassName != null : !SUPER_CLASS_NAME_EDEFAULT
+				.equals(superClassName);
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
+			return targetPackage != null;
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
+			return superSuperClasses != null && !superSuperClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (superClassName: ");
@@ -410,7 +423,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		Package targetPackage = getTargetPackage(project);
 		String superClassName = getSuperClassName();
 		List<Class> superSuperClasses = getSuperSuperClasses(project);
-		
+
 		Class superClass = ClassesFactory.eINSTANCE.createClass();
 		targetPackage.getContainedPackageElements().add(superClass);
 		superClass.setName(superClassName);
@@ -423,4 +436,4 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		}
 	}
 
-} //ExtractSuperClassOperationImpl
+} // ExtractSuperClassOperationImpl

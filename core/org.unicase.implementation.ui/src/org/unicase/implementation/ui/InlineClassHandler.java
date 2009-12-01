@@ -4,8 +4,9 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.implementation.ui;
-
+// BEGIN IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.InlineClassOperation;
+// END IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.OperationsPackage;
 
 /**
