@@ -5,39 +5,28 @@
  */
 package org.unicase.link.handlers;
 
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.handlers.HandlerUtil;
-
-import org.eclipse.jface.dialogs.MessageDialog;
-
-
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.link.util.LinkDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This handler handles "create unicase link" button click events. 
- * It generates an UNICASE url link to the model element
- * currently shown in the MEEditor
+ * This class handles "create unicase link" button click events. 
+ * It generates a UNICASE url for the selected model element,
+ * copies it to clipboard and shows a popup.
  *  
  * @author svetlana
+ * @author jfinis
+ * @author kami
  */
 public class UnicaseLinkHandler extends AbstractHandler {
 	/**
@@ -48,16 +37,14 @@ public class UnicaseLinkHandler extends AbstractHandler {
 	
 	
 	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
-	 * TODO: insert javadoc for param and return
-	 * @param event -insert doc-
-	 * @return -insert doc-
-	 * @throws ExecutionException -insert doc-
+	 * Execute the UnicaseLinkCommand which displays the UNICASE URL of the
+	 * selected model element in a popup window and copies it to clipboard.
+	 * The method first assembles the link, then copies it to clipboard and opens the popup.
+	 * @param event the event to handled
+	 * @return nothing (null)
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(ExecutionEvent event) {
 		
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		
 		ModelElement me = ActionHelper.getModelElement(event);
 
@@ -69,9 +56,8 @@ public class UnicaseLinkHandler extends AbstractHandler {
 			//If this is not a unicase model, we use the identifier (whatever this is) as name
 			meName = me.getIdentifier();
 		}
-		
-		//ModelElement clone = (ModelElement) EcoreUtil.copy(me);
-		
+
+		//Get model element id
 		String meId = me.getModelElementId().getId();
 		
 		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
@@ -84,7 +70,7 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 		
-		//String info = "Link was copied to the clipboard! ";
+		//Assemble the link
 		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
 			+ projectId + "/" + meName + "%" + meId;
 
