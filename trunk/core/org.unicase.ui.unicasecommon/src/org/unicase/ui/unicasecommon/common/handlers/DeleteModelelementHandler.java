@@ -14,7 +14,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.document.Section;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UiUtil;
-import org.unicase.ui.unicasecommon.common.commands.DeleteModelElementCommand;
+import org.unicase.ui.meeditor.commands.DeleteModelElementCommand;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
