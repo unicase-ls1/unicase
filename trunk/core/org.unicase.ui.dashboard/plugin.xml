@@ -58,9 +58,16 @@
                  id="org.unicase.ui.dashboard.dashboardProperties"
                  name="Dashboard">
               <enabledWhen>
-                 <instanceof
-                       value="org.unicase.metamodel.Project">
-                 </instanceof>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <count
+                          value="1">
+                    </count>
+                    <instanceof
+                          value="org.unicase.metamodel.Project">
+                    </instanceof>
+                 </iterate>
               </enabledWhen>
            </page>
            <page
@@ -69,9 +76,16 @@
                  id="org.unicase.ui.dashboard.dashboardWidgetProperties"
                  name="Widgets">
               <enabledWhen>
-                 <instanceof
-                       value="org.unicase.metamodel.Project">
-                 </instanceof>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <count
+                          value="1">
+                    </count>
+                    <instanceof
+                          value="org.unicase.metamodel.Project">
+                    </instanceof>
+                 </iterate>
               </enabledWhen>
            </page>
         </extension>
@@ -92,7 +106,7 @@
                <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.ui.showHistory">
                   <command
               commandId="org.unicase.ui.dashboard.showDashboard"
               icon="icons/dashboard.png"
@@ -100,12 +114,23 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.ui.commands.projectIsShared"
+                          value="true">
+                    </test>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </command>
      </menuContribution>
