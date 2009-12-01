@@ -84,31 +84,19 @@ public class NewReferenceAction extends Action {
 
 			if (!eReference.isContainer()) {
 				// Returns the value of the Container
-				EReference reference = getParentReference(newMEInstance);
-				if (reference != null) {
-					if (reference.isMany()) {
-						Object object = modelElement.eContainer().eGet(reference);
+				EObject parent = modelElement.eContainer();
+				while (!(parent instanceof Project)) {
+					EReference reference = getPossibleContainingReference(newMEInstance, parent);
+					if (reference != null && reference.isMany()) {
+						Object object = parent.eGet(reference);
 						EList<EObject> eList = (EList<EObject>) object;
 						eList.add(newMEInstance);
+					}
+					parent = parent.eContainer();
+				}
 
-					}
-				} else {
-					// List of LeafSections (Containers).
-					EObject parent = modelElement.eContainer();
-					while (!(parent instanceof Project)) {
-						// if parent container instance of leafSection ,
-						// add the container to the leafSectionlist.
-						if (parent instanceof LeafSection) {
-							((LeafSection) parent).getModelElements().add(newMEInstance);
-							break;
-						}
-						parent = parent.eContainer();
-
-					}
-					// add the MEinstance to the project (Orphans).
-					if (newMEInstance.eContainer() == null) {
-						modelElement.getProject().addModelElement(newMEInstance);
-					}
+				if (newMEInstance.eContainer() == null) {
+					modelElement.getProject().addModelElement(newMEInstance);
 				}
 
 			}
@@ -129,9 +117,9 @@ public class NewReferenceAction extends Action {
 		 * @param newMEInstance {@link ModelElement} the new modelElement instance.
 		 * @return EReference the Container
 		 */
-		private EReference getParentReference(final ModelElement newMEInstance) {
+		private EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
 			// the value of the 'EAll Containments' reference list.
-			List<EReference> eallcontainments = modelElement.eContainer().eClass().getEAllContainments();
+			List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 			EReference reference = null;
 			for (EReference containmentitem : eallcontainments) {
 
