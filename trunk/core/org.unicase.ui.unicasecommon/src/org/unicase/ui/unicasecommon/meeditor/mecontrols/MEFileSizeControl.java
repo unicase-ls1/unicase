@@ -45,13 +45,14 @@ public class MEFileSizeControl extends AbstractMEControl {
 	 */
 	public MEFileSizeControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
 		EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
+
 		this.attribute = attribute;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(1, false);

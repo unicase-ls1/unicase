@@ -16,9 +16,8 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -40,6 +39,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -60,6 +60,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
+	private static final int PRIORITY = 2;
+
 	private FileAttachment fileAttachment;
 
 	private UploadSelectionListener uploadListener;
@@ -72,23 +74,21 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private Link fileName;
 
-	/**
-	 * Default constructor.
-	 * 
-	 * @param attribute The filename attribute
-	 * @param toolkit The SWT toolkit
-	 * @param modelElement The user
-	 * @param editingDomain the editing domain
-	 */
-	public MEFileChooserControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
-		EditingDomain editingDomain) {
-		super(editingDomain, modelElement, toolkit);
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+		if (!(modelElement instanceof FileAttachment)) {
+			return DO_NOT_RENDER;
+		}
 		fileAttachment = (FileAttachment) getModelElement();
+		return PRIORITY;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Control createControl(Composite parent, int style) {
 
 		// COMPOSITE FOR WIDGETS
