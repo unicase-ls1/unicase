@@ -1,4 +1,4 @@
-package org.unicase.ui.test.navigator;
+package org.unicase.ui.test.emfStoreBrowser;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -9,6 +9,6 @@ import org.unicase.ui.test.navigator.ImportProjectTest;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { CreateProjectTest.class, DeleteProjectTest.class, ImportProjectTest.class })
-public class AllNavigatorTests {
+@Suite.SuiteClasses( { CheckoutProjectTest.class })
+public class AllEmfStoreBrowserTests {
 }
