@@ -95,19 +95,23 @@
             type="org.unicase.model.diagram.DiagramType">
       </commandParameterType>
       <command
+            defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.NewLeafSection"
             id="org.unicase.ui.navigator.newLeafSection"
             name="newLeafSection">
       </command>
       <command
+            defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.NewCompositeSectionHandler"
             id="org.unicase.ui.navigator.newCompositeSection"
             name="newCompositeSection">
       </command>
       <command
+            defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.FollowupMeetingWizardHandler"
             id="org.unicase.ui.navigator.followupMeeting"
             name="followupMeeting">
       </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
+            defaultHandler="org.unicase.ui.meeditor.commands.OpenModelElementHandler"
             id="org.unicase.ui.common.openDiagramWithMEEditor"
             name="Quick open modelelement">
       </command>
@@ -124,11 +128,13 @@
       </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.DeleteModelelementHandler"
             id="org.unicase.ui.common.deleteModelelement"
             name="Delete Modelelement">
       </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
+            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.OpenDiagramWithMEEditorHandler"
             id="org.unicase.ui.common.openDiagramWithMEEditor"
             name="Open with MEEditor">
       </command>
@@ -160,6 +166,7 @@
             name="Open Modelelements Selectiondialog">
       </command>
       <command
+            defaultHandler="org.unicase.workspace.ui.commands.ValidateHandler"
             id="org.unicase.ui.common.validate"
             name="Validate">
       </command>
@@ -174,29 +181,6 @@
       </category>
    </extension>
     <!--    -->
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.unicase.ui.unicasecommon.navigator.commands.NewLeafSection"
-            commandId="org.unicase.ui.navigator.newLeafSection">
-      </handler>
-      <handler
-            class="org.unicase.ui.unicasecommon.navigator.commands.NewCompositeSectionHandler"
-            commandId="org.unicase.ui.navigator.newCompositeSection">
-      </handler>
-      <handler
-            class="org.unicase.ui.unicasecommon.navigator.commands.FollowupMeetingWizardHandler"
-            commandId="org.unicase.ui.navigator.followupMeeting">
-      </handler>
-      <handler
-            class="org.unicase.ui.unicasecommon.common.handlers.DeleteModelelementHandler"
-            commandId="org.unicase.ui.common.deleteModelelement">
-      </handler>
-      <handler
-            class="org.unicase.ui.unicasecommon.common.handlers.OpenDiagramWithMEEditorHandler"
-            commandId="org.unicase.ui.common.openDiagramWithMEEditor">
-      </handler>
-   </extension>
 
     <!--    -->
    
@@ -209,145 +193,6 @@
    </extension>
   <extension
         point="org.eclipse.ui.menus">
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
-        <command
-              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
-              label="Open with MEEditor"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.MEDiagram">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.deleteModelelement"
-              icon="icons/delete.gif"
-              label="Delete"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.metamodel.ModelElement">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.newDocument"
-              icon="icons/Document.gif"
-              label="New Document"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.ui.common.commands.modifyCommands">
-        </separator>
-     </menuContribution>
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.modifyCommands">
-        <menu
-              label="Add Annotations">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.directAnnotatable">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-           <command
-                 commandId="org.unicase.ui.common.commands.annotateActionItem"
-                 icon="icons/ActionItem.png"
-                 label="Add Action Item"
-                 style="push">
-           </command>
-           <command
-                 commandId="org.unicase.ui.common.commands.annotateIssue"
-                 icon="icons/Issue.gif"
-                 label="Add Issue"
-                 style="push">
-           </command>
-        </menu>
-        <command
-              commandId="org.unicase.ui.common.commands.addComment"
-              icon="icons/Comment.png"
-              label="Add Comment"
-              style="push">
-              <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.metamodel.ModelElement">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
-              icon="icons/subscribe.png"
-              label="Subscribe"
-              style="push">
-              <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false"
-                    operator="and">
-                 <instanceof
-                       value="org.unicase.metamodel.ModelElement">
-                 </instanceof>
-                 <test
-                    forcePluginActivation="true"
-                    property="org.unicase.ui.common.commands.isNotSubscribed"
-                    value="true">
-                 </test>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
-              icon="icons/subscribe.png"
-              label="Unsubscribe"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false"
-                    operator="and">
-                 <instanceof
-                       value="org.unicase.metamodel.ModelElement">
-                 </instanceof>
-                 <test
-                       forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.isSubscribed"
-                       value="true">
-                 </test>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.ui.common.commands.annotateActionItemSeperator"
-              visible="true">
-      	 </separator>
-        
-     </menuContribution>
      <menuContribution
            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
         <command
@@ -426,18 +271,23 @@
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
         <command
-              commandId="org.unicase.ui.navigator.newMEWizard"
-              icon="icons/NewModelElement.png"
-              label="New model element..."
+              commandId="org.unicase.ui.navigator.followupMeeting"
+              label="Follow-up meeting..."
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.LeafSection">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.model.meeting.Meeting">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </command>
         <dynamic
@@ -445,12 +295,18 @@
               id="org.unicase.ui.navigator.dynamicMECreationCommands">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.LeafSection">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.model.document.LeafSection">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </dynamic>
         <dynamic
@@ -458,11 +314,18 @@
               id="org.unicase.ui.navigator.dynamicContainmentCommands">
            <visibleWhen
                  checkEnabled="false">
-              <iterate>
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <reference
+                          definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                    </reference>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </dynamic>
         <command
@@ -472,12 +335,18 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.CompositeSection">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.model.document.CompositeSection">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </command>
         <command
@@ -487,30 +356,246 @@
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.document.CompositeSection">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.model.document.CompositeSection">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </command>
         <command
-              commandId="org.unicase.ui.navigator.followupMeeting"
-              label="Follow-up meeting..."
+              commandId="org.unicase.ui.navigator.newMEWizard"
+              icon="icons/NewModelElement.png"
+              label="New model element..."
               style="push">
            <visibleWhen
                  checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.meeting.Meeting">
-                 </instanceof>
-              </iterate>
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.model.document.LeafSection">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
            </visibleWhen>
         </command>
         <separator
               name="org.unicase.ui.navigator.createModelElementCommands"
+              visible="true">
+        </separator>
+        <command
+              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
+              label="Open with MEEditor"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <reference
+                          definitionId="org.unicase.ui.common.commands.MEDiagram">
+                    </reference>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.newDocument"
+              icon="icons/Document.gif"
+              label="New Document"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.ui.common.commands.modifyCommands"
+              visible="true">
+        </separator>
+        <menu
+              label="Add References">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+           <command
+                 commandId="org.unicase.ui.common.commands.addComment"
+                 icon="icons/Comment.png"
+                 label="Add Comment"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <and>
+                    <iterate
+                          ifEmpty="false"
+                          operator="and">
+                       <instanceof
+                             value="org.unicase.metamodel.ModelElement">
+                       </instanceof>
+                    </iterate>
+                    <count
+                          value="1">
+                    </count>
+                 </and>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.ui.common.commands.annotateActionItem"
+                 icon="icons/ActionItem.png"
+                 label="Add Action Item"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <and>
+                    <iterate
+                          ifEmpty="false"
+                          operator="and">
+                       <reference
+                             definitionId="org.unicase.ui.common.commands.directAnnotatable">
+                       </reference>
+                    </iterate>
+                    <count
+                          value="1">
+                    </count>
+                 </and>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.ui.common.commands.annotateIssue"
+                 icon="icons/Issue.gif"
+                 label="Add Issue"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <and>
+                    <iterate
+                          ifEmpty="false"
+                          operator="and">
+                       <reference
+                             definitionId="org.unicase.ui.common.commands.directAnnotatable">
+                       </reference>
+                    </iterate>
+                    <count
+                          value="1">
+                    </count>
+                 </and>
+              </visibleWhen>
+           </command>
+        </menu>
+        <command
+              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
+              icon="icons/subscribe.png"
+              label="Subscribe"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.ui.common.commands.isNotSubscribed"
+                          value="true">
+                    </test>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
+              icon="icons/subscribe.png"
+              label="Unsubscribe"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.ui.common.commands.isSubscribed"
+                          value="true">
+                    </test>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.ui.common.commands.annotateActionItemSeperator"
               visible="true">
         </separator>
      </menuContribution>
@@ -522,39 +607,6 @@
               style="push"
               tooltip="Shows open model element dialog">
         </command>
-     </menuContribution>
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
-        <dynamic
-              class="org.unicase.ui.unicasecommon.navigator.commands.DynamicContainmentCommands"
-              id="org.unicase.ui.navigator.dynamicContainmentCommands">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate>
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-        </dynamic>
-        <command
-              commandId="org.unicase.ui.navigator.followupMeeting"
-              label="Follow-up meeting..."
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.meeting.Meeting">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.ui.navigator.createModelElementCommands"
-              visible="true">
-        </separator>
      </menuContribution>
      <menuContribution
            locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
