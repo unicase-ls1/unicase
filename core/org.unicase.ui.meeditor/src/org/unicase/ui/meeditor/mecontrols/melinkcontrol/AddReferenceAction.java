@@ -29,6 +29,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
 import org.unicase.workspace.Configuration;
 
 /**

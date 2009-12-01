@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
@@ -26,8 +28,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.ConstantThresholdSelection;
+import org.unicase.metamodel.recommendation.RecommendationManager;
 import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
 
 /**
  * This Dialog represents the possibility to select an element from a list where the list is sorted and additional
@@ -68,14 +71,15 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), reference.isMany());
 		setTitle(title);
 		setMessage(message);
-		boolean enableAssigneeRecommendation = org.unicase.ui.common.Activator.getDefault().getPreferenceStore()
-			.getBoolean(UnicasePreferenceConstants.ENABLE_ASSIGNEE_RECOMMENDATION);
-		if (enableAssigneeRecommendation) {
-			if (baseElement instanceof WorkItem && reference.equals(TaskPackage.eINSTANCE.getWorkItem_Assignee())
-				&& ((WorkItem) baseElement).getAnnotatedModelElements().size() == 0) {
-				warning = true;
-			}
-		}
+		// Removed, should be reimplemented using the recommendation manager.
+		// boolean enableAssigneeRecommendation = org.unicase.ui.common.Activator.getDefault().getPreferenceStore()
+		// .getBoolean(UnicasePreferenceConstants.ENABLE_ASSIGNEE_RECOMMENDATION);
+		// if (enableAssigneeRecommendation) {
+		// if (baseElement instanceof WorkItem && reference.equals(TaskPackage.eINSTANCE.getWorkItem_Assignee())
+		// && ((WorkItem) baseElement).getAnnotatedModelElements().size() == 0) {
+		// warning = true;
+		// }
+		// }
 		setBlockOnOpen(blockOnOpen);
 		setInitialPattern("**", NONE);
 
@@ -212,15 +216,17 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 */
 		public int compare(ModelElement o1, ModelElement o2) {
 			Double val1, val2;
-
+			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			String name1 = adapterFactoryLabelProvider.getText(o1);
+			String name2 = adapterFactoryLabelProvider.getText(o2);
 			val1 = relevanceMap.get(o1);
 			val2 = relevanceMap.get(o2);
 
 			if (!isRelevant(val1) && !isRelevant(val2)) {
-				String n1 = o1.getName();
-				String n2 = o2.getName();
-				if (n1 != null && n2 != null) {
-					return o1.getName().compareToIgnoreCase(o2.getName());
+
+				if (name1 != null && name2 != null) {
+					return name1.compareToIgnoreCase(name2);
 				} else {
 					return 0;
 				}
