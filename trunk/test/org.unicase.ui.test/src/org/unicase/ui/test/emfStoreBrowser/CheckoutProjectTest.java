@@ -36,7 +36,7 @@ public class CheckoutProjectTest {
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
 		shell.activate();
-		bot.tree().expandNode("unicase").select("EmfStore Browser");
+		bot.tree().expandNode("Unicase").select("EmfStore Browser");
 		bot.button("OK").click();
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
