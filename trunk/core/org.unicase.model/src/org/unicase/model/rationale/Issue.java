@@ -124,7 +124,8 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 
 	/**
 	 * Returns the value of the '<em><b>Assessments</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.rationale.Assessment}. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.rationale.Assessment}. It is always empty since it is only a virtual feature for the
+	 * representation of an assessment matrix <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assessments</em>' reference list isn't clear, there really should be more of a
 	 * description here...
