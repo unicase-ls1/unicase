@@ -769,6 +769,7 @@
           point="org.eclipse.ui.perspectives">
        <perspective
              class="org.unicase.ui.common.perspectives.UnicasePerspective"
+             fixed="false"
              icon="icons/unicase.png"
              id="org.unicase.ui.common.perspectives.UnicasePerspective"
              name="Unicase">
@@ -781,88 +782,14 @@
       <viewShortcut
             id="org.unicase.ui.navigator.viewer">
       </viewShortcut>
+      <viewShortcut
+            id="org.unicase.ui.repository.views.RepositoryView">
+      </viewShortcut>
+      <viewShortcut
+            id="org.unicase.ui.taskview">
+      </viewShortcut>
    </perspectiveExtension>
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               id="org.unicase.ui.treeview.views.IterationPlanningView"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-         <view
-               id="org.unicase.ui.treeview.views.StatusView"
-               minimized="false"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-      </perspectiveExtension>
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               id="org.unicase.ui.repository.views.RepositoryView"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-      </perspectiveExtension>
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               id="org.unicase.ui.navigator.viewer"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.navigator.ProjectExplorer"
-               standalone="false">
-         </view>
-      </perspectiveExtension>
-      <perspectiveExtension
-            targetID="org.unicase.ui.common.perspectives.UnicasePerspective">
-         <viewShortcut
-               id="org.unicase.ui.repository.views.RepositoryView">
-         </viewShortcut>
-         <viewShortcut
-               id="org.unicase.ui.taskview">
-         </viewShortcut>
-         <viewShortcut
-               id="org.unicase.ui.treeview.views.IterationPlanningView">
-         </viewShortcut>
-         <viewShortcut
-               id="org.unicase.ui.treeview.views.StatusView">
-         </viewShortcut>
-        <!-- <showInPart
-               id="org.unicase.ui.treeview.views.StatusView">
-         </showInPart> -->
-       <!--  <view
-               id="org.unicase.ui.navigator.viewer"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.navigator.ProjectExplorer"
-               standalone="false">
-         </view>
-         <view
-               id="org.unicase.ui.treeview.views.StatusView"
-               minimized="false"
-               relationship="stack"
-               relative="org.eclipse.ui.views.TaskList">
-         </view>
-         <view
-               id="org.unicase.ui.treeview.views.IterationPlanningView"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.unicase.ui.treeview.views.StatusView">
-         </view>
-         <view
-               id="org.unicase.ui.repository.views.RepositoryView"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.unicase.ui.treeview.views.StatusView">
-         </view> -->
-      </perspectiveExtension>
        </extension>
-    <extension
-          point="org.eclipse.ui.ide.markerSupport">
-    </extension>
     <extension
           point="org.eclipse.ui.bindings">
        <key
