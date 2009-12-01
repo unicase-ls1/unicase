@@ -124,7 +124,7 @@ public class MergeWizardPage extends WizardPage {
 		Point computeSize = parent.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 		computeSize.x = parent.getBounds().width;
 		// Due to resizing issues give a bit of extra space.
-		computeSize.y = (int) (computeSize.y * 1.5);
+		computeSize.y = (computeSize.y + 50);
 		return computeSize;
 	}
 

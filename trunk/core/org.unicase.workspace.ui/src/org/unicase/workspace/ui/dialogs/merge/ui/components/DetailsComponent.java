@@ -1,6 +1,7 @@
 package org.unicase.workspace.ui.dialogs.merge.ui.components;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -17,25 +18,15 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 
 public class DetailsComponent extends Section {
 
-	public DetailsComponent(final DecisionBox parent, Conflict conflict) {
-		super(parent, Section.TWISTIE);
+	public DetailsComponent(final DecisionBox decisionBox, Conflict conflict) {
+		super(decisionBox, Section.TWISTIE);
 		setText("Details");
 		setLayout(new FillLayout());
 		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		layoutData.horizontalSpan = 2;
 		setLayoutData(layoutData);
-		addExpansionListener(new IExpansionListener() {
-			public void expansionStateChanged(ExpansionEvent e) {
-				parent.layoutPage();
-			}
-
-			public void expansionStateChanging(ExpansionEvent e) {
-				parent.layoutPage();
-			}
-		});
-		setBackground(parent.getBackground());
+		setBackground(decisionBox.getBackground());
 		// section.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
 		int columns = 0;
 		for (ConflictOption option : conflict.getOptions()) {
 			if (option.isDetailsProvider()) {
@@ -60,14 +51,29 @@ public class DetailsComponent extends Section {
 			}
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
-				new MultilineWidget(client, parent, option);
+				new MultilineWidget(client, decisionBox, option);
 			} else if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_OTHERINVOLVED)) {
-				new OtherInvolvedWidget(client, parent.getDecisionManager(),
-						option);
+				new OtherInvolvedWidget(client, decisionBox
+						.getDecisionManager(), option);
 			}
 		}
 
 		setClient(client);
+		addExpansionListener(new IExpansionListener() {
+
+			// hack: assuming initial size
+			private Rectangle bounds = new Rectangle(0, 0, 0, 20);
+
+			public void expansionStateChanged(ExpansionEvent e) {
+				int height = bounds.height;
+				bounds.height = getBounds().height;
+				decisionBox.layoutPage(bounds.height - height);
+			}
+
+			public void expansionStateChanging(ExpansionEvent e) {
+				// decisionBox.layoutPage();
+			}
+		});
 	}
 }

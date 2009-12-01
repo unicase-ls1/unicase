@@ -1,6 +1,7 @@
 package org.unicase.workspace.ui.dialogs.merge.ui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -64,8 +65,13 @@ public class DecisionBox extends Composite {
 		optionComponent.refreshButtonColor();
 	}
 
-	public void layoutPage() {
-		getParent().getParent().layout();
+	public void layoutPage(int heightSizeChange) {
+		ScrolledComposite scrollArea = (ScrolledComposite) getParent()
+				.getParent();
+		scrollArea.setMinSize(scrollArea.getMinWidth(), scrollArea
+				.getMinHeight()
+				+ heightSizeChange);
+		scrollArea.layout();
 	}
 
 	public Conflict getConflict() {
