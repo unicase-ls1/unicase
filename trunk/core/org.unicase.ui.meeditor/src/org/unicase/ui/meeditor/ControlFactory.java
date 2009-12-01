@@ -99,61 +99,73 @@ public class ControlFactory {
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
-			Class<?> instanceClass = ((EAttribute) feature).getEAttributeType().getInstanceClass();
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.meeditor.attributecontrols");
-			for (IConfigurationElement e : config) {
-				try {
-					String type = e.getAttribute("type");
-					Class<?> resolvedType = Class.forName(type);
-					if (resolvedType.getSimpleName().equalsIgnoreCase(instanceClass.getSimpleName())) {
-						AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
-						Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
-						newControl.setShowLabel(showLabel);
-						int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-						addToControlRegistry(instanceClass, newControl, prio);
-					}
-				} catch (CoreException e1) {
-					WorkspaceUtil.logException(e1.getMessage(), e1);
-				} catch (ClassNotFoundException e1) {
-					WorkspaceUtil.logException(e1.getMessage(), e1);
+			return createAttribute(itemPropertyDescriptor, feature);
+		}
+		// else if (feature instanceof EReference) {
+		// return createReferenceControl(itemPropertyDescriptor, feature);
+		// }
+
+		return null;
+	}
+
+	private AbstractMEControl createReferenceControl(IItemPropertyDescriptor itemPropertyDescriptor,
+		EStructuralFeature feature) {
+		Class<?> instanceClass = ((EReference) feature).getEReferenceType().getInstanceClass();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.referencecontrols");
+		for (IConfigurationElement e : config) {
+			try {
+				String type = e.getAttribute("type");
+				Class<?> resolvedType = Class.forName(type);
+				if (resolvedType.isAssignableFrom(instanceClass)) {
+					AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
+					Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
+					newControl.setShowLabel(showLabel);
+					int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+					addToControlRegistry(instanceClass, newControl, prio);
 				}
-			}
-			ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
-			if (priorityQueue != null) {
-				Collections.sort(priorityQueue, controlComparator);
-				AbstractMEControl ret = priorityQueue.get(0);
-				return ret;
-			}
-		} else if (feature instanceof EReference) {
-			Class<?> instanceClass = ((EReference) feature).getEReferenceType().getInstanceClass();
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.meeditor.referencecontrols");
-			for (IConfigurationElement e : config) {
-				try {
-					String type = e.getAttribute("type");
-					Class<?> resolvedType = Class.forName(type);
-					if (resolvedType.isAssignableFrom(instanceClass)) {
-						AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
-						Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
-						newControl.setShowLabel(showLabel);
-						int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
-						addToControlRegistry(instanceClass, newControl, prio);
-					}
-				} catch (CoreException e1) {
-					WorkspaceUtil.logException(e1.getMessage(), e1);
-				} catch (ClassNotFoundException e1) {
-					WorkspaceUtil.logException(e1.getMessage(), e1);
-				}
-			}
-			ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
-			if (priorityQueue != null) {
-				Collections.sort(priorityQueue, controlComparator);
-				AbstractMEControl ret = priorityQueue.get(0);
-				return ret;
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			} catch (ClassNotFoundException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
 			}
 		}
+		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
+		if (priorityQueue != null) {
+			Collections.sort(priorityQueue, controlComparator);
+			AbstractMEControl ret = priorityQueue.get(0);
+			return ret;
+		}
+		return null;
+	}
 
+	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature) {
+		Class<?> instanceClass = ((EAttribute) feature).getEAttributeType().getInstanceClass();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.attributecontrols");
+		for (IConfigurationElement e : config) {
+			try {
+				String type = e.getAttribute("type");
+				Class<?> resolvedType = Class.forName(type);
+				if (resolvedType.getSimpleName().equalsIgnoreCase(instanceClass.getSimpleName())) {
+					AbstractMEControl newControl = (AbstractMEControl) e.createExecutableExtension("class");
+					Boolean showLabel = new Boolean(e.getAttribute("showLabel"));
+					newControl.setShowLabel(showLabel);
+					int prio = newControl.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+					addToControlRegistry(instanceClass, newControl, prio);
+				}
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			} catch (ClassNotFoundException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			}
+		}
+		ArrayList<AbstractMEControl> priorityQueue = controlRegistry.get(instanceClass);
+		if (priorityQueue != null) {
+			Collections.sort(priorityQueue, controlComparator);
+			AbstractMEControl ret = priorityQueue.get(0);
+			return ret;
+		}
 		return null;
 	}
 
