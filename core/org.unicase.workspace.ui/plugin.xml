@@ -697,12 +697,18 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate
-                     ifEmpty="false">
-                  <reference
-                        definitionId="org.unicase.ui.common.commands.modelElement">
-                  </reference>
-               </iterate>
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <reference
+                           definitionId="org.unicase.ui.common.commands.modelElement">
+                     </reference>
+                  </iterate>
+               </and>
             </visibleWhen>
          </command>
          <separator
