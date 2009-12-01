@@ -24,6 +24,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -37,6 +38,37 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author lars
  */
 public class UseCaseStepsControl extends AbstractMEControl {
+
+	private static final int PRIORITY = 2;
+
+	@Override
+	public int init(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement,
+		EditingDomain editingDomain, FormToolkit toolkit) {
+		super.init(itemPropertyDescriptor, modelElement, editingDomain, toolkit);
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EReference && ((EReference) feature).getEType().getInstanceClass().equals(Step.class)
+			&& ((EReference) feature).getName().equals("useCaseSteps")) {
+			return DO_NOT_RENDER;
+		}
+
+		this.eReference = (EReference) feature;
+		descriptor = itemPropertyDescriptor;
+
+		eAdapter = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
+					setFocusedStep(msg);
+					currentStepList = new ArrayList<Step>(((UseCase) msg.getNotifier()).getUseCaseSteps());
+					rebuildStepList();
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		modelElement.eAdapters().add(eAdapter);
+		return PRIORITY;
+	}
+
 	/**
 	 * HyperLink listener class for add step hyperlink.
 	 */
@@ -113,8 +145,8 @@ public class UseCaseStepsControl extends AbstractMEControl {
 		}
 	}
 
-	private final EReference eReference;
-	private final IItemPropertyDescriptor descriptor;
+	private EReference eReference;
+	private IItemPropertyDescriptor descriptor;
 	private AdapterImpl eAdapter;
 
 	private Composite mainComposite;
@@ -127,35 +159,6 @@ public class UseCaseStepsControl extends AbstractMEControl {
 	private ArrayList<Step> currentStepList = new ArrayList<Step>();
 
 	private ArrayList<SingleUseCaseStepControl> stepControls = new ArrayList<SingleUseCaseStepControl>();
-
-	/**
-	 * public constructor.
-	 * 
-	 * @param modelElement ModelElement that is shown
-	 * @param reference specific reference
-	 * @param toolkit the used toolkit
-	 * @param editingDomain the specific editing Domain
-	 * @param descriptor an ItemPropertyDescriptor for the modelElement
-	 */
-	public UseCaseStepsControl(EObject modelElement, EReference reference, FormToolkit toolkit,
-		EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
-		super(editingDomain, modelElement, toolkit);
-		this.eReference = reference;
-		this.descriptor = descriptor;
-
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
-					setFocusedStep(msg);
-					currentStepList = new ArrayList<Step>(((UseCase) msg.getNotifier()).getUseCaseSteps());
-					rebuildStepList();
-				}
-				super.notifyChanged(msg);
-			}
-		};
-		modelElement.eAdapters().add(eAdapter);
-	}
 
 	private void setFocusedStep(Notification msg) {
 		if (msg.getNewValue() != null && msg.getOldValue() == null) {
@@ -183,6 +186,7 @@ public class UseCaseStepsControl extends AbstractMEControl {
 	 * @param style represents the style that should be used
 	 * @return the control containing all use case steps
 	 */
+	@Override
 	public Control createControl(final Composite parent, final int style) {
 		this.parentStyle = style;
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
