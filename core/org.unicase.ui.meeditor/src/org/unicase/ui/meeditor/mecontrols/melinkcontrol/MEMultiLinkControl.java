@@ -152,7 +152,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference
-			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
+			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())
+			&& ((EReference) feature).isMany()) {
 			this.eReference = (EReference) feature;
 			return PRIORITY;
 		}
@@ -173,8 +174,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
-		toolBarManager.add(new NewReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
+		toolBarManager.add(new AddReferenceAction(getModelElement(), eReference, descriptor));
+		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, descriptor));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
