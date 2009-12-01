@@ -33,6 +33,12 @@ public class CheckoutProjectTest {
 
 	@Test
 	public void checkoutProject() throws Exception {
+		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
+		SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
+		openPerspectiveShell.activate();
+		bot.table().select("Unicase");
+		bot.button("OK").click();
+		
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
 		shell.activate();
@@ -59,7 +65,7 @@ public class CheckoutProjectTest {
 				// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
 
 				bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-				SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
+				openPerspectiveShell = bot.shell("Open Perspective");
 				openPerspectiveShell.activate();
 				bot.table().select("Unicase");
 				bot.button("OK").click();

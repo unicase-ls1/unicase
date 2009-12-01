@@ -20,6 +20,9 @@ import org.unicase.workspace.test.SetupHelper;
 public class DiagramTest {
 
     private static SWTWorkbenchBot bot;
+    private static final String BROWSER = "EmfStore Browser";
+    private static final String NAVIGATOR = "Unicase Navigator";
+   
 
     @BeforeClass
     public static void beforeClass() throws Exception {
@@ -31,18 +34,10 @@ public class DiagramTest {
 
     @Test
     public void testDiagram() throws Exception {
-        bot.menu("Window").menu("Show View").menu("Other...").click();
-        SWTBotShell shell1 = bot.shell("Show View");
-        shell1.activate();
-        bot.tree().expandNode("Unicase").select("EmfStore Browser");
-        bot.button("OK").click();
-
-        bot.menu("Window").menu("Show View").menu("Other...").click();
-        SWTBotShell shell = bot.shell("Show View");
-        shell.activate();
-        bot.tree().expandNode("Unicase").select("Unicase Navigator");
-        bot.button("OK").click();
-
+        
+        DiagramTestCommon.openView(bot, BROWSER);
+        DiagramTestCommon.openView(bot, NAVIGATOR);
+        
         SWTBotView viewById = bot.activeView();
         SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
         SWTBotTreeItem[] subitem = items[0].expand().getItems();
