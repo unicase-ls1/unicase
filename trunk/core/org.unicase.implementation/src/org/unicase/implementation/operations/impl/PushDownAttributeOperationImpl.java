@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.implementation.operations.impl;
 
@@ -21,23 +20,24 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.classes.Attribute;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Push Down Attribute Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Push Down Attribute Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl#getAttribute <em>Attribute</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.PushDownAttributeOperationImpl#getAttribute <em>Attribute</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class PushDownAttributeOperationImpl extends SemanticCompositeOperationImpl implements PushDownAttributeOperation {
+public class PushDownAttributeOperationImpl extends SemanticCompositeOperationImpl implements
+	PushDownAttributeOperation {
 	/**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
@@ -45,8 +45,8 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 	protected ModelElementId attribute;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PushDownAttributeOperationImpl() {
@@ -54,8 +54,8 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,8 +64,8 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getAttribute() {
@@ -73,42 +73,49 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttribute(ModelElementId newAttribute, NotificationChain msgs) {
 		ModelElementId oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, oldAttribute, newAttribute);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, oldAttribute, newAttribute);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAttribute(ModelElementId newAttribute) {
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
-				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject) attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, null, msgs);
 			if (newAttribute != null)
-				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, null, msgs);
+				msgs = ((InternalEObject) newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, null, msgs);
 			msgs = basicSetAttribute(newAttribute, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, newAttribute, newAttribute));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Attribute getAttribute(Project project) {
@@ -116,73 +123,73 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-				return basicSetAttribute(null, msgs);
+		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+			return basicSetAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-				return getAttribute();
+		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+			return getAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-				setAttribute((ModelElementId)newValue);
-				return;
+		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+			setAttribute((ModelElementId) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-				setAttribute((ModelElementId)null);
-				return;
+		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+			setAttribute((ModelElementId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-				return attribute != null;
+		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+			return attribute != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -199,4 +206,4 @@ public class PushDownAttributeOperationImpl extends SemanticCompositeOperationIm
 		attribute.delete();
 	}
 
-} //PushDownAttributeOperationImpl
+} // PushDownAttributeOperationImpl

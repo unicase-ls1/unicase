@@ -36,11 +36,11 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param operation the operation
 	 * @param project the project
 	 */
-	public ExecuteOperationDialog(SemanticCompositeOperation operation,
-			Project project) {
+	public ExecuteOperationDialog(SemanticCompositeOperation operation, Project project) {
 		super(Display.getDefault().getActiveShell());
 
 		this.project = project;
@@ -57,8 +57,9 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		shell.setSize(400, 300);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
@@ -66,22 +67,20 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		parent = (Composite) super.createDialogArea(parent);
 		setTitle("Set the parameters.");
 
-		adapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
-		ParameterViewer parameterViewer = new ParameterViewer(this, parent,
-				project);
-		parameterViewer.getTable().setLayoutData(
-				new GridData(GridData.FILL_BOTH));
+		ParameterViewer parameterViewer = new ParameterViewer(this, parent, project);
+		parameterViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		parameterViewer.setInput(operation);
 
 		return parent;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#createContents(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
@@ -105,8 +104,9 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.TrayDialog#close()
 	 */
 	@Override
@@ -118,15 +118,17 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 
 	/**
 	 * Returns the labelProvider.
+	 * 
 	 * @return the label provider
 	 */
 	public AdapterFactoryLabelProvider getLabelProvider() {
 		return labelProvider;
 	}
 
-	/** 
-	 * Returns the adapter factory. 
-	 * @return the adapter factory 
+	/**
+	 * Returns the adapter factory.
+	 * 
+	 * @return the adapter factory
 	 */
 	public ComposedAdapterFactory getAdapterFactory() {
 		return adapterFactory;

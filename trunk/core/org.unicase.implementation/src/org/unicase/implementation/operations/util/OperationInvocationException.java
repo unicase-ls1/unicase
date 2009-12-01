@@ -12,21 +12,19 @@ import org.eclipse.emf.ecore.EOperation;
  * Represents an exception when invoking an operation on an EObject.
  * 
  * @author koegel
- * 
  */
 @SuppressWarnings("serial")
 public class OperationInvocationException extends Exception {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param eObject the eObject to invoke the operation on.
 	 * @param operation the operation
 	 * @param cause the underlying exception
 	 */
-	public OperationInvocationException(EObject eObject, EOperation operation,
-			Exception cause) {
-		super("Invoking the operation " + operation.getName()
-				+ " on the EObject " + eObject.toString() + " of type "
-				+ eObject.eClass().getName() + " failed!", cause);
+	public OperationInvocationException(EObject eObject, EOperation operation, Exception cause) {
+		super("Invoking the operation " + operation.getName() + " on the EObject " + eObject.toString() + " of type "
+			+ eObject.eClass().getName() + " failed!", cause);
 	}
 }

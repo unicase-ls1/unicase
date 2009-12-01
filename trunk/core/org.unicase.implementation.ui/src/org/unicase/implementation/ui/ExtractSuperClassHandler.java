@@ -5,7 +5,9 @@
  */
 package org.unicase.implementation.ui;
 
+// BEGIN IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
+// END IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.OperationsPackage;
 
 /**

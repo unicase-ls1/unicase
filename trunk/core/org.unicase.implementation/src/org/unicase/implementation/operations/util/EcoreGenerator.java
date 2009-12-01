@@ -77,7 +77,7 @@ public class EcoreGenerator {
 		ePackage.setNsPrefix(namespace);
 		ePackage.setNsURI(namespace);
 
-		for (PackageElement packageElement: p.getContainedPackageElements()) {
+		for (PackageElement packageElement : p.getContainedPackageElements()) {
 			if (packageElement instanceof Package) {
 				ePackage.getESubpackages().add(generatePackage((Package) packageElement));
 			}
@@ -167,7 +167,7 @@ public class EcoreGenerator {
 			if (packageElement instanceof Package) {
 				linkPackage((Package) packageElement);
 			}
-			
+
 		}
 	}
 

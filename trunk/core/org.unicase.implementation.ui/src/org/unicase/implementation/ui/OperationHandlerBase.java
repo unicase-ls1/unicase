@@ -54,6 +54,7 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
 		ISelection selection = activePage.getSelection();

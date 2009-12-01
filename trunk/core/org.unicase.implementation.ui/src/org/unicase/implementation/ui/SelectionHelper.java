@@ -15,23 +15,22 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * Helper class for selection.
  * 
  * @author herrmi
- *
  */
 public final class SelectionHelper {
-	
+
 	private SelectionHelper() {
-		//nothing to do
+		// nothing to do
 	}
 
 	/**
 	 * Get the selected element of type V.
+	 * 
 	 * @param <V> the type
 	 * @param structuredSelection the selection
 	 * @return the selected element
 	 */
 	@SuppressWarnings("unchecked")
-	public static <V> V getSelectedElement(
-			IStructuredSelection structuredSelection) {
+	public static <V> V getSelectedElement(IStructuredSelection structuredSelection) {
 		if (structuredSelection.isEmpty()) {
 			return null;
 		}
@@ -40,13 +39,13 @@ public final class SelectionHelper {
 
 	/**
 	 * Get a list of selected elements of type V.
+	 * 
 	 * @param <V> the type
 	 * @param structuredSelection the selection
 	 * @return a list of elements
 	 */
 	@SuppressWarnings("unchecked")
-	public static <V> List<V> getSelectedElements(
-			IStructuredSelection structuredSelection) {
+	public static <V> List<V> getSelectedElements(IStructuredSelection structuredSelection) {
 		List<V> elements = new ArrayList<V>();
 		for (Iterator i = structuredSelection.iterator(); i.hasNext();) {
 			elements.add((V) i.next());
