@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -19,7 +20,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.workspace.Configuration;
 
@@ -35,7 +36,7 @@ public class MEDescriptionPage extends FormPage {
 
 	private ScrolledForm form;
 	private Composite body;
-	private MEControl textControl;
+	private AbstractMEControl textControl;
 
 	/**
 	 * Default constructor.
@@ -77,8 +78,9 @@ public class MEDescriptionPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		textControl = new MERichTextControl(ModelPackage.eINSTANCE.getUnicaseModelElement_Description(), domain,
-			modelElement, toolkit);
+		textControl = new MERichTextControl();
+		textControl.init((IItemPropertyDescriptor) ModelPackage.eINSTANCE.getUnicaseModelElement_Description(),
+			modelElement, domain, toolkit);
 		((MERichTextControl) textControl).setShowExpand(false);
 		Control textWidget = textControl.createControl(body, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
