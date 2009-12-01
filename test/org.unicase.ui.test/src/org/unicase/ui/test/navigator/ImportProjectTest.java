@@ -12,15 +12,28 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
+
+
 
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class ImportProjectTest {
+	
+	
+	
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 	private static Logger logger;
-
+	private static final String UNICASE_NODE = "Unicase";
+	private static final String BROWSER = "EmfStore Browser";
+	private static SWTBotShell openPerspectiveShell;
+	
+	
+	
+	
+	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
@@ -30,20 +43,13 @@ public class ImportProjectTest {
 		logger.addHandler(new FileHandler("importproject.txt"));
 
 	}
+	
+	
 
 	@Test
 	public void importproject() throws Exception {
-		bot.menu("Window").menu("Show View").menu("Other...").click();
-		SWTBotShell shell = bot.shell("Show View");
-		shell.activate();
-		bot.tree().expandNode("Unicase").select("EmfStore Browser");
-		bot.button("OK").click();
-
-		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-		SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
-		openPerspectiveShell.activate();
-		bot.table().select("Unicase");
-		bot.button("OK").click();
+		UITestCommon.openView(bot, UNICASE_NODE, BROWSER);
+		UITestCommon.openPerspective(bot, UNICASE_NODE);
 		SWTBotView viewById = bot.activeView();
 		int x1 = bot.tree().rowCount();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
@@ -65,11 +71,7 @@ public class ImportProjectTest {
 		bot.text().typeText("test2");
 		bot.button("OK").click();
 		bot.button("OK").click();
-		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-		openPerspectiveShell = bot.shell("Open Perspective");
-		openPerspectiveShell.activate();
-		bot.table().select("Unicase");
-		bot.button("OK").click();
+		UITestCommon.openPerspective(bot, UNICASE_NODE);
 		int x2 = bot.tree().rowCount();
 		logger.info(x1 + " " + x2);
 		items = bot.tree().getAllItems();

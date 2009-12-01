@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
@@ -19,7 +20,11 @@ import org.unicase.workspace.test.SetupHelper;
 public class DeleteProjectTest {
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
-
+	private SWTBotShell shell;
+	private static final String UNICASE_NODE = "Unicase";
+	private static final String BROWSER = "EmfStore Browser";
+	
+	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
@@ -32,11 +37,7 @@ public class DeleteProjectTest {
 	@Test
 	public void canDeleteProject() throws Exception {
 		Logger logger = Logger.getLogger("LoggerTest");
-		bot.menu("Window").menu("Show View").menu("Other...").click();
-		SWTBotShell shell = bot.shell("Show View");
-		shell.activate();
-		bot.tree().expandNode("Unicase").select("EmfStore Browser");
-		bot.button("OK").click();
+		UITestCommon.openView(bot, UNICASE_NODE, BROWSER);
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].getText();

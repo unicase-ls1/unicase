@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
@@ -34,11 +35,7 @@ public class EditModelElementDescriptionTest {
 	@Test
 	public void editModelElement() throws Exception {
 
-		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
-		SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
-		openPerspectiveShell.activate();
-		bot.table().select("Unicase");
-		bot.button("OK").click();
+		UITestCommon.openPerspective(bot, "Unicase");
 		SWTBotView viewById = bot.activeView();
 		logger.info(viewById.getTitle());
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
@@ -51,8 +48,8 @@ public class EditModelElementDescriptionTest {
 		// logger.info("check2:" + bot.editorByTitle("Name").getTitle())
 
 		// bot.e
-		bot.styledText().typeText("Hi");
-		bot.editorById("org.unicase.ui.meeditor").close();
+		
+		bot.styledText().typeText("hello  world");
 
 	}
 
