@@ -14,7 +14,7 @@ Mail Address: unicase-dev@googlegroups.com,
 Web Address: http://groups.google.de/group/unicase-dev
 
 ===Bug Mailing-list===
-The *Bug Mailing-list* is intended for reporting bugs or feature requests by external users. Since you are a developer, please report bugs with UNICASE in the unicase project on our server. A description on the process of reporting bugs is [ here]. Anyone can post to this list, only members can view postings. We suggest to subscribe to this list as developer to know about bugs in UNICASE.
+The *Bug Mailing-list* is intended for reporting bugs or feature requests by external users. Since you are a developer, please report bugs with UNICASE in the unicase project on our server. A description on the process of reporting bugs is [ReportingBugs here]. Anyone can post to this list, only members can view postings. We suggest to subscribe to this list as developer to know about bugs in UNICASE.
 ist is intended for bug reports or feature requests by external users. Everyone can post.
 You can [https://www.google.com/accounts/ServiceLogin?passive=true&hl=en&service=groups2&continue=http%3A%2F%2Fgroups.google.com%2Fgroup%2Funicase-bugs%3Flnk%3D&cd=US&ssip=g3 subscribe here] or you can send an email to [mailto:narayan@in.tum.de Nitesh] to ask for subscription. 
 
