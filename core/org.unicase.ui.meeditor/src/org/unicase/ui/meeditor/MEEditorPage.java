@@ -83,6 +83,7 @@ public class MEEditorPage extends FormPage {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
+
 	}
 
 	/**
@@ -170,6 +171,7 @@ public class MEEditorPage extends FormPage {
 		// createSpecificMEControls();
 		createToolbar();
 		form.pack();
+		updateSectionTitle();
 	}
 
 	/**
