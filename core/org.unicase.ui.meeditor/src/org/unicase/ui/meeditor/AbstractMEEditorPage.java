@@ -16,8 +16,6 @@ import org.unicase.metamodel.ModelElement;
  */
 public abstract class AbstractMEEditorPage {
 
-	private FormPage page;
-
 	/**
 	 * Default init.
 	 * 
