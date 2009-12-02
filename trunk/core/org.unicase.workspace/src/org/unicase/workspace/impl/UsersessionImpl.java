@@ -569,6 +569,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			throw new ConnectionException("Invalid server url: null");
 		}
 
+		// TODO: this has to be removed after some releases
+		migrateServerInfo(serverInfo);
+
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
@@ -582,6 +585,16 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			for (LoginObserver observer : loginObservers) {
 				observer.loginCompleted();
 			}
+		}
+	}
+
+	private void migrateServerInfo(ServerInfo serverInfo) {
+		if (serverInfo.getPort() == 1099) {
+			serverInfo.setPort(443);
+		}
+		if (serverInfo.getUrl() != null && serverInfo.getUrl().contains("localhost")
+			|| serverInfo.getUrl().contains("127.0.0.1")) {
+			serverInfo.setPort(8080);
 		}
 	}
 
