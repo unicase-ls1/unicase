@@ -221,16 +221,21 @@ public class UseCaseStepsControl extends AbstractMEControl {
 						getToolkit(), getModelElement(), eReference);
 
 					if (me.isUserStep()) {
-						Control c = stepControl.createControl(stepArea, parentStyle);
+						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
+							getEditingDomain(), getToolkit());
 						c.setLayoutData(gdUserStep);
-						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
+						Control empty2 = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(),
+							me, getEditingDomain(), getToolkit());
 						empty2.setLayoutData(gdEmpty);
 					} else {
-						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
+						Control empty2 = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(),
+							me, getEditingDomain(), getToolkit());
 						empty2.setLayoutData(gdEmpty);
-						Control c = stepControl.createControl(stepArea, parentStyle);
+						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
+							getEditingDomain(), getToolkit());
 						c.setLayoutData(gdUserStep);
 					}
+
 					if (focusedStep != null && me.equals(focusedStep)) {
 						focusedStepControl = stepControl;
 						focusedStep = null;
@@ -297,11 +302,9 @@ public class UseCaseStepsControl extends AbstractMEControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference && ((EReference) feature).getEType().getInstanceClass().equals(Step.class)
-			&& ((EReference) feature).getName().equals("useCaseSteps")) {
+		if (feature instanceof EReference && !((EReference) feature).getName().equals("useCaseSteps")) {
 			return DO_NOT_RENDER;
 		}
-
 		return PRIORITY;
 	}
 
