@@ -47,7 +47,11 @@ public final class XmlRpcWebserverManager {
 		try {
 			tmp = Integer.valueOf(ServerConfiguration.getProperties().getProperty(ServerConfiguration.XML_RPC_PORT));
 		} catch (NumberFormatException e) {
-			tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEFAULT);
+			if (ServerConfiguration.isReleaseVersion()) {
+				tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEFAULT);
+			} else {
+				tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEVELOPER_DEFAULT);
+			}
 		}
 		port = tmp;
 	}
@@ -75,6 +79,7 @@ public final class XmlRpcWebserverManager {
 		}
 		try {
 			webServer = new WebServer(port) {
+
 				@Override
 				protected ServerSocket createServerSocket(int pPort, int backlog, InetAddress addr) throws IOException {
 					SSLServerSocketFactory serverSocketFactory = null;
@@ -96,6 +101,8 @@ public final class XmlRpcWebserverManager {
 					return serverSocketFactory.createServerSocket(pPort, backlog, addr);
 				}
 			};
+
+			logger.info("Started XML RPC Webserver on port: " + port);
 
 			XmlRpcServer xmlRpcServer = webServer.getXmlRpcServer();
 			xmlRpcServer.setTypeFactory(new EObjectTypeFactory(xmlRpcServer));
