@@ -82,7 +82,6 @@ public class MEFileChooserControl extends AbstractMEControl {
 		if (feature instanceof EAttribute && !((EAttribute) feature).getName().equals("fileName")) {
 			return DO_NOT_RENDER;
 		}
-		fileAttachment = (FileAttachment) getModelElement();
 		return PRIORITY;
 	}
 

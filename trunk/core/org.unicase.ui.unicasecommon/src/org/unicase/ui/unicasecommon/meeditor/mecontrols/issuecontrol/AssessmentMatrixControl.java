@@ -497,8 +497,10 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		if (!(modelElement instanceof Issue)) {
 			return DO_NOT_RENDER;
 		}
+		if (!((EReference) (itemPropertyDescriptor.getFeature(modelElement))).getName().equals("assessments")) {
+			return DO_NOT_RENDER;
+		}
 
 		return PRIORITY;
 	}
-
 }
