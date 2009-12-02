@@ -5,21 +5,21 @@
  */
 package org.unicase.implementation.ui;
 
-// BEGIN IGNORE UNNECCESSARY IMPORT
-import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.PushDownAttributeOperation;
 
 /**
- * Handler for {@link ExtractSuperClassOperation}.
+ * Handler for {@link PushDownAttributeOperation}.
  * 
  * @author herrmi
  */
-public class ExtractSuperClassHandler extends OperationHandlerBase {
+public class PushDownAttributeHandler extends OperationHandlerBase {
 
 	/**
 	 * Constructor.
 	 */
-	public ExtractSuperClassHandler() {
-		super(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION);
+	public PushDownAttributeHandler() {
+		super(OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION);
 	}
+
 }

@@ -15,6 +15,10 @@
             id="org.unicase.implementation.ui.command.PartitionAssociatin"
             name="Partition Association">
       </command>
+      <command
+            id="org.unicase.implementation.ui.command.PushDownAttribute"
+            name="Push Down Attribute">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -61,6 +65,23 @@
                <iterate>
                   <adapt
                         type="org.unicase.model.classes.Association">
+                  </adapt>
+               </iterate>
+               <count
+                     value="1">
+               </count>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.PushDownAttributeHandler"
+            commandId="org.unicase.implementation.ui.command.PushDownAttribute">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <adapt
+                        type="org.unicase.model.classes.Attribute">
                   </adapt>
                </iterate>
                <count
@@ -120,6 +141,24 @@
                   <iterate>
                      <adapt
                            type="org.unicase.model.classes.Association">
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.implementation.ui.command.PushDownAttribute"
+               label="Push Down Attribute"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.unicase.model.classes.Attribute">
                      </adapt>
                   </iterate>
                   <count

@@ -6,9 +6,7 @@
 package org.unicase.implementation.ui;
 
 import org.unicase.implementation.operations.OperationsPackage;
-// BEGIN IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-// END IGNORE UNNECCESSARY IMPORT
 
 /**
  * Handler for the {@link PartitionAssociationOperation}.
@@ -20,7 +18,7 @@ public class PartitionAssociationHandler extends OperationHandlerBase {
 	/**
 	 * Constructor.
 	 */
-	protected PartitionAssociationHandler() {
+	public PartitionAssociationHandler() {
 		super(OperationsPackage.Literals.PARTITION_ASSOCIATION_OPERATION);
 	}
 
