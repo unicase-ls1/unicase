@@ -24,6 +24,7 @@ import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -183,7 +184,11 @@ public class MEEditorPage extends FormPage {
 		String name = shortLabelProvider.getText(modelElement);
 
 		name += " [" + modelElement.eClass().getName() + "]";
-		form.setText(name);
+		try {
+			form.setText(name);
+		} catch (SWTException e) {
+			// Catch in case editor is closed directly after change
+		}
 	}
 
 	private void createToolbar() {
