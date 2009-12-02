@@ -26,10 +26,12 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -45,8 +47,9 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author shterev
  */
-public class METhreadPage extends FormPage implements MECommentWidgetListener {
-
+public class METhreadPage extends AbstractMEEditorPage implements MECommentWidgetListener {
+	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.methreadpage";
+	private static final String NAME = "Comment Thread";
 	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 
@@ -57,49 +60,6 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	private MECommentReplyWidget inputEntry;
 	private boolean toggleReply = true;
 	private User currentUser;
-
-	/**
-	 * Default constructor.
-	 * 
-	 * @param editor the {@link MEEditor}
-	 * @param id the {@link FormPage#id}
-	 * @param title the title
-	 * @param editingDomain the editingDomain
-	 * @param modelElement the modelElement
-	 */
-	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain,
-		UnicaseModelElement modelElement) {
-		super(editor, id, title);
-		this.modelElement = modelElement;
-		try {
-			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement));
-		} catch (NoCurrentUserException e1) {
-			return;
-		} catch (CannotMatchUserInProjectException e1) {
-			return;
-		}
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void createFormContent(IManagedForm managedForm) {
-		super.createFormContent(managedForm);
-
-		toolkit = this.getEditor().getToolkit();
-		form = managedForm.getForm();
-		toolkit.decorateFormHeading(form.getForm());
-		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(form.getBody());
-		form.setImage(Activator.getImageDescriptor("icons/comments.png").createImage());
-		form.setText(getEditor().getTitle() + ": Discussion");
-		form.getBody().setBackgroundMode(SWT.INHERIT_FORCE);
-		form.getBody().setBackground(new Color(Display.getCurrent(), 225, 225, 225));
-		createToolbar();
-		createWidget();
-		form.pack();
-	}
 
 	private void createWidget() {
 		if (body != null) {
@@ -156,23 +116,6 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void dispose() {
-		super.dispose();
-	}
-
-	/**
-	 * {@inheritDoc} This method is added to solve the focus bug of navigator. Every time that a ME is opened in editor,
-	 * navigator has to lose focus so that its action contributions are set correctly for next time.
-	 */
-	@Override
-	public void setFocus() {
-		super.setFocus();
-	}
-
-	/**
 	 * @see org.org.unicase.ui.unicasecommon.widgets.MECommentWidgetListener#commentLayoutUpdated()
 	 */
 	public void commentLayoutUpdated() {
@@ -212,5 +155,43 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputComposite);
 		toggleReply = false;
 		commentLayoutUpdated();
+	}
+
+	@Override
+	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
+		if (modelElement instanceof UnicaseModelElement) {
+			this.modelElement = (UnicaseModelElement) modelElement;
+		} else {
+			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
+		}
+		try {
+			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement));
+		} catch (NoCurrentUserException e1) {
+			// Do nothing
+		} catch (CannotMatchUserInProjectException e1) {
+			// Do nothing
+		}
+		FormPage page = new FormPage(editor, ID, NAME) {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			protected void createFormContent(IManagedForm managedForm) {
+				super.createFormContent(managedForm);
+
+				toolkit = this.getEditor().getToolkit();
+				form = managedForm.getForm();
+				toolkit.decorateFormHeading(form.getForm());
+				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(form.getBody());
+				form.setImage(Activator.getImageDescriptor("icons/comments.png").createImage());
+				form.setText(getEditor().getTitle() + ": Discussion");
+				form.getBody().setBackgroundMode(SWT.INHERIT_FORCE);
+				form.getBody().setBackground(new Color(Display.getCurrent(), 225, 225, 225));
+				createToolbar();
+				createWidget();
+				form.pack();
+			}
+		};
+		return page;
 	}
 }

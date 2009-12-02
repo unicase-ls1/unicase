@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.provider.ShortLabelProvider;
@@ -117,8 +118,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 		for (IConfigurationElement e : config) {
 			try {
 				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
-
-				addPage(newPage.createPage(this, editingDomain, modelElement));
+				FormPage createPage = newPage.createPage(this, editingDomain, modelElement);
+				if (createPage != null) {
+					addPage(createPage);
+				}
 			} catch (CoreException e1) {
 				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
 			}

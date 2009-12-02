@@ -860,6 +860,7 @@
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.MEURLControl"
           name="URLwidget"
+          showLabel="true"
           type="java.lang.String">
     </widget>
     <widget
@@ -895,6 +896,13 @@
     <page
           class="org.unicase.ui.unicasecommon.meeditor.MEDescriptionPage"
           name="org.unicase.ui.unicasecommon.meeditor.descriptionpage">
+    </page>
+ </extension>
+ <extension
+       point="org.unicase.ui.meeditor.pages">
+    <page
+          class="org.unicase.ui.unicasecommon.meeditor.METhreadPage"
+          name="org.unicase.ui.unicasecommon.meeditor.methreadpage">
     </page>
  </extension>
 </plugin>
