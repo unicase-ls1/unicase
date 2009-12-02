@@ -13,8 +13,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -24,8 +22,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -35,27 +33,19 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  */
 public class MEFileSizeControl extends AbstractMEControl {
 
+	private final String[] magnitude = { " byte", " Kilobyte", " Megabyte", " Gigabyte", " Terabyte", " petabyte" };
+
+	private static final int PRIORITY = 2;
+
 	private EAttribute attribute;
-
-	/**
-	 * Default constructor.
-	 * 
-	 * @param attribute attribute
-	 * @param toolkit The SWT toolkit
-	 * @param modelElement the file attachment
-	 * @param editingDomain the Editing Domain
-	 */
-	public MEFileSizeControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
-		EditingDomain editingDomain) {
-
-		this.attribute = attribute;
-	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(getModelElement());
+
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(1, false);
 		composite.setLayout(gridLayout);
@@ -103,8 +93,8 @@ public class MEFileSizeControl extends AbstractMEControl {
 		 */
 		public Object convert(Object fromObject) {
 			double size = Integer.parseInt(fromObject.toString());
-			String[] magnitude = { " byte", " Kilobyte", " Megabyte", " Gigabyte", " Terabyte", " petabyte" };
 			DecimalFormat format = new DecimalFormat("#0.00");
+			// TODO: refactor
 			if (size < 1024) {
 				return (int) size + magnitude[0];
 			}
@@ -119,8 +109,10 @@ public class MEFileSizeControl extends AbstractMEControl {
 
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (!(modelElement instanceof FileAttachment)) {
+			return DO_NOT_RENDER;
+		}
+		return PRIORITY;
 	}
 
 }
