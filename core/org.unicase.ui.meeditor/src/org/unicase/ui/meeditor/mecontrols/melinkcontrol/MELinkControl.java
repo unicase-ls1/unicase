@@ -50,6 +50,7 @@ public class MELinkControl {
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
 	private ModelElement link;
+	private ModelElement contextModelElement;
 
 	/**
 	 * {@inheritDoc}
@@ -59,6 +60,8 @@ public class MELinkControl {
 		Object feature = itemPropertyDescriptor.getFeature(link);
 		this.eReference = (EReference) feature;
 		this.link = link;
+		this.contextModelElement = contextModelElement;
+
 		linkComposite = toolkit.createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
@@ -141,6 +144,11 @@ public class MELinkControl {
 		if (linkComposite != null) {
 			linkComposite.dispose();
 		}
+	}
+
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
+		ModelElement contextModelElement2) {
+		return 0;
 	}
 
 }

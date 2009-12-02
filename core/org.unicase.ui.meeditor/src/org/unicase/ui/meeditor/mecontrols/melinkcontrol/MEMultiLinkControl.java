@@ -91,7 +91,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				for (EObject object : eList) {
 					if (object instanceof ModelElement) {
 						ModelElement me = (ModelElement) object;
-						MELinkControl meControl = new MELinkControl();
+						MELinkControlFactory controlFactory = new MELinkControlFactory();
+						MELinkControl meControl = controlFactory.createMELinkControl(getItemPropertyDescriptor(), me,
+							getModelElement());
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
 							getItemPropertyDescriptor(), me, getModelElement(), getToolkit());
 						linkControls.add(meControl);

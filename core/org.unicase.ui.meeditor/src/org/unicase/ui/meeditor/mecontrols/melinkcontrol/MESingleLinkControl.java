@@ -125,7 +125,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				if (opposite != null && opposite instanceof ModelElement) {
-					meControl = new MELinkControl();
+					MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
+					meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(),
+						(ModelElement) opposite, getModelElement());
 					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), (ModelElement) opposite,
 						getModelElement(), getToolkit());
 				} else {
