@@ -1,6 +1,10 @@
+We have mailing-lists and a calendar for the UNICASE development.
+
+=Mailing-lists=
 There are three mailing-lists for UNICASE: the *Developer Mailing-list*, the *User Mailing-list* and the *Bug Mailing-list*.
 
-  * The *Developer Mailinglist* is intended for communication with and among UNICASE developers and for asking questions about the development of UNICASE. Every member of the list can post messages but you need to subscribe before posting. Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
+==Developer Mailinglist==
+The *Developer Mailinglist* is intended for communication with and among UNICASE developers and for asking questions about the development of UNICASE. Every member of the list can post messages but you need to subscribe before posting. Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
 This list is a must for any UNICASE developer.
 You can [https://www.google.com/accounts/ServiceLogin?passive=true&hl=en&service=groups2&continue=http%3A%2F%2Fgroups.google.com%2Fgroup%2Funicase-dev%2Fsubscribe%3Fnote%3D1&cd=US&ssip=g3 subscribe here] or you can send an email to [mailto:narayan@in.tum.de Nitesh] to ask for subscription.
 Mail Address: unicase-dev@googlegroups.com, 
