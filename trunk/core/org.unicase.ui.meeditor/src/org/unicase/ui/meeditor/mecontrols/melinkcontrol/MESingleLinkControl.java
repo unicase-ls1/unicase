@@ -59,6 +59,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.eReference = (EReference) feature;
 		composite = getToolkit().createComposite(parent, style);
 		composite.setLayout(new GridLayout(3, false));
 		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3).equalWidth(false).applyTo(composite);
@@ -140,7 +142,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference && !((EReference) feature).isMany()
 			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())) {
-			this.eReference = (EReference) feature;
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
