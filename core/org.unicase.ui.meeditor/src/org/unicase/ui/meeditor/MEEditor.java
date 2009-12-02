@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -248,7 +249,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 		setTitleImage(titleImage);
 		// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
 		if (mePage != null) {
-			mePage.getManagedForm().getForm().setImage(titleImage);
+			try {
+				mePage.getManagedForm().getForm().setImage(titleImage);
+			} catch (SWTException e) {
+				// Catch in case Editor is directly closed after Change.
+			}
 		}
 	}
 
