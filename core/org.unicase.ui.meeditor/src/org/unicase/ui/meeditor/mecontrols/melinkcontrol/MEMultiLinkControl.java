@@ -91,7 +91,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						ModelElement me = (ModelElement) object;
 						MELinkControl meControl = new MELinkControl();
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
-							getItemPropertyDescriptor(), me, getEditingDomain(), getToolkit());
+							getItemPropertyDescriptor(), me, getModelElement(), getToolkit());
 						linkControls.add(meControl);
 					}
 				}
