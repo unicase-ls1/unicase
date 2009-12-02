@@ -16,6 +16,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -72,11 +73,26 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private Link fileName;
 
+	@Override
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+		if (!(modelElement instanceof FileAttachment)) {
+			return DO_NOT_RENDER;
+		}
+		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+		if (feature instanceof EAttribute && !((EAttribute) feature).getName().equals("fileName")) {
+			return DO_NOT_RENDER;
+		}
+		fileAttachment = (FileAttachment) getModelElement();
+		return PRIORITY;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+
+		this.fileAttachment = (FileAttachment) getModelElement();
 
 		// COMPOSITE FOR WIDGETS
 
@@ -434,12 +450,4 @@ public class MEFileChooserControl extends AbstractMEControl {
 			.constructCacheFolder(projectId)));
 	}
 
-	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
-		if (!(modelElement instanceof FileAttachment)) {
-			return DO_NOT_RENDER;
-		}
-		fileAttachment = (FileAttachment) getModelElement();
-		return PRIORITY;
-	}
 }
