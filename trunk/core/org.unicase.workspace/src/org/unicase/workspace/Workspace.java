@@ -269,4 +269,13 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	void deleteProjectSpace(ProjectSpace projectSpace) throws IOException;
 
+	/**
+	 * Creates a new local project that is not shared with the server yet.
+	 * 
+	 * @param projectName the project name
+	 * @param projectDescription the project description
+	 * @return the project space that the new project resides in
+	 */
+	ProjectSpace createLocalProject(String projectName, String projectDescription);
+
 } // Workspace
