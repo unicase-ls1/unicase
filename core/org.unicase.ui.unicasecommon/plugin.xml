@@ -883,6 +883,12 @@
           showLabel="true"
           type="org.unicase.metamodel.ModelElement">
     </widget>
+    <widget
+          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl"
+          name="org.unicase.ui.unicasecommon.assessmentmatrixcontrol"
+          showLabel="false"
+          type="org.unicase.metamodel.ModelElement">
+    </widget>
  </extension>
  <extension
        point="org.unicase.ui.meeditor.pages">
