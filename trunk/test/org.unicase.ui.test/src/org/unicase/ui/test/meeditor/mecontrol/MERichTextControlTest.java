@@ -36,10 +36,11 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class MERichTextControlTest extends MeControlTest {
 
 	private ActionItem actionItem;
+	private boolean runcount = false;
 
 	@Before
 	public void setupActionItem() {
-		new UnicaseCommand() {
+			new UnicaseCommand() {
 			
 			@Override
 			protected void doRun() {
@@ -57,12 +58,12 @@ public class MERichTextControlTest extends MeControlTest {
 		
 		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
 		SWTBotText text = getBot().activeEditor().bot().textWithLabel("Name");
-		final String newDescription = "changed text in the description field";
+		final String newDescription = "changed text in description field by MEEditor";
 		
 		styledText.typeText(newDescription, 1);
 		text.setFocus();
 		
-		getBot().sleep(2000);
+		getBot().sleep(3000);
 		
 		new UnicaseCommand() {
 			@Override
@@ -71,13 +72,15 @@ public class MERichTextControlTest extends MeControlTest {
 			}
 		}.run();
 	}
-
+	
+	
+	
 	@Test
 	public void testDescriptionUpdate() throws Exception {
 		
 		openModelElement(actionItem);
 		
-		final String newDescription = "jkflšdajfkljfsadklšfjsadklšfjsfklšasfjsašfsajdklf";
+		final String newDescription = "changed text in description field by UIThread";
 		
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
