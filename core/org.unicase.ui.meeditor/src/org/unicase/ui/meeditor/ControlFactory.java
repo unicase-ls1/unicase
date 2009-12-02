@@ -29,11 +29,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author shterev
  */
 public class ControlFactory {
-	private final EditingDomain editingDomain;
-	private FormToolkit toolkit;
 	private HashMap<Class<?>, ArrayList<AbstractMEControl>> controlRegistry;
-
-	private HashMap<AbstractMEControl, Integer> priorityRegistry;
 
 	/**
 	 * Default constructor.
@@ -43,8 +39,6 @@ public class ControlFactory {
 	 * @param toolkit the gui toolkit
 	 */
 	public ControlFactory(EditingDomain editingDomain, FormToolkit toolkit) {
-		this.editingDomain = editingDomain;
-		this.toolkit = toolkit;
 		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
 		initializeMEControls();
 	}
@@ -87,8 +81,6 @@ public class ControlFactory {
 	 * @return the {@link AbstractMEControl}
 	 */
 	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
-
-		priorityRegistry = new HashMap<AbstractMEControl, Integer>();
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
