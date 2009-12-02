@@ -35,7 +35,7 @@ public final class LinkTrigger {
 	public static final String APPLICATION_ID = "org.unicase.link";
 	
 	private static LinkTrigger instance; 
-	private static String handedUrl;
+	private String handedUrl;
 	
 	
 	private URLMessageHandler urlMessageHandler; 
@@ -48,17 +48,6 @@ public final class LinkTrigger {
 	}
 
 	/**
-	 * Gets the URL handed to this eclipse instance on startup.
-	 * If this eclipse instance wasn't started with a URL,
-	 * this function will return null.
-	 * @return The URL with which this eclipse instance was started.
-	 */
-	public static String getHandedUrl(){
-		return handedUrl;
-	}
-	
-	
-	/**
 	 * Gets the singleton instance.
 	 * @return the singleton
 	 */
@@ -69,6 +58,16 @@ public final class LinkTrigger {
 		}
 		
 		return instance;
+	}
+	
+	/**
+	 * Gets the URL handed to this eclipse instance on startup.
+	 * If this eclipse instance wasn't started with a URL,
+	 * this function will return null.
+	 * @return The URL with which this eclipse instance was started.
+	 */
+	public String getHandedUrl(){
+		return handedUrl;
 	}
 	
 	/**
