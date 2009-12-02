@@ -11,16 +11,19 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 
 import org.eclipse.core.internal.dtree.TestHelper;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UiUtil;
 import org.unicase.ui.meeditor.commands.OpenModelElementHandler;
 import org.unicase.ui.test.UITestCommon;
@@ -66,8 +69,6 @@ public class MeControlTest {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
 		WorkspaceManager.getInstance();
-		UITestCommon.openPerspective(getBot(), "Unicase");
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
 	}
 	
 	@Before
@@ -104,8 +105,30 @@ public class MeControlTest {
 		}.run();
 	}
 	
+	protected void openModelElement(final ModelElement element) {
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			public void run() {
+				ActionHelper.openModelElement(element, "test");
+			}
+		});
+		bot.sleep(4000);
+	}
+	
+	protected void runAsnc(final UnicaseCommand command) {
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			public void run() {
+				command.run();
+			}
+		});
+		
+		bot.sleep(4000);
+	}
+
 	@AfterClass
 	public static void tearDownClass() {
 		bot = null;
 	}
+	
 }
