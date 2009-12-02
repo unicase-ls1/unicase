@@ -4,6 +4,7 @@
    <extension-point id="org.unicase.ui.meeditor.attributecontrols" name="org.unicase.ui.meeditor.attributecontrols" schema="schema/org.unicase.ui.meeditor.attributecontrol.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols" schema="schema/org.unicase.ui.meeditor.referencecontrol.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.pages" name="org.unicase.ui.meeditor.pages" schema="schema/org.unicase.ui.meeditor.pages.exsd"/>
+   <extension-point id="org.unicase.ui.meeditor.melinkcontrol" name="org.unicase.ui.meeditor.melinkcontrol" schema="schema/org.unicase.ui.meeditor.melinkcontrol.exsd"/>
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
