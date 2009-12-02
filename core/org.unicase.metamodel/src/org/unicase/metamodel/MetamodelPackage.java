@@ -62,7 +62,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int IDENTIFIABLE_ELEMENT = 3;
-
+	
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -251,7 +251,9 @@ public interface MetamodelPackage extends EPackage {
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
 	int RELEASE_NUMBER = 3;
-
+	
+	String MODEL_URL_PREFIX = "http://unicase.org/model/";
+	
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
