@@ -6,6 +6,8 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -18,7 +20,6 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.MEEditor;
@@ -47,7 +48,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
+	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {
 			this.modelElement = (UnicaseModelElement) modelElement;
 		} else {
@@ -92,7 +93,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 				textWidget.setFocus();
 			}
 		};
-		setPage(page);
+		return page;
 
 	}
 
@@ -107,8 +108,11 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		textControl = new MERichTextControl();
 		(textControl).setShowExpand(false);
-		textWidget = textControl.createControl(body, SWT.NONE, (IItemPropertyDescriptor) ModelPackage.eINSTANCE
-			.getUnicaseModelElement_Description(), modelElement, domain, toolkit);
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IItemPropertyDescriptor propertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(modelElement,
+			"description");
+		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement, domain, toolkit);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
 
