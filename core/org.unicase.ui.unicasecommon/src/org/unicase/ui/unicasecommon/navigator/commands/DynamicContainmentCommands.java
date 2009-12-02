@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -24,7 +25,6 @@ import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.ui.common.util.ActionHelper;
@@ -140,7 +140,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			return;
 		}
 
-		List<EClass> eClazz = ModelUtil.getSubclasses(refClass, ModelPackage.eINSTANCE);
+		Set<EClass> eClazz = ModelUtil.getSubclasses(refClass);
 		for (EClass eClass : eClazz) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
 				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);

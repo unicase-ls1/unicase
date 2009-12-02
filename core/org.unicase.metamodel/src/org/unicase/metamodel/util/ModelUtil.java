@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
@@ -23,9 +24,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -250,29 +254,80 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * @param clazz the input class
-	 * @param ePackage the input package
-	 * @return Returns all non-abstract, non-interface subclasses of the given input in the given package.
+	 * Returns all non-abstract, non-interface subclasses of the given input class in the given package. In other words
+	 * returns all classes that have direct instances.
+	 * 
+	 * @param clazz the eClass, must be a subtype of ModelElement
+	 * @return a set of EClasses 
+	 * 
+	 * IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 *         ModelElement
 	 */
-	public static ArrayList<EClass> getSubclasses(EClass clazz, EPackage ePackage) {
-		ArrayList<EClass> ret = new ArrayList<EClass>();
+	public static Set<EClass> getSubclasses(EClass clazz) {
+		return getSubclasses(clazz, false);
+	}
 
-		if (clazz.isAbstract() || clazz.isInterface()) {
-			for (EObject eObject : ePackage.eContents()) {
-				if (eObject instanceof EClass && !eObject.equals(MetamodelPackage.eINSTANCE.getProject())) {
-					EClass eClass = (EClass) eObject;
-					if (clazz.isSuperTypeOf(eClass) && !(eClass.isAbstract() || eClass.isInterface())) {
-						ret.add(eClass);
-					}
-				} else if (eObject instanceof EPackage) {
-					EPackage eSubPackage = (EPackage) eObject;
-					ret.addAll(getSubclasses(clazz, eSubPackage));
-				}
-			}
-		} else {
-			ret.add(clazz);
+	
+	/**
+	 * Returns all subclasses of the given input class in the given package. 
+	 * 
+	 * @param clazz the eClass, must be a subtype of ModelElement
+	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the result
+	 * @return a set of EClasses 
+	 * 
+	 * IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 *         ModelElement
+	 */
+	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
+		// sanity checks
+		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
+		if (!modelELementEClass.isSuperTypeOf(clazz)) {
+			throw new IllegalStateException("Given EClass \"" + clazz.getName()
+				+ "\" is not a subtype of EClass ModelElement");
+		}
+
+		Set<EClass> ret = new HashSet<EClass>();
+		for (EPackage ePackage : getAllModelPackages()) {
+			getSubclasses(clazz, ret, ePackage, includeAbstractClassesAndInterfaces);
 		}
 		return ret;
+	}
+	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage, boolean includeAbstractClassesAndInterfaces) {
+
+		for (EClassifier classifier : ePackage.getEClassifiers()) {
+			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
+				EClass subClass = (EClass) classifier;
+				if (clazz.isSuperTypeOf(subClass) && (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
+					ret.add(subClass);
+				}
+			}
+		}
+		for (EPackage subPackage : ePackage.getESubpackages()) {
+			getSubclasses(clazz, ret, subPackage, includeAbstractClassesAndInterfaces);
+		}
+	}
+
+	private static boolean canHaveInstances(EClass eClass) {
+		return !(eClass.isAbstract() || eClass.isInterface());
+	}
+
+	/**
+	 * Retrieve all EPackages that are model packages for unicase starting with the unicase model prefix as defined in
+	 * {@link MetamodelPackage}.
+	 * 
+	 * @return a set of EPackages
+	 */
+	public static Set<EPackage> getAllModelPackages() {
+		Set<EPackage> result = new HashSet<EPackage>();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : registry.entrySet()) {
+			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
+				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				result.add(model);
+			}
+		}
+		return result;
 	}
 
 	// /**
@@ -299,7 +354,7 @@ public final class ModelUtil {
 		Iterator<EClass> iterator = allMETypes.iterator();
 		while (iterator.hasNext()) {
 			EClass eClass = iterator.next();
-			if (!(eClass.isAbstract() || eClass.isInterface())) {
+			if (canHaveInstances(eClass)) {
 				nonAbstractMETypes.add(eClass);
 			}
 		}
