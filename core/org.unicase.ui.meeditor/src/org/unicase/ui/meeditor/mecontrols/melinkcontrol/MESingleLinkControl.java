@@ -106,10 +106,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				ModelElement me = getModelElement();
-				if (opposite != null) {
+				if (opposite != null && opposite instanceof ModelElement) {
 					meControl = new MELinkControl();
-					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), me, getEditingDomain(),
-						getToolkit());
+					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), (ModelElement) opposite,
+						getEditingDomain(), getToolkit());
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setBackground(parent.getBackground());
