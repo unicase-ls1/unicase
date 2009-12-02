@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -47,7 +48,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.ModelPackage;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -288,9 +288,8 @@ public class DashboardPropertyPage extends PropertyPage {
 						getShell(), meClassLabelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
-				ArrayList<EClass> subclasses = ModelUtil.getSubclasses(
-						MetamodelPackage.eINSTANCE.getModelElement(),
-						ModelPackage.eINSTANCE);
+				Set<EClass> subclasses = ModelUtil.getSubclasses(
+						MetamodelPackage.eINSTANCE.getModelElement());
 				subclasses.removeAll(taskTraceClasses);
 				dialog.setElements(subclasses.toArray());
 				if (dialog.open() == Window.OK) {

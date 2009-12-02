@@ -7,16 +7,13 @@ package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -43,18 +40,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// EPackage modelPackage = ModelPackageImpl.eINSTANCE;
 		// EList<EPackage> array = modelPackage.getESubpackages();
 		//
-		EList<EPackage> array = new BasicEList<EPackage>();
 
-		Registry registry = EPackage.Registry.INSTANCE;
-
-		for (Entry<String, Object> entry : registry.entrySet()) {
-			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
-				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				array.add(model);
-			}
-		}
-
-		return array.toArray();
+		return ModelUtil.getAllModelPackages().toArray();
 	}
 
 	/**

@@ -36,7 +36,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -426,8 +425,8 @@ public final class ChangeTestHelper {
 	 * @return ME
 	 */
 	public static UnicaseModelElement createRandomME() {
-		List<EClass> eClazz = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement(),
-			ModelPackage.eINSTANCE);
+		List<EClass> eClazz = new ArrayList<EClass>(ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE
+			.getModelElement()));
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
 		UnicaseModelElement me = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
@@ -446,7 +445,7 @@ public final class ChangeTestHelper {
 		EObject ret = null;
 
 		if (refType.isAbstract() || refType.isInterface()) {
-			List<EClass> eClazz = ModelUtil.getSubclasses(refType, refType.getEPackage());
+			List<EClass> eClazz = new ArrayList<EClass>(ModelUtil.getSubclasses(refType));
 			int index = getRandomPosition(eClazz.size());
 			refType = eClazz.get(index);
 		}

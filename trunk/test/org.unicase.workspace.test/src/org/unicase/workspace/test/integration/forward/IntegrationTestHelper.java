@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -42,7 +43,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
-import org.unicase.model.ModelPackage;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -472,8 +472,8 @@ public final class IntegrationTestHelper {
 	 * @return ME
 	 */
 	public ModelElement createRandomME() {
-		List<EClass> eClazz = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement(),
-			ModelPackage.eINSTANCE);
+		Set<EClass> eClazzSet = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement());
+		ArrayList<EClass> eClazz = new ArrayList<EClass>(eClazzSet);
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
 		ModelElement me = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
@@ -492,7 +492,7 @@ public final class IntegrationTestHelper {
 		EObject ret = null;
 
 		if (refType.isAbstract() || refType.isInterface()) {
-			List<EClass> eClazz = ModelUtil.getSubclasses(refType, refType.getEPackage());
+			List<EClass> eClazz = new ArrayList<EClass>(ModelUtil.getSubclasses(refType));
 			int index = getRandomPosition(eClazz.size());
 			refType = eClazz.get(index);
 		}

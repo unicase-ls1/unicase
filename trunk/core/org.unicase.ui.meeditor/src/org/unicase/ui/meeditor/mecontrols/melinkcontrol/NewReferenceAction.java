@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -24,7 +24,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -58,9 +57,9 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz, MetamodelPackage.eINSTANCE);
+			Set<EClass> subclasses = ModelUtil.getSubclasses(clazz);
 			if (subclasses.size() == 1) {
-				newClass = subclasses.get(0);
+				newClass = subclasses.iterator().next();
 			} else {
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), new MEClassLabelProvider());
