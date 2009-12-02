@@ -14,6 +14,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -59,7 +60,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	@Override
 	public Control createControl(final Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
-		// composite.setLayout(new GridLayout(3, false));
+		composite.setLayout(new GridLayout(3, false));
 		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3).equalWidth(false).applyTo(composite);
 		this.parent = parent;
 		this.style = style;
