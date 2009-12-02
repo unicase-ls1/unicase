@@ -67,6 +67,8 @@ public class MEURLLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.eReference = (EReference) feature;
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3 + getNumberOfAdditionalControlComponents(), false));
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
@@ -221,7 +223,6 @@ public class MEURLLinkControl extends AbstractMEControl {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference
 			&& ((EReference) feature).getEType().getInstanceClass().equals(ModelElement.class)) {
-			this.eReference = (EReference) feature;
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
