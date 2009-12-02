@@ -3,7 +3,7 @@
  * </copyright>
  */
 
-package org.unicase.ui.test.daigram;
+package org.unicase.ui.test.diagram;
 
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
