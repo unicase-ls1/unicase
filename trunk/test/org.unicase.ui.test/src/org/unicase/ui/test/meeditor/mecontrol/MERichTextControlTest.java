@@ -21,11 +21,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.Workspace;
@@ -55,15 +53,17 @@ public class MERichTextControlTest extends MeControlTest {
 	@Test
 	public void testDescriptionChange() throws Exception {
 		
-		ActionHelper.openModelElement(actionItem, "test");
+		openModelElement(actionItem);
 		
 		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
 		SWTBotText text = getBot().activeEditor().bot().textWithLabel("Name");
 		final String newDescription = "changed text in the description field";
+		
 		styledText.typeText(newDescription, 1);
 		text.setFocus();
 		
-		getBot().sleep(1000);
+		getBot().sleep(2000);
+		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -75,17 +75,18 @@ public class MERichTextControlTest extends MeControlTest {
 	@Test
 	public void testDescriptionUpdate() throws Exception {
 		
-		ActionHelper.openModelElement(actionItem, "test");
+		openModelElement(actionItem);
 		
 		final String newDescription = "jkflšdajfkljfsadklšfjsadklšfjsfklšasfjsašfsajdklf";
 		
-		new UnicaseCommand() {
+		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
 			@Override
 			protected void doRun() {
 				actionItem.setDescription(newDescription);
 			}
-		}.run();
+		};
+		runAsnc(unicaseCommand);
 		
 		getBot().sleep(3000);
 		
