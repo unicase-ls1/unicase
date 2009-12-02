@@ -111,7 +111,16 @@ public class ControlFactory {
 			}
 		}
 		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
-		return control;
+		AbstractMEControl ret = null;
+		try {
+			ret = control.getClass().newInstance();
+			ret.setShowLabel(control.getShowLabel());
+		} catch (InstantiationException e) {
+			// Do nothing
+		} catch (IllegalAccessException e) {
+			// Do nothing
+		}
+		return ret;
 	}
 
 	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor,
