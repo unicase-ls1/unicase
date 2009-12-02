@@ -211,7 +211,6 @@ public class ChooseAssigneePage extends WizardPage {
 	 */
 	private class AssigneePageListener implements Listener,SelectionListener{
 
-		@Override
 		public void handleEvent(Event event) {
 			Widget w = event.widget;
 			if(w == addButton){
@@ -235,11 +234,9 @@ public class ChooseAssigneePage extends WizardPage {
 			}
 		}
 
-		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
 		}
 
-		@Override
 		public void widgetSelected(SelectionEvent e) {
 			//Button is only enabled if objects are selected
 			removeSelectedButton.setEnabled(table.getSelection().length > 0);
