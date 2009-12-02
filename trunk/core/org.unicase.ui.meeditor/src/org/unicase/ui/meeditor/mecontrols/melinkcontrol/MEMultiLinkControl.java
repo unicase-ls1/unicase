@@ -8,6 +8,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -34,6 +35,7 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -113,7 +115,6 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private EReference eReference;
 
 	private int style;
-	private IItemPropertyDescriptor descriptor;
 
 	private ScrolledComposite scrollPane;
 
@@ -133,6 +134,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private DropTarget sectionDropTarget;
 
 	private static final int PRIORITY = 1;
+
+	private ModelElementChangeListener modelElementChangeListener;
+
+	private Object feature;
 
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
@@ -160,8 +165,24 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	@Override
 	public Control createControl(final Composite parent, int style) {
 		linkControls = new ArrayList<MELinkControl>();
-		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.eReference = (EReference) feature;
+		modelElementChangeListener = new ModelElementChangeListener() {
+
+			public void onRuntimeExceptionInListener(RuntimeException exception) {
+				getModelElement().removeModelElementChangeListener(modelElementChangeListener);
+
+			}
+
+			public void onChange(Notification notification) {
+				if (notification.getFeature().equals(feature)) {
+					rebuildLinkSection();
+				}
+
+			}
+		};
+		getModelElement().addModelElementChangeListener(modelElementChangeListener);
+
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
