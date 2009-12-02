@@ -6,17 +6,18 @@
 package org.unicase.link;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.link.trigger.*;
-import org.unicase.link.util.OpenLink;
+import org.unicase.link.trigger.LinkTrigger;
+import org.unicase.link.util.ui.OpenLink;
 
 /**
  * 
- * TODO: @author Kameliya Terzieva, Fatih Ulusoy, Jan Finis
+ * @author Kameliya Terzieva, Fatih Ulusoy, Jan Finis
  * The activator class controls the emfstore life cycle.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements IStartup {
 
 	/**
 	 * The Plugin ID.
@@ -37,10 +38,17 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception{
 		super.start(context);
+		
 		LinkTrigger.getInstance().getUrlMessageHandler()
 			.addObserver(OpenLink.getInstance());
+		
+		if (LinkTrigger.getInstance().getHandedUrl() != null) {
+			OpenLink.openURL(LinkTrigger.getInstance().getHandedUrl());
+		}
+		
 		plugin = this;
 	}
 
@@ -53,6 +61,7 @@ public class Activator extends AbstractUIPlugin {
 		
 		super.stop(context);
 	}
+	// END SUPRESS CATCH EXCEPTION
 	
 	/**
 	 * Returns the shared instance.
@@ -72,5 +81,13 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.ui.startup.IStartup#earylStartup
+	 */
+	public void earlyStartup() {
+
 	}
 }

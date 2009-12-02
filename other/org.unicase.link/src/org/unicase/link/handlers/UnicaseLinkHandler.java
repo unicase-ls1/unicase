@@ -12,7 +12,7 @@ import java.awt.datatransfer.StringSelection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.link.util.LinkDialog;
+import org.unicase.link.util.ui.LinkDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
