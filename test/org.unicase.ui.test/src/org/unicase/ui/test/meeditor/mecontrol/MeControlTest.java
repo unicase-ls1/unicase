@@ -59,6 +59,7 @@ public class MeControlTest {
 	}
 
 	private static SWTWorkbenchBot bot;
+	private static boolean runcount = false;
 
 	public MeControlTest() {
 		super();
@@ -67,7 +68,11 @@ public class MeControlTest {
 	@BeforeClass
 	public static void setupClass() {
 		bot = new SWTWorkbenchBot();
-		bot.viewByTitle("Welcome").close();
+		
+		if(!runcount){
+			getBot().viewByTitle("Welcome").close();
+			runcount = true;
+		}
 		WorkspaceManager.getInstance();
 	}
 	
