@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
@@ -65,7 +66,8 @@ public class MergeProjectHandler implements ConflictResolver {
 	 */
 	public boolean resolveConflicts(Project project,
 			List<ChangePackage> theirChangePackages,
-			ChangePackage myChangePackage) {
+			ChangePackage myChangePackage, PrimaryVersionSpec base,
+			PrimaryVersionSpec target) {
 		mergeDialog.setChanges(myChangePackage, theirChangePackages);
 		return (mergeDialog.open() == Window.OK);
 	}

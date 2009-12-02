@@ -8,6 +8,7 @@ package org.unicase.workspace.observers;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 
@@ -27,9 +28,12 @@ public interface ConflictResolver {
 	 * @param theirChangePackages an ordered list of change packages that are incoming in the update, in other words all
 	 *            change packages from base to target
 	 * @param myChangePackage the change package of operations that are to be applied locally
+	 * @param baseVersion baseVersion of projectspace and sourceversion of changes from server
+	 * @param targetVersion the version to which is updated
 	 * @return true if the merge can proceed, false if it has to be cancelled
 	 */
-	boolean resolveConflicts(Project project, List<ChangePackage> theirChangePackages, ChangePackage myChangePackage);
+	boolean resolveConflicts(Project project, List<ChangePackage> theirChangePackages, ChangePackage myChangePackage,
+		PrimaryVersionSpec baseVersion, PrimaryVersionSpec targetVersion);
 
 	/**
 	 * Get all operations that have been rejected in their changepackages.

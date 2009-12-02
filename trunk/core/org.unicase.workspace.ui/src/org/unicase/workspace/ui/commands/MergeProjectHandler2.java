@@ -12,6 +12,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
@@ -65,10 +66,11 @@ public class MergeProjectHandler2 implements ConflictResolver {
 	 */
 	public boolean resolveConflicts(Project project,
 			List<ChangePackage> theirChangePackages,
-			ChangePackage myChangePackage) {
+			ChangePackage myChangePackage, PrimaryVersionSpec base,
+			PrimaryVersionSpec target) {
 
 		DecisionManager decisionManager = new DecisionManager(project,
-				myChangePackage, theirChangePackages);
+				myChangePackage, theirChangePackages, base, target);
 
 		MergeWizard wizard = new MergeWizard(decisionManager);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent()

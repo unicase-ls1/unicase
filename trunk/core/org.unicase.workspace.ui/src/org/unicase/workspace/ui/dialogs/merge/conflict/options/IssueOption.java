@@ -87,10 +87,13 @@ public class IssueOption extends CustomConflictOption {
 				.beginCompositeOperation();
 
 		MergingIssue mergeIssue = ChangeFactory.eINSTANCE.createMergingIssue();
-		addToContainer(mergeIssue, eContainer);
 		mergeIssue.setName(getStrippedOptionLabel());
 		mergeIssue.setDescription(conflict.getConflictDescription()
 				.getResolvedDescription());
+		mergeIssue.setBaseVersion(conflict.getDecisionManager()
+				.getBaseVersion());
+		mergeIssue.setTargetVersion(conflict.getDecisionManager()
+				.getTargetVersion());
 
 		MergingProposal myProposal = ChangeFactory.eINSTANCE
 				.createMergingProposal();
@@ -110,9 +113,15 @@ public class IssueOption extends CustomConflictOption {
 					(AbstractOperation) EcoreUtil.copy(theirOp));
 		}
 
+		addToContainer(mergeIssue, eContainer);
+
 		try {
 			compositeOperation.end("Created Merge Issue",
-					"Created a merge issue.", mergeIssue.getModelElementId());
+					"Created a merge issue after updating from version "
+							+ conflict.getDecisionManager().getBaseVersion()
+							+ " to "
+							+ conflict.getDecisionManager().getTargetVersion()
+							+ ".", mergeIssue.getModelElementId());
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
