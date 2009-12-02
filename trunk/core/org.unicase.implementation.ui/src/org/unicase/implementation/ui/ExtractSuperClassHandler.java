@@ -7,7 +7,6 @@ package org.unicase.implementation.ui;
 
 // BEGIN IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
-// END IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.OperationsPackage;
 
 /**
@@ -20,7 +19,7 @@ public class ExtractSuperClassHandler extends OperationHandlerBase {
 	/**
 	 * Constructor.
 	 */
-	protected ExtractSuperClassHandler() {
+	public ExtractSuperClassHandler() {
 		super(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION);
 	}
 }
