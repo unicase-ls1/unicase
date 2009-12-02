@@ -51,7 +51,6 @@ public class MELinkControl extends AbstractMEControl {
 	private ModelElementChangeListener observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
-	private ImageHyperlink urlHyperlink;
 
 	private static final int PRIORITY = 1;
 

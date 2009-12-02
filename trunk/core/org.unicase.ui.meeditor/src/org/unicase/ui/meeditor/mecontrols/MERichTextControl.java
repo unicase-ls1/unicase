@@ -57,6 +57,8 @@ public class MERichTextControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) feature;
 		composite = getToolkit().createComposite(parent, style);
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
 		composite.setLayout(new GridLayout());
@@ -299,7 +301,7 @@ public class MERichTextControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
-			this.attribute = (EAttribute) feature;
+
 			if (itemPropertyDescriptor.isMultiLine(feature)) {
 				return PRIORITY;
 			}
