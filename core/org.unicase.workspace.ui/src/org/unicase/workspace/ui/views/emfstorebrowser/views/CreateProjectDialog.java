@@ -18,13 +18,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -93,7 +89,9 @@ public class CreateProjectDialog extends TitleAreaDialog {
 						session.createProject(txtProjectName.getText(),
 								txtProjectDesc.getText());
 					} else {
-						createLocalProject();
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.createLocalProject(txtProjectName.getText(),
+										txtProjectDesc.getText());
 					}
 
 				} catch (AccessControlException e) {
@@ -115,22 +113,4 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		close();
 	}
 
-	private void createLocalProject() {
-		WorkspaceImpl workspace = (WorkspaceImpl) WorkspaceManager
-				.getInstance().getCurrentWorkspace();
-
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
-				.createProjectSpace();
-		projectSpace.setProject(MetamodelFactory.eINSTANCE.createProject());
-		projectSpace.setProjectName(txtProjectName.getText());
-		projectSpace.setProjectDescription(txtProjectDesc.getText());
-		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE
-				.createOperationComposite());
-
-		projectSpace.initResources((workspace).getWorkspaceResourceSet());
-
-		workspace.addProjectSpace(projectSpace);
-		workspace.save();
-
-	}
 }

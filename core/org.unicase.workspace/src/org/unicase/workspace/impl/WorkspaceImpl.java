@@ -45,6 +45,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
@@ -685,6 +686,27 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
 		FileUtil.deleteFolder(new File(pathToProject));
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	public ProjectSpace createLocalProject(String projectName, String projectDescription) {
+
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		projectSpace.setProject(MetamodelFactory.eINSTANCE.createProject());
+		projectSpace.setProjectName(projectName);
+		projectSpace.setProjectDescription(projectDescription);
+		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+
+		projectSpace.initResources(this.getWorkspaceResourceSet());
+
+		this.addProjectSpace(projectSpace);
+		this.save();
+
+		return projectSpace;
 	}
 
 } // WorkspaceImpl
