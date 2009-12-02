@@ -27,13 +27,6 @@ public abstract class AbstractMEEditorPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public abstract void init(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement);
+	public abstract FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement);
 
-	public FormPage getPage() {
-		return page;
-	}
-
-	protected void setPage(FormPage page) {
-		this.page = page;
-	}
 }
