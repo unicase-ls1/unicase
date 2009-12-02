@@ -59,6 +59,8 @@ public class MECommentsLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement());
+		this.reference = (EReference) feature;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
@@ -174,8 +176,7 @@ public class MECommentsLinkControl extends AbstractMEControl {
 		if (!(feature instanceof EReference)) {
 			return AbstractMEControl.DO_NOT_RENDER;
 		}
-		this.reference = (EReference) feature;
-
+		EReference reference = (EReference) feature;
 		if (!reference.getEReferenceType().equals(RationalePackage.eINSTANCE.getComment())) {
 			return AbstractMEControl.DO_NOT_RENDER;
 		}
