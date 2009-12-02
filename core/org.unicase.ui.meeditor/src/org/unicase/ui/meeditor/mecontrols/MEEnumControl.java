@@ -40,6 +40,8 @@ public class MEEnumControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) feature;
 		combo = new Combo(parent, style | SWT.DROP_DOWN | SWT.READ_ONLY);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EList<EEnumLiteral> list = ((EEnum) attribute.getEType()).getELiterals();
@@ -56,7 +58,7 @@ public class MEEnumControl extends AbstractMEControl {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute
 			&& (EEnum.class).isAssignableFrom(((EAttribute) feature).getEType().getClass())) {
-			this.attribute = (EAttribute) feature;
+
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;

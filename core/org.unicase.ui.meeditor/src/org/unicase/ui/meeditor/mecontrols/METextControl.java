@@ -38,6 +38,8 @@ public class METextControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) feature;
 		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
 		if (!getItemPropertyDescriptor().canSetProperty(getModelElement())) {
 			text.setEditable(false);
@@ -67,7 +69,6 @@ public class METextControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
-			this.attribute = (EAttribute) feature;
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
