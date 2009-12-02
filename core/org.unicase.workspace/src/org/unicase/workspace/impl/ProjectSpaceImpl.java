@@ -2188,7 +2188,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// merge the conflicts
 		ChangePackage myCp = this.getLocalChangePackage(true);
 		List<ChangePackage> theirCps = this.getChanges(getBaseVersion(), target);
-		if (conflictResolver.resolveConflicts(project, theirCps, myCp)) {
+		if (conflictResolver.resolveConflicts(project, theirCps, myCp, getBaseVersion(), target)) {
 
 			// revert the local operations and apply all their operations
 			this.revert();

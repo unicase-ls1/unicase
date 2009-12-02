@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -45,12 +47,17 @@ public class DecisionManager {
 	private ArrayList<AbstractOperation> notInvolvedInConflict;
 	private ArrayList<AbstractOperation> acceptedMine;
 	private ArrayList<AbstractOperation> rejectedTheirs;
+	private final PrimaryVersionSpec baseVersion;
+	private final PrimaryVersionSpec targetVersion;
 
 	public DecisionManager(Project project, ChangePackage myChangePackage,
-			List<ChangePackage> theirChangePackages) {
+			List<ChangePackage> theirChangePackages,
+			PrimaryVersionSpec baseVersion, PrimaryVersionSpec targetVersion) {
 		this.project = project;
 		this.myChangePackage = myChangePackage;
 		this.theirChangePackages = theirChangePackages;
+		this.baseVersion = baseVersion;
+		this.targetVersion = targetVersion;
 		conflictDetector = new ConflictDetector();
 		init();
 	}
@@ -304,10 +311,16 @@ public class DecisionManager {
 				if (ao instanceof CreateDeleteOperation) {
 					ModelElement tmp = ((CreateDeleteOperation) ao)
 							.getModelElement();
-					if (tmp != null
-							&& tmp.getModelElementId().equals(modelElementId)) {
-						modelElement = tmp;
-						break;
+					Set<ModelElement> containedModelElements = tmp
+							.getAllContainedModelElements();
+					containedModelElements.add(tmp);
+					for (ModelElement child : containedModelElements) {
+						if (child != null
+								&& child.getModelElementId().equals(
+										modelElementId)) {
+							modelElement = child;
+							break;
+						}
 					}
 				}
 			}
@@ -317,11 +330,16 @@ public class DecisionManager {
 						if (ao instanceof CreateDeleteOperation) {
 							ModelElement tmp = ((CreateDeleteOperation) ao)
 									.getModelElement();
-							if (tmp != null
-									&& tmp.getModelElementId().equals(
-											modelElementId)) {
-								modelElement = tmp;
-								break;
+							Set<ModelElement> containedModelElements = tmp
+									.getAllContainedModelElements();
+							containedModelElements.add(tmp);
+							for (ModelElement child : containedModelElements) {
+								if (child != null
+										&& child.getModelElementId().equals(
+												modelElementId)) {
+									modelElement = child;
+									break;
+								}
 							}
 						}
 					}
@@ -419,5 +437,13 @@ public class DecisionManager {
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
 		return new ChangePackageVisualizationHelper(theirChangePackages,
 				project);
+	}
+
+	public PrimaryVersionSpec getBaseVersion() {
+		return baseVersion;
+	}
+
+	public PrimaryVersionSpec getTargetVersion() {
+		return targetVersion;
 	}
 }
