@@ -6,6 +6,6 @@ import org.unicase.ui.test.meeditor.mecontrol.MERichTextControlTest;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { MERichTextControlTest.class, METextControlTest.class })
+@Suite.SuiteClasses( { MERichTextControlTest.class, METextControlTest.class, MEIntControlTest.class })
 public class AllMEControlTests {
 }
