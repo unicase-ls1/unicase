@@ -49,7 +49,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author nagel
  */
 public class MEURLControl extends AbstractMEControl {
-	private static final int PRIORITY = 1;
+	private static final int PRIORITY = 2;
 
 	/**
 	 * Recording command to edit a URL.

@@ -84,7 +84,7 @@ public class NewReferenceAction extends Action {
 			if (!eReference.isContainer()) {
 				// Returns the value of the Container
 				EObject parent = modelElement.eContainer();
-				while (!(parent instanceof Project)) {
+				while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
 					EReference reference = getPossibleContainingReference(newMEInstance, parent);
 					if (reference != null && reference.isMany()) {
 						Object object = parent.eGet(reference);
