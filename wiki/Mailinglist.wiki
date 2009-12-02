@@ -1,8 +1,19 @@
-If you have editing access to this wiki you are already member of the UNICASE mailinglist.
+There are three mailing-lists for UNICASE: the *Developer Mailing-list*, the *User Mailing-list* and the *Bug Mailing-list*.
 
-Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
+* The *Developer Mailinglist* is intended for communication with and among UNICASE developers and for asking questions about the development of UNICASE. Every member of the list can post messages but you need to subscribe before posting. Before posting a question to the list please consider the [http://code.google.com/p/unicase/wiki/FAQ FAQ].
+This list is a must for any UNICASE developer.
+You can [https://www.google.com/accounts/ServiceLogin?passive=true&hl=en&service=groups2&continue=http%3A%2F%2Fgroups.google.com%2Fgroup%2Funicase-dev%2Fsubscribe%3Fnote%3D1&cd=US&ssip=g3 subscribe here] or you can send an email to [mailto:narayan@in.tum.de Nitesh] to ask for subscription.
+Mail Address: unicase-dev@googlegroups.com, 
+Web Address: http://groups.google.de/group/unicase-dev
 
-You can send emails to the mailinglist by using the following: 
 
-    * *Developer Mailinglist:*     _unicase-dev@googlegroups.com_
-    * *Report Bugs:*     _unicase-bugs@googlegroups.com_
+* The *Bug Mailing-list* is intended for reporting bugs or feature requests by external users. Since you are a developer, please report bugs with UNICASE in the unicase project on our server. A description on the process of reporting bugs is [ here]. Anyone can post to this list, only members can view postings. We suggest to subscribe to this list as developer to know about bugs in UNICASE.
+ist is intended for bug reports or feature requests by external users. Everyone can post.
+You can [https://www.google.com/accounts/ServiceLogin?passive=true&hl=en&service=groups2&continue=http%3A%2F%2Fgroups.google.com%2Fgroup%2Funicase-bugs%3Flnk%3D&cd=US&ssip=g3 subscribe here] or you can send an email to [mailto:narayan@in.tum.de Nitesh] to ask for subscription. 
+Mail Address: unicase-bugs@googlegroups.com 
+Web Address: http://groups.google.de/group/unicase-bugs
+
+* The *User Mailing-list* is for notifications and important news relevant to end users of UNICASE. Anyone can subscribe to this list, only managers can post. We suggest to subscribe to this list to know about external releases for example. 
+You can [http://groups.google.com/group/unicase-users/subscribe subscribe here].
+Mail Address: unicase-users@googlegroups.com 
+Web Address: http://groups.google.de/group/unicase-users
