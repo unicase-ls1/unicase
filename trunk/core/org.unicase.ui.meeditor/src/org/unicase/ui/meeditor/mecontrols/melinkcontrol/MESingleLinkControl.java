@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -43,9 +44,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 	private MELinkControl meControl;
 
 	private Label labelWidget;
-	private AdapterImpl eAdapter;
 
 	private static final int PRIORITY = 1;
+
+	private ModelElementChangeListener modelElementChangeListener;
 
 	/**
 	 * Standard Constructor.
@@ -93,6 +95,20 @@ public class MESingleLinkControl extends AbstractMEControl {
 			}
 		});
 
+		modelElementChangeListener = new ModelElementChangeListener() {
+
+			public void onChange(Notification notification) {
+				updateLink();
+			}
+
+			public void onRuntimeExceptionInListener(RuntimeException exception) {
+				// Do nothing.
+
+			}
+		};
+
+		getModelElement().addModelElementChangeListener(modelElementChangeListener);
+
 		return composite;
 	}
 
@@ -108,11 +124,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 			@Override
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
-				ModelElement me = getModelElement();
 				if (opposite != null && opposite instanceof ModelElement) {
 					meControl = new MELinkControl();
 					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), (ModelElement) opposite,
-						getEditingDomain(), getToolkit());
+						getModelElement(), getToolkit());
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setBackground(parent.getBackground());
@@ -130,7 +145,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		getModelElement().eAdapters().remove(eAdapter);
+		getModelElement().removeModelElementChangeListener(modelElementChangeListener);
 		if (meControl != null) {
 			meControl.dispose();
 		}
