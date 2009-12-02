@@ -48,7 +48,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
-			if (entry.getKey().startsWith("http://unicase.org/model/")) {
+			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
 				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				array.add(model);
 			}
