@@ -8314,5 +8314,30 @@
         featureName="name" dataValue="assessments"/>
     <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
         featureName="transient" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments"
+        referenceName="eAnnotations" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+          featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+          featureName="key" dataValue="priority"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+          featureName="value" dataValue="9.5"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1"
+          featureName="key" dataValue="position"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1"
+          featureName="value" dataValue="left"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1"
+        featureName="value" dataValue="bottom" oldDataValue="left"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="1" oldDataValue="9.5"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="30" oldDataValue="1"/>
   </releases>
 </history:History>
