@@ -280,7 +280,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier();
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 		}
 	}
 
