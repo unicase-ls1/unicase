@@ -224,12 +224,10 @@ public class UseCaseStepsControl extends AbstractMEControl {
 						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
 							getEditingDomain(), getToolkit());
 						c.setLayoutData(gdUserStep);
-						Control empty2 = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(),
-							me, getEditingDomain(), getToolkit());
+						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
 						empty2.setLayoutData(gdEmpty);
 					} else {
-						Control empty2 = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(),
-							me, getEditingDomain(), getToolkit());
+						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
 						empty2.setLayoutData(gdEmpty);
 						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
 							getEditingDomain(), getToolkit());
