@@ -7,8 +7,6 @@ package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.program.Program;
@@ -41,10 +39,6 @@ public class MEURLLinkControl extends MELinkControl {
 		}
 	}
 
-	private ILabelProvider labelProvider;
-	private ModelElementChangeListener observer;
-	private ILabelProviderListener labelProviderListener;
-	private ImageHyperlink imageHyperlink;
 	private ImageHyperlink urlHyperlink;
 
 	private static final int PRIORITY = 2;
