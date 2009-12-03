@@ -118,9 +118,10 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		}
 		if (i == 0) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
+			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
 			ai.setName("New Action Item relating " + dragSource.getName());
 			ai.getAnnotatedModelElements().add(dragSource);
-			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
+
 		}
 
 	}
