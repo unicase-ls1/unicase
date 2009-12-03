@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
@@ -586,5 +587,27 @@ public final class ModelUtil {
 		EList<EObject> contents = resource.getContents();
 		contents.add(eObject);
 		resource.save(null);
+	}
+
+	/**
+	 * Retrieve the current model version number.
+	 * @return an integer identifing the current model version
+	 * @throws MalformedModelVersionException if there is no well formed or defined model version
+	 */
+	public static int getModelVersionNumber() throws MalformedModelVersionException{
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+		"org.unicase.metamodel.modelversion");
+		if (rawExtensions.length!=1) {
+			throw new MalformedModelVersionException("There is "+ rawExtensions.length +" Model Version(s) registered for the given model.");
+		}
+		IConfigurationElement extension = rawExtensions[0];
+		String string = extension.getAttribute("versionIdentifier");
+		try {
+			int version = Integer.parseInt(string);
+			return version;
+		}
+		catch (NumberFormatException e) {
+			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: " + string);
+		}
 	}
 }
