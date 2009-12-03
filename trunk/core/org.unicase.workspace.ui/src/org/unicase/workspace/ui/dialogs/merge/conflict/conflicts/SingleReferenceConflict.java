@@ -2,8 +2,10 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
@@ -32,8 +34,14 @@ public class SingleReferenceConflict extends Conflict {
 
 	@Override
 	protected ConflictDescription initConflictDescription() {
-		String description = "You have changed the reference [reference] of [modelelement] to [myvalue]."
-				+ "This reference was set to [theirvalue] on the repository. Please decide.";
+		String description = "";
+		if (isContainmentFeature()) {
+			description = "You have moved the element [modelelement] to the element [myvalue]."
+					+ "This element was moved to [theirvalue] on the repository. Please decide.";
+		} else {
+			description = "You have changed the reference [reference] of [modelelement] to [myvalue]."
+					+ "This reference was set to [theirvalue] on the repository. Please decide.";
+		}
 		ConflictDescription conflictDescription = new ConflictDescription(
 				description);
 		conflictDescription.add("reference", getMyOperation().getFeatureName());
@@ -51,6 +59,22 @@ public class SingleReferenceConflict extends Conflict {
 		conflictDescription.setImage("singleref.gif");
 
 		return conflictDescription;
+	}
+
+	private boolean isContainmentFeature() {
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId());
+		if (modelElement == null) {
+			return false;
+		}
+		try {
+			if (((EReference) getMyOperation().getFeature(modelElement))
+					.isContainer()) {
+				return true;
+			}
+		} catch (UnkownFeatureException e) {
+		}
+		return false;
 	}
 
 	@Override
