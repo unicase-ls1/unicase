@@ -51,8 +51,8 @@ public class ContextComponent extends Composite {
 		meLabel.setImage(provider.getImage(context.getModelElement()));
 		meLabel.setText(DecisionUtil.cutString(provider.getText(context
 				.getModelElement()), 40, true));
-		meLabel.setToolTipText(context.getModelElementTitleLabel() + ": "
-				+ provider.getText(context.getModelElement()));
+		meLabel.setToolTipText(DecisionUtil.getClassAndName(context
+				.getModelElement()));
 		meLabel.setFont(fontRegistry.get("content"));
 		meLabel.setBackground(getBackground());
 
