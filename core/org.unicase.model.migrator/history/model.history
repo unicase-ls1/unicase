@@ -83,15 +83,15 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
-          referenceName="eAnnotations" element="#//@releases.0/@changes.20/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.20/@element"
+          referenceName="eAnnotations" element="#//@releases.0/@changes.18/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element"
             featureName="source" dataValue="teneo.jpa"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.20/@element"
-          referenceName="details" element="#//@releases.0/@changes.20/@element/@details.0">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.20/@element/@details.0"
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.18/@element"
+          referenceName="details" element="#//@releases.0/@changes.18/@element/@details.0">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element/@details.0"
             featureName="key" dataValue="value"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.20/@element/@details.0"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element/@details.0"
             featureName="value" dataValue="@Type(type=&quot;text&quot;)"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
@@ -305,13 +305,13 @@
             featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.2/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
-          element="model.ecore#//NonDomainElement">
-        <changes xsi:type="history:Set" element="model.ecore#//NonDomainElement" featureName="name"
-            dataValue="NonDomainElement"/>
-        <changes xsi:type="history:Set" element="model.ecore#//NonDomainElement" featureName="abstract"
-            dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="model.ecore#//NonDomainElement" featureName="interface"
-            dataValue="true" oldDataValue="false"/>
+          element="#//@releases.5/@changes.36/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.36/@element"
+            featureName="name" dataValue="NonDomainElement"/>
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.36/@element"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.36/@element"
+            featureName="interface" dataValue="true" oldDataValue="false"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
           element="#//@releases.0/@changes.5/@element">
@@ -3854,7 +3854,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Step" featureName="eSuperTypes"
             referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Step" featureName="eSuperTypes"
-            referenceValue="model.ecore#//NonDomainElement"/>
+            referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UseCase/useCaseSteps">
@@ -3918,7 +3918,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction"
-            featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Step" referenceName="eStructuralFeatures"
           element="model.ecore#//requirement/Step/includedSystemFunction">
@@ -3957,7 +3957,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask"
-            featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UseCase/realizedUserTask">
@@ -4084,7 +4084,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal"
-            featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Proposal"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Proposal/issue">
@@ -4157,7 +4157,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution"
-            featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Solution"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Solution/underlyingProposals">
@@ -4430,7 +4430,7 @@
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment"
-            featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Assessment"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Assessment/proposal">
@@ -4609,35 +4609,35 @@
             dataValue="org.unicase.model.rationale"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
-          element="model.ecore#//change/ModelChangePackage">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage"
+          element="#//@releases.5/@changes.2/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@element"
             featureName="name" dataValue="ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/ModelChangePackage"
+        <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@element"
             featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures"
-          element="model.ecore#//task/WorkItem/associatedChangePackages">
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
+          element="#//@releases.5/@changes.11/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.11/@element"
             featureName="name" dataValue="associatedChangePackages"/>
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.11/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/associatedChangePackages"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/associatedChangePackages"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.11/@element"
+            featureName="eType" referenceValue="#//@releases.5/@changes.2/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.5/@changes.11/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//change/ModelChangePackage"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/ModelChangePackage/sourceVersion">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/sourceVersion"
+      <changes xsi:type="history:Create" target="#//@releases.5/@changes.2/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.2/@element/sourceVersion">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@element/sourceVersion"
             featureName="name" dataValue="sourceVersion"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/sourceVersion"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@element/sourceVersion"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//change/ModelChangePackage"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/ModelChangePackage/targetVersion">
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/targetVersion"
+      <changes xsi:type="history:Create" target="#//@releases.5/@changes.2/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.2/@element/targetVersion">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@element/targetVersion"
             featureName="name" dataValue="targetVersion"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/ModelChangePackage/targetVersion"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@element/targetVersion"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4648,10 +4648,10 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Issue"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/resolvingRevision">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/resolvingRevision"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.3/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.3/@element"
             featureName="name" dataValue="resolvingRevision"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/resolvingRevision"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.3/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4662,23 +4662,23 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Proposal"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/conflictingProposals">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.4/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.4/@element"
             featureName="name" dataValue="conflictingProposals"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.4/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.4/@element"
             featureName="eType" referenceValue="model.ecore#//change/MergingProposal"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/conflictingProposals"
+        <changes xsi:type="history:Add" element="#//@releases.5/@changes.4/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingChanges">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingChanges"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.5/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.5/@element"
             featureName="name" dataValue="pendingChanges"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingChanges"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/pendingChanges"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.5/@element"
+            featureName="eType" referenceValue="#//@releases.5/@changes.2/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.5/@changes.5/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
@@ -4689,14 +4689,14 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Solution"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
-          referenceName="eStructuralFeatures" element="model.ecore#//change/MergingSolution/appliedChanges">
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
+          referenceName="eStructuralFeatures" element="#//@releases.5/@changes.6/@element">
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.6/@element"
             featureName="name" dataValue="appliedChanges"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.6/@element"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedChanges"
-            featureName="eType" referenceValue="model.ecore#//change/ModelChangePackage"/>
-        <changes xsi:type="history:Add" element="model.ecore#//change/MergingSolution/appliedChanges"
+        <changes xsi:type="history:Set" element="#//@releases.5/@changes.6/@element"
+            featureName="eType" referenceValue="#//@releases.5/@changes.2/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.5/@changes.6/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
@@ -6395,13 +6395,13 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/comments"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/associatedChangePackages"
+      <changes xsi:type="history:Remove" element="#//@releases.5/@changes.11/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingProposal/conflictingProposals"
+      <changes xsi:type="history:Remove" element="#//@releases.5/@changes.4/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingProposal/pendingChanges"
+      <changes xsi:type="history:Remove" element="#//@releases.5/@changes.5/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//change/MergingSolution/appliedChanges"
+      <changes xsi:type="history:Remove" element="#//@releases.5/@changes.6/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/packages"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
@@ -6529,11 +6529,12 @@
       <element xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
-        element="model.ecore#//Project"/>
-    <changes xsi:type="history:Set" element="model.ecore#//Project" featureName="name"
-        dataValue="Project"/>
-    <changes xsi:type="history:Add" element="model.ecore#//Project" featureName="eSuperTypes"
-        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+        element="model.ecore#//Project">
+      <changes xsi:type="history:Set" element="model.ecore#//Project" featureName="name"
+          dataValue="Project"/>
+      <changes xsi:type="history:Add" element="model.ecore#//Project" featureName="eSuperTypes"
+          referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </changes>
     <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement/description"
         referenceName="eAnnotations">
       <element xsi:type="ecore:EAnnotation" source="teneo.jpa">
@@ -6571,7 +6572,7 @@
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/containingWorkpackage"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/associatedChangePackages"
+      <changes xsi:type="history:Add" element="#//@releases.5/@changes.11/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/predecessors"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -6747,11 +6748,11 @@
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/commentedElement"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/conflictingProposals"
+      <changes xsi:type="history:Add" element="#//@releases.5/@changes.4/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingProposal/pendingChanges"
+      <changes xsi:type="history:Add" element="#//@releases.5/@changes.5/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//change/MergingSolution/appliedChanges"
+      <changes xsi:type="history:Add" element="#//@releases.5/@changes.6/@element"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/packages"
           featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -6838,7 +6839,7 @@
           featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </changes>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
-        referenceValue="model.ecore#//NonDomainElement"/>
+        referenceValue="#//@releases.5/@changes.36/@element"/>
   </releases>
   <releases date="2009-06-15T16:43:42.953+0200" label="2">
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;// change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xA;&#x9;if(isFeatureChange(operation, model.bug.BugReport.Status)) {&#xA;&#x9;&#x9;if(operation.newValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.FALSE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.TRUE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(operation.oldValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.TRUE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.FALSE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else {&#xA;&#x9;&#x9;&#x9;operation.delete()&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;&#xA;// metamodel adaptation&#xA;statusAttribute = model.bug.BugReport.Status&#xA;&#xA;newAttribute(model.bug.BugReport, &quot;done&quot;, emf.EBoolean, 0, 1, null)&#xA;statusAttribute.delete()&#xA;&#xA;// model migration&#xA;for(report in model.bug.BugReport.allInstances) {&#xA;&#x9;def status = report.unset(statusAttribute)&#xA;&#x9;if(status == model.bug.BugStatus.CLOSED) {&#xA;&#x9;&#x9;report.done = true&#xA;&#x9;}&#xA;&#x9;else {&#xA;&#x9;&#x9;report.done = false&#xA;&#x9;}&#xA;}">
@@ -6964,9 +6965,9 @@
     </changes>
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xD;&#xA; * &#xD;&#xA; * @param richText the input string&#xD;&#xA; * @return the converted HTML text&#xD;&#xA; */&#xD;&#xA;public static String getHTMLFromRichText(String richText) {&#xD;&#xA;&#x9;if (richText == null) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;String[] split = richText.split(&quot;%BEGINNTEXT%&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;if (split.length == 1) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;List&lt;Integer> bulletedLines = new ArrayList&lt;Integer>();&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;StringTokenizer stringTokenizer = new StringTokenizer(split[0], &quot;,&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;while (stringTokenizer.hasMoreElements()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String nextElement = (String) stringTokenizer.nextElement();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (nextElement.equals(&quot;;&quot;)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;bulletedLines.add(Integer.parseInt(nextElement));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String text = split[1];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// normalize line feeds&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\n\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r\n&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;String[] lines = text.split(&quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;StringBuilder newString = new StringBuilder();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (int i = 0; i &lt; lines.length; i++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (bulletedLines.contains(i)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;\n&lt;ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;br/>\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;String newDesc = newString.toString();&#xD;&#xA;&#x9;&#x9;&#x9;return newDesc;&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;//change migration&#xD;&#xA;getElementById = { id ->&#xD;&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xD;&#xA;&#x9;if(element == null) {&#xD;&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return element&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xD;&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xD;&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xD;&#xA;&#x9;&#x9;def element = getElementById(id)&#xD;&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xD;&#xA;&#x9;&#x9;&#x9;return true&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return false&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xD;&#xA;&#x9;if(isFeatureChange(operation, model.ModelElement.description)) {&#xD;&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// model migration&#xD;&#xA;for(m in model.ModelElement.allInstances) {&#xD;&#xA;&#x9;if(m.description != null) {&#xD;&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
     <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction"
-        featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+        featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
     <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask"
-        featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+        featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/initiatedUserTask"
           referenceName="eAnnotations" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%">
@@ -7306,5 +7307,381 @@
           featureName="name" dataValue="participatingActors" oldDataValue="participatingActor"/>
     </changes>
   </releases>
-  <releases/>
+  <releases date="2009-12-03T17:44:59.421+0100" label="4">
+    <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;/**&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xA; * &#xA; * @param richText the input string&#xA; * @return the converted HTML text&#xA; */&#xA;public static String getHTMLFromRichText(String text) {&#xA;&#x9;text = text.replaceAll(&quot;\n&quot;, &quot;&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;br>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;br\\/>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;li>&lt;P[^>]*>&quot;, &quot;\n  \u2022 &quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;P[^>]*>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;[^&lt;]*>&quot;, &quot;&quot;);&#xA;&#x9;text = text.replaceAll(&quot;\\&amp;nbsp;&quot;, &quot; &quot;);&#xA;&#x9;return text;&#xA;}&#xA;&#xA;//change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xA;&#x9;if(isFeatureChange(operation, model.ModelElement.description)) {&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;&#xA;// model migration&#xA;for(m in model.ModelElement.allInstances) {&#xA;&#x9;if(m.description != null) {&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xA;&#x9;}&#xA;}"/>
+  </releases>
+  <releases>
+    <changes xsi:type="history:Set" element="model.ecore#//change" featureName="nsPrefix"
+        dataValue="org.unicase.model.change" oldDataValue="org.unicase.model.rationale"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/MethodArgument/signature"
+        featureName="unique" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//change" referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="#//@releases.5/@changes.11/@element"
+          featureName="eType" oldReferenceValue="#//@releases.5/@changes.2/@element"/>
+      <changes xsi:type="history:Set" element="#//@releases.5/@changes.5/@element"
+          featureName="eType" oldReferenceValue="#//@releases.5/@changes.2/@element"/>
+      <changes xsi:type="history:Set" element="#//@releases.5/@changes.6/@element"
+          featureName="eType" oldReferenceValue="#//@releases.5/@changes.2/@element"/>
+      <element xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="model.ecore#//UnicaseModelElement">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </element>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EAttribute" name="resolvingRevision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="conflictingProposals" upperBound="-1"
+          eType="ecore:EClass model.ecore#//change/MergingProposal" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="pendingChanges" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingOperations">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
+          featureName="name" dataValue="pendingOperations"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/baseVersion">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="name" dataValue="baseVersion"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
+          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/targetVersion">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
+          featureName="name" dataValue="targetVersion"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//change/MergingSolution"
+        referenceName="eStructuralFeatures" element="model.ecore#//change/MergingSolution/appliedOperations">
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
+          featureName="name" dataValue="appliedOperations"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="associatedChangePackages" upperBound="-1"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes" referenceName="eClassifiers"
+        element="model.ecore#//classes/Enumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration"
+          featureName="name" dataValue="Enumeration"/>
+      <changes xsi:type="history:Add" element="model.ecore#//classes/Enumeration"
+          featureName="eSuperTypes" referenceValue="model.ecore#//classes/PackageElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes" referenceName="eClassifiers"
+        element="model.ecore#//classes/InstantiationType">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType"
+          featureName="name" dataValue="InstantiationType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/InstantiationType"
+        referenceName="eLiterals" element="model.ecore#//classes/InstantiationType/Concrete">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType/Concrete"
+          featureName="name" dataValue="Concrete"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/InstantiationType"
+        referenceName="eLiterals" element="model.ecore#//classes/InstantiationType/Abstract">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType/Abstract"
+          featureName="name" dataValue="Abstract"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType/Abstract"
+          featureName="value" dataValue="1" oldDataValue="0"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/InstantiationType"
+        referenceName="eLiterals" element="model.ecore#//classes/InstantiationType/Interface">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType/Interface"
+          featureName="name" dataValue="Interface"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/InstantiationType/Interface"
+          featureName="value" dataValue="2" oldDataValue="0"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Class" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Class/instantiationType">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instantiationType"
+          featureName="name" dataValue="instantiationType"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instantiationType"
+          featureName="eType" referenceValue="model.ecore#//classes/InstantiationType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes" referenceName="eClassifiers"
+        element="model.ecore#//classes/PrimitiveType">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType"
+          featureName="name" dataValue="PrimitiveType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/String">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/String"
+          featureName="name" dataValue="String"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/String"
+          featureName="literal" dataValue="String"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/Boolean">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Boolean"
+          featureName="name" dataValue="Boolean"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Boolean"
+          featureName="value" dataValue="1" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Boolean"
+          featureName="literal" dataValue="Boolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/Integer">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Integer"
+          featureName="name" dataValue="Integer"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Integer"
+          featureName="value" dataValue="2" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Integer"
+          featureName="literal" dataValue="Integer"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/Date">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Date"
+          featureName="name" dataValue="Date"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Date"
+          featureName="value" dataValue="3" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Date"
+          featureName="literal" dataValue="Date"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/Double">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Double"
+          featureName="name" dataValue="Double"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Double"
+          featureName="value" dataValue="4" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Double"
+          featureName="literal" dataValue="Double"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/PrimitiveType"
+        referenceName="eLiterals" element="model.ecore#//classes/PrimitiveType/Enumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Enumeration"
+          featureName="name" dataValue="Enumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Enumeration"
+          featureName="value" dataValue="5" oldDataValue="0"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/PrimitiveType/Enumeration"
+          featureName="literal" dataValue="Enumeration"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Attribute" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Attribute/id">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/id"
+          featureName="name" dataValue="id"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/id"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Attribute" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Attribute/implementationType">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationType"
+          featureName="name" dataValue="implementationType"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationType"
+          featureName="eType" referenceValue="model.ecore#//classes/PrimitiveType"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Attribute" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Attribute/implementationEnumeration">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationEnumeration"
+          featureName="eType" referenceValue="model.ecore#//classes/Enumeration"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationEnumeration"
+          featureName="name" dataValue="implementationEnumeration"/>
+      <changes xsi:type="history:Add" element="model.ecore#//classes/Attribute/implementationEnumeration"
+          featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Create" target="model.ecore#//classes/Enumeration"
+          referenceName="eStructuralFeatures" element="model.ecore#//classes/Enumeration/attributes">
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/attributes"
+            featureName="name" dataValue="attributes"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/attributes"
+            featureName="eType" referenceValue="model.ecore#//classes/Attribute"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/attributes"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/attributes"
+            featureName="eOpposite" referenceValue="model.ecore#//classes/Attribute/implementationEnumeration"/>
+      </changes>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationEnumeration"
+          featureName="eOpposite" referenceValue="model.ecore#//classes/Enumeration/attributes"/>
+      <operation name="newOppositeReference">
+        <parameters name="reference">
+          <referenceValue element="model.ecore#//classes/Attribute/implementationEnumeration"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>attributes</dataValue>
+        </parameters>
+        <parameters name="lowerBound">
+          <dataValue>0</dataValue>
+        </parameters>
+        <parameters name="upperBound">
+          <dataValue>-1</dataValue>
+        </parameters>
+        <parameters name="changeable">
+          <dataValue>true</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//classes/Enumeration/attributes"
+        featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Attribute" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Attribute/transient">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/transient"
+          featureName="name" dataValue="transient"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/transient"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Association"
+        referenceName="eStructuralFeatures" element="model.ecore#//classes/Association/transient">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Association/transient"
+          featureName="name" dataValue="transient"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Association/transient"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes" referenceName="eClassifiers"
+        element="model.ecore#//classes/Literal">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Literal" featureName="name"
+          dataValue="Literal"/>
+      <changes xsi:type="history:Add" element="model.ecore#//classes/Literal" featureName="eSuperTypes"
+          referenceValue="model.ecore#//UnicaseModelElement"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Enumeration"
+        referenceName="eStructuralFeatures" element="model.ecore#//classes/Enumeration/literals">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
+          featureName="name" dataValue="literals"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
+          featureName="eType" referenceValue="model.ecore#//classes/Literal"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Add" element="model.ecore#//classes/Enumeration/literals"
+          featureName="eKeys" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Create" target="model.ecore#//classes/Literal" referenceName="eStructuralFeatures"
+          element="model.ecore#//classes/Literal/enumeration">
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Literal/enumeration"
+            featureName="name" dataValue="enumeration"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Literal/enumeration"
+            featureName="eType" referenceValue="model.ecore#//classes/Enumeration"/>
+        <changes xsi:type="history:Set" element="model.ecore#//classes/Literal/enumeration"
+            featureName="eOpposite" referenceValue="model.ecore#//classes/Enumeration/literals"/>
+      </changes>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
+          featureName="eOpposite" referenceValue="model.ecore#//classes/Literal/enumeration"/>
+      <operation name="newOppositeReference">
+        <parameters name="reference">
+          <referenceValue element="model.ecore#//classes/Enumeration/literals"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>enumeration</dataValue>
+        </parameters>
+        <parameters name="lowerBound">
+          <dataValue>0</dataValue>
+        </parameters>
+        <parameters name="upperBound">
+          <dataValue>1</dataValue>
+        </parameters>
+        <parameters name="changeable">
+          <dataValue>true</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//classes/Literal" referenceName="eStructuralFeatures"
+        element="model.ecore#//classes/Literal/literal">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Literal/literal"
+          featureName="name" dataValue="literal"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Literal/literal"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eClassifiers">
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step"
+          featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal"
+          featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution"
+          featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment"
+          featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment"
+          featureName="eSuperTypes" referenceValue="#//@releases.5/@changes.36/@element"/>
+      <element xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue" referenceName="eStructuralFeatures"
+        element="model.ecore#//rationale/Issue/assessments">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="derived" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="volatile" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="changeable" dataValue="false" oldDataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="eType" referenceValue="model.ecore#//rationale/Assessment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="name" dataValue="assessments"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments"
+          featureName="transient" dataValue="true" oldDataValue="false"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments"
+        referenceName="eAnnotations" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+          featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+          featureName="key" dataValue="priority"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.0"
+          featureName="value" dataValue="30"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1"
+          featureName="key" dataValue="position"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/assessments/%org.unicase.ui.meeditor%/@details.1"
+          featureName="value" dataValue="bottom"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/useCaseSteps"
+        referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%"
+          featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.0">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.0"
+          featureName="key" dataValue="priority"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.0"
+          featureName="value" dataValue="10.1"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.1">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.1"
+          featureName="key" dataValue="position"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.1"
+          featureName="value" dataValue="bottom"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/sourceRole"
+        featureName="defaultValueLiteral" oldDataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/targetRole"
+        featureName="defaultValueLiteral" oldDataValue="1"/>
+  </releases>
 </history:History>
