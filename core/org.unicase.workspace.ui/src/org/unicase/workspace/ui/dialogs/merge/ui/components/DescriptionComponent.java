@@ -32,6 +32,7 @@ public class DescriptionComponent extends Composite {
 		Label image = new Label(this, SWT.NONE);
 		image.setImage(DecisionUtil.getImage(conflict.getConflictDescription()
 				.getImage()));
+		image.setToolTipText(conflict.getClass().getSimpleName());
 		image.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
 		image.setBackground(parent.getBackground());
 

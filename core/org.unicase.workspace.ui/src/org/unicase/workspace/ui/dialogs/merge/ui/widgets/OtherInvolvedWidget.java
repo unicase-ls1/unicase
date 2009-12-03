@@ -37,7 +37,6 @@ public class OtherInvolvedWidget extends Composite {
 				.getChangePackageVisualizationHelper();
 
 		for (AbstractOperation ao : option.getOperations()) {
-
 			Image image = visualizationHelper.getImage(DecisionUtil
 					.getAdapterFactory(), ao);
 
