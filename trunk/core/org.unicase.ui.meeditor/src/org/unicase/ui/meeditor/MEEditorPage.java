@@ -131,11 +131,11 @@ public class MEEditorPage extends FormPage {
 		toolkit.decorateFormHeading(form.getForm());
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
-		SashForm globalSash = new SashForm(body, SWT.VERTICAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(globalSash);
-		toolkit.adapt(globalSash, true, true);
+		Composite topComposite = toolkit.createComposite(body);
+		topComposite.setLayout(new GridLayout());
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
 
-		SashForm topSash = new SashForm(globalSash, SWT.HORIZONTAL);
+		SashForm topSash = new SashForm(topComposite, SWT.HORIZONTAL);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topSash);
 		toolkit.adapt(topSash, true, true);
 		topSash.setSashWidth(4);
@@ -153,15 +153,13 @@ public class MEEditorPage extends FormPage {
 		int[] topWeights = { 50, 50 };
 		topSash.setWeights(topWeights);
 
-		bottomComposite = toolkit.createComposite(globalSash);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 5, 5).applyTo(
+		bottomComposite = toolkit.createComposite(topComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0).applyTo(
 			bottomComposite);
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottomComposite);
-
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(bottomComposite);
 		// updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
-
 		// Sort and order attributes
 		sortAndOrderAttributes();
 		// Create attributes
@@ -291,8 +289,8 @@ public class MEEditorPage extends FormPage {
 					editingDomain, toolkit);
 				control.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
-				GridDataFactory.fillDefaults().span(2, 1).grab(true, false).align(SWT.FILL, SWT.BEGINNING)
-					.indent(10, 0).applyTo(control);
+				GridDataFactory.fillDefaults().span(2, 1).grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0)
+					.applyTo(control);
 			}
 			if (itemPropertyDescriptor.getFeature(modelElement) == problemFeature) {
 				ControlDecoration dec = new ControlDecoration(control, SWT.TOP | SWT.LEFT);
@@ -330,24 +328,5 @@ public class MEEditorPage extends FormPage {
 			}
 		}
 	}
-
-	// FIXME AS JH: add as a derived feature
-
-	// private void createSpecificMEControls() {
-	// if (this.modelElement instanceof Issue) {
-	// AbstractMEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl(
-	// (Issue) this.modelElement, toolkit, editingDomain);
-	// if (meControl != null) {
-	// meControls.add(meControl);
-	// Control control;
-	// control = meControl.createControl(bottomComposite, SWT.WRAP);
-	// // control.setLayoutData(new
-	// // TableWrapData(TableWrapData.FILL_GRAB));
-	// GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).indent(10, 0)
-	// .applyTo(control);
-	// }
-	// }
-	//
-	// }
 
 }
