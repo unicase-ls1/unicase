@@ -36,6 +36,8 @@ public class MEIntControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) feature;
 		spinner = new Spinner(parent, style);
 		spinner.setMinimum(-1000);
 		spinner.setMaximum(1000);
@@ -50,7 +52,7 @@ public class MEIntControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(int.class)) {
-			this.attribute = (EAttribute) feature;
+
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;

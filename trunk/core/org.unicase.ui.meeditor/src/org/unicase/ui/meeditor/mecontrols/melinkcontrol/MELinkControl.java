@@ -42,15 +42,16 @@ import org.unicase.ui.common.util.ModelElementClassTooltip;
  */
 public class MELinkControl {
 
-	private Composite linkComposite;
+	protected Composite linkComposite;
 	private EReference eReference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
 	private ModelElementChangeListener observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
-	private ModelElement link;
-	private ModelElement contextModelElement;
+	protected ModelElement link;
+	protected ModelElement contextModelElement;
+	protected FormToolkit toolkit;
 
 	/**
 	 * {@inheritDoc}
@@ -61,9 +62,34 @@ public class MELinkControl {
 		this.eReference = (EReference) feature;
 		this.link = link;
 		this.contextModelElement = contextModelElement;
+		this.toolkit = toolkit;
+		return createControl(parent, style);
 
+	}
+
+	protected Control createControl(final Composite parent, int style) {
 		linkComposite = toolkit.createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
+
+		createHyperlink(parent, style);
+		createDeleteAction(style);
+		return linkComposite;
+	}
+
+	protected void createDeleteAction(int style) {
+		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
+		Image deleteImage = null;
+		if (eReference.isContainment() && (link instanceof NonDomainElement)) {
+			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
+		} else {
+			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
+		}
+		deleteLink.setImage(deleteImage);
+
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link));
+	}
+
+	protected void createHyperlink(final Composite parent, int style) {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -113,18 +139,6 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-
-		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
-		Image deleteImage = null;
-		if (eReference.isContainment() && (link instanceof NonDomainElement)) {
-			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
-		} else {
-			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
-		}
-		deleteLink.setImage(deleteImage);
-
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link));
-		return linkComposite;
 	}
 
 	private void updateIcon() {

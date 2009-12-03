@@ -104,6 +104,9 @@ public class ControlFactory {
 		}
 		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
 		AbstractMEControl ret = null;
+		if (control == null) {
+			return null;
+		}
 		try {
 			ret = control.getClass().newInstance();
 			ret.setShowLabel(control.getShowLabel());
@@ -146,6 +149,9 @@ public class ControlFactory {
 		}
 		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
 		AbstractMEControl ret = null;
+		if (control == null) {
+			return null;
+		}
 		try {
 			ret = control.getClass().newInstance();
 			ret.setShowLabel(control.getShowLabel());
