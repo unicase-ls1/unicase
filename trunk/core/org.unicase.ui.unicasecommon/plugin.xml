@@ -169,6 +169,11 @@
             id="org.unicase.ui.common.modifyModelelement"
             name="Modify Modelelement">
       </category>
+      <command
+            defaultHandler="org.unicase.ui.unicasecommon.common.commands.OpenModelElementDiscussionHandler"
+            id="org.unicase.ui.meeditor.openModelElementDiscussion"
+            name="Open Discussion">
+      </command>
    </extension>
     <!--    -->
 

@@ -49,7 +49,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class METhreadPage extends AbstractMEEditorPage implements MECommentWidgetListener {
 	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.methreadpage";
-	private static final String NAME = "Comment Thread";
+	private static final String NAME = "Discussion";
 	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 
