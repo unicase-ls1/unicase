@@ -22,8 +22,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.util.MalformedModelVersionException;
+import org.unicase.metamodel.util.ModelUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
@@ -44,10 +45,17 @@ public class MigrationManager {
 	 * @throws FatalEmfStoreException in case of failure
 	 */
 	public void migrateModel() throws FatalEmfStoreException {
+		int modelVersionNumber;
+		try {
+			modelVersionNumber = ModelUtil.getModelVersionNumber();
+		} catch (MalformedModelVersionException e1) {
+			throw new FatalEmfStoreException(e1);
+		}
+
 		// check for legacy server space
 		File versionFile = new File(ServerConfiguration.getModelReleaseNumberFileName());
 		if (!versionFile.exists()) {
-			stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
+			stampCurrentVersionNumber(modelVersionNumber);
 		}
 
 		// check if we need to migrate
@@ -66,7 +74,7 @@ public class MigrationManager {
 			modelVersion.setReleaseNumber(3);
 		}
 
-		if (modelVersion.getReleaseNumber() == MetamodelPackage.RELEASE_NUMBER) {
+		if (modelVersion.getReleaseNumber() == modelVersionNumber) {
 			return;
 		}
 
@@ -105,7 +113,7 @@ public class MigrationManager {
 				// convertAllBackupStates(modelVersion, projectDirectory, listFiles);
 			}
 		}
-		stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
+		stampCurrentVersionNumber(modelVersionNumber);
 	}
 
 	private void convertInitialProjectState(ModelVersion modelVersion, File projectDirectory)

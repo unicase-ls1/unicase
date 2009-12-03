@@ -20,11 +20,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.MalformedModelVersionException;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
@@ -178,7 +179,13 @@ public final class WorkspaceManager {
 			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
 				+ Configuration.getWorkspaceDirectory(), e);
 		}
-		stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
+		int modelVersionNumber;
+		try {
+			modelVersionNumber = ModelUtil.getModelVersionNumber();
+			stampCurrentVersionNumber(modelVersionNumber);
+		} catch (MalformedModelVersionException e1) {
+			WorkspaceUtil.logException("Loading model version failed!", e1);
+		}
 		return workspace;
 	}
 
@@ -198,9 +205,17 @@ public final class WorkspaceManager {
 
 	private void migrateModel(ResourceSet resourceSet, TransactionalEditingDomain domain) {
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
-		if (workspaceModelVersion.getReleaseNumber() == MetamodelPackage.RELEASE_NUMBER) {
+		int modelVersionNumber;
+		try {
+			modelVersionNumber = ModelUtil.getModelVersionNumber();
+			stampCurrentVersionNumber(modelVersionNumber);
+		} catch (MalformedModelVersionException e1) {
+			WorkspaceUtil.logException("Loading model version failed, migration skipped!", e1);
 			return;
-		} else if (workspaceModelVersion.getReleaseNumber() > MetamodelPackage.RELEASE_NUMBER) {
+		}
+		if (workspaceModelVersion.getReleaseNumber() == modelVersionNumber) {
+			return;
+		} else if (workspaceModelVersion.getReleaseNumber() > modelVersionNumber) {
 			backupAndRecreateWorkspace(resourceSet, domain);
 			WorkspaceUtil.logException("Model conforms to a newer version, update client! New workspace was backuped!",
 				new IllegalStateException());
@@ -243,7 +258,7 @@ public final class WorkspaceManager {
 				}
 			}
 		}
-		stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
+		stampCurrentVersionNumber(modelVersionNumber);
 	}
 
 	private void backupAndRecreateWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {
@@ -276,7 +291,13 @@ public final class WorkspaceManager {
 		// check for legacy workspace
 		File versionFile = new File(Configuration.getModelReleaseNumberFileName());
 		if (!versionFile.exists()) {
-			stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
+			int modelVersionNumber;
+			try {
+				modelVersionNumber = ModelUtil.getModelVersionNumber();
+				stampCurrentVersionNumber(modelVersionNumber);
+			} catch (MalformedModelVersionException e1) {
+				WorkspaceUtil.logException("Loading model version failed!", e1);
+			}
 		}
 
 		// check if we need to migrate

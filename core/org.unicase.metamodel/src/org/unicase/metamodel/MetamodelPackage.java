@@ -250,8 +250,6 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
-	int RELEASE_NUMBER = 3;
-	
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
 	
 	/**
