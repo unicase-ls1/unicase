@@ -678,6 +678,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		addAnnotation(getIssue_Solution(), source, new String[] { "priority", "20.0", "position", "left" });
 		addAnnotation(getIssue_Criteria(), source, new String[] { "priority", "22.0", "position", "left" });
 		addAnnotation(getIssue_Activity(), source, new String[] { "priority", "9.5", "position", "left" });
+		addAnnotation(getIssue_Assessments(), source, new String[] { "priority", "30", "position", "bottom" });
 		addAnnotation(getProposal_Assessments(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getProposal_Issue(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getSolution_UnderlyingProposals(), source,

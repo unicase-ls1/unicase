@@ -1084,7 +1084,12 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
           eType="#//rationale/Assessment" changeable="false" volatile="true" transient="true"
-          derived="true"/>
+          derived="true">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="30"/>
+          <details key="position" value="bottom"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
