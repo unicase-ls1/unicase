@@ -286,6 +286,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_UseCaseSteps()
 	 * @see org.unicase.model.requirement.Step#getUseCase
 	 * @model opposite="useCase" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.1' position='bottom'"
 	 * @generated
 	 */
 	EList<Step> getUseCaseSteps();
