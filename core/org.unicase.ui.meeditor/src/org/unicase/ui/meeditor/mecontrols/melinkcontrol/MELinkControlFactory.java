@@ -45,8 +45,7 @@ public class MELinkControlFactory {
 
 	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link,
 		ModelElement contextModelElement) {
-		Object feature = itemPropertyDescriptor.getFeature(contextModelElement);
-		ArrayList<MELinkControl> candidates = controlRegistry.get(feature);
+		ArrayList<MELinkControl> candidates = controlRegistry.get(link);
 		if (candidates != null) {
 			MELinkControl control = getBestCandidate(candidates, itemPropertyDescriptor, contextModelElement,
 				contextModelElement);

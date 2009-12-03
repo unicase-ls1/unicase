@@ -3,10 +3,10 @@
 <schema targetNamespace="org.unicase.ui.meeditor" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.attributecontrols" name="org.unicase.ui.meeditor.attributecontrols"/>
+         <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension point is used to add new or replace existing controls in the MEEditor, which render reference attributes, single or multi.
       </documentation>
    </annotation>
 
@@ -69,10 +69,10 @@
          <attribute name="type" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The type of the opposite element of a reference.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EReference"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.metamodel.ModelElement"/>
                </appinfo>
             </annotation>
          </attribute>
