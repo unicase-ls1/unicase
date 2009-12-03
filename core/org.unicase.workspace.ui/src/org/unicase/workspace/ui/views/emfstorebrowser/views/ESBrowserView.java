@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
@@ -235,8 +236,7 @@ public class ESBrowserView extends ViewPart {
 				try {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask(
-							"Checkout project...", 100);
-					progressDialog.getProgressMonitor().worked(10);
+							"Checkout project...", IProgressMonitor.UNKNOWN);
 					ProjectSpace projectSpace = contentProvider
 							.getProjectServerMap().get(element)
 							.getLastUsersession().checkout(element);
