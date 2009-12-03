@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -494,7 +495,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
 		// delete all non containment cross references to other elments
 		for (EReference reference : modelElement.eClass().getEAllReferences()) {
-			if (!reference.isContainer() && !reference.isContainment()) {
+			EClassifier eType = reference.getEType();
+			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
+				continue;
+			}
+				
+			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass)eType)) {
 				modelElement.eUnset(reference);
 			}
 		}
