@@ -241,18 +241,6 @@
      
      
      <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.unicase.ui.common.UnicaseToolbar">
-           <command
-                 commandId="org.unicase.ui.common.handlers.open_me_ID"
-                 icon="icons/ModelElement.png"
-                 style="push"
-                 tooltip="Shows open model element dialog">
-           </command>
-        </toolbar>
-     </menuContribution>
-     <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
         <command
               commandId="org.unicase.ui.navigator.followupMeeting"
@@ -582,15 +570,6 @@
               name="org.unicase.ui.common.commands.annotateActionItemSeperator"
               visible="true">
         </separator>
-     </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
-        <command
-              commandId="org.unicase.ui.common.handlers.open_me_ID"
-              icon="icons/ModelElement.png"
-              style="push"
-              tooltip="Shows open model element dialog">
-        </command>
      </menuContribution>
      <menuContribution
            locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
