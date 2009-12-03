@@ -122,7 +122,7 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SOURCE_ROLE_EDEFAULT = "1";
+	protected static final String SOURCE_ROLE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -142,7 +142,7 @@ public class AssociationImpl extends UnicaseModelElementImpl implements Associat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TARGET_ROLE_EDEFAULT = "1";
+	protected static final String TARGET_ROLE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute. <!-- begin-user-doc --> <!--
