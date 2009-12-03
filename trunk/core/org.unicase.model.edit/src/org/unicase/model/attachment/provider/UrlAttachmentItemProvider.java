@@ -87,9 +87,7 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UrlAttachment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UrlAttachment_type")
-			: getString("_UI_UrlAttachment_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
