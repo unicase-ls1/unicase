@@ -34,9 +34,16 @@ public final class LinkTrigger {
 	 */
 	public static final String APPLICATION_ID = "org.unicase.link";
 	
-	private static LinkTrigger instance; 
+	/** 
+	 * Prefix of UNICASE links. Example Link: <br/>
+	 * unicase://localhost:1099/My-Project-1%_VDIRUdqAEd60k9Qw1XsJiA/ActionItem-1%_p-c0sNqAEd6PJoFq3iT2Rg 
+	 */
+	public static final String UNICASE_LINK_PREFIX = "unicase://";
+	
+	
 	private String handedUrl;
 	
+	private static LinkTrigger instance; 
 	
 	private URLMessageHandler urlMessageHandler; 
 	
@@ -71,38 +78,6 @@ public final class LinkTrigger {
 	}
 	
 	/**
-	 * Locks the application id and sets up a trigger to get arguments from
-	 * other run attempts of UNICASE.
-	 * 
-	 * @return true if id is not locked. Otherwise, false
-	 */
-	private boolean setup() {
-		boolean isRunning = false;
-		try {
-			JUnique.acquireLock(APPLICATION_ID, getInstance().getUrlMessageHandler());
-			isRunning = true;
-		} catch (AlreadyLockedException e) {
-			// One instance of an application is still running.
-			isRunning = false;
-		}
-		final String[] args = Platform.getCommandLineArgs();
-		/* 
-		 * if you run UNICASE in eclipse, eclipse adds two extra arguments.
-		 * Therefore, our link argument is third argument. This can be different
-		 * when we export UNICASE as a stand alone application.It wasn't tested
-		 * yet. Because, I couldn't export UNICASE as stand alone application.
-		*/ 
-		if (args.length == 3) {
-			if (isRunning) {
-				handedUrl = args[2];
-			} else {
-				JUnique.sendMessage(APPLICATION_ID, args[2]);
-			}
-		}
-		return isRunning;
-	}
-
-	/**
 	 * Returns the URL Message handler of this LinkTrigger.
 	 * The message handler implements the Observable interface
 	 * and will notify any observers whenever a UNICASE URL is received.
@@ -110,6 +85,61 @@ public final class LinkTrigger {
 	 */
 	public URLMessageHandler getUrlMessageHandler() {
 		return urlMessageHandler;
+	}
+	
+	/**
+	 * Locks the application id and sets up a trigger to get arguments from
+	 * other run attempts of UNICASE.
+	 * 
+	 * @return false if id was not locked. Otherwise, false
+	 */
+	private void setup() {
+		boolean isAlreadyRunning = false;
+		try {
+			JUnique.acquireLock(APPLICATION_ID, getInstance().getUrlMessageHandler());
+		} catch (AlreadyLockedException e) {
+			// One instance of an UNICASE is already running.
+			isAlreadyRunning = true;
+		}
+		String linkArgument = null;
+		final String[] args = Platform.getCommandLineArgs();
+		// Checks all arguments and get first one which starts with 
+		// UNICASE link prefix (unicase://)
+		for(int i=0; i < args.length; i++) {
+			if(args[i].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
+				linkArgument = args[i];
+				break;
+			}
+		}
+
+		/* 
+		 * if UNICASE is already running, we should send link argument from
+		 * second instance to first one. Then, we should not let to run 
+		 * second instance. Second instance should kill itself.
+		 */ 
+		if (isAlreadyRunning) {
+			if (linkArgument != null) {
+				JUnique.sendMessage(APPLICATION_ID, linkArgument);
+				System.exit(-10);
+			}
+		} 
+		/* If UNICASE is not running, we let this instance to run.  */ 
+		else {
+			/* 
+			 * If it is started with link argument, we will open model 
+			 * element which is defined in the link. Therefore, we assign
+			 * link argument to the handledUrl variable. handledUrl will 
+			 * be checked in link plugin to to open element.
+			 */
+			if (linkArgument != null) {
+				handedUrl = linkArgument;
+			} else {
+				/*
+				 * If there is not any argument, we let it run without 
+				 * doing anything special.
+				 */
+			}
+		}
 	}
 
 }

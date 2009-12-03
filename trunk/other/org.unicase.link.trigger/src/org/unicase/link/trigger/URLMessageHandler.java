@@ -6,7 +6,6 @@
 package org.unicase.link.trigger;
 
 import java.util.Observable;
-import java.util.StringTokenizer;
 
 
 import it.sauronsoftware.junique.MessageHandler;
@@ -28,21 +27,15 @@ public class URLMessageHandler extends Observable implements MessageHandler {
 	}
 	
 	/**
-	 * Delegates the message(URL) handling to <code>URLEvaluator</code> class.
+	 * Notifies the observers.
 	 * 
 	 * @see it.sauronsoftware.junique.MessageHandler#handle(java.lang.String)
 	 * @param message is an argument which is send by other instance of UNICASE.
 	 * @return TODO: javadoc for return
 	 */
 	public String handle(final String message) {
-		StringTokenizer strTokenizer = new StringTokenizer(message, " ");
-
-		if (strTokenizer.countTokens() == 1) {
-			super.setChanged();
-			super.notifyObservers(message);
-		} else {
-			// TODO: return an error message??
-		}
+		super.setChanged();
+		super.notifyObservers(message);
 		return null;
 	}
 
