@@ -51,8 +51,6 @@ public class MEIntControlTest extends MeControlTest {
 		runAsnc(unicaseCommand);
 		
 		getBot().sleep(2000);
-		getBot().activeEditor().close();
-		openModelElement(actionItem);
 		int temporary = getBot().activeEditor().bot().spinnerWithLabel("Priority").getSelection();
 		assertEquals(selection, temporary);
 		
@@ -65,9 +63,9 @@ public class MEIntControlTest extends MeControlTest {
 	public void testSetPriorityOfActionItem() {
 		openModelElement(actionItem);
 		final int selection = 5;
-		getBot().activeEditor().bot().spinnerWithLabel("Priority").pressShortcut(5,'5');
+		getBot().activeEditor().bot().spinnerWithLabel("Priority").setSelection(selection);
 		getBot().sleep(2000);
-		openModelElement(actionItem);
+		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
