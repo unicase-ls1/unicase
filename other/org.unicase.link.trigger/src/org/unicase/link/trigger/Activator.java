@@ -64,6 +64,6 @@ public class Activator extends Plugin implements IStartup {
 	 * Creates an instance of LinkTrigger and sets it up.
 	 */
 	public void earlyStartup() {
-		LinkTrigger.getInstance();
+		// LinkTrigger.getInstance();
 	}
 }
