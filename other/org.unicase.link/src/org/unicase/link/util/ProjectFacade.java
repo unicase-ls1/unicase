@@ -5,7 +5,9 @@
  */
 package org.unicase.link.util;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -17,6 +19,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.link.handlers.CheckoutProjectHandler;
+import org.unicase.link.handlers.ProjectInfoLoadingHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -30,7 +33,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * it has been checked out or not.
  * 
  * @author emueller
- * @author svetlana
+ * @author svetlana nogina
  */
 public final class ProjectFacade {
 	
@@ -98,16 +101,44 @@ public final class ProjectFacade {
 			EList<ProjectInfo> projectInfos = null;
 
 			for (ServerInfo server: serverInfos) {
-				// TODO: projectInfos still might be null
 				
 				projectInfos =  server.getProjectInfos();
 				Usersession currSession = getUsersessions(server);
 				
-				if (projectInfos == null) {
-					continue;
-				} 
+				List<ProjectInfo> projectList  = null;
 
-				for (final ProjectInfo project: projectInfos) {
+				if (projectInfos == null || projectInfos.size() == 0) {
+					
+					// if there are no saved projectInfos for server, load them 
+					final ProjectInfoLoadingHandler infoLoadHandler = new ProjectInfoLoadingHandler(currSession);
+					
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							try {
+								infoLoadHandler.execute(new ExecutionEvent());
+								
+							} catch (ExecutionException e) {
+								MessageDialog.openError(
+										PlatformUI.getWorkbench()
+										.getActiveWorkbenchWindow().getShell(),
+										"Error",
+								"An error occured while loading the project info.");
+								WorkspaceUtil.logException("ProjectInfo loading error", e);
+							}
+						}
+					});
+					
+					projectList = infoLoadHandler.getProjectList();
+			
+				} 
+				else{
+					projectList = new ArrayList<ProjectInfo>();
+					for(ProjectInfo projectInfo : projectInfos){
+						projectList.add(projectInfo);
+					}
+				}
+
+				for (final ProjectInfo project: projectList) {
 
 					if(!project.getProjectId().getId().
 							equals(url.getProjectUrlFragment().getProjectId().getId())) {
