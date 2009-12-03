@@ -26,7 +26,6 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.AttributeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.CompositeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.DeletionConflict;
@@ -267,26 +266,24 @@ public class DecisionManager {
 				}
 			}
 		}
-		ArrayList<ConflictOption> extraActions = new ArrayList<ConflictOption>();
+
+		// Collect other accepted, which were generated in the merge process
 		for (Conflict conflict : conflicts) {
-			// Collect other accepted, which were generated in the merge process
 			for (AbstractOperation ao : conflict.getAcceptedMine()) {
 				if (!acceptedMine.contains(ao)) {
 					acceptedMine.add(ao);
 				}
 			}
-			List<AbstractOperation> rejected = conflict.getRejectedTheirs();
-			if (rejected.size() > 0) {
-				rejectedTheirs.addAll(rejected);
-			}
-
-			if (conflict.getSolution().hasExtraResultAction()) {
-				extraActions.add(conflict.getSolution());
-			}
 		}
 
-		for (ConflictOption solution : extraActions) {
-			solution.callResultAction();
+		for (ChangePackage theirCP : theirChangePackages) {
+			for (AbstractOperation theirOp : theirCP.getOperations()) {
+				for (Conflict conflict : conflicts) {
+					if (conflict.getRejectedTheirs().contains(theirOp)) {
+						rejectedTheirs.add(theirOp);
+					}
+				}
+			}
 		}
 	}
 
