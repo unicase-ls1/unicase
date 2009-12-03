@@ -36,41 +36,6 @@
      <menuContribution
            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
         <command
-              commandId="org.unicase.ui.common.commands.annotateActionItem"
-              icon="icons/ActionItem.png"
-              label="Add Action Item"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <with
-                    variable="activeModelelement">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </with>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.commands.annotateIssue"
-              icon="icons/Issue.gif"
-              label="Add Issue"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <with
-                    variable="activeModelelement">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </with>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
-              icon="icons/subscribe.png"
-              label="Subscribe for this ModelElement">
-        </command>
-        <command
               commandId="org.unicase.ui.common.deleteModelelement"
               icon="icons/delete.gif"
               label="Delete"
