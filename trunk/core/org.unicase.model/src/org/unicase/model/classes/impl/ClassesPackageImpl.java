@@ -1234,10 +1234,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEAttribute(getAssociation_TargetMultiplicity(), ecorePackage.getEString(), "targetMultiplicity", "1", 0, 1,
 			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_SourceRole(), ecorePackage.getEString(), "sourceRole", "1", 0, 1,
+		initEAttribute(getAssociation_SourceRole(), ecorePackage.getEString(), "sourceRole", null, 0, 1,
 			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_TargetRole(), ecorePackage.getEString(), "targetRole", "1", 0, 1,
+		initEAttribute(getAssociation_TargetRole(), ecorePackage.getEString(), "targetRole", null, 0, 1,
 			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_Transient(), ecorePackage.getEBoolean(), "transient", null, 0, 1,

@@ -8360,5 +8360,13 @@
     </changes>
     <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps/%org.unicase.ui.meeditor%/@details.1"
         featureName="value" dataValue="bottom" oldDataValue="left"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/sourceRole"
+        featureName="defaultValueLiteral" dataValue="" oldDataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/targetRole"
+        featureName="defaultValueLiteral" dataValue="" oldDataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/sourceRole"
+        featureName="defaultValueLiteral" oldDataValue=""/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Association/targetRole"
+        featureName="defaultValueLiteral" oldDataValue=""/>
   </releases>
 </history:History>
