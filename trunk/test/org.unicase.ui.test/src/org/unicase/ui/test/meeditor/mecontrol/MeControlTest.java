@@ -13,20 +13,18 @@ import java.io.IOException;
 import org.eclipse.core.internal.dtree.TestHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
-import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.UiUtil;
-import org.unicase.ui.meeditor.commands.OpenModelElementHandler;
-import org.unicase.ui.test.UITestCommon;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -66,13 +64,15 @@ public class MeControlTest {
 	}
 	
 	@BeforeClass
-	public static void setupClass() {
+	public static void setupClass() throws IOException {
 		bot = new SWTWorkbenchBot();
 		
 		if(!runcount){
 			getBot().viewByTitle("Welcome").close();
 			runcount = true;
 		}
+		WorkspaceUtil.deleteTestWorkspace();
+		Configuration.setTesting(true);
 		WorkspaceManager.getInstance();
 	}
 	
@@ -132,8 +132,9 @@ public class MeControlTest {
 	}
 
 	@AfterClass
-	public static void tearDownClass() {
+	public static void tearDownClass() throws IOException {
 		bot = null;
+		WorkspaceUtil.deleteTestWorkspace();
 	}
 	
 }
