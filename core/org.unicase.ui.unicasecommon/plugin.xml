@@ -226,12 +226,6 @@
               icon="icons/subscribe.png"
               label="Subscribe for this ModelElement">
         </command>
-        <command
-              commandId="org.unicase.ui.common.deleteModelelement"
-              icon="icons/delete.gif"
-              label="Delete"
-              style="push">
-        </command>
      </menuContribution>
      
      <menuContribution
