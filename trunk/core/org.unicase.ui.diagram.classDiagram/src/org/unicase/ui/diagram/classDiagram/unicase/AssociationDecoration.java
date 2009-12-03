@@ -68,7 +68,7 @@ public class AssociationDecoration extends Figure implements RotatableDecoration
 			}
 		}
 		if (association.getType().equals(AssociationType.DIRECTED_ASSOCIATION)) {
-			if (source) {
+			if (!source) {
 				addDecoration(myNavigableDecoration);
 			}
 		}
