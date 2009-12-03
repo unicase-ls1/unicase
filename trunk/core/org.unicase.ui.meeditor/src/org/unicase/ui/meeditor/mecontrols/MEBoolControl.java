@@ -37,6 +37,8 @@ public class MEBoolControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
+		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) feature;
 		check = getToolkit().createButton(parent, "", SWT.CHECK);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
@@ -48,7 +50,7 @@ public class MEBoolControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(boolean.class)) {
-			this.attribute = (EAttribute) feature;
+
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
