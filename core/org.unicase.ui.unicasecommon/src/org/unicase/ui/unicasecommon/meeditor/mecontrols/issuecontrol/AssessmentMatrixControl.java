@@ -242,7 +242,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 					Composite comp = getToolkit().createComposite(matrixSection);
 					assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue,
-						getModelElement(), getEditingDomain(), getToolkit());
+						assessment, getEditingDomain(), getToolkit());
 					comp.setLayout(new GridLayout(1, true));
 					GridData gridData = new GridData();
 					gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
