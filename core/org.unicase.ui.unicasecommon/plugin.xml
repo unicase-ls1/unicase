@@ -911,4 +911,12 @@
           name="org.unicase.ui.unicasecommon.meeditor.methreadpage">
     </page>
  </extension>
+ <extension
+       point="org.unicase.ui.meeditor.melinkcontrols">
+    <widget
+          class="org.unicase.ui.unicasecommon.meeditor.MEURLLinkControl"
+          name="org.unicase.ui.unicasecommon.meurllinkcontrol"
+          type="org.unicase.metamodel.ModelElement">
+    </widget>
+ </extension>
 </plugin>

@@ -2,6 +2,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -20,7 +21,7 @@ public class MELinkControlFactory {
 
 	private void initializeMEControls() {
 		IConfigurationElement[] linkControls = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.melinkcontrol");
+			"org.unicase.ui.meeditor.melinkcontrols");
 
 		for (IConfigurationElement e : linkControls) {
 			String type = e.getAttribute("type");
@@ -45,12 +46,22 @@ public class MELinkControlFactory {
 
 	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link,
 		ModelElement contextModelElement) {
-		ArrayList<MELinkControl> candidates = controlRegistry.get(link);
-		if (candidates != null) {
-			MELinkControl control = getBestCandidate(candidates, itemPropertyDescriptor, contextModelElement,
-				contextModelElement);
-			if (control != null) {
-				return control;
+		ArrayList<MELinkControl> candidates = new ArrayList<MELinkControl>();
+		Set<Class<?>> keySet = controlRegistry.keySet();
+		for (Class<?> clazz : keySet) {
+			if (clazz.isAssignableFrom(link.getClass())) {
+				candidates.addAll(controlRegistry.get(clazz));
+			}
+		}
+
+		MELinkControl control = getBestCandidate(candidates, itemPropertyDescriptor, link, contextModelElement);
+		if (control != null) {
+			try {
+				return control.getClass().newInstance();
+			} catch (InstantiationException e) {
+				// Do nothing
+			} catch (IllegalAccessException e) {
+				// Do nothing
 			}
 		}
 
