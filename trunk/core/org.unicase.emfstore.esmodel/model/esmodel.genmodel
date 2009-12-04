@@ -154,18 +154,20 @@
         <nestedGenPackages prefix="Semantic" basePackage="org.unicase.emfstore.esmodel.versioning.operations"
             disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations/semantic">
           <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation"/>
-          <genClasses ecoreClass="esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation">
-            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/superClassName"/>
-            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/subClasses"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/features"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/semantic/ExtractToSuperclassOperation/targetPackage"/>
-          </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>
       <nestedGenPackages prefix="Events" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/events">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="esmodel.ecore#//versioning/events/MergeChoiceSelection">
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/Mine"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/Their"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/Issue"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/AllMine"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/AllTheir"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/Cancel"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/OKNotFinished"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/events/MergeChoiceSelection/OKFinished"/>
+        </genEnums>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/Event">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/Event/timestamp"/>
         </genClasses>
@@ -271,6 +273,14 @@
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/URLEvent/sourceModelElement"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/URLEvent/sourceView"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/URLEvent/sourceURL"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/MergeChoice">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeChoice/myChanges"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeChoice/theirChanges"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeChoice/contextModelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeChoice/selection"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeChoice/contextFeature"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeChoice/createdIssue"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>

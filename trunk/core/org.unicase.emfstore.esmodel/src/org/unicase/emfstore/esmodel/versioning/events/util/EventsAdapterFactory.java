@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeChoice;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
@@ -204,6 +205,11 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseURLEvent(URLEvent object) {
 			return createURLEventAdapter();
+		}
+
+		@Override
+		public Adapter caseMergeChoice(MergeChoice object) {
+			return createMergeChoiceAdapter();
 		}
 
 		@Override
@@ -557,6 +563,20 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createURLEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice
+	 * <em>Merge Choice</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice
+	 * @generated
+	 */
+	public Adapter createMergeChoiceAdapter() {
 		return null;
 	}
 
