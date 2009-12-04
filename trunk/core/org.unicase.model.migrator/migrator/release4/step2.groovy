@@ -1,0 +1,96 @@
+changePackage = model.change
+changePackage.nsPrefix = "org.unicase.model.change"
+signatureAttribute = model.classes.MethodArgument.signature
+signatureAttribute.unique = true
+modelChangePackageClass = model.change.ModelChangePackage
+modelChangePackageClass.delete()
+resolvingRevisionAttribute = model.change.MergingIssue.resolvingRevision
+resolvingRevisionAttribute.delete()
+conflictingProposalsReference = model.change.MergingProposal.conflictingProposals
+conflictingProposalsReference.delete()
+pendingChangesReference = model.change.MergingProposal.pendingChanges
+pendingChangesReference.delete()
+appliedChangesReference = model.change.MergingSolution.appliedChanges
+appliedChangesReference.delete()
+mergingProposalClass = model.change.MergingProposal
+pendingOperationsReference = mergingProposalClass.newEReference()
+abstractOperationClass = esmodel.versioning.operations.AbstractOperation
+pendingOperationsReference.eType = abstractOperationClass
+pendingOperationsReference.upperBound = -1
+pendingOperationsReference.containment = true
+pendingOperationsReference.name = "pendingOperations"
+mergingIssueClass = model.change.MergingIssue
+baseVersionReference = mergingIssueClass.newEReference()
+baseVersionReference.containment = true
+baseVersionReference.name = "baseVersion"
+primaryVersionSpecClass = esmodel.versioning.PrimaryVersionSpec
+baseVersionReference.eType = primaryVersionSpecClass
+targetVersionReference = mergingIssueClass.newEReference()
+targetVersionReference.containment = true
+targetVersionReference.eType = primaryVersionSpecClass
+targetVersionReference.name = "targetVersion"
+mergingSolutionClass = model.change.MergingSolution
+appliedOperationsReference = mergingSolutionClass.newEReference()
+appliedOperationsReference.upperBound = -1
+appliedOperationsReference.containment = true
+appliedOperationsReference.eType = abstractOperationClass
+appliedOperationsReference.name = "appliedOperations"
+associatedChangePackagesReference = model.task.WorkItem.associatedChangePackages
+associatedChangePackagesReference.delete()
+classesPackage = model.classes
+enumerationClass = classesPackage.newEClass()
+enumerationClass.name = "Enumeration"
+packageElementClass = model.classes.PackageElement
+enumerationClass.eSuperTypes.add(packageElementClass)
+instantiationTypeEnum = classesPackage.newEEnum()
+instantiationTypeEnum.name = "InstantiationType"
+concreteEnumLiteral = instantiationTypeEnum.newEEnumLiteral()
+concreteEnumLiteral.name = "Concrete"
+abstractEnumLiteral = instantiationTypeEnum.newEEnumLiteral()
+abstractEnumLiteral.name = "Abstract"
+abstractEnumLiteral.value = 1
+interfaceEnumLiteral = instantiationTypeEnum.newEEnumLiteral()
+interfaceEnumLiteral.name = "Interface"
+interfaceEnumLiteral.value = 2
+classClass = model.classes.Class
+instantiationTypeAttribute = classClass.newEAttribute()
+instantiationTypeAttribute.name = "instantiationType"
+instantiationTypeAttribute.eType = instantiationTypeEnum
+primitiveTypeEnum = classesPackage.newEEnum()
+primitiveTypeEnum.name = "PrimitiveType"
+stringEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+stringEnumLiteral.name = "String"
+stringEnumLiteral.literal = "String"
+booleanEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+booleanEnumLiteral.name = "Boolean"
+booleanEnumLiteral.value = 1
+booleanEnumLiteral.literal = "Boolean"
+integerEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+integerEnumLiteral.name = "Integer"
+integerEnumLiteral.value = 2
+integerEnumLiteral.literal = "Integer"
+dateEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+dateEnumLiteral.name = "Date"
+dateEnumLiteral.value = 3
+dateEnumLiteral.literal = "Date"
+doubleEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+doubleEnumLiteral.name = "Double"
+doubleEnumLiteral.value = 4
+doubleEnumLiteral.literal = "Double"
+enumerationEnumLiteral = primitiveTypeEnum.newEEnumLiteral()
+enumerationEnumLiteral.name = "Enumeration"
+enumerationEnumLiteral.value = 5
+enumerationEnumLiteral.literal = "Enumeration"
+attributeClass = model.classes.Attribute
+idAttribute = attributeClass.newEAttribute()
+idAttribute.name = "id"
+eBooleanDataType = emf.EBoolean
+idAttribute.eType = eBooleanDataType
+implementationTypeAttribute = attributeClass.newEAttribute()
+implementationTypeAttribute.name = "implementationType"
+implementationTypeAttribute.eType = primitiveTypeEnum
+implementationEnumerationReference = attributeClass.newEReference()
+implementationEnumerationReference.eType = enumerationClass
+implementationEnumerationReference.name = "implementationEnumeration"
+identifierAttribute = metamodel.IdentifiableElement.identifier
+implementationEnumerationReference.eKeys.add(identifierAttribute)
