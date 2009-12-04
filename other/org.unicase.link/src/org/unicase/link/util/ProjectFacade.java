@@ -169,7 +169,17 @@ public final class ProjectFacade {
 				}			
 			}
 
-		} catch (ServerUrlResolutionException e) {
+		} catch (final ServerUrlResolutionException e) {
+			Display.getDefault().syncExec(new Runnable() {
+				
+				public void run() {
+					MessageDialog.openError(Display.getDefault().getActiveShell(), 
+							"Could not find server.", 
+							"Could not find the server you are looking for."
+						  + "Check the URL and the port."
+						  + e.getMessage());
+				}
+			});
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 
