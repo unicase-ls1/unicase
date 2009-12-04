@@ -216,6 +216,14 @@ public interface EventsFactory extends EFactory {
 	URLEvent createURLEvent();
 
 	/**
+	 * Returns a new object of class '<em>Merge Choice</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Merge Choice</em>'.
+	 * @generated
+	 */
+	MergeChoice createMergeChoice();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

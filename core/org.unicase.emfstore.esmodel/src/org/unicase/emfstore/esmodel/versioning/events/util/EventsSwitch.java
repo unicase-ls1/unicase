@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeChoice;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
@@ -311,6 +312,15 @@ public class EventsSwitch<T> {
 			T result = caseURLEvent(urlEvent);
 			if (result == null)
 				result = caseEvent(urlEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.MERGE_CHOICE: {
+			MergeChoice mergeChoice = (MergeChoice) theEObject;
+			T result = caseMergeChoice(mergeChoice);
+			if (result == null)
+				result = caseEvent(mergeChoice);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -642,6 +652,19 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T caseURLEvent(URLEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merge Choice</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merge Choice</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergeChoice(MergeChoice object) {
 		return null;
 	}
 

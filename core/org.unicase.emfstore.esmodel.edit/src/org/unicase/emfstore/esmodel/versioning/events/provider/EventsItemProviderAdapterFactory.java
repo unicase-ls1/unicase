@@ -641,6 +641,30 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice} instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MergeChoiceItemProvider mergeChoiceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMergeChoiceAdapter() {
+		if (mergeChoiceItemProvider == null) {
+			mergeChoiceItemProvider = new MergeChoiceItemProvider(this);
+		}
+
+		return mergeChoiceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -782,6 +806,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 			notificationIgnoreEventItemProvider.dispose();
 		if (urlEventItemProvider != null)
 			urlEventItemProvider.dispose();
+		if (mergeChoiceItemProvider != null)
+			mergeChoiceItemProvider.dispose();
 	}
 
 }

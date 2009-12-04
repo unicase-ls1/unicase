@@ -334,6 +334,29 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceURL" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergeChoice" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="myChanges" upperBound="-1"
+            eType="#//versioning/operations/AbstractOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="theirChanges" upperBound="-1"
+            eType="#//versioning/operations/AbstractOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="contextModelElement"
+            eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="selection" eType="#//versioning/events/MergeChoiceSelection"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextFeature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="createdIssue" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="MergeChoiceSelection">
+        <eLiterals name="Mine"/>
+        <eLiterals name="Their" value="1"/>
+        <eLiterals name="Issue" value="2" literal="Issue"/>
+        <eLiterals name="AllMine" value="3" literal="AllMine"/>
+        <eLiterals name="AllTheir" value="4" literal="AllTheir"/>
+        <eLiterals name="Cancel" value="5"/>
+        <eLiterals name="OKNotFinished" value="6" literal="OKNotFinished"/>
+        <eLiterals name="OKFinished" value="7" literal="OKFinished"/>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
