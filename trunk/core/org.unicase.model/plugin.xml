@@ -765,7 +765,7 @@
         name="Unicase Model Version"
         point="org.unicase.metamodel.modelversion">
      <ModelVersion
-           versionIdentifier="3">
+           versionIdentifier="4">
      </ModelVersion>
   </extension>
 </plugin>
