@@ -7,7 +7,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -127,7 +126,6 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private Composite composite;
 
 	private ArrayList<MELinkControl> linkControls;
-	private Adapter eAdapter;
 
 	private GridLayout tableLayout;
 
@@ -235,7 +233,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		getModelElement().eAdapters().remove(eAdapter);
+		getModelElement().removeModelElementChangeListener(modelElementChangeListener);
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
