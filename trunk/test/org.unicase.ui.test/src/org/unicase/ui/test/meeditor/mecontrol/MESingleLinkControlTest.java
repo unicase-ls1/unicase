@@ -46,19 +46,19 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class MESingleLinkControlTest extends MeControlTest {
 private ActionItem actionItem;
+private User user;
 	
 	@Before
 	public void setupActionItem() {
 			
 		new UnicaseCommand() {
-			
 			@Override
 			protected void doRun() {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
 				Project project = actionItem.getProject();
-				User user = OrganizationFactory.eINSTANCE.createUser();
+				user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("Joker");
 				project.addModelElement(user);
 			}
@@ -71,16 +71,15 @@ private ActionItem actionItem;
 	public void testAssigneeChange() throws Exception {
 		
 		openModelElement(actionItem);
-		getBot().activeEditor().bot().buttonWithLabel("Assignee").click(); // unable to reach the link with the name joker using swtbot! same for the second test case as well!
+		getBot().activeEditor().bot().buttonWithLabel("Assignee").click(); 
 		getBot().table().select(0);
 		getBot().button("OK").click();
 		getBot().sleep(2000);
-		getBot().activeEditor().bot().link("Joker").click();
-		final String name = null;
+
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(name, actionItem.getAssignee().getName());
+				assertEquals(user, actionItem.getAssignee());
 			}
 		}.run();
 		getBot().sleep(20000);
