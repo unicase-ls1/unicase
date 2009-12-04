@@ -104,7 +104,7 @@ private User user;
 		runAsnc(unicaseCommand);
 		
 		getBot().sleep(3000);
-		assertEquals(name,getBot().activeEditor().bot().buttonWithLabel("Assignee").getText());
+		assertEquals(name,getBot().activeEditor().bot().link(name).getText());
 		
 	}
 	
