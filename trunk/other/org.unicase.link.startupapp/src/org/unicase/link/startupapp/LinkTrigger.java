@@ -7,7 +7,6 @@ package org.unicase.link.startupapp;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -66,12 +65,12 @@ public final class LinkTrigger {
 	public static void main(String[] args) {
 		
 		//Was a unicase link handed to the app?
-		if(args.length < 2 || !args[1].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
+		if(args.length < 1 || !args[0].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
 			System.out.println("No unicase link handed to startupapp!");
 			return;
 		}
 
-		String linkArgument = args[1];
+		String linkArgument = args[0];
 	
 		
 		boolean isAlreadyRunning = false;
