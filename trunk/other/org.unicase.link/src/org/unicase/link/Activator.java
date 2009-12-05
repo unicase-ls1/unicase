@@ -9,7 +9,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.link.trigger.LinkTrigger;
+import org.unicase.link.util.LinkListener;
 import org.unicase.link.util.ui.OpenLink;
 
 /**
@@ -42,11 +42,11 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	public void start(BundleContext context) throws Exception{
 		super.start(context);
 		
-		LinkTrigger.getInstance().getUrlMessageHandler()
-			.addObserver(OpenLink.getInstance());
+		//LinkTrigger.getInstance().getUrlMessageHandler()
+		//	.addObserver(OpenLink.getInstance());
 		
-		if (LinkTrigger.getInstance().getHandedUrl() != null) {
-			OpenLink.openURL(LinkTrigger.getInstance().getHandedUrl());
+		if (LinkListener.getInstance().getHandedUrl() != null) {
+			OpenLink.openURL(LinkListener.getInstance().getHandedUrl());
 		}
 		
 		plugin = this;
