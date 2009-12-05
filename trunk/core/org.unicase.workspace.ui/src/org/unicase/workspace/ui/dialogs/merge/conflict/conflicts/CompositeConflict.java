@@ -28,7 +28,7 @@ public class CompositeConflict extends Conflict {
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
 				getCompositeOperation().getModelElementId()), "",
-				getDecisionManager().getAuthorForOperation(getOtherOperation()));
+				getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	@Override
@@ -84,11 +84,14 @@ public class CompositeConflict extends Conflict {
 	}
 
 	public CompositeOperation getCompositeOperation() {
-		return (CompositeOperation) ((meCausing) ? operationsA.get(0)
-				: operationsB.get(0));
+		return (CompositeOperation) operationsA.get(0);
+	}
+
+	public AbstractOperation getTheirOperation() {
+		return (!meCausing) ? operationsA.get(0) : operationsB.get(0);
 	}
 
 	public AbstractOperation getOtherOperation() {
-		return (!meCausing) ? operationsA.get(0) : operationsB.get(0);
+		return operationsB.get(0);
 	}
 }

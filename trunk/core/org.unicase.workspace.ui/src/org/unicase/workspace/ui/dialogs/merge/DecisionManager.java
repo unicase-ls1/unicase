@@ -128,15 +128,15 @@ public class DecisionManager {
 
 				addConflict(createMultiMultiConflict(conf));
 
-			} else if (isDelete(conf.getMyOperation())
-					|| isDelete(conf.getTheirOperation())) {
-
-				addConflict(createDeleteOtherConflict(conf));
-
 			} else if (isComposite(conf.getMyOperation())
 					|| isComposite(conf.getTheirOperation())) {
 
 				addConflict(createCompositeConflict(conf));
+
+			} else if (isDelete(conf.getMyOperation())
+					|| isDelete(conf.getTheirOperation())) {
+
+				addConflict(createDeleteOtherConflict(conf));
 
 			}
 		}
@@ -226,8 +226,13 @@ public class DecisionManager {
 	}
 
 	private Conflict createCompositeConflict(Conflicting conf) {
-		return new CompositeConflict(conf.getMyOperations(), conf
-				.getTheirOperations(), this, true);
+		if (isComposite(conf.getMyOperation())) {
+			return new CompositeConflict(conf.getMyOperations(), conf
+					.getTheirOperations(), this, true);
+		} else {
+			return new CompositeConflict(conf.getTheirOperations(), conf
+					.getMyOperations(), this, false);
+		}
 	}
 
 	public ArrayList<Conflict> getConflicts() {
