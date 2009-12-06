@@ -34,9 +34,9 @@ public class ValidMinimumMultiplicityConstraint extends AbstractModelConstraint 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Association) {
 				Association association = (Association) eObj;
-				int minimumSourceMultiplicity = ImplementationValidationHelper.getMinimumMultiplicity(association
+				int minimumSourceMultiplicity = ClassesHelper.getMinimumMultiplicity(association
 					.getSourceMultiplicity());
-				int minimumTargetMultiplicity = ImplementationValidationHelper.getMinimumMultiplicity(association
+				int minimumTargetMultiplicity = ClassesHelper.getMinimumMultiplicity(association
 					.getTargetMultiplicity());
 				boolean sourceValid = minimumSourceMultiplicity >= -1;
 				if (!sourceValid) {

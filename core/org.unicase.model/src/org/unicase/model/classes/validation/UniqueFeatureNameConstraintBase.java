@@ -73,7 +73,7 @@ public abstract class UniqueFeatureNameConstraintBase extends AbstractModelConst
 
 	private boolean isUnique(Class c, String name, EObject element) {
 		if (name != null) {
-			for (Attribute a : ImplementationValidationHelper.getAllAttributes(c)) {
+			for (Attribute a : ClassesHelper.getAllAttributes(c)) {
 				if (a.getName() != null) {
 					if (a != element && name.equals(a.getName())) {
 						return false;
@@ -81,7 +81,7 @@ public abstract class UniqueFeatureNameConstraintBase extends AbstractModelConst
 				}
 			}
 
-			for (Association a : ImplementationValidationHelper.getAllOutgoingAssociations(c)) {
+			for (Association a : ClassesHelper.getAllOutgoingAssociations(c)) {
 				if (a.getTargetRole() != null) {
 					if (a != element && name.equals(a.getTargetRole())) {
 						return false;
@@ -89,7 +89,7 @@ public abstract class UniqueFeatureNameConstraintBase extends AbstractModelConst
 				}
 			}
 
-			for (Association a : ImplementationValidationHelper.getAllIncomingAssociations(c)) {
+			for (Association a : ClassesHelper.getAllIncomingAssociations(c)) {
 				if (a.getSourceRole() != null) {
 					if (a != element && name.equals(a.getSourceRole())) {
 						return false;

@@ -16,11 +16,11 @@ import org.unicase.model.classes.Class;
 /**
  * Helper for implementation validation.
  * 
- * @author herrmama
+ * @author herrmi
  */
-public final class ImplementationValidationHelper {
+public final class ClassesHelper {
 
-	private ImplementationValidationHelper() {
+	private ClassesHelper() {
 		// this class should not be instantiated
 	}
 
@@ -52,7 +52,7 @@ public final class ImplementationValidationHelper {
 	 * @return Attributes
 	 */
 	public static List<Attribute> getAllAttributes(Class clazz) {
-		List<Class> classes = ImplementationValidationHelper.getAllSuperClasses(clazz);
+		List<Class> classes = ClassesHelper.getAllSuperClasses(clazz);
 		classes.add(clazz);
 		List<Attribute> attributes = new ArrayList<Attribute>();
 		for (Class c : classes) {
@@ -68,7 +68,7 @@ public final class ImplementationValidationHelper {
 	 * @return Associations
 	 */
 	public static List<Association> getAllOutgoingAssociations(Class clazz) {
-		List<Class> classes = ImplementationValidationHelper.getAllSuperClasses(clazz);
+		List<Class> classes = ClassesHelper.getAllSuperClasses(clazz);
 		classes.add(clazz);
 		List<Association> associations = new ArrayList<Association>();
 		for (Class c : classes) {
@@ -84,7 +84,7 @@ public final class ImplementationValidationHelper {
 	 * @return Associations
 	 */
 	public static List<Association> getAllIncomingAssociations(Class clazz) {
-		List<Class> classes = ImplementationValidationHelper.getAllSuperClasses(clazz);
+		List<Class> classes = ClassesHelper.getAllSuperClasses(clazz);
 		classes.add(clazz);
 		List<Association> associations = new ArrayList<Association>();
 		for (Class c : classes) {
