@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -309,46 +310,60 @@ public class DecisionManager {
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		ModelElement modelElement = project.getModelElement(modelElementId);
 		if (modelElement == null) {
-			for (AbstractOperation ao : myChangePackage.getOperations()) {
-				if (ao instanceof CreateDeleteOperation) {
-					ModelElement tmp = ((CreateDeleteOperation) ao)
-							.getModelElement();
-					Set<ModelElement> containedModelElements = tmp
-							.getAllContainedModelElements();
-					containedModelElements.add(tmp);
-					for (ModelElement child : containedModelElements) {
-						if (child != null
-								&& child.getModelElementId().equals(
-										modelElementId)) {
-							modelElement = child;
-							break;
-						}
-					}
-				}
-			}
+			modelElement = searchForCreatedME(modelElementId, myChangePackage
+					.getOperations());
 			if (modelElement == null) {
 				for (ChangePackage cp : theirChangePackages) {
-					for (AbstractOperation ao : cp.getOperations()) {
-						if (ao instanceof CreateDeleteOperation) {
-							ModelElement tmp = ((CreateDeleteOperation) ao)
-									.getModelElement();
-							Set<ModelElement> containedModelElements = tmp
-									.getAllContainedModelElements();
-							containedModelElements.add(tmp);
-							for (ModelElement child : containedModelElements) {
-								if (child != null
-										&& child.getModelElementId().equals(
-												modelElementId)) {
-									modelElement = child;
-									break;
-								}
-							}
-						}
+					modelElement = searchForCreatedME(modelElementId, cp
+							.getOperations());
+					if (modelElement != null) {
+						break;
 					}
 				}
 			}
 		}
 		return modelElement;
+	}
+
+	private ModelElement searchForCreatedME(ModelElementId modelElementId,
+			List<AbstractOperation> operations) {
+		for (AbstractOperation operation : operations) {
+			ModelElement result = null;
+			if (operation instanceof CreateDeleteOperation) {
+				result = searchCreateAndDelete(
+						(CreateDeleteOperation) operation, modelElementId);
+
+			} else if (operation instanceof CompositeOperation) {
+				EList<AbstractOperation> subOperations = ((CompositeOperation) operation)
+						.getSubOperations();
+				result = searchForCreatedME(modelElementId, subOperations);
+			} else {
+				continue;
+			}
+			if (result != null) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	private ModelElement searchCreateAndDelete(CreateDeleteOperation cdo,
+			ModelElementId modelElementId) {
+		ModelElement modelElement = cdo.getModelElement();
+		if (modelElement == null) {
+			return null;
+		}
+		Set<ModelElement> containedModelElements = modelElement
+				.getAllContainedModelElements();
+		containedModelElements.add(modelElement);
+
+		for (ModelElement child : containedModelElements) {
+			if (child != null
+					&& child.getModelElementId().equals(modelElementId)) {
+				return child;
+			}
+		}
+		return null;
 	}
 
 	private class Conflicting {
