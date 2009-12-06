@@ -19,11 +19,12 @@ import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.MergeWizard;
+import org.unicase.workspace.ui.dialogs.merge.util.CaseStudySwitch;
 
 /**
- * This is a ConflictResolver that shows a MergeDialog when triggered.
+ * This is an alternative merge handler, using the new merge wizard.
  * 
- * @author Shterev
+ * @author wesendon
  */
 public class MergeProjectHandler2 implements ConflictResolver {
 
@@ -68,6 +69,14 @@ public class MergeProjectHandler2 implements ConflictResolver {
 			List<ChangePackage> theirChangePackages,
 			ChangePackage myChangePackage, PrimaryVersionSpec base,
 			PrimaryVersionSpec target) {
+
+		boolean caseStudy = false;
+
+		if (caseStudy) {
+			CaseStudySwitch studySwitch = new CaseStudySwitch();
+			studySwitch.flattenChangePackages(myChangePackage,
+					theirChangePackages);
+		}
 
 		DecisionManager decisionManager = new DecisionManager(project,
 				myChangePackage, theirChangePackages, base, target);
