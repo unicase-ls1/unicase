@@ -46,7 +46,7 @@ public class NoCircularSuperClassesConstraint extends AbstractModelConstraint {
 	}
 
 	private boolean isCircular(Class c) {
-		for (Class s : ImplementationValidationHelper.getAllSuperClasses(c)) {
+		for (Class s : ClassesHelper.getAllSuperClasses(c)) {
 			if (s.getSuperClasses().contains(c)) {
 				return true;
 			}

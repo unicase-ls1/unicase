@@ -34,9 +34,9 @@ public class ValidMaximumMultiplicityConstraint extends AbstractModelConstraint 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Association) {
 				Association association = (Association) eObj;
-				int maximumSourceMultiplicity = ImplementationValidationHelper.getMaximumMultiplicity(association
+				int maximumSourceMultiplicity = ClassesHelper.getMaximumMultiplicity(association
 					.getSourceMultiplicity());
-				int maximumTargetMultiplicity = ImplementationValidationHelper.getMaximumMultiplicity(association
+				int maximumTargetMultiplicity = ClassesHelper.getMaximumMultiplicity(association
 					.getTargetMultiplicity());
 				boolean sourceValid = maximumSourceMultiplicity >= -1;
 				if (!sourceValid) {

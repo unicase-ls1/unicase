@@ -43,7 +43,7 @@ public class AtMostOneIdConstraint extends AbstractModelConstraint {
 
 	private int getNumberOfIdAttributes(Class c) {
 		int n = 0;
-		for (Attribute attribute : ImplementationValidationHelper.getAllAttributes(c)) {
+		for (Attribute attribute : ClassesHelper.getAllAttributes(c)) {
 			if (attribute.isId()) {
 				n++;
 			}
