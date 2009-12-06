@@ -9,37 +9,39 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Extract Super Class Operation</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSubClasses <em>Sub Classes</em>}</li>
- * <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName <em>Super Class Name
- * </em>}</li>
- * <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getTargetPackage <em>Target Package</em>}
- * </li>
- * <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperSuperClasses <em>Super Super
- * Classes</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSubClasses <em>Sub Classes</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getAssociations <em>Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName <em>Super Class Name</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getTargetPackage <em>Target Package</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperSuperClasses <em>Super Super Classes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore documentation='Extract attributes and associations from a number of classes into a common super class.'"
  * @generated
  */
 public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	/**
-	 * Returns the value of the '<em><b>Sub Classes</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sub Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Classes</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Sub Classes</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_SubClasses()
 	 * @model containment="true" required="true"
@@ -48,13 +50,45 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	EList<ModelElementId> getSubClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Super Class Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_Attributes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelElementId> getAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations</em>' containment reference list.
+	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_Associations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelElementId> getAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Super Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Class Name</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Super Class Name</em>' attribute.
 	 * @see #setSuperClassName(String)
 	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_SuperClassName()
@@ -64,9 +98,8 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	String getSuperClassName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName
-	 * <em>Super Class Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName <em>Super Class Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Super Class Name</em>' attribute.
 	 * @see #getSuperClassName()
 	 * @generated
@@ -74,13 +107,13 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	void setSuperClassName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Package</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Package</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Package</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Package</em>' containment reference.
 	 * @see #setTargetPackage(ModelElementId)
 	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_TargetPackage()
@@ -90,9 +123,8 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	ModelElementId getTargetPackage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getTargetPackage
-	 * <em>Target Package</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getTargetPackage <em>Target Package</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Package</em>' containment reference.
 	 * @see #getTargetPackage()
 	 * @generated
@@ -100,14 +132,14 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	void setTargetPackage(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Super Super Classes</b></em>' containment reference list. The list contents are
-	 * of type {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Super Super Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Super Classes</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Super Super Classes</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_SuperSuperClasses()
 	 * @model containment="true"
@@ -117,34 +149,61 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSubClasses());'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSubClasses());'"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getSubClasses(Project project);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAttributes());'"
+	 * @generated
+	 */
+	EList<Attribute> getAttributes(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Attribute> getPossibleAttributes(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAssociations());'"
+	 * @generated
+	 */
+	EList<Association> getAssociations(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Association> getPossibleAssociations(Project project);
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getTargetPackage());'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getTargetPackage());'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Package getTargetPackage(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSuperSuperClasses());'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getSuperSuperClasses());'"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getSuperSuperClasses(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -152,9 +211,8 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore documentation='A class or enumeration with that name already exists.'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='A class or enumeration with that name already exists.'"
 	 * @generated
 	 */
 	boolean validateSuperClassName(Project project);

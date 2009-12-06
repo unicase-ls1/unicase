@@ -12,6 +12,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
@@ -61,6 +62,9 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 		if (selection != null & selection instanceof IStructuredSelection) {
 
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+			if (structuredSelection.isEmpty()) {
+				return null;
+			}
 
 			SemanticCompositeOperation operation = (SemanticCompositeOperation) EcoreUtil.create(operationClass);
 
@@ -75,7 +79,8 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 				operation.eSet(firstParameter, OperationHelper.getId(element));
 			}
 			operation.setCompositeName(operation.eClass().getName());
-			operation.setCompositeDescription(operation.eClass().getName());
+			operation.setCompositeDescription(EcoreUtil.getAnnotation(operation.eClass(), EcorePackage.eNS_URI,
+				"documentation"));
 
 			Project project = element.getProject();
 			ExecuteOperationDialog dialog = new ExecuteOperationDialog(operation, project);

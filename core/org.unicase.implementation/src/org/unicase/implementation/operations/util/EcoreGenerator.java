@@ -33,7 +33,7 @@ import org.unicase.model.classes.Literal;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 import org.unicase.model.classes.PrimitiveType;
-import org.unicase.model.classes.validation.ImplementationValidationHelper;
+import org.unicase.model.classes.validation.ClassesHelper;
 import org.unicase.model.classes.validation.MultiplicityParseResult;
 
 /**
@@ -219,7 +219,7 @@ public class EcoreGenerator {
 		targetReference.setEType(targetClass);
 		targetReference.setContainment(association.getType() == AssociationType.COMPOSITION);
 		targetReference.setTransient(association.isTransient());
-		MultiplicityParseResult targetMultiplicity = ImplementationValidationHelper.parseMultiplicity(association
+		MultiplicityParseResult targetMultiplicity = ClassesHelper.parseMultiplicity(association
 			.getTargetMultiplicity());
 		targetReference.setLowerBound(targetMultiplicity.getMinimumMultiplicity());
 		targetReference.setUpperBound(targetMultiplicity.getMaximumMultiplicity());
@@ -230,7 +230,7 @@ public class EcoreGenerator {
 			sourceReference.setName(association.getSourceRole());
 			sourceReference.setEType(sourceClass);
 			sourceReference.setTransient(association.isTransient());
-			MultiplicityParseResult sourceMultiplicity = ImplementationValidationHelper.parseMultiplicity(association
+			MultiplicityParseResult sourceMultiplicity = ClassesHelper.parseMultiplicity(association
 				.getTargetMultiplicity());
 			sourceReference.setLowerBound(sourceMultiplicity.getMinimumMultiplicity());
 			sourceReference.setUpperBound(sourceMultiplicity.getMaximumMultiplicity());

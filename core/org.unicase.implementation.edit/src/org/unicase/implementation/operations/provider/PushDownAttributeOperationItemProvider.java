@@ -26,17 +26,16 @@ import org.unicase.implementation.operations.PushDownAttributeOperation;
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.implementation.operations.PushDownAttributeOperation}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.unicase.implementation.operations.PushDownAttributeOperation} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class PushDownAttributeOperationItemProvider extends SemanticCompositeOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PushDownAttributeOperationItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +43,8 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,9 +59,9 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +75,6 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,8 +86,8 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 	}
 
 	/**
-	 * This returns PushDownAttributeOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PushDownAttributeOperation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -98,15 +96,16 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PushDownAttributeOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PushDownAttributeOperation_type")
-			: getString("_UI_PushDownAttributeOperation_type") + " " + label;
+		String label = ((PushDownAttributeOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PushDownAttributeOperation_type") :
+			getString("_UI_PushDownAttributeOperation_type") + " " + label;
 	}
 
 	/**
@@ -121,51 +120,52 @@ public class PushDownAttributeOperationItemProvider extends SemanticCompositeOpe
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PushDownAttributeOperation.class)) {
-		case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createInlineClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPushDownAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPushDownAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
