@@ -219,20 +219,24 @@ litigation.
       <update label="link Update Site" url="http://unicase.org/update/"/>
    </url>
 
+   <includes
+         id="org.unicase.client"
+         version="0.3.43.internal"
+         name="org.unicase.client"/>
+
    <requires>
       <import plugin="org.eclipse.ui" version="3.4.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.unicase.model" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.unicase.link.trigger" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="org.unicase.client" version="0.3.38.internal"/>
-      <import plugin="org.unicase.ui.common"/>
+      <import plugin="org.unicase.workspace.ui" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="org.unicase.client" version="0.3.43.internal"/>
    </requires>
 
    <plugin
          id="org.unicase.link"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>
