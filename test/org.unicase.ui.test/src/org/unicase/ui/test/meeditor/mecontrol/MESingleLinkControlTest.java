@@ -5,8 +5,13 @@
 
 package org.unicase.ui.test.meeditor.mecontrol;
 
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGroup;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.junit.Assert.assertEquals;
 
+import java.awt.Button;
 import java.util.Date;
 import java.util.Set;
 
@@ -19,10 +24,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotLink;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
+import org.hamcrest.Matcher;
+import org.hamcrest.core.AnyOf;
 import org.junit.Before;
 import org.junit.Test;
+import org.eclipse.swtbot.swt.finder.matchers.*;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -67,6 +79,7 @@ private User user;
 	
 	
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testAssigneeChange() throws Exception {
 		
@@ -75,36 +88,41 @@ private User user;
 		getBot().table().select(0);
 		getBot().button("OK").click();
 		getBot().sleep(2000);
-
+		final Matcher match = allOf(widgetOfType(Label.class), withRegex("User.*"));
+		
+		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(user, actionItem.getAssignee());
+				assertEquals(getBot().activeEditor().bot().widget(match).getData().toString(), actionItem.getAssignee());
 			}
 		}.run();
-		getBot().sleep(20000);
+		getBot().sleep(2000);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testAssigneeUpdate() throws Exception {
 		
 		openModelElement(actionItem);
-		final String name = "Big-Joker";
-		
+		final String name = "Batman";
+		final Matcher match = allOf(widgetOfType(Label.class), withRegex("User.*"));
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
 			@Override
 			protected void doRun() {
-				final User user = OrganizationFactory.eINSTANCE.createUser();
+				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName(name);
 				actionItem.setAssignee(user);
+				assertEquals(name, getBot().activeEditor().bot().widget(match).getData().toString());				
 			}
 		};
-		runAsnc(unicaseCommand);
+		runAsnc(unicaseCommand);		
+		getBot().sleep(2000);
+	
+
 		
-		getBot().sleep(3000);
-		assertEquals(name,getBot().activeEditor().bot().link(name).getText());
 		
 	}
 	
