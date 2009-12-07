@@ -25,7 +25,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class MeEnumControlTest extends MeControlTest {
 	private ActionItem actionItem;
-	private User user;
+	
 		
 		@Before
 		public void setupActionItem() {

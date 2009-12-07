@@ -34,6 +34,7 @@ import org.hamcrest.core.AnyOf;
 import org.junit.Before;
 import org.junit.Test;
 import org.eclipse.swtbot.swt.finder.matchers.*;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
@@ -88,13 +89,11 @@ private User user;
 		getBot().table().select(0);
 		getBot().button("OK").click();
 		getBot().sleep(2000);
-		final Matcher match = allOf(widgetOfType(Label.class), withRegex("User.*"));
-		
-		
+		final String assigneduser = "Joker";
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(getBot().activeEditor().bot().widget(match).getData().toString(), actionItem.getAssignee());
+				assertEquals(assigneduser, actionItem.getAssignee().getName());
 			}
 		}.run();
 		getBot().sleep(2000);
@@ -107,7 +106,6 @@ private User user;
 		
 		openModelElement(actionItem);
 		final String name = "Batman";
-		final Matcher match = allOf(widgetOfType(Label.class), withRegex("User.*"));
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
 			@Override
@@ -115,10 +113,15 @@ private User user;
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName(name);
 				actionItem.setAssignee(user);
-				assertEquals(name, getBot().activeEditor().bot().widget(match).getData().toString());				
+								
 			}
 		};
-		runAsnc(unicaseCommand);		
+		runAsnc(unicaseCommand);	
+		
+		final Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Batman.*"));
+		assertEquals(name, getBot().activeEditor().bot().widget(match).toString());
+		
+		//assertEquals(name, getBot().activeEditor().bot().linkWithId("User").getText());
 		getBot().sleep(2000);
 	
 

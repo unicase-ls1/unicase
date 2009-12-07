@@ -52,12 +52,14 @@ private ActionItem actionItem;
 		openModelElement(actionItem);
 		final Date somedate = new Date(2000,8,9);
 		
-		org.hamcrest.Matcher<CDateTime> match  = allOf(widgetOfType(CDateTime.class));
-		getBot().activeEditor().bot().widget(match).setData(somedate);
+		final org.hamcrest.Matcher<CDateTime> match  = allOf(widgetOfType(CDateTime.class));
+		
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
+			getBot().activeEditor().bot().widget(match).setData(somedate);
+			getBot().sleep(1000);
 			assertEquals(somedate,actionItem.getDueDate());
 			}
 		}.run();
@@ -65,24 +67,28 @@ private ActionItem actionItem;
 	}
 
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Test
 	public void testDateUpdate() throws Exception {
 		
 		openModelElement(actionItem);
 		final Date somedate = new Date(300000000);
+		final org.hamcrest.Matcher<CDateTime> match  = allOf(widgetOfType(CDateTime.class));
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 		
 			@Override
 			protected void doRun() {
 				actionItem.setDueDate(somedate);
+				getBot().sleep(1000);
+				assertEquals(somedate, getBot().activeEditor().bot().widget(match).getData());
+				
 			}
 		};
 		runAsnc(unicaseCommand);
 		
 		getBot().sleep(3000);
-		getBot().activeEditor().setFocus();
-		assertEquals(somedate, getBot().activeEditor().bot().treeWithLabel("Due Date").getText());
+	
+	
 		
 	}
 }
