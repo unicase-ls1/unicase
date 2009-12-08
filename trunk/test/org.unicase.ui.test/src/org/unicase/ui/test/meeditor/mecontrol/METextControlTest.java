@@ -1,14 +1,13 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
 
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
@@ -36,12 +35,11 @@ public class METextControlTest extends MeControlTest {
 	
 	
 	@Test
-	public void testNameChange() throws Exception {
+	public void testNameChange() {
 		
 		openModelElement(actionItem);
 		
 		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
-		SWTBotText text = getBot().activeEditor().bot().textWithLabel("Name");
 		final String newDescription = "changed text in name field by MEEditor";
 		
 		getBot().activeEditor().bot().textWithLabel("Name").typeText(newDescription,2);
@@ -60,7 +58,7 @@ public class METextControlTest extends MeControlTest {
 
 
 	@Test
-	public void testNameUpdate() throws Exception {
+	public void testNameUpdate()  {
 		
 		openModelElement(actionItem);
 		

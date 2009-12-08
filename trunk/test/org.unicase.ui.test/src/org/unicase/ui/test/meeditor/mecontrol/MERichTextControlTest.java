@@ -1,23 +1,26 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
-@SuppressWarnings( { "unused" })
-@RunWith(SWTBotJunit4ClassRunner.class)
+
+
 public class MERichTextControlTest extends MeControlTest {
 
 	private ActionItem actionItem;
-	private boolean runcount = false;
+	
 
 	@Before
 	public void setupActionItem() {
@@ -33,7 +36,7 @@ public class MERichTextControlTest extends MeControlTest {
 	}
 	
 	@Test
-	public void testDescriptionChange() throws Exception {
+	public void testDescriptionChange() {
 		
 		openModelElement(actionItem);
 		
@@ -57,7 +60,7 @@ public class MERichTextControlTest extends MeControlTest {
 	
 	
 	@Test
-	public void testDescriptionUpdate() throws Exception {
+	public void testDescriptionUpdate()  {
 		
 		openModelElement(actionItem);
 		
