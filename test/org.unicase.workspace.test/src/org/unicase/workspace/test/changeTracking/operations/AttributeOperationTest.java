@@ -51,7 +51,7 @@ public class AttributeOperationTest extends OperationTest {
 		assertEquals(true, operation instanceof AttributeOperation);
 		AttributeOperation attributeOperation = (AttributeOperation) operation;
 
-		assertEquals(null, attributeOperation.getOldValue());
+		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
 		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
@@ -82,7 +82,7 @@ public class AttributeOperationTest extends OperationTest {
 		assertEquals(true, operation instanceof AttributeOperation);
 		AttributeOperation attributeOperation = (AttributeOperation) operation;
 
-		assertEquals(null, attributeOperation.getOldValue());
+		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("otherName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
 		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
