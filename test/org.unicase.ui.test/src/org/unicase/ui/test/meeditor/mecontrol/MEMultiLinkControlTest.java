@@ -7,79 +7,77 @@ package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.junit.Before;
 import org.junit.Test;
+import org.unicase.metamodel.Project;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
-
-
-public class MERichTextControlTest extends MeControlTest {
-
+public class MEMultiLinkControlTest extends MeControlTest {
 	private ActionItem actionItem;
 	
-
+	
+	
 	@Before
 	public void setupActionItem() {
-			new UnicaseCommand() {
 			
+		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
+				Project project = actionItem.getProject();
+				User user1 = OrganizationFactory.eINSTANCE.createUser();
+				user1.setName("Joker");
+				project.addModelElement(user1);
+				User user2 = OrganizationFactory.eINSTANCE.createUser();
+				user2.setName("Batman");
+				project.addModelElement(user2);
 			}
 		}.run();
-	}
+	} 
+	
+	
+
 	
 	@Test
-	public void testDescriptionChange() {
+	public void testActivityChange() {
 		
 		openModelElement(actionItem);
-		
-		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
-		SWTBotText text = getBot().activeEditor().bot().textWithLabel("Name");
-		final String newDescription = "changed text in description field by MEEditor";
-		
-		styledText.typeText(newDescription, 1);
-		text.setFocus();
-		
-		getBot().sleep(3000);
+		getBot().activeEditor().bot().buttonWithId("Participants").click();
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(newDescription, actionItem.getDescription());
+				assertEquals(1,1);
 			}
 		}.run();
+		getBot().sleep(2000);
 	}
-	
-	
-	
+
+
 	@Test
-	public void testDescriptionUpdate()  {
+	public void testActivityUpdate() {
 		
 		openModelElement(actionItem);
-		
-		final String newDescription = "changed text in description field by UIThread";
 		
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
 			@Override
 			protected void doRun() {
-				actionItem.setDescription(newDescription);
+				
+				assertEquals(1,1);
+				
 			}
 		};
 		runAsnc(unicaseCommand);
-		
 		getBot().sleep(3000);
 		
-		String text = getBot().activeEditor().bot().styledTextWithLabel("Description").getText();
 		
-		assertEquals(newDescription, text);
 	}
 	
 }

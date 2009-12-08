@@ -1,19 +1,16 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.test.meeditor.mecontrol;
 
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
-import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
-import org.eclipse.swt.widgets.Widget;
+import org.eclipse.swtbot.swt.finder.matchers.WidgetOfType;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
@@ -21,8 +18,7 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class MEDateControlTest extends MeControlTest {
-private static final KeyStroke ENTER = null;
-private static final org.hamcrest.Matcher<Widget> CDateTime = null;
+
 private ActionItem actionItem;
 	
 	@Before
@@ -40,20 +36,23 @@ private ActionItem actionItem;
 	} 
 	
 	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+
+	@SuppressWarnings("deprecation")
 	@Test
-	public void testDateChange() throws Exception {
+	public void testDateChange() {
 		
 		openModelElement(actionItem);
 		final Date somedate = new Date(2000,8,9);
 		
-		final org.hamcrest.Matcher<CDateTime> match  = allOf(widgetOfType(CDateTime.class));
+		CDateTime match = getBot().widget(WidgetOfType.widgetOfType(CDateTime.class), 0);
 		
-		
+		//getBot().activeEditor().bot().widget(match).setData(somedate);
+		getBot().activeEditor().bot().comboBox("Due Date").setFocus();
 		new UnicaseCommand() {
+			
 			@Override
 			protected void doRun() {
-			getBot().activeEditor().bot().widget(match).setData(somedate);
+		
 			getBot().sleep(1000);
 			assertEquals(somedate,actionItem.getDueDate());
 			}
@@ -62,25 +61,24 @@ private ActionItem actionItem;
 	}
 
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
+	
 	@Test
-	public void testDateUpdate() throws Exception {
+	public void testDateUpdate() {
 		
 		openModelElement(actionItem);
 		final Date somedate = new Date(300000000);
-		final org.hamcrest.Matcher<CDateTime> match  = allOf(widgetOfType(CDateTime.class));
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 		
 			@Override
 			protected void doRun() {
-				actionItem.setDueDate(somedate);
-				getBot().sleep(1000);
-				assertEquals(somedate, getBot().activeEditor().bot().widget(match).getData());
 				
+				actionItem.setDueDate(somedate);
+									
 			}
 		};
 		runAsnc(unicaseCommand);
 		
+		assertEquals(somedate, getBot().activeEditor().bot().dateTime().getDate());
 		getBot().sleep(3000);
 	
 	

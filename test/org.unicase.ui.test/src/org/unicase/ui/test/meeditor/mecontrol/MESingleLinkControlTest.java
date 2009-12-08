@@ -1,16 +1,17 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ /**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGroup;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withText;
 import static org.junit.Assert.assertEquals;
-
-import org.eclipse.ui.forms.widgets.Hyperlink;
+import org.eclipse.swt.widgets.Composite;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,9 +45,8 @@ private User user;
 	
 	
 
-	@SuppressWarnings("unchecked")
 	@Test
-	public void testAssigneeChange() throws Exception {
+	public void testAssigneeChange() {
 		
 		openModelElement(actionItem);
 		getBot().activeEditor().bot().buttonWithLabel("Assignee").click(); 
@@ -64,9 +64,10 @@ private User user;
 	}
 
 
+	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAssigneeUpdate() throws Exception {
+	public void testAssigneeUpdate()  {
 		
 		openModelElement(actionItem);
 		final String name = "Batman";
@@ -81,11 +82,11 @@ private User user;
 			}
 		};
 		runAsnc(unicaseCommand);	
+		//System.out.println(getBot().activeEditor().bot().linkInGroup("<a>Batman</a>", "Assignee").getText());
+		final Matcher match = allOf(widgetOfType(Composite.class), withText("<a>Batman</a>"), inGroup(allOf(withText("User"))));
+		getBot().activeEditor().bot().widget(match).getData().toString();
 		
-		final Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Batman.*"));
-		assertEquals(name, getBot().activeEditor().bot().widget(match).toString());
-		
-		//assertEquals(name, getBot().activeEditor().bot().linkWithId("User").getText());
+		assertEquals(name, getBot().activeEditor().bot().widget(match).getData().toString());
 		getBot().sleep(2000);
 	
 

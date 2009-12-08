@@ -1,13 +1,12 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
@@ -16,8 +15,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class MEIntControlTest extends MeControlTest {
 	
-	private static final KeyStroke UP = null;
-	private static final KeyStroke FIVE = null;
+
 	private ActionItem actionItem;
 	
 	@Before
