@@ -6,7 +6,6 @@
 package org.unicase.workspace.test.changeTracking.notification.recording;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -53,8 +52,7 @@ public class AttributeNotificationTest extends NotificationTest {
 		assertTrue(n.isSetEvent());
 		assertEquals(n.getNewValue(), "newName");
 		assertEquals(n.getAttribute().getName(), "name");
-		assertNull(n.getOldValue());
+		assertEquals(n.getOldValue(), "new UseCase");
 
 	}
-
 }
