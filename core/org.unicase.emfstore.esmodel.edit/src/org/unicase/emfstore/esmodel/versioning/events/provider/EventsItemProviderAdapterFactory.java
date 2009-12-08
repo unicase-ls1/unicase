@@ -642,26 +642,50 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice} instances. <!-- begin-user-doc --> <!--
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent} instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected MergeChoiceItemProvider mergeChoiceItemProvider;
+	protected MergeChoiceEventItemProvider mergeChoiceEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice}. <!--
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createMergeChoiceAdapter() {
-		if (mergeChoiceItemProvider == null) {
-			mergeChoiceItemProvider = new MergeChoiceItemProvider(this);
+	public Adapter createMergeChoiceEventAdapter() {
+		if (mergeChoiceEventItemProvider == null) {
+			mergeChoiceEventItemProvider = new MergeChoiceEventItemProvider(this);
 		}
 
-		return mergeChoiceItemProvider;
+		return mergeChoiceEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent} instances. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MergeGlobalChoiceEventItemProvider mergeGlobalChoiceEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMergeGlobalChoiceEventAdapter() {
+		if (mergeGlobalChoiceEventItemProvider == null) {
+			mergeGlobalChoiceEventItemProvider = new MergeGlobalChoiceEventItemProvider(this);
+		}
+
+		return mergeGlobalChoiceEventItemProvider;
 	}
 
 	/**
@@ -806,8 +830,10 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 			notificationIgnoreEventItemProvider.dispose();
 		if (urlEventItemProvider != null)
 			urlEventItemProvider.dispose();
-		if (mergeChoiceItemProvider != null)
-			mergeChoiceItemProvider.dispose();
+		if (mergeChoiceEventItemProvider != null)
+			mergeChoiceEventItemProvider.dispose();
+		if (mergeGlobalChoiceEventItemProvider != null)
+			mergeGlobalChoiceEventItemProvider.dispose();
 	}
 
 }

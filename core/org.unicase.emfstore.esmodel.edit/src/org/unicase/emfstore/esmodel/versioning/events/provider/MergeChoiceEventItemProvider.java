@@ -22,24 +22,24 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.MergeChoice;
+import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class MergeChoiceItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
+public class MergeChoiceEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public MergeChoiceItemProvider(AdapterFactory adapterFactory) {
+	public MergeChoiceEventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,9 +66,9 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	 */
 	protected void addSelectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoice_selection_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_MergeChoice_selection_feature", "_UI_MergeChoice_type"),
-			EventsPackage.Literals.MERGE_CHOICE__SELECTION, true, false, false,
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_selection_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_selection_feature",
+				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__SELECTION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -79,10 +79,10 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	 */
 	protected void addContextFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoice_contextFeature_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoice_contextFeature_feature",
-				"_UI_MergeChoice_type"), EventsPackage.Literals.MERGE_CHOICE__CONTEXT_FEATURE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_contextFeature_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_contextFeature_feature",
+				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_FEATURE, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,10 +97,10 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE__CONTEXT_MODEL_ELEMENT);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE__CREATED_ISSUE);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE);
 		}
 		return childrenFeatures;
 	}
@@ -119,13 +119,13 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns MergeChoice.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns MergeChoiceEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergeChoice"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergeChoiceEvent"));
 	}
 
 	/**
@@ -135,10 +135,10 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((MergeChoice) object).getTimestamp();
+		Date labelValue = ((MergeChoiceEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_MergeChoice_type")
-			: getString("_UI_MergeChoice_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_MergeChoiceEvent_type")
+			: getString("_UI_MergeChoiceEvent_type") + " " + label;
 	}
 
 	/**
@@ -152,15 +152,15 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MergeChoice.class)) {
-		case EventsPackage.MERGE_CHOICE__SELECTION:
-		case EventsPackage.MERGE_CHOICE__CONTEXT_FEATURE:
+		switch (notification.getFeatureID(MergeChoiceEvent.class)) {
+		case EventsPackage.MERGE_CHOICE_EVENT__SELECTION:
+		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case EventsPackage.MERGE_CHOICE__MY_CHANGES:
-		case EventsPackage.MERGE_CHOICE__THEIR_CHANGES:
-		case EventsPackage.MERGE_CHOICE__CONTEXT_MODEL_ELEMENT:
-		case EventsPackage.MERGE_CHOICE__CREATED_ISSUE:
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
+		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -177,52 +177,16 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES,
+			OperationsFactory.eINSTANCE.createOperationId()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES,
+			OperationsFactory.eINSTANCE.createOperationId()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__CONTEXT_MODEL_ELEMENT,
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT,
 			MetamodelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE__CREATED_ISSUE,
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE,
 			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
@@ -237,10 +201,10 @@ public class MergeChoiceItemProvider extends EventItemProvider implements IEditi
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == EventsPackage.Literals.MERGE_CHOICE__MY_CHANGES
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE__THEIR_CHANGES
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE__CONTEXT_MODEL_ELEMENT
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE__CREATED_ISSUE;
+		boolean qualify = childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES
+			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES
+			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT
+			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),

@@ -19,9 +19,11 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
-import org.unicase.emfstore.esmodel.versioning.events.MergeChoice;
+import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
@@ -129,8 +131,10 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createNotificationIgnoreEvent();
 		case EventsPackage.URL_EVENT:
 			return createURLEvent();
-		case EventsPackage.MERGE_CHOICE:
-			return createMergeChoice();
+		case EventsPackage.MERGE_CHOICE_EVENT:
+			return createMergeChoiceEvent();
+		case EventsPackage.MERGE_GLOBAL_CHOICE_EVENT:
+			return createMergeGlobalChoiceEvent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -146,6 +150,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 		switch (eDataType.getClassifierID()) {
 		case EventsPackage.MERGE_CHOICE_SELECTION:
 			return createMergeChoiceSelectionFromString(eDataType, initialValue);
+		case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
+			return createMergeGlobalChoiceSelectionFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -161,6 +167,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 		switch (eDataType.getClassifierID()) {
 		case EventsPackage.MERGE_CHOICE_SELECTION:
 			return convertMergeChoiceSelectionToString(eDataType, instanceValue);
+		case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
+			return convertMergeGlobalChoiceSelectionToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -411,9 +419,19 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 * 
 	 * @generated
 	 */
-	public MergeChoice createMergeChoice() {
-		MergeChoiceImpl mergeChoice = new MergeChoiceImpl();
-		return mergeChoice;
+	public MergeChoiceEvent createMergeChoiceEvent() {
+		MergeChoiceEventImpl mergeChoiceEvent = new MergeChoiceEventImpl();
+		return mergeChoiceEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public MergeGlobalChoiceEvent createMergeGlobalChoiceEvent() {
+		MergeGlobalChoiceEventImpl mergeGlobalChoiceEvent = new MergeGlobalChoiceEventImpl();
+		return mergeGlobalChoiceEvent;
 	}
 
 	/**
@@ -435,6 +453,29 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 * @generated
 	 */
 	public String convertMergeChoiceSelectionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public MergeGlobalChoiceSelection createMergeGlobalChoiceSelectionFromString(EDataType eDataType,
+		String initialValue) {
+		MergeGlobalChoiceSelection result = MergeGlobalChoiceSelection.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertMergeGlobalChoiceSelectionToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
