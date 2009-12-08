@@ -30,9 +30,11 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
-import org.unicase.emfstore.esmodel.versioning.events.MergeChoice;
+import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
@@ -236,7 +238,14 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	private EClass mergeChoiceEClass = null;
+	private EClass mergeChoiceEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass mergeGlobalChoiceEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -244,6 +253,13 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * @generated
 	 */
 	private EEnum mergeChoiceSelectionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum mergeGlobalChoiceSelectionEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -1022,8 +1038,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getMergeChoice() {
-		return mergeChoiceEClass;
+	public EClass getMergeChoiceEvent() {
+		return mergeChoiceEventEClass;
 	}
 
 	/**
@@ -1031,8 +1047,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoice_MyChanges() {
-		return (EReference) mergeChoiceEClass.getEStructuralFeatures().get(0);
+	public EReference getMergeChoiceEvent_MyChanges() {
+		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1040,8 +1056,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoice_TheirChanges() {
-		return (EReference) mergeChoiceEClass.getEStructuralFeatures().get(1);
+	public EReference getMergeChoiceEvent_TheirChanges() {
+		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1049,8 +1065,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoice_ContextModelElement() {
-		return (EReference) mergeChoiceEClass.getEStructuralFeatures().get(2);
+	public EReference getMergeChoiceEvent_ContextModelElement() {
+		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1058,8 +1074,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMergeChoice_Selection() {
-		return (EAttribute) mergeChoiceEClass.getEStructuralFeatures().get(3);
+	public EAttribute getMergeChoiceEvent_Selection() {
+		return (EAttribute) mergeChoiceEventEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1067,8 +1083,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMergeChoice_ContextFeature() {
-		return (EAttribute) mergeChoiceEClass.getEStructuralFeatures().get(4);
+	public EAttribute getMergeChoiceEvent_ContextFeature() {
+		return (EAttribute) mergeChoiceEventEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1076,8 +1092,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoice_CreatedIssue() {
-		return (EReference) mergeChoiceEClass.getEStructuralFeatures().get(5);
+	public EReference getMergeChoiceEvent_CreatedIssue() {
+		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getMergeGlobalChoiceEvent() {
+		return mergeGlobalChoiceEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getMergeGlobalChoiceEvent_Selection() {
+		return (EAttribute) mergeGlobalChoiceEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1087,6 +1121,15 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 */
 	public EEnum getMergeChoiceSelection() {
 		return mergeChoiceSelectionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getMergeGlobalChoiceSelection() {
+		return mergeGlobalChoiceSelectionEEnum;
 	}
 
 	/**
@@ -1215,16 +1258,20 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEAttribute(urlEventEClass, URL_EVENT__SOURCE_VIEW);
 		createEReference(urlEventEClass, URL_EVENT__SOURCE_URL);
 
-		mergeChoiceEClass = createEClass(MERGE_CHOICE);
-		createEReference(mergeChoiceEClass, MERGE_CHOICE__MY_CHANGES);
-		createEReference(mergeChoiceEClass, MERGE_CHOICE__THEIR_CHANGES);
-		createEReference(mergeChoiceEClass, MERGE_CHOICE__CONTEXT_MODEL_ELEMENT);
-		createEAttribute(mergeChoiceEClass, MERGE_CHOICE__SELECTION);
-		createEAttribute(mergeChoiceEClass, MERGE_CHOICE__CONTEXT_FEATURE);
-		createEReference(mergeChoiceEClass, MERGE_CHOICE__CREATED_ISSUE);
+		mergeChoiceEventEClass = createEClass(MERGE_CHOICE_EVENT);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__MY_CHANGES);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__THEIR_CHANGES);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT);
+		createEAttribute(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__SELECTION);
+		createEAttribute(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CONTEXT_FEATURE);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CREATED_ISSUE);
+
+		mergeGlobalChoiceEventEClass = createEClass(MERGE_GLOBAL_CHOICE_EVENT);
+		createEAttribute(mergeGlobalChoiceEventEClass, MERGE_GLOBAL_CHOICE_EVENT__SELECTION);
 
 		// Create enums
 		mergeChoiceSelectionEEnum = createEEnum(MERGE_CHOICE_SELECTION);
+		mergeGlobalChoiceSelectionEEnum = createEEnum(MERGE_GLOBAL_CHOICE_SELECTION);
 	}
 
 	/**
@@ -1288,7 +1335,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		notificationGenerationEventEClass.getESuperTypes().add(this.getEvent());
 		notificationIgnoreEventEClass.getESuperTypes().add(this.getEvent());
 		urlEventEClass.getESuperTypes().add(this.getEvent());
-		mergeChoiceEClass.getESuperTypes().add(this.getEvent());
+		mergeChoiceEventEClass.getESuperTypes().add(this.getEvent());
+		mergeGlobalChoiceEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1503,37 +1551,46 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 			URLEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mergeChoiceEClass, MergeChoice.class, "MergeChoice", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(mergeChoiceEventEClass, MergeChoiceEvent.class, "MergeChoiceEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMergeChoice_MyChanges(), theOperationsPackage.getAbstractOperation(), null, "myChanges",
-			null, 0, -1, MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+		initEReference(getMergeChoiceEvent_MyChanges(), theOperationsPackage.getOperationId(), null, "myChanges", null,
+			0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeChoice_TheirChanges(), theOperationsPackage.getAbstractOperation(), null,
-			"theirChanges", null, 0, -1, MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+		initEReference(getMergeChoiceEvent_TheirChanges(), theOperationsPackage.getOperationId(), null, "theirChanges",
+			null, 0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeChoice_ContextModelElement(), theMetamodelPackage.getModelElementId(), null,
-			"contextModelElement", null, 0, 1, MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+		initEReference(getMergeChoiceEvent_ContextModelElement(), theMetamodelPackage.getModelElementId(), null,
+			"contextModelElement", null, 0, 1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMergeChoice_Selection(), this.getMergeChoiceSelection(), "selection", null, 0, 1,
-			MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEAttribute(getMergeChoiceEvent_Selection(), this.getMergeChoiceSelection(), "selection", null, 0, 1,
+			MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMergeChoice_ContextFeature(), ecorePackage.getEString(), "contextFeature", null, 0, 1,
-			MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEAttribute(getMergeChoiceEvent_ContextFeature(), ecorePackage.getEString(), "contextFeature", null, 0, 1,
+			MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeChoice_CreatedIssue(), theMetamodelPackage.getModelElementId(), null, "createdIssue",
-			null, 0, 1, MergeChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeChoiceEvent_CreatedIssue(), theMetamodelPackage.getModelElementId(), null,
+			"createdIssue", null, 0, 1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mergeGlobalChoiceEventEClass, MergeGlobalChoiceEvent.class, "MergeGlobalChoiceEvent", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMergeGlobalChoiceEvent_Selection(), this.getMergeGlobalChoiceSelection(), "selection", null,
+			0, 1, MergeGlobalChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(mergeChoiceSelectionEEnum, MergeChoiceSelection.class, "MergeChoiceSelection");
 		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.MINE);
 		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.THEIR);
 		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.ISSUE);
-		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.ALL_MINE);
-		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.ALL_THEIR);
-		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.CANCEL);
-		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.OK_NOT_FINISHED);
-		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.OK_FINISHED);
+		addEEnumLiteral(mergeChoiceSelectionEEnum, MergeChoiceSelection.MERGED_TEXT);
+
+		initEEnum(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.class, "MergeGlobalChoiceSelection");
+		addEEnumLiteral(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.ALL_MINE);
+		addEEnumLiteral(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.ALL_THEIR);
+		addEEnumLiteral(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.CANCEL);
+		addEEnumLiteral(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.OK_NOT_FINISHED);
+		addEEnumLiteral(mergeGlobalChoiceSelectionEEnum, MergeGlobalChoiceSelection.OK_FINISHED);
 	}
 
 } // EventsPackageImpl

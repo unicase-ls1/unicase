@@ -45,52 +45,15 @@ public enum MergeChoiceSelection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ISSUE(2, "Issue", "Issue"),
-
-	/**
-	 * The '<em><b>All Mine</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	ISSUE(2, "Issue", "Issue"), /**
+	 * The '<em><b>Merged Text</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @see #ALL_MINE_VALUE
+	 * @see #MERGED_TEXT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ALL_MINE(3, "AllMine", "AllMine"),
-
-	/**
-	 * The '<em><b>All Their</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #ALL_THEIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ALL_THEIR(4, "AllTheir", "AllTheir"),
-
-	/**
-	 * The '<em><b>Cancel</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #CANCEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CANCEL(5, "Cancel", "Cancel"),
-
-	/**
-	 * The '<em><b>OK Not Finished</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #OK_NOT_FINISHED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OK_NOT_FINISHED(6, "OKNotFinished", "OKNotFinished"),
-
-	/**
-	 * The '<em><b>OK Finished</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #OK_FINISHED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OK_FINISHED(7, "OKFinished", "OKFinished");
+	MERGED_TEXT(3, "MergedText", "MergedText");
 
 	/**
 	 * The '<em><b>Mine</b></em>' literal value. <!-- begin-user-doc -->
@@ -138,79 +101,19 @@ public enum MergeChoiceSelection implements Enumerator {
 	public static final int ISSUE_VALUE = 2;
 
 	/**
-	 * The '<em><b>All Mine</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Merged Text</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>All Mine</b></em>' literal object isn't clear, there really should be more of a
+	 * If the meaning of '<em><b>Merged Text</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #ALL_MINE
-	 * @model name="AllMine"
+	 * @see #MERGED_TEXT
+	 * @model name="MergedText"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALL_MINE_VALUE = 3;
-
-	/**
-	 * The '<em><b>All Their</b></em>' literal value. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>All Their</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #ALL_THEIR
-	 * @model name="AllTheir"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ALL_THEIR_VALUE = 4;
-
-	/**
-	 * The '<em><b>Cancel</b></em>' literal value. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Cancel</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #CANCEL
-	 * @model name="Cancel"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CANCEL_VALUE = 5;
-
-	/**
-	 * The '<em><b>OK Not Finished</b></em>' literal value. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OK Not Finished</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #OK_NOT_FINISHED
-	 * @model name="OKNotFinished"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OK_NOT_FINISHED_VALUE = 6;
-
-	/**
-	 * The '<em><b>OK Finished</b></em>' literal value. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OK Finished</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #OK_FINISHED
-	 * @model name="OKFinished"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OK_FINISHED_VALUE = 7;
+	public static final int MERGED_TEXT_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Merge Choice Selection</b></em>' enumerators. <!-- begin-user-doc --> <!--
@@ -219,7 +122,7 @@ public enum MergeChoiceSelection implements Enumerator {
 	 * @generated
 	 */
 	private static final MergeChoiceSelection[] VALUES_ARRAY = new MergeChoiceSelection[] { MINE, THEIR, ISSUE,
-		ALL_MINE, ALL_THEIR, CANCEL, OK_NOT_FINISHED, OK_FINISHED, };
+		MERGED_TEXT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Merge Choice Selection</b></em>' enumerators. <!-- begin-user-doc -->
@@ -275,16 +178,8 @@ public enum MergeChoiceSelection implements Enumerator {
 			return THEIR;
 		case ISSUE_VALUE:
 			return ISSUE;
-		case ALL_MINE_VALUE:
-			return ALL_MINE;
-		case ALL_THEIR_VALUE:
-			return ALL_THEIR;
-		case CANCEL_VALUE:
-			return CANCEL;
-		case OK_NOT_FINISHED_VALUE:
-			return OK_NOT_FINISHED;
-		case OK_FINISHED_VALUE:
-			return OK_FINISHED;
+		case MERGED_TEXT_VALUE:
+			return MERGED_TEXT;
 		}
 		return null;
 	}

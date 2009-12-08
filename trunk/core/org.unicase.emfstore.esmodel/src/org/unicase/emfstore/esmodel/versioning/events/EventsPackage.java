@@ -1153,14 +1153,14 @@ public interface EventsPackage extends EPackage {
 	int URL_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceImpl
-	 * <em>Merge Choice</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceEventImpl
+	 * <em>Merge Choice Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeChoiceEvent()
 	 * @generated
 	 */
-	int MERGE_CHOICE = 24;
+	int MERGE_CHOICE_EVENT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1168,7 +1168,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__TIMESTAMP = EVENT__TIMESTAMP;
+	int MERGE_CHOICE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
 
 	/**
 	 * The feature id for the '<em><b>My Changes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1177,7 +1177,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__MY_CHANGES = EVENT_FEATURE_COUNT + 0;
+	int MERGE_CHOICE_EVENT__MY_CHANGES = EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Their Changes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1186,7 +1186,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__THEIR_CHANGES = EVENT_FEATURE_COUNT + 1;
+	int MERGE_CHOICE_EVENT__THEIR_CHANGES = EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Context Model Element</b></em>' containment reference. <!-- begin-user-doc -->
@@ -1195,7 +1195,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__CONTEXT_MODEL_ELEMENT = EVENT_FEATURE_COUNT + 2;
+	int MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT = EVENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Selection</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1203,7 +1203,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__SELECTION = EVENT_FEATURE_COUNT + 3;
+	int MERGE_CHOICE_EVENT__SELECTION = EVENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Context Feature</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1211,7 +1211,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__CONTEXT_FEATURE = EVENT_FEATURE_COUNT + 4;
+	int MERGE_CHOICE_EVENT__CONTEXT_FEATURE = EVENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Created Issue</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -1220,16 +1220,52 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE__CREATED_ISSUE = EVENT_FEATURE_COUNT + 5;
+	int MERGE_CHOICE_EVENT__CREATED_ISSUE = EVENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>Merge Choice</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * The number of structural features of the '<em>Merge Choice Event</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE_FEATURE_COUNT = EVENT_FEATURE_COUNT + 6;
+	int MERGE_CHOICE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The meta object id for the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeGlobalChoiceEventImpl
+	 * <em>Merge Global Choice Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeGlobalChoiceEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeGlobalChoiceEvent()
+	 * @generated
+	 */
+	int MERGE_GLOBAL_CHOICE_EVENT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_GLOBAL_CHOICE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Selection</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_GLOBAL_CHOICE_EVENT__SELECTION = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Merge Global Choice Event</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_GLOBAL_CHOICE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection
@@ -1239,7 +1275,17 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeChoiceSelection()
 	 * @generated
 	 */
-	int MERGE_CHOICE_SELECTION = 25;
+	int MERGE_CHOICE_SELECTION = 26;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+	 * <em>Merge Global Choice Selection</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeGlobalChoiceSelection()
+	 * @generated
+	 */
+	int MERGE_GLOBAL_CHOICE_SELECTION = 27;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
@@ -2083,86 +2129,108 @@ public interface EventsPackage extends EPackage {
 	EReference getURLEvent_SourceURL();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice
-	 * <em>Merge Choice</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent
+	 * <em>Merge Choice Event</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for class '<em>Merge Choice</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice
+	 * @return the meta object for class '<em>Merge Choice Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent
 	 * @generated
 	 */
-	EClass getMergeChoice();
+	EClass getMergeChoiceEvent();
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getMyChanges <em>My Changes</em>}'. <!--
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyChanges <em>My Changes</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>My Changes</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getMyChanges()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyChanges()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoice_MyChanges();
+	EReference getMergeChoiceEvent_MyChanges();
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getTheirChanges <em>Their Changes</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirChanges <em>Their Changes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Their Changes</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getTheirChanges()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirChanges()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoice_TheirChanges();
+	EReference getMergeChoiceEvent_TheirChanges();
 
 	/**
 	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getContextModelElement
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getContextModelElement
 	 * <em>Context Model Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference '<em>Context Model Element</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getContextModelElement()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getContextModelElement()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoice_ContextModelElement();
+	EReference getMergeChoiceEvent_ContextModelElement();
 
 	/**
 	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getSelection <em>Selection</em>}'. <!--
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getSelection <em>Selection</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Selection</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getSelection()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getSelection()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EAttribute getMergeChoice_Selection();
+	EAttribute getMergeChoiceEvent_Selection();
 
 	/**
 	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getContextFeature <em>Context Feature</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getContextFeature
+	 * <em>Context Feature</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Context Feature</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getContextFeature()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getContextFeature()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EAttribute getMergeChoice_ContextFeature();
+	EAttribute getMergeChoiceEvent_ContextFeature();
 
 	/**
 	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getCreatedIssue <em>Created Issue</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssue <em>Created Issue</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference '<em>Created Issue</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoice#getCreatedIssue()
-	 * @see #getMergeChoice()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssue()
+	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoice_CreatedIssue();
+	EReference getMergeChoiceEvent_CreatedIssue();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent
+	 * <em>Merge Global Choice Event</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Merge Global Choice Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent
+	 * @generated
+	 */
+	EClass getMergeGlobalChoiceEvent();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection <em>Selection</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Selection</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection()
+	 * @see #getMergeGlobalChoiceEvent()
+	 * @generated
+	 */
+	EAttribute getMergeGlobalChoiceEvent_Selection();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection
@@ -2173,6 +2241,17 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMergeChoiceSelection();
+
+	/**
+	 * Returns the meta object for enum '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+	 * <em>Merge Global Choice Selection</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Merge Global Choice Selection</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+	 * @generated
+	 */
+	EEnum getMergeGlobalChoiceSelection();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2851,14 +2930,15 @@ public interface EventsPackage extends EPackage {
 		EReference URL_EVENT__SOURCE_URL = eINSTANCE.getURLEvent_SourceURL();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceImpl
-		 * <em>Merge Choice</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceEventImpl <em>Merge Choice Event</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeChoice()
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeChoiceEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeChoiceEvent()
 		 * @generated
 		 */
-		EClass MERGE_CHOICE = eINSTANCE.getMergeChoice();
+		EClass MERGE_CHOICE_EVENT = eINSTANCE.getMergeChoiceEvent();
 
 		/**
 		 * The meta object literal for the '<em><b>My Changes</b></em>' containment reference list feature. <!--
@@ -2866,7 +2946,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE__MY_CHANGES = eINSTANCE.getMergeChoice_MyChanges();
+		EReference MERGE_CHOICE_EVENT__MY_CHANGES = eINSTANCE.getMergeChoiceEvent_MyChanges();
 
 		/**
 		 * The meta object literal for the '<em><b>Their Changes</b></em>' containment reference list feature. <!--
@@ -2874,7 +2954,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE__THEIR_CHANGES = eINSTANCE.getMergeChoice_TheirChanges();
+		EReference MERGE_CHOICE_EVENT__THEIR_CHANGES = eINSTANCE.getMergeChoiceEvent_TheirChanges();
 
 		/**
 		 * The meta object literal for the '<em><b>Context Model Element</b></em>' containment reference feature. <!--
@@ -2882,7 +2962,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE__CONTEXT_MODEL_ELEMENT = eINSTANCE.getMergeChoice_ContextModelElement();
+		EReference MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT = eINSTANCE.getMergeChoiceEvent_ContextModelElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Selection</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -2890,7 +2970,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute MERGE_CHOICE__SELECTION = eINSTANCE.getMergeChoice_Selection();
+		EAttribute MERGE_CHOICE_EVENT__SELECTION = eINSTANCE.getMergeChoiceEvent_Selection();
 
 		/**
 		 * The meta object literal for the '<em><b>Context Feature</b></em>' attribute feature. <!-- begin-user-doc -->
@@ -2898,7 +2978,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute MERGE_CHOICE__CONTEXT_FEATURE = eINSTANCE.getMergeChoice_ContextFeature();
+		EAttribute MERGE_CHOICE_EVENT__CONTEXT_FEATURE = eINSTANCE.getMergeChoiceEvent_ContextFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Created Issue</b></em>' containment reference feature. <!--
@@ -2906,7 +2986,26 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE__CREATED_ISSUE = eINSTANCE.getMergeChoice_CreatedIssue();
+		EReference MERGE_CHOICE_EVENT__CREATED_ISSUE = eINSTANCE.getMergeChoiceEvent_CreatedIssue();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeGlobalChoiceEventImpl
+		 * <em>Merge Global Choice Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.MergeGlobalChoiceEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeGlobalChoiceEvent()
+		 * @generated
+		 */
+		EClass MERGE_GLOBAL_CHOICE_EVENT = eINSTANCE.getMergeGlobalChoiceEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute MERGE_GLOBAL_CHOICE_EVENT__SELECTION = eINSTANCE.getMergeGlobalChoiceEvent_Selection();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection
@@ -2917,6 +3016,17 @@ public interface EventsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MERGE_CHOICE_SELECTION = eINSTANCE.getMergeChoiceSelection();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+		 * <em>Merge Global Choice Selection</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getMergeGlobalChoiceSelection()
+		 * @generated
+		 */
+		EEnum MERGE_GLOBAL_CHOICE_SELECTION = eINSTANCE.getMergeGlobalChoiceSelection();
 
 	}
 

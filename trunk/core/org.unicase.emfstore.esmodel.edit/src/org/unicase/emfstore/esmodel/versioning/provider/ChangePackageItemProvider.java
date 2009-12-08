@@ -243,7 +243,10 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 			EventsFactory.eINSTANCE.createURLEvent()));
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createMergeChoice()));
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
 			VersioningFactory.eINSTANCE.createLogMessage()));
