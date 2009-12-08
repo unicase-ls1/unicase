@@ -35,4 +35,4 @@ Getting started as developer in 7 easy steps:
 
 If you have any questions please consider the FAQ and Developer FAQ and do not hesitate to use our mailinglist.
 
-Note: We use UNICASE to model unicase, also called boot strapping or eat-your-own-dogfood.See [http://code.google.com/p/unicase/wiki/Unicase_repository_beta_server here] for details.
+Note: We use UNICASE to model UNICASE, also called boot strapping or eat-your-own-dogfood.See [http://code.google.com/p/unicase/wiki/Unicase_repository_beta_server here] for details.
