@@ -10,7 +10,6 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
-import org.eclipse.core.internal.dtree.TestHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.junit.After;
@@ -19,7 +18,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;

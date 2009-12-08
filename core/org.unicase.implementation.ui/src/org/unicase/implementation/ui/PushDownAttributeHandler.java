@@ -6,7 +6,9 @@
 package org.unicase.implementation.ui;
 
 import org.unicase.implementation.operations.OperationsPackage;
+// BEGIN IGNORE UNNECCESSARY IMPORT
 import org.unicase.implementation.operations.PushDownAttributeOperation;
+// END IGNORE UNNECCESSARY IMPORT
 
 /**
  * Handler for {@link PushDownAttributeOperation}.
