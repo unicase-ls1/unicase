@@ -5,13 +5,18 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 
 /**
@@ -107,22 +112,43 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		if (isCreateOperation(opB)) {
 			return false;
 		}
+
 		// we have a delete here
-		// if the other operation changes any involved element, this is a conflict
-		// (this rule might technically be reduced to "otherInvolvedElements")
-		// reason why this always conflicts: there is no way to tell if the
-		// change was a containment change within the deletion tree. If so, a hard
-		// conflict arises, if not, it's not even important. But... we can't tell, because
-		// the model is not available to answer that question. Besides, any delete
-		// operating on something the others changed is worth bringing to the users
-		// attention.
-		for (ModelElementId m : opA.getAllInvolvedModelElements()) {
-			if (changesModelElement(opB, m)) {
+
+		// we need to check whether the other operation changes any of the deleted elements
+		if (opB instanceof CreateDeleteOperation) {
+			Set<ModelElementId> allDeletedElementsA = getAllDeletedElements(opA);
+			Set<ModelElementId> allDeletedElementsB = getAllDeletedElements((CreateDeleteOperation) opB);
+			boolean intersecting = allDeletedElementsA.removeAll(allDeletedElementsB);
+			if (intersecting) {
+				return true;
+			}
+		} else {
+			for (ModelElementId m : getAllDeletedElements(opA)) {
+				if (changesModelElement(opB, m)) {
+					return true;
+				}
+			}
+		}
+
+		// we need to check whether the cross reference change do conflict with the other op
+		for (ReferenceOperation referenceOperation : opA.getSubOperations()) {
+			if (doConflictHard(referenceOperation, opB)) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	private Set<ModelElementId> getAllDeletedElements(CreateDeleteOperation op) {
+		Set<ModelElement> allDeleteTreeElements = op.getModelElement().getAllContainedModelElements();
+		allDeleteTreeElements.add(op.getModelElement());
+		Set<ModelElementId> result = new HashSet<ModelElementId>(allDeleteTreeElements.size());
+		for (ModelElement modelElement : allDeleteTreeElements) {
+			result.add(modelElement.getModelElementId());
+		}
+		return result;
 	}
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {
