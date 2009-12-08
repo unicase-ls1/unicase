@@ -8,13 +8,13 @@ We currently use the following development tools:
           o GEF, GMF <br>
           o Ecore Tools <br>
 
-    * Eclipse Plugins
-          o UNICASE: install via Update Manager - http://unicase.googlecode.com/svn/updatesite/internal/. <br>
-          o COPE: install via Update Manager - http://cope.in.tum.de/update-site/site.xml.<br>
-          o Subclipse: install via Update Manager - http://subclipse.tigris.org/update_1.6.x.<br>
-          o Checkstyle: install via Update Manager (use version 5.x) - http://eclipse-cs.sourceforge.net/update.<br>
-          o Findbugs: install via Update Manager - http://findbugs.cs.umd.edu/eclipse.<br>
-          o SWT Bot (including SWT for GEF): install via Update Manager - http://download.eclipse.org/technology/swtbot/galileo/dev-build/update-site.<br>
+    * Eclipse Plugins (install via Update Manager)
+          o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/. <br>
+          o COPE: http://cope.in.tum.de/update-site/site.xml.<br>
+          o Subclipse: http://subclipse.tigris.org/update_1.6.x.<br>
+          o Checkstyle (use version 5.x): - http://eclipse-cs.sourceforge.net/update.<br>
+          o Findbugs: http://findbugs.cs.umd.edu/eclipse.<br>
+          o SWT Bot (including SWT for GEF): http://download.eclipse.org/technology/swtbot/galileo/dev-build/update-site.<br>
 
 
 Getting started as developer in 7 easy steps:
