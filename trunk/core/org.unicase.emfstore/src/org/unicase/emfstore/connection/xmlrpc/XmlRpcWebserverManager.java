@@ -146,18 +146,14 @@ public final class XmlRpcWebserverManager {
 	/**
 	 * Removes a handler from the Webserver.
 	 * 
-	 * @param handlerName
+	 * @param handlerName the handler's name
 	 * @return true, if other handler still available
 	 */
 	public boolean removeHandler(String handlerName) {
 		PropertyHandlerMapping mapper = (PropertyHandlerMapping) webServer.getXmlRpcServer().getHandlerMapping();
 		mapper.removeHandler(handlerName);
 		try {
-			if (mapper.getListMethods().length > 0) {
-				return true;
-			} else {
-				return false;
-			}
+			return mapper.getListMethods().length > 0;
 		} catch (XmlRpcException e) {
 			return false;
 		}

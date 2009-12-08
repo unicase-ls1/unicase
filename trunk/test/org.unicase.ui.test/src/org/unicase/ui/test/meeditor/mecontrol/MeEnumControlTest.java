@@ -5,19 +5,10 @@
 
 package org.unicase.ui.test.meeditor.mecontrol;
 
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Widget;
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.metamodel.Project;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.TaskFactory;

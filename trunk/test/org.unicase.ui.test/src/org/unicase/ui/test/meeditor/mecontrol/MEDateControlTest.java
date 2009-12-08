@@ -9,16 +9,11 @@ import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
 import static org.junit.Assert.assertEquals;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.regex.Matcher;
 
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
-import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Widget;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;

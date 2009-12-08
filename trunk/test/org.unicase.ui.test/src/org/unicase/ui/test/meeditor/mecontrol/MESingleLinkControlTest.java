@@ -6,55 +6,19 @@
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGroup;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.junit.Assert.assertEquals;
 
-import java.awt.Button;
-import java.util.Date;
-import java.util.Set;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Link;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotLink;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.hamcrest.Matcher;
-import org.hamcrest.core.AnyOf;
 import org.junit.Before;
 import org.junit.Test;
-import org.eclipse.swtbot.swt.finder.matchers.*;
-import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.model.Annotation;
-import org.unicase.model.Attachment;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
-import org.unicase.model.profile.StereotypeInstance;
-import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkItem;
-import org.unicase.model.task.util.CircularDependencyException;
-import org.unicase.model.task.util.MEState;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class MESingleLinkControlTest extends MeControlTest {

@@ -6,10 +6,7 @@
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
