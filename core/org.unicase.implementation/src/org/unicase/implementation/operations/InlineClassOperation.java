@@ -5,6 +5,7 @@
  */
 package org.unicase.implementation.operations;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -18,6 +19,7 @@ import org.unicase.model.classes.Association;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.implementation.operations.InlineClassOperation#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.InlineClassOperation#getInlineClass <em>Inline Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,12 +54,63 @@ public interface InlineClassOperation extends SemanticCompositeOperation {
 	void setAssociation(ModelElementId value);
 
 	/**
+	 * Returns the value of the '<em><b>Inline Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inline Class</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inline Class</em>' containment reference.
+	 * @see #setInlineClass(ModelElementId)
+	 * @see org.unicase.implementation.operations.OperationsPackage#getInlineClassOperation_InlineClass()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ModelElementId getInlineClass();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.implementation.operations.InlineClassOperation#getInlineClass <em>Inline Class</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inline Class</em>' containment reference.
+	 * @see #getInlineClass()
+	 * @generated
+	 */
+	void setInlineClass(ModelElementId value);
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getAssociation());'"
 	 * @generated
 	 */
 	Association getAssociation(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Association> getPossibleAssociation(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getInlineClass());'"
+	 * @generated
+	 */
+	org.unicase.model.classes.Class getInlineClass(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<org.unicase.model.classes.Class> getPossibleInlineClass(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

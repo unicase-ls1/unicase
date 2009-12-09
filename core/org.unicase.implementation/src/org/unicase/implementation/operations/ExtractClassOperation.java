@@ -266,4 +266,13 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	 */
 	boolean validateClassName(Project project);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://unicase.org/operations description='An attribute or association with that name already exists.'"
+	 * @generated
+	 */
+	boolean validateCompositionName(Project project);
+
 } // ExtractClassOperation

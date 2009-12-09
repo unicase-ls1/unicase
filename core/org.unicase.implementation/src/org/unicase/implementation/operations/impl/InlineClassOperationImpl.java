@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -33,6 +34,7 @@ import org.unicase.model.classes.validation.MultiplicityParseResult;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getInlineClass <em>Inline Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,6 +50,16 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * @ordered
 	 */
 	protected ModelElementId association;
+
+	/**
+	 * The cached value of the '{@link #getInlineClass() <em>Inline Class</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInlineClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElementId inlineClass;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -107,11 +119,94 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId getInlineClass() {
+		return inlineClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInlineClass(ModelElementId newInlineClass, NotificationChain msgs) {
+		ModelElementId oldInlineClass = inlineClass;
+		inlineClass = newInlineClass;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, oldInlineClass, newInlineClass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInlineClass(ModelElementId newInlineClass) {
+		if (newInlineClass != inlineClass) {
+			NotificationChain msgs = null;
+			if (inlineClass != null)
+				msgs = ((InternalEObject)inlineClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, null, msgs);
+			if (newInlineClass != null)
+				msgs = ((InternalEObject)newInlineClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, null, msgs);
+			msgs = basicSetInlineClass(newInlineClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, newInlineClass, newInlineClass));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Association getAssociation(Project project) {
 		return OperationHelper.getElement(project, getAssociation());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public EList<Association> getPossibleAssociation(Project project) {
+		Class inlineClass = getInlineClass(project);
+		EList<Association> associations = new BasicEList<Association>();
+		for(Association association : inlineClass.getIncomingAssociations()) {
+			boolean composition = association.getType() == AssociationType.COMPOSITION;
+			boolean oneToOne = ClassesHelper.getMaximumMultiplicity(association.getSourceMultiplicity()) == 1
+				&& ClassesHelper.getMaximumMultiplicity(association.getTargetMultiplicity()) == 1;
+			if (composition && oneToOne) {
+				associations.add(association);
+			}
+		}
+		return associations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.unicase.model.classes.Class getInlineClass(Project project) {
+		return OperationHelper.getElement(project, getInlineClass());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public EList<org.unicase.model.classes.Class> getPossibleInlineClass(Project project) {
+		Association association = getAssociation(project);
+		EList<Class> inlineClasses = new BasicEList<Class>();
+		inlineClasses.add(association.getTarget());
+		return inlineClasses;
 	}
 
 	/**
@@ -145,9 +240,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * @generated NOT
 	 */
 	public boolean validateInlineClassSubClasses(Project project) {
-		Association association = getAssociation(project);
-		Class inlinedClass = association.getTarget();
-
+		Class inlinedClass = getInlineClass(project);
 		return inlinedClass.getSubClasses().isEmpty();
 	}
 
@@ -158,7 +251,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 */
 	public boolean validateInlineClassAssociationTarget(Project project) {
 		Association association = getAssociation(project);
-		Class inlinedClass = association.getTarget();
+		Class inlinedClass = getInlineClass(project);
 
 		EList<Association> incomingAssociations = inlinedClass.getIncomingAssociations();
 		return incomingAssociations.size() == 1 && incomingAssociations.get(0) == association;
@@ -173,6 +266,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		switch (featureID) {
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 				return basicSetAssociation(null, msgs);
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+				return basicSetInlineClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,6 +281,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		switch (featureID) {
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 				return getAssociation();
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+				return getInlineClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,6 +296,9 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		switch (featureID) {
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 				setAssociation((ModelElementId)newValue);
+				return;
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+				setInlineClass((ModelElementId)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,6 +314,9 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 				setAssociation((ModelElementId)null);
 				return;
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+				setInlineClass((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,6 +330,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		switch (featureID) {
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 				return association != null;
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+				return inlineClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

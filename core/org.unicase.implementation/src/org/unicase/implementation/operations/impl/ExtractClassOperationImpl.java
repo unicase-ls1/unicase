@@ -28,7 +28,9 @@ import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
+import org.unicase.model.classes.Enumeration;
 import org.unicase.model.classes.Package;
+import org.unicase.model.classes.PackageElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -400,14 +402,55 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	public boolean validateClassName(Project project) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Package targetPackage = getTargetPackage(project);
+		String className = getClassName();
+
+		if (className != null && targetPackage != null) {
+			for (PackageElement element : targetPackage.getContainedPackageElements()) {
+				if (element instanceof Class || element instanceof Enumeration) {
+					if (className.equals(element.getName())) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public boolean validateCompositionName(Project project) {
+		String compositionName = getCompositeName();
+		Class contextClass = getContextClass(project);
+		List<Attribute> attributes = getAttributes(project);
+		List<Association> outgoingAssociations = getOutgoingAssociations(project);
+		List<Association> incomingAssociations = getIncomingAssociations(project);
+
+		for (Attribute attribute : contextClass.getAttributes()) {
+			if (!attributes.contains(attribute) && compositionName.equals(attribute.getName())) {
+				return false;
+			}
+		}
+		for (Association association : contextClass.getOutgoingAssociations()) {
+			if (!outgoingAssociations.contains(association) && compositionName.equals(association.getTarget())) {
+				return false;
+			}
+		}
+		for (Association association : contextClass.getIncomingAssociations()) {
+			if (!incomingAssociations.contains(association) && compositionName.equals(association.getSource())) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -589,12 +632,14 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 		// create composition
 		Association composition = ClassesFactory.eINSTANCE.createAssociation();
 		project.addModelElement(composition);
-		composition.setSource(contextClass);
-		composition.setTarget(extractedClass);
 		composition.setType(AssociationType.COMPOSITION);
+		composition.setName(compositionName);
+		composition.setSource(contextClass);
+		composition.setSourceRole(OperationHelper.firstLower(contextClass.getName()));
+		composition.setSourceMultiplicity("1");
+		composition.setTarget(extractedClass);
 		composition.setTargetRole(compositionName);
 		composition.setTargetMultiplicity("1");
-		composition.setSourceMultiplicity("1");
 
 		// move attributes and associations
 		extractedClass.getAttributes().addAll(attributes);
