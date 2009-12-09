@@ -95,6 +95,16 @@ public class OperationsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION: {
+				InlineSuperClassOperation inlineSuperClassOperation = (InlineSuperClassOperation)theEObject;
+				T result = caseInlineSuperClassOperation(inlineSuperClassOperation);
+				if (result == null) result = caseSemanticCompositeOperation(inlineSuperClassOperation);
+				if (result == null) result = caseCompositeOperation(inlineSuperClassOperation);
+				if (result == null) result = caseAbstractOperation(inlineSuperClassOperation);
+				if (result == null) result = caseIdentifiableElement(inlineSuperClassOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperationsPackage.INLINE_CLASS_OPERATION: {
 				InlineClassOperation inlineClassOperation = (InlineClassOperation)theEObject;
 				T result = caseInlineClassOperation(inlineClassOperation);
@@ -150,6 +160,21 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseExtractSuperClassOperation(ExtractSuperClassOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inline Super Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inline Super Class Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInlineSuperClassOperation(InlineSuperClassOperation object) {
 		return null;
 	}
 

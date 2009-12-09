@@ -95,6 +95,29 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.InlineSuperClassOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InlineSuperClassOperationItemProvider inlineSuperClassOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.InlineSuperClassOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInlineSuperClassOperationAdapter() {
+		if (inlineSuperClassOperationItemProvider == null) {
+			inlineSuperClassOperationItemProvider = new InlineSuperClassOperationItemProvider(this);
+		}
+
+		return inlineSuperClassOperationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.InlineClassOperation} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -279,6 +302,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	public void dispose() {
 		if (extractSuperClassOperationItemProvider != null) extractSuperClassOperationItemProvider.dispose();
+		if (inlineSuperClassOperationItemProvider != null) inlineSuperClassOperationItemProvider.dispose();
 		if (inlineClassOperationItemProvider != null) inlineClassOperationItemProvider.dispose();
 		if (partitionAssociationOperationItemProvider != null) partitionAssociationOperationItemProvider.dispose();
 		if (pushDownOperationItemProvider != null) pushDownOperationItemProvider.dispose();

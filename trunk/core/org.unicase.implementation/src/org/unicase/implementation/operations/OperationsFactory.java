@@ -31,6 +31,15 @@ public interface OperationsFactory extends EFactory {
 	ExtractSuperClassOperation createExtractSuperClassOperation();
 
 	/**
+	 * Returns a new object of class '<em>Inline Super Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inline Super Class Operation</em>'.
+	 * @generated
+	 */
+	InlineSuperClassOperation createInlineSuperClassOperation();
+
+	/**
 	 * Returns a new object of class '<em>Inline Class Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Inline Class Operation</em>'.

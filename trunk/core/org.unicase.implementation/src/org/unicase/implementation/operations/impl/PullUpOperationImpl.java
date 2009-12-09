@@ -205,6 +205,10 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		Class superClass = getSuperClass(project);
 		List<Class> subClasses = superClass.getSubClasses();
 
+		return getPossibleAttributes(attributes, subClasses);
+	}
+
+	public static EList<Attribute> getPossibleAttributes(List<Attribute> attributes, List<Class> subClasses) {
 		Class subClass = subClasses.get(0);
 		EList<Attribute> subClassAttributes = subClass.getAttributes();
 		if (subClasses.size() == 1) {
@@ -251,6 +255,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		Class superClass = getSuperClass(project);
 		List<Class> subClasses = superClass.getSubClasses();
 
+		return getPossibleOutgoingAssociations(associations, subClasses);
+	}
+
+	public static EList<Association> getPossibleOutgoingAssociations(List<Association> associations,
+		List<Class> subClasses) {
 		Class subClass = subClasses.get(0);
 		EList<Association> subClassAssociations = subClass.getOutgoingAssociations();
 		if (subClasses.size() == 1) {
@@ -297,6 +306,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		Class superClass = getSuperClass(project);
 		List<Class> subClasses = superClass.getSubClasses();
 
+		return getPossibleIncomingAssociations(associations, subClasses);
+	}
+
+	public static EList<Association> getPossibleIncomingAssociations(List<Association> associations,
+		List<Class> subClasses) {
 		Class subClass = subClasses.get(0);
 		EList<Association> subClassAssociations = subClass.getIncomingAssociations();
 		if (subClasses.size() == 1) {

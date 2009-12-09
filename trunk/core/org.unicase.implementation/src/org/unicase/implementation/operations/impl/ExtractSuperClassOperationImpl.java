@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
-import org.unicase.implementation.operations.util.ClassesOperationHelper;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -42,7 +41,8 @@ import org.unicase.model.classes.PackageElement;
  * <ul>
  *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getAssociations <em>Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperClassName <em>Super Class Name</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getTargetPackage <em>Target Package</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperSuperClasses <em>Super Super Classes</em>}</li>
@@ -74,14 +74,24 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected EList<ModelElementId> attributes;
 
 	/**
-	 * The cached value of the '{@link #getAssociations() <em>Associations</em>}' containment reference list.
+	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssociations()
+	 * @see #getOutgoingAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> associations;
+	protected EList<ModelElementId> outgoingAssociations;
+
+	/**
+	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElementId> incomingAssociations;
 
 	/**
 	 * The default value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute.
@@ -167,11 +177,23 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElementId> getAssociations() {
-		if (associations == null) {
-			associations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS);
+	public EList<ModelElementId> getOutgoingAssociations() {
+		if (outgoingAssociations == null) {
+			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
 		}
-		return associations;
+		return outgoingAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelElementId> getIncomingAssociations() {
+		if (incomingAssociations == null) {
+			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
+		}
+		return incomingAssociations;
 	}
 
 	/**
@@ -268,21 +290,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 */
 	public EList<Attribute> getPossibleAttributes(Project project) {
 		List<Class> subClasses = getSubClasses(project);
-		Class subClass = subClasses.remove(0);
-		EList<Attribute> attributes = subClass.getAttributes();
-		if (subClasses.size() == 1) {
-			return attributes;
-		}
-		EList<Attribute> possibleAttributes = new BasicEList<Attribute>();
-		for (Attribute attribute : attributes) {
-			for (Class c : subClasses) {
-				if (ClassesOperationHelper.getSameAttribute(c, attribute) == null) {
-					continue;
-				}
-			}
-			possibleAttributes.add(attribute);
-		}
-		return possibleAttributes;
+		List<Attribute> attributes = getAttributes(project);
+
+		return PullUpOperationImpl.getPossibleAttributes(attributes, subClasses);
 	}
 
 	/**
@@ -290,8 +300,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Association> getAssociations(Project project) {
-		return OperationHelper.getElements(project, getAssociations());
+	public EList<Association> getOutgoingAssociations(Project project) {
+		return OperationHelper.getElements(project, getOutgoingAssociations());
 	}
 
 	/**
@@ -299,26 +309,32 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated NOT
 	 */
-	public EList<Association> getPossibleAssociations(Project project) {
+	public EList<Association> getPossibleOutgoingAssociations(Project project) {
+		List<Association> associations = getOutgoingAssociations(project);
 		List<Class> subClasses = getSubClasses(project);
-		Class subClass = subClasses.remove(0);
-		EList<Association> associations = new BasicEList<Association>();
-		associations.addAll(subClass.getOutgoingAssociations());
-		associations.addAll(subClass.getIncomingAssociations());
-		if (subClasses.size() == 1) {
-			return associations;
-		}
 
-		EList<Association> possibleAssociations = new BasicEList<Association>();
-		for (Association association : associations) {
-			for (Class c : subClasses) {
-				if (ClassesOperationHelper.getSameOutgoingAssociation(c, association) == null) {
-					continue;
-				}
-			}
-			possibleAssociations.add(association);
-		}
-		return possibleAssociations;
+		return PullUpOperationImpl.getPossibleOutgoingAssociations(associations, subClasses);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getIncomingAssociations(Project project) {
+		return OperationHelper.getElements(project, getIncomingAssociations());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public EList<Association> getPossibleIncomingAssociations(Project project) {
+		List<Association> associations = getIncomingAssociations(project);
+		List<Class> subClasses = getSubClasses(project);
+
+		return PullUpOperationImpl.getPossibleIncomingAssociations(associations, subClasses);
 	}
 
 	/**
@@ -393,8 +409,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 				return ((InternalEList<?>)getSubClasses()).basicRemove(otherEnd, msgs);
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS:
-				return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return ((InternalEList<?>)getOutgoingAssociations()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return ((InternalEList<?>)getIncomingAssociations()).basicRemove(otherEnd, msgs);
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
 				return basicSetTargetPackage(null, msgs);
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
@@ -414,8 +432,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 				return getSubClasses();
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 				return getAttributes();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS:
-				return getAssociations();
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return getOutgoingAssociations();
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return getIncomingAssociations();
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
 				return getSuperClassName();
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
@@ -442,9 +462,13 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends ModelElementId>)newValue);
 				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS:
-				getAssociations().clear();
-				getAssociations().addAll((Collection<? extends ModelElementId>)newValue);
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				getOutgoingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
+				getIncomingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
 				return;
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
 				setSuperClassName((String)newValue);
@@ -473,8 +497,11 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 				getAttributes().clear();
 				return;
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS:
-				getAssociations().clear();
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				return;
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
 				return;
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
 				setSuperClassName(SUPER_CLASS_NAME_EDEFAULT);
@@ -500,8 +527,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 				return subClasses != null && !subClasses.isEmpty();
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS:
-				return associations != null && !associations.isEmpty();
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return incomingAssociations != null && !incomingAssociations.isEmpty();
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
 				return SUPER_CLASS_NAME_EDEFAULT == null ? superClassName != null : !SUPER_CLASS_NAME_EDEFAULT.equals(superClassName);
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
@@ -527,12 +556,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		return result.toString();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void semanticApply(Project project) {
 		// parameters
 		List<Class> subClasses = getSubClasses(project);
 		List<Attribute> attributes = getAttributes(project);
-		List<Association> associations = getAssociations(project);
+		List<Association> outgoingAssociations = getOutgoingAssociations(project);
+		List<Association> incomingAssociations = getIncomingAssociations(project);
 		Package targetPackage = getTargetPackage(project);
 		String superClassName = getSuperClassName();
 		List<Class> superSuperClasses = getSuperSuperClasses(project);
@@ -548,11 +577,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 			subClass.getSuperClasses().add(superClass);
 		}
 
-		// pull up attributes
+		// pull up attribute and associations
 		PullUpOperationImpl.pullUpAttributes(attributes, superClass);
-
-		// pull up associations
-		PullUpOperationImpl.pullUpOutgoingAssociations(associations, superClass);
+		PullUpOperationImpl.pullUpOutgoingAssociations(outgoingAssociations, superClass);
+		PullUpOperationImpl.pullUpIncomingAssociations(incomingAssociations, superClass);
 	}
 
 } // ExtractSuperClassOperationImpl

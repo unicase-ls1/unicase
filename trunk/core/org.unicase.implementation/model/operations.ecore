@@ -23,13 +23,22 @@
     <eOperations name="getPossibleAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getOutgoingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return OperationHelper.getElements(project, getAssociations());"/>
+        <details key="body" value="return OperationHelper.getElements(project, getOutgoingAssociations());"/>
       </eAnnotations>
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getPossibleAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getPossibleOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getIncomingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getIncomingAssociations());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
     <eOperations name="getTargetPackage" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Package">
@@ -59,7 +68,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClassName" lowerBound="1"
@@ -68,6 +80,27 @@
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superSuperClasses" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InlineSuperClassOperation" eSuperTypes="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
+    <eAnnotations source="http://unicase.org/operations">
+      <details key="description" value="A super class is inlined into its sub classes."/>
+      <details key="label" value="Inline Super Class"/>
+    </eAnnotations>
+    <eOperations name="getSuperClass" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElement(project, getSuperClass());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="validateSuperClassSubClasses" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://unicase.org/operations">
+        <details key="description" value="The super class must have sub classes."/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
   </eClassifiers>
