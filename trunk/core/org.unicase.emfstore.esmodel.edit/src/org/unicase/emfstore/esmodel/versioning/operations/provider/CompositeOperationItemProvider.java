@@ -5,6 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,9 +21,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation}
@@ -40,6 +44,32 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	public CompositeOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+	}
+
+	/**
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof CompositeOperation) {
+			CompositeOperation cop = (CompositeOperation) object;
+			ArrayList<Object> ret = new ArrayList<Object>();
+			if (cop.getMainOperation() != null) {
+				ret.addAll(super.getChildren(cop.getMainOperation()));
+				List<AbstractOperation> subOps = ModelUtil.flatCloneList(cop.getSubOperations());
+				if (subOps.size() > 0) {
+					subOps.remove(cop.getMainOperation());
+					OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+					operationGroup.setName("Additional Details");
+					operationGroup.getOperations().addAll(subOps);
+					ret.add(operationGroup);
+				}
+				return ret;
+			} else {
+				return cop.getSubOperations();
+			}
+		}
+		return super.getChildren(object);
 	}
 
 	/**

@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation}
@@ -101,9 +102,34 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AttributeOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AttributeOperation_type")
-			: getString("_UI_AttributeOperation_type") + " " + label;
+		if (object instanceof AttributeOperation) {
+			AttributeOperation op = (AttributeOperation) object;
+
+			String oldValue;
+			String newValue;
+			if (op.getFeatureName().equals("description")) {
+				oldValue = (op.getOldValue() == null) ? null : ModelUtil.getPlainTextFromRichText((String) op
+					.getOldValue());
+				newValue = (op.getNewValue() == null) ? null : ModelUtil.getPlainTextFromRichText((String) op
+					.getNewValue());
+			} else {
+				oldValue = (op.getOldValue() == null) ? null : op.getOldValue().toString();
+				newValue = (op.getNewValue() == null) ? null : op.getNewValue().toString();
+			}
+			String elemNameAndClass = getModelElementClassAndName(op.getModelElementId());
+			if (oldValue == null && newValue == null) {
+				return "Unset " + op.getFeatureName() + " in " + elemNameAndClass;
+			} else if (oldValue == null && newValue != null) {
+				return "Set " + op.getFeatureName() + " in " + elemNameAndClass + " to \"" + trim(newValue) + "\"";
+			} else if (oldValue != null && newValue == null) {
+				return "Unset " + op.getFeatureName() + " in " + elemNameAndClass + " from previous value \""
+					+ trim(oldValue) + "\"";
+			} else {
+				return "Set " + op.getFeatureName() + " in " + elemNameAndClass + " to \"" + trim(newValue)
+					+ "\" from previous value \"" + trim(oldValue) + "\"";
+			}
+		}
+		return super.getText(object);
 	}
 
 	/**

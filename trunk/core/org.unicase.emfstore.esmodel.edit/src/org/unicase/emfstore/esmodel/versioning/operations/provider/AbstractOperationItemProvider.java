@@ -37,6 +37,15 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
+	 * Constant for name and class tag separator.
+	 */
+	public static final String NAME_CLASS_TAG_SEPARATOR = "&";
+	/**
+	 * Constant for name tag separator.
+	 */
+	public static final String NAME_TAG__SEPARATOR = "%";
+
+	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -213,6 +222,49 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return EsmodelEditPlugin.INSTANCE;
+	}
+
+	public String getModelElementName(ModelElementId modelElementId) {
+		return NAME_TAG__SEPARATOR + modelElementId.getId() + NAME_TAG__SEPARATOR;
+	}
+
+	public String getModelElementNames(List<ModelElementId> modelElementIds) {
+		StringBuilder builder = new StringBuilder();
+		for (ModelElementId modelElementId : modelElementIds) {
+			builder.append(NAME_TAG__SEPARATOR);
+			builder.append(modelElementId.getId());
+			builder.append(NAME_TAG__SEPARATOR);
+			builder.append(", ");
+		}
+		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.length(), "NAME_TAG__SEPARATOR.");
+		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder
+			.lastIndexOf(NAME_TAG__SEPARATOR + ", ") + 3, NAME_TAG__SEPARATOR + " and ");
+		return builder.toString();
+	}
+
+	public String getModelElementClassAndName(ModelElementId modelElementId) {
+		return NAME_CLASS_TAG_SEPARATOR + modelElementId.getId() + NAME_CLASS_TAG_SEPARATOR;
+	}
+
+	private static final int MAX_NAME_SIZE = 30;
+
+	public String trim(Object object) {
+		return trim(object, false);
+	}
+
+	public String trim(Object object, boolean isName) {
+		if (object == null) {
+			return isName ? "(no name)" : "(null)";
+		}
+		String string = object.toString();
+		String result = string.trim();
+		if (result.length() > MAX_NAME_SIZE) {
+			return result.substring(0, MAX_NAME_SIZE) + "...";
+		}
+		if (result.length() == 0) {
+			return "(empty)";
+		}
+		return result;
 	}
 
 }

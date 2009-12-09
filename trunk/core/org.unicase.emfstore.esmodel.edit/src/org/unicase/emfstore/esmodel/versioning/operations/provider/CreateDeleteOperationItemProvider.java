@@ -5,6 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,8 +22,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 
 /**
  * This is the item provider adapter for a
@@ -41,6 +44,31 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	public CreateDeleteOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+	}
+
+	/**
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof CreateDeleteOperation) {
+			CreateDeleteOperation operation = (CreateDeleteOperation) object;
+			ArrayList<Object> ret = new ArrayList<Object>();
+			ret.add(operation.getModelElementId());
+			List<ReferenceOperation> subOps = operation.getSubOperations();
+			if (subOps.size() > 0) {
+				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+				if (operation.isDelete()) {
+					operationGroup.setName("Deleted Cross-References");
+				} else {
+					operationGroup.setName("Created Cross-References");
+				}
+				operationGroup.getOperations().addAll(subOps);
+				ret.add(operationGroup);
+			}
+			return ret;
+		}
+		return super.getChildren(object);
 	}
 
 	/**
