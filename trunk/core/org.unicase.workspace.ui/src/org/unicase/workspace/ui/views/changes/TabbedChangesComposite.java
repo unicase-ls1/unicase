@@ -69,7 +69,7 @@ public class TabbedChangesComposite extends Composite implements
 				detailedTabTreeViewer.getControl());
 
 		detailedContentProvider = new SCMContentProvider.Detailed(
-				detailedTabTreeViewer, project);
+				detailedTabTreeViewer);
 		detailedContentProvider.setShowRootNodes(true);
 		SCMLabelProvider detailedLabelProvider = new SCMLabelProvider(project);
 		detailedLabelProvider
@@ -96,7 +96,7 @@ public class TabbedChangesComposite extends Composite implements
 				compactTabTreeViewer.getControl());
 
 		compactContentProvider = new SCMContentProvider.Compact(
-				compactTabTreeViewer, project);
+				compactTabTreeViewer);
 		compactContentProvider.setShowRootNodes(true);
 		SCMLabelProvider compactLabelProvider = new SCMLabelProvider(project);
 		compactLabelProvider
