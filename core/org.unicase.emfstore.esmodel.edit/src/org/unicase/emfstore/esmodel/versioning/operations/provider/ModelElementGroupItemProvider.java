@@ -72,6 +72,9 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
 	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
 	 */
 	@Override
@@ -113,9 +116,11 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElementGroup) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElementGroup_type")
-			: getString("_UI_ModelElementGroup_type") + " " + label;
+		if (object instanceof ModelElementGroup) {
+			ModelElementGroup group = (ModelElementGroup) object;
+			return group.getName();
+		}
+		return super.getText(object);
 	}
 
 	/**
