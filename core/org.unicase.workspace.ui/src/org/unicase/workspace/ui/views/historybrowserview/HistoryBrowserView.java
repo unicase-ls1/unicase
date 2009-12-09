@@ -532,6 +532,11 @@ public class HistoryBrowserView extends ViewPart implements
 			historyInfos.clear();
 			historyInfos.addAll(historyInfo);
 		}
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		changePackage.getOperations().addAll(
+				ModelUtil.clone(projectSpace.getOperations()));
+		changePackageCache.put(-1, changePackage);
 		for (HistoryInfo hi : historyInfos) {
 			if (hi.getChangePackage() != null) {
 				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi
