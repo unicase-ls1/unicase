@@ -1171,22 +1171,22 @@ public interface EventsPackage extends EPackage {
 	int MERGE_CHOICE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
 
 	/**
-	 * The feature id for the '<em><b>My Changes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>My Accepted Changes</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE_EVENT__MY_CHANGES = EVENT_FEATURE_COUNT + 0;
+	int MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES = EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Their Changes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>Their Rejected Changes</b></em>' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE_EVENT__THEIR_CHANGES = EVENT_FEATURE_COUNT + 1;
+	int MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES = EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Context Model Element</b></em>' containment reference. <!-- begin-user-doc -->
@@ -1214,13 +1214,13 @@ public interface EventsPackage extends EPackage {
 	int MERGE_CHOICE_EVENT__CONTEXT_FEATURE = EVENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Created Issue</b></em>' containment reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>Created Issue Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_CHOICE_EVENT__CREATED_ISSUE = EVENT_FEATURE_COUNT + 5;
+	int MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME = EVENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Merge Choice Event</em>' class. <!-- begin-user-doc --> <!--
@@ -2140,27 +2140,27 @@ public interface EventsPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyChanges <em>My Changes</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyAcceptedChanges
+	 * <em>My Accepted Changes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '<em>My Changes</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyChanges()
+	 * @return the meta object for the containment reference list '<em>My Accepted Changes</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getMyAcceptedChanges()
 	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoiceEvent_MyChanges();
+	EReference getMergeChoiceEvent_MyAcceptedChanges();
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirChanges <em>Their Changes</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirRejectedChanges
+	 * <em>Their Rejected Changes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '<em>Their Changes</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirChanges()
+	 * @return the meta object for the containment reference list '<em>Their Rejected Changes</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getTheirRejectedChanges()
 	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoiceEvent_TheirChanges();
+	EReference getMergeChoiceEvent_TheirRejectedChanges();
 
 	/**
 	 * Returns the meta object for the containment reference '
@@ -2199,16 +2199,16 @@ public interface EventsPackage extends EPackage {
 	EAttribute getMergeChoiceEvent_ContextFeature();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssue <em>Created Issue</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssueName
+	 * <em>Created Issue Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference '<em>Created Issue</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssue()
+	 * @return the meta object for the attribute '<em>Created Issue Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssueName()
 	 * @see #getMergeChoiceEvent()
 	 * @generated
 	 */
-	EReference getMergeChoiceEvent_CreatedIssue();
+	EAttribute getMergeChoiceEvent_CreatedIssueName();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent
@@ -2941,20 +2941,20 @@ public interface EventsPackage extends EPackage {
 		EClass MERGE_CHOICE_EVENT = eINSTANCE.getMergeChoiceEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>My Changes</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>My Accepted Changes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE_EVENT__MY_CHANGES = eINSTANCE.getMergeChoiceEvent_MyChanges();
+		EReference MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES = eINSTANCE.getMergeChoiceEvent_MyAcceptedChanges();
 
 		/**
-		 * The meta object literal for the '<em><b>Their Changes</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Their Rejected Changes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE_EVENT__THEIR_CHANGES = eINSTANCE.getMergeChoiceEvent_TheirChanges();
+		EReference MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES = eINSTANCE.getMergeChoiceEvent_TheirRejectedChanges();
 
 		/**
 		 * The meta object literal for the '<em><b>Context Model Element</b></em>' containment reference feature. <!--
@@ -2981,12 +2981,12 @@ public interface EventsPackage extends EPackage {
 		EAttribute MERGE_CHOICE_EVENT__CONTEXT_FEATURE = eINSTANCE.getMergeChoiceEvent_ContextFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Created Issue</b></em>' containment reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Created Issue Name</b></em>' attribute feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference MERGE_CHOICE_EVENT__CREATED_ISSUE = eINSTANCE.getMergeChoiceEvent_CreatedIssue();
+		EAttribute MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME = eINSTANCE.getMergeChoiceEvent_CreatedIssueName();
 
 		/**
 		 * The meta object literal for the '

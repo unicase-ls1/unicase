@@ -113,11 +113,9 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof ModelElementGroup) {
-			ModelElementGroup group = (ModelElementGroup) object;
-			return group.getName();
-		}
-		return super.getText(object);
+		String label = ((ModelElementGroup) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ModelElementGroup_type")
+			: getString("_UI_ModelElementGroup_type") + " " + label;
 	}
 
 	/**
