@@ -69,6 +69,7 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION);
+			childrenFeatures.add(OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS);
 		}
 		return childrenFeatures;
 	}
@@ -121,6 +122,7 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 
 		switch (notification.getFeatureID(InlineClassOperation.class)) {
 			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
+			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,6 +178,34 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 			(createChildParameter
 				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION ||
+			childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

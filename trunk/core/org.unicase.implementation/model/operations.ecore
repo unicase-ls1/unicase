@@ -154,6 +154,12 @@
       </eAnnotations>
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
+    <eOperations name="validateCompositionName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://unicase.org/operations">
+        <details key="description" value="An attribute or association with that name already exists."/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextClass" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
@@ -185,6 +191,18 @@
       </eAnnotations>
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
+    <eOperations name="getPossibleAssociation" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getInlineClass" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElement(project, getInlineClass());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleInlineClass" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Class">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
     <eOperations name="validateAssociationComposition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://unicase.org/operations">
         <details key="description" value="The association must be a composition."/>
@@ -210,6 +228,9 @@
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inlineClass" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
   </eClassifiers>

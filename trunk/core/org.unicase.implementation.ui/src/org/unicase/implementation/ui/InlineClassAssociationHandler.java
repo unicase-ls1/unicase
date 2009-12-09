@@ -13,18 +13,22 @@ import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.model.classes.Association;
 
 /**
- * Handler for the {@link InlineClassOperation}.
+ * Handler for {@link InlineClassOperation} when the composition to be inlined is selected.
  * 
  * @author herrmi
  */
-public class InlineClassHandler extends OperationHandlerBase {
+public class InlineClassAssociationHandler extends OperationHandlerBase {
 
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
 		Association association = SelectionHelper.getSelectedElement(structuredSelection);
+		org.unicase.model.classes.Class inlineClass = association.getTarget();
 
 		InlineClassOperation operation = OperationsFactory.eINSTANCE.createInlineClassOperation();
 		operation.setAssociation(OperationHelper.getId(association));
+		if (inlineClass != null) {
+			operation.setInlineClass(OperationHelper.getId(inlineClass));
+		}
 
 		return operation;
 	}

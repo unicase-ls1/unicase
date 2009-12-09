@@ -243,6 +243,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getInlineClassOperation_InlineClass() {
+		return (EReference)inlineClassOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtractClassOperation() {
 		return extractClassOperationEClass;
 	}
@@ -464,6 +473,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		inlineClassOperationEClass = createEClass(INLINE_CLASS_OPERATION);
 		createEReference(inlineClassOperationEClass, INLINE_CLASS_OPERATION__ASSOCIATION);
+		createEReference(inlineClassOperationEClass, INLINE_CLASS_OPERATION__INLINE_CLASS);
 
 		partitionAssociationOperationEClass = createEClass(PARTITION_ASSOCIATION_OPERATION);
 		createEReference(partitionAssociationOperationEClass, PARTITION_ASSOCIATION_OPERATION__ASSOCIATION);
@@ -608,10 +618,23 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(extractClassOperationEClass, ecorePackage.getEBoolean(), "validateClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(extractClassOperationEClass, ecorePackage.getEBoolean(), "validateCompositionName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(inlineClassOperationEClass, InlineClassOperation.class, "InlineClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInlineClassOperation_Association(), theMetamodelPackage.getModelElementId(), null, "association", null, 1, 1, InlineClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInlineClassOperation_InlineClass(), theMetamodelPackage.getModelElementId(), null, "inlineClass", null, 1, 1, InlineClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(inlineClassOperationEClass, theClassesPackage.getAssociation(), "getAssociation", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, theClassesPackage.getAssociation(), "getPossibleAssociation", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, theClassesPackage.getClass_(), "getInlineClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(inlineClassOperationEClass, theClassesPackage.getClass_(), "getPossibleInlineClass", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(inlineClassOperationEClass, ecorePackage.getEBoolean(), "validateAssociationComposition", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -760,32 +783,38 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			 "description", "A class or enumeration with that name already exists."
 		   });		
 		addAnnotation
+		  (extractClassOperationEClass.getEOperations().get(9), 
+		   source, 
+		   new String[] {
+			 "description", "An attribute or association with that name already exists."
+		   });		
+		addAnnotation
 		  (inlineClassOperationEClass, 
 		   source, 
 		   new String[] {
 			 "description", "A class reachable through a single-valued composition is inlined.",
 			 "label", "Inline Class"
-		   });			
+		   });				
 		addAnnotation
-		  (inlineClassOperationEClass.getEOperations().get(1), 
+		  (inlineClassOperationEClass.getEOperations().get(4), 
 		   source, 
 		   new String[] {
 			 "description", "The association must be a composition."
 		   });		
 		addAnnotation
-		  (inlineClassOperationEClass.getEOperations().get(2), 
+		  (inlineClassOperationEClass.getEOperations().get(5), 
 		   source, 
 		   new String[] {
 			 "description", "The multiplicity of the association must be 1-to-1."
 		   });		
 		addAnnotation
-		  (inlineClassOperationEClass.getEOperations().get(3), 
+		  (inlineClassOperationEClass.getEOperations().get(6), 
 		   source, 
 		   new String[] {
 			 "description", "The class to be inlined must not have sub classes."
 		   });		
 		addAnnotation
-		  (inlineClassOperationEClass.getEOperations().get(4), 
+		  (inlineClassOperationEClass.getEOperations().get(7), 
 		   source, 
 		   new String[] {
 			 "description", "The class to be inlined must not be target of another association."

@@ -52,11 +52,11 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.unicase.implementation.ui.InlineClassHandler"
+            class="org.unicase.implementation.ui.InlineClassAssociationHandler"
             commandId="org.unicase.implementation.ui.command.InlineClass">
          <activeWhen>
             <reference
-                  definitionId="OneAssociationSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneAssociationSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -65,7 +65,7 @@
             commandId="org.unicase.implementation.ui.command.PartitionAssociatin">
          <activeWhen>
             <reference
-                  definitionId="OneAssociationSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneAssociationSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -74,7 +74,7 @@
             commandId="org.unicase.implementation.ui.command.PushDown">
          <activeWhen>
             <reference
-                  definitionId="SeveralAttributesAssociationsSelected">
+                  definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -83,7 +83,7 @@
             commandId="org.unicase.implementation.ui.command.PushDown">
          <activeWhen>
             <reference
-                  definitionId="OneClassSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -92,7 +92,7 @@
             commandId="org.unicase.implementation.ui.command.PullUp">
          <activeWhen>
             <reference
-                  definitionId="OneClassSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -101,7 +101,7 @@
             commandId="org.unicase.implementation.ui.command.PullUp">
          <activeWhen>
             <reference
-                  definitionId="SeveralAttributesAssociationsSelected">
+                  definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -110,7 +110,7 @@
             commandId="org.unicase.implementation.ui.command.InlineSuperClass">
          <activeWhen>
             <reference
-                  definitionId="OneClassSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -119,7 +119,7 @@
             commandId="org.unicase.implementation.ui.command.ExtractClass">
          <activeWhen>
             <reference
-                  definitionId="SeveralAttributesAssociationsSelected">
+                  definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -128,7 +128,16 @@
             commandId="org.unicase.implementation.ui.command.ExtractClass">
          <activeWhen>
             <reference
-                  definitionId="OneClassSelected">
+                  definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
+            </reference>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.InlineClassClassHandler"
+            commandId="org.unicase.implementation.ui.command.InlineClass">
+         <activeWhen>
+            <reference
+                  definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
             </reference>
          </activeWhen>
       </handler>
@@ -143,7 +152,7 @@
                style="push">
             <visibleWhen>
                <reference
-                     definitionId="SeveralClassesSelected">
+                     definitionId="org.unicase.implementation.ui.definition.SeveralClassesSelected">
                </reference>
             </visibleWhen>
          </command>
@@ -152,9 +161,14 @@
                label="Inline Class"
                style="push">
             <visibleWhen>
-               <reference
-                     definitionId="OneAssociationSelected">
-               </reference>
+               <or>
+                  <reference
+                        definitionId="org.unicase.implementation.ui.definition.OneAssociationSelected">
+                  </reference>
+                  <reference
+                        definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
+                  </reference>
+               </or>
             </visibleWhen>
          </command>
          <command
@@ -163,7 +177,7 @@
                style="push">
             <visibleWhen>
                <reference
-                     definitionId="OneAssociationSelected">
+                     definitionId="org.unicase.implementation.ui.definition.OneAssociationSelected">
                </reference>
             </visibleWhen>
          </command>
@@ -174,10 +188,10 @@
             <visibleWhen>
                <or>
                   <reference
-                        definitionId="OneClassSelected">
+                        definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
                   </reference>
                   <reference
-                        definitionId="SeveralAttributesAssociationsSelected">
+                        definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
                   </reference>
                </or>
             </visibleWhen>
@@ -189,10 +203,10 @@
             <visibleWhen>
                <or>
                   <reference
-                        definitionId="OneClassSelected">
+                        definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
                   </reference>
                   <reference
-                        definitionId="SeveralAttributesAssociationsSelected">
+                        definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
                   </reference>
                </or>
             </visibleWhen>
@@ -203,7 +217,7 @@
                style="push">
             <visibleWhen>
                <reference
-                     definitionId="OneClassSelected">
+                     definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
                </reference>
             </visibleWhen>
          </command>
@@ -214,10 +228,10 @@
             <visibleWhen>
                <or>
                   <reference
-                        definitionId="OneClassSelected">
+                        definitionId="org.unicase.implementation.ui.definition.OneClassSelected">
                   </reference>
                   <reference
-                        definitionId="SeveralAttributesAssociationsSelected">
+                        definitionId="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
                   </reference>
                </or>
             </visibleWhen>
@@ -227,7 +241,7 @@
    <extension
          point="org.eclipse.core.expressions.definitions">
       <definition
-            id="OneClassSelected">
+            id="org.unicase.implementation.ui.definition.OneClassSelected">
          <with
                variable="selection">
             <iterate>
@@ -241,7 +255,7 @@
          </with>
       </definition>
       <definition
-            id="SeveralClassesSelected">
+            id="org.unicase.implementation.ui.definition.SeveralClassesSelected">
          <with
                variable="selection">
             <iterate>
@@ -255,7 +269,7 @@
          </with>
       </definition>
       <definition
-            id="OneAssociationSelected">
+            id="org.unicase.implementation.ui.definition.OneAssociationSelected">
          <with
                variable="selection">
             <iterate>
@@ -269,7 +283,7 @@
          </with>
       </definition>
       <definition
-            id="SeveralAttributesAssociationsSelected">
+            id="org.unicase.implementation.ui.definition.SeveralAttributesAssociationsSelected">
          <with
                variable="selection">
             <iterate>

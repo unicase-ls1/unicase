@@ -643,13 +643,22 @@ public interface OperationsPackage extends EPackage {
 	int INLINE_CLASS_OPERATION__ASSOCIATION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Inline Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_CLASS_OPERATION__INLINE_CLASS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Inline Class Operation</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INLINE_CLASS_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 1;
+	int INLINE_CLASS_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.implementation.operations.impl.PartitionAssociationOperationImpl <em>Partition Association Operation</em>}' class.
@@ -1202,6 +1211,17 @@ public interface OperationsPackage extends EPackage {
 	EReference getInlineClassOperation_Association();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.implementation.operations.InlineClassOperation#getInlineClass <em>Inline Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Inline Class</em>'.
+	 * @see org.unicase.implementation.operations.InlineClassOperation#getInlineClass()
+	 * @see #getInlineClassOperation()
+	 * @generated
+	 */
+	EReference getInlineClassOperation_InlineClass();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.implementation.operations.ExtractClassOperation <em>Extract Class Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1533,6 +1553,14 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INLINE_CLASS_OPERATION__ASSOCIATION = eINSTANCE.getInlineClassOperation_Association();
+
+		/**
+		 * The meta object literal for the '<em><b>Inline Class</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INLINE_CLASS_OPERATION__INLINE_CLASS = eINSTANCE.getInlineClassOperation_InlineClass();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl <em>Extract Class Operation</em>}' class.
