@@ -26,6 +26,7 @@ import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.ExtractSuperClassOperation} object.
@@ -191,16 +192,27 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExtractSuperClassOperation)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ExtractSuperClassOperation_type") :
-			getString("_UI_ExtractSuperClassOperation_type") + " " + label;
+		if (object instanceof ExtractSuperClassOperation) {
+			ExtractSuperClassOperation operation = (ExtractSuperClassOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Extracted attributes and associations from the subclasses ");
+			for (ModelElementId modelElementId: operation.getSubClasses()) {
+				builder.append("%" + modelElementId.getId() + "%, ");
+			}
+			builder.append(" to the new superclass ");
+			builder.append(operation.getSuperClassName());
+			return builder.toString();
+		}
+		else {
+			return super.getText(object);
+		}
 	}
 
 	/**

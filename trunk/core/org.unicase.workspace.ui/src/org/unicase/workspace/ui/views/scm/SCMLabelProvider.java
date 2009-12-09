@@ -107,9 +107,6 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			} else {
 				ret = value.toString();
 			}
-			// if (ret.length() > 50) {
-			// ret = ret.substring(0, 47) + "...";
-			// }
 			return ret;
 		}
 		return super.getText(element);
