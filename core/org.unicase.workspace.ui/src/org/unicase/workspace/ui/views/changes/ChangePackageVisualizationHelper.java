@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -49,7 +48,6 @@ public class ChangePackageVisualizationHelper {
 	private Project project;
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
-	private List<ChangePackage> changePackages;
 	private static final String UNKOWN_ELEMENT = "(Unkown Element)";
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
@@ -68,7 +66,6 @@ public class ChangePackageVisualizationHelper {
 		for (ChangePackage changePackage : changePackages) {
 			initModelELementMap(changePackage);
 		}
-		this.changePackages = changePackages;
 		this.project = project;
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
@@ -224,75 +221,6 @@ public class ChangePackageVisualizationHelper {
 			image = emfProvider.getImage(op.getReferencedModelElementId());
 		}
 		return image;
-	}
-
-	/**
-	 * Get all model elements that are changed by a change package.
-	 * 
-	 * @param changePackage
-	 *            the change package
-	 * @return a set of touched model elements
-	 */
-	public Set<EObject> getAllModelElements(ChangePackage changePackage) {
-		Set<EObject> set = new HashSet<EObject>();
-		Set<ModelElementId> tempSet = this.touchedModelElements
-				.get(changePackage);
-		if (tempSet == null) {
-			return set;
-		}
-		for (ModelElementId id : tempSet) {
-			ModelElement modelElement = getModelElement(id);
-			if (modelElement != null) {
-				set.add(modelElement);
-			} else {
-				// AS: hiding elements that cannot be displayed
-				// set.add(id);
-			}
-		}
-		return set;
-	}
-
-	/**
-	 * Get all operations for this ModelElement in the current ChangePackage.
-	 * 
-	 * @param me
-	 *            the ModelElement
-	 * @param changePackage
-	 *            the changePackage
-	 * @return the operations
-	 */
-	public Set<EObject> getOperations(ModelElement me,
-			ChangePackage changePackage) {
-		Set<EObject> set = new HashSet<EObject>();
-		for (AbstractOperation op : changePackage.getOperations()) {
-			if (op.getModelElementId().equals(me.getModelElementId())) {
-				set.add(op);
-			} else if (op instanceof ReferenceOperation) {
-				ReferenceOperation rop = (ReferenceOperation) op;
-				Set<ModelElementId> others = rop
-						.getOtherInvolvedModelElements();
-				if (others.contains(me.getModelElementId())) {
-					set.add(rop);
-				}
-			}
-		}
-		return set;
-	}
-
-	/**
-	 * Get all operations for this ModelElement in the current list of
-	 * ChangePackages.
-	 * 
-	 * @param me
-	 *            the ModelElement
-	 * @return the operations
-	 */
-	public Set<EObject> getOperations(ModelElement me) {
-		Set<EObject> set = new HashSet<EObject>();
-		for (ChangePackage cp : changePackages) {
-			set.addAll(getOperations(me, cp));
-		}
-		return set;
 	}
 
 	/**

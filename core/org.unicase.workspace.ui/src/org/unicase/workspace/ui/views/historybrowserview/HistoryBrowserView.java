@@ -331,11 +331,9 @@ public class HistoryBrowserView extends ViewPart implements
 				Activator.getDefault().getDialogSettings().put(
 						"GroupByModelElement", isChecked());
 				if (isChecked()) {
-					contentProvider = new SCMContentProvider.Compact(viewer,
-							projectSpace.getProject());
+					contentProvider = new SCMContentProvider.Compact(viewer);
 				} else {
-					contentProvider = new SCMContentProvider.Detailed(viewer,
-							projectSpace.getProject());
+					contentProvider = new SCMContentProvider.Detailed(viewer);
 				}
 				contentProvider.setShowRootNodes(showRootsCache);
 				viewer.setContentProvider(contentProvider);
@@ -579,7 +577,7 @@ public class HistoryBrowserView extends ViewPart implements
 			label += UiUtil.getNameForModelElement(me);
 			groupByMe.setChecked(false);
 			showRoots.setChecked(false);
-			contentProvider = new SCMContentProvider.Detailed(viewer, project);
+			contentProvider = new SCMContentProvider.Detailed(viewer);
 			contentProvider.setShowRootNodes(false);
 		} else {
 			label += projectSpace.getProjectName();
@@ -588,11 +586,9 @@ public class HistoryBrowserView extends ViewPart implements
 			groupByMe.setChecked(isGroupedByME);
 			showRoots.setChecked(true);
 			if (isGroupedByME) {
-				contentProvider = new SCMContentProvider.Compact(viewer,
-						project);
+				contentProvider = new SCMContentProvider.Compact(viewer);
 			} else {
-				contentProvider = new SCMContentProvider.Detailed(viewer,
-						project);
+				contentProvider = new SCMContentProvider.Detailed(viewer);
 			}
 			contentProvider.setShowRootNodes(true);
 		}
