@@ -16,8 +16,8 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 
 /**
  * Handler for loading project informations from the server.
+ * 
  * @author svetlana nogina
- *
  */
 public class ProjectInfoLoadingHandler extends ServerRequestCommandHandler{
 	
@@ -47,16 +47,13 @@ public class ProjectInfoLoadingHandler extends ServerRequestCommandHandler{
 		
      	}
          return null;
-      
      }
 	 
 	 /**
-		 * Gets the list of informations to projects on the server.
-		 * 
-		 * @return projectList - the list of project infos or null if the handler hasn't been run yet 
-		 */
-	
-	 
+	 * Gets the list of informations to projects on the server.
+	 * 
+	 * @return projectList - the list of project infos or null if the handler hasn't been run yet
+	 */
 	 public List<ProjectInfo> getProjectList(){
 		 return projectList;
 	 }

@@ -24,27 +24,26 @@ import org.unicase.workspace.WorkspaceManager;
  * It generates a UNICASE url for the selected model element,
  * copies it to clipboard and shows a popup.
  *  
- * @author svetlana
- * @author jfinis
- * @author kami
+ * @author svetlana, jfinis, kami
  */
 public class UnicaseLinkHandler extends AbstractHandler {
+	
 	/**
 	 * The constructor.
 	 */
 	public UnicaseLinkHandler() {
 	}
 	
-	
 	/**
 	 * Execute the UnicaseLinkCommand which displays the UNICASE URL of the
 	 * selected model element in a popup window and copies it to clipboard.
-	 * The method first assembles the link, then copies it to clipboard and opens the popup.
+	 * The method first assembles the link, then copies it to clipboard and 
+	 * opens the popup.
+	 * 
 	 * @param event the event to handled
 	 * @return nothing (null)
 	 */
 	public Object execute(ExecutionEvent event) {
-		
 		
 		ModelElement me = ActionHelper.getModelElement(event);
 
@@ -85,4 +84,6 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		dlg.open();
 		return null;
 	}
+	
 }
+

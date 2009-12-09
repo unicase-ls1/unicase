@@ -14,8 +14,7 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 /**
  * Simple handler for checking out projects.
  * 
- * @author emueller
- * @author svetlana nogina
+ * @author emueller, svetlana nogina
  */
 public class CheckoutProjectHandler extends ServerRequestCommandHandler{
 

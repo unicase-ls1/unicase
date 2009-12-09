@@ -32,8 +32,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * Utility class for retrieving a project independently of whether
  * it has been checked out or not.
  * 
- * @author emueller
- * @author svetlana nogina
+ * @author emueller, svetlana nogina
  */
 public final class ProjectFacade {
 	
