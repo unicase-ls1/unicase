@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -131,6 +132,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass operationGroupEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass modelElementGroupEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -603,6 +611,33 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
+	public EClass getModelElementGroup() {
+		return modelElementGroupEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getModelElementGroup_Name() {
+		return (EAttribute) modelElementGroupEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getModelElementGroup_ModelElements() {
+		return (EReference) modelElementGroupEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory) getEFactoryInstance();
 	}
@@ -677,6 +712,10 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		operationGroupEClass = createEClass(OPERATION_GROUP);
 		createEAttribute(operationGroupEClass, OPERATION_GROUP__NAME);
 		createEReference(operationGroupEClass, OPERATION_GROUP__OPERATIONS);
+
+		modelElementGroupEClass = createEClass(MODEL_ELEMENT_GROUP);
+		createEAttribute(modelElementGroupEClass, MODEL_ELEMENT_GROUP__NAME);
+		createEReference(modelElementGroupEClass, MODEL_ELEMENT_GROUP__MODEL_ELEMENTS);
 	}
 
 	/**
@@ -848,6 +887,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEReference(getOperationGroup_Operations(), this.getAbstractOperation(), null, "operations", null, 0, -1,
 			OperationGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelElementGroupEClass, ModelElementGroup.class, "ModelElementGroup", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelElementGroup_Name(), ecorePackage.getEString(), "name", null, 0, 1,
+			ModelElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElementGroup_ModelElements(), theMetamodelPackage.getModelElementId(), null,
+			"modelElements", null, 0, -1, ModelElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // OperationsPackageImpl

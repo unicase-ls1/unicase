@@ -164,12 +164,9 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof CompositeOperation) {
-			CompositeOperation compositeOperation = (CompositeOperation) object;
-			return compositeOperation.getDescription();
-		} else {
-			return super.getText(object);
-		}
+		String label = ((CompositeOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_CompositeOperation_type")
+			: getString("_UI_CompositeOperation_type") + " " + label;
 	}
 
 	/**

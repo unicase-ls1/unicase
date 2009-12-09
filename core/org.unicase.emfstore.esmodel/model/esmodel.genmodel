@@ -151,6 +151,11 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/OperationGroup/operations"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ModelElementGroup">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ModelElementGroup/name"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/ModelElementGroup/modelElements"/>
+        </genClasses>
         <nestedGenPackages prefix="Semantic" basePackage="org.unicase.emfstore.esmodel.versioning.operations"
             disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations/semantic">
           <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation"/>

@@ -193,6 +193,11 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
             eType="#//versioning/operations/AbstractOperation"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ModelElementGroup">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+            eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+      </eClassifiers>
       <eSubpackages name="semantic" nsURI="http://unicase.org/esmodel/versioning/operations/semantic"
           nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">
         <eClassifiers xsi:type="ecore:EClass" name="SemanticCompositeOperation" abstract="true"

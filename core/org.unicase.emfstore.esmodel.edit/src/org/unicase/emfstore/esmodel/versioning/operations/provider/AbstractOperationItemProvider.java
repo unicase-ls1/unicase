@@ -5,6 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 
 /**
@@ -41,6 +43,27 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	 */
 	public AbstractOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof AbstractOperation) {
+			AbstractOperation operation = (AbstractOperation) object;
+			ArrayList<ModelElementId> result = new ArrayList<ModelElementId>();
+			ModelElementId modelElementId = operation.getModelElementId();
+			if (modelElementId != null) {
+				result.add(modelElementId);
+			}
+			result.addAll(operation.getOtherInvolvedModelElements());
+			return result;
+		}
+		return super.getChildren(object);
 	}
 
 	/**
