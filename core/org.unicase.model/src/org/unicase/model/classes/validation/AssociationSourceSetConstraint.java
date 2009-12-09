@@ -17,7 +17,7 @@ public class AssociationSourceSetConstraint extends FeatureSetConstraintBase {
 	/**
 	 * Constructor.
 	 */
-	protected AssociationSourceSetConstraint() {
+	public AssociationSourceSetConstraint() {
 		super(ClassesPackage.Literals.ASSOCIATION__SOURCE);
 	}
 

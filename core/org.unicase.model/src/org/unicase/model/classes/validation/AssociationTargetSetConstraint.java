@@ -17,7 +17,7 @@ public class AssociationTargetSetConstraint extends FeatureSetConstraintBase {
 	/**
 	 * Constructor.
 	 */
-	protected AssociationTargetSetConstraint() {
+	public AssociationTargetSetConstraint() {
 		super(ClassesPackage.Literals.ASSOCIATION__TARGET);
 	}
 

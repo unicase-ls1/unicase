@@ -19,7 +19,7 @@ public class WellFormedModelElementNameConstraint extends WellFormedNameConstrai
 	 * 
 	 * @param nameAttribute
 	 */
-	protected WellFormedModelElementNameConstraint() {
+	public WellFormedModelElementNameConstraint() {
 		super(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME);
 	}
 

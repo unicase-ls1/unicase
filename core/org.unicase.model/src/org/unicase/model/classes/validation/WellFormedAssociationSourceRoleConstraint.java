@@ -17,7 +17,7 @@ public class WellFormedAssociationSourceRoleConstraint extends WellFormedNameCon
 	/**
 	 * Constructor.
 	 */
-	protected WellFormedAssociationSourceRoleConstraint() {
+	public WellFormedAssociationSourceRoleConstraint() {
 		super(ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE);
 	}
 }
