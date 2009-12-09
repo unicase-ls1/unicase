@@ -468,4 +468,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		return result;
 	}
 
+	public List<AbstractOperation> getTouchingOperations(ModelElementId modelElementId) {
+		ArrayList<AbstractOperation> result = new ArrayList<AbstractOperation>();
+		for (AbstractOperation operation : getOperations()) {
+			if (operation.getAllInvolvedModelElements().contains(modelElementId)) {
+				result.add(operation);
+			}
+		}
+		return result;
+	}
+
 } // ChangePackageImpl
