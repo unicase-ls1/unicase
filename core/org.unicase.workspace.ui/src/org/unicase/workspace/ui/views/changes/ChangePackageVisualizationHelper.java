@@ -15,6 +15,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -28,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -47,6 +50,8 @@ public class ChangePackageVisualizationHelper {
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
 	private List<ChangePackage> changePackages;
+	private static final String UNKOWN_ELEMENT = "(Unkown Element)";
+	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
 	/**
 	 * Constructor.
@@ -65,6 +70,9 @@ public class ChangePackageVisualizationHelper {
 		}
 		this.changePackages = changePackages;
 		this.project = project;
+		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	private void initModelELementMap(ChangePackage changePackage) {
@@ -313,14 +321,50 @@ public class ChangePackageVisualizationHelper {
 		}
 		if (op instanceof CompositeOperation) {
 			CompositeOperation compositeOperation = (CompositeOperation) op;
+			// artificial composite because of opposite ref, take description of
+			// mainoperation
 			if (compositeOperation.getMainOperation() != null) {
 				return getDescription(compositeOperation.getMainOperation());
 			}
-			return op.getDescription();
+
+			return resolveIds(adapterFactoryLabelProvider
+					.getText(compositeOperation));
 		}
 
 		return getDescriptionUnknownOperation(op);
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.provider.ChangePackageVisualizationContext#resolveIds(java.lang.String)
+	 */
+	public String resolveIds(String unresolvedString) {
+		String[] strings = unresolvedString.split("%");
+		if (strings.length < 3) {
+			return unresolvedString;
+		}
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < strings.length; i++) {
+			if (i % 2 == 1) {
+				ModelElementId modelElementId = MetamodelFactory.eINSTANCE
+						.createModelElementId();
+				modelElementId.setId(strings[i]);
+				stringBuilder.append(getModelElementLabel(modelElementId));
+			} else {
+				stringBuilder.append(strings[i]);
+			}
+		}
+		return stringBuilder.toString();
+	}
+
+	private String getModelElementLabel(ModelElementId modelElementId) {
+		ModelElement modelElement = getModelElement(modelElementId);
+		if (modelElement == null) {
+			return UNKOWN_ELEMENT;
+		}
+		return adapterFactoryLabelProvider.getText(modelElement);
 	}
 
 	private String getDescriptionMultiReferenceMoveOperation(
