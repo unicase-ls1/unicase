@@ -125,6 +125,9 @@ public abstract class Conflict {
 
 	public void setSolution(ConflictOption conflictOption) {
 		solution = conflictOption;
+		if (solution != null) {
+			getDecisionManager().getEventLogger().optionSelected(this);
+		}
 	}
 
 	public DecisionManager getDecisionManager() {

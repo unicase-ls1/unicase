@@ -70,7 +70,7 @@ public class MergeProjectHandler implements ConflictResolver {
 			ChangePackage myChangePackage, PrimaryVersionSpec base,
 			PrimaryVersionSpec target) {
 
-		boolean caseStudy = true;
+		boolean caseStudy = false;
 
 		if (caseStudy) {
 			CaseStudySwitch studySwitch = new CaseStudySwitch();
@@ -91,6 +91,10 @@ public class MergeProjectHandler implements ConflictResolver {
 		int open = dialog.open();
 		acceptedMine = decisionManager.getAcceptedMine();
 		rejectedTheirs = decisionManager.getRejectedTheirs();
+
+		if (open != Window.OK) {
+			decisionManager.getEventLogger().selectedCancel();
+		}
 
 		return (open == Window.OK);
 	}

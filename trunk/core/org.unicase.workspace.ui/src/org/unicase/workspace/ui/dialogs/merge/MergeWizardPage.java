@@ -7,12 +7,7 @@ package org.unicase.workspace.ui.dialogs.merge;
 
 import java.util.ArrayList;
 
-import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -25,9 +20,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
@@ -174,29 +166,12 @@ public class MergeWizardPage extends WizardPage {
 					}
 				}
 			}
+			if (type.equals(OptionType.MyOperation)) {
+				decisionManager.getEventLogger().selectedAllMine();
+			} else if (type.equals(OptionType.TheirOperation)) {
+				decisionManager.getEventLogger().selectedAllTheirs();
+			}
 		}
-	}
-
-	//
-	// DEBUG
-	//
-
-	private void debugButton(final Composite composite) {
-		Composite debugBox = new Composite(composite, SWT.BORDER_SOLID);
-		debugBox.setLayout(new GridLayout());
-		Label label = new Label(debugBox, SWT.NONE);
-		label.setText("Open Debug");
-		Button button = new Button(debugBox, SWT.NONE);
-		button.setText("Open");
-		button.addSelectionListener(new SelectionListener() {
-			public void widgetSelected(SelectionEvent e) {
-				new DebugView(composite.getShell()).open();
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				new DebugView(composite.getShell()).open();
-			}
-		});
 	}
 
 	private final class ColorSwitcher {
@@ -209,78 +184,100 @@ public class MergeWizardPage extends WizardPage {
 		}
 	}
 
-	private final class DebugView extends TitleAreaDialog {
+	//
+	// DEBUG
+	//
 
-		public DebugView(Shell shell) {
-			super(shell);
-			setShellStyle(this.getShellStyle() | SWT.RESIZE);
-
-		}
-
-		@Override
-		protected Control createDialogArea(Composite parent) {
-			super.setTitle("adsgfpaidfhg adogh aüodhf gahfd g");
-			Composite composite = new Composite(parent, SWT.NONE);
-			composite.setLayout(new GridLayout(2, true));
-			composite
-					.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-			ListViewer listViewer = new ListViewer(composite, SWT.SINGLE
-					| SWT.V_SCROLL | SWT.H_SCROLL);
-			listViewer.getList().setLayoutData(
-					new GridData(SWT.FILL, SWT.FILL, true, true));
-			listViewer.setContentProvider(new DebugContentProvider());
-			listViewer.setLabelProvider(new DebugLabelProvider(true));
-			listViewer.setInput(new Object());
-
-			ListViewer listViewer2 = new ListViewer(composite, SWT.SINGLE
-					| SWT.V_SCROLL | SWT.H_SCROLL);
-			listViewer2.getList().setLayoutData(
-					new GridData(SWT.FILL, SWT.FILL, true, true));
-			listViewer2.setContentProvider(new DebugContentProvider());
-
-			listViewer2.setLabelProvider(new DebugLabelProvider(false));
-			listViewer2.setInput(new Object());
-
-			return parent;
-		}
-
-		private final class DebugLabelProvider extends LabelProvider {
-			private final boolean myOp;
-
-			public DebugLabelProvider(boolean b) {
-				super();
-				this.myOp = b;
-			}
-
-			@Override
-			public String getText(Object element) {
-				String res = "";
-				if (element instanceof Conflict) {
-					if (myOp) {
-						// res = ((Conflict)
-						// element).getTheirOperation().toString();
-					} else {
-						// res = ((Conflict)
-						// element).getMyOperation().toString();
-					}
-				}
-				return res;
-			}
-		}
-
-		private final class DebugContentProvider implements
-				IStructuredContentProvider {
-			public Object[] getElements(Object inputElement) {
-				return decisionManager.getConflicts().toArray();
-			}
-
-			public void dispose() {
-			}
-
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
-			}
-		}
-	}
+	// private void debugButton(final Composite composite) {
+	// Composite debugBox = new Composite(composite, SWT.BORDER_SOLID);
+	// debugBox.setLayout(new GridLayout());
+	// Label label = new Label(debugBox, SWT.NONE);
+	// label.setText("Open Debug");
+	// Button button = new Button(debugBox, SWT.NONE);
+	// button.setText("Open");
+	// button.addSelectionListener(new SelectionListener() {
+	// public void widgetSelected(SelectionEvent e) {
+	// new DebugView(composite.getShell()).open();
+	// }
+	//
+	// public void widgetDefaultSelected(SelectionEvent e) {
+	// new DebugView(composite.getShell()).open();
+	// }
+	// });
+	// }
+	//
+	// private final class DebugView extends TitleAreaDialog {
+	//
+	// public DebugView(Shell shell) {
+	// super(shell);
+	// setShellStyle(this.getShellStyle() | SWT.RESIZE);
+	//
+	// }
+	//
+	// @Override
+	// protected Control createDialogArea(Composite parent) {
+	// super.setTitle("adsgfpaidfhg adogh aüodhf gahfd g");
+	// Composite composite = new Composite(parent, SWT.NONE);
+	// composite.setLayout(new GridLayout(2, true));
+	// composite
+	// .setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+	//
+	// ListViewer listViewer = new ListViewer(composite, SWT.SINGLE
+	// | SWT.V_SCROLL | SWT.H_SCROLL);
+	// listViewer.getList().setLayoutData(
+	// new GridData(SWT.FILL, SWT.FILL, true, true));
+	// listViewer.setContentProvider(new DebugContentProvider());
+	// listViewer.setLabelProvider(new DebugLabelProvider(true));
+	// listViewer.setInput(new Object());
+	//
+	// ListViewer listViewer2 = new ListViewer(composite, SWT.SINGLE
+	// | SWT.V_SCROLL | SWT.H_SCROLL);
+	// listViewer2.getList().setLayoutData(
+	// new GridData(SWT.FILL, SWT.FILL, true, true));
+	// listViewer2.setContentProvider(new DebugContentProvider());
+	//
+	// listViewer2.setLabelProvider(new DebugLabelProvider(false));
+	// listViewer2.setInput(new Object());
+	//
+	// return parent;
+	// }
+	//
+	// private final class DebugLabelProvider extends LabelProvider {
+	// private final boolean myOp;
+	//
+	// public DebugLabelProvider(boolean b) {
+	// super();
+	// this.myOp = b;
+	// }
+	//
+	// @Override
+	// public String getText(Object element) {
+	// String res = "";
+	// if (element instanceof Conflict) {
+	// if (myOp) {
+	// // res = ((Conflict)
+	// // element).getTheirOperation().toString();
+	// } else {
+	// // res = ((Conflict)
+	// // element).getMyOperation().toString();
+	// }
+	// }
+	// return res;
+	// }
+	// }
+	//
+	// private final class DebugContentProvider implements
+	// IStructuredContentProvider {
+	// public Object[] getElements(Object inputElement) {
+	// return decisionManager.getConflicts().toArray();
+	// }
+	//
+	// public void dispose() {
+	// }
+	//
+	// public void inputChanged(Viewer viewer, Object oldInput,
+	// Object newInput) {
+	// }
+	// }
+	// }
 }
