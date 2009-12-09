@@ -13,9 +13,9 @@ import org.unicase.link.util.LinkListener;
 import org.unicase.link.util.ui.OpenLink;
 
 /**
+ * The activator class controls the emfstore life cycle.
  * 
  * @author Kameliya Terzieva, Fatih Ulusoy, Jan Finis
- * The activator class controls the emfstore life cycle.
  */
 public class Activator extends AbstractUIPlugin implements IStartup {
 
@@ -31,6 +31,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	 * The constructor.
 	 */
 	public Activator() {
+		
 	}
 
 	/**
@@ -56,6 +57,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	 * Plugin stop.
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		

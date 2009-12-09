@@ -19,8 +19,8 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * Custom dialog class that enables to select the generated model element URL.  
+ * 
  * @author emueller
- *
  */
 public class LinkDialog extends Dialog {
 	
@@ -120,6 +120,7 @@ public class LinkDialog extends Dialog {
 		data = new GridData(GridData.CENTER);
 		ok.setLayoutData(data);
 		ok.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				shell.close();
 			}
@@ -127,4 +128,6 @@ public class LinkDialog extends Dialog {
 
 		shell.setDefaultButton(ok);
 	}
+	
 }
+

@@ -21,12 +21,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Utility class for opening model elements. Also acts as a listener
- * for JUnique messages changes, which provide us with unicase URLs
+ * for JUnique messages changes, which provide us with UNICASE URLs
  * of model elements to be opened.
  * 
- * @author svetlana 
- * @author emueller
- *
+ * @author svetlana, emueller
  */
 public class OpenLink implements Observer {
 	
@@ -43,7 +41,6 @@ public class OpenLink implements Observer {
 		if (instance == null) {
 			instance = new OpenLink();
 		}
-		
 		return instance;
 	}
 
@@ -60,13 +57,14 @@ public class OpenLink implements Observer {
 		
 		final ModelElement me = projectSpace.getProject()
 									.getModelElement(modelElementUrl.getModelElementId());
-		if(me != null){
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						ActionHelper.openModelElement(me, EXTERNAL_URL);
-					}});
-			}
+		if (me != null) {
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					ActionHelper.openModelElement(me, EXTERNAL_URL);
+				}
+			});
 		}
+	}
 
 	/**
 	 * Opens the model element with the specified URL in the MEEditor view.
@@ -105,7 +103,7 @@ public class OpenLink implements Observer {
 					MessageDialog.openError(
 							Display.getDefault().getActiveShell(),
 							"Malformed URL",
-							"The unicase URL you tried to open is not valid.");	
+							"The UNICASE URL you tried to open is not valid.");	
 				}}); 
 		}
 	}
