@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -111,8 +112,22 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		} else if (element instanceof OperationGroup) {
 			OperationGroup og = (OperationGroup) element;
 			return getChildren(og, treeNode);
+		} else if (element instanceof ModelElementGroup) {
+			ModelElementGroup modelElementGroup = (ModelElementGroup) element;
+			return getChildren(modelElementGroup, treeNode);
 		}
 		return new Object[0];
+	}
+
+	private Object[] getChildren(ModelElementGroup modelElementGroup,
+			TreeNode treeNode) {
+		EList<ModelElementId> modelElementIds = modelElementGroup
+				.getModelElements();
+		ArrayList<ModelElement> modelElements = changePackageVisualizationHelper
+				.getModelElements(modelElementIds,
+						new ArrayList<ModelElement>());
+		List<TreeNode> ret = nodify(treeNode, modelElements);
+		return ret.toArray();
 	}
 
 	/**
