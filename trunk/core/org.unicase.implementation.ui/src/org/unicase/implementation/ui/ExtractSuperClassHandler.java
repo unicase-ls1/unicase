@@ -6,8 +6,14 @@
 package org.unicase.implementation.ui;
 
 // BEGIN IGNORE UNNECCESSARY IMPORT
+import java.util.List;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
-import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.OperationsFactory;
+import org.unicase.implementation.operations.util.OperationHelper;
+import org.unicase.model.classes.Class;
 
 /**
  * Handler for {@link ExtractSuperClassOperation}.
@@ -16,10 +22,14 @@ import org.unicase.implementation.operations.OperationsPackage;
  */
 public class ExtractSuperClassHandler extends OperationHandlerBase {
 
-	/**
-	 * Constructor.
-	 */
-	public ExtractSuperClassHandler() {
-		super(OperationsPackage.Literals.EXTRACT_SUPER_CLASS_OPERATION);
+	@Override
+	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
+		ExtractSuperClassOperation operation = OperationsFactory.eINSTANCE.createExtractSuperClassOperation();
+
+		List<Class> subClasses = SelectionHelper.getSelectedElements(structuredSelection);
+		operation.getSubClasses().addAll(OperationHelper.getIds(subClasses));
+
+		return operation;
 	}
+
 }

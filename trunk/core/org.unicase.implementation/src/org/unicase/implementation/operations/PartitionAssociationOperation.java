@@ -62,7 +62,7 @@ public interface PartitionAssociationOperation extends SemanticCompositeOperatio
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The type of the reference must be abstract and must have sub classes.'"
+	 *        annotation="http://unicase.org/operations description='The type of the reference must be abstract and must have sub classes.'"
 	 * @generated
 	 */
 	boolean validateAssociationTarget(Project project);
@@ -70,7 +70,7 @@ public interface PartitionAssociationOperation extends SemanticCompositeOperatio
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The reference must be multi-valued.'"
+	 *        annotation="http://unicase.org/operations description='The reference must be multi-valued.'"
 	 * @generated
 	 */
 	boolean validateAssociationMultiplicity(Project project);

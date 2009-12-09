@@ -48,13 +48,22 @@ public interface OperationsFactory extends EFactory {
 	PartitionAssociationOperation createPartitionAssociationOperation();
 
 	/**
-	 * Returns a new object of class '<em>Push Down Attribute Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @return a new object of class '<em>Push Down Attribute Operation</em>'.
+	 * Returns a new object of class '<em>Push Down Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Push Down Operation</em>'.
 	 * @generated
 	 */
-	PushDownAttributeOperation createPushDownAttributeOperation();
+	PushDownOperation createPushDownOperation();
+
+	/**
+	 * Returns a new object of class '<em>Pull Up Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pull Up Operation</em>'.
+	 * @generated
+	 */
+	PullUpOperation createPullUpOperation();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -141,26 +141,49 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PushDownAttributeOperation} instances.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PushDownOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PushDownAttributeOperationItemProvider pushDownAttributeOperationItemProvider;
+	protected PushDownOperationItemProvider pushDownOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.implementation.operations.PushDownAttributeOperation}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.PushDownOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPushDownAttributeOperationAdapter() {
-		if (pushDownAttributeOperationItemProvider == null) {
-			pushDownAttributeOperationItemProvider = new PushDownAttributeOperationItemProvider(this);
+	public Adapter createPushDownOperationAdapter() {
+		if (pushDownOperationItemProvider == null) {
+			pushDownOperationItemProvider = new PushDownOperationItemProvider(this);
 		}
 
-		return pushDownAttributeOperationItemProvider;
+		return pushDownOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PullUpOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PullUpOperationItemProvider pullUpOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.PullUpOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPullUpOperationAdapter() {
+		if (pullUpOperationItemProvider == null) {
+			pullUpOperationItemProvider = new PullUpOperationItemProvider(this);
+		}
+
+		return pullUpOperationItemProvider;
 	}
 
 	/**
@@ -258,7 +281,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 		if (extractSuperClassOperationItemProvider != null) extractSuperClassOperationItemProvider.dispose();
 		if (inlineClassOperationItemProvider != null) inlineClassOperationItemProvider.dispose();
 		if (partitionAssociationOperationItemProvider != null) partitionAssociationOperationItemProvider.dispose();
-		if (pushDownAttributeOperationItemProvider != null) pushDownAttributeOperationItemProvider.dispose();
+		if (pushDownOperationItemProvider != null) pushDownOperationItemProvider.dispose();
+		if (pullUpOperationItemProvider != null) pullUpOperationItemProvider.dispose();
 	}
 
 }

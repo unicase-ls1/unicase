@@ -5,23 +5,56 @@
  */
 package org.unicase.implementation.ui;
 
-import org.unicase.implementation.operations.OperationsPackage;
-// BEGIN IGNORE UNNECCESSARY IMPORT
-import org.unicase.implementation.operations.PushDownAttributeOperation;
-// END IGNORE UNNECCESSARY IMPORT
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.OperationsFactory;
+import org.unicase.implementation.operations.PushDownOperation;
+import org.unicase.implementation.operations.util.OperationHelper;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
+import org.unicase.model.classes.Class;
+
 
 /**
- * Handler for {@link PushDownAttributeOperation}.
+ * Handler for {@link PushDownOperation}.
  * 
  * @author herrmi
  */
 public class PushDownAttributeHandler extends OperationHandlerBase {
 
-	/**
-	 * Constructor.
-	 */
-	public PushDownAttributeHandler() {
-		super(OperationsPackage.Literals.PUSH_DOWN_ATTRIBUTE_OPERATION);
+	@Override
+	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
+		List<UnicaseModelElement> elements = SelectionHelper.getSelectedElements(structuredSelection);
+		List<Attribute> attributes = new ArrayList<Attribute>();
+		List<Association> associations = new ArrayList<Association>();
+
+		for (UnicaseModelElement element : elements) {
+			if (element instanceof Attribute) {
+				Attribute attribute = (Attribute) element;
+				attributes.add(attribute);
+			} else {
+				Association association = (Association) element;
+				associations.add(association);
+			}
+		}
+		
+		Class superClass = null;
+		if(!attributes.isEmpty()) {
+			superClass = attributes.get(0).getDefiningClass();
+		} else {
+			superClass = associations.get(0).getSource();
+		}
+		
+		PushDownOperation operation = OperationsFactory.eINSTANCE.createPushDownOperation();
+		operation.setSuperClass(OperationHelper.getId(superClass));
+		operation.getAttributes().addAll(OperationHelper.getIds(attributes));
+		operation.getOutgoingAssociations().addAll(OperationHelper.getIds(associations));
+
+		return operation;
 	}
 
 }

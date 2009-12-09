@@ -10,12 +10,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-import org.unicase.implementation.operations.PushDownAttributeOperation;
+import org.unicase.implementation.operations.PullUpOperation;
+import org.unicase.implementation.operations.PushDownOperation;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -29,7 +31,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 */
 	public static OperationsFactory init() {
 		try {
-			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("operations"); 
+			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/operations"); 
 			if (theOperationsFactory != null) {
 				return theOperationsFactory;
 			}
@@ -59,7 +61,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: return createExtractSuperClassOperation();
 			case OperationsPackage.INLINE_CLASS_OPERATION: return createInlineClassOperation();
 			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: return createPartitionAssociationOperation();
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION: return createPushDownAttributeOperation();
+			case OperationsPackage.PUSH_DOWN_OPERATION: return createPushDownOperation();
+			case OperationsPackage.PULL_UP_OPERATION: return createPullUpOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,12 +96,23 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushDownAttributeOperation createPushDownAttributeOperation() {
-		PushDownAttributeOperationImpl pushDownAttributeOperation = new PushDownAttributeOperationImpl();
-		return pushDownAttributeOperation;
+	public PushDownOperation createPushDownOperation() {
+		PushDownOperationImpl pushDownOperation = new PushDownOperationImpl();
+		return pushDownOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PullUpOperation createPullUpOperation() {
+		PullUpOperationImpl pullUpOperation = new PullUpOperationImpl();
+		return pullUpOperation;
 	}
 
 	/**

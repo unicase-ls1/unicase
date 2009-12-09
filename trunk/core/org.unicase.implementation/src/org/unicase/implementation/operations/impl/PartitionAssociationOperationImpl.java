@@ -216,7 +216,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 		Class target = association.getTarget();
 
 		for (Class subClass : target.getSubClasses()) {
-			String name = subClass.getName().substring(0, 1).toLowerCase() + subClass.getName().substring(1);
+			String name = OperationHelper.firstLower(subClass.getName());
 			Association subAssociation = (Association) ModelUtil.copy(association);
 			((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 

@@ -16,8 +16,12 @@
             name="Partition Association">
       </command>
       <command
-            id="org.unicase.implementation.ui.command.PushDownAttribute"
-            name="Push Down Attribute">
+            id="org.unicase.implementation.ui.command.PushDown"
+            name="Push Down">
+      </command>
+      <command
+            id="org.unicase.implementation.ui.command.PullUp"
+            name="Pull Up">
       </command>
    </extension>
    <extension
@@ -75,20 +79,81 @@
       </handler>
       <handler
             class="org.unicase.implementation.ui.PushDownAttributeHandler"
-            commandId="org.unicase.implementation.ui.command.PushDownAttribute">
-         <enabledWhen>
+            commandId="org.unicase.implementation.ui.command.PushDown">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <or>
+                     <adapt
+                           type="org.unicase.model.classes.Attribute">
+                     </adapt>
+                     <adapt
+                           type="org.unicase.model.classes.Association">
+                     </adapt>
+                  </or>
+               </iterate>
+               <count
+                     value="+">
+               </count>
+            </with>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.PushDownClassHandler"
+            commandId="org.unicase.implementation.ui.command.PushDown">
+         <activeWhen>
             <with
                   variable="selection">
                <iterate>
                   <adapt
-                        type="org.unicase.model.classes.Attribute">
+                        type="org.unicase.model.classes.Class">
                   </adapt>
                </iterate>
                <count
                      value="1">
                </count>
             </with>
-         </enabledWhen>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.PullUpClassHandler"
+            commandId="org.unicase.implementation.ui.command.PullUp">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <adapt
+                        type="org.unicase.model.classes.Class">
+                  </adapt>
+               </iterate>
+               <count
+                     value="1">
+               </count>
+            </with>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.PullUpAttributeHandler"
+            commandId="org.unicase.implementation.ui.command.PullUp">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <or>
+                     <adapt
+                           type="org.unicase.model.classes.Attribute">
+                     </adapt>
+                     <adapt
+                           type="org.unicase.model.classes.Association">
+                     </adapt>
+                  </or>
+               </iterate>
+               <count
+                     value="+">
+               </count>
+            </with>
+         </activeWhen>
       </handler>
    </extension>
    <extension
@@ -150,21 +215,75 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.unicase.implementation.ui.command.PushDownAttribute"
-               label="Push Down Attribute"
+               commandId="org.unicase.implementation.ui.command.PushDown"
+               label="Push Down"
                style="push">
             <visibleWhen>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.unicase.model.classes.Attribute">
-                     </adapt>
-                  </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </with>
+               <or>
+                  <with
+                        variable="selection">
+                     <iterate>
+                        <or>
+                           <adapt
+                                 type="org.unicase.model.classes.Attribute">
+                           </adapt>
+                           <adapt
+                                 type="org.unicase.model.classes.Association">
+                           </adapt>
+                        </or>
+                     </iterate>
+                     <count
+                           value="+">
+                     </count>
+                  </with>
+                  <with
+                        variable="selection">
+                     <iterate>
+                        <adapt
+                              type="org.unicase.model.classes.Class">
+                        </adapt>
+                     </iterate>
+                     <count
+                           value="1">
+                     </count>
+                  </with>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.implementation.ui.command.PullUp"
+               label="Pull Up"
+               style="push">
+            <visibleWhen>
+               <or>
+                  <with
+                        variable="selection">
+                     <iterate>
+                        <or>
+                           <adapt
+                                 type="org.unicase.model.classes.Attribute">
+                           </adapt>
+                           <adapt
+                                 type="org.unicase.model.classes.Association">
+                           </adapt>
+                        </or>
+                     </iterate>
+                     <count
+                           value="+">
+                     </count>
+                  </with>
+                  <with
+                        variable="selection">
+                     <iterate>
+                        <adapt
+                              type="org.unicase.model.classes.Class">
+                        </adapt>
+                     </iterate>
+                     <count
+                           value="1">
+                     </count>
+                  </with>
+               </or>
             </visibleWhen>
          </command>
       </menuContribution>
