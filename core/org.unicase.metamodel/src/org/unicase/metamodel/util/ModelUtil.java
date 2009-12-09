@@ -452,6 +452,23 @@ public final class ModelUtil {
 		EObject clone = EcoreUtil.copy(eObject);
 		return (T) clone;
 	}
+	
+	/**
+	 * Clone a list of EObjects.
+	 * 
+	 * @param <T> the Eobject sub type the list consists of
+	 * @param list the list instance
+	 * @return a clone of the list and its contents instance
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> List<T> clone(List<T> list) {
+		ArrayList<T> result = new ArrayList<T>();
+		for (EObject eObject: list) {
+			T clone = (T) EcoreUtil.copy(eObject);
+			result.add(clone);
+		}
+		return result;		
+	}
 
 	/**
 	 * Retrieve the plain text from a richt text string.
