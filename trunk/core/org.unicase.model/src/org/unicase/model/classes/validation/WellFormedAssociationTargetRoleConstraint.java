@@ -20,7 +20,7 @@ public class WellFormedAssociationTargetRoleConstraint extends WellFormedNameCon
 	/**
 	 * Constructor.
 	 */
-	protected WellFormedAssociationTargetRoleConstraint() {
+	public WellFormedAssociationTargetRoleConstraint() {
 		super(ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE);
 	}
 
