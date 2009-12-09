@@ -34,6 +34,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceC
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.ReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.SingleReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
+import org.unicase.workspace.ui.dialogs.merge.util.EventLogger;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 public class DecisionManager {
@@ -49,6 +50,8 @@ public class DecisionManager {
 	private ArrayList<AbstractOperation> rejectedTheirs;
 	private final PrimaryVersionSpec baseVersion;
 	private final PrimaryVersionSpec targetVersion;
+	private ChangePackageVisualizationHelper visualizationHelper;
+	private EventLogger eventLogger;
 
 	public DecisionManager(Project project, ChangePackage myChangePackage,
 			List<ChangePackage> theirChangePackages,
@@ -60,6 +63,8 @@ public class DecisionManager {
 		this.targetVersion = targetVersion;
 		conflictDetector = new ConflictDetector();
 		init();
+		getEventLogger().createMergeEvent(baseVersion, targetVersion,
+				conflicts.size(), myChangePackage.getOperations());
 	}
 
 	private void init() {
@@ -452,8 +457,18 @@ public class DecisionManager {
 	}
 
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
-		return new ChangePackageVisualizationHelper(theirChangePackages,
-				project);
+		if (visualizationHelper == null) {
+			visualizationHelper = new ChangePackageVisualizationHelper(
+					theirChangePackages, project);
+		}
+		return visualizationHelper;
+	}
+
+	public EventLogger getEventLogger() {
+		if (eventLogger == null) {
+			eventLogger = new EventLogger(project);
+		}
+		return eventLogger;
 	}
 
 	public PrimaryVersionSpec getBaseVersion() {

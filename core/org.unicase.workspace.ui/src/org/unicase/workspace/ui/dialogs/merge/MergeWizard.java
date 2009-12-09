@@ -43,8 +43,10 @@ public class MergeWizard extends Wizard {
 	public boolean performFinish() {
 		if (decisionManager.isResolved()) {
 			decisionManager.calcResult();
+			decisionManager.getEventLogger().selectedOK();
 			return true;
 		}
+		decisionManager.getEventLogger().selectedOKButNotFinished();
 		MessageDialog.openInformation(getShell(),
 				"Resolve all conflicts first",
 				"You have to resolve all conflicts in order to finish."
