@@ -1080,6 +1080,42 @@ public interface OperationsPackage extends EPackage {
 	int OPERATION_GROUP_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ModelElementGroupImpl
+	 * <em>Model Element Group</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ModelElementGroupImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getModelElementGroup()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_GROUP = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_GROUP__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_GROUP__MODEL_ELEMENTS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Model Element Group</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_GROUP_FEATURE_COUNT = 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation
 	 * <em>Abstract Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1541,6 +1577,40 @@ public interface OperationsPackage extends EPackage {
 	EReference getOperationGroup_Operations();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup
+	 * <em>Model Element Group</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Model Element Group</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup
+	 * @generated
+	 */
+	EClass getModelElementGroup();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup#getName <em>Name</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup#getName()
+	 * @see #getModelElementGroup()
+	 * @generated
+	 */
+	EAttribute getModelElementGroup_Name();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup#getModelElements
+	 * <em>Model Elements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Model Elements</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup#getModelElements()
+	 * @see #getModelElementGroup()
+	 * @generated
+	 */
+	EReference getModelElementGroup_ModelElements();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -1918,6 +1988,33 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION_GROUP__OPERATIONS = eINSTANCE.getOperationGroup_Operations();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.ModelElementGroupImpl
+		 * <em>Model Element Group</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ModelElementGroupImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getModelElementGroup()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_GROUP = eINSTANCE.getModelElementGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute MODEL_ELEMENT_GROUP__NAME = eINSTANCE.getModelElementGroup_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Elements</b></em>' reference list feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT_GROUP__MODEL_ELEMENTS = eINSTANCE.getModelElementGroup_ModelElements();
 
 	}
 

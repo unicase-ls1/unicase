@@ -446,10 +446,11 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getAllInvolvedModelElements()
 	 */
 	public Set<ModelElementId> getAllInvolvedModelElements() {
-		Set<ModelElementId> result = getOtherInvolvedModelElements();
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
 		if (getModelElementId() != null) {
 			result.add(getModelElementId());
 		}
+		result.addAll(getOtherInvolvedModelElements());
 		return result;
 	}
 

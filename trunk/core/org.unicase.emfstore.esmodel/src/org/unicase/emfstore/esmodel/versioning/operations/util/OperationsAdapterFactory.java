@@ -15,6 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -134,6 +135,11 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseOperationGroup(OperationGroup object) {
 			return createOperationGroupAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElementGroup(ModelElementGroup object) {
+			return createModelElementGroupAdapter();
 		}
 
 		@Override
@@ -333,6 +339,20 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperationGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup <em>Model Element Group</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup
+	 * @generated
+	 */
+	public Adapter createModelElementGroupAdapter() {
 		return null;
 	}
 

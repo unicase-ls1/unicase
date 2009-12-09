@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -81,6 +82,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			return createOperationId();
 		case OperationsPackage.OPERATION_GROUP:
 			return createOperationGroup();
+		case OperationsPackage.MODEL_ELEMENT_GROUP:
+			return createModelElementGroup();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,6 +177,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public OperationGroup createOperationGroup() {
 		OperationGroupImpl operationGroup = new OperationGroupImpl();
 		return operationGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ModelElementGroup createModelElementGroup() {
+		ModelElementGroupImpl modelElementGroup = new ModelElementGroupImpl();
+		return modelElementGroup;
 	}
 
 	/**

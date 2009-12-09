@@ -19,5 +19,6 @@ Export-Package: org.unicase.emfstore.esmodel.accesscontrol.provider,
  org.unicase.emfstore.esmodel.versioning.provider
 Require-Bundle: org.eclipse.emf.ecore.change.edit;visibility:=reexport,
  org.unicase.emfstore.esmodel;bundle-version="1.0.0.qualifier";visibility:=reexport,
- org.unicase.metamodel.edit;bundle-version="1.0.0";visibility:=reexport
+ org.unicase.metamodel.edit;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.emf.edit.ui
 Bundle-ActivationPolicy: lazy
