@@ -105,6 +105,16 @@ public class OperationsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperationsPackage.EXTRACT_CLASS_OPERATION: {
+				ExtractClassOperation extractClassOperation = (ExtractClassOperation)theEObject;
+				T result = caseExtractClassOperation(extractClassOperation);
+				if (result == null) result = caseSemanticCompositeOperation(extractClassOperation);
+				if (result == null) result = caseCompositeOperation(extractClassOperation);
+				if (result == null) result = caseAbstractOperation(extractClassOperation);
+				if (result == null) result = caseIdentifiableElement(extractClassOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperationsPackage.INLINE_CLASS_OPERATION: {
 				InlineClassOperation inlineClassOperation = (InlineClassOperation)theEObject;
 				T result = caseInlineClassOperation(inlineClassOperation);
@@ -189,6 +199,21 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseInlineClassOperation(InlineClassOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extract Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extract Class Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtractClassOperation(ExtractClassOperation object) {
 		return null;
 	}
 

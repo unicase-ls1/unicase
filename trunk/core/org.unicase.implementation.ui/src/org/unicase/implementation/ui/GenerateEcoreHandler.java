@@ -34,7 +34,7 @@ import org.unicase.model.classes.Package;
 /**
  * Handler for the command to generate Ecore from the implementation model.
  * 
- * @author herrmama
+ * @author herrmi
  */
 public class GenerateEcoreHandler extends AbstractHandler {
 

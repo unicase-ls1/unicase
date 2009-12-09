@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage;
+import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.InlineSuperClassOperation;
@@ -47,6 +48,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass inlineClassOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extractClassOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -231,6 +239,78 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExtractClassOperation() {
+		return extractClassOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtractClassOperation_ContextClass() {
+		return (EReference)extractClassOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtractClassOperation_Attributes() {
+		return (EReference)extractClassOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtractClassOperation_OutgoingAssociations() {
+		return (EReference)extractClassOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtractClassOperation_IncomingAssociations() {
+		return (EReference)extractClassOperationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtractClassOperation_CompositionName() {
+		return (EAttribute)extractClassOperationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtractClassOperation_ClassName() {
+		return (EAttribute)extractClassOperationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtractClassOperation_TargetPackage() {
+		return (EReference)extractClassOperationEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -373,6 +453,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		inlineSuperClassOperationEClass = createEClass(INLINE_SUPER_CLASS_OPERATION);
 		createEReference(inlineSuperClassOperationEClass, INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS);
 
+		extractClassOperationEClass = createEClass(EXTRACT_CLASS_OPERATION);
+		createEReference(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__CONTEXT_CLASS);
+		createEReference(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__ATTRIBUTES);
+		createEReference(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
+		createEReference(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
+		createEAttribute(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__COMPOSITION_NAME);
+		createEAttribute(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__CLASS_NAME);
+		createEReference(extractClassOperationEClass, EXTRACT_CLASS_OPERATION__TARGET_PACKAGE);
+
 		inlineClassOperationEClass = createEClass(INLINE_CLASS_OPERATION);
 		createEReference(inlineClassOperationEClass, INLINE_CLASS_OPERATION__ASSOCIATION);
 
@@ -425,6 +514,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		// Add supertypes to classes
 		extractSuperClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		inlineSuperClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		extractClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		inlineClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		partitionAssociationOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		pushDownOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
@@ -449,13 +539,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(extractSuperClassOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -480,6 +570,42 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(inlineSuperClassOperationEClass, ecorePackage.getEBoolean(), "validateSuperClassSubClasses", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(extractClassOperationEClass, ExtractClassOperation.class, "ExtractClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExtractClassOperation_ContextClass(), theMetamodelPackage.getModelElementId(), null, "contextClass", null, 1, 1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractClassOperation_Attributes(), theMetamodelPackage.getModelElementId(), null, "attributes", null, 0, -1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractClassOperation_OutgoingAssociations(), theMetamodelPackage.getModelElementId(), null, "outgoingAssociations", null, 0, -1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractClassOperation_IncomingAssociations(), theMetamodelPackage.getModelElementId(), null, "incomingAssociations", null, 0, -1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtractClassOperation_CompositionName(), ecorePackage.getEString(), "compositionName", null, 1, 1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtractClassOperation_ClassName(), ecorePackage.getEString(), "className", null, 1, 1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtractClassOperation_TargetPackage(), theMetamodelPackage.getModelElementId(), null, "targetPackage", null, 1, 1, ExtractClassOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getClass_(), "getContextClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, theClassesPackage.getPackage(), "getTargetPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(extractClassOperationEClass, ecorePackage.getEBoolean(), "validateClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(inlineClassOperationEClass, InlineClassOperation.class, "InlineClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -521,19 +647,19 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(pushDownOperationEClass, theClassesPackage.getClass_(), "getSuperClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -557,19 +683,19 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(pullUpOperationEClass, theClassesPackage.getClass_(), "getPossibleSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -619,6 +745,26 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		   source, 
 		   new String[] {
 			 "description", "The super class must have sub classes."
+		   });		
+		addAnnotation
+		  (extractClassOperationEClass, 
+		   source, 
+		   new String[] {
+			 "description", "A set of attributes and associations are extracted to a new class which is reachable trough a composition.",
+			 "label", "Extract Class"
+		   });							
+		addAnnotation
+		  (extractClassOperationEClass.getEOperations().get(8), 
+		   source, 
+		   new String[] {
+			 "description", "A class or enumeration with that name already exists."
+		   });		
+		addAnnotation
+		  (inlineClassOperationEClass, 
+		   source, 
+		   new String[] {
+			 "description", "A class reachable through a single-valued composition is inlined.",
+			 "label", "Inline Class"
 		   });			
 		addAnnotation
 		  (inlineClassOperationEClass.getEOperations().get(1), 

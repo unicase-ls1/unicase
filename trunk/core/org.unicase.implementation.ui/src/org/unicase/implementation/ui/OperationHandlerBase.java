@@ -35,7 +35,6 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
 		ISelection selection = activePage.getSelection();
@@ -73,6 +72,11 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * To be implemented by sub classes to assemble operation based on the selection.
+	 * 
+	 * @param structuredSelection Selection
+	 */
 	protected abstract SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection);
 
 	private Project getProject(IStructuredSelection structuredSelection) {

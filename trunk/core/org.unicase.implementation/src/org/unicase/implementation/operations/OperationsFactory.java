@@ -48,6 +48,15 @@ public interface OperationsFactory extends EFactory {
 	InlineClassOperation createInlineClassOperation();
 
 	/**
+	 * Returns a new object of class '<em>Extract Class Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extract Class Operation</em>'.
+	 * @generated
+	 */
+	ExtractClassOperation createExtractClassOperation();
+
+	/**
 	 * Returns a new object of class '<em>Partition Association Operation</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

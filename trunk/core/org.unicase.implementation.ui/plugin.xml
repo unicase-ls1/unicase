@@ -27,6 +27,10 @@
             id="org.unicase.implementation.ui.command.InlineSuperClass"
             name="Inline Super Class">
       </command>
+      <command
+            id="org.unicase.implementation.ui.command.ExtractClass"
+            name="Extract Class">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -51,129 +55,81 @@
             class="org.unicase.implementation.ui.InlineClassHandler"
             commandId="org.unicase.implementation.ui.command.InlineClass">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.unicase.model.classes.Association">
-                  </adapt>
-               </iterate>
-               <count
-                     value="1">
-               </count>
-            </with>
+            <reference
+                  definitionId="OneAssociationSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.PartitionAssociationHandler"
             commandId="org.unicase.implementation.ui.command.PartitionAssociatin">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.unicase.model.classes.Association">
-                  </adapt>
-               </iterate>
-               <count
-                     value="1">
-               </count>
-            </with>
+            <reference
+                  definitionId="OneAssociationSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.PushDownAttributeHandler"
             commandId="org.unicase.implementation.ui.command.PushDown">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <or>
-                     <adapt
-                           type="org.unicase.model.classes.Attribute">
-                     </adapt>
-                     <adapt
-                           type="org.unicase.model.classes.Association">
-                     </adapt>
-                  </or>
-               </iterate>
-               <count
-                     value="+">
-               </count>
-            </with>
+            <reference
+                  definitionId="SeveralAttributesAssociationsSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.PushDownClassHandler"
             commandId="org.unicase.implementation.ui.command.PushDown">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.unicase.model.classes.Class">
-                  </adapt>
-               </iterate>
-               <count
-                     value="1">
-               </count>
-            </with>
+            <reference
+                  definitionId="OneClassSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.PullUpClassHandler"
             commandId="org.unicase.implementation.ui.command.PullUp">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.unicase.model.classes.Class">
-                  </adapt>
-               </iterate>
-               <count
-                     value="1">
-               </count>
-            </with>
+            <reference
+                  definitionId="OneClassSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.PullUpAttributeHandler"
             commandId="org.unicase.implementation.ui.command.PullUp">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <or>
-                     <adapt
-                           type="org.unicase.model.classes.Attribute">
-                     </adapt>
-                     <adapt
-                           type="org.unicase.model.classes.Association">
-                     </adapt>
-                  </or>
-               </iterate>
-               <count
-                     value="+">
-               </count>
-            </with>
+            <reference
+                  definitionId="SeveralAttributesAssociationsSelected">
+            </reference>
          </activeWhen>
       </handler>
       <handler
             class="org.unicase.implementation.ui.InlineSuperClassHandler"
             commandId="org.unicase.implementation.ui.command.InlineSuperClass">
          <activeWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.unicase.model.classes.Class">
-                  </adapt>
-               </iterate>
-               <count
-                     value="1">
-               </count>
-            </with>
+            <reference
+                  definitionId="OneClassSelected">
+            </reference>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.ExtractClassAttributeHandler"
+            commandId="org.unicase.implementation.ui.command.ExtractClass">
+         <activeWhen>
+            <reference
+                  definitionId="SeveralAttributesAssociationsSelected">
+            </reference>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.unicase.implementation.ui.ExtractClassClassHandler"
+            commandId="org.unicase.implementation.ui.command.ExtractClass">
+         <activeWhen>
+            <reference
+                  definitionId="OneClassSelected">
+            </reference>
          </activeWhen>
       </handler>
    </extension>
@@ -186,17 +142,9 @@
                label="Extract Super Class"
                style="push">
             <visibleWhen>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.unicase.model.classes.Class">
-                     </adapt>
-                  </iterate>
-                  <count
-                        value="+">
-                  </count>
-               </with>
+               <reference
+                     definitionId="SeveralClassesSelected">
+               </reference>
             </visibleWhen>
          </command>
          <command
@@ -204,17 +152,9 @@
                label="Inline Class"
                style="push">
             <visibleWhen>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.unicase.model.classes.Association">
-                     </adapt>
-                  </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </with>
+               <reference
+                     definitionId="OneAssociationSelected">
+               </reference>
             </visibleWhen>
          </command>
          <command
@@ -222,17 +162,9 @@
                label="Partition Association"
                style="push">
             <visibleWhen>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.unicase.model.classes.Association">
-                     </adapt>
-                  </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </with>
+               <reference
+                     definitionId="OneAssociationSelected">
+               </reference>
             </visibleWhen>
          </command>
          <command
@@ -241,33 +173,12 @@
                style="push">
             <visibleWhen>
                <or>
-                  <with
-                        variable="selection">
-                     <iterate>
-                        <or>
-                           <adapt
-                                 type="org.unicase.model.classes.Attribute">
-                           </adapt>
-                           <adapt
-                                 type="org.unicase.model.classes.Association">
-                           </adapt>
-                        </or>
-                     </iterate>
-                     <count
-                           value="+">
-                     </count>
-                  </with>
-                  <with
-                        variable="selection">
-                     <iterate>
-                        <adapt
-                              type="org.unicase.model.classes.Class">
-                        </adapt>
-                     </iterate>
-                     <count
-                           value="1">
-                     </count>
-                  </with>
+                  <reference
+                        definitionId="OneClassSelected">
+                  </reference>
+                  <reference
+                        definitionId="SeveralAttributesAssociationsSelected">
+                  </reference>
                </or>
             </visibleWhen>
          </command>
@@ -277,33 +188,12 @@
                style="push">
             <visibleWhen>
                <or>
-                  <with
-                        variable="selection">
-                     <iterate>
-                        <or>
-                           <adapt
-                                 type="org.unicase.model.classes.Attribute">
-                           </adapt>
-                           <adapt
-                                 type="org.unicase.model.classes.Association">
-                           </adapt>
-                        </or>
-                     </iterate>
-                     <count
-                           value="+">
-                     </count>
-                  </with>
-                  <with
-                        variable="selection">
-                     <iterate>
-                        <adapt
-                              type="org.unicase.model.classes.Class">
-                        </adapt>
-                     </iterate>
-                     <count
-                           value="1">
-                     </count>
-                  </with>
+                  <reference
+                        definitionId="OneClassSelected">
+                  </reference>
+                  <reference
+                        definitionId="SeveralAttributesAssociationsSelected">
+                  </reference>
                </or>
             </visibleWhen>
          </command>
@@ -312,20 +202,91 @@
                label="Inline Super Class"
                style="push">
             <visibleWhen>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.unicase.model.classes.Class">
-                     </adapt>
-                  </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </with>
+               <reference
+                     definitionId="OneClassSelected">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.implementation.ui.command.ExtractClass"
+               label="Extract Class"
+               style="push">
+            <visibleWhen>
+               <or>
+                  <reference
+                        definitionId="OneClassSelected">
+                  </reference>
+                  <reference
+                        definitionId="SeveralAttributesAssociationsSelected">
+                  </reference>
+               </or>
             </visibleWhen>
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="OneClassSelected">
+         <with
+               variable="selection">
+            <iterate>
+               <adapt
+                     type="org.unicase.model.classes.Class">
+               </adapt>
+            </iterate>
+            <count
+                  value="1">
+            </count>
+         </with>
+      </definition>
+      <definition
+            id="SeveralClassesSelected">
+         <with
+               variable="selection">
+            <iterate>
+               <adapt
+                     type="org.unicase.model.classes.Class">
+               </adapt>
+            </iterate>
+            <count
+                  value="+">
+            </count>
+         </with>
+      </definition>
+      <definition
+            id="OneAssociationSelected">
+         <with
+               variable="selection">
+            <iterate>
+               <adapt
+                     type="org.unicase.model.classes.Association">
+               </adapt>
+            </iterate>
+            <count
+                  value="1">
+            </count>
+         </with>
+      </definition>
+      <definition
+            id="SeveralAttributesAssociationsSelected">
+         <with
+               variable="selection">
+            <iterate>
+               <or>
+                  <adapt
+                        type="org.unicase.model.classes.Attribute">
+                  </adapt>
+                  <adapt
+                        type="org.unicase.model.classes.Association">
+                  </adapt>
+               </or>
+            </iterate>
+            <count
+                  value="+">
+            </count>
+         </with>
+      </definition>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

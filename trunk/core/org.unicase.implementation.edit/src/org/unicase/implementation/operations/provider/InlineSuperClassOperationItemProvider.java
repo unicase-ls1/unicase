@@ -170,6 +170,11 @@ public class InlineSuperClassOperationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractClassOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
 		newChildDescriptors.add

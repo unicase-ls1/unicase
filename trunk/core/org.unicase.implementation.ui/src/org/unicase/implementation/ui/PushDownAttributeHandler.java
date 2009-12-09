@@ -26,6 +26,9 @@ import org.unicase.model.classes.Class;
  */
 public class PushDownAttributeHandler extends OperationHandlerBase {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
 		List<UnicaseModelElement> elements = SelectionHelper.getSelectedElements(structuredSelection);

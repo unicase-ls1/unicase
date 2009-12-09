@@ -23,7 +23,7 @@
     <eOperations name="getPossibleAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getOutgoingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getOutgoingAssociations());"/>
       </eAnnotations>
@@ -32,7 +32,7 @@
     <eOperations name="getPossibleOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getIncomingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getIncomingAssociations());"/>
       </eAnnotations>
@@ -104,7 +104,81 @@
         eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtractClassOperation" eSuperTypes="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
+    <eAnnotations source="http://unicase.org/operations">
+      <details key="description" value="A set of attributes and associations are extracted to a new class which is reachable trough a composition."/>
+      <details key="label" value="Extract Class"/>
+    </eAnnotations>
+    <eOperations name="getContextClass" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElement(project, getContextClass());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getAttributes());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getOutgoingAssociations());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElements(project, getIncomingAssociations());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getPossibleIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="getTargetPackage" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Package">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return OperationHelper.getElement(project, getTargetPackage());"/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eOperations name="validateClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://unicase.org/operations">
+        <details key="description" value="A class or enumeration with that name already exists."/>
+      </eAnnotations>
+      <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextClass" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compositionName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPackage" lowerBound="1"
+        eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InlineClassOperation" eSuperTypes="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
+    <eAnnotations source="http://unicase.org/operations">
+      <details key="description" value="A class reachable through a single-valued composition is inlined."/>
+      <details key="label" value="Inline Class"/>
+    </eAnnotations>
     <eOperations name="getAssociation" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElement(project, getAssociation());"/>
@@ -173,7 +247,7 @@
       </eAnnotations>
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getAttributes" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
+    <eOperations name="getAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getAttributes());"/>
       </eAnnotations>
@@ -182,7 +256,7 @@
     <eOperations name="getPossibleAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getOutgoingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getOutgoingAssociations());"/>
       </eAnnotations>
@@ -191,7 +265,7 @@
     <eOperations name="getPossibleOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getIncomingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getIncomingAssociations());"/>
       </eAnnotations>
@@ -239,7 +313,7 @@
     <eOperations name="getPossibleSuperClasses" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Class">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getAttributes" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
+    <eOperations name="getAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getAttributes());"/>
       </eAnnotations>
@@ -248,7 +322,7 @@
     <eOperations name="getPossibleAttributes" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Attribute">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getOutgoingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getOutgoingAssociations());"/>
       </eAnnotations>
@@ -257,7 +331,7 @@
     <eOperations name="getPossibleOutgoingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eParameters name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     </eOperations>
-    <eOperations name="getIncomingAssociations" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
+    <eOperations name="getIncomingAssociations" upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElements(project, getIncomingAssociations());"/>
       </eAnnotations>
