@@ -72,6 +72,18 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof ModelElementGroup) {
+			ModelElementGroup group = (ModelElementGroup) object;
+			return group.getModelElements();
+		}
+		return super.getChildren(object);
+	}
+
+	/**
 	 * This adds a property descriptor for the Model Elements feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -101,9 +113,11 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElementGroup) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElementGroup_type")
-			: getString("_UI_ModelElementGroup_type") + " " + label;
+		if (object instanceof ModelElementGroup) {
+			ModelElementGroup group = (ModelElementGroup) object;
+			return group.getName();
+		}
+		return super.getText(object);
 	}
 
 	/**

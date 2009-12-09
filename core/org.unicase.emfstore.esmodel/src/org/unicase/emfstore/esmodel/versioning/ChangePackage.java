@@ -170,4 +170,11 @@ public interface ChangePackage extends EObject {
 	 */
 	Set<ModelElementId> getAllInvolvedModelElements();
 
+	/**
+	 * Get all operations of a change package, that are touching the given model element id
+	 * 
+	 * @return a list of leaf operations.
+	 */
+	List<AbstractOperation> getTouchingOperations(ModelElementId modelElementId);
+
 } // ChangePackage
