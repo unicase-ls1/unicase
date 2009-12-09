@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -372,9 +371,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			if (modelElement != null) {
 				mes.add(modelElement);
 			}
-			mes
-					.addAll(changePackageVisualizationHelper
-							.getAffectedElements(op));
+			mes.addAll(changePackageVisualizationHelper.getModelElements(op
+					.getAllInvolvedModelElements(),
+					new ArrayList<ModelElement>()));
 
 			// if (op instanceof CreateDeleteOperation) {
 			// mes.addAll(((CreateDeleteOperation) op).getSubOperations());
@@ -477,10 +476,10 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 				subOpsNode.setParent(treeNode);
 				return new Object[] { subOpsNode };
 			}
-			Set<EObject> modelElements = changePackageVisualizationHelper
-					.getAffectedElements(op);
-			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(
-					modelElements));
+			ArrayList<ModelElement> modelElements = changePackageVisualizationHelper
+					.getModelElements(op.getAllInvolvedModelElements(),
+							new ArrayList<ModelElement>());
+			List<TreeNode> nodes = nodify(treeNode, modelElements);
 			return nodes.toArray();
 		}
 
@@ -506,17 +505,11 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		@Override
 		protected Object[] getChildren(ChangePackage changePackage,
 				TreeNode treeNode) {
-			Set<EObject> modelElements = null;
-			if (changePackage.getLogMessage() == null) {
-				ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(
-						Arrays.asList(changePackage), project);
-				modelElements = helper.getAllModelElements(changePackage);
-			} else {
-				modelElements = changePackageVisualizationHelper
-						.getAllModelElements(changePackage);
-			}
-			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(
-					modelElements));
+			ArrayList<ModelElement> modelElements = changePackageVisualizationHelper
+					.getModelElements(changePackage
+							.getAllInvolvedModelElements(),
+							new ArrayList<ModelElement>());
+			List<TreeNode> nodes = nodify(treeNode, modelElements);
 			return nodes.toArray();
 
 		}
