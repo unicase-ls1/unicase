@@ -255,7 +255,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		}
 
 		// MD: Should we cache this instance?
-		return new DiagramNewElementsList(getElements(), getProject());
+		return new DiagramNewElementsList(getElements(), getLeafSection());
 	}
 
 	/**
