@@ -145,6 +145,11 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 		newChildDescriptors.add
 			(createChildParameter
 				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
 		newChildDescriptors.add

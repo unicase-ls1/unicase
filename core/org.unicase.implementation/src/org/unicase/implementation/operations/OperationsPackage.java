@@ -172,13 +172,22 @@ public interface OperationsPackage extends EPackage {
 	int EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 2;
+	int EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -187,7 +196,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 3;
+	int EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Target Package</b></em>' containment reference.
@@ -196,7 +205,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 4;
+	int EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Super Super Classes</b></em>' containment reference list.
@@ -205,7 +214,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 5;
+	int EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Extract Super Class Operation</em>' class.
@@ -214,7 +223,134 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACT_SUPER_CLASS_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 6;
+	int EXTRACT_SUPER_CLASS_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 7;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl <em>Inline Super Class Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl
+	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getInlineSuperClassOperation()
+	 * @generated
+	 */
+	int INLINE_SUPER_CLASS_OPERATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__IDENTIFIER = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__DESCRIPTION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__MODEL_ELEMENT_ID = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Accepted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__ACCEPTED = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__CLIENT_DATE = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__CLIENT_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__SUB_OPERATIONS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__SUB_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Main Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__MAIN_OPERATION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__MAIN_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Composite Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__COMPOSITE_NAME = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Composite Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__COMPOSITE_DESCRIPTION = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__REVERSED = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION__REVERSED;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Inline Super Class Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_SUPER_CLASS_OPERATION_FEATURE_COUNT = SemanticPackage.SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl <em>Inline Class Operation</em>}' class.
@@ -223,7 +359,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getInlineClassOperation()
 	 * @generated
 	 */
-	int INLINE_CLASS_OPERATION = 1;
+	int INLINE_CLASS_OPERATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -341,7 +477,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getPartitionAssociationOperation()
 	 * @generated
 	 */
-	int PARTITION_ASSOCIATION_OPERATION = 2;
+	int PARTITION_ASSOCIATION_OPERATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -460,7 +596,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getPushDownOperation()
 	 * @generated
 	 */
-	int PUSH_DOWN_OPERATION = 3;
+	int PUSH_DOWN_OPERATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -614,7 +750,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getPullUpOperation()
 	 * @generated
 	 */
-	int PULL_UP_OPERATION = 4;
+	int PULL_UP_OPERATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -791,15 +927,26 @@ public interface OperationsPackage extends EPackage {
 	EReference getExtractSuperClassOperation_Attributes();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getAssociations <em>Associations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getOutgoingAssociations <em>Outgoing Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Associations</em>'.
-	 * @see org.unicase.implementation.operations.ExtractSuperClassOperation#getAssociations()
+	 * @return the meta object for the containment reference list '<em>Outgoing Associations</em>'.
+	 * @see org.unicase.implementation.operations.ExtractSuperClassOperation#getOutgoingAssociations()
 	 * @see #getExtractSuperClassOperation()
 	 * @generated
 	 */
-	EReference getExtractSuperClassOperation_Associations();
+	EReference getExtractSuperClassOperation_OutgoingAssociations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getIncomingAssociations <em>Incoming Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Incoming Associations</em>'.
+	 * @see org.unicase.implementation.operations.ExtractSuperClassOperation#getIncomingAssociations()
+	 * @see #getExtractSuperClassOperation()
+	 * @generated
+	 */
+	EReference getExtractSuperClassOperation_IncomingAssociations();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName <em>Super Class Name</em>}'.
@@ -830,6 +977,27 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtractSuperClassOperation_SuperSuperClasses();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.implementation.operations.InlineSuperClassOperation <em>Inline Super Class Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Inline Super Class Operation</em>'.
+	 * @see org.unicase.implementation.operations.InlineSuperClassOperation
+	 * @generated
+	 */
+	EClass getInlineSuperClassOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass <em>Super Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Super Class</em>'.
+	 * @see org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass()
+	 * @see #getInlineSuperClassOperation()
+	 * @generated
+	 */
+	EReference getInlineSuperClassOperation_SuperClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.implementation.operations.InlineClassOperation <em>Inline Class Operation</em>}'.
@@ -1025,12 +1193,20 @@ public interface OperationsPackage extends EPackage {
 		EReference EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES = eINSTANCE.getExtractSuperClassOperation_Attributes();
 
 		/**
-		 * The meta object literal for the '<em><b>Associations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Outgoing Associations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTRACT_SUPER_CLASS_OPERATION__ASSOCIATIONS = eINSTANCE.getExtractSuperClassOperation_Associations();
+		EReference EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS = eINSTANCE.getExtractSuperClassOperation_OutgoingAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>Incoming Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS = eINSTANCE.getExtractSuperClassOperation_IncomingAssociations();
 
 		/**
 		 * The meta object literal for the '<em><b>Super Class Name</b></em>' attribute feature.
@@ -1054,6 +1230,24 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES = eINSTANCE.getExtractSuperClassOperation_SuperSuperClasses();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl <em>Inline Super Class Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl
+		 * @see org.unicase.implementation.operations.impl.OperationsPackageImpl#getInlineSuperClassOperation()
+		 * @generated
+		 */
+		EClass INLINE_SUPER_CLASS_OPERATION = eINSTANCE.getInlineSuperClassOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Class</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS = eINSTANCE.getInlineSuperClassOperation_SuperClass();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl <em>Inline Class Operation</em>}' class.

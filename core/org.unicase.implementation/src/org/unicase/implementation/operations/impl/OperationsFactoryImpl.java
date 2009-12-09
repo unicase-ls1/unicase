@@ -59,6 +59,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: return createExtractSuperClassOperation();
+			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION: return createInlineSuperClassOperation();
 			case OperationsPackage.INLINE_CLASS_OPERATION: return createInlineClassOperation();
 			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: return createPartitionAssociationOperation();
 			case OperationsPackage.PUSH_DOWN_OPERATION: return createPushDownOperation();
@@ -75,6 +76,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public ExtractSuperClassOperation createExtractSuperClassOperation() {
 		ExtractSuperClassOperationImpl extractSuperClassOperation = new ExtractSuperClassOperationImpl();
 		return extractSuperClassOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InlineSuperClassOperation createInlineSuperClassOperation() {
+		InlineSuperClassOperationImpl inlineSuperClassOperation = new InlineSuperClassOperationImpl();
+		return inlineSuperClassOperation;
 	}
 
 	/**

@@ -76,6 +76,10 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 				return createExtractSuperClassOperationAdapter();
 			}
 			@Override
+			public Adapter caseInlineSuperClassOperation(InlineSuperClassOperation object) {
+				return createInlineSuperClassOperationAdapter();
+			}
+			@Override
 			public Adapter caseInlineClassOperation(InlineClassOperation object) {
 				return createInlineClassOperationAdapter();
 			}
@@ -134,6 +138,20 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtractSuperClassOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.InlineSuperClassOperation <em>Inline Super Class Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.implementation.operations.InlineSuperClassOperation
+	 * @generated
+	 */
+	public Adapter createInlineSuperClassOperationAdapter() {
 		return null;
 	}
 

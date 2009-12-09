@@ -27,19 +27,19 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 
+import org.unicase.implementation.operations.InlineSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
-import org.unicase.implementation.operations.PushDownOperation;
 
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.implementation.operations.PushDownOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.implementation.operations.InlineSuperClassOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PushDownOperationItemProvider
+public class InlineSuperClassOperationItemProvider
 	extends SemanticCompositeOperationItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -53,7 +53,7 @@ public class PushDownOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PushDownOperationItemProvider(AdapterFactory adapterFactory) {
+	public InlineSuperClassOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -84,10 +84,7 @@ public class PushDownOperationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OperationsPackage.Literals.PUSH_DOWN_OPERATION__SUPER_CLASS);
-			childrenFeatures.add(OperationsPackage.Literals.PUSH_DOWN_OPERATION__ATTRIBUTES);
-			childrenFeatures.add(OperationsPackage.Literals.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS);
-			childrenFeatures.add(OperationsPackage.Literals.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS);
+			childrenFeatures.add(OperationsPackage.Literals.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS);
 		}
 		return childrenFeatures;
 	}
@@ -106,14 +103,14 @@ public class PushDownOperationItemProvider
 	}
 
 	/**
-	 * This returns PushDownOperation.gif.
+	 * This returns InlineSuperClassOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushDownOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InlineSuperClassOperation"));
 	}
 
 	/**
@@ -124,10 +121,10 @@ public class PushDownOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PushDownOperation)object).getName();
+		String label = ((InlineSuperClassOperation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PushDownOperation_type") :
-			getString("_UI_PushDownOperation_type") + " " + label;
+			getString("_UI_InlineSuperClassOperation_type") :
+			getString("_UI_InlineSuperClassOperation_type") + " " + label;
 	}
 
 	/**
@@ -141,11 +138,8 @@ public class PushDownOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PushDownOperation.class)) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+		switch (notification.getFeatureID(InlineSuperClassOperation.class)) {
+			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -195,48 +189,8 @@ public class PushDownOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperationsPackage.Literals.PUSH_DOWN_OPERATION__SUPER_CLASS,
+				(OperationsPackage.Literals.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.PUSH_DOWN_OPERATION__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == OperationsPackage.Literals.PUSH_DOWN_OPERATION__SUPER_CLASS ||
-			childFeature == OperationsPackage.Literals.PUSH_DOWN_OPERATION__ATTRIBUTES ||
-			childFeature == OperationsPackage.Literals.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS ||
-			childFeature == OperationsPackage.Literals.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

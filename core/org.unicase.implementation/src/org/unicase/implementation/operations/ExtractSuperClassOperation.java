@@ -21,7 +21,8 @@ import org.unicase.model.classes.Attribute;
  * <ul>
  *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getAssociations <em>Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperClassName <em>Super Class Name</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getTargetPackage <em>Target Package</em>}</li>
  *   <li>{@link org.unicase.implementation.operations.ExtractSuperClassOperation#getSuperSuperClasses <em>Super Super Classes</em>}</li>
@@ -66,20 +67,36 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	EList<ModelElementId> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Associations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Associations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Outgoing Associations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Associations</em>' containment reference list.
-	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_Associations()
+	 * @return the value of the '<em>Outgoing Associations</em>' containment reference list.
+	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_OutgoingAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementId> getAssociations();
+	EList<ModelElementId> getOutgoingAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incoming Associations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incoming Associations</em>' containment reference list.
+	 * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation_IncomingAssociations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelElementId> getIncomingAssociations();
 
 	/**
 	 * Returns the value of the '<em><b>Super Class Name</b></em>' attribute.
@@ -174,10 +191,11 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAssociations());'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
 	 * @generated
 	 */
-	EList<Association> getAssociations(Project project);
+	EList<Association> getOutgoingAssociations(Project project);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,7 +203,24 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	 * @model
 	 * @generated
 	 */
-	EList<Association> getPossibleAssociations(Project project);
+	EList<Association> getPossibleOutgoingAssociations(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
+	 * @generated
+	 */
+	EList<Association> getIncomingAssociations(Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Association> getPossibleIncomingAssociations(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
