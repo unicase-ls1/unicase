@@ -28,14 +28,15 @@ import org.unicase.metamodel.MetamodelFactory;
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.InlineClassOperation} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InlineClassOperationItemProvider extends SemanticCompositeOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InlineClassOperationItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +44,8 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,9 +60,9 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,6 +77,7 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,8 +89,8 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns InlineClassOperation.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns InlineClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,16 +99,15 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InlineClassOperation)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_InlineClassOperation_type") :
-			getString("_UI_InlineClassOperation_type") + " " + label;
+		String label = ((InlineClassOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_InlineClassOperation_type")
+			: getString("_UI_InlineClassOperation_type") + " " + label;
 	}
 
 	/**
@@ -121,74 +122,70 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InlineClassOperation.class)) {
-			case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
-			case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
+		case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createExtractClassOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createExtractClassOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createPushDownOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createPushDownOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createPullUpOperation()));
+		newChildDescriptors
+			.add(createChildParameter(
+				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				OperationsFactory.eINSTANCE.createPullUpOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS,
-				 MetamodelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,21 +193,19 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION ||
-			childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS;
+		boolean qualify = childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__ASSOCIATION
+			|| childFeature == OperationsPackage.Literals.INLINE_CLASS_OPERATION__INLINE_CLASS;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
