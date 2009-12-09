@@ -51,6 +51,11 @@ public class ParameterViewer extends TableViewer {
 	 * @author herrmi
 	 */
 	private final class ValueEditingSupport extends EditingSupport {
+		/**
+		 * Constructor.
+		 * 
+		 * @param viewer
+		 */
 		private ValueEditingSupport(ColumnViewer viewer) {
 			super(viewer);
 		}

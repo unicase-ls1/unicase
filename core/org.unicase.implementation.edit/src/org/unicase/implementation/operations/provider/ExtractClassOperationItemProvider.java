@@ -17,29 +17,31 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 
-import org.unicase.implementation.operations.InlineSuperClassOperation;
+import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.implementation.operations.InlineSuperClassOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.implementation.operations.ExtractClassOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InlineSuperClassOperationItemProvider
+public class ExtractClassOperationItemProvider
 	extends SemanticCompositeOperationItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -53,7 +55,7 @@ public class InlineSuperClassOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InlineSuperClassOperationItemProvider(AdapterFactory adapterFactory) {
+	public ExtractClassOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,8 +70,54 @@ public class InlineSuperClassOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addCompositionNamePropertyDescriptor(object);
+			addClassNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Composition Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositionNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtractClassOperation_compositionName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_compositionName_feature", "_UI_ExtractClassOperation_type"),
+				 OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtractClassOperation_className_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_className_feature", "_UI_ExtractClassOperation_type"),
+				 OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CLASS_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,7 +132,11 @@ public class InlineSuperClassOperationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OperationsPackage.Literals.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS);
+			childrenFeatures.add(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS);
+			childrenFeatures.add(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES);
+			childrenFeatures.add(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
+			childrenFeatures.add(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
+			childrenFeatures.add(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE);
 		}
 		return childrenFeatures;
 	}
@@ -103,14 +155,14 @@ public class InlineSuperClassOperationItemProvider
 	}
 
 	/**
-	 * This returns InlineSuperClassOperation.gif.
+	 * This returns ExtractClassOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InlineSuperClassOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtractClassOperation"));
 	}
 
 	/**
@@ -121,10 +173,10 @@ public class InlineSuperClassOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InlineSuperClassOperation)object).getName();
+		String label = ((ExtractClassOperation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_InlineSuperClassOperation_type") :
-			getString("_UI_InlineSuperClassOperation_type") + " " + label;
+			getString("_UI_ExtractClassOperation_type") :
+			getString("_UI_ExtractClassOperation_type") + " " + label;
 	}
 
 	/**
@@ -138,8 +190,16 @@ public class InlineSuperClassOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InlineSuperClassOperation.class)) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+		switch (notification.getFeatureID(ExtractClassOperation.class)) {
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -194,8 +254,54 @@ public class InlineSuperClassOperationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperationsPackage.Literals.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS,
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS,
 				 MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE,
+				 MetamodelFactory.eINSTANCE.createModelElementId()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

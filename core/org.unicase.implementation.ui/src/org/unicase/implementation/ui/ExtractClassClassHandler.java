@@ -7,26 +7,33 @@ package org.unicase.implementation.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
-import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.implementation.operations.util.OperationHelper;
 
 /**
- * Handler for {@link PushDownOperation} when the source class is selected.
+ * Handler for {@link ExtractClassOperation} when the context class is selected.
  * 
- * @author herrmi
+ * @author herrmama
+ * @author $Author$
+ * @version $Rev$
+ * @levd.rating RED Rev:
  */
-public class PushDownClassHandler extends OperationHandlerBase {
+public class ExtractClassClassHandler extends OperationHandlerBase {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
-		org.unicase.model.classes.Class superClass = SelectionHelper.getSelectedElement(structuredSelection);
+		org.unicase.model.classes.Class contextClass = SelectionHelper.getSelectedElement(structuredSelection);
 
-		PushDownOperation operation = OperationsFactory.eINSTANCE.createPushDownOperation();
-		operation.setSuperClass(OperationHelper.getId(superClass));
+		ExtractClassOperation operation = OperationsFactory.eINSTANCE.createExtractClassOperation();
+		operation.setContextClass(OperationHelper.getId(contextClass));
+		org.unicase.model.classes.Package targetPackage = contextClass.getParentPackage();
+		if (targetPackage != null) {
+			operation.setTargetPackage(OperationHelper.getId(targetPackage));
+		}
 
 		return operation;
 	}

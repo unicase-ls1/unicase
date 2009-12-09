@@ -22,7 +22,7 @@ import org.unicase.model.classes.Association;
  * </p>
  *
  * @see org.unicase.implementation.operations.OperationsPackage#getInlineClassOperation()
- * @model
+ * @model annotation="http://unicase.org/operations description='A class reachable through a single-valued composition is inlined.' label='Inline Class'"
  * @generated
  */
 public interface InlineClassOperation extends SemanticCompositeOperation {

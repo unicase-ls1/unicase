@@ -14,6 +14,7 @@ import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.model.classes.Class;
+import org.unicase.model.classes.Package;
 
 /**
  * Handler for {@link ExtractSuperClassOperation}.
@@ -22,12 +23,20 @@ import org.unicase.model.classes.Class;
  */
 public class ExtractSuperClassHandler extends OperationHandlerBase {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
 		ExtractSuperClassOperation operation = OperationsFactory.eINSTANCE.createExtractSuperClassOperation();
 
 		List<Class> subClasses = SelectionHelper.getSelectedElements(structuredSelection);
 		operation.getSubClasses().addAll(OperationHelper.getIds(subClasses));
+
+		Package targetPackage = subClasses.get(0).getParentPackage();
+		if (targetPackage != null) {
+			operation.setTargetPackage(OperationHelper.getId(targetPackage));
+		}
 
 		return operation;
 	}

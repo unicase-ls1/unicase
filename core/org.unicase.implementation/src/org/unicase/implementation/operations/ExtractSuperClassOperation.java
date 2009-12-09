@@ -191,8 +191,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations(Project project);
@@ -208,8 +207,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations(Project project);

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.implementation.ui;
 
 import java.util.ArrayList;
@@ -12,8 +17,16 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 
+/**
+ * Handler for {@link PullUpOperation} when several attributes and associations to be pulled up are selected.
+ * 
+ * @author herrmi
+ */
 public class PullUpAttributeHandler extends OperationHandlerBase {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
 		List<UnicaseModelElement> elements = SelectionHelper.getSelectedElements(structuredSelection);

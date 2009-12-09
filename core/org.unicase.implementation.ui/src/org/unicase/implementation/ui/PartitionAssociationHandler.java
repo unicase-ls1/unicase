@@ -19,6 +19,9 @@ import org.unicase.model.classes.Association;
  */
 public class PartitionAssociationHandler extends OperationHandlerBase {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
 		Association association = SelectionHelper.getSelectedElement(structuredSelection);

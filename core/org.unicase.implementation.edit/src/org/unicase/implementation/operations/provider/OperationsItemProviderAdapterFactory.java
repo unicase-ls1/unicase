@@ -141,6 +141,29 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.ExtractClassOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtractClassOperationItemProvider extractClassOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.implementation.operations.ExtractClassOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtractClassOperationAdapter() {
+		if (extractClassOperationItemProvider == null) {
+			extractClassOperationItemProvider = new ExtractClassOperationItemProvider(this);
+		}
+
+		return extractClassOperationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.implementation.operations.PartitionAssociationOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,6 +326,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	public void dispose() {
 		if (extractSuperClassOperationItemProvider != null) extractSuperClassOperationItemProvider.dispose();
 		if (inlineSuperClassOperationItemProvider != null) inlineSuperClassOperationItemProvider.dispose();
+		if (extractClassOperationItemProvider != null) extractClassOperationItemProvider.dispose();
 		if (inlineClassOperationItemProvider != null) inlineClassOperationItemProvider.dispose();
 		if (partitionAssociationOperationItemProvider != null) partitionAssociationOperationItemProvider.dispose();
 		if (pushDownOperationItemProvider != null) pushDownOperationItemProvider.dispose();

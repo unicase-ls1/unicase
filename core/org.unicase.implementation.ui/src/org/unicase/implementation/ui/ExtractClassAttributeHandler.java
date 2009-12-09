@@ -10,21 +10,20 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
-import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
-import org.unicase.model.classes.Class;
-
+import org.unicase.model.classes.Package;
 
 /**
- * Handler for {@link PushDownOperation}.
+ * Handler for {@link ExtractClassOperation} when several attributes and associations to be extracted are selected.
  * 
  * @author herrmi
  */
-public class PushDownAttributeHandler extends OperationHandlerBase {
+public class ExtractClassAttributeHandler extends OperationHandlerBase {
 
 	/**
 	 * {@inheritDoc}
@@ -35,27 +34,33 @@ public class PushDownAttributeHandler extends OperationHandlerBase {
 		List<Attribute> attributes = new ArrayList<Attribute>();
 		List<Association> associations = new ArrayList<Association>();
 
+		org.unicase.model.classes.Class contextClass = null;
 		for (UnicaseModelElement element : elements) {
 			if (element instanceof Attribute) {
 				Attribute attribute = (Attribute) element;
 				attributes.add(attribute);
+				if (contextClass == null) {
+					contextClass = attribute.getDefiningClass();
+				}
 			} else {
 				Association association = (Association) element;
 				associations.add(association);
+				if (contextClass == null) {
+					contextClass = association.getSource();
+				}
 			}
 		}
-		
-		Class superClass = null;
-		if(!attributes.isEmpty()) {
-			superClass = attributes.get(0).getDefiningClass();
-		} else {
-			superClass = associations.get(0).getSource();
-		}
-		
-		PushDownOperation operation = OperationsFactory.eINSTANCE.createPushDownOperation();
-		operation.setSuperClass(OperationHelper.getId(superClass));
+
+		ExtractClassOperation operation = OperationsFactory.eINSTANCE.createExtractClassOperation();
 		operation.getAttributes().addAll(OperationHelper.getIds(attributes));
 		operation.getOutgoingAssociations().addAll(OperationHelper.getIds(associations));
+		if (contextClass != null) {
+			operation.setContextClass(OperationHelper.getId(contextClass));
+			Package targetPackage = contextClass.getParentPackage();
+			if (targetPackage != null) {
+				operation.setTargetPackage(OperationHelper.getId(targetPackage));
+			}
+		}
 
 		return operation;
 	}
