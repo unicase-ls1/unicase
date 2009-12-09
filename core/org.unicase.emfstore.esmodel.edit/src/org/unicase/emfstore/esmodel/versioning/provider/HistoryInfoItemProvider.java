@@ -5,6 +5,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning.provider;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
@@ -41,6 +44,22 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	public HistoryInfoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof HistoryInfo) {
+			HistoryInfo historyInfo = (HistoryInfo) object;
+			ChangePackage changePackage = historyInfo.getChangePackage();
+			if (changePackage == null) {
+				return new ArrayList<ChangePackage>();
+			}
+			return Arrays.asList(changePackage);
+		}
+		return super.getChildren(object);
 	}
 
 	/**

@@ -43,6 +43,17 @@ public class OperationGroupItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof OperationGroup) {
+			return ((OperationGroup) object).getOperations();
+		}
+		return super.getChildren(object);
+	}
+
+	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
