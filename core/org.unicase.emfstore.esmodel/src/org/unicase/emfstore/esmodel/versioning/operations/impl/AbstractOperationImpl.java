@@ -447,7 +447,9 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 */
 	public Set<ModelElementId> getAllInvolvedModelElements() {
 		Set<ModelElementId> result = getOtherInvolvedModelElements();
-		result.add(getModelElementId());
+		if (getModelElementId() != null) {
+			result.add(getModelElementId());
+		}
 		return result;
 	}
 
