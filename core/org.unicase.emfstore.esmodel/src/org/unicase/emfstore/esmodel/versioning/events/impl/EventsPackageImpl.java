@@ -1047,7 +1047,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoiceEvent_MyChanges() {
+	public EReference getMergeChoiceEvent_MyAcceptedChanges() {
 		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1056,7 +1056,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoiceEvent_TheirChanges() {
+	public EReference getMergeChoiceEvent_TheirRejectedChanges() {
 		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1092,8 +1092,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getMergeChoiceEvent_CreatedIssue() {
-		return (EReference) mergeChoiceEventEClass.getEStructuralFeatures().get(5);
+	public EAttribute getMergeChoiceEvent_CreatedIssueName() {
+		return (EAttribute) mergeChoiceEventEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1259,12 +1259,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEReference(urlEventEClass, URL_EVENT__SOURCE_URL);
 
 		mergeChoiceEventEClass = createEClass(MERGE_CHOICE_EVENT);
-		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__MY_CHANGES);
-		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__THEIR_CHANGES);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES);
+		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES);
 		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT);
 		createEAttribute(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__SELECTION);
 		createEAttribute(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CONTEXT_FEATURE);
-		createEReference(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CREATED_ISSUE);
+		createEAttribute(mergeChoiceEventEClass, MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME);
 
 		mergeGlobalChoiceEventEClass = createEClass(MERGE_GLOBAL_CHOICE_EVENT);
 		createEAttribute(mergeGlobalChoiceEventEClass, MERGE_GLOBAL_CHOICE_EVENT__SELECTION);
@@ -1553,12 +1553,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		initEClass(mergeChoiceEventEClass, MergeChoiceEvent.class, "MergeChoiceEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMergeChoiceEvent_MyChanges(), theOperationsPackage.getOperationId(), null, "myChanges", null,
-			0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeChoiceEvent_TheirChanges(), theOperationsPackage.getOperationId(), null, "theirChanges",
-			null, 0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeChoiceEvent_MyAcceptedChanges(), theOperationsPackage.getOperationId(), null,
+			"myAcceptedChanges", null, 0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeChoiceEvent_TheirRejectedChanges(), theOperationsPackage.getOperationId(), null,
+			"theirRejectedChanges", null, 0, -1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMergeChoiceEvent_ContextModelElement(), theMetamodelPackage.getModelElementId(), null,
 			"contextModelElement", null, 0, 1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1568,9 +1568,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		initEAttribute(getMergeChoiceEvent_ContextFeature(), ecorePackage.getEString(), "contextFeature", null, 0, 1,
 			MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeChoiceEvent_CreatedIssue(), theMetamodelPackage.getModelElementId(), null,
-			"createdIssue", null, 0, 1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMergeChoiceEvent_CreatedIssueName(), ecorePackage.getEString(), "createdIssueName", null, 0,
+			1, MergeChoiceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergeGlobalChoiceEventEClass, MergeGlobalChoiceEvent.class, "MergeGlobalChoiceEvent", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

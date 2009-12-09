@@ -45,24 +45,24 @@ import org.unicase.metamodel.ModelElementId;
  */
 public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent {
 	/**
-	 * The cached value of the '{@link #getMyChanges() <em>My Changes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMyAcceptedChanges() <em>My Accepted Changes</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getMyChanges()
+	 * @see #getMyAcceptedChanges()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OperationId> myChanges;
+	protected EList<OperationId> myAcceptedChanges;
 
 	/**
-	 * The cached value of the '{@link #getTheirChanges() <em>Their Changes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTheirRejectedChanges() <em>Their Rejected Changes</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getTheirChanges()
+	 * @see #getTheirRejectedChanges()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OperationId> theirChanges;
+	protected EList<OperationId> theirRejectedChanges;
 
 	/**
 	 * The cached value of the '{@link #getContextModelElement() <em>Context Model Element</em>}' containment reference.
@@ -115,14 +115,24 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	protected String contextFeature = CONTEXT_FEATURE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCreatedIssue() <em>Created Issue</em>}' containment reference. <!--
+	 * The default value of the '{@link #getCreatedIssueName() <em>Created Issue Name</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getCreatedIssue()
+	 * @see #getCreatedIssueName()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId createdIssue;
+	protected static final String CREATED_ISSUE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCreatedIssueName() <em>Created Issue Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getCreatedIssueName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String createdIssueName = CREATED_ISSUE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -148,12 +158,12 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	 * 
 	 * @generated
 	 */
-	public EList<OperationId> getMyChanges() {
-		if (myChanges == null) {
-			myChanges = new EObjectContainmentEList.Resolving<OperationId>(OperationId.class, this,
-				EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES);
+	public EList<OperationId> getMyAcceptedChanges() {
+		if (myAcceptedChanges == null) {
+			myAcceptedChanges = new EObjectContainmentEList.Resolving<OperationId>(OperationId.class, this,
+				EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES);
 		}
-		return myChanges;
+		return myAcceptedChanges;
 	}
 
 	/**
@@ -161,12 +171,12 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	 * 
 	 * @generated
 	 */
-	public EList<OperationId> getTheirChanges() {
-		if (theirChanges == null) {
-			theirChanges = new EObjectContainmentEList.Resolving<OperationId>(OperationId.class, this,
-				EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES);
+	public EList<OperationId> getTheirRejectedChanges() {
+		if (theirRejectedChanges == null) {
+			theirRejectedChanges = new EObjectContainmentEList.Resolving<OperationId>(OperationId.class, this,
+				EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES);
 		}
-		return theirChanges;
+		return theirRejectedChanges;
 	}
 
 	/**
@@ -296,26 +306,8 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getCreatedIssue() {
-		if (createdIssue != null && createdIssue.eIsProxy()) {
-			InternalEObject oldCreatedIssue = (InternalEObject) createdIssue;
-			createdIssue = (ModelElementId) eResolveProxy(oldCreatedIssue);
-			if (createdIssue != oldCreatedIssue) {
-				InternalEObject newCreatedIssue = (InternalEObject) createdIssue;
-				NotificationChain msgs = oldCreatedIssue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, null, null);
-				if (newCreatedIssue.eInternalContainer() == null) {
-					msgs = newCreatedIssue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, null, msgs);
-				}
-				if (msgs != null)
-					msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, oldCreatedIssue, createdIssue));
-			}
-		}
-		return createdIssue;
+	public String getCreatedIssueName() {
+		return createdIssueName;
 	}
 
 	/**
@@ -323,49 +315,12 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	 * 
 	 * @generated
 	 */
-	public ModelElementId basicGetCreatedIssue() {
-		return createdIssue;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public NotificationChain basicSetCreatedIssue(ModelElementId newCreatedIssue, NotificationChain msgs) {
-		ModelElementId oldCreatedIssue = createdIssue;
-		createdIssue = newCreatedIssue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, oldCreatedIssue, newCreatedIssue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setCreatedIssue(ModelElementId newCreatedIssue) {
-		if (newCreatedIssue != createdIssue) {
-			NotificationChain msgs = null;
-			if (createdIssue != null)
-				msgs = ((InternalEObject) createdIssue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, null, msgs);
-			if (newCreatedIssue != null)
-				msgs = ((InternalEObject) newCreatedIssue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE, null, msgs);
-			msgs = basicSetCreatedIssue(newCreatedIssue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE,
-				newCreatedIssue, newCreatedIssue));
+	public void setCreatedIssueName(String newCreatedIssueName) {
+		String oldCreatedIssueName = createdIssueName;
+		createdIssueName = newCreatedIssueName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME,
+				oldCreatedIssueName, createdIssueName));
 	}
 
 	/**
@@ -376,14 +331,12 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-			return ((InternalEList<?>) getMyChanges()).basicRemove(otherEnd, msgs);
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
-			return ((InternalEList<?>) getTheirChanges()).basicRemove(otherEnd, msgs);
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+			return ((InternalEList<?>) getMyAcceptedChanges()).basicRemove(otherEnd, msgs);
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
+			return ((InternalEList<?>) getTheirRejectedChanges()).basicRemove(otherEnd, msgs);
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
 			return basicSetContextModelElement(null, msgs);
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
-			return basicSetCreatedIssue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -396,10 +349,10 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-			return getMyChanges();
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
-			return getTheirChanges();
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+			return getMyAcceptedChanges();
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
+			return getTheirRejectedChanges();
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
 			if (resolve)
 				return getContextModelElement();
@@ -408,10 +361,8 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 			return getSelection();
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
 			return getContextFeature();
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
-			if (resolve)
-				return getCreatedIssue();
-			return basicGetCreatedIssue();
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME:
+			return getCreatedIssueName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -425,13 +376,13 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-			getMyChanges().clear();
-			getMyChanges().addAll((Collection<? extends OperationId>) newValue);
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+			getMyAcceptedChanges().clear();
+			getMyAcceptedChanges().addAll((Collection<? extends OperationId>) newValue);
 			return;
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
-			getTheirChanges().clear();
-			getTheirChanges().addAll((Collection<? extends OperationId>) newValue);
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
+			getTheirRejectedChanges().clear();
+			getTheirRejectedChanges().addAll((Collection<? extends OperationId>) newValue);
 			return;
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
 			setContextModelElement((ModelElementId) newValue);
@@ -442,8 +393,8 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
 			setContextFeature((String) newValue);
 			return;
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
-			setCreatedIssue((ModelElementId) newValue);
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME:
+			setCreatedIssueName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -457,11 +408,11 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-			getMyChanges().clear();
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+			getMyAcceptedChanges().clear();
 			return;
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
-			getTheirChanges().clear();
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
+			getTheirRejectedChanges().clear();
 			return;
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
 			setContextModelElement((ModelElementId) null);
@@ -472,8 +423,8 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
 			setContextFeature(CONTEXT_FEATURE_EDEFAULT);
 			return;
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
-			setCreatedIssue((ModelElementId) null);
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME:
+			setCreatedIssueName(CREATED_ISSUE_NAME_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -487,10 +438,10 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-			return myChanges != null && !myChanges.isEmpty();
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
-			return theirChanges != null && !theirChanges.isEmpty();
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+			return myAcceptedChanges != null && !myAcceptedChanges.isEmpty();
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
+			return theirRejectedChanges != null && !theirRejectedChanges.isEmpty();
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
 			return contextModelElement != null;
 		case EventsPackage.MERGE_CHOICE_EVENT__SELECTION:
@@ -498,8 +449,9 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
 			return CONTEXT_FEATURE_EDEFAULT == null ? contextFeature != null : !CONTEXT_FEATURE_EDEFAULT
 				.equals(contextFeature);
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
-			return createdIssue != null;
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME:
+			return CREATED_ISSUE_NAME_EDEFAULT == null ? createdIssueName != null : !CREATED_ISSUE_NAME_EDEFAULT
+				.equals(createdIssueName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -519,6 +471,8 @@ public class MergeChoiceEventImpl extends EventImpl implements MergeChoiceEvent 
 		result.append(selection);
 		result.append(", contextFeature: ");
 		result.append(contextFeature);
+		result.append(", createdIssueName: ");
+		result.append(createdIssueName);
 		result.append(')');
 		return result.toString();
 	}

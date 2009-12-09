@@ -340,17 +340,16 @@
             containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergeChoiceEvent" eSuperTypes="#//versioning/events/Event">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="myChanges" upperBound="-1"
-            eType="#//versioning/operations/OperationId" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="theirChanges" upperBound="-1"
-            eType="#//versioning/operations/OperationId" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="myAcceptedChanges"
+            upperBound="-1" eType="#//versioning/operations/OperationId" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="theirRejectedChanges"
+            upperBound="-1" eType="#//versioning/operations/OperationId" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="contextModelElement"
             eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="selection" eType="#//versioning/events/MergeChoiceSelection"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextFeature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="createdIssue" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
-            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdIssueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="MergeChoiceSelection">
         <eLiterals name="Mine"/>

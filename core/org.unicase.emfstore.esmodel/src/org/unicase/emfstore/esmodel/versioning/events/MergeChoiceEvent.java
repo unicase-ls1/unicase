@@ -32,36 +32,36 @@ import org.unicase.metamodel.ModelElementId;
  */
 public interface MergeChoiceEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>My Changes</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>My Accepted Changes</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>My Changes</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>My Accepted Changes</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>My Changes</em>' containment reference list.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_MyChanges()
+	 * @return the value of the '<em>My Accepted Changes</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_MyAcceptedChanges()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<OperationId> getMyChanges();
+	EList<OperationId> getMyAcceptedChanges();
 
 	/**
-	 * Returns the value of the '<em><b>Their Changes</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Their Rejected Changes</b></em>' containment reference list. The list contents
+	 * are of type {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Their Changes</em>' containment reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Their Rejected Changes</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Their Changes</em>' containment reference list.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_TheirChanges()
+	 * @return the value of the '<em>Their Rejected Changes</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_TheirRejectedChanges()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<OperationId> getTheirChanges();
+	EList<OperationId> getTheirRejectedChanges();
 
 	/**
 	 * Returns the value of the '<em><b>Context Model Element</b></em>' containment reference. <!-- begin-user-doc -->
@@ -146,29 +146,30 @@ public interface MergeChoiceEvent extends Event {
 	void setContextFeature(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Created Issue</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Created Issue Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Created Issue</em>' containment reference isn't clear, there really should be more of
-	 * a description here...
+	 * If the meaning of the '<em>Created Issue Name</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Created Issue</em>' containment reference.
-	 * @see #setCreatedIssue(ModelElementId)
-	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_CreatedIssue()
-	 * @model containment="true" resolveProxies="true"
+	 * @return the value of the '<em>Created Issue Name</em>' attribute.
+	 * @see #setCreatedIssueName(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeChoiceEvent_CreatedIssueName()
+	 * @model
 	 * @generated
 	 */
-	ModelElementId getCreatedIssue();
+	String getCreatedIssueName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssue
-	 * <em>Created Issue</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent#getCreatedIssueName
+	 * <em>Created Issue Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>Created Issue</em>' containment reference.
-	 * @see #getCreatedIssue()
+	 * @param value the new value of the '<em>Created Issue Name</em>' attribute.
+	 * @see #getCreatedIssueName()
 	 * @generated
 	 */
-	void setCreatedIssue(ModelElementId value);
+	void setCreatedIssueName(String value);
 
 } // MergeChoiceEvent

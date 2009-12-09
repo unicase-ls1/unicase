@@ -6,7 +6,6 @@
 package org.unicase.emfstore.esmodel.versioning.events.provider;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -55,6 +54,7 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 
 			addSelectionPropertyDescriptor(object);
 			addContextFeaturePropertyDescriptor(object);
+			addCreatedIssueNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +86,19 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Created Issue Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCreatedIssueNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_createdIssueName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_createdIssueName_feature",
+				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
@@ -97,10 +110,9 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES);
 			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT);
-			childrenFeatures.add(EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE);
 		}
 		return childrenFeatures;
 	}
@@ -135,8 +147,7 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((MergeChoiceEvent) object).getTimestamp();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((MergeChoiceEvent) object).getCreatedIssueName();
 		return label == null || label.length() == 0 ? getString("_UI_MergeChoiceEvent_type")
 			: getString("_UI_MergeChoiceEvent_type") + " " + label;
 	}
@@ -155,12 +166,12 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 		switch (notification.getFeatureID(MergeChoiceEvent.class)) {
 		case EventsPackage.MERGE_CHOICE_EVENT__SELECTION:
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_FEATURE:
+		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case EventsPackage.MERGE_CHOICE_EVENT__MY_CHANGES:
-		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_CHANGES:
+		case EventsPackage.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES:
+		case EventsPackage.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES:
 		case EventsPackage.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT:
-		case EventsPackage.MERGE_CHOICE_EVENT__CREATED_ISSUE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -177,16 +188,13 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES,
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES,
 			OperationsFactory.eINSTANCE.createOperationId()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES,
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES,
 			OperationsFactory.eINSTANCE.createOperationId()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT,
-			MetamodelFactory.eINSTANCE.createModelElementId()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE,
 			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
@@ -201,10 +209,8 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_CHANGES
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_CHANGES
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_MODEL_ELEMENT
-			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE;
+		boolean qualify = childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__MY_ACCEPTED_CHANGES
+			|| childFeature == EventsPackage.Literals.MERGE_CHOICE_EVENT__THEIR_REJECTED_CHANGES;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
