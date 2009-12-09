@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.document.LeafSection;
 
 /**
  * This list should only be used with diagrams. I changes the behavior to add new elements on a diagram to the project
@@ -27,6 +28,7 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 
 	private EList<UnicaseModelElement> elements;
 	private Project project;
+	private LeafSection leafsection;
 
 	/**
 	 * default constructor.
@@ -38,6 +40,19 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 		super(UnicaseModelElement.class);
 		this.elements = elements;
 		this.project = project;
+	}
+
+	/**
+	 * Constructor with leaf section as an argument.
+	 * 
+	 * @param elements The reference feature of the according diagram.
+	 * @param leafSection leaf-section containing the element.
+	 */
+	public DiagramNewElementsList(EList<UnicaseModelElement> elements, LeafSection leafSection) {
+		// TODO Auto-generated constructor stub
+		super(UnicaseModelElement.class);
+		this.elements = elements;
+		this.leafsection = leafSection;
 	}
 
 	/**
@@ -61,7 +76,7 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 	 */
 	@Override
 	public boolean add(UnicaseModelElement arg0) {
-		boolean add = project.getModelElements().add(arg0);
+		boolean add = leafsection.getModelElements().add(arg0);
 		return add;
 	}
 
