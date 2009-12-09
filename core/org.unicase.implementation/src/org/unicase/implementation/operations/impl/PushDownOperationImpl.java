@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.implementation.operations.impl;
 
@@ -29,26 +28,27 @@ import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Push Down Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Push Down Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getSuperClass <em>Super Class</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- *   <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getSuperClass <em>Super Class</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getAttributes <em>Attributes</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getOutgoingAssociations <em>Outgoing
+ * Associations</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.PushDownOperationImpl#getIncomingAssociations <em>Incoming
+ * Associations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PushDownOperationImpl extends SemanticCompositeOperationImpl implements PushDownOperation {
 	/**
-	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperClass()
 	 * @generated
 	 * @ordered
@@ -56,9 +56,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	protected ModelElementId superClass;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -66,9 +66,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	protected EList<ModelElementId> attributes;
 
 	/**
-	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOutgoingAssociations()
 	 * @generated
 	 * @ordered
@@ -76,9 +76,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	protected EList<ModelElementId> outgoingAssociations;
 
 	/**
-	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncomingAssociations()
 	 * @generated
 	 * @ordered
@@ -86,8 +86,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	protected EList<ModelElementId> incomingAssociations;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PushDownOperationImpl() {
@@ -95,8 +95,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,8 +105,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getSuperClass() {
@@ -114,78 +114,88 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSuperClass(ModelElementId newSuperClass, NotificationChain msgs) {
 		ModelElementId oldSuperClass = superClass;
 		superClass = newSuperClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, oldSuperClass, newSuperClass);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, oldSuperClass, newSuperClass);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuperClass(ModelElementId newSuperClass) {
 		if (newSuperClass != superClass) {
 			NotificationChain msgs = null;
 			if (superClass != null)
-				msgs = ((InternalEObject)superClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) superClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, null, msgs);
 			if (newSuperClass != null)
-				msgs = ((InternalEObject)newSuperClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) newSuperClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, null, msgs);
 			msgs = basicSetSuperClass(newSuperClass, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS, newSuperClass, newSuperClass));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS,
+				newSuperClass, newSuperClass));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES);
 		}
 		return attributes;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getOutgoingAssociations() {
 		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS);
+			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS);
 		}
 		return outgoingAssociations;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS);
+			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS);
 		}
 		return incomingAssociations;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes(Project project) {
@@ -203,8 +213,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Association> getOutgoingAssociations(Project project) {
@@ -222,8 +232,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Association> getIncomingAssociations(Project project) {
@@ -241,8 +251,8 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getSuperClass(Project project) {
@@ -273,113 +283,113 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-				return basicSetSuperClass(null, msgs);
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-				return ((InternalEList<?>)getOutgoingAssociations()).basicRemove(otherEnd, msgs);
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
-				return ((InternalEList<?>)getIncomingAssociations()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
+			return basicSetSuperClass(null, msgs);
+		case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
+			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-				return getSuperClass();
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-				return getAttributes();
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-				return getOutgoingAssociations();
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
-				return getIncomingAssociations();
+		case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
+			return getSuperClass();
+		case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
+			return getAttributes();
+		case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
+			return getOutgoingAssociations();
+		case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+			return getIncomingAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-				setSuperClass((ModelElementId)newValue);
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-				getAttributes().clear();
-				getAttributes().addAll((Collection<? extends ModelElementId>)newValue);
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-				getOutgoingAssociations().clear();
-				getOutgoingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
-				getIncomingAssociations().clear();
-				getIncomingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
-				return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
+			setSuperClass((ModelElementId) newValue);
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
+			getAttributes().clear();
+			getAttributes().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
+			getOutgoingAssociations().clear();
+			getOutgoingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+			getIncomingAssociations().clear();
+			getIncomingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-				setSuperClass((ModelElementId)null);
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-				getAttributes().clear();
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-				getOutgoingAssociations().clear();
-				return;
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
-				getIncomingAssociations().clear();
-				return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
+			setSuperClass((ModelElementId) null);
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
+			getAttributes().clear();
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
+			getOutgoingAssociations().clear();
+			return;
+		case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+			getIncomingAssociations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
-				return superClass != null;
-			case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
-			case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
-				return outgoingAssociations != null && !outgoingAssociations.isEmpty();
-			case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
-				return incomingAssociations != null && !incomingAssociations.isEmpty();
+		case OperationsPackage.PUSH_DOWN_OPERATION__SUPER_CLASS:
+			return superClass != null;
+		case OperationsPackage.PUSH_DOWN_OPERATION__ATTRIBUTES:
+			return attributes != null && !attributes.isEmpty();
+		case OperationsPackage.PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS:
+			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+		case OperationsPackage.PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS:
+			return incomingAssociations != null && !incomingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -437,4 +447,4 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 			association.delete();
 		}
 	}
-} //PushDownOperationImpl
+} // PushDownOperationImpl
