@@ -53,7 +53,7 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText(operation.eClass().getName());
+		shell.setText("Execute Operation");
 		shell.setSize(400, 300);
 	}
 
@@ -65,7 +65,8 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		parent = (Composite) super.createDialogArea(parent);
-		setTitle("Set the parameters.");
+		setTitle(OperationHelper.getAnnotation(operation, "label"));
+		setMessage(OperationHelper.getAnnotation(operation, "description"));
 
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);

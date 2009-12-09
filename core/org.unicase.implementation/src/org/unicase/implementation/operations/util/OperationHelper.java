@@ -15,13 +15,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -150,8 +151,9 @@ public final class OperationHelper {
 				try {
 					boolean result = invokeOperation(operation, method, project);
 					if (!result) {
+						String annotation = getAnnotation(method, "description");
 						diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0,
-							EcoreUtil.getAnnotation(method, EcorePackage.eNS_URI, "documentation"), new Object[0]));
+							annotation, new Object[0]));
 					}
 				} catch (OperationInvocationException e) {
 					// ignore
@@ -234,4 +236,17 @@ public final class OperationHelper {
 	private static String firstUpper(String name) {
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
+
+	public static String getAnnotation(SemanticCompositeOperation operation, String key) {
+		return getAnnotation(operation.eClass(), key);
+	}
+
+	private static String getAnnotation(EModelElement element, String key) {
+		return EcoreUtil.getAnnotation(element, OperationsPackage.eNS_URI, key);
+	}
+
+	public static String firstLower(String name) {
+		return name.substring(0, 1).toLowerCase() + name.substring(1);
+	}
+
 }

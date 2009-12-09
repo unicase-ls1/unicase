@@ -57,8 +57,7 @@ public class ParameterViewer extends TableViewer {
 
 		@Override
 		protected boolean canEdit(Object element) {
-			EStructuralFeature feature = (EStructuralFeature) element;
-			return operation.eClass().getEStructuralFeatures().get(0) != feature;
+			return true;
 		}
 
 		@Override

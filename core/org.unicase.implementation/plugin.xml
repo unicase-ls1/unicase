@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="operations"
+            uri="http://unicase.org/operations"
             class="org.unicase.implementation.operations.OperationsPackage"
             genModel="model/operations.genmodel"/>
    </extension>

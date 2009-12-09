@@ -29,7 +29,7 @@ import org.unicase.model.classes.Attribute;
  * </p>
  *
  * @see org.unicase.implementation.operations.OperationsPackage#getExtractSuperClassOperation()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore documentation='Extract attributes and associations from a number of classes into a common super class.'"
+ * @model annotation="http://unicase.org/operations description='Attributes and associations from a number of classes are extracted into a common super class.' label='Extract Super Class'"
  * @generated
  */
 public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
@@ -212,7 +212,7 @@ public interface ExtractSuperClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='A class or enumeration with that name already exists.'"
+	 *        annotation="http://unicase.org/operations description='A class or enumeration with that name already exists.'"
 	 * @generated
 	 */
 	boolean validateSuperClassName(Project project);

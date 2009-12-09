@@ -155,7 +155,12 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 		newChildDescriptors.add
 			(createChildParameter
 				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				 OperationsFactory.eINSTANCE.createPushDownAttributeOperation()));
+				 OperationsFactory.eINSTANCE.createPushDownOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPullUpOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter

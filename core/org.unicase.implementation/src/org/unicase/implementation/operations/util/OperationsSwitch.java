@@ -12,11 +12,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-import org.unicase.implementation.operations.PushDownAttributeOperation;
+import org.unicase.implementation.operations.PullUpOperation;
+import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.metamodel.IdentifiableElement;
 
 /**
@@ -113,13 +115,23 @@ public class OperationsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OperationsPackage.PUSH_DOWN_ATTRIBUTE_OPERATION: {
-				PushDownAttributeOperation pushDownAttributeOperation = (PushDownAttributeOperation)theEObject;
-				T result = casePushDownAttributeOperation(pushDownAttributeOperation);
-				if (result == null) result = caseSemanticCompositeOperation(pushDownAttributeOperation);
-				if (result == null) result = caseCompositeOperation(pushDownAttributeOperation);
-				if (result == null) result = caseAbstractOperation(pushDownAttributeOperation);
-				if (result == null) result = caseIdentifiableElement(pushDownAttributeOperation);
+			case OperationsPackage.PUSH_DOWN_OPERATION: {
+				PushDownOperation pushDownOperation = (PushDownOperation)theEObject;
+				T result = casePushDownOperation(pushDownOperation);
+				if (result == null) result = caseSemanticCompositeOperation(pushDownOperation);
+				if (result == null) result = caseCompositeOperation(pushDownOperation);
+				if (result == null) result = caseAbstractOperation(pushDownOperation);
+				if (result == null) result = caseIdentifiableElement(pushDownOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.PULL_UP_OPERATION: {
+				PullUpOperation pullUpOperation = (PullUpOperation)theEObject;
+				T result = casePullUpOperation(pullUpOperation);
+				if (result == null) result = caseSemanticCompositeOperation(pullUpOperation);
+				if (result == null) result = caseCompositeOperation(pullUpOperation);
+				if (result == null) result = caseAbstractOperation(pullUpOperation);
+				if (result == null) result = caseIdentifiableElement(pullUpOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -170,16 +182,32 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Push Down Attribute Operation</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Push Down Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Push Down Attribute Operation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Push Down Operation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePushDownAttributeOperation(PushDownAttributeOperation object) {
+	public T casePushDownOperation(PushDownOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pull Up Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pull Up Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePullUpOperation(PullUpOperation object) {
 		return null;
 	}
 

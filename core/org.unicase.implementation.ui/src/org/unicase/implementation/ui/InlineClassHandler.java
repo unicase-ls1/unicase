@@ -5,8 +5,12 @@
  */
 package org.unicase.implementation.ui;
 // BEGIN IGNORE UNNECCESSARY IMPORT
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
-import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.OperationsFactory;
+import org.unicase.implementation.operations.util.OperationHelper;
+import org.unicase.model.classes.Association;
 
 /**
  * Handler for the {@link InlineClassOperation}.
@@ -15,10 +19,14 @@ import org.unicase.implementation.operations.OperationsPackage;
  */
 public class InlineClassHandler extends OperationHandlerBase {
 
-	/**
-	 * Constructor.
-	 */
-	public InlineClassHandler() {
-		super(OperationsPackage.Literals.INLINE_CLASS_OPERATION);
+	@Override
+	protected SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection) {
+		Association association = SelectionHelper.getSelectedElement(structuredSelection);
+
+		InlineClassOperation operation = OperationsFactory.eINSTANCE.createInlineClassOperation();
+		operation.setAssociation(OperationHelper.getId(association));
+
+		return operation;
 	}
+
 }

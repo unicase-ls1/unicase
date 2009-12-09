@@ -12,11 +12,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-import org.unicase.implementation.operations.PushDownAttributeOperation;
+import org.unicase.implementation.operations.PullUpOperation;
+import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.metamodel.IdentifiableElement;
 
 /**
@@ -82,8 +84,12 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 				return createPartitionAssociationOperationAdapter();
 			}
 			@Override
-			public Adapter casePushDownAttributeOperation(PushDownAttributeOperation object) {
-				return createPushDownAttributeOperationAdapter();
+			public Adapter casePushDownOperation(PushDownOperation object) {
+				return createPushDownOperationAdapter();
+			}
+			@Override
+			public Adapter casePullUpOperation(PullUpOperation object) {
+				return createPullUpOperationAdapter();
 			}
 			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
@@ -158,14 +164,30 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.PushDownAttributeOperation <em>Push Down Attribute Operation</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
-	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.PushDownOperation <em>Push Down Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.implementation.operations.PushDownAttributeOperation
+	 * @see org.unicase.implementation.operations.PushDownOperation
 	 * @generated
 	 */
-	public Adapter createPushDownAttributeOperationAdapter() {
+	public Adapter createPushDownOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.implementation.operations.PullUpOperation <em>Pull Up Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.implementation.operations.PullUpOperation
+	 * @generated
+	 */
+	public Adapter createPullUpOperationAdapter() {
 		return null;
 	}
 

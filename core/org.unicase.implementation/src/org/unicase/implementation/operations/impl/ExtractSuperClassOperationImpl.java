@@ -21,12 +21,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.implementation.operations.util.ClassesOperationHelper;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.classes.Association;
-import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesFactory;
@@ -34,8 +33,6 @@ import org.unicase.model.classes.Enumeration;
 import org.unicase.model.classes.InstantiationType;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
-import org.unicase.model.classes.PrimitiveType;
-import org.unicase.model.classes.validation.ClassesHelper;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Extract Super Class Operation</b></em>'. <!--
@@ -279,32 +276,13 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		EList<Attribute> possibleAttributes = new BasicEList<Attribute>();
 		for (Attribute attribute : attributes) {
 			for (Class c : subClasses) {
-				if (getSameAttribute(c, attribute) == null) {
+				if (ClassesOperationHelper.getSameAttribute(c, attribute) == null) {
 					continue;
 				}
 			}
 			possibleAttributes.add(attribute);
 		}
 		return possibleAttributes;
-	}
-
-	private Attribute getSameAttribute(Class c, Attribute attribute) {
-		for (Attribute a : c.getAttributes()) {
-			try {
-				boolean sameName = attribute.getName().equals(a.getName());
-				boolean sameType = attribute.getImplementationType() == a.getImplementationType()
-					&& (attribute.getImplementationType() != PrimitiveType.ENUMERATION || attribute
-						.getImplementationEnumeration() == a.getImplementationEnumeration());
-				boolean sameId = attribute.isId() == a.isId();
-				boolean sameTransient = attribute.isTransient() == a.isTransient();
-				if (sameName && sameType && sameId && sameTransient) {
-					return a;
-				}
-			} catch (NullPointerException e) {
-				// ignore
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -334,85 +312,13 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		EList<Association> possibleAssociations = new BasicEList<Association>();
 		for (Association association : associations) {
 			for (Class c : subClasses) {
-				if (getSameAssociation(c, association, subClass) == null) {
+				if (ClassesOperationHelper.getSameOutgoingAssociation(c, association) == null) {
 					continue;
 				}
 			}
 			possibleAssociations.add(association);
 		}
 		return possibleAssociations;
-	}
-
-	private Association getSameAssociation(Class c, Association association, Class source) {
-		if (association.getSource() == source) {
-			for (Association a : c.getOutgoingAssociations()) {
-				if (sameAssociation(association, a)) {
-					return a;
-				}
-			}
-			for (Association a : c.getIncomingAssociations()) {
-				if (sameAssociationFlipped(association, a)) {
-					return a;
-				}
-			}
-		} else {
-			for (Association a : c.getOutgoingAssociations()) {
-				if (sameAssociationFlipped(association, a)) {
-					return a;
-				}
-			}
-			for (Association a : c.getIncomingAssociations()) {
-				if (sameAssociation(association, a)) {
-					return a;
-				}
-			}
-		}
-		return null;
-	}
-
-	private boolean sameAssociation(Association association1, Association association2) {
-		try {
-			boolean sameName = association1.getSourceRole().equals(association2.getSourceRole())
-				&& association1.getTargetRole().equals(association2.getTargetRole());
-			boolean sameType = association1.getTarget() == association2.getTarget()
-				&& association1.getSource() == association1.getSource();
-			boolean sameMultiplicity = ClassesHelper.getMinimumMultiplicity(association1.getTargetMultiplicity()) == ClassesHelper
-				.getMinimumMultiplicity(association2.getTargetMultiplicity())
-				&& ClassesHelper.getMaximumMultiplicity(association1.getTargetMultiplicity()) == ClassesHelper
-					.getMaximumMultiplicity(association2.getTargetMultiplicity())
-				&& ClassesHelper.getMinimumMultiplicity(association1.getSourceMultiplicity()) == ClassesHelper
-					.getMinimumMultiplicity(association2.getSourceMultiplicity())
-				&& ClassesHelper.getMaximumMultiplicity(association1.getSourceMultiplicity()) == ClassesHelper
-					.getMaximumMultiplicity(association2.getSourceMultiplicity());
-			boolean sameTransient = association1.isTransient() == association2.isTransient();
-			boolean sameKind = association1.getType() == association2.getType();
-			return sameName && sameType && sameMultiplicity && sameTransient && sameKind;
-		} catch (NullPointerException e) {
-			return false;
-		}
-	}
-
-	private boolean sameAssociationFlipped(Association association1, Association association2) {
-		try {
-			boolean sameName = association1.getSourceRole().equals(association2.getTargetRole())
-				&& association1.getTargetRole().equals(association2.getSourceRole());
-			boolean sameType = association1.getTarget() == association2.getSource()
-				&& association1.getSource() == association2.getTarget();
-			boolean sameMultiplicity = ClassesHelper.getMinimumMultiplicity(association1.getTargetMultiplicity()) == ClassesHelper
-				.getMinimumMultiplicity(association2.getSourceMultiplicity())
-				&& ClassesHelper.getMaximumMultiplicity(association1.getTargetMultiplicity()) == ClassesHelper
-					.getMaximumMultiplicity(association2.getSourceMultiplicity())
-				&& ClassesHelper.getMinimumMultiplicity(association1.getSourceMultiplicity()) == ClassesHelper
-					.getMinimumMultiplicity(association2.getTargetMultiplicity())
-				&& ClassesHelper.getMaximumMultiplicity(association1.getSourceMultiplicity()) == ClassesHelper
-					.getMaximumMultiplicity(association2.getTargetMultiplicity());
-			boolean sameTransient = association1.isTransient() == association2.isTransient();
-			boolean sameKind = association1.getType() == association2.getType()
-				&& association1.getType() == AssociationType.UNDIRECTED_ASSOCIATION;
-			return sameName && sameType && sameMultiplicity && sameTransient && sameKind;
-		} catch (NullPointerException e) {
-			return false;
-		}
 	}
 
 	/**
@@ -643,28 +549,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		}
 
 		// pull up attributes
-		for (Attribute attribute : attributes) {
-			Attribute superAttribute = (Attribute) ModelUtil.copy(attribute);
-			superClass.getAttributes().add(superAttribute);
-			for (Class subClass : subClasses) {
-				if (subClasses.get(0) != subClass) {
-					getSameAttribute(subClass, attribute).delete();
-				}
-			}
-			attribute.delete();
-		}
+		PullUpOperationImpl.pullUpAttributes(attributes, superClass);
 
 		// pull up associations
-		for (Association association : associations) {
-			Association superAssociation = (Association) ModelUtil.copy(association);
-			((List) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
-			for (Class subClass : subClasses) {
-				if (subClasses.get(0) != subClass) {
-					getSameAssociation(subClass, association, subClasses.get(0)).delete();
-				}
-			}
-			association.delete();
-		}
+		PullUpOperationImpl.pullUpOutgoingAssociations(associations, superClass);
 	}
 
 } // ExtractSuperClassOperationImpl

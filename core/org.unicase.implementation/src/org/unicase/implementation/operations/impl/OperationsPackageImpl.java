@@ -17,7 +17,8 @@ import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-import org.unicase.implementation.operations.PushDownAttributeOperation;
+import org.unicase.implementation.operations.PullUpOperation;
+import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.classes.ClassesPackage;
@@ -46,10 +47,18 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	private EClass partitionAssociationOperationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pushDownAttributeOperationEClass = null;
+	private EClass pushDownOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pullUpOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -203,19 +212,93 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPushDownAttributeOperation() {
-		return pushDownAttributeOperationEClass;
+	public EClass getPushDownOperation() {
+		return pushDownOperationEClass;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPushDownAttributeOperation_Attribute() {
-		return (EReference)pushDownAttributeOperationEClass.getEStructuralFeatures().get(0);
+	public EReference getPushDownOperation_SuperClass() {
+		return (EReference)pushDownOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPushDownOperation_Attributes() {
+		return (EReference)pushDownOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPushDownOperation_OutgoingAssociations() {
+		return (EReference)pushDownOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPushDownOperation_IncomingAssociations() {
+		return (EReference)pushDownOperationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPullUpOperation() {
+		return pullUpOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPullUpOperation_SuperClass() {
+		return (EReference)pullUpOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPullUpOperation_Attributes() {
+		return (EReference)pullUpOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPullUpOperation_OutgoingAssociations() {
+		return (EReference)pullUpOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPullUpOperation_IncomingAssociations() {
+		return (EReference)pullUpOperationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -257,8 +340,17 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		partitionAssociationOperationEClass = createEClass(PARTITION_ASSOCIATION_OPERATION);
 		createEReference(partitionAssociationOperationEClass, PARTITION_ASSOCIATION_OPERATION__ASSOCIATION);
 
-		pushDownAttributeOperationEClass = createEClass(PUSH_DOWN_ATTRIBUTE_OPERATION);
-		createEReference(pushDownAttributeOperationEClass, PUSH_DOWN_ATTRIBUTE_OPERATION__ATTRIBUTE);
+		pushDownOperationEClass = createEClass(PUSH_DOWN_OPERATION);
+		createEReference(pushDownOperationEClass, PUSH_DOWN_OPERATION__SUPER_CLASS);
+		createEReference(pushDownOperationEClass, PUSH_DOWN_OPERATION__ATTRIBUTES);
+		createEReference(pushDownOperationEClass, PUSH_DOWN_OPERATION__OUTGOING_ASSOCIATIONS);
+		createEReference(pushDownOperationEClass, PUSH_DOWN_OPERATION__INCOMING_ASSOCIATIONS);
+
+		pullUpOperationEClass = createEClass(PULL_UP_OPERATION);
+		createEReference(pullUpOperationEClass, PULL_UP_OPERATION__SUPER_CLASS);
+		createEReference(pullUpOperationEClass, PULL_UP_OPERATION__ATTRIBUTES);
+		createEReference(pullUpOperationEClass, PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS);
+		createEReference(pullUpOperationEClass, PULL_UP_OPERATION__INCOMING_ASSOCIATIONS);
 	}
 
 	/**
@@ -295,7 +387,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		extractSuperClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		inlineClassOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 		partitionAssociationOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
-		pushDownAttributeOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		pushDownOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
+		pullUpOperationEClass.getESuperTypes().add(theSemanticPackage.getSemanticCompositeOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extractSuperClassOperationEClass, ExtractSuperClassOperation.class, "ExtractSuperClassOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -363,84 +456,168 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		op = addEOperation(partitionAssociationOperationEClass, ecorePackage.getEBoolean(), "validateAssociationMultiplicity", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(pushDownAttributeOperationEClass, PushDownAttributeOperation.class, "PushDownAttributeOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPushDownAttributeOperation_Attribute(), theMetamodelPackage.getModelElementId(), null, "attribute", null, 1, 1, PushDownAttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pushDownOperationEClass, PushDownOperation.class, "PushDownOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPushDownOperation_SuperClass(), theMetamodelPackage.getModelElementId(), null, "superClass", null, 1, 1, PushDownOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPushDownOperation_Attributes(), theMetamodelPackage.getModelElementId(), null, "attributes", null, 0, -1, PushDownOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPushDownOperation_OutgoingAssociations(), theMetamodelPackage.getModelElementId(), null, "outgoingAssociations", null, 0, -1, PushDownOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPushDownOperation_IncomingAssociations(), theMetamodelPackage.getModelElementId(), null, "incomingAssociations", null, 0, -1, PushDownOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(pushDownAttributeOperationEClass, theClassesPackage.getAttribute(), "getAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getClass_(), "getSuperClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(pushDownAttributeOperationEClass, ecorePackage.getEBoolean(), "validateContextClassSubClasses", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, ecorePackage.getEBoolean(), "validateSuperClassSubClasses", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pushDownOperationEClass, ecorePackage.getEBoolean(), "validateAttributesAssociations", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(pullUpOperationEClass, PullUpOperation.class, "PullUpOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPullUpOperation_SuperClass(), theMetamodelPackage.getModelElementId(), null, "superClass", null, 1, 1, PullUpOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPullUpOperation_Attributes(), theMetamodelPackage.getModelElementId(), null, "attributes", null, 0, -1, PullUpOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPullUpOperation_OutgoingAssociations(), theMetamodelPackage.getModelElementId(), null, "outgoingAssociations", null, 0, -1, PullUpOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPullUpOperation_IncomingAssociations(), theMetamodelPackage.getModelElementId(), null, "incomingAssociations", null, 0, -1, PullUpOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getClass_(), "getSuperClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getClass_(), "getPossibleSuperClasses", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAttribute(), "getAttributes", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAttribute(), "getPossibleAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getOutgoingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getPossibleOutgoingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getIncomingAssociations", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, theClassesPackage.getAssociation(), "getPossibleIncomingAssociations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(pullUpOperationEClass, ecorePackage.getEBoolean(), "validateAttributesAssociations", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMetamodelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 
 		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
+		// http://unicase.org/operations
+		createOperationsAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Initializes the annotations for <b>http://unicase.org/operations</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+	protected void createOperationsAnnotations() {
+		String source = "http://unicase.org/operations";		
 		addAnnotation
 		  (extractSuperClassOperationEClass, 
 		   source, 
 		   new String[] {
-			 "documentation", "Extract attributes and associations from a number of classes into a common super class."
+			 "description", "Attributes and associations from a number of classes are extracted into a common super class.",
+			 "label", "Extract Super Class"
 		   });							
 		addAnnotation
 		  (extractSuperClassOperationEClass.getEOperations().get(8), 
 		   source, 
 		   new String[] {
-			 "documentation", "A class or enumeration with that name already exists."
+			 "description", "A class or enumeration with that name already exists."
 		   });			
 		addAnnotation
 		  (inlineClassOperationEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "documentation", "The association must be a composition."
+			 "description", "The association must be a composition."
 		   });		
 		addAnnotation
 		  (inlineClassOperationEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
-			 "documentation", "The multiplicity of the association must be 1-to-1."
+			 "description", "The multiplicity of the association must be 1-to-1."
 		   });		
 		addAnnotation
 		  (inlineClassOperationEClass.getEOperations().get(3), 
 		   source, 
 		   new String[] {
-			 "documentation", "The class to be inlined must not have sub classes."
+			 "description", "The class to be inlined must not have sub classes."
 		   });		
 		addAnnotation
 		  (inlineClassOperationEClass.getEOperations().get(4), 
 		   source, 
 		   new String[] {
-			 "documentation", "The class to be inlined must not be target of another association."
+			 "description", "The class to be inlined must not be target of another association."
 		   });			
 		addAnnotation
 		  (partitionAssociationOperationEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "documentation", "The type of the reference must be abstract and must have sub classes."
+			 "description", "The type of the reference must be abstract and must have sub classes."
 		   });		
 		addAnnotation
 		  (partitionAssociationOperationEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
-			 "documentation", "The reference must be multi-valued."
-		   });			
+			 "description", "The reference must be multi-valued."
+		   });		
 		addAnnotation
-		  (pushDownAttributeOperationEClass.getEOperations().get(1), 
+		  (pushDownOperationEClass, 
 		   source, 
 		   new String[] {
-			 "documentation", "The attribute\'s defining class must have sub classes.\r\n"
+			 "description", "Attributes and associations are pushed down to sub classes.",
+			 "label", "Push Down Attributes and Associations"
+		   });						
+		addAnnotation
+		  (pushDownOperationEClass.getEOperations().get(7), 
+		   source, 
+		   new String[] {
+			 "description", "The attribute\'s defining class must have sub classes."
+		   });		
+		addAnnotation
+		  (pushDownOperationEClass.getEOperations().get(8), 
+		   source, 
+		   new String[] {
+			 "description", "At least one attribute or association must be pushed down."
+		   });		
+		addAnnotation
+		  (pullUpOperationEClass, 
+		   source, 
+		   new String[] {
+			 "description", "Attributes and associations are pulled up into a common super class.",
+			 "label", "Pull Up Attributes and Associations"
+		   });						
+		addAnnotation
+		  (pullUpOperationEClass.getEOperations().get(8), 
+		   source, 
+		   new String[] {
+			 "description", "At least one attribute or association must be pulled up."
 		   });
 	}
 

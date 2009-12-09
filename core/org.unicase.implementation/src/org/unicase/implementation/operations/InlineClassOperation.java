@@ -62,7 +62,7 @@ public interface InlineClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The association must be a composition.'"
+	 *        annotation="http://unicase.org/operations description='The association must be a composition.'"
 	 * @generated
 	 */
 	boolean validateAssociationComposition(Project project);
@@ -70,7 +70,7 @@ public interface InlineClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The multiplicity of the association must be 1-to-1.'"
+	 *        annotation="http://unicase.org/operations description='The multiplicity of the association must be 1-to-1.'"
 	 * @generated
 	 */
 	boolean validateAssociationMultiplicity(Project project);
@@ -78,7 +78,7 @@ public interface InlineClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The class to be inlined must not have sub classes.'"
+	 *        annotation="http://unicase.org/operations description='The class to be inlined must not have sub classes.'"
 	 * @generated
 	 */
 	boolean validateInlineClassSubClasses(Project project);
@@ -86,7 +86,7 @@ public interface InlineClassOperation extends SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore documentation='The class to be inlined must not be target of another association.'"
+	 *        annotation="http://unicase.org/operations description='The class to be inlined must not be target of another association.'"
 	 * @generated
 	 */
 	boolean validateInlineClassAssociationTarget(Project project);
