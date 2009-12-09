@@ -23,12 +23,12 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.ExtractSuperClassOperation} object.
@@ -72,6 +72,11 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 			extractsGroup.getModelElements().addAll(
 					operation.getIncomingAssociations());
 			result.add(extractsGroup);
+			
+			OperationGroup detailsGroup = factory.createOperationGroup();
+			detailsGroup.setName("Additional Details");
+			detailsGroup.getOperations().addAll(operation.getSubOperations());
+			result.add(detailsGroup);
 
 			return result;
 		}
@@ -241,11 +246,7 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 			int subClassesSize = operation.getSubClasses().size();
 			if (subClassesSize<4) {
 				builder.append("the subclasses "); 
-				for (ModelElementId modelElementId : operation.getSubClasses()) {
-					builder.append("%" + modelElementId.getId() + "%, ");
-				}
-				builder.replace(builder.lastIndexOf("%, "), builder.length(), "%.");
-				builder.replace(builder.lastIndexOf("%, "), builder.lastIndexOf("%, ") + 3, "% and ");
+				builder.append(getModelElementNames(operation.getSubClasses()));
 			}
 			else {
 				builder.append("from ");
