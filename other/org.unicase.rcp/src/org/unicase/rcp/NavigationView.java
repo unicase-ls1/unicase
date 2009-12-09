@@ -75,6 +75,7 @@ public class NavigationView extends ViewPart
 			return EMPTY_ARRAY;
 		}
 
+		@SuppressWarnings("static-access")
 		public Object getParent(Object element) {
 			
 			if (element instanceof ModelElement) {
@@ -114,6 +115,8 @@ public class NavigationView extends ViewPart
 	
 	class ViewLabelProvider extends LabelProvider {
 
+		@SuppressWarnings("static-access")
+		@Override
 		public String getText(Object element) {
 			if (element instanceof Workspace) {
 				return "Workspace";
@@ -134,6 +137,7 @@ public class NavigationView extends ViewPart
 			return "This is a description of " + text;
 		}
 		
+		@Override
 		public Image getImage(Object obj) {
 			String imageKey = ISharedImages.IMG_OBJ_ELEMENT;
 			
@@ -149,6 +153,7 @@ public class NavigationView extends ViewPart
      * This is a callback that will allow us to create the viewer and initialize
      * it.
      */
+	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		viewer.addSelectionChangedListener(this);
@@ -160,6 +165,7 @@ public class NavigationView extends ViewPart
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
+	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}
