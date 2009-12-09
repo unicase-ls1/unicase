@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -16,16 +17,19 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.observers.ConflictResolver;
-import org.unicase.workspace.ui.dialogs.MergeDialog;
+import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
+import org.unicase.workspace.ui.dialogs.merge.MergeWizard;
+import org.unicase.workspace.ui.dialogs.merge.util.CaseStudySwitch;
 
 /**
- * This is a ConflictResolver that shows a MergeDialog when triggered.
+ * This is an alternative merge handler, using the new merge wizard.
  * 
- * @author Shterev
+ * @author wesendon
  */
 public class MergeProjectHandler implements ConflictResolver {
 
-	private MergeDialog mergeDialog;
+	private List<AbstractOperation> acceptedMine;
+	private List<AbstractOperation> rejectedTheirs;
 
 	/**
 	 * Default constructor.
@@ -34,8 +38,8 @@ public class MergeProjectHandler implements ConflictResolver {
 	 *            the ChangeConflictException
 	 */
 	public MergeProjectHandler(ChangeConflictException conflictException) {
-		this.mergeDialog = new MergeDialog(Display.getCurrent()
-				.getActiveShell());
+		acceptedMine = new ArrayList<AbstractOperation>();
+		rejectedTheirs = new ArrayList<AbstractOperation>();
 	}
 
 	/**
@@ -44,10 +48,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getAcceptedMine() {
-		ArrayList<AbstractOperation> ret = new ArrayList<AbstractOperation>();
-		// ret.addAll(autoAcceptedMine);
-		ret.addAll(mergeDialog.getAcceptedMine());
-		return ret;
+		return acceptedMine;
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getRejectedTheirs() {
-		return mergeDialog.getRejectedTheirs();
+		return rejectedTheirs;
 	}
 
 	/**
@@ -68,7 +69,29 @@ public class MergeProjectHandler implements ConflictResolver {
 			List<ChangePackage> theirChangePackages,
 			ChangePackage myChangePackage, PrimaryVersionSpec base,
 			PrimaryVersionSpec target) {
-		mergeDialog.setChanges(myChangePackage, theirChangePackages);
-		return (mergeDialog.open() == Window.OK);
+
+		boolean caseStudy = true;
+
+		if (caseStudy) {
+			CaseStudySwitch studySwitch = new CaseStudySwitch();
+			studySwitch.flattenChangePackages(myChangePackage,
+					theirChangePackages);
+		}
+
+		DecisionManager decisionManager = new DecisionManager(project,
+				myChangePackage, theirChangePackages, base, target);
+
+		MergeWizard wizard = new MergeWizard(decisionManager);
+		WizardDialog dialog = new WizardDialog(Display.getCurrent()
+				.getActiveShell(), wizard);
+		dialog.setPageSize(1000, 500);
+		dialog.setBlockOnOpen(true);
+		dialog.create();
+
+		int open = dialog.open();
+		acceptedMine = decisionManager.getAcceptedMine();
+		rejectedTheirs = decisionManager.getRejectedTheirs();
+
+		return (open == Window.OK);
 	}
 }

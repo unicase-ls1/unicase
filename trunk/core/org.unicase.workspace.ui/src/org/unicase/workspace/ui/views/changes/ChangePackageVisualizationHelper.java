@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.ui.views.changes;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,28 +129,6 @@ public class ChangePackageVisualizationHelper {
 		} else {
 			return modelElementMap.get(modelElementId);
 		}
-	}
-
-	/**
-	 * Get all elements affected by the operation.
-	 * 
-	 * @param operation
-	 *            the operation
-	 * @return a set of model elements
-	 */
-	public Set<EObject> getAffectedElements(AbstractOperation operation) {
-		Set<EObject> set = new HashSet<EObject>();
-		if (operation instanceof CreateDeleteOperation) {
-			return set;
-		}
-		Set<ModelElementId> others = operation.getOtherInvolvedModelElements();
-		for (ModelElementId id : others) {
-			ModelElement modelElement = getModelElement(id);
-			if (modelElement != null) {
-				set.add(modelElement);
-			}
-		}
-		return set;
 	}
 
 	/**
@@ -595,5 +574,16 @@ public class ChangePackageVisualizationHelper {
 		return modelElement.eClass().getName() + " \""
 				+ trim(UiUtil.getNameForModelElement(modelElement), true)
 				+ "\"";
+	}
+
+	public <T extends Collection<ModelElement>, S extends Collection<ModelElementId>> T getModelElements(
+			S modelElementIds, T resultCollection) {
+		for (ModelElementId modelElementId : modelElementIds) {
+			ModelElement modelElement = getModelElement(modelElementId);
+			if (modelElement != null) {
+				resultCollection.add(modelElement);
+			}
+		}
+		return resultCollection;
 	}
 }

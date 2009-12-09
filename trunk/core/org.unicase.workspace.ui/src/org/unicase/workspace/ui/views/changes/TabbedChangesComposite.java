@@ -5,23 +5,18 @@
  */
 package org.unicase.workspace.ui.views.changes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.metamodel.Project;
-import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 
@@ -33,28 +28,6 @@ import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
  */
 public class TabbedChangesComposite extends Composite implements
 		ChangesComposite {
-
-	/**
-	 * Tab listener.
-	 * 
-	 * @author Shterev
-	 */
-	private final class TabSelectionListener implements SelectionListener {
-		public void widgetDefaultSelected(SelectionEvent e) {
-			//
-		}
-
-		public void widgetSelected(SelectionEvent e) {
-			String tab = "Unknown view";
-			Control control = folder.getSelection()[0].getControl();
-			if (control instanceof CompactChangesComposite) {
-				tab = "ModelElements";
-			} else if (control instanceof DetailedChangesComposite) {
-				tab = "Operations";
-			}
-			EventUtil.logPresentationSwitchEvent(getClass().getName(), tab);
-		}
-	}
 
 	private TabFolder folder;
 	private List<ChangePackage> changePackages;
@@ -113,7 +86,6 @@ public class TabbedChangesComposite extends Composite implements
 		TabItem opTab = new TabItem(folder, style);
 		opTab.setText("Operations");
 		opTab.setControl(detailedTabComposite);
-		folder.addSelectionListener(new TabSelectionListener());
 
 		// -----------------------Compact -----------------------------
 		compactTabComposite = new Composite(folder, SWT.NONE);
@@ -179,15 +151,6 @@ public class TabbedChangesComposite extends Composite implements
 		this.changePackages = changes;
 		compactTabTreeViewer.setInput(changes);
 		detailedTabTreeViewer.setInput(changes);
-	}
-
-	/**
-	 * Getter for the tabs.
-	 * 
-	 * @return the tabs as an ArrayList.
-	 */
-	public ArrayList<AbstractChangesComposite> getTabs() {
-		return new ArrayList<AbstractChangesComposite>();
 	}
 
 }
