@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
+import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.ui.multiaction.MultiActionGenerator;
@@ -67,7 +68,7 @@ public class ChooseAssigneePage extends WizardPage {
 
 	
 	/**
-	 * . Constructor
+	 * Default Constructor.
 	 * 
 	 * @param pageName page name, to be handed to the super constructor
 	 * @param multiactionWizard the wizard containing this page
@@ -135,7 +136,9 @@ public class ChooseAssigneePage extends WizardPage {
 	 * Shows the user-add-dialog.
 	 */
 	private void showUserDialog(){
-		AddUserDialog au = new AddUserDialog( parentWizard.getSelectedActionItem().getProject(),"Choose users and/or groups as assignees for action item \"" + parentWizard.getSelectedActionItem().getName() + "\"");
+		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+		String name = shortLabelProvider.getText(parentWizard.getSelectedActionItem());
+		AddUserDialog au = new AddUserDialog( parentWizard.getSelectedActionItem().getProject(),"Choose users and/or groups as assignees for action item \"" + name + "\"");
 		if(au.open() == Window.OK){
 			Object[] result = au.getResult();
 			

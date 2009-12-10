@@ -51,7 +51,6 @@ public final class MultiActionGenerator {
 		to.setDueDate(from.getDueDate());
 		to.setEffort(from.getEffort());
 		to.setEstimate(from.getEstimate());
-		to.setIdentifier(from.getIdentifier());
 		to.setName(from.getName());
 		to.setPriority(from.getPriority());
 		to.setResolved(from.isResolved());
@@ -135,7 +134,7 @@ public final class MultiActionGenerator {
 		
 		//Begin composite operation
 		CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
-		
+	
 		//Add resulting work package into parent
 		if(parentPackage instanceof Project){
 			project.addModelElement(result);	
