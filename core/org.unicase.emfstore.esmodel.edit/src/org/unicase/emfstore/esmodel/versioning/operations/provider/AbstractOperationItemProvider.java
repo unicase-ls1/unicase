@@ -243,6 +243,9 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	}
 
 	public String getModelElementClassAndName(ModelElementId modelElementId) {
+		if (modelElementId == null) {
+			return "(Unkown Element)";
+		}
 		return NAME_CLASS_TAG_SEPARATOR + modelElementId.getId() + NAME_CLASS_TAG_SEPARATOR;
 	}
 
