@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.metamodel.MetamodelPackage;
@@ -583,13 +584,22 @@ public interface OperationsPackage extends EPackage {
 	int REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = FEATURE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Containment Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__CONTAINMENT_TYPE = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Reference Operation</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+	int REFERENCE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '
@@ -675,6 +685,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Containment Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__CONTAINMENT_TYPE = REFERENCE_OPERATION__CONTAINMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Old Value</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -787,6 +806,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Containment Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__CONTAINMENT_TYPE = REFERENCE_OPERATION__CONTAINMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Add</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1114,6 +1142,16 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_GROUP_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+	 * <em>Containment Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getContainmentType()
+	 * @generated
+	 */
+	int CONTAINMENT_TYPE = 13;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation
@@ -1522,6 +1560,18 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getReferenceOperation_OppositeFeatureName();
 
 	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getContainmentType
+	 * <em>Containment Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Containment Type</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getContainmentType()
+	 * @see #getReferenceOperation()
+	 * @generated
+	 */
+	EAttribute getReferenceOperation_ContainmentType();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation
 	 * <em>Diagram Layout Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1609,6 +1659,16 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElementGroup_ModelElements();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+	 * <em>Containment Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Containment Type</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+	 * @generated
+	 */
+	EEnum getContainmentType();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1941,6 +2001,14 @@ public interface OperationsPackage extends EPackage {
 		EAttribute REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = eINSTANCE.getReferenceOperation_OppositeFeatureName();
 
 		/**
+		 * The meta object literal for the '<em><b>Containment Type</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute REFERENCE_OPERATION__CONTAINMENT_TYPE = eINSTANCE.getReferenceOperation_ContainmentType();
+
+		/**
 		 * The meta object literal for the '
 		 * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.DiagramLayoutOperationImpl
 		 * <em>Diagram Layout Operation</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2015,6 +2083,16 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_GROUP__MODEL_ELEMENTS = eINSTANCE.getModelElementGroup_ModelElements();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+		 * <em>Containment Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.ContainmentType
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getContainmentType()
+		 * @generated
+		 */
+		EEnum CONTAINMENT_TYPE = eINSTANCE.getContainmentType();
 
 	}
 

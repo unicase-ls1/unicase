@@ -185,6 +185,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oppositeFeatureName"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="containmentType" eType="#//versioning/operations/ContainmentType"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#//versioning/operations/AttributeOperation"/>
       <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
@@ -197,6 +198,11 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
             eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="ContainmentType">
+        <eLiterals name="NONE"/>
+        <eLiterals name="CONTAINER" value="1"/>
+        <eLiterals name="CONTAINMENT" value="2"/>
       </eClassifiers>
       <eSubpackages name="semantic" nsURI="http://unicase.org/esmodel/versioning/operations/semantic"
           nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">

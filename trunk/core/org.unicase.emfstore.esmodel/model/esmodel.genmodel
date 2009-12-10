@@ -95,6 +95,11 @@
       </genClasses>
       <nestedGenPackages prefix="Operations" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="esmodel.ecore#//versioning/operations/ContainmentType">
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/operations/ContainmentType/NONE"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/operations/ContainmentType/CONTAINER"/>
+          <genEnumLiterals ecoreEnumLiteral="esmodel.ecore#//versioning/operations/ContainmentType/CONTAINMENT"/>
+        </genEnums>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/AbstractOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/name"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/description"/>
@@ -143,6 +148,7 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReferenceOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/bidirectional"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/oppositeFeatureName"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/containmentType"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/DiagramLayoutOperation"/>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/OperationId"/>
