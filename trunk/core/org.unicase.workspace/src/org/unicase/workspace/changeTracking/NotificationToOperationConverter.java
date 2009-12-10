@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -102,7 +103,7 @@ public final class NotificationToOperationConverter {
 
 		MultiReferenceOperation op = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
 		setCommonValues(op, n.getNotifierModelElement());
-		setBidirectionalInfo(op, n.getReference());
+		setBidirectionalAndContainmentInfo(op, n.getReference());
 		op.setFeatureName(n.getReference().getName());
 		op.setAdd(n.isAddEvent() || n.isAddManyEvent());
 		op.setIndex(n.getPosition());
@@ -173,7 +174,7 @@ public final class NotificationToOperationConverter {
 		SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
 		setCommonValues(op, (ModelElement) n.getNotifier());
 		op.setFeatureName(n.getReference().getName());
-		setBidirectionalInfo(op, n.getReference());
+		setBidirectionalAndContainmentInfo(op, n.getReference());
 
 		if (n.getOldValue() != null) {
 			op.setOldValue(n.getOldModelElementValue().getModelElementId());
@@ -192,12 +193,18 @@ public final class NotificationToOperationConverter {
 		operation.setModelElementId(modelElement.getModelElementId());
 	}
 
-	private static void setBidirectionalInfo(ReferenceOperation referenceOperation, EReference reference) {
+	private static void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {
 		if (reference.getEOpposite() != null) {
 			referenceOperation.setBidirectional(true);
 			referenceOperation.setOppositeFeatureName(reference.getEOpposite().getName());
 		} else {
 			referenceOperation.setBidirectional(false);
+		}
+		if (reference.isContainer()) {
+			referenceOperation.setContainmentType(ContainmentType.CONTAINER);
+		}
+		if (reference.isContainment()) {
+			referenceOperation.setContainmentType(ContainmentType.CONTAINMENT);
 		}
 	}
 
