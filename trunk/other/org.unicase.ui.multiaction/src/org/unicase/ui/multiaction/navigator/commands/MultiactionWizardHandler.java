@@ -16,8 +16,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.multiaction.navigator.wizards.MultiactionWizard;
 
 /**
- * @author jfinis This is the handler for the "Assign to group" context menu command. The command is only shown on
+ * This is the handler for the "Assign to group" context menu command. The command is only shown on
  *         ActionItems. The handler initializes and shows the MultiActionWizard.
+ * @author jfinis 
  */
 public class MultiactionWizardHandler extends AbstractHandler implements IHandler {
 
