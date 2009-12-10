@@ -616,4 +616,16 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private IDialogSettings getDialogSettings() {
 		return Activator.getDefault().getDialogSettings();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Object getAdapter(Class adapter) {
+		if (adapter.equals(UserFilter.class)) {
+			return filterToLoggedInUser;
+		}
+		return super.getAdapter(adapter);
+	}
 }

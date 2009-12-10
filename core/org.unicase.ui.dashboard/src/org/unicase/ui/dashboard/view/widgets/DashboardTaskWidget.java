@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -19,6 +20,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -41,6 +43,7 @@ import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.dashboard.view.DashboardToolbarAction;
+import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.NoCurrentUserException;
@@ -134,7 +137,13 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 				.getActiveWorkbenchWindow().getActivePage();
 		String viewId = "org.unicase.ui.taskview";
 		try {
-			page.showView(viewId);
+			IViewPart showView = page.showView(viewId);
+			Object filterAdapter = showView.getAdapter(UserFilter.class);
+			if(filterAdapter!=null){
+				Action filterAction = (Action)filterAdapter;
+				filterAction.setChecked(true);
+				filterAction.run();
+			}
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
