@@ -12,6 +12,15 @@
                style="push">
          </command>
       </menuContribution>
+            <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=org.unicase.cutpaste.cut">
+         <command
+               commandId="org.unicase.cutpaste.authorspy"
+               icon="icons/magnifier.png"
+               label="Lookup author"
+               style="push">
+         </command>
+      </menuContribution>
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.cutpaste.cut">
          <command
@@ -32,6 +41,10 @@
             id="org.unicase.cutpaste.paste"
             name="paste">
       </command>
+      <command
+            id="org.unicase.cutpaste.authorspy"
+            name="authorspy">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -42,6 +55,10 @@
       <handler
             class="org.unicase.cutpaste.handlers.PasteHandler"
             commandId="org.unicase.cutpaste.paste">
+      </handler>
+      <handler
+            class="org.unicase.cutpaste.handlers.AuthorSpyHandler"
+            commandId="org.unicase.cutpaste.authorspy">
       </handler>
    </extension>
    <extension
@@ -55,6 +72,11 @@
             commandId="org.unicase.cutpaste.paste"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+INSERT">
+      </key>
+      <key
+            commandId="org.unicase.cutpaste.authorspy"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+ENTER">
       </key>
    </extension>
 
