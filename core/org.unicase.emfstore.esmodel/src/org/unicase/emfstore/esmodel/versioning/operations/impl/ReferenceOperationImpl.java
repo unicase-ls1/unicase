@@ -59,6 +59,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		}
 		ReferenceOperation referenceOperation = (ReferenceOperation) abstractOperation;
 		referenceOperation.setBidirectional(isBidirectional());
+		referenceOperation.setContainmentType(getContainmentType());
 		referenceOperation.setOppositeFeatureName(getOppositeFeatureName());
 	}
 
