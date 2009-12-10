@@ -54,7 +54,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * Name of unknown creator.
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
-	private boolean isDeleting;
 	private DirtyResourceSet dirtyResourceSet;
 
 	/**
@@ -64,7 +63,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 */
 	public ProjectChangeTracker(ProjectSpaceImpl projectSpace) {
 		this.projectSpace = projectSpace;
-		this.isDeleting = false;
 		this.isRecording = false;
 		dirtyResourceSet = new DirtyResourceSet();
 	}
@@ -176,7 +174,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 		}
 		dirtyResourceSet.save();
-		isDeleting = false;
 	}
 
 	/**
@@ -191,7 +188,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			deleteOperation.setClientDate(new Date());
 			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 		}
-		isDeleting = true;
 	}
 
 	/**
