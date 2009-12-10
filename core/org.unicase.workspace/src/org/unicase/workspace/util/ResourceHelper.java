@@ -51,4 +51,19 @@ public final class ResourceHelper {
 
 		return object;
 	}
+
+	/**
+	 * Puts an element into a resource.
+	 * 
+	 * @param element The element to be put
+	 * @param absoluteFileName filepath of resource
+	 * @throws IOException in case of failure
+	 */
+	public static <T extends EObject> void putElementIntoResource(String absoluteFileName, T element)
+		throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
+		resource.getContents().add(element);
+		resource.save(null);
+	}
 }

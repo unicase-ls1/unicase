@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.xmi.DanglingHREFException;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -62,7 +61,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.metamodel.util.AutoSplitAndSaveResourceContainmentList;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.ModelValidationHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.EventComposite;
@@ -95,6 +93,7 @@ import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
+import org.unicase.workspace.util.ResourceHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -1927,14 +1926,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			Throwable cause = e.getCause();
-			if (cause != null && cause instanceof DanglingHREFException) {
-				boolean foundProblems = ModelValidationHelper.checkAndFixProject(getProject());
-				if (foundProblems) {
-					WorkspaceUtil.logException(
-						"An error in the data was detected during save! Self-healing fixed the problem.", e);
-				}
-			}
+			WorkspaceUtil
+				.logException(
+					"An error in the data was detected during save! The safest way to deal with this problem is to delete this project and checkout again.",
+					e);
 		}
 	}
 
@@ -1944,10 +1939,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#exportLocalChanges(java.lang.String)
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(fileName));
-		resource.getContents().add(getLocalChangePackage(false));
-		resource.save(null);
+
+		ResourceHelper.putElementIntoResource(fileName, getLocalChangePackage(false));
 	}
 
 	/**
