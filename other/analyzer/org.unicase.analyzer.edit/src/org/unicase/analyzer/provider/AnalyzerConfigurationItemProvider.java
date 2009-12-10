@@ -59,25 +59,25 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAnalyzerNamePropertyDescriptor(object);
+			addAnalyzerNamesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Analyzer Name feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Analyzer Names feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAnalyzerNamePropertyDescriptor(Object object) {
+	protected void addAnalyzerNamesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AnalyzerConfiguration_analyzerName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_analyzerName_feature", "_UI_AnalyzerConfiguration_type"),
-				 AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_NAME,
+				 getString("_UI_AnalyzerConfiguration_analyzerNames_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_analyzerNames_feature", "_UI_AnalyzerConfiguration_type"),
+				 AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_NAMES,
 				 true,
 				 false,
 				 false,
@@ -135,10 +135,7 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AnalyzerConfiguration)object).getAnalyzerName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AnalyzerConfiguration_type") :
-			getString("_UI_AnalyzerConfiguration_type") + " " + label;
+		return getString("_UI_AnalyzerConfiguration_type");
 	}
 
 	/**
@@ -153,7 +150,7 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AnalyzerConfiguration.class)) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:

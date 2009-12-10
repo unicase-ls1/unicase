@@ -167,10 +167,11 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAnalyzerConfiguration_AnalyzerName() {
+	public EAttribute getAnalyzerConfiguration_AnalyzerNames() {
 		return (EAttribute)analyzerConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -215,7 +216,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 		analyzerConfigurationEClass = createEClass(ANALYZER_CONFIGURATION);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ITERATOR);
-		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_NAME);
+		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_NAMES);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER);
 	}
 
@@ -267,7 +268,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAnalyzerConfiguration_AnalyzerName(), theEcorePackage.getEString(), "analyzerName", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnalyzerConfiguration_AnalyzerNames(), theEcorePackage.getEString(), "analyzerNames", null, 0, -1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAnalyzerConfiguration_Exporter(), theExportersPackage.getExporter(), null, "exporter", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

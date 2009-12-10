@@ -124,12 +124,13 @@ public interface AnalyzerPackage extends EPackage {
 	int ANALYZER_CONFIGURATION__ITERATOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Analyzer Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Analyzer Names</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYZER_CONFIGURATION__ANALYZER_NAME = 1;
+	int ANALYZER_CONFIGURATION__ANALYZER_NAMES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Exporter</b></em>' containment reference.
@@ -223,14 +224,15 @@ public interface AnalyzerPackage extends EPackage {
 	EReference getAnalyzerConfiguration_Iterator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Analyzer Name</em>'.
-	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName()
+	 * Returns the meta object for the attribute list '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerNames <em>Analyzer Names</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Analyzer Names</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerNames()
 	 * @see #getAnalyzerConfiguration()
 	 * @generated
 	 */
-	EAttribute getAnalyzerConfiguration_AnalyzerName();
+	EAttribute getAnalyzerConfiguration_AnalyzerNames();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}'.
@@ -322,12 +324,12 @@ public interface AnalyzerPackage extends EPackage {
 		EReference ANALYZER_CONFIGURATION__ITERATOR = eINSTANCE.getAnalyzerConfiguration_Iterator();
 
 		/**
-		 * The meta object literal for the '<em><b>Analyzer Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Analyzer Names</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ANALYZER_CONFIGURATION__ANALYZER_NAME = eINSTANCE.getAnalyzerConfiguration_AnalyzerName();
+		EAttribute ANALYZER_CONFIGURATION__ANALYZER_NAMES = eINSTANCE.getAnalyzerConfiguration_AnalyzerNames();
 
 		/**
 		 * The meta object literal for the '<em><b>Exporter</b></em>' containment reference feature.
