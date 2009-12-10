@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -27,6 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
@@ -139,6 +141,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass modelElementGroupEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum containmentTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -566,6 +575,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
+	public EAttribute getReferenceOperation_ContainmentType() {
+		return (EAttribute) referenceOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getDiagramLayoutOperation() {
 		return diagramLayoutOperationEClass;
 	}
@@ -631,6 +649,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 */
 	public EReference getModelElementGroup_ModelElements() {
 		return (EReference) modelElementGroupEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getContainmentType() {
+		return containmentTypeEEnum;
 	}
 
 	/**
@@ -704,6 +731,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		referenceOperationEClass = createEClass(REFERENCE_OPERATION);
 		createEAttribute(referenceOperationEClass, REFERENCE_OPERATION__BIDIRECTIONAL);
 		createEAttribute(referenceOperationEClass, REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME);
+		createEAttribute(referenceOperationEClass, REFERENCE_OPERATION__CONTAINMENT_TYPE);
 
 		diagramLayoutOperationEClass = createEClass(DIAGRAM_LAYOUT_OPERATION);
 
@@ -716,6 +744,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		modelElementGroupEClass = createEClass(MODEL_ELEMENT_GROUP);
 		createEAttribute(modelElementGroupEClass, MODEL_ELEMENT_GROUP__NAME);
 		createEReference(modelElementGroupEClass, MODEL_ELEMENT_GROUP__MODEL_ELEMENTS);
+
+		// Create enums
+		containmentTypeEEnum = createEEnum(CONTAINMENT_TYPE);
 	}
 
 	/**
@@ -873,6 +904,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getReferenceOperation_OppositeFeatureName(), ecorePackage.getEString(), "oppositeFeatureName",
 			null, 0, 1, ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceOperation_ContainmentType(), this.getContainmentType(), "containmentType", null, 0,
+			1, ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(diagramLayoutOperationEClass, DiagramLayoutOperation.class, "DiagramLayoutOperation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -896,6 +930,12 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEReference(getModelElementGroup_ModelElements(), theMetamodelPackage.getModelElementId(), null,
 			"modelElements", null, 0, -1, ModelElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(containmentTypeEEnum, ContainmentType.class, "ContainmentType");
+		addEEnumLiteral(containmentTypeEEnum, ContainmentType.NONE);
+		addEEnumLiteral(containmentTypeEEnum, ContainmentType.CONTAINER);
+		addEEnumLiteral(containmentTypeEEnum, ContainmentType.CONTAINMENT);
 	}
 
 } // OperationsPackageImpl

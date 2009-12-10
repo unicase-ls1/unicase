@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 
@@ -22,6 +23,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
  * Bidirectional</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOppositeFeatureName <em>
  * Opposite Feature Name</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getContainmentType <em>
+ * Containment Type</em>}</li>
  * </ul>
  * </p>
  * 
@@ -78,6 +81,26 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 * @ordered
 	 */
 	protected String oppositeFeatureName = OPPOSITE_FEATURE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getContainmentType() <em>Containment Type</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @see #getContainmentType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ContainmentType CONTAINMENT_TYPE_EDEFAULT = ContainmentType.NONE;
+
+	/**
+	 * The cached value of the '{@link #getContainmentType() <em>Containment Type</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @see #getContainmentType()
+	 * @generated
+	 * @ordered
+	 */
+	protected ContainmentType containmentType = CONTAINMENT_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -148,6 +171,28 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 * 
 	 * @generated
 	 */
+	public ContainmentType getContainmentType() {
+		return containmentType;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setContainmentType(ContainmentType newContainmentType) {
+		ContainmentType oldContainmentType = containmentType;
+		containmentType = newContainmentType == null ? CONTAINMENT_TYPE_EDEFAULT : newContainmentType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE, oldContainmentType, containmentType));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -155,6 +200,8 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 			return isBidirectional();
 		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
 			return getOppositeFeatureName();
+		case OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE:
+			return getContainmentType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,6 +219,9 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 			return;
 		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
 			setOppositeFeatureName((String) newValue);
+			return;
+		case OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE:
+			setContainmentType((ContainmentType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,6 +241,9 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
 			setOppositeFeatureName(OPPOSITE_FEATURE_NAME_EDEFAULT);
 			return;
+		case OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE:
+			setContainmentType(CONTAINMENT_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -208,6 +261,8 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
 			return OPPOSITE_FEATURE_NAME_EDEFAULT == null ? oppositeFeatureName != null
 				: !OPPOSITE_FEATURE_NAME_EDEFAULT.equals(oppositeFeatureName);
+		case OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE:
+			return containmentType != CONTAINMENT_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -227,6 +282,8 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		result.append(bidirectional);
 		result.append(", oppositeFeatureName: ");
 		result.append(oppositeFeatureName);
+		result.append(", containmentType: ");
+		result.append(containmentType);
 		result.append(')');
 		return result.toString();
 	}

@@ -51,6 +51,7 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 
 			addBidirectionalPropertyDescriptor(object);
 			addOppositeFeatureNamePropertyDescriptor(object);
+			addContainmentTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,6 +82,20 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 				"_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_oppositeFeatureName_feature",
 				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME,
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Containment Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addContainmentTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ReferenceOperation_containmentType_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_containmentType_feature",
+				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__CONTAINMENT_TYPE, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	// begin of custom code
@@ -122,6 +137,7 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 		switch (notification.getFeatureID(ReferenceOperation.class)) {
 		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+		case OperationsPackage.REFERENCE_OPERATION__CONTAINMENT_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
