@@ -5,12 +5,13 @@
  */
 package org.unicase.workspace.impl;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -33,6 +34,7 @@ import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
 import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecordingHint;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -53,6 +55,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
 	private boolean isDeleting;
+	private DirtyResourceSet dirtyResourceSet;
 
 	/**
 	 * Constructor.
@@ -63,6 +66,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		this.projectSpace = projectSpace;
 		this.isDeleting = false;
 		this.isRecording = false;
+		dirtyResourceSet = new DirtyResourceSet();
 	}
 
 	/**
@@ -72,7 +76,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		projectSpace.addToResource(modelElement);
+		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
@@ -81,6 +85,51 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			} else {
 				projectSpace.addOperation(createDeleteOperation);
 			}
+		}
+	}
+
+	/**
+	 * Add model element to a resource, assign a new resource if necessary.
+	 * 
+	 * @param modelElement the model element
+	 * @generated NOT
+	 */
+	void addToResource(final ModelElement modelElement) {
+		if (projectSpace.isTransient()) {
+			return;
+		}
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				addElementToResouce(modelElement);
+			}
+		}.run();
+	}
+
+	private void addElementToResouce(final ModelElement modelElement) {
+		Resource oldResource = modelElement.eResource();
+		URI oldUri = oldResource.getURI();
+		if (!oldUri.isFile()) {
+			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
+		}
+		String oldFileName = oldUri.toFileString();
+		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+			String newfileName = Configuration.getWorkspaceDirectory() + Configuration.getProjectSpaceDirectoryPrefix()
+				+ projectSpace.getIdentifier() + File.separatorChar + Configuration.getProjectFolderName()
+				+ File.separatorChar + projectSpace.getResourceCount()
+				+ Configuration.getProjectFragmentFileExtension();
+			projectSpace.setResourceCount(projectSpace.getResourceCount() + 1);
+			checkIfFileExists(newfileName);
+			URI fileURI = URI.createFileURI(newfileName);
+			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
+			newResource.getContents().add(modelElement);
+		}
+	}
+
+	private void checkIfFileExists(String newfileName) {
+		if (new File(newfileName).exists()) {
+			throw new IllegalStateException("File fragment \"" + newfileName
+				+ "\" already exists - ProjectSpace corrupted.");
 		}
 	}
 
@@ -115,17 +164,18 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			Resource resource = modelElement.eResource();
 			if (resource != null) {
 				resource.getContents().remove(modelElement);
-				projectSpace.saveResource(resource);
+				dirtyResourceSet.addDirtyResource(resource);
 			}
 			for (ModelElement child : modelElement.getAllContainedModelElements()) {
 				Resource childResource = child.eResource();
 				if (childResource != null) {
 					childResource.getContents().remove(child);
-					projectSpace.saveResource(childResource);
+					dirtyResourceSet.addDirtyResource(childResource);
 				}
 			}
 
 		}
+		dirtyResourceSet.save();
 		isDeleting = false;
 	}
 
@@ -139,9 +189,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
-
 			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
-
 		}
 		isDeleting = true;
 	}
@@ -175,11 +223,13 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		if (isRecording) {
-			notificationRecorder.record(notification);
-			if (notificationRecorder.isRecordingComplete()) {
+		notificationRecorder.record(notification);
+		if (notificationRecorder.isRecordingComplete()) {
+			if (isRecording) {
 				recordingFinished();
 			}
+			dirtyResourceSet.save();
+
 		}
 		save(modelElement);
 	}
@@ -266,21 +316,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		if (projectSpace.isTransient()) {
 			return;
 		}
-
-		// if this model element is the one to be deleted and if it is not in a separate resource
-		if (resource == null && modelElement.getProject() == null && isDeleting) {
-			return;
-		}
-		if (resource == null) {
-			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
-			WorkspaceUtil.logWarning(message, new IllegalStateException(message));
-			return;
-		}
-		try {
-			resource.save(Configuration.getResourceSaveOptions());
-		} catch (IOException e) {
-			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier();
-			WorkspaceUtil.logWarning(message, e);
+		if (resource != null) {
+			dirtyResourceSet.addDirtyResource(resource);
 		}
 	}
 
