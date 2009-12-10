@@ -100,13 +100,13 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns ModelElementGroup.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns ModelElementGroup.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementGroup"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementGroup.png"));
 	}
 
 	/**

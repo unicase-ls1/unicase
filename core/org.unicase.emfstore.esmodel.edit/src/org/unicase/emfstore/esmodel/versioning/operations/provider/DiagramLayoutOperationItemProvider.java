@@ -52,9 +52,9 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	}
 
 	/**
-	 * This returns DiagramLayoutOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns DiagramLayoutOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
