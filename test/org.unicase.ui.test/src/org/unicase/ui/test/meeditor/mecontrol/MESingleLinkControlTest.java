@@ -11,7 +11,11 @@ import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGrou
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withText;
 import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +25,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 public class MESingleLinkControlTest extends MeControlTest {
 private ActionItem actionItem;
@@ -49,7 +54,7 @@ private User user;
 	public void testAssigneeChange() {
 		
 		openModelElement(actionItem);
-		getBot().activeEditor().bot().buttonWithLabel("Assignee").click(); 
+		getBot().activeEditor().bot().buttonWithLabel("Assignee",1).click(); 
 		getBot().table().select(0);
 		getBot().button("OK").click();
 		getBot().sleep(2000);
@@ -60,7 +65,6 @@ private User user;
 				assertEquals(assigneduser, actionItem.getAssignee().getName());
 			}
 		}.run();
-		getBot().sleep(2000);
 	}
 
 
@@ -71,26 +75,25 @@ private User user;
 		
 		openModelElement(actionItem);
 		final String name = "Batman";
-		UnicaseCommand unicaseCommand = new UnicaseCommand() {
+		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
 			
 			@Override
-			protected void doRun() {
+			protected Matcher doRun() {
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName(name);
 				actionItem.setAssignee(user);
-								
+				Matcher match = allOf(widgetOfType(Hyperlink.class));
+				// withText("<a>Batman</a>"), inGroup(allOf(withText("User")))
+				return match;
 			}
 		};
-		runAsnc(unicaseCommand);	
+		Matcher matcher = runAsnc(unicaseCommand);	
 		//System.out.println(getBot().activeEditor().bot().linkInGroup("<a>Batman</a>", "Assignee").getText());
-		final Matcher match = allOf(widgetOfType(Composite.class), withText("<a>Batman</a>"), inGroup(allOf(withText("User"))));
-		getBot().activeEditor().bot().widget(match).getData().toString();
-		
-		assertEquals(name, getBot().activeEditor().bot().widget(match).getData().toString());
-		getBot().sleep(2000);
-	
-
-		
+			
+		List controls = getBot().getFinder().findControls(matcher);
+				assertEquals(name, getBot().activeEditor().bot().widget(matcher).getData().toString());
+				String text = ((Hyperlink)controls.get(2)).getText();
+				controls.get(1);
 		
 	}
 	

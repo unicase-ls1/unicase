@@ -26,9 +26,30 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 public class MeControlTest {
+
+	private final class RunnableWithType<T> implements Runnable {
+		private final UnicaseCommandWithResult<T> command;
+		private T result;
+
+		private RunnableWithType(UnicaseCommandWithResult<T> command) {
+			this.command = command;
+		}
+
+		/**
+		 * @return the result
+		 */
+		public T getResult() {
+			return result;
+		}
+
+		public void run() {
+			result = command.run();
+		}
+	}
 
 	private ProjectSpace projectSpace;
 	private LeafSection leafSection;
@@ -126,6 +147,14 @@ public class MeControlTest {
 		});
 		
 		bot.sleep(4000);
+	}
+	
+	protected <T> T runAsnc(final UnicaseCommandWithResult<T> command) {
+		RunnableWithType<T> runnable = new RunnableWithType<T>(command);
+		Display.getDefault().asyncExec(runnable);
+				
+		bot.sleep(4000);
+		return runnable.getResult();
 	}
 
 	@AfterClass

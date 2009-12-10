@@ -19,13 +19,13 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class MEDateControlTest extends MeControlTest {
 
-private ActionItem actionItem;
-	
+	private ActionItem actionItem;
+
 	@Before
 	public void setupActionItem() {
-			
+
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
@@ -33,55 +33,48 @@ private ActionItem actionItem;
 				getLeafSection().getModelElements().add(actionItem);
 			}
 		}.run();
-	} 
-	
-	
+	}
 
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testDateChange() {
-		
+
 		openModelElement(actionItem);
-		final Date somedate = new Date(2000,8,9);
-		
+		final Date somedate = new Date(2000, 8, 9);
+
 		CDateTime match = getBot().widget(WidgetOfType.widgetOfType(CDateTime.class), 0);
-		
-		//getBot().activeEditor().bot().widget(match).setData(somedate);
+		// getBot().activeEditor().bot().widget(match).setData(somedate);
 		getBot().activeEditor().bot().comboBox("Due Date").setFocus();
+
+		getBot().sleep(1000);
+
 		new UnicaseCommand() {
-			
 			@Override
 			protected void doRun() {
-		
-			getBot().sleep(1000);
-			assertEquals(somedate,actionItem.getDueDate());
+				assertEquals(somedate, actionItem.getDueDate());
 			}
 		}.run();
-		
+
 	}
 
-
-	
 	@Test
 	public void testDateUpdate() {
-		
+
 		openModelElement(actionItem);
 		final Date somedate = new Date(300000000);
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
-		
+
 			@Override
 			protected void doRun() {
-				
+
 				actionItem.setDueDate(somedate);
-									
+
 			}
 		};
 		runAsnc(unicaseCommand);
-		
+
 		assertEquals(somedate, getBot().activeEditor().bot().dateTime().getDate());
 		getBot().sleep(3000);
-	
-	
-		
+
 	}
 }

@@ -39,18 +39,20 @@ public class METextControlTest extends MeControlTest {
 		
 		openModelElement(actionItem);
 		
-		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
-		final String newDescription = "changed text in name field by MEEditor";
+		final String newName = "changed text in name field by MEEditor";
+		getBot().activeEditor().bot().textWithLabel("Name").typeText(newName,2);
 		
-		getBot().activeEditor().bot().textWithLabel("Name").typeText(newDescription,2);
 		getBot().sleep(2000);
+		
+		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
 		styledText.setFocus();
+
 		getBot().sleep(2000);
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(newDescription, actionItem.getName());
+				assertEquals(newName, actionItem.getName());
 			}
 		}.run();
 		

@@ -48,7 +48,6 @@ public class MeEnumControlTest extends MeControlTest {
 					assertEquals("Analysis".toLowerCase(), actionItem.getActivity().getName().toLowerCase());
 				}
 			}.run();
-			getBot().sleep(2000);
 		}
 
 
