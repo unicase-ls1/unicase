@@ -5,6 +5,7 @@
  */
 package org.unicase.analyzer;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.analyzer.iterator.VersionIterator;
@@ -16,7 +17,7 @@ import org.unicase.analyzer.iterator.VersionIterator;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerNames <em>Analyzer Names</em>}</li>
  *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}</li>
  * </ul>
  * </p>
@@ -52,29 +53,20 @@ public interface AnalyzerConfiguration extends EObject {
 	void setIterator(VersionIterator value);
 
 	/**
-	 * Returns the value of the '<em><b>Analyzer Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Analyzer Names</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Analyzer Name</em>' attribute isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Analyzer Names</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Analyzer Name</em>' attribute.
-	 * @see #setAnalyzerName(String)
-	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_AnalyzerName()
+	 * @return the value of the '<em>Analyzer Names</em>' attribute list.
+	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_AnalyzerNames()
 	 * @model
 	 * @generated
 	 */
-	String getAnalyzerName();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Analyzer Name</em>' attribute.
-	 * @see #getAnalyzerName()
-	 * @generated
-	 */
-	void setAnalyzerName(String value);
+	EList<String> getAnalyzerNames();
 
 	/**
 	 * Returns the value of the '<em><b>Exporter</b></em>' containment reference.

@@ -5,12 +5,15 @@
  */
 package org.unicase.analyzer.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.exporters.Exporter;
@@ -22,7 +25,7 @@ import org.unicase.analyzer.iterator.VersionIterator;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getAnalyzerName <em>Analyzer Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getAnalyzerNames <em>Analyzer Names</em>}</li>
  *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getExporter <em>Exporter</em>}</li>
  * </ul>
  * </p>
@@ -41,24 +44,14 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	protected VersionIterator iterator;
 
 	/**
-	 * The default value of the '{@link #getAnalyzerName() <em>Analyzer Name</em>}' attribute.
+	 * The cached value of the '{@link #getAnalyzerNames() <em>Analyzer Names</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnalyzerName()
+	 * @see #getAnalyzerNames()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ANALYZER_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAnalyzerName() <em>Analyzer Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnalyzerName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String analyzerName = ANALYZER_NAME_EDEFAULT;
+	protected EList<String> analyzerNames;
 
 	/**
 	 * The cached value of the '{@link #getExporter() <em>Exporter</em>}' containment reference.
@@ -128,22 +121,15 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAnalyzerName() {
-		return analyzerName;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAnalyzerName(String newAnalyzerName) {
-		String oldAnalyzerName = analyzerName;
-		analyzerName = newAnalyzerName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME, oldAnalyzerName, analyzerName));
+	public EList<String> getAnalyzerNames() {
+		if (analyzerNames == null) {
+			analyzerNames = new EDataTypeUniqueEList<String>(String.class, this, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES);
+		}
+		return analyzerNames;
 	}
 
 	/**
@@ -213,8 +199,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 		switch (featureID) {
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				return getIterator();
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
-				return getAnalyzerName();
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
+				return getAnalyzerNames();
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
 				return getExporter();
 		}
@@ -225,14 +211,16 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)newValue);
 				return;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
-				setAnalyzerName((String)newValue);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
+				getAnalyzerNames().clear();
+				getAnalyzerNames().addAll((Collection<? extends String>)newValue);
 				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
 				setExporter((Exporter)newValue);
@@ -251,8 +239,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)null);
 				return;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
-				setAnalyzerName(ANALYZER_NAME_EDEFAULT);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
+				getAnalyzerNames().clear();
 				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
 				setExporter((Exporter)null);
@@ -270,8 +258,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 		switch (featureID) {
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				return iterator != null;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
-				return ANALYZER_NAME_EDEFAULT == null ? analyzerName != null : !ANALYZER_NAME_EDEFAULT.equals(analyzerName);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
+				return analyzerNames != null && !analyzerNames.isEmpty();
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
 				return exporter != null;
 		}
@@ -287,8 +275,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (analyzerName: ");
-		result.append(analyzerName);
+		result.append(" (analyzerNames: ");
+		result.append(analyzerNames);
 		result.append(')');
 		return result.toString();
 	}
