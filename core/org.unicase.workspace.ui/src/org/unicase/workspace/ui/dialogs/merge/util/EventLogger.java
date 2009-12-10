@@ -71,7 +71,7 @@ public class EventLogger {
 		} else if (conflict.getSolution() instanceof IssueOption) {
 			choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
 			choiceEvent.setCreatedIssueName(((IssueOption) conflict
-					.getSolution()).getFullOptionLabel());
+					.getSolution()).getOptionLabel());
 		}
 
 		addEvent(choiceEvent);

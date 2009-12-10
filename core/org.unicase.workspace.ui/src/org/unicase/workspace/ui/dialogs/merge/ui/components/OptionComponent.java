@@ -195,14 +195,14 @@ public class OptionComponent {
 				break;
 
 			case SWT.MouseUp:
+				if (composite.getOption().hasExtraOptionAction()) {
+					extraAction(composite);
+				}
 				if (conflict.isResolved()
 						&& conflict.getSolution() == composite.getOption()) {
 					conflict.setSolution(null);
 				} else {
 					conflict.setSolution(composite.getOption());
-				}
-				if (composite.getOption().hasExtraOptionAction()) {
-					extraAction(composite);
 				}
 				refreshButtonColor();
 				break;
