@@ -2282,50 +2282,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Add model element to a resource, assign a new resource if necessary.
-	 * 
-	 * @param modelElement the model element
-	 * @generated NOT
-	 */
-	void addToResource(final ModelElement modelElement) {
-		if (isTransient) {
-			return;
-		}
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				addElementToResouce(modelElement);
-			}
-		}.run();
-	}
-
-	private void addElementToResouce(final ModelElement modelElement) {
-		Resource oldResource = modelElement.eResource();
-		URI oldUri = oldResource.getURI();
-		if (!oldUri.isFile()) {
-			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
-		}
-		String oldFileName = oldUri.toFileString();
-		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
-			String newfileName = Configuration.getWorkspaceDirectory() + Configuration.getProjectSpaceDirectoryPrefix()
-				+ getIdentifier() + File.separatorChar + Configuration.getProjectFolderName() + File.separatorChar
-				+ getResourceCount() + Configuration.getProjectFragmentFileExtension();
-			setResourceCount(getResourceCount() + 1);
-			checkIfFileExists(newfileName);
-			URI fileURI = URI.createFileURI(newfileName);
-			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
-			newResource.getContents().add(modelElement);
-		}
-	}
-
-	private void checkIfFileExists(String newfileName) {
-		if (new File(newfileName).exists()) {
-			throw new IllegalStateException("File fragment \"" + newfileName
-				+ "\" already exists - ProjectSpace corrupted.");
-		}
-	}
-
-	/**
 	 * Get the current nofitication recorder.
 	 * 
 	 * @return the recorder
