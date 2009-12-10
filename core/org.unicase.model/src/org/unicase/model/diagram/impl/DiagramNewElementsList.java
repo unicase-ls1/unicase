@@ -49,7 +49,6 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 	 * @param leafSection leaf-section containing the element.
 	 */
 	public DiagramNewElementsList(EList<UnicaseModelElement> elements, LeafSection leafSection) {
-		// TODO Auto-generated constructor stub
 		super(UnicaseModelElement.class);
 		this.elements = elements;
 		this.leafsection = leafSection;
@@ -76,8 +75,14 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 	 */
 	@Override
 	public boolean add(UnicaseModelElement arg0) {
-		boolean add = leafsection.getModelElements().add(arg0);
-		return add;
+		if (leafsection == null && project != null) {
+			return project.getModelElements().add(arg0);
+		} else if (leafsection != null) {
+			return leafsection.getModelElements().add(arg0);
+
+		} else {
+			throw new IllegalStateException("Neither project nor leafsection available for new element");
+		}
 	}
 
 	/**
