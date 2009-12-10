@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a
@@ -95,15 +96,32 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	// end of custom code
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SingleReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
-			: getString("_UI_SingleReferenceOperation_type") + " " + label;
+		if (object instanceof SingleReferenceOperation) {
+			SingleReferenceOperation op = (SingleReferenceOperation) object;
+			ModelElementId oldElement = op.getOldValue();
+			ModelElementId newElement = op.getNewValue();
+			String oldName = getModelElementClassAndName(op.getOldValue());
+			String newName = getModelElementClassAndName(op.getNewValue());
+			String elementName = getModelElementClassAndName(op.getModelElementId());
+
+			if (oldElement == null && newElement == null) {
+				return "Unset " + op.getFeatureName() + " in " + elementName;
+			} else if (oldElement == null && newElement != null) {
+				return "Set " + op.getFeatureName() + " in " + elementName + " to " + newName;
+			} else if (oldElement != null && newElement == null) {
+				return "Unset " + op.getFeatureName() + " in " + elementName + " from previous value " + oldName;
+			} else {
+				return "Set " + op.getFeatureName() + " in " + elementName + " to " + newName + " from previous value "
+					+ oldName;
+			}
+		}
+		return super.getText(object);
 	}
 
 	/**

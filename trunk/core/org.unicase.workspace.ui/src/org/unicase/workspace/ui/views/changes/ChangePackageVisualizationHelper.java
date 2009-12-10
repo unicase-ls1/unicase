@@ -379,10 +379,6 @@ public class ChangePackageVisualizationHelper {
 		String newName = getModelElementClassAndName(newElement);
 		ModelElement elem = getModelElement(op.getModelElementId());
 		String elementName = getModelElementClassAndName(elem);
-		if (elem == null) {
-			return "Changed " + op.getFeatureName() + " from " + oldName
-					+ " to " + newName + " for \"(unkown element)";
-		}
 
 		boolean isContainer;
 		try {
@@ -394,17 +390,10 @@ public class ChangePackageVisualizationHelper {
 		if (isContainer && oldElement != null && newElement != null) {
 			return "Moved " + elementName + " from " + oldName + " to "
 					+ newName;
-		} else if (oldElement == null && newElement == null) {
-			return "Unset " + op.getFeatureName() + " in " + elementName;
-		} else if (oldElement == null && newElement != null) {
-			return "Set " + op.getFeatureName() + " in " + elementName + " to "
-					+ newName;
-		} else if (oldElement != null && newElement == null) {
-			return "Unset " + op.getFeatureName() + " in " + elementName
-					+ " from previous value " + oldName;
+		} else if (isContainer && newElement != null) {
+			return "Moved " + elementName + " to " + newName;
 		} else {
-			return "Set " + op.getFeatureName() + " in " + elementName + " to "
-					+ newName + " from previous value " + oldName;
+			return resolveIds(adapterFactoryLabelProvider.getText(op));
 		}
 
 	}
