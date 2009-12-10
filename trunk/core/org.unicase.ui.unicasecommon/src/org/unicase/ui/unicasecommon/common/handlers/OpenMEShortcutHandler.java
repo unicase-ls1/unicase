@@ -68,7 +68,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 					filteredModelElements.add(me);
 				}
 			}
-			showShortcutDialog(shell, filteredModelElements, "Open Model Element", DIALOG_MESSAGE);
+			showShortcutDialog(shell, filteredModelElements, "Search Model Element", DIALOG_MESSAGE);
 		}
 
 		return null;

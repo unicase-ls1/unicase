@@ -45,18 +45,7 @@
      
      
      
-     <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.unicase.ui.common.UnicaseToolbar">
-           <command
-                 commandId="org.unicase.ui.common.handlers.open_me_ID"
-                 icon="icons/ModelElement.png"
-                 style="push"
-                 tooltip="Shows open model element dialog">
-           </command>
-        </toolbar>
-     </menuContribution>
+     
     
   </extension>
   <extension
@@ -71,15 +60,7 @@
     <extension
           point="org.eclipse.ui.ide.markerSupport">
     </extension>
-    <extension
-          point="org.eclipse.ui.bindings">
-       <key
-             commandId="org.unicase.ui.common.handlers.open_me_ID"
-             contextId="org.eclipse.ui.contexts.window"
-             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-             sequence="Alt+M">
-       </key>
-    </extension>
+   
     <extension point="org.eclipse.ui.popupMenus">
 	</extension>
 	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
