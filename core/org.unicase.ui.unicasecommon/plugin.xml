@@ -158,7 +158,7 @@
             categoryId="org.unicase.ui.common.modifyModelelement"
             defaultHandler="org.unicase.ui.unicasecommon.common.handlers.OpenMEShortcutHandler"
             id="org.unicase.ui.common.handlers.open_me_ID"
-            name="Open Modelelements Selectiondialog">
+            name="Search for Modelelement">
       </command>
       <command
             defaultHandler="org.unicase.ui.unicasecommon.common.handlers.SubscriptionHandler"
@@ -578,15 +578,36 @@
      </menuContribution>
      <menuContribution
            locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
-        <command
+         <command
               commandId="org.unicase.ui.common.handlers.open_me_ID"
-              icon="icons/ModelElement.png"
+              icon="icons/magnifier.png"
               style="push"
-              tooltip="Shows open model element dialog">
+              tooltip="Search for model element">
         </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.unicase.ui.common.UnicaseToolbar">
+          <command
+                 commandId="org.unicase.ui.common.handlers.open_me_ID"
+                 icon="icons/magnifier.png"
+                 style="push"
+                 tooltip="Search model element">
+           </command>
+        </toolbar>
      </menuContribution>
     
   </extension>
+   <extension
+          point="org.eclipse.ui.bindings">
+       <key
+             commandId="org.unicase.ui.common.handlers.open_me_ID"
+             contextId="org.eclipse.ui.contexts.window"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="Alt+M">
+       </key>
+    </extension>
   <extension
         point="org.eclipse.core.expressions.definitions">
      <definition
