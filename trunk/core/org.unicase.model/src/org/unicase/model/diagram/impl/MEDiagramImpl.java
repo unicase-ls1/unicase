@@ -31,10 +31,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
@@ -250,12 +252,21 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		// initializing Teneo. Otherwise getProjects() throws an exception
 		// because eContainer is null. Returning null in this case shouldn't be
 		// a problem because getNewElements() is transient anyway.
-		if (eContainer == null) {
+		if (eContainer() == null) {
 			return null;
 		}
 
 		// MD: Should we cache this instance?
-		return new DiagramNewElementsList(getElements(), getLeafSection());
+		LeafSection leafSection = getLeafSection();
+		if (leafSection == null) {
+			Project project = getProject();
+			if (project == null) {
+				return null;
+			}
+			return new DiagramNewElementsList(getElements(), project);
+		} else {
+			return new DiagramNewElementsList(getElements(), leafSection);
+		}
 	}
 
 	/**
