@@ -28,7 +28,6 @@ public class MEIntControlTest extends MeControlTest {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
-				getProjectSpace().getModifiedModelElementsCache();
 			}
 		}.run();
 	} 

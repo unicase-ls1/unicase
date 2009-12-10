@@ -13,6 +13,10 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * @author koegel
+ *
+ */
 public class MEBoolControlTest extends MeControlTest {
 
 
@@ -27,6 +31,8 @@ public class MEBoolControlTest extends MeControlTest {
 			protected void doRun() {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
+				actionItem.setDone(true);
+				actionItem.setResolved(false);
 				getLeafSection().getModelElements().add(actionItem);
 			}
 		}.run();
@@ -39,17 +45,19 @@ public class MEBoolControlTest extends MeControlTest {
 		openModelElement(actionItem);
 		
 		getBot().activeEditor().bot().checkBoxWithLabel("Resolved").click();
-		final boolean relovedvalue = getBot().activeEditor().bot().checkBoxWithLabel("Resolved").isChecked();
+		final boolean resolvedValue = getBot().activeEditor().bot().checkBoxWithLabel("Resolved").isChecked();
 		getBot().activeEditor().bot().checkBoxWithLabel("Done").click();
-		final boolean donevalue = getBot().activeEditor().bot().checkBoxWithLabel("Done").isChecked();
+		final boolean doneValue = getBot().activeEditor().bot().checkBoxWithLabel("Done").isChecked();
 		
 		getBot().sleep(2000);
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(relovedvalue, actionItem.isResolved());
-				assertEquals(donevalue, actionItem.isDone());
+				assertEquals(true, resolvedValue);
+				assertEquals(false, doneValue);
+				assertEquals(resolvedValue, actionItem.isResolved());
+				assertEquals(doneValue, actionItem.isDone());
 			}
 		}.run();
 		
@@ -61,22 +69,23 @@ public class MEBoolControlTest extends MeControlTest {
 		
 		openModelElement(actionItem);
 	
-		final boolean setresloved = true ;
-		final boolean setdone = true;
+		final boolean newResolvedValue = true ;
+		final boolean newDoneValue = false;
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 						@Override
 			protected void doRun() {
 				
-							actionItem.setDone(setdone);
-							actionItem.setResolved(setresloved);
+							actionItem.setDone(newDoneValue);
+							actionItem.setResolved(newResolvedValue);
 			}
 		};
 		runAsnc(unicaseCommand);
 		
 		getBot().sleep(3000);
+		
 		getBot().activeEditor().setFocus();
-		assertEquals(setresloved, getBot().activeEditor().bot().checkBoxWithLabel("Resolved").isChecked());
-		assertEquals(setdone, getBot().activeEditor().bot().checkBoxWithLabel("Done").isChecked());
+		assertEquals(newResolvedValue, getBot().activeEditor().bot().checkBoxWithLabel("Resolved").isChecked());
+		assertEquals(newDoneValue, getBot().activeEditor().bot().checkBoxWithLabel("Done").isChecked());
 
 }
 }
