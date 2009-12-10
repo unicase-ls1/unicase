@@ -58,19 +58,22 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DiagramLayoutOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DiagramLayoutOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DiagramLayoutOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_DiagramLayoutOperation_type")
-			: getString("_UI_DiagramLayoutOperation_type") + " " + label;
+		if (object instanceof DiagramLayoutOperation) {
+			DiagramLayoutOperation diagramLayoutOperation = (DiagramLayoutOperation) object;
+			return "Changed Layout of Diagram \"" + getModelElementName(diagramLayoutOperation.getModelElementId())
+				+ "\"";
+		}
+		return super.getText(object);
 	}
 
 	/**

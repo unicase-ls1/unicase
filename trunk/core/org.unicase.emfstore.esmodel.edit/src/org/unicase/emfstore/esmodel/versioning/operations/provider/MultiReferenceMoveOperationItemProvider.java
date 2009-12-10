@@ -119,15 +119,20 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	// end of custom code
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiReferenceMoveOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MultiReferenceMoveOperation_type")
-			: getString("_UI_MultiReferenceMoveOperation_type") + " " + label;
+		if (object instanceof MultiReferenceMoveOperation) {
+			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) object;
+			String elementName = getModelElementClassAndName(op.getModelElementId());
+			String movedElementName = getModelElementClassAndName(op.getReferencedModelElementId());
+			return "Reordered " + op.getFeatureName() + " in " + elementName + ", moved " + movedElementName
+				+ " from position " + op.getOldIndex() + " to " + op.getNewIndex();
+		}
+		return super.getText(object);
 	}
 
 	/**

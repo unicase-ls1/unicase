@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -44,6 +45,11 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	 * Constant for name tag separator.
 	 */
 	public static final String NAME_TAG__SEPARATOR = "%";
+
+	/**
+	 * Constant for reference type separator
+	 */
+	public static final String REFERENCE_TYPE_TAG_SEPARATOR = "#REFERENCE_TYPE_NAME#";
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -228,7 +234,7 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 		return NAME_TAG__SEPARATOR + modelElementId.getId() + NAME_TAG__SEPARATOR;
 	}
 
-	public String getModelElementNames(List<ModelElementId> modelElementIds) {
+	protected String getModelElementNames(List<ModelElementId> modelElementIds) {
 		StringBuilder builder = new StringBuilder();
 		for (ModelElementId modelElementId : modelElementIds) {
 			builder.append(NAME_TAG__SEPARATOR);
@@ -236,28 +242,52 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 			builder.append(NAME_TAG__SEPARATOR);
 			builder.append(", ");
 		}
-		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.length(), "NAME_TAG__SEPARATOR.");
+		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.length(), NAME_TAG__SEPARATOR);
 		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder
 			.lastIndexOf(NAME_TAG__SEPARATOR + ", ") + 3, NAME_TAG__SEPARATOR + " and ");
 		return builder.toString();
 	}
 
-	public String getModelElementClassAndName(ModelElementId modelElementId) {
+	protected String getModelElementClassAndName(ModelElementId modelElementId) {
 		if (modelElementId == null) {
 			return "(Unkown Element)";
 		}
 		return NAME_CLASS_TAG_SEPARATOR + modelElementId.getId() + NAME_CLASS_TAG_SEPARATOR;
 	}
 
-	private static final int MAX_NAME_SIZE = 30;
+	/**
+	 * Returns a comma separated list of class names and model names. {id1, id2} will become
+	 * "Comment 'some comment', LeafSection 'section title'"
+	 * 
+	 * @param idList the list of model element IDs to return the names for
+	 * @return
+	 */
+	protected String getModelElementClassesAndNames(EList<ModelElementId> idList, String typeName) {
 
-	public String trim(Object object) {
-		return trim(object, false);
+		StringBuilder sb = new StringBuilder();
+
+		if (idList.size() > 2) {
+			return idList.size() + " " + typeName + "s";
+		}
+
+		for (int i = 0; i < idList.size(); i++) {
+			if (i > 0 && i == idList.size() - 1) {
+				sb.append(" and ");
+			} else if (i > 0) {
+				sb.append(", ");
+			}
+			ModelElementId id = idList.get(i);
+			sb.append(getModelElementClassAndName(id));
+
+		}
+		return sb.toString();
 	}
 
-	public String trim(Object object, boolean isName) {
+	private static final int MAX_NAME_SIZE = 30;
+
+	protected String trim(Object object) {
 		if (object == null) {
-			return isName ? "(no name)" : "(null)";
+			return "(null)";
 		}
 		String string = object.toString();
 		String result = string.trim();

@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
@@ -110,7 +111,14 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 			String newName = getModelElementClassAndName(op.getNewValue());
 			String elementName = getModelElementClassAndName(op.getModelElementId());
 
-			if (oldElement == null && newElement == null) {
+			boolean isContainer = op.getContainmentType().equals(ContainmentType.CONTAINER);
+
+			// changing containment means relocating the item
+			if (isContainer && oldElement != null && newElement != null) {
+				return "Moved " + elementName + " from " + oldName + " to " + newName;
+			} else if (isContainer && newElement != null) {
+				return "Moved " + elementName + " to " + newName;
+			} else if (oldElement == null && newElement == null) {
 				return "Unset " + op.getFeatureName() + " in " + elementName;
 			} else if (oldElement == null && newElement != null) {
 				return "Set " + op.getFeatureName() + " in " + elementName + " to " + newName;

@@ -103,7 +103,7 @@ public class OperationGroupItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OperationGroup"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OperationGroup.png"));
 	}
 
 	/**
