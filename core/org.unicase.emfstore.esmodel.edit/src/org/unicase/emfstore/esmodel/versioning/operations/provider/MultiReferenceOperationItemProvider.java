@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelFactory;
@@ -129,15 +130,37 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	// end of custom code
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MultiReferenceOperation_type")
-			: getString("_UI_MultiReferenceOperation_type") + " " + label;
+		if (object instanceof MultiReferenceOperation) {
+			MultiReferenceOperation op = (MultiReferenceOperation) object;
+
+			boolean containment = op.getContainmentType().equals(ContainmentType.CONTAINMENT);
+			String featureType = AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR;
+
+			String elemNames = getModelElementClassesAndNames(op.getReferencedModelElements(), featureType);
+			String elementNameAndClass = getModelElementClassAndName(op.getModelElementId());
+			String children = op.getReferencedModelElements().size() > 1 ? "children" : "child";
+			if (op.isAdd()) {
+				if (containment) {
+					return "Added " + elemNames + " as " + children + " in " + elementNameAndClass;
+				} else {
+					return "Added " + elemNames + " to " + op.getFeatureName() + " in " + elementNameAndClass;
+				}
+			} else {
+				if (containment) {
+					return "Removed " + elemNames + " as " + children + " in " + elementNameAndClass;
+				} else {
+					return "Removed " + elemNames + " from " + op.getFeatureName() + " in " + elementNameAndClass;
+				}
+			}
+
+		}
+		return super.getText(object);
 	}
 
 	/**

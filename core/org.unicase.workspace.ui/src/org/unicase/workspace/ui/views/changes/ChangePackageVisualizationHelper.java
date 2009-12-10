@@ -10,8 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -194,18 +193,7 @@ public class ChangePackageVisualizationHelper {
 	 * @return the description for given operation
 	 */
 	public String getDescription(AbstractOperation op) {
-		if (op instanceof SingleReferenceOperation) {
-			return getDescriptionSingleReferenceOperation((SingleReferenceOperation) op);
-		}
-		if (op instanceof MultiReferenceOperation) {
-			return getDescriptionMultiReferenceOperation((MultiReferenceOperation) op);
-		}
-		if (op instanceof CreateDeleteOperation) {
-			return getDescriptionCreateDeleteOperation((CreateDeleteOperation) op);
-		}
-		if (op instanceof MultiReferenceMoveOperation) {
-			return getDescriptionMultiReferenceMoveOperation((MultiReferenceMoveOperation) op);
-		}
+
 		if (op instanceof CompositeOperation) {
 			CompositeOperation compositeOperation = (CompositeOperation) op;
 			// artificial composite because of opposite ref, take description of
@@ -214,27 +202,43 @@ public class ChangePackageVisualizationHelper {
 				return getDescription(compositeOperation.getMainOperation());
 			}
 		}
-		return resolveIds(adapterFactoryLabelProvider.getText(op));
+		return decorate(adapterFactoryLabelProvider.getText(op), op);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.provider.ChangePackageVisualizationContext#resolveIds(java.lang.String)
-	 */
-	public String resolveIds(String unresolvedString) {
-		String namesResolved = resolveIds(unresolvedString,
+	private String decorate(String undecoratedString, AbstractOperation op) {
+		String namesResolved = resolveIds(undecoratedString,
 				AbstractOperationItemProvider.NAME_TAG__SEPARATOR);
 		String allResolved = resolveIds(namesResolved,
 				AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR);
+		if (op instanceof ReferenceOperation) {
+			return resolveTypes(allResolved, (ReferenceOperation) op);
+		}
 		return allResolved;
+	}
+
+	private String resolveTypes(String unresolvedString, ReferenceOperation op) {
+		ModelElement modelElement = getModelElement(op.getModelElementId());
+		String type;
+		if (modelElement == null) {
+			type = "ModelElement";
+		} else {
+			try {
+				EStructuralFeature feature = op.getFeature(modelElement);
+				type = feature.getEType().getName();
+			} catch (UnkownFeatureException e) {
+				type = "ModelElement";
+			}
+		}
+		if (type.equals("UnicaseModelElement")) {
+			type = "ModelElement";
+		}
+		return unresolvedString.replace(
+				AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR,
+				type);
 	}
 
 	private String resolveIds(String unresolvedString, String devider) {
 		String[] strings = unresolvedString.split(devider);
-		if (strings.length < 3) {
-			return unresolvedString;
-		}
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < strings.length; i++) {
 			if (i % 2 == 1) {
@@ -263,141 +267,6 @@ public class ChangePackageVisualizationHelper {
 		return adapterFactoryLabelProvider.getText(modelElement);
 	}
 
-	private String getDescriptionMultiReferenceMoveOperation(
-			MultiReferenceMoveOperation op) {
-
-		String elementName = getModelElementClassAndName(op.getModelElementId());
-		String movedElementName = getModelElementClassAndName(op
-				.getReferencedModelElementId());
-		return "Reordered " + op.getFeatureName() + " in " + elementName
-				+ ", moved " + movedElementName + " from position "
-				+ op.getOldIndex() + " to " + op.getNewIndex();
-	}
-
-	private String getDescriptionCreateDeleteOperation(CreateDeleteOperation op) {
-
-		ModelElement modelElement = op.getModelElement();
-		int childrenCount = modelElement.getAllContainedModelElements().size();
-		String description;
-
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(modelElement.eClass().getName());
-		stringBuilder.append(" \"");
-		stringBuilder.append(UiUtil.getNameForModelElement(modelElement));
-		stringBuilder.append("\" ");
-		String elementClassAndName = stringBuilder.toString();
-		if (op.isDelete()) {
-			description = "Deleted " + elementClassAndName;
-		} else {
-			description = "Created " + elementClassAndName;
-		}
-		if (childrenCount > 0) {
-			description += " including " + childrenCount + " sibling(s)";
-		}
-
-		EList<ReferenceOperation> subOperations = op.getSubOperations();
-		int subOperationCount = subOperations.size();
-		if (op.isDelete() && subOperationCount > 0) {
-			ReferenceOperation referenceOperation = subOperations
-					.get(subOperationCount - 1);
-			ModelElement parentElement = getModelElement(referenceOperation
-					.getModelElementId());
-			try {
-				if (parentElement != null
-						&& ((EReference) referenceOperation
-								.getFeature(parentElement)).isContainment()) {
-					description += " from its parent "
-							+ getModelElementClassAndName(parentElement);
-				}
-			} catch (UnkownFeatureException e) {
-				// silently skip part about parent
-			}
-		}
-		return description;
-
-	}
-
-	private String getDescriptionMultiReferenceOperation(
-			MultiReferenceOperation op) {
-
-		ModelElement modelElement = getModelElement(op.getModelElementId());
-		if (modelElement == null) {
-			String elemNames = getModelElementClassesAndNames(op
-					.getReferencedModelElements(), "element");
-			if (op.isAdd()) {
-				return "Added " + elemNames + " to " + op.getFeatureName()
-						+ " of (unkown element)";
-			} else {
-				return "Removed " + elemNames + " from " + op.getFeatureName()
-						+ " of (unkown element)";
-			}
-		}
-
-		boolean containment;
-		String featureType;
-		EReference feature;
-		try {
-			feature = (EReference) op.getFeature(modelElement);
-			containment = feature.isContainment();
-			featureType = feature.getEType().getName();
-		} catch (UnkownFeatureException e) {
-			containment = false;
-			featureType = "element";
-		}
-
-		String elemNames = getModelElementClassesAndNames(op
-				.getReferencedModelElements(), featureType);
-		String elementNameAndClass = getModelElementClassAndName(modelElement);
-		String children = op.getReferencedModelElements().size() > 1 ? "children"
-				: "child";
-		if (op.isAdd()) {
-			if (containment) {
-				return "Added " + elemNames + " as " + children + " in "
-						+ elementNameAndClass;
-			} else {
-				return "Added " + elemNames + " to " + op.getFeatureName()
-						+ " in " + elementNameAndClass;
-			}
-		} else {
-			if (containment) {
-				return "Removed " + elemNames + " as " + children + " in "
-						+ elementNameAndClass;
-			} else {
-				return "Removed " + elemNames + " from " + op.getFeatureName()
-						+ " in " + elementNameAndClass;
-			}
-		}
-
-	}
-
-	private String getDescriptionSingleReferenceOperation(
-			SingleReferenceOperation op) {
-
-		ModelElement oldElement = getModelElement(op.getOldValue());
-		ModelElement newElement = getModelElement(op.getNewValue());
-		String oldName = getModelElementClassAndName(oldElement);
-		String newName = getModelElementClassAndName(newElement);
-		ModelElement elem = getModelElement(op.getModelElementId());
-		String elementName = getModelElementClassAndName(elem);
-
-		boolean isContainer;
-		try {
-			isContainer = ((EReference) op.getFeature(elem)).isContainer();
-		} catch (UnkownFeatureException e) {
-			isContainer = false;
-		}
-		// changing containment means relocating the item
-		if (isContainer && oldElement != null && newElement != null) {
-			return "Moved " + elementName + " from " + oldName + " to "
-					+ newName;
-		} else if (isContainer && newElement != null) {
-			return "Moved " + elementName + " to " + newName;
-		} else {
-			return resolveIds(adapterFactoryLabelProvider.getText(op));
-		}
-
-	}
-
 	private String trim(Object object, boolean isName) {
 		if (object == null) {
 			return isName ? "(no name)" : "(null)";
@@ -413,36 +282,6 @@ public class ChangePackageVisualizationHelper {
 		return result;
 	}
 
-	/**
-	 * Returns a comma separated list of class names and model names. {id1, id2}
-	 * will become "Comment 'some comment', LeafSection 'section title'"
-	 * 
-	 * @param idList
-	 *            the list of model element IDs to return the names for
-	 * @return
-	 */
-	private String getModelElementClassesAndNames(EList<ModelElementId> idList,
-			String typeName) {
-
-		StringBuilder sb = new StringBuilder();
-
-		if (idList.size() > 2) {
-			return idList.size() + " " + typeName + "s";
-		}
-
-		for (int i = 0; i < idList.size(); i++) {
-			if (i > 0 && i == idList.size() - 1) {
-				sb.append(" and ");
-			} else if (i > 0) {
-				sb.append(", ");
-			}
-			ModelElementId id = idList.get(i);
-			sb.append(getModelElementClassAndName(id));
-
-		}
-		return sb.toString();
-	}
-
 	private String getModelElementClassAndName(ModelElementId modelElementId) {
 		if (modelElementId == null) {
 			return UNKOWN_ELEMENT;
@@ -454,7 +293,8 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
-		return modelElement.eClass().getName() + " \""
+		String className = modelElement.eClass().getName();
+		return className + " \""
 				+ trim(UiUtil.getNameForModelElement(modelElement), true)
 				+ "\"";
 	}

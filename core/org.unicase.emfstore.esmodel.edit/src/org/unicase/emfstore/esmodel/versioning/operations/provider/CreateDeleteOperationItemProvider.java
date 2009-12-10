@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -21,11 +22,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * This is the item provider adapter for a
@@ -151,15 +154,45 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	// end of custom code
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CreateDeleteOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CreateDeleteOperation_type")
-			: getString("_UI_CreateDeleteOperation_type") + " " + label;
+		if (object instanceof CreateDeleteOperation) {
+			CreateDeleteOperation op = (CreateDeleteOperation) object;
+			ModelElement modelElement = op.getModelElement();
+			int childrenCount = modelElement.getAllContainedModelElements().size();
+			String description;
+
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(modelElement.eClass().getName());
+			stringBuilder.append(" \"");
+			stringBuilder.append(getModelElementName(op.getModelElementId()));
+			stringBuilder.append("\" ");
+			String elementClassAndName = stringBuilder.toString();
+			if (op.isDelete()) {
+				description = "Deleted " + elementClassAndName;
+			} else {
+				description = "Created " + elementClassAndName;
+			}
+			if (childrenCount > 0) {
+				description += " including " + childrenCount + " sibling(s)";
+			}
+
+			EList<ReferenceOperation> subOperations = op.getSubOperations();
+			int subOperationCount = subOperations.size();
+			if (op.isDelete() && subOperationCount > 0) {
+				ReferenceOperation referenceOperation = subOperations.get(subOperationCount - 1);
+				if (referenceOperation.getContainmentType().equals(ContainmentType.CONTAINMENT)) {
+					description += " from its parent "
+						+ getModelElementClassAndName(referenceOperation.getModelElementId());
+				}
+			}
+			return description;
+		}
+		return super.getText(object);
 	}
 
 	/**

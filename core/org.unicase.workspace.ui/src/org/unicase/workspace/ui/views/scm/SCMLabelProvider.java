@@ -221,9 +221,10 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		Font bold = JFaceResources.getFontRegistry().getBold(
 				JFaceResources.DIALOG_FONT);
 
-		if (getText(findTopParent((TreeNode) element)).equals(LOCAL_REVISION)) {
-			return italic;
-		}
+		// if (getText(findTopParent((TreeNode)
+		// element)).equals(LOCAL_REVISION)) {
+		// return italic;
+		// }
 		if (value instanceof HistoryInfo) {
 			if (getText(element).equals(LOCAL_REVISION)) {
 				return italic;

@@ -191,15 +191,17 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	// end of custom code
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CompositeOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CompositeOperation_type")
-			: getString("_UI_CompositeOperation_type") + " " + label;
+		if (object instanceof CompositeOperation) {
+			CompositeOperation compositeOperation = (CompositeOperation) object;
+			return compositeOperation.getDescription();
+		}
+		return super.getText(object);
 	}
 
 	/**

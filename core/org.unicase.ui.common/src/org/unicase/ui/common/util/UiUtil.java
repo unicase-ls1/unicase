@@ -113,6 +113,7 @@ public final class UiUtil {
 
 	}
 
+	private static AdapterFactoryLabelProvider labelProvider;
 	/**
 	 * Get the name of a model element.
 	 * 
@@ -120,8 +121,10 @@ public final class UiUtil {
 	 * @return the name for the model element
 	 */
 	public static String getNameForModelElement(ModelElement modelElement) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+		if (labelProvider==null) {
+			labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		}
 		return labelProvider.getText(modelElement);
 	}
 
