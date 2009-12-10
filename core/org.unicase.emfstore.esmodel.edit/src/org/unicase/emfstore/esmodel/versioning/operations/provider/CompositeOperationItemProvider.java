@@ -47,6 +47,9 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
 	 */
 	@Override
