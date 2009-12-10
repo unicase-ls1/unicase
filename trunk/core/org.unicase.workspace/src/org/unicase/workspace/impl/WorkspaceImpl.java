@@ -19,15 +19,11 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -532,17 +528,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#importProjectSpace(java.lang.String)
 	 */
 	public ProjectSpace importProjectSpace(String absoluteFileName) throws IOException {
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
-		EList<EObject> directContents = resource.getContents();
-		// sanity check
 
-		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectSpace))) {
-			throw new IOException("File is corrupt, does not contain a ProjectSpace.");
-		}
-
-		ProjectSpace projectSpace = (ProjectSpace) directContents.get(0);
-		resource.getContents().remove(projectSpace);
+		ProjectSpace projectSpace = ResourceHelper.getElementFromResource(absoluteFileName, ProjectSpace.class, 0);
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
@@ -583,12 +570,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#exportProjectSpace(org.unicase.workspace.ProjectSpace, java.lang.String)
 	 */
 	public void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+
 		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
 		copy.setUsersession(null);
-		resource.getContents().add(copy);
-		resource.save(null);
+		ResourceHelper.putElementIntoResource(absoluteFileName, copy);
 	}
 
 	/**
@@ -597,11 +582,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#exportWorkSpace(java.lang.String)
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
-		resource.getContents().add(copy);
-		resource.save(null);
+		ResourceHelper.putElementIntoResource(absoluteFileName, copy);
 	}
 
 	/**
@@ -610,12 +592,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#exportProject(org.unicase.workspace.ProjectSpace, java.lang.String)
 	 */
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
-		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
 
-		resource.getContents().add(project);
-		resource.save(null);
+		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
+		ResourceHelper.putElementIntoResource(absoluteFileName, project);
 	}
 
 	/**
