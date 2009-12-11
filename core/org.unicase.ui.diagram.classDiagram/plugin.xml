@@ -602,5 +602,12 @@
                   </action>
                </objectContribution>
             </extension>
+            <extension
+                  point="org.unicase.ui.common.modelelementopener">
+               <ModelElementOpener
+                     class="org.unicase.ui.classDiagram.ClassDiagramOpener"
+                     name="org.unicase.ui.MEDiagramEditor">
+               </ModelElementOpener>
+            </extension>
 
 </plugin>
