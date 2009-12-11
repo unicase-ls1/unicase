@@ -112,6 +112,20 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	 */
 	@Override
 	public String getText(Object object) {
+		if (object instanceof User) {
+			User user = (User) object;
+			String firstName = user.getFirstName();
+			if (firstName == null) {
+				firstName = "";
+			}
+			String lastName = user.getLastName();
+			if (lastName == null) {
+				lastName = "";
+			}
+			if (!lastName.equals("") || !firstName.equals("")) {
+				return firstName + " " + lastName;
+			}
+		}
 		return super.getText(object);
 	}
 
