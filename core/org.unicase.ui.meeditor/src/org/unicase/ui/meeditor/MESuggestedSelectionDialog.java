@@ -81,7 +81,6 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		// }
 		// }
 		setBlockOnOpen(blockOnOpen);
-		setInitialPattern("**", NONE);
 
 		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
 		candidates = elements;
@@ -265,7 +264,9 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 			if (pattern == null || pattern.equals("*") || pattern.equals("")) {
 				return true;
 			}
-
+			if (!patternMatcher.getPattern().startsWith("*")) {
+				this.patternMatcher.setPattern("*" + patternMatcher.getPattern() + "*");
+			}
 			return matches(label);
 		}
 
