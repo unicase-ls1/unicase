@@ -13,10 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PartInitException;
@@ -26,12 +24,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -128,45 +121,11 @@ public final class UnicaseActionHelper {
 	 * 
 	 * @param me ModelElement to open
 	 * @param sourceView the view that requested the open model element
+	 * @deprecated
 	 */
+	@Deprecated
 	public static void openModelElement(final ModelElement me, final String sourceView) {
-		if (me == null) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
-				"The model element you are trying to open was deleted!");
-			return;
-		}
-
-		if (me instanceof Comment) {
-			ModelElement modelElement = ((Comment) me).getFirstParent();
-			ActionHelper.openDiscussion(modelElement, false);
-			return;
-		}
-
-		boolean openWithMeDiagram = false;
-		if (me instanceof MEDiagram) {
-			openWithMeDiagram = true;
-		}
-		final boolean isDiagram = openWithMeDiagram;
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace();
-				String readView;
-				if (isDiagram) {
-					readView = "org.unicase.ui.MEDiagramEditor";
-				} else {
-					readView = "org.unicase.ui.meeditor.MEEditor";
-				}
-				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
-			}
-		}.run();
-
-		if (openWithMeDiagram) {
-			openMEDiagram((MEDiagram) me, false);
-		} else {
-			ActionHelper.openMEwithMEEditor(me);
-		}
+		ActionHelper.openModelElement(me, sourceView);
 
 	}
 
@@ -177,10 +136,6 @@ public final class UnicaseActionHelper {
 	 * @param withMEEditor If the diagram is open in the meeditor
 	 */
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
-		if (withMEEditor) {
-			ActionHelper.openMEwithMEEditor(diagram);
-			return;
-		}
 
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
