@@ -68,7 +68,7 @@ public class XmlRpcAdminConnectionManager extends AbstractConnectionManager<XmlR
 	 */
 	public void changeRole(SessionId sessionId, ProjectId projectId, ACOrgUnitId orgUnit, EClass role)
 		throws EmfStoreException {
-		getConnectionProxy(sessionId).call("changeRole", sessionId, orgUnit, role);
+		getConnectionProxy(sessionId).call("changeRole", sessionId, projectId, orgUnit, role);
 	}
 
 	// TODO
