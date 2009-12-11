@@ -346,7 +346,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 				e.printStackTrace();
 			}
 			if (selectedME.equals(editorInput)) {
-				getSite().getPage().activate(editorRef.getPart(true));
+				getSite().getPage().bringToTop(editorRef.getPart(true));
 				return;
 			}
 		}
