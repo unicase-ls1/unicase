@@ -4,11 +4,7 @@
    <extension
         point="org.eclipse.ui.commands">
      
-     <command
-           categoryId="org.unicase.ui.common.modifyModelelement"
-           id="org.unicase.ui.common.openDiagramWithMEEditor"
-           name="Quick open modelelement">
-     </command>
+    
    
   </extension>
   <extension
