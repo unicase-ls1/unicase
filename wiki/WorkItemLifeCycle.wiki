@@ -1,4 +1,4 @@
 =Work Item Life Cycle=
 This page describes the lifecycle of a work item in UNICASE.
-# Creating new work items
+  # Creating new work items
 Please see [ReportingBugs Reporting Bugs]
