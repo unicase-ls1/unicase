@@ -9,12 +9,11 @@ package org.unicase.ui.test.meeditor.mecontrol;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGroup;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withText;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -54,7 +53,7 @@ private User user;
 	public void testAssigneeChange() {
 		
 		openModelElement(actionItem);
-		getBot().activeEditor().bot().buttonWithLabel("Assignee",1).click(); 
+		getBot().activeEditor().bot().buttonWithLabel("Assignee",0).click(); 
 		getBot().table().select(0);
 		getBot().button("OK").click();
 		getBot().sleep(2000);
@@ -82,18 +81,17 @@ private User user;
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName(name);
 				actionItem.setAssignee(user);
-				Matcher match = allOf(widgetOfType(Hyperlink.class));
-				// withText("<a>Batman</a>"), inGroup(allOf(withText("User")))
+				
+				Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Batman"));
 				return match;
 			}
 		};
 		Matcher matcher = runAsnc(unicaseCommand);	
-		//System.out.println(getBot().activeEditor().bot().linkInGroup("<a>Batman</a>", "Assignee").getText());
+	
 			
 		List controls = getBot().getFinder().findControls(matcher);
-				assertEquals(name, getBot().activeEditor().bot().widget(matcher).getData().toString());
-				String text = ((Hyperlink)controls.get(2)).getText();
-				controls.get(1);
+		String text = ((Hyperlink)controls.get(0)).getText();
+		assertEquals(name, text);
 		
 	}
 	
