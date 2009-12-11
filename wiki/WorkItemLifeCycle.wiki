@@ -1,1 +1,2 @@
 =Work Item Life Cycle=
+This page describes the lifecycle of a work item in UNICASE.
