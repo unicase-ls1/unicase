@@ -20,10 +20,9 @@ public abstract class AbstractMEEditorPage {
 	 * Default init.
 	 * 
 	 * @param editor the {@link MEEditor}
-	 * @param id the {@link FormPage#id}
-	 * @param title the title
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
+	 * @return FormPage
 	 */
 	public abstract FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement);
 
