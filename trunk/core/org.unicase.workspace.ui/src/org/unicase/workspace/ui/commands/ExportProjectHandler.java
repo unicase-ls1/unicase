@@ -63,14 +63,7 @@ public class ExportProjectHandler extends AbstractHandler {
 			return null;
 		}
 
-		final String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
 
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
@@ -82,9 +75,9 @@ public class ExportProjectHandler extends AbstractHandler {
 					progressDialog.getProgressMonitor().beginTask(
 							"Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					projectSpace.exportProject(absoluteFileName);
+					projectSpace.exportProject(file.getAbsolutePath());
 					MessageDialog.openInformation(null, "Export",
-							"Exported project to file " + fileName);
+							"Exported project to file " + file.getName());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 					// BEGIN SUPRESS CATCH EXCEPTION

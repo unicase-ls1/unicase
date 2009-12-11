@@ -44,14 +44,8 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
@@ -65,7 +59,7 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 					progressDialog.getProgressMonitor().worked(10);
 					Workspace currentWorkspace = WorkspaceManager.getInstance()
 							.getCurrentWorkspace();
-					currentWorkspace.importProjectSpace(absoluteFileName);
+					currentWorkspace.importProjectSpace(file.getAbsolutePath());
 
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
@@ -77,7 +71,7 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 		}.run();
 
 		MessageDialog.openInformation(null, "Import",
-				"Imported project space from file: " + absoluteFileName);
+				"Imported project space from file: " + file.getAbsolutePath());
 		return null;
 	}
 

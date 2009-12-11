@@ -120,14 +120,9 @@ public class ExportProjectHistoryAction extends Action {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		return stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
+		return file.getAbsolutePath();
 	}
 
 	/**
