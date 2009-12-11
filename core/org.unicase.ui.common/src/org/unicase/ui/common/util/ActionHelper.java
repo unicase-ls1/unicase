@@ -6,16 +6,15 @@
 
 package org.unicase.ui.common.util;
 
-import java.util.Date;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
@@ -30,10 +29,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -96,32 +95,7 @@ public final class ActionHelper {
 		return me;
 	}
 
-	/**
-	 * MUST BE WRAPPED IN A RECORDING COMMAND! This method creates a new model element using:
-	 * 
-	 * @param factory the factory
-	 * @param clazz the element class
-	 * @return the new element
-	 */
-	@Deprecated
-	public static EObject createModelElement(EFactory factory, EClass clazz) {
-		EObject obj = factory.create(clazz);
-		ModelElement me = (ModelElement) obj;
-		final StringBuffer creator = new StringBuffer();
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				Usersession usersession = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-				.getUsersession();
-				if (usersession != null) {
-					creator.append(usersession.getACUser().getName());
-				}
-			}
-		}.run();
-		me.setCreator(creator.toString());
-		me.setCreationDate(new Date());
-		return me;
-	}
+
 
 	/**
 	 * This opens the model element.
@@ -135,8 +109,45 @@ public final class ActionHelper {
 			"The model element you are trying to open was deleted!");
 			return;
 		}
-		// TODO: EXTENSION POINT
-		openMEwithMEEditor(me);
+		IConfigurationElement[] modelelementopener = Platform.getExtensionRegistry().getConfigurationElementsFor(
+		"org.unicase.ui.common.modelelementopener");
+		ModelElementOpener bestCandidate=null;
+		int bestValue=0;
+		String name = "";
+		for(IConfigurationElement element:modelelementopener ){
+			try {
+				ModelElementOpener modelelementOpener = (ModelElementOpener) element.createExecutableExtension("class");
+				int value=modelelementOpener.canOpen(me);
+				if(value>bestValue){
+					bestCandidate=modelelementOpener;
+					bestValue=value;
+					name=element.getAttribute("name");
+				}
+			} catch (CoreException e) {
+				WorkspaceUtil.logException(e.getMessage(), e);	
+			}
+		}
+		if(bestCandidate==null){
+			logEvent(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+			openMEwithMEEditor(me);
+			return;
+		}
+		logEvent(me, sourceView, name);
+		bestCandidate.openModelElement(me);
+		
+	}
+
+	private static void logEvent(final ModelElement me, final String sourceView, final String readView) {
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				
+				WorkspaceUtil.logReadEvent(projectSpace, me.getModelElementId(), sourceView, readView);
+			}
+		}.run();
+
+		
 	}
 
 	/**
@@ -177,10 +188,9 @@ public final class ActionHelper {
 	}
 
 	/**
-	 *  TODO: do private again!
 	 * @param me model element
 	 */
-	public static void openMEwithMEEditor(ModelElement me) {
+	private static void openMEwithMEEditor(ModelElement me) {
 		// this method opens a model element indirectly using IEvaluationContext
 		// variable
 		// the variable is here set to ME which must be opened,
@@ -224,18 +234,7 @@ public final class ActionHelper {
 			openModelElement(me, sourceView);
 		}
 
-		// TODO: at some point add validation markings in diagrams
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
-				String readView = "org.unicase.ui.meeditor.MEEditor";
-				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
-			}
-		}.run();
-
+		logEvent(me, sourceView,"org.unicase.ui.meeditor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature);
 	}
 
@@ -415,6 +414,12 @@ public final class ActionHelper {
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
+	}
+
+	public static void openMEwithMEEditor(ModelElement me, String sourceView) {
+		logEvent(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+		openMEwithMEEditor(me);
+		
 	}
 
 }
