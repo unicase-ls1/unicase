@@ -105,16 +105,9 @@ public class ImportProjectHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
 
-		stringBuilder.append(fileName);
-		String absoluteFileName = stringBuilder.toString();
-		return absoluteFileName;
+		return file.getAbsolutePath();
 	}
 
 	/**

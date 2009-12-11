@@ -43,14 +43,8 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
@@ -63,7 +57,7 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 							"Export workspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					WorkspaceManager.getInstance().getCurrentWorkspace()
-							.exportWorkSpace(absoluteFileName);
+							.exportWorkSpace(file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -73,7 +67,7 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 			}
 		}.run();
 		MessageDialog.openInformation(null, "Export",
-				"Exported workspace to file " + fileName);
+				"Exported workspace to file " + file.getName());
 		return null;
 	}
 

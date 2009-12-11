@@ -63,14 +63,8 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
@@ -82,9 +76,12 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 					progressDialog.getProgressMonitor().beginTask(
 							"Export projectspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					projectSpace.exportProject(absoluteFileName);
+					// OW: why is the project exported as well? who's idea was
+					// that?
+					// projectSpace.exportProject(file.getAbsolutePath());
 					WorkspaceManager.getInstance().getCurrentWorkspace()
-							.exportProjectSpace(projectSpace, absoluteFileName);
+							.exportProjectSpace(projectSpace,
+									file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -94,7 +91,7 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 			}
 		}.run();
 		MessageDialog.openInformation(null, "Export",
-				"Exported projectspace to file " + fileName);
+				"Exported projectspace to file " + file.getName());
 		return null;
 	}
 }

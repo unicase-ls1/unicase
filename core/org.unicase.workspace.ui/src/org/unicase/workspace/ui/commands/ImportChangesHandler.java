@@ -41,14 +41,8 @@ public class ImportChangesHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
@@ -61,7 +55,7 @@ public class ImportChangesHandler extends AbstractHandler {
 					progressDialog.getProgressMonitor().beginTask(
 							"Import changes...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					projectSpace.importLocalChanges(absoluteFileName);
+					projectSpace.importLocalChanges(file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -72,7 +66,7 @@ public class ImportChangesHandler extends AbstractHandler {
 			}
 		}.run();
 		MessageDialog.openInformation(null, "Import",
-				"Imported changes from file " + absoluteFileName);
+				"Imported changes from file " + file.getAbsolutePath());
 		return null;
 	}
 
