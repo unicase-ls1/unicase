@@ -13,4 +13,5 @@ Confirmed Work Items are triaged by the project leads, including the following s
   * For Issues and Action Items the activity is set
   * For Bug Reports the severity is checked
   * An initial suggestion for an assignee can be made _(optional)_
+Once the Work Item is triaged it is moved to the Work Package post
   
