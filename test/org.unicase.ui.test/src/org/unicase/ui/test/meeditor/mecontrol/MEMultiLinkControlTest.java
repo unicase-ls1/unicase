@@ -45,23 +45,23 @@ public class MEMultiLinkControlTest extends MeControlTest {
 
 	
 	@Test
-	public void testActivityChange() {
+	public void testParticipantsChange() {
 		
 		openModelElement(actionItem);
-		getBot().activeEditor().bot().buttonWithId("Participants").click();
+		
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(1,1);
+				//TO-DO	
 			}
 		}.run();
-		getBot().sleep(2000);
+	
 	}
 
 
 	@Test
-	public void testActivityUpdate() {
+	public void testParticipantsUpdate() {
 		
 		openModelElement(actionItem);
 		
@@ -69,13 +69,12 @@ public class MEMultiLinkControlTest extends MeControlTest {
 			
 			@Override
 			protected void doRun() {
-				
-				assertEquals(1,1);
+			//TO-DO	
 				
 			}
 		};
 		runAsnc(unicaseCommand);
-		getBot().sleep(3000);
+	
 		
 		
 	}
