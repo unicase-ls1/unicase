@@ -16,6 +16,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.meeditor.MEFormPage;
 import org.unicase.ui.unicasecommon.meeditor.METhreadPage;
 
 /**
@@ -64,8 +65,12 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 					meEditor.setActivePage("org.unicase.ui.unicasecommon.meeditor.methreadpage");
 					boolean shouldToggle = (toggle != null && toggle.equals("toggle"))
 						|| ((UnicaseModelElement) me).getComments().isEmpty();
-					if (meEditor.getActivePageInstance() instanceof METhreadPage && shouldToggle) {
-						((METhreadPage) meEditor.getActivePageInstance()).addComment();
+					if (meEditor.getActivePageInstance() instanceof MEFormPage) {
+						MEFormPage page = (MEFormPage) meEditor.getActivePageInstance();
+						if (page.getId().equals("org.unicase.ui.unicasecommon.meeditor.methreadpage")
+							&& page.getParentMEPage() instanceof METhreadPage && shouldToggle) {
+							((METhreadPage) page.getParentMEPage()).addComment();
+						}
 					}
 				}
 			} catch (PartInitException e) {

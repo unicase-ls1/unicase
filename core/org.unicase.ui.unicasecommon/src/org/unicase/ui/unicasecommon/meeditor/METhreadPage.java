@@ -34,6 +34,7 @@ import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.meeditor.MEFormPage;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
@@ -171,7 +172,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		} catch (CannotMatchUserInProjectException e1) {
 			// Do nothing
 		}
-		FormPage page = new FormPage(editor, ID, NAME) {
+		MEFormPage page = new MEFormPage(editor, ID, NAME) {
 			/**
 			 * {@inheritDoc}
 			 */
@@ -192,6 +193,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 				form.pack();
 			}
 		};
+		page.setParentMEPage(this);
 		return page;
 	}
 }

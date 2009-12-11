@@ -35,7 +35,6 @@ public class ControlFactory {
 	 * Default constructor.
 	 * 
 	 * @param editingDomain the editing domain
-	 * @param modelElement the model element
 	 * @param toolkit the gui toolkit
 	 */
 	public ControlFactory(EditingDomain editingDomain, FormToolkit toolkit) {
@@ -78,6 +77,7 @@ public class ControlFactory {
 	 * Creates a {@link AbstractMEControl} according to the {@link IItemPropertyDescriptor}.
 	 * 
 	 * @param itemPropertyDescriptor the descriptor
+	 * @param modelElement model element
 	 * @return the {@link AbstractMEControl}
 	 */
 	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
