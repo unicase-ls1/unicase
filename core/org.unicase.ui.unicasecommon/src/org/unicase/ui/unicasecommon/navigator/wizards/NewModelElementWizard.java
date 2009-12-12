@@ -22,7 +22,7 @@ import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -110,7 +110,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				});
 			}
 			// 3.open the newly created ME
-			UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 		return true;
