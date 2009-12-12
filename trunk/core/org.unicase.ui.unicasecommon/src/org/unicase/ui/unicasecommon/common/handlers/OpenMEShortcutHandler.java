@@ -24,7 +24,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -105,7 +105,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 		ModelElement mod = (ModelElement) dialog.getFirstResult();
 		if (mod != null) {
-			UnicaseActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
+			ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
 		}
 		return result;
 	}
