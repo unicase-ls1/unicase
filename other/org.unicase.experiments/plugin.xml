@@ -21,15 +21,6 @@
                style="push">
          </command>
       </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
-         <command
-               commandId="org.unicase.ui.common.handlers.collapseAll"
-               icon="icons/collapseall.png"
-               style="push"
-               tooltip="Collapse All">
-         </command>
-      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -44,11 +35,6 @@
             categoryId="org.unicase.experiments.commands.sampleCategory"
             id="org.unicase.experiments.commands.duplicateCommand"
             name="Duplicate Model Element">
-      </command>
-      <command
-            defaultHandler="org.unicase.experiments.handlers.CollapseAllHandler"
-            id="org.unicase.ui.common.handlers.collapseAll"
-            name="Collapse All">
       </command>
       <category
             id="org.unicase.experiments.commands.sampleCategory"
