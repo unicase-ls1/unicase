@@ -504,5 +504,12 @@
            class="org.unicase.ui.diagram.workItemDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
+               <extension
+                     point="org.unicase.ui.common.modelelementopener">
+                  <ModelElementOpener
+                        class="org.unicase.ui.workItemDiagram.WorkItemDiagramOpener"
+                        name="org.unicase.ui.MEDiagramEditor">
+                  </ModelElementOpener>
+               </extension>
 
 </plugin>
