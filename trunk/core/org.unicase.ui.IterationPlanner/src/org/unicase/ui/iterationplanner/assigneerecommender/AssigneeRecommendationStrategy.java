@@ -6,10 +6,11 @@
 
 package org.unicase.ui.iterationplanner.assigneerecommender;
 
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
 
 import java.util.ArrayList;
@@ -49,5 +50,11 @@ public class AssigneeRecommendationStrategy implements RecommendationStrategy {
 		} else {
 			return "MLAssigneeRecommender";
 		}
+	}
+
+	public Map<ModelElement, Double> getMatchingMap(ModelElement base,
+			Collection<ModelElement> elements) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
