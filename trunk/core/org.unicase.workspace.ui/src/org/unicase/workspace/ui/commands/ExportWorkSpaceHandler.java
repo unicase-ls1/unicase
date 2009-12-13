@@ -43,7 +43,7 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 			return null;
 		}
 
-		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+		final File file = new File(fn);
 
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
