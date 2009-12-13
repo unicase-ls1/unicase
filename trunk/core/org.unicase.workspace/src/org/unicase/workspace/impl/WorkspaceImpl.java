@@ -573,7 +573,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
 		copy.setUsersession(null);
-		ResourceHelper.putElementIntoResource(absoluteFileName, copy);
+		ResourceHelper.putElementIntoNewResource(absoluteFileName, copy);
 	}
 
 	/**
@@ -583,7 +583,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
 		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
-		ResourceHelper.putElementIntoResource(absoluteFileName, copy);
+		ResourceHelper.putElementIntoNewResource(absoluteFileName, copy);
 	}
 
 	/**
@@ -594,7 +594,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
 		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
-		ResourceHelper.putElementIntoResource(absoluteFileName, project);
+		ResourceHelper.putElementIntoNewResource(absoluteFileName, project);
 	}
 
 	/**

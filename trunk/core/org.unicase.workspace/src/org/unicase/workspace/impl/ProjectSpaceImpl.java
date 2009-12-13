@@ -1940,7 +1940,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
 
-		ResourceHelper.putElementIntoResource(fileName, getLocalChangePackage(false));
+		ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
 	}
 
 	/**
