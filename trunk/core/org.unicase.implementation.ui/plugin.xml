@@ -242,6 +242,9 @@
                </or>
             </visibleWhen>
          </command>
+         <separator
+               name="org.unicase.implementation.ui.endSeparator">
+         </separator>
       </menuContribution>
    </extension>
    <extension
