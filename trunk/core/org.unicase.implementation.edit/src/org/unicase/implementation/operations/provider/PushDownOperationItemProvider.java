@@ -5,6 +5,7 @@
  */
 package org.unicase.implementation.operations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PushDownOperation;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.PushDownOperation} object. <!--
@@ -103,15 +105,41 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PushDownOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PushDownOperation_type")
-			: getString("_UI_PushDownOperation_type") + " " + label;
+		if (object instanceof PushDownOperation) {
+			PushDownOperation operation = (PushDownOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Pushed down from super class ");
+			builder.append(getModelElementName(operation.getSuperClass()));
+			
+			boolean hasAttributes = operation.getAttributes().size() > 0;
+			if (hasAttributes) {
+				builder.append(" attributes ");
+				builder.append(getModelElementNames(operation.getAttributes()));
+			}
+			
+			boolean hasAssociations = operation.getIncomingAssociations().size()
+					+ operation.getOutgoingAssociations().size() > 0;
+			if (hasAssociations) {
+				if (hasAttributes) {
+					builder.append(" and");
+				}
+				builder.append(" associations ");
+				List<ModelElementId> ids = new ArrayList<ModelElementId>();
+				ids.addAll(operation.getOutgoingAssociations());
+				ids.addAll(operation.getOutgoingAssociations());
+				builder.append(getModelElementNames(ids));
+			}
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**

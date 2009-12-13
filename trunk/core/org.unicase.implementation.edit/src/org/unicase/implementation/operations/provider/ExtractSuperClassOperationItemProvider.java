@@ -217,12 +217,12 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 		if (object instanceof ExtractSuperClassOperation) {
 			ExtractSuperClassOperation operation = (ExtractSuperClassOperation) object;
 			StringBuilder builder = new StringBuilder();
-			builder.append("Extracted the superclass \"");
+			builder.append("Extracted superclass \"");
 			builder.append(operation.getSuperClassName());
 			builder.append("\" from ");
 			int subClassesSize = operation.getSubClasses().size();
 			if (subClassesSize < 4) {
-				builder.append("the subclasses ");
+				builder.append("subclasses ");
 				builder.append(getModelElementNames(operation.getSubClasses()));
 			} else {
 				builder.append("from ");

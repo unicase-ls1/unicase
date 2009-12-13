@@ -5,6 +5,7 @@
  */
 package org.unicase.implementation.operations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PullUpOperation;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.PullUpOperation} object. <!--
@@ -103,15 +105,42 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PullUpOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PullUpOperation_type")
-			: getString("_UI_PullUpOperation_type") + " " + label;
+		if (object instanceof PullUpOperation) {
+			PullUpOperation operation = (PullUpOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Pulled up to superclass ");
+			builder.append(getModelElementName(operation.getSuperClass()));
+
+			boolean hasAttributes = operation.getAttributes().size() > 0;
+			if (hasAttributes) {
+				builder.append(" attributes ");
+				builder.append(getModelElementNames(operation.getAttributes()));
+			}
+
+			boolean hasAssociations = operation.getIncomingAssociations()
+					.size()
+					+ operation.getOutgoingAssociations().size() > 0;
+			if (hasAssociations) {
+				if (hasAttributes) {
+					builder.append(" and");
+				}
+				builder.append(" associations ");
+				List<ModelElementId> ids = new ArrayList<ModelElementId>();
+				ids.addAll(operation.getOutgoingAssociations());
+				ids.addAll(operation.getOutgoingAssociations());
+				builder.append(getModelElementNames(ids));
+			}
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**
