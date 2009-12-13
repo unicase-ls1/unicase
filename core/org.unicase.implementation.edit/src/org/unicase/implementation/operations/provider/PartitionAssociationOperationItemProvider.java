@@ -98,15 +98,22 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PartitionAssociationOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PartitionAssociationOperation_type")
-			: getString("_UI_PartitionAssociationOperation_type") + " " + label;
+		if (object instanceof PartitionAssociationOperation) {
+			PartitionAssociationOperation operation = (PartitionAssociationOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Partitioned association ");
+			builder.append(getModelElementName(operation.getAssociation()));
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**

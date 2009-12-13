@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
-import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
@@ -108,10 +107,10 @@ public class InlineSuperClassOperationItemProvider extends SemanticCompositeOper
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof ExtractSuperClassOperation) {
+		if (object instanceof InlineSuperClassOperation) {
 			InlineSuperClassOperation operation = (InlineSuperClassOperation) object;
 			StringBuilder builder = new StringBuilder();
-			builder.append("Inlined the superclass \"");
+			builder.append("Inlined superclass ");
 			builder.append(getModelElementName(operation.getSuperClass()));
 			return builder.toString();
 		} else {

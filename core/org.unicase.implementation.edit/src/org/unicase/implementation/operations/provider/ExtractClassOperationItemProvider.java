@@ -136,15 +136,27 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExtractClassOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ExtractClassOperation_type")
-			: getString("_UI_ExtractClassOperation_type") + " " + label;
+		if (object instanceof ExtractClassOperation) {
+			ExtractClassOperation operation = (ExtractClassOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Extracted class \"");
+			builder.append(operation.getClassName());
+			builder.append("\" from class ");
+			builder.append(getModelElementName(operation.getContextClass()));
+			builder.append(" over composition \"");
+			builder.append(operation.getCompositeName());
+			builder.append("\"");
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**

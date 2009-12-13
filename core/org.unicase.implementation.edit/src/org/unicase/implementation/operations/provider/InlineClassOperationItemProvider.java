@@ -101,15 +101,24 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InlineClassOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_InlineClassOperation_type")
-			: getString("_UI_InlineClassOperation_type") + " " + label;
+		if (object instanceof InlineClassOperation) {
+			InlineClassOperation operation = (InlineClassOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Inlined class ");
+			builder.append(getModelElementName(operation.getInlineClass()));
+			builder.append(" over composition ");
+			builder.append(getModelElementName(operation.getAssociation()));
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**
