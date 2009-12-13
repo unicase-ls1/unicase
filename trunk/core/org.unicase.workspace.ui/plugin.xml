@@ -517,33 +517,115 @@
                     </and>
                  </visibleWhen>
               </command>
+              <command
+                    commandId="org.unicase.workspace.ui.exportWorkSpace"
+                    icon="icons/export.gif"
+                    label="Export Workspace"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <or>
+                          <count
+                                value="0">
+                          </count>
+                          <count
+                                value="1">
+                          </count>
+                       </or>
+                       <iterate>
+                          <not>
+                             <instanceof
+                                   value="org.unicase.metamodel.ModelElement">
+                             </instanceof>
+                          </not>
+                       </iterate>
+                    </and>
+                 </visibleWhen>
+              </command>
            </menu>
-           <command
-                 commandId="org.unicase.workspace.ui.importChanges"
+           <menu
                  icon="icons/import.gif"
-                 label="Import Changes"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <and>
-                    <iterate
-                          ifEmpty="false"
-                          operator="and">
-                       <instanceof
-                             value="org.unicase.workspace.ProjectSpace">
-                       </instanceof>
-                       <test
-                             forcePluginActivation="true"
-                             property="org.unicase.workspace.ui.commands.projectHasLocalChanges"
-                             value="false">
-                       </test>
-                    </iterate>
-                    <count
-                          value="1">
-                    </count>
-                 </and>
-              </visibleWhen>
-           </command>
+                 label="Import">
+              <command
+                    commandId="org.unicase.workspace.ui.importChanges"
+                    icon="icons/import.gif"
+                    label="Import Changes"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <iterate
+                             ifEmpty="false"
+                             operator="and">
+                          <instanceof
+                                value="org.unicase.workspace.ProjectSpace">
+                          </instanceof>
+                          <test
+                                forcePluginActivation="true"
+                                property="org.unicase.workspace.ui.commands.projectHasLocalChanges"
+                                value="false">
+                          </test>
+                       </iterate>
+                       <count
+                             value="1">
+                       </count>
+                    </and>
+                 </visibleWhen>
+              </command>
+              <command
+                    commandId="org.unicase.workspace.ui.importProject"
+                    icon="icons/import.gif"
+                    label="Import Project"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <or>
+                          <count
+                                value="0">
+                          </count>
+                          <count
+                                value="1">
+                          </count>
+                       </or>
+                       <iterate>
+                          <not>
+                             <instanceof
+                                   value="org.unicase.metamodel.ModelElement">
+                             </instanceof>
+                          </not>
+                       </iterate>
+                    </and>
+                 </visibleWhen>
+              </command>
+              <command
+                    commandId="org.unicase.workspace.ui.importProjectSpace"
+                    icon="icons/import.gif"
+                    label="Import Projectspace"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <or>
+                          <count
+                                value="0">
+                          </count>
+                          <count
+                                value="1">
+                          </count>
+                       </or>
+                       <iterate>
+                          <not>
+                             <instanceof
+                                   value="org.unicase.metamodel.ModelElement">
+                             </instanceof>
+                          </not>
+                       </iterate>
+                    </and>
+                 </visibleWhen>
+              </command>
+           </menu>
            <command
                  commandId="org.unicase.workspace.ui.importUser"
                  icon="icons/importuser.png"
@@ -596,6 +678,32 @@
                  </and>
               </visibleWhen>
            </command>
+           <command
+                 commandId="org.unicase.workspace.ui.NewLocalProject"
+                 icon="icons/serverAdd.png"
+                 label="New Project..."
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <and>
+                    <or>
+                       <count
+                             value="0">
+                       </count>
+                       <count
+                             value="1">
+                       </count>
+                    </or>
+                    <iterate>
+                       <not>
+                          <instanceof
+                                value="org.unicase.metamodel.ModelElement">
+                          </instanceof>
+                       </not>
+                    </iterate>
+                 </and>
+              </visibleWhen>
+           </command>
         </menu>
         <menu
               label="label">
@@ -604,54 +712,6 @@
               name="org.unicase.workspace.ui.scmCommands"
               visible="true">
         </separator>
-        <command
-              commandId="org.unicase.workspace.ui.NewLocalProject"
-              icon="icons/serverAdd.png"
-              label="New Project..."
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <count
-                    value="0">
-              </count>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.ui.importProject"
-              icon="icons/import.gif"
-              label="Import Project"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <count
-                    value="0">
-              </count>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.ui.importProjectSpace"
-              icon="icons/import.gif"
-              label="Import Projectspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <count
-                    value="0">
-              </count>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.ui.exportWorkSpace"
-              icon="icons/export.gif"
-              label="Export Workspace"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <count
-                    value="0">
-              </count>
-           </visibleWhen>
-        </command>
         <command
               commandId="org.unicase.workspace.ui.projectProperties"
               label="Properties"
