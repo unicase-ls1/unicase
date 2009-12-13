@@ -243,7 +243,8 @@
             </visibleWhen>
          </command>
          <separator
-               name="org.unicase.implementation.ui.endSeparator">
+               name="org.unicase.implementation.ui.endSeparator"
+               visible="true">
          </separator>
       </menuContribution>
    </extension>
