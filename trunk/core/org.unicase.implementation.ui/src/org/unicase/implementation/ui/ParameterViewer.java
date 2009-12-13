@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -30,11 +31,13 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElement;
@@ -54,6 +57,21 @@ public class ParameterViewer extends TableViewer {
 	 * @author herrmi
 	 */
 	private final class ValueEditingSupport extends EditingSupport {
+		private final class ExtendedComboBoxCellEditorExtension extends ExtendedComboBoxCellEditor {
+			private ExtendedComboBoxCellEditorExtension(Composite composite, List<?> list,
+				ILabelProvider labelProvider, boolean sorted) {
+				super(composite, list, labelProvider, sorted);
+			}
+
+			public void pressEnter() {
+				Event e = new Event();
+				e.widget=this.getControl();
+				KeyEvent keyEvent = new KeyEvent(e);
+				keyEvent.character='\t';
+				keyReleaseOccured(keyEvent);
+			}
+		}
+
 		/**
 		 * Constructor.
 		 * 
@@ -96,14 +114,17 @@ public class ParameterViewer extends TableViewer {
 
 				};
 			}
-			ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(), OperationHelper.getPossibleValues(operation, reference,
+			final ExtendedComboBoxCellEditorExtension extendedComboBoxCellEditor = new ExtendedComboBoxCellEditorExtension(getTable(), OperationHelper.getPossibleValues(operation, reference,
 				project), valueLabelProvider, true);
-			CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
+			final CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
 			combo.addSelectionListener(new SelectionAdapter() {
 
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					dialog.validate();
+					if (!combo.isDisposed()) {
+						extendedComboBoxCellEditor.pressEnter();
+					}
 				}
 			});
 			return extendedComboBoxCellEditor;
