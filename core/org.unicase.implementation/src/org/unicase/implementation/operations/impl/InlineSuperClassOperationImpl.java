@@ -219,7 +219,8 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 		PushDownOperationImpl.pushDownIncomingAssociations(incomingAssociations, superClass);
 
 		// remove super class
-		for (Class subClass : superClass.getSubClasses()) {
+		List<Class> subClasses = new ArrayList<Class>(superClass.getSubClasses());
+		for (Class subClass : subClasses) {
 			subClass.getSuperClasses().remove(superClass);
 			subClass.getSuperClasses().addAll(superClass.getSuperClasses());
 		}
