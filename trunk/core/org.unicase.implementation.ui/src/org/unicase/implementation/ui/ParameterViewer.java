@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.implementation.operations.provider.OperationsEditPlugin;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
@@ -281,7 +282,9 @@ public class ParameterViewer extends TableViewer {
 			@Override
 			public String getText(Object element) {
 				EStructuralFeature feature = (EStructuralFeature) element;
-				return feature.getName();
+				String key = "_UI_" + feature.getEContainingClass().getName() + "_" + feature.getName()
+					+ "_feature";
+				return OperationsEditPlugin.getPlugin().getString(key);
 			}
 		});
 	}
