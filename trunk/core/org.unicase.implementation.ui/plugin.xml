@@ -145,9 +145,10 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
          <command
                commandId="org.unicase.implementation.ui.command.ExtractSuperClass"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/ExtractSuperClassOperation.png"
                label="Extract Super Class"
                style="push">
             <visibleWhen>
@@ -158,6 +159,7 @@
          </command>
          <command
                commandId="org.unicase.implementation.ui.command.InlineClass"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/InlineClassOperation.png"
                label="Inline Class"
                style="push">
             <visibleWhen>
@@ -183,6 +185,7 @@
          </command>
          <command
                commandId="org.unicase.implementation.ui.command.PushDown"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/PushDownOperation.png"
                label="Push Down"
                style="push">
             <visibleWhen>
@@ -198,6 +201,7 @@
          </command>
          <command
                commandId="org.unicase.implementation.ui.command.PullUp"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/PullUpOperation.png"
                label="Pull Up"
                style="push">
             <visibleWhen>
@@ -213,6 +217,7 @@
          </command>
          <command
                commandId="org.unicase.implementation.ui.command.InlineSuperClass"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/InlineSuperClassOperation.png"
                label="Inline Super Class"
                style="push">
             <visibleWhen>
@@ -223,6 +228,7 @@
          </command>
          <command
                commandId="org.unicase.implementation.ui.command.ExtractClass"
+               icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/ExtractClassOperation.png"
                label="Extract Class"
                style="push">
             <visibleWhen>
