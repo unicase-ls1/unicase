@@ -5,12 +5,15 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.semantic.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,8 +21,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.provider.CompositeOperationItemProvider;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This is the item provider adapter for a
@@ -100,4 +106,43 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 		return EsmodelEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * @generated NOT
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.CompositeOperationItemProvider#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if (object instanceof SemanticCompositeOperation) {
+			SemanticCompositeOperation operation = (SemanticCompositeOperation) object;
+			ArrayList<Object> result = new ArrayList<Object>();
+
+			org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory factory = org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory.eINSTANCE;
+			for (EStructuralFeature feature : operation.eClass().getEStructuralFeatures()) {
+				if (feature instanceof EReference) {
+					EReference reference = (EReference) feature;
+
+					ModelElementGroup referenceGroup = factory.createModelElementGroup();
+					String key = "_UI_" + reference.getEContainingClass().getName() + "_" + reference.getName()
+						+ "_feature";
+					referenceGroup.setName(getString(key));
+					if (reference.isMany()) {
+						List<ModelElementId> value = (List<ModelElementId>) operation.eGet(reference);
+						referenceGroup.getModelElements().addAll(value);
+					} else {
+						ModelElementId value = (ModelElementId) operation.eGet(reference);
+						referenceGroup.getModelElements().add(value);
+					}
+					result.add(referenceGroup);
+				}
+			}
+
+			OperationGroup detailsGroup = factory.createOperationGroup();
+			detailsGroup.setName("Sub Operations");
+			detailsGroup.getOperations().addAll(operation.getSubOperations());
+			result.add(detailsGroup);
+
+			return result;
+		}
+		return super.getChildren(object);
+	}
 }
