@@ -219,28 +219,30 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	public static EList<Attribute> getPossibleAttributes(List<Attribute> attributes, List<Class> subClasses) {
-		Class subClass = subClasses.get(0);
-		EList<Attribute> subClassAttributes = subClass.getAttributes();
-		if (subClasses.size() == 1) {
-			return subClassAttributes;
-		}
 		EList<Attribute> possibleAttributes = new BasicEList<Attribute>();
-		for (Attribute subClassAttribute : subClassAttributes) {
-			Attribute attribute = subClassAttribute;
-			for (Class c : subClasses) {
-				if (c == subClass) {
-					continue;
-				}
-				Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(c, subClassAttribute);
-				if (sameAttribute == null) {
-					attribute = null;
-					break;
-				} else if (attributes.contains(sameAttribute)) {
-					attribute = sameAttribute;
-				}
+		if (!subClasses.isEmpty()) {
+			Class subClass = subClasses.get(0);
+			EList<Attribute> subClassAttributes = subClass.getAttributes();
+			if (subClasses.size() == 1) {
+				return subClassAttributes;
 			}
-			if (attribute != null) {
-				possibleAttributes.add(attribute);
+			for (Attribute subClassAttribute : subClassAttributes) {
+				Attribute attribute = subClassAttribute;
+				for (Class c : subClasses) {
+					if (c == subClass) {
+						continue;
+					}
+					Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(c, subClassAttribute);
+					if (sameAttribute == null) {
+						attribute = null;
+						break;
+					} else if (attributes.contains(sameAttribute)) {
+						attribute = sameAttribute;
+					}
+				}
+				if (attribute != null) {
+					possibleAttributes.add(attribute);
+				}
 			}
 		}
 		return possibleAttributes;
@@ -270,28 +272,31 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	public static EList<Association> getPossibleOutgoingAssociations(List<Association> associations,
 		List<Class> subClasses) {
-		Class subClass = subClasses.get(0);
-		EList<Association> subClassAssociations = subClass.getOutgoingAssociations();
-		if (subClasses.size() == 1) {
-			return subClassAssociations;
-		}
 		EList<Association> possibleAssociations = new BasicEList<Association>();
-		for (Association subClassAssociation : subClassAssociations) {
-			Association association = subClassAssociation;
-			for (Class c : subClasses) {
-				if (c == subClass) {
-					continue;
-				}
-				Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(c, subClassAssociation);
-				if (sameAssociation == null) {
-					association = null;
-					break;
-				} else if (associations.contains(sameAssociation)) {
-					association = sameAssociation;
-				}
+		if (!subClasses.isEmpty()) {
+			Class subClass = subClasses.get(0);
+			EList<Association> subClassAssociations = subClass.getOutgoingAssociations();
+			if (subClasses.size() == 1) {
+				return subClassAssociations;
 			}
-			if (association != null) {
-				possibleAssociations.add(association);
+			for (Association subClassAssociation : subClassAssociations) {
+				Association association = subClassAssociation;
+				for (Class c : subClasses) {
+					if (c == subClass) {
+						continue;
+					}
+					Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(c,
+						subClassAssociation);
+					if (sameAssociation == null) {
+						association = null;
+						break;
+					} else if (associations.contains(sameAssociation)) {
+						association = sameAssociation;
+					}
+				}
+				if (association != null) {
+					possibleAssociations.add(association);
+				}
 			}
 		}
 		return possibleAssociations;
@@ -321,28 +326,31 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	public static EList<Association> getPossibleIncomingAssociations(List<Association> associations,
 		List<Class> subClasses) {
-		Class subClass = subClasses.get(0);
-		EList<Association> subClassAssociations = subClass.getIncomingAssociations();
-		if (subClasses.size() == 1) {
-			return subClassAssociations;
-		}
 		EList<Association> possibleAssociations = new BasicEList<Association>();
-		for (Association subClassAssociation : subClassAssociations) {
-			Association association = subClassAssociation;
-			for (Class c : subClasses) {
-				if (c == subClass) {
-					continue;
-				}
-				Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(c, subClassAssociation);
-				if (sameAssociation == null) {
-					association = null;
-					break;
-				} else if (associations.contains(sameAssociation)) {
-					association = sameAssociation;
-				}
+		if (!subClasses.isEmpty()) {
+			Class subClass = subClasses.get(0);
+			EList<Association> subClassAssociations = subClass.getIncomingAssociations();
+			if (subClasses.size() == 1) {
+				return subClassAssociations;
 			}
-			if (association != null) {
-				possibleAssociations.add(association);
+			for (Association subClassAssociation : subClassAssociations) {
+				Association association = subClassAssociation;
+				for (Class c : subClasses) {
+					if (c == subClass) {
+						continue;
+					}
+					Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(c,
+						subClassAssociation);
+					if (sameAssociation == null) {
+						association = null;
+						break;
+					} else if (associations.contains(sameAssociation)) {
+						association = sameAssociation;
+					}
+				}
+				if (association != null) {
+					possibleAssociations.add(association);
+				}
 			}
 		}
 		return possibleAssociations;
