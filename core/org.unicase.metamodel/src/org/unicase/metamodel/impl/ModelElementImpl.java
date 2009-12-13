@@ -65,6 +65,12 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @see org.unicase.model.UnicaseModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
 	 */
 	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
+		//if we are notifying listeners at the moment than just add listener for later removal
+		if (isNotifying) {
+			listenersToBeRemoved.add(listener);
+			return;
+		}
+		
 		this.changeListeners.remove(listener);
 		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
 			this.eAdapters().remove(internalChangeListener);
@@ -73,7 +79,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	private void notifyListenersAboutChange(Notification notification) {
-		Set<ModelElementChangeListener> toRemove = new HashSet<ModelElementChangeListener>();
+		isNotifying = true;
 		for (ModelElementChangeListener listener : changeListeners) {
 			try {
 				listener.onChange(notification);
@@ -88,14 +94,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 					ModelUtil.logException(
 						"Notifying listener about change in a model element failed, UI may not update properly now.",
 						runtimeException);
-					toRemove.add(listener);
+					listenersToBeRemoved.add(listener);
 				}
 			}
 			// END SUPRESS CATCH EXCEPTION
 		}
-		for (ModelElementChangeListener listener : toRemove) {
+		isNotifying=false;
+		for (ModelElementChangeListener listener : listenersToBeRemoved) {
 			removeModelElementChangeListener(listener);
 		}
+		listenersToBeRemoved.clear();
 	}
 
 	/**
@@ -225,6 +233,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	private AdapterImpl internalChangeListener;
 
+	private boolean isNotifying;
+
+	private Set<ModelElementChangeListener> listenersToBeRemoved;
+
 	// begin of custom code
 	/**
 	 * Constructor.
@@ -234,8 +246,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected ModelElementImpl() {
 		super();
 		changeListeners = new ArrayList<ModelElementChangeListener>();
-		// TODO AS activate this when the models on the server are fixed.
-		// name = "new " + eClass().getName();
+		isNotifying=false;
+		listenersToBeRemoved = new HashSet<ModelElementChangeListener>();
 	}
 
 	// end of custom code
