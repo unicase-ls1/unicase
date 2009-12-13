@@ -5,7 +5,6 @@
  */
 package org.unicase.implementation.operations.provider;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,8 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
@@ -48,38 +45,42 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 		super(adapterFactory);
 	}
 
-	/**
-	 * @generated NOT {@inheritDoc}
-	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
-	 */
-	@Override
-	public Collection<?> getChildren(Object object) {
-		if (object instanceof ExtractSuperClassOperation) {
-			ExtractSuperClassOperation operation = (ExtractSuperClassOperation) object;
-			ArrayList<Object> result = new ArrayList<Object>();
-
-			org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory factory = org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory.eINSTANCE;
-			ModelElementGroup subClassesGroup = factory.createModelElementGroup();
-			subClassesGroup.setName("Subclasses");
-			subClassesGroup.getModelElements().addAll(operation.getSubClasses());
-			result.add(subClassesGroup);
-
-			ModelElementGroup extractsGroup = factory.createModelElementGroup();
-			extractsGroup.setName("Extracted Attributes and Associations");
-			extractsGroup.getModelElements().addAll(operation.getAttributes());
-			extractsGroup.getModelElements().addAll(operation.getOutgoingAssociations());
-			extractsGroup.getModelElements().addAll(operation.getIncomingAssociations());
-			result.add(extractsGroup);
-
-			OperationGroup detailsGroup = factory.createOperationGroup();
-			detailsGroup.setName("Additional Details");
-			detailsGroup.getOperations().addAll(operation.getSubOperations());
-			result.add(detailsGroup);
-
-			return result;
-		}
-		return super.getChildren(object);
-	}
+	// /**
+	// * @generated NOT {@inheritDoc}
+	// * @see
+	// org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	// */
+	// @Override
+	// public Collection<?> getChildren(Object object) {
+	// if (object instanceof ExtractSuperClassOperation) {
+	// ExtractSuperClassOperation operation = (ExtractSuperClassOperation)
+	// object;
+	// ArrayList<Object> result = new ArrayList<Object>();
+	//
+	// org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory
+	// factory =
+	// org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory.eINSTANCE;
+	// ModelElementGroup subClassesGroup = factory.createModelElementGroup();
+	// subClassesGroup.setName("Subclasses");
+	// subClassesGroup.getModelElements().addAll(operation.getSubClasses());
+	// result.add(subClassesGroup);
+	//
+	// ModelElementGroup extractsGroup = factory.createModelElementGroup();
+	// extractsGroup.setName("Extracted Attributes and Associations");
+	// extractsGroup.getModelElements().addAll(operation.getAttributes());
+	// extractsGroup.getModelElements().addAll(operation.getOutgoingAssociations());
+	// extractsGroup.getModelElements().addAll(operation.getIncomingAssociations());
+	// result.add(extractsGroup);
+	//
+	// OperationGroup detailsGroup = factory.createOperationGroup();
+	// detailsGroup.setName("Additional Details");
+	// detailsGroup.getOperations().addAll(operation.getSubOperations());
+	// result.add(detailsGroup);
+	//
+	// return result;
+	// }
+	// return super.getChildren(object);
+	// }
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
