@@ -91,13 +91,15 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 	}
 
 	/**
-	 * This returns PushDownOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns PushDownOperation.gif. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushDownOperation"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/PushDownOperation.png"));
 	}
 
 	/**

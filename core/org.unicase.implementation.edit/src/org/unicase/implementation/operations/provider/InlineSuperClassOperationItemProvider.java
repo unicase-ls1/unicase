@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
+import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineSuperClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
@@ -88,25 +89,34 @@ public class InlineSuperClassOperationItemProvider extends SemanticCompositeOper
 	}
 
 	/**
-	 * This returns InlineSuperClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns InlineSuperClassOperation.gif. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InlineSuperClassOperation"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/InlineSuperClassOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InlineSuperClassOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_InlineSuperClassOperation_type")
-			: getString("_UI_InlineSuperClassOperation_type") + " " + label;
+		if (object instanceof ExtractSuperClassOperation) {
+			InlineSuperClassOperation operation = (InlineSuperClassOperation) object;
+			StringBuilder builder = new StringBuilder();
+			builder.append("Inlined the superclass \"");
+			builder.append(getModelElementName(operation.getSuperClass()));
+			return builder.toString();
+		} else {
+			return super.getText(object);
+		}
 	}
 
 	/**
