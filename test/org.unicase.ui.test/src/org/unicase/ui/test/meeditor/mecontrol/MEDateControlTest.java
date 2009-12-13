@@ -6,10 +6,7 @@
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.inGroup;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withLabel;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
@@ -19,16 +16,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Link;
-import org.eclipse.swtbot.swt.finder.matchers.WidgetOfType;
-import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;

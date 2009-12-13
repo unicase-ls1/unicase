@@ -170,6 +170,9 @@ public class MECommentsLinkControl extends AbstractMEControl {
 		return i;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);

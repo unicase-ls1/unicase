@@ -492,6 +492,9 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		if (!(modelElement instanceof Issue)) {

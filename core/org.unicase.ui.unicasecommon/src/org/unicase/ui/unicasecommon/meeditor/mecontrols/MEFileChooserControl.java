@@ -73,6 +73,9 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private Link fileName;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		if (!(modelElement instanceof FileAttachment)) {

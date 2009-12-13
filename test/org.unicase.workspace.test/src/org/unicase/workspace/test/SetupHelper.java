@@ -82,9 +82,9 @@ public class SetupHelper {
 	public static void startSever() {
 		try {
 			ServerConfiguration.setTesting(true);
-			Properties properties = ServerConfiguration.getProperties();
+			// Properties properties = ServerConfiguration.getProperties();
 			// little hack, there is a flaw in server configuration
-			properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
+			// properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
 			EmfStoreController.runAsNewThread();
 		} catch (FatalEmfStoreException e) {
 			e.printStackTrace();

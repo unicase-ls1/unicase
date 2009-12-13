@@ -12,20 +12,6 @@
         point="org.eclipse.ui.menus">
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
-        <command
-              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
-              label="Open with MEEditor"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.MEDiagram">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-        </command>
         <separator
               name="org.unicase.ui.common.commands.modifyCommands">
         </separator>

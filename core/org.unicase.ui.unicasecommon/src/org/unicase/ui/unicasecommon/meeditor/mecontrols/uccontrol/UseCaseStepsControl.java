@@ -297,6 +297,9 @@ public class UseCaseStepsControl extends AbstractMEControl {
 		return buttonControl;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);

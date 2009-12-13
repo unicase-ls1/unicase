@@ -105,12 +105,6 @@
             name="followupMeeting">
       </command>
       <command
-            categoryId="org.unicase.ui.common.modifyModelelement"
-            defaultHandler="org.unicase.ui.meeditor.commands.OpenModelElementHandler"
-            id="org.unicase.ui.common.openDiagramWithMEEditor"
-            name="Quick open modelelement">
-      </command>
-      <command
             defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.ShowMEInNavigatorHandler"
             id="org.unicase.ui.navigator.ShowMEInNavigator"
             name="ShowMEInNavigator">
@@ -374,6 +368,7 @@
         </separator>
         <command
               commandId="org.unicase.ui.common.openDiagramWithMEEditor"
+              icon="icons/application_form_edit.png"
               label="Open with MEEditor"
               style="push">
            <visibleWhen

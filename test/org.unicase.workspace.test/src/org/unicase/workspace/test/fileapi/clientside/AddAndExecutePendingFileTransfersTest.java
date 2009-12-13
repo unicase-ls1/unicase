@@ -47,7 +47,7 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 	 */
 	@Test
 	public void checkConsistencyBefore() {
-		System.out.println("START *************************************");
+		printStart();
 		// There should not be any pending file transfers before the test has been run. This is a simple consistency
 		// check to verify that the setup is clean.
 		System.out.println("-> There should be 0 pending file transfers...");
@@ -58,14 +58,14 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 		System.out.println("-> There should be 0 files in the client-side cache folder... "
 			+ FileTransferUtil.constructCacheFolder(getTestProjectSpace().getProjectId()) + ")");
 		assertNull(clientCache.listFiles(new OnlyFilesNotFoldersFilter()));
-		System.out.println("END *************************************");
+		printEnd();
 	}
 
 	/**
 	 * Loads sample files intended for test upload.
 	 */
 	public void loadFiles() {
-		System.out.println("START *************************************");
+		printStart();
 		sampleFiles = new ArrayList<File>();
 		URL location = FileLocator.find(Activator.getDefault().getBundle(), new Path("sampleFiles"),
 			Collections.EMPTY_MAP);
@@ -87,14 +87,14 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 		}
 		System.out.println("-> Allocation completed. " + sampleFiles.size() + " files loaded.");
 		assertNotSame(0, sampleFiles.size());
-		System.out.println("END *************************************");
+		printEnd();
 	}
 
 	/**
 	 * Retrieve file attachments from the project.
 	 */
 	public void retrieveFileAttachmentForTest() {
-		System.out.println("START *************************************");
+		printStart();
 		System.out.println("-> Retrieving file attachments from project " + getTestProject() + " for test run...");
 		modelElements = getTestProject().getAllModelElements();
 		System.out.println("-> Project has " + modelElements.size() + " model elements.");
@@ -105,14 +105,14 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 			}
 		}
 		System.out.println("-> Retrieved " + fileAttachments.size() + " file attachments.");
-		System.out.println("END *************************************");
+		printEnd();
 	}
 
 	/**
 	 * 
 	 */
 	public void generatePendingFileTransfers() {
-		System.out.println("START *************************************");
+		printStart();
 		pendingFileTransfersDownload = new ArrayList<PendingFileTransfer>();
 		pendingFileTransfersUpload = new ArrayList<PendingFileTransfer>();
 		// firstly, we create pending file transfers for the files on the server that belong to the file attachments
@@ -139,7 +139,7 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 		}
 		System.out.println("-> Created " + (pendingFileTransfersDownload.size() + pendingFileTransfersUpload.size())
 			+ " pending file transfers in total.");
-		System.out.println("END *************************************");
+		printEnd();
 	}
 
 	/**
@@ -150,16 +150,7 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 		loadFiles();
 		retrieveFileAttachmentForTest();
 		generatePendingFileTransfers();
-		System.out.println("START *************************************");
-		// adding random files
-		// for (PendingFileTransfer transfer : pendingFileTransfersDownload) {
-		// try {
-		// getTestProjectSpace().addFileTransfer(
-		// FileTransferUtil.createFileInformationFromPendingFileTransfer(transfer), null, false, true);
-		// } catch (FileTransferException e) {
-		// e.printStackTrace();
-		// }
-		// }
+		printStart();
 		for (PendingFileTransfer transfer : pendingFileTransfersUpload) {
 			try {
 				getTestProjectSpace().addFileTransfer(
@@ -169,17 +160,31 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 				e.printStackTrace();
 			}
 		}
-		System.out.println("There should now be "
-			+ (pendingFileTransfersDownload.size() + pendingFileTransfersUpload.size())
+		// for (PendingFileTransfer transfer : pendingFileTransfersDownload) {
+		// try {
+		// getTestProjectSpace().addFileTransfer(
+		// FileTransferUtil.createFileInformationFromPendingFileTransfer(transfer), null, true, true);
+		// } catch (FileTransferException e) {
+		// e.printStackTrace();
+		// }
+		// }
+		System.out.println("There should now be " + pendingFileTransfersUpload.size()
 			+ " pending file transfers in the project space.");
-		assertEquals((pendingFileTransfersDownload.size() + pendingFileTransfersUpload.size()), getTestProjectSpace()
-			.getPendingFileTransfers().size());
+		assertEquals(pendingFileTransfersUpload.size(), getTestProjectSpace().getPendingFileTransfers().size());
 		try {
 			Thread.sleep(20000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		printEnd();
+	}
+
+	private void printEnd() {
 		System.out.println("END *************************************");
+	}
+
+	private void printStart() {
+		System.out.println("START *************************************");
 	}
 
 	/**

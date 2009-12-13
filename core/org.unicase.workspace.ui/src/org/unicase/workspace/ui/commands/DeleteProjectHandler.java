@@ -59,7 +59,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 			stringBuilder.append(" in version ");
 			stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
 		}
-		stringBuilder.append(".");
+		stringBuilder.append("?");
 		String message = stringBuilder.toString();
 
 		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
