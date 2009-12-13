@@ -5,15 +5,12 @@
  */
 package org.unicase.model.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +25,6 @@ import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ModelElementImpl;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
@@ -66,81 +62,6 @@ import org.unicase.model.task.util.MEStateImpl;
  * @generated
  */
 public abstract class UnicaseModelElementImpl extends ModelElementImpl implements UnicaseModelElement {
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.UnicaseModelElement#addModelElementChangeListener(org.unicase.metamodel.util.ModelElementChangeListener)
-	 */
-	@Override
-	public void addModelElementChangeListener(ModelElementChangeListener listener) {
-		if (this.changeListeners.size() == 0) {
-			internalChangeListener = new AdapterImpl() {
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				public void notifyChanged(Notification notification) {
-					notifyListenersAboutChange(notification);
-				}
-			};
-			this.eAdapters().add(internalChangeListener);
-		}
-		this.changeListeners.add(listener);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.UnicaseModelElement#removeModelElementChangeListener(org.unicase.metamodel.util.ModelElementChangeListener)
-	 */
-	@Override
-	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
-		this.changeListeners.remove(listener);
-		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
-			this.eAdapters().remove(internalChangeListener);
-			internalChangeListener = null;
-		}
-	}
-
-	private void notifyListenersAboutChange(Notification notification) {
-		Set<ModelElementChangeListener> toRemove = new HashSet<ModelElementChangeListener>();
-		for (ModelElementChangeListener listener : changeListeners) {
-			try {
-				listener.onChange(notification);
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-			catch (RuntimeException exception) {
-				ModelUtil.logWarning("ModelElementChangeListener threw RuntimeException on Change Notification " + ""
-					+ "(exception was caught and forwarded to listener for handling)", exception);
-				try {
-					listener.onRuntimeExceptionInListener(exception);
-				} catch (RuntimeException runtimeException) {
-					ModelUtil.logException(
-						"Notifying listener about change in a model element failed, UI may not update properly now.",
-						runtimeException);
-					toRemove.add(listener);
-				}
-			}
-			// END SUPRESS CATCH EXCEPTION
-		}
-		for (ModelElementChangeListener listener : toRemove) {
-			removeModelElementChangeListener(listener);
-		}
-	}
-
-	/**
-	 * @see org.unicase.model.UnicaseModelElement#delete()
-	 */
-	@Override
-	public void delete() {
-		Project project = this.getProject();
-		if (project == null) {
-			throw new IllegalStateException("Model element is not contained in a project, it cannot be deleted.");
-		}
-		project.deleteModelElement(this);
-
-	}
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -246,10 +167,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	private org.unicase.model.task.util.MEState meState;
 
-	private List<ModelElementChangeListener> changeListeners;
-
-	private AdapterImpl internalChangeListener;
-
 	// begin of custom code
 	/**
 	 * Constructor.
@@ -258,7 +175,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	 */
 	protected UnicaseModelElementImpl() {
 		super();
-		changeListeners = new ArrayList<ModelElementChangeListener>();
 		name = "new " + eClass().getName();
 	}
 
