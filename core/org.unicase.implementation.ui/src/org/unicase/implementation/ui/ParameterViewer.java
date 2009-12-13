@@ -29,6 +29,9 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -93,8 +96,17 @@ public class ParameterViewer extends TableViewer {
 
 				};
 			}
-			return new ExtendedComboBoxCellEditor(getTable(), OperationHelper.getPossibleValues(operation, reference,
+			ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(), OperationHelper.getPossibleValues(operation, reference,
 				project), valueLabelProvider, true);
+			CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
+			combo.addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					dialog.validate();
+				}
+			});
+			return extendedComboBoxCellEditor;
 		}
 
 		private CellEditor getAttributeCellEditor(final EAttribute attribute) {
@@ -115,8 +127,17 @@ public class ParameterViewer extends TableViewer {
 			}
 			EDataType dataType = (EDataType) attribute.getEType();
 			if (dataType.getInstanceClass() == Boolean.class || dataType.getInstanceClass() == Boolean.TYPE) {
-				return new ExtendedComboBoxCellEditor(getTable(), Arrays.asList(new Object[] { Boolean.FALSE,
+				ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(), Arrays.asList(new Object[] { Boolean.FALSE,
 					Boolean.TRUE }), valueLabelProvider, false);
+				CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
+				combo.addSelectionListener(new SelectionAdapter() {
+
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						dialog.validate();
+					}
+				});
+				return extendedComboBoxCellEditor;
 			}
 			return new PropertyDescriptor.EDataTypeCellEditor((EDataType) attribute.getEType(), getTable());
 		}
