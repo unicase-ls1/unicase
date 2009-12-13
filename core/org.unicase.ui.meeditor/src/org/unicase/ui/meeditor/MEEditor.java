@@ -25,8 +25,10 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -86,6 +88,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private String creatorHint;
 
 	private ILabelProviderListener labelProviderListener;
+
+	private ProjectChangeObserver projectChangeObserver;
 
 	/**
 	 * Default constructor.
@@ -174,6 +178,32 @@ public class MEEditor extends SharedHeaderFormEditor {
 			initializeEditingDomain();
 			eAdapter = new MEEditorListener(input);
 			this.modelElement.addModelElementChangeListener(eAdapter);
+			projectChangeObserver = new ProjectChangeObserver() {
+
+				public void notify(Notification notification, Project project, ModelElement modelElement) {
+					// Do nothing
+
+				}
+
+				public void modelElementDeleteStarted(Project project, ModelElement deletionME) {
+					if (deletionME == modelElement) {
+						modelElement.getProject().removeProjectChangeObserver(projectChangeObserver);
+						close(false);
+					}
+
+				}
+
+				public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+					// Do Nothing
+
+				}
+
+				public void modelElementAdded(Project project, ModelElement modelElement) {
+					// Do nothing
+
+				}
+			};
+			this.modelElement.getProject().addProjectChangeObserver(projectChangeObserver);
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
@@ -242,7 +272,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-		modelElement.removeModelElementChangeListener(eAdapter);
+		if (modelElement != null && modelElement.getProject() != null) {
+			modelElement.getProject().removeProjectChangeObserver(projectChangeObserver);
+			modelElement.removeModelElementChangeListener(eAdapter);
+		}
+
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		super.dispose();
 	}

@@ -19,7 +19,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -46,8 +45,6 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	 */
 	@Override
 	protected void doRun() {
-		// check if this model element is already opened in an editor
-		// and if yes, prompt to close editor.
 		if (closeEditor(me)) {
 			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -64,11 +61,11 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 
 				try {
 					me.delete();
-					// EcoreUtil.delete(me, true);
 				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
+
 			}
 		}
 	}
@@ -89,12 +86,7 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 
 				IEditorInput editorInput = openEditors[i].getEditorInput();
 
-				if (editorInput instanceof MEEditorInput) {
-					Object adapter = editorInput.getAdapter(ModelElement.class);
-					if (adapter != null && adapter.equals(me)) {
-						toCloseEditors.add(openEditors[i]);
-					}
-				} else if (editorInput instanceof URIEditorInput) {
+				if (editorInput instanceof URIEditorInput) {
 					ModelElement modelElement = WorkspaceUtil.getModelElementByUri(((URIEditorInput) editorInput)
 						.getURI());
 					if (modelElement != null && modelElement.equals(me)) {
