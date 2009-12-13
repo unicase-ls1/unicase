@@ -648,7 +648,7 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * @param fileInformation file information data object
-	 * @param selectedFile file to upload
+	 * @param selectedFile file to upload, null if there is no file to upload (in case of download)
 	 * @param upload true if upload, false if download
 	 * @param run true if transfer is to be started instantaneously
 	 * @throws FileTransferException if any error occurs adding the file transfer

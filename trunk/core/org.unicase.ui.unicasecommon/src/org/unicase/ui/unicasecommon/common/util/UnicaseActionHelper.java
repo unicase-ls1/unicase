@@ -58,6 +58,9 @@ public final class UnicaseActionHelper {
 		}
 	}
 
+	/**
+	 * @return the selected object
+	 */
 	public static Object getSelection() {
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 

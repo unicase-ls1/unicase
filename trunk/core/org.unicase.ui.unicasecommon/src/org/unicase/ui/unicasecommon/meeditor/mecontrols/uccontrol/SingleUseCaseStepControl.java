@@ -399,6 +399,9 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		// TODO Auto-generated method stub

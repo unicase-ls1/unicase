@@ -97,6 +97,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				// note that a reference of commands array is passed,
 				// corresponding commands are created and added to it,
 				// then continue
+				// TODO: fix
 				addCommandsForSubTypes(containment.getEReferenceType(), commands);
 				continue;
 			}

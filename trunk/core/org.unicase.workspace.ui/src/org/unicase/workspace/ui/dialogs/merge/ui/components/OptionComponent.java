@@ -23,10 +23,11 @@ public class OptionComponent {
 
 	private Group group;
 	private final Conflict conflict;
-	private final DecisionBox parent;
+
+	// private final DecisionBox parent;
 
 	public OptionComponent(DecisionBox parent, Conflict conflict) {
-		this.parent = parent;
+		// this.parent = parent;
 		this.conflict = conflict;
 		group = new Group(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
