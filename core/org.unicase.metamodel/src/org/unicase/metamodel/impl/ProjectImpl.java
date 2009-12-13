@@ -8,10 +8,11 @@ package org.unicase.metamodel.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -51,6 +52,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
 	private ProjectChangeNotifier projectChangeNotifier;
+	private boolean isNotifiying;
+	private Set<ProjectChangeObserver > exceptionThrowingObservers;
+	private Set<ProjectChangeObserver > observersToRemove;
 
 	// begin of custom code
 	/**
@@ -61,6 +65,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	protected ProjectImpl() {
 		super();
 		observers = new ArrayList<ProjectChangeObserver>();
+		isNotifiying = false;
+		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
+		observersToRemove = new HashSet<ProjectChangeObserver>();
 	}
 
 	// end of custom code
@@ -323,24 +330,46 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void handleEMFModelElementAdded(Project project, ModelElement modelElement) {
+	public void handleEMFModelElementAdded(final Project project, final ModelElement modelElement) {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
 		checkForCrossReferences(modelElement);
 		addModelElementAndChildrenToCache(modelElement);
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementAdded(project, modelElement);
+			}
+		};
+		notifyProjectChangeObservers(command);
+	}
+	
+	private void notifyProjectChangeObservers(ProjectChangeObserverNotificationCommand command) {
+		isNotifiying = true;
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			try {
-				projectChangeObserver.modelElementAdded(project, modelElement);
+				command.run(projectChangeObserver);
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-
-				ModelUtil.log("Project Change Observer threw an exception: "
-					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
+				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
+					observersToRemove.add(projectChangeObserver);
+					ModelUtil.logException("Project Change Observer threw an exception again, it has been detached, UI may not update now: "
+						+ projectChangeObserver.getClass().getName(), ex);
+				}
+				else {
+					exceptionThrowingObservers.add(projectChangeObserver);
+					ModelUtil.logWarning("Project Change Observer threw an exception: "
+					+ projectChangeObserver.getClass().getName(), ex);
+				}
 
 			}
 		}
+		isNotifiying = false;
+		for (ProjectChangeObserver observer: this.observersToRemove) {
+			removeProjectChangeObserver(observer);
+		}
+		this.observersToRemove.clear();
 	}
 
 	private void checkForCrossReferences(ModelElement modelElement) {
@@ -368,19 +397,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
-	public void handleEMFNotification(Notification notification, Project project, ModelElement modelElement) {
-
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			try {
+	public void handleEMFNotification(final Notification notification, final Project project, final ModelElement modelElement) {
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.notify(notification, project, modelElement);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException ex) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.log("Project Change Observer threw an exception: "
-					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
 			}
-		}
-
+		};
+		notifyProjectChangeObservers(command);
 	}
 
 	/**
@@ -417,8 +440,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
+		if (isNotifiying) {
+			observersToRemove.add(projectChangeObserver);
+			return;
+		}
 		this.observers.remove(projectChangeObserver);
-
+		exceptionThrowingObservers.remove(projectChangeObserver);
 	}
 
 	/**
@@ -440,22 +467,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.unicase.metamodel.Project#deleteModelElement(org.unicase.model.ModelElement)
 	 */
-	public void deleteModelElement(ModelElement modelElement) {
+	public void deleteModelElement(final ModelElement modelElement) {
 		if (!this.contains(modelElement)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
-
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			try {
-				projectChangeObserver.modelElementDeleteStarted(this, modelElement);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException ex) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.log("Project Change Observer threw an exception: "
-					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
+		final Project project = this;
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementDeleteStarted(project, modelElement);
 			}
-		}
-
+		};
+		notifyProjectChangeObservers(command);
+		
 		deleteOutgoingCrossReferences(modelElement);
 		deleteIncomingCrossReferences(modelElement);
 
@@ -480,16 +503,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		handleModelElementDeleted(modelElement);
 
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			try {
-				projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException ex) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.log("Project Change Observer threw an exception: "
-					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
+		command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementDeleteCompleted(project, modelElement);
 			}
-		}
+		};
+		notifyProjectChangeObservers(command);
+	
 	}
 
 	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
