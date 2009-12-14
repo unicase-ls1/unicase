@@ -27,6 +27,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -50,7 +51,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	protected IContributionItem[] getContributionItems() {
 		// 1. get selected ME
 		selectedME = ActionHelper.getSelectedModelElement();
-		if (selectedME == null) {
+		if (selectedME == null || selectedME instanceof MEDiagram) {
 			return new IContributionItem[0];
 		}
 		// 2. get its containments
