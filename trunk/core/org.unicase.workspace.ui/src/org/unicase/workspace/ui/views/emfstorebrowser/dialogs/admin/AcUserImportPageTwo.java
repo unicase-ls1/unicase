@@ -76,7 +76,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		final PatternFilter patternFilter = new PatternFilter();
 		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK
 				| SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL,
-				patternFilter, false);
+				patternFilter);
 
 		gridData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
 		gridData.horizontalSpan = 2;
