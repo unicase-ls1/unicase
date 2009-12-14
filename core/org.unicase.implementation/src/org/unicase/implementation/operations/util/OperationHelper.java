@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
@@ -109,12 +110,22 @@ public final class OperationHelper {
 	public static Diagnostic validate(SemanticCompositeOperation operation, Project project) {
 
 		BasicDiagnostic diagnostic = new BasicDiagnostic();
-		EObjectValidator.INSTANCE.validate_EveryDefaultConstraint(operation, diagnostic, null);
 
+		validateRequiredValues(operation, project, diagnostic);
 		validatePossibleValues(operation, project, diagnostic);
 		validateConstraints(operation, project, diagnostic);
 
 		return diagnostic;
+	}
+
+	private static void validateRequiredValues(SemanticCompositeOperation operation, Project project,
+		BasicDiagnostic diagnostic) {
+		for (EStructuralFeature feature : operation.eClass().getEStructuralFeatures()) {
+			if (feature.isRequired() && !operation.eIsSet(feature)) {
+				diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0,
+					"The parameter '" + feature.getName() + "' must be set.", new Object[0]));
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
