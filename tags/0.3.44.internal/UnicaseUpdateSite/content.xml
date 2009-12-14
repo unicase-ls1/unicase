@@ -3,7 +3,7 @@
 <repository name='unicase' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1.0.0'>
   <properties size='2'>
     <property name='p2.compressed' value='false'/>
-    <property name='p2.timestamp' value='1260810188342'/>
+    <property name='p2.timestamp' value='1260812625708'/>
   </properties>
   <references size='4'>
     <repository url='http://cope.in.tum.de' type='0' options='0'/>
@@ -11,7 +11,7 @@
     <repository url='http://cope.in.tum.de' type='1' options='0'/>
     <repository url='http://wwwbruegge.in.tum.de/static/unicase/' type='1' options='0'/>
   </references>
-  <units size='45'>
+  <units size='44'>
     <unit id='org.unicase.implementation.ui' version='0.3.44.internal'>
       <update id='org.unicase.implementation.ui' range='[0.0.0,0.3.44.internal)' severity='0'/>
       <properties size='1'>
@@ -1048,39 +1048,6 @@
         </instructions>
       </touchpointData>
     </unit>
-    <unit id='org.unicase.ui.IterationPlanner' version='0.3.44.internal'>
-      <update id='org.unicase.ui.IterationPlanner' range='[0.0.0,0.3.44.internal)' severity='0'/>
-      <properties size='1'>
-        <property name='org.eclipse.equinox.p2.name' value='IterationPlanner Plug-in'/>
-      </properties>
-      <provides size='3'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.IterationPlanner' version='0.3.44.internal'/>
-        <provided namespace='osgi.bundle' name='org.unicase.ui.IterationPlanner' version='0.3.44.internal'/>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
-      </provides>
-      <requires size='9'>
-        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.unicase.ui.common' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.unicase.model.edit' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.unicase.emfstore.esmodel.edit' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.unicase.workspace.edit' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.eclipse.emf.transaction.ui' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.eclipse.ui.ide.application' range='0.0.0'/>
-      </requires>
-      <artifacts size='1'>
-        <artifact classifier='osgi.bundle' id='org.unicase.ui.IterationPlanner' version='0.3.44.internal'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.unicase.ui.common,org.unicase.model.edit,org.eclipse.emf.edit.ui,org.unicase.emfstore.esmodel.edit,org.unicase.workspace.edit,org.eclipse.emf.transaction.ui,org.eclipse.ui.ide.application&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: org.unicase.ui.iterationplanner.Activator&#xA;Bundle-Version: 0.3.44.internal&#xA;Bundle-SymbolicName: org.unicase.ui.IterationPlanner;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: IterationPlanner Plug-in&#xA;Bundle-ClassPath: .,lib/arpack-combo-0.1.jar,lib/jdmp-core-0.1.2-sources.jar,lib/jdmp-core-0.1.2.jar,lib/jdmp-gui-0.1.2-sources.jar,lib/jdmp-gui-0.1.2.jar,lib/jdmp-liblinear-0.1.2-sources.jar,lib/jdmp-liblinear-0.1.2.jar,lib/jdmp-libsvm-0.1.2-sources.jar,lib/jdmp-libsvm-0.1.2.jar,lib/liblinear-1.33-sources.jar,lib/liblinear-1.33.jar,lib/libsvm-2.89-sources.jar,lib/libsvm-2.89.jar,lib/ujmp-core-0.2.4-sources.jar,lib/ujmp-core-0.2.4.jar,lib/ujmp-gui-0.2.4-sources.jar,lib/ujmp-gui-0.2.4.jar,lib/mtj-0.9.12-sources.jar,lib/mtj-0.9.12.jar,lib/ujmp-mtj-0.2.4-sources.jar,lib/ujmp-mtj-0.2.4.jar
-          </instruction>
-        </instructions>
-      </touchpointData>
-    </unit>
     <unit id='org.unicase.ui.common' version='0.3.44.internal'>
       <update id='org.unicase.ui.common' range='[0.0.0,0.3.44.internal)' severity='0'/>
       <properties size='2'>
@@ -1142,7 +1109,7 @@
       <provides size='1'>
         <provided namespace='org.eclipse.equinox.p2.iu' name='org.unicase.client.feature.group' version='0.3.44.internal'/>
       </provides>
-      <requires size='79'>
+      <requires size='77'>
         <required namespace='org.eclipse.equinox.p2.iu' name='edu.tum.cs.cope.runtime.feature.feature.group' range='[0.2.2,0.2.2]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.gmf.runtime.diagram.ui.render' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.gmf.runtime.diagram.ui' range='0.0.0'/>
@@ -1189,7 +1156,6 @@
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.core.resources' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.gef' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.draw2d' range='0.0.0'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.ui.ide.application' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.ui.forms' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.jface.text' range='0.0.0'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.docExport' range='[0.3.44.internal,0.3.44.internal]'/>
@@ -1211,7 +1177,6 @@
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.diagram.classDiagram' range='[0.3.44.internal,0.3.44.internal]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.diagram.stateDiagram' range='[0.3.44.internal,0.3.44.internal]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.diagram.usecaseDiagram' range='[0.3.44.internal,0.3.44.internal]'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.IterationPlanner' range='[0.3.44.internal,0.3.44.internal]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.meeditor' range='[0.3.44.internal,0.3.44.internal]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.multiaction' range='[0.3.44.internal,0.3.44.internal]'/>
         <required namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.navigator' range='[0.3.44.internal,0.3.44.internal]'/>
@@ -1647,7 +1612,7 @@
       <touchpointData size='1'>
         <instructions size='1'>
           <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime,edu.tum.cs.cope.common,edu.tum.cs.cope.declaration.registry,edu.tum.cs.cope.migration;visibility:=reexport,org.eclipse.emf.ecore.xmi,org.codehaus.groovy;bundle-version=&quot;1.5.7&quot;&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.migration.execution.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.migration.execution&#xA;Bundle-SymbolicName: edu.tum.cs.cope.migration.execution;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Execution Plug-in
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime,edu.tum.cs.cope.common,edu.tum.cs.cope.declaration.registry,edu.tum.cs.cope.migration;visibility:=reexport,org.eclipse.emf.ecore.xmi,org.codehaus.groovy;bundle-version=&quot;1.5.7&quot;&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.migration.execution.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.migration.execution&#xA;Bundle-SymbolicName: edu.tum.cs.cope.migration.execution;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Execution Plug-in&#xA;
           </instruction>
         </instructions>
       </touchpointData>
@@ -1710,7 +1675,7 @@
       <touchpointData size='1'>
         <instructions size='1'>
           <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,org.eclipse.core.resources;visibility:=reexport,org.eclipse.emf.common,org.eclipse.emf.ecore&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.common.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.common&#xA;Bundle-SymbolicName: edu.tum.cs.cope.common&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Commen Plug-in
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,org.eclipse.core.resources;visibility:=reexport,org.eclipse.emf.common,org.eclipse.emf.ecore&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.common.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.common&#xA;Bundle-SymbolicName: edu.tum.cs.cope.common&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Commen Plug-in&#xA;
           </instruction>
         </instructions>
       </touchpointData>
@@ -1745,7 +1710,7 @@
       <touchpointData size='1'>
         <instructions size='1'>
           <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Export-Package: edu.tum.cs.cope.migration,edu.tum.cs.cope.migration.impl,edu.tum.cs.cope.migration.util&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.ocl.ecore;visibility:=reexport,net.sourceforge.lpg.lpgjavaruntime&#xA;Bundle-Name: %pluginName&#xA;Bundle-Version: 0.2.2&#xA;Bundle-Vendor: %providerName&#xA;Bundle-SymbolicName: edu.tum.cs.cope.migration;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Manifest-Version: 1.0&#xA;Bundle-ClassPath: .
+            Bundle-ManifestVersion: 2&#xA;Export-Package: edu.tum.cs.cope.migration,edu.tum.cs.cope.migration.impl,edu.tum.cs.cope.migration.util&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.ocl.ecore;visibility:=reexport,net.sourceforge.lpg.lpgjavaruntime&#xA;Bundle-Name: %pluginName&#xA;Bundle-Version: 0.2.2&#xA;Bundle-Vendor: %providerName&#xA;Bundle-SymbolicName: edu.tum.cs.cope.migration;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Manifest-Version: 1.0&#xA;Bundle-ClassPath: .&#xA;
           </instruction>
         </instructions>
       </touchpointData>
@@ -1774,7 +1739,7 @@
       <touchpointData size='1'>
         <instructions size='1'>
           <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime,edu.tum.cs.cope.common,edu.tum.cs.cope.declaration;visibility:=reexport,edu.tum.cs.cope.migration&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.declaration.registry.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.declaration.registry&#xA;Bundle-SymbolicName: edu.tum.cs.cope.declaration.registry;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Registry Plug-in
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Require-Bundle: org.eclipse.core.runtime,edu.tum.cs.cope.common,edu.tum.cs.cope.declaration;visibility:=reexport,edu.tum.cs.cope.migration&#xA;Manifest-Version: 1.0&#xA;Bundle-Activator: edu.tum.cs.cope.declaration.registry.Activator&#xA;Bundle-Version: 0.2.2&#xA;Export-Package: edu.tum.cs.cope.declaration.registry&#xA;Bundle-SymbolicName: edu.tum.cs.cope.declaration.registry;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: Registry Plug-in&#xA;
           </instruction>
         </instructions>
       </touchpointData>
@@ -1808,7 +1773,7 @@
       <touchpointData size='1'>
         <instructions size='1'>
           <instruction key='manifest'>
-            Bundle-ManifestVersion: 2&#xA;Export-Package: edu.tum.cs.cope.declaration,edu.tum.cs.cope.declaration.impl,edu.tum.cs.cope.declaration.util&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.ecore;visibility:=reexport,edu.tum.cs.cope.common&#xA;Bundle-Name: %pluginName&#xA;Bundle-Version: 0.2.2&#xA;Bundle-Vendor: %providerName&#xA;Bundle-SymbolicName: edu.tum.cs.cope.declaration; singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Manifest-Version: 1.0&#xA;Bundle-ClassPath: .
+            Bundle-ManifestVersion: 2&#xA;Export-Package: edu.tum.cs.cope.declaration,edu.tum.cs.cope.declaration.impl,edu.tum.cs.cope.declaration.util&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.ecore;visibility:=reexport,edu.tum.cs.cope.common&#xA;Bundle-Name: %pluginName&#xA;Bundle-Version: 0.2.2&#xA;Bundle-Vendor: %providerName&#xA;Bundle-SymbolicName: edu.tum.cs.cope.declaration; singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Manifest-Version: 1.0&#xA;Bundle-ClassPath: .&#xA;
           </instruction>
         </instructions>
       </touchpointData>
@@ -1922,7 +1887,7 @@
       <touchpointData size='1'>
         <instructions size='2'>
           <instruction key='manifest'>
-            Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Groovy-Runtime-Jars: groovy-all-1.5.7.jar&#xA;Bundle-Name: Groovy Runtime Plug-in&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: The Codehaus&#xA;Bundle-ClassPath: asm-2.2.jar,asm-tree-2.2.jar,antlr-2.7.6.jar,commons-cli-1.0.jar,groovy-eclipse.jar,groovy-1.5.7.jar,bsf.jar&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: org.codehaus.groovy&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.5.7.20081120_2330&#xA;Eclipse-BuddyPolicy: dependent&#xA;Export-Package: antlr,antlr.ASdebug,antlr.actions.cpp,antlr.actions.csharp,antlr.actions.java,antlr.actions.python,antlr.build,antlr.collections,antlr.collections.impl,antlr.debug,antlr.debug.misc,antlr.preprocessor,groovy.inspect,groovy.inspect.swingui,groovy.io,groovy.lang,groovy.mock,groovy.mock.interceptor,groovy.model,groovy.security,groovy.servlet,groovy.sql,groovy.swing,groovy.swing.binding,groovy.swing.factory,groovy.swing.impl,groovy.text,groovy.time,groovy.ui,groovy.ui.icons,groovy.ui.text,groovy.ui.view,groovy.util,groovy.util.slurpersupport,groovy.xml,groovy.xml.dom,groovy.xml.streamingmarkupsupport,org.apache.bsf,org.apache.bsf.engines.jacl,org.apache.bsf.engines.javascript,org.apache.bsf.engines.jython,org.apache.bsf.engines.netrexx,org.apache.bsf.engines.xslt,org.apache.bsf.util,org.apache.bsf.util.cf,org.apache.bsf.util.event,org.apache.bsf.util.event.adapters,org.apache.bsf.util.event.generator,org.apache.bsf.util.type,org.apache.commons.cli,org.codehaus.groovy,org.codehaus.groovy.ant,org.codehaus.groovy.antlr,org.codehaus.groovy.antlr.java,org.codehaus.groovy.antlr.parser,org.codehaus.groovy.antlr.treewalker,org.codehaus.groovy.ast,org.codehaus.groovy.ast.expr,org.codehaus.groovy.ast.stmt,org.codehaus.groovy.binding,org.codehaus.groovy.bsf,org.codehaus.groovy.classgen,org.codehaus.groovy.control,org.codehaus.groovy.control.io,org.codehaus.groovy.control.messages,org.codehaus.groovy.groovydoc,org.codehaus.groovy.plugin,org.codehaus.groovy.reflection,org.codehaus.groovy.runtime,org.codehaus.groovy.runtime.metaclass,org.codehaus.groovy.runtime.typehandling,org.codehaus.groovy.runtime.wrappers,org.codehaus.groovy.syntax,org.codehaus.groovy.tools,org.codehaus.groovy.tools.groovydoc,org.codehaus.groovy.tools.javac,org.codehaus.groovy.tools.shell,org.codehaus.groovy.tools.shell.commands,org.codehaus.groovy.tools.shell.util,org.codehaus.groovy.tools.xml,org.codehaus.groovy.vmplugin,org.codehaus.groovy.vmplugin.v4,org.codehaus.groovy.vmplugin.v5,org.objectweb.asm,org.objectweb.asm.signature,org.objectweb.asm.tree&#xA;Require-Bundle: org.apache.ant,org.junit,org.eclipse.core.runtime
+            Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Groovy-Runtime-Jars: groovy-all-1.5.7.jar&#xA;Bundle-Name: Groovy Runtime Plug-in&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: The Codehaus&#xA;Bundle-ClassPath: asm-2.2.jar,asm-tree-2.2.jar,antlr-2.7.6.jar,commons-cli-1.0.jar,groovy-eclipse.jar,groovy-1.5.7.jar,bsf.jar&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: org.codehaus.groovy&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.5.7.20081120_2330&#xA;Eclipse-BuddyPolicy: dependent&#xA;Export-Package: antlr,antlr.ASdebug,antlr.actions.cpp,antlr.actions.csharp,antlr.actions.java,antlr.actions.python,antlr.build,antlr.collections,antlr.collections.impl,antlr.debug,antlr.debug.misc,antlr.preprocessor,groovy.inspect,groovy.inspect.swingui,groovy.io,groovy.lang,groovy.mock,groovy.mock.interceptor,groovy.model,groovy.security,groovy.servlet,groovy.sql,groovy.swing,groovy.swing.binding,groovy.swing.factory,groovy.swing.impl,groovy.text,groovy.time,groovy.ui,groovy.ui.icons,groovy.ui.text,groovy.ui.view,groovy.util,groovy.util.slurpersupport,groovy.xml,groovy.xml.dom,groovy.xml.streamingmarkupsupport,org.apache.bsf,org.apache.bsf.engines.jacl,org.apache.bsf.engines.javascript,org.apache.bsf.engines.jython,org.apache.bsf.engines.netrexx,org.apache.bsf.engines.xslt,org.apache.bsf.util,org.apache.bsf.util.cf,org.apache.bsf.util.event,org.apache.bsf.util.event.adapters,org.apache.bsf.util.event.generator,org.apache.bsf.util.type,org.apache.commons.cli,org.codehaus.groovy,org.codehaus.groovy.ant,org.codehaus.groovy.antlr,org.codehaus.groovy.antlr.java,org.codehaus.groovy.antlr.parser,org.codehaus.groovy.antlr.treewalker,org.codehaus.groovy.ast,org.codehaus.groovy.ast.expr,org.codehaus.groovy.ast.stmt,org.codehaus.groovy.binding,org.codehaus.groovy.bsf,org.codehaus.groovy.classgen,org.codehaus.groovy.control,org.codehaus.groovy.control.io,org.codehaus.groovy.control.messages,org.codehaus.groovy.groovydoc,org.codehaus.groovy.plugin,org.codehaus.groovy.reflection,org.codehaus.groovy.runtime,org.codehaus.groovy.runtime.metaclass,org.codehaus.groovy.runtime.typehandling,org.codehaus.groovy.runtime.wrappers,org.codehaus.groovy.syntax,org.codehaus.groovy.tools,org.codehaus.groovy.tools.groovydoc,org.codehaus.groovy.tools.javac,org.codehaus.groovy.tools.shell,org.codehaus.groovy.tools.shell.commands,org.codehaus.groovy.tools.shell.util,org.codehaus.groovy.tools.xml,org.codehaus.groovy.vmplugin,org.codehaus.groovy.vmplugin.v4,org.codehaus.groovy.vmplugin.v5,org.objectweb.asm,org.objectweb.asm.signature,org.objectweb.asm.tree&#xA;Require-Bundle: org.apache.ant,org.junit,org.eclipse.core.runtime&#xA;
           </instruction>
           <instruction key='zipped'>
             true
