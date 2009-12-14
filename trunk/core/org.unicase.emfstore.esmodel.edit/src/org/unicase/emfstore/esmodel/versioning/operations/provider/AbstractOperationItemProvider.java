@@ -242,9 +242,13 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 			builder.append(NAME_TAG__SEPARATOR);
 			builder.append(", ");
 		}
-		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.length(), NAME_TAG__SEPARATOR);
-		builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder
-			.lastIndexOf(NAME_TAG__SEPARATOR + ", ") + 3, NAME_TAG__SEPARATOR + " and ");
+		if (modelElementIds.size() > 0) {
+			builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.length(), NAME_TAG__SEPARATOR);
+		}
+		if (modelElementIds.size() > 1) {
+			builder.replace(builder.lastIndexOf(NAME_TAG__SEPARATOR + ", "), builder.lastIndexOf(NAME_TAG__SEPARATOR
+				+ ", ") + 3, NAME_TAG__SEPARATOR + " and ");
+		}
 		return builder.toString();
 	}
 
