@@ -603,22 +603,6 @@
      </constraintProvider>
   </extension>
   <extension
-        point="org.eclipse.emf.validation.constraintBindings">
-     <clientContext
-           default="false"
-           id="org.unicase.model.validation">
-        <selector
-              class="org.unicase.model.validation.ValidationClientSelector">
-        </selector>
-     </clientContext>
-     <binding
-           context="org.unicase.model.validation">
-        <category
-              ref="org.unicase.model">
-        </category>
-     </binding>
-  </extension>
-  <extension
         id="validation.marker"
         name="Unicase Validation Marker"
         point="org.eclipse.core.resources.markers">

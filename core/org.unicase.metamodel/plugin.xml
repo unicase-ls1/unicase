@@ -18,5 +18,22 @@
             class="org.unicase.metamodel.MetamodelPackage"
             genModel="model/metamodel.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.unicase.model.validation">
+         <selector
+               class="org.unicase.metamodel.util.ValidationClientSelector">
+         </selector>
+      </clientContext>
+      <clientContext
+            default="false"
+            id="org.unicase.model.validation">
+         <selector
+               class="org.unicase.metamodel.util.ValidationClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
 
 </plugin>
