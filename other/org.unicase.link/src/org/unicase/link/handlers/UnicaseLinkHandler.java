@@ -20,70 +20,64 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This class handles "create unicase link" button click events. 
- * It generates a UNICASE url for the selected model element,
- * copies it to clipboard and shows a popup.
- *  
+ * This class handles "create unicase link" button click events. It generates a UNICASE url for the selected model
+ * element, copies it to clipboard and shows a popup.
+ * 
  * @author svetlana, jfinis, kami
  */
 public class UnicaseLinkHandler extends AbstractHandler {
-	
+
 	/**
 	 * The constructor.
 	 */
 	public UnicaseLinkHandler() {
 	}
-	
+
 	/**
-	 * Execute the UnicaseLinkCommand which displays the UNICASE URL of the
-	 * selected model element in a popup window and copies it to clipboard.
-	 * The method first assembles the link, then copies it to clipboard and 
-	 * opens the popup.
+	 * Execute the UnicaseLinkCommand which displays the UNICASE URL of the selected model element in a popup window and
+	 * copies it to clipboard. The method first assembles the link, then copies it to clipboard and opens the popup.
 	 * 
 	 * @param event the event to handled
 	 * @return nothing (null)
 	 */
 	public Object execute(ExecutionEvent event) {
-		
+
 		ModelElement me = ActionHelper.getModelElement(event);
 
-		//remove spaces from the model element name
+		// remove spaces from the model element name
 		String meName;
-		if (me instanceof UnicaseModelElement){
-			meName =  ((UnicaseModelElement)me).getName().replaceAll(" ", "");			
+		if (me instanceof UnicaseModelElement) {
+			meName = ((UnicaseModelElement) me).getName().replaceAll(" ", "");
 		} else {
-			//If this is not a unicase model, we use the identifier (whatever this is) as name
+			// If this is not a unicase model, we use the identifier (whatever this is) as name
 			meName = me.getIdentifier();
 		}
 
-		//Get model element id
+		// Get model element id
 		String meId = me.getModelElementId().getId();
-		
-		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace();
-				
-		//remove spaces from the project name
-		String projectName = ps.getProjectName().replaceAll(" ", "");
-		String projectId = ps.getProjectId().getId();	
-		
-		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
-		int serverPort = ps.getUsersession().getServerInfo().getPort();
-		
-		//Assemble the link
-		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
-			+ projectId + "/" + meName + "%" + meId;
 
-		//place the link on the system clipboard
+		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+
+		// remove spaces from the project name
+		String projectName = ps.getProjectName().replaceAll(" ", "");
+		String projectId = ps.getProjectId().getId();
+
+		String serverUrl = ps.getUsersession().getServerInfo().getUrl();
+		int serverPort = ps.getUsersession().getServerInfo().getPort();
+
+		// Assemble the link
+		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" + projectId + "/" + meName
+			+ "%" + meId;
+
+		// place the link on the system clipboard
 		StringSelection stringSelection = new StringSelection(link);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(stringSelection, stringSelection);
 
 		Display display = Display.getCurrent();
-		LinkDialog dlg = new LinkDialog(display.getActiveShell(), 
-				"The link has been copied to the clipboard.", link);
+		LinkDialog dlg = new LinkDialog(display.getActiveShell(), "The link has been copied to the clipboard.", link);
 		dlg.open();
 		return null;
 	}
-	
-}
 
+}
