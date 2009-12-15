@@ -59,6 +59,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.AutoSplitAndSaveResourceContainmentList;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.CompositeOperationHandle;
@@ -1467,6 +1468,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		initCompleted = true;
 		this.changeTracker = new ProjectChangeTracker(this);
 		this.getProject().addProjectChangeObserver(this.changeTracker);
+		if (project instanceof ProjectImpl) {
+			((ProjectImpl) this.getProject()).setUndetachable(changeTracker);
+		}
 		if (getUsersession() != null) {
 			getUsersession().addLoginObserver(this);
 			ACUser acUser = getUsersession().getACUser();
