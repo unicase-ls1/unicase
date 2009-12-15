@@ -62,6 +62,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="org.unicase.ui.common.unicase"
             class="org.unicase.link.preferences.UnicaseLinkPreferencePage"
             id="org.unicase.link.preferences.UnicaseLinkPreferencePage"
             name="UNICASE Link">
@@ -72,13 +73,5 @@
       <initializer
             class="org.unicase.link.preferences.PreferenceInitializer">
       </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.unicase.link.WorkbenchPreferencePage1"
-            id="org.unicase.link.prefpage"
-            name="name">
-      </page>
    </extension>
 </plugin>
