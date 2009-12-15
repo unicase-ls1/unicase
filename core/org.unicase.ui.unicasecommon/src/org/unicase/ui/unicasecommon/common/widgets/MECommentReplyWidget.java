@@ -246,10 +246,12 @@ public class MECommentReplyWidget extends Composite {
 
 	private void rebuildRecipientList(Label recipients, List<OrgUnit> list) {
 		String string = "";
-		for (OrgUnit orgUnit : list) {
-			string += orgUnit.getName() + ", ";
+		if (list.size() > 0) {
+			for (OrgUnit orgUnit : list) {
+				string += orgUnit.getName() + ", ";
+			}
+			string = string.substring(0, string.length() - 2);
 		}
-		string = string.substring(0, string.length() - 2);
 		recipients.setText(string);
 	}
 
