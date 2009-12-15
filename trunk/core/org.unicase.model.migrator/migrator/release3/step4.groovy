@@ -4,7 +4,7 @@ participatingActorReference = model.requirement.UserTask.participatingActor
 
 // change migration
 getElementById = { id ->
-	def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} 
+	def element = model.UnicaseModelElement.allInstances.find{e -> id.equals(e.identifier)} 
 	if(element == null) {
 		println "id " + id + " not found"
 	}

@@ -66,7 +66,7 @@ public static String getHTMLFromRichText(String richText) {
 
 //change migration
 getElementById = { id ->
-	def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} 
+	def element = model.UnicaseModelElement.allInstances.find{e -> id.equals(e.identifier)} 
 	if(element == null) {
 		println "id " + id + " not found"
 	}
@@ -85,7 +85,7 @@ isFeatureChange = { operation, EStructuralFeature feature ->
 }
 
 for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {
-	if(isFeatureChange(operation, model.ModelElement.description)) {
+	if(isFeatureChange(operation, model.UnicaseModelElement.description)) {
 		if(operation.oldValue != null) {
 			operation.oldValue = getHTMLFromRichText(operation.oldValue)
 		}
@@ -96,7 +96,7 @@ for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) 
 }
 
 // model migration
-for(m in model.ModelElement.allInstances) {
+for(m in model.UnicaseModelElement.allInstances) {
 	if(m.description != null) {
 		m.description = getHTMLFromRichText(m.description)
 	}
