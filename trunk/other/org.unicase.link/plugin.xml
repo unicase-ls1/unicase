@@ -59,4 +59,26 @@
          point="org.eclipse.ui.startup">
       <startup></startup>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.unicase.link.preferences.UnicaseLinkPreferencePage"
+            id="org.unicase.link.preferences.UnicaseLinkPreferencePage"
+            name="UNICASE Link">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.unicase.link.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.unicase.link.WorkbenchPreferencePage1"
+            id="org.unicase.link.prefpage"
+            name="name">
+      </page>
+   </extension>
 </plugin>
