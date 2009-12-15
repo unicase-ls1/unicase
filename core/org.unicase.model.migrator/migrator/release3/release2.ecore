@@ -187,6 +187,8 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="oppositeFeatureName"
               eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="containmentType"
+              eType="#/0/versioning/operations/ContainmentType"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#/0/versioning/operations/AttributeOperation"/>
         <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
@@ -194,6 +196,16 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
               eType="#/0/versioning/operations/AbstractOperation"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="ModelElementGroup">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="ContainmentType">
+          <eLiterals name="NONE"/>
+          <eLiterals name="CONTAINER" value="1"/>
+          <eLiterals name="CONTAINMENT" value="2"/>
         </eClassifiers>
         <eSubpackages name="semantic" nsURI="http://unicase.org/esmodel/versioning/operations/semantic"
             nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">
@@ -337,6 +349,35 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="sourceURL" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="MergeChoiceEvent" eSuperTypes="#/0/versioning/events/Event">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="myAcceptedChanges"
+              upperBound="-1" eType="#/0/versioning/operations/OperationId" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="theirRejectedChanges"
+              upperBound="-1" eType="#/0/versioning/operations/OperationId" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="contextModelElement"
+              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="selection" eType="#/0/versioning/events/MergeChoiceSelection"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextFeature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdIssueName"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="MergeChoiceSelection">
+          <eLiterals name="Mine"/>
+          <eLiterals name="Their" value="1"/>
+          <eLiterals name="Issue" value="2" literal="Issue"/>
+          <eLiterals name="MergedText" value="3" literal="MergedText"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="MergeGlobalChoiceEvent" eSuperTypes="#/0/versioning/events/Event">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="selection" eType="#/0/versioning/events/MergeGlobalChoiceSelection"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="MergeGlobalChoiceSelection">
+          <eLiterals name="AllMine" literal="AllMine"/>
+          <eLiterals name="AllTheir" value="1" literal="AllTheir"/>
+          <eLiterals name="Cancel" value="2"/>
+          <eLiterals name="OKNotFinished" value="3" literal="OKNotFinished"/>
+          <eLiterals name="OKFinished" value="4" literal="OKFinished"/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>
