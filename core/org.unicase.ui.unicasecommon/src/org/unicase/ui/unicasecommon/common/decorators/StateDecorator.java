@@ -15,7 +15,6 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -107,10 +106,6 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}.run();
 
 		if (status.equals(MEState.OPEN)) {
-			// explicitly turn off for bugreports
-			if (me instanceof BugReport) {
-				return;
-			}
 			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(openPath), null);
 
 		}
