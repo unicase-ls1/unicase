@@ -8,6 +8,7 @@ package org.unicase.workspace.changeTracking.notification.recording;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -101,8 +102,8 @@ public class NotificationRecorder {
 	public void newRecording(NotificationRecordingHint aHint) {
 
 		if (recording != null && !isRecordingComplete()) {
-			throw new IllegalStateException(
-				"trying to create new notification chain, even though there is an uncompleted chain present");
+			String message = "trying to create new notification chain, even though there is an uncompleted chain present";
+			ModelUtil.logException(message, new IllegalStateException(message));
 		}
 
 		recording = new NotificationRecording();
