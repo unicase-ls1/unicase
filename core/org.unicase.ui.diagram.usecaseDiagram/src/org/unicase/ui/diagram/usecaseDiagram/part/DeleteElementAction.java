@@ -73,7 +73,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@SuppressWarnings("null")
 	protected Command getCommand(Request request) {

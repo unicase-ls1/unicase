@@ -73,7 +73,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	@SuppressWarnings("null")
