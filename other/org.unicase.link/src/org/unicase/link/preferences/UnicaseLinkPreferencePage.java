@@ -1,64 +1,52 @@
 package org.unicase.link.preferences;
 
-import org.eclipse.jface.preference.*;
-import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.DirectoryFieldEditor;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.RadioGroupFieldEditor;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.unicase.link.Activator;
 
 /**
- * This class represents a preference page that
- * is contributed to the Preferences dialog. By 
- * subclassing <samp>FieldEditorPreferencePage</samp>, we
- * can use the field support built into JFace that allows
- * us to create a page that is small and knows how to 
- * save, restore and apply itself.
+ * TODO: What we'll need to do here - locate the org.unciase.link.startup application which has been installed with the
+ * feature - Find out the eclipse path which will be passed to the startup application - register the
+ * org.unciase.link.startup application as a protocol handler for the unicase protocol (this should happen via a button
+ * click)
  * <p>
- * This page is used to modify preferences only. They
- * are stored in the preference store that belongs to
- * the main plug-in class. That way, preferences can
- * be accessed directly via the preference store.
+ * This page is used to modify preferences only. They are stored in the preference store that belongs to the main
+ * plug-in class. That way, preferences can be accessed directly via the preference store.
  */
 
-public class UnicaseLinkPreferencePage
-	extends FieldEditorPreferencePage
-	implements IWorkbenchPreferencePage {
+public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public UnicaseLinkPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("A demonstration of a preference page implementation");
+		setDescription("Configuration pane for the link plugin.");
 	}
-	
+
 	/**
-	 * Creates the field editors. Field editors are abstractions of
-	 * the common GUI blocks needed to manipulate various types
-	 * of preferences. Each field editor knows how to save and
-	 * restore itself.
+	 * Creates the field editors. Field editors are abstractions of the common GUI blocks needed to manipulate various
+	 * types of preferences. Each field editor knows how to save and restore itself.
 	 */
+	@Override
 	public void createFieldEditors() {
-		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, 
-				"&Directory preference:", getFieldEditorParent()));
-		addField(
-			new BooleanFieldEditor(
-				PreferenceConstants.P_BOOLEAN,
-				"&An example of a boolean preference",
-				getFieldEditorParent()));
+		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, "&Directory preference:", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(PreferenceConstants.P_BOOLEAN, "&An example of a boolean preference",
+			getFieldEditorParent()));
 
-		addField(new RadioGroupFieldEditor(
-				PreferenceConstants.P_CHOICE,
-			"An example of a multiple-choice preference",
-			1,
-			new String[][] { { "&Choice 1", "choice1" }, {
-				"C&hoice 2", "choice2" }
-		}, getFieldEditorParent()));
-		addField(
-			new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
+		addField(new RadioGroupFieldEditor(PreferenceConstants.P_CHOICE, "An example of a multiple-choice preference",
+			1, new String[][] { { "&Choice 1", "choice1" }, { "C&hoice 2", "choice2" } }, getFieldEditorParent()));
+		addField(new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
 	}
-	
+
 }
