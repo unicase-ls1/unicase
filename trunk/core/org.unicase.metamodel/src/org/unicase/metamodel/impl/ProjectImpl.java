@@ -55,6 +55,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private boolean isNotifiying;
 	private Set<ProjectChangeObserver > exceptionThrowingObservers;
 	private Set<ProjectChangeObserver > observersToRemove;
+	private Set<ProjectChangeObserver > undetachableObservers;
 
 	// begin of custom code
 	/**
@@ -68,6 +69,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		isNotifiying = false;
 		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
 		observersToRemove = new HashSet<ProjectChangeObserver>();
+		undetachableObservers = new HashSet<ProjectChangeObserver>();
 	}
 
 	// end of custom code
@@ -353,9 +355,15 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
 				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
-					observersToRemove.add(projectChangeObserver);
-					ModelUtil.logException("Project Change Observer threw an exception again, it has been detached, UI may not update now: "
-						+ projectChangeObserver.getClass().getName(), ex);
+					if (undetachableObservers.contains(projectChangeObserver)) {
+						observersToRemove.add(projectChangeObserver);
+						ModelUtil.logException("Project Change Observer threw an exception again, it has been detached, UI may not update now: "
+							+ projectChangeObserver.getClass().getName(), ex);
+					}
+					else {
+						ModelUtil.logException("Project Change Observer threw an exception again, but it will not be detached."
+							+ projectChangeObserver.getClass().getName(), ex);
+					}
 				}
 				else {
 					exceptionThrowingObservers.add(projectChangeObserver);
@@ -446,6 +454,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 		this.observers.remove(projectChangeObserver);
 		exceptionThrowingObservers.remove(projectChangeObserver);
+		undetachableObservers.remove(projectChangeObserver);
 	}
 
 	/**
@@ -557,6 +566,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		} else {
 			return modelElement.equals(otherModelElement.eGet(reference));
 		}
+	}
+	
+	/**
+	 * Make a project change observer undetachable.
+	 * @param observer the observer
+	 */
+	public void setUndetachable(ProjectChangeObserver observer) {
+		undetachableObservers.add(observer);
 	}
 
 }
