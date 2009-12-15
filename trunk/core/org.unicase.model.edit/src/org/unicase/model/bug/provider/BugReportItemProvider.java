@@ -273,12 +273,6 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	public Object getImage(Object object) {
 		if (object instanceof BugReport) {
 			BugReport bugReport = (BugReport) object;
-			if (bugReport.isChecked()) {
-				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_closed.png"));
-			}
-			if (bugReport.isResolved()) {
-				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_resolved.png"));
-			}
 			if (bugReport.getSeverity().equals(Severity.FEATURE)) {
 				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_feature.png"));
 			}
