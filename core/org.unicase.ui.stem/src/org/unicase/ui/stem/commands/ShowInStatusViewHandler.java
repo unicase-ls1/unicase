@@ -30,13 +30,14 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 
 	private static final String STATUS_VIEW_ID = "org.unicase.ui.treeview.views.StatusView";
 	private static List<StatusView> openStatusViews;
+	private IWorkbenchPage page;
 
 	/**
 	 * Default constructor.
 	 */
 	public ShowInStatusViewHandler() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		page.addPartListener(this);
+		// IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		// page.addPartListener(this);
 	}
 
 	/**
@@ -46,9 +47,10 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 	 */
 	@Override
 	public void dispose() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		page.removePartListener(this);
-		super.dispose();
+		if (page != null) {
+			page.removePartListener(this);
+			super.dispose();
+		}
 	}
 
 	/**
@@ -61,7 +63,7 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 		if (openStatusViews == null) {
 			openStatusViews = new ArrayList<StatusView>();
 		}
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		page.addPartListener(this);
 		UnicaseModelElement newInput = UnicaseActionHelper.getModelElement(event);
 
