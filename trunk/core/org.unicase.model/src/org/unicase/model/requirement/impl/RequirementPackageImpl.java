@@ -1056,6 +1056,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		actorEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		actorInstanceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		stepEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stepEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
 		systemFunctionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		userTaskEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		workspaceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());

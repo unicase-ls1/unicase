@@ -7720,5 +7720,16 @@
     <changes xsi:type="history:Set" element="model.ecore#//classes/Association/targetRole"
         featureName="defaultValueLiteral" oldDataValue="1"/>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/Step" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+  </releases>
 </history:History>
