@@ -10,8 +10,7 @@ import java.util.Map;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
-import org.unicase.model.ModelElement;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 
 /**
  * This strategy tries to combine different strategies.
