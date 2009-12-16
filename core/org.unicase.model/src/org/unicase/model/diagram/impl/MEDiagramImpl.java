@@ -299,23 +299,20 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	}
 
 	/**
-	 * @param newDiagramLayout The new layout to be saved.
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
 		String oldDiagramLayout = diagramLayout;
-		if (diagramLayout != null && diagramLayout.equals(newDiagramLayout)) {
-			return;
-		}
 		diagramLayout = newDiagramLayout;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
 				oldDiagramLayout, diagramLayout));
-		}
 	}
 
 	/**
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
