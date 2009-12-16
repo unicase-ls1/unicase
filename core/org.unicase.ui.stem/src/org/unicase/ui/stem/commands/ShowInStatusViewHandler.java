@@ -33,14 +33,6 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 	private IWorkbenchPage page;
 
 	/**
-	 * Default constructor.
-	 */
-	public ShowInStatusViewHandler() {
-		// IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		// page.addPartListener(this);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#dispose()
