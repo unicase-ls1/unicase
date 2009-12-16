@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -506,9 +505,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
 			return;
 		}
-		if (diagramLayout == null) {
-			throw new DiagramLoadException("Diagram string is null, load failed.");
-		}
+
 		/*
 		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
 		 * reason: Check for the old and incompatible layout information and convert it.
@@ -534,13 +531,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		if (!(object instanceof Diagram)) {
 			throw new DiagramLoadException("Diagram String contains unexpected content: first entry is not a diagram");
 		}
-		@SuppressWarnings("unused")
-		EObject object2;
-		TreeIterator<EObject> allContents = elementsResource.getAllContents();
-		while (allContents.hasNext()) {
-			object2 = allContents.next();
 
-		}
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
 		this.syncDiagramLayout(gmfDiagram);
 		EcoreUtil.resolveAll(gmfDiagram);
@@ -550,8 +541,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		// restore old resource for all model elements
 		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
 		gmfDiagram.setElement(this);
-		// MK change this
-		saveAllResources();
 	}
 
 	/*
@@ -587,23 +576,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	private Map<UnicaseModelElement, Resource> preserveOldResources(EList<UnicaseModelElement> elements) {
 		Map<UnicaseModelElement, Resource> resourceMap = new HashMap<UnicaseModelElement, Resource>();
 		for (UnicaseModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
-				resourceMap.put(modelElement, modelElement.eResource());
-			}
+			resourceMap.put(modelElement, modelElement.eResource());
 		}
 		return resourceMap;
-	}
-
-	private void saveAllResources() {
-		EList<Resource> resources = this.eResource().getResourceSet().getResources();
-		for (Resource resource : resources) {
-			try {
-				resource.save(null);
-			} catch (IOException e) {
-				// MK Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	/**
@@ -621,7 +596,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
-
 		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 		diagramResource.getContents().add(getGmfdiagram());
@@ -638,9 +612,12 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 		getGmfdiagram().setElement(this);
 
-		setDiagramLayout(out.toString());
-		saveAllResources();
-
+		String layoutString = out.toString();
+		// only set diagram layout if it actually changed
+		String oldLayout = getDiagramLayout();
+		if (oldLayout == null || !oldLayout.equals(layoutString)) {
+			setDiagramLayout(layoutString);
+		}
 	}
 
 } // MEDiagramImpl
