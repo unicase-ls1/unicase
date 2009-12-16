@@ -305,7 +305,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
 		String oldDiagramLayout = diagramLayout;
-		if (oldDiagramLayout != null && oldDiagramLayout.equals(newDiagramLayout)) {
+		if (diagramLayout != null && diagramLayout.equals(newDiagramLayout)) {
 			return;
 		}
 		diagramLayout = newDiagramLayout;
