@@ -315,7 +315,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	}
 
 	/**
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

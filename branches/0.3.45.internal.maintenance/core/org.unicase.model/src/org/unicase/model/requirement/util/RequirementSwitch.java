@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.requirement.Actor;
@@ -174,6 +175,8 @@ public class RequirementSwitch<T> {
 			T result = caseStep(step);
 			if (result == null)
 				result = caseUnicaseModelElement(step);
+			if (result == null)
+				result = caseNonDomainElement(step);
 			if (result == null)
 				result = caseModelElement(step);
 			if (result == null)
@@ -411,6 +414,20 @@ public class RequirementSwitch<T> {
 	 * @generated
 	 */
 	public T caseCriterion(Criterion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

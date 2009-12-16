@@ -288,7 +288,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal.replace("_", " ");
+		return literal;
 	}
 
 	/**
@@ -299,7 +299,7 @@ public enum DiagramType implements Enumerator {
 	 */
 	@Override
 	public String toString() {
-		return getLiteral();
+		return literal;
 	}
 
 } // DiagramType
