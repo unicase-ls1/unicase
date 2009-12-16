@@ -37,10 +37,8 @@ public class ConsistentMultiplicityConstraint extends AbstractModelConstraint {
 				String sourceMultiplicityString = association.getSourceMultiplicity();
 				String targetMultiplicityString = association.getTargetMultiplicity();
 
-				MultiplicityParseResult sourceMultiplicity = ClassesHelper
-					.parseMultiplicity(sourceMultiplicityString);
-				MultiplicityParseResult targetMultiplicity = ClassesHelper
-					.parseMultiplicity(targetMultiplicityString);
+				MultiplicityParseResult sourceMultiplicity = ClassesHelper.parseMultiplicity(sourceMultiplicityString);
+				MultiplicityParseResult targetMultiplicity = ClassesHelper.parseMultiplicity(targetMultiplicityString);
 				boolean sourceValid = sourceMultiplicity.getMinimumMultiplicity() <= sourceMultiplicity
 					.getMaximumMultiplicity()
 					|| sourceMultiplicity.getMaximumMultiplicity() == -1;
