@@ -6,10 +6,10 @@
 package org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -25,6 +25,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -45,25 +46,25 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private static final int MAX_LENGTH_CRITERIA_NAME = 20;
-
 	private static final int PRIORITY = 2;
 
-	private AdapterImpl eAdapter;
-
 	private Composite mainComposite;
-
-	private int parentStyle;
-	private Section section;
-
 	private Composite matrixSection;
+	private Section section;
+	private int parentStyle;
 
-	private Issue issue;
-
-	private AdapterFactoryItemDelegator adapterFactoryItemDelegator;
 	private ArrayList<AbstractMEControl> assessmentControls = new ArrayList<AbstractMEControl>();
-
 	private HashMap<Proposal, Label> allSumLabels = new HashMap<Proposal, Label>();
 	private HashMap<Proposal, Composite> allSumLabelContainer = new HashMap<Proposal, Composite>();
+
+	private CriterionListener criterionListener;
+	private IssueListener issueListener;
+	private AssessmentListener assessmentListener;
+	private ProposalListener proposalListener;
+
+	private AdapterFactoryItemDelegator adapterFactoryItemDelegator;
+
+	private Issue issue;
 
 	/**
 	 * Method is responsible to create the assessment matrix control.
@@ -75,41 +76,42 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	@Override
 	public Control createControl(Composite parent, int style) {
 
+		// check if null or not an issue
+		if (getModelElement() == null || !(getModelElement() instanceof Issue)) {
+			throw new IllegalArgumentException("Expected " + Issue.class.getCanonicalName() + ", was "
+				+ getModelElement());
+		}
 		issue = (Issue) getModelElement();
 
-		eAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				handleMessage(msg);
-				super.notifyChanged(msg);
-			}
-		};
+		// adapter factory item delegator
 
 		adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		getModelElement().eAdapters().add(eAdapter);
 
-		if (issue != null) {
-			EList<Proposal> props = issue.getProposals();
-			for (Proposal p : props) {
-				p.eAdapters().add(eAdapter);
-			}
+		// instantiate listeners
 
-			EList<Criterion> criteria = issue.getCriteria();
-			for (Criterion c : criteria) {
-				c.eAdapters().add(eAdapter);
-			}
+		issueListener = new IssueListener();
+		criterionListener = new CriterionListener();
+		assessmentListener = new AssessmentListener();
+		proposalListener = new ProposalListener();
 
-			for (Proposal p : props) {
-				EList<Assessment> currentAssessments = p.getAssessments();
-				for (Assessment a : currentAssessments) {
-					if (criteria.contains(a.getCriterion())) {
-						a.eAdapters().add(eAdapter);
-					}
+		// add listeners
+
+		issue.addModelElementChangeListener(issueListener);
+		for (Criterion criterion : issue.getCriteria()) {
+			criterion.addModelElementChangeListener(criterionListener);
+		}
+		for (Proposal proposal : issue.getProposals()) {
+			proposal.addModelElementChangeListener(proposalListener);
+			for (Assessment assessment : proposal.getAssessments()) {
+				if (issue.getCriteria().contains(assessment.getCriterion())) {
+					assessment.addModelElementChangeListener(assessmentListener);
 				}
 			}
 		}
-		int numberOfCriteria = 0;
+
+		// Layout
+
 		mainComposite = parent;
 		parentStyle = style;
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
@@ -118,9 +120,9 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		mainComposite.setLayout(new GridLayout(1, true));
 		mainComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		if (issue != null) {
-			numberOfCriteria = issue.getCriteria().size();
-		}
+		// assessment control area
+
+		int numberOfCriteria = issue.getCriteria().size();
 
 		if (numberOfCriteria > 0) {
 			matrixSection = getToolkit().createComposite(mainComposite);
@@ -142,61 +144,52 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		matrixSection.dispose();
-		for (AbstractMEControl assessmentControl : this.assessmentControls) {
-			assessmentControl.dispose();
-		}
-		assessmentControls.clear();
+
+		// dispose controls
+
+		disposeControls();
+
+		// dispose listeners
 
 		if (issue != null) {
-			EList<Proposal> props = issue.getProposals();
-			for (Proposal p : props) {
-				p.eAdapters().remove(eAdapter);
+			for (Proposal proposal : issue.getProposals()) {
+				proposal.removeModelElementChangeListener(proposalListener);
 			}
-
-			EList<Criterion> criteria = issue.getCriteria();
-			for (Criterion c : criteria) {
-				c.eAdapters().remove(eAdapter);
+			for (Criterion criterion : issue.getCriteria()) {
+				criterion.removeModelElementChangeListener(criterionListener);
 			}
-
-			for (Proposal p : props) {
-				EList<Assessment> currentAssessments = p.getAssessments();
-				for (Assessment a : currentAssessments) {
-					if (criteria.contains(a.getCriterion())) {
-						a.eAdapters().remove(eAdapter);
+			for (Proposal proposal : issue.getProposals()) {
+				for (Assessment assessment : proposal.getAssessments()) {
+					if (issue.getCriteria().contains(assessment.getCriterion())) {
+						assessment.removeModelElementChangeListener(assessmentListener);
 					}
 				}
 			}
 		}
-
-		getModelElement().eAdapters().remove(eAdapter);
+		issue.removeModelElementChangeListener(issueListener);
 	}
 
+	/**
+	 * Rebuilds the assessment matrix after changes.
+	 */
 	private void rebuildMatrix() {
-		matrixSection.dispose();
-		for (AbstractMEControl assessmentControl : this.assessmentControls) {
-			assessmentControl.dispose();
-		}
-		assessmentControls.clear();
+		disposeControls();
 
-		int numberOfCriteria = 0;
 		EList<Proposal> proposals = issue.getProposals();
 		EList<Criterion> criteria = issue.getCriteria();
 
-		if (issue != null) {
-			numberOfCriteria = criteria.size();
-		}
+		int numberOfCriteria = criteria.size();
 
 		if (numberOfCriteria > 0 && proposals.size() > 0) {
 			matrixSection = getToolkit().createComposite(mainComposite);
 			matrixSection.setLayout(new GridLayout(numberOfCriteria + 4, false));
-
 		} else {
 			mainComposite.layout(true);
 			section.setExpanded(false);
 			return;
 		}
 
+		// layout
 		GridData matrixAreaGridData = new GridData(GridData.FILL_HORIZONTAL);
 		matrixAreaGridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 		matrixSection.setLayoutData(matrixAreaGridData);
@@ -232,22 +225,20 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			for (int i = 0; i < criteria.size(); i++) {
 				Criterion criterion = criteria.get(i);
 				Assessment assessment = getAssessment(currentProposal, criterion);
-				if (assessment != null) {
-					ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
-					final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
-						.getPropertyDescriptor(assessment, "value");
-					AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue,
-						assessment);
-					this.assessmentControls.add(assessmentControlDescription);
+				ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
+				final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
+					.getPropertyDescriptor(assessment, "value");
+				AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue,
+					assessment);
+				this.assessmentControls.add(assessmentControlDescription);
 
-					Composite comp = getToolkit().createComposite(matrixSection);
-					assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue,
-						assessment, getEditingDomain(), getToolkit());
-					comp.setLayout(new GridLayout(1, true));
-					GridData gridData = new GridData();
-					gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
-					comp.setLayoutData(gridData);
-				}
+				Composite comp = getToolkit().createComposite(matrixSection);
+				assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue, assessment,
+					getEditingDomain(), getToolkit());
+				comp.setLayout(new GridLayout(1, true));
+				GridData gridData = new GridData();
+				gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
+				comp.setLayoutData(gridData);
 			}
 			getToolkit().createLabel(matrixSection, "          ");
 			Composite sumLabelComposite = getToolkit().createComposite(matrixSection);
@@ -265,6 +256,14 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		section.setExpanded(true);
 	}
 
+	private void disposeControls() {
+		matrixSection.dispose();
+		for (AbstractMEControl assessmentControl : this.assessmentControls) {
+			assessmentControl.dispose();
+		}
+		assessmentControls.clear();
+	}
+
 	private String cutStringName(String inputString) {
 		if (inputString.length() <= (MAX_LENGTH_CRITERIA_NAME - 3)) {
 			int diff = (MAX_LENGTH_CRITERIA_NAME - inputString.length()) / 2;
@@ -279,9 +278,6 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	}
 
 	private Assessment getAssessment(final Proposal p, final Criterion c) {
-		if (p == null || c == null) {
-			return null;
-		}
 
 		EList<Assessment> assessmentsOfProposal = p.getAssessments();
 		for (int i = 0; i < assessmentsOfProposal.size(); i++) {
@@ -300,7 +296,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				assessment.setName("new Assessment");
 				assessment.setProposal(p);
 				assessment.setCriterion(c);
-				assessment.eAdapters().add(eAdapter);
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}.run();
 
@@ -340,156 +336,40 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		c.layout();
 	}
 
-	private void handleMessage(Notification msg) {
-		if (msg.getNotifier().equals(issue)) {
-			if (msg.getFeature() instanceof EReference) {
-				handleReferencesMessage(msg);
-			}
-		}
-
-		if (msg.getNotifier() instanceof Criterion) {
-			handleCriterionMessage(msg);
-		}
-
-		if (msg.getNotifier() instanceof Proposal) {
-			handleProposalMessage(msg);
-		}
-
-		if ((msg.getNotifier() instanceof Assessment)) {
-			handleAssessmentMessage(msg);
-		}
-	}
-
-	private void handleReferencesMessage(Notification msg) {
-		EReference reference = (EReference) msg.getFeature();
-		Object oldValue = msg.getOldValue();
-		Object newValue = msg.getNewValue();
-		if (reference.getName().equals("criteria")) {
-			handleCriteria(oldValue, newValue);
-			rebuildMatrix();
-		} else if (reference.getName().equals("proposals")) {
-			handleProposals(oldValue, newValue);
-			rebuildMatrix();
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	private void handleProposals(Object oldValue, Object newValue) {
-		if (oldValue == null && newValue != null) {
-			if (newValue instanceof EList) {
-				EList<Proposal> proposals = (EList<Proposal>) newValue;
-				for (Proposal p : proposals) {
-					addAssessmentEAdapter(p);
-				}
-			} else {
-				addAssessmentEAdapter((Proposal) newValue);
-			}
-		} else if (oldValue != null && newValue == null) {
-			if (oldValue instanceof EList) {
-				EList<Proposal> proposals = (EList<Proposal>) oldValue;
-				for (Proposal p : proposals) {
-					removeAssessmentEAdapter(p);
-				}
-			} else {
-				removeAssessmentEAdapter((Proposal) oldValue);
+	private void removeAssessmentListener(Proposal proposal) {
+		proposal.removeModelElementChangeListener(proposalListener);
+		for (Assessment assessment : proposal.getAssessments()) {
+			if (issue.getCriteria().contains(assessment.getCriterion())) {
+				assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void handleCriteria(Object oldValue, Object newValue) {
-		if (oldValue == null && newValue != null) {
-			if (newValue instanceof EList) {
-				EList<Criterion> criteria = (EList<Criterion>) newValue;
-				for (Criterion c : criteria) {
-					addAssessmentEAdapter(c);
-				}
-			} else {
-				addAssessmentEAdapter((Criterion) newValue);
-			}
-		} else if (oldValue != null && newValue == null) {
-			if (oldValue instanceof EList) {
-				EList<Criterion> criteria = (EList<Criterion>) oldValue;
-				for (Criterion c : criteria) {
-					removeAssessmentEAdapter(c);
-				}
-			} else {
-				removeAssessmentEAdapter((Criterion) oldValue);
+	private void removeAssessmentListener(Criterion criterion) {
+		criterion.removeModelElementChangeListener(criterionListener);
+		for (Assessment assessment : criterion.getAssessments()) {
+			if (issue.getProposals().contains(assessment.getProposal())) {
+				assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
-	private void handleCriterionMessage(Notification msg) {
-		if (msg.getFeature() instanceof EAttribute && ((EAttribute) msg.getFeature()).getName().equals("name")) {
-			Criterion c = (Criterion) msg.getNotifier();
-			if (issue != null && issue.getCriteria().contains(c)) {
-				rebuildMatrix();
+	private void addAssessmentListener(Proposal proposal) {
+		proposal.addModelElementChangeListener(proposalListener);
+		for (Assessment assessment : proposal.getAssessments()) {
+			if (issue.getCriteria().contains(assessment.getCriterion())) {
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
-	private void handleProposalMessage(Notification msg) {
-		if (msg.getFeature() instanceof EAttribute && ((EAttribute) msg.getFeature()).getName().equals("name")) {
-			Proposal p = (Proposal) msg.getNotifier();
-			if (issue != null && issue.getProposals().contains(p)) {
-				rebuildMatrix();
+	private void addAssessmentListener(Criterion criterion) {
+		criterion.addModelElementChangeListener(criterionListener);
+		for (Assessment assessment : criterion.getAssessments()) {
+			if (issue.getProposals().contains(assessment.getProposal())) {
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
-	}
-
-	private void handleAssessmentMessage(Notification msg) {
-		if (msg.getFeature() instanceof EAttribute && ((EAttribute) msg.getFeature()).getName().equals("value")) {
-			Assessment a = (Assessment) msg.getNotifier();
-			if (a.getProposal().getIssue().equals(issue)) {
-				updateAssessmentSum(a.getProposal());
-			}
-		}
-	}
-
-	private void removeAssessmentEAdapter(Proposal p) {
-		p.eAdapters().remove((eAdapter));
-		EList<Criterion> criteria = issue.getCriteria();
-		EList<Assessment> assessments = p.getAssessments();
-		for (Assessment a : assessments) {
-			if (criteria.contains(a.getCriterion())) {
-				a.eAdapters().remove(eAdapter);
-			}
-		}
-	}
-
-	private void removeAssessmentEAdapter(Criterion c) {
-		c.eAdapters().remove((eAdapter));
-		EList<Proposal> proposals = issue.getProposals();
-		EList<Assessment> assessments = c.getAssessments();
-		for (Assessment a : assessments) {
-			if (proposals.contains(a.getProposal())) {
-				a.eAdapters().remove(eAdapter);
-			}
-		}
-
-	}
-
-	private void addAssessmentEAdapter(Proposal p) {
-		p.eAdapters().add((eAdapter));
-		EList<Criterion> criteria = issue.getCriteria();
-		EList<Assessment> assessments = p.getAssessments();
-		for (Assessment a : assessments) {
-			if (criteria.contains(a.getCriterion())) {
-				a.eAdapters().add(eAdapter);
-			}
-		}
-	}
-
-	private void addAssessmentEAdapter(Criterion c) {
-		c.eAdapters().add((eAdapter));
-		EList<Proposal> proposals = issue.getProposals();
-		EList<Assessment> assessments = c.getAssessments();
-		for (Assessment a : assessments) {
-			if (proposals.contains(a.getProposal())) {
-				a.eAdapters().add(eAdapter);
-			}
-		}
-
 	}
 
 	/**
@@ -505,5 +385,133 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		}
 
 		return PRIORITY;
+	}
+
+	public class IssueListener implements ModelElementChangeListener {
+
+		public void onChange(Notification notification) {
+			if (notification.getFeature() instanceof EReference) {
+				EReference reference = (EReference) notification.getFeature();
+				Object oldValue = notification.getOldValue();
+				Object newValue = notification.getNewValue();
+				if (reference.getName().equals("criteria")) {
+					handleCriteria(oldValue, newValue);
+				} else if (reference.getName().equals("proposals")) {
+					handleProposals(oldValue, newValue);
+				}
+				rebuildMatrix();
+			}
+		}
+
+		public void onRuntimeExceptionInListener(RuntimeException exception) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@SuppressWarnings("unchecked")
+		private void handleCriteria(Object oldValue, Object newValue) {
+			if (oldValue == null && newValue != null) {
+				if (newValue instanceof EList) {
+					EList<Criterion> criteria = (EList<Criterion>) newValue;
+					for (Criterion c : criteria) {
+						addAssessmentListener(c);
+					}
+				} else {
+					addAssessmentListener((Criterion) newValue);
+				}
+			} else if (oldValue != null && newValue == null) {
+				if (oldValue instanceof EList) {
+					EList<Criterion> criteria = (EList<Criterion>) oldValue;
+					for (Criterion c : criteria) {
+						removeAssessmentListener(c);
+					}
+				} else if (oldValue != Collections.EMPTY_LIST) {
+					removeAssessmentListener((Criterion) oldValue);
+				}
+			}
+		}
+
+		@SuppressWarnings("unchecked")
+		private void handleProposals(Object oldValue, Object newValue) {
+			if (oldValue == null && newValue != null) {
+				if (newValue instanceof EList<?>) {
+					EList<Proposal> proposals = (EList<Proposal>) newValue;
+					for (Proposal p : proposals) {
+						addAssessmentListener(p);
+					}
+				} else {
+					addAssessmentListener((Proposal) newValue);
+				}
+			} else if (oldValue != null && newValue == null) {
+				if (oldValue instanceof EList<?>) {
+					EList<Proposal> proposals = (EList<Proposal>) oldValue;
+					for (Proposal p : proposals) {
+						removeAssessmentListener(p);
+					}
+				} else if (oldValue != Collections.EMPTY_LIST) {
+					removeAssessmentListener((Proposal) oldValue);
+				}
+			}
+		}
+	}
+
+	public class CriterionListener implements ModelElementChangeListener {
+
+		public void onChange(Notification notification) {
+			if (notification.getNotifier() instanceof Criterion) {
+				if (notification.getFeature() instanceof EAttribute
+					&& ((EAttribute) notification.getFeature()).getName().equals("name")) {
+					Criterion c = (Criterion) notification.getNotifier();
+					if (issue != null && issue.getCriteria().contains(c)) {
+						rebuildMatrix();
+					}
+				}
+			}
+		}
+
+		public void onRuntimeExceptionInListener(RuntimeException exception) {
+			// TODO Auto-generated method stub
+		}
+
+	}
+
+	public class ProposalListener implements ModelElementChangeListener {
+
+		public void onChange(Notification notification) {
+			if (notification.getNotifier() instanceof Proposal) {
+				if (notification.getFeature() instanceof EAttribute
+					&& ((EAttribute) notification.getFeature()).getName().equals("name")) {
+					Proposal p = (Proposal) notification.getNotifier();
+					if (issue != null && issue.getProposals().contains(p)) {
+						rebuildMatrix();
+					}
+				}
+			}
+		}
+
+		public void onRuntimeExceptionInListener(RuntimeException exception) {
+			// TODO Auto-generated method stub
+		}
+	}
+
+	public class AssessmentListener implements ModelElementChangeListener {
+
+		public void onChange(Notification notification) {
+			if ((notification.getNotifier() instanceof Assessment)) {
+				if (notification.getFeature() instanceof EAttribute
+					&& ((EAttribute) notification.getFeature()).getName().equals("value")) {
+					Assessment assessment = (Assessment) notification.getNotifier();
+					if (assessment.getProposal().getIssue().equals(issue)) {
+						updateAssessmentSum(assessment.getProposal());
+					}
+				}
+			}
+		}
+
+		public void onRuntimeExceptionInListener(RuntimeException exception) {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
 }
