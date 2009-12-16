@@ -72,11 +72,11 @@ public class AcUserImportPageTwo extends WizardPage {
 
 		// How to add a filter to a treeviewer:
 		// http://jmesnil.net/weblog/2007/02/26/add-a-filter-to-a-treeviewer/
-
+		// Due to compatibility to ganymede
 		final PatternFilter patternFilter = new PatternFilter();
 		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK
 				| SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL,
-				patternFilter, true);
+				patternFilter);
 
 		gridData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
 		gridData.horizontalSpan = 2;
