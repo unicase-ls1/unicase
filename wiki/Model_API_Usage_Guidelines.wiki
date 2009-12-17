@@ -15,7 +15,7 @@ The Model API allows you to view, create, delete and modify model elements in a 
 {{{new UnicaseCommand() {
    @Override 
       protected void doRun() {
-        //*****your code in here
+        //your code in here
       }
    }.run();}}}
 There is also two additional Class for handling Parameters and return results with a command: UnicaseCommandWithResult and UnicaseCommandWithParameterAndResults
