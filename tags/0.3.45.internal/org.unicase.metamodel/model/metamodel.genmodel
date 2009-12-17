@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;"
+    modelDirectory="/org.unicase.metamodel/src" editDirectory="/org.unicase.metamodel.edit/src"
+    editorDirectory="/org.unicase.metamodel.editor/src" modelPluginID="org.unicase.metamodel"
+    modelName="Metamodel" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="org.unicase.metamodel.provider.RootElementItemProvider"
+    editorPluginID="org.unicase.metamodel.editor" language="">
+  <foreignModel>metamodel.ecore</foreignModel>
+  <genPackages prefix="Metamodel" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="metamodel.ecore#/">
+    <genClasses image="false" ecoreClass="metamodel.ecore#//ModelElement">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creator"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creationDate"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//Project">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//UniqueIdentifier">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//UniqueIdentifier/id"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//IdentifiableElement">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//IdentifiableElement/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//ModelElementId"/>
+    <genClasses ecoreClass="metamodel.ecore#//ModelVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelVersion/releaseNumber"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//NonDomainElement"/>
+  </genPackages>
+</genmodel:GenModel>
