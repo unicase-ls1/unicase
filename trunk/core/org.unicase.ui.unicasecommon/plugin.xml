@@ -168,6 +168,11 @@
             id="org.unicase.ui.meeditor.openModelElementDiscussion"
             name="Open Discussion">
       </command>
+      <command
+            defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.CollapseAllHandler"
+            id="org.unicase.ui.navigator.CollapseAll"
+            name="Collapse All">
+      </command>
    </extension>
     <!--    -->
 
@@ -574,10 +579,11 @@
      <menuContribution
            locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
          <command
-              commandId="org.unicase.ui.common.handlers.open_me_ID"
-              icon="icons/magnifier.png"
-              style="push"
-              tooltip="Search for model element">
+               commandId="org.unicase.ui.common.handlers.open_me_ID"
+               icon="icons/magnifier.png"
+               id="SearchElementButon"
+               style="push"
+               tooltip="Search for model element">
         </command>
      </menuContribution>
      <menuContribution
@@ -591,6 +597,16 @@
                  tooltip="Search model element">
            </command>
         </toolbar>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.navigator.viewer?before=SearchElementButon">
+        <command
+              commandId="org.unicase.ui.navigator.CollapseAll"
+              icon="icons/collapseall.png"
+              id="CollapseButton"
+              style="push"
+              tooltip="Collapse All">
+        </command>
      </menuContribution>
     
   </extension>
