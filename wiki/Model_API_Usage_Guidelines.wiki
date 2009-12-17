@@ -12,7 +12,7 @@ The Model API allows you to view, create, delete and modify model elements in a 
 </p>
 
    * *Commands:* To read from or change something in the model you need to run a command on the transactional editing domain the model is controlled by. Otherwise the editing domain will reject your read or your changes. This is necessary to synchronize different threads working on the model. You can use the following code to run a command on the model:
-`new UnicaseCommand() {`
+{{{new UnicaseCommand() {}}}
 `   @Override `
 `      protected void doRun() {`
 `        //*****your code in here`
