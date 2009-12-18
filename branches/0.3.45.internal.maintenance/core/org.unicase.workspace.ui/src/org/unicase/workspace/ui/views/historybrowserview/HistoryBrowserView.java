@@ -73,6 +73,7 @@ import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
@@ -126,6 +127,7 @@ public class HistoryBrowserView extends ViewPart implements
 					helper.checkProjectAdminAccess((ProjectId) EcoreUtil
 							.copy(projectSpace.getProjectId()));
 					manager.add(revertAction);
+					manager.add(forceRevertAction);
 				} catch (AccessControlException e) {
 					// do nothing
 					System.out.println("");
@@ -210,6 +212,8 @@ public class HistoryBrowserView extends ViewPart implements
 	private boolean isUnlinkedFromNavigator;
 
 	private Action revertAction;
+
+	private Action forceRevertAction;
 
 	/**
 	 * Constructor.
@@ -761,6 +765,60 @@ public class HistoryBrowserView extends ViewPart implements
 		}
 	}
 
+	/**
+	 * Reverts the commit from a certain revision in a local workspace on the
+	 * HEAD version that can be committed later.
+	 * 
+	 * @param versionSpec
+	 *            the version of the commit to revert
+	 */
+	public void forceRevertCommit(final PrimaryVersionSpec versionSpec) {
+		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
+
+			@Override
+			protected Object run() throws EmfStoreException {
+				checkoutHeadAndReverseCommit(versionSpec);
+				return null;
+			}
+
+			@Override
+			public String getTaskTitle() {
+				return "Resolving project versions...";
+			}
+		};
+		try {
+			handler.execute(new ExecutionEvent());
+		} catch (ExecutionException e) {
+			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	}
+
+	private void checkoutHeadAndReverseCommit(
+			final PrimaryVersionSpec versionSpec) throws EmfStoreException {
+
+		ConnectionManager connectionManager = WorkspaceManager.getInstance()
+				.getConnectionManager();
+
+		ProjectSpace revertSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().checkout(
+						projectSpace.getUsersession(),
+						projectSpace.getProjectInfo(),
+						connectionManager.resolveVersionSpec(projectSpace
+								.getUsersession().getSessionId(), projectSpace
+								.getProjectId(), VersionSpec.HEAD_VERSION));
+		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
+		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
+		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion,
+				versionSpec);
+		if (changes.size() != 1) {
+			throw new EmfStoreException(
+					"Zero or more than 1 Change Package received for one revision!");
+		}
+		ChangePackage changePackage = changes.get(0);
+		ChangePackage reversedChangePackage = changePackage.reverse();
+		reversedChangePackage.apply(revertSpace.getProject(), true);
+	}
+
 	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec)
 			throws EmfStoreException {
 		ProjectSpace revertSpace = WorkspaceManager.getInstance()
@@ -861,10 +919,22 @@ public class HistoryBrowserView extends ViewPart implements
 		revertAction
 				.setToolTipText("Revert this revision of the project, the reversed changes between the previous revision has been applied");
 
-		// } catch (AccessControlException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		forceRevertAction = new Action() {
+			@Override
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
+				forceRevertCommit(versionSpec);
+			}
+		};
+		forceRevertAction.setText("Force to revert this revision");
+		forceRevertAction
+				.setToolTipText("Force to revert, the reversed changes between the previous revision has been applied");
 
 		addTagAction = new Action() {
 			@Override
