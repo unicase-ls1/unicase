@@ -120,7 +120,7 @@ public class ExportProjectHistoryAction extends Action {
 			return null;
 		}
 
-		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+		final File file = new File(fn);
 
 		return file.getAbsolutePath();
 	}
