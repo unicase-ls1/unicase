@@ -7,6 +7,8 @@ package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
+
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
@@ -15,7 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,11 +29,15 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
-
+/**
+ * Class to test the MEDateControl.
+ */
 public class MEDateControlTest extends MeControlTest {
 
 	private ActionItem actionItem;
-
+/**
+ * Setup the environment for testing.
+ */
 	@Before
 	public void setupActionItem() {
 
@@ -43,44 +53,93 @@ public class MEDateControlTest extends MeControlTest {
 		}.run();
 	}
 
-	/* Seems this guy(method: testDateChange()) is still having some problem. I think i need to have 2 matchers: 1st one to match and set enable the Label with text
-	 *  (Not Set) in Due Date. So that the CDatetime widget is visible to the 2nd matcher, which can then modify the date field then!
-	 *  Thus this test is to be performed manually until this test case is fixed!
+	/**  
+	 * This method first look for the label with text "(Not Set)" and then activates the label to get the
+	 * CDateTime widget and finally changes the DueDate for actionItem through UI.
+	 * 
+	 * @throws ParseException while parsing date..
 	 */
-	@SuppressWarnings({ "unchecked" })
-	@Test
-	public void testDateChange() {
+	@SuppressWarnings("unchecked")
+	@Test 
+	public void testDateChange() throws ParseException {
 
 		openModelElement(actionItem);
 		
-		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
+		UnicaseCommandWithResult<Matcher> labelFinderCommand = new UnicaseCommandWithResult<Matcher>() {
+			@Override
+			protected Matcher doRun() {
+				Matcher matchlabel = allOf(widgetOfType(Label.class), withRegex("(Not Set)"));
+				return matchlabel;
+			}
+		};
+		
+		Matcher labelmatcher = runAsnc(labelFinderCommand);
+		final List labelcontrols = getBot().getFinder().findControls(labelmatcher);
+		
+		
+		UnicaseCommand labelActivateCommand = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					Label label = ((Label)labelcontrols.get(3));
+					Event event = new Event();
+					event.widget = ((Label)labelcontrols.get(3));
+					label.notifyListeners(SWT.MouseUp, event);
+					
+				}
+			}; runAsnc(labelActivateCommand);
+		
+		
+		
+		UnicaseCommandWithResult<Matcher> unicaseDateWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
 				Matcher match = allOf(widgetOfType(CDateTime.class));
 				return match;
 			}
 		};
-		Matcher matcher = runAsnc(unicaseCommand);
 		
-		final List controls = getBot().getFinder().findControls(matcher);
-		final Date somedate = new Date(300000);
+		Matcher datematcher = runAsnc(unicaseDateWidgetFinderCommand);
 		
 		
-	
+		final List controls = getBot().getFinder().findControls(datematcher);
+		DateFormat dfm = new SimpleDateFormat("MMM dd, yyyy");
+		final String sdate = "Oct 10, 2007";
+		final Date somedate = dfm.parse(sdate);
 		
-		new UnicaseCommand() {
+		
+		UnicaseCommand setdateCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				((CDateTime)controls.get(0)).setData(somedate);
-				getBot().activeEditor().setFocus();
-				assertEquals(somedate.toString(), actionItem.getDueDate().toString());
+				CDateTime date = (CDateTime) controls.get(0);
+				date.setSelection(somedate);
+				Event event = new Event();
+				event.widget = (CDateTime) controls.get(0);
+				date.notifyListeners(SWT.FocusOut, event);
+							
 			}
-		}.run();
+		}; runAsnc(setdateCommand);
+		
+	
+	
+		UnicaseCommand getDateCommand = new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				final String tempdate = DateFormat.getDateInstance().format((actionItem.getDueDate()));
+				assertEquals(sdate, tempdate);
+				
+			}
+		};runAsnc(getDateCommand);
+		
 		
 	}
 
 	
-	
+	/**
+	 * This method sets the DueDate Programmatically and then checks it to be reflected in UI.
+	 * 
+	 * @throws ParseException can throw this exception while parsing the date.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testDateUpdate() throws ParseException {
@@ -88,9 +147,8 @@ public class MEDateControlTest extends MeControlTest {
 
 		openModelElement(actionItem);
 		DateFormat dfm = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		String date = "20.12.2009 08:45";
-		
-			final Date somedate = dfm.parse("20.12.2009 08:45");
+		String date = "20.12.2008 08:45";
+		final Date somedate = dfm.parse(date);
 		
 		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
 			
