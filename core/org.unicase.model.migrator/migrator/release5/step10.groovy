@@ -1,10 +1,3 @@
-literalClass = model.classes.Literal
-literalAttribute = literalClass.newEAttribute()
-literalAttribute.name = "literal"
-eStringDataType = emf.EString
-literalAttribute.eType = eStringDataType
-nonDomainElementClass = model.NonDomainElement
-nonDomainElementClass.delete()
 issueClass = model.rationale.Issue
 assessmentsReference = issueClass.newEReference()
 assessmentsReference.derived = true
@@ -36,3 +29,13 @@ sourceRoleAttribute = model.classes.Association.sourceRole
 sourceRoleAttribute.defaultValueLiteral = null
 targetRoleAttribute = model.classes.Association.targetRole
 targetRoleAttribute.defaultValueLiteral = null
+stepClass = model.requirement.Step
+nonDomainElementClass = metamodel.NonDomainElement
+stepClass.eSuperTypes.add(nonDomainElementClass)
+proposalClass = model.rationale.Proposal
+proposalClass.eSuperTypes.add(nonDomainElementClass)
+solutionClass = model.rationale.Solution
+solutionClass.eSuperTypes.add(nonDomainElementClass)
+assessmentClass.eSuperTypes.add(nonDomainElementClass)
+commentClass = model.rationale.Comment
+commentClass.eSuperTypes.add(nonDomainElementClass)

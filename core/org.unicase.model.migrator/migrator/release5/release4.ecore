@@ -4,7 +4,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
   <ecore:EPackage name="model" nsURI="http://unicase.org/model" nsPrefix="org.unicase.model">
     <eClassifiers xsi:type="ecore:EClass" name="UnicaseModelElement" abstract="true"
-        eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement">
+        eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="1.0"/>
@@ -22,7 +22,7 @@
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
           eType="#/0/Annotation" eOpposite="#/0/Annotation/annotatedModelElements"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="100.0"/>
           <details key="position" value="right"/>
@@ -30,17 +30,17 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attachments" upperBound="-1"
           eType="#/0/Attachment" eOpposite="#/0/Attachment/referringModelElements"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="101.0"/>
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#/0/document/LeafSection"
-          eOpposite="#/0/document/LeafSection/modelElements" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          eOpposite="#/0/document/LeafSection/modelElements" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDocumentReferences"
           upperBound="-1" eType="#/0/document/LeafSection" eOpposite="#/0/document/LeafSection/referencedModelElements"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="102.0"/>
           <details key="position" value="right"/>
@@ -48,7 +48,7 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
           eType="#/0/rationale/Comment" containment="true" eOpposite="#/0/rationale/Comment/commentedElement"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="2.0"/>
           <details key="position" value="left"/>
@@ -56,12 +56,12 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypeInstances"
           upperBound="-1" eType="#/0/profile/StereotypeInstance" containment="true"
-          eOpposite="#/0/profile/StereotypeInstance/modelElement" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          eOpposite="#/0/profile/StereotypeInstance/modelElement" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Annotation" abstract="true" eSuperTypes="#/0/UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedModelElements"
           upperBound="-1" eType="#/0/UnicaseModelElement" eOpposite="#/0/UnicaseModelElement/annotations"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="90.0"/>
           <details key="position" value="right"/>
@@ -71,27 +71,27 @@
     <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="#/0/UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referringModelElements"
           upperBound="-1" eType="#/0/UnicaseModelElement" eOpposite="#/0/UnicaseModelElement/attachments"
-          eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true"
         interface="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"/>
     <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
         nsPrefix="org.unicase.model.organization">
       <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" abstract="true" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="acOrgId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="groupMemberships" upperBound="-1"
             eType="#/0/organization/Group" eOpposite="#/0/organization/Group/orgUnits"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participations" upperBound="-1"
-            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/participants" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/participants" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
-            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/assignee" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/assignee" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -119,12 +119,12 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="workItemsToReview"
             upperBound="-1" eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/reviewer"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#/0/organization/OrgUnit">
         <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
             eType="#/0/organization/OrgUnit" eOpposite="#/0/organization/OrgUnit/groupMemberships"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.5"/>
             <details key="position" value="right"/>
@@ -137,28 +137,28 @@
           eSuperTypes="#/0/Annotation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
             eType="#/0/task/WorkPackage" eOpposite="#/0/task/WorkPackage/containedWorkItems"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="successors" upperBound="-1"
-            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/predecessors" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/predecessors" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" upperBound="-1"
-            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/successors" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/task/WorkItem" eOpposite="#/0/task/WorkItem/successors" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" eType="#/0/organization/OrgUnit"
-            eOpposite="#/0/organization/OrgUnit/assignments" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/organization/OrgUnit/assignments" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <eAnnotations source="org.unicase.ui.meeditor">
               <details key="priority" value="10.0"/>
@@ -169,7 +169,7 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="reviewer" eType="#/0/organization/User"
-            eOpposite="#/0/organization/User/workItemsToReview" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/organization/User/workItemsToReview" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="left"/>
@@ -177,7 +177,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
             eType="#/0/organization/OrgUnit" eOpposite="#/0/organization/OrgUnit/participations"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -214,7 +214,7 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="associatedChangePackages"
-            upperBound="-1" eType="#/0/change/ModelChangePackage" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            upperBound="-1" eType="#/0/change/ModelChangePackage" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#/0/task/WorkItem">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
@@ -231,7 +231,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems"
             upperBound="-1" eType="#/0/task/WorkItem" containment="true" eOpposite="#/0/task/WorkItem/containingWorkpackage"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="right"/>
@@ -240,7 +240,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#/0/task/WorkItem">
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
-            upperBound="-1" eType="#/0/UnicaseModelElement" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            upperBound="-1" eType="#/0/UnicaseModelElement" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="1"/>
             <details key="position" value="right"/>
@@ -279,11 +279,11 @@
     <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
       <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#/0/Attachment">
         <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-            eType="#/0/UnicaseModelElement" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass ../../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
+            eType="#/0/UnicaseModelElement" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
             transient="true" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
-            eType="#/0/UnicaseModelElement" transient="true" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/UnicaseModelElement" transient="true" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/0/diagram/DiagramType"/>
       </eClassifiers>
@@ -300,7 +300,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true"
           eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#/0/classes/Package"
-            eOpposite="#/0/classes/Package/containedPackageElements" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/Package/containedPackageElements" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -308,7 +308,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDependencies"
             upperBound="-1" eType="#/0/classes/Dependency" eOpposite="#/0/classes/Dependency/source"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -316,7 +316,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDependencies"
             upperBound="-1" eType="#/0/classes/Dependency" eOpposite="#/0/classes/Dependency/target"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -325,14 +325,14 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#/0/classes/PackageElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="subClasses" upperBound="-1"
-            eType="#/0/classes/Class" eOpposite="#/0/classes/Class/superClasses" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/classes/Class" eOpposite="#/0/classes/Class/superClasses" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="22.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="superClasses" upperBound="-1"
-            eType="#/0/classes/Class" eOpposite="#/0/classes/Class/subClasses" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/classes/Class" eOpposite="#/0/classes/Class/subClasses" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="21.0"/>
             <details key="position" value="left"/>
@@ -340,7 +340,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations"
             upperBound="-1" eType="#/0/classes/Association" eOpposite="#/0/classes/Association/source"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="21.0"/>
             <details key="position" value="right"/>
@@ -348,7 +348,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations"
             upperBound="-1" eType="#/0/classes/Association" eOpposite="#/0/classes/Association/target"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="right"/>
@@ -356,7 +356,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
             eType="#/0/classes/Attribute" containment="true" eOpposite="#/0/classes/Attribute/definingClass"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="23.0"/>
             <details key="position" value="left"/>
@@ -364,7 +364,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
             eType="#/0/classes/Method" containment="true" eOpposite="#/0/classes/Method/definingClass"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="24.0"/>
             <details key="position" value="left"/>
@@ -372,7 +372,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/identifiedClasses"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="left"/>
@@ -380,7 +380,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="demoParticipations"
             upperBound="-1" eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/participatingClasses"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.0"/>
             <details key="position" value="right"/>
@@ -389,7 +389,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#/0/classes/PackageElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="facadeClass" eType="#/0/classes/Class"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="left"/>
@@ -397,7 +397,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
             upperBound="-1" eType="#/0/classes/PackageElement" containment="true"
-            eOpposite="#/0/classes/PackageElement/parentPackage" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/PackageElement/parentPackage" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.5"/>
             <details key="position" value="right"/>
@@ -406,14 +406,14 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#/0/classes/Class"
-            eOpposite="#/0/classes/Class/outgoingAssociations" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/Class/outgoingAssociations" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#/0/classes/Class"
-            eOpposite="#/0/classes/Class/incomingAssociations" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/Class/incomingAssociations" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="left"/>
@@ -455,7 +455,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="definingClass" eType="#/0/classes/Class"
-            eOpposite="#/0/classes/Class/attributes" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/Class/attributes" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -526,7 +526,7 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="definingClass" eType="#/0/classes/Class"
-            eOpposite="#/0/classes/Class/methods" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/Class/methods" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -556,7 +556,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="stubbed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethods" upperBound="-1"
             eType="#/0/classes/Method" eOpposite="#/0/classes/Method/callingMethods"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.1"/>
             <details key="position" value="right"/>
@@ -564,14 +564,14 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="callingMethods" upperBound="-1"
             eType="#/0/classes/Method" eOpposite="#/0/classes/Method/calledMethods"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.2"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-            eType="#/0/classes/MethodArgument" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/classes/MethodArgument" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -579,7 +579,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="demoParticipations"
             upperBound="-1" eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/participatingMethods"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.0"/>
             <details key="position" value="right"/>
@@ -623,14 +623,14 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#/0/classes/PackageElement"
-            eOpposite="#/0/classes/PackageElement/outgoingDependencies" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/PackageElement/outgoingDependencies" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#/0/classes/PackageElement"
-            eOpposite="#/0/classes/PackageElement/incomingDependencies" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/classes/PackageElement/incomingDependencies" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="left"/>
@@ -642,12 +642,12 @@
       <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true" interface="true"
           eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#/0/document/CompositeSection"
-            eOpposite="#/0/document/CompositeSection/subsections" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/document/CompositeSection/subsections" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#/0/document/Section">
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
             eType="#/0/UnicaseModelElement" containment="true" eOpposite="#/0/UnicaseModelElement/leafSection"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="right"/>
@@ -655,7 +655,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElements"
             upperBound="-1" eType="#/0/UnicaseModelElement" eOpposite="#/0/UnicaseModelElement/incomingDocumentReferences"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="21.0"/>
             <details key="position" value="right"/>
@@ -665,7 +665,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="CompositeSection" eSuperTypes="#/0/document/Section">
         <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
             eType="#/0/document/Section" containment="true" eOpposite="#/0/document/Section/parent"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="right"/>
@@ -685,7 +685,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="refiningRequirements"
             upperBound="-1" eType="#/0/requirement/FunctionalRequirement" containment="true"
-            eOpposite="#/0/requirement/FunctionalRequirement/refinedRequirement" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/requirement/FunctionalRequirement/refinedRequirement" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="right"/>
@@ -693,7 +693,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement"
             eType="#/0/requirement/FunctionalRequirement" eOpposite="#/0/requirement/FunctionalRequirement/refiningRequirements"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -706,7 +706,7 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholder" eType="#/0/organization/OrgUnit"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="left"/>
@@ -715,7 +715,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="useCases" upperBound="-1"
             eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/functionalRequirements"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -723,7 +723,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
             eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/functionalRequirements"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -738,7 +738,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRequirements"
             upperBound="-1" eType="#/0/requirement/FunctionalRequirement" eOpposite="#/0/requirement/FunctionalRequirement/useCases"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -746,21 +746,21 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedClasses"
             upperBound="-1" eType="#/0/classes/Class" eOpposite="#/0/classes/Class/participatedUseCases"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="13.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCases" upperBound="-1"
-            eType="#/0/requirement/UseCase" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/requirement/UseCase" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="extendedUseCases" upperBound="-1"
-            eType="#/0/requirement/UseCase" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/requirement/UseCase" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="13.0"/>
             <details key="position" value="left"/>
@@ -768,14 +768,14 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
             eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/instantiatedUseCases"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#/0/requirement/Actor"
-            eOpposite="#/0/requirement/Actor/initiatedUseCases" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/requirement/Actor/initiatedUseCases" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -783,7 +783,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActors"
             upperBound="-1" eType="#/0/requirement/Actor" eOpposite="#/0/requirement/Actor/participatedUseCases"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="left"/>
@@ -791,14 +791,27 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseSteps" upperBound="-1"
             eType="#/0/requirement/Step" containment="true" eOpposite="#/0/requirement/Step/useCase"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="realizedUserTask" eType="#/0/requirement/UserTask"
-            eOpposite="#/0/requirement/UserTask/realizingUseCases" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/requirement/UserTask/realizingUseCases" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="10.1"/>
+            <details key="position" value="left"/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
             upperBound="-1" eType="#/0/requirement/NonFunctionalRequirement" eOpposite="#/0/requirement/NonFunctionalRequirement/restrictedUseCases"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+            eType="#/0/requirement/SystemFunction" eOpposite="#/0/requirement/SystemFunction/usecases"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="15.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
@@ -806,7 +819,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="instantiatedUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/scenarios"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -814,7 +827,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRequirements"
             upperBound="-1" eType="#/0/requirement/FunctionalRequirement" eOpposite="#/0/requirement/FunctionalRequirement/scenarios"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -822,13 +835,13 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatingMethods"
             upperBound="-1" eType="#/0/classes/Method" eOpposite="#/0/classes/Method/demoParticipations"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatingClasses"
             upperBound="-1" eType="#/0/classes/Class" eOpposite="#/0/classes/Class/demoParticipations"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActorInstance"
             eType="#/0/requirement/ActorInstance" eOpposite="#/0/requirement/ActorInstance/initiatedScenarios"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -836,17 +849,17 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActorInstances"
             upperBound="-1" eType="#/0/requirement/ActorInstance" eOpposite="#/0/requirement/ActorInstance/participatedScenarios"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
-            eType="#/0/requirement/Step" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/requirement/Step" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
             upperBound="-1" eType="#/0/requirement/NonFunctionalRequirement" eOpposite="#/0/requirement/NonFunctionalRequirement/restrictedScenarios"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="right"/>
@@ -856,7 +869,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/initiatingActor"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -864,7 +877,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/participatingActors"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
@@ -872,23 +885,33 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
             eType="#/0/requirement/ActorInstance" eOpposite="#/0/requirement/ActorInstance/instantiatedActor"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUserTasks"
-            upperBound="-1" eType="#/0/requirement/UserTask" eOpposite="#/0/requirement/UserTask/participatingActor"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            upperBound="-1" eType="#/0/requirement/UserTask" eOpposite="#/0/requirement/UserTask/participatingActors"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="15.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUserTask"
             eType="#/0/requirement/UserTask" eOpposite="#/0/requirement/UserTask/initiatingActor"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="15.0"/>
+            <details key="position" value="left"/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ActorInstance" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedScenarios"
             upperBound="-1" eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/initiatingActorInstance"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -896,7 +919,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participatedScenarios"
             upperBound="-1" eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/participatingActorInstances"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData"/>
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
@@ -905,7 +928,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="instantiatedActor"
             eType="#/0/requirement/Actor" eOpposite="#/0/requirement/Actor/instances"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -915,31 +938,62 @@
       <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="userStep" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCase" eType="#/0/requirement/UseCase"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#/0/requirement/UseCase"
-            eOpposite="#/0/requirement/UseCase/useCaseSteps" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/requirement/UseCase/useCaseSteps" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="includedSystemFunction"
-            eType="#/0/requirement/SystemFunction" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/requirement/SystemFunction" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
+      <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirement"
+            eType="#/0/requirement/NonFunctionalRequirement" eOpposite="#/0/requirement/NonFunctionalRequirement/systemFunctions"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="usecases" upperBound="-1"
+            eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/systemFunctions"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="12.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" eType="#/0/requirement/Workspace"
+            eOpposite="#/0/requirement/Workspace/systemFunctions" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
+      <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#/0/requirement/Actor"
-            eOpposite="#/0/requirement/Actor/initiatedUserTask" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActor"
+            eOpposite="#/0/requirement/Actor/initiatedUserTask" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActors"
             upperBound="-1" eType="#/0/requirement/Actor" eOpposite="#/0/requirement/Actor/participatedUserTasks"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="12.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="realizingUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/realizedUserTask"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="12.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
+            upperBound="-1" eType="#/0/requirement/NonFunctionalRequirement" eOpposite="#/0/requirement/NonFunctionalRequirement/userTasks"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="12.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#/0/rationale/Criterion">
         <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedUseCases"
             upperBound="-1" eType="#/0/requirement/UseCase" eOpposite="#/0/requirement/UseCase/nonFunctionalRequirements"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.2"/>
             <details key="position" value="right"/>
@@ -947,9 +1001,35 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedScenarios"
             upperBound="-1" eType="#/0/requirement/Scenario" eOpposite="#/0/requirement/Scenario/nonFunctionalRequirements"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.1"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+            eType="#/0/requirement/SystemFunction" eOpposite="#/0/requirement/SystemFunction/nonFunctionalRequirement"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="13.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="userTasks" upperBound="-1"
+            eType="#/0/requirement/UserTask" eOpposite="#/0/requirement/UserTask/nonFunctionalRequirements"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="14.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Workspace" eSuperTypes="#/0/UnicaseModelElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+            eType="#/0/requirement/SystemFunction" eOpposite="#/0/requirement/SystemFunction/workspace"
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="12.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
@@ -965,21 +1045,21 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="proposals" upperBound="-1"
             eType="#/0/rationale/Proposal" containment="true" eOpposite="#/0/rationale/Proposal/issue"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="21.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="solution" eType="#/0/rationale/Solution"
-            containment="true" eOpposite="#/0/rationale/Solution/issue" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            containment="true" eOpposite="#/0/rationale/Solution/issue" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="20.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="criteria" upperBound="-1"
-            eType="#/0/rationale/Criterion" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/rationale/Criterion" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="22.0"/>
             <details key="position" value="left"/>
@@ -988,7 +1068,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#/0/rationale/Issue"
-            eOpposite="#/0/rationale/Issue/proposals" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/rationale/Issue/proposals" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -996,7 +1076,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
             eType="#/0/rationale/Assessment" containment="true" eOpposite="#/0/rationale/Assessment/proposal"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1005,14 +1085,14 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="underlyingProposals"
-            upperBound="-1" eType="#/0/rationale/Proposal" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            upperBound="-1" eType="#/0/rationale/Proposal" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="issue" eType="#/0/rationale/Issue"
-            eOpposite="#/0/rationale/Issue/solution" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eOpposite="#/0/rationale/Issue/solution" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -1022,7 +1102,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="Criterion" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
             eType="#/0/rationale/Assessment" eOpposite="#/0/rationale/Assessment/criterion"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1031,18 +1111,22 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" eType="#/0/rationale/Proposal"
-            eOpposite="#/0/rationale/Proposal/assessments" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/rationale/Proposal/assessments" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" eType="#/0/rationale/Criterion"
-            eOpposite="#/0/rationale/Criterion/assessments" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/rationale/Criterion/assessments" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#/0/UnicaseModelElement">
+      <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#/0/UnicaseModelElement #/0/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="sender" eType="#/0/organization/OrgUnit"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"
-            eType="#/0/organization/OrgUnit" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/organization/OrgUnit" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#/0/UnicaseModelElement"
-            eOpposite="#/0/UnicaseModelElement/comments" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/UnicaseModelElement/comments" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AudioComment">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="audioFile" eType="#/0/attachment/FileAttachment"
+            containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
@@ -1056,13 +1140,13 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergingProposal" eSuperTypes="#/0/rationale/Proposal">
         <eStructuralFeatures xsi:type="ecore:EReference" name="conflictingProposals"
-            upperBound="-1" eType="#/0/change/MergingProposal" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            upperBound="-1" eType="#/0/change/MergingProposal" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="pendingChanges" eType="#/0/change/ModelChangePackage"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MergingSolution" eSuperTypes="#/0/rationale/Solution">
         <eStructuralFeatures xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1"
-            eType="#/0/change/ModelChangePackage" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/change/ModelChangePackage" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
@@ -1073,7 +1157,6 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#/0/bug/BugStatus"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#/0/bug/Severity">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.5"/>
@@ -1086,13 +1169,7 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">
-        <eLiterals name="NEW" literal="NEW"/>
-        <eLiterals name="CONFIRMED" value="1" literal="CONFIRMED"/>
-        <eLiterals name="ASSIGNED" value="2" literal="ASSIGNED"/>
-        <eLiterals name="RESOLVED" value="3" literal="RESOLVED"/>
-        <eLiterals name="CLOSED" value="4" literal="CLOSED"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="Severity">
         <eLiterals name="FEATURE" literal="FEATURE"/>
@@ -1110,20 +1187,20 @@
     <eSubpackages name="component" nsURI="http://unicase.org/model/component" nsPrefix="org.unicase.model.component">
       <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
-            eType="#/0/classes/Package" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/classes/Package" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="subsystems" upperBound="-1"
-            eType="#/0/classes/Package" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/classes/Package" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="offeredServices" upperBound="-1"
             eType="#/0/component/ComponentService" containment="true" eOpposite="#/0/component/ComponentService/offeringComponent"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="consumedServices" upperBound="-1"
             eType="#/0/component/ComponentService" eOpposite="#/0/component/ComponentService/consumingComponents"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ComponentService" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="offeringComponent"
             eType="#/0/component/Component" eOpposite="#/0/component/Component/offeredServices"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="left"/>
@@ -1131,7 +1208,7 @@
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="consumingComponents"
             upperBound="-1" eType="#/0/component/Component" eOpposite="#/0/component/Component/consumedServices"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1140,7 +1217,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DeploymentNode" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
-            eType="#/0/component/Component" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/component/Component" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1169,49 +1246,49 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="facilitator" eType="#/0/organization/User"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="minutetaker" eType="#/0/organization/User"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="timekeeper" eType="#/0/organization/User"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="12.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
-            eType="#/0/organization/OrgUnit" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/organization/OrgUnit" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
-            eType="#/0/meeting/MeetingSection" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/meeting/MeetingSection" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="11.0"/>
             <details key="position" value="right"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedIssuesSection"
-            eType="#/0/meeting/IssueMeetingSection" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/meeting/IssueMeetingSection" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="13.0"/>
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedWorkItemsSection"
-            eType="#/0/meeting/WorkItemMeetingSection" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/meeting/WorkItemMeetingSection" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="14.0"/>
             <details key="position" value="left"/>
@@ -1230,11 +1307,11 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeMeetingSection" eSuperTypes="#/0/meeting/MeetingSection">
         <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
-            eType="#/0/meeting/MeetingSection" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/0/meeting/MeetingSection" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="IssueMeetingSection" eSuperTypes="#/0/meeting/MeetingSection">
         <eStructuralFeatures xsi:type="ecore:EReference" name="includedIssues" upperBound="-1"
-            eType="#/0/rationale/Issue" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            eType="#/0/rationale/Issue" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1243,7 +1320,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="WorkItemMeetingSection" eSuperTypes="#/0/meeting/MeetingSection">
         <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems"
-            upperBound="-1" eType="#/0/task/WorkItem" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+            upperBound="-1" eType="#/0/task/WorkItem" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="10.0"/>
             <details key="position" value="right"/>
@@ -1256,17 +1333,17 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral=""/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#/0/state/StateNode"
-            eOpposite="#/0/state/StateNode/outgoingTransitions" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/state/StateNode/outgoingTransitions" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#/0/state/StateNode"
-            eOpposite="#/0/state/StateNode/incomingTransitions" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/state/StateNode/incomingTransitions" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StateNode" abstract="true" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingTransitions"
             upperBound="-1" eType="#/0/state/Transition" eOpposite="#/0/state/Transition/source"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="incomingTransitions"
             upperBound="-1" eType="#/0/state/Transition" eOpposite="#/0/state/Transition/target"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#/0/state/StateNode">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="exitConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1305,44 +1382,54 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" eType="#/0/attachment/FileAttachmentType"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="uploading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="FileAttachmentType">
+        <eLiterals name="BINARY"/>
+        <eLiterals name="IMAGE" value="1" literal="IMAGE"/>
+        <eLiterals name="AUDIO" value="2" literal="AUDIO"/>
+        <eLiterals name="VIDEO" value="3" literal="VIDEO"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
       <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="affectedContainers"
-            upperBound="-1" eType="#/0/UnicaseModelElement" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            upperBound="-1" eType="#/0/UnicaseModelElement" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypes" upperBound="-1"
             eType="#/0/profile/Stereotype" containment="true" eOpposite="#/0/profile/Stereotype/profile"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="profile" eType="#/0/profile/Profile"
-            eOpposite="#/0/profile/Profile/stereotypes" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/profile/Profile/stereotypes" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeInstances"
             upperBound="-1" eType="#/0/profile/StereotypeInstance" eOpposite="#/0/profile/StereotypeInstance/stereotype"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributes"
             upperBound="-1" eType="#/0/profile/StereotypeAttribute" containment="true"
-            eOpposite="#/0/profile/StereotypeAttribute/stereotype" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/profile/StereotypeAttribute/stereotype" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StereotypeInstance" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" eType="#/0/profile/Stereotype"
-            eOpposite="#/0/profile/Stereotype/stereotypeInstances" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/profile/Stereotype/stereotypeInstances" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="#/0/UnicaseModelElement"
-            eOpposite="#/0/UnicaseModelElement/appliedStereotypeInstances" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/UnicaseModelElement/appliedStereotypeInstances" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributeInstances"
             upperBound="-1" eType="#/0/profile/StereotypeAttributeInstance" containment="true"
             eOpposite="#/0/profile/StereotypeAttributeInstance/stereotypeInstance"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttribute" abstract="true"
           eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" eType="#/0/profile/Stereotype"
-            eOpposite="#/0/profile/Stereotype/stereotypeAttributes" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/profile/Stereotype/stereotypeAttributes" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributeInstances"
             upperBound="-1" eType="#/0/profile/StereotypeAttributeInstance" eOpposite="#/0/profile/StereotypeAttributeInstance/stereotypeAttribute"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttributeSimple" eSuperTypes="#/0/profile/StereotypeAttribute">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1351,10 +1438,10 @@
           eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeInstance"
             eType="#/0/profile/StereotypeInstance" eOpposite="#/0/profile/StereotypeInstance/stereotypeAttributeInstances"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttribute"
             eType="#/0/profile/StereotypeAttribute" eOpposite="#/0/profile/StereotypeAttribute/stereotypeAttributeInstances"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttributeInstanceString"
           eSuperTypes="#/0/profile/StereotypeAttributeInstance">
@@ -1363,12 +1450,12 @@
     </eSubpackages>
     <eSubpackages name="util" nsURI="http://unicase.org/model/util" nsPrefix="org.unicase.model.util">
       <eClassifiers xsi:type="ecore:EClass" name="ModelElementPath">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="path" upperBound="-1"
-            eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
       </eClassifiers>
     </eSubpackages>
@@ -1377,16 +1464,16 @@
           eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingTransitions"
             upperBound="-1" eType="#/0/activity/Transition" eOpposite="#/0/activity/Transition/source"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="incomingTransitions"
             upperBound="-1" eType="#/0/activity/Transition" eOpposite="#/0/activity/Transition/target"
-            eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#/0/UnicaseModelElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#/0/activity/ActivityObject"
-            eOpposite="#/0/activity/ActivityObject/outgoingTransitions" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/activity/ActivityObject/outgoingTransitions" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#/0/activity/ActivityObject"
-            eOpposite="#/0/activity/ActivityObject/incomingTransitions" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eOpposite="#/0/activity/ActivityObject/incomingTransitions" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="#/0/activity/ActivityObject"/>
@@ -1416,7 +1503,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
           eType="#/1/versioning/PrimaryVersionSpec" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SessionId" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
     <eClassifiers xsi:type="ecore:EClass" name="ServerSpace">
       <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
           eType="#/1/accesscontrol/ACGroup" containment="true"/>
@@ -1427,7 +1514,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
           eType="#/1/accesscontrol/ACUser" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectId" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
     <eClassifiers xsi:type="ecore:EClass" name="VersionInfo">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfStoreVersionString"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1490,13 +1577,13 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#/1/versioning/PrimaryVersionSpec"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
-            eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeChangePackage"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Version">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//Project"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="primarySpec" lowerBound="1"
             eType="#/1/versioning/PrimaryVersionSpec" containment="true"/>
@@ -1519,13 +1606,13 @@
       <eSubpackages name="operations" nsURI="http://unicase.org/esmodel/versioning/operations"
           nsPrefix="org.unicase.emfstore.esmodel.versioning.operations">
         <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation" abstract="true"
-            eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+            eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
               changeable="false" volatile="true" transient="true" derived="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
               changeable="false" volatile="true" transient="true" defaultValueLiteral=""
               derived="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="accepted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
               transient="true"/>
@@ -1547,7 +1634,7 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="CreateDeleteOperation" eSuperTypes="#/1/versioning/operations/AbstractOperation">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="delete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
               eType="#/1/versioning/operations/ReferenceOperation" containment="true"/>
@@ -1557,23 +1644,23 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceOperation" eSuperTypes="#/1/versioning/operations/ReferenceOperation">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="oldValue" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="oldValue" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="MultiReferenceOperation" eSuperTypes="#/1/versioning/operations/ReferenceOperation">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElements"
-              upperBound="-1" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              upperBound="-1" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="MultiReferenceMoveOperation" eSuperTypes="#/1/versioning/operations/FeatureOperation">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElementId"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ReferenceOperation" abstract="true"
@@ -1585,7 +1672,7 @@
               eType="#/1/versioning/operations/ContainmentType"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#/1/versioning/operations/AttributeOperation"/>
-        <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+        <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
         <eClassifiers xsi:type="ecore:EClass" name="OperationGroup">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
@@ -1594,7 +1681,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="ModelElementGroup">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EEnum" name="ContainmentType">
           <eLiterals name="NONE"/>
@@ -1613,7 +1700,7 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ReadEvent" eSuperTypes="#/1/versioning/events/Event">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="readView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1653,9 +1740,9 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="AnnotationEvent" eSuperTypes="#/1/versioning/events/Event">
           <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="RevertEvent" eSuperTypes="#/1/versioning/events/Event">
@@ -1668,7 +1755,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="#/1/versioning/PrimaryVersionSpec"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="PerspectiveEvent" eSuperTypes="#/1/versioning/events/Event"/>
@@ -1676,31 +1763,31 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dragSourceElement"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dropTargetElement"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="LinkEvent" eSuperTypes="#/1/versioning/events/Event">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="TraceEvent" eSuperTypes="#/1/versioning/events/Event">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="NavigatorCreateEvent" eSuperTypes="#/1/versioning/events/Event">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="createdElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="createdElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSection" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSection" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         </eClassifiers>
@@ -1730,7 +1817,7 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="NotificationGenerationEvent" eSuperTypes="#/1/versioning/events/Event">
           <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
-              eType="#/1/notification/ESNotification" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+              eType="#/1/notification/ESNotification" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="NotificationIgnoreEvent" eSuperTypes="#/1/versioning/events/Event">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -1738,10 +1825,10 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="URLEvent" eSuperTypes="#/1/versioning/events/Event">
           <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceURL" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="sourceURL" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="MergeChoiceEvent" eSuperTypes="#/1/versioning/events/Event">
@@ -1750,7 +1837,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="theirRejectedChanges"
               upperBound="-1" eType="#/1/versioning/operations/OperationId" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="contextModelElement"
-              eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+              eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="selection" eType="#/1/versioning/events/MergeChoiceSelection"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextFeature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1781,7 +1868,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnit" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+      <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnit" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
         <eOperations name="getId" eType="#/1/accesscontrol/ACOrgUnitId"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1793,14 +1880,14 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ACGroup" eSuperTypes="#/1/accesscontrol/ACOrgUnit">
         <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-            eType="#/1/accesscontrol/ACOrgUnit" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            eType="#/1/accesscontrol/ACOrgUnit" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnitId" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnitId" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
       <eClassifiers xsi:type="ecore:EClass" name="OrgUnitProperty">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/1/ProjectId"
-            containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
+            containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
       </eClassifiers>
       <eSubpackages name="roles" nsURI="http://unicase.org/esmodel/accesscontrol/roles"
           nsPrefix="org.unicase.accesscontrol.roles">
@@ -1810,22 +1897,22 @@
           </eOperations>
           <eOperations name="canCreate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="projectId" eType="#/1/ProjectId"/>
-            <eParameters name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+            <eParameters name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
           </eOperations>
           <eOperations name="canDelete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="projectId" eType="#/1/ProjectId"/>
-            <eParameters name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+            <eParameters name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
           </eOperations>
           <eOperations name="canModify" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="projectId" eType="#/1/ProjectId"/>
-            <eParameters name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+            <eParameters name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
           </eOperations>
           <eOperations name="canRead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="projectId" eType="#/1/ProjectId"/>
-            <eParameters name="modelElement" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+            <eParameters name="modelElement" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
-              eType="#/1/ProjectId" containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
+              eType="#/1/ProjectId" containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ReaderRole" eSuperTypes="#/1/accesscontrol/roles/Role"/>
         <eClassifiers xsi:type="ecore:EClass" name="WriterRole" eSuperTypes="#/1/accesscontrol/roles/Role"/>
@@ -1835,7 +1922,7 @@
     </eSubpackages>
     <eSubpackages name="notification" nsURI="http://unicase.org/esmodel/notification"
         nsPrefix="org.unicase.notification">
-      <eClassifiers xsi:type="ecore:EClass" name="ESNotification" eSuperTypes="../../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+      <eClassifiers xsi:type="ecore:EClass" name="ESNotification" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="details" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1847,7 +1934,7 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/1/ProjectId"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="relatedModelElements"
-            upperBound="-1" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            upperBound="-1" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="relatedOperations"
             upperBound="-1" eType="#/1/versioning/operations/OperationId" containment="true"/>
@@ -1861,11 +1948,11 @@
       <eClassifiers xsi:type="ecore:EClass" name="ProjectUrlFragment">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#/1/ProjectId"
-            containment="true" eKeys="../../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
+            containment="true" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ModelElementUrlFragment">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass ../../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
             containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ModelElementUrl">
