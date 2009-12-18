@@ -6,14 +6,35 @@
 package org.unicase.ui.test.meeditor.mecontrol;
 
 
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
+import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withTooltip;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.forms.widgets.Section;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 public class MEMultiLinkControlTest extends MeControlTest {
 	private ActionItem actionItem;
@@ -43,20 +64,62 @@ public class MEMultiLinkControlTest extends MeControlTest {
 	
 
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testParticipantsChange() {
 		
 		openModelElement(actionItem);
 		
+
+		UnicaseCommandWithResult<Matcher> participantsWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
+			@Override
+			protected Matcher doRun() {
+				Matcher matchwidget = allOf(widgetOfType(Widget.class), withTooltip("Link Participant"));
+				return matchwidget;
+			}
+		};
+		Matcher widgetmatcher = runAsnc(participantsWidgetFinderCommand);
+		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
+		
+		
+		
+		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+				Event event = new Event();
+				event.widget = ((ToolItem)widgetcontrol.get(0));
+				toolItem.notifyListeners(SWT.Selection, event);		
+			}
+		}; runAsnc(widgetActivateCommand);
+		
+		
+		final String participant1 = "Joker";
+		final String participant2 = "Batman";
+		getBot().text().setText(participant1);
+		getBot().button("OK").click();
+		runAsnc(widgetActivateCommand);
+		getBot().text().setText(participant2);
+		getBot().button("OK").click();
+		
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				//TO-DO	
+				EList<OrgUnit> list = actionItem.getParticipants();
+				if(! list.isEmpty()){
+				final String getparticipant1 = list.get(0).getName();
+				final String getparticipant2 = list.get(1).getName();
+				assertEquals(participant1, getparticipant1);
+				assertEquals(participant2, getparticipant2);
+				}
+				
 			}
 		}.run();
+		
+}
 	
-	}
 
 
 	@Test
