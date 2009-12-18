@@ -1,17 +1,3 @@
-changePackage = model.change
-changePackage.nsPrefix = "org.unicase.model.change"
-signatureAttribute = model.classes.MethodArgument.signature
-signatureAttribute.unique = true
-modelChangePackageClass = model.change.ModelChangePackage
-modelChangePackageClass.delete()
-resolvingRevisionAttribute = model.change.MergingIssue.resolvingRevision
-resolvingRevisionAttribute.delete()
-conflictingProposalsReference = model.change.MergingProposal.conflictingProposals
-conflictingProposalsReference.delete()
-pendingChangesReference = model.change.MergingProposal.pendingChanges
-pendingChangesReference.delete()
-appliedChangesReference = model.change.MergingSolution.appliedChanges
-appliedChangesReference.delete()
 mergingProposalClass = model.change.MergingProposal
 pendingOperationsReference = mergingProposalClass.newEReference()
 abstractOperationClass = esmodel.versioning.operations.AbstractOperation
@@ -35,8 +21,6 @@ appliedOperationsReference.upperBound = -1
 appliedOperationsReference.containment = true
 appliedOperationsReference.eType = abstractOperationClass
 appliedOperationsReference.name = "appliedOperations"
-associatedChangePackagesReference = model.task.WorkItem.associatedChangePackages
-associatedChangePackagesReference.delete()
 classesPackage = model.classes
 enumerationClass = classesPackage.newEClass()
 enumerationClass.name = "Enumeration"
