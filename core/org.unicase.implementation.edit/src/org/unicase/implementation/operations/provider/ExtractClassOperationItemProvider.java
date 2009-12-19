@@ -147,7 +147,7 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 			builder.append(operation.getClassName());
 			builder.append("\" from class ");
 			builder.append(getModelElementName(operation.getContextClass()));
-			builder.append(" over assciation \"");
+			builder.append(" over association \"");
 			builder.append(operation.getCompositionName());
 			builder.append("\"");
 			return builder.toString();
