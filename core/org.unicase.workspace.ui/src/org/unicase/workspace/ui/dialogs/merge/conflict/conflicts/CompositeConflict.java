@@ -10,6 +10,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class CompositeConflict extends Conflict {
@@ -65,6 +66,7 @@ public class CompositeConflict extends Conflict {
 									getOtherOperation().getModelElementId())),
 					OptionType.TheirOperation);
 			theirOption.addOperations(operationsB);
+			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
 			myOption = new ConflictOption("Change related to "
 					+ DecisionUtil.getClassAndName(getDecisionManager()
@@ -72,6 +74,7 @@ public class CompositeConflict extends Conflict {
 									getOtherOperation().getModelElementId())),
 					OptionType.MyOperation);
 			myOption.addOperations(operationsB);
+			myOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 
 			String compName = getCompositeOperation().getCompositeName();
 			theirOption = new ConflictOption(
