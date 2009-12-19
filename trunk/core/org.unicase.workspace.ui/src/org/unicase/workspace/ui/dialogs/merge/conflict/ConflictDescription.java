@@ -10,7 +10,7 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 public class ConflictDescription {
 
 	private Map<String, Object> values;
-	private final String description;
+	private String description;
 	private String imageName;
 
 	public ConflictDescription(String description) {
@@ -37,6 +37,10 @@ public class ConflictDescription {
 	public void setImage(String name) {
 		this.imageName = name;
 
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getResolvedDescription() {
