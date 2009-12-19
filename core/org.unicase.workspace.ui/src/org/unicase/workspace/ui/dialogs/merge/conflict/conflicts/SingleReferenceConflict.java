@@ -36,7 +36,7 @@ public class SingleReferenceConflict extends Conflict {
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
 		if (isContainmentFeature()) {
-			description = "You have moved the element [modelelement] to the element [myvalue]."
+			description = "You have moved the [modelelement] to the [myvalue]."
 					+ "This element was moved to [theirvalue] on the repository. Please decide.";
 		} else {
 			description = "You have changed the reference [reference] of [modelelement] to [myvalue]."

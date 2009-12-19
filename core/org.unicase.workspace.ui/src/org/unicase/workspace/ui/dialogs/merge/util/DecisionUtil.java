@@ -150,7 +150,7 @@ public class DecisionUtil {
 			return "";
 		}
 		String name = getAdapterFactory().getText(modelElement);
-		return modelElement.eClass().getName() + ": " + name;
+		return modelElement.eClass().getName() + " \"" + name + "\"";
 	}
 
 	public static AdapterFactoryLabelProvider getAdapterFactory() {

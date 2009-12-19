@@ -36,12 +36,12 @@ public class CompositeConflict extends Conflict {
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
 		if (meCausing) {
-			description = "A change on the [opposite] element from the repository conflicts with your \"[compdescription]\" operation.";
+			description = "A change on the [opposite] from the repository conflicts with your operation \"[compdescription]\".";
 		} else {
-			description = "Your change on the [opposite] element conflicts with the \"[compdescription]\" operation from the repository.";
+			description = "Your change on the [opposite] conflicts with the operation \"[compdescription]\" from the repository.";
 		}
 		ConflictDescription desc = new ConflictDescription(description);
-		desc.add("compdescription", getCompositeOperation().getDescription());
+		desc.add("compdescription", getCompositeOperation());
 		desc.add("opposite", getDecisionManager().getModelElement(
 				getOtherOperation().getModelElementId()));
 
