@@ -53,6 +53,11 @@ public class AttributeConflict extends Conflict {
 
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
+		initOptionsWithOutMerge(options, true);
+	}
+
+	protected void initOptionsWithOutMerge(List<ConflictOption> options,
+			boolean withMerge) {
 		String myNewValue = getMyOperation().getNewValue().toString();
 		ConflictOption myOption = new ConflictOption(
 				(myNewValue == null || myNewValue.length() < 1) ? "(unset)"
@@ -70,15 +75,12 @@ public class AttributeConflict extends Conflict {
 		theirOption.addOperations(operationsB);
 		options.add(theirOption);
 
-		if (DecisionUtil.detailsNeeded(this)) {
+		if (withMerge && DecisionUtil.detailsNeeded(this)) {
 			MergeTextOption mergeOption = new MergeTextOption();
 			mergeOption.add(myOption);
 			mergeOption.add(theirOption);
 			options.add(mergeOption);
 		}
-
-		// TODO figure out options
-
 	}
 
 	@Override

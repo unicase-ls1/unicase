@@ -11,6 +11,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
@@ -104,6 +105,10 @@ public class DecisionUtil {
 
 	public static boolean isAttribute(AbstractOperation operation) {
 		return operation instanceof AttributeOperation;
+	}
+
+	public static boolean isDiagramLayout(AbstractOperation operation) {
+		return operation instanceof DiagramLayoutOperation;
 	}
 
 	public static boolean isCreate(AbstractOperation operation) {
