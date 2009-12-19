@@ -4,6 +4,7 @@ import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isAttribu
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isComposite;
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isCompositeRef;
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isDelete;
+import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isDiagramLayout;
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isMultiRef;
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isSingleRef;
 
@@ -30,6 +31,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.AttributeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.CompositeConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.DeletionConflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.DiagramLayoutConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.ReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.SingleReferenceConflict;
@@ -114,7 +116,13 @@ public class DecisionManager {
 
 		// Create Conflicts from Conflicting
 		for (Conflicting conf : conflicting) {
-			if (isAttribute(conf.getMyOperation())
+
+			if (isDiagramLayout(conf.getMyOperation())
+					&& isDiagramLayout(conf.getTheirOperation())) {
+
+				addConflict(createDiagramLayoutDecision(conf));
+
+			} else if (isAttribute(conf.getMyOperation())
 					&& isAttribute(conf.getTheirOperation())) {
 
 				addConflict(createAttributeAttributeDecision(conf));
@@ -186,6 +194,11 @@ public class DecisionManager {
 	private Conflict createAttributeAttributeDecision(Conflicting conflicting) {
 		return new AttributeConflict(conflicting.getMyOperations(), conflicting
 				.getTheirOperations(), this);
+	}
+
+	private Conflict createDiagramLayoutDecision(Conflicting conflicting) {
+		return new DiagramLayoutConflict(conflicting.getMyOperations(),
+				conflicting.getTheirOperations(), this);
 	}
 
 	private Conflict createSingleSingleConflict(Conflicting conflicting) {
