@@ -36,13 +36,13 @@ public class DeletionConflict extends Conflict {
 		String description = "";
 
 		if (meCausingDelete) {
-			description = "You have deleted the element [modelelement]."
+			description = "You have deleted the [modelelement]."
 					+ " This deletion conflicts with a change on the [firstother]"
 					+ " element" + generateOthers()
 					+ ". Please choose an option.";
 		} else {
-			description = "The element [modelelement] was deleted on the repository which conflicts with"
-					+ " the change on your element [firstother]"
+			description = "The [modelelement] was deleted on the repository which conflicts with"
+					+ " the change on your [firstother]"
 					+ generateOthers() + ". Please choose an option.";
 		}
 
