@@ -115,12 +115,11 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 		if (object instanceof PullUpOperation) {
 			PullUpOperation operation = (PullUpOperation) object;
 			StringBuilder builder = new StringBuilder();
-			builder.append("Pulled up to superclass ");
-			builder.append(getModelElementName(operation.getSuperClass()));
+			builder.append("Pulled up ");
 
 			boolean hasAttributes = operation.getAttributes().size() > 0;
 			if (hasAttributes) {
-				builder.append(" attributes ");
+				builder.append(" attribute(s) ");
 				builder.append(getModelElementNames(operation.getAttributes()));
 			}
 
@@ -131,12 +130,16 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 				if (hasAttributes) {
 					builder.append(" and");
 				}
-				builder.append(" associations ");
+				builder.append(" association(s) ");
 				List<ModelElementId> ids = new ArrayList<ModelElementId>();
 				ids.addAll(operation.getOutgoingAssociations());
 				ids.addAll(operation.getOutgoingAssociations());
 				builder.append(getModelElementNames(ids));
 			}
+			
+			builder.append(" to superclass ");
+			builder.append(getModelElementName(operation.getSuperClass()));
+			
 			return builder.toString();
 		} else {
 			return super.getText(object);
