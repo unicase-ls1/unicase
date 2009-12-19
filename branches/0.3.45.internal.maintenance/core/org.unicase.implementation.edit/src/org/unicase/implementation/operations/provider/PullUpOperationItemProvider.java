@@ -93,20 +93,17 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 	}
 
 	/**
-	 * This returns PullUpOperation.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns PullUpOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/PullUpOperation.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PullUpOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -123,9 +120,8 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 				builder.append(getModelElementNames(operation.getAttributes()));
 			}
 
-			boolean hasAssociations = operation.getIncomingAssociations()
-					.size()
-					+ operation.getOutgoingAssociations().size() > 0;
+			boolean hasAssociations = operation.getIncomingAssociations().size()
+				+ operation.getOutgoingAssociations().size() > 0;
 			if (hasAssociations) {
 				if (hasAttributes) {
 					builder.append(" and");
@@ -136,10 +132,10 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 				ids.addAll(operation.getOutgoingAssociations());
 				builder.append(getModelElementNames(ids));
 			}
-			
+
 			builder.append(" to superclass ");
 			builder.append(getModelElementName(operation.getSuperClass()));
-			
+
 			return builder.toString();
 		} else {
 			return super.getText(object);

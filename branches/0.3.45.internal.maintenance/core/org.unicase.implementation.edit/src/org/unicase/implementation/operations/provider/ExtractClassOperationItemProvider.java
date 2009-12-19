@@ -124,20 +124,17 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns ExtractClassOperation.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns ExtractClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ExtractClassOperation.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtractClassOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
