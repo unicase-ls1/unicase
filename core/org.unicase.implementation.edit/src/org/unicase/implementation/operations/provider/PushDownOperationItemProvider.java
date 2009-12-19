@@ -93,20 +93,17 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 	}
 
 	/**
-	 * This returns PushDownOperation.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns PushDownOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/PushDownOperation.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PushDownOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -117,15 +114,15 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 			StringBuilder builder = new StringBuilder();
 			builder.append("Pushed down from super class ");
 			builder.append(getModelElementName(operation.getSuperClass()));
-			
+
 			boolean hasAttributes = operation.getAttributes().size() > 0;
 			if (hasAttributes) {
 				builder.append(" attributes ");
 				builder.append(getModelElementNames(operation.getAttributes()));
 			}
-			
+
 			boolean hasAssociations = operation.getIncomingAssociations().size()
-					+ operation.getOutgoingAssociations().size() > 0;
+				+ operation.getOutgoingAssociations().size() > 0;
 			if (hasAssociations) {
 				if (hasAttributes) {
 					builder.append(" and");

@@ -21,7 +21,7 @@ import org.unicase.model.classes.Association;
  * </p>
  * 
  * @see org.unicase.implementation.operations.OperationsPackage#getPartitionAssociationOperation()
- * @model
+ * @model annotation="http://unicase.org/operations description='An association to an abstract class is partitioned into seperate associations for every subclass.' label='Partition Association'"
  * @generated
  */
 public interface PartitionAssociationOperation extends SemanticCompositeOperation {
