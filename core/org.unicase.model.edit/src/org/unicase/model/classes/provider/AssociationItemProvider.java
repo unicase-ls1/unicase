@@ -220,7 +220,7 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 			if (target != null && target.getName().trim().length() > 0) {
 				targetString = target.getName();
 			}
-			return super.getText(object) + "[" + sourceString + " => " + targetString + "]";
+			return super.getText(object) + " [" + sourceString + " => " + targetString + "]";
 		}
 		return super.getText(object);
 	}
