@@ -38,11 +38,11 @@ public class MultiReferenceConflict extends Conflict {
 		String description = "";
 		if (meAdding) {
 			description = "You have added [target] to the [featurename]"
-					+ " reference of the element [element]."
+					+ " reference of the [element]."
 					+ " This item was removed on the repository.";
 		} else {
-			description = "The element [target] was added to the [featurename] reference"
-					+ " of the [element] element on the repository."
+			description = "The [target] was added to the [featurename] reference"
+					+ " of the [element] on the repository."
 					+ " You chose to remove it, please decide.";
 		}
 		ConflictDescription confDescription = new ConflictDescription(

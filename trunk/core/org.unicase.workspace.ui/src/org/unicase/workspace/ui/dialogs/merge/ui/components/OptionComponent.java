@@ -49,10 +49,10 @@ public class OptionComponent {
 		String result = "";
 		switch (option.getType()) {
 		case MyOperation:
-			result = "Keep My Value: ";
+			result = "Keep My Change: ";
 			break;
 		case TheirOperation:
-			result = "Keep Their Value: ";
+			result = "Keep Their Change: ";
 			break;
 		case Custom:
 			if (option instanceof CustomConflictOption) {

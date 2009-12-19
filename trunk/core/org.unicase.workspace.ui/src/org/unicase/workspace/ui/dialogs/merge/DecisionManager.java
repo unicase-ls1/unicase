@@ -116,39 +116,39 @@ public class DecisionManager {
 
 		// Create Conflicts from Conflicting
 		for (Conflicting conf : conflicting) {
+			AbstractOperation my = conf.getMyOperation();
+			AbstractOperation their = conf.getTheirOperation();
 
-			if (isDiagramLayout(conf.getMyOperation())
-					&& isDiagramLayout(conf.getTheirOperation())) {
+			if (isDiagramLayout(my) && isDiagramLayout(their)) {
 
 				addConflict(createDiagramLayoutDecision(conf));
 
-			} else if (isAttribute(conf.getMyOperation())
-					&& isAttribute(conf.getTheirOperation())) {
+			} else if (isAttribute(my) && isAttribute(their)) {
 
 				addConflict(createAttributeAttributeDecision(conf));
 
-			} else if (isCompositeRef(conf.getMyOperation())
-					&& isCompositeRef(conf.getTheirOperation())) {
-
-				addConflict(createReferenceConflict(conf));
-
-			} else if (isSingleRef(conf.getMyOperation())
-					&& isSingleRef(conf.getTheirOperation())) {
+			} else if (isSingleRef(my) && isSingleRef(their)) {
 
 				addConflict(createSingleSingleConflict(conf));
 
-			} else if (isMultiRef(conf.getMyOperation())
-					&& isMultiRef(conf.getTheirOperation())) {
+			} else if (isMultiRef(my) && isMultiRef(their)) {
 
 				addConflict(createMultiMultiConflict(conf));
 
-			} else if (isComposite(conf.getMyOperation())
-					|| isComposite(conf.getTheirOperation())) {
+			} else if (isCompositeRef(my) && isCompositeRef(their)) {
+
+				addConflict(createReferenceConflict(conf));
+
+			} else if ((isCompositeRef(my) && (isMultiRef(their) || isSingleRef(their)))
+					|| ((isMultiRef(my) || isSingleRef(my)) && isCompositeRef(their))) {
+
+				addConflict(createReferenceCompVSSingleMulti(conf));
+
+			} else if (isComposite(my) || isComposite(their)) {
 
 				addConflict(createCompositeConflict(conf));
 
-			} else if (isDelete(conf.getMyOperation())
-					|| isDelete(conf.getTheirOperation())) {
+			} else if (isDelete(my) || isDelete(their)) {
 
 				addConflict(createDeleteOtherConflict(conf));
 
@@ -156,11 +156,33 @@ public class DecisionManager {
 		}
 	}
 
+	private Conflict createReferenceCompVSSingleMulti(Conflicting conf) {
+		if (isCompositeRef(conf.getMyOperation())) {
+			return createRefFromSub(conf, ((CompositeOperation) conf
+					.getMyOperation()).getSubOperations(), Arrays.asList(conf
+					.getTheirOperation()));
+		} else {
+			return createRefFromSub(conf, Arrays.asList(conf.getMyOperation()),
+					((CompositeOperation) conf.getTheirOperation())
+							.getSubOperations());
+		}
+	}
+
 	private Conflict createReferenceConflict(Conflicting conf) {
-		for (AbstractOperation myOp : ((CompositeOperation) conf
-				.getMyOperation()).getSubOperations()) {
-			for (AbstractOperation theirOp : ((CompositeOperation) conf
-					.getTheirOperation()).getSubOperations()) {
+		EList<AbstractOperation> myOperations = ((CompositeOperation) conf
+				.getMyOperation()).getSubOperations();
+		EList<AbstractOperation> theirOperations = ((CompositeOperation) conf
+				.getTheirOperation()).getSubOperations();
+
+		return createRefFromSub(conf, myOperations, theirOperations);
+	}
+
+	private Conflict createRefFromSub(Conflicting conf,
+			List<AbstractOperation> myOperations,
+			List<AbstractOperation> theirOperations) {
+
+		for (AbstractOperation myOp : myOperations) {
+			for (AbstractOperation theirOp : theirOperations) {
 				if (conflictDetector.doConflict(myOp, theirOp)) {
 					if (isSingleRef(myOp)) {
 
@@ -233,7 +255,6 @@ public class DecisionManager {
 		}
 	}
 
-	// TODO remove debug list.
 	private Conflict createDeleteOtherConflict(Conflicting conf) {
 		if (isDelete(conf.getMyOperation())) {
 			return new DeletionConflict(conf.getMyOperations(), conf
@@ -471,8 +492,11 @@ public class DecisionManager {
 
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
 		if (visualizationHelper == null) {
-			visualizationHelper = new ChangePackageVisualizationHelper(
-					theirChangePackages, project);
+			ArrayList<ChangePackage> list = new ArrayList<ChangePackage>();
+			list.add(myChangePackage);
+			list.addAll(theirChangePackages);
+			visualizationHelper = new ChangePackageVisualizationHelper(list,
+					project);
 		}
 		return visualizationHelper;
 	}

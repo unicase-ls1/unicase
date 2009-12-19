@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
@@ -14,11 +13,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
+import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 public class DescriptionComponent extends Composite {
 
@@ -38,7 +39,7 @@ public class DescriptionComponent extends Composite {
 
 		ArrayList<StyleRange> styleRanges = new ArrayList<StyleRange>();
 		String description = "";
-		for (String tmp : splitText(conflict.getConflictDescription())) {
+		for (String tmp : splitText(parent, conflict.getConflictDescription())) {
 			if (tmp.startsWith("::")) {
 				styleRanges.add(createStyleRange(description.length(), tmp
 						.length() - 2));
@@ -76,27 +77,29 @@ public class DescriptionComponent extends Composite {
 		return styleRange;
 	}
 
-	private List<String> splitText(ConflictDescription conflict) {
+	private List<String> splitText(DecisionBox box, ConflictDescription conflict) {
 		String description = conflict.getDescription();
 		// for(String string : description.split("\\["+"[a-zA-Z]*"+"\\]")) {
+		ChangePackageVisualizationHelper visualHelper = box
+				.getDecisionManager().getChangePackageVisualizationHelper();
 		ArrayList<String> result = new ArrayList<String>();
-		AdapterFactoryLabelProvider labelProvider = DecisionUtil
-				.getLabelProvider();
 		for (String string : description.split("\\[")) {
 			String[] split = string.split("\\]");
 			if (split.length > 1) {
 				Object obj = conflict.getValues().get(split[0]);
 				String tmp = "";
 				if (obj instanceof ModelElement) {
-					tmp = labelProvider.getText(obj);
-					tmp = ((ModelElement) obj).eClass().getName() + ": " + tmp;
+					tmp = DecisionUtil.getClassAndName((ModelElement) obj);
+					tmp = DecisionUtil.cutString(tmp, 45, true);
+				} else if (obj instanceof AbstractOperation) {
+					tmp = visualHelper.getDescription((AbstractOperation) obj);
 				} else if (obj != null) {
 					tmp = obj.toString();
+					tmp = DecisionUtil.cutString(tmp, 85, true);
 				} else {
 					tmp = "";
 				}
 				tmp = DecisionUtil.stripNewLine(tmp);
-				tmp = DecisionUtil.cutString(tmp, 50, true);
 				split[0] = "::" + tmp;
 			}
 			result.addAll(Arrays.asList(split));
