@@ -264,7 +264,8 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
-		return trim(adapterFactoryLabelProvider.getText(modelElement));
+		return " \"" + trim(adapterFactoryLabelProvider.getText(modelElement))
+				+ "\"";
 	}
 
 	private String trim(Object object) {
