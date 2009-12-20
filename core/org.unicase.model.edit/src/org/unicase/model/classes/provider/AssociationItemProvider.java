@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
+import org.unicase.model.classes.Class;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
@@ -198,15 +199,30 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Association) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Association_type")
-			: getString("_UI_Association_type") + " " + label;
+		if (object instanceof Association) {
+			Association association = (Association) object;
+			Class source = association.getSource();
+			Class target = association.getTarget();
+			if (source == null && target == null) {
+				return super.getText(object);
+			}
+			String sourceString = "(not set)";
+			if (source != null && source.getName().trim().length() > 0) {
+				sourceString = source.getName();
+			}
+			String targetString = "(not set)";
+			if (target != null && target.getName().trim().length() > 0) {
+				targetString = target.getName();
+			}
+			return super.getText(object) + " [" + sourceString + " => " + targetString + "]";
+		}
+		return super.getText(object);
 	}
 
 	/**
