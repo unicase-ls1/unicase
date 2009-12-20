@@ -235,6 +235,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartitionAssociationOperation" eSuperTypes="../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
+    <eAnnotations source="http://unicase.org/operations">
+      <details key="description" value="An association to an abstract class is partitioned into seperate associations for every subclass."/>
+      <details key="label" value="Partition Association"/>
+    </eAnnotations>
     <eOperations name="getAssociation" lowerBound="1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//classes/Association">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return OperationHelper.getElement(project, getAssociation());"/>

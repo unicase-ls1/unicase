@@ -908,6 +908,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			"The class to be inlined must not have sub classes." });
 		addAnnotation(inlineClassOperationEClass.getEOperations().get(7), source, new String[] { "description",
 			"The class to be inlined must not be target of another association." });
+		addAnnotation(partitionAssociationOperationEClass, source, new String[] { "description",
+			"An association to an abstract class is partitioned into seperate associations for every subclass.",
+			"label", "Partition Association" });
 		addAnnotation(partitionAssociationOperationEClass.getEOperations().get(1), source, new String[] {
 			"description", "The type of the reference must be abstract and must have sub classes." });
 		addAnnotation(partitionAssociationOperationEClass.getEOperations().get(2), source, new String[] {
