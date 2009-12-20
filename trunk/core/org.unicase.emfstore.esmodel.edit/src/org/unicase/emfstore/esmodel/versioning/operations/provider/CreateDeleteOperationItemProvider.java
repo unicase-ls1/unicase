@@ -168,9 +168,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append(modelElement.eClass().getName());
-			stringBuilder.append(" \"");
 			stringBuilder.append(getModelElementName(op.getModelElementId()));
-			stringBuilder.append("\" ");
 			String elementClassAndName = stringBuilder.toString();
 			if (op.isDelete()) {
 				description = "Deleted " + elementClassAndName;
