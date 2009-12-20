@@ -264,12 +264,13 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
-		return adapterFactoryLabelProvider.getText(modelElement);
+		return " \"" + trim(adapterFactoryLabelProvider.getText(modelElement))
+				+ "\"";
 	}
 
-	private String trim(Object object, boolean isName) {
+	private String trim(Object object) {
 		if (object == null) {
-			return isName ? "(no name)" : "(null)";
+			return "(Unkown Element)";
 		}
 		String string = object.toString();
 		String result = string.trim();
@@ -277,7 +278,7 @@ public class ChangePackageVisualizationHelper {
 			return result.substring(0, MAX_NAME_SIZE) + "...";
 		}
 		if (result.length() == 0) {
-			return "(empty)";
+			return "(empty name)";
 		}
 		return result;
 	}
@@ -295,8 +296,7 @@ public class ChangePackageVisualizationHelper {
 		}
 		String className = modelElement.eClass().getName();
 		return className + " \""
-				+ trim(UiUtil.getNameForModelElement(modelElement), true)
-				+ "\"";
+				+ trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
 	}
 
 	public <T extends Collection<ModelElement>, S extends Collection<ModelElementId>> T getModelElements(
