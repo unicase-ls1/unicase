@@ -107,9 +107,12 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.CompositeOperationItemProvider#getChildren(java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof SemanticCompositeOperation) {
