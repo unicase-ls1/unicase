@@ -62,7 +62,7 @@ public class DescriptionComponent extends Composite {
 				| SWT.MULTI | SWT.READ_ONLY);
 		styledDescription.setEditable(false);
 		styledDescription.setEnabled(false);
-		styledDescription.setText(description);
+		styledDescription.setText(description + "\n");
 		styledDescription.setWordWrap(true);
 		styledDescription.setStyleRanges(styleRanges
 				.toArray(new StyleRange[styleRanges.size()]));
