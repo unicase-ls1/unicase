@@ -89,20 +89,17 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns InlineClassOperation.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns InlineClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/InlineClassOperation.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InlineClassOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
