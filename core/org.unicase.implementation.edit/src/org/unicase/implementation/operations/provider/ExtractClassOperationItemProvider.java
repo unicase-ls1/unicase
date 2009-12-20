@@ -124,20 +124,17 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns ExtractClassOperation.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns ExtractClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ExtractClassOperation.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtractClassOperation.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -150,8 +147,8 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 			builder.append(operation.getClassName());
 			builder.append("\" from class ");
 			builder.append(getModelElementName(operation.getContextClass()));
-			builder.append(" over composition \"");
-			builder.append(operation.getCompositeName());
+			builder.append(" over association \"");
+			builder.append(operation.getCompositionName());
 			builder.append("\"");
 			return builder.toString();
 		} else {
