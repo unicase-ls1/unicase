@@ -12,9 +12,12 @@ import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRe
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withTooltip;
 import static org.junit.Assert.assertEquals;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -23,6 +26,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -30,6 +34,7 @@ import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
@@ -122,22 +127,60 @@ public class MEMultiLinkControlTest extends MeControlTest {
 	
 
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testParticipantsUpdate() {
 		
 		openModelElement(actionItem);
 		
+	
+		
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			
+	
 			@Override
 			protected void doRun() {
-			//TO-DO	
+				Project project = actionItem.getProject();
+				User user1 = OrganizationFactory.eINSTANCE.createUser();
+				user1.setName("BOND");
+				project.addModelElement(user1);
+				actionItem.getParticipants().add(user1);
+				User user2 = OrganizationFactory.eINSTANCE.createUser();
+				user2.setName("James");
+				project.addModelElement(user2);
+				actionItem.getParticipants().add(user2);
 				
 			}
 		};
 		runAsnc(unicaseCommand);
-	
 		
+		UnicaseCommandWithResult<Matcher> participantsFinderCommand = new UnicaseCommandWithResult<Matcher>() {
+			@Override
+			protected Matcher doRun() {
+				Matcher matchwidget = allOf(widgetOfType(Widget.class), withTooltip("BOND"));
+				return matchwidget;
+			}
+		};
+		Matcher widgetmatcher = runAsnc(participantsFinderCommand);
+		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
+		String finalUser1 = ((Hyperlink)widgetcontrol.get(0)).getText();
+		assertEquals("BOND", finalUser1);
+		
+		
+		UnicaseCommandWithResult<Matcher> participantFinderCommand = new UnicaseCommandWithResult<Matcher>() {
+			@Override
+			protected Matcher doRun() {
+				Matcher matchwidget = allOf(widgetOfType(Widget.class), withTooltip("James"));
+				return matchwidget;
+			}
+		};
+		Matcher matcher = runAsnc(participantFinderCommand);
+		final List control = getBot().getFinder().findControls(matcher);
+		String finalUser2 = ((Hyperlink)control.get(0)).getText();
+		assertEquals("James", finalUser2);
+		
+	
+		getBot().sleep(4000);
 		
 	}
 	
