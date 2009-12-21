@@ -6,6 +6,9 @@
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotStyledText;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
@@ -57,6 +60,86 @@ public class MERichTextControlTest extends MeControlTest {
 		}.run();
 	}
 	
+	
+	
+	/**
+	 * Test existing description with line breaks.
+	 * It also tests for the new description to be added at any specified place.
+	 */
+	@Test
+	public void testExistingDescriptionChange(){
+		final String newText = "This is existing description.\n";
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				actionItem.setDescription(newText);
+			}
+		}.run();
+		openModelElement(actionItem);
+		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
+		String existingText = styledText.getText();
+		assertEquals(newText, existingText);
+		
+		
+		final String newDescription = "Changed text in description field by MEEditor in the second line.";
+		styledText.typeText(1, 1, newDescription);
+		getBot().activeEditor().bot().text().setFocus();
+		final List<String> list = styledText.getLines();
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				String linesinText  = actionItem.getDescription();
+				String[] lines = linesinText.split("\n");
+				 if(lines.length == list.size()){
+					 assertEquals(list.get(0), lines[0]);
+					 assertEquals(list.get(1), lines[1]);
+				 }
+			}
+		}.run();
+	
+	 
+ }
+	
+	@Test
+	public void testDescriptionWithLineBreakOnly(){
+		openModelElement(actionItem);
+		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
+		final String newDescription = "\n\n\n\n\n\n\n\n";
+		styledText.typeText(newDescription);
+		getBot().activeEditor().bot().text().setFocus();
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				String linebreaks  = actionItem.getDescription();
+				assertEquals(newDescription, linebreaks);
+			}
+		}.run();
+	
+	 
+ }
+	
+	@Test
+	public void testDescriptionWithNull(){
+		openModelElement(actionItem);
+		final String nullDescription = null;
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				actionItem.setDescription(nullDescription);
+				
+			}
+		}.run();
+	
+		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
+		if(styledText.getText().equalsIgnoreCase("")){
+			assertEquals(nullDescription, null);
+		}else{
+			fail("String was not null");
+		}
+		
+ }
 	
 	
 	@Test
