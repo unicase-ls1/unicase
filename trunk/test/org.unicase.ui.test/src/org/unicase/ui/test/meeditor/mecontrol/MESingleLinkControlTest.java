@@ -53,7 +53,7 @@ private User user;
 		
 		openModelElement(actionItem);
 		getBot().activeEditor().bot().buttonWithLabel("Assignee",0).click(); 
-		getBot().table().select(0);
+		getBot().text().setText("Joker");
 		getBot().button("OK").click();
 		getBot().sleep(2000);
 		final String assigneduser = "Joker";

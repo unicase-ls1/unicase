@@ -10,6 +10,6 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class  })
+@Suite.SuiteClasses( { MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class  })
 public class AllMEControlTests {
 }
