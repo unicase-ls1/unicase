@@ -119,7 +119,10 @@ public class MERichTextControlTest extends MeControlTest {
 	
 	 
  }
-	
+	/**
+	 * It tests the description field to be null. Programatically it sets the description to be null and from UI it checks if its really null.
+	 * The other way around it won't work as from UI it can be set to null.
+	 */
 	@Test
 	public void testDescriptionWithNull(){
 		openModelElement(actionItem);
