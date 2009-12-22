@@ -3,8 +3,7 @@
       id="org.unicase.link_feature"
       label="Link Feature"
       version="1.0.0.qualifier"
-      provider-name="unicase.org"
-      os="linux,macosx,win32">
+      provider-name="unicase.org">
    <install-handler handler=""/>
 
    <description url="http://www.unicase.org">
@@ -218,7 +217,7 @@ litigation.
    </license>
 
    <url>
-      <update label="link Update Site" url="http://unicase.org/update/"/>
+      <update label="Unicase update site" url="http://unicase.org/update/"/>
    </url>
 
    <includes
@@ -251,11 +250,7 @@ litigation.
          id="org.unicase.link"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
-
-   <data
-         id="lib/org.unicase.link.startup.jar"
-         download-size="0"
-         install-size="0"/>
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
