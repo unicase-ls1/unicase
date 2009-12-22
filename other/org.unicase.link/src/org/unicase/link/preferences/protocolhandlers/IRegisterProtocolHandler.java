@@ -5,5 +5,5 @@ public interface IRegisterProtocolHandler {
 	/**
 	 * @param eclipseId an String representing the information needed to register the protocol handler
 	 */
-	void registerProtocolHandler(String eclipsePath);
+	void registerProtocolHandler(String startUpJarPath);
 }
