@@ -8,6 +8,7 @@ package org.unicase.link.util.ui;
 import java.net.MalformedURLException;
 import java.util.Observable;
 import java.util.Observer;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
@@ -20,18 +21,17 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * Utility class for opening model elements. Also acts as a listener
- * for JUnique messages changes, which provide us with UNICASE URLs
- * of model elements to be opened.
+ * Utility class for opening model elements. Also acts as a listener for JUnique messages changes, which provide us with
+ * UNICASE URLs of model elements to be opened.
  * 
  * @author svetlana, emueller
  */
 public class OpenLink implements Observer {
-	
+
 	private static final String EXTERNAL_URL = "EXTERNAL_URL";
-	
+
 	private static OpenLink instance;
-	
+
 	/**
 	 * Gets the instance.
 	 * 
@@ -45,18 +45,15 @@ public class OpenLink implements Observer {
 	}
 
 	/**
-	 * Given a project space and an URL of a model element, opens the MEEditor
-	 * in order to display the model with the given URL.
+	 * Given a project space and an URL of a model element, opens the MEEditor in order to display the model with the
+	 * given URL.
 	 * 
-	 * @param projectSpace the project space the model element with the 
-	 * 	      given URL is assumed to be
+	 * @param projectSpace the project space the model element with the given URL is assumed to be
 	 * @param modelElementUrl the URL of the model element to be opened
 	 */
-	public static void openME(ProjectSpace projectSpace, 
-			ModelElementUrlFragment modelElementUrl){
-		
-		final ModelElement me = projectSpace.getProject()
-									.getModelElement(modelElementUrl.getModelElementId());
+	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment modelElementUrl) {
+
+		final ModelElement me = projectSpace.getProject().getModelElement(modelElementUrl.getModelElementId());
 		if (me != null) {
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
@@ -67,52 +64,47 @@ public class OpenLink implements Observer {
 	}
 
 	/**
-	 * Opens the model element with the specified URL in the MEEditor view.
-	 * If the passed URL is invalid a MessageBox will be shown to the user 
-	 * informing him about the invalid URL.
+	 * Opens the model element with the specified URL in the MEEditor view. If the passed URL is invalid a MessageBox
+	 * will be shown to the user informing him about the invalid URL.
 	 * 
 	 * @param url The ModelElementUrl of the model element to be opened.
 	 */
-	public static void openURL(ModelElementUrl url){
-		ProjectSpace projectSpace = null; 
-						
+	public static void openURL(ModelElementUrl url) {
+		ProjectSpace projectSpace = null;
+
 		projectSpace = ProjectFacade.getInstance().getLatestProjectSpace(url);
-		
-		if(projectSpace != null){
-			OpenLink.openME(projectSpace, 
-					url.getModelElementUrlFragment());
+
+		if (projectSpace != null) {
+			OpenLink.openME(projectSpace, url.getModelElementUrlFragment());
 		}
 	}
-	
+
 	/**
-	 * Opens the model element with the specified URL in the MEEditor view.
-	 * If the passed URL is invalid a MessageBox will be shown to the user 
-	 * informing him about the invalid URL.
+	 * Opens the model element with the specified URL in the MEEditor view. If the passed URL is invalid a MessageBox
+	 * will be shown to the user informing him about the invalid URL.
 	 * 
 	 * @param url The UNICASE URL of the model element to be opened.
 	 */
 	public static void openURL(String url) {
 		try {
-			ModelElementUrl modElmUrl = UrlFactoryImpl.eINSTANCE
-				.createModelElementUrl(url);
+			ModelElementUrl modElmUrl = UrlFactoryImpl.eINSTANCE.createModelElementUrl(url);
 			openURL(modElmUrl);
 		} catch (MalformedURLException e) {
 			// invalid URL has been passed, inform user
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					MessageDialog.openError(
-							Display.getDefault().getActiveShell(),
-							"Malformed URL",
-							"The UNICASE URL you tried to open is not valid.");	
-				}}); 
+					MessageDialog.openError(Display.getDefault().getActiveShell(), "Malformed URL",
+						"The UNICASE URL you tried to open is not valid.");
+				}
+			});
 		}
 	}
 
 	/**
 	 * Callback method for the JUnique library.
 	 * 
-	 * @param o the observable 
-	 * @param arg the model element URL to be opened 
+	 * @param o the observable
+	 * @param arg the model element URL to be opened
 	 */
 	public void update(Observable o, Object arg) {
 		try {
@@ -120,7 +112,7 @@ public class OpenLink implements Observer {
 			openURL(url);
 		} catch (ClassCastException e) {
 			WorkspaceUtil.logException(arg.getClass().getCanonicalName()
-					+ " received where model element URL expected.", e);
+				+ " received where model element URL expected.", e);
 		}
 	}
 }

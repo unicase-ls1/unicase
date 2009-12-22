@@ -118,6 +118,15 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
 				IRegisterProtocolHandler protocolHandler = fac
 					.getRegisterProtocolHandler(System.getProperty("os.name"));
+
+				if (protocolHandler == null) {
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							MessageDialog.openError(getShell(), "Not implemented yet", "TODO");
+						}
+					});
+				}
+
 				protocolHandler.registerProtocolHandler(startUpJar);
 				writeStartupConfigFile(startUpJar);
 			} catch (IOException e) {

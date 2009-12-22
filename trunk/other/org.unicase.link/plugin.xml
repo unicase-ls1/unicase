@@ -57,7 +57,8 @@
    </extension>
    <extension
          point="org.eclipse.ui.startup">
-      <startup></startup>
+      <startup
+            class="org.unicase.link.Activator"></startup>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
