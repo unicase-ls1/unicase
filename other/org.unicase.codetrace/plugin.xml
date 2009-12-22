@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.unicase.codetrace.viewerContribution1"
+            targetID="#TextEditorContext">
+         <action
+               class="org.unicase.codetrace.popup.actions.NewAction"
+               id="org.unicase.codetrace.action1"
+               label="ECLIPSE IS SHIT!"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+   </extension>
+
+</plugin>
