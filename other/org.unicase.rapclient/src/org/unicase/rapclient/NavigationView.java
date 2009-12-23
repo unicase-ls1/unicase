@@ -111,39 +111,6 @@ public class NavigationView extends ViewPart
 		}
 	}
 	
-	class ViewLabelProvider extends LabelProvider {
-
-		public String getText(Object element) {
-			if (element instanceof Workspace) {
-				return "Workspace";
-			} else if (element instanceof ProjectSpace) {
-				return "Project Space";
-			} else if (element instanceof Project) {
-				return WorkspaceManager.getInstance()
-					.getProjectSpace((Project) element).getProjectName();
-			} else if (element instanceof WorkItem) {
-				return ((WorkItem) element).getName(); 
-			}
-			
-			return null;
-		}
-		
-		public String getDescription(Object anElement) {
-			String text = getText(anElement);
-			return "This is a description of " + text;
-		}
-		
-		public Image getImage(Object obj) {
-			String imageKey = ISharedImages.IMG_OBJ_ELEMENT;
-			
-			if (obj instanceof Project) {
-			   imageKey = ISharedImages.IMG_OBJ_FOLDER;
-			}
-			
-			return PlatformUI.getWorkbench().getSharedImages().getImage(imageKey);
-		}
-	}
-
 	/**
      * This is a callback that will allow us to create the viewer and initialize
      * it.
@@ -152,7 +119,7 @@ public class NavigationView extends ViewPart
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		viewer.addSelectionChangedListener(this);
 		viewer.setContentProvider(new ViewContentProvider());
-		viewer.setLabelProvider(new ViewLabelProvider());
+		viewer.setLabelProvider(new LabelProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 	}
 
