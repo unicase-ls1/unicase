@@ -27,7 +27,7 @@
 		import org.unicase.workspace.util.UnicaseCommand;
 		import org.unicase.workspace.util.UnicaseCommandWithResult;
 		
-		public class HyperlinkdeleteAdapter extends MeControlTest {
+		public class HyperlinkDeleteAdapterTest extends MeControlTest {
 			private ActionItem actionItem;
 			
 			
