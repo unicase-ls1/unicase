@@ -43,11 +43,9 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
- *
  */
 public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
-	
 	private static final String PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
 	private static final String DOMAIN_ID = "org.unicase.EditingDomain";
 	private TransactionalEditingDomain domain;
@@ -59,52 +57,36 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private AnalyzerPage analyzerPage;
 	private VersionIteratorPage versionIteratorPage;
 	private TimeIteratorPage timeIteratorPage;
-	
+
 	private VersionIterator versionIterator;
 	private ArrayList<DataAnalyzer> analyzers;
 	private AnalyzerConfiguration analyzerConfig;
 	private Usersession selectedUsersession;
 	private ProjectId selectedProjectID;
 	private LoadPage loadPage;
-	
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
 	 */
 	@Override
-	
 	public boolean performFinish() {
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
-					// pass to AnalyzerController
-					analyzerConfig.getIterator().init(selectedUsersession);		
+					analyzerConfig.getIterator().init(selectedUsersession);
 					((CSVExporter) analyzerConfig.getExporter()).init();
-					setNeedsProgressMonitor(true);
-					getContainer().run(true, true, new IRunnableWithProgress(){ 
-					    public void run(IProgressMonitor monitor) { 
-					        monitor.beginTask("Analyzing...", 1); 
-					        @SuppressWarnings("unused")
-							AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, analyzerConfig.getExporter()); 
-					        monitor.done();
-//					        MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "", "Finished Analysis!");
-					    } 
-					});				
+					setMoniter();
 				} catch (IteratorException e) {
 					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-		}); 				
+		});
 		try {
 			analyzerConfig.eResource().save(null);
 		} catch (IOException e) {
@@ -113,23 +95,45 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		return true;
 	}
 
-	/** 
+	private void setMoniter() {
+		setNeedsProgressMonitor(true);
+		try {
+			getContainer().run(true, true, new IRunnableWithProgress() {
+				public void run(IProgressMonitor monitor) {
+					monitor.beginTask("Analyzing...", 1);
+					@SuppressWarnings("unused")
+					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig
+						.getIterator(), analyzers, analyzerConfig.getExporter());
+					monitor.done();
+				}
+			});
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
+	 * 
+	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench,
+	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-						
+
 		Object firstElement;
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
 			if (firstElement instanceof ProjectSpace) {
-				ProjectSpace selectedProject = (ProjectSpace)firstElement;
+				ProjectSpace selectedProject = (ProjectSpace) firstElement;
 				selectedProjectID = (ProjectId) EcoreUtil.copy(selectedProject.getProjectId());
 				selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
 				if (!selectedUsersession.isLoggedIn()) {
 					loggedIn = false;
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), "Login required", "Log in first!");
-				}else{
+				} else {
 					loggedIn = true;
 				}
 			} else {
@@ -139,63 +143,63 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
 		setCanFinish(false);
-//		analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-//		initConfig();
+		// analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+		// initConfig();
 	}
-	
-    private void initConfig() {
-//      ResourceSet resourceSet = new ResourceSetImpl();
+
+	@SuppressWarnings("unused")
+	private void initConfig() {
+		// ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the resource
-//		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
-//			.createEditingDomain(resourceSet);
-//		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
-//		domain.setID("org.unicase.EditingDomain");
-//    	PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-//
-//			public void run() {
-				
-				domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
-						DOMAIN_ID);
-		
-				URI fileURI = URI.createFileURI(PATH);
-				File analyzerFile = new File(PATH);
-		
-				@SuppressWarnings("unused")
-				AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
-				
-				if(!analyzerFile.exists()){
-					
-					resource = domain.getResourceSet().createResource(fileURI);
-					analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							resource.getContents().add(analyzerConfig);
-						}
-					});
-				}else{
-					
-					resource = domain.getResourceSet().getResource(fileURI, true);
-					EList<EObject> directContents = resource.getContents();
-					// MK cast
-					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
-					canFinish = true;
-				}	
-//			}
-//    	});
+		// final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+		// .createEditingDomain(resourceSet);
+		// TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
+		// domain.setID("org.unicase.EditingDomain");
+		// PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+		//
+		// public void run() {
+
+		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(DOMAIN_ID);
+
+		URI fileURI = URI.createFileURI(PATH);
+		File analyzerFile = new File(PATH);
+
+		AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
+
+		if (!analyzerFile.exists()) {
+
+			resource = domain.getResourceSet().createResource(fileURI);
+			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					resource.getContents().add(analyzerConfig);
+				}
+			});
+		} else {
+
+			resource = domain.getResourceSet().getResource(fileURI, true);
+			EList<EObject> directContents = resource.getContents();
+			// MK cast
+			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
+			canFinish = true;
+		}
+		// }
+		// });
 	}
 
-	/** 
-     * {@inheritDoc}
-     * @see org.eclipse.jface.wizard.Wizard#addPages()
-     */
-    @Override
-	public void addPages(){
-    	
-    	loadPage = new LoadPage("LoadPage");
-    	addPage(loadPage);
-    	analyzerPage = new AnalyzerPage("AnalyzerPage");
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.Wizard#addPages()
+	 */
+	@Override
+	public void addPages() {
+
+		loadPage = new LoadPage("LoadPage");
+		addPage(loadPage);
+		analyzerPage = new AnalyzerPage("AnalyzerPage");
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");
 		addPage(iteratorPage);
@@ -205,17 +209,18 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		addPage(timeIteratorPage);
 		exporterPage = new ExporterPage("ExporterPage");
 		addPage(exporterPage);
-		
-    }
-	
-    /** 
-     * {@inheritDoc}
-     * @see org.eclipse.jface.wizard.Wizard#canFinish()
-     */
-    @Override
-	public boolean canFinish(){
-    	return canFinish;
-    }
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.Wizard#canFinish()
+	 */
+	@Override
+	public boolean canFinish() {
+		return canFinish;
+	}
 
 	/**
 	 * @param canFinish the canFinish to set
@@ -279,7 +284,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	public void setVersionIterator(VersionIterator versionIterator) {
 		this.versionIterator = versionIterator;
 	}
-
 
 	/**
 	 * @return the analyzerConfig
@@ -350,6 +354,5 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	public void setDomain(TransactionalEditingDomain domain) {
 		this.domain = domain;
 	}
-
 
 }

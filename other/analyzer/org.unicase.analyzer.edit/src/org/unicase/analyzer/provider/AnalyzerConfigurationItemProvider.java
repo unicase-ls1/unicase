@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.provider;
 
@@ -29,18 +28,15 @@ import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorFactory;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.analyzer.AnalyzerConfiguration} object. <!--
+ * This is the item provider adapter for a {@link org.unicase.analyzer.AnalyzerConfiguration} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -49,8 +45,7 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,37 +60,29 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Analyzer Names feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Analyzer Names feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnalyzerNamesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AnalyzerConfiguration_analyzerNames_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_analyzerNames_feature", "_UI_AnalyzerConfiguration_type"),
-				 AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_NAMES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_AnalyzerConfiguration_analyzerNames_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_analyzerNames_feature",
+				"_UI_AnalyzerConfiguration_type"), AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_NAMES,
+			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR);
@@ -106,6 +93,7 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,9 +105,8 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns AnalyzerConfiguration.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns AnalyzerConfiguration.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,9 +115,8 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,10 +125,10 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,48 +136,39 @@ public class AnalyzerConfigurationItemProvider extends ItemProviderAdapter
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AnalyzerConfiguration.class)) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAMES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
+		case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
-				 IteratorFactory.eINSTANCE.createVersionIterator()));
+		newChildDescriptors.add(createChildParameter(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
+			IteratorFactory.eINSTANCE.createVersionIterator()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
-				 IteratorFactory.eINSTANCE.createTimeIterator()));
+		newChildDescriptors.add(createChildParameter(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
+			IteratorFactory.eINSTANCE.createTimeIterator()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__EXPORTER,
-				 ExportersFactory.eINSTANCE.createCSVExporter()));
+		newChildDescriptors.add(createChildParameter(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__EXPORTER,
+			ExportersFactory.eINSTANCE.createCSVExporter()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

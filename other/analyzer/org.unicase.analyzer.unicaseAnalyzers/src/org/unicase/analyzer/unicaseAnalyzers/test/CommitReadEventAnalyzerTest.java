@@ -69,6 +69,7 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 				analyzers.add(new CommitUpdateReadEventAnalyzer());
 				@SuppressWarnings("unused")
 				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+				@SuppressWarnings("unused")
 				String[][] elements = readExport(100, 7);
 				// FIXME assertTure
 				// assertTrue(compareTruth(elements, projectIt.getCurrentState()));
@@ -85,7 +86,7 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 	 * @throws IteratorException fail to run iterator on the project
 	 */
 	@Test
-	public void CategoryTest() throws IOException, IteratorException {
+	public void categoryTest() throws IOException, IteratorException {
 		for (ProjectInfo pI : super.getProjectList()) {
 			if (pI.getName().contains("DOLLI")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -115,12 +116,12 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 
 		BufferedReader bufRdr = new BufferedReader(new FileReader(file));
 
-		String line = null;
+		String line = bufRdr.readLine();
 		int row = 0;
 		int col = 0;
 
 		// read each line of text file
-		while ((line = bufRdr.readLine()) != null && row < rowNum) {
+		while (line != null && row < rowNum) {
 			StringTokenizer st = new StringTokenizer(line, ",");
 			while (st.hasMoreTokens()) {
 				// get next token and store it in the array
@@ -129,10 +130,12 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 			}
 			col = 0;
 			row++;
+			line = bufRdr.readLine();
 		}
 		return elements;
 	}
 
+	@SuppressWarnings("unused")
 	private boolean compareTruth(String[][] elements, Project project) {
 		if (elements[1][1].equals("super")) {
 			// super assigned all the tasks to others and did not read at the beginning

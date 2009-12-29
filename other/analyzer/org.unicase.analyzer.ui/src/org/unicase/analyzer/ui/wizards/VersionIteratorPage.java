@@ -6,7 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -36,24 +35,24 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
  * @author liya
- *
  */
 public class VersionIteratorPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Iterator";
 	private static final String PAGE_DESCRIPTION = "Configure your VersionIterator.";
 	private boolean canFlipToNextPage;
-	
+
 	private Text stepText;
 	private Button defaultButton;
 	private Group group;
 	private Text startText;
 	private Text endText;
-	private Button forwardButton; 
+	private Button forwardButton;
 	private Button returnCopyButton;
-	
-	private TransactionalEditingDomain editingDomain;
+
+	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
+
 	/**
 	 * @param pageName Name of the page
 	 */
@@ -61,14 +60,14 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		canFlipToNextPage = false;	
-		
+		canFlipToNextPage = false;
+
 		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
-	/** 
-	 * {@inheritDoc}
+	/**
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+	 * @param parent Parent
 	 */
 	public void createControl(Composite parent) {
 		GridData gd;
@@ -77,61 +76,60 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		int ncol = 4;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
-		
-		new Label (composite, SWT.NONE).setText("Step Length:");	
+
+		new Label(composite, SWT.NONE).setText("Step Length:");
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
 		stepText.addListener(SWT.KeyUp, this);
-		
-		 
-		 defaultButton = new Button(composite, SWT.CHECK);
-		 defaultButton.setText("Analyze the FULL versions");
-		 gd = new GridData(GridData.FILL_HORIZONTAL);
-		 gd.horizontalSpan = ncol;
-		 defaultButton.setLayoutData(gd);
-		 defaultButton.addSelectionListener(new SelectionListener() {
-				public void widgetDefaultSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-				}
 
-				public void widgetSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-
-				}
-
-			});
-		 defaultButton.addListener(SWT.Selection, this);
-		 
-		 group = new Group(composite, SWT.BORDER);
-		group.setLayout(new GridLayout(2,false));
+		defaultButton = new Button(composite, SWT.CHECK);
+		defaultButton.setText("Analyze the FULL versions");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
-		
+		defaultButton.setLayoutData(gd);
+		defaultButton.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {
+				canFlipToNextPage = true;
+				getWizard().getContainer().updateButtons();
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				canFlipToNextPage = true;
+				getWizard().getContainer().updateButtons();
+
+			}
+
+		});
+		defaultButton.addListener(SWT.Selection, this);
+
+		group = new Group(composite, SWT.BORDER);
+		group.setLayout(new GridLayout(2, false));
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = ncol;
+
 		group.setLayoutData(gd);
-		
-		new Label (group, SWT.NONE).setText("Start:");	
+
+		new Label(group, SWT.NONE).setText("Start:");
 		startText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
-		startText.setLayoutData(gd);		
+		startText.setLayoutData(gd);
 		startText.addListener(SWT.KeyUp, this);
-		
-		new Label (group, SWT.NONE).setText("End:");	
+
+		new Label(group, SWT.NONE).setText("End:");
 		endText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		endText.setLayoutData(gd);
 		endText.addListener(SWT.KeyUp, this);
-		
+
 		gd = new GridData();
-		gd.horizontalAlignment = GridData.BEGINNING;	
+		gd.horizontalAlignment = GridData.BEGINNING;
 		forwardButton = new Button(group, SWT.CHECK);
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
-		forwardButton.setSelection(true); 
+		forwardButton.setSelection(true);
 		forwardButton.addListener(SWT.Selection, this);
-		
+
 		returnCopyButton = new Button(group, SWT.CHECK);
 		returnCopyButton.setText("Return the copy of ProjectAnalysisData");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -139,135 +137,141 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
 		returnCopyButton.addListener(SWT.Selection, this);
-		
+
 		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
-		
+
 	}
 
 	/**
 	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
 	 * page is going to get displayed. Mainly create the databinding here.
 	 */
-	public void initDefaulGroup(){
-		
+	public void initDefaulGroup() {
+
 		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
-		//stepLength
-		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
+		// stepLength
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(),
+			IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
-		
-		//default
-		 modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
-		 dbc = new EMFDataBindingContext();
-		 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
-		
+
+		// default
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE
+			.getVersionIterator_Default());
+		dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
+
 	}
-	
+
 	/**
-	 * Initialize group of this wizard page.
+	 * Initialize the group of this wizard page.
 	 */
-	public void initGroup(){
-		
+	public void initGroup() {
+
 		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
-		 //start PrimaryVersionSpec
-		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+		// start PrimaryVersionSpec
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator()
+			.getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(startText, SWT.FocusOut), modelObservable, null, null);
 
-		 //end PrimaryVersionSpec
-		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getEndVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+		// end PrimaryVersionSpec
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery()
+			.getEndVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
 		dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(endText, SWT.FocusOut), modelObservable, null, null);
-		
-		//forward
-		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
+
+		// forward
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE
+			.getVersionIterator_Forward());
 		dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
-		
-		
-		//return Project Copy
-		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_ReturnProjectDataCopy());
+
+		// return Project Copy
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE
+			.getVersionIterator_ReturnProjectDataCopy());
 		dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
 	}
-	private static boolean isTextNonEmpty(Text t)
-	{
+
+	private static boolean isTextNonEmpty(Text t) {
 		String s = t.getText();
-		if ((s!=null) && (s.trim().length() >0)) {
+		if ((s != null) && (s.trim().length() > 0)) {
 			return true;
 		}
 		return false;
 	}
-	
-	/** 
-	 * {@inheritDoc}
+
+	/**
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 * @return true if page is completed
 	 */
 	@Override
 	public boolean isPageComplete() {
-		if(isTextNonEmpty(stepText) && defaultButton.getSelection()){
+		if (isTextNonEmpty(stepText) && defaultButton.getSelection()) {
 			getNextPage();
 			return true;
-		}else if(isTextNonEmpty(stepText) && isTextNonEmpty(startText)
-				&& isTextNonEmpty(endText) && (forwardButton.getSelection() )){
+		} else if (isTextNonEmpty(stepText) && isTextNonEmpty(startText) && isTextNonEmpty(endText)
+			&& (forwardButton.getSelection())) {
 			getNextPage();
 			return true;
 		}
 		return super.isPageComplete();
 	}
-	/** 
-	 * {@inheritDoc}
+
+	/**
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 * @return true if can flip to the next page
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
 		return canFlipToNextPage;
 	}
-	
-    /**
-     * @param canFlipToNextPage true if can flip to next page
-     */
+
+	/**
+	 * @param canFlipToNextPage true if can flip to next page
+	 */
 	public void setCanFlipToNextPage(boolean canFlipToNextPage) {
 		this.canFlipToNextPage = canFlipToNextPage;
 	}
-	
-	/** 
-	 * {@inheritDoc}
+
+	/**
 	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 * @return IWizardPage
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		final ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
+		final ExporterPage page = ((ProjectAnalyzerWizard) getWizard()).getExporterPage();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-		.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();				
+				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
 				conf.getIterator().setProjectId(wizard.getSelectedProjectID());
-				if(conf.getExporter() == null){
+				if (conf.getExporter() == null) {
 					CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 					conf.setExporter(exporter);
 				}
-				page.init();				
+				page.init();
 			}
 		});
-	
+
 		return page;
 	}
 
-	/** 
-	 * {@inheritDoc}
+	/**
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+	 * @param event Event
 	 */
 	public void handleEvent(Event event) {
-		if(event.widget == defaultButton){
+		if (event.widget == defaultButton) {
 			canFlipToNextPage = true;
 			group.setEnabled(!defaultButton.getSelection());
-			for(Control control : group.getChildren()){
+			for (Control control : group.getChildren()) {
 				control.setEnabled(!defaultButton.getSelection());
 			}
 		}
