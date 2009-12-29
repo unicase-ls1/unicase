@@ -33,7 +33,7 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
-public class URLAttachmentsTest extends MeControlTest {
+public class MEURLAttachmentsTest extends MeControlTest {
 private ActionItem actionItem;
 private UrlAttachment urlAttachment;	
 	
