@@ -8,7 +8,6 @@ package org.unicase.ui.test.meeditor.mecontrol;
 
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withTooltip;
 import static org.junit.Assert.assertEquals;
 
@@ -20,8 +19,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
+
 import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +28,6 @@ import org.unicase.model.Attachment;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.UrlAttachment;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -37,7 +35,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 public class URLAttachmentsTest extends MeControlTest {
 private ActionItem actionItem;
-	
+private UrlAttachment urlAttachment;	
 	
 	
 	@Before
@@ -49,7 +47,7 @@ private ActionItem actionItem;
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
-				UrlAttachment urlAttachment = AttachmentFactory.eINSTANCE.createUrlAttachment();
+				urlAttachment = AttachmentFactory.eINSTANCE.createUrlAttachment();
 				urlAttachment.setName("Mr.Web");
 				urlAttachment.setUrl("http://code.google.com/p/unicase/");
 				actionItem.getProject().addModelElement(urlAttachment);
@@ -105,45 +103,139 @@ private ActionItem actionItem;
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void urlWidgetTest(){
+	public void urlAttachmentTest(){
 			openModelElement(actionItem);
+		
+			final String elementWithAttachment = getBot().activeEditor().bot().textWithLabel("Name").getText();
+			UnicaseCommandWithResult<Matcher> attachmentWidgetFinder = new UnicaseCommandWithResult<Matcher>() {
+				@Override
+				protected Matcher doRun() {
+					Matcher matchwidget = allOf(widgetOfType(Widget.class), withTooltip("Create and link new Attachment"));
+					return matchwidget;
+				}
+			};
+			Matcher matcher = runAsnc(attachmentWidgetFinder);
+			final List widgetcontrol = getBot().getFinder().findControls(matcher);
+			
+			
+			
+			UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+					Event event = new Event();
+					event.widget = ((ToolItem)widgetcontrol.get(0));
+					toolItem.notifyListeners(SWT.Selection, event);		
+				}
+			}; runAsnc(widgetActivateCommand);
+			
+			
+			String attach = "UrlAttachment";
+			getBot().text().setText(attach);
+			getBot().button("OK").click();
+			getBot().sleep(2000);
+			final String attachmentName = "Unicase attachment";
+			getBot().activeEditor().bot().textWithLabel("Name").typeText(attachmentName,2);
+			getBot().activeEditor().bot().styledTextWithLabel("Description").typeText("This is a testing or URL Attachment.");
+			getBot().activeEditor().bot().button().click();
+			final String attachURL = "http://code.google.com/p/unicase";
+			getBot().text().setText(attachURL);
+			getBot().button("OK").click();
+				
+			UnicaseCommandWithResult<Matcher> refferingElementFinder = new UnicaseCommandWithResult<Matcher>() {
+				@Override
+				protected Matcher doRun() {
+					Matcher matchwidget = allOf(widgetOfType(Widget.class), withTooltip(elementWithAttachment));
+					return matchwidget;
+				}
+			};
+			Matcher refferingLinkmatcher = runAsnc(refferingElementFinder);
+			final List list = getBot().getFinder().findControls(refferingLinkmatcher);
+			String refferingElement = ((Hyperlink)list.get(0)).getText();
+			assertEquals(elementWithAttachment, refferingElement);
+			getBot().activeEditor().close();
+			getBot().activeEditor().setFocus();
+			
+			UnicaseCommandWithResult<Matcher> attachedElementFinder = new UnicaseCommandWithResult<Matcher>() {
+				@Override
+				protected Matcher doRun() {
+					Matcher widget = allOf(widgetOfType(Widget.class), withTooltip(attachmentName));
+					return widget;
+				}
+			};
+			Matcher attachmentLinkmatcher = runAsnc(attachedElementFinder);
+			final List hyperlinkList = getBot().getFinder().findControls(attachmentLinkmatcher);
+			String attachedElement = ((Hyperlink)hyperlinkList.get(0)).getText();
+			assertEquals(attachmentName, attachedElement);
+			
+}
+	
+	
+	@Test
+	public void attachedURLChangeTest(){
+			openModelElement(actionItem);
+			final String attachment = "Mr.Web";
 			UnicaseCommand addURLAttachment = new UnicaseCommand() {
 			
 			@Override
 			protected void doRun() {
 				EList<Attachment> listOfAttachments = actionItem.getProject().getModelElementsByClass(AttachmentPackage.eINSTANCE.getUrlAttachment(), new BasicEList<Attachment>());
 				for(Attachment l: listOfAttachments){
-					if(l.getName().equals("Mr.Web")){
+					if(l.getName().equals(attachment)){
 						actionItem.getAttachments().add(l);
 					}
 				}
 			}
 		}; runAsnc(addURLAttachment);
+	
+		openModelElement(urlAttachment);
+		getBot().activeEditor().bot().button().click();
+		final String attachURL = "http://www.unicase.org";
+		getBot().text().setText(attachURL);
+		getBot().button("OK").click();
 		
-		
-			UnicaseCommandWithResult<Matcher> widgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
-			
+		UnicaseCommand checkAttachmentURL = new UnicaseCommand() {
 			@Override
-			protected Matcher doRun() {
-				Matcher widget = allOf(widgetOfType(ImageHyperlink.class));
-				return widget;
-			}
-		};Matcher matcher = runAsnc(widgetFinderCommand);
-			
-		final List widgets = getBot().getFinder().findControls(matcher);
-		
-		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
-		@Override
 			protected void doRun() {
-			Event event = new Event();
-			event.widget = 	((ImageHyperlink)widgets.get(2));
-			((ImageHyperlink)widgets.get(2)).notifyListeners(SWT.MouseUp, event); // Not accepting the event notification! :(
+				EList<Attachment> list = actionItem.getAttachments();
+				for(Attachment l: list){
+					if(l.getName().equals(attachment)){
+						assertEquals(attachURL, ((UrlAttachment)l).getUrl());
+					}
+				}
 			}
-		}; runAsnc(widgetActivateCommand);
-		
-		
-		
-		getBot().activeEditor().bot().text().setFocus();
-		getBot().sleep(7000);
+		};runAsnc(checkAttachmentURL);
 	}
+	
+	@Test
+	public void attachedURLUpdateTest(){
+		openModelElement(actionItem);
+		openModelElement(urlAttachment);
+		getBot().activeEditor().bot().button().click();
+		final String previuosURL = getBot().text().getText();
+		getBot().button("Cancel").click();
+		final String attachment = "Mr.Web";
+		final String newURL = "http://www.testall-UI.org";
+		
+		UnicaseCommand addURLAttachment = new UnicaseCommand() {
+		@Override
+		protected void doRun() {
+			EList<Attachment> listOfAttachments = actionItem.getProject().getModelElementsByClass(AttachmentPackage.eINSTANCE.getUrlAttachment(), new BasicEList<Attachment>());
+			for(Attachment l: listOfAttachments){
+				if(l.getName().equals(attachment)){
+					actionItem.getAttachments().add(l);
+					assertEquals(previuosURL, ((UrlAttachment)l).getUrl());
+					((UrlAttachment)l).setUrl(newURL);
+					assertEquals(newURL, ((UrlAttachment)l).getUrl());
+					
+				}
+			}
+		}
+	}; runAsnc(addURLAttachment);
+		
+}
+	
+	
+	
 }
