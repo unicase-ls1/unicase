@@ -17,7 +17,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class METextControlTest extends MeControlTest {
 	
 	private ActionItem actionItem;
-	
+	private ActionItem newactionItem;
 	@Before
 	public void setupActionItem() {
 			
@@ -79,6 +79,93 @@ public class METextControlTest extends MeControlTest {
 		getBot().activeEditor().setFocus();
 		assertEquals(newname, getBot().activeEditor().bot().textWithLabel("Name").getText());
 		
+	}
+	
+	
+	@Test
+	public void testNameDefault()  {
+	new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				newactionItem = TaskFactory.eINSTANCE.createActionItem();
+				getLeafSection().getModelElements().add(newactionItem);
+			}
+		}.run();
+		
+		openModelElement(newactionItem);
+		
+		final String defaultName = getBot().activeEditor().bot().textWithLabel("Name").getText();		
+		UnicaseCommand unicaseCommand = new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				assertEquals(defaultName, newactionItem.getName());
+			}
+		};
+		runAsnc(unicaseCommand);
+				
+	}
+
+	
+	@Test
+	public void testNameNull()  {
+	
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				newactionItem = TaskFactory.eINSTANCE.createActionItem();
+				newactionItem.setName("Everything");
+				getLeafSection().getModelElements().add(newactionItem);
+			}
+		}.run();
+		
+		openModelElement(newactionItem);
+		final String changedName = null;
+		
+		UnicaseCommand unicaseCommand = new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				newactionItem.setName(changedName);
+			}
+		};
+		runAsnc(unicaseCommand);
+		
+		assertEquals("", getBot().activeEditor().bot().textWithLabel("Name").getText());		
+		
+				
+	}
+	
+	
+	@Test
+	public void testNameEmptyStringUpdate()  {
+	new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				newactionItem = TaskFactory.eINSTANCE.createActionItem();
+				newactionItem.setName("something");
+				getLeafSection().getModelElements().add(newactionItem);
+			}
+		}.run();
+		
+			openModelElement(newactionItem);
+			final String changedName = "";
+			UnicaseCommand unicaseCommand = new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				newactionItem.setName(changedName);
+			}
+		};
+		runAsnc(unicaseCommand);
+		
+		
+		assertEquals(changedName, getBot().activeEditor().bot().textWithLabel("Name").getText());		
+		
+				
 	}
 
 }
