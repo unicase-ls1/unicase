@@ -23,15 +23,11 @@ import org.unicase.analyzer.unicaseAnalyzers.DetectionAnalyzer;
 import org.unicase.anaylzer.test.AnalyzersTest;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 
-
 /**
  * @author liya
- *
  */
 public class DetectionAnalyzerTest extends AnalyzersTest {
 
-	
-	
 	/**
 	 * Define your export file name here.
 	 */
@@ -39,22 +35,22 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 		super();
 	}
 
-
 	/**
 	 * DetectionAnalyzer for SEE project 01, FR Attributes.
-	 * @throws IOException 
-	 * @throws IteratorException 
+	 * 
+	 * @throws IOException IOException
+	 * @throws IteratorException IteratorException
 	 */
 	@Test
-	public void see01Test() throws IOException, IteratorException{
-		for (ProjectInfo pI : super.getProjectList()) {			
+	public void see01Test() throws IOException, IteratorException {
+		for (ProjectInfo pI : super.getProjectList()) {
 			if (pI.getName().contains("multi")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 
 				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-				exporter.init("Exports/export_test.dat",true);
+				exporter.init("Exports/export_test.dat", true);
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);
@@ -62,29 +58,29 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 				analyzers.add(new DetectionAnalyzer("Dish type", projectIt));
 				@SuppressWarnings("unused")
-				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);					
+				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 
 			}
 		}
 		assertTrue(true);
 	}
-	
-	
+
 	/**
 	 * DetectionAnalyzer for SEE project 02, FR Attributes.
-	 * @throws IOException 
-	 * @throws IteratorException 
+	 * 
+	 * @throws IOException IOException
+	 * @throws IteratorException IteratorException
 	 */
 	@Test
-	public void see02Test() throws IOException, IteratorException{
-		for (ProjectInfo pI : super.getProjectList()) {			
+	public void see02Test() throws IOException, IteratorException {
+		for (ProjectInfo pI : super.getProjectList()) {
 			if (pI.getName().contains("-02")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
-				
+
 				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-				exporter.init("Exports/export_test.dat",true);
+				exporter.init("Exports/export_test.dat", true);
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);
@@ -92,7 +88,7 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 				analyzers.add(new DetectionAnalyzer("Attributes", projectIt));
 				@SuppressWarnings("unused")
-				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);					
+				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 
 			}
 		}

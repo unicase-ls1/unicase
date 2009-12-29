@@ -53,7 +53,7 @@ public class CountAnalyzer implements DataAnalyzer {
 	}
 
 	/**
-	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
+	 * @return @see org.unicase.analyzer.DataAnalyzer#isGlobal()
 	 */
 	public boolean isGlobal() {
 		// TODO Auto-generated method stub

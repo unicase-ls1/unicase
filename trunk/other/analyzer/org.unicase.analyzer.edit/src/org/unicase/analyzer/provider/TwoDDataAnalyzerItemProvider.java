@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.provider;
 
@@ -19,18 +18,15 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.analyzer.TwoDDataAnalyzer} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.analyzer.TwoDDataAnalyzer} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -39,8 +35,7 @@ public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -54,8 +49,7 @@ public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,10 +59,9 @@ public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
@@ -79,15 +72,13 @@ public class TwoDDataAnalyzerItemProvider extends DataAnalyzerItemProvider
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

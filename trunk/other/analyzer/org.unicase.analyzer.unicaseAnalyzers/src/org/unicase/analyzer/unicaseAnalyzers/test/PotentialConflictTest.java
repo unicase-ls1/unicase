@@ -25,7 +25,6 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 
 /**
  * @author liya
- *
  */
 public class PotentialConflictTest extends AnalyzersTest {
 	/**
@@ -34,14 +33,16 @@ public class PotentialConflictTest extends AnalyzersTest {
 	public PotentialConflictTest() {
 		super();
 	}
+
 	/**
 	 * Test on DOLLI2.
-	 * @throws IOException 
-	 * @throws IteratorException 
+	 * 
+	 * @throws IOException IOException
+	 * @throws IteratorException IteratorException
 	 */
 	@Test
-	public void dolli2Test() throws IOException, IteratorException{
-		for (ProjectInfo pI : super.getProjectList()) {			
+	public void dolli2Test() throws IOException, IteratorException {
+		for (ProjectInfo pI : super.getProjectList()) {
 			if (pI.getName().contains("DOLLI2")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				long startTime = System.currentTimeMillis();
@@ -49,7 +50,7 @@ public class PotentialConflictTest extends AnalyzersTest {
 
 				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-				exporter.init("Exports/export_test.dat",true);
+				exporter.init("Exports/export_test.dat", true);
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);
@@ -57,10 +58,10 @@ public class PotentialConflictTest extends AnalyzersTest {
 				ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 				analyzers.add(new PotentialConflictAnalyzer());
 				@SuppressWarnings("unused")
-				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);					
+				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 
 				long endTime = System.currentTimeMillis();
-			    System.out.println("Total elapsed time in execution is :"+ (endTime-startTime));
+				System.out.println("Total elapsed time in execution is :" + (endTime - startTime));
 			}
 		}
 		assertTrue(true);

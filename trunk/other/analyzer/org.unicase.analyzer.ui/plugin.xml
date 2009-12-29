@@ -12,7 +12,8 @@
                label="Analyze Project"
                style="push">
             <visibleWhen
-                  checkEnabled="false">
+            	checkEnabled="false">
+            	<and>
                <iterate
                      ifEmpty="false"
                      operator="and">
@@ -24,7 +25,16 @@
                         property="org.unicase.workspace.ui.commands.projectIsShared"
                         value="true">
                   </test>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.unicase.workspace.ui.commands.isAdmin"
+                        value="true">
+                  </test>
                </iterate>
+               <count
+                    value="1">
+               </count>
+              </and>
             </visibleWhen>
          </command>
       </menuContribution>
