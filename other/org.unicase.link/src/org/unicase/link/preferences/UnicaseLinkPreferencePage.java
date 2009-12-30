@@ -1,23 +1,25 @@
 package org.unicase.link.preferences;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.DirectoryFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
-import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.unicase.link.Activator;
 import org.unicase.link.preferences.protocolhandlers.IRegisterProtocolHandler;
 import org.unicase.link.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
 
@@ -35,7 +37,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 
 	public UnicaseLinkPreferencePage() {
 		super(GRID);
-		setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		// setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("Configuration pane for the link plugin.");
 	}
 
@@ -45,14 +47,6 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	 */
 	@Override
 	public void createFieldEditors() {
-		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, "&Directory preference:", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(PreferenceConstants.P_BOOLEAN, "&An example of a boolean preference",
-			getFieldEditorParent()));
-
-		addField(new RadioGroupFieldEditor(PreferenceConstants.P_CHOICE, "An example of a multiple-choice preference",
-			1, new String[][] { { "&Choice 1", "choice1" }, { "C&hoice 2", "choice2" } }, getFieldEditorParent()));
-		addField(new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
-
 		addField(new UnicaseLinkFieldEditor("Protocol handler", "Associate protocol handler", getFieldEditorParent()));
 	}
 
@@ -79,7 +73,8 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 			if (osName.contains("win")) {
 				return "eclipse.exe";
 			} else if (osName.contains("mac")) {
-				return "eclipse.app";
+				return "eclipse.app" + File.separator + "Contents" + File.separator + "MacOS" + File.separator
+					+ "eclipse";
 			}
 
 			return null;
@@ -107,7 +102,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 			}
 
 			return null;
-			// org.unicase.link_feature_1.0.0
+			// org.unicase.lin k_feature_1.0.0
 		}
 
 		@Override
@@ -122,13 +117,22 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				if (protocolHandler == null) {
 					Display.getDefault().syncExec(new Runnable() {
 						public void run() {
-							MessageDialog.openError(getShell(), "Not implemented yet", "TODO");
+							MessageDialog.openError(getShell(), "Protocol handler registration failed",
+								"The registration of the UNICASE protocol hasn't been implemented yet "
+									+ "for your operating system.");
 						}
 					});
 				}
 
 				protocolHandler.registerProtocolHandler(startUpJar);
 				writeStartupConfigFile(startUpJar);
+
+				if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+					String libDir = startUpJar.substring(0, startUpJar.lastIndexOf(File.separatorChar));
+					String zipFile = libDir + File.separator + "URLHandler.zip";
+					unzip(zipFile);
+				}
+
 			} catch (IOException e) {
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
@@ -137,14 +141,61 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 					}
 				});
 			}
+
 			return null;
+		}
+
+		private void unzip(String filePath) {
+			Enumeration entries;
+			ZipFile zipFile;
+
+			// TODO: check whether file exists
+
+			try {
+				zipFile = new ZipFile(filePath);
+
+				entries = zipFile.entries();
+
+				while (entries.hasMoreElements()) {
+					ZipEntry entry = (ZipEntry) entries.nextElement();
+
+					if (entry.isDirectory()) {
+						// Assume directories are stored parents first then children.
+						System.err.println("Extracting directory: " + entry.getName());
+						// This is not robust, just for demonstration purposes.
+						(new File(entry.getName())).mkdir();
+						continue;
+					}
+
+					System.err.println("Extracting file: " + entry.getName());
+					copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(entry
+						.getName())));
+				}
+
+				zipFile.close();
+			} catch (IOException ioe) {
+				System.err.println("Unhandled exception:");
+				ioe.printStackTrace();
+				return;
+			}
+		}
+
+		public final void copyInputStream(InputStream in, OutputStream out) throws IOException {
+			byte[] buffer = new byte[1024];
+			int len;
+
+			while ((len = in.read(buffer)) >= 0)
+				out.write(buffer, 0, len);
+
+			in.close();
+			out.close();
 		}
 
 		private void writeStartupConfigFile(String startUpJarPath) {
 			String eclipsePath = getEclipseFilePath();
 			String eclipseExecutable = eclipsePath + File.separator + getEclipseExecutable();
 			String cfgFilePath = startUpJarPath.substring(0, startUpJarPath.lastIndexOf(File.separator))
-				+ "unicaseLink.conf";
+				+ File.separator + "unicaseLink.conf";
 			File cfgFile = new File(cfgFilePath);
 
 			try {
