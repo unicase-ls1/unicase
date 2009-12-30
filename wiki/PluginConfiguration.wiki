@@ -12,7 +12,7 @@ http://unicase.googlecode.com/files/15ad2.png
 http://unicase.googlecode.com/files/81d92.png
 
 
- *   Now select Java Code Style -> Formatter (1), check Enable project specific settings (2) and then Import (3) the unicase formatter [http://unicase.googlecode.com/files/unicaseFormatter.xml file here..]
+ *   Now select Java Code Style -> Formatter (1), check Enable project specific settings (2) and then Import (3) the UNICASE formatter [http://unicase.googlecode.com/files/unicaseFormatter.xml file here..]
 
 
 <br>
