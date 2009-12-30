@@ -1,0 +1,184 @@
+==GMF==
+*Links:*
+
+    * *_Basics_* - http://www-128.ibm.com/developerworks/opensource/library/os-ecl-gmf/
+    * *_Creating two (or more) diagrams of the same domain model_* - http://wiki.eclipse.org/index.php/GMF_Tips#Sharing_single_EditingDomain_instance_across_several_diagrams
+    * *_GMF Tips_* - http://wiki.eclipse.org/index.php/GMF_GenModel_Hints
+
+
+
+===The 1001 steps to a integrated gmf editor: ===
+
+
+
+We want to implement our own resource as in our case diagrams and corresponding model elements are not directly saved in files.We are currently trying to do this and these are the steps we have already done:
+
+
+  *  We need to open the diagram editor on double click:
+
+
+{{{
+if (object instanceof MEDiagram) {
+ModelElement modelElement = (ModelElement)object; 
+URIEditorInput input = new URIEditorInput(URI.createURI(modelElement.getName()));
+try { PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "org.unicase.model.diagram.part.ModelDiagramEditorID", true); 
+}catch (PartInitException e) 
+{ // TODO Auto-generated catch block e.printStackTrace(); }
+} 
+
+}}}
+
+
+  *  We need to tell the diagram editor to use our !EditingDomian by manipulating the genmodel:
+
+<br>
+<br>
+http://unicase.googlecode.com/files/1973e.png
+<br>
+<br>
+ * We need to implement our own resource. In our case it is: MEDiagramResource in org.unicase.diagram.part <br>
+ * We need a Resource Factory to create the Resource. It´s also MEDiagramResource itself<br>
+ * We need to register this !ResourceFactory with an ID:<br>
+
+{{{
+<extension
+point="org.eclipse.emf.ecore.content_parser">
+<parser
+class="org.unicase.model.diagram.part.MEDiagramResource"
+contentTypeIdentifier="MEDiagram">
+</parser>
+</extension>
+}}}
+
+ * Now we have to modify the !ModelDocumentProvider in setDocumentContent() to load our resource:
+
+{{{
+
+/**
+* @generated NOT
+*/
+protected void setDocumentContent(IDocument document, IEditorInput element)
+throws CoreException {
+IDiagramDocument diagramDocument = (IDiagramDocument) document;
+TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
+if (element instanceof FileEditorInput) {
+IStorage storage = ((FileEditorInput) element).getStorage();
+Diagram diagram = DiagramIOUtil.load(domain, storage, true,
+getProgressMonitor());
+document.setContent(diagram);
+} else if (element instanceof URIEditorInput) {
+URI uri = ((URIEditorInput) element).getURI();
+Resource resource = null;
+try {
+// resource = domain.getResourceSet().getResource(
+// uri.trimFragment(), false);
+if (resource == null) {
+resource = domain.getResourceSet().createResource(
+uri, "MEDiagram");
+}
+if (!resource.isLoaded()) {
+try {
+Map options = new HashMap(GMFResourceFactory
+.getDefaultLoadOptions());
+// @see 171060
+// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
+// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+resource.load(options);
+} catch (IOException e) {
+resource.unload();
+throw e;
+}
+}
+// if (uri.fragment() != null) {
+// EObject rootElement = resource.getEObject(uri.fragment());
+// if (rootElement instanceof Diagram) {
+// document.setContent((Diagram) rootElement);
+// return;
+// }
+// } else {
+for (Iterator it = resource.getContents().iterator(); it
+.hasNext();) {
+Object rootElement = it.next();
+if (rootElement instanceof Diagram) {
+document.setContent((Diagram) rootElement);
+return;
+}
+// }
+}
+
+}}}
+
+ * We need to override the method createEmptyDocument like this:
+
+{{{
+
+/**
+
+* @generated NOT
+
+*/
+
+protected IDocument createEmptyDocument() {
+
+DiagramDocument document = new DiagramDocument();
+
+document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
+
+.getEditingDomain("org.unicase.EditingDomain"));
+
+return document;
+
+}
+
+}}}
+
+
+ * We need to override the method dispose in !ModelDocumentProvider, otherwise the editor disposes our editingDomain<br>
+ * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too): <br>
+ * We have to centralize entries to the following extensionpoint in org.unicase.common:<br>
+
+    _<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">_
+
+That means we have to copy all entries under "<binding context>" to the corresponding extension point<br> in org.unicase.common and then delete the extension point in the diagram.
+
+
+{{{
+
+
+public XXXCreateCommand(CreateRelationshipRequest request,EObject source, EObject target) {
+		super(request);
+		this.source = source;
+		this.target = target;
+		if (request.getContainmentFeature() == null) {
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
+		}
+
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof MEDiagram) {
+				container = (MEDiagram) element;
+				super.setElementToEdit(container);
+				break;
+			}
+		}
+	}
+
+}}}
+
+ * Forbid save as in Editor:
+
+{{{
+/**
+* @generated NOT
+*/
+public boolean isSaveAsAllowed() {
+return false;
+}
+
+}}}
+
+ * Dont forget to mark all modified methods as Generated NOT
