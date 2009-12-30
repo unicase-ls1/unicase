@@ -15,7 +15,7 @@ Repository layout:
           * /developer: contains resources for developers, such as scripts, configurations
           * /deployment: contains plugins, features and the update site for release and deployment.
           * /test: contains plugins for testing.
-          * /other: contains other plugins and features that are not released with the unicase client feature.
+          * /other: contains other plugins and features that are not released with the UNICASE client feature.
 
 
 
