@@ -1,6 +1,6 @@
 *Q: How should I configure a new plugin?*
 <br>
-A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select !PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with unicase. The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
+A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select !PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with "unicase". The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
 
 *Q: How do I add an interface or superclass to a generated EMF class?*<br>
 A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to the user doc block in the javadoc of the class declaration. Do not add @generated NOT to the class declaration since this will stop emf from ever regenerating the class.
@@ -8,7 +8,7 @@ A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to t
 *Q: How should I configure my plugin's dependencies?*<br>
 A: Double click on your Manifest.MF and switch to the dependency tab. Here you can add dependecies you need, e.g. org.unicase.model. Unless you know why do not add a minimum or maximum version number. If it is added by default if you add a dependency remove it please.
 
-*Q: How can I get access to the unicase Workspace from a plugin?*<br>
+*Q: How can I get access to the UNICASE Workspace from a plugin?*<br>
 A: Import org.unicase.workspace as a dependency. Call 
 !WorkspaceManager.getInstance().getCurrentWorkspace().
 
