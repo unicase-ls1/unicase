@@ -1,8 +1,8 @@
 = Reporting Bugs =
 
-We appreciate your input to improve unicase. You are the our most valuable source of bug reports and feature requests. If you find a bug or if you have feature request please do not hesitate to report it to us. Please give us as much information on the feature or bug as you can, in particular the following information is very useful in descending order of priority:
+We appreciate your input to improve UNICASE. You are the our most valuable source of bug reports and feature requests. If you find a bug or if you have feature request please do not hesitate to report it to us. Please give us as much information on the feature or bug as you can, in particular the following information is very useful in descending order of priority:
 
-    * The version of unicase the problem occured in
+    * The version of UNICASE the problem occured in
     * Steps to reproduce the problem
     * User Environment: Eclipse version, Java version, OS
     * A screenshot of the error or problem
