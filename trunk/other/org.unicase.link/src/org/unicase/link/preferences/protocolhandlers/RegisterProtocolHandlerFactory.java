@@ -6,7 +6,7 @@ public class RegisterProtocolHandlerFactory {
 		if (isWindows(osName)) {
 			return new WindowsRegisterProtocolHandler();
 		} else if (isMac(osName)) {
-			// TODO
+			return new MacOSRegisterProtocolHandler();
 		} else if (isUnix(osName)) {
 			// TODO
 		}
