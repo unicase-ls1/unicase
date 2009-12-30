@@ -1,4 +1,4 @@
  * [http://unicase.googlecode.com/files/StartEmfStore.mov Run EMFStore as developer.]
- * [http://unicase.googlecode.com/files/StartUnicaseClient.mov  Run unicase client as developer.]
+ * [http://unicase.googlecode.com/files/StartUnicaseClient.mov  Run UNICASE client as developer.]
  * [http://unicase.googlecode.com/files/SetupProjectForEmfStore.mov Setup a project for EmfStore server.]
  * [http://unicase.googlecode.com/files/unicaseMDD.mov Model-driven development Tutorial.] 
