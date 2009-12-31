@@ -1,5 +1,4 @@
  * [Getting_started_as_developer Getting started as Developer]
- * Getting started as Framework User
  * [http://unicase.googlecode.com/files/UNICASECLIENTGUIDE.pdf UNICASE client user guide] 
 
 === Details ===
