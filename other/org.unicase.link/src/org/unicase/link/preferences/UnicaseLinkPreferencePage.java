@@ -168,8 +168,9 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 					}
 
 					System.err.println("Extracting file: " + entry.getName());
-					copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(entry
-						.getName())));
+					String extractDir = filePath.substring(0, filePath.lastIndexOf(File.separator));
+					copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(
+						extractDir + File.separator + entry.getName())));
 				}
 
 				zipFile.close();
