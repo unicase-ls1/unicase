@@ -158,17 +158,18 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 
 				while (entries.hasMoreElements()) {
 					ZipEntry entry = (ZipEntry) entries.nextElement();
+					String extractDir = filePath.substring(0, filePath.lastIndexOf(File.separator));
 
 					if (entry.isDirectory()) {
 						// Assume directories are stored parents first then children.
 						System.err.println("Extracting directory: " + entry.getName());
 						// This is not robust, just for demonstration purposes.
-						(new File(entry.getName())).mkdir();
+						(new File(extractDir + File.separator + entry.getName())).mkdir();
 						continue;
 					}
 
 					System.err.println("Extracting file: " + entry.getName());
-					String extractDir = filePath.substring(0, filePath.lastIndexOf(File.separator));
+
 					copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(
 						extractDir + File.separator + entry.getName())));
 				}
