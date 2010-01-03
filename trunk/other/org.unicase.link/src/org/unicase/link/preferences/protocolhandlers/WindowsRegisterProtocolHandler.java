@@ -2,18 +2,20 @@ package org.unicase.link.preferences.protocolhandlers;
 
 import java.io.IOException;
 
-public class WindowsRegisterProtocolHandler implements IRegisterProtocolHandler {
+public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
 	/**
 	 * On Windows eclipseInfo is the path where eclipse has been installed.
 	 */
-	public void registerProtocolHandler(String eclipseInfo) {
+	@Override
+	public void registerProtocolHandler() {
 		try {
 			Runtime.getRuntime().exec("reg add HKCR\\unicase /ve /d \"URL:unicase Protocol\"");
 			Runtime.getRuntime().exec("reg add HKCR\\unicase /v \"URL Protocol\"");
-			Runtime.getRuntime().exec("reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d " + eclipseInfo + " %%1");
+			Runtime.getRuntime().exec(
+				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d " + getJavaExecutionCmd() + " %%1");
 		} catch (IOException e) {
-			e.printStackTrace();
+			showError(e.getMessage());
 		}
 	}
 }
