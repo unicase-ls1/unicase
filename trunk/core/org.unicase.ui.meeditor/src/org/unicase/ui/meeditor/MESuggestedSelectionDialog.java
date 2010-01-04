@@ -33,7 +33,7 @@ import org.unicase.metamodel.recommendation.RecommendationManager;
 import org.unicase.ui.common.Activator;
 
 /**
- * This Dialog represents the possibility to select an element from a list where the list is sorted and additional
+ * This dialog represents the possibility to select an element from a list where the list is sorted and additional
  * information can be provided.
  * 
  * @author Henning Femmer
@@ -71,6 +71,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), reference.isMany());
 		setTitle(title);
 		setMessage(message);
+		this.setInitialPattern("**");
 		// Removed, should be reimplemented using the recommendation manager.
 		// boolean enableAssigneeRecommendation = org.unicase.ui.common.Activator.getDefault().getPreferenceStore()
 		// .getBoolean(UnicasePreferenceConstants.ENABLE_ASSIGNEE_RECOMMENDATION);
@@ -259,14 +260,8 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 */
 		@Override
 		public boolean matchItem(Object item) {
-			String pattern = this.getPattern();
 			String label = labelProvider.getText(item);
-			if (pattern == null || pattern.equals("*") || pattern.equals("")) {
-				return true;
-			}
-			if (!patternMatcher.getPattern().startsWith("*")) {
-				this.patternMatcher.setPattern("*" + patternMatcher.getPattern() + "*");
-			}
+
 			return matches(label);
 		}
 

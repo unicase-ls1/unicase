@@ -2,6 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         id="RecommendationStrategies"
+         name="RecommendationStrategies"
          point="org.unicase.metamodel.recommendationstrategy">
       <strategy
             baseElementClass="org.unicase.model.task.WorkItem"

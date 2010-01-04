@@ -11,8 +11,9 @@ import java.util.Map;
 
 import org.unicase.linkrecommendation.RecUtils;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
-import org.unicase.model.ModelElement;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This strategy uses latent semantic indexing for similarity measurements.
@@ -46,12 +47,12 @@ public class LSIStrategy implements RecommendationStrategy {
 
 		TDFrequencyMatrix tdf = new TDFrequencyMatrix();
 		// add the target element's words
-		int index = tdf.addWordsToDictionaries(RecUtils.getMEsText(base));
+		int index = tdf.addWordsToDictionaries(RecUtils.getMEsText((UnicaseModelElement) base));
 		indices.put(base, index);
 		// create list of possible words
 		for (ModelElement me : elements) {
 			// add the target element's words
-			index = tdf.addWordsToDictionaries(RecUtils.getMEsText(me));
+			index = tdf.addWordsToDictionaries(RecUtils.getMEsText((UnicaseModelElement) me));
 			indices.put(me, index);
 		}
 

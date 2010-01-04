@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.navigator.wizards.ModelClassFilter;
-import org.unicase.ui.navigator.wizards.ModelTreeContentProvider;
+import org.unicase.ui.unicasecommon.common.ModelTreeContentProvider;
+import org.unicase.ui.unicasecommon.navigator.wizards.ModelClassFilter;
 
 /**
  * @author henning femmer

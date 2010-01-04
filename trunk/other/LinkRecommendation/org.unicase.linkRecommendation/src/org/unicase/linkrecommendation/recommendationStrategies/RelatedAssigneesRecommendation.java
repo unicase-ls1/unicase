@@ -11,10 +11,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This method tries to find the related assignee and looks at his other items. In case a couple of those are suggested

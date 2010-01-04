@@ -26,16 +26,17 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.recommendation.ConstantThresholdSelection;
+import org.unicase.metamodel.recommendation.CutPointSelection;
+import org.unicase.metamodel.recommendation.LinkSelectionStrategy;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.CutPointSelection;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
 
 /**
  * This class represents an analyzer made for comparing different versions of link recommendation.
@@ -341,16 +342,22 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	private void printDebugOutput(ModelElement base, EReference eReference, Collection<ModelElement> correctMEs, int j,
 		int i, Map<ModelElement, Double> suggestionMap) {
 		if (DEBUG == DEBUGMODE.RESULTS || DEBUG == DEBUGMODE.ALL) {
-			System.out.print("Analyzing: " + base.getName());
+			if (base instanceof UnicaseModelElement) {
+				System.out.print("Analyzing: " + ((UnicaseModelElement) base).getName());
+			}
 			System.out.println(", reference: " + eReference.getName() + " with RecStrategy "
 				+ recommendationStrategies[j].getName() + " SelectionStrategy " + selectionStrategies[i].getName());
 
 			for (ModelElement me : correctMEs) {
-				System.out.println("# " + me.getName());
+				if (me instanceof UnicaseModelElement) {
+					System.out.println("# " + ((UnicaseModelElement) me).getName());
+				}
 			}
 
 			for (ModelElement me : suggestionMap.keySet()) {
-				System.out.println("+ " + me.getName() + " - " + suggestionMap.get(me));
+				if (me instanceof UnicaseModelElement) {
+					System.out.println("+ " + ((UnicaseModelElement) me).getName() + " - " + suggestionMap.get(me));
+				}
 			}
 		}
 	}
@@ -509,11 +516,17 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			hits[indexSelection][indexStrategy]++;
 		} else if (DEBUG == DEBUGMODE.FAILS || DEBUG == DEBUGMODE.ALL) {
 			// debug:
-			System.out.println("* " + recommendationStrategies[indexStrategy].getName() + " FAILS to connect ME \n"
-				+ me.getName() + ": " + me.getDescriptionPlainText() + " \n to");
+			if (me instanceof UnicaseModelElement) {
+				UnicaseModelElement ume = (UnicaseModelElement) me;
+				System.out.println("* " + recommendationStrategies[indexStrategy].getName() + " FAILS to connect ME \n"
+					+ ume.getName() + ": " + ume.getDescriptionPlainText() + " \n to");
+			}
 
 			for (ModelElement correctME : correctMEs) {
-				System.out.println("- Name: " + correctME.getName() + ": " + correctME.getDescriptionPlainText());
+				if (correctME instanceof UnicaseModelElement) {
+					UnicaseModelElement ume = (UnicaseModelElement) correctME;
+					System.out.println("- Name: " + ume.getName() + ": " + ume.getDescriptionPlainText());
+				}
 			}
 		}
 	}
@@ -537,7 +550,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 */
 	public void setToFuncReqToActionItem() {
 		relevantReferences = new ArrayList<EClass>();
-		relevantReferences.add(ModelPackage.eINSTANCE.getModelElement_Annotations().getEReferenceType());
+		relevantReferences.add(ModelPackage.eINSTANCE.getUnicaseModelElement_Annotations().getEReferenceType());
 
 		relevantBaseClasses = new ArrayList<EClass>();
 		relevantBaseClasses.add(RequirementPackage.eINSTANCE.getFunctionalRequirement());

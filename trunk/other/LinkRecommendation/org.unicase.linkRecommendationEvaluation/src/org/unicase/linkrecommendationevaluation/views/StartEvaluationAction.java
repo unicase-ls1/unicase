@@ -21,12 +21,12 @@ import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesR
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.FactorCombinationStrategy;
 import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.recommendation.CutPointSelection;
+import org.unicase.metamodel.recommendation.LinkSelectionStrategy;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.CutPointSelection;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -184,8 +184,10 @@ public class StartEvaluationAction extends Action {
 		// 
 		an.initializeVariables();
 		an.setToFuncReqToActionItem();
-		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
-			new SharedReferencesRecommendation(50, ModelPackage.eINSTANCE.getModelElement_Annotations()), 0.5) });
+		an
+			.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
+				new SharedReferencesRecommendation(50, ModelPackage.eINSTANCE.getUnicaseModelElement_Annotations()),
+				0.5) });
 
 		results = new ArrayList<Object>();
 		an.analyzeEntireProject(project);

@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import org.unicase.linkrecommendation.matchingStrategies.MEMatcher;
-import org.unicase.model.ModelElement;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 
 /**
  * This class creates stands for a RecommendationStategy, that collects different strategies and returns the arithmetic
@@ -78,7 +78,7 @@ public abstract class AbstractRecommendationStrategy implements RecommendationSt
 	 * This method calculates the arithmetic average of all results of the managers matchingStrategies and returns a
 	 * hashmap of all values above the threshold.
 	 * 
-	 * @param base The ModelElement which is compared to the rest
+	 * @param base The UnicaseModelElement which is compared to the rest
 	 * @param elements The potential elements linked to the base
 	 * @return a Map (ModelElement,Double)
 	 */

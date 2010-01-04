@@ -29,7 +29,7 @@ import org.unicase.metamodel.util.ModelUtil;
  */
 public class RecommendationManager {
 
-	private static final String BASE_CLASS = "org.unicase.model.ModelElement";
+	private static final String BASE_CLASS = "org.unicase.metamodel.ModelElement";
 
 	private static RecommendationManager singleton = new RecommendationManager();
 	private List<StrategyExtension> extensions;
@@ -45,7 +45,9 @@ public class RecommendationManager {
 		Set<String> check = new HashSet<String>();
 
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.model.recommendationstrategy");
+			"org.unicase.metamodel.recommendationstrategy");
+		
+//		System.out.println("exes: "+rawExtensions.length);
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				// create a data object which composites all the information of an extension
@@ -65,6 +67,8 @@ public class RecommendationManager {
 					// add it to the check
 					check.add(tempStrategy.getEReferenceName() + tempStrategy.getBaseClassName());
 
+//					System.out.println(tempStrategy.getEReferenceName() + tempStrategy.getBaseClassName());
+					
 					// the generalized elements
 					if (tempStrategy.getEReferenceName().equals("ALL")) {
 						general.put(tempStrategy.getBaseClassName(), tempStrategy);
@@ -98,36 +102,50 @@ public class RecommendationManager {
 		if (base != null && ref != null) {
 			String baseClassKey = getFullQualifiedClassName(base.eClass());
 
+//			System.out.println(ref.getName()+" " +getFullQualifiedClassName(base.eClass()));
+			
+
+			System.out.println("Step 1");
 			// 1. Step: Is there a special recommendation for this reference and base?
 			for (StrategyExtension ex : extensions) {
+//				System.out.println(ex.getEReferenceName()+" " + ex.getBaseClassName());
+				
 				if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(baseClassKey)) {
 					return ex.getRecommendationStrategy();
 				}
 			}
-
+			
+			System.out.println("Step 2");
 			// 2. Step: Check super-type and interfaces for special recommendations
 			for (StrategyExtension ex : extensions) {
-				for (EClass superType : base.eClass().getESuperTypes()) {
+				for (EClass superType : base.eClass().getEAllSuperTypes()) {
 					String key = this.getFullQualifiedClassName(superType);
+
+//					System.out.println(ex.getEReferenceName()+" " + key);
 					if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(key)) {
 						return ex.getRecommendationStrategy();
 					}
 				}
 			}
 
+			System.out.println("Step 3");
 			// 3. Step: is there a general strategy for this base?
 			if (general.containsKey(baseClassKey)) {
 				return general.get(baseClassKey).getRecommendationStrategy();
 			}
 
+			System.out.println("Step 4");
 			// 4. Step: is there a general strategy for the super-type or interfaces
-			for (EClass superType : base.eClass().getESuperTypes()) {
+			for (EClass superType : base.eClass().getEAllSuperTypes()) {
 				String key = this.getFullQualifiedClassName(superType);
+
+//				System.out.println(key);
 				if (general.containsKey(key)) {
 					return general.get(key).getRecommendationStrategy();
 				}
 			}
 
+			System.out.println("Step 5");
 			// 5. Step: is there a general for the model element (the most basic)
 			if (general.containsKey(BASE_CLASS)) {
 				return general.get(BASE_CLASS).getRecommendationStrategy();
@@ -159,21 +177,30 @@ public class RecommendationManager {
 	public Map<ModelElement, Double> getMatchMap(final ModelElement base, EReference ref,
 		final Collection<ModelElement> elements, LinkSelectionStrategy selStrategy) {
 
+		try{
+			
 		if (base == null || ref == null || elements == null || elements.size() == 0) {
 			return new HashMap<ModelElement, Double>();
 		}
-
+		
 		RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
-
+		
 		if (recStrategy != null) {
+			System.out.println("Strategy "+recStrategy.getName() + " for "+ref.getName()+ " and "+elements.size() + " elements.");
+			
 			Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
+			
 			if (selStrategy != null) {
 				rec = selStrategy.selectCandidates(rec);
 			}
 
 			return rec;
 		}
-
+		}
+		catch (RuntimeException e){
+			ModelUtil.logException("Exception during recommendation.", e);			
+		}
+		
 		return new HashMap<ModelElement, Double>();
 	}
 

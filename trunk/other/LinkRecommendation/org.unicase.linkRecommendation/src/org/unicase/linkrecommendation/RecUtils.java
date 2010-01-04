@@ -13,7 +13,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 
@@ -192,7 +192,7 @@ public class RecUtils {
 	 * @param me the model elment
 	 * @return the text
 	 */
-	public static String getMEsText(ModelElement me) {
+	public static String getMEsText(UnicaseModelElement me) {
 		String text = "";
 		if (TRIPPLE_NAME) {
 			text = me.getName() + " " + me.getName() + " " + me.getName() + " " + me.getDescriptionPlainText();

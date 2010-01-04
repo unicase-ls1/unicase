@@ -27,10 +27,10 @@ import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesR
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.FactorCombinationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.ARMStrategy;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.CutPointSelection;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
+import org.unicase.metamodel.recommendation.ConstantThresholdSelection;
+import org.unicase.metamodel.recommendation.CutPointSelection;
+import org.unicase.metamodel.recommendation.LinkSelectionStrategy;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
