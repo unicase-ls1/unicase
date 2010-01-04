@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.preferences.protocolhandlers;
 
 import java.io.File;
@@ -7,10 +12,16 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * Class for registering the UNICASE protocol handler on an operating system. Also provides some helper methods for
+ * getting information about the eclipse instance used.
+ * 
+ * @author emueller
+ */
 public abstract class AbstractRegisterProtocolHandler {
 
 	/**
-	 * @param eclipseId an String representing the information needed to register the protocol handler
+	 * Register the protocol handler on an operating system.
 	 */
 	public abstract void registerProtocolHandler();
 
@@ -42,6 +53,11 @@ public abstract class AbstractRegisterProtocolHandler {
 		return null;
 	}
 
+	/**
+	 * Opens up a error dialog showing the user the given text.
+	 * 
+	 * @param msgText The text to be shown within the message dialog
+	 */
 	protected void showError(final String msgText) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
@@ -67,6 +83,13 @@ public abstract class AbstractRegisterProtocolHandler {
 		return startUpJar.getAbsolutePath();
 	}
 
+	/**
+	 * The java command that will be executed when clicking a UNICASE link. This command is responsible for passing the
+	 * actual link to the startup jar
+	 * 
+	 * @return the command to be executed
+	 * @throws IOException
+	 */
 	public String getJavaExecutionCmd() throws IOException {
 		return "java -jar " + getStartUpJar();
 	}
@@ -92,5 +115,4 @@ public abstract class AbstractRegisterProtocolHandler {
 
 		return eclipseDir + executable;
 	}
-
 }

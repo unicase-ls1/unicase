@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.preferences;
 
 import java.io.BufferedWriter;
@@ -16,20 +21,17 @@ import org.unicase.link.preferences.protocolhandlers.AbstractRegisterProtocolHan
 import org.unicase.link.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
 
 /**
- * TODO: What we'll need to do here - locate the org.unciase.link.startup application which has been installed with the
- * feature - Find out the eclipse path which will be passed to the startup application - register the
- * org.unciase.link.startup application as a protocol handler for the unicase protocol (this should happen via a button
- * click)
+ * The preference page locates the org.unciase.link.startup jar file which has been installed with the feature and finds
+ * out the eclipse path of the eclipse installation which will be passed to the startup application. It then registers
+ * theorg.unciase.link.startup jar as a protocol handler for the unicase protocol *
  * <p>
- * This page is used to modify preferences only. They are stored in the preference store that belongs to the main
- * plug-in class. That way, preferences can be accessed directly via the preference store.
+ * 
+ * @author emueller
  */
-
 public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public UnicaseLinkPreferencePage() {
 		super(GRID);
-		// setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("Configuration pane for the link plugin.");
 	}
 
@@ -49,6 +51,9 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	public void init(IWorkbench workbench) {
 	}
 
+	/**
+	 * @author emueller TODO: meaningful UI
+	 */
 	private class UnicaseLinkFieldEditor extends StringButtonFieldEditor {
 
 		public UnicaseLinkFieldEditor(String name, String labelText, Composite parent) {
@@ -60,8 +65,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 		protected String changePressed() {
 			try {
 				RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
-				AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler(System
-					.getProperty("os.name"));
+				AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler();
 
 				if (protocolHandler == null) {
 					Display.getDefault().syncExec(new Runnable() {
@@ -96,11 +100,11 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				cfgFile.createNewFile();
 				FileWriter cfgFileWriter = new FileWriter(cfgFile);
 				BufferedWriter bufferedWriter = new BufferedWriter(cfgFileWriter);
-				// we need to write this (will be replaced by the startup jar)
+				// we need to write this link tag (will be replaced by the startup jar)
 				bufferedWriter.write(eclipseExecutablePath + " <LINK>");
 				bufferedWriter.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				showErrorMessage(e.getMessage());
 			}
 		}
 	}

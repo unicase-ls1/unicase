@@ -1,12 +1,18 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.link.preferences.protocolhandlers;
 
 import java.io.File;
 import java.io.IOException;
 
 /**
- * Protocol registration handler on Linux.
+ * Protocol registration handler for Linux.
  * 
  * @author edgar
+ * @author svetlana
  */
 public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
