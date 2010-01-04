@@ -9,7 +9,8 @@ import java.util.Arrays;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This method checks if singular words of an elment are shared within name or description.
@@ -32,20 +33,28 @@ public class FastKeywordMatcher implements MEMatcher {
 	 * @return a double in [0..1]
 	 */
 	public double getMatchingValue(ModelElement m1, ModelElement m2) {
-		String[] words = getWords(m1);
+		UnicaseModelElement um1 = null, um2 = null;
+		if (m1 instanceof UnicaseModelElement && m2 instanceof UnicaseModelElement) {
+			um1 = (UnicaseModelElement) m1;
+			um2 = (UnicaseModelElement) m2;
+		} else {
+			return 0;
+		}
+
+		String[] words = getWords(um1);
 
 		System.out.println(Arrays.toString(words));
-		int[] matchVector = getMatchVector(words, m2);
+		int[] matchVector = getMatchVector(words, um2);
 
 		int sum = 0;
 		for (int i = 0; i < words.length; i++) {
 			sum += matchVector[i];
 		}
-		// TODO:use cos
+
 		return sum;
 	}
 
-	private int[] getMatchVector(String[] targetWords, ModelElement m2) {
+	private int[] getMatchVector(String[] targetWords, UnicaseModelElement m2) {
 		int[] vector = new int[targetWords.length];
 
 		String[] words2 = getWords(m2);
@@ -61,18 +70,18 @@ public class FastKeywordMatcher implements MEMatcher {
 	}
 
 	/**
-	 * This method extracts the words from a modelElement by searching name, description and (not yet) parent
+	 * This method extracts the words from a UnicaseModelElement by searching name, description and (not yet) parent
 	 * description.
 	 * 
 	 * @param m1 the model element
 	 * @return
 	 */
-	private String[] getWords(ModelElement m1) {
+	private String[] getWords(UnicaseModelElement m1) {
 		String text = m1.getName();
 
 		EObject container = m1.eContainer();
-		if (container instanceof ModelElement) {
-			ModelElement parent = (ModelElement) container;
+		if (container instanceof UnicaseModelElement) {
+			UnicaseModelElement parent = (UnicaseModelElement) container;
 			text += " " + parent.getName();
 			System.out.println("Name: " + parent.getName());
 		}

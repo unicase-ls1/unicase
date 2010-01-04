@@ -22,12 +22,12 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.ARMStrategy;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.util.ModelUtil;
 
 /**
  * Tests the ARM strategy.
@@ -56,21 +56,21 @@ public class ArmStrategyTest {
 	public void setUp() {
 		armStrategy = new ARMStrategy();
 		changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		elementId1 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId1 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId1.setId("111");
-		elementId2 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId2 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId2.setId("222");
-		elementId3 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId3 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId3.setId("333");
-		elementId4 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId4 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId4.setId("444");
-		elementId5 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId5 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId5.setId("555");
-		elementId6 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId6 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId6.setId("666");
-		elementId7 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId7 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId7.setId("777");
-		elementId8 = ModelFactory.eINSTANCE.createModelElementId();
+		elementId8 = MetamodelFactory.eINSTANCE.createModelElementId();
 		elementId8.setId("888");
 
 		TraceEvent event1 = EventsFactory.eINSTANCE.createTraceEvent();

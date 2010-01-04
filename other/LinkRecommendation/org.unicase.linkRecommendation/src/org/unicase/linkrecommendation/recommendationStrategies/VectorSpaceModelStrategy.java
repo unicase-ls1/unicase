@@ -11,8 +11,9 @@ import java.util.Map;
 
 import org.unicase.linkrecommendation.RecUtils;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
-import org.unicase.model.ModelElement;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.RecommendationStrategy;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * @author Henning Femmer
@@ -32,14 +33,26 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		Map<ModelElement, Integer> indices = new HashMap<ModelElement, Integer>();
 
 		TDFrequencyMatrix tdf = new TDFrequencyMatrix();
+		int index;
+
 		// add the target element's words
-		int index = tdf.addWordsToDictionaries(RecUtils.getMEsText(base));
-		indices.put(base, index);
+		// only UnicaseModelElements can be compared. If the base element is not an UNICASE model element return the
+		// empty recommendation.
+		if (base instanceof UnicaseModelElement) {
+			index = tdf.addWordsToDictionaries(RecUtils.getMEsText((UnicaseModelElement) base));
+			indices.put(base, index);
+		} else {
+			return hm;
+		}
+
 		// create list of possible words
 		for (ModelElement me : elements) {
-			// add the target element's words
-			index = tdf.addWordsToDictionaries(RecUtils.getMEsText(me));
-			indices.put(me, index);
+			// only UnicaseModelElements can be compared
+			if (me instanceof UnicaseModelElement) {
+				// add the target element's words
+				index = tdf.addWordsToDictionaries(RecUtils.getMEsText((UnicaseModelElement) me));
+				indices.put(me, index);
+			}
 		}
 
 		// create term frequency matrix
@@ -56,12 +69,15 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		int indexBase = indices.get(base);
 		// determine values
 		for (ModelElement me : elements) {
-			int indexElement = indices.get(me);
-			double value = tdf.cos(indexBase, indexElement);
-			if (Double.valueOf(value).equals(Double.NaN)) {
-				value = 0;
+			// don't retrieve a value for non UnicaseModelElements
+			if (me instanceof UnicaseModelElement) {
+				int indexElement = indices.get(me);
+				double value = tdf.cos(indexBase, indexElement);
+				if (Double.valueOf(value).equals(Double.NaN)) {
+					value = 0;
+				}
+				hm.put(me, value);
 			}
-			hm.put(me, value);
 		}
 		return hm;
 	}

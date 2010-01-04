@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * @author Henning Femmer
@@ -50,20 +51,20 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 	}
 
 	/**
-	 * This method matches the ModelElements by comparing different text elements.
+	 * This method matches the UnicaseModelElements by comparing different text elements.
 	 * 
-	 * @param base The ModelElement which is compared to the rest
+	 * @param base The UnicaseModelElement which is compared to the rest
 	 * @param elements The potential elements linked to the base
-	 * @return a Map (ModelElement,Double)
+	 * @return a Map (UnicaseModelElement,Double)
 	 */
 	@Override
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		HashMap<ModelElement, Double> hm = new HashMap<ModelElement, Double>(elements.size());
 
 		// get target primary texts
-		String targetPrimaryWordsRaw = getPrimaryText(base, true);
+		String targetPrimaryWordsRaw = getPrimaryText((UnicaseModelElement) base, true);
 		// get target secondary texts
-		String targetSecondaryWordsRaw = getSecondaryText(base);
+		String targetSecondaryWordsRaw = getSecondaryText((UnicaseModelElement) base);
 
 		// read words, sort, remove unwanted.
 		String[] targetWords = createFilteredSet(targetPrimaryWordsRaw + " " + targetSecondaryWordsRaw);
@@ -75,9 +76,9 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 			}
 
 			// get MEs primary words
-			String[] mPrimary = getWords(getPrimaryText(me, false));
+			String[] mPrimary = getWords(getPrimaryText((UnicaseModelElement) me, false));
 			// get MEs secondary words
-			String[] mSecondary = getWords(getSecondaryText(me));
+			String[] mSecondary = getWords(getSecondaryText((UnicaseModelElement) me));
 
 			// get term frequency vectors
 			double[] tfPrimary = getTermFrequencyVector(targetWords, mPrimary);
@@ -164,19 +165,19 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 	}
 
 	/**
-	 * This method returns important text elements of a modelelement.
+	 * This method returns important text elements of a UnicaseModelElement.
 	 * 
-	 * @param m1 ModelElement
+	 * @param m1 UnicaseModelElement
 	 * @param includeParent checks if parents name should be included as well
 	 * @return name and parents name
 	 */
-	public static String getPrimaryText(ModelElement m1, boolean includeParent) {
+	public static String getPrimaryText(UnicaseModelElement m1, boolean includeParent) {
 		String text = m1.getName();
 
 		if (includeParent) {
 			EObject container = m1.eContainer();
-			if (container instanceof ModelElement) {
-				ModelElement parent = (ModelElement) container;
+			if (container instanceof UnicaseModelElement) {
+				UnicaseModelElement parent = (UnicaseModelElement) container;
 				text += " " + parent.getName();
 			}
 		}
@@ -186,11 +187,11 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 	/**
 	 * At the moment this just loads the description.
 	 * 
-	 * @param me the ModelElement
+	 * @param base the UnicaseModelElement
 	 * @return the description if any, "" otherwise
 	 */
-	public static String getSecondaryText(ModelElement me) {
-		String desc = me.getDescriptionPlainText();
+	public static String getSecondaryText(UnicaseModelElement base) {
+		String desc = base.getDescriptionPlainText();
 		if (desc == "null") {
 			desc = "";
 		}

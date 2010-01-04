@@ -5,27 +5,37 @@
  */
 package org.unicase.linkrecommendation.matchingStrategies;
 
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This method tries to match the similarity of the length of elements.
  * 
  * @author Henning Femmer
+ * @deprecated
  */
+@Deprecated
 public class NameLengthMatcher implements MEMatcher {
 
 	/**
-	 * This method compares the length ob ModelElement name. Equal length returns 1 less equal returns smaller value.
+	 * This method compares the length ob UnicaseModelElement name. Equal length returns 1 less equal returns smaller
+	 * value.
 	 * 
-	 * @param m1 ModelElement to compare
-	 * @param m2 ModelElement to compare with
+	 * @param m1 UnicaseModelElement to compare
+	 * @param m2 UnicaseModelElement to compare with
 	 * @return a value in (0..1] where 1 is equal.
-	 * @see org.unicase.linkrecommendation.matchingStrategies.MEMatcher#getMatchingValue(org.unicase.model.ModelElement,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.linkrecommendation.matchingStrategies.MEMatcher#getMatchingValue(org.unicase.model.UnicaseModelElement,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public double getMatchingValue(ModelElement m1, final ModelElement m2) {
-		if (m1 != null && m2 != null && m1.getName() != null && m2.getName() != null) {
-			double val = Math.abs(m1.getName().length() - m2.getName().length());
+		UnicaseModelElement um1 = null, um2 = null;
+		if (m1 instanceof UnicaseModelElement && m2 instanceof UnicaseModelElement) {
+			um1 = (UnicaseModelElement) m1;
+			um2 = (UnicaseModelElement) m2;
+		}
+
+		if (um1 != null && um2 != null && um1.getName() != null && um2.getName() != null) {
+			double val = Math.abs(um1.getName().length() - um2.getName().length());
 			if (val != 0) {
 				val = 1 / val;
 			} else {

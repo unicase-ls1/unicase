@@ -39,10 +39,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
-import org.unicase.model.util.traceabilityrecommendation.RecommendationManager;
-import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.recommendation.ConstantThresholdSelection;
+import org.unicase.metamodel.recommendation.RecommendationManager;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -176,7 +176,8 @@ public class RecoveryResultsPage extends WizardPage implements IDoubleClickListe
 		dialog.open();
 
 		dialog.getProgressMonitor().beginTask(
-			"Calculating suggestions for " + baseModelElements.size() + " ModelElements.", baseModelElements.size());
+			"Calculating suggestions for " + baseModelElements.size() + " ModelElements with "
+				+ relevantReferences.size() + " references.", baseModelElements.size());
 		int count = baseModelElements.size();
 
 		for (ModelElement modelElement : baseModelElements) {
@@ -187,6 +188,7 @@ public class RecoveryResultsPage extends WizardPage implements IDoubleClickListe
 			for (EReference eReference : refs) {
 				// check references
 				if (relevantReferences.contains(eReference)) {
+
 					// calc possible elements
 					Collection<ModelElement> candidates = getCandidates(modelElement, eReference);
 

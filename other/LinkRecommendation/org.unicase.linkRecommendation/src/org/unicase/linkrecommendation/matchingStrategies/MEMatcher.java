@@ -5,7 +5,7 @@
  */
 package org.unicase.linkrecommendation.matchingStrategies;
 
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * @author henning
@@ -14,9 +14,9 @@ public interface MEMatcher {
 	/**
 	 * This method matches relevace between two elements on an scale [0..1].
 	 * 
-	 * @param m1 first element
-	 * @param m2 second element
+	 * @param base first element
+	 * @param me second element
 	 * @return a double in [0..1]
 	 */
-	double getMatchingValue(ModelElement m1, ModelElement m2);
+	double getMatchingValue(ModelElement base, ModelElement me);
 }

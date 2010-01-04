@@ -12,7 +12,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.workspace.ui.Other?after=org.unicase.ui.common.validate">
+            locationURI="popup:org.unicase.workspace.ui.Other?after=org.unicase.workspace.ui.compareProjects">
          <command
                commandId="org.unicase.ui.linkRecommendation.linkRecovery"
                icon="icon/arrow_join.png"
