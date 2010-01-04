@@ -7,9 +7,12 @@ package org.unicase.ui.test.meeditor.mecontrol;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEHyperlinkDeleteAdapterTest;
+import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEMultiLinkControlTest;
+import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MESingleLinkControlTest;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class, MEURLAttachmentsTest.class  })
+@Suite.SuiteClasses( {MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class })
 public class AllMEControlTests {
 }
