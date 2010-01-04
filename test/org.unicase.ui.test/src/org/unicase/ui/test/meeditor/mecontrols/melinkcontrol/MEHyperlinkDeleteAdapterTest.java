@@ -3,7 +3,7 @@
 		 * </copyright>
 		 */
 		
-		package org.unicase.ui.test.meeditor.mecontrol;
+		package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 		
 		import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 		import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
@@ -24,8 +24,9 @@
 		import org.unicase.model.task.ActionItem;
 		import org.unicase.model.task.TaskFactory;
 		import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
 		import org.unicase.workspace.util.UnicaseCommand;
-		import org.unicase.workspace.util.UnicaseCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 		
 		public class MEHyperlinkDeleteAdapterTest extends MeControlTest {
 			private ActionItem actionItem;
