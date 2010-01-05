@@ -285,21 +285,21 @@ public enum DiagramType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getLiteral() {
-		return literal;
+		return literal.replace("_", " ");
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String toString() {
-		return literal.replace("_", " ");
+		return literal;
 	}
 
 } // DiagramType
