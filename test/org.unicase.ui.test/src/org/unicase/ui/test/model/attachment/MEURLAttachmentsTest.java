@@ -228,12 +228,18 @@ private UrlAttachment urlAttachment;
 					actionItem.getAttachments().add(l);
 					assertEquals(previuosURL, ((UrlAttachment)l).getUrl());
 					((UrlAttachment)l).setUrl(newURL);
-					assertEquals(newURL, ((UrlAttachment)l).getUrl());
+					
+					
 					
 				}
 			}
 		}
 	}; runAsnc(addURLAttachment);
+	
+	getBot().activeEditor().bot().button().click();
+	String tempURL = getBot().text().getText();
+	getBot().button("Cancel").click();
+	assertEquals(newURL, tempURL);
 		
 }
 	
