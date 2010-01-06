@@ -6,6 +6,8 @@
 package org.unicase.docExport.docWriter;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IStatus;
@@ -40,6 +42,8 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+import com.lowagie.text.Jpeg;
 import com.lowagie.text.List;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Section;
@@ -130,8 +134,15 @@ public abstract class ITextWriter {
 		}
 	}
 
-	private void writeUImage(Object parent, UImage uImage) {
-		// TODO Auto-generated method stub
+	private void writeUImage(Object parent, UImage uImage) throws DocumentException {
+		try {
+			Image image = new Jpeg(uImage.getPath().toFile().toURL());
+			addItextObject(parent, image);
+		} catch (MalformedURLException e) {
+			throw new DocumentException(e);
+		} catch (IOException e) {
+			throw new DocumentException(e);
+		}
 	}
 
 	private void writeUList(Object parent, UList doc2) {
