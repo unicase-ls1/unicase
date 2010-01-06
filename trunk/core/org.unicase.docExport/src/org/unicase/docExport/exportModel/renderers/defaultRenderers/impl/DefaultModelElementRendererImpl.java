@@ -133,7 +133,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 		final MEDiagram diagram = (MEDiagram) modelElement;
 
 		try {
-			final File tmpImage = File.createTempFile(diagram.getModelElementId().getId(), ".svg");
+			final File tmpImage = File.createTempFile(diagram.getModelElementId().getId(), ".jpeg");
 
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
@@ -156,7 +156,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 									DiagramEditPart editPart = util.createDiagramEditPart(diagram.getGmfdiagram(),
 										shell, PreferencesHint.USE_DEFAULTS);
 									Assert.isNotNull(editPart);
-									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.SVG,
+									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
 										new NullProgressMonitor());
 
 								} finally {
