@@ -396,10 +396,11 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				Object newValue = notification.getNewValue();
 				if (reference.getName().equals("criteria")) {
 					handleCriteria(oldValue, newValue);
+					rebuildMatrix();
 				} else if (reference.getName().equals("proposals")) {
 					handleProposals(oldValue, newValue);
+					rebuildMatrix();
 				}
-				rebuildMatrix();
 			}
 		}
 
