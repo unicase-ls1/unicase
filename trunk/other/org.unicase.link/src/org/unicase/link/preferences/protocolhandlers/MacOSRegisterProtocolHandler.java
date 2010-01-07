@@ -40,7 +40,9 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 
 			unzip(zipFile);
 			// set execute permission
-			Runtime.getRuntime().exec("chmod +x " + getEclipseExecutable());
+			Runtime.getRuntime().exec(
+				"chmod +x " + libDir + File.separator + "UnicaseURLHandler" + File.separator + "Contents"
+					+ File.separator + "MacOS" + File.separator + "UnicaseURLHandler");
 		} catch (IOException e) {
 			showError(e.getMessage());
 		}
