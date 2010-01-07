@@ -4,7 +4,7 @@ This page describes the lifecycle of a Work Item in UNICASE.
 Work Items in UNICASE can be Bug Reports, Feature Requests, Issues or simply Action Items.
 New Work Items can be added by every project participant. This is also the preferred way for project participants to report bugs. Please see [ReportingBugs Reporting Bugs].
 ==Confirmation==
-Once new Work Items are confirmed to be valid and understandable the are moved in the work package "Unprioritized"
+Once new Work Items are confirmed to be valid and understandable the are moved in the work package "Unprioritized". Also you should make sure the work item is not a duplicate of an existing item or is in conflict with an existing work item.
 This step is performed once a week.
 ==Triaging Work Items==
 Confirmed Work Items are triaged by the project leads. If there are decided to be postponed, they are moved to the Work Package "Postponed". If they are decided to be currently relevant, they are further triaged:
