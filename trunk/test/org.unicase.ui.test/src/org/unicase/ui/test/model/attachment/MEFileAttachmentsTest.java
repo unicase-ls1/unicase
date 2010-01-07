@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.forms.widgets.Hyperlink;
@@ -27,18 +26,13 @@ import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.metamodel.Project;
 import org.unicase.model.Attachment;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
-import org.unicase.model.attachment.FileAttachmentType;
-import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.test.UITestCommon;
@@ -189,7 +183,7 @@ public class MEFileAttachmentsTest extends MeControlTest {
 				}
 			}
 		}; runAsnc(someCommand);
-		
+		getBot().sleep(200000);
 }
 	
 	

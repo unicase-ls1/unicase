@@ -260,11 +260,11 @@ public class MEFileChooserControl extends AbstractMEControl {
 			}
 			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
 			fileDialog.setOverwrite(true);
-			fileDialog.open();
+			String fileDestinationPath = fileDialog.open();
 			fileDialog.setText("Save as...");
-			String value = fileDialog.getFilterPath() + File.separator + fileDialog.getFileName();
-			if (!fileDialog.getFileName().equals("")) {
-				copyFile(value);
+			// String value = fileDialog.getFilterPath() + File.separator + fileDialog.getFileName();
+			if (!fileDestinationPath.equals("")) {
+				copyFile(fileDestinationPath);
 			}
 		}
 
