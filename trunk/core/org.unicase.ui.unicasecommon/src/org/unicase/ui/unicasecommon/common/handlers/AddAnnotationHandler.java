@@ -12,6 +12,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.common.util.ActionHelper;
@@ -35,7 +36,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		Annotation annotation = null;
 		this.event = event;
 
 		// 1. extract the model element, to which the Annotation will be
@@ -43,8 +44,14 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// see ActionHelper.getModelElement()
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
-		Annotation annotation = createAnnotation(me.getProject());
-
+		Project project = me.getProject();
+		if (!(me.getLeafSection() == null)) {
+			annotation = createAnnotation(me.getLeafSection(), true);
+		} else if (!(project == null)) {
+			annotation = createAnnotation(project, false);
+		} else {
+			return null;
+		}
 		attachAnnotation(me, annotation);
 		// log event
 		UnicaseEventUtil.logAnnotationEvent(me, annotation);
@@ -58,11 +65,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 	/**
 	 * . This creates the appropriate Annotation based on selected menu command and adds it to Project
 	 * 
-	 * @param project
+	 * @param leafSection
 	 * @return
 	 */
-	private Annotation createAnnotation(final Project project) {
+	private Annotation createAnnotation(final Object object, final boolean flag) {
 		final Annotation result;
+
 		if (event.getCommand().getId().equals(ADD_ACTIONITEM_COMMAND_ID)) {
 			result = TaskFactory.eINSTANCE.createActionItem();
 			result.setName("New Action Item");
@@ -79,7 +87,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				project.addModelElement(result);
+				if (flag) {
+					((LeafSection) object).getModelElements().add(result);
+				} else {
+					((Project) object).getModelElements().add(result);
+				}
+
 			}
 		}.run();
 
