@@ -6,11 +6,16 @@
 package org.unicase.docExport.docWriter;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
+import org.unicase.docExport.Activator;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UDocument;
 import org.unicase.docExport.exportModel.renderers.elements.UImage;
@@ -34,6 +39,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.workspace.util.WorkspaceUtil;
 
+import com.lowagie.text.BadElementException;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Chapter;
 import com.lowagie.text.Chunk;
@@ -57,6 +63,8 @@ import com.lowagie.text.Table;
  * @author Sebastian Hoecht
  */
 public abstract class ITextWriter {
+
+	private static final String DEFAULT_ERROR_IMAGE = "ERROR.jpg";
 
 	/**
 	 * Defines the width of the left indention of sections. The real width normally is mulitplicated with the depth of
@@ -136,7 +144,34 @@ public abstract class ITextWriter {
 
 	private void writeUImage(Object parent, UImage uImage) throws DocumentException {
 		try {
-			Image image = new Jpeg(uImage.getPath().toFile().toURL());
+			Image image = new Jpeg(uImage.getPath().toFile().toURI().toURL());
+			scaleImageToFit(image);
+			addItextObject(parent, image);
+		} catch (MalformedURLException e) {
+			throw new DocumentException(e);
+		} catch (IOException e) {
+			handleErroneousImage(parent);
+		} catch (BadElementException e) {
+			handleErroneousImage(parent);
+		} catch (DocumentException e) {
+			throw new DocumentException(e);
+		}
+	}
+
+	private void scaleImageToFit(Image image) {
+		if (image.getWidth() > getDoc().right() - getDoc().rightMargin()) {
+			float scaleRatio = ((getDoc().right() - getDoc().rightMargin())) / image.getWidth();
+			image.scaleAbsoluteWidth(scaleRatio * image.getWidth());
+			image.scaleAbsoluteHeight(scaleRatio * image.getHeight());
+		}
+	}
+
+	private void handleErroneousImage(Object parent) throws BadElementException, DocumentException {
+		URL location = FileLocator.find(Activator.getDefault().getBundle(), new Path("docExportImages"), null);
+		try {
+			Image image = new Jpeg(new File(FileLocator.resolve(location).getPath().toString() + File.separator
+				+ DEFAULT_ERROR_IMAGE).toURI().toURL());
+			scaleImageToFit(image);
 			addItextObject(parent, image);
 		} catch (MalformedURLException e) {
 			throw new DocumentException(e);
