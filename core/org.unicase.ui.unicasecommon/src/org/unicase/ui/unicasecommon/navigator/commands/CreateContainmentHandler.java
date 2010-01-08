@@ -13,13 +13,13 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -43,59 +43,68 @@ public class CreateContainmentHandler extends AbstractHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			final EClass newMEType = (EClass) o;
-			final UnicaseModelElement newMEInstance;
-			// create a new model element from this EClass
-			newMEInstance = (UnicaseModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
-			newMEInstance.setName("new " + newMEType.getName());
+			final ModelElement newMEInstance;
 
-			// add this newly created model element to corresponding containment
-			// feature of
-			// selected ME
 			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
+			EPackage ePackage = newMEType.getEPackage();
+			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
 
-			final String sourceID = this.getClass().getName();
 			if (selectedME != null) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@SuppressWarnings("unchecked")
-					@Override
-					protected void doExecute() {
-						// get EStructuralFeature of selected ME
-						EReference ref = getStructuralFeature(selectedME, newMEType);
-						// note that in DynamicContainmentCommands, context menu
-						// items
-						// are created only for references that are many
-						if (ref != null && ref.isMany()) {
-							Object object = selectedME.eGet(ref);
-							EList<EObject> eList = (EList<EObject>) object;
-							eList.add(newMEInstance);
+				final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
+				if (!eReference.isContainer()) {
 
-							UnicaseActionHelper.openModelElement(newMEInstance, sourceID);
+					TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+						.getEditingDomain();
+
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@SuppressWarnings("unchecked")
+						@Override
+						protected void doExecute() {
+							EObject parent = selectedME.eContainer();
+							while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
+								EReference reference = getStructuralFeature(newMEInstance, parent);
+								if (reference != null && reference.isMany()) {
+									Object object = parent.eGet(reference);
+									EList<EObject> eList = (EList<EObject>) object;
+									eList.add(newMEInstance);
+								}
+								parent = parent.eContainer();
+							}
+							if (newMEInstance.eContainer() == null) {
+								selectedME.getProject().addModelElement(newMEInstance);
+							}
+							Object object = selectedME.eGet(eReference);
+							if ((eReference.getUpperBound() == -1)) {
+								EList<EObject> eList = (EList<EObject>) object;
+								eList.add(newMEInstance);
+							} else {
+								selectedME.eSet(eReference, newMEInstance);
+							}
+							ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 						}
-
-					}
-				});
-
+					});
+				}
 			}
 		}
 		return null;
 	}
 
-	private EReference getStructuralFeature(ModelElement selectedME, EClass newMEType) {
-		List<EReference> containments = selectedME.eClass().getEAllContainments();
-		EReference ref = null;
-		for (EReference containment : containments) {
-			if (containment.getEReferenceType().equals(newMEType)) {
-				ref = containment;
+	private EReference getStructuralFeature(final ModelElement newMEInstance, EObject parent) {
+		// the value of the 'EAll Containments' reference list.
+		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		EReference reference = null;
+		for (EReference containmentitem : eallcontainments) {
+
+			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+				reference = containmentitem;
+
 				break;
-			} else if (containment.getEReferenceType().isSuperTypeOf(newMEType)) {
-				ref = containment;
+			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+
+				reference = containmentitem;
 				break;
 			}
 		}
-
-		return ref;
-
+		return reference;
 	}
 }
