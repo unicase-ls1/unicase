@@ -94,6 +94,8 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 			return;
 		}
 
+		// TODO: fix show image for fileattachments linking to images
+
 		renderPropertiesTable(ordering.singleProperties, ordering.multiProperties, modelElement, modelElementSection);
 
 		renderMutliProperties(ordering.multiPropertiesOutsideOfTable, modelElement, modelElementSection);
@@ -128,12 +130,12 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * @param modelElement the ModelElement which contains a GMF diagram
 	 * @param parent the parent section where the diagram shall be rendered.
 	 */
-	private void renderDiagram(UnicaseModelElement modelElement, USection parent) {
+	private void renderDiagram(final UnicaseModelElement modelElement, final USection parent) {
 
 		final MEDiagram diagram = (MEDiagram) modelElement;
 
 		try {
-			final File tmpImage = File.createTempFile(diagram.getModelElementId().getId(), ".svg");
+			final File tmpImage = File.createTempFile(diagram.getModelElementId().getId(), ".jpeg");
 
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
@@ -155,8 +157,9 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 									DiagramEditPart editPart = util.createDiagramEditPart(diagram.getGmfdiagram(),
 										shell, PreferencesHint.USE_DEFAULTS);
+									Assert.isNotNull(editPart.getDiagramView().getDiagram());
 									Assert.isNotNull(editPart);
-									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.SVG,
+									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
 										new NullProgressMonitor());
 
 								} finally {
@@ -170,27 +173,36 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 								WorkspaceUtil.log("A diagram could not be loaded while exporting.", e, IStatus.WARNING);
 							} catch (CoreException e) {
 								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
+							} catch (RuntimeException e) {
+								WorkspaceUtil.log(
+									"Exception while converting diagram into an image. Diagram is probably corrupt.",
+									e, IStatus.WARNING);
 							}
 						}
 					}.run();
 				}
 			});
 
-			UImage image = new UImage(new Path(tmpImage.toString()));
-			parent.add(image);
-			image.getBoxModel().setBorder(0.5);
-			image.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
-			image.setFitToPage(true);
-
-			UParagraph label = new UParagraph(diagram.getType() + ": " + modelElement.getName(), template
-				.getLayoutOptions().getDefaultTextOption());
-			label.getOption().setTextAlign(TextAlign.CENTER);
-			label.getBoxModel().setMarginTop(5);
-			parent.add(label);
+			addDiagramUImage(modelElement, parent, diagram, tmpImage);
 
 		} catch (IOException e1) {
 			WorkspaceUtil.log("Diagram image rendering error", e1, IStatus.WARNING);
 		}
+	}
+
+	private void addDiagramUImage(UnicaseModelElement modelElement, USection parent, final MEDiagram diagram,
+		final File tmpImage) {
+		UImage image = new UImage(new Path(tmpImage.toString()));
+		image.getBoxModel().setBorder(0.5);
+		image.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
+		image.setFitToPage(true);
+		parent.add(image);
+
+		UParagraph label = new UParagraph(diagram.getType() + ": " + modelElement.getName(), template
+			.getLayoutOptions().getDefaultTextOption());
+		label.getOption().setTextAlign(TextAlign.CENTER);
+		label.getBoxModel().setMarginTop(5);
+		parent.add(label);
 	}
 
 	/**
