@@ -33,7 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.GestureNotificationImpl;
@@ -44,6 +43,7 @@ import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

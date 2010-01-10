@@ -9,7 +9,7 @@ import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.unicase.ui.common.diagram.util.CommandUtility;
+import org.unicase.ui.unicasecommon.diagram.util.CommandUtility;
 
 public class SwitchConnectionEndsCommand extends AbstractCommand {
 

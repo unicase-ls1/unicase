@@ -11,9 +11,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-//BEGIN IGNORE IMPORT
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-//END IGNORE IMPORT
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 

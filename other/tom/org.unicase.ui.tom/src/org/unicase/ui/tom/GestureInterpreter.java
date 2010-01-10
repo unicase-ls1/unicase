@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.common.util.CollectionFilter;
 import org.unicase.ui.tom.gestures.ChangeConnectionTypeGesture;
 import org.unicase.ui.tom.gestures.CreateCompartmentNodeGesture;
@@ -33,6 +32,7 @@ import org.unicase.ui.tom.notifications.TouchAdapter;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 /**
  * @author schroech

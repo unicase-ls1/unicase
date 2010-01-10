@@ -30,16 +30,14 @@ public class TUIOTouch extends SingleTouch implements Touch {
 	public int getX() {
 		int xPos = (int) (cursor.getX() * screenSize.getWidth()
 				- TouchDispatch.getInstance().getEditorBounds().x 
-				+ TouchDispatch.getInstance().getViewportOffset().x
-				);
+				+ TouchDispatch.getInstance().getViewportOffset().x);
 		return xPos;
 	}
 
 	public int getY() {
 		int yPos = (int) (cursor.getY() * screenSize.getHeight()
 				- TouchDispatch.getInstance().getEditorBounds().y 
-				+ TouchDispatch.getInstance().getViewportOffset().y
-				);
+				+ TouchDispatch.getInstance().getViewportOffset().y);
 		return yPos;
 	}
 
@@ -78,9 +76,8 @@ public class TUIOTouch extends SingleTouch implements Touch {
 					.addPoint(
 							(int) (tuioPath.get(i).getX()
 									* screenSize.getWidth()
-									- TouchDispatch.getInstance()
-											.getEditorBounds().x + TouchDispatch
-									.getInstance().getViewportOffset().x),
+									- TouchDispatch.getInstance().getEditorBounds().x 
+									+ TouchDispatch.getInstance().getViewportOffset().x),
 							(int) (tuioPath.get(i).getY()
 									* screenSize.getHeight()
 									- TouchDispatch.getInstance()
