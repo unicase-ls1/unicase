@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension 
+		point="org.eclipse.core.resources.markers"
+		id="org.unicase.taskmarker"
+		name="Unicase Task Marker">
+    	<super type="org.eclipse.core.resources.marker"/>
+    	<persistent value="true"/>
+</extension>
+
+<extension 
+	point= "org.eclipse.ui.ide.markerImageProviders">
+	<imageprovider 
+		markertype= "org.unicase.taskmarker"
+		icon= "icons/t.png"
+		id= "org.unicase.codetrace.NewAction" >
+	</imageprovider>
+
+</extension>
+
+
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.unicase.codetrace.viewerContribution1"
+            targetID="#TextEditorContext">
+         <action
+               class="org.unicase.codetrace.popup.actions.NewAction"
+               id="org.unicase.codetrace.action1"
+               label="ECLIPSE IS SHIT!"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+      
+      <viewerContribution
+      		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
+      		targetID="#CompilationUnitRulerContext">
+      	<action
+      		class="org.unicase.codetrace.popup.actions.NewAction"
+    		id="org.unicase.codetrace.action1"
+   			label="Link Source Code"
+   	 		icon="icons/t.png"
+   			menubarPath="additions" >
+  		</action>
+	</viewerContribution>
+   </extension>
+
+</plugin>
