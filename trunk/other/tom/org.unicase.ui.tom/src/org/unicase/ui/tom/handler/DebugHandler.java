@@ -6,9 +6,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.ui.IEditorPart;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.GestureInterpreter;
 import org.unicase.ui.tom.Utility;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 public class DebugHandler extends AbstractHandler implements IHandler {
 

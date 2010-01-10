@@ -18,12 +18,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.operations.AltMoveNodeOperation;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

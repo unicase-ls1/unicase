@@ -15,10 +15,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.1.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0",
- org.unicase.ui.diagram.classDiagram
+ org.unicase.ui.diagram.classDiagram,
+ org.unicase.model,
+ org.unicase.ui.unicasecommon
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.gmf.runtime.diagram.ui.render.editparts
+Import-Package: org.eclipse.gmf.runtime.diagram.ui.render.editparts,
+ org.unicase.model.classes,
+ org.unicase.ui.unicasecommon.diagram.part,
+ org.unicase.ui.unicasecommon.diagram.util
 Export-Package: org.unicase.ui.tom,
  org.unicase.ui.tom.handler,
  org.unicase.ui.tom.tools

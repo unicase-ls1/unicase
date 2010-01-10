@@ -6,7 +6,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 public final class TouchController implements IPartListener{
 

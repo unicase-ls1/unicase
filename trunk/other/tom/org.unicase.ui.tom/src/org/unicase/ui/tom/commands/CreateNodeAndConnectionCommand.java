@@ -16,9 +16,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.unicase.ui.common.diagram.util.DynamicEObjectAdapter;
-import org.unicase.ui.common.diagram.util.DynamicViewDescriptorAdapter;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.unicasecommon.diagram.util.DynamicEObjectAdapter;
+import org.unicase.ui.unicasecommon.diagram.util.DynamicViewDescriptorAdapter;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @author schroech

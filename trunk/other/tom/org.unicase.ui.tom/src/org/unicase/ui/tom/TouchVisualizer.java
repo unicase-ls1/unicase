@@ -16,13 +16,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.swt.graphics.Color;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.notifications.MultiTouchAdapterImpl;
 import org.unicase.ui.tom.notifications.TouchAdapterImpl;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 public class TouchVisualizer {
 

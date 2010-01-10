@@ -17,11 +17,11 @@ import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.SwitchConnectionEndsCommand;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 

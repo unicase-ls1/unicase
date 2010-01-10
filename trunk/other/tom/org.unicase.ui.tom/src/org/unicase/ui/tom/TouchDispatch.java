@@ -18,7 +18,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Control;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.notifications.MultiTouchNotification;
 import org.unicase.ui.tom.notifications.MultiTouchNotificationImpl;
 import org.unicase.ui.tom.notifications.MultiTouchNotifierImpl;
@@ -29,6 +28,7 @@ import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 /**
  * @author schroech
