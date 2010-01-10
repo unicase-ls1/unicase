@@ -40,6 +40,10 @@ public class DeleteFromDiagramAction extends Action {
 		CompoundCommand ccommand = new CompoundCommand("delete from diagram");
 		View view = EditPartUtility.getView(selectedElement);
 		DiagramEditPart rootEditPart = EditPartUtility.getDiagramEditPart(selectedElement);
+		// if no element of the diagram has been selected
+		if (rootEditPart == null) {
+			return;
+		}
 		if (view instanceof Node) {
 			ccommand.add(CommandFactory.createDeleteFromDiagramCommand(selectedElement));
 			ccommand.add(CommandFactory.createDeleteFromViewCommand(selectedElement));
