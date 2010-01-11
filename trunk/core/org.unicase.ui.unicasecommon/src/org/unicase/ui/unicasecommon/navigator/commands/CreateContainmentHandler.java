@@ -48,42 +48,37 @@ public class CreateContainmentHandler extends AbstractHandler {
 			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
-
-			if (selectedME != null) {
-				final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
-				if (!eReference.isContainer()) {
-
-					TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getEditingDomain();
-
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@SuppressWarnings("unchecked")
-						@Override
-						protected void doExecute() {
-							EObject parent = selectedME.eContainer();
-							while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
-								EReference reference = getStructuralFeature(newMEInstance, parent);
-								if (reference != null && reference.isMany()) {
-									Object object = parent.eGet(reference);
-									EList<EObject> eList = (EList<EObject>) object;
-									eList.add(newMEInstance);
-								}
-								parent = parent.eContainer();
-							}
-							if (newMEInstance.eContainer() == null) {
-								selectedME.getProject().addModelElement(newMEInstance);
-							}
-							Object object = selectedME.eGet(eReference);
-							if ((eReference.getUpperBound() == -1)) {
+			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
+			if ((selectedME != null) && (!eReference.isContainer())) {
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getEditingDomain();
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					@SuppressWarnings("unchecked")
+					protected void doExecute() {
+						EObject parent = selectedME.eContainer();
+						while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
+							EReference reference = getStructuralFeature(newMEInstance, parent);
+							if (reference != null && reference.isMany()) {
+								Object object = parent.eGet(reference);
 								EList<EObject> eList = (EList<EObject>) object;
 								eList.add(newMEInstance);
-							} else {
-								selectedME.eSet(eReference, newMEInstance);
 							}
-							ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+							parent = parent.eContainer();
 						}
-					});
-				}
+						if (newMEInstance.eContainer() == null) {
+							selectedME.getProject().addModelElement(newMEInstance);
+						}
+						Object object = selectedME.eGet(eReference);
+						if ((eReference.getUpperBound() == -1)) {
+							EList<EObject> eList = (EList<EObject>) object;
+							eList.add(newMEInstance);
+						} else {
+							selectedME.eSet(eReference, newMEInstance);
+						}
+						ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+					}
+				});
 			}
 		}
 		return null;
