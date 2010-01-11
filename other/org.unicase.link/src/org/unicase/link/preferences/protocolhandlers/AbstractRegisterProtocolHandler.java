@@ -26,6 +26,11 @@ public abstract class AbstractRegisterProtocolHandler {
 	public abstract void registerProtocolHandler();
 
 	/**
+	 * Determines whether the protocol handler has been registered successfully.
+	 */
+	public abstract boolean IsProtocolHandlerRegistered();
+
+	/**
 	 * Gets the absolute path of the eclipse installation with a trailing file separator.
 	 * 
 	 * @return the absolute path of the eclipse installation

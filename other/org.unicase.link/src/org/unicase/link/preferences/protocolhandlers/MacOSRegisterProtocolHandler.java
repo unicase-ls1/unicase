@@ -99,4 +99,15 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 		in.close();
 		out.close();
 	}
+
+	@Override
+	public boolean IsProtocolHandlerRegistered() {
+		// TODO: if possible, check for execute bit set
+		File appFile = new File(getFeaturesDirectory() + File.separator + "lib" + "UnicaseURLHandler.app");
+		if (appFile.exists()) {
+			return true;
+		}
+
+		return false;
+	}
 }

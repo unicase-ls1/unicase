@@ -30,9 +30,13 @@ import org.unicase.link.preferences.protocolhandlers.RegisterProtocolHandlerFact
  */
 public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
+	private final AbstractRegisterProtocolHandler protocolHandler;
+
 	public UnicaseLinkPreferencePage() {
 		super(GRID);
 		setDescription("Configuration pane for the link plugin.");
+		RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
+		protocolHandler = fac.getRegisterProtocolHandler();
 	}
 
 	/**
@@ -58,14 +62,13 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 
 		public UnicaseLinkFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
-			getTextControl().setEnabled(false);
+			getTextControl().setText(protocolHandler.IsProtocolHandlerRegistered() ? "Yes" : "No");
+			// getApplyButton().setText(string)
 		}
 
 		@Override
 		protected String changePressed() {
 			try {
-				RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
-				AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler();
 
 				if (protocolHandler == null) {
 					Display.getDefault().syncExec(new Runnable() {
@@ -87,6 +90,14 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 					}
 				});
 			}
+
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					MessageDialog.openInformation(getShell(), "URL handler registered succesfully",
+						"The registration of the URL handler for unicase:// URLs on your operatings system "
+							+ " was successfull.");
+				}
+			});
 
 			return null;
 		}

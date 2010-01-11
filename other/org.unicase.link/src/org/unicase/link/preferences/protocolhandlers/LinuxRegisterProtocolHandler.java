@@ -31,4 +31,10 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 			showError(e.getMessage());
 		}
 	}
+
+	@Override
+	public boolean IsProtocolHandlerRegistered() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
