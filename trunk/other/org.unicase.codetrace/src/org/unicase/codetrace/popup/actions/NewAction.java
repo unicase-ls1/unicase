@@ -32,7 +32,6 @@ public class NewAction implements IEditorActionDelegate  {
 		IResource resource = ResourceUtil.getResource(editorInput);
 		HashMap attributes = new HashMap();
 		
-		
 		MarkerUtilities.setLineNumber(attributes, lineNumber + 1);
 	
 		try {
