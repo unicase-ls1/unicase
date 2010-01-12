@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Navigator Plug-in
 Bundle-SymbolicName: org.unicase.ui.navigator;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.3.46.internal
 Bundle-Activator: org.unicase.ui.navigator.Activator
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
