@@ -59,7 +59,7 @@ import org.unicase.codetrace.tracer.TracerFile;
 
 
 
-public class AlgortihmContext extends Algorithm {
+public class AlgorithmContext extends Algorithm {
 
 
 
@@ -81,14 +81,14 @@ private boolean ignore_space;
 /*										*/
 /********************************************************************************/
 
-AlgortihmContext()
+AlgorithmContext()
 {
    this(5,0.25,true);
 }
 
 
 
-AlgortihmContext(int size,double thresh,boolean ignsp)
+AlgorithmContext(int size,double thresh,boolean ignsp)
 {
    super("BestContext_" + size + "_" + thresh + "_" + ignsp);
 
@@ -129,7 +129,7 @@ private class Facet implements TracerFacet {
       resetLine(f,ln);
     }
 
-   public Algorithm getAlgorithm()		{ return AlgortihmContext.this; }
+   public Algorithm getAlgorithm()		{ return AlgorithmContext.this; }
 
    public Map<Integer,Double> getLines(TracerFile lf) {
       Map<Integer,Double> r = new TreeMap<Integer,Double>();

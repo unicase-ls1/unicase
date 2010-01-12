@@ -85,13 +85,13 @@ public class TracerLocation {
 	/*										*/
 	/********************************************************************************/
 
-	void addFacet(TracerFacet f, double v) {
+	void addFacet(TracerFacet tf, double v) {
 		if (v > 1)
 			v = 1;
-		if (f == null)
+		if (tf == null)
 			return;
 
-		facet_values.put(f, v);
+		facet_values.put(tf, v);
 		isValid = false;
 	}
 
@@ -143,8 +143,8 @@ public class TracerLocation {
 			return;
 		sourceLine = -1;
 
-		TracerFile fd = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(projectName,pathInProject));
-		if (fd == null)
+		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(projectName,pathInProject));
+		if (tf == null)
 			return;
 
 		Map<Integer, Double> values = new LinkedHashMap<Integer, Double>();
@@ -153,7 +153,7 @@ public class TracerLocation {
 			double vx = ent.getValue();
 			if (vx == 0)
 				continue;
-			Map<Integer, Double> fvs = ent.getKey().getLines(fd);
+			Map<Integer, Double> fvs = ent.getKey().getLines(tf);
 			if (fvs != null) {
 				// normalize(fvs);
 				for (Map.Entry<Integer, Double> e1 : fvs.entrySet()) {
@@ -176,7 +176,7 @@ public class TracerLocation {
 			double vx = ent.getValue();
 			if (vx > 0)
 				continue;
-			Map<Integer, Double> fvs = ent.getKey().getLines(fd);
+			Map<Integer, Double> fvs = ent.getKey().getLines(tf);
 			for (Iterator<Map.Entry<Integer, Double>> it = values.entrySet()
 					.iterator(); it.hasNext();) {
 				Map.Entry<Integer, Double> e1 = it.next();
@@ -210,7 +210,7 @@ public class TracerLocation {
 		isValid = true;
 
 		for (TracerFacet fct : facet_values.keySet()) {
-			fct.resetLine(fd, bestln);
+			fct.resetLine(tf, bestln);
 		}
 	}
 
@@ -236,7 +236,7 @@ public class TracerLocation {
 		}
 	}
 	
-	public int compareTo(TracerLocation l)
+	public int compareTo(TracerLocation tl)
 	{
 	   throw new Error("Compare to not supported yet!");
 	}

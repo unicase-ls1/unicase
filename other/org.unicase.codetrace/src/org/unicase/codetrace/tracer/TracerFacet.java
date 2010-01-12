@@ -44,7 +44,6 @@
  *
  *
  ********************************************************************************/
-
 package org.unicase.codetrace.tracer;
 
 import java.util.Map;
@@ -55,8 +54,8 @@ public interface TracerFacet {
 
 	Algorithm getAlgorithm();
 
-	Map<Integer, Double> getLines(TracerFile lf);
+	Map<Integer, Double> getLines(TracerFile tf);
 
-	void resetLine(TracerFile lf, int ln);
+	void resetLine(TracerFile tf, int ln);
 
 }
