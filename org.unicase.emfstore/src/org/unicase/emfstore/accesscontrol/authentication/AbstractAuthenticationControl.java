@@ -70,6 +70,7 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 			throw new ClientVersionOutOfDateException("No client version recieved.");
 		}
 		String[] versions = ServerConfiguration.getSplittedProperty(ServerConfiguration.ACCEPTED_VERSIONS);
+
 		if (versions == null) {
 			if (!ServerConfiguration.isReleaseVersion()) {
 				return;
@@ -81,7 +82,16 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 				return;
 			}
 		}
+		StringBuffer version = new StringBuffer();
+		for (String str : versions) {
+			if (versions.length == 1) {
+				version.append(str + ". ");
+			} else {
+				version.append(str + ", ");
+			}
+		}
+		version.replace(version.length() - 2, version.length(), ".");
 		throw new ClientVersionOutOfDateException("Client version: " + clientVersionInfo.getVersion()
-			+ " - Accepted versions: " + versions);
+			+ " - Accepted versions: " + version);
 	}
 }
