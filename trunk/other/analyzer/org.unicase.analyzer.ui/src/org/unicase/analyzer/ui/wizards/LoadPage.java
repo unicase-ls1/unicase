@@ -6,7 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-
 import java.io.File;
 
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +28,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerPackage;
@@ -36,38 +36,43 @@ import org.unicase.workspace.Configuration;
 
 /**
  * @author liya
- *
  */
 public class LoadPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Load Configuration";
-	private static final String PAGE_DESCRIPTION = "Load a configuration for your analyze.";
+	private static final String PAGE_DESCRIPTION = "Load/create a configuration for your analysis. Or leave it blank.";
 	private Text configurationPath;
-	private TransactionalEditingDomain editingDomain;
+	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration analyzerConfig;
-	private static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
+	private boolean canFlipToNextPage;
+	/**
+	 * default path for the configuration file.
+	 */
+	public static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
 
 	/**
 	 * @param pageName Name of the page
 	 */
-	protected  LoadPage(String pageName) {
+	protected LoadPage(String pageName) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
+		getWizard().getContainer().updateButtons();
 
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
@@ -75,44 +80,62 @@ public class LoadPage extends WizardPage implements Listener {
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout gl = new GridLayout();
 		int ncol = 4;
-	    gl.numColumns = ncol;
-	    composite.setLayout(gl);
+		gl.numColumns = ncol;
+		composite.setLayout(gl);
 
-	    new Label (composite, SWT.NONE).setText("Configuration Path:");	
+		new Label(composite, SWT.NONE).setText("Configuration Path:");
 		configurationPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		configurationPath.setLayoutData(gd);
 
 		configurationPath.addListener(SWT.KeyUp, this);
-		
+
 		Button selectFileLocation = new Button(composite, SWT.PUSH);
 		selectFileLocation.setText("Browse");
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
-		
-		setControl(composite);
+
+		Button newFileLocation = new Button(composite, SWT.PUSH);
+		newFileLocation.setText("New Conf");
+		newFileLocation.addSelectionListener(new NewFileLocationSelectionListener());
+
+		setCanFlipToNextPage(isPageComplete());
+		// ((ProjectAnalyzerWizard) getWizard()).setCanFinish(false);
 		setPageComplete(true);
+
+		setControl(composite);
+
 	}
-	
-	private static boolean isTextNonEmpty(Text t)
-	{
-		String s = t.getText();
-		if ((s!=null) && (s.trim().length() >0)) {
-			return true;
-		}
-		return false;
+
+	private void setCanFlipToNextPage(boolean canFlipToNextPage) {
+		this.canFlipToNextPage = canFlipToNextPage;
 	}
-	
-	private void initConfig(String path){
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	@Override
+	public boolean canFlipToNextPage() {
+		return canFlipToNextPage;
+	}
+
+	/**
+	 * Initialize the configuration.
+	 * 
+	 * @param path the configuration file path
+	 */
+	public void initConfig(String path) {
 
 		URI fileURI = URI.createFileURI(path);
 		File analyzerFile = new File(path);
 
 		@SuppressWarnings("unused")
 		AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
-				
+
 		final Resource resource;
-		if(!analyzerFile.exists()){
-			
+		if (!analyzerFile.exists()) {
+
 			resource = editingDomain.getResourceSet().createResource(fileURI);
 			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
@@ -122,38 +145,40 @@ public class LoadPage extends WizardPage implements Listener {
 				}
 			});
 
-		}else{
-			
+		} else {
+
 			resource = editingDomain.getResourceSet().getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
-			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);		
+			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
 			((ProjectAnalyzerWizard) getWizard()).setCanFinish(true);
 		}
-		
+
 		((ProjectAnalyzerWizard) getWizard()).setAnalyzerConfig(analyzerConfig);
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
 	 */
 	@Override
 	public boolean isPageComplete() {
 		return super.isPageComplete();
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		if(isTextNonEmpty(configurationPath)){
+		if (ProjectAnalyzerWizardHelper.isTextNonEmpty(configurationPath)) {
 			initConfig(configurationPath.getText());
-		}else{
+		} else {
 			initConfig(DEFAULT_PATH);
-		}		
+		}
 		final AnalyzerPage page = (AnalyzerPage) super.getNextPage();
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 			@Override
@@ -163,6 +188,7 @@ public class LoadPage extends WizardPage implements Listener {
 		});
 		return super.getNextPage();
 	}
+
 	/**
 	 * Listener for the file location selection.
 	 */
@@ -185,6 +211,33 @@ public class LoadPage extends WizardPage implements Listener {
 	}
 
 	/**
+	 * Listener for the new conf file location selection.
+	 */
+	class NewFileLocationSelectionListener extends SelectionAdapter {
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+
+			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+				SWT.SAVE);
+			dialog.setFilterNames(new String[] { "Configuration Files(*.conf)", "All Files(*.*)" });
+			dialog.setFilterExtensions(new String[] { ".conf", ".*" });
+			dialog.setOverwrite(true);
+			String initialFileName = "analyzerProfile.conf";
+			dialog.setFileName(initialFileName);
+
+			// dialog
+			String selected = dialog.getFilterPath() + dialog.open();
+
+			if (selected != null) {
+				configurationPath.setText(selected);
+			}
+		}
+	}
+
+	/**
 	 * @return the analyzerConfig
 	 */
 	public AnalyzerConfiguration getAnalyzerConfig() {
@@ -198,6 +251,18 @@ public class LoadPage extends WizardPage implements Listener {
 		this.analyzerConfig = analyzerConfig;
 	}
 
+	/**
+	 * @return configuration path
+	 */
+	public Text getConfigurationPath() {
+		return configurationPath;
+	}
 
+	/**
+	 * @param configurationPath path of the configuration file
+	 */
+	public void setConfigurationPath(Text configurationPath) {
+		this.configurationPath = configurationPath;
+	}
 
 }

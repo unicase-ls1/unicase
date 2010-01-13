@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
@@ -97,8 +98,8 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		}
 
 		setCanFlipToNextPage(isPageComplete());
+		setPageComplete(false);
 		setControl(composite);
-		// setPageComplete(true);
 
 	}
 
@@ -114,9 +115,6 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					if (analyzer.equals(button.getText())) {
 						button.setSelection(true);
 					}
-					// else {
-					// button.setSelection(false);
-					// }
 				}
 			}
 		}
@@ -183,28 +181,16 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					}
 					if (add) {
 						analyzers.add(analyzer);
+						analyzerList.add(button.getText());
 					}
 					wizard.setAnalyzers(analyzers);
-					analyzerList.add(button.getText());
-
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							// analyzerList.add(button.getText());
-						}
-					});
 
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				}
 			} else {
 				analyzerList.remove(button.getText());

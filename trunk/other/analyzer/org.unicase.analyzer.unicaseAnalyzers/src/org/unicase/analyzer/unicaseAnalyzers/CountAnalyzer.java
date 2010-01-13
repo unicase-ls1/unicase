@@ -16,6 +16,8 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.task.TaskPackage;
 
 /**
+ * Count the instances of the given type of class.
+ * 
  * @author liya
  */
 public class CountAnalyzer implements DataAnalyzer {

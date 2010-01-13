@@ -18,6 +18,8 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.MEState;
 
 /**
+ * Count the open tasks for the current project state.
+ * 
  * @author liya
  */
 public class OpenTaskAnalyzer implements DataAnalyzer {

@@ -27,6 +27,8 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 
 /**
+ * Extract the characteristics of each commit.
+ * 
  * @author liya
  */
 public class CategoryAnalyzer implements DataAnalyzer {

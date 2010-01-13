@@ -29,7 +29,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 public class DetectionAnalyzerTest extends AnalyzersTest {
 
 	/**
-	 * Define your export file name here.
+	 * 
 	 */
 	public DetectionAnalyzerTest() {
 		super();

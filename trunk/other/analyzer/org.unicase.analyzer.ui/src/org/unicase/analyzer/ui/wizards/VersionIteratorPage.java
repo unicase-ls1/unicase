@@ -196,25 +196,18 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
 	}
 
-	private static boolean isTextNonEmpty(Text t) {
-		String s = t.getText();
-		if ((s != null) && (s.trim().length() > 0)) {
-			return true;
-		}
-		return false;
-	}
-
 	/**
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
 	 * @return true if page is completed
 	 */
 	@Override
 	public boolean isPageComplete() {
-		if (isTextNonEmpty(stepText) && defaultButton.getSelection()) {
+		if (ProjectAnalyzerWizardHelper.isTextNonEmpty(stepText) && defaultButton.getSelection()) {
 			getNextPage();
 			return true;
-		} else if (isTextNonEmpty(stepText) && isTextNonEmpty(startText) && isTextNonEmpty(endText)
-			&& (forwardButton.getSelection())) {
+		} else if (ProjectAnalyzerWizardHelper.isTextNonEmpty(stepText)
+			&& ProjectAnalyzerWizardHelper.isTextNonEmpty(startText)
+			&& ProjectAnalyzerWizardHelper.isTextNonEmpty(endText) && (forwardButton.getSelection())) {
 			getNextPage();
 			return true;
 		}
