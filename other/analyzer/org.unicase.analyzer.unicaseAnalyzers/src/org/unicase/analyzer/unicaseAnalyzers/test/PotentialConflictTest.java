@@ -27,15 +27,13 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
  * @author liya
  */
 public class PotentialConflictTest extends AnalyzersTest {
-	/**
-	 * Define your export file name here.
-	 */
+
 	public PotentialConflictTest() {
 		super();
 	}
 
 	/**
-	 * Test on DOLLI2.
+	 * Test potential conflict analyzer on DOLLI2.
 	 * 
 	 * @throws IOException IOException
 	 * @throws IteratorException IteratorException

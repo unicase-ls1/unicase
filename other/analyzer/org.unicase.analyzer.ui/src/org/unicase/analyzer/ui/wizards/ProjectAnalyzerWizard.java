@@ -11,8 +11,14 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -72,6 +78,38 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
+		if (analyzers == null) {
+			if (ProjectAnalyzerWizardHelper.isTextNonEmpty(loadPage.getConfigurationPath())) {
+				loadPage.initConfig(loadPage.getConfigurationPath().getText());
+			} else {
+				loadPage.initConfig(LoadPage.DEFAULT_PATH);
+			}
+
+			analyzers = new ArrayList<DataAnalyzer>();
+			IExtensionRegistry registry = Platform.getExtensionRegistry();
+			IExtensionPoint extensionPoint = registry.getExtensionPoint("org.unicase.analyzer.analyzer");
+			IExtension[] extensions = extensionPoint.getExtensions();
+
+			// For each extension ...
+			for (int i = 0; i < extensions.length; i++) {
+				IExtension extension = extensions[i];
+				IConfigurationElement[] elements = extension.getConfigurationElements();
+				// For each member of the extension ...
+				for (int j = 0; j < elements.length; j++) {
+					final IConfigurationElement element = elements[j];
+					for (String name : analyzerConfig.getAnalyzerNames()) {
+						if (name.equals(element.getAttribute("class"))) {
+							try {
+								analyzers.add((DataAnalyzer) element.createExecutableExtension("class"));
+							} catch (CoreException e) {
+								WorkspaceUtil.logException("Problems occur when creating the analyzer!", e);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -81,9 +119,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					((CSVExporter) analyzerConfig.getExporter()).init();
 					setMoniter();
 				} catch (IteratorException e) {
-					e.printStackTrace();
+					WorkspaceUtil.logException("Problems occur when creating the iterator!", e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					WorkspaceUtil.logException("Problems occur when creating the exporter!", e);
 				}
 			}
 		});
@@ -108,9 +146,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 				}
 			});
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException("Problems occur when setting the progress moniter!", e);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException("Problems occur when setting the progress moniter!", e);
 		}
 
 	}
@@ -149,16 +187,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
 	@SuppressWarnings("unused")
 	private void initConfig() {
-		// ResourceSet resourceSet = new ResourceSetImpl();
-
-		// register an editing domain on the resource
-		// final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
-		// .createEditingDomain(resourceSet);
-		// TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
-		// domain.setID("org.unicase.EditingDomain");
-		// PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-		//
-		// public void run() {
 
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(DOMAIN_ID);
 

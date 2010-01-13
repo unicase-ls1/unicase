@@ -17,7 +17,7 @@ import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
- * Be careful! The Date of Version 0 might not be correct!
+ * Write the time stamp of the current project state.
  * 
  * @author liya
  */

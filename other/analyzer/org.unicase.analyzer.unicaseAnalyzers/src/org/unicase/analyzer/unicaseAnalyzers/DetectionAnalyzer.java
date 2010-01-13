@@ -35,6 +35,8 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * Detect after each event.
+ * 
  * @author liya
  */
 public class DetectionAnalyzer implements TwoDDataAnalyzer {

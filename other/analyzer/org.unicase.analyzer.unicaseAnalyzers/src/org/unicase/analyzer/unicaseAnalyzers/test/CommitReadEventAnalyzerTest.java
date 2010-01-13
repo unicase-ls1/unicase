@@ -33,15 +33,12 @@ import org.unicase.model.UnicaseModelElement;
  * @author liya
  */
 public class CommitReadEventAnalyzerTest extends AnalyzersTest {
+
 	/**
-	 * Define your export file name here.
 	 * 
-	 * @throws IOException when exporter could not
 	 */
-	public CommitReadEventAnalyzerTest() throws IOException {
+	public CommitReadEventAnalyzerTest() {
 		super();
-		// this.export = new File("Exports/export_commit.dat");
-		// this.exporter = new CSVExporter("Exports/export_commit.dat");
 
 	}
 

@@ -304,14 +304,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		getWizard().getContainer().updateButtons();
 	}
 
-	private static boolean isTextNonEmpty(Text t) {
-		String s = t.getText();
-		if ((s != null) && (s.trim().length() > 0)) {
-			return true;
-		}
-		return false;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -319,10 +311,10 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public boolean isPageComplete() {
-		if (isTextNonEmpty(stepText) && defaultButton.getSelection()) {
+		if (ProjectAnalyzerWizardHelper.isTextNonEmpty(stepText) && defaultButton.getSelection()) {
 			getNextPage();
 			return true;
-		} else if (isTextNonEmpty(stepText) && forwardButton.getSelection()) {
+		} else if (ProjectAnalyzerWizardHelper.isTextNonEmpty(stepText) && forwardButton.getSelection()) {
 			getNextPage();
 			return true;
 		}

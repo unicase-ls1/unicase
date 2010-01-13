@@ -9,14 +9,13 @@ import java.util.List;
 
 import org.unicase.analyzer.iterator.VersionIterator;
 
-
 /**
  * @author liya
- *
  */
 public interface TwoDDataAnalyzer extends DataAnalyzer {
 	/**
-	 * Returns the specified values of the given ProjectAnalysisData.
+	 * Returns the specified values of the given ProjectAnalysisData. Therefore not support aggregating with non-2D
+	 * dataanalyzers.
 	 * 
 	 * @param data {@link ProjectAnalysisData}
 	 * @param it {@link VersionIterator}

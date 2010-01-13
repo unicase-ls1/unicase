@@ -38,6 +38,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	private Text exportPath;
 	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
+	private Button selectFileLocation;
 
 	/**
 	 * @param pageName Name of the page
@@ -83,10 +84,10 @@ public class ExporterPage extends WizardPage implements Listener {
 		// exportPath.setText(conf.getExporterName());
 		// }
 
-		Button selectFileLocation = new Button(composite, SWT.PUSH);
+		selectFileLocation = new Button(composite, SWT.PUSH);
 		selectFileLocation.setText("Browse");
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
-
+		exportPath.setFocus();
 		exportPath.addListener(SWT.FocusOut, this);
 		// exporterButton = new Button(composite, SWT.PUSH);
 		// exporterButton.setText("Save Configuration");
@@ -97,17 +98,9 @@ public class ExporterPage extends WizardPage implements Listener {
 		// exporterButton.addListener(SWT.Selection, this);
 
 		((ProjectAnalyzerWizard) getWizard()).setCanFinish(isPageComplete());
-		setControl(composite);
 		setPageComplete(false);
+		setControl(composite);
 
-	}
-
-	private static boolean isTextNonEmpty(Text t) {
-		String s = t.getText();
-		if ((s != null) && (s.trim().length() > 0)) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if (event.widget == exportPath) {
+		if (ProjectAnalyzerWizardHelper.isTextNonEmpty(exportPath)) {
 			((ProjectAnalyzerWizard) getWizard()).setCanFinish(true);
 		}
 		setPageComplete(isPageComplete());
@@ -146,7 +139,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public boolean isPageComplete() {
-		if (isTextNonEmpty(exportPath)) {
+		if (ProjectAnalyzerWizardHelper.isTextNonEmpty(exportPath)) {
 			return true;
 		}
 		return super.isPageComplete();
@@ -178,6 +171,7 @@ public class ExporterPage extends WizardPage implements Listener {
 
 			if (selected != null) {
 				exportPath.setText(selected);
+				selectFileLocation.setFocus();
 			}
 		}
 	}
