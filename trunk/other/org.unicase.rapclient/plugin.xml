@@ -25,6 +25,12 @@
             class="org.unicase.rapclient.NavigationView"
             id="catshelter.navigationView">
       </view>
+      <view
+            class="org.unicase.rapclient.BugReportView"
+            id="org.unicase.rapclient.bugreportview"
+            name="BugReportView"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>
