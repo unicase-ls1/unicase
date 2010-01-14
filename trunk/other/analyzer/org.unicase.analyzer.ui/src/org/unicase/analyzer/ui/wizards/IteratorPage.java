@@ -57,7 +57,7 @@ public class IteratorPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if (event.widget == versionIteratorButton || event.widget == timeIteratorButton) {
+		if (versionIteratorButton.getSelection() || timeIteratorButton.getSelection()) {
 			canFlipToNextPage = true;
 		}
 

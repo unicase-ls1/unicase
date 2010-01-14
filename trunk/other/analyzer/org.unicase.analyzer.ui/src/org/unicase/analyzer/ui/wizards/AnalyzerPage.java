@@ -130,6 +130,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		// final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		for (final Button button : analyzerButton) {
 			if (button.getSelection()) {
+				getWizard().getContainer().updateButtons();
 				return true;
 			}
 		}
@@ -163,7 +164,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 		setCanFlipToNextPage(isPageComplete());
 		final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
-		List<String> analyzerList = wizard.getAnalyzerConfig().getAnalyzerNames(); // aggregate of analyzers
+		final List<String> analyzerList = wizard.getAnalyzerConfig().getAnalyzerNames(); // aggregate of analyzers
 
 		for (final Button button : analyzerButton) {
 			int i = analyzerButton.indexOf(button);
@@ -181,7 +182,13 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					}
 					if (add) {
 						analyzers.add(analyzer);
-						analyzerList.add(button.getText());
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+							@Override
+							protected void doExecute() {
+								analyzerList.add(button.getText());
+							}
+						});
+
 					}
 					wizard.setAnalyzers(analyzers);
 
@@ -193,7 +200,13 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				}
 			} else {
-				analyzerList.remove(button.getText());
+				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+					@Override
+					protected void doExecute() {
+						analyzerList.remove(button.getText());
+					}
+				});
+
 			}
 		}
 		final IteratorPage page = (IteratorPage) super.getNextPage();
@@ -212,10 +225,8 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if (event.widget instanceof Button) {
-			if (((Button) event.widget).getSelection()) {
-				canFlipToNextPage = true;
-			}
+		if (isPageComplete()) {
+			canFlipToNextPage = true;
 		}
 		getWizard().getContainer().updateButtons();
 	}

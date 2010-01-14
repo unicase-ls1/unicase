@@ -300,6 +300,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 
 			}
 		}
+		group.setEnabled(!defaultButton.getSelection());
 		setCanFlipToNextPage(isPageComplete());
 		getWizard().getContainer().updateButtons();
 	}
