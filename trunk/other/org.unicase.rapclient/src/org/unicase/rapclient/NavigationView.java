@@ -2,8 +2,6 @@ package org.unicase.rapclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -14,11 +12,7 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
@@ -121,7 +115,7 @@ public class NavigationView extends ViewPart
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		viewer.addSelectionChangedListener(this);
 		viewer.setContentProvider(new ViewContentProvider());
-		viewer.setLabelProvider(new LabelProvider());
+		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 	}
 
@@ -136,14 +130,7 @@ public class NavigationView extends ViewPart
 		ISelection sel = event.getSelection();
 		TreeSelection treeSelection = (TreeSelection) sel;
 		final Object o = treeSelection.getFirstElement();
-		
-		if (o instanceof ProjectSpace) {
-			ProxyCommit.setProjectSpace((ProjectSpace) o);
-		} else if (o instanceof Project) {
-			ProxyCommit.setProject((Project) o);
-		}
-		
-		
+		viewer.refresh();
 //		Display.getDefault().asyncExec(new Runnable() {
 //			
 //			public void run() {

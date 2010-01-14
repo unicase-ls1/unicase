@@ -18,8 +18,8 @@ public class Perspective implements IPerspectiveFactory {
 //				IPageLayout.LEFT, 0.25f, editorArea);
 //		
 		
-		IFolderLayout folder = layout.createFolder("messages", IPageLayout.TOP, 0.5f, editorArea);
-		folder.addPlaceholder(NavigationView.ID + ":*");
+		IFolderLayout folder = layout.createFolder("messages", IPageLayout.TOP, 1.0f, editorArea);
+//		folder.addPlaceholder(NavigationView.ID + ":*");
 		folder.addView(NavigationView.ID);
 		folder.addView(BugReportView.ID);
 		

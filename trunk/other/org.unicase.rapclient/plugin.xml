@@ -21,7 +21,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="View"
+            name="NavigationView"
             class="org.unicase.rapclient.NavigationView"
             id="catshelter.navigationView">
       </view>
