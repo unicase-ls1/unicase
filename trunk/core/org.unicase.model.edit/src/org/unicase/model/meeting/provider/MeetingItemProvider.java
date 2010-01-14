@@ -5,8 +5,11 @@
  */
 package org.unicase.model.meeting.provider;
 
+import java.text.DateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -237,13 +240,26 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. Uses the {@link DateFormat} class to append the start date of
+	 * the meeting formatted with a german locale.<!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT {@inheritDoc}
+	 * @author weiglt
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String text = super.getText(object);
+		if (object instanceof Meeting) {
+			Meeting meeting = (Meeting) object;
+			Date starttime = meeting.getStarttime();
+			if (starttime != null) {
+				return text
+					+ " ("
+					+ DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.GERMANY).format(
+						starttime.getTime()) + ")";
+			}
+		}
+		return text;
 	}
 
 	/**
