@@ -117,6 +117,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 				+ File.separatorChar + projectSpace.getResourceCount()
 				+ Configuration.getProjectFragmentFileExtension();
 			projectSpace.setResourceCount(projectSpace.getResourceCount() + 1);
+			projectSpace.saveProjectSpaceOnly();
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
 			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
