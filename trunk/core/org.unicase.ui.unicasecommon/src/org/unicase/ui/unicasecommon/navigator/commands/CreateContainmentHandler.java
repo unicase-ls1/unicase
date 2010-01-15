@@ -58,12 +58,6 @@ public class CreateContainmentHandler extends AbstractHandler {
 					protected void doExecute() {
 						EObject parent = selectedME.eContainer();
 						while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
-							EReference reference = getStructuralFeature(newMEInstance, parent);
-							if (reference != null && reference.isMany()) {
-								Object object = parent.eGet(reference);
-								EList<EObject> eList = (EList<EObject>) object;
-								eList.add(newMEInstance);
-							}
 							parent = parent.eContainer();
 						}
 						if (newMEInstance.eContainer() == null) {
