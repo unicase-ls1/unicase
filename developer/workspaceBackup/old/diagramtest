@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<org.unicase.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.unicase.model="http://unicase.org/model" xmlns:org.unicase.model.document="http://unicase.org/model/document">
-  <modelElements xsi:type="org.unicase.model.document:CompositeSection" identifier="ff560dcc-8131-4ea1-a848-13133a22ac7a" name="new Document">
-    <subsections xsi:type="org.unicase.model.document:LeafSection" identifier="d5dff527-bdc0-4ef6-ad5d-27de76411a1d" name="diagram"/>
-  </modelElements>
-</org.unicase.model:Project>
