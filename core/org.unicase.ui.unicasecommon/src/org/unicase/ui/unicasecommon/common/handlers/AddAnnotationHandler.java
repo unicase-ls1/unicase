@@ -6,15 +6,22 @@
 
 package org.unicase.ui.unicasecommon.common.handlers;
 
+import java.util.List;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
@@ -46,9 +53,11 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// 2. extract command and create the appropriate annotation object
 		Project project = me.getProject();
 		if (!(me.getLeafSection() == null)) {
-			annotation = createAnnotation(me.getLeafSection(), true);
+			annotation = createAnnotation(me.getLeafSection(), 1);
+		} else if (me.eContainer() instanceof WorkPackage) {
+			annotation = createAnnotation(me, 2);
 		} else if (!(project == null)) {
-			annotation = createAnnotation(project, false);
+			annotation = createAnnotation(project, 3);
 		} else {
 			return null;
 		}
@@ -68,7 +77,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param leafSection
 	 * @return
 	 */
-	private Annotation createAnnotation(final Object object, final boolean flag) {
+	private Annotation createAnnotation(final Object object, final int i) {
 		final Annotation result;
 
 		if (event.getCommand().getId().equals(ADD_ACTIONITEM_COMMAND_ID)) {
@@ -85,15 +94,29 @@ public class AddAnnotationHandler extends AbstractHandler {
 		}
 
 		new UnicaseCommand() {
+			@SuppressWarnings("unchecked")
 			@Override
 			protected void doRun() {
-				if (flag) {
+				if (i == 1) {
 					((LeafSection) object).getModelElements().add(result);
-				} else {
+				} else if (i == 2) {
+
+					EObject parent = ((EObject) object).eContainer();
+					while (!(parent instanceof Project) && result.eContainer() == null && !(object instanceof LeafSection)) {
+						EReference reference = getStructuralFeature(result, parent);
+						if (reference != null && reference.isMany()) {
+							Object object = parent.eGet(reference);
+							EList<EObject> eList = (EList<EObject>) object;
+							eList.add(result);
+						}
+
+					}
+
+				} else if (i == 3) {
 					((Project) object).getModelElements().add(result);
 				}
-
 			}
+
 		}.run();
 
 		return result;
@@ -123,6 +146,25 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 		ActionHelper.openModelElement(annotation, this.getClass().getName());
 
+	}
+
+	private EReference getStructuralFeature(final ModelElement newMEInstance, EObject parent) {
+		// the value of the 'EAll Containments' reference list.
+		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		EReference reference = null;
+		for (EReference containmentitem : eallcontainments) {
+
+			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+				reference = containmentitem;
+
+				break;
+			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+
+				reference = containmentitem;
+				break;
+			}
+		}
+		return reference;
 	}
 
 }

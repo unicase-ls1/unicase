@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -56,16 +55,6 @@ public class CreateContainmentHandler extends AbstractHandler {
 					@Override
 					@SuppressWarnings("unchecked")
 					protected void doExecute() {
-						EObject parent = selectedME.eContainer();
-						while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
-							EReference reference = getStructuralFeature(newMEInstance, parent);
-							if (reference != null && reference.isMany()) {
-								Object object = parent.eGet(reference);
-								EList<EObject> eList = (EList<EObject>) object;
-								eList.add(newMEInstance);
-							}
-							parent = parent.eContainer();
-						}
 						if (newMEInstance.eContainer() == null) {
 							selectedME.getProject().addModelElement(newMEInstance);
 						}
