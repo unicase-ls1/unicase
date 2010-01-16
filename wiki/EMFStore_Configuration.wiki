@@ -45,7 +45,7 @@ In this file you can use the default java propeties syntax to define your option
 # EMFStore property file: es.properties
 # with descriptions
 #
-# Version of file: 1
+# Version of file: 2
 # Last Update: 16.01.2010
 # Author(s): Otto von Wesendonk
 #
@@ -76,11 +76,15 @@ emfstore.acceptedversions=0.3.40, 0.3.41, 0.3.42
 # Persistence
 #
 
+#
+#emfstore.persistence.version.projectstate
+
 # EMFStore mainly saves operations in it's versions. For backup reasons however, every X versions the total project state 
 # is saved into  a file. This options allows to specify how often a complete  project state should be saved. If the range is too 
 # small a lot of memory is used.
 # Options: Number bigger than 0
-# Default: "1"
+# Default: "1" - every state is preserved. Shouldn't be used if server is deployed
+#
 emfstore.persistence.version.projectstate.everyxversions = 50
 
 # Deprecated, not in use anymore.
@@ -91,8 +95,27 @@ emfstore.persistence.version.projectstate.everyxversions = 50
 # Validation
 #
 
+# Defines whether the projects on the server shall run through validation. 
+# Validation is used to confirm the consistency of the saved projects and models.
+# Options: "true" or "false"
+# Default: "true"
+#
 emfstore.validation = true
+
+# Defines level of validation. At the moment there are 3 kinds of validation, which can be combined by adding them bitwise.
+# Level 1: Loading all files and loading their models and cross-file links.
+# Level 2: Checks whether every modelelement and change operation has modelelement id
+# Level 4: Applies all changes between to projectstates and compares whether calculated projet state and the actual projectstate are equal.
+# Options: Any level or their bitwise combination. E.g. the default value 7 is a combination of all other levels: 1 & 2 & 4 = 7. 
+# If only want to use the first both level, choose 3 = 1 & 2.
+# Default: 7 
+#
 emfstore.validation.level = 7
+
+# You can exclude certain projects from the validation. It is not possible to exclude projects from _Level 1_ validation
+# Options: Multiple Project IDs seperated by ","
+# Default: Not set
+#
 emfstore.validation.exclude = 
 
 
@@ -107,7 +130,7 @@ emfstore.validation.exclude =
 # Options: "true" or "false"
 # Default: "true"
 #
-#emfstore.connection.rmi.encryption = 
+emfstore.connection.rmi.encryption = true
 
 # Defines the Port for the XML RPC server. Normally we want to use the "442" HTTPS port. However, on Linux/Unix based systems
 # lower ports (<1024) are restricted. One workaround for these operating systems ist to listen on higher port and to setup 
@@ -115,19 +138,38 @@ emfstore.validation.exclude =
 # Options: Any possible port
 # Default: [RV] "443", [DV] "8080"
 #
-#emfstore.connection.xmlrpc.port=
+emfstore.connection.xmlrpc.port= 8080
 
 
 #
 # Certificates
 #
 
+# These options are used to handle the server's keystore. the keystore file is located in the main EMFStore folder.
+# When deploying you should generate an own certificate and don't use the default developer certificate
 
-# new certificate for beta and main server
-emfstore.keystore.password = 
+# Defines the alias of the main server certificate stored in the keystore.
+# Options: any alias allowed in the keystore
+# Default: dependent of the used certificate
+#
 emfstore.keystore.alias = 
 
+# Password for the selected certificate.
+# Options: any password
+# Default: dependent of the used certificate
+#
+emfstore.keystore.password = 
+
+# Defines the used certificate type stored in the keystore
+# Options: All Certificates which are supported by the java keystore
+# Default: SunX509
+#
 emfstore.keystore.certificate.type= SunX509
+
+# Defines the used cipher algorithm for the certificate
+# Options: All cipher algorithms supported by the java api
+# Default: RSA
+#
 emfstore.keystore.cipher.algorithm=RSA
 
 
@@ -167,5 +209,3 @@ emfstore.startup.loadlistener = false
 
 
 }}}
-
-
