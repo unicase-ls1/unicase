@@ -1,0 +1,39 @@
+#summary All about the configuration off EMFStore.
+
+= EMFStore =
+
+EMFStore is the repository/server for UNICASE.
+
+== Loading a Model ==
+
+EMFStore is independet of the actual model and therefore only operates on the metamodel offered by UNICASE. It is possible to plug in any other model by inheriting the metamodel.
+Due to this decoupling EMFStore does not know where to find your model and it must therefore be defined within the startup configuration. This is also true for the default UNICASE model. Additionally you have to provide a model version number in your model to allow the migrator code (which is able to migrate from one version of the model to another) by using the org.unicase.metamodel.modelversion extension in your model (This is already set in the UNICASE model)
+
+=== How to load a model with EMFStore ===
+ * Open the _Run Configuration_ for the EMFStore (e.g right-click on org.unicase.emfstore => click on _Run as_ => click on _Run Configuration_)
+
+ * Be sure, that the emfstore run configuration is chosen on the left side. Then Choose the _Plug-ins_ Tab in the _Run Configurations_ window
+
+ * For _Launch with_ select _plug-ins selected below only_
+
+ * Now choose your model. In the case of UNICASE, select _org.unicase.model_
+
+ * Just to be sure, use the _Add Required Plug-ins_ button on the right side
+
+ * To validate the chosen Plug-ins you can press _Validate Plug-ins_. There shouldn't be any problem, if yes, try to resovle them.
+
+ * Finally press _Apply_ and you are ready to go
+
+
+== Configuration File ==
+
+If you need to adapt the default configuration of EMFStore you have to create a configuration file called *es.properties*. EMFStore will look for this file in this folder: [user-folder]/.unicase/emfstore/conf/es.properties
+
+
+In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
+
+
+
+
+
+
