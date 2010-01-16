@@ -27,11 +27,145 @@ Due to this decoupling EMFStore does not know where to find your model and it mu
 
 == Configuration File ==
 
-If you need to adapt the default configuration of EMFStore you have to create a configuration file called *es.properties*. EMFStore will look for this file in this folder: [user-folder]/.unicase/emfstore/conf/es.properties
+If you need to adapt the default configuration of EMFStore you have to create a configuration file called *es.properties*. EMFStore will look for this file in this folder: {user-folder}/.unicase/emfstore/conf/es.properties
 
 
 In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
 
+*EXAMPLE ES.PROPERTIES NOT FINISHED YET (16.01.2010). WORK IN PROGRESS*
 
+{{{
+
+#
+# Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+# accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+# distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+#
+#
+# EMFStore property file: es.properties
+# with descriptions
+#
+# Version of file: 1
+# Last Update: 16.01.2010
+# Author(s): Otto von Wesendonk
+#
+
+# EMFStore is able to run without this configuration file. The default values are displayed for every option.
+
+# Some options differ if the server is running as released version [RV] or is running as a developer version [DV]
+
+# This file will be processed by the default java properties api. Therefore the syntax for options is:
+# "option.key = value". If multiple values are allowed, separate them with ",". "option.key = value1,value2"
+
+
+#
+# Version
+#
+
+# Use this property do define accepted version numbers. For the server, version numbers only are strings, so you can define
+# your format as you wish. You can define several version numbers at the same time seperating them with a ","
+# With the keyword "any" all versions are accepted, this should be used for developement only.
+# Options: Multiple values seperate by ","
+# Default: [RV] no value, server won't accept any call. [DV] if no value is specified, "any" is used, otherwise 
+# the specified values are checked
+#
+emfstore.acceptedversions=0.3.40, 0.3.41, 0.3.42
+
+
+#
+# Persistence
+#
+
+# EMFStore mainly saves operations in it's versions. For backup reasons however, every X versions the total project state 
+# is saved into  a file. This options allows to specify how often a complete  project state should be saved. If the range is too 
+# small a lot of memory is used.
+# Options: Number bigger than 0
+# Default: "1"
+emfstore.persistence.version.projectstate.everyxversions = 50
+
+# Deprecated, not in use anymore.
+# emfstore.persistence.version.backup.projectstate.everyxversions = 10
+
+
+#
+# Validation
+#
+
+emfstore.validation = true
+emfstore.validation.level = 7
+emfstore.validation.exclude = 
+
+
+
+#
+# Connection related options
+#
+
+
+# Defines whether RMI should use SSL encryption or not. Please Note: The password is always encrypted with the server certificate,
+# this "only" indicates whether all data is encrypted additionally.
+# Options: "true" or "false"
+# Default: "true"
+#
+#emfstore.connection.rmi.encryption = 
+
+# Defines the Port for the XML RPC server. Normally we want to use the "442" HTTPS port. However, on Linux/Unix based systems
+# lower ports (<1024) are restricted. One workaround for these operating systems ist to listen on higher port and to setup 
+# a port forward from 443 to the specified port.
+# Options: Any possible port
+# Default: [RV] "443", [DV] "8080"
+#
+#emfstore.connection.xmlrpc.port=
+
+
+#
+# Certificates
+#
+
+
+# new certificate for beta and main server
+emfstore.keystore.password = 
+emfstore.keystore.alias = 
+
+emfstore.keystore.certificate.type= SunX509
+emfstore.keystore.cipher.algorithm=RSA
+
+
+#
+# Authentication
+#
+
+emfstore.accesscontrol.authentication.superuser = super
+emfstore.accesscontrol.authentication.superuser.password = tiaspfu
+
+#emfstore.accesscontrol.session.timeout= 1800000
+
+#emfstore.accesscontrol.authentication.spfv
+
+emfstore.accesscontrol.authentication.policy=ldap
+
+emfstore.accesscontrol.authentication.ldap.1.url=ldap://opendirectorybruegge.informatik.tu-muenchen.de
+emfstore.accesscontrol.authentication.ldap.1.base=dc=opendirectorybruegge,dc=informatik,dc=tu-muenchen,dc=de
+emfstore.accesscontrol.authentication.ldap.1.searchdn=uid
+
+emfstore.accesscontrol.authentication.ldap.2.url=ldap://ldap1.in.tum.de:389
+emfstore.accesscontrol.authentication.ldap.2.base=ou=Personen,ou=IN,o=TUM,c=DE
+emfstore.accesscontrol.authentication.ldap.2.searchdn=uid
+
+
+#
+# Deprecated options or options not ment for public use. Please dont change or use these:
+#
+
+#
+#
+#
+emfstore.startup.loadlistener = false
+
+# EMF resource type for storing data. At the moment only one option is allowed: org.unicase.emfstore.storage.XMLStorage
+# emfstore.persistence.resourceStorage = org.unicase.emfstore.storage.XMLStorage
+
+
+}}}
 
 
