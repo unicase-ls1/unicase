@@ -178,7 +178,7 @@ emfstore.keystore.cipher.algorithm=RSA
 #
 
 emfstore.accesscontrol.authentication.superuser = super
-emfstore.accesscontrol.authentication.superuser.password = tiaspfu
+emfstore.accesscontrol.authentication.superuser.password = super
 
 #emfstore.accesscontrol.session.timeout= 1800000
 
