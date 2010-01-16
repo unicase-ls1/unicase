@@ -1,4 +1,4 @@
-#summary All about the configuration off EMFStore.
+#summary All about the configuration of EMFStore.
 
 = EMFStore =
 
@@ -31,8 +31,6 @@ If you need to adapt the default configuration of EMFStore you have to create a 
 
 
 In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
-
-
 
 
 
