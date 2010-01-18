@@ -14,7 +14,7 @@ This is a tagged version of a branch that is obtained from the trunk, which is c
 
  * UNICASE Workspace Folder: The UNICASE internal version stores all its information in the developer home (/HOME) directory in a hidden folder named /.unicase.internal.
 
- * Server: If you want to connect to EMFStore server with UNICASE internal version, note that the connection settings to Emfstore are pre-configured to connect to a non existing server at unicase-beta.in.tum.de. Change the URL to the current one (unicase-internal.informatik.tu-muenchen.de (Port 443)) before connecting.
+ * Server: If you want to connect to EMFStore server with UNICASE internal version, note that the connection settings to Emfstore are pre-configured to connect to a non existing server at unicase-beta.in.tum.de. Change the URL to the current one (unicase-internal.informatik.tu-muenchen.de, Port 443) before connecting.
 
 =External Release=
 This is the final version of UNICASE after development, which is deployed on our main server to be used by UNICASE’s clients. The external version is created out from the latest internal release. This release is available on our normal update site at http://wwwbruegge.in.tum.de/static/unicase.
