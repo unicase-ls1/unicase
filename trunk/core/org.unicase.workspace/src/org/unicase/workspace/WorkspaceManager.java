@@ -313,7 +313,7 @@ public final class WorkspaceManager {
 			// END SUPRESS CATCH EXCEPTION
 			// resource can not be loaded, assume version number before metamodel split
 			ModelVersion modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
-			modelVersion.setReleaseNumber(3);
+			modelVersion.setReleaseNumber(4);
 			return modelVersion;
 		}
 
