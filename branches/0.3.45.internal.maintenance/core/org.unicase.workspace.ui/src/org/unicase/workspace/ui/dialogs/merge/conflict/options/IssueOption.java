@@ -119,9 +119,11 @@ public class IssueOption extends CustomConflictOption {
 			compositeOperation.end("Created Merge Issue",
 					"Created a merge issue after updating from version "
 							+ conflict.getDecisionManager().getBaseVersion()
+									.getIdentifier()
 							+ " to "
 							+ conflict.getDecisionManager().getTargetVersion()
-							+ ".", mergeIssue.getModelElementId());
+									.getIdentifier() + ".", mergeIssue
+							.getModelElementId());
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
