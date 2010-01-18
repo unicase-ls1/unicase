@@ -393,6 +393,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
 			EventsFactory.eINSTANCE.createURLEvent()));
 
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 

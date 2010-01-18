@@ -685,10 +685,11 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getServerInfo_Port();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.workspace.ServerInfo#getProjectInfos
-	 * <em>Project Infos</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}'. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @return the meta object for the reference list '<em>Project Infos</em>'.
+	 * @return the meta object for the containment reference list '<em>Project Infos</em>'.
 	 * @see org.unicase.workspace.ServerInfo#getProjectInfos()
 	 * @see #getServerInfo()
 	 * @generated
@@ -1249,8 +1250,8 @@ public interface WorkspacePackage extends EPackage {
 		EAttribute SERVER_INFO__PORT = eINSTANCE.getServerInfo_Port();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Infos</b></em>' reference list feature. <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Project Infos</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */

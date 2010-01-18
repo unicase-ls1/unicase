@@ -148,7 +148,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated
 	 * @ordered
 	 */
-	public ProjectId projectId;
+	protected ProjectId projectId;
 
 	/**
 	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc -->

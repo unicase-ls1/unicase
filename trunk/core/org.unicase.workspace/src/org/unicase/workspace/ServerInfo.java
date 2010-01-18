@@ -104,17 +104,17 @@ public interface ServerInfo extends EObject {
 	void setPort(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.ProjectInfo}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Infos</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.emfstore.esmodel.ProjectInfo}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Infos</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Project Infos</em>' reference list.
+	 * @return the value of the '<em>Project Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_ProjectInfos()
-	 * @model transient="true"
+	 * @model containment="true" resolveProxies="true" transient="true"
 	 * @generated
 	 */
 	EList<ProjectInfo> getProjectInfos();

@@ -119,7 +119,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	 * @generated
 	 */
 	public ProjectSpace createProjectSpace() {
-		ProjectSpace projectSpace = new ProjectSpaceImpl();
+		ProjectSpaceImpl projectSpace = new ProjectSpaceImpl();
 		return projectSpace;
 	}
 

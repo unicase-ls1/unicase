@@ -8,12 +8,14 @@ package org.unicase.workspace.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -96,8 +98,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected int port = PORT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectInfos() <em>Project Infos</em>}' reference list. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectInfos() <em>Project Infos</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getProjectInfos()
 	 * @generated
@@ -224,7 +226,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 */
 	public EList<ProjectInfo> getProjectInfos() {
 		if (projectInfos == null) {
-			projectInfos = new EObjectResolvingEList<ProjectInfo>(ProjectInfo.class, this,
+			projectInfos = new EObjectContainmentEList.Resolving<ProjectInfo>(ProjectInfo.class, this,
 				WorkspacePackage.SERVER_INFO__PROJECT_INFOS);
 		}
 		return projectInfos;
@@ -290,6 +292,20 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS,
 				oldCertificateAlias, certificateAlias));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
+			return ((InternalEList<?>) getProjectInfos()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
