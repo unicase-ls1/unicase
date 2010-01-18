@@ -3,7 +3,6 @@ package org.unicase.workspace.ui.dialogs.merge.conflict;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
@@ -44,13 +43,12 @@ public class ConflictDescription {
 	}
 
 	public String getResolvedDescription() {
-		AdapterFactoryLabelProvider factory = DecisionUtil.getAdapterFactory();
 		String result = description;
 		for (String token : values.keySet()) {
 			String tmp = "[" + token + "]";
 			Object value = values.get(token);
 			if (value instanceof ModelElement) {
-				value = factory.getText(value);
+				value = DecisionUtil.getClassAndName((ModelElement) value);
 			}
 			result = result.replace(tmp, (value != null) ? value.toString()
 					: "");
