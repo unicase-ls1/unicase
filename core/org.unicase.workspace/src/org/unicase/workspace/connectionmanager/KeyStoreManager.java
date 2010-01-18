@@ -62,7 +62,7 @@ public final class KeyStoreManager {
 
 	private static final String CIPHER_ALGORITHM = "RSA";
 
-	private static final String DEFAULT_UNICASE_CERTIFICATE = "unicase.org 2009#1";
+	private static final String DEFAULT_UNICASE_CERTIFICATE = "unicase.org 2010#1";
 
 	private static final String DEFAULT_DEV_CERTIFICATE = "unicase.org test test(!!!) certificate";
 
