@@ -19,7 +19,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectInfos" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"
-        transient="true"/>
+        transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastUsersession" eType="#//Usersession"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="certificateAlias" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -205,6 +205,12 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createURLEvent()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
 	}
 
 	/**
