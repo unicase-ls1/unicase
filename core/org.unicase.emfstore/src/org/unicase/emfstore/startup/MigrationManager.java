@@ -71,7 +71,7 @@ public class MigrationManager {
 			// END SUPRESS CATCH EXCEPTION
 			// resource can not be loaded, assume version number before metamodel split
 			modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
-			modelVersion.setReleaseNumber(3);
+			modelVersion.setReleaseNumber(4);
 		}
 
 		if (modelVersion.getReleaseNumber() == modelVersionNumber) {
