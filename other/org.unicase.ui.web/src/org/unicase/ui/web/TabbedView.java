@@ -1,5 +1,6 @@
 package org.unicase.ui.web;
 
+import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -18,6 +19,7 @@ import org.unicase.ui.web.tabs.*;
 public class TabbedView extends ViewPart {
 
 	public static final String ID = "org.unicase.ui.web.TabbedView";
+	private String currProjectName;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -32,19 +34,26 @@ public class TabbedView extends ViewPart {
 				new BugReportTab(topFolder), new ExampleTableTab(topFolder),
 				new InputTab(topFolder) };
 
-		tabs[0].createContent();
+//		tabs[0].foo();  //.createContent();
+		Object o = RWT.getRequest().getParameterMap().get("project");
+				
+		if (o != null) {
+			setCurrProjectName(((String[]) o)[0]);
+		}
+		
 		topFolder.setSelection(0);
 		topFolder.addSelectionListener(new SelectionAdapter() {
+			
 			public void widgetSelected(final SelectionEvent evt) {
 				int index = topFolder.getSelectionIndex();
-				tabs[index].createContent();
+				tabs[index].foo(getCurrProjectName());
 			}
 		});
 	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -56,6 +65,14 @@ public class TabbedView extends ViewPart {
 		if (result < 18) {
 			folder.setTabHeight(18);
 		}
+	}
+
+	public void setCurrProjectName(String currProjectName) {
+		this.currProjectName = currProjectName;
+	}
+
+	public String getCurrProjectName() {
+		return currProjectName;
 	}
 
 }

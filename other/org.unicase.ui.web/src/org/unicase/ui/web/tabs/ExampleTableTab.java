@@ -13,7 +13,7 @@ import org.unicase.ui.web.tabs.TableViewerExample;
  * @author fxulusoy
  *
  */
-public class ExampleTableTab implements AbstractTab {
+public class ExampleTableTab extends AbstractTab {
 
 	private boolean isContentCreated;
 	private final CTabFolder tabFolder;

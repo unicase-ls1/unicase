@@ -36,7 +36,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class TaskItemsTab implements AbstractTab {
+public class TaskItemsTab extends AbstractTab {
 
 	private boolean isContentCreated;
 	private final CTabFolder tabFolder;
@@ -60,12 +60,14 @@ public class TaskItemsTab implements AbstractTab {
 	}
 	
 	public void createContent() {
-		if (!isContentCreated) {
+		//if (!isContentCreated) {
 		    Composite com = new Composite(tabFolder, SWT.NONE);
 		    createTabContent(com);
 		    tabItem.setControl(com);
 			isContentCreated = true;
-		}
+			viewer.refresh();
+
+		//}
 	}
 	
 	/**
@@ -84,62 +86,20 @@ public class TaskItemsTab implements AbstractTab {
 		
 		createColumns();
 		projListener = new MyProjectListener();
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		workspaceListenerAdapter = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(Notification msg) {
-				// if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					ProjectSpace activeProjectSpace = workspace.getProjectSpaces().get(0);
-					if (activeProjectSpace != null) {
-						activeProject = activeProjectSpace.getProject();
-						activeProject.addProjectChangeObserver(projListener);
-						
-						List<? extends UnicaseModelElement> taskItems = activeProject.getAllModelElementsbyClass(
-								TaskPackage.eINSTANCE.getCheckable(), new BasicEList<UnicaseModelElement>());
-						WritableList emfList = new WritableList(Realm.getDefault(), taskItems, UnicaseModelElement.class);
-						viewer.setInput(emfList);
-					} else {
-						activeProject = null;
-						
-						viewer.setInput(activeProject);
-					}
-
-				//}
-				super.notifyChanged(msg);
-			}
-		};
-		workspace.eAdapters().add(workspaceListenerAdapter);
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();		
 		
 		if (workspace.getProjectSpaces() != null) {
 			activeProject = workspace.getProjectSpaces().get(0).getProject();
 			activeProject.addProjectChangeObserver(projListener);
-		}		
+		}
 		
-//		Layout layout = new GridLayout(2, false);
-//		parent(layout);
-//		
-//		Button button1 = new Button(parent, SWT.PUSH);
-//		button1.setText("Write model");
-//		button1.addSelectionListener(new SelectionAdapter() {
-//
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				UpdateProjectHandler handler = new UpdateProjectHandler();
-//				try {
-//					handler.run(workspace.getProjectSpaces().get(0));
-//				} catch (EmfStoreException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				
-//			}
-//		});
+		List<? extends UnicaseModelElement> taskItems = null;
 		
-		List<? extends UnicaseModelElement> taskItems = activeProject.getAllModelElementsbyClass(
+		if (getCurrProject() != null) {
+			 taskItems = getCurrProject().getAllModelElementsbyClass(
 				TaskPackage.eINSTANCE.getCheckable(), new BasicEList<UnicaseModelElement>());
-		
-		
+		}
+			
 		// The content provider is responsible to handle add and
 		// remove notification for the 
 		ObservableListContentProvider provider = new ObservableListContentProvider();
@@ -171,6 +131,17 @@ public class TaskItemsTab implements AbstractTab {
 		
 		WritableList emfList = new WritableList(Realm.getDefault(), taskItems, UnicaseModelElement.class);
 		viewer.setInput(emfList);
+		
+//		
+//		if (getCurrProject() != null) {
+//			activeProject = getCurrProject();// activeProjectSpace.getProject();
+//			activeProject.addProjectChangeObserver(projListener);
+//			viewer.setInput(emfList);
+//		} else {
+//			activeProject = null;
+//			
+//			viewer.setInput(activeProject);
+//		}
 	}
 		
 	

@@ -23,7 +23,7 @@ import org.unicase.ui.web.util.ExampleUtil;
  * @author fxulusoy
  *
  */
-public class InputTab implements AbstractTab {
+public class InputTab extends AbstractTab {
 
 	private boolean isContentCreated;
 	private final CTabFolder tabFolder;
