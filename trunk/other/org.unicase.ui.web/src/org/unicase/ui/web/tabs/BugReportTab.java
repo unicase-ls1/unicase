@@ -1,14 +1,11 @@
 package org.unicase.ui.web.tabs;
 
-import java.util.List;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -17,46 +14,37 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.Severity;
+import org.unicase.ui.web.util.ExampleUtil;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 
+public class BugReportTab extends AbstractTab {
 
-public class BugReportTab implements AbstractTab {
-
-	private boolean isContentCreated;
 	private final CTabFolder tabFolder;
 	private final CTabItem tabItem;
 	
-	private ProjectSpace currProjectSpace;
-	
-	// the currently selected project
-	private Project currProject;
-	
-	
 	public BugReportTab(CTabFolder parent) {
 		tabFolder = parent;
-		isContentCreated = false;
 	    tabItem = new CTabItem( tabFolder, SWT.NONE );
 	    tabItem.setText("Bug Reporting...");
 	}
 	
 	
 	public void createContent() {
-		if (!isContentCreated) {
 		    Composite com = new Composite(tabFolder, SWT.NONE);
 		    createTabContent(com);
 		    tabItem.setControl(com);
-			isContentCreated = true;
-		}
 	}
 	
 	/**
@@ -64,62 +52,61 @@ public class BugReportTab implements AbstractTab {
 	 * @param parent
 	 */
 	private void createTabContent(Composite composite) {
-		GridLayout layout = new GridLayout(2, true);
-		
-//		parent.setLayout(layout);
-//	    composite = new Composite(parent, SWT.NONE);
-	    composite.setLayout(layout);
-	    
-	    // projet label
-	    Label projectLabel = new Label(composite, SWT.NONE);
-	    projectLabel.setText("Project:");
-	    
-	    // drop-down combo for project selection
-	    final Combo projectCombo = new Combo(composite, SWT.DROP_DOWN);
-	    List<ProjectSpace> projects = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
-	    String[] projectNames = new String[projects.size()];
-	    
-	    for (int i = 0; i < projects.size(); i++) {
-	    	projectNames[i] = projects.get(i).getProjectName();
-	    }
-	    
-	    projectCombo.setItems(projectNames);
-	    projectCombo.addSelectionListener(new ComboListener());
-	    GridData gd = new GridData();
-	    gd.grabExcessHorizontalSpace = true;
-	    projectCombo.setLayoutData(gd);
+		composite.setLayout( ExampleUtil.createGridLayout( 1, false, 10, 20 ) );
+			    
+		// group widget
+		GridData gridData;
+		Group group = new Group(composite, SWT.NONE);
+		group.setText("Bug reporting");
+		group.setLayout(ExampleUtil.createGridLayout( 1, false, 10, 20 ));
+		group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-	    // bugname label 
-	    Label bugNameLabel = new Label(composite, SWT.NONE);
-	    bugNameLabel.setText("Name:");
-	    	    
-	    // bugname text field
-	    final Text bugNameField = new Text(composite, SWT.BORDER | SWT.NONE);
-	    	   
-	    // description label
-	    Label bugDescLabel = new Label(composite, SWT.NONE);
-	    bugDescLabel.setText("Description:");
-	    
-	    // description text field
-	    final Text bugDescField = new Text(composite, SWT.BORDER | SWT.MULTI);
-	    
+		Composite formComp = new Composite( group, SWT.NONE );
+		formComp.setLayout( new GridLayout( 2, false ) );
+
+		new Label(formComp, SWT.NONE).setText("Name:");
+		final Text bugNameText = new Text(formComp, SWT.SINGLE | SWT.BORDER);
+		gridData = new GridData( SWT.FILL, SWT.TOP, true, false );
+		gridData.minimumWidth = 250;
+		bugNameText.setLayoutData(gridData);
+
+		new Label(formComp, SWT.NONE).setText("Description:");
+		final Text bugDescriptionText = new Text(formComp, SWT.MULTI | SWT.BORDER);
+		gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		bugDescriptionText.setLayoutData( gridData );
+
+		// TODO: will be severity
+		new Label(formComp, SWT.NONE).setText("Severity:");
+		final Combo classCombo = new Combo(formComp, SWT.READ_ONLY | SWT.BORDER);
+
+		Object[] classes = Severity.VALUES.toArray();
+		String[] severity = new String[classes.length];
+		
+		for (int i = 0; i < classes.length; i++) {
+			severity[i] = classes[i].toString();
+		}
+		
+		classCombo.setItems(severity);
+		gridData = new GridData( SWT.FILL, SWT.TOP, true, false );
+		classCombo.setLayoutData( gridData );
+		classCombo.select( 0 );
+
 	    // submit button
-	    Button submitBugButton = new Button(composite, SWT.NONE);
+	    Button submitBugButton = new Button(formComp, SWT.NONE);
 	    submitBugButton.setText("Submit bug");	    
-	    gd = new GridData();
- 	    
+		gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		submitBugButton.setLayoutData(gridData);
+	    
 	    submitBugButton.addSelectionListener(new SelectionListener() {
 
 	    	public void widgetSelected(SelectionEvent e) {
-	    	
-	    		// TODO: make sure a project has been selected
-	    		
+
 	    		final BugReport newBugReport = BugFactory.eINSTANCE.createBugReport();
-	    		newBugReport.setName(bugNameField.getText());
-	    		newBugReport.setDescription(bugDescField.getText());
+	    		newBugReport.setName(bugNameText.getText());
+	    		newBugReport.setDescription(bugDescriptionText.getText());
 
 	    		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-	    			.getEditingDomain("org.unicase.EditingDomain");
+	    		.	getEditingDomain("org.unicase.EditingDomain");
 
 	    		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -127,9 +114,10 @@ public class BugReportTab implements AbstractTab {
 	    			protected void doExecute() {
 	    				try {
 	    					//Begin composite operation
-	    					CompositeOperationHandle operationHandle = currProjectSpace.beginCompositeOperation();
-	    						
-	    					currProject.addModelElement(newBugReport);
+	    					ProjectSpace p = getCurrProjectSpace();
+	    					CompositeOperationHandle operationHandle = p.beginCompositeOperation();
+
+	    					getCurrProject().addModelElement(newBugReport);
 
 	    					LogMessage msg = VersioningFactory.eINSTANCE.createLogMessage();
 	    					msg.setMessage("This is a first test");
@@ -138,23 +126,33 @@ public class BugReportTab implements AbstractTab {
 	    							"Created bug report " + newBugReport.getName() + ".",
 	    							newBugReport.getModelElementId());
 	    					
+	    					getCurrProjectSpace().commit(msg);
+	    					
 	    					Display.getDefault().syncExec(new Runnable() {
-								
-								public void run() {
-									MessageDialog.openInformation(
-											Display.getDefault().getActiveShell(), 
-											"Bug successfully reported!", 
-											"You successfully reported a bug :)");
-								}
-							});
-
+	    						public void run() {
+	    							MessageDialog.openInformation(
+	    									Display.getDefault().getActiveShell(), 
+	    									"Bug successfully reported!",
+	    							"You successfully reported a bug :)");
+	    						}
+	    					});
 	    				} catch (final InvalidHandleException e2) {
-							Display.getDefault().asyncExec(new Runnable() {
+	    					Display.getDefault().asyncExec(new Runnable() {
 	    						public void run() {
 	    							MessageDialog.openError(
 	    									Display.getDefault().getActiveShell(), 
 	    									"Invalid handle", 
 	    									"What happened?\n" + e2.getMessage());
+	    						}
+	    					});
+	    				} catch (final EmfStoreException e) {
+	    					Display.getDefault().asyncExec(new Runnable() {
+	    						public void run() {
+	    							MessageDialog.openError(
+	    									Display.getDefault().getActiveShell(), 
+	    									"Server unreachable", 
+	    									"Server currently unreachable.\n" +
+	    									"Please try to commit later.\n" + e.getMessage());
 	    						}
 	    					});
 						}
@@ -163,46 +161,16 @@ public class BugReportTab implements AbstractTab {
 	    		});
 	    	}
 
-			
-			public void widgetDefaultSelected(SelectionEvent e) {
-				Display.getDefault().asyncExec(new Runnable() {
-					
-					public void run() {
-						MessageDialog.openError(
-								Display.getDefault().getActiveShell(),
-								"B", "b");
-					}
-				});
-			}
-		});
-	}
+	    	public void widgetDefaultSelected(SelectionEvent e) {
+	    		Display.getDefault().asyncExec(new Runnable() {
 
-	private void setProject(String projectName) {
-		// TODO: use more efficient to retrieve project 
-		List<ProjectSpace> projectSpaces = WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getProjectSpaces();
-		
-		for (ProjectSpace p : projectSpaces) {
-			if (p.getProjectName().equals(projectName)) {
-				currProjectSpace = p;
-				currProject = p.getProject();
-			}
-		}
+	    			public void run() {
+	    				MessageDialog.openError(
+	    						Display.getDefault().getActiveShell(),
+	    						"B", "b");
+	    			}
+	    		});
+	    	}
+	    });
 	}
-	
-	private class ComboListener extends SelectionAdapter {
-		@Override
-    	public void widgetSelected(final SelectionEvent e) {
-			Display.getDefault().asyncExec(new Runnable() {
-				
-				public void run() {
-					Combo cmb = (Combo) e.getSource();
-					setProject(cmb.getItem(cmb.getSelectionIndex()));
-				}
-			});
-		}
-	}
-	
 }
-
-
