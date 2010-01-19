@@ -18,8 +18,7 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultilineWidget extends Composite {
 
-	public MultilineWidget(Composite parent, final DecisionBox decisionBox,
-			final ConflictOption option) {
+	public MultilineWidget(Composite parent, final DecisionBox decisionBox, final ConflictOption option) {
 		super(parent, SWT.NONE);
 		setLayout(new TableWrapLayout());
 		setBackground(parent.getBackground());
@@ -33,8 +32,7 @@ public class MultilineWidget extends Composite {
 		Composite titleComposite = new Composite(column, SWT.NONE);
 		titleComposite.setBackground(getBackground());
 		titleComposite.setLayout(new FillLayout());
-		titleComposite
-				.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+		titleComposite.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
 		String title = "";
 		switch (option.getType()) {
@@ -59,8 +57,7 @@ public class MultilineWidget extends Composite {
 		final Text myAttribute = new Text(column, SWT.MULTI | SWT.WRAP);
 		myAttribute.setText(option.getFullOptionLabel());
 		myAttribute.setBackground(getBackground());
-		boolean isEditable = option.getDetailProvider().endsWith(
-				DecisionConfig.EDITABLE);
+		boolean isEditable = option.getDetailProvider().endsWith(DecisionConfig.EDITABLE);
 		myAttribute.setEditable(isEditable);
 		if (isEditable && option instanceof MergeTextOption) {
 			myAttribute.addModifyListener(new ModifyListener() {

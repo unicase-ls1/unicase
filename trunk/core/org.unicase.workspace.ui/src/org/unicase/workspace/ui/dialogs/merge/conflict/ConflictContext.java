@@ -8,8 +8,7 @@ public class ConflictContext {
 	private final String attribute;
 	private final String opponent;
 
-	public ConflictContext(ModelElement modelElement, String attribute,
-			String opponent) {
+	public ConflictContext(ModelElement modelElement, String attribute, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = attribute;
 		this.opponent = opponent;

@@ -46,8 +46,7 @@ public class CSVImportSource extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
-	 * @param ob
-	 *            the object to get the children from
+	 * @param ob the object to get the children from
 	 * @return the children of the given object
 	 */
 	@Override
@@ -60,8 +59,7 @@ public class CSVImportSource extends ImportSource {
 	}
 
 	/**
-	 * @param ob
-	 *            The object to get the root elements from
+	 * @param ob The object to get the root elements from
 	 * @return The list of groups, which were read from the specified file.
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getElements(java.lang.Object)
 	 */
@@ -81,8 +79,7 @@ public class CSVImportSource extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#init()
-	 * @param shell
-	 *            the shell, which holds the dialog for file selection
+	 * @param shell the shell, which holds the dialog for file selection
 	 * @return if a file was selected and successfully handled
 	 */
 	@Override
@@ -91,8 +88,7 @@ public class CSVImportSource extends ImportSource {
 		groups = new ArrayList<ImportItemWrapper>();
 		users = new ArrayList<ImportItemWrapper>();
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setText("Choose import file");
 		String fn = dialog.open();
 		if (fn == null) {
@@ -129,8 +125,7 @@ public class CSVImportSource extends ImportSource {
 				ImportItemWrapper importWrapper = null;
 				ArrayList<ImportItemWrapper> childOrgUnits;
 				if (groupMap.get(groupName) == null) {
-					ACGroup group = AccesscontrolFactory.eINSTANCE
-							.createACGroup();
+					ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
 					importWrapper = new ImportItemWrapper(null, group);
 
 					group.setName(groupName);
@@ -144,8 +139,7 @@ public class CSVImportSource extends ImportSource {
 
 				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
 				user.setName(userName);
-				ImportItemWrapper userImportWrapper = new ImportItemWrapper(
-						null, user, importWrapper);
+				ImportItemWrapper userImportWrapper = new ImportItemWrapper(null, user, importWrapper);
 				users.add(userImportWrapper);
 
 				childOrgUnits.add(userImportWrapper);
@@ -168,8 +162,7 @@ public class CSVImportSource extends ImportSource {
 			return false;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			WorkspaceUtil.logWarning(e.getMessage(), e);
-			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException",
-					e);
+			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException", e);
 			return false;
 		}
 
@@ -195,12 +188,9 @@ public class CSVImportSource extends ImportSource {
 	/**
 	 * Called when the input changes.
 	 * 
-	 * @param arg0
-	 *            the viewer
-	 * @param arg1
-	 *            the old input
-	 * @param arg2
-	 *            the new input
+	 * @param arg0 the viewer
+	 * @param arg1 the old input
+	 * @param arg2 the new input
 	 */
 	public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
 		// Nothing to change

@@ -17,9 +17,8 @@ public class CompositeConflict extends Conflict {
 
 	private final boolean meCausing;
 
-	public CompositeConflict(List<AbstractOperation> composite,
-			List<AbstractOperation> other, DecisionManager decisionManager,
-			boolean meCausing) {
+	public CompositeConflict(List<AbstractOperation> composite, List<AbstractOperation> other,
+		DecisionManager decisionManager, boolean meCausing) {
 		super(composite, other, decisionManager, false);
 		this.meCausing = meCausing;
 		init();
@@ -27,9 +26,8 @@ public class CompositeConflict extends Conflict {
 
 	@Override
 	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(
-				getCompositeOperation().getModelElementId()), "",
-				getDecisionManager().getAuthorForOperation(getTheirOperation()));
+		return new ConflictContext(getDecisionManager().getModelElement(getCompositeOperation().getModelElementId()),
+			"", getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	@Override
@@ -42,8 +40,7 @@ public class CompositeConflict extends Conflict {
 		}
 		ConflictDescription desc = new ConflictDescription(description);
 		desc.add("compdescription", getCompositeOperation());
-		desc.add("opposite", getDecisionManager().getModelElement(
-				getOtherOperation().getModelElementId()));
+		desc.add("opposite", getDecisionManager().getModelElement(getOtherOperation().getModelElementId()));
 
 		desc.setImage("composite.gif");
 
@@ -56,30 +53,23 @@ public class CompositeConflict extends Conflict {
 		ConflictOption theirOption = null;
 		if (meCausing) {
 			String compName = getCompositeOperation().getCompositeName();
-			myOption = new ConflictOption((compName == null) ? "" : compName,
-					OptionType.MyOperation);
+			myOption = new ConflictOption((compName == null) ? "" : compName, OptionType.MyOperation);
 			myOption.addOperations(operationsA);
 
 			theirOption = new ConflictOption("Change related to "
-					+ DecisionUtil.getClassAndName(getDecisionManager()
-							.getModelElement(
-									getOtherOperation().getModelElementId())),
-					OptionType.TheirOperation);
+				+ DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
+					getOtherOperation().getModelElementId())), OptionType.TheirOperation);
 			theirOption.addOperations(operationsB);
 			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
 			myOption = new ConflictOption("Change related to "
-					+ DecisionUtil.getClassAndName(getDecisionManager()
-							.getModelElement(
-									getOtherOperation().getModelElementId())),
-					OptionType.MyOperation);
+				+ DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
+					getOtherOperation().getModelElementId())), OptionType.MyOperation);
 			myOption.addOperations(operationsB);
 			myOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 
 			String compName = getCompositeOperation().getCompositeName();
-			theirOption = new ConflictOption(
-					(compName == null) ? "" : compName,
-					OptionType.TheirOperation);
+			theirOption = new ConflictOption((compName == null) ? "" : compName, OptionType.TheirOperation);
 			theirOption.addOperations(operationsA);
 		}
 		options.add(myOption);

@@ -23,12 +23,11 @@ public class ValidationListener implements IValidationListener {
 	 * {@inheritDoc}
 	 */
 	public void validationOccurred(ValidationEvent event) {
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		ValidationView validationView = null;
 		try {
 			validationView = (ValidationView) page
-					.showView("org.unicase.workspace.ui.views.validationview.ValidationView");
+				.showView("org.unicase.workspace.ui.views.validationview.ValidationView");
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}

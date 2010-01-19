@@ -30,39 +30,32 @@ public class EventLogger {
 		projectSpace = WorkspaceManager.getProjectSpace(project);
 	}
 
-	public void createMergeEvent(PrimaryVersionSpec base,
-			PrimaryVersionSpec target, int numberOfConflicts,
-			List<AbstractOperation> localChanges) {
+	public void createMergeEvent(PrimaryVersionSpec base, PrimaryVersionSpec target, int numberOfConflicts,
+		List<AbstractOperation> localChanges) {
 		MergeEvent mergeEvent = EventsFactory.eINSTANCE.createMergeEvent();
 		mergeEvent.setBaseVersion((PrimaryVersionSpec) EcoreUtil.copy(base));
-		mergeEvent
-				.setTargetVersion((PrimaryVersionSpec) EcoreUtil.copy(target));
+		mergeEvent.setTargetVersion((PrimaryVersionSpec) EcoreUtil.copy(target));
 		mergeEvent.setNumberOfConflicts(numberOfConflicts);
 		for (AbstractOperation op : localChanges) {
-			mergeEvent.getLocalChanges().add(
-					(AbstractOperation) EcoreUtil.copy(op));
+			mergeEvent.getLocalChanges().add((AbstractOperation) EcoreUtil.copy(op));
 		}
 		addEvent(mergeEvent);
 	}
 
 	public void optionSelected(Conflict conflict) {
-		MergeChoiceEvent choiceEvent = EventsFactory.eINSTANCE
-				.createMergeChoiceEvent();
+		MergeChoiceEvent choiceEvent = EventsFactory.eINSTANCE.createMergeChoiceEvent();
 		String attribute = conflict.getConflictContext().getAttribute();
 		choiceEvent.setContextFeature(attribute);
 
-		ModelElement modelElement = conflict.getConflictContext()
-				.getModelElement();
+		ModelElement modelElement = conflict.getConflictContext().getModelElement();
 		if (modelElement != null) {
-			choiceEvent
-					.setContextModelElement(modelElement.getModelElementId());
+			choiceEvent.setContextModelElement(modelElement.getModelElementId());
 		}
 
 		if (OptionType.MyOperation.equals(conflict.getSolution().getType())) {
 			choiceEvent.setSelection(MergeChoiceSelection.MINE);
 			addOperations(conflict, choiceEvent);
-		} else if (OptionType.TheirOperation.equals(conflict.getSolution()
-				.getType())) {
+		} else if (OptionType.TheirOperation.equals(conflict.getSolution().getType())) {
 			choiceEvent.setSelection(MergeChoiceSelection.THEIR);
 			addOperations(conflict, choiceEvent);
 		} else if (conflict.getSolution() instanceof MergeTextOption) {
@@ -70,8 +63,7 @@ public class EventLogger {
 			addOperations(conflict, choiceEvent);
 		} else if (conflict.getSolution() instanceof IssueOption) {
 			choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
-			choiceEvent.setCreatedIssueName(((IssueOption) conflict
-					.getSolution()).getOptionLabel());
+			choiceEvent.setCreatedIssueName(((IssueOption) conflict.getSolution()).getOptionLabel());
 		}
 
 		addEvent(choiceEvent);
@@ -107,8 +99,7 @@ public class EventLogger {
 	}
 
 	private void createGlobalChoiceEvent(MergeGlobalChoiceSelection type) {
-		MergeGlobalChoiceEvent globalChoiceEvent = EventsFactory.eINSTANCE
-				.createMergeGlobalChoiceEvent();
+		MergeGlobalChoiceEvent globalChoiceEvent = EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent();
 		globalChoiceEvent.setSelection(type);
 		addEvent(globalChoiceEvent);
 	}

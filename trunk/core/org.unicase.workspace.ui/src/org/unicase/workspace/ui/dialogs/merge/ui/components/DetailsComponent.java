@@ -49,13 +49,10 @@ public class DetailsComponent extends Section {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
-			if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_MULTILINE)) {
+			if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_MULTILINE)) {
 				new MultilineWidget(client, decisionBox, option);
-			} else if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_OTHERINVOLVED)) {
-				new OtherInvolvedWidget(client, decisionBox
-						.getDecisionManager(), option);
+			} else if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_OTHERINVOLVED)) {
+				new OtherInvolvedWidget(client, decisionBox.getDecisionManager(), option);
 			}
 		}
 

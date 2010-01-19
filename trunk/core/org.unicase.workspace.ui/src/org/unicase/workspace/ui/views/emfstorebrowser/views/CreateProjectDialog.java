@@ -37,10 +37,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent shell
-	 * @param session
-	 *            the target usersession
+	 * @param parent the parent shell
+	 * @param session the target usersession
 	 */
 	public CreateProjectDialog(Shell parent, Usersession session) {
 		super(parent);
@@ -69,8 +67,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(
-				defaultMargins.x, defaultMargins.y).generateLayout(contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(
+			contents);
 
 		return contents;
 	}
@@ -86,12 +84,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 				try {
 
 					if (session != null) {
-						session.createProject(txtProjectName.getText(),
-								txtProjectDesc.getText());
+						session.createProject(txtProjectName.getText(), txtProjectDesc.getText());
 					} else {
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.createLocalProject(txtProjectName.getText(),
-										txtProjectDesc.getText());
+						WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject(
+							txtProjectName.getText(), txtProjectDesc.getText());
 					}
 
 				} catch (AccessControlException e) {

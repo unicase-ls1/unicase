@@ -13,8 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
- * Provides proper coloring for given AbstractOperations according to their
- * OperationState.
+ * Provides proper coloring for given AbstractOperations according to their OperationState.
  * 
  * @author Shterev
  */
@@ -25,18 +24,14 @@ public class OperationColorLabelProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param map
-	 *            mapping between {@link AbstractOperation}s and
-	 *            {@link OperationState}s
+	 * @param map mapping between {@link AbstractOperation}s and {@link OperationState}s
 	 */
-	public OperationColorLabelProvider(
-			HashMap<AbstractOperation, OperationState> map) {
+	public OperationColorLabelProvider(HashMap<AbstractOperation, OperationState> map) {
 		this.map = map;
 	}
 
 	/**
-	 * @param op
-	 *            the abstract operation
+	 * @param op the abstract operation
 	 * @return the color for this op
 	 */
 	public Color getColor(AbstractOperation op) {

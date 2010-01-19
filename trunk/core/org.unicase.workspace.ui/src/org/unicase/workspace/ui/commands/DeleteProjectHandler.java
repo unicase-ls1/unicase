@@ -51,8 +51,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 
 	private void deleteProjectSpace(final ProjectSpace projectSpace) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder
-				.append("Do you really want to delete your local copy of project \"");
+		stringBuilder.append("Do you really want to delete your local copy of project \"");
 		stringBuilder.append(projectSpace.getProjectName());
 		stringBuilder.append("\"");
 		if (projectSpace.getBaseVersion() != null) {
@@ -62,30 +61,24 @@ public class DeleteProjectHandler extends AbstractHandler {
 		stringBuilder.append("?");
 		String message = stringBuilder.toString();
 
-		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-				message, MessageDialog.QUESTION, new String[] { "Yes", "No" },
-				0);
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, message, MessageDialog.QUESTION,
+			new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
 		if (result == 0) {
 
-			Workspace currentWorkspace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace();
+			Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 			// close all open editors before deleting
-			IWorkbenchPage wbpage = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
+			IWorkbenchPage wbpage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IEditorReference[] editors = wbpage.getEditorReferences();
 			for (IEditorReference editorReference : editors) {
 				try {
 					if (editorReference.getEditorInput() instanceof MEEditorInput) {
-						MEEditorInput editorInput = (MEEditorInput) editorReference
-								.getEditorInput();
-						if (projectSpace.getProject().equals(
-								editorInput.getModelElement().getProject())) {
+						MEEditorInput editorInput = (MEEditorInput) editorReference.getEditorInput();
+						if (projectSpace.getProject().equals(editorInput.getModelElement().getProject())) {
 							// don't ask for saving, because we delete the
 							// project anyways
-							wbpage.closeEditor(
-									editorReference.getEditor(false), false);
+							wbpage.closeEditor(editorReference.getEditor(false), false);
 						}
 					}
 					// TODO: AS: add delete project observer / ext.point
@@ -109,8 +102,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 			try {
 				currentWorkspace.deleteProjectSpace(projectSpace);
 			} catch (IOException e) {
-				DialogHandler.showExceptionDialog(
-						"Couldn't delete project files in file system.", e);
+				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
 			}
 
 		}

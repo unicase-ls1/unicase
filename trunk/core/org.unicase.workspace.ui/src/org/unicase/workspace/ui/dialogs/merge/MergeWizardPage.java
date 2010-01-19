@@ -41,8 +41,7 @@ public class MergeWizardPage extends WizardPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param pageName
-	 *            page name
+	 * @param pageName page name
 	 * @param myChangePackage
 	 * @param theirChangePackages
 	 * @param project
@@ -52,7 +51,7 @@ public class MergeWizardPage extends WizardPage {
 		this.decisionManager = decisionManager;
 		setTitle("Merge Conflicts");
 		setDescription("Some of your changes conflict with changes from the repository."
-				+ "\nIn order to resolve these issues, select an option for every conflict.");
+			+ "\nIn order to resolve these issues, select an option for every conflict.");
 	}
 
 	/**
@@ -64,12 +63,10 @@ public class MergeWizardPage extends WizardPage {
 		Composite topBar = createTopBar(parent);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(topBar);
 
-		final ScrolledComposite scrolledComposite = new ScrolledComposite(
-				parent, SWT.H_SCROLL | SWT.V_SCROLL);
+		final ScrolledComposite scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-				.grab(true, true).applyTo(scrolledComposite);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(true, true).applyTo(scrolledComposite);
 
 		final Composite client = new Composite(scrolledComposite, SWT.NONE);
 		client.setLayout(new GridLayout());
@@ -80,8 +77,7 @@ public class MergeWizardPage extends WizardPage {
 
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
-			decisionBoxes.add(new DecisionBox(client, decisionManager,
-					colorSwitcher.getColor(), conflict));
+			decisionBoxes.add(new DecisionBox(client, decisionManager, colorSwitcher.getColor(), conflict));
 		}
 
 		// debugButton(client);
@@ -127,13 +123,11 @@ public class MergeWizardPage extends WizardPage {
 
 		Button accecptMine = new Button(composite, SWT.PUSH);
 		accecptMine.setText("Keep All My Changes");
-		accecptMine.addSelectionListener(new SelectAllSelectionListener(
-				OptionType.MyOperation));
+		accecptMine.addSelectionListener(new SelectAllSelectionListener(OptionType.MyOperation));
 
 		Button accecptTheirs = new Button(composite, SWT.PUSH);
 		accecptTheirs.setText("Keep All Their Changes");
-		accecptTheirs.addSelectionListener(new SelectAllSelectionListener(
-				OptionType.TheirOperation));
+		accecptTheirs.addSelectionListener(new SelectAllSelectionListener(OptionType.TheirOperation));
 
 		// ProgressBar progressBar = new ProgressBar(composite, SWT.SMOOTH);
 		// progressBar.setSelection(0);
@@ -179,8 +173,7 @@ public class MergeWizardPage extends WizardPage {
 
 		public Color getColor() {
 			color = !color;
-			return (color) ? DecisionConfig.getFirstDecisionBoxColor()
-					: DecisionConfig.getSecondDecisionBoxColor();
+			return (color) ? DecisionConfig.getFirstDecisionBoxColor() : DecisionConfig.getSecondDecisionBoxColor();
 		}
 	}
 

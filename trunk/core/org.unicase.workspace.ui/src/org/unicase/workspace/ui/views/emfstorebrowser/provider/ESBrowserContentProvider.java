@@ -40,8 +40,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param usersession
-	 *            the usersession used for logging in
+	 * @param usersession the usersession used for logging in
 	 */
 	public ESBrowserContentProvider(Usersession usersession) {
 		super(new WorkspaceItemProviderAdapterFactory());
@@ -49,8 +48,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * @return the HashMap mapping ProjectInfos with their corresponding
-	 *         ServerInfo parents
+	 * @return the HashMap mapping ProjectInfos with their corresponding ServerInfo parents
 	 */
 	public HashMap<ProjectInfo, ServerInfo> getProjectServerMap() {
 		return projectServerMap;
@@ -75,12 +73,10 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 		} else if (object instanceof ServerInfo) {
 			final ServerInfo serverInfo = (ServerInfo) object;
 
-			List<ProjectInfo> pis = new ContentProviderRecordingCommand(
-					session, serverInfo).run();
+			List<ProjectInfo> pis = new ContentProviderRecordingCommand(session, serverInfo).run();
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update(
-							"org.unicase.ui.esbrowser.LoginDecorator");
+					PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.esbrowser.LoginDecorator");
 				}
 			});
 			for (ProjectInfo pi : pis) {
@@ -88,8 +84,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			}
 			return pis.toArray();
 		}
-		throw new IllegalStateException("Received parent node of unkown type: "
-				+ object.getClass());
+		throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
 	}
 
 	/**
@@ -116,15 +111,13 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 * 
 	 * @author shterev
 	 */
-	private class ContentProviderRecordingCommand extends
-			UnicaseCommandWithResult<List<ProjectInfo>> {
+	private class ContentProviderRecordingCommand extends UnicaseCommandWithResult<List<ProjectInfo>> {
 
 		private ServerInfo serverInfo;
 		private Usersession session;
 		private List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 
-		public ContentProviderRecordingCommand(Usersession usersession,
-				ServerInfo serverInfo) {
+		public ContentProviderRecordingCommand(Usersession usersession, ServerInfo serverInfo) {
 			this.serverInfo = serverInfo;
 			this.session = usersession;
 		}
@@ -136,8 +129,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			// if no usersession has been set yet or if the current one is not
 			// logged in
 			if (session == null || !session.isLoggedIn()) {
-				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
-						.getDisplay().getActiveShell(), session, serverInfo);
+				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session,
+					serverInfo);
 				dialog.open();
 
 				// the login has been canceled and the project list should be
@@ -156,8 +149,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			if (session != null && session.isLoggedIn()) {
 				try {
 					serverInfo.getProjectInfos().clear();
-					serverInfo.getProjectInfos().addAll(
-							session.getRemoteProjectList());
+					serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					result = serverInfo.getProjectInfos();
 					accessControl = new AccessControlHelper(session);

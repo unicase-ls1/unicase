@@ -11,8 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * Composite for listing local/remote changes using a tree viewer with
- * selectable checkboxes.
+ * Composite for listing local/remote changes using a tree viewer with selectable checkboxes.
  * 
  * @author Shterev
  */
@@ -26,10 +25,8 @@ public class CheckboxTreeComposite extends TreeComposite {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent compostie
-	 * @param style
-	 *            the rendering style
+	 * @param parent the parent compostie
+	 * @param style the rendering style
 	 */
 	public CheckboxTreeComposite(Composite parent, int style) {
 		super(parent, style);

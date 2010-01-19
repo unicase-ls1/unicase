@@ -32,8 +32,7 @@ public class ImportChangesHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		String fn = dialog.open();
@@ -44,16 +43,15 @@ public class ImportChangesHandler extends AbstractHandler {
 		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
 
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Import changes...", 100);
+					progressDialog.getProgressMonitor().beginTask("Import changes...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.importLocalChanges(file.getAbsolutePath());
 				} catch (IOException e) {
@@ -65,8 +63,7 @@ public class ImportChangesHandler extends AbstractHandler {
 
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Import",
-				"Imported changes from file " + file.getAbsolutePath());
+		MessageDialog.openInformation(null, "Import", "Imported changes from file " + file.getAbsolutePath());
 		return null;
 	}
 

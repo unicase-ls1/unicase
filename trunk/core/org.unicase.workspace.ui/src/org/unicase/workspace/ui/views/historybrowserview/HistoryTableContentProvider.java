@@ -12,8 +12,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 
 /**
- * . This is the content provider for versions table on HistroyBrowser's browser
- * tab.
+ * . This is the content provider for versions table on HistroyBrowser's browser tab.
  * 
  * @author Hodaie
  */
@@ -23,8 +22,7 @@ public class HistoryTableContentProvider extends AdapterFactoryContentProvider {
 	 * . Constructor
 	 */
 	public HistoryTableContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 

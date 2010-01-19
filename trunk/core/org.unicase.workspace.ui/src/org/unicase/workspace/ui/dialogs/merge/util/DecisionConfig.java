@@ -17,21 +17,18 @@ public class DecisionConfig {
 
 	public static final String WIDGET_MULTILINE = "org.unicase.merge.widget.multiline";
 
-	public static final String WIDGET_MULTILINE_EDITABLE = WIDGET_MULTILINE
-			+ SEPERATOR + EDITABLE;
+	public static final String WIDGET_MULTILINE_EDITABLE = WIDGET_MULTILINE + SEPERATOR + EDITABLE;
 
 	public static final String WIDGET_OTHERINVOLVED = "org.unicase.merge.widget.otherinvolved";
 
 	public static void initFonts(FontRegistry fontRegistry) {
-		FontData[] fontData = JFaceResources.getDialogFontDescriptor()
-				.getFontData();
+		FontData[] fontData = JFaceResources.getDialogFontDescriptor().getFontData();
 		if (fontData.length > 0) {
 			fontData[0].setStyle(SWT.ITALIC);
 			fontData[0].setHeight(fontData[0].getHeight() - 1);
 		}
 		fontRegistry.put("titleLabel", fontData);
-		fontRegistry.put("content", JFaceResources.getDialogFontDescriptor()
-				.getFontData());
+		fontRegistry.put("content", JFaceResources.getDialogFontDescriptor().getFontData());
 	}
 
 	public static Color getOptionSelectedBack() {

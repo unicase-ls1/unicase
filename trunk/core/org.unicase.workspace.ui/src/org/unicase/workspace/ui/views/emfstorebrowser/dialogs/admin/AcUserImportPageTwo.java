@@ -46,8 +46,7 @@ public class AcUserImportPageTwo extends WizardPage {
 	}
 
 	/**
-	 * @param parent
-	 *            composite, that will be filled.
+	 * @param parent composite, that will be filled.
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
@@ -74,9 +73,8 @@ public class AcUserImportPageTwo extends WizardPage {
 		// http://jmesnil.net/weblog/2007/02/26/add-a-filter-to-a-treeviewer/
 		// Due to compatibility to ganymede
 		final PatternFilter patternFilter = new PatternFilter();
-		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK
-				| SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL,
-				patternFilter);
+		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK | SWT.BORDER | SWT.MULTI | SWT.H_SCROLL
+			| SWT.V_SCROLL, patternFilter);
 
 		gridData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
 		gridData.horizontalSpan = 2;
@@ -158,8 +156,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		TreeItem[] items = item.getItems();
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].getChecked()) {
-				this.wrappedOrgUnits
-						.add((ImportItemWrapper) items[i].getData());
+				this.wrappedOrgUnits.add((ImportItemWrapper) items[i].getData());
 			}
 			traverse(items[i]);
 		}
@@ -170,8 +167,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		TreeItem[] items = tree.getItems();
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].getChecked()) {
-				this.wrappedOrgUnits
-						.add((ImportItemWrapper) items[i].getData());
+				this.wrappedOrgUnits.add((ImportItemWrapper) items[i].getData());
 			}
 			traverse(items[i]);
 		}
@@ -179,12 +175,10 @@ public class AcUserImportPageTwo extends WizardPage {
 	}
 
 	/**
-	 * Initializes the page, i.e. this method is not called at the time this
-	 * class gets instantiated but later, when the page is going to get
-	 * displayed.
+	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
+	 * page is going to get displayed.
 	 * 
-	 * @param src
-	 *            the selected ImportSource
+	 * @param src the selected ImportSource
 	 */
 	public void init(ImportSource src) {
 		AcUserImportWizard wizard = (AcUserImportWizard) getWizard();

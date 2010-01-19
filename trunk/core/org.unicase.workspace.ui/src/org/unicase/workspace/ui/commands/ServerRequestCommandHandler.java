@@ -15,8 +15,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * A super class to handle all requests made to the server that require a
- * RecordingCommand.
+ * A super class to handle all requests made to the server that require a RecordingCommand.
  * 
  * @author Shterev
  */
@@ -58,18 +57,16 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 	}
 
 	/**
-	 * @return the modelelement that is in the context of the handler's
-	 *         execution event. It's a cached value in case the event gets
-	 *         modified.
+	 * @return the modelelement that is in the context of the handler's execution event. It's a cached value in case the
+	 *         event gets modified.
 	 */
 	public ProjectSpace getProjectSpace() {
 		return projectSpace;
 	}
 
 	/**
-	 * @return the modelelement that is in the context of the handler's
-	 *         execution event. It's a cached value in case the event gets
-	 *         modified.
+	 * @return the modelelement that is in the context of the handler's execution event. It's a cached value in case the
+	 *         event gets modified.
 	 */
 	public ModelElement getModelElement() {
 		return modelElement;
@@ -78,8 +75,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 	/**
 	 * Setter for the modelElement.
 	 * 
-	 * @param modelElement
-	 *            the modelElement.
+	 * @param modelElement the modelElement.
 	 */
 	private void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
