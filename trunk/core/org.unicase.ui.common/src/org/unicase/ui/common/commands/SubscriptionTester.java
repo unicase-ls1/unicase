@@ -13,6 +13,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -43,8 +44,14 @@ public class SubscriptionTester extends PropertyTester {
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				DashboardKey.SUBSCRIPTIONS);
-			EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
-			ArrayList<EObject> propertyList = new ArrayList<EObject>(Arrays.asList(propertyArray));
+			ArrayList<EObject> propertyList = new ArrayList<EObject>();
+			try {
+				EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
+				propertyList.addAll(Arrays.asList(propertyArray));
+			}
+			catch (SerializationException e) {
+				//ignore, otherwise log is full of these message, will already logged by checkout and dashboard anyway
+			}
 			boolean contains = propertyList.contains(modelElement.getModelElementId());
 			if (property.equals(DOES_CONTAIN)) {
 				return contains;

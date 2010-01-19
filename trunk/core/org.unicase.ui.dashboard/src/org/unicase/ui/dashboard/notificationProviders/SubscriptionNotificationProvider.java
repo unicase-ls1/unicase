@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -67,7 +68,16 @@ public class SubscriptionNotificationProvider extends
 		result = new ArrayList<ESNotification>();
 		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(
 				projectSpace, DashboardKey.SUBSCRIPTIONS);
-		subscriptionIds = Arrays.asList(property.getEObjectArrayProperty());
+		
+		subscriptionIds = new ArrayList<EObject>();
+		try {
+			EObject[] arrayProperty = property.getEObjectArrayProperty();
+			subscriptionIds.addAll(Arrays.asList(arrayProperty));
+		}
+		catch (SerializationException e) {
+			//ignore but log
+			ModelUtil.logException("Subscription Ids could not be collected!", e);
+		}
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}

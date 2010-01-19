@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.accesscontrol;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Org Unit Properties</b></em>'. <!-- end-user-doc
@@ -154,7 +155,8 @@ public interface OrgUnitProperty extends EObject {
 
 	/**
 	 * @return the EObject array value of the property or null if it doesn't exist
+	 * @throws SerializationException if deserialization fails
 	 */
-	EObject[] getEObjectArrayProperty();
+	EObject[] getEObjectArrayProperty() throws SerializationException;
 
 } // OrgUnitProperties
