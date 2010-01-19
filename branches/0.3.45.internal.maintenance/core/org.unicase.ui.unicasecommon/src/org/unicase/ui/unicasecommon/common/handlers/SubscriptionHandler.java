@@ -7,7 +7,7 @@
 package org.unicase.ui.unicasecommon.common.handlers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -68,8 +68,8 @@ public class SubscriptionHandler extends AbstractHandler {
 		}
 
 		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-		EObject[] arrayProperty = property.getEObjectArrayProperty();
-		final ArrayList<EObject> properties = new ArrayList<EObject>(Arrays.asList(arrayProperty));
+
+		final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
 
 		String feedback;
 		ModelElementId modelElementId = modelElement.getModelElementId();

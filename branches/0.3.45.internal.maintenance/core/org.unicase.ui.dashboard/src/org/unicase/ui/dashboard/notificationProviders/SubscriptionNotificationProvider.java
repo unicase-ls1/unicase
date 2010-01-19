@@ -6,7 +6,6 @@
 package org.unicase.ui.dashboard.notificationProviders;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -67,7 +66,9 @@ public class SubscriptionNotificationProvider extends
 		result = new ArrayList<ESNotification>();
 		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(
 				projectSpace, DashboardKey.SUBSCRIPTIONS);
-		subscriptionIds = Arrays.asList(property.getEObjectArrayProperty());
+		
+		subscriptionIds = property.getEObjectListProperty(new ArrayList<EObject>());
+			
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}

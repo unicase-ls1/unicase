@@ -7,7 +7,7 @@
 package org.unicase.ui.common.commands;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
@@ -43,8 +43,7 @@ public class SubscriptionTester extends PropertyTester {
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				DashboardKey.SUBSCRIPTIONS);
-			EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
-			ArrayList<EObject> propertyList = new ArrayList<EObject>(Arrays.asList(propertyArray));
+			List<EObject> propertyList = orgUnitProperty.getEObjectListProperty(new ArrayList<EObject>());
 			boolean contains = propertyList.contains(modelElement.getModelElementId());
 			if (property.equals(DOES_CONTAIN)) {
 				return contains;

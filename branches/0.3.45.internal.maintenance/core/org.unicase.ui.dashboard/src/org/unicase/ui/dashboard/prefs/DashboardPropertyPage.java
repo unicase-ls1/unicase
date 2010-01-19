@@ -478,8 +478,8 @@ public class DashboardPropertyPage extends PropertyPage {
 		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
 			OrgUnitProperty subscriptionsProperty = PreferenceManager.INSTANCE
 					.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-			EObject[] subscriptionsIds = subscriptionsProperty
-					.getEObjectArrayProperty();
+			List<EObject> subscriptionsIds = subscriptionsProperty.getEObjectListProperty(new ArrayList<EObject>());
+			
 			for (EObject id : subscriptionsIds) {
 				if (id instanceof ModelElementId) {
 					ModelElement modelElement = project
@@ -495,8 +495,8 @@ public class DashboardPropertyPage extends PropertyPage {
 		if (projectSpace.hasProperty(DashboardKey.TASKTRACE_CLASSES)) {
 			OrgUnitProperty taskTraceClassesProperty = PreferenceManager.INSTANCE
 					.getProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES);
-			EObject[] eclasses = taskTraceClassesProperty
-					.getEObjectArrayProperty();
+			List<EObject> eclasses = taskTraceClassesProperty.getEObjectListProperty(new ArrayList<EObject>());
+			
 			for (EObject eclass : eclasses) {
 				if (eclass instanceof EClass) {
 					taskTraceClasses.add((EClass) eclass);
