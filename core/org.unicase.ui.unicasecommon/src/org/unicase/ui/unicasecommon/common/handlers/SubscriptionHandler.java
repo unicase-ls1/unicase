@@ -7,7 +7,7 @@
 package org.unicase.ui.unicasecommon.common.handlers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -17,8 +17,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -71,15 +69,7 @@ public class SubscriptionHandler extends AbstractHandler {
 
 		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
 
-		EObject[] arrayProperty = new EObject[0];
-		try {
-			arrayProperty = property.getEObjectArrayProperty();
-		} catch (SerializationException e) {
-			// log but ignore
-			ModelUtil.logException("Loading Subscription ids failed!", e);
-		}
-
-		final ArrayList<EObject> properties = new ArrayList<EObject>(Arrays.asList(arrayProperty));
+		final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
 
 		String feedback;
 		ModelElementId modelElementId = modelElement.getModelElementId();
