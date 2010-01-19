@@ -30,20 +30,24 @@ public class ImportLabelProvider implements ILabelProvider {
 	/**
 	 * Constructs a FileTreeLabelProvider.
 	 * 
-	 * @param controller the controller which handles the import
+	 * @param controller
+	 *            the controller which handles the import
 	 */
 	public ImportLabelProvider(ImportController controller) {
 		this.setSource(controller.getImportSource());
 		this.listeners = new ArrayList<ILabelProviderListener>();
 
-		this.userImage = Activator.getImageDescriptor("icons/user.png").createImage();
-		this.groupImage = Activator.getImageDescriptor("icons/Group.gif").createImage();
+		this.userImage = Activator.getImageDescriptor("icons/user.png")
+				.createImage();
+		this.groupImage = Activator.getImageDescriptor("icons/Group.gif")
+				.createImage();
 	}
 
 	/**
 	 * Gets the image to display for a node in the tree.
 	 * 
-	 * @param arg0 the node
+	 * @param arg0
+	 *            the node
 	 * @return Image
 	 */
 	public Image getImage(Object arg0) {
@@ -60,7 +64,8 @@ public class ImportLabelProvider implements ILabelProvider {
 	/**
 	 * Gets the text to display for a node in the tree.
 	 * 
-	 * @param arg0 the node
+	 * @param arg0
+	 *            the node
 	 * @return String
 	 */
 	public String getText(Object arg0) {
@@ -76,11 +81,13 @@ public class ImportLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * Returns whether changes to the specified property on the specified element would affect the label for the
-	 * element.
+	 * Returns whether changes to the specified property on the specified
+	 * element would affect the label for the element.
 	 * 
-	 * @param arg0 the element
-	 * @param arg1 the property
+	 * @param arg0
+	 *            the element
+	 * @param arg1
+	 *            the property
 	 * @return boolean
 	 */
 	public boolean isLabelProperty(Object arg0, String arg1) {
@@ -90,7 +97,8 @@ public class ImportLabelProvider implements ILabelProvider {
 	/**
 	 * Adds a listener to this label provider.
 	 * 
-	 * @param arg0 the listener
+	 * @param arg0
+	 *            the listener
 	 */
 	public void addListener(ILabelProviderListener arg0) {
 		this.listeners.add(arg0);
@@ -99,14 +107,16 @@ public class ImportLabelProvider implements ILabelProvider {
 	/**
 	 * Removes the listener.
 	 * 
-	 * @param arg0 the listener to remove
+	 * @param arg0
+	 *            the listener to remove
 	 */
 	public void removeListener(ILabelProviderListener arg0) {
 		this.listeners.remove(arg0);
 	}
 
 	/**
-	 * @param source the import source
+	 * @param source
+	 *            the import source
 	 */
 	public void setSource(ImportSource source) {
 		this.source = source;

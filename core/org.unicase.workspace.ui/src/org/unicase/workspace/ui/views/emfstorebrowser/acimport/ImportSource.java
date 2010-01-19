@@ -17,20 +17,23 @@ import org.eclipse.swt.widgets.TreeItem;
 public abstract class ImportSource implements ITreeContentProvider {
 
 	/**
-	 * @param obj the object to get the children from.
+	 * @param obj
+	 *            the object to get the children from.
 	 * @return the children of the given object.
 	 */
 	public abstract Object[] getChildren(Object obj);
 
 	/**
-	 * @param obj Object from which the parent object will be returned
+	 * @param obj
+	 *            Object from which the parent object will be returned
 	 * @return the parent object of the given object
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getParent(java.lang.Object)
 	 */
 	public Object getParent(Object obj) {
 		if (obj instanceof TreeItem) {
 			if ((ImportItemWrapper) ((TreeItem) obj).getData() != null) {
-				return ((ImportItemWrapper) ((TreeItem) obj).getData()).getParentOrgUnit();
+				return ((ImportItemWrapper) ((TreeItem) obj).getData())
+						.getParentOrgUnit();
 			}
 		}
 		if (obj instanceof ImportItemWrapper) {
@@ -40,7 +43,8 @@ public abstract class ImportSource implements ITreeContentProvider {
 	}
 
 	/**
-	 * @param arg0 the object to get the information, if it has children.
+	 * @param arg0
+	 *            the object to get the information, if it has children.
 	 * @return whether the given object has children or not.
 	 */
 	public boolean hasChildren(Object arg0) {
@@ -52,13 +56,15 @@ public abstract class ImportSource implements ITreeContentProvider {
 	}
 
 	/**
-	 * @param obj The object to get the root elements from.
+	 * @param obj
+	 *            The object to get the root elements from.
 	 * @return The root elements of the given object.
 	 */
 	public abstract Object[] getElements(Object obj);
 
 	/**
-	 * @param properties the properties of the import source
+	 * @param properties
+	 *            the properties of the import source
 	 */
 	public void setOptions(Properties properties) {
 	}
@@ -69,14 +75,16 @@ public abstract class ImportSource implements ITreeContentProvider {
 	public abstract String getLabel();
 
 	/**
-	 * @param shell Shell for UI actions, if needed. This parameter can be ignored, if there is no use for it.
+	 * @param shell
+	 *            Shell for UI actions, if needed. This parameter can be
+	 *            ignored, if there is no use for it.
 	 * @return whether the initialization of the source worked or not.
 	 */
 	public abstract boolean init(Shell shell);
 
 	/**
-	 * @return Returns a little description of the current ImportSource, e.g. the server String of an LDAP server or the
-	 *         file of an CSV import.
+	 * @return Returns a little description of the current ImportSource, e.g.
+	 *         the server String of an LDAP server or the file of an CSV import.
 	 */
 	public abstract String getMessage();
 

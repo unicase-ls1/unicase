@@ -33,7 +33,8 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -44,17 +45,19 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 
 		final File file = new File(fn);
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Export workspace...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Export workspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportWorkSpace(file.getAbsolutePath());
+					WorkspaceManager.getInstance().getCurrentWorkspace()
+							.exportWorkSpace(file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -63,7 +66,8 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 				}
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Export", "Exported workspace to file " + file.getName());
+		MessageDialog.openInformation(null, "Export",
+				"Exported workspace to file " + file.getName());
 		return null;
 	}
 

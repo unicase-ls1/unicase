@@ -26,10 +26,13 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param emfProvider the default label provider.
-	 * @param visualizationHelper the visualizationHelper
+	 * @param emfProvider
+	 *            the default label provider.
+	 * @param visualizationHelper
+	 *            the visualizationHelper
 	 */
-	public OperationsDescLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
+	public OperationsDescLabelProvider(ILabelProvider emfProvider,
+			ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 	}
@@ -52,8 +55,8 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 			Image image = visualizationHelper.getImage(emfProvider, op);
 			ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
 			if (image != null && overlay != null) {
-				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, overlay,
-					OverlayImageDescriptor.LOWER_RIGHT);
+				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
+						image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
 				cell.setImage(imageDescriptor.createImage());
 			}
 		} else {

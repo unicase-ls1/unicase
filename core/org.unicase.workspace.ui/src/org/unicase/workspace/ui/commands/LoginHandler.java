@@ -14,7 +14,8 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ui.dialogs.LoginDialog;
 
 /**
- * Resolves the ACOrgUnit, opens the login dialog and handles any login procedures.
+ * Resolves the ACOrgUnit, opens the login dialog and handles any login
+ * procedures.
  * 
  * @author Shterev
  */
@@ -25,7 +26,8 @@ public class LoginHandler extends AbstractHandler {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param usersession the usersession
+	 * @param usersession
+	 *            the usersession
 	 */
 	public LoginHandler(Usersession usersession) {
 		this.usersession = usersession;
@@ -34,11 +36,13 @@ public class LoginHandler extends AbstractHandler {
 	/**
 	 * A constructor with a projectspace as an argument.
 	 * 
-	 * @param projectSpace the projectspace
+	 * @param projectSpace
+	 *            the projectspace
 	 */
 	public LoginHandler(ProjectSpace projectSpace) {
 		if (projectSpace.getUsersession() == null) {
-			throw new IllegalArgumentException("The project space is not associated with a usersession");
+			throw new IllegalArgumentException(
+					"The project space is not associated with a usersession");
 		}
 		usersession = projectSpace.getUsersession();
 	}
@@ -46,11 +50,13 @@ public class LoginHandler extends AbstractHandler {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @return true if the login was successful, false if the login was canceled.
+	 * @return true if the login was successful, false if the login was
+	 *         canceled.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		LoginDialog loginDialog = new LoginDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-			usersession, usersession.getServerInfo());
+		LoginDialog loginDialog = new LoginDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), usersession,
+				usersession.getServerInfo());
 		loginDialog.open();
 		return loginDialog.getReturnCode();
 	}

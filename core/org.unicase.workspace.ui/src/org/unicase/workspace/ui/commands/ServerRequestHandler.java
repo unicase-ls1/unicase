@@ -70,16 +70,18 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		if (projectSpace != null && projectSpace.getUsersession() != null) {
 			usersession = projectSpace.getUsersession();
 		} else {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
-			if (activeProjectSpace != null && activeProjectSpace.getUsersession() != null) {
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace();
+			if (activeProjectSpace != null
+					&& activeProjectSpace.getUsersession() != null) {
 				usersession = activeProjectSpace.getUsersession();
 			}
 		}
 	}
 
 	/**
-	 * @param usersession the usersession to set
+	 * @param usersession
+	 *            the usersession to set
 	 */
 	protected void setUsersession(Usersession usersession) {
 		this.usersession = usersession;
@@ -90,15 +92,20 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 * Wraps the run procedures and handles exceptions.
 	 * 
 	 * @return the return value of the handler.
-	 * @throws ExecutionException the {@link ExecutionException} if the LoginHandler throws one.
+	 * @throws ExecutionException
+	 *             the {@link ExecutionException} if the LoginHandler throws
+	 *             one.
 	 */
 	protected Object handleRun() throws ExecutionException {
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		Object ret = null;
 		Usersession session = getUsersession();
 		if (session == null) {
-			MessageDialog.openInformation(shell, "Information",
-				"Could not determine a proper usersession. Please make sure you have selected a project.");
+			MessageDialog
+					.openInformation(
+							shell,
+							"Information",
+							"Could not determine a proper usersession. Please make sure you have selected a project.");
 			return null;
 		}
 
@@ -106,7 +113,8 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(shell);
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(taskTitle, IProgressMonitor.UNKNOWN);
+		progressDialog.getProgressMonitor().beginTask(taskTitle,
+				IProgressMonitor.UNKNOWN);
 
 		try {
 			session.updateACUser();
@@ -114,10 +122,13 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 				ret = run();
 			} catch (ClientVersionOutOfDateException e) {
 				MessageDialog
-					.openError(shell, "Client version outdated",
-						"The client version is incompatible with the server. Please update your plugins via the Update Manager.");
+						.openError(
+								shell,
+								"Client version outdated",
+								"The client version is incompatible with the server. Please update your plugins via the Update Manager.");
 			} catch (InvalidVersionSpecException e) {
-				DialogHandler.showErrorDialog("The requested revision was invalid");
+				DialogHandler
+						.showErrorDialog("The requested revision was invalid");
 			}
 		} catch (SessionTimedOutException e) {
 			if (loginHandler.execute(getEvent()).equals(Window.OK)) {
@@ -141,7 +152,8 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		} catch (RuntimeException e) {
 
 			DialogHandler.showExceptionDialog(e);
-			WorkspaceUtil.logWarning("RuntimeException in " + ServerRequestHandler.class.getName(), e);
+			WorkspaceUtil.logWarning("RuntimeException in "
+					+ ServerRequestHandler.class.getName(), e);
 		}
 
 		progressDialog.close();
@@ -151,16 +163,18 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	// END SUPRESS CATCH EXCEPTION
 
 	/**
-	 * Runs the actions that should be carried out by this handler. Replaces the standard execute() method, which it is
-	 * actually wrapped in.
+	 * Runs the actions that should be carried out by this handler. Replaces the
+	 * standard execute() method, which it is actually wrapped in.
 	 * 
-	 * @throws EmfStoreException forwards any server exceptions that may be thrown.
+	 * @throws EmfStoreException
+	 *             forwards any server exceptions that may be thrown.
 	 * @return the return object for this handler.
 	 */
 	protected abstract Object run() throws EmfStoreException;
 
 	/**
-	 * @param taskTitle the taskTitle to set
+	 * @param taskTitle
+	 *            the taskTitle to set
 	 */
 	public void setTaskTitle(String taskTitle) {
 		this.taskTitle = taskTitle;
@@ -174,7 +188,8 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	}
 
 	/**
-	 * @param event the event to set
+	 * @param event
+	 *            the event to set
 	 */
 	public void setEvent(ExecutionEvent event) {
 		this.event = event;

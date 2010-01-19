@@ -10,8 +10,9 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType
 
 public class DiagramLayoutConflict extends AttributeConflict {
 
-	public DiagramLayoutConflict(List<AbstractOperation> myOperations, List<AbstractOperation> theirOperations,
-		DecisionManager decisionManager) {
+	public DiagramLayoutConflict(List<AbstractOperation> myOperations,
+			List<AbstractOperation> theirOperations,
+			DecisionManager decisionManager) {
 		super(myOperations, theirOperations, decisionManager);
 	}
 
@@ -19,7 +20,7 @@ public class DiagramLayoutConflict extends AttributeConflict {
 	protected ConflictDescription initConflictDescription() {
 		ConflictDescription description = super.initConflictDescription();
 		description
-			.setDescription("The diagram layout of [modelelement], which you have edited, was edited on the repository as well.");
+				.setDescription("The diagram layout of [modelelement], which you have edited, was edited on the repository as well.");
 		return description;
 	}
 

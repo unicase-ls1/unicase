@@ -32,7 +32,8 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase change package (*.ucc)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = {
+			"Unicase change package (*.ucc)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -46,12 +47,14 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectSpaceHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectSpaceHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
-		String initialFilename = "projectspace_" + projectSpace.getProjectName() + "@"
-			+ projectSpace.getBaseVersion().getIdentifier() + ".ucc";
+		String initialFilename = "projectspace_"
+				+ projectSpace.getProjectName() + "@"
+				+ projectSpace.getBaseVersion().getIdentifier() + ".ucc";
 
 		dialog.setFileName(initialFilename);
 
@@ -62,21 +65,23 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 
 		final File file = new File(fn);
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Export projectspace...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Export projectspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					// OW: why is the project exported as well? who's idea was
 					// that?
 					// projectSpace.exportProject(file.getAbsolutePath());
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportProjectSpace(projectSpace,
-						file.getAbsolutePath());
+					WorkspaceManager.getInstance().getCurrentWorkspace()
+							.exportProjectSpace(projectSpace,
+									file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -85,7 +90,8 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 				}
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Export", "Exported projectspace to file " + file.getName());
+		MessageDialog.openInformation(null, "Export",
+				"Exported projectspace to file " + file.getName());
 		return null;
 	}
 }

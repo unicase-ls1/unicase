@@ -40,8 +40,10 @@ public class IssueOption extends CustomConflictOption {
 	@Override
 	public boolean optionChosen() {
 		String label = getOptionLabel();
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), "Issue Name",
-			"Please enter a name for the issue", (label == null) ? "" : label, null);
+		InputDialog inputDialog = new InputDialog(Display.getCurrent()
+				.getActiveShell(), "Issue Name",
+				"Please enter a name for the issue", (label == null) ? ""
+						: label, null);
 		inputDialog.setBlockOnOpen(true);
 		int open = inputDialog.open();
 		if (open == 0) {
@@ -63,50 +65,65 @@ public class IssueOption extends CustomConflictOption {
 
 	public void createOperation() {
 		Project project = conflict.getDecisionManager().getProject();
-		ConflictOption myOption = conflict.getOptionOfType(OptionType.MyOperation);
+		ConflictOption myOption = conflict
+				.getOptionOfType(OptionType.MyOperation);
 		List<AbstractOperation> myOperations = myOption.getOperations();
-		ConflictOption theirOption = conflict.getOptionOfType(OptionType.TheirOperation);
+		ConflictOption theirOption = conflict
+				.getOptionOfType(OptionType.TheirOperation);
 		List<AbstractOperation> theirOptions = theirOption.getOperations();
 
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
 		EObject eContainer = project;
 		if (myOperations.size() > 0) {
-			ModelElement modelElement = project.getModelElement(myOperations.get(0).getModelElementId());
+			ModelElement modelElement = project.getModelElement(myOperations
+					.get(0).getModelElementId());
 			if (modelElement != null) {
 				eContainer = modelElement;
 			}
 
 		}
 
-		CompositeOperationHandle compositeOperation = projectSpace.beginCompositeOperation();
+		CompositeOperationHandle compositeOperation = projectSpace
+				.beginCompositeOperation();
 
 		MergingIssue mergeIssue = ChangeFactory.eINSTANCE.createMergingIssue();
 		mergeIssue.setName(getStrippedOptionLabel());
-		mergeIssue.setDescription(conflict.getConflictDescription().getResolvedDescription());
-		mergeIssue.setBaseVersion(conflict.getDecisionManager().getBaseVersion());
-		mergeIssue.setTargetVersion(conflict.getDecisionManager().getTargetVersion());
+		mergeIssue.setDescription(conflict.getConflictDescription()
+				.getResolvedDescription());
+		mergeIssue.setBaseVersion(conflict.getDecisionManager()
+				.getBaseVersion());
+		mergeIssue.setTargetVersion(conflict.getDecisionManager()
+				.getTargetVersion());
 
-		MergingProposal myProposal = ChangeFactory.eINSTANCE.createMergingProposal();
+		MergingProposal myProposal = ChangeFactory.eINSTANCE
+				.createMergingProposal();
 		mergeIssue.getProposals().add(myProposal);
 		myProposal.setName("My Changes");
 		for (AbstractOperation myOp : myOperations) {
-			myProposal.getPendingOperations().add((AbstractOperation) EcoreUtil.copy(myOp));
+			myProposal.getPendingOperations().add(
+					(AbstractOperation) EcoreUtil.copy(myOp));
 		}
 
-		MergingProposal theirProposal = ChangeFactory.eINSTANCE.createMergingProposal();
+		MergingProposal theirProposal = ChangeFactory.eINSTANCE
+				.createMergingProposal();
 		mergeIssue.getProposals().add(theirProposal);
 		theirProposal.setName("Changes from Repository");
 		for (AbstractOperation theirOp : theirOptions) {
-			theirProposal.getPendingOperations().add((AbstractOperation) EcoreUtil.copy(theirOp));
+			theirProposal.getPendingOperations().add(
+					(AbstractOperation) EcoreUtil.copy(theirOp));
 		}
 
 		addToContainer(mergeIssue, eContainer);
 
 		try {
-			compositeOperation.end("Created Merge Issue", "Created a merge issue after updating from version "
-				+ conflict.getDecisionManager().getBaseVersion().getIdentifier() + " to "
-				+ conflict.getDecisionManager().getTargetVersion().getIdentifier() + ".", mergeIssue
-				.getModelElementId());
+			compositeOperation.end("Created Merge Issue",
+					"Created a merge issue after updating from version "
+							+ conflict.getDecisionManager().getBaseVersion()
+									.getIdentifier()
+							+ " to "
+							+ conflict.getDecisionManager().getTargetVersion()
+									.getIdentifier() + ".", mergeIssue
+							.getModelElementId());
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
@@ -128,9 +145,11 @@ public class IssueOption extends CustomConflictOption {
 		return result;
 	}
 
-	private void addToContainer(UnicaseModelElement modelElement, EObject eContainer) {
+	private void addToContainer(UnicaseModelElement modelElement,
+			EObject eContainer) {
 		if (eContainer == null) {
-			throw new IllegalStateException("Couldn't add modelelement to project.");
+			throw new IllegalStateException(
+					"Couldn't add modelelement to project.");
 		}
 		if (eContainer instanceof LeafSection) {
 			((LeafSection) eContainer).getModelElements().add(modelElement);

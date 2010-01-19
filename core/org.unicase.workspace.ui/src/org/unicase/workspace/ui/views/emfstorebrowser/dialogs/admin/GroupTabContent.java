@@ -35,21 +35,28 @@ import org.unicase.workspace.ui.Activator;
 /**
  * @author gurcankarakoc, deser
  */
-public class GroupTabContent extends TabContent implements IPropertyChangeListener {
+public class GroupTabContent extends TabContent implements
+		IPropertyChangeListener {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
 	 */
-	public GroupTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public GroupTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 * @return Composite.
 	 */
 	@Override
@@ -78,13 +85,15 @@ public class GroupTabContent extends TabContent implements IPropertyChangeListen
 
 		};
 
-		createNewGroup.setImageDescriptor(Activator.getImageDescriptor("icons/Group.gif"));
+		createNewGroup.setImageDescriptor(Activator
+				.getImageDescriptor("icons/Group.gif"));
 		createNewGroup.setToolTipText("Create new group");
 
 		Action deleteGroup = new Action("Delete group") {
 			@Override
 			public void run() {
-				IStructuredSelection selection = (IStructuredSelection) getTableViewer().getSelection();
+				IStructuredSelection selection = (IStructuredSelection) getTableViewer()
+						.getSelection();
 				Iterator<?> iterator = selection.iterator();
 				while (iterator.hasNext()) {
 					ACGroup ou = (ACGroup) iterator.next();
@@ -97,7 +106,8 @@ public class GroupTabContent extends TabContent implements IPropertyChangeListen
 						DialogHandler.showExceptionDialog(e);
 					}
 
-					if (getForm().getCurrentInput() instanceof ACOrgUnit && getForm().getCurrentInput().equals(ou)) {
+					if (getForm().getCurrentInput() instanceof ACOrgUnit
+							&& getForm().getCurrentInput().equals(ou)) {
 						getForm().setInput(null);
 					}
 				}
@@ -105,7 +115,8 @@ public class GroupTabContent extends TabContent implements IPropertyChangeListen
 			}
 		};
 
-		deleteGroup.setImageDescriptor(Activator.getImageDescriptor("icons/delete.gif"));
+		deleteGroup.setImageDescriptor(Activator
+				.getImageDescriptor("icons/delete.gif"));
 		deleteGroup.setToolTipText("Delete group");
 
 		Action importOrgUnit = new AcUserImportAction(getAdminBroker());
@@ -142,7 +153,8 @@ public class GroupTabContent extends TabContent implements IPropertyChangeListen
 			}
 
 			public Image getColumnImage(Object element, int columnIndex) {
-				return Activator.getImageDescriptor("icons/Group.gif").createImage();
+				return Activator.getImageDescriptor("icons/Group.gif")
+						.createImage();
 			}
 
 			public String getColumnText(Object element, int columnIndex) {
@@ -173,15 +185,18 @@ public class GroupTabContent extends TabContent implements IPropertyChangeListen
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 			}
 		};
 	}
 
 	/**
-	 * Refresh the tableViewer after a property change. (Used e.g. after importing users via e.g. CSV.)
+	 * Refresh the tableViewer after a property change. (Used e.g. after
+	 * importing users via e.g. CSV.)
 	 * 
-	 * @param event The event to deal with.
+	 * @param event
+	 *            The event to deal with.
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		getTableViewer().refresh();

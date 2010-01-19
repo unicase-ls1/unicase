@@ -31,7 +31,8 @@ public class DescriptionComponent extends Composite {
 		setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label image = new Label(this, SWT.NONE);
-		image.setImage(DecisionUtil.getImage(conflict.getConflictDescription().getImage()));
+		image.setImage(DecisionUtil.getImage(conflict.getConflictDescription()
+				.getImage()));
 		image.setToolTipText(conflict.getClass().getSimpleName());
 		image.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
 		image.setBackground(parent.getBackground());
@@ -40,7 +41,8 @@ public class DescriptionComponent extends Composite {
 		String description = "";
 		for (String tmp : splitText(parent, conflict.getConflictDescription())) {
 			if (tmp.startsWith("::")) {
-				styleRanges.add(createStyleRange(description.length(), tmp.length() - 2));
+				styleRanges.add(createStyleRange(description.length(), tmp
+						.length() - 2));
 				description += tmp.substring(2);
 			} else {
 				description += tmp;
@@ -56,12 +58,14 @@ public class DescriptionComponent extends Composite {
 		group.setBackground(parent.getBackground());
 		group.setText("Conflict Description:");
 
-		StyledText styledDescription = new StyledText(group, SWT.WRAP | SWT.MULTI | SWT.READ_ONLY);
+		StyledText styledDescription = new StyledText(group, SWT.WRAP
+				| SWT.MULTI | SWT.READ_ONLY);
 		styledDescription.setEditable(false);
 		styledDescription.setEnabled(false);
 		styledDescription.setText(description + "\n");
 		styledDescription.setWordWrap(true);
-		styledDescription.setStyleRanges(styleRanges.toArray(new StyleRange[styleRanges.size()]));
+		styledDescription.setStyleRanges(styleRanges
+				.toArray(new StyleRange[styleRanges.size()]));
 		styledDescription.setBackground(parent.getBackground());
 	}
 
@@ -76,7 +80,8 @@ public class DescriptionComponent extends Composite {
 	private List<String> splitText(DecisionBox box, ConflictDescription conflict) {
 		String description = conflict.getDescription();
 		// for(String string : description.split("\\["+"[a-zA-Z]*"+"\\]")) {
-		ChangePackageVisualizationHelper visualHelper = box.getDecisionManager().getChangePackageVisualizationHelper();
+		ChangePackageVisualizationHelper visualHelper = box
+				.getDecisionManager().getChangePackageVisualizationHelper();
 		ArrayList<String> result = new ArrayList<String>();
 		for (String string : description.split("\\[")) {
 			String[] split = string.split("\\]");

@@ -13,7 +13,8 @@ public class ReferenceConflict extends Conflict {
 
 	private final Conflict conflict;
 
-	public ReferenceConflict(Conflict conflict, List<AbstractOperation> myOps, List<AbstractOperation> theirOps) {
+	public ReferenceConflict(Conflict conflict, List<AbstractOperation> myOps,
+			List<AbstractOperation> theirOps) {
 		super(myOps, theirOps, conflict.getDecisionManager(), false);
 		if (!(conflict instanceof SingleReferenceConflict || conflict instanceof MultiReferenceConflict)) {
 			throw new IllegalStateException("Only reference conflicts allowed.");

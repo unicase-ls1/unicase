@@ -13,8 +13,8 @@ import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
- * This property tester checks if current user has administrative rights upon a project. If true, then some
- * corresponding commands can be shown.
+ * This property tester checks if current user has administrative rights upon a
+ * project. If true, then some corresponding commands can be shown.
  * 
  * @author Hodaie
  */
@@ -23,11 +23,13 @@ public class IsAdminTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
-		if (receiver instanceof ProjectSpace && expectedValue instanceof Boolean) {
+	public boolean test(Object receiver, String property, Object[] args,
+			final Object expectedValue) {
+		if (receiver instanceof ProjectSpace
+				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
 			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
 				@Override
@@ -36,9 +38,12 @@ public class IsAdminTester extends PropertyTester {
 					boolean isAdmin = false;
 					if (usersession != null && usersession.getACUser() != null) {
 
-						AccessControlHelper accessControlHelper = new AccessControlHelper(usersession);
+						AccessControlHelper accessControlHelper = new AccessControlHelper(
+								usersession);
 						try {
-							accessControlHelper.checkProjectAdminAccess(projectSpace.getProjectId());
+							accessControlHelper
+									.checkProjectAdminAccess(projectSpace
+											.getProjectId());
 							isAdmin = true;
 						} catch (AccessControlException e) {
 							isAdmin = false;

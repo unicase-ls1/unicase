@@ -25,7 +25,8 @@ public class DecisionBox extends Composite {
 	private OptionComponent optionComponent;
 	private DetailsComponent detailsComponent;
 
-	public DecisionBox(Composite parent, DecisionManager decisionManager, Color color, Conflict conflict) {
+	public DecisionBox(Composite parent, DecisionManager decisionManager,
+			Color color, Conflict conflict) {
 		super(parent, SWT.BORDER);
 		this.decisionManager = decisionManager;
 		this.conflict = conflict;
@@ -65,8 +66,11 @@ public class DecisionBox extends Composite {
 	}
 
 	public void layoutPage(int heightSizeChange) {
-		ScrolledComposite scrollArea = (ScrolledComposite) getParent().getParent();
-		scrollArea.setMinSize(scrollArea.getMinWidth(), scrollArea.getMinHeight() + heightSizeChange);
+		ScrolledComposite scrollArea = (ScrolledComposite) getParent()
+				.getParent();
+		scrollArea.setMinSize(scrollArea.getMinWidth(), scrollArea
+				.getMinHeight()
+				+ heightSizeChange);
 		scrollArea.layout();
 	}
 

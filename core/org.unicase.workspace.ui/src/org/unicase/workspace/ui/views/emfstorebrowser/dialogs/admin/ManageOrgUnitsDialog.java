@@ -13,7 +13,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.workspace.AdminBroker;
 
 /**
- * This is a dialog to manage users and groups (OrgUnits) and their access rights for different projects.
+ * This is a dialog to manage users and groups (OrgUnits) and their access
+ * rights for different projects.
  * 
  * @author Hodaie
  */
@@ -24,8 +25,11 @@ public class ManageOrgUnitsDialog extends Dialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell Shell
-	 * @param adminBroker AdminBroker class responsible for interaction with server side.
+	 * @param parentShell
+	 *            Shell
+	 * @param adminBroker
+	 *            AdminBroker class responsible for interaction with server
+	 *            side.
 	 */
 	public ManageOrgUnitsDialog(Shell parentShell, AdminBroker adminBroker) {
 

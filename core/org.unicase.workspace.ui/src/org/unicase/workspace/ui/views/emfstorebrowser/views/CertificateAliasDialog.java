@@ -17,7 +17,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * The CertificateAliasDialog allows the user to choose a designation for the certificate being imported.
+ * The CertificateAliasDialog allows the user to choose a designation for the
+ * certificate being imported.
  * 
  * @author pfeifferc
  */
@@ -41,18 +42,25 @@ public class CertificateAliasDialog extends Dialog {
 	private String dialogTitle;
 
 	/**
-	 * Creates an input dialog with OK and Cancel buttons. Note that the dialog will have no visual representation (no
-	 * widgets) until it is told to open.
+	 * Creates an input dialog with OK and Cancel buttons. Note that the dialog
+	 * will have no visual representation (no widgets) until it is told to open.
 	 * <p>
 	 * Note that the <code>open</code> method blocks for input dialogs.
 	 * </p>
 	 * 
-	 * @param parentShell the parent shell, or <code>null</code> to create a top-level shell
-	 * @param dialogTitle the dialog title, or <code>null</code> if none
-	 * @param dialogMessage the dialog message, or <code>null</code> if none
-	 * @param initialValue the initial input value, or <code>null</code> if none (equivalent to the empty string)
+	 * @param parentShell
+	 *            the parent shell, or <code>null</code> to create a top-level
+	 *            shell
+	 * @param dialogTitle
+	 *            the dialog title, or <code>null</code> if none
+	 * @param dialogMessage
+	 *            the dialog message, or <code>null</code> if none
+	 * @param initialValue
+	 *            the initial input value, or <code>null</code> if none
+	 *            (equivalent to the empty string)
 	 */
-	public CertificateAliasDialog(Shell parentShell, String dialogTitle, String dialogMessage, String initialValue) {
+	public CertificateAliasDialog(Shell parentShell, String dialogTitle,
+			String dialogMessage, String initialValue) {
 		super(parentShell);
 		this.dialogTitle = dialogTitle;
 		configureShell(parentShell);
@@ -66,7 +74,8 @@ public class CertificateAliasDialog extends Dialog {
 
 	/**
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
-	 * @param parent Parent Composite
+	 * @param parent
+	 *            Parent Composite
 	 * @return the composite
 	 */
 	@Override
@@ -77,14 +86,16 @@ public class CertificateAliasDialog extends Dialog {
 		if (message != null) {
 			Label label = new Label(composite, SWT.WRAP);
 			label.setText(message);
-			GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL
-				| GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
+			GridData data = new GridData(GridData.GRAB_HORIZONTAL
+					| GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL
+					| GridData.VERTICAL_ALIGN_CENTER);
 			data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 			label.setLayoutData(data);
 			label.setFont(parent.getFont());
 		}
 		text = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		text.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
+		text.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL
+				| GridData.HORIZONTAL_ALIGN_FILL));
 		applyDialogFont(composite);
 		return composite;
 	}
@@ -110,7 +121,8 @@ public class CertificateAliasDialog extends Dialog {
 	/**
 	 * Configure the shell.
 	 * 
-	 * @param shell shell
+	 * @param shell
+	 *            shell
 	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
 	 */
 	@Override

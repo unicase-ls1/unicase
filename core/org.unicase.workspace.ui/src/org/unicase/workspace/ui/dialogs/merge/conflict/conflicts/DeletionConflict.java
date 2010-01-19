@@ -16,8 +16,9 @@ public class DeletionConflict extends Conflict {
 
 	private final boolean meCausingDelete;
 
-	public DeletionConflict(List<AbstractOperation> deletingOperation, List<AbstractOperation> deletedOperations,
-		boolean meCausingDelete, DecisionManager decisionManager) {
+	public DeletionConflict(List<AbstractOperation> deletingOperation,
+			List<AbstractOperation> deletedOperations, boolean meCausingDelete,
+			DecisionManager decisionManager) {
 		super(deletingOperation, deletedOperations, decisionManager, false);
 		this.meCausingDelete = meCausingDelete;
 		init();
@@ -25,8 +26,9 @@ public class DeletionConflict extends Conflict {
 
 	@Override
 	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(getDeletingOperation().getModelElementId()),
-			"", getDecisionManager().getAuthorForOperation(getTheirOperation()));
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getDeletingOperation().getModelElementId()), "",
+				getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	@Override
@@ -35,18 +37,22 @@ public class DeletionConflict extends Conflict {
 
 		if (meCausingDelete) {
 			description = "You have deleted the [modelelement]."
-				+ " This deletion conflicts with a change on the [firstother]" + " element" + generateOthers()
-				+ ". Please choose an option.";
+					+ " This deletion conflicts with a change on the [firstother]"
+					+ " element" + generateOthers()
+					+ ". Please choose an option.";
 		} else {
 			description = "The [modelelement] was deleted on the repository which conflicts with"
-				+ " the change on your [firstother]" + generateOthers() + ". Please choose an option.";
+					+ " the change on your [firstother]"
+					+ generateOthers() + ". Please choose an option.";
 		}
 
-		ConflictDescription conflictDescription = new ConflictDescription(description);
-		conflictDescription.add("modelelement", getDecisionManager().getModelElement(
-			getDeletingOperation().getModelElementId()));
-		conflictDescription.add("firstother", getDecisionManager().getModelElement(
-			getDeletedOperations().get(0).getModelElementId()));
+		ConflictDescription conflictDescription = new ConflictDescription(
+				description);
+		conflictDescription.add("modelelement", getDecisionManager()
+				.getModelElement(getDeletingOperation().getModelElementId()));
+		conflictDescription.add("firstother", getDecisionManager()
+				.getModelElement(
+						getDeletedOperations().get(0).getModelElementId()));
 
 		conflictDescription.add("otherinvolved", generateOthers());
 
@@ -57,7 +63,8 @@ public class DeletionConflict extends Conflict {
 
 	private String generateOthers() {
 		if (getDeletedOperations().size() > 1) {
-			return " and " + (getDeletedOperations().size() - 1) + " other elements";
+			return " and " + (getDeletedOperations().size() - 1)
+					+ " other elements";
 		}
 		return "";
 	}
@@ -67,18 +74,22 @@ public class DeletionConflict extends Conflict {
 		ConflictOption myOption = null;
 		ConflictOption theirOption = null;
 		if (meCausingDelete) {
-			myOption = new ConflictOption(generateDeleteMessage(), ConflictOption.OptionType.MyOperation);
+			myOption = new ConflictOption(generateDeleteMessage(),
+					ConflictOption.OptionType.MyOperation);
 			myOption.addOperations(getDeletingOperations());
 
-			theirOption = new ConflictOption(generateKeepMessage(), ConflictOption.OptionType.TheirOperation);
+			theirOption = new ConflictOption(generateKeepMessage(),
+					ConflictOption.OptionType.TheirOperation);
 			theirOption.addOperations(getDeletedOperations());
 			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
-			myOption = new ConflictOption(generateKeepMessage(), ConflictOption.OptionType.MyOperation);
+			myOption = new ConflictOption(generateKeepMessage(),
+					ConflictOption.OptionType.MyOperation);
 			myOption.addOperations(getDeletedOperations());
 			myOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 
-			theirOption = new ConflictOption(generateDeleteMessage(), ConflictOption.OptionType.TheirOperation);
+			theirOption = new ConflictOption(generateDeleteMessage(),
+					ConflictOption.OptionType.TheirOperation);
 			theirOption.addOperations(getDeletingOperations());
 		}
 		options.add(myOption);
@@ -87,17 +98,19 @@ public class DeletionConflict extends Conflict {
 
 	private String generateKeepMessage() {
 		ModelElement modelElement = getDecisionManager().getModelElement(
-			getDeletedOperations().get(0).getModelElementId());
+				getDeletedOperations().get(0).getModelElementId());
 
 		String result = "Recover " + DecisionUtil.getClassAndName(modelElement);
 		if (getDeletedOperations().size() > 1) {
-			result += " and " + (getDeletedOperations().size() - 1) + " other elements";
+			result += " and " + (getDeletedOperations().size() - 1)
+					+ " other elements";
 		}
 		return result;
 	}
 
 	private String generateDeleteMessage() {
-		ModelElement modelElement = getDecisionManager().getModelElement(getDeletingOperation().getModelElementId());
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getDeletingOperation().getModelElementId());
 
 		return "Delete " + DecisionUtil.getClassAndName(modelElement);
 	}
@@ -115,6 +128,7 @@ public class DeletionConflict extends Conflict {
 	}
 
 	private AbstractOperation getTheirOperation() {
-		return (meCausingDelete) ? getDeletedOperations().get(0) : getDeletingOperation();
+		return (meCausingDelete) ? getDeletedOperations().get(0)
+				: getDeletingOperation();
 	}
 }
