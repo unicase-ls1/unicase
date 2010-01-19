@@ -5,6 +5,8 @@
  */
 package org.unicase.emfstore.esmodel.accesscontrol;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 
@@ -153,8 +155,10 @@ public interface OrgUnitProperty extends EObject {
 	String[] getStringArrayProperty();
 
 	/**
-	 * @return the EObject array value of the property or null if it doesn't exist
+	 * @param <T> the EObject sub type
+	 * @param result the result list (transient parameter)
+	 * @return the result list filled with the properties if any
 	 */
-	EObject[] getEObjectArrayProperty();
+	<T extends EObject> List<T> getEObjectListProperty(List<T> result);
 
 } // OrgUnitProperties
