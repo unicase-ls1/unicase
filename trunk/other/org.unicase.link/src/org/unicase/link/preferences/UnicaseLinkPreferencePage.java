@@ -63,6 +63,8 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 		public UnicaseLinkFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
 			getTextControl().setText(protocolHandler.IsProtocolHandlerRegistered() ? "Yes" : "No");
+			getTextControl().setEditable(false);
+			// getTextControl().setEnabled(false);
 			// getApplyButton().setText(string)
 		}
 
@@ -91,13 +93,16 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				});
 			}
 
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					MessageDialog.openInformation(getShell(), "URL handler registered succesfully",
-						"The registration of the URL handler for unicase:// URLs on your operatings system "
-							+ " was successfull.");
-				}
-			});
+			if (protocolHandler.IsProtocolHandlerRegistered()) {
+				getTextControl().setText("Yes");
+				Display.getDefault().syncExec(new Runnable() {
+					public void run() {
+						MessageDialog.openInformation(getShell(), "URL handler registered succesfully",
+							"The registration of the URL handler for unicase:// URLs on your operatings system "
+								+ " was successfull.");
+					}
+				});
+			}
 
 			return null;
 		}

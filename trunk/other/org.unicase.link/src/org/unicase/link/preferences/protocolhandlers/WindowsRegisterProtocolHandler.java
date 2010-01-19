@@ -27,7 +27,7 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 			Runtime.getRuntime().exec(PROTOCOL_PREFIX);
 			Runtime.getRuntime().exec(PROTOCOL_NAME);
 			Runtime.getRuntime().exec(
-				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"" + getJavaExecutionCmd() + " %1\"");
+				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"" + getJavaExecutionCmd() + "\" %1");
 		} catch (IOException e) {
 			showError(e.getMessage());
 		}
@@ -57,8 +57,7 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 
 	@Override
 	public boolean IsProtocolHandlerRegistered() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	// http://www.rgagnon.com/javadetails/java-0480.html

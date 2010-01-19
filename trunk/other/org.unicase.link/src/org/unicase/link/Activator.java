@@ -85,7 +85,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	public void earlyStartup() {
 		try {
 			JUnique.acquireLock(PLUGIN_ID, new URLMessageHandler());
-			WorkspaceUtil.log("Lock acquired.", null, 0);
+			WorkspaceUtil.log("UNICASE Link plugin initialized.", null, 0);
 		} catch (AlreadyLockedException e) {
 			// Another instance of eclipse is already running, do nothing.
 			return;

@@ -41,7 +41,7 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 			unzip(zipFile);
 			// set execute permission
 			Runtime.getRuntime().exec(
-				"chmod +x " + libDir + File.separator + "UnicaseURLHandler" + File.separator + "Contents"
+				"chmod +x " + libDir + File.separator + "UnicaseURLHandler.app" + File.separator + "Contents"
 					+ File.separator + "MacOS" + File.separator + "UnicaseURLHandler");
 		} catch (IOException e) {
 			showError(e.getMessage());
@@ -103,11 +103,6 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 	@Override
 	public boolean IsProtocolHandlerRegistered() {
 		// TODO: if possible, check for execute bit set
-		File appFile = new File(getFeaturesDirectory() + File.separator + "lib" + "UnicaseURLHandler.app");
-		if (appFile.exists()) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 }

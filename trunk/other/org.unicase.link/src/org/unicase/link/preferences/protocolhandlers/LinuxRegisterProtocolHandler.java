@@ -34,7 +34,6 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 
 	@Override
 	public boolean IsProtocolHandlerRegistered() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
