@@ -5,6 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.accesscontrol.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -429,20 +432,31 @@ public class OrgUnitPropertyImpl extends EObjectImpl implements OrgUnitProperty 
 	/**
 	 * {@inheritDoc}
 	 */
-	public EObject[] getEObjectArrayProperty() throws SerializationException {
+	/**
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getEObjectListProperty(java.util.List)
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends EObject> List<T> getEObjectListProperty(List<T> result) {
 		String[] value = getStringArrayProperty();
+		List<Exception> causes = new ArrayList<Exception>();
 		if (value != null && value.length > 0) {
-			EObject[] eobjects = new EObject[value.length];
 			for (int i = 0; i < value.length; i++) {
 				try {
-					eobjects[i] = ModelUtil.stringToEObject(value[i]);
+					EObject eObject = ModelUtil.stringToEObject(value[i]);
+					result.add((T) eObject);
+				} catch (SerializationException e) {
+					causes.add(e);
 				} catch (ClassCastException e) {
-					throw new SerializationException(e);
+					causes.add(e);
 				}
 			}
-			return eobjects;
+			if (!causes.isEmpty()) {
+				setValue(result.toArray(new EObject[0]));
+				for (Exception cause : causes) {
+					ModelUtil.logWarning("Removed broken entries from property " + this.getName() + ".", cause);
+				}
+			}
 		}
-		return new EObject[0];
+		return result;
 	}
-
 } // OrgUnitPropertyImpl

@@ -5,9 +5,10 @@
  */
 package org.unicase.emfstore.esmodel.accesscontrol;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.metamodel.util.SerializationException;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Org Unit Properties</b></em>'. <!-- end-user-doc
@@ -154,9 +155,10 @@ public interface OrgUnitProperty extends EObject {
 	String[] getStringArrayProperty();
 
 	/**
-	 * @return the EObject array value of the property or null if it doesn't exist
-	 * @throws SerializationException if deserialization fails
+	 * @param <T> the EObject sub type
+	 * @param result the result list (transient parameter)
+	 * @return the result list filled with the properties if any
 	 */
-	EObject[] getEObjectArrayProperty() throws SerializationException;
+	<T extends EObject> List<T> getEObjectListProperty(List<T> result);
 
 } // OrgUnitProperties
