@@ -15,6 +15,7 @@ import org.eclipse.ui.texteditor.AbstractTextEditor;
 import org.eclipse.ui.texteditor.MarkerUtilities;
 import org.unicase.codetrace.tracer.TracerFactory;
 import org.unicase.codetrace.tracer.TracerLocation;
+import org.unicase.codetrace.ui.AttachCodeLocation;
 
 
 public class NewAction implements IEditorActionDelegate  {
@@ -43,6 +44,7 @@ public class NewAction implements IEditorActionDelegate  {
 		
 		TracerLocation tl = tf.createLocation(resource.getProject().getName(), resource.getProjectRelativePath().toString(), lineNumber);
 		
+		AttachCodeLocation.showUserDialog();
 		TEST_LOCATION = tl;
 		try {
 			MarkerUtilities.createMarker(resource, attributes, "org.unicase.taskmarker");
