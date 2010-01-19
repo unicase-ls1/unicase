@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.3.46.internal"
+      version="0.3.49.internal"
       provider-name="unicase.org">
 
    <description url="http://www.unicase.org">
@@ -165,195 +165,195 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.docExport"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"/>
+         version="0.3.49.internal"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel.edit"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.implementation"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.implementation.edit"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.implementation.ui"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.metamodel"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.metamodel.edit"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.edit"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.migrator"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.componentDiagram"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.dashboard"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.diagram.activityDiagram"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.diagram.classDiagram"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.diagram.stateDiagram"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.diagram.usecaseDiagram"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.multiaction"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.stem"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.tableview"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.unicasecommon"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.edit"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.ui"
          download-size="0"
          install-size="0"
-         version="0.3.46.internal"
+         version="0.3.49.internal"
          unpack="false"/>
 
 </feature>
