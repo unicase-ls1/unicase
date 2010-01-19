@@ -49,8 +49,8 @@ public class ValidateHandler extends AbstractHandler {
 
 		ValidationClientSelector.setRunning(true);
 
-		IBatchValidator validator = (IBatchValidator) ModelValidationService
-				.getInstance().newValidator(EvaluationMode.BATCH);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
+			EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 
 		IStatus status = validator.validate(projectSpace.getProject());
@@ -81,10 +81,8 @@ public class ValidateHandler extends AbstractHandler {
 			for (IStatus stat : status.getChildren()) {
 				try {
 					IMarker marker = resource.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: "
-							+ stat.getMessage());
-					marker.setAttribute(IMarker.SEVERITY,
-							IMarker.SEVERITY_WARNING);
+					marker.setAttribute(IMarker.MESSAGE, "unicase: " + stat.getMessage());
+					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}

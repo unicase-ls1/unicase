@@ -16,8 +16,7 @@ import org.unicase.workspace.ServerInfo;
 public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 
 	/**
-	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object
-	 * according to its login state.
+	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object according to its login state.
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 
@@ -28,10 +27,8 @@ public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 		String suffix = "[" + server.getUrl() + "]";
-		if (server.getLastUsersession() != null
-				&& server.getLastUsersession().isLoggedIn()) {
-			suffix = "[" + server.getLastUsersession().getUsername() + "@"
-					+ server.getUrl() + "] logged in ";
+		if (server.getLastUsersession() != null && server.getLastUsersession().isLoggedIn()) {
+			suffix = "[" + server.getLastUsersession().getUsername() + "@" + server.getUrl() + "] logged in ";
 		}
 		decoration.addSuffix(suffix);
 

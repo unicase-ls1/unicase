@@ -22,8 +22,7 @@ public class ValidationContentProvider extends AdapterFactoryContentProvider {
 	 * Default constructor.
 	 */
 	public ValidationContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**

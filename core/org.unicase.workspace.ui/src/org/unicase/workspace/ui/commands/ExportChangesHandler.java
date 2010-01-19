@@ -31,8 +31,7 @@ public class ExportChangesHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase change package (*.ucc)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase change package (*.ucc)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -44,8 +43,7 @@ public class ExportChangesHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -57,16 +55,15 @@ public class ExportChangesHandler extends AbstractHandler {
 		final File file = new File(fn);
 
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Export changs...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export changs...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportLocalChanges(file.getAbsolutePath());
 				} catch (IOException e) {
@@ -77,8 +74,7 @@ public class ExportChangesHandler extends AbstractHandler {
 				}
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Export",
-				"Exported changes to file " + file.getName());
+		MessageDialog.openInformation(null, "Export", "Exported changes to file " + file.getName());
 		return null;
 	}
 

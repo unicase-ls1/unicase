@@ -13,8 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 
 /**
- * This class is a composite containing a TreeViewer which shows the operations
- * of an input list of ChangePackages.
+ * This class is a composite containing a TreeViewer which shows the operations of an input list of ChangePackages.
  * 
  * @author Shterev
  */
@@ -25,10 +24,8 @@ public class TreeComposite extends Composite {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *            parent
-	 * @param style
-	 *            style
+	 * @param parent parent
+	 * @param style style
 	 */
 	public TreeComposite(Composite parent, int style) {
 
@@ -44,8 +41,7 @@ public class TreeComposite extends Composite {
 	/**
 	 * Method for creating a {@link TreeViewer}.
 	 * 
-	 * @param parent
-	 *            where the viewer should be created
+	 * @param parent where the viewer should be created
 	 * @return the {@link TreeViewer}
 	 */
 	protected TreeViewer createTreeViewer(Composite parent) {

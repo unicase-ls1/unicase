@@ -67,8 +67,7 @@ public class ValidationView extends ViewPart {
 	 * Default constructor.
 	 */
 	public ValidationView() {
-		IPath path = org.unicase.ui.common.Activator.getDefault()
-				.getStateLocation();
+		IPath path = org.unicase.ui.common.Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
 		try {
@@ -84,10 +83,8 @@ public class ValidationView extends ViewPart {
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
 					if (msg.getOldValue() != null
-							&& (msg.getOldValue() instanceof List<?> || msg
-									.getOldValue() instanceof ProjectSpace)) {
-						tableViewer
-								.setInput(new ArrayList<IConstraintStatus>());
+						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ProjectSpace)) {
+						tableViewer.setInput(new ArrayList<IConstraintStatus>());
 					}
 
 				}
@@ -102,8 +99,8 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER
-				| SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
+			| SWT.FULL_SELECTION);
 		createTable();
 		initFilters();
 
@@ -122,14 +119,12 @@ public class ValidationView extends ViewPart {
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 
-		TableViewerColumn column = new TableViewerColumn(tableViewer,
-				SWT.CENTER, 0);
+		TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.CENTER, 0);
 		column.getColumn().setText("Severity");
 		column.getColumn().setWidth(50);
 		ColumnLabelProvider labelProvider = new SeverityLabelProvider();
 		column.setLabelProvider(labelProvider);
-		ViewerComparator comp = new TableViewerColumnSorter(tableViewer,
-				column, labelProvider);
+		ViewerComparator comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
 		column.getViewer().setComparator(comp);
 
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 1);
@@ -173,31 +168,25 @@ public class ValidationView extends ViewPart {
 	private void hookDoubleClickAction() {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
-				IConstraintStatus constraintStatus = (IConstraintStatus) selection
-						.getFirstElement();
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				IConstraintStatus constraintStatus = (IConstraintStatus) selection.getFirstElement();
 
 				EObject me = constraintStatus.getTarget();
-				Iterator<EObject> iterator = constraintStatus.getResultLocus()
-						.iterator();
+				Iterator<EObject> iterator = constraintStatus.getResultLocus().iterator();
 				if (me instanceof ModelElement) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						ActionHelper.openModelElement((ModelElement) me,
-								errorLocation, viewId);
+						ActionHelper.openModelElement((ModelElement) me, errorLocation, viewId);
 					} else {
-						ActionHelper
-								.openModelElement((ModelElement) me, viewId);
+						ActionHelper.openModelElement((ModelElement) me, viewId);
 					}
 				}
 			}
 		});
 	}
 
-	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator,
-			EStructuralFeature errorLocation) {
+	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator, EStructuralFeature errorLocation) {
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof EStructuralFeature) {
@@ -219,8 +208,7 @@ public class ValidationView extends ViewPart {
 	/**
 	 * Updates the validation view table.
 	 * 
-	 * @param validationResults
-	 *            validation results.
+	 * @param validationResults validation results.
 	 */
 	public void updateTable(List<IConstraintStatus> validationResults) {
 		tableViewer.setInput(validationResults);
@@ -233,8 +221,7 @@ public class ValidationView extends ViewPart {
 	private void initFilters() {
 		User user;
 		try {
-			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
-					.getCurrentWorkspace());
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 			createTeamFilter(user);
 			createUserFilter(user);
 		} catch (NoCurrentUserException e) {
@@ -258,8 +245,8 @@ public class ValidationView extends ViewPart {
 				}
 
 			};
-			filterToMe.setImageDescriptor(org.unicase.ui.common.Activator
-					.getImageDescriptor("/icons/filtertouser.png"));
+			filterToMe
+				.setImageDescriptor(org.unicase.ui.common.Activator.getImageDescriptor("/icons/filtertouser.png"));
 		}
 		if (user == null) {
 			setUserFilter(false);
@@ -276,8 +263,7 @@ public class ValidationView extends ViewPart {
 	/**
 	 * Sets if the user filter is turned on.
 	 * 
-	 * @param checked
-	 *            if the filter is turned on.
+	 * @param checked if the filter is turned on.
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
@@ -303,7 +289,7 @@ public class ValidationView extends ViewPart {
 
 			};
 			filterToMyTeam.setImageDescriptor(org.unicase.ui.common.Activator
-					.getImageDescriptor("/icons/filtertomyteam.png"));
+				.getImageDescriptor("/icons/filtertomyteam.png"));
 		}
 		if (user == null) {
 			setTeamFilter(false);
@@ -320,8 +306,7 @@ public class ValidationView extends ViewPart {
 	/**
 	 * Sets the team filter.
 	 * 
-	 * @param checked
-	 *            if the team filter is turned on.
+	 * @param checked if the team filter is turned on.
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {

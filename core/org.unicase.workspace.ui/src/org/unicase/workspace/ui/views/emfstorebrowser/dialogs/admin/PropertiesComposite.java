@@ -50,9 +50,8 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 
 /**
- * This is the super class of property composites shown on properties form
- * (right side of OrgUnitManagmentGUI). It contains an attributes group at top,
- * a TableViewer and button to add/remove OrgUnits.
+ * This is the super class of property composites shown on properties form (right side of OrgUnitManagmentGUI). It
+ * contains an attributes group at top, a TableViewer and button to add/remove OrgUnits.
  * 
  * @author Hodaie
  */
@@ -73,15 +72,11 @@ public abstract class PropertiesComposite extends Composite {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *            parent
-	 * @param style
-	 *            style
-	 * @param adminBroker
-	 *            adminBroker
+	 * @param parent parent
+	 * @param style style
+	 * @param adminBroker adminBroker
 	 */
-	public PropertiesComposite(Composite parent, int style,
-			AdminBroker adminBroker) {
+	public PropertiesComposite(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent, style);
 		this.adminBroker = adminBroker;
 	}
@@ -103,8 +98,7 @@ public abstract class PropertiesComposite extends Composite {
 	 */
 	protected void createSimpleAttributes() {
 		grpAttributes = new Group(this, SWT.V_SCROLL);
-		grpAttributes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				false));
+		grpAttributes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		grpAttributes.setText("Properties");
 
 		grpAttributes.setLayout(new GridLayout(2, false));
@@ -150,8 +144,8 @@ public abstract class PropertiesComposite extends Composite {
 	protected abstract void createTableGroup();
 
 	/**
-	 * This saves an OrgUnit when txtName or txtDescription lose focus.
-	 * GroupComposite and UserComposite Subclasses must override this method.
+	 * This saves an OrgUnit when txtName or txtDescription lose focus. GroupComposite and UserComposite Subclasses must
+	 * override this method.
 	 */
 	protected void saveOrgUnitAttributes() {
 	}
@@ -159,8 +153,7 @@ public abstract class PropertiesComposite extends Composite {
 	/**
 	 * This creates table viewer group control.
 	 * 
-	 * @param groupName
-	 *            group name
+	 * @param groupName group name
 	 */
 	protected void createTableGroup(String groupName) {
 		grpTable = new Group(this, SWT.NONE);
@@ -175,13 +168,11 @@ public abstract class PropertiesComposite extends Composite {
 	/**
 	 * This creates TableViewer.
 	 * 
-	 * @param parent
-	 *            parent
+	 * @param parent parent
 	 */
 	protected void createTableViewer(Composite parent) {
 
-		int style = SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
-				| SWT.FULL_SELECTION;
+		int style = SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION;
 
 		Table table = new Table(parent, style);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -214,8 +205,7 @@ public abstract class PropertiesComposite extends Composite {
 	/**
 	 * This creates add/remove Buttons underneath TableViewer.
 	 * 
-	 * @param parent
-	 *            parent
+	 * @param parent parent
 	 */
 	protected void createButtons(Composite parent) {
 		// Create and configure the "Add" button
@@ -248,8 +238,7 @@ public abstract class PropertiesComposite extends Composite {
 			// Remove the selection and refresh the view
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
-						.getSelection()).getFirstElement();
+				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer.getSelection()).getFirstElement();
 				if (ou != null) {
 					removeOrgUnit(ou);
 				}
@@ -259,13 +248,11 @@ public abstract class PropertiesComposite extends Composite {
 	}
 
 	/**
-	 * This adds DnD support. This method adds drag support, subclasses add drop
-	 * support by overriding this method.
+	 * This adds DnD support. This method adds drag support, subclasses add drop support by overriding this method.
 	 */
 	protected void addDragNDropSupport() {
 		int ops = DND.DROP_MOVE;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
-				.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
 				getTableViewer().refresh();
@@ -289,19 +276,18 @@ public abstract class PropertiesComposite extends Composite {
 	}
 
 	/**
-	 * This will be used to add OrgUnits using add button. It adds an a new
-	 * OrgUnit using an object selection dialog. Subclasses must override this.
+	 * This will be used to add OrgUnits using add button. It adds an a new OrgUnit using an object selection dialog.
+	 * Subclasses must override this.
 	 */
 	protected void addNewOrgUnit() {
 
 	}
 
 	/**
-	 * This will be used when adding OrgUnits using drag and drop This adds an
-	 * existing OrgUnit. Subclasses must override this.
+	 * This will be used when adding OrgUnits using drag and drop This adds an existing OrgUnit. Subclasses must
+	 * override this.
 	 * 
-	 * @param orgUnit
-	 *            orgUnit
+	 * @param orgUnit orgUnit
 	 */
 	protected void addExistingOrgUnit(ACOrgUnit orgUnit) {
 
@@ -310,30 +296,26 @@ public abstract class PropertiesComposite extends Composite {
 	/**
 	 * This removes an OrgUnit. Subclasses must override this.
 	 * 
-	 * @param orgUnit
-	 *            OrgUnit
+	 * @param orgUnit OrgUnit
 	 */
 	protected abstract void removeOrgUnit(ACOrgUnit orgUnit);
 
 	/**
-	 * @param input
-	 *            Input
+	 * @param input Input
 	 */
 	public abstract void updateControls(EObject input);
 
 	/**
-	 * Shows an element selection dialog with specified initial contents and
-	 * title, and returns an array of selected elements.
+	 * Shows an element selection dialog with specified initial contents and title, and returns an array of selected
+	 * elements.
 	 * 
-	 * @param content
-	 *            initial contents
-	 * @param title
-	 *            title
+	 * @param content initial contents
+	 * @param title title
 	 * @return selected elements.
 	 */
 	protected Object[] showDialog(Collection<ACOrgUnit> content, String title) {
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this
-				.getShell(), new ILabelProviderImplementation());
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this.getShell(),
+			new ILabelProviderImplementation());
 
 		dlg.setElements(content.toArray(new Object[content.size()]));
 		dlg.setTitle(title);
@@ -412,13 +394,11 @@ public abstract class PropertiesComposite extends Composite {
 	 * Label provider for users and groups.
 	 * 
 	 * @author koegel
-	 * 
 	 */
 	private final class ILabelProviderImplementation implements ILabelProvider {
 		public Image getImage(Object element) {
 			if (element instanceof ACGroup) {
-				return Activator.getImageDescriptor("icons/Group.gif")
-						.createImage();
+				return Activator.getImageDescriptor("icons/Group.gif").createImage();
 			}
 			return Activator.getImageDescriptor("icons/user.png").createImage();
 		}
@@ -454,21 +434,17 @@ public abstract class PropertiesComposite extends Composite {
 				if (inputElement instanceof ACUser) {
 					List<ACGroup> groups;
 
-					groups = adminBroker.getGroups(((ACUser) inputElement)
-							.getId());
+					groups = adminBroker.getGroups(((ACUser) inputElement).getId());
 					result = groups.toArray(new ACOrgUnit[groups.size()]);
 
 				} else if (inputElement instanceof ACGroup) {
-					List<ACOrgUnit> members = adminBroker
-							.getMembers(((ACGroup) inputElement).getId());
+					List<ACOrgUnit> members = adminBroker.getMembers(((ACGroup) inputElement).getId());
 					result = members.toArray(new ACOrgUnit[members.size()]);
 
 				} else if (inputElement instanceof ProjectInfo) {
-					List<ACOrgUnit> participants = adminBroker
-							.getParticipants(((ProjectInfo) inputElement)
-									.getProjectId());
-					result = participants.toArray(new ACOrgUnit[participants
-							.size()]);
+					List<ACOrgUnit> participants = adminBroker.getParticipants(((ProjectInfo) inputElement)
+						.getProjectId());
+					result = participants.toArray(new ACOrgUnit[participants.size()]);
 
 				}
 			} catch (EmfStoreException e) {
@@ -491,13 +467,11 @@ public abstract class PropertiesComposite extends Composite {
 	 * 
 	 * @author Hodaie
 	 */
-	private class TableLabelProvider extends
-			TransactionalAdapterFactoryLabelProvider {
+	private class TableLabelProvider extends TransactionalAdapterFactoryLabelProvider {
 
 		public TableLabelProvider() {
-			super(WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain(), new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 		@Override

@@ -30,8 +30,7 @@ public class DecisionUtil {
 
 	public static ImageDescriptor getImageDescriptor(String path) {
 		final String key = path;
-		ImageDescriptor regImage = JFaceResources.getImageRegistry()
-				.getDescriptor(key);
+		ImageDescriptor regImage = JFaceResources.getImageRegistry().getDescriptor(key);
 		if (regImage == null) {
 			regImage = Activator.getImageDescriptor("icons/merge/" + path);
 			JFaceResources.getImageRegistry().put(key, regImage);
@@ -62,9 +61,8 @@ public class DecisionUtil {
 	}
 
 	public static AdapterFactoryLabelProvider getLabelProvider() {
-		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
 	}
 
@@ -77,18 +75,15 @@ public class DecisionUtil {
 	}
 
 	public static boolean isComposite(AbstractOperation operation) {
-		return operation instanceof CompositeOperation
-				&& ((CompositeOperation) operation).getMainOperation() == null;
+		return operation instanceof CompositeOperation && ((CompositeOperation) operation).getMainOperation() == null;
 	}
 
 	public static boolean isReference(AbstractOperation operation) {
-		return isSingleRef(operation) || isMultiRef(operation)
-				|| isCompositeRef(operation);
+		return isSingleRef(operation) || isMultiRef(operation) || isCompositeRef(operation);
 	}
 
 	public static boolean isCompositeRef(AbstractOperation operation) {
-		return operation instanceof CompositeOperation
-				&& ((CompositeOperation) operation).getMainOperation() != null;
+		return operation instanceof CompositeOperation && ((CompositeOperation) operation).getMainOperation() != null;
 	}
 
 	public static boolean isSingleRef(AbstractOperation operation) {
@@ -112,13 +107,11 @@ public class DecisionUtil {
 	}
 
 	public static boolean isCreate(AbstractOperation operation) {
-		return isCreateDelete(operation)
-				&& !((CreateDeleteOperation) operation).isDelete();
+		return isCreateDelete(operation) && !((CreateDeleteOperation) operation).isDelete();
 	}
 
 	public static boolean isDelete(AbstractOperation operation) {
-		return isCreateDelete(operation)
-				&& ((CreateDeleteOperation) operation).isDelete();
+		return isCreateDelete(operation) && ((CreateDeleteOperation) operation).isDelete();
 	}
 
 	public static boolean isCreateDelete(AbstractOperation operation) {
@@ -133,8 +126,7 @@ public class DecisionUtil {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
-			if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_MULTILINE)) {
+			if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_MULTILINE)) {
 				if (option.getOptionLabel().length() > DecisionConfig.OPTION_LENGTH) {
 					return true;
 				}
@@ -155,8 +147,7 @@ public class DecisionUtil {
 
 	public static AdapterFactoryLabelProvider getAdapterFactory() {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider;
 	}
 }

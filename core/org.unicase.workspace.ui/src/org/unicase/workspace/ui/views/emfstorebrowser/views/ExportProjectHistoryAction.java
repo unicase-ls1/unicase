@@ -37,8 +37,7 @@ public class ExportProjectHistoryAction extends Action {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.uph)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.uph)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -50,7 +49,6 @@ public class ExportProjectHistoryAction extends Action {
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 */
 	@Override
 	public void run() {
@@ -59,27 +57,21 @@ public class ExportProjectHistoryAction extends Action {
 			return;
 		}
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(
-				"Export project history...", 100);
+		progressDialog.getProgressMonitor().beginTask("Export project history...", 100);
 		progressDialog.getProgressMonitor().worked(10);
 
 		ProjectHistory projectHistory = null;
 		try {
 			if (usersession != null) {
-				projectHistory = WorkspaceManager.getInstance()
-						.getConnectionManager().exportProjectHistoryFromServer(
-								usersession.getSessionId(),
-								projectInfo.getProjectId());
+				projectHistory = WorkspaceManager.getInstance().getConnectionManager().exportProjectHistoryFromServer(
+					usersession.getSessionId(), projectInfo.getProjectId());
 				saveProjectHistory(projectHistory, absoluteFileName);
 
-				MessageDialog
-						.openInformation(null, "Import",
-								"Exported project history to file: "
-										+ absoluteFileName);
+				MessageDialog.openInformation(null, "Import", "Exported project history to file: " + absoluteFileName);
 			}
 
 		} catch (EmfStoreException e) {
@@ -94,11 +86,9 @@ public class ExportProjectHistoryAction extends Action {
 
 	}
 
-	private void saveProjectHistory(ProjectHistory projectHistory,
-			String absoluteFileName) throws IOException {
+	private void saveProjectHistory(ProjectHistory projectHistory, String absoluteFileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(absoluteFileName));
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		resource.getContents().add(projectHistory);
 		resource.save(null);
 
@@ -106,8 +96,7 @@ public class ExportProjectHistoryAction extends Action {
 
 	private String showSaveFileDialog() {
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -128,8 +117,7 @@ public class ExportProjectHistoryAction extends Action {
 	/**
 	 * Sets the user sesssion.
 	 * 
-	 * @param session
-	 *            user session
+	 * @param session user session
 	 */
 	public void setUsersession(Usersession session) {
 		this.usersession = session;
@@ -138,8 +126,7 @@ public class ExportProjectHistoryAction extends Action {
 	/**
 	 * Sets the project info, whose history will be exported.
 	 * 
-	 * @param projectInfo
-	 *            project info
+	 * @param projectInfo project info
 	 */
 	public void setProjectInfo(ProjectInfo projectInfo) {
 		this.projectInfo = projectInfo;

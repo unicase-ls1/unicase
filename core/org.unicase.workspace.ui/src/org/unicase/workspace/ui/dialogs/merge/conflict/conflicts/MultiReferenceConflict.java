@@ -17,9 +17,8 @@ public class MultiReferenceConflict extends Conflict {
 
 	private final boolean meAdding;
 
-	public MultiReferenceConflict(List<AbstractOperation> addingOperation,
-			List<AbstractOperation> removingOperation,
-			DecisionManager decisionManager, boolean meAdding) {
+	public MultiReferenceConflict(List<AbstractOperation> addingOperation, List<AbstractOperation> removingOperation,
+		DecisionManager decisionManager, boolean meAdding) {
 		super(addingOperation, removingOperation, decisionManager, false);
 		this.meAdding = meAdding;
 		init();
@@ -27,31 +26,25 @@ public class MultiReferenceConflict extends Conflict {
 
 	@Override
 	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(
-				getMyOperation().getModelElementId()), getMyOperation()
-				.getFeatureName(), getDecisionManager().getAuthorForOperation(
-				getTheirOperation()));
+		return new ConflictContext(getDecisionManager().getModelElement(getMyOperation().getModelElementId()),
+			getMyOperation().getFeatureName(), getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
 		if (meAdding) {
-			description = "You have added [target] to the [featurename]"
-					+ " reference of the [element]."
-					+ " This item was removed on the repository.";
+			description = "You have added [target] to the [featurename]" + " reference of the [element]."
+				+ " This item was removed on the repository.";
 		} else {
 			description = "The [target] was added to the [featurename] reference"
-					+ " of the [element] on the repository."
-					+ " You chose to remove it, please decide.";
+				+ " of the [element] on the repository." + " You chose to remove it, please decide.";
 		}
-		ConflictDescription confDescription = new ConflictDescription(
-				description);
-		confDescription.add("element", getDecisionManager().getModelElement(
-				getMyOperation().getModelElementId()));
+		ConflictDescription confDescription = new ConflictDescription(description);
+		confDescription.add("element", getDecisionManager().getModelElement(getMyOperation().getModelElementId()));
 		confDescription.add("featurename", getMyOperation().getFeatureName());
 		confDescription.add("target", getDecisionManager().getModelElement(
-				getMyOperation().getReferencedModelElements().get(0)));
+			getMyOperation().getReferencedModelElements().get(0)));
 
 		confDescription.setImage("multiref.gif");
 
@@ -64,27 +57,20 @@ public class MultiReferenceConflict extends Conflict {
 		ConflictOption theirOption = null;
 		if (meAdding) {
 			ModelElement target = getDecisionManager().getModelElement(
-					getMyOperation().getReferencedModelElements().get(0));
-			myOption = new ConflictOption("Add "
-					+ DecisionUtil.getClassAndName(target),
-					OptionType.MyOperation);
+				getMyOperation().getReferencedModelElements().get(0));
+			myOption = new ConflictOption("Add " + DecisionUtil.getClassAndName(target), OptionType.MyOperation);
 			myOption.addOperations(getAddingOperations());
 
-			theirOption = new ConflictOption("Remove "
-					+ DecisionUtil.getClassAndName(target),
-					OptionType.TheirOperation);
+			theirOption = new ConflictOption("Remove " + DecisionUtil.getClassAndName(target),
+				OptionType.TheirOperation);
 			theirOption.addOperations(getRemovingOperations());
 		} else {
 			ModelElement target = getDecisionManager().getModelElement(
-					getMyOperation().getReferencedModelElements().get(0));
-			myOption = new ConflictOption("Remove "
-					+ DecisionUtil.getClassAndName(target),
-					OptionType.MyOperation);
+				getMyOperation().getReferencedModelElements().get(0));
+			myOption = new ConflictOption("Remove " + DecisionUtil.getClassAndName(target), OptionType.MyOperation);
 			myOption.addOperations(getRemovingOperations());
 
-			theirOption = new ConflictOption("Add "
-					+ DecisionUtil.getClassAndName(target),
-					OptionType.TheirOperation);
+			theirOption = new ConflictOption("Add " + DecisionUtil.getClassAndName(target), OptionType.TheirOperation);
 			theirOption.addOperations(getAddingOperations());
 		}
 		options.add(myOption);

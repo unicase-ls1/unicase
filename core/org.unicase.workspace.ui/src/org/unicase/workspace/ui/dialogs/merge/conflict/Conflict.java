@@ -21,27 +21,21 @@ public abstract class Conflict {
 	protected List<AbstractOperation> operationsB;
 
 	/**
-	 * Default constructor for conflicts. Many conflicts only need one operation
-	 * for my and their side. But in order to use a suitable upper class for all
-	 * conflicts, conflicts requires a list of operations. opsA ~ myOperations,
-	 * opsB ~ theirOperations, but again, to keep it general, it's called A and
-	 * B. These fields are protected so the implementing Conflict should create
-	 * it's own getter method.
+	 * Default constructor for conflicts. Many conflicts only need one operation for my and their side. But in order to
+	 * use a suitable upper class for all conflicts, conflicts requires a list of operations. opsA ~ myOperations, opsB
+	 * ~ theirOperations, but again, to keep it general, it's called A and B. These fields are protected so the
+	 * implementing Conflict should create it's own getter method.
 	 * 
-	 * @param opsA
-	 *            first list of operations (often: myOperations)
-	 * @param opsB
-	 *            second list of operations (often: theirOperations)
-	 * @param decisionManager
-	 *            decision manager
+	 * @param opsA first list of operations (often: myOperations)
+	 * @param opsB second list of operations (often: theirOperations)
+	 * @param decisionManager decision manager
 	 */
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
-			DecisionManager decisionManager) {
+	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager) {
 		this(opsA, opsB, decisionManager, true);
 	}
 
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
-			DecisionManager decisionManager, boolean init) {
+	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager,
+		boolean init) {
 		this.operationsA = opsA;
 		this.operationsB = opsB;
 		this.decisionManager = decisionManager;
@@ -58,14 +52,12 @@ public abstract class Conflict {
 		initAdditionalConflictOptions(options);
 	}
 
-	private void initAdditionalConflictOptions(
-			ArrayList<ConflictOption> options2) {
+	private void initAdditionalConflictOptions(ArrayList<ConflictOption> options2) {
 		if (!allowOtherOptions()) {
 			return;
 		}
-		IConfigurationElement[] config = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.unicase.workspace.ui.merge.customoption");
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.ui.merge.customoption");
 
 		for (IConfigurationElement e : config) {
 			try {
@@ -74,8 +66,7 @@ public abstract class Conflict {
 
 					CustomConflictOptionFactory factory = (CustomConflictOptionFactory) object;
 					if (factory.isApplicableConflict(this)) {
-						CustomConflictOption customConflictOption = factory
-								.createCustomConflictOption(this);
+						CustomConflictOption customConflictOption = factory.createCustomConflictOption(this);
 						if (customConflictOption != null) {
 							options.add(customConflictOption);
 						}
@@ -140,8 +131,7 @@ public abstract class Conflict {
 
 	public List<AbstractOperation> getRejectedTheirs() {
 		if (!isResolved()) {
-			throw new IllegalStateException(
-					"Can't call this method, unless conflict is resolved.");
+			throw new IllegalStateException("Can't call this method, unless conflict is resolved.");
 		}
 		if (solution.getType() == OptionType.TheirOperation) {
 			return new ArrayList<AbstractOperation>();
@@ -158,8 +148,7 @@ public abstract class Conflict {
 
 	public List<AbstractOperation> getAcceptedMine() {
 		if (!isResolved()) {
-			throw new IllegalStateException(
-					"Can't call this method, unless conflict is resolved.");
+			throw new IllegalStateException("Can't call this method, unless conflict is resolved.");
 		}
 		if (solution.getType() == OptionType.TheirOperation) {
 			return new ArrayList<AbstractOperation>();

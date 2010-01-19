@@ -6,8 +6,7 @@
 package org.unicase.workspace.ui.views.changes;
 
 /**
- * Provides the MergeChangesComposite with the state information for each
- * Operation.
+ * Provides the MergeChangesComposite with the state information for each Operation.
  * 
  * @author Shterev
  */
@@ -33,8 +32,7 @@ public class OperationState {
 	private int previewState;
 
 	/**
-	 * @param checkedState
-	 *            the checkedState to set
+	 * @param checkedState the checkedState to set
 	 */
 	public void setCheckedState(boolean checkedState) {
 		this.checkedState = checkedState;
@@ -48,8 +46,7 @@ public class OperationState {
 	}
 
 	/**
-	 * @param previewState
-	 *            the previewState to set
+	 * @param previewState the previewState to set
 	 */
 	public void setPreviewState(int previewState) {
 		this.previewState = previewState;

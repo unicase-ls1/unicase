@@ -10,12 +10,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 
 public class CaseStudySwitch {
 
-	public void flattenChangePackages(ChangePackage myChangePackage,
-			List<ChangePackage> theirChangePackages) {
-		boolean openQuestion = MessageDialog
-				.openQuestion(Display.getCurrent().getActiveShell(),
-						"Remove CompositeOperations?",
-						"Do you want to remove the composite operations for testing purposes?");
+	public void flattenChangePackages(ChangePackage myChangePackage, List<ChangePackage> theirChangePackages) {
+		boolean openQuestion = MessageDialog.openQuestion(Display.getCurrent().getActiveShell(),
+			"Remove CompositeOperations?", "Do you want to remove the composite operations for testing purposes?");
 
 		if (!openQuestion) {
 			return;

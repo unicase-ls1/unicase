@@ -6,10 +6,9 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.acimport;
 
 /**
- * This exception class is a very generic one, which can be used for any import
- * source on diagnosing an unwanted behavior, e.g. that no connection to a given
- * server could be established or a file, which should be imported was not in
- * the correct format.
+ * This exception class is a very generic one, which can be used for any import source on diagnosing an unwanted
+ * behavior, e.g. that no connection to a given server could be established or a file, which should be imported was not
+ * in the correct format.
  * 
  * @author deser, karakoc
  */
@@ -18,8 +17,7 @@ public class CorruptedSourceException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @param message
-	 *            the message of this exception
+	 * @param message the message of this exception
 	 */
 	public CorruptedSourceException(String message) {
 		super(message);

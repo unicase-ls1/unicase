@@ -41,8 +41,7 @@ import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
 
 /**
- * This class shows a ChangesTreeComposite and a Text control to enter commit
- * message.
+ * This class shows a ChangesTreeComposite and a Text control to enter commit message.
  * 
  * @author Hodaie
  * @author Shterev
@@ -60,17 +59,14 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell
-	 *            shell
-	 * @param changes
-	 *            the {@link ChangePackage} to be displayed
+	 * @param parentShell shell
+	 * @param changes the {@link ChangePackage} to be displayed
 	 */
 	public CommitDialog(Shell parentShell, ChangePackage changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
-		activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		notificationsTray = new CommitNotificationsTray(this);
 	}
 
@@ -102,18 +98,16 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 
 		setTitle("Commit your changes");
 		setMessage("Don't forget the commit message!");
-		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png")
-				.createImage());
+		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
 
 		// Log message
 		Label lblLogMsg = new Label(contents, SWT.NONE);
-		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false, 2, 1));
+		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 2, 1));
 		lblLogMsg.setText("Log message:");
 
 		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(
-				SWT.FILL, SWT.TOP).hint(1, 150).applyTo(txtLogMsg);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(
+			txtLogMsg);
 		String logMsg = "";
 		LogMessage logMessage = changes.getLogMessage();
 		if (logMessage != null && logMessage.getMessage() != null) {
@@ -130,8 +124,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		Label oldLabel = new Label(contents, SWT.NONE);
 		oldLabel.setText("Previous messages:");
 		final Combo oldMsg = new Combo(contents, SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true,
-				false).applyTo(oldMsg);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
 
 		ArrayList<String> oldLogMessagesCopy = new ArrayList<String>();
 		oldLogMessagesCopy.addAll(oldLogMessages);
@@ -152,14 +145,12 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		// ChangesTree
 		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		changePackages.add(changes);
-		TabbedChangesComposite changesComposite = new TabbedChangesComposite(
-				contents, SWT.BORDER, changePackages, getActiveProjectSpace()
-						.getProject());
+		TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changePackages,
+			getActiveProjectSpace().getProject());
 		changesComposite.setShowRootNodes(false);
 		changesComposite.setReverseNodes(false);
 		changesComposite.setInput(changePackages);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
-				true).span(2, 1).applyTo(changesComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(changesComposite);
 
 		operationsMap = new HashMap<AbstractOperation, ArrayList<ESNotification>>();
 		for (AbstractOperation op : changes.getOperations()) {
@@ -180,8 +171,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		Rectangle area = newShell.getShell().getParent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2,
-				(area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
 		newShell.addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent e) {
 				notificationsTray.dispose();
@@ -252,8 +242,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		final String notifyUsers = "Notify users";
-		final Button notificationsButton = createButton(parent, 2138,
-				notifyUsers + " >>", false);
+		final Button notificationsButton = createButton(parent, 2138, notifyUsers + " >>", false);
 		notificationsButton.addSelectionListener(new SelectionAdapter() {
 			private boolean isOpen;
 
