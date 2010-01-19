@@ -28,12 +28,14 @@ import org.unicase.workspace.ui.dialogs.UpdateDialog;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This handlers updates the Project to a user-defined version. It is only intended to be used by admins as no
- * validation checks are made on the version number.
+ * This handlers updates the Project to a user-defined version. It is only
+ * intended to be used by admins as no validation checks are made on the version
+ * number.
  * 
  * @author Shterev
  */
-public class UpdateProjectVersionHandler extends ServerRequestCommandHandler implements UpdateObserver {
+public class UpdateProjectVersionHandler extends ServerRequestCommandHandler
+		implements UpdateObserver {
 
 	private Shell shell;
 	private Usersession usersession;
@@ -52,10 +54,11 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information", "You must select the Project");
+				MessageDialog.openInformation(shell, "Information",
+						"You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
@@ -69,14 +72,18 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	/**
 	 * Updates the projectspace.
 	 * 
-	 * @param projectSpace the target project space
-	 * @throws EmfStoreException if any.
+	 * @param projectSpace
+	 *            the target project space
+	 * @throws EmfStoreException
+	 *             if any.
 	 */
-	protected void update(final ProjectSpace projectSpace) throws EmfStoreException {
+	protected void update(final ProjectSpace projectSpace)
+			throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
-			MessageDialog.openInformation(shell, null,
-				"This project is not yet shared with a server, you cannot update.");
+			MessageDialog
+					.openInformation(shell, null,
+							"This project is not yet shared with a server, you cannot update.");
 			return;
 		}
 
@@ -84,7 +91,8 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 		try {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 
-			InputDialog inputDialog = new InputDialog(shell, "Update to version...", "Enter the new version:", "", null);
+			InputDialog inputDialog = new InputDialog(shell,
+					"Update to version...", "Enter the new version:", "", null);
 			if (inputDialog.open() != Window.OK) {
 				return;
 			}
@@ -92,14 +100,17 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 			try {
 				version = Integer.parseInt(inputDialog.getValue());
 			} catch (NumberFormatException e) {
-				MessageDialog.openError(shell, "Invalid input", "A numerical value was expected!");
+				MessageDialog.openError(shell, "Invalid input",
+						"A numerical value was expected!");
 				update(projectSpace);
 			}
 
-			PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
 			targetVersionSpec.setIdentifier(version);
 
-			PrimaryVersionSpec targetVersion = projectSpace.update(targetVersionSpec, UpdateProjectVersionHandler.this);
+			PrimaryVersionSpec targetVersion = projectSpace.update(
+					targetVersionSpec, UpdateProjectVersionHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 
 			// explicitly refresh the decorator since no simple attribute has
@@ -107,21 +118,25 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 			// (as opposed to committing where the dirty property is being set)
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update(
-						"org.unicase.ui.common.decorators.VersionDecorator");
+					PlatformUI
+							.getWorkbench()
+							.getDecoratorManager()
+							.update(
+									"org.unicase.ui.common.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
 			MessageDialog.openInformation(shell, "No need to update",
-				"Your project is up to date, you do not need to update.");
+					"Your project is up to date, you do not need to update.");
 		}
 	}
 
 	private void handleChangeConflictException(ChangeConflictException e1) {
-		MessageDialog.openError(Display.getCurrent().getActiveShell(), "Ooops!",
-			"This feature is not implemented yet! We are sorry for the inconvenience.");
+		MessageDialog
+				.openError(Display.getCurrent().getActiveShell(), "Ooops!",
+						"This feature is not implemented yet! We are sorry for the inconvenience.");
 	}
 
 	/**

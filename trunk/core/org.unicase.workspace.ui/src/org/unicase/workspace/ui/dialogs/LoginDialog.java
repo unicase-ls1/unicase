@@ -65,9 +65,12 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param session the target usersession
-	 * @param server the target server
+	 * @param parentShell
+	 *            the parent shell
+	 * @param session
+	 *            the target usersession
+	 * @param server
+	 *            the target server
 	 */
 	public LoginDialog(Shell parentShell, Usersession session, ServerInfo server) {
 		super(parentShell);
@@ -94,7 +97,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		// initialize the list of appropriate usersessions
 		sessionsList = new ArrayList<Usersession>();
-		EList<Usersession> workspaceSessions = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+		EList<Usersession> workspaceSessions = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getUsersessions();
 		sessionsList.addAll(workspaceSessions);
 		ArrayList<Usersession> sessionToRemove = new ArrayList<Usersession>();
 		for (Usersession tempSession : sessionsList) {
@@ -111,7 +115,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		sessionsCombo = new Combo(contents, SWT.READ_ONLY);
 		sessionsCombo.add("<new session>");
 		for (Usersession tempSession : sessionsList) {
-			sessionsCombo.add(tempSession.getUsername() + "@" + tempSession.getServerInfo().getName());
+			sessionsCombo.add(tempSession.getUsername() + "@"
+					+ tempSession.getServerInfo().getName());
 		}
 		sessionsCombo.addSelectionListener(this);
 
@@ -125,7 +130,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			public void modifyText(ModifyEvent e) {
 				// TODO AS: Add a proper input validation
 				for (Usersession u : sessionsList) {
-					if (txtUsername.getText().equals(u.getUsername()) && txtUsername.isEnabled()) {
+					if (txtUsername.getText().equals(u.getUsername())
+							&& txtUsername.isEnabled()) {
 						setErrorMessage("Duplicate username!");
 						canFinish = false;
 						return;
@@ -195,8 +201,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		}
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(
-			contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(
+				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
 	}
@@ -229,14 +235,16 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			server.setLastUsersession(session);
 			if (txtUsername.getEnabled()) {
 				// add the newly created session
-				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+				WorkspaceManager.getInstance().getCurrentWorkspace()
+						.getUsersessions().add(session);
 
 			}
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			setReturnCode(OK);
 			close();
 		} catch (EmfStoreException e) {
-			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10, 1), null, null);
+			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10,
+					1), null, null);
 
 			setErrorMessage(e.getMessage());
 
@@ -274,7 +282,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			txtPassword.setText("");
 			chkSavePassword.setSelection(false);
 		} else {
-			Usersession loadSession = sessionsList.get(sessionsCombo.getSelectionIndex() - 1);
+			Usersession loadSession = sessionsList.get(sessionsCombo
+					.getSelectionIndex() - 1);
 			loadData(loadSession);
 		}
 
@@ -287,7 +296,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		if (session.getPassword() != null) {
 
-			if (session.isSavePassword() && !(session.getPersistentPassword() == null)) {
+			if (session.isSavePassword()
+					&& !(session.getPersistentPassword() == null)) {
 
 				txtPassword.setText(PLACEHOLDER);
 			} else {
@@ -312,7 +322,8 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 */
 	@Override
 	public int open() {
-		if (session != null && session.getUsername() != null && session.getPassword() != null) {
+		if (session != null && session.getUsername() != null
+				&& session.getPassword() != null) {
 			try {
 				session.logIn();
 				close();

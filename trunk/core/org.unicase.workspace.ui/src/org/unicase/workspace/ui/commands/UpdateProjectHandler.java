@@ -27,12 +27,14 @@ import org.unicase.workspace.ui.dialogs.UpdateDialog;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This handlers handles UpdateWorkspace command. This command is shown in UC View context menu only for Projects
+ * This handlers handles UpdateWorkspace command. This command is shown in UC
+ * View context menu only for Projects
  * 
  * @author Hodaie
  * @author Shterev
  */
-public class UpdateProjectHandler extends ServerRequestCommandHandler implements UpdateObserver {
+public class UpdateProjectHandler extends ServerRequestCommandHandler implements
+		UpdateObserver {
 
 	private Shell shell;
 	private Usersession usersession;
@@ -51,10 +53,11 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information", "You must select the Project");
+				MessageDialog.openInformation(shell, "Information",
+						"You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
@@ -68,21 +71,26 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * Updates the projectspace.
 	 * 
-	 * @param projectSpace the target project space
-	 * @throws EmfStoreException if any.
+	 * @param projectSpace
+	 *            the target project space
+	 * @throws EmfStoreException
+	 *             if any.
 	 */
-	protected void update(final ProjectSpace projectSpace) throws EmfStoreException {
+	protected void update(final ProjectSpace projectSpace)
+			throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
-			MessageDialog.openInformation(shell, null,
-				"This project is not yet shared with a server, you cannot update.");
+			MessageDialog
+					.openInformation(shell, null,
+							"This project is not yet shared with a server, you cannot update.");
 			return;
 		}
 
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
-			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
+			PrimaryVersionSpec targetVersion = projectSpace.update(
+					VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 
 			// explicitly refresh the decorator since no simple attribute has
@@ -90,25 +98,32 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 			// (as opposed to committing where the dirty property is being set)
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update(
-						"org.unicase.ui.common.decorators.VersionDecorator");
+					PlatformUI
+							.getWorkbench()
+							.getDecoratorManager()
+							.update(
+									"org.unicase.ui.common.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
 			MessageDialog.openInformation(shell, "No need to update",
-				"Your project is up to date, you do not need to update.");
+					"Your project is up to date, you do not need to update.");
 		}
 	}
 
-	private void handleChangeConflictException(ChangeConflictException conflictException) {
+	private void handleChangeConflictException(
+			ChangeConflictException conflictException) {
 		ProjectSpace projectSpace = conflictException.getProjectSpace();
 		try {
-			PrimaryVersionSpec targetVersion = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			projectSpace.merge(targetVersion, new MergeProjectHandler(conflictException));
+			PrimaryVersionSpec targetVersion = projectSpace
+					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+			projectSpace.merge(targetVersion, new MergeProjectHandler(
+					conflictException));
 		} catch (EmfStoreException e) {
-			WorkspaceUtil.logException("Exception when merging the project!", e);
+			WorkspaceUtil
+					.logException("Exception when merging the project!", e);
 		}
 	}
 

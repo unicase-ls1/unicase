@@ -34,14 +34,17 @@ public class UpdateDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param changes the list of changes
+	 * @param parentShell
+	 *            the parent shell
+	 * @param changes
+	 *            the list of changes
 	 */
 	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
-		activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		activeProjectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
 	}
 
 	/**
@@ -55,10 +58,12 @@ public class UpdateDialog extends TitleAreaDialog {
 
 		// changes tree
 		if (changes != null) {
-			TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changes,
-				activeProjectSpace.getProject());
+			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
+					contents, SWT.BORDER, changes, activeProjectSpace
+							.getProject());
 			changesComposite.setReverseNodes(false);
-			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
+					true, true, 2, 1));
 		}
 
 		// show number of changes on dialog title
@@ -78,7 +83,8 @@ public class UpdateDialog extends TitleAreaDialog {
 		Rectangle area = newShell.getShell().getParent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2,
+				(area.height - height) / 2, width, height);
 	}
 
 	/**

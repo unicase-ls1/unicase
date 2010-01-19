@@ -33,7 +33,8 @@ public class RevertHandler extends AbstractHandler {
 		private final ProgressMonitorDialog progressDialog;
 		private final ProjectSpace projectSpace;
 
-		private RevertCommand(ProgressMonitorDialog progressDialog, ProjectSpace projectSpace) {
+		private RevertCommand(ProgressMonitorDialog progressDialog,
+				ProjectSpace projectSpace) {
 			this.progressDialog = progressDialog;
 			this.projectSpace = projectSpace;
 		}
@@ -41,13 +42,16 @@ public class RevertHandler extends AbstractHandler {
 		@Override
 		protected Boolean doRun() {
 			Boolean resultValue = false;
-			MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-				"Do you really want to revert all your changes on project " + projectSpace.getProjectName(),
-				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+			MessageDialog dialog = new MessageDialog(null, "Confirmation",
+					null,
+					"Do you really want to revert all your changes on project "
+							+ projectSpace.getProjectName(),
+					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
 			if (result == Window.OK) {
 				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask("Revert project...", 100);
+				progressDialog.getProgressMonitor().beginTask(
+						"Revert project...", 100);
 				progressDialog.getProgressMonitor().worked(10);
 				// BEGIN SUPRESS CATCH EXCEPTION
 				try {
@@ -55,7 +59,8 @@ public class RevertHandler extends AbstractHandler {
 					resultValue = true;
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
-					WorkspaceUtil.logWarning("RuntimeException in " + RevertHandler.class.getName(), e);
+					WorkspaceUtil.logWarning("RuntimeException in "
+							+ RevertHandler.class.getName(), e);
 				} finally {
 					// END SUPRESS CATCH EXCEPTION
 					progressDialog.getProgressMonitor().done();
@@ -77,8 +82,8 @@ public class RevertHandler extends AbstractHandler {
 		if (projectSpace == null) {
 			DialogHandler.showErrorDialog("No Project selected.");
 		}
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		RevertCommand command = new RevertCommand(progressDialog, projectSpace);
 
 		if (command.run()) {

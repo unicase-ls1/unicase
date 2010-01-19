@@ -44,7 +44,8 @@ public class MergeTextOption extends ConflictOption {
 					AbstractOperation tmp = option.getOperations().get(0);
 					if (tmp instanceof AttributeOperation) {
 						option.getOperations().remove(0);
-						AttributeOperation mergedOp = (AttributeOperation) EcoreUtil.copy(tmp);
+						AttributeOperation mergedOp = (AttributeOperation) EcoreUtil
+								.copy(tmp);
 						mergedOp.setIdentifier(EcoreUtil.generateUUID());
 						mergedOp.setNewValue(text);
 						option.getOperations().add(0, mergedOp);

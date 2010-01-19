@@ -56,7 +56,8 @@ public class OptionComponent {
 			break;
 		case Custom:
 			if (option instanceof CustomConflictOption) {
-				String optionPrefix = ((CustomConflictOption) option).getOptionPrefix();
+				String optionPrefix = ((CustomConflictOption) option)
+						.getOptionPrefix();
 				if (optionPrefix != null) {
 					result = optionPrefix;
 				}
@@ -82,18 +83,23 @@ public class OptionComponent {
 	public void refreshButtonColor() {
 		for (Control composite : group.getChildren()) {
 			if (composite instanceof CompositeExtension) {
-				if (conflict.isResolved() && conflict.getSolution() == ((CompositeExtension) composite).getOption()) {
-					setColor((Composite) composite, DecisionConfig.getOptionSelectedBack(), DecisionConfig
-						.getOptionSelectedFor());
+				if (conflict.isResolved()
+						&& conflict.getSolution() == ((CompositeExtension) composite)
+								.getOption()) {
+					setColor((Composite) composite, DecisionConfig
+							.getOptionSelectedBack(), DecisionConfig
+							.getOptionSelectedFor());
 				} else {
-					setColor((Composite) composite, DecisionConfig.getDefaultColor(), DecisionConfig
-						.getDefaultTextColor());
+					setColor((Composite) composite, DecisionConfig
+							.getDefaultColor(), DecisionConfig
+							.getDefaultTextColor());
 				}
 			}
 		}
 	}
 
-	private void setColor(Composite composite, Color background, Color foreground) {
+	private void setColor(Composite composite, Color background,
+			Color foreground) {
 		composite.setBackground(background);
 		composite.setForeground(foreground);
 		for (Control control : composite.getChildren()) {
@@ -123,7 +129,8 @@ public class OptionComponent {
 			setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 			styledText = new StyledText(this, SWT.READ_ONLY);
-			styledText.setCursor(new Cursor(this.getDisplay(), SWT.CURSOR_HAND));
+			styledText
+					.setCursor(new Cursor(this.getDisplay(), SWT.CURSOR_HAND));
 
 			// label = new Label(this, SWT.NONE);
 			// setText();
@@ -140,7 +147,9 @@ public class OptionComponent {
 		private void setText() {
 			String prefix = generatePrefix(option);
 
-			String result = DecisionUtil.cutString(option.getStrippedOptionLabel(), DecisionConfig.OPTION_LENGTH, true);
+			String result = DecisionUtil.cutString(option
+					.getStrippedOptionLabel(), DecisionConfig.OPTION_LENGTH,
+					true);
 			styledText.setText(prefix + " " + result);
 
 			if (prefix != null || prefix != "") {
@@ -162,7 +171,8 @@ public class OptionComponent {
 
 		public OptionMouseListener(CompositeExtension composite) {
 			this.composite = composite;
-			composite.setCursor(new Cursor(composite.getDisplay(), SWT.CURSOR_HAND));
+			composite.setCursor(new Cursor(composite.getDisplay(),
+					SWT.CURSOR_HAND));
 		}
 
 		public void handleEvent(Event event) {
@@ -173,11 +183,14 @@ public class OptionComponent {
 				break;
 
 			case SWT.MouseEnter:
-				if (conflict.isResolved() && conflict.getSolution() == composite.getOption()) {
-					setColor(composite, DecisionConfig.getOptionSelectedBackEnter(), DecisionConfig
-						.getDefaultTextColor());
+				if (conflict.isResolved()
+						&& conflict.getSolution() == composite.getOption()) {
+					setColor(composite, DecisionConfig
+							.getOptionSelectedBackEnter(), DecisionConfig
+							.getDefaultTextColor());
 				} else {
-					setColor(composite, DecisionConfig.getOptionEnteredColor(), DecisionConfig.getDefaultTextColor());
+					setColor(composite, DecisionConfig.getOptionEnteredColor(),
+							DecisionConfig.getDefaultTextColor());
 				}
 				break;
 
@@ -185,7 +198,8 @@ public class OptionComponent {
 				if (composite.getOption().hasExtraOptionAction()) {
 					extraAction(composite);
 				}
-				if (conflict.isResolved() && conflict.getSolution() == composite.getOption()) {
+				if (conflict.isResolved()
+						&& conflict.getSolution() == composite.getOption()) {
 					conflict.setSolution(null);
 				} else {
 					conflict.setSolution(composite.getOption());

@@ -30,7 +30,8 @@ public class ImportController {
 	private Hashtable<ACOrgUnitId, ImportItemWrapper> importedUnits;
 
 	/**
-	 * @param adminBroker the admin broker.
+	 * @param adminBroker
+	 *            the admin broker.
 	 */
 	public ImportController(AdminBroker adminBroker) {
 		this.adminBroker = adminBroker;
@@ -38,7 +39,8 @@ public class ImportController {
 	}
 
 	/**
-	 * @param wrappedOrgUnits a list of wrapped OrgUnits, which should be imported.
+	 * @param wrappedOrgUnits
+	 *            a list of wrapped OrgUnits, which should be imported.
 	 */
 	public void importOrgUnits(ArrayList<ImportItemWrapper> wrappedOrgUnits) {
 
@@ -60,7 +62,9 @@ public class ImportController {
 				try {
 					String username = wrappedOrgUnit.getOrgUnit().getName();
 					if (null == existUser(username)) {
-						this.importedUnits.put(adminBroker.createUser(username), wrappedOrgUnit);
+						this.importedUnits.put(
+								adminBroker.createUser(username),
+								wrappedOrgUnit);
 					}
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logWarning(e.getMessage(), e);
@@ -78,7 +82,8 @@ public class ImportController {
 				try {
 					String groupname = wrappedOrgUnit.getOrgUnit().getName();
 					if (null == existGroup(groupname)) {
-						this.importedUnits.put(adminBroker.createGroup(groupname), wrappedOrgUnit);
+						this.importedUnits.put(adminBroker
+								.createGroup(groupname), wrappedOrgUnit);
 					}
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logWarning(e.getMessage(), e);
@@ -92,8 +97,8 @@ public class ImportController {
 		for (ACOrgUnitId unitId : importedUnits.keySet()) {
 			if (this.importedUnits.get(unitId).getParentOrgUnit() != null) {
 
-				ACOrgUnitId existGroup = existGroup(this.importedUnits.get(unitId).getParentOrgUnit().getOrgUnit()
-					.getName());
+				ACOrgUnitId existGroup = existGroup(this.importedUnits.get(
+						unitId).getParentOrgUnit().getOrgUnit().getName());
 
 				// we do not want self-containment
 				if (existGroup != null && !existGroup.equals(unitId)) {
@@ -109,7 +114,8 @@ public class ImportController {
 	}
 
 	/**
-	 * @param groupName the name of group.
+	 * @param groupName
+	 *            the name of group.
 	 * @return A ACOrgUnitId object if the group already exists null otherwise.
 	 */
 	private ACOrgUnitId existGroup(final String groupName) {
@@ -131,7 +137,8 @@ public class ImportController {
 	}
 
 	/**
-	 * @param userName the name of user.
+	 * @param userName
+	 *            the name of user.
 	 * @return A ACOrgUnitId object if the user already exist null otherwise.
 	 */
 	private ACOrgUnitId existUser(final String userName) {
@@ -160,7 +167,8 @@ public class ImportController {
 	}
 
 	/**
-	 * @param importSource the import source, that should be used for the import.
+	 * @param importSource
+	 *            the import source, that should be used for the import.
 	 */
 	public void setImportSource(ImportSource importSource) {
 		this.importSource = importSource;
@@ -182,7 +190,8 @@ public class ImportController {
 	}
 
 	/**
-	 * @return Returns a small message to describe where data currently gets imported from.
+	 * @return Returns a small message to describe where data currently gets
+	 *         imported from.
 	 */
 	public String getMessage() {
 		// if importSource isn't initialized yet, return an empty string instead

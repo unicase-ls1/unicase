@@ -45,10 +45,13 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param workbench the current workbench
-	 * @param selection the current selection
+	 * @param workbench
+	 *            the current workbench
+	 * @param selection
+	 *            the current selection
 	 */
-	public NewRepositoryWizardPageOne(IWorkbench workbench, IStructuredSelection selection) {
+	public NewRepositoryWizardPageOne(IWorkbench workbench,
+			IStructuredSelection selection) {
 		super("Main");
 		setTitle("Server Details");
 		setDescription("Select the details for the new repository");
@@ -106,7 +109,9 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		gd.horizontalSpan = ncol - 1;
 		cert.setLayoutData(gd);
 		cert.setEditable(false);
-		cert.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		cert
+				.setBackground(Display.getCurrent().getSystemColor(
+						SWT.COLOR_WHITE));
 
 		// Choose Certificate, Opens Dialogue
 		new Label(composite, SWT.NONE).setText("");
@@ -124,7 +129,8 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 			port.setSelection(serverInfo.getPort());
 			if (serverInfo.getCertificateAlias() != null) {
 				try {
-					if (KeyStoreManager.getInstance().contains(serverInfo.getCertificateAlias())) {
+					if (KeyStoreManager.getInstance().contains(
+							serverInfo.getCertificateAlias())) {
 						cert.setText(serverInfo.getCertificateAlias());
 					} else {
 						cert.setText("");
@@ -152,7 +158,8 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 	}
 
 	/**
-	 * Saves the uses choices from this page to the model. Called on exit of the page
+	 * Saves the uses choices from this page to the model. Called on exit of the
+	 * page
 	 */
 	private void saveDataToModel() {
 		new UnicaseCommand() {
@@ -190,7 +197,8 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 	class SelectionDialogListener implements SelectionListener {
 
 		/**
-		 * @param e selection event
+		 * @param e
+		 *            selection event
 		 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -198,21 +206,22 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		}
 
 		/**
-		 * @param e selection event
+		 * @param e
+		 *            selection event
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			CertificateSelectionDialog csd = new CertificateSelectionDialog(Display.getCurrent().getActiveShell(),
-				new LabelProvider() {
-					@Override
-					public String getText(Object element) {
-						if (element instanceof String) {
-							return element.toString();
-						} else {
-							return "";
+			CertificateSelectionDialog csd = new CertificateSelectionDialog(
+					Display.getCurrent().getActiveShell(), new LabelProvider() {
+						@Override
+						public String getText(Object element) {
+							if (element instanceof String) {
+								return element.toString();
+							} else {
+								return "";
+							}
 						}
-					}
-				});
+					});
 			ArrayList<String> certificates;
 			try {
 				certificates = KeyStoreManager.getInstance().getCertificates();

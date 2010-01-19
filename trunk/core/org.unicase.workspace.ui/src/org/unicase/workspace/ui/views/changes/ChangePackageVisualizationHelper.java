@@ -50,26 +50,33 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Constructor.
 	 * 
-	 * @param changePackages a list of change packages
-	 * @param project a project
+	 * @param changePackages
+	 *            a list of change packages
+	 * @param project
+	 *            a project
 	 */
-	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
+	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages,
+			Project project) {
 		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
 		for (ChangePackage changePackage : changePackages) {
 			initModelElementMap(changePackage);
 		}
 		this.project = project;
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	private void initModelElementMap(ChangePackage changePackage) {
 		List<AbstractOperation> operations = changePackage.getLeafOperations();
 		for (AbstractOperation abstractOperation : operations) {
 			if (abstractOperation instanceof CreateDeleteOperation) {
-				ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
-				modelElementMap.put(modelElement.getModelElementId(), modelElement);
-				for (ModelElement sibling : modelElement.getAllContainedModelElements()) {
+				ModelElement modelElement = ((CreateDeleteOperation) abstractOperation)
+						.getModelElement();
+				modelElementMap.put(modelElement.getModelElementId(),
+						modelElement);
+				for (ModelElement sibling : modelElement
+						.getAllContainedModelElements()) {
 					modelElementMap.put(sibling.getModelElementId(), sibling);
 				}
 			}
@@ -79,7 +86,8 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get a model element instance from the project for the given id.
 	 * 
-	 * @param modelElementId the id
+	 * @param modelElementId
+	 *            the id
 	 * @return the model element instance
 	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
@@ -95,7 +103,8 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get the overlay image for an operation.
 	 * 
-	 * @param operation the operation
+	 * @param operation
+	 *            the operation
 	 * @return the ImageDescriptor
 	 */
 	public ImageDescriptor getOverlayImage(AbstractOperation operation) {
@@ -134,18 +143,22 @@ public class ChangePackageVisualizationHelper {
 			overlay = "icons/modify_overlay.png";
 		}
 
-		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator.getImageDescriptor(overlay);
+		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator
+				.getImageDescriptor(overlay);
 		return overlayDescriptor;
 	}
 
 	/**
 	 * Get an image for the operation.
 	 * 
-	 * @param emfProvider the label provider
-	 * @param operation the operation
+	 * @param emfProvider
+	 *            the label provider
+	 * @param operation
+	 *            the operation
 	 * @return an image
 	 */
-	public Image getImage(ILabelProvider emfProvider, AbstractOperation operation) {
+	public Image getImage(ILabelProvider emfProvider,
+			AbstractOperation operation) {
 		Image image = null;
 		if (operation instanceof CreateDeleteOperation) {
 			CreateDeleteOperation op = (CreateDeleteOperation) operation;
@@ -164,7 +177,8 @@ public class ChangePackageVisualizationHelper {
 		} else if (operation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			if (op.getReferencedModelElements().size() > 0) {
-				image = emfProvider.getImage(op.getReferencedModelElements().get(0));
+				image = emfProvider.getImage(op.getReferencedModelElements()
+						.get(0));
 			}
 		} else if (operation instanceof MultiReferenceMoveOperation) {
 			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) operation;
@@ -174,7 +188,8 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	/**
-	 * @param op the operation to generate a description for
+	 * @param op
+	 *            the operation to generate a description for
 	 * @return the description for given operation
 	 */
 	public String getDescription(AbstractOperation op) {
@@ -191,8 +206,10 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	private String decorate(String undecoratedString, AbstractOperation op) {
-		String namesResolved = resolveIds(undecoratedString, AbstractOperationItemProvider.NAME_TAG__SEPARATOR);
-		String allResolved = resolveIds(namesResolved, AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR);
+		String namesResolved = resolveIds(undecoratedString,
+				AbstractOperationItemProvider.NAME_TAG__SEPARATOR);
+		String allResolved = resolveIds(namesResolved,
+				AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR);
 		if (op instanceof ReferenceOperation) {
 			return resolveTypes(allResolved, (ReferenceOperation) op);
 		}
@@ -215,7 +232,9 @@ public class ChangePackageVisualizationHelper {
 		if (type.equals("UnicaseModelElement")) {
 			type = "ModelElement";
 		}
-		return unresolvedString.replace(AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR, type);
+		return unresolvedString.replace(
+				AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR,
+				type);
 	}
 
 	private String resolveIds(String unresolvedString, String devider) {
@@ -223,10 +242,13 @@ public class ChangePackageVisualizationHelper {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < strings.length; i++) {
 			if (i % 2 == 1) {
-				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId modelElementId = MetamodelFactory.eINSTANCE
+						.createModelElementId();
 				modelElementId.setId(strings[i]);
-				if (devider.equals(AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR)) {
-					stringBuilder.append(getModelElementClassAndName(modelElementId));
+				if (devider
+						.equals(AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR)) {
+					stringBuilder
+							.append(getModelElementClassAndName(modelElementId));
 				} else {
 					stringBuilder.append(getModelElementName(modelElementId));
 				}
@@ -242,7 +264,8 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
-		return " \"" + trim(adapterFactoryLabelProvider.getText(modelElement)) + "\"";
+		return " \"" + trim(adapterFactoryLabelProvider.getText(modelElement))
+				+ "\"";
 	}
 
 	private String trim(Object object) {
@@ -272,11 +295,12 @@ public class ChangePackageVisualizationHelper {
 			return UNKOWN_ELEMENT;
 		}
 		String className = modelElement.eClass().getName();
-		return className + " \"" + trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
+		return className + " \""
+				+ trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
 	}
 
 	public <T extends Collection<ModelElement>, S extends Collection<ModelElementId>> T getModelElements(
-		S modelElementIds, T resultCollection) {
+			S modelElementIds, T resultCollection) {
 		for (ModelElementId modelElementId : modelElementIds) {
 			ModelElement modelElement = getModelElement(modelElementId);
 			if (modelElement != null) {

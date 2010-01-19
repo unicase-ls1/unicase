@@ -25,8 +25,9 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
 /**
- * This shows attributes of a ACUser (name, description) and show a list of groups this user belongs to. You can use
- * drag and drop to drop a group on list of user's groups to add user to that group.
+ * This shows attributes of a ACUser (name, description) and show a list of
+ * groups this user belongs to. You can use drag and drop to drop a group on
+ * list of user's groups to add user to that group.
  * 
  * @author Hodaie
  */
@@ -38,12 +39,18 @@ public class UserComposite extends PropertiesComposite {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent parent
-	 * @param style style
-	 * @param adminBroker used to communicate with server
-	 * @param orgUnitMgmtGUI used to find out what which tab is active, so that if needed update its list viewer
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
+	 * @param adminBroker
+	 *            used to communicate with server
+	 * @param orgUnitMgmtGUI
+	 *            used to find out what which tab is active, so that if needed
+	 *            update its list viewer
 	 */
-	public UserComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
+	public UserComposite(Composite parent, int style, AdminBroker adminBroker,
+			OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
 		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
@@ -55,7 +62,8 @@ public class UserComposite extends PropertiesComposite {
 	@Override
 	protected void removeOrgUnit(ACOrgUnit group) {
 		try {
-			getAdminBroker().removeGroup(user.getId(), ((ACGroup) group).getId());
+			getAdminBroker().removeGroup(user.getId(),
+					((ACGroup) group).getId());
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
@@ -70,7 +78,8 @@ public class UserComposite extends PropertiesComposite {
 
 		try {
 			if (group != null) {
-				getAdminBroker().addMember(((ACGroup) group).getId(), user.getId());
+				getAdminBroker().addMember(((ACGroup) group).getId(),
+						user.getId());
 
 			}
 		} catch (EmfStoreException e) {
@@ -100,7 +109,8 @@ public class UserComposite extends PropertiesComposite {
 	}
 
 	/**
-	 * This is used when adding a group using add button. It shows an element selection dialog.
+	 * This is used when adding a group using add button. It shows an element
+	 * selection dialog.
 	 * 
 	 * @return a list of selected groups to which this ACUser will be added.
 	 */
@@ -147,7 +157,9 @@ public class UserComposite extends PropertiesComposite {
 			this.user = (ACUser) input;
 
 			getTxtName().setText(user.getName());
-			getTxtDescription().setText((user.getDescription() == null) ? "" : user.getDescription());
+			getTxtDescription().setText(
+					(user.getDescription() == null) ? "" : user
+							.getDescription());
 			getTableViewer().setInput(user);
 
 		}
@@ -164,11 +176,13 @@ public class UserComposite extends PropertiesComposite {
 
 		// add drop support
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
+				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetAdapter() {
 			@Override
 			public void dragEnter(DropTargetEvent event) {
-				if (PropertiesForm.getDragSource().equals("Projects") || PropertiesForm.getDragSource().equals("Users")) {
+				if (PropertiesForm.getDragSource().equals("Projects")
+						|| PropertiesForm.getDragSource().equals("Users")) {
 					event.detail = DND.DROP_NONE;
 
 				} else {
@@ -180,7 +194,8 @@ public class UserComposite extends PropertiesComposite {
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
 					if (PropertiesForm.getDragNDropObject() instanceof ACGroup) {
-						ACGroup group = (ACGroup) PropertiesForm.getDragNDropObject();
+						ACGroup group = (ACGroup) PropertiesForm
+								.getDragNDropObject();
 						addExistingOrgUnit(group);
 						PropertiesForm.setDragNDropObject(null);
 						getTableViewer().refresh();
@@ -202,11 +217,13 @@ public class UserComposite extends PropertiesComposite {
 		if (user == null) {
 			return;
 		}
-		if (!(user.getName().equals(getTxtName().getText()) && user.getDescription().equals(
-			getTxtDescription().getText()))) {
+		if (!(user.getName().equals(getTxtName().getText()) && user
+				.getDescription().equals(getTxtDescription().getText()))) {
 			try {
-				getAdminBroker().changeOrgUnit(user.getId(), getTxtName().getText(), getTxtDescription().getText());
-				((Form) (this.getParent().getParent())).setText("User: " + getTxtName().getText());
+				getAdminBroker().changeOrgUnit(user.getId(),
+						getTxtName().getText(), getTxtDescription().getText());
+				((Form) (this.getParent().getParent())).setText("User: "
+						+ getTxtName().getText());
 				orgUnitMgmtGUI.getActiveTabContent().getTableViewer().refresh();
 
 			} catch (EmfStoreException e) {

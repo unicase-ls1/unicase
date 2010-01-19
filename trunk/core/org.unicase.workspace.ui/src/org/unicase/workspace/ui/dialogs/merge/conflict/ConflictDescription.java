@@ -50,7 +50,8 @@ public class ConflictDescription {
 			if (value instanceof ModelElement) {
 				value = DecisionUtil.getClassAndName((ModelElement) value);
 			}
-			result = result.replace(tmp, (value != null) ? value.toString() : "");
+			result = result.replace(tmp, (value != null) ? value.toString()
+					: "");
 		}
 		return result;
 	}

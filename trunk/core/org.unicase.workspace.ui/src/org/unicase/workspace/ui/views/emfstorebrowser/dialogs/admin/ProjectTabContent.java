@@ -32,8 +32,10 @@ public class ProjectTabContent extends TabContent {
 	 * Project Table Provider.
 	 * 
 	 * @author koegel
+	 * 
 	 */
-	private final class ITableLabelProviderImplementation implements ITableLabelProvider {
+	private final class ITableLabelProviderImplementation implements
+			ITableLabelProvider {
 		public void addListener(ILabelProviderListener listener) {
 		}
 
@@ -52,24 +54,31 @@ public class ProjectTabContent extends TabContent {
 		}
 
 		public String getColumnText(Object element, int columnIndex) {
-			return ((ProjectInfo) element).getName() + " [" + ((ProjectInfo) element).getVersion().getIdentifier()
-				+ "]";
+			return ((ProjectInfo) element).getName() + " ["
+					+ ((ProjectInfo) element).getVersion().getIdentifier()
+					+ "]";
 		}
 	}
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon deletion of OrgUnits.
 	 */
-	public ProjectTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public ProjectTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 * @return Composite.
 	 */
 	@Override
@@ -106,13 +115,15 @@ public class ProjectTabContent extends TabContent {
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
-				return projectInfos.toArray(new ProjectInfo[projectInfos.size()]);
+				return projectInfos
+						.toArray(new ProjectInfo[projectInfos.size()]);
 			}
 
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 			}
 		};
 	}

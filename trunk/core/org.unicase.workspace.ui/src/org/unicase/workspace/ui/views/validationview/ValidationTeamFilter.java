@@ -27,7 +27,8 @@ public class ValidationTeamFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user The user to whos team it should be filtered.
+	 * @param user
+	 *            The user to whos team it should be filtered.
 	 */
 	public ValidationTeamFilter(User user) {
 		team = OrgUnitHelper.getTeam(user);
