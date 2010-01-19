@@ -48,6 +48,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -478,8 +479,14 @@ public class DashboardPropertyPage extends PropertyPage {
 		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
 			OrgUnitProperty subscriptionsProperty = PreferenceManager.INSTANCE
 					.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-			EObject[] subscriptionsIds = subscriptionsProperty
-					.getEObjectArrayProperty();
+			EObject[] subscriptionsIds = new EObject[0];
+			try { 
+				subscriptionsIds = subscriptionsProperty.getEObjectArrayProperty();
+			}
+			catch (SerializationException e) {
+				//log but ignore
+				ModelUtil.logWarning("Loading Subscription ids failed!", e);
+			}
 			for (EObject id : subscriptionsIds) {
 				if (id instanceof ModelElementId) {
 					ModelElement modelElement = project
@@ -495,8 +502,16 @@ public class DashboardPropertyPage extends PropertyPage {
 		if (projectSpace.hasProperty(DashboardKey.TASKTRACE_CLASSES)) {
 			OrgUnitProperty taskTraceClassesProperty = PreferenceManager.INSTANCE
 					.getProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES);
-			EObject[] eclasses = taskTraceClassesProperty
+			EObject[] eclasses = new EObject[0];
+			try {
+				eclasses = taskTraceClassesProperty
 					.getEObjectArrayProperty();
+			}
+			catch (SerializationException e) {
+				//log but ignore
+				ModelUtil.logWarning("Loading Subscription ids failed!", e);
+			}
+			
 			for (EObject eclass : eclasses) {
 				if (eclass instanceof EClass) {
 					taskTraceClasses.add((EClass) eclass);

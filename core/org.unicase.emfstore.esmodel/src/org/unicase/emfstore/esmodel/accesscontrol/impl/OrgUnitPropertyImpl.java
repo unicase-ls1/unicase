@@ -429,17 +429,15 @@ public class OrgUnitPropertyImpl extends EObjectImpl implements OrgUnitProperty 
 	/**
 	 * {@inheritDoc}
 	 */
-	public EObject[] getEObjectArrayProperty() {
+	public EObject[] getEObjectArrayProperty() throws SerializationException {
 		String[] value = getStringArrayProperty();
 		if (value != null && value.length > 0) {
 			EObject[] eobjects = new EObject[value.length];
 			for (int i = 0; i < value.length; i++) {
 				try {
 					eobjects[i] = ModelUtil.stringToEObject(value[i]);
-				} catch (SerializationException e) {
-					throw new IllegalArgumentException("EObject could not be deserialized!");
 				} catch (ClassCastException e) {
-					throw new IllegalArgumentException("EObject is not a ModelElementId!");
+					throw new SerializationException(e);
 				}
 			}
 			return eobjects;
