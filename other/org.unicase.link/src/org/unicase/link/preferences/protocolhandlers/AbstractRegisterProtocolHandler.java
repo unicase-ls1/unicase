@@ -8,9 +8,9 @@ package org.unicase.link.preferences.protocolhandlers;
 import java.io.File;
 import java.io.IOException;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.link.util.FileLocations;
 
 /**
  * Class for registering the UNICASE protocol handler on an operating system. Also provides some helper methods for
@@ -28,35 +28,7 @@ public abstract class AbstractRegisterProtocolHandler {
 	/**
 	 * Determines whether the protocol handler has been registered successfully.
 	 */
-	public abstract boolean IsProtocolHandlerRegistered();
-
-	/**
-	 * Gets the absolute path of the eclipse installation with a trailing file separator.
-	 * 
-	 * @return the absolute path of the eclipse installation
-	 */
-	protected String getEclipseFilePath() {
-		return Platform.getInstallLocation().getURL().getFile();
-	}
-
-	/**
-	 * Gets the <code>lib</code> directory, which is contained within the features directory of the plugin.
-	 * 
-	 * @return the absolute path of the lib directory
-	 */
-	protected String getFeaturesDirectory() {
-		File featuresDir = new File(getEclipseFilePath() + "features");
-
-		File[] features = featuresDir.listFiles();
-
-		for (File feature : features) {
-			if (feature.getName().toLowerCase().contains("org.unicase.link")) {
-				return feature.getAbsoluteFile() + File.separator + "lib";
-			}
-		}
-
-		return null;
-	}
+	public abstract boolean isProtocolHandlerRegistered();
 
 	/**
 	 * Opens up a error dialog showing the user the given text.
@@ -78,7 +50,8 @@ public abstract class AbstractRegisterProtocolHandler {
 	 * @throws IOException if the startup jar doesn't exist
 	 */
 	public String getStartUpJar() throws IOException {
-		File startUpJar = new File(getFeaturesDirectory() + File.separator + "org.unicase.link.startup.jar");
+		File startUpJar = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
+			+ "org.unicase.link.startup.jar");
 
 		// check whether startup jar really exists
 		if (!startUpJar.exists()) {
@@ -106,7 +79,7 @@ public abstract class AbstractRegisterProtocolHandler {
 	 */
 	public String getEclipseExecutable() {
 		String osName = System.getProperty("os.name").toLowerCase();
-		String eclipseDir = getEclipseFilePath();
+		String eclipseDir = FileLocations.getEclipseFilePath();
 		String executable;
 
 		if (osName.contains("win")) {

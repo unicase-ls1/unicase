@@ -55,14 +55,11 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	public void init(IWorkbench workbench) {
 	}
 
-	/**
-	 * @author emueller TODO: meaningful UI
-	 */
 	private class UnicaseLinkFieldEditor extends StringButtonFieldEditor {
 
 		public UnicaseLinkFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
-			getTextControl().setText(protocolHandler.IsProtocolHandlerRegistered() ? "Yes" : "No");
+			getTextControl().setText(protocolHandler.isProtocolHandlerRegistered() ? "Yes" : "No");
 			getTextControl().setEditable(false);
 			// getTextControl().setEnabled(false);
 			// getApplyButton().setText(string)
@@ -93,7 +90,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				});
 			}
 
-			if (protocolHandler.IsProtocolHandlerRegistered()) {
+			if (protocolHandler.isProtocolHandlerRegistered()) {
 				getTextControl().setText("Yes");
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
@@ -116,8 +113,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				cfgFile.createNewFile();
 				FileWriter cfgFileWriter = new FileWriter(cfgFile);
 				BufferedWriter bufferedWriter = new BufferedWriter(cfgFileWriter);
-				// we need to write this link tag (will be replaced by the startup jar)
-				bufferedWriter.write(eclipseExecutablePath + " <LINK>");
+				bufferedWriter.write(eclipseExecutablePath);
 				bufferedWriter.close();
 			} catch (IOException e) {
 				showErrorMessage(e.getMessage());

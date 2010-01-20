@@ -12,6 +12,21 @@ package org.unicase.link.preferences.protocolhandlers;
  */
 public class RegisterProtocolHandlerFactory {
 
+	private static RegisterProtocolHandlerFactory instance;
+
+	/**
+	 * Gets an instance of the factory.
+	 * 
+	 * @return an instance of the factory
+	 */
+	public static RegisterProtocolHandlerFactory getInstance() {
+		if (instance == null) {
+			instance = new RegisterProtocolHandlerFactory();
+		}
+
+		return instance;
+	}
+
 	/**
 	 * @param osName the
 	 * @return
