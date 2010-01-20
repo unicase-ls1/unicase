@@ -95,8 +95,8 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
 						MessageDialog.openInformation(getShell(), "URL handler registered succesfully",
-							"The registration of the URL handler for unicase:// URLs on your operatings system "
-								+ " was successfull.");
+							"The registration of the URL handler for unicase:// URLs on your operating system "
+								+ " was successful.");
 					}
 				});
 			}
