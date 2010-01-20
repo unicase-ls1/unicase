@@ -8,6 +8,7 @@ package org.unicase.link.startupapp;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import it.sauronsoftware.junique.JUnique;
@@ -35,6 +36,8 @@ public final class LinkTrigger {
 	 * The path to the config file which contains the command to startup UNICASE
 	 */
 	private static final String CONFIG_FILE_PATH = "./unicaseLink.conf";
+	
+	private static final String LOCK_FILE = "./.unicase-link-lock.file";
 
 	/**
 	 * The Application ID. It is used to lock UNICASE application to enable to
@@ -48,7 +51,7 @@ public final class LinkTrigger {
 	 */
 	public static final String UNICASE_LINK_PREFIX = "unicase://";
 
-	public static String readConfigFile() throws IOException{
+	private static String readConfigFile() throws IOException{
 		BufferedReader b = new BufferedReader(new FileReader(new File(CONFIG_FILE_PATH)));
 		String link = b.readLine();
 		b.close();
@@ -56,24 +59,29 @@ public final class LinkTrigger {
 		return link;
 	}
 	
+	private static void writeLockFile(String link) throws IOException {
+		FileWriter writer = new FileWriter(LOCK_FILE);
+		writer.write(link);
+		writer.close();
+	}
+	
 	/**
 	 * Locks the application id and sets up a trigger to get arguments from
 	 * other run attempts of UNICASE.
 	 * 
-	 * @return false if id was not locked. Otherwise, false
 	 */
 	public static void main(String[] args) {
 		
-		//Was a unicase link handed to the app?
+		// Was a unicase link handed to the app?
 		if(args.length < 1 || !args[0].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
-			System.out.println("No unicase link handed to startupapp!");
+			System.out.println("No UNICASE link passed!");
 			return;
 		}
 
 		String linkArgument = args[0];
 	
-		
 		boolean isAlreadyRunning = false;
+		
 		try {
 			JUnique.acquireLock(APPLICATION_ID);
 			JUnique.releaseLock(APPLICATION_ID);
@@ -81,7 +89,6 @@ public final class LinkTrigger {
 			// One instance of an UNICASE is already running.
 			isAlreadyRunning = true;
 		}
-
 
 		/* 
 		 * if UNICASE is already running, we should send link argument to the instance.
@@ -92,6 +99,7 @@ public final class LinkTrigger {
 			JUnique.sendMessage(APPLICATION_ID, linkArgument);
 			return;
 		} 
+		
 		/* If UNICASE is not running, we let this instance to run.  */ 
 		else {
 			/* 
@@ -102,7 +110,11 @@ public final class LinkTrigger {
 			 */
 			String command;
 			try {
-				command = readConfigFile().replace("<LINK>","\"" + linkArgument + "\"");
+				// write link to lock file 
+				writeLockFile(linkArgument);
+				
+				// read path of the eclipse executable 
+				command = readConfigFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 				return;
