@@ -54,10 +54,16 @@ public class OpenLink implements Observer {
 	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment modelElementUrl) {
 
 		final ModelElement me = projectSpace.getProject().getModelElement(modelElementUrl.getModelElementId());
+
 		if (me != null) {
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					ActionHelper.openModelElement(me, EXTERNAL_URL);
+					if (Display.getDefault().getShells().length > 0) {
+						// force focus
+						Display.getDefault().getShells()[0].forceActive();
+						Display.getDefault().getShells()[0].forceFocus();
+					}
 				}
 			});
 		}
@@ -89,12 +95,12 @@ public class OpenLink implements Observer {
 		try {
 			ModelElementUrl modElmUrl = UrlFactoryImpl.eINSTANCE.createModelElementUrl(url);
 			openURL(modElmUrl);
-		} catch (MalformedURLException e) {
+		} catch (final MalformedURLException e) {
 			// invalid URL has been passed, inform user
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					MessageDialog.openError(Display.getDefault().getActiveShell(), "Malformed URL",
-						"The UNICASE URL you tried to open is not valid.");
+						"The UNICASE URL you tried to open is not valid.\n" + e.getMessage());
 				}
 			});
 		}

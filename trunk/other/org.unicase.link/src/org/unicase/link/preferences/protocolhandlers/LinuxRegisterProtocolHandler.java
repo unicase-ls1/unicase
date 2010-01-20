@@ -8,6 +8,8 @@ package org.unicase.link.preferences.protocolhandlers;
 import java.io.File;
 import java.io.IOException;
 
+import org.unicase.link.util.FileLocations;
+
 /**
  * Protocol registration handler for Linux.
  * 
@@ -18,7 +20,8 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 
 	@Override
 	public void registerProtocolHandler() {
-		File shellScript = new File(getFeaturesDirectory() + File.separator + "registerUnicaseProtocolHandler.sh");
+		File shellScript = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
+			+ "registerUnicaseProtocolHandler.sh");
 
 		// make script executable and execute it
 		try {
@@ -33,7 +36,7 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 	}
 
 	@Override
-	public boolean IsProtocolHandlerRegistered() {
+	public boolean isProtocolHandlerRegistered() {
 		return true;
 	}
 }

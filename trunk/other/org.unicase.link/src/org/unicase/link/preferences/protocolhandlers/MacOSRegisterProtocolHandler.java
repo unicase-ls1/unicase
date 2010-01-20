@@ -15,6 +15,8 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.unicase.link.util.FileLocations;
+
 /**
  * Protocol registration handler for Mac OS. To avoid the use of JNI an application bundle archived as a zip file is
  * packaged with the link feature. This application bundle associates itself with the UNICASE protocol without further
@@ -101,8 +103,15 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 	}
 
 	@Override
-	public boolean IsProtocolHandlerRegistered() {
-		// TODO: if possible, check for execute bit set
-		return true;
+	public boolean isProtocolHandlerRegistered() {
+		File executable = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
+			+ "UnicaseURLHandler.app");
+
+		// TODO: if possible, also check whether the execute bit has been set
+		if (executable.exists()) {
+			return true;
+		}
+
+		return false;
 	}
 }

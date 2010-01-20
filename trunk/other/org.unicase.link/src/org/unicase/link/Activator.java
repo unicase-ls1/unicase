@@ -8,15 +8,22 @@ package org.unicase.link;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.unicase.link.handlers.URLMessageHandler;
+import org.unicase.link.util.FileLocations;
+import org.unicase.link.util.ui.OpenLink;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * The activator class controls the emfstore life cycle.
+ * Activator class for link plugin.
  * 
  * @author Kameliya Terzieva, Fatih Ulusoy, Jan Finis
  */
@@ -57,7 +64,6 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
-
 		super.stop(context);
 	}
 
@@ -86,9 +92,38 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		try {
 			JUnique.acquireLock(PLUGIN_ID, new URLMessageHandler());
 			WorkspaceUtil.log("UNICASE Link plugin initialized.", null, 0);
+
+			File lockFile = new File(FileLocations.LOCK_FILE);
+
+			if (lockFile.exists()) {
+				String link = readLockFile(lockFile);
+
+				if (link == null) {
+					// TODO: should we show a dialog to the user?
+				} else {
+					OpenLink.openURL(link);
+					lockFile.delete();
+				}
+			}
 		} catch (AlreadyLockedException e) {
 			// Another instance of eclipse is already running, do nothing.
 			return;
+		} catch (IOException e) {
+			return;
 		}
+	}
+
+	private String readLockFile(File lockFile) throws IOException {
+		BufferedReader b = new BufferedReader(new FileReader(lockFile));
+		String link = b.readLine();
+		b.close();
+
+		if (link == null) {
+			// if the file is empty for some reason, get rid of it
+			lockFile.delete();
+			return null;
+		}
+
+		return link;
 	}
 }

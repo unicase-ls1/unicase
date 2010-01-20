@@ -18,15 +18,15 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Custom dialog class that enables to select the generated model element URL.  
+ * Custom dialog class that enables to select the generated model element URL.
  * 
  * @author emueller
  */
 public class LinkDialog extends Dialog {
-	
+
 	private String labelText;
 	private String textBoxContent;
-	
+
 	/**
 	 * Initializes a new instance of the LinkDialog.
 	 * 
@@ -35,10 +35,10 @@ public class LinkDialog extends Dialog {
 	 * @param textBoxContent the text to be shown in the non editable TextBox
 	 */
 	public LinkDialog(Shell parent, String labelText, String textBoxContent) {
-	    super(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL | SWT.ICON_INFORMATION);
-	    setLabelText(labelText);
-	    setText("Input Dialog");
-	    setTextBoxContent(textBoxContent);
+		super(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL | SWT.ICON_INFORMATION);
+		setLabelText(labelText);
+		setText("Input Dialog");
+		setTextBoxContent(textBoxContent);
 	}
 
 	/**
@@ -53,14 +53,15 @@ public class LinkDialog extends Dialog {
 	/**
 	 * Returns the current text of the non-editable TextBox which is contained in the dialog.
 	 * 
-	 * @return the text of the non-editable TextBox 
+	 * @return the text of the non-editable TextBox
 	 */
 	public String getTextBoxConent() {
 		return textBoxContent;
 	}
-	
+
 	/**
 	 * Sets the label text of the dialog.
+	 * 
 	 * @param labelText the label text to be shown.
 	 */
 	public void setLabelText(String labelText) {
@@ -69,6 +70,7 @@ public class LinkDialog extends Dialog {
 
 	/**
 	 * Gets the label text of the dialog.
+	 * 
 	 * @return the label text.
 	 */
 	public String getLabelText() {
@@ -77,7 +79,6 @@ public class LinkDialog extends Dialog {
 
 	/**
 	 * Opens the dialog.
-	 * 
 	 */
 	public void open() {
 		Shell shell = new Shell(getParent(), getStyle());
@@ -86,12 +87,12 @@ public class LinkDialog extends Dialog {
 		shell.pack();
 		shell.open();
 		Display display = getParent().getDisplay();
-		
+
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
-		}	    
+		}
 	}
 
 	/**
@@ -128,6 +129,5 @@ public class LinkDialog extends Dialog {
 
 		shell.setDefaultButton(ok);
 	}
-	
-}
 
+}

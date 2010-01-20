@@ -56,7 +56,7 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 	}
 
 	@Override
-	public boolean IsProtocolHandlerRegistered() {
+	public boolean isProtocolHandlerRegistered() {
 		return true;
 	}
 
