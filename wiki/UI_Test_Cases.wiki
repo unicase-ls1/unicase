@@ -4,4 +4,9 @@
  
 
   *   You will need [http://www.eclipse.org/swtbot/downloads.php SWTBOT] for UI Testing.
-  *   And the plugin(org.unicase.ui.test) itself, which you can checkout from the repository along with the other plugin(org.unicase.workspace.test) on which the test plugin is dependent.
+       # SWTBot for swt Testing.
+       # SWTBot for eclipse Testing.
+
+  *   And the Test-plugin*(org.unicase.ui.test)* itself, which you can checkout from the repository along with the other plugin *(org.unicase.workspace.test)* on which the "Test-plugin" is dependent.
+
+*NOTE:* The Test-plugin and the additional plugin is available at [http://unicase.googlecode.com/svn/trunk/test/ UNICASE SVN repository].
