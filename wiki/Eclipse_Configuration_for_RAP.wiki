@@ -61,11 +61,17 @@ http://unicase.googlecode.com/files/Target_Path.png
 Let's create sample RAP plugin to see how it works. I have used one of the template projects from Eclipse:
 
 *  1. *Select *File > New > Project > Plug-in Project*
+<br> 
 *  2. *Name to your project (e.g. RAP-Mail) Select *Next*.
+<br>
 *  3. *Don't change anything. Select *Next*.
+<br>
 *  4. *Select *RAP Mail Template* and select *Finish*.
+<br>
 *  5. *Your first RAP plugin has been created.
+<br>
 *  6. *Select the project and click *Run As > RAP Application*.
+<br>
 *  7. *You get this view in your Eclipse.
 
 http://unicase.googlecode.com/files/RAP_Mail.png
