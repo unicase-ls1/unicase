@@ -13,6 +13,6 @@ import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MESingleLinkControl
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class })
+@Suite.SuiteClasses( {MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class, MEDescriptionPageTest.class })
 public class AllMEControlTests {
 }
