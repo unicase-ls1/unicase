@@ -46,13 +46,13 @@ http://unicase.googlecode.com/files/Install_Target_Platform.png
 
 <br>
 
-   # On this page click *Install Target Platform*. In the upcoming dialog (shown below) it will ask you to select a directory where target platform should be installed. Change the path to your specific needs, if necessary. After you've set the installation directory the installation process starts (By default your RAP target will be installed under _"eclipse/configuration/org.eclipse.rap.target-1.3"_). If you have any RCP projects in your workspace, you may get compile errors after switching the target platform.
+*  10. *On this page click *Install Target Platform*. In the upcoming dialog (shown below) it will ask you to select a directory where target platform should be installed. Change the path to your specific needs, if necessary. After you've set the installation directory the installation process starts (By default your RAP target will be installed under _"eclipse/configuration/org.eclipse.rap.target-1.3"_). If you have any RCP projects in your workspace, you may get compile errors after switching the target platform.
 
 http://unicase.googlecode.com/files/Target_Path.png
 
 <br>
 
-   # Finally, your Eclipse is ready for running RAP applications.
+*  11. *Finally, your Eclipse is ready for running RAP applications.
 
 <br>
 
@@ -60,13 +60,13 @@ http://unicase.googlecode.com/files/Target_Path.png
 
 Let's create sample RAP plugin to see how it works. I have used one of the template projects from Eclipse:
 
-   # Select *File > New > Project > Plug-in Project*
-   # Name to your project (e.g. RAP-Mail) Select *Next*.
-   # Don't change anything. Select *Next*.
-   # Select *RAP Mail Template* and select *Finish*.
-   # Your first RAP plugin has been created.
-   # Select the project and click *Run As > RAP Application*.
-   # You get this view in your Eclipse.
+*  1. *Select *File > New > Project > Plug-in Project*
+*  2. *Name to your project (e.g. RAP-Mail) Select *Next*.
+*  3. *Don't change anything. Select *Next*.
+*  4. *Select *RAP Mail Template* and select *Finish*.
+*  5. *Your first RAP plugin has been created.
+*  6. *Select the project and click *Run As > RAP Application*.
+*  7. *You get this view in your Eclipse.
 
 http://unicase.googlecode.com/files/RAP_Mail.png
 
@@ -78,12 +78,12 @@ You can also acces your RAP application with your favourite browser. Copy the UR
 
 As I said before, if you have RCP projects in your workspace, you may get compilation errors after switching the target platform. Therefore, you can't run these projects. You need to change your target platform back to the default one of Eclipse. One can do that by:
 
-   # Selecting *Window > Preferences* (on Mac OS: Eclipse -> Preferences or use key combination Cmd + ,)
-   # Open *Plug-in Development > Target Platform*. You will see this view.
+*  1. *Selecting *Window > Preferences* (on Mac OS: Eclipse -> Preferences or use key combination Cmd + ,)
+*  2. *Open *Plug-in Development > Target Platform*. You will see this view.
 
 http://unicase.googlecode.com/files/Install_Target_Platform.png
 
-   # On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the RAP target, it will be set active. If you want to run RCP plugins again, you should select"Running Platform" as an active target. After that, you will get compile errors in your RAP plugins.
+*  3. *On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the RAP target, it will be set active. If you want to run RCP plugins again, you should select"Running Platform" as an active target. After that, you will get compile errors in your RAP plugins.
 
 
 === How to setup hybrid target platform to run RCP and RAP plugins ===
@@ -91,39 +91,39 @@ http://unicase.googlecode.com/files/Install_Target_Platform.png
 If you want to develope RCP and RAP plugins against one target platform, you need to setup your own hybrid/cross target platform which contains both bundles from the Eclipse and the RAP target. If you want to do that, I advice you to use Eclipse 3.6 (Helios). That's because some of bundles exist in both targets and they may have different versions, e.g. example,org.eclipse.core.jobs, org.eclipse.core.runtime, org.eclipse.equinox. When you try to run a plugin, Eclipse may not be able to figure out which bundle should be loaded. Therefore, you may receive an exception, which reads like:  "_org.osgi.framework.BundleException. The bundle could not be resolved. Reason: Another singleton version selected:_".
 In Eclipse 3.6 these exceptions don't occur, since all bundles have the same version numbering within the Eclipse target and the RAP target. Thus, Eclipse is able to figure out which bundles should be added to the run configuration.
 
-   # Select *Window > Preferences* in the Eclipse.
-   # Open *Plug-in Development > Target Platform*.
-   # Click *Add* Button.
+*  1. *Select *Window > Preferences* in the Eclipse.
+*  2. *Open *Plug-in Development > Target Platform*.
+*  3. *Click *Add* Button.
 
 http://unicase.googlecode.com/files/Target-1.png
 <br>
 
-   # Select *"Nothing: Start with an empty target definition"*
-   # Give a name to your target definition.
-   # Click *Add* button to add content to your target.
+*  3. *Select *"Nothing: Start with an empty target definition"*
+*  4. *Give a name to your target definition.
+*  5. *Click *Add* button to add content to your target.
 
 http://unicase.googlecode.com/files/Target-2.png
 <br>
 
-   # Select *Installation* and click *Next* button.
+*  6. *Select *Installation* and click *Next* button.
 
 http://unicase.googlecode.com/files/Target-3.png
 <br>
 
-   # First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
+*  7. *First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
 
 http://unicase.googlecode.com/files/Target-4.png
 <br>
 
-   # Click *Finish* button. You've now added the Eclipse target to your own target definition.
-   # Now we will add the RAP target. Again, click the *Add* button.
-   # Select *Installation* and click the *Next* button.
-   # Click the *Browse* button and browse to your RAP SDK directory and add it.
+*  8. *Click *Finish* button. You've now added the Eclipse target to your own target definition.
+*  9. *Now we will add the RAP target. Again, click the *Add* button.
+*  10. *Select *Installation* and click the *Next* button.
+*  11. *Click the *Browse* button and browse to your RAP SDK directory and add it.
 
 http://unicase.googlecode.com/files/Target-5.png
 <br>
 
-   # Click the *Finish* button. You've now finished your target definition setup. In the picture below you see an overview of a target definition. If the number of included bundles is different for you, don't confuse, it may differ according to your Eclipse installation.
+*  12. *Click the *Finish* button. You've now finished your target definition setup. In the picture below you see an overview of a target definition. If the number of included bundles is different for you, don't confuse, it may differ according to your Eclipse installation.
 
 http://unicase.googlecode.com/files/Target-6.png
 <br>
