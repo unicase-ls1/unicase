@@ -12,6 +12,6 @@ import org.unicase.ui.test.navigator.AllNavigatorTests;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllNavigatorTests.class, AllMeeditorTests.class })
+@Suite.SuiteClasses( { AllMeeditorTests.class , AllNavigatorTests.class})
 public class AllUiTests {
 }
