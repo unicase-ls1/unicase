@@ -90,7 +90,7 @@ As I said before, if you have RCP projects in your workspace, you may get compil
 
 http://unicase.googlecode.com/files/Install_Target_Platform.png
 
-   On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the RAP target, it will be set active. If you want to run RCP plugins again, you should select"Running Platform" as an active target. After that, you will get compile errors in your RAP plugins.
+   On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the *RAP* target, it will be set active. If you want to run RCP plugins again, you should select *"Running Platform"* as an active target. After that, you will get compile errors in your RAP plugins.
 
 
 === How to setup hybrid target platform to run RCP and RAP plugins ===
@@ -115,14 +115,14 @@ http://unicase.googlecode.com/files/Target-1.png
 
 http://unicase.googlecode.com/files/Target-2.png
 <br>
-
+<br>
 *  7. *Select *Installation* and click *Next* button.
-
+<br>
 http://unicase.googlecode.com/files/Target-3.png
 <br>
-
+<br>
 *  8. *First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
-
+<br>
 http://unicase.googlecode.com/files/Target-4.png
 <br>
 
