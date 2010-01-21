@@ -1,4 +1,10 @@
-== How to configure Eclipse run Rich Ajax Platform (RAP) plugins? ==
+This documentation exists from three parts.
+ # [#How_to_configure_Eclipse_run_Rich_Ajax_Platform_(RAP)_plugins]
+ # [#Creating_Sample_RAP_Plugin]
+ # [#How_to_setup_hybrid_target_platform_run_RCP_and_RAP_plugins]
+
+
+== How to configure Eclipse run Rich Ajax Platform (RAP) plugins ==
 
 The RAP project enables developers to build rich, Ajax-enabled Web applications by using the Eclipse development model, plug-ins with the well known Eclipse workbench extension points and a widget toolkit with SWT API (plus JFace). 
 
@@ -34,10 +40,94 @@ http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
 
    # On this page click *Install Target Platform* section. In the upcoming dialog (shown below) it asks to select a directory to install target platform. If you want to install different directory, you should set the path. If you don't, confirm the default values, and the target installation process starts. (In default your RAP target is installed in _"eclipse/configuration/org.eclipse.rap.target-1.3"_). If you have RCP projects in your workspace, you may get compile errors after switching the target platform.
 
-<br>
-
 http://tricia-chat.googlecode.com/svn/trunk/images/Target_Path.png
 
 <br>
 
    # Finally, your Eclipse is now ready to run RAP applications.
+
+<br>
+
+== Creating Sample RAP Plugin ==
+
+Let's create sample RAP plugin to see how it works. I have used one of template projects from Eclipse for the documentation.
+
+   # Select *File > New > Project > Plug-in Project*
+   # Give a name to your project. (I give RAP-Mail) Select *Next*.
+   # Don't change anything. Select *Next*.
+   # Select *RAP Mail Template* and select *Finish*.
+   # Your first RAP plugin is ready now.
+   # Select the project and click *Run As > RAP Application*.
+   # You get this view in your Eclipse.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/RAP_Mail.png
+
+<br>
+
+
+You can also acces your RAP application with your favourite browser. Copy the url from internal browser's address bar and paste it your favourite browser. Then, enjoy it :)
+
+=== How to switch target platform? ===
+
+As I said before, if you have RCP projects in your workspace, you may get compile errors after switching the target platform. Therefore, you can't run these projects. You need to change your target platform back to Eclipse target platform. Now, let's see how you can do that:
+
+
+   # Select *Window > Preferences* in the Eclipse.
+   # Open *Plug-in Development > Target Platform*. You will get this view.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
+
+   # At the right side you will see your target definitons. If you don't install any target definition before RAP target, there will be two target definitions. Currently, Rich Ajax Platform (RAP) is active after your RAP target installation. If you want to run RCP plugins, you should select Running Platform as an active target. After that, you will get compile errors in your RAP plugins.
+
+
+=== How to setup hybrid target platform run RCP and RAP plugins ===
+
+If you want to developer RCP and RAP plugins against one target platform, you need to setup your own hybrid/cross target platform which contains both bundles from Eclipse target and RAP target. If you want to do that, I advice to use Eclipse 3.6 (Helios). Because, some of bundles exist in both targets and they may have different versions. For example,org.eclipse.core.jobs, org.eclipse.core.runtime, org.eclipse.equinox. When you try to run a plugin, Eclipse may not figure out which bundle should be added to run configuration. Therefore, you may get "_org.osgi.framework.BundleException. The bundle could not be resolved. Reason: Another singleton version selected:_" exception.
+In Eclipse 3.6 these exceptions don't occur. Since, all bundles have same versions both Eclipse target and RAP target. Thus, Eclipse is able to figure out which bundles should be added to run configuration.
+
+   # Select *Window > Preferences* in the Eclipse.
+   # Open *Plug-in Development > Target Platform*.
+   # Click *Add* Button.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-1.png
+<br>
+
+   # Select *"Nothing: Start with an empty target definition"*
+   # Give a name to your target definition.
+   # Click *Add* button to add content to your target.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-2.png
+<br>
+
+   # Select *Installation* and click *Next* button.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-3.png
+<br>
+
+   # First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-4.png
+<br>
+
+   # Click *Finish* button. You added Eclipse target to your own target definition.
+   # Now you add RAP target. Again click *Add* button to add content. 
+   # Select *Installation* and click *Next* button.
+   # You add RAP target via browsing your RAP SDK directory. Click *Browse...* button.
+   # Go to directory which contains your RAP SDK installation.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-5.png
+<br>
+
+   # Click *Finish* button. You have finished your target definition setup. This is overview of your target definition. If number of included bundles are different for you, don't confuse, it may differ according to your Eclipse installation.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-6.png
+<br>
+
+   # Click Finish. Your target definition should be in target definition list.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target-7.png
+<br>
+
+   # Finally, don't forget to select your target definition as an *active target*. Click OK button.
+
+Eclipse will load your new target definition and compile all plugins agains your target. I hope, this documentation helps you.
