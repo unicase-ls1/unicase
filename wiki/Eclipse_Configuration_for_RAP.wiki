@@ -87,14 +87,14 @@ In Eclipse 3.6 these exceptions don't occur, since all bundles have the same ver
    # Open *Plug-in Development > Target Platform*.
    # Click *Add* Button.
 
-http://unicase.googlecode.com/svn/wiki/trunk/images/Target-1.png
+http://unicase.googlecode.com/svn/wiki/images/Target-1.png
 <br>
 
    # Select *"Nothing: Start with an empty target definition"*
    # Give a name to your target definition.
    # Click *Add* button to add content to your target.
 
-http://unicase.googlecode.com/svn/wiki/trunk/images/Target-2.png
+http://unicase.googlecode.com/svn/wiki/images/Target-2.png
 <br>
 
    # Select *Installation* and click *Next* button.
