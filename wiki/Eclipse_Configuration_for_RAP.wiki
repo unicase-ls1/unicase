@@ -1,0 +1,41 @@
+== How to configure Eclipse run Rich Ajax Platform (RAP) plugins? ==
+
+The RAP project enables developers to build rich, Ajax-enabled Web applications by using the Eclipse development model, plug-ins with the well known Eclipse workbench extension points and a widget toolkit with SWT API (plus JFace). 
+
+This documentation was written for Eclipse versions 3.5 and 3.6. Although configuration is mostly same for both of them, there are some differences between them if you want to create your own hybrid/cross platform. This issue is explained at the end of this documentation.
+
+The easiest way to install RAP SDK and Tooling is to install it from a software repository. You should follow these steps: 
+
+For Eclipse 3.6 (Helios) and Eclipse 3.5 (Galileo):
+
+   # Select the *Help > Install New Software ...* menu entry. 
+   # Add new Update Site with RAP Update Site URL. The update site is
+     http://download.eclipse.org/rt/rap/1.3/tooling
+   # After a short while, an entry labelled Rich Ajax Platform (RAP) appears in the list below. Select its check box and click *Next*. 
+   # On the the next page you may review the installation details.
+   # Accept the terms in the license agreement and click the *Finish* button.  
+   # The feature and plug-ins will now be downloaded from the repository and installed locally. This can take some time according to your internet connection. 
+   # After dowloading and installation finish, you will get prompt to restart Eclipse. Confirm it and restart the Eclipse.
+   # When your Eclipse runs again, a welcome page is displayed. It is showed in the picture below.
+
+<br>
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Welcome_Page.png
+
+<br>
+
+   # Click on the *Rich Ajax Platform (RAP)* section and you will see new view to be able to install new target platform for RAP.
+
+<br>
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
+
+<br>
+
+   # On this page click *Install Target Platform* section. In the upcoming dialog (shown below) it asks to select a directory to install target platform. If you want to install different directory, you should set the path. If you don't, confirm the default values, and the target installation process starts. (In default your RAP target is installed in _"eclipse/configuration/org.eclipse.rap.target-1.3"_). If you have RCP projects in your workspace, you may get compile errors after switching the target platform.
+
+http://tricia-chat.googlecode.com/svn/trunk/images/Target_Path.png
+
+<br>
+
+   # Finally, your Eclipse is now ready to run RAP applications.
