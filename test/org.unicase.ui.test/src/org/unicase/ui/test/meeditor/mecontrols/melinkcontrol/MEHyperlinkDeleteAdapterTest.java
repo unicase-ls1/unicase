@@ -100,7 +100,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 		
 		@SuppressWarnings("unchecked")
 		@Test
-		public void testHyperLinkUpdate(){
+		public void testDeleteFromMultiLink(){
 			openModelElement(actionItem);
 			UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
 				@Override
@@ -121,6 +121,14 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 					user2.setName("James");
 						project.addModelElement(user2);
 						actionItem.getParticipants().add(user2);
+						User user3 = OrganizationFactory.eINSTANCE.createUser();
+						user3.setName("Kong");
+							project.addModelElement(user3);
+							actionItem.getParticipants().add(user3);
+							User user4 = OrganizationFactory.eINSTANCE.createUser();
+							user4.setName("King");
+								project.addModelElement(user4);
+								actionItem.getParticipants().add(user4);
 						
 					}
 				}; runAsnc(someCommand);
@@ -128,7 +136,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 					getBot().activeEditor().bot().text().setFocus();
 					Matcher noOfHyperlinks = runAsnc(unicaseCommand);
 					final List secondList = getBot().getFinder().findControls(noOfHyperlinks);
-					assertEquals(previousListLength+2, secondList.size());
+					assertEquals(previousListLength+6, secondList.size());
 				
 				
 					UnicaseCommand finalCommand = new UnicaseCommand() {
@@ -146,7 +154,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 						
 						@Override
 						protected void doRun() {
-							assertEquals(0, actionItem.getParticipants().size());
+							assertEquals(2, actionItem.getParticipants().size());
 							
 						}
 						}.run();
