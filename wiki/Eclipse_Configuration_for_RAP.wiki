@@ -60,7 +60,7 @@ Let's create sample RAP plugin to see how it works. I have used one of the templ
    # Select the project and click *Run As > RAP Application*.
    # You get this view in your Eclipse.
 
-http://unicase.googlecode.com/files/images/RAP_Mail.png
+http://unicase.googlecode.com/files/RAP_Mail.png
 
 <br>
 
