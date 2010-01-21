@@ -26,7 +26,7 @@ For Eclipse 3.6 (Helios) and Eclipse 3.5 (Galileo):
 
 <br>
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Welcome_Page.png
+http://unicase.googlecode.com/svn/wiki/images/Welcome_Page.png
 
 <br>
 
@@ -34,7 +34,7 @@ http://tricia-chat.googlecode.com/svn/trunk/images/Welcome_Page.png
 
 <br>
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
+http://unicase.googlecode.com/svn/wiki/images/Install_Target_Platform.png
 
 <br>
 
