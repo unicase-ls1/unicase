@@ -78,6 +78,7 @@ public class MEMultiLinkControlTest extends MeControlTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testChangeAddOneInEmpty() {
+		openModelElement(actionItem);
 		UnicaseCommandWithResult<Matcher> participantsWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
