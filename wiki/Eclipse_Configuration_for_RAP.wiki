@@ -85,11 +85,12 @@ You can also acces your RAP application with your favourite browser. Copy the UR
 As I said before, if you have RCP projects in your workspace, you may get compilation errors after switching the target platform. Therefore, you can't run these projects. You need to change your target platform back to the default one of Eclipse. One can do that by:
 
 *  1. *Selecting *Window > Preferences* (on Mac OS: Eclipse -> Preferences or use key combination Cmd + ,)
+<br>
 *  2. *Open *Plug-in Development > Target Platform*. You will see this view.
 
 http://unicase.googlecode.com/files/Install_Target_Platform.png
 
-*  3. *On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the RAP target, it will be set active. If you want to run RCP plugins again, you should select"Running Platform" as an active target. After that, you will get compile errors in your RAP plugins.
+   On the right hand side you will see your target platform definitons. If you haven't  installed any target definitions before the RAP one, there should be only two target definitions. After having installed the RAP target, it will be set active. If you want to run RCP plugins again, you should select"Running Platform" as an active target. After that, you will get compile errors in your RAP plugins.
 
 
 === How to setup hybrid target platform to run RCP and RAP plugins ===
@@ -98,48 +99,55 @@ If you want to develope RCP and RAP plugins against one target platform, you nee
 In Eclipse 3.6 these exceptions don't occur, since all bundles have the same version numbering within the Eclipse target and the RAP target. Thus, Eclipse is able to figure out which bundles should be added to the run configuration.
 
 *  1. *Select *Window > Preferences* in the Eclipse.
+<br>
 *  2. *Open *Plug-in Development > Target Platform*.
+<br>
 *  3. *Click *Add* Button.
 
 http://unicase.googlecode.com/files/Target-1.png
 <br>
 
-*  3. *Select *"Nothing: Start with an empty target definition"*
-*  4. *Give a name to your target definition.
-*  5. *Click *Add* button to add content to your target.
+*  4. *Select *"Nothing: Start with an empty target definition"*
+<br>
+*  5. *Give a name to your target definition.
+<br>
+*  6. *Click *Add* button to add content to your target.
 
 http://unicase.googlecode.com/files/Target-2.png
 <br>
 
-*  6. *Select *Installation* and click *Next* button.
+*  7. *Select *Installation* and click *Next* button.
 
 http://unicase.googlecode.com/files/Target-3.png
 <br>
 
-*  7. *First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
+*  8. *First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
 
 http://unicase.googlecode.com/files/Target-4.png
 <br>
 
-*  8. *Click *Finish* button. You've now added the Eclipse target to your own target definition.
-*  9. *Now we will add the RAP target. Again, click the *Add* button.
-*  10. *Select *Installation* and click the *Next* button.
-*  11. *Click the *Browse* button and browse to your RAP SDK directory and add it.
+*  9. *Click *Finish* button. You've now added the Eclipse target to your own target definition.
+<br>
+*  10. *Now we will add the RAP target. Again, click the *Add* button.
+<br>
+*  11. *Select *Installation* and click the *Next* button.
+<br>
+*  12. *Click the *Browse* button and browse to your RAP SDK directory and add it.
 
 http://unicase.googlecode.com/files/Target-5.png
 <br>
 
-*  12. *Click the *Finish* button. You've now finished your target definition setup. In the picture below you see an overview of a target definition. If the number of included bundles is different for you, don't confuse, it may differ according to your Eclipse installation.
+*  13. *Click the *Finish* button. You've now finished your target definition setup. In the picture below you see an overview of a target definition. If the number of included bundles is different for you, don't confuse, it may differ according to your Eclipse installation.
 
 http://unicase.googlecode.com/files/Target-6.png
 <br>
 
-   # Click Finish. Your target definition should be in target definition list.
+*  14. *Click Finish. Your target definition should be in target definition list.
 
 http://unicase.googlecode.com/files/Target-7.png
 <br>
 
-   # Finally, don't forget to select your target definition as an *active target*. Click the OK button.
+*  15. *Finally, don't forget to select your target definition as an *active target*. Click the OK button.
 
 Eclipse will load your new target definition and compile all plugins agains your target. 
 
