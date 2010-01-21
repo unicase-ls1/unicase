@@ -1,6 +1,6 @@
 #  We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
 
-* *Requirement* :
+*   *Requirement* :
  
-# You will need [http://www.eclipse.org/swtbot/downloads.php SWTBOT] for UI Testing.
-# And the plugin(org.unicase.ui.test) itself, which you can checkout from the repository along with the other plugin(org.unicase.workspace.test) on which the test plugin is dependent.
+  *   You will need [http://www.eclipse.org/swtbot/downloads.php SWTBOT] for UI Testing.
+  *   And the plugin(org.unicase.ui.test) itself, which you can checkout from the repository along with the other plugin(org.unicase.workspace.test) on which the test plugin is dependent.
