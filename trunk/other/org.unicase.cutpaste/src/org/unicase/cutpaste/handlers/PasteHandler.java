@@ -23,12 +23,13 @@ public class PasteHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-
+		// just a stub
 		
 		MessageDialog.openInformation(
 				null,
 				"w@iglt info_box",
-				"Your object has been pasted.") ;
+				"pasted") ;
+		
 		return null;
 	}
 }

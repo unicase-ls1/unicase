@@ -17,7 +17,7 @@ public class AuthorSpyHandler extends AbstractHandler {
 				
 		String author, creationDate;
 		author = lookupAuthor(me);
-		creationDate = lookupCreationDate(me);			
+		creationDate = lookupCreationDate(me);
 		
 		MessageDialog.openInformation(
 				null,

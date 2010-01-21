@@ -30,6 +30,15 @@
                style="push">
          </command>
       </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.cutpaste.authorspy">
+         <command
+               commandId="org.unicase.cutpaste.containerspy"
+               icon="icons/briefcase.png"
+               label="Lookup container element"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -45,6 +54,10 @@
             id="org.unicase.cutpaste.authorspy"
             name="authorspy">
       </command>
+      <command
+            id="org.unicase.cutpaste.containerspy"
+            name="containerspy">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -59,6 +72,10 @@
       <handler
             class="org.unicase.cutpaste.handlers.AuthorSpyHandler"
             commandId="org.unicase.cutpaste.authorspy">
+      </handler>
+      <handler
+            class="org.unicase.cutpaste.handlers.ContainerSpyHandler"
+            commandId="org.unicase.cutpaste.containerspy">
       </handler>
    </extension>
    <extension
@@ -77,6 +94,11 @@
             commandId="org.unicase.cutpaste.authorspy"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+ENTER">
+      </key>
+      <key
+            commandId="org.unicase.cutpaste.containerspy"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+#">
       </key>
    </extension>
 

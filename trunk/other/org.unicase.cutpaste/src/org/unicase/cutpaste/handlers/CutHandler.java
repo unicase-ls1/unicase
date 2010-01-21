@@ -6,7 +6,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.meeditor.commands.DeleteModelElementCommand;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -25,17 +24,19 @@ public class CutHandler extends AbstractHandler {
 				
 		ModelElement me = ActionHelper.getModelElement(event);
 		
-		deleteModelElement(me);
+		cutModelElement(me);
 					
 		MessageDialog.openInformation(
 				null,
 				"w@iglt info_box",
-				"Your object has been cut.") ;
+				"cut") ;
 		return null;
 	}
 	
-	public void deleteModelElement(final ModelElement me) {
-		new DeleteModelElementCommand(me).run();
-	}
+	public void cutModelElement(final ModelElement me){
+		
+	// just a stub
+		
+	};
 	
 }
