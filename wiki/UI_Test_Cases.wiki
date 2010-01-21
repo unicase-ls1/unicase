@@ -16,7 +16,6 @@
 
 ===Testing===   
 <br>
-
    * Once the environment for testing is set, you can just run any of the test-packages( like for meeditor, attachments etc.) in debug mode as "SWTBot Test" or the whole test-suite the very same way.
 <br>
 
