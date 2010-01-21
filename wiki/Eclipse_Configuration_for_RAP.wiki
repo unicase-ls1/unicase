@@ -75,7 +75,7 @@ As I said before, if you have RCP projects in your workspace, you may get compil
    # Select *Window > Preferences* in the Eclipse.
    # Open *Plug-in Development > Target Platform*. You will get this view.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
+http://unicase.googlecode.com/svn/wiki/images/Install_Target_Platform.png
 
    # At the right side you will see your target definitons. If you don't install any target definition before RAP target, there will be two target definitions. Currently, Rich Ajax Platform (RAP) is active after your RAP target installation. If you want to run RCP plugins, you should select Running Platform as an active target. After that, you will get compile errors in your RAP plugins.
 
@@ -89,24 +89,24 @@ In Eclipse 3.6 these exceptions don't occur. Since, all bundles have same versio
    # Open *Plug-in Development > Target Platform*.
    # Click *Add* Button.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-1.png
+http://unicase.googlecode.com/svn/wiki/trunk/images/Target-1.png
 <br>
 
    # Select *"Nothing: Start with an empty target definition"*
    # Give a name to your target definition.
    # Click *Add* button to add content to your target.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-2.png
+http://unicase.googlecode.com/svn/wiki/images/Target-2.png
 <br>
 
    # Select *Installation* and click *Next* button.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-3.png
+http://unicase.googlecode.com/svn/wiki/images/Target-3.png
 <br>
 
    # First, you add your Eclipse target definition. Click *Variables...* button. Choose *eclipse_home* variable and click *OK* button.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-4.png
+http://unicase.googlecode.com/svn/wiki/images/Target-4.png
 <br>
 
    # Click *Finish* button. You added Eclipse target to your own target definition.
@@ -115,17 +115,17 @@ http://tricia-chat.googlecode.com/svn/trunk/images/Target-4.png
    # You add RAP target via browsing your RAP SDK directory. Click *Browse...* button.
    # Go to directory which contains your RAP SDK installation.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-5.png
+http://unicase.googlecode.com/svn/wiki/images/Target-5.png
 <br>
 
    # Click *Finish* button. You have finished your target definition setup. This is overview of your target definition. If number of included bundles are different for you, don't confuse, it may differ according to your Eclipse installation.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-6.png
+http://unicase.googlecode.com/svn/wiki/images/Target-6.png
 <br>
 
    # Click Finish. Your target definition should be in target definition list.
 
-http://tricia-chat.googlecode.com/svn/trunk/images/Target-7.png
+http://unicase.googlecode.com/svn/wiki/images/Target-7.png
 <br>
 
    # Finally, don't forget to select your target definition as an *active target*. Click OK button.
