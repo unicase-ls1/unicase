@@ -34,6 +34,8 @@ http://tricia-chat.googlecode.com/svn/trunk/images/Install_Target_Platform.png
 
    # On this page click *Install Target Platform* section. In the upcoming dialog (shown below) it asks to select a directory to install target platform. If you want to install different directory, you should set the path. If you don't, confirm the default values, and the target installation process starts. (In default your RAP target is installed in _"eclipse/configuration/org.eclipse.rap.target-1.3"_). If you have RCP projects in your workspace, you may get compile errors after switching the target platform.
 
+<br>
+
 http://tricia-chat.googlecode.com/svn/trunk/images/Target_Path.png
 
 <br>
