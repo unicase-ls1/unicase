@@ -12,7 +12,6 @@ import org.unicase.workspace.WorkspaceManager;
 
 public class AttachCodeLocation {
 	
-	
 	private static Project getActiveProject(){
 		final ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		if(ps.getProject()!= null){
@@ -21,29 +20,21 @@ public class AttachCodeLocation {
 			System.out.println("Project was not found!");
 			return null;
 		}
-		
-		
 	}
 	
 public static void showUserDialog(){
-		
-		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
 		ChooseModelElementDialog cmed = new ChooseModelElementDialog(getActiveProject(),"Choose Model Element for code location!");
 		if(cmed.open() == Window.OK){
 			Object[] result = cmed.getResult();
 			
 			if(result.length > 0){
-				//If users/groups were selected, flatten them and add them to the selected users.
-				//Afterwards update the user interface
 				List<ModelElement> list = new ArrayList<ModelElement>(result.length);
 				for(Object o: result){
 					if(o instanceof ModelElement){
 						list.add((ModelElement) o);
 					}
 				}
-			//	list.addAll(selected);
-			//	selected = MultiActionGenerator.flattenOrgList(list);
-			//	updateUI();
+
 			}
 		}
 	
