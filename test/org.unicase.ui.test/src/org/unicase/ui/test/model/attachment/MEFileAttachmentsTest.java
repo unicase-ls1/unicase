@@ -183,7 +183,7 @@ public class MEFileAttachmentsTest extends MeControlTest {
 				}
 			}
 		}; runAsnc(someCommand);
-		getBot().sleep(200000);
+		getBot().sleep(2000);
 }
 	
 	
