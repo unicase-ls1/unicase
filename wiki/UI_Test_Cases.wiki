@@ -1,5 +1,10 @@
 *  We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
 
+===Environment===
+* Eclipse
+* Any OS, preferably Mac.
+
+
  ===Requirement:===
  
 
@@ -7,6 +12,11 @@
        # SWTBot for swt Testing.
        # SWTBot for eclipse Testing.
 
-  *   And the Test-plugin*(org.unicase.ui.test)* itself, which you can checkout from the repository along with the other plugin *(org.unicase.workspace.test)* on which the "Test-plugin" is dependent.
+  *   The Test-plugin*(org.unicase.ui.test)* itself, which you can checkout from the repository along with the other plugin *(org.unicase.workspace.test)* on which the "Test-plugin" is dependent.
+  *   All the core plugins from the trunk or branch of the UNICASE repository.
+
+===Testing===
+
+* Once the environment for testing is set,  
 
 *NOTE:* The Test-plugin and the additional plugin is available at [http://unicase.googlecode.com/svn/trunk/test/ UNICASE SVN repository].
