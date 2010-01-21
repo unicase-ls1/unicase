@@ -10,9 +10,10 @@ import org.junit.runners.Suite;
 import org.unicase.ui.test.meeditor.mecontrol.AllMEControlTests;
 import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.AllMELinkControlTests;
 import org.unicase.ui.test.model.attachment.AllMEAttachmentsTests;
+import org.unicase.ui.test.unicasecommon.meeditor.mecontrols.uccontrol.AllUseCaseStepsTests;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllMEControlTests.class, AllMELinkControlTests.class, AllMEAttachmentsTests.class })
+@Suite.SuiteClasses( { AllMEControlTests.class, AllMELinkControlTests.class, AllMEAttachmentsTests.class, AllUseCaseStepsTests.class })
 public class AllMeeditorTests {
 }
