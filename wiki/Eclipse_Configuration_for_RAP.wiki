@@ -132,7 +132,7 @@ http://unicase.googlecode.com/files/Target-3.png
 <br>
 http://unicase.googlecode.com/files/Target-4.png
 <br>
-
+<br>
 *  9. *Click *Finish* button. You've now added the Eclipse target to your own target definition.
 <br>
 *  10. *Now we will add the RAP target. Again, click the *Add* button.
@@ -140,17 +140,17 @@ http://unicase.googlecode.com/files/Target-4.png
 *  11. *Select *Installation* and click the *Next* button.
 <br>
 *  12. *Click the *Browse* button and browse to your RAP SDK directory and add it.
-
+<br>
 http://unicase.googlecode.com/files/Target-5.png
 <br>
-
+<br>
 *  13. *Click the *Finish* button. You've now finished your target definition setup. In the picture below you see an overview of a target definition. If the number of included bundles is different for you, don't confuse, it may differ according to your Eclipse installation.
-
+<br>
 http://unicase.googlecode.com/files/Target-6.png
 <br>
-
+<br>
 *  14. *Click Finish. Your target definition should be in target definition list.
-
+<br>
 http://unicase.googlecode.com/files/Target-7.png
 <br>
 
