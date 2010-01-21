@@ -1,6 +1,6 @@
 *  We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
 
-===Environment=== <br>
+===Environment===   </br>
     * Eclipse
     * Any OS, preferably Mac.
 
@@ -15,7 +15,7 @@
   *   The Test-plugin*(org.unicase.ui.test)* itself, which you can checkout from the repository along with the other plugin *(org.unicase.workspace.test)* on which the "Test-plugin" is dependent.
   *   All the core plugins from the trunk or branch of the UNICASE repository.
 
-===Testing===<br>
+===Testing===   </br>
 
    * Once the environment for testing is set, you can just run any of the test-packages( like for meeditor, attachments etc.) in debug mode as "SWTBot Test" or the whole test-suite the very same way.
 
