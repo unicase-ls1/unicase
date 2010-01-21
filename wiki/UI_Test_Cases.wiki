@@ -5,7 +5,6 @@
   *    Eclipse
   *    Any OS, preferably Mac.
 
-
 ===Requirement:===
  
   *   You will need [http://www.eclipse.org/swtbot/downloads.php SWTBOT] for UI Testing.
