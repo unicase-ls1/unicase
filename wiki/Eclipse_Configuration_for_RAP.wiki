@@ -94,7 +94,7 @@ http://unicase.googlecode.com/svn/wiki/trunk/images/Target-1.png
    # Give a name to your target definition.
    # Click *Add* button to add content to your target.
 
-http://unicase.googlecode.com/svn/wiki/images/Target-2.png
+http://unicase.googlecode.com/svn/wiki/trunk/images/Target-2.png
 <br>
 
    # Select *Installation* and click *Next* button.
