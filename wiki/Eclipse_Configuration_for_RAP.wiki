@@ -1,7 +1,7 @@
-This documentation exists from three parts.
- # [#How_to_configure_Eclipse_run_Rich_Ajax_Platform_(RAP)_plugins]
- # [#Creating_Sample_RAP_Plugin]
- # [#How_to_setup_hybrid_target_platform_run_RCP_and_RAP_plugins]
+This documentation contains three parts.
+ # [#How_to_configure_Eclipse_run_Rich_Ajax_Platform_(RAP)_plugins How to configure Eclipse run Rich Ajax Platform (RAP) plugins]
+ # [#Creating_Sample_RAP_Plugin Creating Sample RAP Plugin]
+ # [#How_to_setup_hybrid_target_platform_run_RCP_and_RAP_plugins How to setup hybrid target platform run RCP and RAP plugins]
 
 
 == How to configure Eclipse run Rich Ajax Platform (RAP) plugins ==
