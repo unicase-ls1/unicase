@@ -7,36 +7,20 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 
-/**
- * Our sample handler extends AbstractHandler, an IHandler base class.
- * @see org.eclipse.core.commands.IHandler
- * @see org.eclipse.core.commands.AbstractHandler
- */
-public class CutHandler extends AbstractHandler {
-
-	/**
-	 * The constructor.
-	 */
-	public CutHandler() {
-	}
+public class ContainerSpyHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 				
 		ModelElement me = ActionHelper.getModelElement(event);
+				
+		String containerObject;
+		containerObject = me.getContainerModelElement().toString();
 		
-		cutModelElement(me);
-					
 		MessageDialog.openInformation(
 				null,
 				"w@iglt info_box",
-				"cut") ;
+				"Container is: "+containerObject+".") ;
 		return null;
 	}
-	
-	public void cutModelElement(final ModelElement me){
-		
-	// just a stub
-		
-	};
 	
 }
