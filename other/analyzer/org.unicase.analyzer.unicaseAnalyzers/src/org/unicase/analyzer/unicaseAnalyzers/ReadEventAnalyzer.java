@@ -5,27 +5,25 @@
  */
 package org.unicase.analyzer.unicaseAnalyzers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.exporters.Exporter;
+import org.unicase.analyzer.TwoDDataAnalyzer;
+import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Analyze each read event.
  * 
  * @author liya
  */
-public class ReadEventAnalyzer implements DataAnalyzer {
+public class ReadEventAnalyzer implements TwoDDataAnalyzer {
 
 	private Date latestTime;
 
@@ -56,21 +54,35 @@ public class ReadEventAnalyzer implements DataAnalyzer {
 	}
 
 	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
 	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
-		List<Object> values = new ArrayList<Object>();
-		return values;
+	public boolean isGlobal() {
+		return false;
 	}
 
 	/**
-	 * Analyze the give ProjectAnalysisData.
+	 * {@inheritDoc}
 	 * 
-	 * @param data ProjectAnalysisData
-	 * @param exporter Exporter
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData,
+	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
-	public void analyzeData(ProjectAnalysisData data, Exporter exporter) {
+	public void analyzeData(ProjectAnalysisData data, VersionIterator it) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData,
+	 *      org.unicase.analyzer.iterator.VersionIterator)
+	 */
+	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
+
+		List<List<Object>> lines = new ArrayList<List<Object>>();
+
 		for (ChangePackage change : data.getChangePackages()) {
 
 			for (Event event : change.getEvents()) {
@@ -105,34 +117,21 @@ public class ReadEventAnalyzer implements DataAnalyzer {
 					} else {
 						line.add("-");
 					}
-					try {
-						exporter.writeLine(line);
-					} catch (IOException e) {
-						WorkspaceUtil.logException("Problem occurs when exporting.", e);
-					}
+
+					lines.add(line);
 				}
 			}
 		}
-	}
-
-	/**
-	 * @param exporter @see {@link Exporter}
-	 * @throws IOException @see {@link IOException}
-	 */
-	public void writeHeader(Exporter exporter) throws IOException {
-		ArrayList<Object> line = new ArrayList<Object>();
-		for (String name : this.getName()) {
-			line.add(name);
-		}
-		exporter.writeLine(line);
+		return lines;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
+	 * @see org.unicase.analyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public boolean isGlobal() {
-		return false;
+	public List<Object> getValue(ProjectAnalysisData data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
