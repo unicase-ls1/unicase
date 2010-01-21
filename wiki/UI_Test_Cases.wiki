@@ -1,6 +1,6 @@
 *  We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
 
-*   ===Requirement: ===<br>
+ ===Requirement:===
  
 
   *   You will need [http://www.eclipse.org/swtbot/downloads.php SWTBOT] for UI Testing.
