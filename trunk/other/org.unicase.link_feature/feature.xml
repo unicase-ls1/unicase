@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.unicase.link_feature"
-      label="Link Feature"
+      label="UNICASE Link Feature"
       version="1.0.0.qualifier"
       provider-name="unicase.org">
    <install-handler handler=""/>
