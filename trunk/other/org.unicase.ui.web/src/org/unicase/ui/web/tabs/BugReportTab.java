@@ -20,11 +20,10 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.Project;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.Severity;
-import org.unicase.ui.web.util.ExampleUtil;
+import org.unicase.web.util.ExampleUtil;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.InvalidHandleException;
@@ -41,7 +40,7 @@ public class BugReportTab extends AbstractTab {
 	}
 	
 	
-	public void createContent() {
+	public void createTabContent() {
 		    Composite com = new Composite(tabFolder, SWT.NONE);
 		    createTabContent(com);
 		    tabItem.setControl(com);
