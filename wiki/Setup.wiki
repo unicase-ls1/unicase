@@ -7,4 +7,4 @@
  * [Remove_API_Baseline_Warning Remove API Baseline Warning]
  * [UI_Test_Cases UI Testing]
  * [Eclipse_Configuration_for_RAP Eclipse Configuration for RAP]
- + [EMFStore_Configuration EMFStore Configuration]
+ * [EMFStore_Configuration EMFStore Configuration]
