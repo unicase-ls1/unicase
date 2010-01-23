@@ -41,7 +41,7 @@
             id="org.unicase.ui.web.branding"
             servletName="unicase"
             themeId="org.unicase.ui.web.theme"
-            title="UNICASE Web Branding">
+            title="UNICASE Web View">
       </branding>
    </extension>
    <extension
