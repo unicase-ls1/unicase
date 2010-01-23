@@ -6,7 +6,7 @@ EMFStore is the repository/server for UNICASE.
 
 == Loading a Model ==
 
-EMFStore is independet of the actual model and therefore only operates on the metamodel offered by UNICASE. It is possible to plug in any other model by inheriting the metamodel.
+EMFStore is independent of the actual model and therefore only operates on the metamodel offered by UNICASE. It is possible to plug in any other model by inheriting the metamodel.
 Due to this decoupling EMFStore does not know where to find your model and it must therefore be defined within the startup configuration. This is also true for the default UNICASE model. Additionally you have to provide a model version number in your model to allow the migrator code (which is able to migrate from one version of the model to another) by using the org.unicase.metamodel.modelversion extension in your model (This is already set in the UNICASE model)
 
 === How to load a model with EMFStore ===
@@ -32,8 +32,6 @@ If you need to adapt the default configuration of EMFStore you have to create a 
 
 In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
 
-*EXAMPLE ES.PROPERTIES NOT FINISHED YET (23.01.2010). WORK IN PROGRESS*
-
 {{{
 
 #
@@ -45,7 +43,7 @@ In this file you can use the default java propeties syntax to define your option
 # EMFStore property file: es.properties
 # with descriptions
 #
-# Version of file: 3
+# Version of file: 4
 # Last Update: 23.01.2010
 # Author(s): Otto von Wesendonk
 #
@@ -217,18 +215,29 @@ emfstore.accesscontrol.authentication.policy=spfv
 #
 #emfstore.accesscontrol.authentication.spfv = /your/path/
 
-
+# If you are using LDAP, you have to specify the server's location. EMFStore can cope with several LDAP server at once.
+# The server will try to authenticate against each server until the authentication was successful, otherwise the authentication fails
+# For each LDAP server there are 3 necessary options, all prefixed with the server's index
+# Indexes start with 1 and you can add more by counting up. You shouldn't have a gap in your indexes, otherwise the server will stop lookinf for further LDAP servers.
+# Also if a configuration is empty, the server will stop looking for further configurations.
+# Options: LDAP configuration specifying "url", "base" and "searchdn"
+# Default: Not set
+#
 emfstore.accesscontrol.authentication.ldap.1.url=ldap://ldap1.in.tum.de:389
 emfstore.accesscontrol.authentication.ldap.1.base=ou=Personen,ou=IN,o=TUM,c=DE
 emfstore.accesscontrol.authentication.ldap.1.searchdn=uid
+
+emfstore.accesscontrol.authentication.ldap.2.url=ldap://ldap2.in.tum.de:389
+emfstore.accesscontrol.authentication.ldap.2.base=ou=Personen,ou=IN,o=TUM,c=DE
+emfstore.accesscontrol.authentication.ldap.2.searchdn=uid
+
 
 
 #
 # Deprecated options or options not ment for public use. Please dont change or use these:
 #
 
-#
-#
+# Used for development purposes.
 #
 emfstore.startup.loadlistener = false
 
