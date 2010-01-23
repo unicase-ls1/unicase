@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.common" id="org.unicase.common.meeditors" name="Editors for Modelelementa"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         A model element opener is responsible to handle the double click action in the navigator on a model element.
       </documentation>
    </annotation>
 
@@ -83,7 +83,7 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         See the diagrams of UNICASE for an example.
       </documentation>
    </annotation>
 
