@@ -5,3 +5,4 @@
  * [ReportingBugs Reporting Bugs]
  * [Utility_Classes Utility classes] <br>
  * [Debug_Eclipse_Plugin Debug Eclipse plugins] <br>
+ * [ExtensionPoints Extension Points] <br>
