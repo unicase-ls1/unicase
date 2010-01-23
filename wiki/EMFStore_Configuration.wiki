@@ -32,12 +32,12 @@ If you need to adapt the default configuration of EMFStore you have to create a 
 
 In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
 
-*EXAMPLE ES.PROPERTIES NOT FINISHED YET (16.01.2010). WORK IN PROGRESS*
+*EXAMPLE ES.PROPERTIES NOT FINISHED YET (23.01.2010). WORK IN PROGRESS*
 
 {{{
 
 #
-# Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+# Copyright (c) 2008-2010 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
 # accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
 # distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 #
@@ -45,8 +45,8 @@ In this file you can use the default java propeties syntax to define your option
 # EMFStore property file: es.properties
 # with descriptions
 #
-# Version of file: 2
-# Last Update: 16.01.2010
+# Version of file: 3
+# Last Update: 23.01.2010
 # Author(s): Otto von Wesendonk
 #
 
@@ -124,6 +124,8 @@ emfstore.validation.exclude =
 # Connection related options
 #
 
+# At the moment EMFStore runs with RMI and XML RPC in parallel. So you can use both technologies for the connection.
+# XML RPC is suggested for enviroments with strict firewalls, because it runs via HTTPS.
 
 # Defines whether RMI should use SSL encryption or not. Please Note: The password is always encrypted with the server certificate,
 # this "only" indicates whether all data is encrypted additionally.
@@ -152,23 +154,23 @@ emfstore.connection.xmlrpc.port= 8080
 # Options: any alias allowed in the keystore
 # Default: dependent of the used certificate
 #
-emfstore.keystore.alias = 
+emfstore.keystore.alias = youralias
 
 # Password for the selected certificate.
 # Options: any password
 # Default: dependent of the used certificate
 #
-emfstore.keystore.password = 
+emfstore.keystore.password = yourpassword
 
 # Defines the used certificate type stored in the keystore
 # Options: All Certificates which are supported by the java keystore
-# Default: SunX509
+# Default: "SunX509"
 #
 emfstore.keystore.certificate.type= SunX509
 
 # Defines the used cipher algorithm for the certificate
 # Options: All cipher algorithms supported by the java api
-# Default: RSA
+# Default: "RSA"
 #
 emfstore.keystore.cipher.algorithm=RSA
 
@@ -177,22 +179,48 @@ emfstore.keystore.cipher.algorithm=RSA
 # Authentication
 #
 
+# Defines the name of the super user. The super user will be created on server startup if not present.
+# If the super user is deleted while runtime, you have to restart the server in order to restor it.
+# Options: Any name
+# Default: "super"
+#
 emfstore.accesscontrol.authentication.superuser = super
+
+# The password for the super user account.
+# Options: Any password
+# Default: "super"
+#
 emfstore.accesscontrol.authentication.superuser.password = super
 
-#emfstore.accesscontrol.session.timeout= 1800000
+# Defines the session timeout for a user session. If a session is inactive for this period of time, the session will be destroyed.
+# Options: A number specifiing the time in milliseconds
+# Default: "1800000" (= 30 minutes)
+#
+emfstore.accesscontrol.session.timeout= 1800000
 
-#emfstore.accesscontrol.authentication.spfv
 
-emfstore.accesscontrol.authentication.policy=ldap
+# Defines the policy for user authentication. EMFStore doesn't store any password and uses external resources for authentication.
+# In order to create a new user, the user has to be created within the EMFStore with a specified user name.
+# The authentication method uses this name and validates the password against the specified authentication adapter
+# Options: "spfv" or "ldap" (explenations beneath)
+# Default: "spfv"
+#
+emfstore.accesscontrol.authentication.policy=spfv
 
-emfstore.accesscontrol.authentication.ldap.1.url=ldap://opendirectorybruegge.informatik.tu-muenchen.de
-emfstore.accesscontrol.authentication.ldap.1.base=dc=opendirectorybruegge,dc=informatik,dc=tu-muenchen,dc=de
+# SPFV (Simple property file verification) is a simple mechanism to store user passwords. It's only intended for development purposes.
+# It uses the java properties api and the format for passwords are: "username=userpassword" in each line
+# The default location for this file is {user-folder}/.unicase/emfstore/conf/user.properties
+
+# Defines the location of the spfv file.
+# Options: OS dependent path to file, absolute or relative.
+# Default: Not set (= than uses the default location)
+#
+#emfstore.accesscontrol.authentication.spfv = /your/path/
+
+
+emfstore.accesscontrol.authentication.ldap.1.url=ldap://ldap1.in.tum.de:389
+emfstore.accesscontrol.authentication.ldap.1.base=ou=Personen,ou=IN,o=TUM,c=DE
 emfstore.accesscontrol.authentication.ldap.1.searchdn=uid
-
-emfstore.accesscontrol.authentication.ldap.2.url=ldap://ldap1.in.tum.de:389
-emfstore.accesscontrol.authentication.ldap.2.base=ou=Personen,ou=IN,o=TUM,c=DE
-emfstore.accesscontrol.authentication.ldap.2.searchdn=uid
 
 
 #
