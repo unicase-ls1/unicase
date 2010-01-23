@@ -12,9 +12,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.rwt.graphics.Graphics;
 
-import org.unicase.ui.web.util.Elements;
-import org.unicase.ui.web.util.ExampleUtil;
-import org.unicase.ui.web.util.Elements.Element;
+import org.unicase.web.util.Elements;
+import org.unicase.web.util.ExampleUtil;
+import org.unicase.web.util.Elements.Element;
 
 
 public class TableViewerExample {

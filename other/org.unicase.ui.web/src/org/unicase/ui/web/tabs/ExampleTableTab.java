@@ -31,7 +31,7 @@ public class ExampleTableTab extends AbstractTab {
 	    tabItem.setText("Example Table Tab");
 	}
 	
-	public void createContent() {
+	public void createTabContent() {
 		if (!isContentCreated) {
 		    Composite com = new Composite(tabFolder, SWT.NONE);
 		    createTabContent(com);

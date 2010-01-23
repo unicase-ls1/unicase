@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
-import org.unicase.ui.web.util.ExampleUtil;
+import org.unicase.web.util.ExampleUtil;
 
 /**
  * 
@@ -37,7 +37,7 @@ public class InputTab extends AbstractTab {
 	    tabItem.setText("Input Exp. Tab");
 	}
 	
-	public void createContent() {
+	public void createTabContent() {
 		if (!isContentCreated) {
 		    Composite com = new Composite(tabFolder, SWT.NONE);
 		    createTabContent(com);

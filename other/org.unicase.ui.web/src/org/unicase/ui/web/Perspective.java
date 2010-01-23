@@ -7,7 +7,7 @@ import org.eclipse.ui.IPerspectiveFactory;
  * Configures the perspective layout. This class is contributed 
  * through the plugin.xml.
  * 
- * @author fxulusoy
+ * @author Fatih Ulusoy
  */
 public class Perspective implements IPerspectiveFactory {
 
