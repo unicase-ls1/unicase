@@ -5,8 +5,6 @@
  */
 package org.unicase.workspace.ui.commands;
 
-import java.security.AccessControlException;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -16,6 +14,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -131,22 +130,14 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 						.showErrorDialog("The requested revision was invalid");
 			}
 		} catch (SessionTimedOutException e) {
-			if (loginHandler.execute(getEvent()).equals(Window.OK)) {
-				handleRun();
-			}
+			handleExceptionAndRetry(loginHandler, e);
 		} catch (UnknownSessionException e) {
-			if (loginHandler.execute(getEvent()).equals(Window.OK)) {
-				handleRun();
-			}
+			handleExceptionAndRetry(loginHandler, e);
 		} catch (AccessControlException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
-			if (loginHandler.execute(getEvent()).equals(Window.OK)) {
-				handleRun();
-			}
+			handleExceptionAndRetry(loginHandler, e);
 		} catch (ConnectionException e) {
-			if (loginHandler.execute(getEvent()).equals(Window.OK)) {
-				handleRun();
-			}
+			handleExceptionAndRetry(loginHandler, e);
 		} catch (EmfStoreException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
 		} catch (RuntimeException e) {
@@ -158,6 +149,20 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 
 		progressDialog.close();
 		return ret;
+	}
+
+	private int attempt = 0;
+
+	private void handleExceptionAndRetry(LoginHandler loginHandler,
+			EmfStoreException e) throws ExecutionException {
+		if (attempt++ > 1) {
+			String message = "The server call could not be completed successfully."
+					+ " The request was aborted after 2 attempts.";
+			DialogHandler.showErrorDialog(message);
+			WorkspaceUtil.logWarning(message, e);
+		} else if (loginHandler.execute(getEvent()).equals(Window.OK)) {
+			handleRun();
+		}
 	}
 
 	// END SUPRESS CATCH EXCEPTION
