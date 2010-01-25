@@ -35,6 +35,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	public UnicaseLinkPreferencePage() {
 		super(GRID);
 		setDescription("Configuration pane for the link plugin.");
+		setValid(true);
 		RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
 		protocolHandler = fac.getRegisterProtocolHandler();
 	}
@@ -68,7 +69,6 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 		@Override
 		protected String changePressed() {
 			try {
-
 				if (protocolHandler == null) {
 					Display.getDefault().syncExec(new Runnable() {
 						public void run() {
@@ -94,9 +94,17 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 				getTextControl().setText("Yes");
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {
-						MessageDialog.openInformation(getShell(), "URL handler registered succesfully",
+						MessageDialog.openInformation(getShell(), "URL handler registration succesful",
 							"The registration of the URL handler for unicase:// URLs on your operating system "
 								+ " was successful.");
+					}
+				});
+			} else {
+				Display.getDefault().syncExec(new Runnable() {
+					public void run() {
+						MessageDialog.openError(getShell(), "URL handler registration failed",
+							"The registration of the URL handler for unicase:// URLs on your operating system "
+								+ " wasn't successful.");
 					}
 				});
 			}
