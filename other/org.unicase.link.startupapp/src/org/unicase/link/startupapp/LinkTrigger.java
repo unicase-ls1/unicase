@@ -28,16 +28,16 @@ import it.sauronsoftware.junique.AlreadyLockedException;
  * New instance of UNICASE is not opened. But, the clicked link is send to 
  * current running UNICASE instance.  
  * 
- * @author jfinis, fxulusoy
+ * @author jfinis, fxulusoy, emueller
  */
 public final class LinkTrigger {
 	
 	/**
 	 * The path to the config file which contains the command to startup UNICASE
 	 */
-	private static final String CONFIG_FILE_PATH = "./unicaseLink.conf";
+	private static final String CONFIG_FILE_PATH = "unicaseLink.conf";
 	
-	private static final String LOCK_FILE = "./.unicase-link-lock.file";
+	private static final String LOCK_FILE = ".unicase-link-lock.file";
 
 	/**
 	 * The Application ID. It is used to lock UNICASE application to enable to
@@ -51,16 +51,16 @@ public final class LinkTrigger {
 	 */
 	public static final String UNICASE_LINK_PREFIX = "unicase://";
 
-	private static String readConfigFile() throws IOException{
-		BufferedReader b = new BufferedReader(new FileReader(new File(CONFIG_FILE_PATH)));
+	private static String readConfigFile(String cfgFile) throws IOException{
+		BufferedReader b = new BufferedReader(new FileReader(new File(cfgFile)));
 		String link = b.readLine();
 		b.close();
 		if(link==null) throw new IOException("No content found in the configuration file!");
 		return link;
 	}
 	
-	private static void writeLockFile(String link) throws IOException {
-		FileWriter writer = new FileWriter(LOCK_FILE);
+	private static void writeLockFile(String fileLocation, String link) throws IOException {
+		FileWriter writer = new FileWriter(fileLocation);
 		writer.write(link);
 		writer.close();
 	}
@@ -72,10 +72,17 @@ public final class LinkTrigger {
 	 */
 	public static void main(String[] args) {
 		
+		// optional parameter
+		String pluginDir = null;
+		
 		// Was a unicase link handed to the app?
 		if(args.length < 1 || !args[0].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
 			System.out.println("No UNICASE link passed!");
 			return;
+		}
+		
+		if (args.length == 2) {
+			pluginDir = args[1];
 		}
 
 		String linkArgument = args[0];
@@ -110,17 +117,18 @@ public final class LinkTrigger {
 			 */
 			String command;
 			try {
-				// write link to lock file 
-				writeLockFile(linkArgument);
 				
 				// read path of the eclipse executable 
-				command = readConfigFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-				return;
-			}
-			
-			try {
+				if (pluginDir != null) {
+					// write link to lock file 
+					writeLockFile(pluginDir + File.separator + LOCK_FILE, linkArgument);
+					command = readConfigFile(pluginDir + File.separator + CONFIG_FILE_PATH);
+				} else {
+					// write link to lock file 
+					writeLockFile(LOCK_FILE, linkArgument);
+					command = readConfigFile(CONFIG_FILE_PATH);
+				}
+				
 				Runtime.getRuntime().exec(command);
 			} catch (IOException e) {
 				e.printStackTrace();
