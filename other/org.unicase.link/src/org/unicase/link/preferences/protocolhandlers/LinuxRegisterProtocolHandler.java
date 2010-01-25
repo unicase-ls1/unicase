@@ -16,6 +16,7 @@ import org.unicase.link.util.FileLocations;
  * @author edgar
  * @author svetlana
  */
+// TODO: refactor code
 public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
 	@Override
@@ -23,13 +24,21 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 		File shellScript = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
 			+ "registerUnicaseProtocolHandler.sh");
 
+		if (!shellScript.exists()) {
+			showError("Missing shellscript.\nPlease try reinstalling the UNICASE link feature.");
+		}
+
 		// make script executable and execute it
 		try {
 			Runtime.getRuntime().exec("chmod +x " + shellScript.getAbsolutePath());
 			// the command to be executed when a UNICASE link has been clicked is passed as the
 			// first argument
 			Runtime.getRuntime().exec(
-				new String[] { "/bin/sh", "-c", shellScript.getAbsolutePath() + " \"" + getJavaExecutionCmd() + "\"" });
+				new String[] {
+					"/bin/sh",
+					"-c",
+					shellScript.getAbsolutePath() + " \"register\" \"" + getJavaExecutionCmd() + "\" " + "\""
+						+ FileLocations.getPluginFeaturesDirectory() + "\"" });
 		} catch (IOException e) {
 			showError(e.getMessage());
 		}
@@ -37,6 +46,33 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 
 	@Override
 	public boolean isProtocolHandlerRegistered() {
-		return true;
+
+		File shellScript = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
+			+ "registerUnicaseProtocolHandler.sh");
+
+		if (!shellScript.exists()) {
+			showError("Missing shellscript.\nPlease try reinstalling the UNICASE link feature.");
+		}
+
+		try {
+			Process p = Runtime.getRuntime().exec(
+				new String[] { "/bin/sh", "-c", shellScript.getAbsolutePath() + " check" });
+			int retCode = p.waitFor();
+
+			if (retCode != 0) {
+				// not registered
+				return false;
+			}
+
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 }

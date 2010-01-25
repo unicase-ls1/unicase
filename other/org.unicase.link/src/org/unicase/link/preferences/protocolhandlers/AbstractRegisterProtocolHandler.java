@@ -50,15 +50,7 @@ public abstract class AbstractRegisterProtocolHandler {
 	 * @throws IOException if the startup jar doesn't exist
 	 */
 	public String getStartUpJar() throws IOException {
-		File startUpJar = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
-			+ "org.unicase.link.startup.jar");
-
-		// check whether startup jar really exists
-		if (!startUpJar.exists()) {
-			throw new IOException("Start up jar not found.");
-		}
-
-		return startUpJar.getAbsolutePath();
+		return FileLocations.getPluginFeaturesDirectory() + File.separator + "org.unicase.link.startup.jar";
 	}
 
 	/**

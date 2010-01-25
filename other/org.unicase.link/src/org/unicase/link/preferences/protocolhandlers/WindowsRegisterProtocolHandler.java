@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
+import org.unicase.link.util.FileLocations;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -27,7 +28,8 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 			Runtime.getRuntime().exec(PROTOCOL_PREFIX);
 			Runtime.getRuntime().exec(PROTOCOL_NAME);
 			Runtime.getRuntime().exec(
-				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"" + getJavaExecutionCmd() + " %1 \"");
+				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"" + getJavaExecutionCmd() + " %1 " + "\""
+					+ FileLocations.getPluginFeaturesDirectory() + "\" \"");
 		} catch (IOException e) {
 			showError(e.getMessage());
 		}
