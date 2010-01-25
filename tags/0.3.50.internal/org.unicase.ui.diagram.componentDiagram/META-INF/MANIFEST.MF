@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.componentDiagram; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.3.50.internal
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: unicase.org
@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.ui.common;bundle-version="1.0.0.qualifier",
+ org.unicase.ui.common;bundle-version="0.3.50.internal",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
