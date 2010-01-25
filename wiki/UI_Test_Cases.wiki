@@ -21,4 +21,6 @@
 
 *IMPORTANT NOTE:* Some or Most of the test cases are based on widgets active currently, so if you move the focus to any other eclipse instance or any other running application, the test-cases may/will fail.  
 
+*NOTE:* You will have to change the default keyboard layout to "U.S. English" in order for some test cases to run correctly, as some of the test cases are meant to simulate keyboard typing in the "Richtext editor".
+
 *NOTE:* The Test-plugin and the additional plugin is available at [http://unicase.googlecode.com/svn/trunk/test/ UNICASE SVN repository].
