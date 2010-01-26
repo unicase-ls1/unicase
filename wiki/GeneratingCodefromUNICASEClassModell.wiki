@@ -14,17 +14,14 @@
    # Now open the gemodel (double click)
    # Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
    # Double click on package element and set in the properties these fields:
- - All -> Compilance Level - 5.0
+All -> *Compilance Level - 5.0
     * Copyright Fields - true
     * Copyright Text - hier you should paste your  copyright
-- Edit
-    * Edit Directory - project_name/src
-- Editor
-    * Editor Directory - org.unicase.modelExample/src
+  Edit -> * Edit Directory - project_name/src
+  Editor -> * Editor Directory - org.unicase.modelExample/src
 
-- Model
-    * Containment Proxies - true
-    * Model Directory - /org.unicase.modelExample/src
+Model -> * Containment Proxies - true
+         * Model Directory - /org.unicase.modelExample/src
 
 
 - Template & Merge
