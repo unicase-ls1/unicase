@@ -1,5 +1,6 @@
 package org.unicase.web.updater;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -96,7 +97,7 @@ public class UpdateProjectHandler implements UpdateObserver, Runnable {
 	
 	public void run() {
 		try {
-			UPDATE_INTERVAL = 60 * 100 * Integer.parseInt(Configuration
+			UPDATE_INTERVAL = 60 * 10 * Integer.parseInt(Configuration
 					.getProperties().getProperty("updateinterval"));
 		} catch (NumberFormatException e) {
 			WorkspaceUtil.logException("Error on project update interval:"
@@ -109,7 +110,9 @@ public class UpdateProjectHandler implements UpdateObserver, Runnable {
 				}
 				
 				update(projectSpace);
+				System.out.println(new Date());
 				Thread.sleep(UPDATE_INTERVAL);
+				
 				
 			} catch (InterruptedException e) {
 				WorkspaceUtil.logException("Project updater tread was crashed.", e);
