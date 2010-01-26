@@ -54,17 +54,6 @@ public abstract class AbstractRegisterProtocolHandler {
 	}
 
 	/**
-	 * The java command that will be executed when clicking a UNICASE link. This command is responsible for passing the
-	 * actual link to the startup jar
-	 * 
-	 * @return the command to be executed
-	 * @throws IOException
-	 */
-	public String getJavaExecutionCmd() throws IOException {
-		return "java -jar " + getStartUpJar();
-	}
-
-	/**
 	 * Gets the absolute path of the eclipse executable. Note that on Mac OS this is not the application bundle.
 	 * 
 	 * @return

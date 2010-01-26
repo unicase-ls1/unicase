@@ -37,7 +37,7 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 				new String[] {
 					"/bin/sh",
 					"-c",
-					shellScript.getAbsolutePath() + " \"register\" \"" + getJavaExecutionCmd() + "\" " + "\""
+					shellScript.getAbsolutePath() + " \"register\" \"java -jar " + getStartUpJar() + "\" " + "\""
 						+ FileLocations.getPluginFeaturesDirectory() + "\"" });
 		} catch (IOException e) {
 			showError(e.getMessage());
