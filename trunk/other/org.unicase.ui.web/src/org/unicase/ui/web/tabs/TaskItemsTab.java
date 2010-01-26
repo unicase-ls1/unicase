@@ -10,6 +10,7 @@ import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -24,7 +25,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.databinding.EMFObservables;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.DisposeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IDisposeListener;
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.AbstractObservableList;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
@@ -41,6 +49,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrganizationPackage;
 
+import org.unicase.web.updater.UpdateProjectHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.ui.web.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.web.labelproviders.GenericColumnLabelProvider;
@@ -69,6 +78,7 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 	private ObservableListContentProvider contentProvider;
 	
 	private Realm myRealm;
+	private Display myDisplay;
 	
 	/**
 	 * Constructor.
@@ -88,6 +98,7 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 	    createTableViewer(tabComposite);
 	    isContentCreated = false;
 	    myRealm = Realm.getDefault();
+	    myDisplay = Display.getDefault();
 	}
 	
 	private void createTableViewer(Composite parent) {
@@ -120,16 +131,88 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 		isContentCreated = true;
 	}
 	
-	private void setInput() {
+	private void setInput() {		
+		
 		List<? extends UnicaseModelElement> taskItems = null;
-		
+
 		if (getCurrProject() != null) {
-			 taskItems = getCurrProject().getAllModelElementsbyClass(
-				TaskPackage.eINSTANCE.getCheckable(), new BasicEList<UnicaseModelElement>());
+			taskItems = getCurrProject().getAllModelElementsbyClass(
+					TaskPackage.eINSTANCE.getCheckable(),
+					new BasicEList<UnicaseModelElement>());
 		}
-		
-		WritableList emfList = new WritableList(myRealm, taskItems, UnicaseModelElement.class);
+
+		WritableList emfList = new WritableList(Realm.getDefault(), taskItems,
+				UnicaseModelElement.class);
 		tableViewer.setInput(emfList);
+		tableViewer.refresh();
+	}
+	
+	/**
+	 * Returns an observable list that proxies on the current realm for the list
+	 * passed in. The original list will be returned if its realm is the current
+	 * realm.
+	 * 
+	 * @param original
+	 *            the list to proxy
+	 * @return the proxy list
+	 * @throws IllegalArgumentException
+	 *             if original is null
+	 * @throws IllegalStateException
+	 *             if this thread has no default realm
+	 * @throws IllegalStateException
+	 *             if the default realm is not the current realm
+	 */
+	public static IObservableList proxyList(IObservableList original) {
+		Realm realm = Realm.getDefault();
+		if (realm == null) {
+			throw new IllegalStateException(
+					"this method requires a default realm"); //$NON-NLS-1$
+		}
+		return proxyList(realm, original);
+	}
+
+	/**
+	 * Returns an observable list that proxies on the given realm for the list
+	 * passed in. The original list will be returned if its realm is the already
+	 * the provided realm.
+	 * 
+	 * @param original
+	 *            the list to proxy
+	 * @return the proxy list
+	 * @throws IllegalArgumentException
+	 *             if realm is null
+	 * @throws IllegalArgumentException
+	 *             if original is null
+	 * @throws IllegalStateException
+	 *             if the provided realm is not the current realm
+	 */
+	public static IObservableList proxyList(Realm realm,
+			IObservableList original) {
+		if (realm == null) {
+			throw new IllegalArgumentException("the realm cannot be null"); //$NON-NLS-1$
+		}
+		if (original == null) {
+			throw new IllegalArgumentException(
+					"the original list cannot be null"); //$NON-NLS-1$
+		}
+		if (!realm.isCurrent()) {
+			throw new IllegalStateException(
+					"must be called from the proxy realm"); //$NON-NLS-1$
+		}
+		if (realm.equals(original.getRealm())) {
+			return original;
+		}
+		final WritableList list = new WritableList(realm,
+				new ArrayList<Object>(), original.getElementType());
+		final DataBindingContext dbc = new DataBindingContext(realm);
+		original.addDisposeListener(new IDisposeListener() {
+			public void handleDispose(DisposeEvent staleEvent) {
+				list.dispose();
+				dbc.dispose();
+			}
+		});
+		dbc.bindList(list, original);
+		return list;
 	}
 	
 	/**
@@ -157,6 +240,7 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
+				setInput();
 				int index = tableViewer.getTable().getSelectionIndex();
 				TableItem item = tableViewer.getTable().getItem(index);
 				UnicaseModelElement element = (UnicaseModelElement) item.getData();
@@ -343,7 +427,6 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 	private void updateInput(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
 			setInput();
-			tableViewer.refresh();
 		}
 	}
 
