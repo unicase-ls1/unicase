@@ -17,13 +17,11 @@ import org.unicase.analyzer.iterator.VersionIterator;
  */
 public class AnalyzerModelController {
 
-	private ArrayList<DataAnalyzer> analyzers;
+	private final ArrayList<DataAnalyzer> analyzers;
 
-	private VersionIterator projectIterator;
+	private final VersionIterator projectIterator;
 
 	private Exporter exporter;
-
-	private int flag;
 
 	/**
 	 * The Controller adds the proper analyzers and iterators, then starts the analysis. The result is exported to the
@@ -33,19 +31,10 @@ public class AnalyzerModelController {
 	 * @param analyzers The list of dataAnalyzers to be used.
 	 * @param exporter The exporter to be used.
 	 */
-	@SuppressWarnings("cast")
 	public AnalyzerModelController(VersionIterator projectIterator, ArrayList<DataAnalyzer> analyzers, Exporter exporter) {
 		this.projectIterator = projectIterator;
 		this.analyzers = analyzers;
 		this.setExporter(exporter);
-
-		// flag is used for switching different ways of exporting, depends on different analyzers
-		DataAnalyzer analyzer = analyzers.get(0);
-		if (analyzer instanceof TwoDDataAnalyzer) {
-			this.flag = 2;
-		} else if (analyzer instanceof DataAnalyzer) {
-			this.flag = 3;
-		}
 
 		try {
 			runAnalysis(exporter);
@@ -62,44 +51,18 @@ public class AnalyzerModelController {
 	 */
 	private void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
-		switch (flag) {
-		case 2:
-			List<List<Object>> lines = new ArrayList<List<Object>>();
-			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-			while (projectIterator.hasNext()) {
-				data = projectIterator.next();
-				lines.clear();
-				for (DataAnalyzer analyzer : analyzers) {
-					if (analyzer.isGlobal()) {
-						((TwoDDataAnalyzer) analyzer).analyzeData(data, projectIterator);
-					} else {
-						lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
-						exporter.export(lines);
-					}
-				}
-			}
+		List<List<Object>> lines = new ArrayList<List<Object>>();
+		ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
+		while (projectIterator.hasNext()) {
+			data = projectIterator.next();
+			lines.clear();
 			for (DataAnalyzer analyzer : analyzers) {
-				if (analyzer.isGlobal()) {
-					lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
-					exporter.export(lines);
-				}
+
+				lines.addAll(analyzer.getValues(data, projectIterator)) ;
+				exporter.export(lines);
+
 			}
-			return;
-		case 3:
-			List<Object> line = new ArrayList<Object>();
-			while (projectIterator.hasNext()) {
-				data = projectIterator.next();
-				line.clear();
-				for (DataAnalyzer analyzer : analyzers) {
-					for (Object obj : analyzer.getValue(data)) {
-						line.add(obj);
-					}
-				}
-				exporter.writeLine(line);
-			}
-			return;
-		default:
-			break;
+
 		}
 	}
 
@@ -112,7 +75,7 @@ public class AnalyzerModelController {
 	private void writeHeader(Exporter exporter) throws IOException {
 		ArrayList<Object> line = new ArrayList<Object>();
 		for (DataAnalyzer analyser : analyzers) {
-			for (String name : analyser.getName()) {
+			for (String name : analyser.getColumnNames()) {
 				line.add(name);
 			}
 		}

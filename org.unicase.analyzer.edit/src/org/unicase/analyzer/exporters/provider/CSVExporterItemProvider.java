@@ -27,8 +27,8 @@ import org.unicase.analyzer.exporters.CSVExporter;
 public class CSVExporterItemProvider extends ExporterItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public CSVExporterItemProvider(AdapterFactory adapterFactory) {
@@ -36,8 +36,8 @@ public class CSVExporterItemProvider extends ExporterItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,8 +50,8 @@ public class CSVExporterItemProvider extends ExporterItemProvider implements IEd
 	}
 
 	/**
-	 * This returns CSVExporter.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns CSVExporter.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,15 +60,16 @@ public class CSVExporterItemProvider extends ExporterItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CSVExporter) object).getFileName();
-		return label == null || label.length() == 0 ? getString("_UI_CSVExporter_type")
-			: getString("_UI_CSVExporter_type") + " " + label;
+		String label = ((CSVExporter)object).getFileName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CSVExporter_type") :
+			getString("_UI_CSVExporter_type") + " " + label;
 	}
 
 	/**
@@ -85,9 +86,9 @@ public class CSVExporterItemProvider extends ExporterItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

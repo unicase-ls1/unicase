@@ -62,7 +62,7 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int STEP_LENGTH_EDEFAULT = 0;
+	protected static final int STEP_LENGTH_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getStepLength() <em>Step Length</em>}' attribute.

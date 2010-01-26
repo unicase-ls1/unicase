@@ -80,6 +80,7 @@ public interface TimeIterator extends VersionIterator {
 
 	/**
 	 * Returns the value of the '<em><b>Step Length Unit</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Step Length Unit</em>' attribute isn't clear, there really should be more of a
@@ -89,7 +90,7 @@ public interface TimeIterator extends VersionIterator {
 	 * @return the value of the '<em>Step Length Unit</em>' attribute.
 	 * @see #setStepLengthUnit(int)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getTimeIterator_StepLengthUnit()
-	 * @model
+	 * @model default="1"
 	 * @generated
 	 */
 	int getStepLengthUnit();

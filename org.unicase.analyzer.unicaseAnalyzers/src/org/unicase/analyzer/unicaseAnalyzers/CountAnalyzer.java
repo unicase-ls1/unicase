@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.SimpleDataAnalyzer;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.task.TaskPackage;
 
@@ -20,7 +20,7 @@ import org.unicase.model.task.TaskPackage;
  * 
  * @author liya
  */
-public class CountAnalyzer implements DataAnalyzer {
+public class CountAnalyzer extends SimpleDataAnalyzer {
 
 	private final EClass eclass = TaskPackage.eINSTANCE.getActionItem(); // Change to the ME you want! By default is
 
@@ -28,38 +28,32 @@ public class CountAnalyzer implements DataAnalyzer {
 
 	/**
 	 * Constructor of CountAnalyzer. A analyzer which can count the number of modelElements of a given EClass.
-	 * 
-	 * @param eclass EClass
 	 */
 	// public CountAnalyzer(EClass eclass) {
 	// this.eclass = eclass;
 	// }
 
 	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.SimpleDataAnalyzer#getSimpleValues(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public List<String> getName() {
-		List<String> names = new ArrayList<String>();
-		names.add(eclass.getName() + '#');
-		return names;
-	}
-
-	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
+	@Override
+	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		values.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<ModelElement>()).size());
 		return values;
 	}
 
 	/**
-	 * @return @see org.unicase.analyzer.DataAnalyzer#isGlobal()
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public boolean isGlobal() {
-		// TODO Auto-generated method stub
-		return false;
+	public List<String> getColumnNames() {
+		List<String> names = new ArrayList<String>();
+		names.add(eclass.getName() + '#');
+		return names;
 	}
 
 }

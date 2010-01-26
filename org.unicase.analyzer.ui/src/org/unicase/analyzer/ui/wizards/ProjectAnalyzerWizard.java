@@ -90,6 +90,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			IExtensionPoint extensionPoint = registry.getExtensionPoint("org.unicase.analyzer.analyzer");
 			IExtension[] extensions = extensionPoint.getExtensions();
 
+			boolean notExisting = false;
 			// For each extension ...
 			for (int i = 0; i < extensions.length; i++) {
 				IExtension extension = extensions[i];
@@ -104,9 +105,18 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							} catch (CoreException e) {
 								WorkspaceUtil.logException("Problems occur when creating the analyzer!", e);
 							}
+						} else {
+							notExisting = true;
 						}
 					}
 				}
+			}
+			if (notExisting) {
+				MessageDialog
+					.openWarning(
+						Display.getCurrent().getActiveShell(),
+						"",
+						"Some of the analyers does not exist. You analysis result might not be complete. Please check the .conf file and the extended cliend analyzers again!");
 			}
 		}
 

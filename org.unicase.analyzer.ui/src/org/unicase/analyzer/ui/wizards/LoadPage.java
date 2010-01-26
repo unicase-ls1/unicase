@@ -48,7 +48,7 @@ public class LoadPage extends WizardPage implements Listener {
 	/**
 	 * default path for the configuration file.
 	 */
-	public static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
+	public static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "default.conf";
 
 	/**
 	 * @param pageName Name of the page
@@ -95,7 +95,7 @@ public class LoadPage extends WizardPage implements Listener {
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
 
 		Button newFileLocation = new Button(composite, SWT.PUSH);
-		newFileLocation.setText("New Conf");
+		newFileLocation.setText("New Configuration");
 		newFileLocation.addSelectionListener(new NewFileLocationSelectionListener());
 
 		setCanFlipToNextPage(isPageComplete());
@@ -222,6 +222,7 @@ public class LoadPage extends WizardPage implements Listener {
 
 			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 				SWT.SAVE);
+			dialog.setFilterPath(Configuration.getPluginDataBaseDirectory());
 			dialog.setFilterNames(new String[] { "Configuration Files(*.conf)", "All Files(*.*)" });
 			dialog.setFilterExtensions(new String[] { ".conf", ".*" });
 			dialog.setOverwrite(true);
@@ -229,7 +230,7 @@ public class LoadPage extends WizardPage implements Listener {
 			dialog.setFileName(initialFileName);
 
 			// dialog
-			String selected = dialog.getFilterPath() + dialog.open();
+			String selected = dialog.open();
 
 			if (selected != null) {
 				configurationPath.setText(selected);

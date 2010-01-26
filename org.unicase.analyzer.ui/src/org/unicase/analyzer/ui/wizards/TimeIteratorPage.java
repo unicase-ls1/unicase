@@ -91,6 +91,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		new Label(composite, SWT.NONE).setText("Step Length:");
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
+		stepText.setText("1");
 		stepText.setLayoutData(gd);
 		stepText.addListener(SWT.KeyUp, this);
 
@@ -102,7 +103,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepUnit.addListener(SWT.Selection, this);
 
 		defaultButton = new Button(composite, SWT.CHECK);
-		defaultButton.setText("Analyze the FULL versions");
+		defaultButton.setText("Analyze all the versions");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		defaultButton.setLayoutData(gd);
@@ -146,20 +147,20 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;
 		forwardButton = new Button(group, SWT.CHECK);
-		forwardButton.setText("Forward");
+		forwardButton.setText("Run in the Forward Direction");
 		forwardButton.setLayoutData(gd);
 		forwardButton.setSelection(true);
 		forwardButton.addListener(SWT.Selection, this);
 
 		returnCopyButton = new Button(group, SWT.CHECK);
-		returnCopyButton.setText("Return the copy of ProjectAnalysisData");
+		returnCopyButton.setText("Return the deep copy of ProjectAnalysisData");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
 		returnCopyButton.addListener(SWT.Selection, this);
 
-		setCanFlipToNextPage(isPageComplete());
+		// setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
 

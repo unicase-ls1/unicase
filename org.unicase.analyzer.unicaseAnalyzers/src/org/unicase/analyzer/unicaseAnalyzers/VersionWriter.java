@@ -8,30 +8,23 @@ package org.unicase.analyzer.unicaseAnalyzers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.SimpleDataAnalyzer;
 
 /**
  * Write the version number of the current project state.
  * 
  * @author liya
  */
-public class VersionWriter implements DataAnalyzer {
+public class VersionWriter extends SimpleDataAnalyzer {
 
 	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.SimpleDataAnalyzer#getSimpleValues(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public List<String> getName() {
-		List<String> names = new ArrayList<String>();
-		names.add("Version");
-		return names;
-	}
-
-	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
+	@Override
+	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		values.add(data.getPrimaryVersionSpec().getIdentifier());
 		return values;
@@ -40,10 +33,12 @@ public class VersionWriter implements DataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public boolean isGlobal() {
-		return false;
+	public List<String> getColumnNames() {
+		List<String> names = new ArrayList<String>();
+		names.add("Version");
+		return names;
 	}
 
 }
