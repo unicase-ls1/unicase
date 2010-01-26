@@ -52,7 +52,8 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 			if (p == -1)
 				return null;
 
-			return result.substring(p + REGSTR_TOKEN.length()).trim();
+			return result.substring(p).trim();
+
 		} catch (Exception e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
 			return null;
@@ -61,7 +62,14 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 
 	@Override
 	public boolean isProtocolHandlerRegistered() {
-		return true;
+
+		boolean regcheck = false;
+		try {
+			regcheck = getRegistryEntry("reg query HKCR\\unicase /v \"URL Protocol\"").equals(REGSTR_TOKEN);
+			return regcheck;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	// http://www.rgagnon.com/javadetails/java-0480.html
