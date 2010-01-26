@@ -70,12 +70,12 @@ public class Activator extends AbstractUIPlugin {
 			String projectName = "unicase"; // (((String[]) obj)[0]);
 
 			if (projectName != null) {
-//				Configuration.initialize();
-//				LoginHandler login = new LoginHandler(Configuration
-//						.getProperties().getProperty("hostname"));
-//				login.run();
-//				Thread updaterThread = new Thread(new UpdateProjectHandler(projectName));
-//				updaterThread.start();
+				Configuration.initialize();
+				LoginHandler login = new LoginHandler(Configuration
+						.getProperties().getProperty("hostname"));
+				login.run();
+				Thread updaterThread = new Thread(new UpdateProjectHandler(projectName));
+				updaterThread.start();
 			}
 		//}
 	}
