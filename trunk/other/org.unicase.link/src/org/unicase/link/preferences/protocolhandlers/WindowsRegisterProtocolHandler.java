@@ -27,9 +27,11 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 		try {
 			Runtime.getRuntime().exec(PROTOCOL_PREFIX);
 			Runtime.getRuntime().exec(PROTOCOL_NAME);
+			// quotes must be written into registry entry in order that a path with spaces will
+			// not get split up
 			Runtime.getRuntime().exec(
-				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"" + getJavaExecutionCmd() + " %1 " + "\""
-					+ FileLocations.getPluginFeaturesDirectory() + "\" \"");
+				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"java -jar \\\"" + getStartUpJar() + "\\\" %1 "
+					+ "\\\"" + FileLocations.getPluginFeaturesDirectory() + "\\\"");
 		} catch (IOException e) {
 			showError(e.getMessage());
 		}
