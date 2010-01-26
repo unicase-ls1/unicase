@@ -23,12 +23,12 @@
    * Editor
       * Editor Directory - org.unicase.modelExample/src
 
-    Model
-   * Containment Proxies - true
-   * Model Directory - /org.unicase.modelExample/src
+   * Model
+      * Containment Proxies - true
+      * Model Directory - /org.unicase.modelExample/src
 
-    Template & Merge
-   * Code Formatting - true
+   * Template & Merge
+      * Code Formatting - true
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
