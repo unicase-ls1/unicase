@@ -90,7 +90,7 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int STEP_LENGTH_UNIT_EDEFAULT = 0;
+	protected static final int STEP_LENGTH_UNIT_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getStepLengthUnit() <em>Step Length Unit</em>}' attribute.

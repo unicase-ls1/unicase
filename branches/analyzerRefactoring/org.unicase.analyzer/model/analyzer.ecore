@@ -23,7 +23,8 @@
   </eClassifiers>
   <eSubpackages name="iterator" nsURI="http://unicase.org/analyzer/iterator" nsPrefix="org.unicase.analyzer.iterator">
     <eClassifiers xsi:type="ecore:EClass" name="VersionIterator">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -36,7 +37,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="TimeIterator" eSuperTypes="#//iterator/VersionIterator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLengthUnit" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLengthUnit" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+          defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VersionSpecQuery">
       <eStructuralFeatures xsi:type="ecore:EReference" name="endVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/VersionSpec"

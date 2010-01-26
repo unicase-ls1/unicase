@@ -38,6 +38,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
 	/**
 	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Step Length</em>' attribute isn't clear, there really should be more of a description
@@ -47,7 +48,7 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	 * @return the value of the '<em>Step Length</em>' attribute.
 	 * @see #setStepLength(int)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_StepLength()
-	 * @model
+	 * @model default="1"
 	 * @generated
 	 */
 	int getStepLength();

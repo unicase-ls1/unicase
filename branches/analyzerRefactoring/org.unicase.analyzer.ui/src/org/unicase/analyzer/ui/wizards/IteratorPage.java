@@ -32,7 +32,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 public class IteratorPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Iterator";
-	private static final String PAGE_DESCRIPTION = " your Iterator used for analyzing the project.";
+	private static final String PAGE_DESCRIPTION = "Choose a type of Iterator used for analyzing the project.";
 	private boolean canFlipToNextPage;
 	private Button versionIteratorButton;
 	private Button timeIteratorButton;

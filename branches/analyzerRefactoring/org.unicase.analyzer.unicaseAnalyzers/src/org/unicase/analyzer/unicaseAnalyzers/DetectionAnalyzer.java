@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.unicase.analyzer.GlobalDataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -39,7 +39,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author liya
  */
-public class DetectionAnalyzer implements TwoDDataAnalyzer {
+public class DetectionAnalyzer extends GlobalDataAnalyzer {
 
 	private final List<String> users;
 	private final List<Date> update;
@@ -67,22 +67,6 @@ public class DetectionAnalyzer implements TwoDDataAnalyzer {
 
 		getUsers(it);
 
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getName()
-	 */
-
-	public List<String> getName() {
-		List<String> names = new ArrayList<String>();
-		names.add("User");
-		names.add("Update Time");
-		names.add("Read Time");
-		names.add("Read View");
-		names.add("Time Difference");
-		return names;
 	}
 
 	private void getUsers(VersionIterator it) {
@@ -114,10 +98,10 @@ public class DetectionAnalyzer implements TwoDDataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData,
+	 * @see org.unicase.analyzer.GlobalDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData,
 	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
-
+	@Override
 	public void analyzeData(ProjectAnalysisData data, VersionIterator it) {
 
 		Map<ModelElementId, Date> meIdMap = null;// Map for the ModelElement candidates
@@ -205,11 +189,11 @@ public class DetectionAnalyzer implements TwoDDataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData,
-	 *      org.unicase.analyzer.VersionIterator)
+	 * @see org.unicase.analyzer.GlobalDataAnalyzer#getGlobalResults(org.unicase.analyzer.ProjectAnalysisData,
+	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
-
-	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
+	@Override
+	public List<List<Object>> getGlobalResults(ProjectAnalysisData data, VersionIterator it) {
 		List<List<Object>> values = new ArrayList<List<Object>>();
 
 		for (String user : users) {
@@ -245,19 +229,16 @@ public class DetectionAnalyzer implements TwoDDataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
-	 */
-	public boolean isGlobal() {
-		return true;
+	public List<String> getColumnNames() {
+		List<String> names = new ArrayList<String>();
+		names.add("User");
+		names.add("Update Time");
+		names.add("Read Time");
+		names.add("Read View");
+		names.add("Time Difference");
+		return names;
 	}
 
 }

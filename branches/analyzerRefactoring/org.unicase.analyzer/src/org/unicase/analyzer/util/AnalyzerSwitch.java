@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.analyzer.*;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;

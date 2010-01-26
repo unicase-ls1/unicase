@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.SimpleDataAnalyzer;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -31,14 +31,14 @@ import org.unicase.metamodel.ModelElementId;
  * 
  * @author liya
  */
-public class CategoryAnalyzer implements DataAnalyzer {
+public class CategoryAnalyzer extends SimpleDataAnalyzer {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getName()
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public List<String> getName() {
+	public List<String> getColumnNames() {
 		List<String> names = new ArrayList<String>();
 		names.add("Category");
 		names.add("Operations Number");
@@ -46,13 +46,49 @@ public class CategoryAnalyzer implements DataAnalyzer {
 		return names;
 	}
 
+	private void checkForRenameAndMove(ProjectAnalysisData data) {
+		for (ChangePackage changePackage : data.getChangePackages()) {
+			Set<ModelElementId> renamedElements = new HashSet<ModelElementId>();
+			Set<ModelElementId> containmentChangeElements = new HashSet<ModelElementId>();
+			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (operation instanceof AttributeOperation) {
+					AttributeOperation attributeOperation = (AttributeOperation) operation;
+					String featureName = attributeOperation.getFeatureName();
+					if (featureName.equals("name")) {
+						renamedElements.add(attributeOperation.getModelElementId());
+					}
+				} else if (operation instanceof ReferenceOperation) {
+					ReferenceOperation referenceOperation = (ReferenceOperation) operation;
+					try {
+						ModelElement modelElement = data.getProjectState().getModelElement(
+							operation.getModelElementId());
+						if (modelElement == null) {
+							continue;
+						}
+						EReference feature = (EReference) referenceOperation.getFeature(modelElement);
+						if (feature.isContainer() || feature.isContainment()) {
+							containmentChangeElements.addAll(referenceOperation.getAllInvolvedModelElements());
+						}
+
+					} catch (UnkownFeatureException e) {
+						continue;
+					}
+				}
+			}
+			boolean doIntersect = renamedElements.removeAll(containmentChangeElements);
+			if (doIntersect) {
+				System.out.println("Possible intersection at revision " + data.getPrimaryVersionSpec());
+			}
+		}
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData) Only check the first
-	 *      returned ChangePackage. It's better to set the steplength = 1 for the connecting iterator.
+	 * @see org.unicase.analyzer.SimpleDataAnalyzer#getSimpleValues(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
+	@Override
+	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		List<Integer> dependency;
 
@@ -107,52 +143,6 @@ public class CategoryAnalyzer implements DataAnalyzer {
 		values.add(depth);
 		checkForRenameAndMove(data);
 		return values;
-	}
-
-	private void checkForRenameAndMove(ProjectAnalysisData data) {
-		for (ChangePackage changePackage : data.getChangePackages()) {
-			Set<ModelElementId> renamedElements = new HashSet<ModelElementId>();
-			Set<ModelElementId> containmentChangeElements = new HashSet<ModelElementId>();
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (operation instanceof AttributeOperation) {
-					AttributeOperation attributeOperation = (AttributeOperation) operation;
-					String featureName = attributeOperation.getFeatureName();
-					if (featureName.equals("name")) {
-						renamedElements.add(attributeOperation.getModelElementId());
-					}
-				} else if (operation instanceof ReferenceOperation) {
-					ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-					try {
-						ModelElement modelElement = data.getProjectState().getModelElement(
-							operation.getModelElementId());
-						if (modelElement == null) {
-							continue;
-						}
-						EReference feature = (EReference) referenceOperation.getFeature(modelElement);
-						if (feature.isContainer() || feature.isContainment()) {
-							containmentChangeElements.addAll(referenceOperation.getAllInvolvedModelElements());
-						}
-
-					} catch (UnkownFeatureException e) {
-						continue;
-					}
-				}
-			}
-			boolean doIntersect = renamedElements.removeAll(containmentChangeElements);
-			if (doIntersect) {
-				System.out.println("Possible intersection at revision " + data.getPrimaryVersionSpec());
-			}
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
-	 */
-	public boolean isGlobal() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
