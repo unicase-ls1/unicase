@@ -12,6 +12,9 @@
       <client_analyzer
             class="org.unicase.analyzer.unicaseAnalyzers.CategoryAnalyzer">
       </client_analyzer>
+      <client_analyzer
+            class="org.unicase.analyzer.unicaseAnalyzers.StatusEventAnalyzer">
+      </client_analyzer>
    </extension>
 
 </plugin>
