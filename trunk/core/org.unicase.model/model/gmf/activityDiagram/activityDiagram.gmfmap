@@ -14,11 +14,12 @@
       <domainMetaElement
           href="../../model.ecore#//activity/Activity"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editPattern="">
         <diagramLabel
             href="../model.gmfgraph#ActivityNode_name"/>
         <features
-            href="../../model.ecore#//ModelElement/name"/>
+            href="../../model.ecore#//UnicaseModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
