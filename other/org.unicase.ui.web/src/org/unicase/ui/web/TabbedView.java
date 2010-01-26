@@ -50,19 +50,22 @@ public class TabbedView extends ViewPart {
 //			Thread updaterThread = new Thread(new ProjectUpdater(currProjectName));
 //			updaterThread.start();
 //		}
-		
-		final AbstractTab[] tabs = new AbstractTab[] {
-				new TaskItemsTab(topFolder), new BugReportTab(topFolder),
-				new ExampleTableTab(topFolder), new InputTab(topFolder) };
-		
-		topFolder.setSelection(0);
-		topFolder.addSelectionListener(new SelectionAdapter() {
-			
-			public void widgetSelected(final SelectionEvent evt) {
-				int index = topFolder.getSelectionIndex();
-				tabs[index].createContent(getCurrProjectName());
-			}
-		});
+		if(getCurrProjectName() != null){ 
+			final AbstractTab[] tabs = new AbstractTab[] {
+					new TaskItemsTab(topFolder), new BugReportTab(topFolder),
+					new TeamTab(topFolder), new ExampleTableTab(topFolder),
+					new InputTab(topFolder) };
+
+			topFolder.setSelection(0);
+			tabs[0].createContent(getCurrProjectName());
+			topFolder.addSelectionListener(new SelectionAdapter() {
+
+				public void widgetSelected(final SelectionEvent evt) {
+					int index = topFolder.getSelectionIndex();
+					tabs[index].createContent(getCurrProjectName());
+				}
+			});
+		}
 	}
 
 	@Override
