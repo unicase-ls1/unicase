@@ -1,6 +1,6 @@
    # File-> New-> Other -> Empty EMF Project and give a name to your projecr
 http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
-http://unicase.googlecode.com/files/1.Create_Empty_Project
+http://unicase.googlecode.com/files/1.Create_Empty_Project.png
    # Open UNICASE perspective and right click on project you want to generate Ecore model from an select Generate Ecore
 http://unicase.googlecode.com/files/
    # Select model-Folder of your EMF Project and give name for your .ecore File
