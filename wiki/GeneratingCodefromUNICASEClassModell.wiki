@@ -1,7 +1,7 @@
    # File-> New-> Other -> Empty EMF Project
    # Open UNICASE perspective and right click on project you want to generate Ecore model from an select -Generate Ecore-
    # Select model-Folder of your EMF Project and give name for your .ecore File
-   # Change to Java perspective and refresh your EMF Project and you see your _italic_myfile.ecore File
+   # Change to Java perspective and refresh your EMF Project and you see your _myfile.ecore_ File
    # In Ecore Editor right click on your package and select -Load Ressource- and then click on Browse Workspace and select org.unicase.model/model/model.ecore 
    # Set in Properties (double click on each Class) for all classes ESuperTypes to UnicaseModelElement
    # Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
