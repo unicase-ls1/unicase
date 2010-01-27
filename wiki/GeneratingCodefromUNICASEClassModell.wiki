@@ -66,7 +66,7 @@ http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
 <br> 
 
 
-*  8. * Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
+*  9. * Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
 
 <br>
 
@@ -74,7 +74,7 @@ http://unicase.googlecode.com/files/Ecore_Model_Property.png
 
 <br> 
 
-*  9. * Right click on your package and select *Validate* from the context menu
+*  10. * Right click on your package and select *Validate* from the context menu
 
 <br>
 
@@ -82,9 +82,9 @@ http://unicase.googlecode.com/files/8.Validate_Ecore_Model.png
 
 <br> 
 
-*  10. *Change to Java prespective
+*  11. *Change to Java prespective
 
-*  11. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel 
+*  12. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel 
 
 <br>
 
@@ -92,14 +92,14 @@ http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
  
-*  12. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace 
+*  13. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace 
 <br>
 
 http://unicase.googlecode.com/files/11.Select_Model_Importer.png
 
 <br> 
 
-*  13. * Click on *Browse workspace* and select your ecore file
+*  14. * Click on *Browse workspace* and select your ecore file
 
 <br> 
 
@@ -107,7 +107,7 @@ http://unicase.googlecode.com/files/12.Select_Your_Own_Ecore_FIle.png
 
 <br> 
 
-*  13. * Select as *Root package* only your own package
+*  15. * Select as *Root package* only your own package
 
 <br> 
 
@@ -116,7 +116,7 @@ http://unicase.googlecode.com/files/13.Package_Selection_Before.png
 
 <br>
 
-*  14 * Select as *Referenced Generator Model* all packages
+*  16 * Select as *Referenced Generator Model* all packages
 
 <br> 
 
@@ -125,10 +125,10 @@ http://unicase.googlecode.com/files/13.Package_Selection_After.png
 
 <br>
 
-*  15. *Finish
+*  17. *Finish
 
 
-* 16. *Now open the gemodel (double click)
+* 18. *Now open the gemodel (double click)
 
 <br>
 
@@ -136,7 +136,7 @@ http://unicase.googlecode.com/files/
 
 <br> 
 
-*  17. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
+*  19. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
 
 <br>
 
@@ -144,7 +144,7 @@ http://unicase.googlecode.com/files/16.Set_Properties_All-_BasePackage.png
 
 <br> 
 
-*  18. * Double click on package element and set in the properties these fields:
+*  20. * Double click on package element and set in the properties these fields:
    
    *All 
       * Compilance Level - 5.0
@@ -182,7 +182,7 @@ http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 
 <br>
 
-* 19. * Generate Code from genmodel
+* 21. * Generate Code from genmodel
 
 <br>
 
@@ -190,7 +190,7 @@ http://unicase.googlecode.com/files/20.Generate_Model_Code.png
 
 <br>
 
-* 20. * Finish Project and generate Code is ready
+* 22. * Finish Project and generate Code is ready
 
 <br>
 
