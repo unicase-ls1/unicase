@@ -6,7 +6,8 @@ http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
 
 <br> 
 
-*  2. * Open UNICASE perspective and right click on project you want to generate Ecore model from and select Generate Ecore
+*  2. * Open UNICASE perspective and right click on project
+        you want to generate Ecore model from and select Generate Ecore
 
 <br>
 
