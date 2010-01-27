@@ -103,7 +103,7 @@ http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
 
-http://unicase.googlecode.com/files/10.Create_Genmodel
+http://unicase.googlecode.com/files/10.Create_Genmodel.png
 
 <br>
 
