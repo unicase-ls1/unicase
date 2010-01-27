@@ -41,7 +41,7 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-*  6. *Select org.unicase.model/model/model.ecore
+*  6. * Click on *Browse Workspace* and select org.unicase.model/model/model.ecore
 
 <br>
 
