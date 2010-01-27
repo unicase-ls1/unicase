@@ -8,11 +8,6 @@ http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
 
 *  2. * Open UNICASE perspective and right click on project you want to generate Ecore model from and select Generate Ecore
 
-<br> 
-
-http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
-
-<br>
 
 <br>
 
@@ -32,7 +27,6 @@ http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
 
 <br>
 
-<br>
  
 *  5. *In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
 
@@ -42,11 +36,12 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-*  6. *select org.unicase.model/model/model.ecore
+*  6. *Select org.unicase.model/model/model.ecore
 
 <br>
 
-5.Select_Org_Unicase_Model.png
+
+http://unicase.googlecode.com/files/5.Select_Org_Unicase_Model.png
 
 <br> 
 
@@ -54,9 +49,17 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-http://unicase.googlecode.com/files/
+http://unicase.googlecode.com/files/6.Class_Properties_Select_To_Each_Class.png
 
 <br> 
+
+
+<br>
+
+http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
+
+<br> 
+
 
 *  8. * Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
 
@@ -66,24 +69,21 @@ http://unicase.googlecode.com/files/
 
 <br> 
 
-*  9. * Right click on your package and select Validate from the context menu
+*  9. * Right click on your package and select *Validate* from the context menu
 
 <br>
-http://unicase.googlecode.com/files/
+
+http://unicase.googlecode.com/files/8.Validate_Ecore_Model.png
 
 <br> 
 
 *  10. *Change to Java prespective
 
-<br> 
+*  11. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel 
 
 <br>
 
-*  11. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel -> Next
-
-<br>
-
-http://unicase.googlecode.com/files/
+http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
  
