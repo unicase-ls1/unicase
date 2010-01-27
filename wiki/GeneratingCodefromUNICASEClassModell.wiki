@@ -83,6 +83,10 @@ http://unicase.googlecode.com/files/8.Validate_Ecore_Model.png
 
 <br> 
 
+
+If your *Validate* was successfull you have made a correct ecore model
+
+
 == How to create Gen Model from ecore Model ==
 
 *  11. *Change to Java perspective
