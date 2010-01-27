@@ -1,8 +1,9 @@
 This documentation contains five chapter.
- # [#How_to_configure_Eclipse_to_run_Rich_Ajax_Platform_(RAP)_plugins How to create an EMF Model Poject]
  # [#How_to_createa_an_EMF Model Poject How to create an EMF Model Poject]
- # [#How_to_setup_hybrid_target_platform_to_run_RCP_and_RAP_plugins How to setup hybrid target platform to run RCP and RAP plugins]
+ # [#How_to_create_Gen_Model_from_ecore_Model How to create GenModel from ecore Model]
+ # [How_to_set_properties_in_ecore_model How to set properties in ecore Model]
 
+ # [#How_to_generate_Model_Code  How to generate Model Code]
 
 == How to configure Eclipse to run Rich Ajax Platform (RAP) plugins ==
 
