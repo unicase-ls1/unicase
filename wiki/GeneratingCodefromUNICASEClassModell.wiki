@@ -82,9 +82,11 @@ http://unicase.googlecode.com/files/8.Validate_Ecore_Model.png
 
 <br> 
 
-*  11. *Change to Java prespective
+== How to create GenModel from ecore Model ==
 
-*  12. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel 
+*  11. *Change to Java perspective
+
+*  12. * File-> New-> Other -> *EMF Generator Model* and set name for example your_ecore_model_name.genmodel 
 
 <br>
 
