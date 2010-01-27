@@ -140,16 +140,11 @@ http://unicase.googlecode.com/files/14.Package_Selection_After.png
 
 <br>
 
-*  17. *Finish
+*  17. *Finish, your genmodel was createt
 
 
-* 18. *Now open the gemodel (double click)
+* 18. *Double clickon your genmodel und you can see the properties on *Properties* View
 
-<br>
-
-http://unicase.googlecode.com/files/
-
-<br> 
 
 == How to set properties in Gen Model ==
 
