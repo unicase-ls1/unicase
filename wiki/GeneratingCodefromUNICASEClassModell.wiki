@@ -1,4 +1,5 @@
 *  1. * File-> New-> Other -> Empty EMF Project and give a name to your project
+
 <br>
 
 http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
@@ -6,6 +7,7 @@ http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
 <br> 
 
 *  2. * Open UNICASE perspective and right click on project you want to generate Ecore model from and select Generate Ecore
+
 <br> 
 
 http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
@@ -41,6 +43,7 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 <br>
 
 *  6. *select org.unicase.model/model/model.ecore
+
 <br>
 
 5.Select_Org_Unicase_Model.png
@@ -48,6 +51,7 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 <br> 
 
 *  7. * Set in Properties (double click on each Class) for all classes ESuperTypes to UnicaseModelElement
+
 <br>
 
 http://unicase.googlecode.com/files/
@@ -55,6 +59,7 @@ http://unicase.googlecode.com/files/
 <br> 
 
 *  8. * Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
+
 <br>
 
 http://unicase.googlecode.com/files/
@@ -62,41 +67,96 @@ http://unicase.googlecode.com/files/
 <br> 
 
 *  9. * Right click on your package and select Validate from the context menu
+
+<br>
 http://unicase.googlecode.com/files/
+
 <br> 
+
 *  10. *Change to Java prespective
+
 <br> 
+
+<br>
+
 *  11. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel -> Next
+
+<br>
+
 http://unicase.googlecode.com/files/
-<br> 
+
+<br>
+ 
 *  12. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace and select your ecore file -> Next
+
+<br>
+
 http://unicase.googlecode.com/files/
+
 <br> 
+
 *  13. * Select as root package only your own package, select all packages in Referenced generator model too.
+
 <br> 
+
+<br>
+
 *  14. *Finish
 <br> 
 * 15. *Now open the gemodel (double click)
+
+<br>
+
 http://unicase.googlecode.com/files/
+
 <br> 
+
 *  16. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
+
+<br>
+
 http://unicase.googlecode.com/files/
+
 <br> 
+
 *  17. * Double click on package element and set in the properties these fields:
    * All 
       * Compilance Level - 5.0
       * Copyright Fields - true
       * Copyright Text - hier you should paste your  copyright
+
+<br>
+
 http://unicase.googlecode.com/files/
+
+<br>
+
    * Edit
       * Edit Directory - project_name/src
    * Editor
       * Editor Directory - org.unicase.modelExample/src
+
+<br>
+
 http://unicase.googlecode.com/files/
+
+<br>
+
    * Model
       * Containment Proxies - true
       * Model Directory - /org.unicase.modelExample/src
+
+<br>
+
 http://unicase.googlecode.com/files/
+
+<br>
+
    * Template & Merge
       * Code Formatting - true
+
+<br>
+
 http://unicase.googlecode.com/files/
+
+<br>
