@@ -51,15 +51,14 @@ http://unicase.googlecode.com/files/5.Select_Org_Unicase_Model.png
 <br> 
 
 == How to set properties in ecore model ==
-*  7. * Go to Properties (double click on each Class) for all classes ESuperTypes 
-
+*  7. * Go to Properties with double click on class
 <br>
 
 http://unicase.googlecode.com/files/6.Class_Properties_Select_To_Each_Class.png
 
 <br> 
 
-*  8. * Set to all ESuperTypes UnicaseModelELement
+*  8. * Set to all classes ESuperTypes to UnicaseModelELement
 
 <br>
 
