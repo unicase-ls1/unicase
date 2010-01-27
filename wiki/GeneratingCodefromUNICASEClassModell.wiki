@@ -95,9 +95,21 @@ http://unicase.googlecode.com/files/
 
 <br> 
 
-*  13. * Select as root package only your own package, select all packages in Referenced generator model too.
+*  13. * Select as root package only your own package
 
 <br> 
+
+
+http://unicase.googlecode.com/files/13.Package_Selection_Before.png
+
+<br>
+
+*  13.1 *
+
+<br> 
+
+
+http://unicase.googlecode.com/files/13.Package_Selection_After.png
 
 <br>
 
@@ -115,32 +127,28 @@ http://unicase.googlecode.com/files/
 
 <br>
 
-http://unicase.googlecode.com/files/
+http://unicase.googlecode.com/files/16.Set_Properties_All-_BasePackage.png
 
 <br> 
 
 *  17. * Double click on package element and set in the properties these fields:
-   *  1. *All 
+   
+   *All 
       * Compilance Level - 5.0
       * Copyright Fields - true
       * Copyright Text - hier you should paste your  copyright
 
-<br>
-
-http://unicase.googlecode.com/files/
-
-<br>
-
    * Edit
       * Edit Directory - project_name/src
+
+<br>
+
+http://unicase.googlecode.com/files/17.All+Edit_Properties.png
+
+<br>
+
    * Editor
       * Editor Directory - org.unicase.modelExample/src
-
-<br>
-
-http://unicase.googlecode.com/files/
-
-<br>
 
    * Model
       * Containment Proxies - true
@@ -148,8 +156,7 @@ http://unicase.googlecode.com/files/
 
 <br>
 
-http://unicase.googlecode.com/files/
-19.Template+Merge_Properties.png
+http://unicase.googlecode.com/files/18.Editor_and_Model_Properties.png
 
 <br>
 
@@ -158,8 +165,7 @@ http://unicase.googlecode.com/files/
 
 <br>
 
-http://unicase.googlecode.com/files/
-19.Template+Merge_Properties.png
+http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 
 <br>
 
