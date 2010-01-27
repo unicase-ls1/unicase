@@ -1,9 +1,9 @@
-   # File-> New-> Other -> Empty EMF Project and give a name to your project
+*  1. * File-> New-> Other -> Empty EMF Project and give a name to your project
 http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
-http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
-   # Open UNICASE perspective and right click on project you want to generate Ecore model from and select Generate Ecore
+ Open UNICASE perspective and right click on project you want to generate Ecore model http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
+*  2. * from and select Generate Ecore
 http://unicase.googlecode.com/files/2.GenerateEcoreModel.png
-   # Select model-Folder of your EMF Project and give name for your .ecore File
+*  3. *  Select model-Folder of your EMF Project and give name for your .ecore File
 http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
    # Change to Java perspective and refresh your EMF Project and you see your .ecore File
    # In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
