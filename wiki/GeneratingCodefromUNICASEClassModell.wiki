@@ -120,7 +120,7 @@ http://unicase.googlecode.com/files/
 <br> 
 
 *  17. * Double click on package element and set in the properties these fields:
-   * All 
+   *  1. *All 
       * Compilance Level - 5.0
       * Copyright Fields - true
       * Copyright Text - hier you should paste your  copyright
@@ -149,6 +149,7 @@ http://unicase.googlecode.com/files/
 <br>
 
 http://unicase.googlecode.com/files/
+19.Template+Merge_Properties.png
 
 <br>
 
@@ -158,6 +159,7 @@ http://unicase.googlecode.com/files/
 <br>
 
 http://unicase.googlecode.com/files/
+19.Template+Merge_Properties.png
 
 <br>
 
