@@ -1,13 +1,10 @@
 This documentation contains five chapter.
- # [#How_to_createa_an_EMF Model Poject How to create an EMF Model Poject]
+ # [#How_to_createa_an_EMF_Model_Poject_with_ecore_Model How to create an EMF Model Poject with ecore Model]
  # [#How_to_create_Gen_Model_from_ecore_Model How to create GenModel from ecore Model]
- # [How_to_set_properties_in_ecore_model How to set properties in ecore Model]
-
+ # [#How_to_set_properties_in_ecore_model How to set properties in ecore Model]
  # [#How_to_generate_Model_Code  How to generate Model Code]
 
-== How to configure Eclipse to run Rich Ajax Platform (RAP) plugins ==
-
-
+== How to create an EMF Model Poject ==
 
 
 *  1. * File-> New-> Other -> *Empty EMF Project* and give a name to your project
