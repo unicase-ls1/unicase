@@ -1,33 +1,34 @@
 *  1. * File-> New-> Other -> Empty EMF Project and give a name to your project
 http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
- Open UNICASE perspective and right click on project you want to generate Ecore model http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
-*  2. * from and select Generate Ecore
+*  2. * Open UNICASE perspective and right click on project you want to generate Ecore model from and select Generate Ecore
+http://unicase.googlecode.com/files/1.Create_Empty_EMF_Project.png
+
 http://unicase.googlecode.com/files/2.GenerateEcoreModel.png
 *  3. *  Select model-Folder of your EMF Project and give name for your .ecore File
 http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
-   # Change to Java perspective and refresh your EMF Project and you see your .ecore File
-   # In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
+*  4. * Change to Java perspective and refresh your EMF Project and you see your .ecore File
+*  5. *In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
 http://unicase.googlecode.com/files/4.Load_Source.png
-   *  select org.unicase.model/model/model.ecore
+*  6. *select org.unicase.model/model/model.ecore
 5.Select_Org_Unicase_Model.png
-   # Set in Properties (double click on each Class) for all classes ESuperTypes to UnicaseModelElement
+*  7. * Set in Properties (double click on each Class) for all classes ESuperTypes to UnicaseModelElement
 http://unicase.googlecode.com/files/
-   # Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
+*  8. * Set Name to your_package_name, NS Prefix to org.unicase.model.your_package_name  and NS URI http://org.unicase.model.your_package_name (spaces in names are not allowed)
 http://unicase.googlecode.com/files/
-   # Right click on your package and select Validate from the context menu
+*  9. * Right click on your package and select Validate from the context menu
 http://unicase.googlecode.com/files/
-   # Change to Java prespective
-   # File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel -> Next
+*  10. *Change to Java prespective
+*  11. * File-> New-> Other -> EMF Generator Model and set name for example your_ecore_model_name.genmodel -> Next
 http://unicase.googlecode.com/files/
-   # Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace and select your ecore file -> Next
+*  12. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace and select your ecore file -> Next
 http://unicase.googlecode.com/files/
-   # Select as root package only your own package, select all packages in Referenced generator model too.
-   # Finish
-   # Now open the gemodel (double click)
+*  13. * Select as root package only your own package, select all packages in Referenced generator model too.
+*  14. *Finish
+* 15. *Now open the gemodel (double click)
 http://unicase.googlecode.com/files/
-   # Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
+*  16. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
 http://unicase.googlecode.com/files/
-   # Double click on package element and set in the properties these fields:
+*  17. * Double click on package element and set in the properties these fields:
    * All 
       * Compilance Level - 5.0
       * Copyright Fields - true
