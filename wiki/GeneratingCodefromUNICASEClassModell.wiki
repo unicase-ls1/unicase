@@ -7,7 +7,6 @@ This documentation contains five chapter.
 
 == How to create an EMF Model Project ==
 
-
 *  1. * File-> New-> Other -> *Empty EMF Project* and give a name to your project
 
 <br>
@@ -83,8 +82,8 @@ http://unicase.googlecode.com/files/8.Validate_Ecore_Model.png
 
 <br> 
 
-== How to create GenModel from ecore Model ==
 
+== How to create GenModel from ecore Model ==
 
 *  11. *Change to Java perspective
 
