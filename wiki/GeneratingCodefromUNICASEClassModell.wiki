@@ -139,7 +139,7 @@ http://unicase.googlecode.com/files/
 
 <br> 
 
-== How to set properties in ecore Model ==
+=== How to set properties in ecore Model ===
 
 *  19. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
 
