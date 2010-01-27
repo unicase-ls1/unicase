@@ -1,3 +1,14 @@
+This documentation contains five chapter.
+ # [#How_to_configure_Eclipse_to_run_Rich_Ajax_Platform_(RAP)_plugins How to create an EMF Model Poject]
+ # [#How_to_createa_an_EMF Model Poject How to create an EMF Model Poject]
+ # [#How_to_setup_hybrid_target_platform_to_run_RCP_and_RAP_plugins How to setup hybrid target platform to run RCP and RAP plugins]
+
+
+== How to configure Eclipse to run Rich Ajax Platform (RAP) plugins ==
+
+
+
+
 *  1. * File-> New-> Other -> *Empty EMF Project* and give a name to your project
 
 <br>
@@ -61,7 +72,7 @@ http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
 
 <br>
 
-http://unicase.googlecode.com/files/
+http://unicase.googlecode.com/files/Ecore_Model_Property.png
 
 <br> 
 
