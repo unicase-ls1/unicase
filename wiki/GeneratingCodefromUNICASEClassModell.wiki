@@ -25,9 +25,6 @@ http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
 
 *  4. * Change to Java perspective and refresh your EMF Project and you see your .ecore File
 
-<br>
-
- 
 *  5. *In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
 
 <br> 
@@ -40,12 +37,11 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-
 http://unicase.googlecode.com/files/5.Select_Org_Unicase_Model.png
 
 <br> 
 
-*  7. * Set in Properties (double click on each Class) for all classes ESuperTypes to UnicaseModelElement
+*  7. * Go to Properties (double click on each Class) for all classes ESuperTypes 
 
 <br>
 
@@ -53,6 +49,7 @@ http://unicase.googlecode.com/files/6.Class_Properties_Select_To_Each_Class.png
 
 <br> 
 
+*  8. * Set to all ESuperTypes UnicaseModelELement
 
 <br>
 
@@ -87,15 +84,22 @@ http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
  
-*  12. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace and select your ecore file -> Next
-
+*  12. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace 
 <br>
 
-http://unicase.googlecode.com/files/
+http://unicase.googlecode.com/files/11.Select_Model_Importer.png
 
 <br> 
 
-*  13. * Select as root package only your own package
+*  13. * Click on *Browse workspace* and select your ecore file
+
+<br> 
+
+http://unicase.googlecode.com/files/12.Select_Your_Own_Ecore_FIle.png
+
+<br> 
+
+*  13. * Select as *Root package* only your own package
 
 <br> 
 
@@ -104,7 +108,7 @@ http://unicase.googlecode.com/files/13.Package_Selection_Before.png
 
 <br>
 
-*  14 *
+*  14 * Select as *Referenced Generator Model* all packages
 
 <br> 
 
