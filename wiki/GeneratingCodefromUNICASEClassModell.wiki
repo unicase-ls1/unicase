@@ -104,7 +104,7 @@ http://unicase.googlecode.com/files/13.Package_Selection_Before.png
 
 <br>
 
-*  13.1 *
+*  14 *
 
 <br> 
 
@@ -113,9 +113,10 @@ http://unicase.googlecode.com/files/13.Package_Selection_After.png
 
 <br>
 
-*  14. *Finish
-<br> 
-* 15. *Now open the gemodel (double click)
+*  15. *Finish
+
+
+* 16. *Now open the gemodel (double click)
 
 <br>
 
@@ -123,7 +124,7 @@ http://unicase.googlecode.com/files/
 
 <br> 
 
-*  16. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
+*  17. * Double click on root element and set in the properties All-> Base Package to org.unicase.model and click to save
 
 <br>
 
@@ -131,7 +132,7 @@ http://unicase.googlecode.com/files/16.Set_Properties_All-_BasePackage.png
 
 <br> 
 
-*  17. * Double click on package element and set in the properties these fields:
+*  18. * Double click on package element and set in the properties these fields:
    
    *All 
       * Compilance Level - 5.0
@@ -169,7 +170,7 @@ http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 
 <br>
 
-* 18. * Generate Code from genmodel
+* 19. * Generate Code from genmodel
 
 <br>
 
@@ -177,7 +178,7 @@ http://unicase.googlecode.com/files/20.Generate_Model_Code.png
 
 <br>
 
-* 19. * Finish Project and generate Code is ready
+* 20. * Finish Project and generate Code is ready
 
 <br>
 
