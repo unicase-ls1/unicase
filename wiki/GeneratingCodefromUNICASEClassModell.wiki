@@ -187,6 +187,8 @@ http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 
 <br>
 
+=== How to generate Model Code ===
+
 * 21. * Generate Code from genmodel
 
 <br>
