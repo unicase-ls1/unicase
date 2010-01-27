@@ -31,7 +31,7 @@ http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
 
 <br> 
 
-*  4. * Change to Java perspective and refresh your EMF Project and you see your .ecore File
+*  4. * Change to Java perspective and refresh your EMF Project and you see your .ecore File. Double click on your ecore file to open it in Ecore Editor.
 
 *  5. *In Ecore Editor right click on your package and select *Load Ressource* and then click on Browse Workspace 
 
