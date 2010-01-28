@@ -42,7 +42,7 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-*  6. * Click on *Browse Workspace* and select org.unicase.model/model/model.ecore
+*  6. * Click on *Browse Workspace* and select _org.unicase.model/model/model.ecore_
 
 <br>
 
@@ -59,7 +59,7 @@ http://unicase.googlecode.com/files/6.Class_Properties_Select_To_Each_Class.png
 
 <br> 
 
-*  8. * Set to all classes *ESuperTypes* to UnicaseModelELement
+*  8. * Set to all classes *ESuperTypes* to _UnicaseModelELement_
 
 <br>
 
@@ -68,7 +68,7 @@ http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
 <br> 
 
 
-*  9. * Set Name to yourPackageName, NS Prefix to org.unicase.model.yourPackageName  and NS URI http://org.unicase.model.yourPackageName (spaces in names are not allowed)
+*  9. * Set Name to _yourPackageName_, NS Prefix to _org.unicase.model.yourPackageName_  and NS URI _http://org.unicase.model.yourPackageName_ (spaces in names are not allowed)
 
 <br>
 
@@ -100,8 +100,8 @@ http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
  
-*  13. * Select in *EMF Generator* Window the model-Folder from 
-your ecore project and set name for your generator model, for example yourEcoreModelName.*genmodel*. Filename must end with .genmodel.
+*  13. * Select in *EMF Generator* Window the _model_-Folder from 
+your ecore project and set name for your generator model, for example _yourEcoreModelName.*genmodel*_. Filename must end with .genmodel.
 
 <br>
 
