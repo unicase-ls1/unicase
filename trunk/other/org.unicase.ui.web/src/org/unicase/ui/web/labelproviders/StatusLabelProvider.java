@@ -55,7 +55,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 	 */
 	@Override
 	public void dispose() {
-
+		// TODO: image disposing can be different??
 		images.get(OPEN).dispose();
 		images.get(CLOSED).dispose();
 		images.get(BLOCKED).dispose();

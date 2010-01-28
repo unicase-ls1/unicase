@@ -1,7 +1,10 @@
 package org.unicase.ui.web.tabs;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -11,7 +14,7 @@ import org.unicase.workspace.WorkspaceManager;
  * @author Edgar Müller
  * @author Fatih Ulusoy
  */
-public abstract class AbstractTab {
+public abstract class AbstractTab implements ProjectChangeObserver {
 
 	private Project currProject;
 	
@@ -78,6 +81,35 @@ public abstract class AbstractTab {
 	 */
 	private void setCurrProjectSpace(ProjectSpace currProjectSpace) {
 		this.currProjectSpace = currProjectSpace;
+	}
+	
+	public void notify(Notification notification, Project project,
+			ModelElement modelElement) {
+		updateInput(project, modelElement);
+	}
+
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		updateInput(project, modelElement);
+	}
+
+	public void modelElementDeleteStarted(Project project,
+			ModelElement modelElement) {
+		updateInput(project, modelElement);
+	}
+
+	public void modelElementDeleteCompleted(Project project,
+			ModelElement modelElement) {
+		updateInput(project, modelElement);
+	}
+	
+	/**
+	 * should be overriden by subclasses if you want to update tab
+	 * 
+	 * @param project
+	 * @param modelElement
+	 */
+	public void updateInput(Project project, ModelElement modelElement) {
+		// do nothing
 	}
 	
 }

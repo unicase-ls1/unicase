@@ -1,5 +1,6 @@
 package org.unicase.ui.web.tabs;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,9 +9,9 @@ import org.eclipse.rwt.widgets.ExternalBrowser;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -24,15 +25,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.databinding.EMFObservables;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.core.databinding.observable.ChangeEvent;
-import org.eclipse.core.databinding.observable.DisposeEvent;
-import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.core.databinding.observable.IDisposeListener;
 import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.AbstractObservableList;
-import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
@@ -42,15 +35,19 @@ import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.Severity;
+import org.unicase.model.change.MergingIssue;
 import org.unicase.model.organization.OrganizationPackage;
 
-import org.unicase.web.updater.UpdateProjectHandler;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.ui.web.Activator;
 import org.unicase.ui.web.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.web.labelproviders.GenericColumnLabelProvider;
 import org.unicase.ui.web.labelproviders.StatusLabelProvider;
@@ -62,7 +59,7 @@ import org.unicase.ui.web.sorters.TableViewerColumnSorter;
  * 
  * @author Fatih Ulusoy
  */
-public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
+public class TaskItemsTab extends AbstractTab {
 
 	private static final String WIDTH = "width";
 	private static final String FEATURE = "feature";
@@ -76,9 +73,6 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 	private TableViewer tableViewer;
 	private List<TableViewerColumn> columns;
 	private ObservableListContentProvider contentProvider;
-	
-	private Realm myRealm;
-	private Display myDisplay;
 	
 	/**
 	 * Constructor.
@@ -97,13 +91,11 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 	    contentProvider = new ObservableListContentProvider();
 	    createTableViewer(tabComposite);
 	    isContentCreated = false;
-	    myRealm = Realm.getDefault();
-	    myDisplay = Display.getDefault();
 	}
 	
 	private void createTableViewer(Composite parent) {
 		columns = new ArrayList<TableViewerColumn>();
-		tableViewer = new TableViewer(parent, SWT.VIRTUAL | SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(parent, SWT.BORDER);
 		tableViewer.setContentProvider(contentProvider);
 		tableViewer.getTable().setLinesVisible(true);
 		tableViewer.getTable().setHeaderVisible(true);
@@ -120,7 +112,8 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 		
 		IObservableSet knownElements = contentProvider.getKnownElements();
 		IObservableMap[] observeMaps = EMFObservables.observeMaps(knownElements, featureArray);
-		ObservableMapLabelProvider labelProvider = new ObservableMapLabelProvider(observeMaps);
+		
+		ObservableMapLabelProvider labelProvider = createLabelProvider(observeMaps);
 		
 		createColumns(featureList,labelProvider);
 		
@@ -128,91 +121,105 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 		
 		hookDoubleClickAction();
 		setInput();	
-		isContentCreated = true;
+		isContentCreated = true;		
 	}
 	
-	private void setInput() {		
+	private void setInput() {	
+		final List<? extends Checkable> taskItems = getCurrProject()
+				.getAllModelElementsbyClass(
+						TaskPackage.eINSTANCE.getCheckable(),
+						new BasicEList<Checkable>());
 		
-		List<? extends UnicaseModelElement> taskItems = null;
-
-		if (getCurrProject() != null) {
-			taskItems = getCurrProject().getAllModelElementsbyClass(
-					TaskPackage.eINSTANCE.getCheckable(),
-					new BasicEList<UnicaseModelElement>());
+		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator.hasNext();) {
+			Checkable item = iterator.next();
+			if (item instanceof ActionItem) {
+				if (((ActionItem) item).isDone()) {
+					iterator.remove();
+				}
+			} else if (item instanceof BugReport) {
+				if (((BugReport) item).isDone()) {
+					iterator.remove();
+				}
+			} else if (item instanceof Issue) {
+				if (((Issue) item).getSolution() != null) {
+					iterator.remove();
+				}
+			}
 		}
+		
+		
+		final WritableList list = (WritableList) (tableViewer.getInput());
+		if (list == null) {
+			// the case of first time of input setting to table
+			WritableList emfList = new WritableList(Realm.getDefault(),
+					taskItems, UnicaseModelElement.class);
+			tableViewer.setInput(emfList);
+		} else {
+			list.getRealm().asyncExec(new Runnable() {
 
-		WritableList emfList = new WritableList(Realm.getDefault(), taskItems,
-				UnicaseModelElement.class);
-		tableViewer.setInput(emfList);
-		tableViewer.refresh();
+				public void run() {
+					// remove all elements
+					list.retainAll(new BasicEList<UnicaseModelElement>());
+					// adds new task items
+					list.addAll(taskItems);
+				}
+			});
+		}
 	}
 	
-	/**
-	 * Returns an observable list that proxies on the current realm for the list
-	 * passed in. The original list will be returned if its realm is the current
-	 * realm.
-	 * 
-	 * @param original
-	 *            the list to proxy
-	 * @return the proxy list
-	 * @throws IllegalArgumentException
-	 *             if original is null
-	 * @throws IllegalStateException
-	 *             if this thread has no default realm
-	 * @throws IllegalStateException
-	 *             if the default realm is not the current realm
-	 */
-	public static IObservableList proxyList(IObservableList original) {
-		Realm realm = Realm.getDefault();
-		if (realm == null) {
-			throw new IllegalStateException(
-					"this method requires a default realm"); //$NON-NLS-1$
-		}
-		return proxyList(realm, original);
-	}
+	private ObservableMapLabelProvider createLabelProvider(
+			IObservableMap[] observeMaps) {
 
-	/**
-	 * Returns an observable list that proxies on the given realm for the list
-	 * passed in. The original list will be returned if its realm is the already
-	 * the provided realm.
-	 * 
-	 * @param original
-	 *            the list to proxy
-	 * @return the proxy list
-	 * @throws IllegalArgumentException
-	 *             if realm is null
-	 * @throws IllegalArgumentException
-	 *             if original is null
-	 * @throws IllegalStateException
-	 *             if the provided realm is not the current realm
-	 */
-	public static IObservableList proxyList(Realm realm,
-			IObservableList original) {
-		if (realm == null) {
-			throw new IllegalArgumentException("the realm cannot be null"); //$NON-NLS-1$
-		}
-		if (original == null) {
-			throw new IllegalArgumentException(
-					"the original list cannot be null"); //$NON-NLS-1$
-		}
-		if (!realm.isCurrent()) {
-			throw new IllegalStateException(
-					"must be called from the proxy realm"); //$NON-NLS-1$
-		}
-		if (realm.equals(original.getRealm())) {
-			return original;
-		}
-		final WritableList list = new WritableList(realm,
-				new ArrayList<Object>(), original.getElementType());
-		final DataBindingContext dbc = new DataBindingContext(realm);
-		original.addDisposeListener(new IDisposeListener() {
-			public void handleDispose(DisposeEvent staleEvent) {
-				list.dispose();
-				dbc.dispose();
+		ObservableMapLabelProvider labelProvider = new ObservableMapLabelProvider(
+				observeMaps) {
+
+			public Image getImage(Object element) {
+				Image image = null;
+				if (element instanceof BugReport) {
+					BugReport bugReport = (BugReport) element;
+					Severity sev = bugReport.getSeverity();
+					switch (sev.getValue()) {
+					case Severity.MAJOR_VALUE:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/Bug_major.png").createImage();
+						break;
+					case Severity.MINOR_VALUE:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/Bug_minor.png").createImage();
+						break;
+					case Severity.FEATURE_VALUE:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/Bug_feature.png").createImage();
+						break;
+					case Severity.BLOCKER_VALUE:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/Bug_bloker.png").createImage();
+						break;
+					case Severity.TRIVIAL_VALUE:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/Bug_trivial.png").createImage();
+						break;
+					default:
+						image = Activator.getImageDescriptor(
+								"icons/obj16/BugReport.png").createImage();
+					}
+				} else if (element instanceof MergingIssue) {
+					image = Activator.getImageDescriptor(
+							"icons/obj16/MergingIssue.gif").createImage();
+				} else if (element instanceof Issue) {
+					image = Activator.getImageDescriptor(
+							"icons/obj16/Issue.gif").createImage();
+				} else {
+					image = Activator.getImageDescriptor(
+							"icons/obj16/ActionItem.png").createImage();
+				}
+
+				return image;
 			}
-		});
-		dbc.bindList(list, original);
-		return list;
+
+		};
+
+		return labelProvider;
 	}
 	
 	/**
@@ -404,27 +411,7 @@ public class TaskItemsTab extends AbstractTab implements ProjectChangeObserver {
 		return column;
 	}
 	
-
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
-	}
-
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		updateInput(project, modelElement);
-	}
-
-	public void modelElementDeleteStarted(Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
-	}
-
-	public void modelElementDeleteCompleted(Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
-	}
-	
-	private void updateInput(Project project, ModelElement modelElement) {
+	public void updateInput(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
 			setInput();
 		}

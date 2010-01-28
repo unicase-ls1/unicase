@@ -1,8 +1,10 @@
 package org.unicase.ui.web;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.eclipse.swt.SWT;
 import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.graphics.Graphics;
-import org.eclipse.swt.SWT;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.FillLayout;
@@ -11,9 +13,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 
 import org.unicase.ui.web.tabs.*;
-import org.unicase.web.updater.UpdateProjectHandler;
-import org.unicase.web.updater.handlers.LoginHandler;
-import org.unicase.web.util.Configuration;
 
 /**
  * 
@@ -36,21 +35,11 @@ public class TabbedView extends ViewPart {
 		topFolder.marginHeight = 8;
 		ensureMinTabHeight(topFolder);
 
-		// tabs[0].foo();  //.createContent();
-		Object o = RWT.getRequest().getParameterMap().get("project");
-				
-		if (o != null) {
-			setCurrProjectName(((String[]) o)[0]);
-		}
-		
-//		if (currProjectName != null) {
-//			Configuration.initialize();
-//			LoginHandler login = new LoginHandler(Configuration.getProperties().getProperty("hostname"));
-//			login.run();
-//			Thread updaterThread = new Thread(new ProjectUpdater(currProjectName));
-//			updaterThread.start();
-//		}
-		if(getCurrProjectName() != null){ 
+		HttpServletRequest request = RWT.getRequest();
+		String projectName = request.getParameter("project");
+	
+		if (projectName != null) {
+			setCurrProjectName(projectName);
 			final AbstractTab[] tabs = new AbstractTab[] {
 					new TaskItemsTab(topFolder), new BugReportTab(topFolder),
 					new TeamTab(topFolder), new ExampleTableTab(topFolder),
@@ -59,12 +48,14 @@ public class TabbedView extends ViewPart {
 			topFolder.setSelection(0);
 			tabs[0].createContent(getCurrProjectName());
 			topFolder.addSelectionListener(new SelectionAdapter() {
-
 				public void widgetSelected(final SelectionEvent evt) {
 					int index = topFolder.getSelectionIndex();
 					tabs[index].createContent(getCurrProjectName());
 				}
 			});
+		} else {
+			InfoTab infoTab = new InfoTab(topFolder);
+			infoTab.createContent(null);
 		}
 	}
 
