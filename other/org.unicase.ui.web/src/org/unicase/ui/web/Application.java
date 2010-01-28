@@ -1,7 +1,9 @@
 package org.unicase.ui.web;
 
-import org.eclipse.rwt.lifecycle.IEntryPoint;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.rwt.lifecycle.IEntryPoint;
+import org.eclipse.rwt.lifecycle.UICallBack;
+
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 
@@ -11,9 +13,17 @@ import org.eclipse.ui.application.WorkbenchAdvisor;
  */
 public class Application implements IEntryPoint {
 
+//	public int createUI() {
+//		Display display = PlatformUI.createDisplay();
+//		WorkbenchAdvisor advisor = new ApplicationWorkbenchAdvisor();
+//		return PlatformUI.createAndRunWorkbench( display, advisor );
+//	}
+	
 	public int createUI() {
-		Display display = PlatformUI.createDisplay();
+		UICallBack.activate(getClass().getName());
+		final Display result = PlatformUI.createDisplay();
 		WorkbenchAdvisor advisor = new ApplicationWorkbenchAdvisor();
-		return PlatformUI.createAndRunWorkbench( display, advisor );
+		return PlatformUI.createAndRunWorkbench(result, advisor);
 	}
+	
 }
