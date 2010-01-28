@@ -28,7 +28,7 @@ public class PasteHandler extends AbstractHandler {
 		MessageDialog.openInformation(
 				null,
 				"w@iglt info_box",
-				"pasted") ;
+				"test") ;
 		
 		return null;
 	}
