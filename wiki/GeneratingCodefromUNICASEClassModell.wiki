@@ -100,7 +100,8 @@ http://unicase.googlecode.com/files/9.Select_EmfGenerator_Model_Wizard.png
 
 <br>
  
-*  13. * Set name for example yourEcoreModelName.genmodel 
+*  13. * Select in *EMF Generator* Window the model-Folder from 
+your ecore project and set name for your generator model, for example yourEcoreModelName.*genmodel*. Filename must end with .genmodel.
 
 <br>
 
@@ -108,14 +109,14 @@ http://unicase.googlecode.com/files/10.Create_Genmodel.png
 
 <br>
 
-*  14. * Ecore Model (Select Model Importer) -> Next (Ecore Import) -> Browse workspace 
+*  14. * Select _Ecore model_ by *Model Importer* window. In next *Ecore Import* window and click on *Browse workspace...* 
 <br>
 
 http://unicase.googlecode.com/files/11.Select_Model_Importer.png
 
 <br> 
 
-*  15. * Click on *Browse workspace* and select your ecore file
+*  15. * After clicking on *Browse workspace* you must select your ecore file
 
 <br> 
 
@@ -132,7 +133,7 @@ http://unicase.googlecode.com/files/13.Package_Selection_Before.png
 
 <br>
 
-*  17 * Select as *Referenced Generator Model* all packages
+*  17 * Select as *Referenced Generator Model* all packages you see there
 
 <br> 
 
@@ -141,15 +142,15 @@ http://unicase.googlecode.com/files/14.Package_Selection_After.png
 
 <br>
 
-*  18. *Finish, your genmodel was createt
+*  18. * Finish, your genmodel was created!
 
 
-* 19. *Double click on your genmodel (root element) und you can see the properties on *Properties* View
+* 19. *Double click on your generator model (root element of the hierarchy) and you can set the properties on *Properties* View
 
 
 == How to set properties in Gen Model ==
 
-*  20. * Set in the *Properties*  All-> Base Package to org.unicase.model and click to save
+*  20. * Set in the *Properties* _All_ -> _Base Package_ to org.unicase.model and click to save
 
 <br>
 
@@ -157,15 +158,15 @@ http://unicase.googlecode.com/files/16.Set_Properties_All-_BasePackage.png
 
 <br> 
 
-*  21. * Double click on package element (child element) and set in the properties these fields:
+*  21. * Double click on package element (child element of the hierarchy) and set in the properties following fields in this way:
    
    *All 
-      * Compilance Level - 5.0
-      * Copyright Fields - true
-      * Copyright Text - hier you should paste your  copyright
+      * _Compilance Level_ - 5.0
+      * _Copyright Fields_ - true
+      * _Copyright Text_ - hier you should paste your copyright text
 
    * Edit
-      * Edit Directory - project_name/src
+      * _Edit Directory_ - project_name/src
 
 <br>
 
@@ -174,11 +175,11 @@ http://unicase.googlecode.com/files/17.All+Edit_Properties.png
 <br>
 
    * Editor
-      * Editor Directory - org.unicase.modelExample/src
+      * _Editor Directory_ - org.unicase.modelExample/src
 
    * Model
-      * Containment Proxies - true
-      * Model Directory - /org.unicase.modelExample/src
+      * _Containment Proxies_ - true
+      * _Model Directory_ - /org.unicase.modelExample/src
 
 <br>
 
@@ -187,7 +188,7 @@ http://unicase.googlecode.com/files/18.Editor_and_Model_Properties.png
 <br>
 
    * Template & Merge
-      * Code Formatting - true
+      * _Code Formatting_ - true
 
 <br>
 
@@ -196,7 +197,8 @@ http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 <br>
 
 === How to generate model code ===
-* 22. * Generate Code from genmodel
+
+* 22. * Generate code from generator model
 
 <br>
 
@@ -204,10 +206,12 @@ http://unicase.googlecode.com/files/20.Generate_Model_Code.png
 
 <br>
 
-* 22. * Finish Project and generate Code is ready
+* 22. * Finish, the code is generated
 
 <br>
 
 http://unicase.googlecode.com/files/21.Finished_Project.png
 
 <br>
+
+Now you have all elements of your unicase model as classes.
