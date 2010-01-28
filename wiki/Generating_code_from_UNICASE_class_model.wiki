@@ -8,7 +8,7 @@ This documentation contains five chapter.
 
 == How to create an EMF Model Project with ecore model ==
 
-*  1. * File-> New-> Other -> *Empty EMF Project* and give a name to your project
+*  1. * File-> New-> Other -> *Empty EMF Project* and give a name to your project.
 
 <br>
 
@@ -16,7 +16,7 @@ http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
 
 <br> 
 
-*  2. * Open UNICASE perspective and right click on the project you want to generate ecore model from and select *Generate Ecore*
+*  2. * Open UNICASE perspective and right click on the project you want to generate ecore model from and select *Generate Ecore*.
 
 <br>
 
@@ -24,7 +24,7 @@ http://unicase.googlecode.com/files/2.GenerateEcoreModel.png
 
 <br> 
 
-*  3. *  Select model-Folder of your EMF Project and give name for your .ecore File
+*  3. *  Select model-Folder of your EMF Project and give name for your .ecore File.
 
 <br>
 
@@ -34,7 +34,7 @@ http://unicase.googlecode.com/files/2.2.SelectModelFolder.png
 
 *  4. * Change to Java perspective and refresh your EMF Project. You can see your .ecore file. Double click on them to open it in Ecore Editor.
 
-*  5. *In Ecore Editor right click on your package and select *Load Ressource* 
+*  5. *In Ecore Editor right click on your package and select *Load Ressource*. 
 
 <br> 
 
@@ -42,7 +42,7 @@ http://unicase.googlecode.com/files/4.Load_Source.png
 
 <br>
 
-*  6. * Click on *Browse Workspace* and select _org.unicase.model/model/model.ecore_
+*  6. * Click on *Browse Workspace* and select _org.unicase.model/model/model.ecore_.
 
 <br>
 
@@ -52,15 +52,14 @@ http://unicase.googlecode.com/files/5.Select_Org_Unicase_Model.png
 
 == How to set properties in ecore model ==
 
-*  7. * Go to *Properties* with double click on class of your ecore package
+*  7. * Go to *Properties* with double click on class of your ecore package.
 <br>
 
 http://unicase.googlecode.com/files/6.Class_Properties_Select_To_Each_Class.png
 
 <br> 
 
-*  8. * Set to all classes *ESuperTypes* to _UnicaseModelELement_
-
+*  8. * Set to all classes *ESuperTypes* to _UnicaseModelELement_.
 <br>
 
 http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
@@ -68,7 +67,7 @@ http://unicase.googlecode.com/files/7.Add_ESuper_Type_Unicase_Model_Element.png
 <br> 
 
 
-*  9. * Set Name to _yourPackageName_, NS Prefix to _org.unicase.model.yourPackageName_  and NS URI _http://org.unicase.model.yourPackageName_ (spaces in names are not allowed)
+*  9. * Set Name to _yourPackageName_, NS Prefix to _org.unicase.model.yourPackageName_  and NS URI _http://org.unicase.model.yourPackageName_.(spaces in names are not allowed)
 
 <br>
 
@@ -76,7 +75,7 @@ http://unicase.googlecode.com/files/Ecore_Model_Property.png
 
 <br> 
 
-*  10. * Right click on your package and select *Validate* from the context menu
+*  10. * Right click on your package and select *Validate* from the context menu.
 
 <br>
 
@@ -90,9 +89,9 @@ If your *Validate* was successfull you have made a correct ecore model.
 
 == How to create generator model from ecore model ==
 
-*  11. *Change to Java perspective
+*  11. *Change to Java perspective.
 
-*  12. * File-> New-> Other -> *EMF Generator Model* 
+*  12. * File-> New-> Other -> *EMF Generator Model*. 
 
 <br>
 
@@ -109,14 +108,14 @@ http://unicase.googlecode.com/files/10.Create_Genmodel.png
 
 <br>
 
-*  14. * Select _Ecore model_ by *Model Importer* window. In next *Ecore Import* window and click on *Browse workspace...* 
+*  14. * Select _Ecore model_ by *Model Importer* window. In next *Ecore Import* window and click on *Browse workspace...*. 
 <br>
 
 http://unicase.googlecode.com/files/11.Select_Model_Importer.png
 
 <br> 
 
-*  15. * After clicking on *Browse workspace* you must select your ecore file
+*  15. * After clicking on *Browse workspace* you must select your ecore file.
 
 <br> 
 
@@ -124,7 +123,7 @@ http://unicase.googlecode.com/files/12.Select_Your_Own_Ecore_FIle.png
 
 <br> 
 
-*  16. * Select as *Root package* only your own package
+*  16. * Select as *Root package* only your own package.
 
 <br> 
 
@@ -133,7 +132,7 @@ http://unicase.googlecode.com/files/13.Package_Selection_Before.png
 
 <br>
 
-*  17 * Select as *Referenced Generator Model* all packages you see there
+*  17 * Select as *Referenced Generator Model* all packages you see there.
 
 <br> 
 
@@ -145,12 +144,12 @@ http://unicase.googlecode.com/files/14.Package_Selection_After.png
 *  18. * Finish, your genmodel was created!
 
 
-* 19. *Double click on your generator model (root element of the hierarchy) and you can set the properties on *Properties* View
+* 19. *Double click on your generator model (root element of the hierarchy) and you can set the properties on *Properties* View.
 
 
 == How to set properties in generator model ==
 
-*  20. * Set in the *Properties* _All_ -> _Base Package_ to org.unicase.model and click to save
+*  20. * Set in the *Properties* _All_ -> _Base Package_ to org.unicase.model and click  save.
 
 <br>
 
@@ -198,7 +197,7 @@ http://unicase.googlecode.com/files/19.Template+Merge_Properties.png
 
 === How to generate model code ===
 
-* 22. * Generate code from generator model
+* 22. * Generate code from generator model.
 
 <br>
 
@@ -206,7 +205,7 @@ http://unicase.googlecode.com/files/20.Generate_Model_Code.png
 
 <br>
 
-* 22. * Finish, the code is generated
+* 22. * Finish, the code is generated.
 
 <br>
 
