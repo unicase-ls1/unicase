@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
@@ -247,6 +248,9 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
 			VersioningFactory.eINSTANCE.createLogMessage()));

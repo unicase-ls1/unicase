@@ -28,6 +28,8 @@ import org.unicase.emfstore.esmodel.url.impl.UrlPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -142,6 +144,9 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+		ServerPackageImpl theServerPackage = (ServerPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) instanceof ServerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) : ServerPackage.eINSTANCE);
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
@@ -159,6 +164,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		theOperationsPackage.createPackageContents();
 		theSemanticPackage.createPackageContents();
 		theEventsPackage.createPackageContents();
+		theServerPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
 		theUrlPackage.createPackageContents();
@@ -170,6 +176,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		theOperationsPackage.initializePackageContents();
 		theSemanticPackage.initializePackageContents();
 		theEventsPackage.initializePackageContents();
+		theServerPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
 		theUrlPackage.initializePackageContents();

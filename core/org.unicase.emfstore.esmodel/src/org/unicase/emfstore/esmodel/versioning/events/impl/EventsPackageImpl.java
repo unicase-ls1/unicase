@@ -52,6 +52,8 @@ import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -324,6 +326,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		SemanticPackageImpl theSemanticPackage = (SemanticPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(SemanticPackage.eNS_URI) instanceof SemanticPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(SemanticPackage.eNS_URI) : SemanticPackage.eINSTANCE);
+		ServerPackageImpl theServerPackage = (ServerPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) instanceof ServerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) : ServerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
@@ -343,6 +348,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theVersioningPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
 		theSemanticPackage.createPackageContents();
+		theServerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
@@ -354,6 +360,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theVersioningPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
 		theSemanticPackage.initializePackageContents();
+		theServerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
@@ -1298,6 +1305,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		ServerPackage theServerPackage = (ServerPackage) EPackage.Registry.INSTANCE.getEPackage(ServerPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
@@ -1306,6 +1314,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 			.getEPackage(OperationsPackage.eNS_URI);
 		NotificationPackage theNotificationPackage = (NotificationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theServerPackage);
 
 		// Create type parameters
 

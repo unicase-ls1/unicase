@@ -27,6 +27,8 @@ import org.unicase.emfstore.esmodel.url.UrlPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -134,6 +136,9 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+		ServerPackageImpl theServerPackage = (ServerPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) instanceof ServerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServerPackage.eNS_URI) : ServerPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
@@ -151,6 +156,7 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		theOperationsPackage.createPackageContents();
 		theSemanticPackage.createPackageContents();
 		theEventsPackage.createPackageContents();
+		theServerPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
@@ -162,6 +168,7 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		theOperationsPackage.initializePackageContents();
 		theSemanticPackage.initializePackageContents();
 		theEventsPackage.initializePackageContents();
+		theServerPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
