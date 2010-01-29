@@ -12,8 +12,9 @@ Change this old version number to the new one (e.g. 0.1.0) *without* a ".qualifi
 [http://unicase.googlecode.com/files/a531d.png]
 
 *Note:*
- * If you want to release all plugins, you can use search and replace.
- * Please note that you have to change the bundle version of the dependencies too, through the search and replace feature of Eclips. 
+ * If you want to release all plugins, you can use search and replace from eclipse.
+ * Please note that you have to change the bundle version of the dependencies too, through the search and replace feature of Eclipse. 
+ * You need to use the preview functionality while doing search and replace to make sure that only required files gets modified!
 
 *Step 2:*
 
@@ -24,6 +25,7 @@ Commit the version change:
 *Step 3:*
 
 Create a tag for the release:
+*NOTE:* You can do this step "step 3" before starting with the "step 1" as creating tag at this moment will theoretically make you upload the whole plugin to the SVN server, but if you do it in advance then you only need to commit the changes.
 
 [http://unicase.googlecode.com/files/1b723.png]
 
