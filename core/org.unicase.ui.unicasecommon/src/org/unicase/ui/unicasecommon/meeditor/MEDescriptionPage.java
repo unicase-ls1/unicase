@@ -97,6 +97,22 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 
 	}
 
+	/**
+	 * Constructor to replace the textcontrol.
+	 * 
+	 * @param control
+	 */
+	protected MEDescriptionPage(MERichTextControl control) {
+		textControl = control;
+	}
+
+	/**
+	 * Standard constructor.
+	 */
+	public MEDescriptionPage() {
+		textControl = null;
+	}
+
 	private void createWidget() {
 		if (body != null) {
 			body.dispose();
@@ -106,7 +122,9 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		textControl = new MERichTextControl();
+		if (textControl == null) {
+			textControl = new MERichTextControl();
+		}
 		(textControl).setShowExpand(false);
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
