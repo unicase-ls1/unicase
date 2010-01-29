@@ -52,18 +52,20 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private static final int PRIORITY = 2;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Control createControl(Composite parent, int style) {
+	protected Control createControl(Composite parent, int style, Composite c, TextViewer t) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
-		composite = getToolkit().createComposite(parent, style);
+		if (c == null) {
+			composite = getToolkit().createComposite(parent, style);
+
+		} else {
+			composite = c;
+		}
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
 		composite.setLayout(new GridLayout());
+
 		createToolBar();
-		createStyledText();
+		createStyledText(t);
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -81,6 +83,14 @@ public class MERichTextControl extends AbstractMEControl {
 		return composite;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Control createControl(Composite parent, int style) {
+		return createControl(parent, style, null, null);
+	}
+
 	private Composite composite;
 
 	private ToolBar toolBar;
@@ -89,12 +99,20 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private TextViewer viewer;
 
+	public TextViewer getViewer() {
+		return viewer;
+	}
+
 	private boolean shoudShowExpand;
 
-	private void createStyledText() {
+	private void createStyledText(TextViewer t) {
 
-		viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-		viewer.setDocument(new Document());
+		if (t == null) {
+			viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+			viewer.setDocument(new Document());
+		} else {
+			viewer = t;
+		}
 
 		text = viewer.getTextWidget();
 		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
