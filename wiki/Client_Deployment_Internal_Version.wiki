@@ -18,7 +18,7 @@ Change the version number of all the plug-ins to the release number that you are
 [http://unicase.googlecode.com/files/cd2.png]
 
 
- * *Important note:* while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to grantee that the correct files are being modified.
+ * *Important note:* while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to guarantee that the correct files are being modified.
 
 *Step 3:*
 
@@ -84,7 +84,7 @@ Open your update manager in eclipse and add the site {{{file://<path-to-your-wor
 <br>
 
 After successfully testing the update site , you can then check in the update site to :
-http://unicase.googlecode.com/svn/updatesite/internal/ for final deployment using any SVN explorer untility. 
+http://unicase.googlecode.com/svn/updatesite/internal/ for final deployment using any SVN explorer utility. 
 <br>
 
    * *Important Note:* Once you check in the update site to the SVN repository, please don't forget to create a new tag from this at http://unicase.googlecode.com/svn/tags/updatesite/ location, of the form *{{{http://unicase.googlecode.com/svn/tags/updatesite/X.X.XX.internal}}}*.
