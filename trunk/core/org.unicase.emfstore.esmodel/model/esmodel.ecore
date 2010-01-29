@@ -373,6 +373,16 @@
         <eLiterals name="OKNotFinished" value="3" literal="OKNotFinished"/>
         <eLiterals name="OKFinished" value="4" literal="OKFinished"/>
       </eClassifiers>
+      <eSubpackages name="server" nsURI="http://unicase.org/esmodel/versioning/events/server/"
+          nsPrefix="org.unicase.esmodel.versioning.events.server">
+        <eClassifiers xsi:type="ecore:EClass" name="ServerEvent" abstract="true" eSuperTypes="#//versioning/events/Event"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdatedEvent" eSuperTypes="#//versioning/events/server/ServerEvent">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="newVersion" eType="#//versioning/PrimaryVersionSpec"
+              containment="true"/>
+        </eClassifiers>
+      </eSubpackages>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
