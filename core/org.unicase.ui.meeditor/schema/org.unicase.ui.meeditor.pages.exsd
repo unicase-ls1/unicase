@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.pages" name="org.unicase.ui.meeditor.pages"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Allows to add pages to the MEEditor.
       </documentation>
    </annotation>
 
@@ -64,6 +64,31 @@
                <appinfo>
                   <meta.attribute kind="java" basedOn="org.unicase.ui.meeditor.AbstractMEEditorPage:"/>
                </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="after" type="string">
+            <annotation>
+               <documentation>
+                  After which page this page should be displayed. If the referenced page does not exist, the position is undefined.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.unicase.ui.meeditor.pages/page/@name"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="replace" type="string">
+            <annotation>
+               <documentation>
+                  Which pages should be replaced by this one. If none of the referenced page exists, this page is simply added as if it wouldn&apos;t have the replace attribute set. If some replaced pages exist, they will be omitted and this page will be shown instead. 
+
+The page will be placed where one of the replaced pages would have been placed. (Which one is undefined)
+
+To replace pages enter their names (the value of their name attribute) seperated by commas.
+
+Examples:
+examplePage would replace the page with the name examplePage.
+examplePage,examplePage2 would replace the pages named examplePage and examplePage2.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

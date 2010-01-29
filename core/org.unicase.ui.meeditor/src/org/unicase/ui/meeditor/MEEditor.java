@@ -7,6 +7,7 @@ package org.unicase.ui.meeditor;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -117,9 +118,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+		// Add the pages from the extension point
+		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.meeditor.pages");
+
+		// Sort the pages by the "after" attribute and omit replaced pages
+		List<IConfigurationElement> config = PageCandidate.getPages(configIn);
 		for (IConfigurationElement e : config) {
+
 			try {
 				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
 				FormPage createPage = newPage.createPage(this, editingDomain, modelElement);
