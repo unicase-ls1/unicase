@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.analyzer.iterator.VersionIterator;
 
@@ -17,13 +18,15 @@ import org.unicase.analyzer.iterator.VersionIterator;
  */
 public class AnalyzerModelController {
 
-	private ArrayList<DataAnalyzer> analyzers;
+	private final ArrayList<DataAnalyzer> analyzers;
 
-	private VersionIterator projectIterator;
+	private final VersionIterator projectIterator;
 
 	private Exporter exporter;
 
-	private int flag;
+	private final int flag;
+
+	private IProgressMonitor monitor;
 
 	/**
 	 * The Controller adds the proper analyzers and iterators, then starts the analysis. The result is exported to the
@@ -33,25 +36,42 @@ public class AnalyzerModelController {
 	 * @param analyzers The list of dataAnalyzers to be used.
 	 * @param exporter The exporter to be used.
 	 */
-	@SuppressWarnings("cast")
 	public AnalyzerModelController(VersionIterator projectIterator, ArrayList<DataAnalyzer> analyzers, Exporter exporter) {
 		this.projectIterator = projectIterator;
 		this.analyzers = analyzers;
 		this.setExporter(exporter);
 
-		// flag is used for switching different ways of exporting, depends on different analyzers
-		DataAnalyzer analyzer = analyzers.get(0);
-		if (analyzer instanceof TwoDDataAnalyzer) {
-			this.flag = 2;
-		} else if (analyzer instanceof DataAnalyzer) {
-			this.flag = 3;
-		}
+		flag = checkAnalyzerTypes(analyzers);
 
-		try {
-			runAnalysis(exporter);
-		} catch (IOException e) {
+		// try {
+		// runAnalysis(exporter);
+		// } catch (IOException e) {
+		// }
+		// System.out.println("Finished Analysis");
+	}
+
+	private int checkAnalyzerTypes(List<DataAnalyzer> analyzers) {
+
+		int flag = 1;
+		int temp = 1;
+
+		for (DataAnalyzer analyzer : analyzers) {
+
+			if (temp != flag) {
+				throw new IllegalStateException(
+					"Analyzers type are not compatible, please check your chosen analyzers!");
+			}
+			temp = flag;
+			if (analyzer instanceof SimpleDataAnalyzer) {
+				flag = 1;
+			} else {
+				flag = 2;
+			}
 		}
-		System.out.println("Finished Analysis");
+		if (temp != flag) {
+			throw new IllegalStateException("Analyzers type are not compatible, please check your chosen analyzers!");
+		}
+		return flag;
 	}
 
 	/**
@@ -60,42 +80,38 @@ public class AnalyzerModelController {
 	 * @param exporter Exporter
 	 * @throws IOException
 	 */
-	private void runAnalysis(Exporter exporter) throws IOException {
+	public void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
 		switch (flag) {
 		case 2:
 			List<List<Object>> lines = new ArrayList<List<Object>>();
 			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 			while (projectIterator.hasNext()) {
+				monitor.subTask("Analyzing...@Version "
+					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
 				data = projectIterator.next();
 				lines.clear();
 				for (DataAnalyzer analyzer : analyzers) {
-					if (analyzer.isGlobal()) {
-						((TwoDDataAnalyzer) analyzer).analyzeData(data, projectIterator);
-					} else {
-						lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
-						exporter.export(lines);
-					}
-				}
-			}
-			for (DataAnalyzer analyzer : analyzers) {
-				if (analyzer.isGlobal()) {
-					lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
+					lines = analyzer.getValues(data, projectIterator);
 					exporter.export(lines);
 				}
+				// monitor.done();
 			}
 			return;
-		case 3:
+		case 1:
 			List<Object> line = new ArrayList<Object>();
 			while (projectIterator.hasNext()) {
 				data = projectIterator.next();
+				monitor.subTask("Analyzing...@Version "
+					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
 				line.clear();
 				for (DataAnalyzer analyzer : analyzers) {
-					for (Object obj : analyzer.getValue(data)) {
+					for (Object obj : ((SimpleDataAnalyzer) analyzer).getSimpleValues(data)) {
 						line.add(obj);
 					}
 				}
 				exporter.writeLine(line);
+				// monitor.done();
 			}
 			return;
 		default:
@@ -112,7 +128,7 @@ public class AnalyzerModelController {
 	private void writeHeader(Exporter exporter) throws IOException {
 		ArrayList<Object> line = new ArrayList<Object>();
 		for (DataAnalyzer analyser : analyzers) {
-			for (String name : analyser.getName()) {
+			for (String name : analyser.getColumnNames()) {
 				line.add(name);
 			}
 		}
@@ -131,5 +147,13 @@ public class AnalyzerModelController {
 	 */
 	public Exporter getExporter() {
 		return exporter;
+	}
+
+	public IProgressMonitor getMonitor() {
+		return monitor;
+	}
+
+	public void setMonitor(IProgressMonitor monitor) {
+		this.monitor = monitor;
 	}
 }

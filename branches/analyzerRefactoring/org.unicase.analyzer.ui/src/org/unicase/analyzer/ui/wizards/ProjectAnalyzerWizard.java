@@ -148,10 +148,17 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		try {
 			getContainer().run(true, true, new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor) {
-					monitor.beginTask("Analyzing...", 1);
-					@SuppressWarnings("unused")
 					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig
 						.getIterator(), analyzers, analyzerConfig.getExporter());
+					analyzerController.setMonitor(monitor);
+					try {
+						analyzerController.runAnalysis(analyzerConfig.getExporter());
+						monitor.beginTask("Analyzing...", 1);
+					} catch (IOException e) {
+						WorkspaceUtil.logException("Analysis is encountering problems!", e);
+					}
+					System.out.println("Finished Analysis");
+
 					monitor.done();
 				}
 			});
