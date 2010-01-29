@@ -25,6 +25,7 @@ Commit the version change:
 *Step 3:*
 
 Create a tag for the release:
+
 *NOTE:* You can do this step "step 3" before starting with the "step 1" as creating tag at this moment will theoretically make you upload the whole plugin to the SVN server, but if you do it in advance then you only need to commit the changes.
 
 [http://unicase.googlecode.com/files/1b723.png]
