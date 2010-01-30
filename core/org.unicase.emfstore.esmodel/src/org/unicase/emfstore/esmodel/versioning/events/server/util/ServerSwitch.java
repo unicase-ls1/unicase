@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -87,9 +88,22 @@ public class ServerSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ServerPackage.SERVER_PROJECT_EVENT: {
+			ServerProjectEvent serverProjectEvent = (ServerProjectEvent) theEObject;
+			T result = caseServerProjectEvent(serverProjectEvent);
+			if (result == null)
+				result = caseServerEvent(serverProjectEvent);
+			if (result == null)
+				result = caseEvent(serverProjectEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case ServerPackage.PROJECT_UPDATED_EVENT: {
 			ProjectUpdatedEvent projectUpdatedEvent = (ProjectUpdatedEvent) theEObject;
 			T result = caseProjectUpdatedEvent(projectUpdatedEvent);
+			if (result == null)
+				result = caseServerProjectEvent(projectUpdatedEvent);
 			if (result == null)
 				result = caseServerEvent(projectUpdatedEvent);
 			if (result == null)
@@ -113,6 +127,19 @@ public class ServerSwitch<T> {
 	 * @generated
 	 */
 	public T caseServerEvent(ServerEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project Event</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServerProjectEvent(ServerProjectEvent object) {
 		return null;
 	}
 

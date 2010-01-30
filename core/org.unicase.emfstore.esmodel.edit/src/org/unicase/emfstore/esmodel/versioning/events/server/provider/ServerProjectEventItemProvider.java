@@ -19,26 +19,25 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
 
 /**
  * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * {@link org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * 
  * @generated
  */
-public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvider implements
-	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-	IItemPropertySource {
+public class ServerProjectEventItemProvider extends ServerEventItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public ProjectUpdatedEventItemProvider(AdapterFactory adapterFactory) {
+	public ServerProjectEventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,7 +67,7 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ServerPackage.Literals.PROJECT_UPDATED_EVENT__NEW_VERSION);
+			childrenFeatures.add(ServerPackage.Literals.SERVER_PROJECT_EVENT__PROJECT_ID);
 		}
 		return childrenFeatures;
 	}
@@ -87,26 +86,16 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	}
 
 	/**
-	 * This returns ProjectUpdatedEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectUpdatedEvent"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ProjectUpdatedEvent) object).getTimestamp();
+		Date labelValue = ((ServerProjectEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ProjectUpdatedEvent_type")
-			: getString("_UI_ProjectUpdatedEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ServerProjectEvent_type")
+			: getString("_UI_ServerProjectEvent_type") + " " + label;
 	}
 
 	/**
@@ -120,8 +109,8 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProjectUpdatedEvent.class)) {
-		case ServerPackage.PROJECT_UPDATED_EVENT__NEW_VERSION:
+		switch (notification.getFeatureID(ServerProjectEvent.class)) {
+		case ServerPackage.SERVER_PROJECT_EVENT__PROJECT_ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -138,8 +127,8 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ServerPackage.Literals.PROJECT_UPDATED_EVENT__NEW_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(ServerPackage.Literals.SERVER_PROJECT_EVENT__PROJECT_ID,
+			EsmodelFactory.eINSTANCE.createProjectId()));
 	}
 
 }

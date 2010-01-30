@@ -81,14 +81,14 @@ public interface ServerPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.impl.ProjectUpdatedEventImpl
-	 * <em>Project Updated Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerProjectEventImpl <em>Project Event</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ProjectUpdatedEventImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl#getProjectUpdatedEvent()
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerProjectEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl#getServerProjectEvent()
 	 * @generated
 	 */
-	int PROJECT_UPDATED_EVENT = 1;
+	int SERVER_PROJECT_EVENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -96,7 +96,7 @@ public interface ServerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED_EVENT__TIMESTAMP = SERVER_EVENT__TIMESTAMP;
+	int SERVER_PROJECT_EVENT__TIMESTAMP = SERVER_EVENT__TIMESTAMP;
 
 	/**
 	 * The feature id for the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -105,7 +105,44 @@ public interface ServerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED_EVENT__PROJECT_ID = SERVER_EVENT_FEATURE_COUNT + 0;
+	int SERVER_PROJECT_EVENT__PROJECT_ID = SERVER_EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Project Event</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_PROJECT_EVENT_FEATURE_COUNT = SERVER_EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.impl.ProjectUpdatedEventImpl
+	 * <em>Project Updated Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ProjectUpdatedEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl#getProjectUpdatedEvent()
+	 * @generated
+	 */
+	int PROJECT_UPDATED_EVENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_UPDATED_EVENT__TIMESTAMP = SERVER_PROJECT_EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_UPDATED_EVENT__PROJECT_ID = SERVER_PROJECT_EVENT__PROJECT_ID;
 
 	/**
 	 * The feature id for the '<em><b>New Version</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -114,7 +151,7 @@ public interface ServerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED_EVENT__NEW_VERSION = SERVER_EVENT_FEATURE_COUNT + 1;
+	int PROJECT_UPDATED_EVENT__NEW_VERSION = SERVER_PROJECT_EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Project Updated Event</em>' class. <!-- begin-user-doc --> <!--
@@ -123,7 +160,7 @@ public interface ServerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_UPDATED_EVENT_FEATURE_COUNT = SERVER_EVENT_FEATURE_COUNT + 2;
+	int PROJECT_UPDATED_EVENT_FEATURE_COUNT = SERVER_PROJECT_EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent
@@ -137,6 +174,29 @@ public interface ServerPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent <em>Project Event</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Project Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent
+	 * @generated
+	 */
+	EClass getServerProjectEvent();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent#getProjectId <em>Project Id</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Project Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent#getProjectId()
+	 * @see #getServerProjectEvent()
+	 * @generated
+	 */
+	EReference getServerProjectEvent_ProjectId();
+
+	/**
+	 * Returns the meta object for class '
 	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent <em>Project Updated Event</em>}
 	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -145,18 +205,6 @@ public interface ServerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProjectUpdatedEvent();
-
-	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getProjectId
-	 * <em>Project Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference '<em>Project Id</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getProjectId()
-	 * @see #getProjectUpdatedEvent()
-	 * @generated
-	 */
-	EReference getProjectUpdatedEvent_ProjectId();
 
 	/**
 	 * Returns the meta object for the containment reference '
@@ -204,6 +252,25 @@ public interface ServerPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerProjectEventImpl
+		 * <em>Project Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerProjectEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.server.impl.ServerPackageImpl#getServerProjectEvent()
+		 * @generated
+		 */
+		EClass SERVER_PROJECT_EVENT = eINSTANCE.getServerProjectEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Id</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SERVER_PROJECT_EVENT__PROJECT_ID = eINSTANCE.getServerProjectEvent_ProjectId();
+
+		/**
+		 * The meta object literal for the '
 		 * {@link org.unicase.emfstore.esmodel.versioning.events.server.impl.ProjectUpdatedEventImpl
 		 * <em>Project Updated Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -212,14 +279,6 @@ public interface ServerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROJECT_UPDATED_EVENT = eINSTANCE.getProjectUpdatedEvent();
-
-		/**
-		 * The meta object literal for the '<em><b>Project Id</b></em>' containment reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference PROJECT_UPDATED_EVENT__PROJECT_ID = eINSTANCE.getProjectUpdatedEvent_ProjectId();
 
 		/**
 		 * The meta object literal for the '<em><b>New Version</b></em>' containment reference feature. <!--

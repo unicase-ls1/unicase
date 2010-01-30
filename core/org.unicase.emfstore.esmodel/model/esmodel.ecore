@@ -376,9 +376,12 @@
       <eSubpackages name="server" nsURI="http://unicase.org/esmodel/versioning/events/server/"
           nsPrefix="org.unicase.esmodel.versioning.events.server">
         <eClassifiers xsi:type="ecore:EClass" name="ServerEvent" abstract="true" eSuperTypes="#//versioning/events/Event"/>
-        <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdatedEvent" eSuperTypes="#//versioning/events/server/ServerEvent">
+        <eClassifiers xsi:type="ecore:EClass" name="ServerProjectEvent" abstract="true"
+            eSuperTypes="#//versioning/events/server/ServerEvent">
           <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
               containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdatedEvent" eSuperTypes="#//versioning/events/server/ServerProjectEvent">
           <eStructuralFeatures xsi:type="ecore:EReference" name="newVersion" eType="#//versioning/PrimaryVersionSpec"
               containment="true"/>
         </eClassifiers>

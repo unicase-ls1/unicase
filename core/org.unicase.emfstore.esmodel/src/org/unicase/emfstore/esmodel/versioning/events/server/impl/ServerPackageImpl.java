@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -45,6 +46,13 @@ public class ServerPackageImpl extends EPackageImpl implements ServerPackage {
 	 * @generated
 	 */
 	private EClass serverEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass serverProjectEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -178,6 +186,24 @@ public class ServerPackageImpl extends EPackageImpl implements ServerPackage {
 	 * 
 	 * @generated
 	 */
+	public EClass getServerProjectEvent() {
+		return serverProjectEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getServerProjectEvent_ProjectId() {
+		return (EReference) serverProjectEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getProjectUpdatedEvent() {
 		return projectUpdatedEventEClass;
 	}
@@ -187,17 +213,8 @@ public class ServerPackageImpl extends EPackageImpl implements ServerPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getProjectUpdatedEvent_ProjectId() {
-		return (EReference) projectUpdatedEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EReference getProjectUpdatedEvent_NewVersion() {
-		return (EReference) projectUpdatedEventEClass.getEStructuralFeatures().get(1);
+		return (EReference) projectUpdatedEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -230,8 +247,10 @@ public class ServerPackageImpl extends EPackageImpl implements ServerPackage {
 		// Create classes and their features
 		serverEventEClass = createEClass(SERVER_EVENT);
 
+		serverProjectEventEClass = createEClass(SERVER_PROJECT_EVENT);
+		createEReference(serverProjectEventEClass, SERVER_PROJECT_EVENT__PROJECT_ID);
+
 		projectUpdatedEventEClass = createEClass(PROJECT_UPDATED_EVENT);
-		createEReference(projectUpdatedEventEClass, PROJECT_UPDATED_EVENT__PROJECT_ID);
 		createEReference(projectUpdatedEventEClass, PROJECT_UPDATED_EVENT__NEW_VERSION);
 	}
 
@@ -271,17 +290,21 @@ public class ServerPackageImpl extends EPackageImpl implements ServerPackage {
 
 		// Add supertypes to classes
 		serverEventEClass.getESuperTypes().add(theEventsPackage.getEvent());
-		projectUpdatedEventEClass.getESuperTypes().add(this.getServerEvent());
+		serverProjectEventEClass.getESuperTypes().add(this.getServerEvent());
+		projectUpdatedEventEClass.getESuperTypes().add(this.getServerProjectEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(serverEventEClass, ServerEvent.class, "ServerEvent", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(serverProjectEventEClass, ServerProjectEvent.class, "ServerProjectEvent", IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServerProjectEvent_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0,
+			1, ServerProjectEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(projectUpdatedEventEClass, ProjectUpdatedEvent.class, "ProjectUpdatedEvent", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectUpdatedEvent_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null,
-			0, 1, ProjectUpdatedEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectUpdatedEvent_NewVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
 			"newVersion", null, 0, 1, ProjectUpdatedEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
