@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -71,6 +72,11 @@ public class ServerAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseServerProjectEvent(ServerProjectEvent object) {
+			return createServerProjectEventAdapter();
+		}
+
+		@Override
 		public Adapter caseProjectUpdatedEvent(ProjectUpdatedEvent object) {
 			return createProjectUpdatedEventAdapter();
 		}
@@ -109,6 +115,20 @@ public class ServerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServerEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent <em>Project Event</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent
+	 * @generated
+	 */
+	public Adapter createServerProjectEventAdapter() {
 		return null;
 	}
 

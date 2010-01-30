@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events.server;
 
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 
 /**
@@ -14,8 +13,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getProjectId <em>Project Id
- * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getNewVersion <em>New Version
  * </em>}</li>
  * </ul>
@@ -25,34 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
  * @model
  * @generated
  */
-public interface ProjectUpdatedEvent extends ServerEvent {
-	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Project Id</em>' containment reference.
-	 * @see #setProjectId(ProjectId)
-	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage#getProjectUpdatedEvent_ProjectId()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	ProjectId getProjectId();
-
-	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getProjectId
-	 * <em>Project Id</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Project Id</em>' containment reference.
-	 * @see #getProjectId()
-	 * @generated
-	 */
-	void setProjectId(ProjectId value);
-
+public interface ProjectUpdatedEvent extends ServerProjectEvent {
 	/**
 	 * Returns the value of the '<em><b>New Version</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
