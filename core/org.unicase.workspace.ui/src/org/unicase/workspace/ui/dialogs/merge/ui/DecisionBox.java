@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui;
 
 import org.eclipse.swt.SWT;
@@ -16,6 +21,11 @@ import org.unicase.workspace.ui.dialogs.merge.ui.components.DetailsComponent;
 import org.unicase.workspace.ui.dialogs.merge.ui.components.OptionComponent;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Generic container for conflicts.
+ * 
+ * @author wesendon
+ */
 public class DecisionBox extends Composite {
 
 	private final Conflict conflict;
@@ -25,6 +35,18 @@ public class DecisionBox extends Composite {
 	private OptionComponent optionComponent;
 	private DetailsComponent detailsComponent;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param decisionManager
+	 *            decisionManager
+	 * @param color
+	 *            background color
+	 * @param conflict
+	 *            the conflict
+	 */
 	public DecisionBox(Composite parent, DecisionManager decisionManager,
 			Color color, Conflict conflict) {
 		super(parent, SWT.BORDER);
@@ -56,15 +78,33 @@ public class DecisionBox extends Composite {
 		}
 	}
 
+	/**
+	 * Returns the decisionmanager.
+	 * 
+	 * @return decisionmanager
+	 */
 	public DecisionManager getDecisionManager() {
 		return decisionManager;
 	}
 
+	/**
+	 * Set the solution of this conflict.
+	 * 
+	 * @param option
+	 *            the option
+	 */
 	public void setSolution(ConflictOption option) {
 		conflict.setSolution(option);
 		optionComponent.refreshButtonColor();
 	}
 
+	/**
+	 * Relayouts the box. Needed when box is dynamically resized. This is NOT a
+	 * nice solution.
+	 * 
+	 * @param heightSizeChange
+	 *            size delta
+	 */
 	public void layoutPage(int heightSizeChange) {
 		ScrolledComposite scrollArea = (ScrolledComposite) getParent()
 				.getParent();
@@ -74,6 +114,11 @@ public class DecisionBox extends Composite {
 		scrollArea.layout();
 	}
 
+	/**
+	 * Returns the conflict of the box.
+	 * 
+	 * @return conflict
+	 */
 	public Conflict getConflict() {
 		return conflict;
 	}

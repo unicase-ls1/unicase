@@ -33,19 +33,19 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
  */
 public class MergeWizardPage extends WizardPage {
 
+	/**
+	 * Name of wizard page.
+	 */
 	public static final String PAGE_NAME = "Resolve Conflicts";
 
 	private ArrayList<DecisionBox> decisionBoxes;
 	private DecisionManager decisionManager;
 
 	/**
-	 * Default constructor.
+	 * Default Constructor.
 	 * 
-	 * @param pageName
-	 *            page name
-	 * @param myChangePackage
-	 * @param theirChangePackages
-	 * @param project
+	 * @param decisionManager
+	 *            a decisionManager
 	 */
 	protected MergeWizardPage(DecisionManager decisionManager) {
 		super(PAGE_NAME);
@@ -141,6 +141,11 @@ public class MergeWizardPage extends WizardPage {
 		return composite;
 	}
 
+	/**
+	 * Listener for select all mine and all their buttons.
+	 * 
+	 * @author wesendon
+	 */
 	private final class SelectAllSelectionListener implements SelectionListener {
 
 		private final OptionType type;
@@ -174,8 +179,17 @@ public class MergeWizardPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Small class which switches colors from row to row.
+	 * 
+	 * @author wesendon
+	 */
 	private final class ColorSwitcher {
-		private boolean color = false;
+		private boolean color;
+
+		public ColorSwitcher() {
+			color = false;
+		}
 
 		public Color getColor() {
 			color = !color;

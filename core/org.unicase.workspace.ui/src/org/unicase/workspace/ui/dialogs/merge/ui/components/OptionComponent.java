@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui.components;
 
 import org.eclipse.swt.SWT;
@@ -19,14 +24,28 @@ import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * This component of the decisionbox dynamically displays the possible options.
+ * 
+ * @author wesendon
+ */
 public class OptionComponent {
 
 	private Group group;
 	private final Conflict conflict;
-	private final DecisionBox parent;
 
+	// private final DecisionBox parent;
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param conflict
+	 *            conflict.
+	 */
 	public OptionComponent(DecisionBox parent, Conflict conflict) {
-		this.parent = parent;
+		// this.parent = parent;
 		this.conflict = conflict;
 		group = new Group(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -39,7 +58,7 @@ public class OptionComponent {
 		group.setText("Choose your Option: ");
 
 		for (ConflictOption option : conflict.getOptions()) {
-			new CompositeExtension(conflict, option);
+			new OptionContainer(conflict, option);
 		}
 
 		refreshButtonColor();
@@ -63,6 +82,9 @@ public class OptionComponent {
 				}
 			}
 			break;
+		default:
+			result = "";
+			break;
 		}
 		return result;
 	}
@@ -80,11 +102,14 @@ public class OptionComponent {
 		}
 	}
 
+	/**
+	 * Updates the color of the buttons.
+	 */
 	public void refreshButtonColor() {
 		for (Control composite : group.getChildren()) {
-			if (composite instanceof CompositeExtension) {
+			if (composite instanceof OptionContainer) {
 				if (conflict.isResolved()
-						&& conflict.getSolution() == ((CompositeExtension) composite)
+						&& conflict.getSolution() == ((OptionContainer) composite)
 								.getOption()) {
 					setColor((Composite) composite, DecisionConfig
 							.getOptionSelectedBack(), DecisionConfig
@@ -108,19 +133,24 @@ public class OptionComponent {
 		}
 	}
 
-	private void extraAction(CompositeExtension composite) {
+	private void extraAction(OptionContainer composite) {
 		if (composite.getOption().optionChosen()) {
 			composite.setText();
 			composite.layout();
 		}
 	}
 
-	private final class CompositeExtension extends Composite {
+	/**
+	 * Graphical container for an option.
+	 * 
+	 * @author wesendon
+	 */
+	private final class OptionContainer extends Composite {
 
 		private final ConflictOption option;
 		private StyledText styledText;
 
-		private CompositeExtension(Conflict conflict, ConflictOption option) {
+		private OptionContainer(Conflict conflict, ConflictOption option) {
 			super(group, SWT.BORDER | SWT.INHERIT_FORCE);
 			this.option = option;
 			GridLayout layout = new GridLayout();
@@ -166,10 +196,15 @@ public class OptionComponent {
 		}
 	}
 
+	/**
+	 * Option mouse listener.
+	 * 
+	 * @author wesendon
+	 */
 	private final class OptionMouseListener implements Listener {
-		private final CompositeExtension composite;
+		private final OptionContainer composite;
 
-		public OptionMouseListener(CompositeExtension composite) {
+		public OptionMouseListener(OptionContainer composite) {
 			this.composite = composite;
 			composite.setCursor(new Cursor(composite.getDisplay(),
 					SWT.CURSOR_HAND));
@@ -209,7 +244,8 @@ public class OptionComponent {
 
 			case SWT.MouseDown:
 				break;
-
+			default:
+				break;
 			}
 		}
 	}

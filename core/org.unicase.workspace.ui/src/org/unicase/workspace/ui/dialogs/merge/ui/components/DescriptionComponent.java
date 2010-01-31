@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui.components;
 
 import java.util.ArrayList;
@@ -21,8 +26,21 @@ import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
+/**
+ * Displays the description in the decision box.
+ * 
+ * @author wesendon
+ */
 public class DescriptionComponent extends Composite {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param conflict
+	 *            conflict
+	 */
 	public DescriptionComponent(DecisionBox parent, Conflict conflict) {
 		super(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);

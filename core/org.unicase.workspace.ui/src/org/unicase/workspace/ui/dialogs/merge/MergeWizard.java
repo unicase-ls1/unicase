@@ -10,7 +10,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
- * .
+ * Container of the Merge Dialog.
  * 
  * @author wesendon
  */
@@ -18,6 +18,12 @@ public class MergeWizard extends Wizard {
 
 	private DecisionManager decisionManager;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param decisionManager
+	 *            decisionManager
+	 */
 	public MergeWizard(DecisionManager decisionManager) {
 		super();
 		setWindowTitle("Merge Wizard");
