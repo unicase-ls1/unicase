@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 
 import org.eclipse.swt.SWT;
@@ -13,22 +18,38 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
+/**
+ * This details widget shows other involved operations using default
+ * representation.
+ * 
+ * @author wesendon
+ */
 public class OtherInvolvedWidget extends Composite {
 
 	private static final int COLUMNS = 1;
 
-	public OtherInvolvedWidget(Composite client,
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param decisionManager
+	 *            decisionManager
+	 * @param option
+	 *            option
+	 */
+	public OtherInvolvedWidget(Composite parent,
 			DecisionManager decisionManager, ConflictOption option) {
-		super(client, SWT.None);
+		super(parent, SWT.None);
 		TableWrapLayout wrapLayout = new TableWrapLayout();
 		wrapLayout.numColumns = COLUMNS;
 		wrapLayout.makeColumnsEqualWidth = true;
 		setLayout(wrapLayout);
-		setBackground(client.getBackground());
+		setBackground(parent.getBackground());
 
 		Label label = new Label(this, SWT.NONE);
 		label.setText("Other Involved Changes: ");
-		label.setBackground(client.getBackground());
+		label.setBackground(parent.getBackground());
 		TableWrapData wrapData = new TableWrapData();
 		wrapData.colspan = COLUMNS;
 		label.setLayoutData(wrapData);
@@ -45,7 +66,7 @@ public class OtherInvolvedWidget extends Composite {
 				meLabel.setImage(image);
 			}
 			meLabel.setText(visualizationHelper.getDescription(ao));
-			meLabel.setBackground(client.getBackground());
+			meLabel.setBackground(parent.getBackground());
 		}
 	}
 }

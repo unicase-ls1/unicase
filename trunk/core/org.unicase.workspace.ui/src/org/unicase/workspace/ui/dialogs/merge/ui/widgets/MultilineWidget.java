@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 
 import org.eclipse.jface.resource.FontRegistry;
@@ -16,8 +21,23 @@ import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Widget. TODO REDO
+ * 
+ * @author wesendon
+ */
 public class MultilineWidget extends Composite {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param decisionBox
+	 *            decisionBox
+	 * @param option
+	 *            option
+	 */
 	public MultilineWidget(Composite parent, final DecisionBox decisionBox,
 			final ConflictOption option) {
 		super(parent, SWT.NONE);
@@ -36,7 +56,7 @@ public class MultilineWidget extends Composite {
 		titleComposite
 				.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
-		String title = "";
+		String title;
 		switch (option.getType()) {
 		case MyOperation:
 			title = "My Change";
@@ -46,6 +66,9 @@ public class MultilineWidget extends Composite {
 			break;
 		case Custom:
 			title = option.getOptionLabel();
+			break;
+		default:
+			title = "";
 			break;
 		}
 

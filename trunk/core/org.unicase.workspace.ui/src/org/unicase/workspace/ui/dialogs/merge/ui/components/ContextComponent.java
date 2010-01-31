@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.ui.components;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -13,8 +18,21 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Displays the context bar in the decision box.
+ * 
+ * @author wesendon
+ */
 public class ContextComponent extends Composite {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param conflict
+	 *            conflict
+	 */
 	public ContextComponent(DecisionBox parent, Conflict conflict) {
 		super(parent, SWT.NONE);
 

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge;
 
 import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isAttribute;
@@ -39,6 +44,13 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 import org.unicase.workspace.ui.dialogs.merge.util.EventLogger;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
+/**
+ * DecisionManager is the controller for the merge dialog and therefore it's
+ * main component. It calculates the conflicts from incoming changes and can
+ * execute resolved conflicts.
+ * 
+ * @author wesendon
+ */
 public class DecisionManager {
 
 	private final Project project;
@@ -55,6 +67,20 @@ public class DecisionManager {
 	private ChangePackageVisualizationHelper visualizationHelper;
 	private EventLogger eventLogger;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param project
+	 *            the related project
+	 * @param myChangePackage
+	 *            my changes
+	 * @param theirChangePackages
+	 *            incoming changes
+	 * @param baseVersion
+	 *            baseversion
+	 * @param targetVersion
+	 *            new target version
+	 */
 	public DecisionManager(Project project, ChangePackage myChangePackage,
 			List<ChangePackage> theirChangePackages,
 			PrimaryVersionSpec baseVersion, PrimaryVersionSpec targetVersion) {
@@ -114,6 +140,10 @@ public class DecisionManager {
 			}
 		}
 
+		createConflicts(conflicting);
+	}
+
+	private void createConflicts(ArrayList<Conflicting> conflicting) {
 		// Create Conflicts from Conflicting
 		for (Conflicting conf : conflicting) {
 			AbstractOperation my = conf.getMyOperation();
@@ -275,10 +305,20 @@ public class DecisionManager {
 		}
 	}
 
+	/**
+	 * Returns the conflicts.
+	 * 
+	 * @return list of conflicts.
+	 */
 	public ArrayList<Conflict> getConflicts() {
 		return conflicts;
 	}
 
+	/**
+	 * Checks whether all conflicts are resolved.
+	 * 
+	 * @return true if all are resolved
+	 */
 	public boolean isResolved() {
 		boolean isResolved = true;
 		for (Conflict conflict : conflicts) {
@@ -287,14 +327,31 @@ public class DecisionManager {
 		return isResolved;
 	}
 
+	/**
+	 * Get "my" accepted operations. This list will be empty, if
+	 * {@link #calcResult()} hasn't been called before.
+	 * 
+	 * @return list of operations
+	 */
 	public List<AbstractOperation> getAcceptedMine() {
 		return acceptedMine;
 	}
 
+	/**
+	 * Get "their" accepted operations. This list will be empty, if
+	 * {@link #calcResult()} hasn't been called before.
+	 * 
+	 * @return list of operations
+	 */
 	public List<AbstractOperation> getRejectedTheirs() {
 		return rejectedTheirs;
 	}
 
+	/**
+	 * If all conflicts are resolved this method will generate the resulting
+	 * operations from the conflicts. Then call {@link #getAcceptedMine()} and
+	 * {@link #getRejectedTheirs()}.
+	 */
 	public void calcResult() {
 		if (!isResolved()) {
 			return;
@@ -332,20 +389,47 @@ public class DecisionManager {
 		}
 	}
 
+	/**
+	 * Returns the conflictdetector.
+	 * 
+	 * @return conflictdetector
+	 */
 	public ConflictDetector getConflictDetector() {
 		return conflictDetector;
 	}
 
+	/**
+	 * Get the Name of an model element by modelelement id.
+	 * 
+	 * @param modelElementId
+	 *            id of element
+	 * @return name as string
+	 */
 	public String getModelElementName(ModelElementId modelElementId) {
 		return getModelElementName(getModelElement(modelElementId));
 	}
 
+	/**
+	 * Get the Name of an model element.
+	 * 
+	 * @param modelElement
+	 *            element
+	 * @return name as string
+	 */
 	public String getModelElementName(ModelElement modelElement) {
 		AdapterFactoryLabelProvider adapterFactory = DecisionUtil
 				.getAdapterFactory();
 		return adapterFactory.getText(modelElement);
 	}
 
+	/**
+	 * Returns the modelelement. Therefore the project as well as creation and
+	 * deletion operations are searched.
+	 * 
+	 * @param modelElementId
+	 *            id of element.
+	 * @return modelelement
+	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		ModelElement modelElement = project.getModelElement(modelElementId);
 		if (modelElement == null) {
@@ -405,6 +489,11 @@ public class DecisionManager {
 		return null;
 	}
 
+	/**
+	 * Container for connected, conflicting operations.
+	 * 
+	 * @author wesendon
+	 */
 	private class Conflicting {
 
 		private ArrayList<AbstractOperation> myOps;
@@ -459,6 +548,14 @@ public class DecisionManager {
 		}
 	}
 
+	/**
+	 * Returns the name of the author for a operation in list of their
+	 * operations.
+	 * 
+	 * @param theirOperation
+	 *            operation
+	 * @return name as string or ""
+	 */
 	public String getAuthorForOperation(AbstractOperation theirOperation) {
 		for (ChangePackage cp : theirChangePackages) {
 			for (AbstractOperation op : cp.getOperations()) {
@@ -486,10 +583,20 @@ public class DecisionManager {
 		return "";
 	}
 
+	/**
+	 * Return the related project.
+	 * 
+	 * @return project
+	 */
 	public Project getProject() {
 		return project;
 	}
 
+	/**
+	 * Returns the visualizationhelper.
+	 * 
+	 * @return visualizationhelper
+	 */
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
 		if (visualizationHelper == null) {
 			ArrayList<ChangePackage> list = new ArrayList<ChangePackage>();
@@ -501,6 +608,11 @@ public class DecisionManager {
 		return visualizationHelper;
 	}
 
+	/**
+	 * Return the Eventlogger.
+	 * 
+	 * @return logger
+	 */
 	public EventLogger getEventLogger() {
 		if (eventLogger == null) {
 			eventLogger = new EventLogger(project);
@@ -508,10 +620,20 @@ public class DecisionManager {
 		return eventLogger;
 	}
 
+	/**
+	 * Returns the baseVersion of the project which is updating.
+	 * 
+	 * @return version
+	 */
 	public PrimaryVersionSpec getBaseVersion() {
 		return baseVersion;
 	}
 
+	/**
+	 * Returns the targetVersion of the update which caused merging.
+	 * 
+	 * @return version
+	 */
 	public PrimaryVersionSpec getTargetVersion() {
 		return targetVersion;
 	}
