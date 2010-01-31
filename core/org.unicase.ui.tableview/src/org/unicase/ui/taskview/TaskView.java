@@ -469,10 +469,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	/**
+	 * Refresh the view if a work item has been deleted.
+	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
+	 * @param project the project
+	 * @param modelElement the model element
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		if (modelElement instanceof Checkable) {
+			viewer.refresh();
+		}
 	}
 
 	/**
