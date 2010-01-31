@@ -5,10 +5,14 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -72,28 +76,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
-			getItemPropertyDescriptor());
-		final NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
-			getItemPropertyDescriptor());
-
-		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
-		selectButton.setImage(addAction.getImageDescriptor().createImage());
-		selectButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				addAction.run();
-			}
-
-		});
-		Button newButton = getToolkit().createButton(composite, "", SWT.PUSH);
-		newButton.setImage(newAction.getImageDescriptor().createImage());
-		newButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				newAction.run();
-			}
-		});
+		for (Action action : initActions()) {
+			createButtonForAction(action);
+		}
 
 		modelElementChangeListener = new ModelElementChangeListener() {
 
@@ -110,6 +95,46 @@ public class MESingleLinkControl extends AbstractMEControl {
 		getModelElement().addModelElementChangeListener(modelElementChangeListener);
 
 		return composite;
+	}
+
+	/**
+	 * Creates the actions for the control.
+	 * 
+	 * @return
+	 */
+	protected List<Action> initActions() {
+		List<Action> result = new ArrayList<Action>();
+		AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
+			getItemPropertyDescriptor());
+		result.add(addAction);
+		NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
+			getItemPropertyDescriptor());
+		result.add(newAction);
+		return result;
+	}
+
+	/**
+	 * @return the eReference
+	 */
+	protected EReference geteReference() {
+		return eReference;
+	}
+
+	/**
+	 * Creates a button for an action.
+	 * 
+	 * @param action the action
+	 */
+	protected void createButtonForAction(final Action action) {
+		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
+		selectButton.setImage(action.getImageDescriptor().createImage());
+		selectButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				action.run();
+			}
+
+		});
 	}
 
 	private void updateLink() {
