@@ -86,6 +86,15 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 					// To nothing.
 				}
 			}
+
+			if (status1.equals(MEState.OPEN) && e1 instanceof WorkItem && ((WorkItem) e1).isResolved()) {
+				status1 = "Open_Resolved";
+			}
+
+			if (status2.equals(MEState.OPEN) && e2 instanceof WorkItem && ((WorkItem) e2).isResolved()) {
+				status2 = "Open_Resolved";
+			}
+
 			return status1.compareTo(status2);
 		}
 	}
