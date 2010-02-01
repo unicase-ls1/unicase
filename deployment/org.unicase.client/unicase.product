@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="unicase" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.42" useFeatures="false" includeLaunchers="true">
+<product name="unicase" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
@@ -21,7 +21,9 @@
 
    <splash
       location="org.unicase.client"
-      startupProgressRect="5,275,445,15" />
+      startupProgressRect="5,280,556,17"
+      startupMessageRect="20,252,445,20"
+      startupForegroundColor="000579" />
    <launcher name="unicase">
       <macosx icon="/org.unicase.client/icons/unicase.icns"/>
       <solaris/>
@@ -32,7 +34,6 @@
             winLargeHigh="/org.unicase.client/icons/alt_window_48.bmp"/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -115,14 +116,13 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugins>
       <plugin id="com.ibm.icu"/>
-      <plugin id="com.onpositive.richtexteditor"/>
-      <plugin id="com.onpositive.richtexteditor.swt"/>
       <plugin id="edu.tum.cs.cope.common"/>
       <plugin id="edu.tum.cs.cope.declaration"/>
       <plugin id="edu.tum.cs.cope.declaration.registry"/>
       <plugin id="edu.tum.cs.cope.migration"/>
       <plugin id="edu.tum.cs.cope.migration.execution"/>
       <plugin id="javax.servlet"/>
+      <plugin id="javax.servlet.jsp"/>
       <plugin id="javax.transaction" fragment="true"/>
       <plugin id="javax.xml"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
@@ -140,7 +140,11 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.apache.batik.util.gui"/>
       <plugin id="org.apache.batik.xml"/>
       <plugin id="org.apache.commons.codec"/>
+      <plugin id="org.apache.commons.el"/>
       <plugin id="org.apache.commons.logging"/>
+      <plugin id="org.apache.jasper"/>
+      <plugin id="org.apache.lucene"/>
+      <plugin id="org.apache.lucene.analysis"/>
       <plugin id="org.apache.xerces"/>
       <plugin id="org.apache.xml.resolver"/>
       <plugin id="org.apache.xml.serializer"/>
@@ -187,6 +191,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.change.edit"/>
       <plugin id="org.eclipse.emf.ecore.edit"/>
+      <plugin id="org.eclipse.emf.ecore.editor"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.emf.edit.ui"/>
@@ -197,6 +202,8 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.concurrent"/>
+      <plugin id="org.eclipse.equinox.http.jetty"/>
+      <plugin id="org.eclipse.equinox.http.servlet"/>
       <plugin id="org.eclipse.equinox.p2.artifact.repository"/>
       <plugin id="org.eclipse.equinox.p2.core"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
@@ -243,6 +250,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.gmf.runtime.notation"/>
       <plugin id="org.eclipse.gmf.runtime.notation.edit"/>
       <plugin id="org.eclipse.help"/>
+      <plugin id="org.eclipse.help.base"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.jface.text"/>
@@ -279,6 +287,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.ui.editors"/>
       <plugin id="org.eclipse.ui.forms"/>
       <plugin id="org.eclipse.ui.ide"/>
+      <plugin id="org.eclipse.ui.intro"/>
       <plugin id="org.eclipse.ui.navigator"/>
       <plugin id="org.eclipse.ui.navigator.resources"/>
       <plugin id="org.eclipse.ui.views"/>
@@ -288,28 +297,37 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.junit"/>
-      <plugin id="org.unicase.client" version="0.3.42"/>
-      <plugin id="org.unicase.docExport" version="0.3.42"/>
-      <plugin id="org.unicase.emfstore" version="0.3.42"/>
-      <plugin id="org.unicase.emfstore.esmodel" version="0.3.42"/>
-      <plugin id="org.unicase.emfstore.esmodel.edit" version="0.3.42"/>
-      <plugin id="org.unicase.model" version="0.3.42"/>
-      <plugin id="org.unicase.model.edit" version="0.3.42"/>
-      <plugin id="org.unicase.model.migrator" version="0.3.42"/>
-      <plugin id="org.unicase.ui.common" version="0.3.42"/>
-      <plugin id="org.unicase.ui.dashboard" version="0.3.42"/>
-      <plugin id="org.unicase.ui.diagram.activityDiagram" version="0.3.42"/>
-      <plugin id="org.unicase.ui.diagram.classDiagram" version="0.3.42"/>
-      <plugin id="org.unicase.ui.diagram.componentDiagram" version="0.3.42"/>
-      <plugin id="org.unicase.ui.diagram.stateDiagram" version="0.3.42"/>
-      <plugin id="org.unicase.ui.diagram.usecaseDiagram" version="0.3.42"/>
-      <plugin id="org.unicase.ui.meeditor" version="0.3.42"/>
-      <plugin id="org.unicase.ui.navigator" version="0.3.42"/>
-      <plugin id="org.unicase.ui.stem" version="0.3.42"/>
-      <plugin id="org.unicase.ui.tableview" version="0.3.42"/>
-      <plugin id="org.unicase.workspace" version="0.3.42"/>
-      <plugin id="org.unicase.workspace.edit" version="0.3.42"/>
-      <plugin id="org.unicase.workspace.ui" version="0.3.42"/>
+      <plugin id="org.mortbay.jetty.server"/>
+      <plugin id="org.mortbay.jetty.util"/>
+      <plugin id="org.unicase.client"/>
+      <plugin id="org.unicase.docExport" version="0.4.0"/>
+      <plugin id="org.unicase.emfstore" version="0.4.0"/>
+      <plugin id="org.unicase.emfstore.esmodel" version="0.4.0"/>
+      <plugin id="org.unicase.emfstore.esmodel.edit" version="0.4.0"/>
+      <plugin id="org.unicase.implementation" version="0.4.0"/>
+      <plugin id="org.unicase.implementation.edit" version="0.4.0"/>
+      <plugin id="org.unicase.implementation.ui" version="0.4.0"/>
+      <plugin id="org.unicase.metamodel" version="0.4.0"/>
+      <plugin id="org.unicase.metamodel.edit" version="0.4.0"/>
+      <plugin id="org.unicase.model" version="0.4.0"/>
+      <plugin id="org.unicase.model.edit" version="0.4.0"/>
+      <plugin id="org.unicase.model.migrator" version="0.4.0"/>
+      <plugin id="org.unicase.ui.common" version="0.4.0"/>
+      <plugin id="org.unicase.ui.dashboard" version="0.4.0"/>
+      <plugin id="org.unicase.ui.diagram.activityDiagram" version="0.4.0"/>
+      <plugin id="org.unicase.ui.diagram.classDiagram" version="0.4.0"/>
+      <plugin id="org.unicase.ui.diagram.componentDiagram" version="0.4.0"/>
+      <plugin id="org.unicase.ui.diagram.stateDiagram" version="0.4.0"/>
+      <plugin id="org.unicase.ui.diagram.usecaseDiagram" version="0.4.0"/>
+      <plugin id="org.unicase.ui.meeditor" version="0.4.0"/>
+      <plugin id="org.unicase.ui.multiaction" version="0.4.0"/>
+      <plugin id="org.unicase.ui.navigator" version="0.4.0"/>
+      <plugin id="org.unicase.ui.stem" version="0.4.0"/>
+      <plugin id="org.unicase.ui.tableview" version="0.4.0"/>
+      <plugin id="org.unicase.ui.unicasecommon" version="0.4.0"/>
+      <plugin id="org.unicase.workspace" version="0.4.0"/>
+      <plugin id="org.unicase.workspace.edit" version="0.4.0"/>
+      <plugin id="org.unicase.workspace.ui" version="0.4.0"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
