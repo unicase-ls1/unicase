@@ -41,21 +41,21 @@ public class TabbedView extends ViewPart {
 		if (projectName != null) {
 			setCurrProjectName(projectName);
 			final AbstractTab[] tabs = new AbstractTab[] {
-					new TaskItemsTab(topFolder), new BugReportTab(topFolder),
-					new TeamTab(topFolder), new ExampleTableTab(topFolder),
+					new TaskItemsTab(projectName, topFolder), new BugReportTab(topFolder),
+					new TeamTab(projectName, topFolder), new ExampleTableTab(topFolder),
 					new InputTab(topFolder) };
 
 			topFolder.setSelection(0);
-			tabs[0].createContent(getCurrProjectName());
+//			tabs[0].createContent(getCurrProjectName());
 			topFolder.addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(final SelectionEvent evt) {
 					int index = topFolder.getSelectionIndex();
-					tabs[index].createContent(getCurrProjectName());
+					tabs[index].createTabContent();
 				}
 			});
 		} else {
 			InfoTab infoTab = new InfoTab(topFolder);
-			infoTab.createContent(null);
+//			infoTab.createContent(null);
 		}
 	}
 
