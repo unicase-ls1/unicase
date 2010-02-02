@@ -21,4 +21,15 @@ public class EclipseWorkspaceManager {
 		if(p == null) return null;
 		return p.getLocation().toString() + "/" + pathInProject;	
 	}
+	
+	public static String getProjectOfFile(String projectName){
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject p = root.getProject(projectName);
+		if(p == null) return null;
+		return p.getLocation().toString();	
+	}
+	public static String getWorkspace(){
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		return root.toString();
+	}
 }

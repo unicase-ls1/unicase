@@ -6,7 +6,6 @@ package org.unicase.codetrace.ui;
  * @author snogina
  * @author jfinis
  * 
- *
  */
 
 import org.eclipse.jface.window.Window;
