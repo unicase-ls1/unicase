@@ -20,7 +20,7 @@ import org.unicase.model.trace.impl.CodeLocationImpl;
  * source locations.
  * This is a singleton class, use .getInstance() to retrieve the singleton object.
  * @author jfinis
- *
+ * @author kterzieva
  */
 public final class LocationFinder {
 
@@ -89,8 +89,11 @@ public final class LocationFinder {
 		
 		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
 		if (tf == null){
-			
-			//TODO HIER NACH ANDEREN FILES SUCHEN
+		TracerFile tf_project = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(c.getProjectName()));
+		tf = tf_project;
+		} else if (tf == null){
+		TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getWorkspace());
+		tf = tf_workspace;
 		}
 
 		//Build facet map
