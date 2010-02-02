@@ -2,6 +2,23 @@
 <?eclipse version="3.4"?>
 <plugin>
 
+<extension
+         point="org.eclipse.ui.commands">
+         <command
+            id="org.unicase.trace.findCodeLocation"
+            name="Get to the code location">
+      </command>
+  
+  </extension>
+  
+<extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.unicase.trace.findCodeLocation"
+            class="org.unicase.codetrace.handlers.FindCodeLocationHandler">
+      </handler>
+   </extension>
+
 <extension 
 		point="org.eclipse.core.resources.markers"
 		id="org.unicase.taskmarker"
@@ -65,6 +82,34 @@
            uri="http://unicase.org/model/codetrace">
      </package>
   </extension>
+  
+   <extension
+	point="org.eclipse.ui.menus">
+    <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">	
+        <separator
+              name="org.unicase.ui.common.commands.annotateActionItemSeperator"
+              visible="true">
+      	 </separator>
+       <command
+	          commandId="org.unicase.trace.findCodeLocation"
+	          label="Get to the code location"
+	          style="push">
+	       <visibleWhen
+	             checkEnabled="false">
+	          <iterate
+	                ifEmpty="false">
+	             <instanceof
+	                   value="org.unicase.model.trace.CodeLocation">
+	             </instanceof>
+	          </iterate>
+	       </visibleWhen>
+    	</command>
+        
+     </menuContribution>
+
+     </extension>
+  
   
   
 </plugin>
