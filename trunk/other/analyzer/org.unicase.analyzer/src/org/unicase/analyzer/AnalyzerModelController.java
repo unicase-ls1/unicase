@@ -42,24 +42,22 @@ public class AnalyzerModelController {
 		this.setExporter(exporter);
 
 		flag = checkAnalyzerTypes(analyzers);
-
-		// try {
-		// runAnalysis(exporter);
-		// } catch (IOException e) {
-		// }
-		// System.out.println("Finished Analysis");
 	}
 
 	private int checkAnalyzerTypes(List<DataAnalyzer> analyzers) {
 
-		int flag = 1;
-		int temp = 1;
+		int flag;
+		if (analyzers.get(0) instanceof SimpleDataAnalyzer) {
+			flag = 1;
+		} else {
+			flag = 2;
+		}
+		int temp = flag;
 
 		for (DataAnalyzer analyzer : analyzers) {
 
 			if (temp != flag) {
-				throw new IllegalStateException(
-					"Analyzers type are not compatible, please check your chosen analyzers!");
+				throw new IllegalStateException("Analyzers type are not compatible, please check the chosen analyzers!");
 			}
 			temp = flag;
 			if (analyzer instanceof SimpleDataAnalyzer) {
@@ -69,7 +67,7 @@ public class AnalyzerModelController {
 			}
 		}
 		if (temp != flag) {
-			throw new IllegalStateException("Analyzers type are not compatible, please check your chosen analyzers!");
+			throw new IllegalStateException("Analyzers type are not compatible, please check the chosen analyzers!");
 		}
 		return flag;
 	}
@@ -87,9 +85,10 @@ public class AnalyzerModelController {
 			List<List<Object>> lines = new ArrayList<List<Object>>();
 			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 			while (projectIterator.hasNext()) {
+
+				data = projectIterator.next();
 				monitor.subTask("Analyzing...@Version "
 					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
-				data = projectIterator.next();
 				lines.clear();
 				for (DataAnalyzer analyzer : analyzers) {
 					lines = analyzer.getValues(data, projectIterator);
