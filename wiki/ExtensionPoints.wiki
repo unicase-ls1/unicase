@@ -1,5 +1,7 @@
 #summary This page gives an overview of all extension points offered by UNICASE
 
+*This page is currently under construction*
+
 = UI =
   * org.unicase.ui.common.modelelementopener
   You can register new ModelElementOpener, which are responsible to open a signle ModelElement. The default is the MEEditor. Other examples are the diagram editors. Whenever you want to provide a custom view for a certain type of ModelElement, register a new ModelElementOpener at the Navigator.
