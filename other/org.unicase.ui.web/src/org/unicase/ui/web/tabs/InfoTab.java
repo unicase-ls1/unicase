@@ -22,8 +22,6 @@ import org.unicase.web.util.ExampleUtil;
 public class InfoTab extends AbstractTab {
 
 	private CTabItem tabItem;
-	private CTabFolder tabFolder;
-	private Composite tabComposite;
 	
 	/**
 	 * Constructor.
@@ -31,18 +29,15 @@ public class InfoTab extends AbstractTab {
 	 * @param parent
 	 */
 	public InfoTab(CTabFolder parent) {
-		tabFolder = parent;
-		tabItem = new CTabItem(tabFolder, SWT.NONE);
-		tabItem.setText("Info");
-	    
-		tabComposite = new Composite(tabFolder, SWT.NONE);
-		tabComposite.setLayout(ExampleUtil.createGridLayout(1, false, 10, 20));
-	    tabItem.setControl(tabComposite);
+		super(parent, "Info Tab");
+		tabItem = new CTabItem(getTabFolder(), SWT.NONE);
+		tabItem.setText("Info");	    
+	    tabItem.setControl(getTabComposite());
 	}
 	
 	@Override
 	public void createTabContent() {
-		Group group = new Group(tabComposite, SWT.NONE);
+		Group group = new Group(getTabComposite(), SWT.NONE);
 		group.setText("Missing Project Name");
 		group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 		group.setLayout(ExampleUtil.createGridLayout(2, false, 10, 20));

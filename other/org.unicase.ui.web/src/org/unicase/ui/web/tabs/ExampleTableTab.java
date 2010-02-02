@@ -16,24 +16,22 @@ import org.unicase.ui.web.tabs.TableViewerExample;
 public class ExampleTableTab extends AbstractTab {
 
 	private boolean isContentCreated;
-	private final CTabFolder tabFolder;
 	private final CTabItem tabItem;
 
-	
 	/**
 	 * 
 	 * @param parent
 	 */
 	public ExampleTableTab(CTabFolder parent) {
-		tabFolder = parent;
+		super(parent, "Example Tab");
 		isContentCreated = false;
-	    tabItem = new CTabItem( tabFolder, SWT.NONE );
+	    tabItem = new CTabItem(getTabFolder(), SWT.NONE );
 	    tabItem.setText("Example Table Tab");
 	}
 	
 	public void createTabContent() {
 		if (!isContentCreated) {
-		    Composite com = new Composite(tabFolder, SWT.NONE);
+		    Composite com = new Composite(getTabFolder(), SWT.NONE);
 		    createTabContent(com);
 		    tabItem.setControl(com);
 			isContentCreated = true;

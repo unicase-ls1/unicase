@@ -26,20 +26,19 @@ import org.unicase.web.util.ExampleUtil;
 public class InputTab extends AbstractTab {
 
 	private boolean isContentCreated;
-	private final CTabFolder tabFolder;
 	private final CTabItem tabItem;
 	
 	
 	public InputTab(CTabFolder parent) {
-		tabFolder = parent;
+		super(parent, "Input Tab");
 		isContentCreated = false;
-	    tabItem = new CTabItem( tabFolder, SWT.NONE );
+	    tabItem = new CTabItem(getTabFolder(), SWT.NONE );
 	    tabItem.setText("Input Exp. Tab");
 	}
 	
 	public void createTabContent() {
 		if (!isContentCreated) {
-		    Composite com = new Composite(tabFolder, SWT.NONE);
+		    Composite com = new Composite(getTabFolder(), SWT.NONE);
 		    createTabContent(com);
 		    tabItem.setControl(com);
 			isContentCreated = true;

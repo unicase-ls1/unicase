@@ -145,6 +145,10 @@ public class UpdateProjectHandler implements UpdateObserver, Runnable {
 	 */
 	private void update(final ProjectSpace projectSpace) {
 		
+		if (projectSpace == null) {
+			return;
+		}
+		
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
 			System.out.println("This project is not yet shared with a server, you cannot update.");

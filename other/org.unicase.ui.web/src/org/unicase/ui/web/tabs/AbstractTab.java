@@ -1,117 +1,113 @@
 package org.unicase.ui.web.tabs;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.web.util.ExampleUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
-/**
- * Abstract tab for all tabs.
- * 
- * @author Edgar Müller
- * @author Fatih Ulusoy
- */
-public abstract class AbstractTab implements ProjectChangeObserver {
-
-	private Project currProject;
+public abstract class AbstractTab {
 	
-	private ProjectSpace currProjectSpace;
+	private CTabItem tabItem;
+	private CTabFolder tabFolder;
+	private Composite tabComposite;
 	
-	/**
-	 * Creates content.
-	 * 
-	 * @param projectName
-	 */
-	public void createContent(String projectName) {
-		resolveProject(projectName);	
-		createTabContent();
+	private boolean isContentCreated;
+	
+	private ProjectSpace projectSpace;
+	private Project project;
+	
+	public AbstractTab(String project, CTabFolder parent, String tabName) {
+		setTabFolder(parent);
+		tabItem = new CTabItem(getTabFolder(), SWT.NONE);
+		tabItem.setText(tabName);
+	    
+		Composite composite = new Composite(getTabFolder(), SWT.NONE);
+		composite.setLayout(ExampleUtil.createGridLayout(1, false, 10, 20));
+		
+		setTabComposite(new Composite(composite, SWT.NONE));
+		getTabComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		getTabComposite().setLayout(new GridLayout(2, false));
+		
+	    tabItem.setControl(composite);
+	    
+//	    contentProvider = new ObservableListContentProvider();
+	    setContentCreated(false);
 	}
 	
-	/**
-	 * Creates tab content.
-	 */
-	public abstract void createTabContent();
+	public AbstractTab(CTabFolder parent, String tabName) {
+		setTabFolder(parent);
+	}
 	
-	private void resolveProject(String projectName) {
+	protected void resolveProject(String projectName) {
 		// TODO: resolve project via projectname directly
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getProjectSpaces();
 		for (ProjectSpace p : projectSpaces) {
 			if (p.getProjectName().equalsIgnoreCase(projectName)) {
-				setCurrProjectSpace(p);
-				setCurrProject(p.getProject());
+				setProjectSpace(p);
+				setProject(p.getProject());
 			}
 		}
 	}
 
-	/**
-	 * Gets current project.
-	 * 
-	 * @return current project
-	 */
-	public Project getCurrProject() {
-		return currProject;
-	}
 	
 	/**
-	 * Sets current project.
-	 * 
-	 * @param currProject
+	 * Creates tab content.
 	 */
-	private void setCurrProject(Project currProject) {
-		this.currProject = currProject;
+	public abstract void createTabContent();
+
+
+	public void setContentCreated(boolean isContentCreated) {
+		this.isContentCreated = isContentCreated;
 	}
 
-	/**
-	 * Gets current project space.
-	 * 
-	 * @return current project space
-	 */
-	public ProjectSpace getCurrProjectSpace() {
-		return currProjectSpace;
+
+	public boolean isContentCreated() {
+		return isContentCreated;
 	}
 
-	/**
-	 * Sets current project space.
-	 * 
-	 * @param currProjectSpace
-	 */
-	private void setCurrProjectSpace(ProjectSpace currProjectSpace) {
-		this.currProjectSpace = currProjectSpace;
-	}
-	
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
+	public void setTabComposite(Composite tabComposite) {
+		this.tabComposite = tabComposite;
 	}
 
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		updateInput(project, modelElement);
+	public Composite getTabComposite() {
+		return tabComposite;
 	}
 
-	public void modelElementDeleteStarted(Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
+	public void setProjectSpace(ProjectSpace projectSpace) {
+		this.projectSpace = projectSpace;
 	}
 
-	public void modelElementDeleteCompleted(Project project,
-			ModelElement modelElement) {
-		updateInput(project, modelElement);
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
 	}
-	
-	/**
-	 * should be overriden by subclasses if you want to update tab
-	 * 
-	 * @param project
-	 * @param modelElement
-	 */
-	public void updateInput(Project project, ModelElement modelElement) {
-		// do nothing
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	private void setTabFolder(CTabFolder tabFolder) {
+		this.tabFolder = tabFolder;
+	}
+
+	public CTabFolder getTabFolder() {
+		return tabFolder;
 	}
 	
 }
-
-

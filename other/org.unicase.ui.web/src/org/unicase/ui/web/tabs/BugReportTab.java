@@ -37,17 +37,15 @@ import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
  */
 public class BugReportTab extends AbstractTab {
 
-	private final CTabFolder tabFolder;
 	private final CTabItem tabItem;
 	
 	public BugReportTab(CTabFolder parent) {
-		tabFolder = parent;
-		tabItem = new CTabItem(tabFolder, SWT.NONE);
-		tabItem.setText("Bug Reporting...");
+		super(parent, "Bug reporting");
+		tabItem = new CTabItem(getTabFolder(), SWT.NONE);
 	}
 
 	public void createTabContent() {
-		Composite com = new Composite(tabFolder, SWT.NONE);
+		Composite com = new Composite(getTabComposite(), SWT.NONE);
 		createTabContent(com);
 		tabItem.setControl(com);
 	}
@@ -130,10 +128,10 @@ public class BugReportTab extends AbstractTab {
 	    			protected void doExecute() {
 	    				try {
 	    					//Begin composite operation
-	    					ProjectSpace p = getCurrProjectSpace();
+	    					ProjectSpace p = getProjectSpace();
 	    					CompositeOperationHandle operationHandle = p.beginCompositeOperation();
 
-	    					getCurrProject().addModelElement(newBugReport);
+	    					getProject().addModelElement(newBugReport);
 
 	    					LogMessage msg = VersioningFactory.eINSTANCE.createLogMessage();
 	    					msg.setMessage("This is a first test");
@@ -142,7 +140,7 @@ public class BugReportTab extends AbstractTab {
 	    							"Created bug report " + newBugReport.getName() + ".",
 	    							newBugReport.getModelElementId());
 	    					
-	    					getCurrProjectSpace().commit(msg);
+	    					getProjectSpace().commit(msg);
 	    					
 	    					messageLabel.setText("Your bug successfully reported!");
 	    					messageLabel.setVisible(true);

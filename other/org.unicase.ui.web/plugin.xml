@@ -13,9 +13,10 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="UNICASE Web Perspective"
             class="org.unicase.ui.web.Perspective"
-            id="org.unicase.ui.web.perspective">
+            fixed="false"
+            id="org.unicase.ui.web.perspective"
+            name="UNICASE Web Perspective">
       </perspective>
    </extension>
    <extension

@@ -68,12 +68,12 @@ public class Activator extends AbstractUIPlugin {
 	 * Initializes the configuration object and project updater thread.
 	 */
 	private static void init() {
-		Configuration.initialize();
-		String projectName = Configuration.getProperties().getProperty("projectname");
-		LoginHandler login = new LoginHandler(Configuration.getProperties().getProperty("hostname"));
-		login.run();
-		Thread updaterThread = new Thread(new UpdateProjectHandler(projectName));
-		updaterThread.start();
+//		Configuration.initialize();
+//		String projectName = Configuration.getProperties().getProperty("projectname");
+//		LoginHandler login = new LoginHandler(Configuration.getProperties().getProperty("hostname"));
+//		login.run();
+//		Thread updaterThread = new Thread(new UpdateProjectHandler(projectName));
+//		updaterThread.start();
 	}
 	
 }
