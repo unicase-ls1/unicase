@@ -5,6 +5,10 @@ Bundle-SymbolicName: org.unicase.backchannel;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.backchannel.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.unicase.workspace
+ org.unicase.workspace;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.backchannel,
+ org.unicase.backchannel.connection.rmi.client,
+ org.unicase.backchannel.connection.rmi.server,
+ org.unicase.backchannel.server
