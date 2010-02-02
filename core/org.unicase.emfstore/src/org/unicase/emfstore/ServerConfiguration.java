@@ -270,7 +270,7 @@ public final class ServerConfiguration {
 	public static final String VALIDATION_PROJECT_EXCLUDE_DEFAULT = "";
 
 	/**
-	 * Property for loading startuo listeners from extension point.
+	 * Property for loading startup listeners from extension point.
 	 */
 	public static final String LOAD_STARTUP_LISTENER = "emfstore.startup.loadlistener";
 
