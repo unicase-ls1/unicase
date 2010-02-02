@@ -27,7 +27,7 @@ public class AttachCodeLocation {
 
 	public static UnicaseModelElement showUserDialog() {
 
-		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+		//ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
 		ChooseModelElementDialog cmed = new ChooseModelElementDialog(
 				getActiveProject(), "Choose Model Element for code location!");
 		if (cmed.open() == Window.OK) {
@@ -35,7 +35,7 @@ public class AttachCodeLocation {
 
 			if (result.length > 0) {
 				for (Object o : result) {
-					if (o instanceof UnicaseModelElement) {
+					if (o instanceof UnicaseModelElement ) {
 						return (UnicaseModelElement)o;
 					}
 				}

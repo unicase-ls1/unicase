@@ -27,6 +27,8 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.trace.CodeLocation;
+import org.unicase.model.trace.LineHash;
 import org.unicase.ui.common.Activator;
 //import org.unicase.ui.multiaction.MultiActionGenerator;
 import org.unicase.workspace.ProjectSpace;
@@ -37,11 +39,12 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * 
  * @author jfinis A dialog to select users or groups.
- *
+ * @author kterziewa
  */
 public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 	private EList<ModelElement> elements;
+	private EList<ModelElement> elementsFiltered;
 	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
@@ -54,6 +57,20 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),true);
 		elements = p.getAllModelElementsbyClass(MetamodelPackage.Literals.MODEL_ELEMENT,new BasicEList<ModelElement>());
 
+		System.out.println("Liste ist leer:" + elements.isEmpty());
+		
+		EList<ModelElement> elementsFiltered = new BasicEList<ModelElement>();
+		if (elements != null) {
+			for (ModelElement me : (EList<ModelElement>) elements) {
+				if (!(me instanceof LineHash) & !(me instanceof CodeLocation))  {
+					elementsFiltered.add(me);
+				}
+			}
+		}
+		elements = elementsFiltered;
+		
+		
+				
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		setListLabelProvider(labelProvider);
 		setDetailsLabelProvider(labelProvider);
