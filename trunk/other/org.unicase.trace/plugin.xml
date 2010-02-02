@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension 
+		point="org.eclipse.core.resources.markers"
+		id="org.unicase.taskmarker"
+		name="Unicase Task Marker">
+    	<super type="org.eclipse.core.resources.marker"/>
+    	<persistent value="true"/>
+</extension>
+
+<extension 
+	point= "org.eclipse.ui.ide.markerImageProviders">
+	<imageprovider 
+		markertype= "org.unicase.taskmarker"
+		icon= "icons/t.png"
+		id= "org.unicase.codetrace.NewAction" >
+	</imageprovider>
+
+</extension>
+
+
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.unicase.codetrace.viewerContribution1"
+            targetID="#CompilationUnitRulerContext">
+         <action
+               class="org.unicase.codetrace.popup.actions.TestRetrieve"
+               id="org.unicase.codetrace.action2"
+               label="GET ME BACK TO THE MARKER"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+      
+      <viewerContribution
+      		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
+      		targetID="#CompilationUnitRulerContext">
+      	<action
+      		class="org.unicase.codetrace.popup.actions.AttachLocationAction"
+    		id="org.unicase.codetrace.action1"
+   			label="Link Source Code"
+   	 		icon="icons/t.png"
+   			menubarPath="additions" >
+  		</action>
+	</viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.model.trace.provider.TraceItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/model/codetrace">
+      </factory>
+   </extension>
+
+  
+    <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.trace.TracePackage"
+           genModel="model/tracemodel.genmodel"
+           uri="http://unicase.org/model/codetrace">
+     </package>
+  </extension>
+  
+  
+</plugin>
