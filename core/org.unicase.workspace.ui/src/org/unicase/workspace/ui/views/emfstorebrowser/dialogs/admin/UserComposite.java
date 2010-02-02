@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
@@ -17,6 +18,7 @@ import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Form;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
@@ -150,6 +152,17 @@ public class UserComposite extends PropertiesComposite {
 			getTxtDescription().setText((user.getDescription() == null) ? "" : user.getDescription());
 			getTableViewer().setInput(user);
 
+			//disable the text fields for editing name and description when displaying the super user
+			String superUserName = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
+				ServerConfiguration.SUPER_USER_DEFAULT);
+
+			if (user.getName().equals(superUserName)) {
+				getTxtName().setEnabled(false);
+				getTxtDescription().setEnabled(false);
+			} else {
+				getTxtName().setEnabled(true);
+				getTxtDescription().setEnabled(true);
+			}
 		}
 
 	}
@@ -202,6 +215,22 @@ public class UserComposite extends PropertiesComposite {
 		if (user == null) {
 			return;
 		}
+
+		String superUserName = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
+			ServerConfiguration.SUPER_USER_DEFAULT);
+		if (getTxtName().getText().compareToIgnoreCase(superUserName) == 0) {
+			getTxtName().setText("New User");
+			MessageDialog.openInformation(this.getShell(), "Illegal User Name!!!",
+				"The username \"super\" is not allowed! It was set to a default value. ");
+			return;
+		}
+		if (getTxtName().getText().equals("")) {
+			getTxtName().setText("New User");
+			MessageDialog.openInformation(this.getShell(), "Empty User Name!!!",
+				"Empty usernames are not allowed! It was set to a default value.");
+			return;
+		}
+
 		if (!(user.getName().equals(getTxtName().getText()) && user.getDescription().equals(
 			getTxtDescription().getText()))) {
 			try {

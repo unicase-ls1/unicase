@@ -12,6 +12,7 @@ import java.util.List;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -23,10 +24,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.ToolBar;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
@@ -59,7 +64,23 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 				}
 
 				try {
-					getAdminBroker().deleteUser(ou.getId());
+					String superUser = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
+						ServerConfiguration.SUPER_USER_DEFAULT);
+					boolean isAdmin = false;
+					for (Iterator<Role> it = ou.getRoles().iterator(); it.hasNext();) {
+						Role userRole = it.next();
+						if ((ou.getName().compareTo(superUser) == 0) && (userRole instanceof ServerAdmin)) {
+							isAdmin = true;
+							break;
+						}
+					}
+					if (isAdmin) {
+						Display display = Display.getCurrent();
+						MessageDialog.openInformation(display.getActiveShell(), "Illegal deletion attempt",
+							"It is not allowed to delete the super user!");
+					} else {
+						getAdminBroker().deleteUser(ou.getId());
+					}
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
