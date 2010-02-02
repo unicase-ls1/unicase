@@ -12,7 +12,7 @@ import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
  * 
  * @author wesendon
  */
-public interface EventListener {
+public interface EMFStoreEventListener {
 
 	/**
 	 * Called if an event has occured.
@@ -20,5 +20,5 @@ public interface EventListener {
 	 * @param event the event
 	 * @return true if listener wants to stay registered. false if wants to be unregisterd
 	 */
-	boolean eventHappened(ServerEvent event);
+	boolean handleEvent(ServerEvent event);
 }

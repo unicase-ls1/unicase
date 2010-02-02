@@ -16,14 +16,17 @@ import org.unicase.emfstore.esmodel.ProjectHistory;
  * 
  * @author wesendon
  */
-public class StartupExtensionManager {
+public final class ExtensionManager {
+
+	private ExtensionManager() {
+	}
 
 	/**
 	 * Calls the startup listeners.
 	 * 
 	 * @param projects list of projects
 	 */
-	public void runOnProjects(EList<ProjectHistory> projects) {
+	public static void notifyStartupListener(EList<ProjectHistory> projects) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.emfstore.startuplistener");
 

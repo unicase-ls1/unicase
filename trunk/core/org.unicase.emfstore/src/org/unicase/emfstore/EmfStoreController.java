@@ -44,8 +44,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.startup.EmfStoreValidator;
+import org.unicase.emfstore.startup.ExtensionManager;
 import org.unicase.emfstore.startup.MigrationManager;
-import org.unicase.emfstore.startup.StartupExtensionManager;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
@@ -109,9 +109,9 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		this.serverSpace = initServerSpace();
 
-		historyCache = initHistoryCache();
-
 		handleStartupListener();
+
+		historyCache = initHistoryCache();
 
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
@@ -123,6 +123,8 @@ public class EmfStoreController implements IApplication, Runnable {
 		TaskManager taskManager = TaskManager.getInstance();
 		taskManager.addTask(new CleanMemoryTask(serverSpace));
 		taskManager.start();
+
+		handlePostStartupListener();
 
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
@@ -136,10 +138,14 @@ public class EmfStoreController implements IApplication, Runnable {
 		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.LOAD_STARTUP_LISTENER,
 			ServerConfiguration.LOAD_STARTUP_LISTENER_DEFAULT);
 		if (ServerConfiguration.TRUE.equals(property)) {
-			StartupExtensionManager startupExtensionManager = new StartupExtensionManager();
 			logger.info("Notifying startup listener");
-			startupExtensionManager.runOnProjects(serverSpace.getProjects());
+			ExtensionManager.notifyStartupListener(serverSpace.getProjects());
 		}
+	}
+
+	private void handlePostStartupListener() {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void setupKeyStore() {

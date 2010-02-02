@@ -23,12 +23,12 @@ public final class EventManager extends Thread {
 
 	private static EventManager instance;
 	private LinkedBlockingQueue<ServerEvent> queue;
-	private ArrayList<EventListener> listeners;
+	private ArrayList<EMFStoreEventListener> listeners;
 
 	private EventManager() {
 		super("EventManager");
 		queue = new LinkedBlockingQueue<ServerEvent>();
-		listeners = new ArrayList<EventListener>();
+		listeners = new ArrayList<EMFStoreEventListener>();
 		start();
 	}
 
@@ -49,14 +49,14 @@ public final class EventManager extends Thread {
 	 */
 	@Override
 	public void run() {
-		ArrayList<EventListener> tmp = new ArrayList<EventListener>();
+		ArrayList<EMFStoreEventListener> tmp = new ArrayList<EMFStoreEventListener>();
 		while (!isInterrupted()) {
 			try {
 				ServerEvent event = queue.take();
 				if (event != null) {
 					synchronized (this) {
-						for (EventListener e : listeners) {
-							boolean successful = e.eventHappened((ServerEvent) EcoreUtil.copy(event));
+						for (EMFStoreEventListener e : listeners) {
+							boolean successful = e.handleEvent((ServerEvent) EcoreUtil.copy(event));
 							if (!successful) {
 								tmp.add(e);
 							}
@@ -76,7 +76,7 @@ public final class EventManager extends Thread {
 	 * @param listener the listener
 	 * @param clazz not implemented yet
 	 */
-	public void registerListener(EventListener listener, EClass clazz) {
+	public void registerListener(EMFStoreEventListener listener, EClass clazz) {
 		if (listener == null) {
 			return;
 		}
@@ -90,7 +90,7 @@ public final class EventManager extends Thread {
 	 * 
 	 * @param listener a listener
 	 */
-	public void unregisterListener(EventListener listener) {
+	public void unregisterListener(EMFStoreEventListener listener) {
 		if (listener == null) {
 			return;
 		}
