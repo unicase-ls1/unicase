@@ -8,6 +8,7 @@ import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -28,7 +29,7 @@ public class TabbedView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		
-		parent.setLayout(new FillLayout());
+		parent.setLayout(new GridLayout(2, false));
 		int style = SWT.TOP | SWT.FLAT | SWT.BORDER;
 		final CTabFolder topFolder = new CTabFolder(parent, style);
 		topFolder.marginWidth = 8;
