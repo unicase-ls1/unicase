@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.actions.SelectAction;
@@ -30,8 +29,6 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 	 * @param dispatcher
 	 *            The {@link TouchDispatch} at which the gesture will register
 	 *            for touch events
-	 * @param diagramEditPart
-	 *            The {@link DiagramEditPart}
 	 */
 	public CreateNodeGesture(TouchDispatch dispatcher) {
 		super(dispatcher);

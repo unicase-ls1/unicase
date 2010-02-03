@@ -1,8 +1,7 @@
 package org.unicase.ui.tum.tuio;
 
-import org.unicase.ui.tom.IPoint;
 
-public class TuioPoint implements IPoint{
+public class TuioPoint{
 	
 	public static final int TUIO_UNDEFINED = -1;
 	protected long timestamp;

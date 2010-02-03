@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -12,7 +12,6 @@ import java.util.Set;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.actions.MoveCanvasAction;
 import org.unicase.ui.tom.tools.TouchConstants;
@@ -34,8 +33,6 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	 * @param dispatch
 	 *            The {@link TouchDispatch} at which the gesture will register
 	 *            for touch events
-	 * @param diagramEditPart
-	 *            The {@link DiagramEditPart}
 	 */
 	public MoveCanvasGesture(TouchDispatch dispatch) {
 		super(dispatch);
@@ -168,10 +165,16 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 		}
 	}
 
+	/**
+	 * @param candidateTouches The touches possibly belonging to this gesture
+	 */
 	public void setCandidateTouches(Set<SingleTouch> candidateTouches) {
 		this.candidateTouches = candidateTouches;
 	}
 
+	/**
+	 * @return The touches possibly belonging to this gesture
+	 */
 	public Set<SingleTouch> getCandidateTouches() {
 		return candidateTouches;
 	}

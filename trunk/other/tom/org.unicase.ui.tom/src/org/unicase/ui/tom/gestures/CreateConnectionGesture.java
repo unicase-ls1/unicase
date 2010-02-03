@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.Utility;
 import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
@@ -27,15 +26,10 @@ import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
  * @author schroech
  *
  */
-/**
- * @author schroech
- *
- */
 public class CreateConnectionGesture extends CreateGesture {
 
 	/**
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
 	public CreateConnectionGesture(TouchDispatch dispatch) {
 		super(dispatch);
@@ -187,7 +181,6 @@ public class CreateConnectionGesture extends CreateGesture {
 					continue;
 				}
 
-				PointList pointList = TouchUtility.pointListOfCurrentPositions(multiTouch.getActiveTouches());
 				EditPart editPart = findCardinalTouchedNodeEditPart(targetPointList);
 
 				if (editPart != null) {
@@ -219,14 +212,14 @@ public class CreateConnectionGesture extends CreateGesture {
 	}
 
 	/**
-	 * @param sourceMultiTouches
+	 * @param sourceMultiTouches The {@link MultiTouch} possibly touching the source of this gesture
 	 */
 	public void setSourceMultiTouches(List<MultiTouch> sourceMultiTouches) {
 		this.sourceMultiTouches = sourceMultiTouches;
 	}
 
 	/**
-	 * @return
+	 * @return The {@link MultiTouch} possibly touching the source of this gesture
 	 */
 	public List<MultiTouch> getSourceMultiTouches() {
 		return sourceMultiTouches;

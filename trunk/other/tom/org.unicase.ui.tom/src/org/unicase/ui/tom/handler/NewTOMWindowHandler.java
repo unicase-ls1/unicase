@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -16,8 +21,15 @@ import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.diagram.MEDiagram;
 
+/**
+ * @author schroech
+ *
+ */
 public class NewTOMWindowHandler extends AbstractHandler implements IHandler{
 
+    /*** {@inheritDoc}
+     * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+     */
     public Object execute(ExecutionEvent event) throws ExecutionException {
 	
 	ISelection selection = HandlerUtil.getCurrentSelection(event);

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom;
 
 import org.eclipse.ui.IEditorPart;
@@ -8,9 +13,16 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
+/**
+ * The TouchController is the main controller of the TOM component. 
+ * It controls the multi-touch mode and observes the active editor state.
+ */
 public final class TouchController implements IPartListener{
 
-	private static final TouchController instance = new TouchController();
+	/**
+	 * The singleton instance. 
+	 */
+	private static final TouchController INSTANCE = new TouchController();
 	
 	private boolean isActive;
 	
@@ -31,10 +43,17 @@ public final class TouchController implements IPartListener{
 		dispatcher.getMultiTouchNotifier().getAdapters().add(visualizer.getMultiTouchAdapter());
 	}
 
+	/**
+	 * Returns the singleton instance.
+	 * @return The singleton instance 
+	 */
 	public static TouchController getInstance() {
-		return instance;
+		return INSTANCE;
 	}
 
+	/**
+	 * Toggles the multi-touch mode.
+	 */
 	public void toggleMultiTouchMode() {
 		if (isActive) {
 			setActiveEditor(null);
@@ -62,10 +81,17 @@ public final class TouchController implements IPartListener{
 		}
 	}
 
+	/**
+	 * @return If the multi-touch mode is active
+	 */
 	public boolean isActive() {
 		return isActive;
 	}
 
+	/**
+	 * Notify the controller about closed workbench pages.
+	 * @param page The IWorkbenchPage being closed
+	 */
 	public void pageClosed(IWorkbenchPage page) {
 		if (!isActive) {
 			return;
@@ -81,6 +107,10 @@ public final class TouchController implements IPartListener{
 		
 	}
 
+	/**
+	 * Notify the controller about opened workbench pages.
+	 * @param page The IWorkbenchPage being opened
+	 */
 	public void pageOpened(IWorkbenchPage page) {
 		IEditorPart editor = Utility.getActiveEditor();
 		if (editor == null || !(editor instanceof ModelDiagramEditor)) {	 
@@ -90,6 +120,10 @@ public final class TouchController implements IPartListener{
 		this.setActiveEditor((ModelDiagramEditor) editor);
 	}
 
+	/**
+	 * Sets the active editor.
+	 * @param activeEditor The new active editor
+	 */
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
 		this.activeEditor = activeEditor;
 		
@@ -98,14 +132,25 @@ public final class TouchController implements IPartListener{
 		interpreter.setActiveEditor(activeEditor);
 	}
 
+	/**
+	 * @return The new active editor
+	 */
 	public ModelDiagramEditor getActiveEditor() {
 		return activeEditor;
 	}
 
+	/**
+	 * Notify the controller about parts being activated.
+	 * @param part The new active part
+	 */
 	public void partActivated(IWorkbenchPart part) {
 		//do nothing
 	}
 
+	/**
+	 * Notify the controller about parts being brought to top.
+	 * @param part The part being brought to top.
+	 */
 	public void partBroughtToTop(IWorkbenchPart part) {
 		if (!isActive) {
 			return;
@@ -122,6 +167,10 @@ public final class TouchController implements IPartListener{
 		}
 	}
 
+	/**
+	 * Notify the controller about parts being closed.
+	 * @param part The part being closed.
+	 */
 	public void partClosed(IWorkbenchPart part) {
 		if (!isActive) {
 			return;
@@ -138,10 +187,18 @@ public final class TouchController implements IPartListener{
 		}
 	}
 
+	/**
+	 * Notify the controller about parts being deactivated.
+	 * @param part The part being deactivated.
+	 */
 	public void partDeactivated(IWorkbenchPart part) {
 		//do nothing
 	}
 
+	/**
+	 * Notify the controller about parts being opened.
+	 * @param part The part being opened.
+	 */
 	public void partOpened(IWorkbenchPart part) {
 		if (!isActive) {
 			return;

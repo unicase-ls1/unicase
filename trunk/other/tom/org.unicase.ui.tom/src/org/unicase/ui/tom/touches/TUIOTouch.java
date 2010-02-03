@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.touches;
 
 import java.awt.Dimension;
@@ -9,6 +14,10 @@ import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tum.tuio.TuioCursor;
 import org.unicase.ui.tum.tuio.TuioPoint;
 
+/**
+ * @author schroech
+ *
+ */
 public class TUIOTouch extends SingleTouch implements Touch {
 
 	private TuioCursor cursor;
@@ -16,17 +25,27 @@ public class TUIOTouch extends SingleTouch implements Touch {
 	private final PointList path = new PointList();
 	private final PointList absolutePath = new PointList();
 
+	/**
+	 * @param cursor The {@link TuioCursor} corresponding to this touch
+	 * @param screenSize The screen size, required to map the {@link TuioCursor} relative coordinates to absolute corrdinates 
+	 */
 	public TUIOTouch(TuioCursor cursor, Dimension screenSize) {
 		super();
 		this.cursor = cursor;
 		this.screenSize = screenSize;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getPosition()
+	 */
 	public Point getPosition() {
 		Point position = new Point(getX(), getY());
 		return position;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getX()
+	 */
 	public int getX() {
 		int xPos = (int) (cursor.getX() * screenSize.getWidth()
 				- TouchDispatch.getInstance().getEditorBounds().x 
@@ -34,6 +53,9 @@ public class TUIOTouch extends SingleTouch implements Touch {
 		return xPos;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getY()
+	 */
 	public int getY() {
 		int yPos = (int) (cursor.getY() * screenSize.getHeight()
 				- TouchDispatch.getInstance().getEditorBounds().y 
@@ -41,10 +63,16 @@ public class TUIOTouch extends SingleTouch implements Touch {
 		return yPos;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.SingleTouch#update()
+	 */
 	public void update() {
 
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.SingleTouch#getAbsolutePath()
+	 */
 	public PointList getAbsolutePath() {
 		List<TuioPoint> tuioPath = cursor.getPath();
 
@@ -64,6 +92,9 @@ public class TUIOTouch extends SingleTouch implements Touch {
 		return absolutePath;
 	}
 	
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.SingleTouch#getPath()
+	 */
 	public PointList getPath() {
 		List<TuioPoint> tuioPath = cursor.getPath();
 
@@ -88,16 +119,25 @@ public class TUIOTouch extends SingleTouch implements Touch {
 		return path;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getAbsolutePosition()
+	 */
 	public Point getAbsolutePosition() {
 		Point position = new Point(getAbsoluteX(), getAbsoluteY());
 		return position;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getAbsoluteX()
+	 */
 	public int getAbsoluteX() {
 		int xPos = (int) (cursor.getX() * screenSize.getWidth());
 		return xPos;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getAbsoluteY()
+	 */
 	public int getAbsoluteY() {
 		int yPos = (int) (cursor.getY() * screenSize.getHeight());
 		return yPos;

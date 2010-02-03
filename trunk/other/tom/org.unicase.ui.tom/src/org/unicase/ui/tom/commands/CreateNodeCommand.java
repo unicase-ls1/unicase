@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -36,6 +36,7 @@ public class CreateNodeCommand extends AbstractCommand{
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param point The position where the new editPart is created
 	 * @param elementType The {@link IElementType} of the new editPart
+	 * @param targetEditPart The target edit part, used for the creation of subnodes
 	 */
 	public CreateNodeCommand(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart, Point point, IElementType elementType) {
 		super(diagramEditPart);
@@ -127,14 +128,23 @@ public class CreateNodeCommand extends AbstractCommand{
 		this.point = point;
 	}
 
+	/**
+	 * @return The target edit part
+	 */
 	public GraphicalEditPart getTargetEditPart() {
 		return targetEditPart;
 	}
 
+	/**
+	 * @param createdEditPart The created edit part
+	 */
 	public void setCreatedEditPart(EditPart createdEditPart) {
 		this.createdEditPart = createdEditPart;
 	}
 
+	/**
+	 * @return The created edit part
+	 */
 	public EditPart getCreatedEditPart() {
 		if (createdEditPart == null) {
 			createdEditPart = findCreatedEditPart();

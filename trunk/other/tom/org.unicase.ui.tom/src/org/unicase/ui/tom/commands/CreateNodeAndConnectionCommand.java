@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -128,7 +128,7 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 	}
 
 	/**
-	 * @return
+	 * @return An IAdaptable corresponding to the kind of object created. 
 	 */
 	protected IAdaptable getTargetAdapter() {
 		if (getTargetEditPart() != null) {
@@ -145,7 +145,7 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 	}
 
 	/**
-	 * @return
+	 * @return The connection creation command
 	 */
 	protected CreateConnectionCommand getConnectionCreationCommand() {
 		if (connectionCreationCommand == null) {
@@ -160,6 +160,9 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		return connectionCreationCommand;
 	}
 
+	/**
+	 * @return The source node creation command
+	 */
 	protected CreateNodeCommand getSourceCreationCommand(){
 		if (sourceCreationCommand == null) {
 			if (getSourceEditPart() == null) {
@@ -181,6 +184,9 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		return sourceCreationCommand;
 	}
 
+	/**
+	 * @return The target node creation command
+	 */
 	protected CreateNodeCommand getTargetCreationCommand(){
 		if (targetCreationCommand == null) {
 			if (getTargetEditPart() == null) {
@@ -201,6 +207,9 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		return targetCreationCommand;
 	}
 
+	/**
+	 * @return An IAdaptable corresponding to the kind of source created. 
+	 */
 	protected IAdaptable getSourceAdapter() {
 		if (getSourceEditPart() != null) {
 			DynamicEObjectAdapter existingObjectAdapter = new DynamicEObjectAdapter(
@@ -293,6 +302,10 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		return null;
 	}
 
+
+	/**
+	 * @param connectionCreationCommand The connection creation command
+	 */
 	public void setConnectionCreationCommand(CreateConnectionCommand connectionCreationCommand) {
 		this.connectionCreationCommand = connectionCreationCommand;
 	}

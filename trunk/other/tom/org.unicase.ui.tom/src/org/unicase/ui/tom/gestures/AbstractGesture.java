@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -25,7 +25,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.LayerConstants;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -69,7 +68,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		if (canExecute != this.canExecute) {
 			this.canExecute = canExecute;
 			notifyAdapters(new GestureNotificationImpl(this,
-					GestureNotification.gestureExecutionChange));
+					GestureNotification.GESTURE_EXECUTION_CHANGE));
 		}
 	}
 
@@ -88,9 +87,8 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param dispatch
 	 *            The {@link TouchDispatch} at which the gesture will register
 	 *            for touch events
-	 * @param diagramEditPart
-	 *            The {@link DiagramEditPart}
 	 */
+	@SuppressWarnings("unchecked")
 	public AbstractGesture(TouchDispatch dispatch) {
 		setDispatch(dispatch);
 		setRestrictingGestures(new ArrayList<Gesture>());
@@ -144,6 +142,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	}
 
 	
+	/**
+	 * @param position The position where to search for label edit parts
+	 * @return The touched LabelEditPart
+	 */
 	@SuppressWarnings("unchecked")
 	public LabelEditPart findTouchedLabelEditPart(Point position) {
 		List connectionLayerChildren = getConnectionLayer().getChildren();
@@ -153,19 +155,9 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 						.getChildren();
 				for (Object connectionChild : connectionChildren) {
 
-					if (connectionChild instanceof WrappingLabel
-							|| connectionChild instanceof Label) {
-
-						boolean labelContainsPoint = labelContainsPoint(
-								(IFigure) connectionChild, position,
-								TouchConstants.POLYLINE_TOLERANCE);
-
-						if (labelContainsPoint) {
-							EditPart editPart = getEditPartForFigure((IFigure) connectionChild);
-							if (editPart instanceof LabelEditPart) {
-								return (LabelEditPart) editPart;
-							}
-						}
+					LabelEditPart editPart = labelContainingPoint(position, connectionChild);
+					if (editPart != null) {
+						return editPart;
 					}
 
 				}
@@ -175,7 +167,28 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return null;
 	}
 
-	/** 
+	private LabelEditPart labelContainingPoint(Point position, Object connectionChild) {
+		if (connectionChild instanceof WrappingLabel
+				|| connectionChild instanceof Label) {
+
+			boolean labelContainsPoint = labelContainsPoint(
+					(IFigure) connectionChild, position,
+					TouchConstants.POLYLINE_TOLERANCE);
+
+			if (labelContainsPoint) {
+				EditPart editPart = getEditPartForFigure((IFigure) connectionChild);
+				if (editPart instanceof LabelEditPart) {
+					return (LabelEditPart) editPart;
+				}
+			}
+		}
+		return null;
+	}
+
+
+	/**
+	 * @param position The position of the touch
+	 * @return The touched {@link ConnectionEditPart}, if existing
 	 */
 	@SuppressWarnings("unchecked")
 	public ConnectionEditPart findTouchedConnectionEditPart(Point position) {
@@ -200,6 +213,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return null;
 	}
 
+	/**
+	 * @param point The position of the touch
+	 * @return The touched {@link INodeEditPart}, if existing
+	 */
 	public INodeEditPart findTouchedNodeEditPart(Point point) {
 		EditPart foundEditPart;
 		foundEditPart = findTouchedEditPartAtAbsoluteCoordinates(point);
@@ -210,6 +227,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return (INodeEditPart) foundEditPart;
 	}
 
+	/**
+	 * @param point The position of the touch
+	 * @return The touched {@link CompartmentEditPart}, if existing
+	 */
 	public CompartmentEditPart findTouchedCompartmentEditPart(final Point point) {
 		EditPart foundEditPart;
 		foundEditPart = findTouchedEditPartAtAbsoluteCoordinates(point);
@@ -227,6 +248,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	/**
 	 * @return
 	 */
+	/**
+	 * @param point The position of the touch
+	 * @return The touched {@link EditPart}, if existing
+	 */
 	public EditPart findTouchedEditPartAtAbsoluteCoordinates(Point point) {
 
 		Point relativePoint = new Point(point);
@@ -235,10 +260,11 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	}
 
 	/**
-	 * @param exclusions
-	 * @param position
-	 * @return
+	 * @param exclusions The {@link EditPart}s to exclude from the search
+	 * @param position The position of the touch
+	 * @return The touched {@link EditPart}, if existing
 	 */
+	@SuppressWarnings("unchecked")
 	public EditPart findTouchedEditPartAtRelativeCoordinatesExcluding(
 			Collection exclusions, Point position) {
 		IFigure figure = getDiagramEditPart().getFigure()
@@ -256,6 +282,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return part;
 	}
 
+	/**
+	 * @param points The position of the touches
+	 * @return The {@link INodeEditPart} probably being the target of the gesture
+	 */
 	public INodeEditPart findCardinalTouchedNodeEditPart(PointList points) {
 		List<INodeEditPart> touchedEditParts = new ArrayList<INodeEditPart>();
 		for (int i = 0; i < points.size(); i++) {
@@ -280,15 +310,19 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		} 
 	}
 	
+	/**
+	 * @param touches The touches
+	 * @return The {@link INodeEditPart} probably being the target of the gesture
+	 */
 	public EditPart findCardinalTouchedEditPart(Collection<SingleTouch> touches) {
 		return findCardinalTouchedEditPartExcluding(touches,
 				Collections.EMPTY_LIST);
 	}
 
 	/**
-	 * @param touch
-	 * @param exclusions
-	 * @return
+	 * @param touches The touch examined
+	 * @param exclusions The editParts to exclude from the search
+	 * @return The {@link EditPart} probably being the target of the gesture
 	 */
 	@SuppressWarnings("unchecked")
 	public EditPart findCardinalTouchedEditPartExcluding(
@@ -317,7 +351,9 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 			}
 
 		};
-
+		
+		Collections.sort(chronologicallySortedTouches, comp);
+		
 		for (Touch touch : chronologicallySortedTouches) {
 			Point position = touch.getPosition();
 			editPart = findTouchedEditPartAtRelativeCoordinatesExcluding(
@@ -331,6 +367,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return null;
 	}
 
+	/**
+	 * @param touches The touches examined
+	 * @return The {@link EditPart} probably being the target of the gesture
+	 */
 	@SuppressWarnings("unchecked")
 	public EditPart findCardinalTouchedEditPartExcludingDiagram(
 			Collection<Touch> touches) {
@@ -341,6 +381,12 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return findCardinalTouchedEditPartExcluding(touches, exclusions);
 	}
 
+	/**
+	 * @param touches The touches examined
+	 * @param exclusions The {@link EditPart}s to exclude from the search
+	 * @return The {@link EditPart}s touched by the touches
+	 */
+	@SuppressWarnings("unchecked")
 	public Set<EditPart> findTouchedEditPartsExcluding(
 			Collection<? extends Touch> touches, Collection exclusions) {
 		Set<EditPart> editParts = new HashSet<EditPart>();
@@ -358,6 +404,12 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return editParts;
 	}
 
+	/**
+	 * @param touches The touches examined
+	 * @param exclusions The {@link EditPart}s to exclude from the search
+	 * @return The {@link EditPart} at the center of the touches
+	 */
+	@SuppressWarnings("unchecked")
 	public EditPart findEditPartAtCenterExcluding(Collection<?extends Touch> touches,
 			Collection exclusions) {
 		PointList points = new PointList();
@@ -379,6 +431,10 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return editPart;
 	}
 
+	/**
+	 * @param figure The figure
+	 * @return The corresponding {@link EditPart}
+	 */
 	public EditPart getEditPartForFigure(IFigure figure) {
 		EditPart part = (EditPart) getDiagramEditPart().getViewer()
 				.getVisualPartMap().get(figure);
@@ -399,16 +455,18 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		Point lastPoint = touch.getPosition();
 	
 		double distance = firstPoint.getDistance(lastPoint);
-//		PointList path = touch.getPath();
-//		Rectangle bounds = path.getBounds();
-//		Point point = touch.getPosition();
-//		double distance = point.getDistance(bounds.getCenter());
 
 		boolean touchMoved = distance > threshold;
 
 		return touchMoved;
 	}
 	
+	/**
+	 * @param figure The label {@link IFigure} possibly containing the point
+	 * @param position The point, may not be null
+	 * @param tolerance The tolerance in pixels around the point where it is still considered to be contained 
+	 * @return true if the labels bounds contain the point, false otherwise 
+	 */
 	public boolean labelContainsPoint(IFigure figure, Point position,
 			int tolerance) {
 
@@ -550,13 +608,13 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		Touch touch = notification.getTouch();
 		if (touch instanceof SingleTouch) {
 			switch (eventType) {
-			case SingleTouchNotification.touchAdded:
+			case SingleTouchNotification.TOUCH_ADDED:
 				handleSingleTouchAdded((SingleTouch) touch);
 				break;
-			case SingleTouchNotification.touchRemoved:
+			case SingleTouchNotification.TOUCH_REMOVED:
 				handleSingleTouchRemoved((SingleTouch) touch);
 				break;
-			case SingleTouchNotification.touchChanged:
+			case SingleTouchNotification.TOUCH_CHANGED:
 				handleSingleTouchChanged((SingleTouch) touch);
 				break;
 			default:
@@ -627,7 +685,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		if (acceptsTouches != this.acceptsTouches) {
 			this.acceptsTouches = acceptsTouches;
 			notifyAdapters(new GestureNotificationImpl(this,
-					GestureNotification.gestureAcceptanceChange));
+					GestureNotification.GESTURE_ACCEPTANCE_CHANGE));
 		}
 	}
 
@@ -675,18 +733,30 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return priority;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.Gesture#setRestrictingGestures(java.util.List)
+	 */
 	public void setRestrictingGestures(List<Gesture> restrictingGestures) {
 		this.restrictingGestures = restrictingGestures;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.Gesture#getRestrictingGestures()
+	 */
 	public List<Gesture> getRestrictingGestures() {
 		return restrictingGestures;
 	}
 
+	/**
+	 * @param optionalTouches The touches which may, but do not necessarily belong to the gesture
+	 */
 	public void setOptionalTouches(List<MultiTouch> optionalTouches) {
 		this.optionalTouches = optionalTouches;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.Gesture#getOptionalTouches()
+	 */
 	public List<MultiTouch> getOptionalTouches() {
 		return optionalTouches;
 	}
