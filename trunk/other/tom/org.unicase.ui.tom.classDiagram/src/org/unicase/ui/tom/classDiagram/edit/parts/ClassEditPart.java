@@ -6,9 +6,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.TouchController;
 import org.unicase.ui.tom.classDiagram.edit.policies.TouchResizableShapeEditPolicy;
+import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
 public class ClassEditPart extends
 		org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart {
