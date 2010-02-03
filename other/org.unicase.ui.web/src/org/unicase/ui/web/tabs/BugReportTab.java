@@ -1,11 +1,7 @@
 package org.unicase.ui.web.tabs;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -20,15 +16,16 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.bug.BugFactory;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.Severity;
-import org.unicase.web.util.ExampleUtil;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
+import org.unicase.model.bug.Severity;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.BugFactory;
+import org.unicase.web.util.ExampleUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.CompositeOperationHandle;
+import org.unicase.workspace.exceptions.InvalidHandleException;
 
 /**
  * 
@@ -37,29 +34,22 @@ import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
  */
 public class BugReportTab extends AbstractTab {
 
-	private final CTabItem tabItem;
 	
-	public BugReportTab(CTabFolder parent) {
-		super(parent, "Bug reporting");
-		tabItem = new CTabItem(getTabFolder(), SWT.NONE);
+	public BugReportTab(String projectName, CTabFolder parent) {
+		super(projectName, parent, "Bug Reporting");
 	}
 
-	public void createTabContent() {
-		Composite com = new Composite(getTabComposite(), SWT.NONE);
-		createTabContent(com);
-		tabItem.setControl(com);
-	}
 	
 	/**
 	 * 
 	 * @param parent
 	 */
-	private void createTabContent(Composite composite) {
-		composite.setLayout(ExampleUtil.createGridLayout(1, false, 10, 20));
+	public void createTabContent() {
+		getTabComposite().setLayout(ExampleUtil.createGridLayout(1, false, 10, 20));
 
 		// group widget
 		GridData gridData;
-		Group group = new Group(composite, SWT.NONE);
+		Group group = new Group(getTabComposite(), SWT.NONE);
 		group.setText("Bug reporting");
 		group.setLayout(ExampleUtil.createGridLayout(1, false, 10, 20));
 		group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));

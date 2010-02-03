@@ -1,31 +1,38 @@
 package org.unicase.ui.web.tabs;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
+
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.organization.User;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
-import org.unicase.workspace.ProjectSpace;
 
+/**
+ * 
+ * @author Edgar Müller
+ * @author Fatih Ulusoy
+ */
 public class TeamListView extends AbstractListView {
 
+	/**
+	 * 
+	 * @param projectSpace
+	 * @param composite
+	 */
 	public TeamListView(ProjectSpace projectSpace, Composite composite) {
 		super(projectSpace, composite);
-	}
-
-	@Override
-	public ArrayList<EStructuralFeature> getFeatureList() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override
@@ -34,32 +41,21 @@ public class TeamListView extends AbstractListView {
 		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		tableData.horizontalSpan = 2;
 		getTable().setLayoutData(tableData);
-		setListInput();
 	}
 	
 
-	private List<OrgUnit> getTeamMembers() {
-		
-		List<Group> groups = null;
-		List<OrgUnit> teamMembers = new BasicEList<OrgUnit>();
-		
-		if (getProject() != null) {
-			groups = getProject().getAllModelElementsbyClass(
-					OrganizationPackage.eINSTANCE.getGroup(),
-					new BasicEList<Group>());
-		}
-		
-		for(Group group : groups) {
-			if(group.getName().toLowerCase().contains(getProjectSpace().getProjectName().toLowerCase()))
-				teamMembers = group.getOrgUnits();
-		}
-		
-		return teamMembers;
+	@Override
+	public ArrayList<EStructuralFeature> getFeatureList() {
+		ArrayList<EStructuralFeature> list = new ArrayList<EStructuralFeature>();
+		list.add(OrganizationPackage.Literals.USER__FIRST_NAME);
+		list.add(OrganizationPackage.Literals.USER__LAST_NAME);
+		list.add(OrganizationPackage.Literals.USER__EMAIL);
+		return list;
 	}
-	
+
 	@Override
 	public void setListInput() {		
-
+		
 		final WritableList oldItems = (WritableList) (getInput());
 		
 		if (oldItems == null) {
@@ -78,6 +74,36 @@ public class TeamListView extends AbstractListView {
 				}
 			});
 		}
-		
 	}
+
+	@Override
+	public void updateListInput(Project project, ModelElement modelElement) {
+		if (modelElement instanceof OrgUnit) {
+			setListInput();
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private List<OrgUnit> getTeamMembers() {
+		List<Group> groups = null;
+		List<OrgUnit> teamMembers = new BasicEList<OrgUnit>();
+
+		if (getProject() != null) {
+			groups = getProject().getAllModelElementsbyClass(
+					OrganizationPackage.eINSTANCE.getGroup(),
+					new BasicEList<Group>());
+		}
+
+		for (Group group : groups) {
+			if (group.getName().toLowerCase().contains(
+					getProjectSpace().getProjectName().toLowerCase()))
+				teamMembers = group.getOrgUnits();
+		}
+		return teamMembers;
+	}
+
+
 }

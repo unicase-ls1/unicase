@@ -1,58 +1,23 @@
 package org.unicase.ui.web.tabs;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import org.eclipse.rwt.widgets.ExternalBrowser;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.rwt.widgets.ExternalBrowser;
+
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.IDoubleClickListener;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ViewerComparator;
-import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.databinding.EMFObservables;
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
-import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
 
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.Checkable;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.Severity;
-import org.unicase.model.change.MergingIssue;
-import org.unicase.model.organization.OrganizationPackage;
-
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.ui.web.Activator;
-import org.unicase.ui.web.labelproviders.DateColumnLabelProvider;
-import org.unicase.ui.web.labelproviders.GenericColumnLabelProvider;
-import org.unicase.ui.web.labelproviders.StatusLabelProvider;
-import org.unicase.ui.web.sorters.TableViewerColumnSorter;
-
+import org.unicase.ui.web.labelproviders.UnicaseObservableMapLabelProvider;
 
 /**
  * TaskItemsTab shows checkables (work items which can be set to done).
@@ -61,8 +26,8 @@ import org.unicase.ui.web.sorters.TableViewerColumnSorter;
  */
 public class TaskItemsTab extends AbstractTab {
 	
-	private TaskListView taskView;
-	private List<TableViewerColumn> columns;
+	private TaskListView listView;
+	
 	private ObservableListContentProvider contentProvider;
 	
 	/**
@@ -72,6 +37,9 @@ public class TaskItemsTab extends AbstractTab {
 	 */
 	public TaskItemsTab(String projectName, CTabFolder parent) {
 		super(projectName, parent, "Task Items");
+		listView = new TaskListView(getProjectSpace(), getTabComposite());
+		contentProvider = new ObservableListContentProvider();
+		listView.setContentProvider(contentProvider);
 	}
 		
 	@Override 
@@ -79,19 +47,68 @@ public class TaskItemsTab extends AbstractTab {
 		if(isContentCreated()) {
 			return;
 		}
-		
-		ArrayList<EStructuralFeature> featureList = taskView.getFeatureList();
+		ArrayList<EStructuralFeature> featureList = listView.getFeatureList();
 		EStructuralFeature[] featureArray = new EStructuralFeature[featureList.size()]; 
 		featureArray = featureList.toArray(featureArray);		
 		
 		IObservableSet knownElements = contentProvider.getKnownElements();
 		IObservableMap[] observeMaps = EMFObservables.observeMaps(knownElements, featureArray);
+		ObservableMapLabelProvider labelProvider = new UnicaseObservableMapLabelProvider(observeMaps);
 		
-		taskView.createLabelProvider(observeMaps);
-				
-//		getProject().addProjectChangeObserver(TaskItemsTab.this);
-		setContentCreated(true);		
+		listView.createColumns(featureList, labelProvider);
+		listView.setListInput();
+		
+		hookDoubleClickAction();
+		
+		setContentCreated(true);	
 	}
+	
+	
+	/**
+	 * Hooks a double click action for the table.
+	 */
+	private void hookDoubleClickAction() {
+		final Action doubleClickAction = new Action() {
+			@Override
+			public void run() {
+				int index = listView.getTable().getSelectionIndex();
+				TableItem item = listView.getTable().getItem(index);
+				UnicaseModelElement element = (UnicaseModelElement) item.getData();
+				String link = createLink(element);
+				
+				int style = ExternalBrowser.LOCATION_BAR
+						| ExternalBrowser.NAVIGATION_BAR
+						| ExternalBrowser.STATUS;
+				ExternalBrowser.open("someId", link, style);
+			}
+			
+			private String createLink(UnicaseModelElement me) {
+				String meName = ((UnicaseModelElement) me).getName().replaceAll(" ", "");
+				// Get model element id
+				String meId = me.getModelElementId().getId();
+
+				// remove spaces from the project name
+				String projectName = getProjectSpace().getProjectName().replaceAll(" ", "");
+				String projectId = getProjectSpace().getProjectId().getId();
+
+				String serverUrl = getProjectSpace().getUsersession().getServerInfo().getUrl();
+				int serverPort = getProjectSpace().getUsersession().getServerInfo().getPort();
+
+				// Assemble the link
+				String link = "unicase://" + serverUrl + ":" + serverPort + "/"
+						+ projectName + "%" + projectId + "/" + meName + "%"
+						+ meId;
+				return link;
+			}
+			
+		};
+		listView.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				doubleClickAction.run();
+			}
+		});
+	}
+	
 }
 
 

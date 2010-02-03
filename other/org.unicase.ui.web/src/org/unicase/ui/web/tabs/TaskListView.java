@@ -1,30 +1,53 @@
 package org.unicase.ui.web.tabs;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.swt.widgets.Composite;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
+
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.MetamodelPackage;
 
+/**
+ * 
+ * @author Edgar Müller
+ * @author Fatih Ulusoy
+ */
 public class TaskListView extends AbstractListView {
 
+	/**
+	 * 
+	 * @param projectSpace
+	 * @param composite
+	 */
 	public TaskListView(ProjectSpace projectSpace, Composite composite) {
 		super(projectSpace, composite);
-		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	protected void init() {		
+		super.init();
+		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		tableData.horizontalSpan = 2;
+		getTable().setLayoutData(tableData);
+	}
+	
 
 	@Override
 	public ArrayList<EStructuralFeature> getFeatureList() {
@@ -37,19 +60,18 @@ public class TaskListView extends AbstractListView {
 		list.add(TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE);
 		list.add(TaskPackage.Literals.WORK_ITEM__DUE_DATE);
 		list.add(TaskPackage.Literals.WORK_ITEM__PRIORITY);
-
 		return list;
 	}
-	
 
 	@Override
-	public void setListInput() {	
-		final List<? extends Checkable> taskItems = getProjectSpace().getProject()
-				.getAllModelElementsbyClass(
+	public void setListInput() {
+		final List<? extends Checkable> taskItems = getProjectSpace()
+				.getProject().getAllModelElementsbyClass(
 						TaskPackage.eINSTANCE.getCheckable(),
 						new BasicEList<Checkable>());
-		
-		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator.hasNext();) {
+
+		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator
+				.hasNext();) {
 			Checkable item = iterator.next();
 			if (item instanceof ActionItem) {
 				if (((ActionItem) item).isDone()) {
@@ -65,7 +87,6 @@ public class TaskListView extends AbstractListView {
 				}
 			}
 		}
-		
 		
 		final WritableList list = (WritableList) (getInput());
 		if (list == null) {
@@ -86,5 +107,11 @@ public class TaskListView extends AbstractListView {
 		}
 	}
 
-
+	@Override
+	public void updateListInput(Project project, ModelElement modelElement) {
+		if (modelElement instanceof Checkable) {
+			setListInput();
+		}
+	}
+	
 }
