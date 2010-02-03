@@ -33,6 +33,18 @@
             name="Tree View"
             restorable="true">
       </view>
+      <view
+            class="org.unicase.ui.web.ExampleView"
+            id="org.eclipse.rap.examples.exampleView"
+            name="name"
+            restorable="true">
+      </view>
+      <view
+            class="org.unicase.ui.web.View"
+            id="test.view"
+            name="name"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.rap.ui.branding">

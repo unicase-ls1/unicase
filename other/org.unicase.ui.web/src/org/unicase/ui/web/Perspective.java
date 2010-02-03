@@ -21,7 +21,10 @@ public class Perspective implements IPerspectiveFactory {
 //		
 //		folder.addView(TabbedView.ID); //.addStandaloneView(TabbedView.ID, false, IPageLayout.RIGHT,  0.10f, editorArea);
 //		folder.addView(ExampleView.ID);
-		layout.addStandaloneView(TabbedView.ID, false, IPageLayout.LEFT, 1.0f, editorArea);
+		// layout.addStandaloneView(TabbedView.ID, false, IPageLayout.LEFT, 1.0f, editorArea);
+		
+		layout.addStandaloneView(View.ID, false, IPageLayout.LEFT, 0.50f, editorArea);
+		layout.addStandaloneView(TabbedView.ID, false, IPageLayout.RIGHT, 1.0f, View.ID);
 		
 	}
 	
