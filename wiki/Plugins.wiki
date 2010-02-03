@@ -1,0 +1,33 @@
+ * *emfstore* - server part of unicase. Contains the current version of all projects for checkouts and updates. Clients connect with emfstore, which makes the access control. 
+
+ * *emfstore.esmodel* - is the EMF based model of emfstore and is independent of their graphical presentation. 
+
+ * *.edit* - informations for the graphical presentation of the related model.
+
+ * *implementation* - contains the functionality for codegeneration.
+
+ * *metamodel* - is the plugin for metamodeling in unicase. The most important class is ModelElement, it is the superclass of all model classes in unicase. Who needs his own model have to extends this class. 
+
+ * *model* - is the unicase specific model, uses the the metamodel plugin and extends ModelElement. 
+
+ * *model.migrator* - offers help for data migration, if the model changed.
+
+ * *ui* - contains informations for the user interface.
+
+ * *ui.common* - package for usefull functions for the ui like ErrorReport, Drag'n'Drop. Depends on metamodel.
+
+ * *ui.navigator* - contains the package explorer of unicase (left side).
+
+ * *ui.meeditor* - contains the editor of unicase (right side on the top level).
+
+ * *ui.tableview* - contains the tableview for unicase (show tableview).
+
+ * *ui.diagramm* - contains the support for diagramms.
+
+ * *ui.stem* - contains the statusview of unicase projects.
+
+ * *workspace* - client-side interface to the server, for example "checkout project". Most important class is the WorkspaceManager.
+
+ * *workspace.ui* - to make the ui of unicase independent. In this way it is possible to change between GUI and command line (e.g.).
+
+ * *docExport* - contains the funcionality to export data of unicase as pdf.
