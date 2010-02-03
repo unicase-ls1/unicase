@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -47,7 +47,7 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 	private ModelDiagramEditor activeEditor;
 
 	/**
-	 * @param dispatch
+	 * @param dispatch The touch dispatch notifying this interpreter of touch events
 	 */
 	public GestureInterpreter(TouchDispatch dispatch) {
 		setDispatch(dispatch);
@@ -129,19 +129,32 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		this(null);
 	}
 
+	/**
+	 * Adds a gesture to the gesture list.
+	 * 
+	 * @param gesture The gesture being added
+	 */
 	public void addGesture(Gesture gesture) {
 		getGestures().add(gesture);
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
+	 */
 	public void notifyChanged(SingleTouchNotification notification) {
 		switch (notification.getEventType()) {
-		case SingleTouchNotification.touchPropagated:
+		case SingleTouchNotification.TOUCH_PROPAGATED:
 			handleTouchPropagated(notification.getTouch());
+			break;
 		default:
 			break;
 		}
 	}
 
+	/**
+	 * Fires when all touch listeners were notified of a touch event. Used to check execu
+	 * @param touch The touch being propagated
+	 */
 	private void handleTouchPropagated(Touch touch) {
 		List<Gesture> executableGestures = findExecutableGestures();
 		if (executableGestures.size() == 0) {
@@ -290,6 +303,9 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		return executableGestures;
 	}
 
+	/**
+	 * @param dispatch The touch dispatch delivering touch events   
+	 */
 	public void setDispatch(TouchDispatch dispatch) {
 		if (dispatch != this.dispatch) {
 			if (this.dispatch != null) {
@@ -302,18 +318,30 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		}
 	}
 
+	/**
+	 * @return The touch dispatch delivering touch events   
+	 */
 	public TouchDispatch getDispatch() {
 		return dispatch;
 	}
 
+	/**
+	 * @param gestures The gestures which can possibly be performed
+	 */
 	public void setGestures(List<Gesture> gestures) {
 		this.gestures = gestures;
 	}
 
+	/**
+	 * @return The gestures which can possibly be performed
+	 */
 	public List<Gesture> getGestures() {
 		return gestures;
 	}
 
+	/**
+	 * @param activeEditor The currently active diagram editor
+	 */
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
 
 		if (this.activeEditor != activeEditor) {
@@ -335,6 +363,9 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 
 	}
 
+	/**
+	 * @return The currently active diagram editor
+	 */
 	public ModelDiagramEditor getActiveEditor() {
 		return activeEditor;
 	}

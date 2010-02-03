@@ -1,38 +1,26 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.ui.IEditorPart;
-import org.unicase.ui.tom.GestureInterpreter;
-import org.unicase.ui.tom.Utility;
-import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
+/**
+ * @author schroech
+ *
+ */
 public class DebugHandler extends AbstractHandler implements IHandler {
 
-	private GestureInterpreter interpreter;
 
+	/*** {@inheritDoc}
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-//		GestureInterpreter gestureInterpreter = new GestureInterpreter();
-//		CreateGesture createGesture = new CreateNodeGesture(null, null);
-//		
-//		gestureInterpreter.addGesture(createGesture);
-//		createGesture.setCanExecute(true);
-		IEditorPart editor = Utility.getActiveEditor();
-		
-		DiagramEditPart diagramEditPart = ((ModelDiagramEditor) editor).getDiagramEditPart();
-		
-		interpreter = new GestureInterpreter();
-		
-//		SelectGesture selectGesture = new Selec
-//		AbstractGesture gesture = new CreateNodeGesture(dispatcher, diagramEditPart);
-//		interpreter.addGesture(gesture);
-//		
-//		AbstractGesture secondGesture = new CreateNodeAndConnectionGesture(dispatcher, diagramEditPart);
-//		interpreter.addGesture(secondGesture);
 		
 		return null;
 	}

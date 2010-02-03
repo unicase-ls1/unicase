@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.touches;
 
 import java.util.ArrayList;
@@ -149,11 +154,17 @@ public class MultiTouch extends AbstractTouch{
 		return points.getMidpoint().y;
 	}
 
+	/**
+	 * @param touch The single touch belonging to this multitouch
+	 */
 	public void addTouch(SingleTouch touch){
 		activeTouches.add(touch);
 		touch.setMultiTouch(this);
 	}
 
+	/**
+	 * @param touch The single no longer belonging to this multitouch
+	 */
 	public void removeTouch(SingleTouch touch){
 		if (activeTouches.contains(touch)) {
 			activeTouches.remove(touch);
@@ -161,14 +172,23 @@ public class MultiTouch extends AbstractTouch{
 		}
 	}
 
+	/**
+	 * @return The touches of this multitouch still touching the table 
+	 */
 	public List<SingleTouch> getActiveTouches() {
 		return activeTouches;
 	}
 
+	/**
+	 * @return The touches of this multitouch no longer touching the table 
+	 */
 	public List<SingleTouch> getRemovedTouches() {
 		return removedTouches;
 	}
 	
+	/**
+	 * @return All the touches belonging to this multitouch
+	 */
 	public List<SingleTouch> getAllTouches() {
 		List<SingleTouch>allTouches = new ArrayList<SingleTouch>();
 		allTouches.addAll(getRemovedTouches());
@@ -176,10 +196,16 @@ public class MultiTouch extends AbstractTouch{
 		return allTouches;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#setClaimed(boolean)
+	 */
 	public void setClaimed(boolean isClaimed) {
 		this.isClaimed = isClaimed;
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#isClaimed()
+	 */
 	public boolean isClaimed() {
 		return isClaimed;
 	}

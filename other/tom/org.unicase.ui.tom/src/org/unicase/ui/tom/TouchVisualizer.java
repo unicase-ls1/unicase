@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom;
 
 import java.util.HashMap;
@@ -24,6 +29,10 @@ import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
+/**
+ * @author schroech
+ *
+ */
 public class TouchVisualizer {
 
 	private final Map<SingleTouch, TouchFigure> touchMap = new HashMap<SingleTouch, TouchFigure>();
@@ -35,6 +44,9 @@ public class TouchVisualizer {
 	private final MySingleTouchAdapterImpl singleTouchAdapter = new MySingleTouchAdapterImpl();
 	private final MyMultiTouchAdapterImpl multiTouchAdapter = new MyMultiTouchAdapterImpl();
 
+	/**
+	 * Private multi-touch adapter class.
+	 */
 	private class MyMultiTouchAdapterImpl extends MultiTouchAdapterImpl {
 
 		@Override
@@ -44,6 +56,9 @@ public class TouchVisualizer {
 		
 	}
 	
+	/**
+	 * Private single-touch adapter class.
+	 */
 	private class MySingleTouchAdapterImpl extends TouchAdapterImpl {
 
 		@Override
@@ -63,8 +78,19 @@ public class TouchVisualizer {
 		
 	}
 	
+	/**
+	 * Switch class for touch colors.
+	 */
 	private static final class ColorSwitch {
-		static int colorIndex = 0;
+		
+		private ColorSwitch(){
+			super();
+		}
+		
+		/**
+		 * Static variable for globally alternating touches.
+		 */
+		private static int colorIndex;
 
 		protected static Color getNext() {
 			colorIndex++;
@@ -121,6 +147,9 @@ public class TouchVisualizer {
 		touchMap.remove(removedTouch);
 	}
 
+	/**
+	 * A shape used to visualize touches.
+	 */
 	private class TouchFigure extends Shape {
 
 		private int innerCircleDiameter;
@@ -189,6 +218,10 @@ public class TouchVisualizer {
 
 	}
 	
+	/**
+	 * Notification method.
+	 * @param claimedTouch The touch being claimed
+	 */
 	public void handleMultiTouchClaimed(MultiTouch claimedTouch) {
 		List<SingleTouch> activeTouches = claimedTouch.getActiveTouches();
 		for (Touch touch : activeTouches) {
@@ -203,6 +236,10 @@ public class TouchVisualizer {
 		}
 	}
 	
+	/**
+	 * Notification method.
+	 * @param addedTouch The touch being added
+	 */
 	public void handleSingleTouchAdded(SingleTouch addedTouch) {
 		if (activeEditor == null) {
 			return;
@@ -210,6 +247,11 @@ public class TouchVisualizer {
 		addTouch(addedTouch);
 	}
 
+	
+	/**
+	 * Notification method.
+	 * @param changedTouch The touch being changed
+	 */
 	public void handleSingleTouchChanged(Touch changedTouch) {
 		if (activeEditor == null) {
 			return;
@@ -226,6 +268,10 @@ public class TouchVisualizer {
 		touchFigure.setLocation(point);
 	}
 
+	/**
+	 * Notification method.
+	 * @param removedTouch The touch being removed
+	 */
 	public void handleSingleTouchRemoved(Touch removedTouch) {
 		if (activeEditor == null) {
 			return;
@@ -233,6 +279,10 @@ public class TouchVisualizer {
 		removeTouch(removedTouch);
 	}
 
+	/**
+	 * Sets the active editor, registering all necessary observers recomputing dimensions.  
+	 * @param activeEditor The new active editor
+	 */
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
 		this.activeEditor = activeEditor;
 
@@ -263,14 +313,23 @@ public class TouchVisualizer {
 		}
 	}
 
+	/**  
+	 * @return The new active editor
+	 */
 	public ModelDiagramEditor getActiveEditor() {
 		return activeEditor;
 	}
 
+	/**  
+	 * @return The internal singletouch adapter class.
+	 */
 	public TouchAdapterImpl getSingleTouchAdapter() {
 		return singleTouchAdapter;
 	}
 
+	/**  
+	 * @return The internal multitouch adapter class.
+	 */
 	public MyMultiTouchAdapterImpl getMultiTouchAdapter() {
 		return multiTouchAdapter;
 	}

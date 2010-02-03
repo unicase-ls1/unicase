@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
  */
 package org.unicase.ui.tom.gestures;
 
@@ -14,7 +13,6 @@ import java.util.List;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.tom.TouchDispatch;
@@ -37,7 +35,6 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 
 	/**
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
 	public CreateNodeAndConnectionGesture(TouchDispatch dispatch) {
 		super(dispatch);
@@ -252,12 +249,18 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 		return mandatoryTouches; 
 	}
 
+	/**
+	 * @param sourceMultiTouches The {@link MultiTouch}es possibly indicating the connection source  
+	 */
 	public void setSourceMultiTouches(List<MultiTouch> sourceMultiTouches) {
 		this.sourceMultiTouches = sourceMultiTouches;
 	}
 
 
 
+	/**
+	 * @return The {@link MultiTouch}es possibly indicating the connection source
+	 */
 	public List<MultiTouch> getSourceMultiTouches() {
 		return sourceMultiTouches;
 	}

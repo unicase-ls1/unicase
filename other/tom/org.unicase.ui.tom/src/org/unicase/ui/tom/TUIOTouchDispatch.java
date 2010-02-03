@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom;
 
 import java.util.Date;
@@ -11,93 +16,132 @@ import org.unicase.ui.tum.tuio.TuioCursor;
 import org.unicase.ui.tum.tuio.TuioListener;
 import org.unicase.ui.tum.tuio.TuioObject;
 
-public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
+/**
+ * @author schroech
+ */
+public final class TUIOTouchDispatch extends TouchDispatch implements TuioListener {
 
-	Map<TuioCursor, SingleTouch> touchMap;
+	/**
+	 * The Map relating TuioCursors to touches.
+	 */
+	private Map<TuioCursor, SingleTouch> touchMap;
 	
+	private static TUIOTouchDispatch instance;
+
 	private TUIOTouchDispatch() {
 		super();
-		
+
 		TuioClient client = new TuioClient();
 		client.addTuioListener(this);
 		client.connect();
-		
-		touchMap = new Hashtable<TuioCursor, SingleTouch>();
+
+		setTouchMap(new Hashtable<TuioCursor, SingleTouch>());
 	}
 
+	/** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#addTuioCursor(org.unicase.ui.tum.tuio.TuioCursor)
+	 */
 	public void addTuioCursor(TuioCursor tuioCursor) {
 		if (getActiveEditor() == null) {
 			return;
 		}
-		if (tuioCursor.getX() < 0
-			|| tuioCursor.getY() < 0){
-			//discard the cursor
+		if (tuioCursor.getX() < 0 || tuioCursor.getY() < 0) {
+			// discard the cursor
 		}
-		
+
 		TUIOTouch touch = new TUIOTouch(tuioCursor, getScreenSize());
-		
-		try {
-			addTouch(touch);	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		touchMap.put(tuioCursor, touch);
+
+//		try {
+			addTouch(touch);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+		getTouchMap().put(tuioCursor, touch);
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#refresh(long)
+	 */
 	public void refresh(long timestamp) {
-		
+
 	}
 
-	public void removeTuioCursor(TuioCursor tuioCursor) {		
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#removeTuioCursor(org.unicase.ui.tum.tuio.TuioCursor)
+	 */
+	public void removeTuioCursor(TuioCursor tuioCursor) {
 		if (getActiveEditor() == null) {
 			return;
 		}
-		SingleTouch touch = touchMap.get(tuioCursor);
+		SingleTouch touch = getTouchMap().get(tuioCursor);
 		if (touch != null) {
 			touch.setTouchUpDate(new Date(tuioCursor.getUpdateTime()));
-			try {
-				removeTouch(touch);				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			touchMap.remove(tuioCursor);			
+//			try {
+				removeTouch(touch);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+
+			getTouchMap().remove(tuioCursor);
 		}
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#updateTuioCursor(org.unicase.ui.tum.tuio.TuioCursor)
+	 */
 	public void updateTuioCursor(TuioCursor tuioCursor) {
 		if (getActiveEditor() == null) {
 			return;
 		}
-		SingleTouch touch = touchMap.get(tuioCursor);
+		SingleTouch touch = getTouchMap().get(tuioCursor);
 		if (touch != null) {
-			try {
-				updateTouch(touch);	
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-				
+//			try {
+				updateTouch(touch);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+
 		}
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#updateTuioObject(org.unicase.ui.tum.tuio.TuioObject)
+	 */
 	public void updateTuioObject(TuioObject tuioObject) {
-		//don't do anything
+		// don't do anything
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#addTuioObject(org.unicase.ui.tum.tuio.TuioObject)
+	 */
 	public void addTuioObject(TuioObject tuioObject) {
-		//don't do anything
+		// don't do anything
 	}
 
+	/*** {@inheritDoc}
+	 * @see org.unicase.ui.tum.tuio.TuioListener#removeTuioObject(org.unicase.ui.tum.tuio.TuioObject)
+	 */
 	public void removeTuioObject(TuioObject tuioObject) {
-		//don't do anything
+		// don't do anything
 	}
 
+	/**
+	 * @return The singleton touch dispath instance
+	 */
 	public static TouchDispatch getInstance() {
 		if (instance == null) {
 			instance = new TUIOTouchDispatch();
 		}
 		return instance;
+	}
+
+	private void setTouchMap(Map<TuioCursor, SingleTouch> touchMap) {
+		this.touchMap = touchMap;
+	}
+
+	private Map<TuioCursor, SingleTouch> getTouchMap() {
+		return touchMap;
 	}
 
 }

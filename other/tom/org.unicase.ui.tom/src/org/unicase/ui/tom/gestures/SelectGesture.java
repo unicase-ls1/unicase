@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -100,7 +100,6 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 			return;
 		}
 
-		EditPart foundEditPart;
 		org.eclipse.gef.GraphicalEditPart selectableEditPart;
 
 		selectableEditPart = findTouchedEditPart(touch.getPosition());
@@ -226,10 +225,16 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 		return mandatoryTouches;
 	}
 
+	/**
+	 * @param selectionTouch The touch triggering this gesture
+	 */
 	public void setSelectionTouch(MultiTouch selectionTouch) {
 		this.selectionTouch = selectionTouch;
 	}
 
+	/**
+	 * @return The touch triggering this gesture
+	 */
 	public MultiTouch getSelectionTouch() {
 		return selectionTouch;
 	}

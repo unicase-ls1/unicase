@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -15,6 +15,10 @@ import org.unicase.ui.tom.touches.MultiTouch;
  * @author schroech
  *
  */
+/**
+ * @author schroech
+ *
+ */
 public interface Gesture extends GestureNotifier{
 
 	/**
@@ -25,6 +29,11 @@ public interface Gesture extends GestureNotifier{
 	 */
 	boolean canExecute();
 	
+	/**
+	 * @param canExecute Indicates the gesture's ability to execute.
+	 * It is up to the gesture interpreter to decide 
+	 * whether this gesture should be executed
+	 */
 	void setCanExecute(boolean canExecute);
 	
 	/**
@@ -58,15 +67,33 @@ public interface Gesture extends GestureNotifier{
 	 */
 	void setPriority(int priority);
 	
+	/**
+	 * @return The touches mandatory for the execution of this gesture
+	 */
 	List<MultiTouch> getMandatoryTouches();
 	
+	/**
+	 * @return The touches optional for the execution of this gesture
+	 */
 	List<MultiTouch> getOptionalTouches();
 	
+	/**
+	 * @return The diagram edit part which this gesture acts upon
+	 */
 	DiagramEditPart getDiagramEditPart();
 	
+	/**
+	 * @param editor The diagram edit part which this gesture acts upon
+	 */
 	void setDiagramEditPart(DiagramEditPart editor);
 	
+	/**
+	 * @return The gestures which can not be executed concurrently with this gesture 
+	 */
 	List<Gesture> getRestrictingGestures();
 	
+	/**
+	 * @param restrictingGestures The gestures which can not be executed concurrently with this gesture
+	 */
 	void setRestrictingGestures(List<Gesture> restrictingGestures);	
 }

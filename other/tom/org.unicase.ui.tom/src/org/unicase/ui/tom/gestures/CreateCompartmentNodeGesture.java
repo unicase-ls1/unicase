@@ -1,10 +1,14 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.gestures;
 
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.unicase.ui.tom.TouchDispatch;
@@ -26,7 +30,6 @@ public class CreateCompartmentNodeGesture extends CreateNodeGesture {
 	
 	/**
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
 	public CreateCompartmentNodeGesture(TouchDispatch dispatch) {
 		super(dispatch);
@@ -108,10 +111,16 @@ public class CreateCompartmentNodeGesture extends CreateNodeGesture {
 
 	}
 
+	/**
+	 * @param containingNodeEditPart The {@link GraphicalEditPart} containing the result of this gesture 
+	 */
 	public void setContainingNodeEditPart(GraphicalEditPart containingNodeEditPart) {
 		this.containingNodeEditPart = containingNodeEditPart;
 	}
 
+	/**
+	 * @return  The {@link GraphicalEditPart} containing the result of this gesture
+	 */
 	public GraphicalEditPart getContainingNodeEditPart() {
 		return containingNodeEditPart;
 	}

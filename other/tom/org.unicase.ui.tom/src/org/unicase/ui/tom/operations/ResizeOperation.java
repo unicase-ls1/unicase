@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -31,11 +31,18 @@ public class ResizeOperation extends AbstractOperation {
 
 	private ChangeBoundsRequest changeBoundsRequest;
 
+	/**
+	 * Default constructor.
+	 * @param diagramEditPart The diagram edit part
+	 */
 	public ResizeOperation(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param firstPoint One point of the 'pinch' gesture
+	 * @param secondPoint Another point of the 'pinch' gesture
+	 */
 	public void prepare(Point firstPoint, Point secondPoint) {
 		updateInitialPositions(firstPoint, secondPoint);
 
@@ -47,6 +54,10 @@ public class ResizeOperation extends AbstractOperation {
 		showEditPartFeedback();
 	}
 
+	/**
+	 * @param firstPoint One point of the 'pinch' gesture
+	 * @param secondPoint Another point of the 'pinch' gesture
+	 */
 	public void update(Point firstPoint, Point secondPoint) {
 		updateDeltas(firstPoint, secondPoint);
 		getChangeBoundsRequest().setMoveDelta(new Point(getLeftDelta(),
@@ -57,6 +68,9 @@ public class ResizeOperation extends AbstractOperation {
 		showEditPartFeedback();
 	}
 
+	/**
+	 * Finishes the operation, executing the corresponding command.
+	 */
 	public void finish() {
 		eraseEditPartFeedback();
 		Command command = getTargetEditPart().getCommand(getChangeBoundsRequest());
@@ -139,42 +153,72 @@ public class ResizeOperation extends AbstractOperation {
 		getTargetEditPart().showTargetFeedback(getChangeBoundsRequest());
 	}
 
+	/**
+	 * @param leftDelta The delta between the initial and the resized leftmost edge 
+	 */
 	public void setLeftDelta(int leftDelta) {
 		this.leftDelta = leftDelta;
 	}
 
+	/**
+	 * @return The delta between the initial and the resized left edge
+	 */
 	public int getLeftDelta() {
 		return leftDelta;
 	}
 
+	/**
+	 * @param rightDelta The delta between the initial and the resized left edge
+	 */
 	public void setRightDelta(int rightDelta) {
 		this.rightDelta = rightDelta;
 	}
 
+	/**
+	 * @return The delta between the initial and the resized top edge
+	 */
 	public int getRightDelta() {
 		return rightDelta;
 	}
 
+	/**
+	 * @param topDelta The delta between the initial and the resized top edge
+	 */
 	public void setTopDelta(int topDelta) {
 		this.topDelta = topDelta;
 	}
 
+	/**
+	 * @return The delta between the initial and the resized top edge
+	 */
 	public int getTopDelta() {
 		return topDelta;
 	}
 
+	/**
+	 * @param bottomDelta The delta between the initial and the resized bottom edge
+	 */
 	public void setBottomDelta(int bottomDelta) {
 		this.bottomDelta = bottomDelta;
 	}
 
+	/**
+	 * @return The delta between the initial and the resized bottom edge
+	 */
 	public int getBottomDelta() {
 		return bottomDelta;
 	}
 
+	/**
+	 * @param targetEditPart The target edit part
+	 */
 	public void setTargetEditPart(INodeEditPart targetEditPart) {
 		this.targetEditPart = targetEditPart;
 	}
 
+	/**
+	 * @return The target edit part
+	 */
 	public INodeEditPart getTargetEditPart() {
 		return targetEditPart;
 	}

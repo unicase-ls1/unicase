@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom;
 
 import java.awt.Dimension;
@@ -34,6 +39,10 @@ import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
  * @author schroech
  * 
  */
+/**
+ * @author schroech
+ *
+ */
 public abstract class TouchDispatch {
 
 	private final List<MultiTouch> claimedTouches = new ArrayList<MultiTouch>();
@@ -57,11 +66,11 @@ public abstract class TouchDispatch {
 	private final TouchNotifierImpl singleTouchNotifier = new TouchNotifierImpl();
 	private final MultiTouchNotifierImpl multiTouchNotifier = new MultiTouchNotifierImpl();
 
-	/**
-	 * Singleton instance.
-	 */
-	protected static TouchDispatch instance;
 
+	/**
+	 * @author schroech
+	 *
+	 */
 	private class ViewportOffsetListener implements PropertyChangeListener {
 
 		public void propertyChange(PropertyChangeEvent evt) {
@@ -129,9 +138,9 @@ public abstract class TouchDispatch {
 		getActiveSingleTouches().add(touch);
 
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchAdded));
+				touch, SingleTouchNotification.TOUCH_ADDED));
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchPropagated));
+				touch, SingleTouchNotification.TOUCH_PROPAGATED));
 	}
 
 	private void assignMultiTouch(SingleTouch touch) {
@@ -181,9 +190,9 @@ public abstract class TouchDispatch {
 		}
 
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchRemoved));
+				touch, SingleTouchNotification.TOUCH_REMOVED));
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchPropagated));
+				touch, SingleTouchNotification.TOUCH_PROPAGATED));
 		
 		if (activeTouches.size() == 0) {
 			getClaimedTouches().remove(multiTouch);
@@ -222,40 +231,58 @@ public abstract class TouchDispatch {
 		}
 
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchChanged));
+				touch, SingleTouchNotification.TOUCH_CHANGED));
 		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
-				touch, SingleTouchNotification.touchPropagated));
+				touch, SingleTouchNotification.TOUCH_PROPAGATED));
 	}
 
 	/**
-	 * @return The singleton instance
+	 * @return The single touches currently touching the table.
 	 */
-	public static TouchDispatch getInstance() {
-		return instance;
-	}
-
 	public List<SingleTouch> getActiveSingleTouches() {
 		return activeSingleTouches;
 	}
 
+	/**
+	 * @return The single touches no longer touching the table.
+	 */
 	public List<SingleTouch> getRemovedTouches() {
 		return removedSingleTouches;
 	}
 
+	/**
+	 * @return The multi touches currently touching the table.
+	 */
 	public List<MultiTouch> getActiveMultiTouches() {
 		return activeMultiTouches;
 	}
 
+	/**
+	 * @return The multi touches no longer touching the table.
+	 */
 	public List<MultiTouch> getRemovedMultiTouches() {
 		return removedMultiTouches;
 	}
 
+	/**
+	 * @param point The translated point
+	 */
 	public void translateToEditor(Point point) {
 		point.x = (point.x - TouchDispatch.getInstance().getViewportOffset().x);
 
 		point.y = (point.y - TouchDispatch.getInstance().getViewportOffset().y);
 	}
 
+	/**
+	 * @return The singleton instance
+	 */
+	public static TouchDispatch getInstance() {
+		return null;
+	}
+
+	/**
+	 * @param point The translated point
+	 */
 	public void translateToAbsolute(Point point) {
 		point.x = (point.x + TouchDispatch.getInstance().getEditorBounds().x - TouchDispatch
 				.getInstance().getViewportOffset().x);
@@ -264,6 +291,10 @@ public abstract class TouchDispatch {
 				.getInstance().getViewportOffset().y);
 	}
 
+
+	/**
+	 * @param activeEditor The active editor
+	 */
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
 
 		if (this.activeEditor != activeEditor) {
@@ -380,10 +411,18 @@ public abstract class TouchDispatch {
 		setEditorBounds(newEditorBounds);
 	}
 
+	/**
+	 * @return The currently active diagram editor
+	 */
 	public ModelDiagramEditor getActiveEditor() {
 		return activeEditor;
 	}
 
+	/**
+	 * Determines the size of the main display if there is only one. 
+	 * In case there are two display, determines the size of the secondary display. 
+	 * @return The screen size   
+	 */
 	public Dimension getScreenSize() {
 		if (screenSize == null) {
 
@@ -412,10 +451,17 @@ public abstract class TouchDispatch {
 		this.editorBounds = editorBounds;
 	}
 
+	/**
+	 * @return The bounds of the active editor
+	 */
 	public Rectangle getEditorBounds() {
 		return editorBounds;
 	}
 
+	
+	/**
+	 * @return The offset of the active editor relative to eclipse window
+	 */
 	public Point getEditorOffset() {
 		return editorBounds.getLocation();
 	}
@@ -424,18 +470,33 @@ public abstract class TouchDispatch {
 		this.viewportOffset = viewportOffset;
 	}
 
+	/**
+	 * @return The offset of the active editor's viewport relative to eclipse window
+	 */
 	public Point getViewportOffset() {
 		return viewportOffset;
 	}
 
+	/**
+	 * @return The internal single touch notification listener 
+	 */
 	public TouchNotifierImpl getSingleTouchNotifier() {
 		return singleTouchNotifier;
 	}
 
+	
+	/**
+	 * @return The internal single touch notification listener
+	 */
 	public MultiTouchNotifierImpl getMultiTouchNotifier() {
 		return multiTouchNotifier;
 	}
 
+	/**
+	 * Claims the touch if possible, indicates a successfull 'claim' in the retaurn type.
+	 * @param touch The touch to be claimed
+	 * @return true if the touch could be claimed, false otherwise
+	 */
 	public boolean claimTouch(MultiTouch touch) {
 		if (touch.isClaimed()) {
 			return false;
@@ -444,11 +505,14 @@ public abstract class TouchDispatch {
 		touch.setClaimed(true);
 		getClaimedTouches().add(touch);
 		multiTouchNotifier.notifyAdapters(new MultiTouchNotificationImpl(touch,
-				MultiTouchNotification.touchClaimed));
+				MultiTouchNotification.TOUCH_CLAIMED));
 
 		return true;
 	}
 
+	/**
+	 * @return The list of claimed touches
+	 */
 	public List<MultiTouch> getClaimedTouches() {
 		return claimedTouches;
 	}

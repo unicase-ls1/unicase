@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -136,18 +136,30 @@ public class DiscoveryGesture extends AbstractContinuousGesture {
 		return mandatoryTouches;
 	}
 
+	/**
+	 * @param activationTouch The multitouch activating the multitouch mode. 
+	 */
 	public void setActivationTouch(MultiTouch activationTouch) {
 		this.activationTouch = activationTouch;
 	}
 
+	/**
+	 * @return The multitouch activating the multitouch mode. 
+	 */
 	public MultiTouch getActivationTouch() {
 		return activationTouch;
 	}
 
+	/**
+	 * @param touchedEditPart The EditPart being touched
+	 */
 	public void setTouchedEditPart(EditPart touchedEditPart) {
 		this.touchedEditPart = touchedEditPart;
 	}
 
+	/**
+	 * @return EditPart The EditPart being touched
+	 */
 	public EditPart getTouchedEditPart() {
 		return touchedEditPart;
 	}
