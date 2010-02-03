@@ -1,6 +1,5 @@
 package org.unicase.ui.tom.classDiagram.edit.parts;
 
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
