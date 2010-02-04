@@ -343,7 +343,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 				Date dueDate = ((ActionItem) workItem).getDueDate();
 				Calendar cal = new GregorianCalendar();
 				cal.setTime(dueDate);
-				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);
+				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + (cal.get(Calendar.MONTH) + 1);
 			}
 			workItemText += "]: " + workItem.getName();
 		} else {
