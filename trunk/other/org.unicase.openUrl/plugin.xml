@@ -5,26 +5,26 @@
   <extension
          point="org.eclipse.ui.commands">
       <category
-            name="Unicase Link Category"
-            id="org.unicase.link.commands.category">
+            name="Unicase OpenURL Category"
+            id="org.unicase.openurl.commands.category">
    	 </category>
       <command
-            name="Get Unicase Link"
-            categoryId="org.unicase.link.commands.category"
-            id="org.unicase.link.commands.getUnicaseLink">
+            name="Get Unicase URL"
+            categoryId="org.unicase.openurl.commands.category"
+            id="org.unicase.openurl.commands.getUnicaseLink">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            commandId="org.unicase.link.commands.getUnicaseLink"
-            class="org.unicase.link.handlers.UnicaseLinkHandler">
+            commandId="org.unicase.openurl.commands.getUnicaseLink"
+            class="org.unicase.openurl.handlers.UnicaseLinkHandler">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="org.unicase.link.commands.getUnicaseLink"
+            commandId="org.unicase.openurl.commands.getUnicaseLink"
             contextId="org.eclipse.ui.contexts.window"
             sequence="M1+6"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
@@ -37,20 +37,20 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
        
             <command
-                  commandId="org.unicase.link.commands.getUnicaseLink"
-                  label="Generate UNICASE link"
+                  commandId="org.unicase.openurl.commands.getUnicaseLink"
+                  label="Generate UNICASE URL"
                   icon="icons/unicase_link.png"
                   mnemonic="U"
-                  id="org.unicase.link.menus.getUnicaseLink">
+                  id="org.unicase.openurl.menus.getUnicaseLink">
             </command>
         
       </menuContribution>
       <menuContribution
       		locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.common.deleteModelElement">
             <command
-                  commandId="org.unicase.link.commands.getUnicaseLink"
+                  commandId="org.unicase.openurl.commands.getUnicaseLink"
                   icon="icons/unicase_link.png"
-                  tooltip="Generate UNICASE specific protocol link"
+                  tooltip="Generate UNICASE specific protocol URL"
                   id="org.unicase.link.toolbars.getUnicaseLink">
             </command>
       </menuContribution>
@@ -58,21 +58,21 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.unicase.link.Activator"></startup>
+            class="org.unicase.openurl.Activator"></startup>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.unicase.ui.common.unicase"
-            class="org.unicase.link.preferences.UnicaseLinkPreferencePage"
-            id="org.unicase.link.preferences.UnicaseLinkPreferencePage"
-            name="UNICASE Link">
+            class="org.unicase.openurl.preferences.UnicaseLinkPreferencePage"
+            id="org.unicase.openurl.preferences.UnicaseLinkPreferencePage"
+            name="UNICASE OpenURL">
       </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.unicase.link.preferences.PreferenceInitializer">
+            class="org.unicase.openurl.preferences.PreferenceInitializer">
       </initializer>
    </extension>
 </plugin>

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.preferences.protocolhandlers;
+package org.unicase.openurl.preferences.protocolhandlers;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -15,7 +15,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.unicase.link.util.FileLocations;
+import org.unicase.openurl.util.FileLocations;
 
 /**
  * Protocol registration handler for Mac OS. To avoid the use of JNI an application bundle archived as a zip file is

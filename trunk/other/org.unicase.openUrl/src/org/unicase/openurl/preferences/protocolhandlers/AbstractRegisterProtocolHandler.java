@@ -3,14 +3,14 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.preferences.protocolhandlers;
+package org.unicase.openurl.preferences.protocolhandlers;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.link.util.FileLocations;
+import org.unicase.openurl.util.FileLocations;
 
 /**
  * Class for registering the UNICASE protocol handler on an operating system. Also provides some helper methods for

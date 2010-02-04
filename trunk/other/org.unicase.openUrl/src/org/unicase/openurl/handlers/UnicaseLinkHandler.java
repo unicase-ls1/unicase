@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.handlers;
+package org.unicase.openurl.handlers;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -12,9 +12,9 @@ import java.awt.datatransfer.StringSelection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.link.util.ui.LinkDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.openurl.util.ui.LinkDialog;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
