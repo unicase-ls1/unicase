@@ -253,4 +253,19 @@ litigation.
          version="0.0.0"
          unpack="false"/>
 
+   <data
+         id="lib/UnicaseURLHandler.zip"
+         download-size="0"
+         install-size="0"/>
+
+   <data
+         id="lib/org.unicase.openurl.startup.jar"
+         download-size="0"
+         install-size="0"/>
+
+   <data
+         id="lib/registerUnicaseProtocolHandler.sh"
+         download-size="0"
+         install-size="0"/>
+
 </feature>
