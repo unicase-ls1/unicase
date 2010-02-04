@@ -8,6 +8,8 @@ package org.unicase.ui.tom.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.unicase.metamodel.util.ModelUtil;
+
 /**
  * @author schroech
  *
@@ -48,7 +50,13 @@ public class TouchNotifierImpl implements TouchNotifier {
 		if (adapters != null && deliver())
 		{
 			for (SingleTouchAdapter touchAdapter : adapters) {
-				touchAdapter.notifyChanged(notification);
+				try {
+					touchAdapter.notifyChanged(notification);
+				// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (RuntimeException e) {
+					ModelUtil.logWarning("Sending touch notification failed!", e);
+				// END SUPRESS CATCH EXCEPTION
+				}
 			}
 		}
 	}
