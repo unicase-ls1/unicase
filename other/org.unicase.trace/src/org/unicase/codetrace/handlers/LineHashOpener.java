@@ -21,18 +21,17 @@ public class LineHashOpener implements ModelElementOpener  {
 	 */
 	public int canOpen(ModelElement me) {
 		if (me instanceof LineHash){
-				return 0;
+				return 1;
 			}
 		
-		return 1;
+		return 0;
 	}
 
 	public void openModelElement(ModelElement modelElement) {
 		if(!(modelElement instanceof LineHash)){
 			
-		//super?
-		}
-		else throw new IllegalArgumentException("Opener not available");
+			throw new IllegalArgumentException("Opener not available");
+		} 
 
 	}
 
