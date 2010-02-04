@@ -26,10 +26,10 @@ import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * 
- * @author Edgar Müller
+ * @author Edgar Mueller
  * @author Fatih Ulusoy
  */
-public class TaskListView extends AbstractListView {
+public class TaskListView extends AbstractProjectListView {
 
 	/**
 	 * 
@@ -63,8 +63,7 @@ public class TaskListView extends AbstractListView {
 		return list;
 	}
 
-	@Override
-	public void setListInput() {
+	private void updateInput() {
 		final List<? extends Checkable> taskItems = getProjectSpace()
 				.getProject().getAllModelElementsbyClass(
 						TaskPackage.eINSTANCE.getCheckable(),
@@ -108,10 +107,10 @@ public class TaskListView extends AbstractListView {
 	}
 
 	@Override
-	public void updateListInput(Project project, ModelElement modelElement) {
+	public void update(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
-			setListInput();
+			// always update everything
+			updateInput();
 		}
 	}
-	
 }

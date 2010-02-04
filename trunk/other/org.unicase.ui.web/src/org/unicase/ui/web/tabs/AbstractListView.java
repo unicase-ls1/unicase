@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -18,6 +19,8 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -32,25 +35,27 @@ import org.unicase.ui.web.labelproviders.GenericColumnLabelProvider;
  * @author Edgar Müller
  * @author Fatih Ulusoy
  */
-public abstract class AbstractListView extends TableViewer implements ProjectChangeObserver {
+public abstract class AbstractListView extends TableViewer {
 	
 	private final String WIDTH = "width";
 	private final String FEATURE = "feature";
-	
-	private ProjectSpace projectSpace;
-	
+
 	private List<TableViewerColumn> columns;
+	private ObservableListContentProvider contentProvider;
 	
 	/**
 	 * 
 	 * @param projectSpace
 	 * @param composite
 	 */
-	public AbstractListView(ProjectSpace projectSpace, Composite composite) {
+	public AbstractListView(Composite composite) {
 		super(composite, SWT.BORDER);
-		this.projectSpace = projectSpace;
+		contentProvider =  new ObservableListContentProvider();
+		setContentProvider(contentProvider);
 		init();
 	}
+	
+	public abstract void update();
 	
 	/**
 	 * 
@@ -59,36 +64,8 @@ public abstract class AbstractListView extends TableViewer implements ProjectCha
 		columns = new ArrayList<TableViewerColumn>();
 		getTable().setLinesVisible(true);
 		getTable().setHeaderVisible(true);
-		getProject().addProjectChangeObserver(this);
 	}
-	
-	/**
-	 * 
-	 * @return feature list of this table.
-	 */
-	public abstract ArrayList<EStructuralFeature> getFeatureList();
-	
-	/**
-	 * 
-	 */
-	public abstract void setListInput();
 
-	/**
-	 * 
-	 * @param project
-	 * @param modelElement
-	 */
-	public abstract void updateListInput(Project project, ModelElement modelElement);
-
-	
-	public ProjectSpace getProjectSpace() {
-		return projectSpace;
-	}
-	
-	public Project getProject() {
-		return projectSpace.getProject();
-	}
-	
 	/**
 	 * Creates table viewer columns from this set of features.
 	 * 
@@ -215,28 +192,6 @@ public abstract class AbstractListView extends TableViewer implements ProjectCha
 		column.getColumn().setData(FEATURE, feature.getName());
 		return column;
 	}
-	
-
-
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		updateListInput(project, modelElement);
-	}
-
-	public void modelElementDeleteCompleted(Project project,
-			ModelElement modelElement) {
-		updateListInput(project, modelElement);
-	}
-
-	public void modelElementDeleteStarted(Project project,
-			ModelElement modelElement) {
-		updateListInput(project, modelElement);
-	}
-
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
-		updateListInput(project, modelElement);
-	}
-
 }
 
 

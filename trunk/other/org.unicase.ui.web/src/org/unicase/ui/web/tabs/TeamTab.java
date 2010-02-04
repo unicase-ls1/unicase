@@ -49,7 +49,7 @@ public class TeamTab extends AbstractTab {
 
 		listView.createColumns(featureList, labelProvider);
 
-		listView.setListInput();
+//		listView.setListInput();
 		setContentCreated(true);
 	}
 	

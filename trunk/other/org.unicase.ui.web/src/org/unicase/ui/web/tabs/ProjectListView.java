@@ -1,36 +1,31 @@
 package org.unicase.ui.web.tabs;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 public class ProjectListView extends AbstractListView {
 
-	public ProjectListView(ProjectSpace projectSpace, Composite composite) {
-		super(projectSpace, composite);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public ArrayList<EStructuralFeature> getFeatureList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setListInput() {
-		// TODO Auto-generated method stub
+	public ProjectListView(Composite composite) {
+		super(composite);	
 		
 	}
 
 	@Override
-	public void updateListInput(Project project, ModelElement modelElement) {
-		// TODO Auto-generated method stub
+	public void update() {
+		List<ProjectSpace> spaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 		
+		// the case of first time of input setting to table
+		WritableList emfList = new WritableList(Realm.getDefault(),
+				spaces, ModelElement.class);
+		setInput(emfList);
 	}
-
+	
+	
 }
