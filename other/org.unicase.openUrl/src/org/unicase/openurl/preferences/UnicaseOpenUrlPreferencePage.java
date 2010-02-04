@@ -21,20 +21,20 @@ import org.unicase.openurl.preferences.protocolhandlers.AbstractRegisterProtocol
 import org.unicase.openurl.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
 
 /**
- * The preference page locates the org.unciase.link.startup jar file which has been installed with the feature and finds
- * out the eclipse path of the eclipse installation which will be passed to the startup application. It then registers
- * theorg.unciase.link.startup jar as a protocol handler for the unicase protocol *
+ * The preference page locates the org.unciase.openurl.startup jar file which has been installed with the feature and
+ * finds out the eclipse path of the eclipse installation which will be passed to the startup application. It then
+ * registers theorg.unciase.openurl.startup jar as a protocol handler for the unicase protocol
  * <p>
  * 
  * @author emueller
  */
-public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	private final AbstractRegisterProtocolHandler protocolHandler;
 
-	public UnicaseLinkPreferencePage() {
+	public UnicaseOpenUrlPreferencePage() {
 		super(GRID);
-		setDescription("Configuration pane for the link plugin.");
+		setDescription("Configuration pane for the OpenURL plugin.");
 		setValid(true);
 		RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
 		protocolHandler = fac.getRegisterProtocolHandler();
@@ -46,7 +46,8 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	 */
 	@Override
 	public void createFieldEditors() {
-		addField(new UnicaseLinkFieldEditor("Protocol handler", "Protocol handler associated:", getFieldEditorParent()));
+		addField(new UnicaseOpenUrlFieldEditor("Protocol handler", "Protocol handler associated:",
+			getFieldEditorParent()));
 	}
 
 	/*
@@ -56,9 +57,9 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 	public void init(IWorkbench workbench) {
 	}
 
-	private class UnicaseLinkFieldEditor extends StringButtonFieldEditor {
+	private class UnicaseOpenUrlFieldEditor extends StringButtonFieldEditor {
 
-		public UnicaseLinkFieldEditor(String name, String labelText, Composite parent) {
+		public UnicaseOpenUrlFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
 			getTextControl().setText(protocolHandler.isProtocolHandlerRegistered() ? "Yes" : "No");
 			getTextControl().setEditable(false);
@@ -114,7 +115,7 @@ public class UnicaseLinkPreferencePage extends FieldEditorPreferencePage impleme
 
 		private void writeStartupConfigFile(String eclipseExecutablePath, String startUpJarPath) {
 			String cfgFilePath = startUpJarPath.substring(0, startUpJarPath.lastIndexOf(File.separator))
-				+ File.separator + "unicaseLink.conf";
+				+ File.separator + "unicaseOpenUrl.conf";
 			File cfgFile = new File(cfgFilePath);
 
 			try {

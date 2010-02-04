@@ -7,7 +7,7 @@ package org.unicase.openurl.handlers;
 
 import it.sauronsoftware.junique.MessageHandler;
 
-import org.unicase.openurl.util.ui.OpenLink;
+import org.unicase.openurl.util.ui.OpenURL;
 
 /**
  * <code>URIMessageHandler</code> is specific message handler for UNICASE
@@ -33,7 +33,7 @@ public class URLMessageHandler implements MessageHandler {
 	 * @return nothing (null).
 	 */
 	public String handle(final String message) {
-		OpenLink.openURL(message);
+		OpenURL.openURL(message);
 		return null;
 	}
 

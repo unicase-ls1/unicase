@@ -14,7 +14,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.openurl.util.ui.LinkDialog;
+import org.unicase.openurl.util.ui.URLDialog;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -25,17 +25,17 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author svetlana, jfinis, kami
  */
-public class UnicaseLinkHandler extends AbstractHandler {
+public class UnicaseOpenUrlHandler extends AbstractHandler {
 
 	/**
 	 * The constructor.
 	 */
-	public UnicaseLinkHandler() {
+	public UnicaseOpenUrlHandler() {
 	}
 
 	/**
-	 * Execute the UnicaseLinkCommand which displays the UNICASE URL of the selected model element in a popup window and
-	 * copies it to clipboard. The method first assembles the link, then copies it to clipboard and opens the popup.
+	 * Execute the UnicaseOpenUrlCommand which displays the UNICASE URL of the selected model element in a popup window
+	 * and copies it to clipboard. The method first assembles the URL, then copies it to clipboard and opens the popup.
 	 * 
 	 * @param event the event to handled
 	 * @return nothing (null)
@@ -65,17 +65,17 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		String serverUrl = ps.getUsersession().getServerInfo().getUrl();
 		int serverPort = ps.getUsersession().getServerInfo().getPort();
 
-		// Assemble the link
-		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" + projectId + "/" + meName
+		// Assemble the URL
+		String url = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" + projectId + "/" + meName
 			+ "%" + meId;
 
 		// place the link on the system clipboard
-		StringSelection stringSelection = new StringSelection(link);
+		StringSelection stringSelection = new StringSelection(url);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(stringSelection, stringSelection);
 
 		Display display = Display.getCurrent();
-		LinkDialog dlg = new LinkDialog(display.getActiveShell(), "The link has been copied to the clipboard.", link);
+		URLDialog dlg = new URLDialog(display.getActiveShell(), "The URL has been copied to the clipboard.", url);
 		dlg.open();
 		return null;
 	}

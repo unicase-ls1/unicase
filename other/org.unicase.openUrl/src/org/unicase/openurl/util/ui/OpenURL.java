@@ -26,20 +26,20 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author svetlana, emueller
  */
-public class OpenLink implements Observer {
+public class OpenURL implements Observer {
 
 	private static final String EXTERNAL_URL = "EXTERNAL_URL";
 
-	private static OpenLink instance;
+	private static OpenURL instance;
 
 	/**
 	 * Gets the instance.
 	 * 
 	 * @return An instance of the OpenLink class.
 	 */
-	public static OpenLink getInstance() {
+	public static OpenURL getInstance() {
 		if (instance == null) {
-			instance = new OpenLink();
+			instance = new OpenURL();
 		}
 		return instance;
 	}
@@ -51,7 +51,7 @@ public class OpenLink implements Observer {
 	 * @param projectSpace the project space the model element with the given URL is assumed to be
 	 * @param modelElementUrl the URL of the model element to be opened
 	 */
-	public static void openME(ProjectSpace projectSpace, ModelElementUrlFragment modelElementUrl) {
+	public static void openME(ProjectSpace projectSpace, final ModelElementUrlFragment modelElementUrl) {
 
 		final ModelElement me = projectSpace.getProject().getModelElement(modelElementUrl.getModelElementId());
 
@@ -64,6 +64,14 @@ public class OpenLink implements Observer {
 						Display.getDefault().getShells()[0].forceActive();
 						Display.getDefault().getShells()[0].forceFocus();
 					}
+				}
+			});
+		} else {
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					MessageDialog.openWarning(Display.getDefault().getActiveShell(), "ModelElement not found.",
+						"The model element you've requested isn't available.\n" + "Model element requested: "
+							+ modelElementUrl.getModelElementId());
 				}
 			});
 		}
@@ -81,7 +89,7 @@ public class OpenLink implements Observer {
 		projectSpace = ProjectFacade.getInstance().getLatestProjectSpace(url);
 
 		if (projectSpace != null) {
-			OpenLink.openME(projectSpace, url.getModelElementUrlFragment());
+			OpenURL.openME(projectSpace, url.getModelElementUrlFragment());
 		}
 	}
 

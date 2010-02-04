@@ -18,7 +18,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             commandId="org.unicase.openurl.commands.getUnicaseLink"
-            class="org.unicase.openurl.handlers.UnicaseLinkHandler">
+            class="org.unicase.openurl.handlers.UnicaseOpenUrlHandler">
       </handler>
    </extension>
    <extension
@@ -64,7 +64,7 @@
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.unicase.ui.common.unicase"
-            class="org.unicase.openurl.preferences.UnicaseLinkPreferencePage"
+            class="org.unicase.openurl.preferences.UnicaseOpenUrlPreferencePage"
             id="org.unicase.openurl.preferences.UnicaseLinkPreferencePage"
             name="UNICASE OpenURL">
       </page>
