@@ -94,6 +94,7 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#getCommand()
 	*/
+	@Override
 	public org.eclipse.gef.commands.Command getCommand() {
 		CompoundCommand compoundCommand;
 		compoundCommand = new CompoundCommand("Create classes and association");
@@ -111,7 +112,6 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		return compoundCommand;
 	}
 
-	@SuppressWarnings("unchecked")
 	private IAdaptable getCreatedObjectAdapter(CreateNodeCommand command){
 		Request classRequest = command.getRequest();
 		Object newObject = ((CreateViewAndElementRequest)classRequest).getNewObject();
@@ -229,6 +229,7 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.operations.Operation#finish()
 	*/
+	@Override
 	public void execute() {
 		org.eclipse.gef.commands.Command command = getCommand();
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);

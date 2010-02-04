@@ -9,7 +9,7 @@ package org.unicase.ui.tom.notifications;
  * @author schroech
  *
  */
-public interface TouchAdapter {
+public interface SingleTouchAdapter {
 	
 	/**
 	 * @param notification The notification object

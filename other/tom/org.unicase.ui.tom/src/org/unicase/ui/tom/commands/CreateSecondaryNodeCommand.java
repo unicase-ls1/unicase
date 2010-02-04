@@ -24,7 +24,6 @@ public class CreateSecondaryNodeCommand extends CreateNodeCommand {
 	 * @param point The position where the new editPart is created
 	 * @param targetEditPart The target edit part, used for the creation of subnodes
 	 */
-	@SuppressWarnings("unchecked")
 	public CreateSecondaryNodeCommand(
 			DiagramEditPart diagramEditPart, 
 			GraphicalEditPart targetEditPart, 

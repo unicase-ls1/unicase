@@ -16,7 +16,7 @@ public interface TouchNotifier {
 	/**
 	 * @return The observers
 	 */
-	Set<TouchAdapter> getAdapters();
+	Set<SingleTouchAdapter> getAdapters();
 	
 	/**
 	 * @param notification The notification

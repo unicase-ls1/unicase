@@ -26,9 +26,10 @@ public final class TUIOTouchDispatch extends TouchDispatch implements TuioListen
 	 */
 	private Map<TuioCursor, SingleTouch> touchMap;
 	
-	private static TUIOTouchDispatch instance;
-
-	private TUIOTouchDispatch() {
+	/**
+	 * Default Constructor.
+	 */
+	public TUIOTouchDispatch() {
 		super();
 
 		TuioClient client = new TuioClient();
@@ -124,16 +125,6 @@ public final class TUIOTouchDispatch extends TouchDispatch implements TuioListen
 	 */
 	public void removeTuioObject(TuioObject tuioObject) {
 		// don't do anything
-	}
-
-	/**
-	 * @return The singleton touch dispath instance
-	 */
-	public static TouchDispatch getInstance() {
-		if (instance == null) {
-			instance = new TUIOTouchDispatch();
-		}
-		return instance;
 	}
 
 	private void setTouchMap(Map<TuioCursor, SingleTouch> touchMap) {

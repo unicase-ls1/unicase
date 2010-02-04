@@ -28,7 +28,7 @@ import org.unicase.ui.tom.gestures.MoveNodeGesture;
 import org.unicase.ui.tom.gestures.ResizeGesture;
 import org.unicase.ui.tom.gestures.SelectGesture;
 import org.unicase.ui.tom.notifications.SingleTouchNotification;
-import org.unicase.ui.tom.notifications.TouchAdapter;
+import org.unicase.ui.tom.notifications.SingleTouchAdapter;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.Touch;
@@ -39,7 +39,7 @@ import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
  * 
  */
 public class GestureInterpreter extends TouchNotifierImpl implements
-		TouchAdapter {
+		SingleTouchAdapter {
 
 	private TouchDispatch dispatch;
 	private List<Gesture> gestures;
@@ -139,7 +139,7 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 	}
 
 	/*** {@inheritDoc}
-	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
+	 * @see org.unicase.ui.tom.notifications.SingleTouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	 */
 	public void notifyChanged(SingleTouchNotification notification) {
 		switch (notification.getEventType()) {
@@ -150,7 +150,8 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			break;
 		}
 	}
-
+	
+	// BEGIN COMPLEX CODE
 	/**
 	 * Fires when all touch listeners were notified of a touch event. Used to check execu
 	 * @param touch The touch being propagated
@@ -205,6 +206,7 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			}
 		}
 	}
+	// END COMPLEX CODE
 
 	private List<SelectGesture> filterSelectGestures(
 			List<Gesture> executableGestures) {

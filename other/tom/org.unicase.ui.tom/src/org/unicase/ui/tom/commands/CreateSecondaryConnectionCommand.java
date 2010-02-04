@@ -38,7 +38,6 @@ public class CreateSecondaryConnectionCommand extends
 
 		}
 
-		@SuppressWarnings("unchecked")
 		public Object getAdapter(Class adapter) {
 			if (adapter.isInstance(getElementType())) {
 				return getElementType();

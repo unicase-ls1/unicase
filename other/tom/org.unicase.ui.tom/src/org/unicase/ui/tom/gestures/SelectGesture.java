@@ -93,7 +93,6 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
 		if (touch.getMultiTouch().getActiveTouches().size() > 1) {

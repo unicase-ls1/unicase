@@ -84,6 +84,7 @@ public class DiscoveryModeActivationCommand extends AbstractCommand {
 	/*** {@inheritDoc}
 	 * @see org.unicase.ui.tom.commands.AbstractCommand#execute()
 	 */
+	@Override
 	public void execute() {
 		Runnable runner = new Runnable(){
 

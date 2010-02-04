@@ -24,7 +24,6 @@ public class CreateDefaultNodeCommand extends CreateNodeCommand {
 	 * @param point The position where the new editPart is created
 	 * @param targetEditPart The target edit part, usually the diagram edit part
 	 */
-	@SuppressWarnings("unchecked")
 	public CreateDefaultNodeCommand(
 			DiagramEditPart diagramEditPart, 
 			GraphicalEditPart targetEditPart, 

@@ -37,7 +37,7 @@ import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.GestureNotificationImpl;
 import org.unicase.ui.tom.notifications.GestureNotifierImpl;
 import org.unicase.ui.tom.notifications.SingleTouchNotification;
-import org.unicase.ui.tom.notifications.TouchAdapter;
+import org.unicase.ui.tom.notifications.SingleTouchAdapter;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
@@ -49,7 +49,7 @@ import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
  * 
  */
 public abstract class AbstractGesture extends GestureNotifierImpl implements
-		TouchAdapter, Gesture {
+		SingleTouchAdapter, Gesture {
 
 	private List<MultiTouch> optionalTouches;
 	private List<Gesture> restrictingGestures;
@@ -146,7 +146,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param position The position where to search for label edit parts
 	 * @return The touched LabelEditPart
 	 */
-	@SuppressWarnings("unchecked")
 	public LabelEditPart findTouchedLabelEditPart(Point position) {
 		List connectionLayerChildren = getConnectionLayer().getChildren();
 		for (Object connectionLayerChild : connectionLayerChildren) {
@@ -190,7 +189,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param position The position of the touch
 	 * @return The touched {@link ConnectionEditPart}, if existing
 	 */
-	@SuppressWarnings("unchecked")
 	public ConnectionEditPart findTouchedConnectionEditPart(Point position) {
 
 		List connections = getConnectionLayer().getChildren();
@@ -264,7 +262,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param position The position of the touch
 	 * @return The touched {@link EditPart}, if existing
 	 */
-	@SuppressWarnings("unchecked")
 	public EditPart findTouchedEditPartAtRelativeCoordinatesExcluding(
 			Collection exclusions, Point position) {
 		IFigure figure = getDiagramEditPart().getFigure()
@@ -324,7 +321,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param exclusions The editParts to exclude from the search
 	 * @return The {@link EditPart} probably being the target of the gesture
 	 */
-	@SuppressWarnings("unchecked")
 	public EditPart findCardinalTouchedEditPartExcluding(
 			Collection<? extends Touch> touches, Collection exclusions) {
 
@@ -386,7 +382,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param exclusions The {@link EditPart}s to exclude from the search
 	 * @return The {@link EditPart}s touched by the touches
 	 */
-	@SuppressWarnings("unchecked")
 	public Set<EditPart> findTouchedEditPartsExcluding(
 			Collection<? extends Touch> touches, Collection exclusions) {
 		Set<EditPart> editParts = new HashSet<EditPart>();
@@ -409,7 +404,6 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 * @param exclusions The {@link EditPart}s to exclude from the search
 	 * @return The {@link EditPart} at the center of the touches
 	 */
-	@SuppressWarnings("unchecked")
 	public EditPart findEditPartAtCenterExcluding(Collection<?extends Touch> touches,
 			Collection exclusions) {
 		PointList points = new PointList();
@@ -601,7 +595,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
+	 * @see org.unicase.ui.tom.notifications.SingleTouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	 */
 	public void notifyChanged(SingleTouchNotification notification) {
 		int eventType = notification.getEventType();

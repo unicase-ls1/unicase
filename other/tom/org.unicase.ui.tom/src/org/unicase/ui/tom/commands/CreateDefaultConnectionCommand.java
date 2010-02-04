@@ -38,7 +38,6 @@ public class CreateDefaultConnectionCommand extends CreateConnectionCommand {
 
 		}
 
-		@SuppressWarnings("unchecked")
 		public Object getAdapter(Class adapter) {
 			if (adapter.isInstance(getElementType())) {
 				return getElementType();
@@ -51,7 +50,6 @@ public class CreateDefaultConnectionCommand extends CreateConnectionCommand {
 			return null;
 		}
 
-		@SuppressWarnings("unchecked")
 		public IElementType getElementType() {
 			if (elementType == null) {
 				if (getSourceAdapter().getAdapter(GraphicalEditPart.class) == null

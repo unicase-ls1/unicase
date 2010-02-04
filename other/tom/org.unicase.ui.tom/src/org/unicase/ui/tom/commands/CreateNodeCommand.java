@@ -54,6 +54,7 @@ public class CreateNodeCommand extends AbstractCommand{
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#createRequest()
 	*/
+	@Override
 	public Request createRequest() {
 		CreateElementRequest createElementRequest = new CreateElementRequest(getElementType());
 		CreateElementRequestAdapter createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
@@ -75,6 +76,7 @@ public class CreateNodeCommand extends AbstractCommand{
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#getCommand()
 	*/
+	@Override
 	public Command getCommand() {
 		Command command = getTargetEditPart().getCommand(getRequest());
 		return command;

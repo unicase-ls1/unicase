@@ -26,7 +26,6 @@ public final class MapUtility {
 	 * @param object The object of interest
 	 * @return The keys for which the object is registered
 	 */
-	@SuppressWarnings("unchecked")
 	public static <K, V> Set<K> getKeysForObject(Map<K, Set<V>> map,
 			V object) {
 		Set<K> keysForObject = new HashSet<K>();

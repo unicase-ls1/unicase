@@ -40,6 +40,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 		super(dispatch);
 	}
 
+	// BEGIN COMPLEX CODE
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
@@ -53,12 +54,12 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 
 			MultiTouch targetMultiTouch = getCreationTouch().getMultiTouch();
 			if (targetMultiTouch == null) {
-				throw new NullPointerException();
+				throw new IllegalStateException();
 			}
 
 			MultiTouch sourceMultiTouch = findSourceMultiTouch();
 			if (sourceMultiTouch == null) {
-				throw new NullPointerException();
+				throw new IllegalStateException();
 			}
 
 			if(targetMultiTouch == sourceMultiTouch) {
@@ -121,6 +122,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			setCanExecute(false);			
 		}
 	}
+	// END COMPLEX CODE
 
 	private List<MultiTouch> findPossibleSourceMultiTouches(MultiTouch targetMultiTouch, Collection<MultiTouch> multiTouches) {
 		List<MultiTouch> possibleSourceMultiTouches = new ArrayList<MultiTouch>();
@@ -269,6 +271,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
 	 */
+	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
 		// Do nothing
 
@@ -278,6 +281,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
 	 */
+	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
 		// Do nothing
 	}
