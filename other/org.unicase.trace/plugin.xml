@@ -109,7 +109,22 @@
      </menuContribution>
 
      </extension>
+   <extension
+         point="org.unicase.ui.meeditor.melinkcontrols">
+      <widget
+            class="org.unicase.codetrace.handlers.MEFindLocationControl"
+            name="org.unicase.trace.widget1"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
+   </extension>
   
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+         <ModelElementOpener
+               class="org.unicase.codetrace.handlers.LineHashOpener"
+               name="org.unicase.trace.LineHashOpener">
+         </ModelElementOpener>
+   </extension>
   
   
 </plugin>
