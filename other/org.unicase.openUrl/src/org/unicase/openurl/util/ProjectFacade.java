@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.util;
+package org.unicase.openurl.util;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.link.handlers.CheckoutProjectHandler;
-import org.unicase.link.handlers.ProjectInfoLoadingHandler;
+import org.unicase.openurl.handlers.CheckoutProjectHandler;
+import org.unicase.openurl.handlers.ProjectInfoLoadingHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;

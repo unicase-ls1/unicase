@@ -3,13 +3,13 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.preferences.protocolhandlers;
+package org.unicase.openurl.preferences.protocolhandlers;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
-import org.unicase.link.util.FileLocations;
+import org.unicase.openurl.util.FileLocations;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

@@ -1,4 +1,4 @@
-package org.unicase.link.util;
+package org.unicase.openurl.util;
 
 import java.io.File;
 

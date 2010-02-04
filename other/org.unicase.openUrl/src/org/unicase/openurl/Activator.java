@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link;
+package org.unicase.openurl;
 
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
@@ -17,9 +17,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.link.handlers.URLMessageHandler;
-import org.unicase.link.util.FileLocations;
-import org.unicase.link.util.ui.OpenLink;
+import org.unicase.openurl.handlers.URLMessageHandler;
+import org.unicase.openurl.util.FileLocations;
+import org.unicase.openurl.util.ui.OpenLink;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

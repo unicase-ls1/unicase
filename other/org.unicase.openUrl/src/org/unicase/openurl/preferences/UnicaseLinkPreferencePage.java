@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.preferences;
+package org.unicase.openurl.preferences;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.unicase.link.preferences.protocolhandlers.AbstractRegisterProtocolHandler;
-import org.unicase.link.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
+import org.unicase.openurl.preferences.protocolhandlers.AbstractRegisterProtocolHandler;
+import org.unicase.openurl.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
 
 /**
  * The preference page locates the org.unciase.link.startup jar file which has been installed with the feature and finds

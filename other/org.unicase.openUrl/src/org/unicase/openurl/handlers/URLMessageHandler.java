@@ -3,11 +3,11 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.link.handlers;
+package org.unicase.openurl.handlers;
 
 import it.sauronsoftware.junique.MessageHandler;
 
-import org.unicase.link.util.ui.OpenLink;
+import org.unicase.openurl.util.ui.OpenLink;
 
 /**
  * <code>URIMessageHandler</code> is specific message handler for UNICASE
