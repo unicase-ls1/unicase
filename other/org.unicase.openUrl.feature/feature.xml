@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.link_feature"
-      label="UNICASE Link Feature"
+      id="org.unicase.openUrl.feature"
+      label="UNICASE OpenUrl Feature"
       version="1.0.0.qualifier"
       provider-name="unicase.org">
    <install-handler handler=""/>
 
    <description url="http://www.unicase.org">
-      Testfeature of our link-project
+      UNICASE openUrl feature.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -247,7 +247,7 @@ litigation.
    </requires>
 
    <plugin
-         id="org.unicase.link"
+         id="org.unicase.openUrl"
          download-size="0"
          install-size="0"
          version="0.0.0"
