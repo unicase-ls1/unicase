@@ -69,10 +69,4 @@
             name="UNICASE OpenURL">
       </page>
    </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="org.unicase.openurl.preferences.PreferenceInitializer">
-      </initializer>
-   </extension>
 </plugin>
