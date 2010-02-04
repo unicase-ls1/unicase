@@ -43,7 +43,7 @@ public class PromptAndCreateConnectionCommand extends AbstractCommand {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#createRequest()
 	*/
-	@SuppressWarnings("unchecked")
+	@Override
 	public Request createRequest() {
 		List relTypesOnSourceAndTarget = ModelingAssistantService.getInstance()
 			.getRelTypesOnSourceAndTarget(sourceEditPart, targetEditPart);

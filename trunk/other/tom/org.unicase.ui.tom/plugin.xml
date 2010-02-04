@@ -121,14 +121,5 @@
             name="Open in TOM Diagram Editor">
       </command>
    </extension>
-   <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            class="org.unicase.ui.tom.perspectives.MultitouchPerspective"
-            icon="icons/releng_gears.gif"
-            id="org.unicase.ui.touchtable.perspectives.MultitouchPerspective"
-            name="Multi Touch Diagram Editing">
-      </perspective>
-   </extension>
 
 </plugin>

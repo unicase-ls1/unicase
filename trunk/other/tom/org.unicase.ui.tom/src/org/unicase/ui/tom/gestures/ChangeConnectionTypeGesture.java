@@ -228,6 +228,7 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 	/*** {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#getOptionalTouches()
 	 */
+	@Override
 	public List<MultiTouch> getOptionalTouches() {
 		// TODO Auto-generated method stub
 		return null;

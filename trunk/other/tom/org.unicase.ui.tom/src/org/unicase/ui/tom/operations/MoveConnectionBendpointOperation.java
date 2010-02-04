@@ -50,6 +50,7 @@ public class MoveConnectionBendpointOperation extends MoveOperation{
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.operations.Operation#finish()
 	*/
+	@Override
 	public void finish() {
 		final MouseEvent mouseEvent = createMouseEventAtPosition(getPosition());
 		
@@ -66,6 +67,7 @@ public class MoveConnectionBendpointOperation extends MoveOperation{
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.operations.MoveOperation#prepare(org.eclipse.draw2d.geometry.Point)
 	*/
+	@Override
 	public void prepare(Point position) {
 		setPosition(position);		
 
@@ -87,6 +89,7 @@ public class MoveConnectionBendpointOperation extends MoveOperation{
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.operations.MoveOperation#update(org.eclipse.draw2d.geometry.Point)
 	*/
+	@Override
 	public void update(Point point) {
 		setPosition(point);
 		

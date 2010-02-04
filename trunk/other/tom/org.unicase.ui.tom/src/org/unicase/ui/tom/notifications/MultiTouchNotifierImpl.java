@@ -33,7 +33,7 @@ public class MultiTouchNotifierImpl {
 	}
 
 	/**
-	 * @param adapters The list of {@link TouchAdapter}s
+	 * @param adapters The list of {@link SingleTouchAdapter}s
 	 */
 	public void setAdapters(Set<MultiTouchAdapter> adapters) {
 		this.adapters = adapters;

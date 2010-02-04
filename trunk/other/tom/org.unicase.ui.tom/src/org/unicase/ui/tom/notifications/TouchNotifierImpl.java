@@ -14,28 +14,28 @@ import java.util.Set;
  */
 public class TouchNotifierImpl implements TouchNotifier {
 
-	private Set<TouchAdapter> adapters;
+	private Set<SingleTouchAdapter> adapters;
 	private boolean deliver = true;
 
 	/**
 	 * Default constructor.
 	 */
 	public TouchNotifierImpl() {
-		adapters = new HashSet<TouchAdapter>();
+		adapters = new HashSet<SingleTouchAdapter>();
 	}
 	
 	/** 
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.notifications.TouchNotifier#getAdapters()
 	*/
-	public Set<TouchAdapter> getAdapters() {
+	public Set<SingleTouchAdapter> getAdapters() {
 		return adapters;
 	}
 
 	/**
-	 * @param adapters The list of {@link TouchAdapter}s
+	 * @param adapters The list of {@link SingleTouchAdapter}s
 	 */
-	public void setAdapters(Set<TouchAdapter> adapters) {
+	public void setAdapters(Set<SingleTouchAdapter> adapters) {
 		this.adapters = adapters;
 	}
 
@@ -44,10 +44,10 @@ public class TouchNotifierImpl implements TouchNotifier {
 	* @see org.unicase.ui.tom.notifications.TouchNotifier#notifyAdapters(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	*/
 	public void notifyAdapters(SingleTouchNotification notification) {
-		Set<TouchAdapter> adapters = getAdapters();
+		Set<SingleTouchAdapter> adapters = getAdapters();
 		if (adapters != null && deliver())
 		{
-			for (TouchAdapter touchAdapter : adapters) {
+			for (SingleTouchAdapter touchAdapter : adapters) {
 				touchAdapter.notifyChanged(notification);
 			}
 		}

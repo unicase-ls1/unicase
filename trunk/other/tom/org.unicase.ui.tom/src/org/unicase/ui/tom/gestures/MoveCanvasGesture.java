@@ -56,6 +56,7 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 		}
 	}
 
+	// BEGIN COMPLEX CODE
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -65,7 +66,7 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	public void handleSingleTouchChanged(SingleTouch touch) {
 
 		// BEGIN SANITY CHECKS
-		if (!(touch instanceof SingleTouch)) {
+		if (touch == null) {
 			return;
 		}
 
@@ -107,6 +108,8 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 			setCanExecute(true);
 		}
 	}
+	
+	// END COMPLEX CODE
 
 	/**
 	 * {@inheritDoc}
@@ -147,7 +150,7 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	public void execute() {
 		setExecuting(true);
 
-		Point firstPoint = ((SingleTouch) getMoveTouch()).getAbsolutePath()
+		Point firstPoint = getMoveTouch().getAbsolutePath()
 				.getFirstPoint().getCopy();
 		getMoveCanvasAction().prepareMove(firstPoint);
 	}

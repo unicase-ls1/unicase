@@ -56,6 +56,7 @@ public class CreateConnectionCommand extends AbstractCommand {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#createRequest()
 	*/
+	@Override
 	public Request createRequest() {		
 		CreateConnectionViewAndElementRequest newRequest 
 		= new CreateConnectionViewAndElementRequest(
@@ -71,6 +72,7 @@ public class CreateConnectionCommand extends AbstractCommand {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.commands.AbstractCommand#getCommand()
 	*/
+	@Override
 	public org.eclipse.gef.commands.Command getCommand(){
 		DeferredCreateConnectionViewAndElementCommand deferredCreateConnectionViewAndElementCommand 
 		= new DeferredCreateConnectionViewAndElementCommand(

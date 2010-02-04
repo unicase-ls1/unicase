@@ -11,10 +11,10 @@ import org.unicase.ui.tom.touches.SingleTouch;
  * @author schroech
  *
  */
-public abstract class TouchAdapterImpl implements TouchAdapter {
+public abstract class SingleTouchAdapterImpl implements SingleTouchAdapter {
 
 	/*** {@inheritDoc}
-	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
+	 * @see org.unicase.ui.tom.notifications.SingleTouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	 */
 	public void notifyChanged(SingleTouchNotification notification) {
 		switch (notification.getEventType()) {

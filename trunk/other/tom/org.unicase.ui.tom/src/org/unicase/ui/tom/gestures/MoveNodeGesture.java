@@ -53,7 +53,6 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 * 
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
-	@SuppressWarnings("unchecked")
 	public void execute() {
 		List<INodeEditPart> editPartsToMove;
 

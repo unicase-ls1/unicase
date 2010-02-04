@@ -66,6 +66,7 @@ public class TUIOTouch extends SingleTouch implements Touch {
 	/*** {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.SingleTouch#update()
 	 */
+	@Override
 	public void update() {
 
 	}
@@ -73,6 +74,7 @@ public class TUIOTouch extends SingleTouch implements Touch {
 	/*** {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.SingleTouch#getAbsolutePath()
 	 */
+	@Override
 	public PointList getAbsolutePath() {
 		List<TuioPoint> tuioPath = cursor.getPath();
 
@@ -95,6 +97,7 @@ public class TUIOTouch extends SingleTouch implements Touch {
 	/*** {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.SingleTouch#getPath()
 	 */
+	@Override
 	public PointList getPath() {
 		List<TuioPoint> tuioPath = cursor.getPath();
 

@@ -33,6 +33,7 @@ public abstract class CreateGesture extends AbstractGesture{
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#reset()
 	 */
+	@Override
 	public void reset() {
 		super.reset();
 

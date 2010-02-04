@@ -45,6 +45,7 @@ public class TouchSelectConnectionEditPartTracker extends
  	 *	@return <code>true</code> if the buttonDown was handled
 	 * 
 	 */
+	@Override
 	protected boolean handleButtonDown(int button) {
 		if (!super.handleButtonDown(button)) {
 			return false;
@@ -54,7 +55,7 @@ public class TouchSelectConnectionEditPartTracker extends
 		getConnection().translateToRelative(p);
 		
 		PointList points = getConnection().getPoints();
-		Dimension size = new Dimension((TOUCH_DIAMETER * (int)2),(TOUCH_DIAMETER * (int)2));
+		Dimension size = new Dimension((TOUCH_DIAMETER * 2),(TOUCH_DIAMETER * 2));
 		for (int i=1; i<points.size()-1; i++) {
 			Point ptCenter = points.getPoint(i);
 			Rectangle rect = new Rectangle( ptCenter.x - size.width / 2, ptCenter.y - size.height / 2, size.width, size.height);

@@ -229,6 +229,7 @@ public class CreateConnectionGesture extends CreateGesture {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
 	*/
+	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
 		// Do nothing
 	}
@@ -237,6 +238,7 @@ public class CreateConnectionGesture extends CreateGesture {
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
 	*/
+	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
 		// Do nothing
 	} 

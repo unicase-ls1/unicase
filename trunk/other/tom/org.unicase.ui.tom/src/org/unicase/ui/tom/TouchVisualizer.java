@@ -22,7 +22,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.swt.graphics.Color;
 import org.unicase.ui.tom.notifications.MultiTouchAdapterImpl;
-import org.unicase.ui.tom.notifications.TouchAdapterImpl;
+import org.unicase.ui.tom.notifications.SingleTouchAdapterImpl;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
@@ -59,7 +59,7 @@ public class TouchVisualizer {
 	/**
 	 * Private single-touch adapter class.
 	 */
-	private class MySingleTouchAdapterImpl extends TouchAdapterImpl {
+	private class MySingleTouchAdapterImpl extends SingleTouchAdapterImpl {
 
 		@Override
 		public void handleTouchAdded(SingleTouch touch) {
@@ -177,6 +177,7 @@ public class TouchVisualizer {
 		 * 
 		 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 		 */
+		@Override
 		protected void fillShape(Graphics graphics) {
 
 			Rectangle r = Rectangle.SINGLETON;
@@ -195,6 +196,7 @@ public class TouchVisualizer {
 		 * 
 		 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
 		 */
+		@Override
 		protected void outlineShape(Graphics graphics) {
 			Rectangle r = Rectangle.SINGLETON;
 			r.setBounds(getBounds());
@@ -295,7 +297,7 @@ public class TouchVisualizer {
 			ModelDiagramEditor activeModelDiagramEditor;
 			GraphicalViewer graphicalViewer;
 
-			activeModelDiagramEditor = (ModelDiagramEditor) getActiveEditor();
+			activeModelDiagramEditor = getActiveEditor();
 			graphicalViewer = (GraphicalViewer) activeModelDiagramEditor
 					.getAdapter(GraphicalViewer.class);
 			if (graphicalViewer != null) {
@@ -323,7 +325,7 @@ public class TouchVisualizer {
 	/**  
 	 * @return The internal singletouch adapter class.
 	 */
-	public TouchAdapterImpl getSingleTouchAdapter() {
+	public SingleTouchAdapterImpl getSingleTouchAdapter() {
 		return singleTouchAdapter;
 	}
 
