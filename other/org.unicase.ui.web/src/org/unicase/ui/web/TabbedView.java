@@ -3,8 +3,14 @@ package org.unicase.ui.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.graphics.Graphics;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.FillLayout;
@@ -20,15 +26,18 @@ import org.unicase.ui.web.tabs.*;
  * 
  * @author Fatih Ulusoy
  */
-public class TabbedView extends ViewPart {
+public class TabbedView extends ViewPart implements ISelectionListener {
 
 	public static final String ID = "org.unicase.ui.web.TabbedView";
 	
 	private String currProjectName;
+	private TaskItemsTab taskItemsTab;
+	private TeamTab teamTab;
+	private BugReportTab bugReportTab;
 
 	@Override
 	public void createPartControl(Composite parent) {
-		
+	
 		parent.setLayout(new GridLayout(2, false));
 		int style = SWT.TOP | SWT.FLAT | SWT.BORDER;
 		final CTabFolder topFolder = new CTabFolder(parent, style);
@@ -36,17 +45,33 @@ public class TabbedView extends ViewPart {
 		topFolder.marginHeight = 8;
 		ensureMinTabHeight(topFolder);
 
+		
+		
 		HttpServletRequest request = RWT.getRequest();
 		String projectName = request.getParameter("project");
-	
+		
+		ISelectionService service =  getSite().getWorkbenchWindow().getSelectionService();
+		service.addSelectionListener(new ISelectionListener() {
+			
+			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+				System.out.println(selection.toString());
+			}
+		});
+			
 		if (projectName != null) {
 			setCurrProjectName(projectName);
+			taskItemsTab = new TaskItemsTab(projectName, topFolder);
+			teamTab = new TeamTab(projectName, topFolder);
+			bugReportTab = new BugReportTab(projectName, topFolder);
+			
 			final AbstractTab[] tabs = new AbstractTab[] {
-					new TaskItemsTab(projectName, topFolder),
-					new TeamTab(projectName, topFolder),
-					new BugReportTab(projectName, topFolder),
+					taskItemsTab,
+					teamTab,
+					bugReportTab
 //					new ExampleTableTab(topFolder), new InputTab(topFolder) 
 			};
+
+			
 
 			topFolder.setSelection(0);
 			tabs[0].createTabContent();
@@ -94,6 +119,10 @@ public class TabbedView extends ViewPart {
 	 */
 	public void setCurrProjectName(String currProjectName) {
 		this.currProjectName = currProjectName;
+	}
+
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		System.out.println(selection);	
 	}
 
 }

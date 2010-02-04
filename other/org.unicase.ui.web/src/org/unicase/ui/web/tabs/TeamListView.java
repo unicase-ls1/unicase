@@ -24,7 +24,7 @@ import org.unicase.model.organization.OrganizationPackage;
  * @author Edgar Müller
  * @author Fatih Ulusoy
  */
-public class TeamListView extends AbstractListView {
+public class TeamListView extends AbstractProjectListView {
 
 	/**
 	 * 
@@ -53,8 +53,7 @@ public class TeamListView extends AbstractListView {
 		return list;
 	}
 
-	@Override
-	public void setListInput() {		
+	private void setListInput() {		
 		
 		final WritableList oldItems = (WritableList) (getInput());
 		
@@ -77,7 +76,7 @@ public class TeamListView extends AbstractListView {
 	}
 
 	@Override
-	public void updateListInput(Project project, ModelElement modelElement) {
+	public void update(Project project, ModelElement modelElement) {
 		if (modelElement instanceof OrgUnit) {
 			setListInput();
 		}

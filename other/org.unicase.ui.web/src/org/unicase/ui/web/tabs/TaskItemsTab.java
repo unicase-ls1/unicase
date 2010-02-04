@@ -56,7 +56,7 @@ public class TaskItemsTab extends AbstractTab {
 		ObservableMapLabelProvider labelProvider = new UnicaseObservableMapLabelProvider(observeMaps);
 		
 		listView.createColumns(featureList, labelProvider);
-		listView.setListInput();
+//		listView.setListInput();
 		
 		hookDoubleClickAction();
 		

@@ -132,7 +132,7 @@ public class BugReportTab extends AbstractTab {
 	    					
 	    					getProjectSpace().commit(msg);
 	    					
-	    					messageLabel.setText("Your bug successfully reported!");
+	    					messageLabel.setText("Your bug has been successfully reported!");
 	    					messageLabel.setVisible(true);
 	    					bugNameText.setText("");
 	    					bugDescriptionText.setText("");

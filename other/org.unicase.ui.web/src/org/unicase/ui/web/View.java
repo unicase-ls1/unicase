@@ -1,7 +1,12 @@
 package org.unicase.ui.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -13,6 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ui.web.tabs.ProjectListView;
 
 /**
  * This view shows a &quot;mail message&quot;. This class is contributed through
@@ -20,9 +26,19 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class View extends ViewPart {
 
+	private ProjectListView projectListView;
 	public static final String ID = "test.view";
 	
+	public View() {
+		
+	}
+	
 	public void createPartControl(Composite parent) {
+
+		projectListView = new ProjectListView(parent);
+		projectListView.update();
+		getSite().setSelectionProvider(projectListView);
+				
 		Composite top = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.marginHeight = 0;

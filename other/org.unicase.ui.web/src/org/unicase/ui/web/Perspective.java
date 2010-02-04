@@ -1,6 +1,7 @@
 package org.unicase.ui.web;
 
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -23,9 +24,12 @@ public class Perspective implements IPerspectiveFactory {
 //		folder.addView(ExampleView.ID);
 		// layout.addStandaloneView(TabbedView.ID, false, IPageLayout.LEFT, 1.0f, editorArea);
 		
-		layout.addStandaloneView(View.ID, false, IPageLayout.LEFT, 0.50f, editorArea);
-		layout.addStandaloneView(TabbedView.ID, false, IPageLayout.RIGHT, 1.0f, View.ID);
+		View v = new View();
+		TabbedView tv = new TabbedView();
 		
+		layout.addStandaloneView(v.ID, false, IPageLayout.LEFT, 0.50f, editorArea);
+		layout.addStandaloneView(tv.ID, false, IPageLayout.RIGHT, 1.0f, View.ID);
+		System.out.println("asdf");
 	}
 	
 }

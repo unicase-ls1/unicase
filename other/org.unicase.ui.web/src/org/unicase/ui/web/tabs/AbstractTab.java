@@ -102,7 +102,7 @@ public abstract class AbstractTab {
 		return tabComposite;
 	}
 
-	public void setProjectSpace(ProjectSpace projectSpace) {
+	private void setProjectSpace(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
 	}
 
@@ -110,10 +110,14 @@ public abstract class AbstractTab {
 		return projectSpace;
 	}
 
-	public void setProject(Project project) {
+	private void setProject(Project project) {
 		this.project = project;
 	}
-
+	
+	public void setProject(String projectName) {
+		resolveProject(projectName);
+	}
+	
 	public Project getProject() {
 		return project;
 	}
