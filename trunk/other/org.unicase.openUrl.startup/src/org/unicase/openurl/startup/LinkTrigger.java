@@ -35,15 +35,15 @@ public final class LinkTrigger {
 	/**
 	 * The path to the config file which contains the command to startup UNICASE
 	 */
-	private static final String CONFIG_FILE_PATH = "unicaseLink.conf";
+	private static final String CONFIG_FILE_PATH = "unicaseOpenUrl.conf";
 	
-	private static final String LOCK_FILE = ".unicase-link-lock.file";
+	private static final String LOCK_FILE = ".unicase-url-lock.file";
 
 	/**
 	 * The Application ID. It is used to lock UNICASE application to enable to
 	 * run one instance of UNICASE.
 	 */
-	public static final String APPLICATION_ID = "org.unicase.link";
+	public static final String APPLICATION_ID = "org.unicase.openurl";
 	
 	/** 
 	 * Prefix of UNICASE links. Example Link: <br/>
@@ -77,7 +77,7 @@ public final class LinkTrigger {
 		
 		// Was a unicase link handed to the app?
 		if(args.length < 1 || !args[0].toLowerCase().startsWith(UNICASE_LINK_PREFIX)) {
-			System.out.println("No UNICASE link passed!");
+			System.out.println("No UNICASE URL passed!");
 			return;
 		}
 		
