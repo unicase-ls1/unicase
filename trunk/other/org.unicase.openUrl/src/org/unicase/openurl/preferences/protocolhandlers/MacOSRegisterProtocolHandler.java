@@ -19,9 +19,9 @@ import org.unicase.openurl.util.FileLocations;
 
 /**
  * Protocol registration handler for Mac OS. To avoid the use of JNI an application bundle archived as a zip file is
- * packaged with the link feature. This application bundle associates itself with the UNICASE protocol without further
- * ado. When clicking a UNICASE link, the application bundle will send the received link to the startup jar which will
- * then open the model element requested.
+ * packaged with the OpenURL feature. This application bundle associates itself with the UNICASE protocol without
+ * further ado. When clicking a UNICASE URL, the application bundle will send the received URL to the startup jar which
+ * will then open the model element requested.
  * 
  * @author emueller
  */
@@ -68,13 +68,13 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 
 			if (entry.isDirectory()) {
 				// Assume directories are stored parents first then children.
-				System.err.println("UNICASE Link: Extracting directory: " + entry.getName());
+				System.err.println("UNICASE OpenURL: Extracting directory: " + entry.getName());
 				File newDir = new File(extractDir + File.separator + entry.getName());
 				newDir.mkdir();
 				continue;
 			}
 
-			System.err.println("UNICASE Link: Extracting file: " + entry.getName());
+			System.err.println("UNICASE OpenURL: Extracting file: " + entry.getName());
 
 			copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(extractDir
 				+ File.separator + entry.getName())));

@@ -19,7 +19,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.unicase.openurl.handlers.URLMessageHandler;
 import org.unicase.openurl.util.FileLocations;
-import org.unicase.openurl.util.ui.OpenLink;
+import org.unicase.openurl.util.ui.OpenURL;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -32,7 +32,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	/**
 	 * The Plugin ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.link";
+	public static final String PLUGIN_ID = "org.unicase.openurl";
 
 	// The shared instance
 	private static Activator plugin;
@@ -91,7 +91,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	public void earlyStartup() {
 		try {
 			JUnique.acquireLock(PLUGIN_ID, new URLMessageHandler());
-			WorkspaceUtil.log("UNICASE Link plugin initialized.", null, 0);
+			WorkspaceUtil.log("UNICASE URL plugin initialized.", null, 0);
 
 			File lockFile = new File(FileLocations.LOCK_FILE);
 
@@ -101,7 +101,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 				if (link == null) {
 					// TODO: should we show a dialog to the user?
 				} else {
-					OpenLink.openURL(link);
+					OpenURL.openURL(link);
 					lockFile.delete();
 				}
 			}

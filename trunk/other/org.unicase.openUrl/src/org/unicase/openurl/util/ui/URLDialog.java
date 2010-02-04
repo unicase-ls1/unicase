@@ -22,19 +22,19 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author emueller
  */
-public class LinkDialog extends Dialog {
+public class URLDialog extends Dialog {
 
 	private String labelText;
 	private String textBoxContent;
 
 	/**
-	 * Initializes a new instance of the LinkDialog.
+	 * Initializes a new instance of the URLDialog.
 	 * 
 	 * @param parent the parent shell of the dialog
 	 * @param labelText the label text to be shown
 	 * @param textBoxContent the text to be shown in the non editable TextBox
 	 */
-	public LinkDialog(Shell parent, String labelText, String textBoxContent) {
+	public URLDialog(Shell parent, String labelText, String textBoxContent) {
 		super(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL | SWT.ICON_INFORMATION);
 		setLabelText(labelText);
 		setText("Input Dialog");

@@ -25,13 +25,13 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 			+ "registerUnicaseProtocolHandler.sh");
 
 		if (!shellScript.exists()) {
-			showError("Missing shellscript.\nPlease try reinstalling the UNICASE link feature.");
+			showError("Missing shellscript.\nPlease try reinstalling the UNICASE OpenURL feature.");
 		}
 
 		// make script executable and execute it
 		try {
 			Runtime.getRuntime().exec("chmod +x " + shellScript.getAbsolutePath());
-			// the command to be executed when a UNICASE link has been clicked is passed as the
+			// the command to be executed when a UNICASE URL has been clicked is passed as the
 			// first argument
 			Runtime.getRuntime().exec(
 				new String[] {
@@ -51,7 +51,7 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 			+ "registerUnicaseProtocolHandler.sh");
 
 		if (!shellScript.exists()) {
-			showError("Missing shellscript.\nPlease try reinstalling the UNICASE link feature.");
+			showError("Missing shellscript.\nPlease try reinstalling the UNICASE OpenURL feature.");
 		}
 
 		try {

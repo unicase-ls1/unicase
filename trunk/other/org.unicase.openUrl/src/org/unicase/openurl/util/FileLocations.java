@@ -14,7 +14,7 @@ public class FileLocations {
 	/**
 	 * Path of the lock file, that is used for passing URL information in case eclipse hasn't already been running.
 	 */
-	public static final String LOCK_FILE = getPluginFeaturesDirectory() + File.separator + ".unicase-link-lock.file";
+	public static final String LOCK_FILE = getPluginFeaturesDirectory() + File.separator + ".unicase-url-lock.file";
 
 	/**
 	 * Gets the absolute path of the eclipse installation with a trailing file separator.
@@ -36,7 +36,7 @@ public class FileLocations {
 		File[] features = featuresDir.listFiles();
 
 		for (File feature : features) {
-			if (feature.getName().toLowerCase().contains("org.unicase.link")) {
+			if (feature.getName().toLowerCase().contains("org.unicase.openurl")) {
 				return feature.getAbsoluteFile() + File.separator + "lib";
 			}
 		}
