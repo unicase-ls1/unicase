@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.CollectionFilter;
 import org.unicase.ui.tom.gestures.ChangeConnectionTypeGesture;
 import org.unicase.ui.tom.gestures.CreateCompartmentNodeGesture;
@@ -196,7 +197,13 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		addClaimedTouches(prioritizedGestures);
 
 		for (Gesture gesture : prioritizedGestures) {
-			gesture.execute();
+			try {
+				gesture.execute();
+			// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				ModelUtil.logWarning("Gesture execution failed!", e);
+			// END SUPRESS CATCH EXCEPTION
+			}
 		}
 
 		

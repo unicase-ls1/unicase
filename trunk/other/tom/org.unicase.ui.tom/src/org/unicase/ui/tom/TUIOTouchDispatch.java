@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.TUIOTouch;
 import org.unicase.ui.tum.tuio.TuioClient;
@@ -97,12 +98,7 @@ public final class TUIOTouchDispatch extends TouchDispatch implements TuioListen
 		}
 		SingleTouch touch = getTouchMap().get(tuioCursor);
 		if (touch != null) {
-//			try {
-				updateTouch(touch);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-
+			updateTouch(touch);
 		}
 	}
 
