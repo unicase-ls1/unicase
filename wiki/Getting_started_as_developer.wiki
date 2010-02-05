@@ -15,6 +15,7 @@ We currently use the following development tools:
           o Checkstyle (use version 4.4.x): - http://eclipse-cs.sourceforge.net/update<br>
           o Findbugs: http://findbugs.cs.umd.edu/eclipse<br>
           o SWT Bot (including SWT for GEF): http://download.eclipse.org/technology/swtbot/galileo/dev-build/update-site<br>
+          o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
 
 
 Getting started as developer in 7 easy steps:
