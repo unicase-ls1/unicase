@@ -197,9 +197,11 @@ public class RecommendationManager {
 			return rec;
 		}
 		}
+		// BEGIN SUPRESS CATCH EXCEPTION
 		catch (RuntimeException e){
 			ModelUtil.logException("Exception during recommendation.", e);			
 		}
+		// END SUPRESS CATCH EXCEPTION
 		
 		return new HashMap<ModelElement, Double>();
 	}
