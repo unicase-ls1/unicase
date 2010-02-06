@@ -107,6 +107,12 @@ public class MEFileSizeControl extends AbstractMEControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
+	 *      org.unicase.metamodel.ModelElement)
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		if (!(modelElement instanceof FileAttachment)) {

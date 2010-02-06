@@ -51,32 +51,33 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		}
 		ModelElement me = (ModelElement) o;
 
-		if (o != null) {
-			MEEditorInput input;
-			input = new MEEditorInput(me);
-			try {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-					"org.unicase.ui.meeditor", true);
+		if (o == null) {
+			return null;
+		}
+		MEEditorInput input;
+		input = new MEEditorInput(me);
+		try {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
+				"org.unicase.ui.meeditor", true);
 
-				IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getActiveEditor();
-				if (activeEditor instanceof MEEditor) {
-					MEEditor meEditor = (MEEditor) activeEditor;
-					meEditor.setActivePage("org.unicase.ui.unicasecommon.meeditor.methreadpage");
-					boolean shouldToggle = (toggle != null && toggle.equals("toggle"))
-						|| ((UnicaseModelElement) me).getComments().isEmpty();
-					if (meEditor.getActivePageInstance() instanceof MEFormPage) {
-						MEFormPage page = (MEFormPage) meEditor.getActivePageInstance();
-						if (page.getId().equals("org.unicase.ui.unicasecommon.meeditor.methreadpage")
-							&& page.getParentMEPage() instanceof METhreadPage && shouldToggle) {
-							((METhreadPage) page.getParentMEPage()).addComment();
-						}
+			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor();
+			if (activeEditor instanceof MEEditor) {
+				MEEditor meEditor = (MEEditor) activeEditor;
+				meEditor.setActivePage("org.unicase.ui.unicasecommon.meeditor.methreadpage");
+				boolean shouldToggle = (toggle != null && toggle.equals("toggle"))
+					|| ((UnicaseModelElement) me).getComments().isEmpty();
+				if (meEditor.getActivePageInstance() instanceof MEFormPage) {
+					MEFormPage page = (MEFormPage) meEditor.getActivePageInstance();
+					if (page.getId().equals("org.unicase.ui.unicasecommon.meeditor.methreadpage")
+						&& page.getParentMEPage() instanceof METhreadPage && shouldToggle) {
+						((METhreadPage) page.getParentMEPage()).addComment();
 					}
 				}
-			} catch (PartInitException e) {
-				// JH Auto-generated catch block
-				e.printStackTrace();
 			}
+		} catch (PartInitException e) {
+			// JH Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return null;

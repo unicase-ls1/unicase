@@ -87,7 +87,7 @@ public final class UnicaseActionHelper {
 	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
 
 		// TODO: redundant, see ActionHelper
-		final String MEEDITOR_ID = "org.unicase.ui.meeditor";
+		final String meeditorId = "org.unicase.ui.meeditor";
 		UnicaseModelElement me = null;
 
 		// ZH: determine the place from which
@@ -95,7 +95,7 @@ public final class UnicaseActionHelper {
 		// This decision is should be made to extract the model element
 		// for attaching action item accordingly.
 		String partId = HandlerUtil.getActivePartId(event);
-		if (partId != null && partId.equals(MEEDITOR_ID)) {
+		if (partId != null && partId.equals(meeditorId)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
