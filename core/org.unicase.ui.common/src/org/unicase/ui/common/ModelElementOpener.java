@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.common;
 
 import org.unicase.metamodel.ModelElement;
@@ -14,14 +19,14 @@ public interface ModelElementOpener {
 	 * will be opened with the registered opener with the highest priority.
 	 * 
 	 * @param modelElement the model element to check
-	 * @return
+	 * @return a priority indicating how well the opener can open the element
 	 */
-	public int canOpen(ModelElement modelElement);
+	int canOpen(ModelElement modelElement);
 
 	/**
 	 * The action to open the model element.
 	 * 
 	 * @param modelElement the model element to open
 	 */
-	public void openModelElement(ModelElement modelElement);
+	void openModelElement(ModelElement modelElement);
 }
