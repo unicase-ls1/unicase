@@ -29,6 +29,12 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class MEURLLinkControl extends MELinkControl {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
+	 *      org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
 		ModelElement contextModelElement2) {

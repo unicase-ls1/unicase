@@ -100,9 +100,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	private void commit(final ProjectSpace projectSpace)
 			throws EmfStoreException, BaseVersionOutdatedException {
 		logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-		PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
-		PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,
-				CommitProjectHandler.this);
+		projectSpace.commit(logMessage, CommitProjectHandler.this);
 	}
 
 	/**

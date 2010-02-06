@@ -158,6 +158,12 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		commentLayoutUpdated();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.AbstractMEEditorPage#createPage(org.unicase.ui.meeditor.MEEditor,
+	 *      org.eclipse.emf.edit.domain.EditingDomain, org.unicase.metamodel.ModelElement)
+	 */
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {

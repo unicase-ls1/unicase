@@ -387,8 +387,18 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		return PRIORITY;
 	}
 
+	/**
+	 * Listener for changes on issues.
+	 * 
+	 * @author borner
+	 */
 	public class IssueListener implements ModelElementChangeListener {
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onChange(org.eclipse.emf.common.notify.Notification)
+		 */
 		public void onChange(Notification notification) {
 			if (notification.getFeature() instanceof EReference) {
 				EReference reference = (EReference) notification.getFeature();
@@ -404,9 +414,13 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			}
 		}
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onRuntimeExceptionInListener(java.lang.RuntimeException)
+		 */
 		public void onRuntimeExceptionInListener(RuntimeException exception) {
-			// TODO Auto-generated method stub
-
+			// do nothing
 		}
 
 		@SuppressWarnings("unchecked")
@@ -456,8 +470,18 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		}
 	}
 
+	/**
+	 * Listener to listen on changes of issue criterions.
+	 * 
+	 * @author borner
+	 */
 	public class CriterionListener implements ModelElementChangeListener {
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onChange(org.eclipse.emf.common.notify.Notification)
+		 */
 		public void onChange(Notification notification) {
 			if (notification.getNotifier() instanceof Criterion) {
 				if (notification.getFeature() instanceof EAttribute
@@ -470,14 +494,29 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			}
 		}
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onRuntimeExceptionInListener(java.lang.RuntimeException)
+		 */
 		public void onRuntimeExceptionInListener(RuntimeException exception) {
-			// TODO Auto-generated method stub
+			// do nothing
 		}
 
 	}
 
+	/**
+	 * Listener for changes on proposals.
+	 * 
+	 * @author koegel
+	 */
 	public class ProposalListener implements ModelElementChangeListener {
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onChange(org.eclipse.emf.common.notify.Notification)
+		 */
 		public void onChange(Notification notification) {
 			if (notification.getNotifier() instanceof Proposal) {
 				if (notification.getFeature() instanceof EAttribute
@@ -490,13 +529,28 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			}
 		}
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onRuntimeExceptionInListener(java.lang.RuntimeException)
+		 */
 		public void onRuntimeExceptionInListener(RuntimeException exception) {
-			// TODO Auto-generated method stub
+			// do nothing
 		}
 	}
 
+	/**
+	 * Listener for changes on assessments.
+	 * 
+	 * @author borner
+	 */
 	public class AssessmentListener implements ModelElementChangeListener {
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onChange(org.eclipse.emf.common.notify.Notification)
+		 */
 		public void onChange(Notification notification) {
 			if ((notification.getNotifier() instanceof Assessment)) {
 				if (notification.getFeature() instanceof EAttribute
@@ -509,9 +563,13 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			}
 		}
 
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.metamodel.util.ModelElementChangeListener#onRuntimeExceptionInListener(java.lang.RuntimeException)
+		 */
 		public void onRuntimeExceptionInListener(RuntimeException exception) {
-			// TODO Auto-generated method stub
-
+			// do nothing
 		}
 
 	}

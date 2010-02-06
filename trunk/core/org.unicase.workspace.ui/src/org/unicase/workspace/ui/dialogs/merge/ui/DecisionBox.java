@@ -30,10 +30,7 @@ public class DecisionBox extends Composite {
 
 	private final Conflict conflict;
 	private final DecisionManager decisionManager;
-	private ContextComponent contextComponent;
-	private DescriptionComponent descriptionComponent;
 	private OptionComponent optionComponent;
-	private DetailsComponent detailsComponent;
 
 	/**
 	 * Default constructor.
@@ -65,12 +62,12 @@ public class DecisionBox extends Composite {
 			setBackground(color);
 		}
 
-		contextComponent = new ContextComponent(this, conflict);
+		new ContextComponent(this, conflict);
 		optionComponent = new OptionComponent(this, conflict);
-		descriptionComponent = new DescriptionComponent(this, conflict);
+		new DescriptionComponent(this, conflict);
 
 		if (DecisionUtil.detailsNeeded(conflict)) {
-			detailsComponent = new DetailsComponent(this, conflict);
+			new DetailsComponent(this, conflict);
 		}
 
 		for (Control control : getChildren()) {

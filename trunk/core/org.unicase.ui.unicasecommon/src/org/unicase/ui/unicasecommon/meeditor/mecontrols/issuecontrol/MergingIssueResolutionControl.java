@@ -60,6 +60,11 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 		return 3;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl#initActions()
+	 */
 	@Override
 	protected List<Action> initActions() {
 		ArrayList<Action> result = new ArrayList<Action>();
@@ -67,6 +72,11 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 		return result;
 	}
 
+	/**
+	 * Action to resolve an issue.
+	 * 
+	 * @author koegel
+	 */
 	private final class CreateMergingSolutionAction extends Action {
 
 		private AdapterFactoryLabelProvider provider;
@@ -85,44 +95,49 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
-					ElementListSelectionDialog selectionDialog = new ElementListSelectionDialog(PlatformUI
-						.getWorkbench().getActiveWorkbenchWindow().getShell(), provider);
-					selectionDialog.setTitle("Select MergingSolution");
-					selectionDialog.setMessage("Please select a Proposal to create a Solution for this Issue."
-						+ "\n If you select a MergingProposal, the underlying Operations are applied.");
-					selectionDialog.setElements(mergingIssue.getProposals().toArray(
-						new Proposal[mergingIssue.getProposals().size()]));
-
-					selectionDialog.setBlockOnOpen(true);
-					if (!(selectionDialog.open() == Window.OK)) {
-						return;
-					}
-					Object result = selectionDialog.getFirstResult();
-					if (result instanceof MergingProposal) {
-						MergingProposal proposal = (MergingProposal) result;
-						MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
-						solution.getUnderlyingProposals().add(proposal);
-						mergingIssue.setSolution(solution);
-						check(solution);
-						ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
-						if (projectSpace != null) {
-							((ProjectSpaceImpl) projectSpace).applyOperationsWithRecording(proposal
-								.getPendingOperations(), true);
-						}
-					} else if (result instanceof Proposal) {
-						Solution solution = RationaleFactory.eINSTANCE.createSolution();
-						solution.getUnderlyingProposals().add((Proposal) result);
-						mergingIssue.setSolution(solution);
-						check(solution);
-					}
+					solveIssue();
 				}
 
-				private void check(ModelElement element) {
-					if (element.eContainer() == null) {
-						mergingIssue.getProject().getModelElements().add(element);
-					}
-				}
 			}.run();
+		}
+
+		private void check(ModelElement element) {
+			if (element.eContainer() == null) {
+				mergingIssue.getProject().getModelElements().add(element);
+			}
+		}
+
+		private void solveIssue() {
+			ElementListSelectionDialog selectionDialog = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), provider);
+			selectionDialog.setTitle("Select MergingSolution");
+			selectionDialog.setMessage("Please select a Proposal to create a Solution for this Issue."
+				+ "\n If you select a MergingProposal, the underlying Operations are applied.");
+			selectionDialog.setElements(mergingIssue.getProposals().toArray(
+				new Proposal[mergingIssue.getProposals().size()]));
+
+			selectionDialog.setBlockOnOpen(true);
+			if (!(selectionDialog.open() == Window.OK)) {
+				return;
+			}
+			Object result = selectionDialog.getFirstResult();
+			if (result instanceof MergingProposal) {
+				MergingProposal proposal = (MergingProposal) result;
+				MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
+				solution.getUnderlyingProposals().add(proposal);
+				mergingIssue.setSolution(solution);
+				check(solution);
+				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
+				if (projectSpace != null) {
+					((ProjectSpaceImpl) projectSpace).applyOperationsWithRecording(proposal.getPendingOperations(),
+						true);
+				}
+			} else if (result instanceof Proposal) {
+				Solution solution = RationaleFactory.eINSTANCE.createSolution();
+				solution.getUnderlyingProposals().add((Proposal) result);
+				mergingIssue.setSolution(solution);
+				check(solution);
+			}
 		}
 	}
 }
