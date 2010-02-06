@@ -416,6 +416,12 @@ public final class ActionHelper {
 		}
 	}
 
+	/**
+	 * Open a model element in the meeditor.
+	 * 
+	 * @param me the element to open
+	 * @param sourceView the view that send the open request (use a unique id here).
+	 */
 	public static void openMEwithMEEditor(ModelElement me, String sourceView) {
 		logEvent(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
 		openMEwithMEEditor(me);
