@@ -283,8 +283,9 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a literal for the diagram type.
 	 * 
+	 * @return the literal
 	 * @generated NOT
 	 */
 	public String getLiteral() {
