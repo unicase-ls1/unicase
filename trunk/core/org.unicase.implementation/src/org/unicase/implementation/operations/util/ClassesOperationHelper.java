@@ -11,12 +11,23 @@ import org.unicase.model.classes.Class;
 import org.unicase.model.classes.PrimitiveType;
 import org.unicase.model.classes.validation.ClassesHelper;
 
+/**
+ * Helper class for UML class refactorings.
+ * @author herrmi
+ *
+ */
 public final class ClassesOperationHelper {
 
 	private ClassesOperationHelper() {
 		// hide constructor
 	}
 
+	/**
+	 * Get all attributes of a class that look like the given attribute.
+	 * @param c the other class
+	 * @param attribute the original attribute
+	 * @return a list of same attributes
+	 */
 	public static Attribute getSameAttribute(Class c, Attribute attribute) {
 		for (Attribute a : c.getAttributes()) {
 			try {
@@ -31,11 +42,18 @@ public final class ClassesOperationHelper {
 				}
 			} catch (NullPointerException e) {
 				// ignore
+				//FIXME herrmi: BAD design
 			}
 		}
 		return null;
 	}
 
+	/**
+	 * Get all outgoing associations of a class that look like the given association.
+	 * @param c the other class
+	 * @param association the original association
+	 * @return a list of same associations
+	 */
 	public static Association getSameOutgoingAssociation(Class c, Association association) {
 		for (Association a : c.getOutgoingAssociations()) {
 			if (sameOutgoingAssociation(association, a)) {
@@ -54,7 +72,13 @@ public final class ClassesOperationHelper {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Get all incoming associations of a class that look like the given association.
+	 * @param c the other class
+	 * @param association the original association
+	 * @return a list of same associations
+	 */
 	public static Association getSameIncomingAssociation(Class c, Association association) {
 		for (Association a : c.getOutgoingAssociations()) {
 			if (sameIncomingAssociation(association, a)) {

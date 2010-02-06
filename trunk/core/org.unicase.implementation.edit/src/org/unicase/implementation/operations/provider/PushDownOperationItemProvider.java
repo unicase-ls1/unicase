@@ -93,6 +93,7 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * This returns PushDownOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -103,6 +104,7 @@ public class PushDownOperationItemProvider extends SemanticCompositeOperationIte
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT

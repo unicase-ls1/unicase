@@ -189,7 +189,9 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		return OperationHelper.getElement(project, getAssociation());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -207,6 +209,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		}
 		return associations;
 	}
+	
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -217,7 +221,9 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		return OperationHelper.getElement(project, getInlineClass());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -228,8 +234,10 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		inlineClasses.add(association.getTarget());
 		return inlineClasses;
 	}
+	
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -240,6 +248,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -255,6 +264,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -265,6 +275,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -276,6 +287,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		EList<Association> incomingAssociations = inlinedClass.getIncomingAssociations();
 		return incomingAssociations.size() == 1 && incomingAssociations.get(0) == association;
 	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

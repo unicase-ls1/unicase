@@ -124,8 +124,10 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 	public org.unicase.model.classes.Class getSuperClass(Project project) {
 		return OperationHelper.getElement(project, getSuperClass());
 	}
-
+	
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -134,7 +136,8 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 		Class superClass = getSuperClass(project);
 		return !superClass.getSubClasses().isEmpty();
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

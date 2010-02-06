@@ -202,7 +202,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		return OperationHelper.getElements(project, getAttributes());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -211,6 +213,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getAttributes();
 	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -221,7 +224,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		return OperationHelper.getElements(project, getOutgoingAssociations());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -230,6 +235,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getOutgoingAssociations();
 	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -240,7 +246,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		return OperationHelper.getElements(project, getIncomingAssociations());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -249,6 +257,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getIncomingAssociations();
 	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -259,7 +268,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		return OperationHelper.getElement(project, getSuperClass());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -268,8 +279,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return !superClass.getSubClasses().isEmpty();
 	}
-
+	
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -281,6 +293,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 		return attributes.size() + outgoingAssociations.size() + incomingAssociations.size() > 0;
 	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -416,11 +429,12 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void pushDownOutgoingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
 				Association subAssociation = (Association) ModelUtil.copy(association);
-				((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
+				((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 				subAssociation.setSource(subClass);
 				if (association.getSourceRole() != null && superClass.getSubClasses().size() > 1) {
 					subAssociation.setSourceRole(OperationHelper.firstLower(subClass.getName()));
@@ -432,11 +446,12 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void pushDownIncomingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
 				Association subAssociation = (Association) ModelUtil.copy(association);
-				((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
+				((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 				subAssociation.setTarget(subClass);
 				if (association.getTargetRole() != null && superClass.getSubClasses().size() > 1) {
 					subAssociation.setTargetRole(OperationHelper.firstLower(subClass.getName()));

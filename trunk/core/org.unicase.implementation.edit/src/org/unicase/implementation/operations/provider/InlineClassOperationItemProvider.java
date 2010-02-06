@@ -89,6 +89,7 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * This returns InlineClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -99,7 +100,8 @@ public class InlineClassOperationItemProvider extends SemanticCompositeOperation
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 *  <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

@@ -197,7 +197,7 @@ public class ExtractSuperClassOperationItemProvider extends SemanticCompositeOpe
 	}
 
 	/**
-	 * This returns ExtractSuperClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc} <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

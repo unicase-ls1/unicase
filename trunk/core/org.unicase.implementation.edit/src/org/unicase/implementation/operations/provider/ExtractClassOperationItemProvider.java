@@ -124,7 +124,7 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns ExtractClassOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}<!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -134,7 +134,8 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
