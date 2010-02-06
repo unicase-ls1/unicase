@@ -313,8 +313,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	public EList<Attribute> getAttributes(Project project) {
 		return OperationHelper.getElements(project, getAttributes());
 	}
-
+	// begin of custom code
+	
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -327,6 +329,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -336,6 +339,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -346,17 +350,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 
 		return PullUpOperationImpl.getPossibleOutgoingAssociations(associations, subClasses);
 	}
-
+	
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<Association> getIncomingAssociations(Project project) {
-		return OperationHelper.getElements(project, getIncomingAssociations());
-	}
-
-	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -367,6 +363,19 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 
 		return PullUpOperationImpl.getPossibleIncomingAssociations(associations, subClasses);
 	}
+
+	
+	// end of custom code
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Association> getIncomingAssociations(Project project) {
+		return OperationHelper.getElements(project, getIncomingAssociations());
+	}
+
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -409,6 +418,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT

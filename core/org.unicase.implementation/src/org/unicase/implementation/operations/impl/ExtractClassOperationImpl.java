@@ -365,8 +365,11 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 		return OperationHelper.getElements(project, getAttributes());
 	}
 
+	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Retrieve a list of attributes that can be extracted.
+	 * @param project the project the operation is about to be invoked on
+	 * @return a list of attributes
 	 * 
 	 * @generated NOT
 	 */
@@ -374,7 +377,8 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 		Class contextClass = getContextClass(project);
 		return contextClass.getAttributes();
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -384,27 +388,29 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 		return OperationHelper.getElements(project, getOutgoingAssociations());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Association> getPossibleOutgoingAssociations(Project project) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Association> getIncomingAssociations(Project project) {
 		return OperationHelper.getElements(project, getIncomingAssociations());
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -415,15 +421,17 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public org.unicase.model.classes.Package getTargetPackage(Project project) {
 		return OperationHelper.getElement(project, getTargetPackage());
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -445,6 +453,7 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -474,7 +483,8 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 		return true;
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

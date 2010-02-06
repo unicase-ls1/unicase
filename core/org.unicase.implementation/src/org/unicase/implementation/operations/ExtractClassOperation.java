@@ -222,7 +222,11 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	EList<Association> getOutgoingAssociations(Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Get all possible outgoing associations suitable for extraction.
+	 * @param project the project to apply the operation on
+	 * @return the list of associations
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -230,7 +234,9 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	EList<Association> getPossibleOutgoingAssociations(Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Get all incoming associations that are to be extracted.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
 	 * @generated
@@ -238,7 +244,9 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	EList<Association> getIncomingAssociations(Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Get all possible incoming associations for extraction.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated
@@ -255,7 +263,9 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	org.unicase.model.classes.Package getTargetPackage(Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Validate the new class name to avoid name collisions.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model required="true"
 	 *        annotation="http://unicase.org/operations description='A class or enumeration with that name already exists.'"
@@ -264,7 +274,9 @@ public interface ExtractClassOperation extends SemanticCompositeOperation {
 	boolean validateClassName(Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Validate name of the composition to check for name collisions.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @model required="true" annotation=
 	 *        "http://unicase.org/operations description='An attribute or association with that name already exists.'"

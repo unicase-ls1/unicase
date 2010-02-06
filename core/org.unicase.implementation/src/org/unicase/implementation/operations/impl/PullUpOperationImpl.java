@@ -204,8 +204,10 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	public EList<Attribute> getAttributes(Project project) {
 		return OperationHelper.getElements(project, getAttributes());
 	}
-
+	
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -218,6 +220,13 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return getPossibleAttributes(attributes, subClasses);
 	}
 
+	/**
+	 * Retrieve all attributes that could be pulled up.
+	 * @param attributes the attributes
+	 * @param subClasses the subclasses of the target super class
+	 * @return a list of attributes a list of candidate attributes
+	 * @generated NOT
+	 */
 	public static EList<Attribute> getPossibleAttributes(List<Attribute> attributes, List<Class> subClasses) {
 		EList<Attribute> possibleAttributes = new BasicEList<Attribute>();
 		if (!subClasses.isEmpty()) {
@@ -248,6 +257,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return possibleAttributes;
 	}
 
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -257,7 +268,9 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return OperationHelper.getElements(project, getOutgoingAssociations());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -270,6 +283,13 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return getPossibleOutgoingAssociations(associations, subClasses);
 	}
 
+	/**
+	 * Retrieve all {@link Association}s that could be pulled up.
+	 * @param associations the {@link Association}
+	 * @param subClasses the subclasses of the target super class
+	 * @return a list of associations
+	 * @generated NOT
+	 */
 	public static EList<Association> getPossibleOutgoingAssociations(List<Association> associations,
 		List<Class> subClasses) {
 		EList<Association> possibleAssociations = new BasicEList<Association>();
@@ -302,6 +322,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return possibleAssociations;
 	}
 
+	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -311,7 +332,9 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return OperationHelper.getElements(project, getIncomingAssociations());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -324,6 +347,13 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return getPossibleIncomingAssociations(associations, subClasses);
 	}
 
+	/**
+	 * Retrieve all {@link Association}s that could be pulled up.
+	 * @param associations the {@link Association}
+	 * @param subClasses the subclasses of the target super class
+	 * @return a list of associations
+	 * @generated NOT
+	 */
 	public static EList<Association> getPossibleIncomingAssociations(List<Association> associations,
 		List<Class> subClasses) {
 		EList<Association> possibleAssociations = new BasicEList<Association>();
@@ -357,6 +387,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -368,7 +399,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 		return attributes.size() + outgoingAssociations.size() + incomingAssociations.size() > 0;
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -378,7 +410,10 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		return OperationHelper.getElement(project, getSuperClass());
 	}
 
+	// begin of custom code
+	// BEGIN COMPLEX CODE
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -436,6 +471,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 		return possibleSuperClasses;
 	}
+	// END COMPLEX CODE
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -574,6 +611,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void pullUpOutgoingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (Class subClass : superClass.getSubClasses()) {
@@ -584,13 +622,14 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				}
 			}
 			Association superAssociation = (Association) ModelUtil.copy(association);
-			((List) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
+			((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(superClass);
 			superAssociation.setTarget(association.getTarget());
 			association.delete();
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void pullUpIncomingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (Class subClass : superClass.getSubClasses()) {
@@ -601,7 +640,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				}
 			}
 			Association superAssociation = (Association) ModelUtil.copy(association);
-			((List) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
+			((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(association.getSource());
 			superAssociation.setTarget(superClass);
 			association.delete();

@@ -248,6 +248,12 @@ public final class OperationHelper {
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
 
+	/**
+	 * Get the annotation for an operation from the ecore.
+	 * @param operation the operation
+	 * @param key the annotation key
+	 * @return the annotation content
+	 */
 	public static String getAnnotation(SemanticCompositeOperation operation, String key) {
 		return getAnnotation(operation.eClass(), key);
 	}
@@ -256,6 +262,11 @@ public final class OperationHelper {
 		return EcoreUtil.getAnnotation(element, OperationsPackage.eNS_URI, key);
 	}
 
+	/**
+	 * Make the first char lowercase.
+	 * @param name the input string
+	 * @return a transformed string
+	 */
 	public static String firstLower(String name) {
 		return name.substring(0, 1).toLowerCase() + name.substring(1);
 	}

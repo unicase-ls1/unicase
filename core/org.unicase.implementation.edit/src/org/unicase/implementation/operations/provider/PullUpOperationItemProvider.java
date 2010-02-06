@@ -93,6 +93,7 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * This returns PullUpOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -103,6 +104,7 @@ public class PullUpOperationItemProvider extends SemanticCompositeOperationItemP
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT

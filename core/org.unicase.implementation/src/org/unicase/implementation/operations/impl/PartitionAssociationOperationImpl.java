@@ -128,7 +128,9 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 		return OperationHelper.getElement(project, getAssociation());
 	}
 
+	// begin of custom code
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -144,6 +146,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	}
 
 	/**
+	 * {@inheritDoc}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -156,7 +159,8 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 		return targetMultiplicity.getMaximumMultiplicity() == -1;
 	}
-
+	// end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

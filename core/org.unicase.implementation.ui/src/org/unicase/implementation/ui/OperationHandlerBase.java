@@ -63,10 +63,11 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	private ModelElementId getModelElementId(SemanticCompositeOperation operation) {
 		EStructuralFeature feature = operation.eClass().getEStructuralFeatures().get(0);
 		if (feature.isMany()) {
-			return (ModelElementId) ((List) operation.eGet(feature)).get(0);
+			return ((List<ModelElementId>) operation.eGet(feature)).get(0);
 		} else {
 			return (ModelElementId) operation.eGet(feature);
 		}
@@ -76,11 +77,12 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	 * To be implemented by sub classes to assemble operation based on the selection.
 	 * 
 	 * @param structuredSelection Selection
+	 * @return the semantic operation
 	 */
 	protected abstract SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection);
 
 	private Project getProject(IStructuredSelection structuredSelection) {
-		List elements = SelectionHelper.getSelectedElements(structuredSelection);
+		List<Object> elements = SelectionHelper.getSelectedElements(structuredSelection);
 		for (Object element : elements) {
 			if (element instanceof ModelElement) {
 				return ((ModelElement) element).getProject();

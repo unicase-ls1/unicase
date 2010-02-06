@@ -58,6 +58,11 @@ public class ParameterViewer extends TableViewer {
 	 * @author herrmi
 	 */
 	private final class ValueEditingSupport extends EditingSupport {
+		/**
+		 * Overrides handling of return key in combo boxes.
+		 * @author herrmi
+		 *
+		 */
 		private final class ExtendedComboBoxCellEditorExtension extends ExtendedComboBoxCellEditor {
 			private ExtendedComboBoxCellEditorExtension(Composite composite, List<?> list,
 				ILabelProvider labelProvider, boolean sorted) {
