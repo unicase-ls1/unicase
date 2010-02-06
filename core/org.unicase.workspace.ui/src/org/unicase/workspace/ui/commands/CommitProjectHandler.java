@@ -103,9 +103,6 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
 		PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,
 				CommitProjectHandler.this);
-		if (!oldVersion.equals(newVersion)) {
-			MessageDialog.openInformation(shell, null, "Commit completed.");
-		}
 	}
 
 	/**
