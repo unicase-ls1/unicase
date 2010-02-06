@@ -12,6 +12,11 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * Decoration for required interfaces.
+ * 
+ * @author koegel
+ */
 public class RequiredInterfaceDecoration extends PolylineDecoration {
 	private static final Point TEMP_POINT = new Point();
 	private static final Rectangle TEMP_RECTANGLE = new Rectangle();
@@ -20,16 +25,29 @@ public class RequiredInterfaceDecoration extends PolylineDecoration {
 	private int myRadius;
 	private int myAngle;
 
+	/**
+	 * Constructor.
+	 */
 	public RequiredInterfaceDecoration() {
 		setRadius(1);
 		setScale(1, 1);
 	}
 
+	/**
+	 * Set the radius.
+	 * 
+	 * @param radius the radius
+	 */
 	public void setRadius(int radius) {
 		myRadius = radius;
 		setTemplate(new PointList(new int[] { radius - GAP, 0 }));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Polyline#getBounds()
+	 */
 	@Override
 	public Rectangle getBounds() {
 		if (bounds == null) {
@@ -42,17 +60,32 @@ public class RequiredInterfaceDecoration extends PolylineDecoration {
 		return bounds;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.PolylineDecoration#setRotation(double)
+	 */
 	@Override
 	public void setRotation(double angle) {
 		super.setRotation(angle);
 		myAngle = (int) (angle * 180 / Math.PI);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Polyline#fillShape(org.eclipse.draw2d.Graphics)
+	 */
 	@Override
 	protected void fillShape(Graphics g) {
 		// do nothing
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Polyline#outlineShape(org.eclipse.draw2d.Graphics)
+	 */
 	@Override
 	protected void outlineShape(Graphics g) {
 		computeArcBounds(TEMP_RECTANGLE);

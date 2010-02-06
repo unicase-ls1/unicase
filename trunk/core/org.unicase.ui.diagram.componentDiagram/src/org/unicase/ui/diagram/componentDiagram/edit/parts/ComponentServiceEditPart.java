@@ -115,7 +115,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * modified to use own ComponentBorderItemLocator
+	 * {@inheritDoc} modified to use own ComponentBorderItemLocator
 	 * 
 	 * @generated NOT
 	 */

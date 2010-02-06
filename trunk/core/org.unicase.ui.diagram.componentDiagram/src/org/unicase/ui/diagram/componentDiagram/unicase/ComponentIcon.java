@@ -16,13 +16,15 @@ import org.eclipse.draw2d.geometry.Rectangle;
  */
 public class ComponentIcon extends Shape {
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public ComponentIcon() {
 		// Do nothing
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 	 */
 	@Override
@@ -31,6 +33,8 @@ public class ComponentIcon extends Shape {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
 	 */
 	@Override
