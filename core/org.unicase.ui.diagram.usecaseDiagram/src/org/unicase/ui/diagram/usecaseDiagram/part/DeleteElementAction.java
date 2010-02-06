@@ -73,6 +73,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * @generated NOT
 	 */
 	@SuppressWarnings("null")

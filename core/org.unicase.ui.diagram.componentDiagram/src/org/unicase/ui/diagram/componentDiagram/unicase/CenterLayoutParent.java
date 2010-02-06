@@ -12,8 +12,18 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * Custom layout.
+ * 
+ * @author koegel
+ */
 public class CenterLayoutParent extends StackLayout {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
+	 */
 	@Override
 	public void layout(IFigure figure) {
 

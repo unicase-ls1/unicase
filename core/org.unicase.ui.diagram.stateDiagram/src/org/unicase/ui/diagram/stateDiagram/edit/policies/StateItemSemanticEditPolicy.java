@@ -59,6 +59,8 @@ public class StateItemSemanticEditPolicy extends
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {

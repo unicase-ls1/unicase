@@ -332,10 +332,12 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated NOT
 	 */
+	// end of custom code
 	public static class LinkConstraints {
 		/**
 		 * @generated NOT
 		 */
+		// end of custom code
 		public static boolean canCreateTransition_4001(MEDiagram container, ActivityObject source, ActivityObject target) {
 			return !(source instanceof ActivityEnd || target instanceof ActivityInitial);
 		}

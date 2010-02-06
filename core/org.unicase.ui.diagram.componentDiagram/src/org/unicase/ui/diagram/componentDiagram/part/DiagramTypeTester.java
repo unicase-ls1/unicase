@@ -11,7 +11,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
@@ -26,7 +25,7 @@ public class DiagramTypeTester extends org.unicase.ui.unicasecommon.diagram.part
 	 * @param receiver The EObject to test
 	 * @param property The "type" property
 	 * @param args Additional arguments ignored by this tester
-	 * @param expectedValue the expected value of the property. Can be any literal value defined in {@link DiagramType}
+	 * @param expectedValue the expected value of the property. Can be any literal value defined in DiagramType
 	 * @return Returns <code>true</code> if receiver can appear on a component diagram.
 	 */
 	@Override

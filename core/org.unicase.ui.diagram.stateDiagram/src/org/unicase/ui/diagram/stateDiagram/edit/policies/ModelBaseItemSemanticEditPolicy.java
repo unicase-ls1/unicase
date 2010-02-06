@@ -337,6 +337,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated NOT
 		 */
+		// end of custom code
 		public static boolean canCreateTransition_4001(MEDiagram container, StateNode source, StateNode target) {
 			return !(source instanceof StateEnd || target instanceof StateInitial);
 		}

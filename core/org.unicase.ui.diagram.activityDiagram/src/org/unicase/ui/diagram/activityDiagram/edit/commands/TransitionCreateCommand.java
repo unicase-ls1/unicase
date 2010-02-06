@@ -103,6 +103,8 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override

@@ -9,8 +9,18 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 
+/**
+ * Drop policy for component diagrams.
+ * 
+ * @author koegel
+ */
 public class ComponentDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		return super.getDropObjectsCommand(dropRequest);

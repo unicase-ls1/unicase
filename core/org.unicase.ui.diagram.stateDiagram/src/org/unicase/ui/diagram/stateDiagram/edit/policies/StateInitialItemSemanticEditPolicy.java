@@ -46,6 +46,8 @@ public class StateInitialItemSemanticEditPolicy extends
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -57,6 +59,8 @@ public class StateInitialItemSemanticEditPolicy extends
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
