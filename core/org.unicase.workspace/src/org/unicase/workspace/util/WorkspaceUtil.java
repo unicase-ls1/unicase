@@ -156,11 +156,11 @@ public final class WorkspaceUtil {
 		if (text == null) {
 			return "";
 		}
-		text = text.replaceAll("\n", "");
-		text = text.replaceAll("<br>", "\n");
-		text = text.replaceAll("<br\\/>", "\n");
-		text = text.replaceAll("<li><P[^>]*>", "\n  \u2022 ");
-		text = text.replaceAll("<P[^>]*>", "\n");
+		text = text.replaceAll("\n", "\r\n");
+		text = text.replaceAll("<br>", "\r\n");
+		text = text.replaceAll("<br\\/>", "\r\n");
+		text = text.replaceAll("<li><P[^>]*>", "\r\n\u2022 ");
+		text = text.replaceAll("<P[^>]*>", "\r\n");
 		text = text.replaceAll("<[^<]*>", "");
 		text = text.replaceAll("\\&nbsp;", " ");
 		return text;
