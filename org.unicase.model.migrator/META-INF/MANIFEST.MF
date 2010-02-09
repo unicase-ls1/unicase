@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Model MIgrator plugin
 Bundle-SymbolicName: org.unicase.model.migrator;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.1
 Require-Bundle: edu.tum.cs.cope.migration.execution;visibility:=reexport,
  org.unicase.metamodel
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
