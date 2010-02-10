@@ -5,11 +5,17 @@
  */
 package org.unicase.emfstore.startup;
 
+import java.util.Set;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.EmfStoreInterface;
+import org.unicase.emfstore.accesscontrol.AccessControlImpl;
+import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.unicase.emfstore.esmodel.ServerSpace;
 
 /**
  * This class calls the startup listeners, registered at the extension point.
@@ -38,6 +44,33 @@ public final class ExtensionManager {
 					((StartupListener) o).startedUp(projects);
 				}
 			} catch (CoreException e1) {
+				// fail silently
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Notifies the post startup listener.
+	 * 
+	 * @param serverspace serverspace
+	 * @param accessControl accessscontrol
+	 * @param connectionHandlers set of connection handlers
+	 */
+	public static void notifyPostStartupListener(ServerSpace serverspace, AccessControlImpl accessControl,
+		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers) {
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.emfstore.poststartuplistener");
+
+		// get all providers from the extension points
+		for (IConfigurationElement e : config) {
+			try {
+				Object o = e.createExecutableExtension("class");
+				if (o instanceof PostStartupListener) {
+					((PostStartupListener) o).postStartUp(serverspace, accessControl, connectionHandlers);
+				}
+			} catch (CoreException e1) {
+				// fail silently
 				e1.printStackTrace();
 			}
 		}

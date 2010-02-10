@@ -275,6 +275,11 @@ public final class ServerConfiguration {
 	public static final String LOAD_STARTUP_LISTENER = "emfstore.startup.loadlistener";
 
 	/**
+	 * Property for loading post startup listeners from extension point.
+	 */
+	public static final String LOAD_POST_STARTUP_LISTENER = "emfstore.startup.post.loadlistener";
+
+	/**
 	 * Default value for {@link #LOAD_STARTUP_LISTENER}.
 	 */
 	public static final String LOAD_STARTUP_LISTENER_DEFAULT = FALSE;
