@@ -144,8 +144,12 @@ public class EmfStoreController implements IApplication, Runnable {
 	}
 
 	private void handlePostStartupListener() {
-		// TODO Auto-generated method stub
-
+		String property = ServerConfiguration.getProperties().getProperty(
+			ServerConfiguration.LOAD_POST_STARTUP_LISTENER, ServerConfiguration.LOAD_STARTUP_LISTENER_DEFAULT);
+		if (ServerConfiguration.TRUE.equals(property)) {
+			logger.info("Notifying post startup listener");
+			ExtensionManager.notifyPostStartupListener(serverSpace, accessControl, connectionHandlers);
+		}
 	}
 
 	private void setupKeyStore() {
