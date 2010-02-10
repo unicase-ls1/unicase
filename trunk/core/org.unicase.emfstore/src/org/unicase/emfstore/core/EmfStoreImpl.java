@@ -30,6 +30,8 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.eventmanager.EventHelper;
+import org.unicase.emfstore.eventmanager.EventManager;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -137,8 +139,10 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		throws EmfStoreException, InvalidVersionSpecException {
 		sanityCheckObjects(sessionId, projectId, baseVersionSpec, changePackage, logMessage);
 		checkWriteAccess(sessionId, projectId, null);
-		return getSubInterface(VersionSubInterfaceImpl.class).createVersion(projectId, baseVersionSpec, changePackage,
-			logMessage);
+		PrimaryVersionSpec newVersion = getSubInterface(VersionSubInterfaceImpl.class).createVersion(projectId,
+			baseVersionSpec, changePackage, logMessage);
+		EventManager.getInstance().sendEvent(EventHelper.createUpdatedProjectEvent(projectId, newVersion));
+		return newVersion;
 	}
 
 	/**

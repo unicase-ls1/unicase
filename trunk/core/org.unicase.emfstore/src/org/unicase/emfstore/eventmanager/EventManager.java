@@ -10,7 +10,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
 
 /**
  * EventManager accepts events and distributes them to the listeners. EventManger runs in it's own thread. -TODO: Enable
@@ -23,12 +25,12 @@ public final class EventManager extends Thread {
 
 	private static EventManager instance;
 	private LinkedBlockingQueue<ServerEvent> queue;
-	private ArrayList<EMFStoreEventListener> listeners;
+	private ArrayList<ListenerContainer> listeners;
 
 	private EventManager() {
 		super("EventManager");
 		queue = new LinkedBlockingQueue<ServerEvent>();
-		listeners = new ArrayList<EMFStoreEventListener>();
+		listeners = new ArrayList<ListenerContainer>();
 		start();
 	}
 
@@ -49,13 +51,13 @@ public final class EventManager extends Thread {
 	 */
 	@Override
 	public void run() {
-		ArrayList<EMFStoreEventListener> tmp = new ArrayList<EMFStoreEventListener>();
+		ArrayList<ListenerContainer> tmp = new ArrayList<ListenerContainer>();
 		while (!isInterrupted()) {
 			try {
 				ServerEvent event = queue.take();
 				if (event != null) {
 					synchronized (this) {
-						for (EMFStoreEventListener e : listeners) {
+						for (ListenerContainer e : listeners) {
 							boolean successful = e.handleEvent((ServerEvent) EcoreUtil.copy(event));
 							if (!successful) {
 								tmp.add(e);
@@ -74,14 +76,15 @@ public final class EventManager extends Thread {
 	 * Register a listener. Listen to specific type of event isn't implemented yet.
 	 * 
 	 * @param listener the listener
+	 * @param projectId project id, can be null
 	 * @param clazz not implemented yet
 	 */
-	public void registerListener(EMFStoreEventListener listener, EClass clazz) {
+	public void registerListener(EMFStoreEventListener listener, ProjectId projectId, EClass clazz) {
 		if (listener == null) {
 			return;
 		}
 		synchronized (this) {
-			listeners.add(listener);
+			listeners.add(new ListenerContainer(listener, projectId, clazz));
 		}
 	}
 
@@ -115,4 +118,31 @@ public final class EventManager extends Thread {
 		}
 	}
 
+	/**
+	 * Container for listener.
+	 * 
+	 * @author wesendon
+	 */
+	private class ListenerContainer {
+
+		private final EMFStoreEventListener listener;
+		private final ProjectId projectId;
+		@SuppressWarnings("unused")
+		private final EClass clazz;
+
+		public ListenerContainer(EMFStoreEventListener listener, ProjectId projectId, EClass clazz) {
+			this.listener = listener;
+			this.projectId = projectId;
+			this.clazz = clazz;
+		}
+
+		public boolean handleEvent(ServerEvent event) {
+			if (projectId != null && event instanceof ServerProjectEvent) {
+				if (!projectId.equals(((ServerProjectEvent) event).getProjectId())) {
+					return true;
+				}
+			}
+			return listener.handleEvent(event);
+		}
+	}
 }
