@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import org.unicase.backchannel.connection.rmi.client.RMIBackchannelCallback;
-import org.unicase.backchannel.connection.rmi.client.RMIBackchannelCallbackImpl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 public interface RMIBackchannelInterface extends Remote {

@@ -19,8 +19,7 @@ public class RMIBackchannelConnectionHandler implements ConnectionHandler<Backch
 	private RMIBackchannelInterface stub;
 
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Backchannel RMI ConnectionHandler";
 	}
 
 	public void init(BackchannelInterface backchannel,
@@ -30,9 +29,13 @@ public class RMIBackchannelConnectionHandler implements ConnectionHandler<Backch
 			stub = new RMIBackchannelImpl(backchannel);
 			Registry registry = RMIRegistryManager.getInstance().getRegistry();
 			
-			URL url = Activator.getDefault().getBundle().getEntry("/bin/");
 			String property = "java.rmi.server.codebase";
+			System.out.println("\n"+System.getProperty(property)+"\n");
+
+			URL url = Activator.getDefault().getBundle().getEntry("/bin/");
 			System.setProperty(property, System.getProperty(property) + " " + url.toExternalForm());
+			
+			System.out.println("\n"+System.getProperty(property)+"\n");
 			
 			registry.rebind(RMI_NAME, stub);
 		} catch (RemoteException e) {
@@ -43,8 +46,7 @@ public class RMIBackchannelConnectionHandler implements ConnectionHandler<Backch
 	}
 
 	public void stop(boolean force) {
-		// TODO Auto-generated method stub
-		
+		//OW: todo
 	}
 
 }

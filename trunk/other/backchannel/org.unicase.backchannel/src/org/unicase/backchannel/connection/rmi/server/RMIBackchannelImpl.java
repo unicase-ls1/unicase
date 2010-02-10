@@ -9,7 +9,6 @@ import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
-import org.unicase.emfstore.eventmanager.EMFStoreEventListener;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 public class RMIBackchannelImpl extends UnicastRemoteObject implements
