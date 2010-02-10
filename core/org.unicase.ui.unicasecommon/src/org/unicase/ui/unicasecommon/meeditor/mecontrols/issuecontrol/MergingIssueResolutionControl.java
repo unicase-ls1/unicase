@@ -124,8 +124,8 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			if (result instanceof MergingProposal) {
 				MergingProposal proposal = (MergingProposal) result;
 				MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
-				solution.getUnderlyingProposals().add(proposal);
 				mergingIssue.setSolution(solution);
+				solution.getUnderlyingProposals().add(proposal);
 				check(solution);
 				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
 				if (projectSpace != null) {
@@ -134,8 +134,8 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 				}
 			} else if (result instanceof Proposal) {
 				Solution solution = RationaleFactory.eINSTANCE.createSolution();
-				solution.getUnderlyingProposals().add((Proposal) result);
 				mergingIssue.setSolution(solution);
+				solution.getUnderlyingProposals().add((Proposal) result);
 				check(solution);
 			}
 		}
