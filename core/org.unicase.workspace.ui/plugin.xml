@@ -766,6 +766,15 @@
                visible="true">
          </separator>
       </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+        <command
+              commandId="org.unicase.ui.stem.ShowHistory"
+              icon="icons/historyview.png"
+              label="Show History"
+              style="push">
+        </command>
+     </menuContribution>
   </extension>
   
      <extension
