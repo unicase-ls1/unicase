@@ -1,5 +1,6 @@
  *  [Coding]
  *  [Modeling]
+ *  [Architecture]
  *  [Diagram]
  *  [Setup Set-up and Configuration]
  *  [Process]
