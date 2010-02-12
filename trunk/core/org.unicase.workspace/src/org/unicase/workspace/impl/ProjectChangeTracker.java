@@ -157,7 +157,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			} else {
 				projectSpace.addOperation(deleteOperation);
 			}
-			projectSpace.notifyOperationExecuted(deleteOperation);
+
 			deleteOperation = null;
 
 			Resource resource = modelElement.eResource();
