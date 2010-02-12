@@ -49,7 +49,6 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -2271,14 +2270,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.getOperations().add(operation);
 		updateDirtyState();
 
-		// do not notify on delete and composite start, wait until completion
-		if (operation instanceof CreateDeleteOperation) {
-			CreateDeleteOperation deleteOperation = (CreateDeleteOperation) operation;
-			if (deleteOperation.isDelete()) {
-				return;
-			}
-
-		}
+		// do not notify on composite start, wait until completion
 		if (operation instanceof CompositeOperation) {
 			return;
 		}
