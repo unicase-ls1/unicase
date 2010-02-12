@@ -359,7 +359,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	}
 
 	/**
-	 * Completes the current composite operation.
+	 * Complete the current composite operation.
 	 */
 	public void endCompositeOperation() {
 		projectSpace.notifyOperationExecuted(compositeOperation);
