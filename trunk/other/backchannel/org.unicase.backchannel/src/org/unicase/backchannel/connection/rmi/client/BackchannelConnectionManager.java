@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.backchannel.connection.rmi.client;
 
 import java.rmi.NotBoundException;
@@ -18,10 +23,22 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.connectionmanager.AbstractConnectionManager;
 
+/**
+ * Clientside connection manager for the backchannel in order to register as listener on the server.
+ * 
+ * @author wesendon
+ */
 public class BackchannelConnectionManager extends
 		AbstractConnectionManager<RMIBackchannelInterface> implements
 		BackchannelInterface {
 
+	/**
+	 * Initiates the connection to the server.
+	 * 
+	 * @param serverInfo serverinfo 
+	 * @param id sessionid
+	 * @throws ConnectionException in case of failure
+	 */
 	public void initConnection(ServerInfo serverInfo, SessionId id)
 			throws ConnectionException {
 		Registry registry;
@@ -32,27 +49,33 @@ public class BackchannelConnectionManager extends
 			facade = (RMIBackchannelInterface) registry
 					.lookup(RMIBackchannelConnectionHandler.RMI_NAME);
 		} catch (RemoteException e) {
-			throw new ConnectionException("Connection related problem.",e);
+			throw new ConnectionException("Connection related problem.", e);
 		} catch (NotBoundException e) {
-			throw new ConnectionException("Registry not available.",e);
+			throw new ConnectionException("Registry not available.", e);
 		}
 		addConnectionProxy(id, facade);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void registerRemoteListener(SessionId sessionId,
 			EMFStoreEventListener listener, ProjectId projectId)
 			throws EmfStoreException {
 		try {
-			RMIBackchannelCallbackImpl callback = new RMIBackchannelCallbackImpl(listener);
+			RMIBackchannelCallbackImpl callback = new RMIBackchannelCallbackImpl(
+					listener);
 			getConnectionProxy(sessionId).registerRemoteListener(
-					SerializationUtil.eObjectToString(sessionId),
-					callback,
+					SerializationUtil.eObjectToString(sessionId), callback,
 					SerializationUtil.eObjectToString(projectId));
 		} catch (RemoteException e) {
 			throw new ConnectionException("Connection related problem.", e);
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void sendEvent(SessionId sessionId, ServerEvent event,
 			ProjectId projectId) throws EmfStoreException {
 		try {
