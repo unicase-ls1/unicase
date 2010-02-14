@@ -35,6 +35,8 @@ public class AnalyseConflictsController extends ProxyClient {
 	public void run() throws EmfStoreException, Exception {
 		loginServer("super", "super", "unicase-internal.informatik.tu-muenchen.de", null, "unicase.org 2010#1");
 
+		String path = "C:/Users/Otto/Desktop/analyse.csv";
+		
 		List<Row> rows = new ArrayList<Row>();
 
 		List<ConflictDetectionStrategy> strategies = new ArrayList<ConflictDetectionStrategy>();
@@ -76,8 +78,7 @@ public class AnalyseConflictsController extends ProxyClient {
 				"myCompTheirRefConflict count", "myRefTheirCompConflict count",
 				"otherConflict count" };
 
-		FileWriter fileWriter = new FileWriter(
-				"C:/Users/Otto/Desktop/analyse.csv");
+		FileWriter fileWriter = new FileWriter(path);
 
 		String tmp = printTop(columns);
 		fileWriter.write(tmp);
