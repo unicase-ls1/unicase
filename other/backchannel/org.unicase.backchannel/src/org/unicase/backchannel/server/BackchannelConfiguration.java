@@ -49,11 +49,11 @@ public final class BackchannelConfiguration {
 		String property = getProperties().getProperty(propertyName);
 		try {
 			if (property != null) {
-				return Integer.getInteger(property);
+				return Integer.parseInt(property);
 			}
 		} catch (NumberFormatException e) {
 		}
-		return Integer.getInteger(defaultProperty);
+		return Integer.parseInt(defaultProperty);
 	}
 
 }
