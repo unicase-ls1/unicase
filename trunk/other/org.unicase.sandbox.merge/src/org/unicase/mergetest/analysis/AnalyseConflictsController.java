@@ -33,7 +33,7 @@ import org.unicase.proxyclient.ProxyClient;
 public class AnalyseConflictsController extends ProxyClient {
 
 	public void run() throws EmfStoreException, Exception {
-		loginServer("super", "super", "localhost", null, "unicase.org 2010#1");
+		loginServer("super", "super", "unicase-internal.informatik.tu-muenchen.de", null, "unicase.org 2010#1");
 
 		List<Row> rows = new ArrayList<Row>();
 
@@ -44,7 +44,7 @@ public class AnalyseConflictsController extends ProxyClient {
 		strategies.add(new ByModelElementConflictDetectionStrategy());
 
 		for (ProjectInfo info : getProjectList()) {
-			if (!(info.getName().contains("tale 2") || info.getName().equals("DOLLI3"))) {
+			if (!info.getName().equals("DOLLI2")) {
 				continue;
 			}
 			for (ConflictDetectionStrategy strategy : strategies) {
@@ -126,6 +126,7 @@ public class AnalyseConflictsController extends ProxyClient {
 		ArrayList<Row> rows = new ArrayList<Row>();
 		for (int i = 1; i <= info.getVersion().getIdentifier(); i++) {
 			Row row = new Row(i, info.getName());
+			System.out.println("row: "+i);
 			ChangePackage changePackage = getChangePackage(info, i);
 
 			LogMessage logMessage = changePackage.getLogMessage();
