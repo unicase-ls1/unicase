@@ -7,7 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.emfstore.conflictDetection.ByDocumentConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.ByModelElementConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
+import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.NonIndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -17,27 +22,44 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.metamodel.Project;
 import org.unicase.proxyclient.ProxyClient;
 
 public class AnalyseConflictsController extends ProxyClient {
 
 	public void run() throws EmfStoreException, Exception {
-		loginServer("super", "super", "localhost", null, null);
+		loginServer("super", "super", "localhost", null, "unicase.org 2010#1");
 
 		List<Row> rows = new ArrayList<Row>();
 
+		List<ConflictDetectionStrategy> strategies = new ArrayList<ConflictDetectionStrategy>();
+		strategies.add(new IndexSensitiveConflictDetectionStrategy());
+		strategies.add(new NonIndexSensitiveConflictDetectionStrategy());
+		strategies.add(new ByDocumentConflictDetectionStrategy());
+		strategies.add(new ByModelElementConflictDetectionStrategy());
+
 		for (ProjectInfo info : getProjectList()) {
-			rows.addAll(analyse(info));
+			if (!(info.getName().contains("tale 2") || info.getName().equals("DOLLI3"))) {
+				continue;
+			}
+			for (ConflictDetectionStrategy strategy : strategies) {
+				rows.addAll(analyse(info, strategy));
+			}
 		}
 
 		String[] columns = new String[] { "projectName", "version", "author",
 				"seperator", "updateEvent count", "updateEvent lowerBound",
 				"updateEvent upperBound", "updateEvent range", "seperator",
 				"topOperation count", "leafOperation count",
-				"refCompositeOperation count", "attributeOperation count",
+				"referenceOperation count", "attributeOperation count",
 				"createOperation count", "deleteOperation count",
-				"otherOperation count", "seperator", "hasConflict",
+				"compositeOperation count", "otherOperation count",
+				"seperator", "conflictDetectorStrategy", "hasConflict",
 				"seperator", "myTopOperations count", "myLeafOperations count",
 				"theirTopOperations count", "theirLeafOperations count",
 				"seperator", "myConflictingTopOperations count",
@@ -48,10 +70,14 @@ public class AnalyseConflictsController extends ProxyClient {
 				"myCrDeTheirAttConflict count",
 				"myCrDeTheirCrDeConflict count",
 				"myCrDeTheirRefConflict count", "myRefTheirCrDeConflict count",
-				"myRefTheirRefConflict count", "otherConflict count" };
+				"myRefTheirRefConflict count", "myCompTheirCompConflict count",
+				"myCompTheirCrDelConflict count",
+				"myCrDelTheirCompConflict count",
+				"myCompTheirRefConflict count", "myRefTheirCompConflict count",
+				"otherConflict count" };
 
 		FileWriter fileWriter = new FileWriter(
-				"path");
+				"C:/Users/Otto/Desktop/analyse.csv");
 
 		String tmp = printTop(columns);
 		fileWriter.write(tmp);
@@ -95,7 +121,8 @@ public class AnalyseConflictsController extends ProxyClient {
 		return result.toString();
 	}
 
-	private List<Row> analyse(ProjectInfo info) throws EmfStoreException {
+	private List<Row> analyse(ProjectInfo info,
+			ConflictDetectionStrategy strategy) throws EmfStoreException {
 		ArrayList<Row> rows = new ArrayList<Row>();
 		for (int i = 1; i <= info.getVersion().getIdentifier(); i++) {
 			Row row = new Row(i, info.getName());
@@ -110,7 +137,7 @@ public class AnalyseConflictsController extends ProxyClient {
 
 			analyseChangePackage(row, changePackage);
 
-			analyseConflicts(row, info, changePackage);
+			analyseConflicts(row, info, changePackage, strategy);
 
 			rows.add(row);
 		}
@@ -118,19 +145,30 @@ public class AnalyseConflictsController extends ProxyClient {
 	}
 
 	private void analyseConflicts(Row row, ProjectInfo info,
-			ChangePackage myChanges) throws EmfStoreException {
+			ChangePackage myChanges, ConflictDetectionStrategy strategy)
+			throws EmfStoreException {
 		if (!(row.get("updateEvent lowerBound") instanceof Integer && row
 				.get("updateEvent upperBound") instanceof Integer)) {
 			return;
 		}
 		int lower = (Integer) row.get("updateEvent lowerBound");
 		int upper = (Integer) row.get("updateEvent upperBound");
+		row
+				.put("conflictDetectorStrategy", strategy.getClass()
+						.getSimpleName());
 
 		List<ChangePackage> theirChanges = getConnectionManager().getChanges(
 				getSessionId(), info.getProjectId(), createVersionSpec(lower),
 				createVersionSpec(upper));
 
-		ConflictDetector conflictDetector = new ConflictDetector();
+		if (strategy instanceof ByDocumentConflictDetectionStrategy) {
+			Project project = getConnectionManager().getProject(getSessionId(),
+					info.getProjectId(),
+					createVersionSpec((Integer) row.get("version")));
+			((ByDocumentConflictDetectionStrategy) strategy)
+					.setProject(project);
+		}
+		ConflictDetector conflictDetector = new ConflictDetector(strategy);
 
 		boolean hasConflict = conflictDetector.doConflict(myChanges,
 				theirChanges);
@@ -192,12 +230,22 @@ public class AnalyseConflictsController extends ProxyClient {
 		} else if (isCreateDelete(myOperation)
 				&& isCreateDelete(theirOperation)) {
 			row.intAdd("myCrDeTheirCrDeConflict count");
-		} else if (isCreateDelete(myOperation) && isComposite(theirOperation)) {
+		} else if (isCreateDelete(myOperation) && isReference(theirOperation)) {
 			row.intAdd("myCrDeTheirRefConflict count");
-		} else if (isComposite(myOperation) && isCreateDelete(theirOperation)) {
+		} else if (isReference(myOperation) && isCreateDelete(theirOperation)) {
 			row.intAdd("myRefTheirCrDeConflict count");
-		} else if (isComposite(myOperation) && isComposite(theirOperation)) {
+		} else if (isReference(myOperation) && isReference(theirOperation)) {
 			row.intAdd("myRefTheirRefConflict count");
+		} else if (isComposite(myOperation) && isComposite(theirOperation)) {
+			row.intAdd("myCompTheirCompConflict count");
+		} else if (isComposite(myOperation) && isCreateDelete(theirOperation)) {
+			row.intAdd("myCompTheirCrDelConflict count");
+		} else if (isCreateDelete(myOperation) && isComposite(theirOperation)) {
+			row.intAdd("myCrDelTheirCompConflict count");
+		} else if (isComposite(myOperation) && isReference(theirOperation)) {
+			row.intAdd("myCompTheirRefConflict count");
+		} else if (isReference(myOperation) && isComposite(theirOperation)) {
+			row.intAdd("myRefTheirCompConflict count");
 		} else {
 			row.intAdd("otherConflict count");
 		}
@@ -208,9 +256,9 @@ public class AnalyseConflictsController extends ProxyClient {
 		row.put("commitSize root", changePackage.getOperations().size());
 		row.put("commitSize leaf", changePackage.getLeafOperations().size());
 
-		int ref = 0, att = 0, cre = 0, del = 0, oth = 0;
+		int ref = 0, att = 0, cre = 0, del = 0, oth = 0, comp = 0;
 		for (AbstractOperation operation : changePackage.getOperations()) {
-			if (isComposite(operation)) {
+			if (isReference(operation)) {
 				ref++;
 			} else if (isAttribute(operation)) {
 				att++;
@@ -218,6 +266,8 @@ public class AnalyseConflictsController extends ProxyClient {
 				cre++;
 			} else if (isDelete(operation)) {
 				del++;
+			} else if (isComposite(operation)) {
+				comp++;
 			} else {
 				oth++;
 			}
@@ -227,10 +277,11 @@ public class AnalyseConflictsController extends ProxyClient {
 		row
 				.put("leafOperation count", changePackage.getLeafOperations()
 						.size());
-		row.put("refCompositeOperation count", ref);
+		row.put("referenceOperation count", ref);
 		row.put("attributeOperation count", att);
 		row.put("createOperation count", cre);
 		row.put("deleteOperation count", del);
+		row.put("compositeOperation count", del);
 		row.put("otherOperation count", oth);
 	}
 
@@ -261,25 +312,52 @@ public class AnalyseConflictsController extends ProxyClient {
 	// Helper Methods
 	//	
 
-	public boolean isComposite(AbstractOperation operation) {
-		return operation instanceof CompositeOperation;
+	public static boolean isComposite(AbstractOperation operation) {
+		return operation instanceof CompositeOperation
+				&& ((CompositeOperation) operation).getMainOperation() == null;
 	}
 
-	public boolean isAttribute(AbstractOperation operation) {
+	public static boolean isReference(AbstractOperation operation) {
+		return isSingleRef(operation) || isMultiRef(operation)
+				|| isCompositeRef(operation);
+	}
+
+	public static boolean isCompositeRef(AbstractOperation operation) {
+		return operation instanceof CompositeOperation
+				&& ((CompositeOperation) operation).getMainOperation() != null;
+	}
+
+	public static boolean isSingleRef(AbstractOperation operation) {
+		return operation instanceof SingleReferenceOperation;
+	}
+
+	public static boolean isMultiRef(AbstractOperation operation) {
+		return operation instanceof MultiReferenceOperation;
+	}
+
+	public static boolean isMultiMoveRef(AbstractOperation operation) {
+		return operation instanceof MultiReferenceMoveOperation;
+	}
+
+	public static boolean isAttribute(AbstractOperation operation) {
 		return operation instanceof AttributeOperation;
 	}
 
-	public boolean isCreate(AbstractOperation operation) {
+	public static boolean isDiagramLayout(AbstractOperation operation) {
+		return operation instanceof DiagramLayoutOperation;
+	}
+
+	public static boolean isCreate(AbstractOperation operation) {
 		return isCreateDelete(operation)
 				&& !((CreateDeleteOperation) operation).isDelete();
 	}
 
-	public boolean isDelete(AbstractOperation operation) {
+	public static boolean isDelete(AbstractOperation operation) {
 		return isCreateDelete(operation)
 				&& ((CreateDeleteOperation) operation).isDelete();
 	}
 
-	public boolean isCreateDelete(AbstractOperation operation) {
+	public static boolean isCreateDelete(AbstractOperation operation) {
 		return operation instanceof CreateDeleteOperation;
 	}
 
