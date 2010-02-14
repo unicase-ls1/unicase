@@ -45,10 +45,16 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 		Set<ModelElement> allInvolvedRootElementsB = new HashSet<ModelElement>();
 		for (ModelElementId modelElementId : allInvolvedModelElementsA) {
 			ModelElement modelElement = project.getModelElement(modelElementId);
+			if (modelElement == null) {
+				continue;
+			}
 			allInvolvedRootElementsA.add(getRootLevelParent(modelElement));
 		}
 		for (ModelElementId modelElementId : allInvolvedModelElementsB) {
 			ModelElement modelElement = project.getModelElement(modelElementId);
+			if (modelElement == null) {
+				continue;
+			}
 			allInvolvedRootElementsB.add(getRootLevelParent(modelElement));
 		}
 		return allInvolvedRootElementsA.removeAll(allInvolvedRootElementsB);
