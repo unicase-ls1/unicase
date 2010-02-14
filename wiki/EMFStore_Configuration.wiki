@@ -43,8 +43,8 @@ In this file you can use the default java propeties syntax to define your option
 # EMFStore property file: es.properties
 # with descriptions
 #
-# Version of file: 4
-# Last Update: 23.01.2010
+# Version of file: 5
+# Last Update: 15.02.2010
 # Author(s): Otto von Wesendonk
 #
 
@@ -232,6 +232,15 @@ emfstore.accesscontrol.authentication.ldap.2.base=ou=Personen,ou=IN,o=TUM,c=DE
 emfstore.accesscontrol.authentication.ldap.2.searchdn=uid
 
 
+#
+# Plugin configuration.
+#
+
+# Defines whehter post load plugins shall be called or not.
+# Options: true or false
+# Default: false
+#
+emfstore.startup.post.loadlistener = false
 
 #
 # Deprecated options or options not ment for public use. Please dont change or use these:
