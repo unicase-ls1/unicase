@@ -50,7 +50,7 @@ public class ProxyClient {
 
 	public ServerInfo getServerInfo(String url, String certificate) {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(1099);
+		serverInfo.setPort(8080);
 		serverInfo.setUrl(url);
 		if (certificate != null) {
 			serverInfo.setCertificateAlias(certificate);
