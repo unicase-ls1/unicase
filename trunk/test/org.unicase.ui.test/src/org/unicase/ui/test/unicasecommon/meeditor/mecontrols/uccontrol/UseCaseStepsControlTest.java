@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import java.net.URL;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.program.Program;
@@ -28,6 +29,7 @@ import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -89,12 +91,27 @@ public class UseCaseStepsControlTest extends MeControlTest {
 					Event event = new Event();
 					event.widget = hyperlink;
 					hyperlink.setFocus();
-				
-					//hyperlink.notifyListeners(SWT.Activate, event);
-					//hyperlink event doesn't work so far.
+					Step e = RequirementFactory.eINSTANCE.createStep();
+					e.setUserStep(true);
+					usecase.getUseCaseSteps().add(e);
 				}
 			}; runAsnc(widgetActivateCommand);
-			getBot().sleep(7000);
+			
+			String check = getBot().activeEditor().bot().text(1).getText();
+			getBot().activeEditor().bot().styledText(1).typeText("Hello actor step");
+			assertEquals("new Step", check);
+			new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					 EList<Step> steps = usecase.getUseCaseSteps();
+					Step usecasestep = steps.get(0);
+					assertEquals("working in description part!", usecasestep.getDescription());
+					
+				}
+			};
+			
+			
 		}
 	
 		@Test
@@ -108,7 +125,7 @@ public class UseCaseStepsControlTest extends MeControlTest {
 					Step e = RequirementFactory.eINSTANCE.createStep();
 					e.setUserStep(true);
 					e.setName("Not new");
-					e.setDescription("working in some part!");
+					e.setDescription("working in description part!");
 					getLeafSection().getModelElements().add(e);
 					UseCase value = RequirementFactory.eINSTANCE.createUseCase();
 					value.setName("Some use");
@@ -121,10 +138,88 @@ public class UseCaseStepsControlTest extends MeControlTest {
 			String check = getBot().activeEditor().bot().text(1).getText();
 			String check2 = getBot().activeEditor().bot().styledText(1).getText();
 			assertEquals("Not new", check);
-			assertEquals("working in some part!", check2);
+			assertEquals("working in description part!", check2);
+			
+		
+		}
+		
+		
+		@Test
+		public void testSystemStepChange() {
+			openModelElement(usecase);
+			
+			UnicaseCommand somecommand = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					Step e = RequirementFactory.eINSTANCE.createStep();
+					e.setUserStep(false);
+					e.setName("System step");
+					e.setDescription("System steps description");
+					getLeafSection().getModelElements().add(e);
+					UseCase value = RequirementFactory.eINSTANCE.createUseCase();
+					value.setName("Some usecase");
+					getLeafSection().getModelElements().add(value);
+					e.setIncludedUseCase(value);
+					usecase.getUseCaseSteps().add(e);
+					
+				}
+			};runAsnc(somecommand);
+			String check = getBot().activeEditor().bot().text(1).getText();
+			String check2 = getBot().activeEditor().bot().styledText(1).getText();
+			assertEquals("System step", check);
+			assertEquals("System steps description", check2);
 			
 		
 		}
 
-
+		@SuppressWarnings("unchecked")
+		@Test
+		public void testSystemStepUpdate() {
+			openModelElement(usecase);
+			
+			UnicaseCommandWithResult<Matcher> widgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
+				@Override
+				protected Matcher doRun() {
+					Matcher matchwidget = allOf(widgetOfType(Hyperlink.class), withRegex("Insert System Step"));
+					return matchwidget;
+				}
+			};
+			Matcher widgetmatcher = runAsnc(widgetFinderCommand);
+			final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
+			getBot().activeEditor().setFocus();
+			
+			UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					final Hyperlink hyperlink = ((Hyperlink)widgetcontrol.get(0));
+					Event event = new Event();
+					event.widget = hyperlink;
+					hyperlink.setFocus();
+					Step e = RequirementFactory.eINSTANCE.createStep();
+					e.setUserStep(false);
+					usecase.getUseCaseSteps().add(e);
+				}
+			}; runAsnc(widgetActivateCommand);
+			
+			String check = getBot().activeEditor().bot().text(1).getText();
+			getBot().activeEditor().bot().styledText(1).typeText("Hello system step");
+			assertEquals("new Step", check);
+			getBot().activeEditor().bot().text(1).setText("changed the name of system step");
+			getBot().activeEditor().setFocus();
+			new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					 EList<Step> steps = usecase.getUseCaseSteps();
+					Step usecasestep = steps.get(0);
+					assertEquals("working in description part!", usecasestep.getDescription());
+					assertEquals("changed the name of system step", usecasestep.getName());
+					
+				}
+			};
+			
+			
+		}
 }
