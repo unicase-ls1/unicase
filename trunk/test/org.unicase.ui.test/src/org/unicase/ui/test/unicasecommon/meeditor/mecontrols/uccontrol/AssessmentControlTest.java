@@ -165,5 +165,63 @@ public class AssessmentControlTest extends MeControlTest {
 			
 			
 		}
+		
+		
+		@SuppressWarnings("unchecked")
+		@Test
+		public void createAssessmentUpdate(){
+			UITestCommon.openPerspective(getBot(), "Unicase");
+			openModelElement(issue);
+			final int value = 25;
+			
+			UnicaseCommand someCommand = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					Criterion criteria = RationaleFactory.eINSTANCE.createCriterion();
+					criteria.setName("Test criteria");
+					getLeafSection().getModelElements().add(criteria);
+					issue.getCriteria().add(criteria);
+					Assessment assessment = RationaleFactory.eINSTANCE.createAssessment();
+					assessment.setName("Assessment for criteria");
+					assessment.setValue(value);
+					getLeafSection().getModelElements().add(assessment);
+					criteria.getAssessments().add(assessment);
+					Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
+					proposal.setName("Proposal for assessment test");
+					getLeafSection().getModelElements().add(proposal);
+					issue.getProposals().add(proposal);
+					proposal.getAssessments().get(0).setValue(value);
+					
+				}
+			};runAsnc(someCommand);
+			
+			UnicaseCommandWithResult<Matcher> spinnerWidgetFinder = new UnicaseCommandWithResult<Matcher>() {
+				@Override
+				protected Matcher doRun() {
+					Matcher matchwidget = allOf(widgetOfType(Spinner.class));
+					return matchwidget;
+				}
+			};
+			Matcher spinner = runAsnc(spinnerWidgetFinder);
+			final List widgetcontrol = getBot().getFinder().findControls(spinner);
+			getBot().sleep(2000);
+			UnicaseCommand some = new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					
+							
+							Spinner spinner = ((Spinner)widgetcontrol.get(3));
+							int valuefromSpinner = spinner.getSelection();
+							
+							assertEquals(value, valuefromSpinner);
+							
+					
+					
+				}
+			};runAsnc(some);
+			
+		}
 
 }
