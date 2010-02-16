@@ -97,7 +97,6 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 */
 	protected Object handleRun() throws ExecutionException {
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		Object ret = null;
 		Usersession session = getUsersession();
 		if (session == null) {
 			MessageDialog
@@ -109,14 +108,22 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		}
 
 		LoginHandler loginHandler = new LoginHandler(session);
+		attempt = 0;
 
+		return executeRun(loginHandler);
+	}
+
+	private Object executeRun(LoginHandler loginHandler)
+			throws ExecutionException {
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(shell);
 		progressDialog.open();
 		progressDialog.getProgressMonitor().beginTask(taskTitle,
 				IProgressMonitor.UNKNOWN);
 
+		Object ret = null;
+
 		try {
-			session.updateACUser();
+			loginHandler.getUsersession().updateACUser();
 			try {
 				ret = run();
 			} catch (ClientVersionOutOfDateException e) {
@@ -161,7 +168,7 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 			DialogHandler.showErrorDialog(message);
 			WorkspaceUtil.logWarning(message, e);
 		} else if (loginHandler.execute(getEvent()).equals(Window.OK)) {
-			handleRun();
+			executeRun(loginHandler);
 		}
 	}
 

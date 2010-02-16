@@ -61,4 +61,13 @@ public class LoginHandler extends AbstractHandler {
 		return loginDialog.getReturnCode();
 	}
 
+	/**
+	 * Returns the usersession.
+	 * 
+	 * @return usersession
+	 */
+	public Usersession getUsersession() {
+		return usersession;
+	}
+
 }
