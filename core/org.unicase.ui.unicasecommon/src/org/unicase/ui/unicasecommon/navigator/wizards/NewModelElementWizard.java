@@ -75,8 +75,12 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
 
 			if (newMEInstance instanceof MEDiagram) {
-				((MEDiagram) newMEInstance).setType(this.newDiagramType);
-				newMEInstance.setName("new " + this.newDiagramType.getLiteral());
+				if (newDiagramType != null) {
+					((MEDiagram) newMEInstance).setType(this.newDiagramType);
+					newMEInstance.setName("new " + this.newDiagramType.getLiteral());
+				} else {
+					newMEInstance.setName("newDiagram");
+				}
 			}
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
