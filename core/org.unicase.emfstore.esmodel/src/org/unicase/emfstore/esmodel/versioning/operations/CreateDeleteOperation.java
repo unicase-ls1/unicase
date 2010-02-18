@@ -7,6 +7,8 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Create Delete Operation</b></em>'. <!--
@@ -95,5 +97,16 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @generated
 	 */
 	EList<ReferenceOperation> getSubOperations();
+
+	/**
+	 * Get the id of the previous parent of the deleted element. Returns null if the deleted element did not have a
+	 * parent at the time of deletion or the parent cannot be determined anymore since it has also been removed from the
+	 * given project.
+	 * 
+	 * @param project the current project (needed to derive the parent)
+	 * @return the element id
+	 * @generated NOT
+	 */
+	ModelElementId getParentofDeletedElement(Project project);
 
 } // CreateDeleteOperation
