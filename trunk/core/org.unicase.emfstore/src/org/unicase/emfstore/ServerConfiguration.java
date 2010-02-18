@@ -9,8 +9,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Represents the current server configuration.
@@ -364,6 +366,11 @@ public final class ServerConfiguration {
 	 */
 	public static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
 
+	/**
+	 * Prefix for EMFStore Home Startup Argument.
+	 */
+	public static final String EMFSTORE_HOME = "-EMFStoreHome";
+
 	private static boolean testing;
 
 	private static Properties properties;
@@ -401,6 +408,34 @@ public final class ServerConfiguration {
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
+		String[] applicationArgs = Platform.getApplicationArgs();
+		for (String arg : applicationArgs) {
+			if (arg.startsWith(EMFSTORE_HOME) && arg.length() > EMFSTORE_HOME.length()) {
+				String path = arg.substring(arg.indexOf("=") + 1, arg.length());
+				if (!path.endsWith(File.separator)) {
+					path = path + File.separator;
+				}
+				File file = new File(path);
+				if (file.exists() && file.isDirectory()) {
+					return path;
+				} else if (file.exists() && !file.isDirectory()) {
+					String errorMessage = "Illegal EMFStore home path received:" + path;
+					ModelUtil.log(errorMessage, new IllegalStateException("The path exists as file already."),
+						IStatus.ERROR);
+					System.err.println(errorMessage);
+				}
+				boolean created = file.mkdir();
+				if (!created) {
+					// log and switch to default
+					String errorMessage = "Illegal EMFStore home path received:" + path;
+					ModelUtil.log(errorMessage, new IllegalStateException("The path can not be created."),
+						IStatus.ERROR);
+					System.err.println(errorMessage);
+					break;
+				}
+				return path;
+			}
+		}
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unicase");
 		if (testing) {
@@ -415,6 +450,7 @@ public final class ServerConfiguration {
 		sb.append(File.separatorChar);
 		sb.append("emfstore");
 		sb.append(File.separatorChar);
+		System.out.println("Using default path for EMFStore home:" + sb.toString());
 		return sb.toString();
 	}
 
