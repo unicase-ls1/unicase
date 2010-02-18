@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.diagram.usecaseDiagram; singleton:=true
-Bundle-Version: 0.4.1
+Bundle-Version: 0.4.2.internal
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: unicase.org
@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.ui.common;bundle-version="0.4.1",
+ org.unicase.ui.common;bundle-version="0.4.2.internal",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
@@ -42,7 +42,7 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.ui.unicasecommon;bundle-version="0.4.1"
+ org.unicase.ui.unicasecommon;bundle-version="0.4.2.internal"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-LazyStart: true
