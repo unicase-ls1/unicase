@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Common UI Plug-in
 Bundle-SymbolicName: org.unicase.ui.common;singleton:=true
-Bundle-Version: 0.4.1
+Bundle-Version: 0.4.2.internal
 Bundle-Activator: org.unicase.ui.common.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.ui;visibility:=reexport,

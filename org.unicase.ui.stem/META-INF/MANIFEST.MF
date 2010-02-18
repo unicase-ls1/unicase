@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Iteration Planning Plug-in
 Bundle-SymbolicName: org.unicase.ui.stem;singleton:=true
-Bundle-Version: 0.4.1
+Bundle-Version: 0.4.2.internal
 Bundle-Activator: org.unicase.ui.stem.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.ui.tableview;bundle-version="0.4.1",
+Require-Bundle: org.unicase.ui.tableview;bundle-version="0.4.2.internal",
  org.unicase.ui.unicasecommon
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
