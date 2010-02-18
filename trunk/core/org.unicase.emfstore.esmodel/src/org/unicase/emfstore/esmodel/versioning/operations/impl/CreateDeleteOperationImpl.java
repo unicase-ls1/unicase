@@ -15,6 +15,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -24,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -444,4 +447,48 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getParentElement(org.unicase.metamodel.Project)
+	 */
+	public ModelElementId getParentofDeletedElement(Project project) {
+
+		EList<ReferenceOperation> referenceOperations = getSubOperations();
+		if (referenceOperations.size() == 0) {
+			return null;
+		}
+
+		ReferenceOperation lastReferenceOperation = referenceOperations.get(referenceOperations.size() - 1);
+
+		try {
+			EStructuralFeature feature = lastReferenceOperation.getFeature(project);
+			if (!(feature instanceof EReference)) {
+				return null;
+			}
+			EReference reference = (EReference) feature;
+			// reference is from parent side, so parent is the element that is changed by the last ref op
+			if (reference.isContainment()) {
+				if (lastReferenceOperation.getOtherInvolvedModelElements().contains(getModelElementId())) {
+					return lastReferenceOperation.getModelElementId();
+				}
+				return null;
+				// reference is from child side, so parent is the only element in other involved of the ref op
+			} else if (reference.isContainer()) {
+				if (lastReferenceOperation.getModelElementId().equals(getModelElementId())) {
+					Set<ModelElementId> otherInvolvedModelElements = lastReferenceOperation
+						.getOtherInvolvedModelElements();
+					if (otherInvolvedModelElements.size() > 0) {
+						return otherInvolvedModelElements.iterator().next();
+					}
+				}
+			}
+			return null;
+
+		} catch (UnkownFeatureException e) {
+			// parent does not exist any more or feature does not exist
+			return null;
+		}
+	}
 } // CreateDeleteOperationImpl
