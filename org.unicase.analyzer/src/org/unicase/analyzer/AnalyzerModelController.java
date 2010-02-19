@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.analyzer.iterator.VersionIterator;
 
@@ -23,6 +24,10 @@ public class AnalyzerModelController {
 
 	private Exporter exporter;
 
+	private final int flag;
+
+	private IProgressMonitor monitor;
+
 	/**
 	 * The Controller adds the proper analyzers and iterators, then starts the analysis. The result is exported to the
 	 * specified exporter.
@@ -36,11 +41,35 @@ public class AnalyzerModelController {
 		this.analyzers = analyzers;
 		this.setExporter(exporter);
 
-		try {
-			runAnalysis(exporter);
-		} catch (IOException e) {
+		flag = checkAnalyzerTypes(analyzers);
+	}
+
+	private int checkAnalyzerTypes(List<DataAnalyzer> analyzers) {
+
+		int flag;
+		if (analyzers.get(0) instanceof SimpleDataAnalyzer) {
+			flag = 1;
+		} else {
+			flag = 2;
 		}
-		System.out.println("Finished Analysis");
+		int temp = flag;
+
+		for (DataAnalyzer analyzer : analyzers) {
+
+			if (temp != flag) {
+				throw new IllegalStateException("Analyzers type are not compatible, please check the chosen analyzers!");
+			}
+			temp = flag;
+			if (analyzer instanceof SimpleDataAnalyzer) {
+				flag = 1;
+			} else {
+				flag = 2;
+			}
+		}
+		if (temp != flag) {
+			throw new IllegalStateException("Analyzers type are not compatible, please check the chosen analyzers!");
+		}
+		return flag;
 	}
 
 	/**
@@ -49,20 +78,45 @@ public class AnalyzerModelController {
 	 * @param exporter Exporter
 	 * @throws IOException
 	 */
-	private void runAnalysis(Exporter exporter) throws IOException {
+	public void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
-		List<List<Object>> lines = new ArrayList<List<Object>>();
-		ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		while (projectIterator.hasNext()) {
-			data = projectIterator.next();
-			lines.clear();
-			for (DataAnalyzer analyzer : analyzers) {
+		switch (flag) {
+		case 2:
+			List<List<Object>> lines = new ArrayList<List<Object>>();
+			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
+			while (projectIterator.hasNext()) {
 
-				lines.addAll(analyzer.getValues(data, projectIterator)) ;
-				exporter.export(lines);
+				data = projectIterator.next();
+				monitor.setTaskName("Analyzing...@Version "
+					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
 
+				lines.clear();
+				for (DataAnalyzer analyzer : analyzers) {
+					lines = analyzer.getValues(data, projectIterator);
+					exporter.export(lines);
+				}
+				monitor.worked(projectIterator.getStepLength());
 			}
+			return;
+		case 1:
+			List<Object> line = new ArrayList<Object>();
+			while (projectIterator.hasNext()) {
+				data = projectIterator.next();
+				monitor.setTaskName("Analyzing...@Version "
+					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
 
+				line.clear();
+				for (DataAnalyzer analyzer : analyzers) {
+					for (Object obj : ((SimpleDataAnalyzer) analyzer).getSimpleValues(data)) {
+						line.add(obj);
+					}
+				}
+				exporter.writeLine(line);
+				monitor.worked(projectIterator.getStepLength());
+			}
+			return;
+		default:
+			break;
 		}
 	}
 
@@ -94,5 +148,13 @@ public class AnalyzerModelController {
 	 */
 	public Exporter getExporter() {
 		return exporter;
+	}
+
+	public IProgressMonitor getMonitor() {
+		return monitor;
+	}
+
+	public void setMonitor(IProgressMonitor monitor) {
+		this.monitor = monitor;
 	}
 }
