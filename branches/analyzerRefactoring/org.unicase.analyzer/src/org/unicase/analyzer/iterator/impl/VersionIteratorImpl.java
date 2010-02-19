@@ -55,9 +55,9 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class VersionIteratorImpl extends EObjectImpl implements VersionIterator {
 	/**
-	 * The default value of the '{@link #getStepLength() <em>Step Length</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStepLength() <em>Step Length</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStepLength()
 	 * @generated
 	 * @ordered
@@ -65,9 +65,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	protected static final int STEP_LENGTH_EDEFAULT = 1;
 
 	/**
-	 * The cached value of the '{@link #getStepLength() <em>Step Length</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStepLength() <em>Step Length</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStepLength()
 	 * @generated
 	 * @ordered
@@ -75,9 +75,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	protected int stepLength = STEP_LENGTH_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -85,19 +85,19 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #isForward() <em>Forward</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isForward() <em>Forward</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isForward()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean FORWARD_EDEFAULT = false;
+	protected static final boolean FORWARD_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isForward() <em>Forward</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isForward() <em>Forward</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isForward()
 	 * @generated
 	 * @ordered
@@ -135,9 +135,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	protected VersionSpecQuery versionSpecQuery;
 
 	/**
-	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDefault()
 	 * @generated
 	 * @ordered
@@ -145,9 +145,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	protected static final boolean DEFAULT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDefault()
 	 * @generated
 	 * @ordered
@@ -184,6 +184,7 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VersionIteratorImpl() {
@@ -192,6 +193,7 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,6 +203,7 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getStepLength() {
@@ -209,17 +212,20 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStepLength(int newStepLength) {
 		int oldStepLength = stepLength;
 		stepLength = newStepLength;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__STEP_LENGTH, oldStepLength, stepLength));
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__STEP_LENGTH,
+				oldStepLength, stepLength));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -228,38 +234,48 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
 		ProjectId oldProjectId = projectId;
 		projectId = newProjectId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__PROJECT_ID, oldProjectId, newProjectId);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				IteratorPackage.VERSION_ITERATOR__PROJECT_ID, oldProjectId, newProjectId);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
 		if (newProjectId != projectId) {
 			NotificationChain msgs = null;
 			if (projectId != null)
-				msgs = ((InternalEObject)projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_ITERATOR__PROJECT_ID, null, msgs);
+				msgs = ((InternalEObject) projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- IteratorPackage.VERSION_ITERATOR__PROJECT_ID, null, msgs);
 			if (newProjectId != null)
-				msgs = ((InternalEObject)newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_ITERATOR__PROJECT_ID, null, msgs);
+				msgs = ((InternalEObject) newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- IteratorPackage.VERSION_ITERATOR__PROJECT_ID, null, msgs);
 			msgs = basicSetProjectId(newProjectId, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__PROJECT_ID, newProjectId, newProjectId));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__PROJECT_ID,
+				newProjectId, newProjectId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isForward() {
@@ -268,17 +284,20 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setForward(boolean newForward) {
 		boolean oldForward = forward;
 		forward = newForward;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__FORWARD, oldForward, forward));
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__FORWARD,
+				oldForward, forward));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isReturnProjectDataCopy() {
@@ -287,17 +306,21 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReturnProjectDataCopy(boolean newReturnProjectDataCopy) {
 		boolean oldReturnProjectDataCopy = returnProjectDataCopy;
 		returnProjectDataCopy = newReturnProjectDataCopy;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY, oldReturnProjectDataCopy, returnProjectDataCopy));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY, oldReturnProjectDataCopy,
+				returnProjectDataCopy));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VersionSpecQuery getVersionSpecQuery() {
@@ -306,38 +329,48 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVersionSpecQuery(VersionSpecQuery newVersionSpecQuery, NotificationChain msgs) {
 		VersionSpecQuery oldVersionSpecQuery = versionSpecQuery;
 		versionSpecQuery = newVersionSpecQuery;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, oldVersionSpecQuery, newVersionSpecQuery);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, oldVersionSpecQuery, newVersionSpecQuery);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVersionSpecQuery(VersionSpecQuery newVersionSpecQuery) {
 		if (newVersionSpecQuery != versionSpecQuery) {
 			NotificationChain msgs = null;
 			if (versionSpecQuery != null)
-				msgs = ((InternalEObject)versionSpecQuery).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, null, msgs);
+				msgs = ((InternalEObject) versionSpecQuery).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, null, msgs);
 			if (newVersionSpecQuery != null)
-				msgs = ((InternalEObject)newVersionSpecQuery).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, null, msgs);
+				msgs = ((InternalEObject) newVersionSpecQuery).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, null, msgs);
 			msgs = basicSetVersionSpecQuery(newVersionSpecQuery, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY, newVersionSpecQuery, newVersionSpecQuery));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY,
+				newVersionSpecQuery, newVersionSpecQuery));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDefault() {
@@ -346,141 +379,150 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDefault(boolean newDefault) {
 		boolean oldDefault = default_;
 		default_ = newDefault;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__DEFAULT, oldDefault, default_));
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__DEFAULT,
+				oldDefault, default_));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-				return basicSetProjectId(null, msgs);
-			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-				return basicSetVersionSpecQuery(null, msgs);
+		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			return basicSetProjectId(null, msgs);
+		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+			return basicSetVersionSpecQuery(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
-				return getStepLength();
-			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-				return getProjectId();
-			case IteratorPackage.VERSION_ITERATOR__FORWARD:
-				return isForward();
-			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
-				return isReturnProjectDataCopy();
-			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-				return getVersionSpecQuery();
-			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
-				return isDefault();
+		case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
+			return getStepLength();
+		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			return getProjectId();
+		case IteratorPackage.VERSION_ITERATOR__FORWARD:
+			return isForward();
+		case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			return isReturnProjectDataCopy();
+		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+			return getVersionSpecQuery();
+		case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+			return isDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
-				setStepLength((Integer)newValue);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-				setProjectId((ProjectId)newValue);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__FORWARD:
-				setForward((Boolean)newValue);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
-				setReturnProjectDataCopy((Boolean)newValue);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-				setVersionSpecQuery((VersionSpecQuery)newValue);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
-				setDefault((Boolean)newValue);
-				return;
+		case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
+			setStepLength((Integer) newValue);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			setProjectId((ProjectId) newValue);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__FORWARD:
+			setForward((Boolean) newValue);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			setReturnProjectDataCopy((Boolean) newValue);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+			setVersionSpecQuery((VersionSpecQuery) newValue);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+			setDefault((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
-				setStepLength(STEP_LENGTH_EDEFAULT);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-				setProjectId((ProjectId)null);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__FORWARD:
-				setForward(FORWARD_EDEFAULT);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
-				setReturnProjectDataCopy(RETURN_PROJECT_DATA_COPY_EDEFAULT);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-				setVersionSpecQuery((VersionSpecQuery)null);
-				return;
-			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
-				setDefault(DEFAULT_EDEFAULT);
-				return;
+		case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
+			setStepLength(STEP_LENGTH_EDEFAULT);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			setProjectId((ProjectId) null);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__FORWARD:
+			setForward(FORWARD_EDEFAULT);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			setReturnProjectDataCopy(RETURN_PROJECT_DATA_COPY_EDEFAULT);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+			setVersionSpecQuery((VersionSpecQuery) null);
+			return;
+		case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+			setDefault(DEFAULT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
-				return stepLength != STEP_LENGTH_EDEFAULT;
-			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-				return projectId != null;
-			case IteratorPackage.VERSION_ITERATOR__FORWARD:
-				return forward != FORWARD_EDEFAULT;
-			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
-				return returnProjectDataCopy != RETURN_PROJECT_DATA_COPY_EDEFAULT;
-			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-				return versionSpecQuery != null;
-			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
-				return default_ != DEFAULT_EDEFAULT;
+		case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
+			return stepLength != STEP_LENGTH_EDEFAULT;
+		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			return projectId != null;
+		case IteratorPackage.VERSION_ITERATOR__FORWARD:
+			return forward != FORWARD_EDEFAULT;
+		case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			return returnProjectDataCopy != RETURN_PROJECT_DATA_COPY_EDEFAULT;
+		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+			return versionSpecQuery != null;
+		case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+			return default_ != DEFAULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stepLength: ");
@@ -704,6 +746,12 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	public Usersession getUsersession() {
 		return usersession;
+	}
+
+	public int getTotalSteps() {
+
+		return this.end.getIdentifier() - this.start.getIdentifier();
+
 	}
 
 } // VersionIteratorImpl

@@ -100,7 +100,7 @@ public class LoadPage extends WizardPage implements Listener {
 
 		setCanFlipToNextPage(isPageComplete());
 		// ((ProjectAnalyzerWizard) getWizard()).setCanFinish(false);
-		setPageComplete(true);
+		// setPageComplete(true);
 
 		setControl(composite);
 
@@ -164,7 +164,7 @@ public class LoadPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public boolean isPageComplete() {
-		return super.isPageComplete();
+		return true;
 	}
 
 	/**

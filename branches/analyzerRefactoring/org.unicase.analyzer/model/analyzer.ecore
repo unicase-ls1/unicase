@@ -27,9 +27,11 @@
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnProjectDataCopy"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+          defaultValueLiteral=""/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="versionSpecQuery" eType="#//iterator/VersionSpecQuery"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>

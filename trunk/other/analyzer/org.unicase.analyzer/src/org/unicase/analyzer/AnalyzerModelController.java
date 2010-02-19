@@ -87,22 +87,24 @@ public class AnalyzerModelController {
 			while (projectIterator.hasNext()) {
 
 				data = projectIterator.next();
-				monitor.subTask("Analyzing...@Version "
+				monitor.setTaskName("Analyzing...@Version "
 					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
+
 				lines.clear();
 				for (DataAnalyzer analyzer : analyzers) {
 					lines = analyzer.getValues(data, projectIterator);
 					exporter.export(lines);
 				}
-				// monitor.done();
+				monitor.worked(projectIterator.getStepLength());
 			}
 			return;
 		case 1:
 			List<Object> line = new ArrayList<Object>();
 			while (projectIterator.hasNext()) {
 				data = projectIterator.next();
-				monitor.subTask("Analyzing...@Version "
+				monitor.setTaskName("Analyzing...@Version "
 					+ ((Integer) (data.getPrimaryVersionSpec().getIdentifier())).toString());
+
 				line.clear();
 				for (DataAnalyzer analyzer : analyzers) {
 					for (Object obj : ((SimpleDataAnalyzer) analyzer).getSimpleValues(data)) {
@@ -110,7 +112,7 @@ public class AnalyzerModelController {
 					}
 				}
 				exporter.writeLine(line);
-				// monitor.done();
+				monitor.worked(projectIterator.getStepLength());
 			}
 			return;
 		default:

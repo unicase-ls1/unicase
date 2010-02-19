@@ -70,6 +70,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private Usersession selectedUsersession;
 	private ProjectId selectedProjectID;
 	private LoadPage loadPage;
+	private ProjectSpace selectedProject;
 
 	/**
 	 * {@inheritDoc}
@@ -151,9 +152,11 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig
 						.getIterator(), analyzers, analyzerConfig.getExporter());
 					analyzerController.setMonitor(monitor);
+					int totalSteps = analyzerConfig.getIterator().getTotalSteps();
+					monitor.beginTask("Analyzing...", totalSteps);
 					try {
 						analyzerController.runAnalysis(analyzerConfig.getExporter());
-						monitor.beginTask("Analyzing...", 1);
+
 					} catch (IOException e) {
 						WorkspaceUtil.logException("Analysis is encountering problems!", e);
 					}
@@ -182,7 +185,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
 			if (firstElement instanceof ProjectSpace) {
-				ProjectSpace selectedProject = (ProjectSpace) firstElement;
+				selectedProject = (ProjectSpace) firstElement;
 				selectedProjectID = (ProjectId) EcoreUtil.copy(selectedProject.getProjectId());
 				selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
 				if (!selectedUsersession.isLoggedIn()) {
@@ -398,6 +401,20 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setDomain(TransactionalEditingDomain domain) {
 		this.domain = domain;
+	}
+
+	/**
+	 * @return the selectedProject
+	 */
+	public ProjectSpace getSelectedProject() {
+		return selectedProject;
+	}
+
+	/**
+	 * @param selectedProject the selectedProject to set
+	 */
+	public void setSelectedProject(ProjectSpace selectedProject) {
+		this.selectedProject = selectedProject;
 	}
 
 }

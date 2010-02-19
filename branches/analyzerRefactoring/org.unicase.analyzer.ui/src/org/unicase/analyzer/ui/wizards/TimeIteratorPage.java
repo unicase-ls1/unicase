@@ -6,6 +6,9 @@
 
 package org.unicase.analyzer.ui.wizards;
 
+import java.util.Calendar;
+import java.util.List;
+
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -36,6 +39,10 @@ import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
@@ -103,7 +110,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepUnit.addListener(SWT.Selection, this);
 
 		defaultButton = new Button(composite, SWT.CHECK);
-		defaultButton.setText("Analyze all the versions");
+		defaultButton.setText("Analyze all versions");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		defaultButton.setLayoutData(gd);
@@ -153,16 +160,16 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		forwardButton.addListener(SWT.Selection, this);
 
 		returnCopyButton = new Button(group, SWT.CHECK);
-		returnCopyButton.setText("Return the deep copy of ProjectAnalysisData");
+		returnCopyButton.setText("Return a deep copy of ProjectAnalysisData");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
 		returnCopyButton.addListener(SWT.Selection, this);
 
-		// setCanFlipToNextPage(isPageComplete());
+		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
-		setPageComplete(true);
+		// setPageComplete(true);
 
 	}
 
@@ -197,15 +204,45 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	 */
 	public void initGroup() {
 
-		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
+		conf = wizard.getAnalyzerConfig();
 		// startDate for TimeIterator
 		if (conf.getIterator() instanceof TimeIterator) {
-			startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.MINUTE, -2);
+			if (((TimeIterator) conf.getIterator()).getStartDate().compareTo(cal.getTime()) > 0) {
+				List<HistoryInfo> historyList;
+				try {
+					historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
+						wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
+						VersioningFactory.eINSTANCE.createHistoryQuery());
+					HistoryInfo initialHistory = historyList.get(historyList.size());
+					startDate.setSelection(initialHistory.getLogMessage().getDate());
+				} catch (EmfStoreException e) {
+					WorkspaceUtil.logException("Can not get the date of the project creation", e);
+				}
+
+			} else {
+				startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
+			}
 		}
 
 		// endDate for TimeIterator
 		if (conf.getIterator() instanceof TimeIterator) {
-			endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
+			if (((TimeIterator) conf.getIterator()).getEndDate() == null) {
+				List<HistoryInfo> historyList;
+				try {
+					historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
+						wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
+						VersioningFactory.eINSTANCE.createHistoryQuery());
+					HistoryInfo initialHistory = historyList.get(0);
+					endDate.setSelection(initialHistory.getLogMessage().getDate());
+				} catch (EmfStoreException e) {
+					WorkspaceUtil.logException("Can not get the date of the project creation", e);
+				}
+			} else {
+				endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
+			}
 		}
 
 		// forward

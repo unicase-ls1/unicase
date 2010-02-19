@@ -16,7 +16,7 @@ public abstract class GlobalDataAnalyzer implements DataAnalyzer {
 	 * @see org.unicase.analyzer.DataAnalyzer#getValues(org.unicase.analyzer.ProjectAnalysisData,
 	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
-	public List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it) {
+	public final List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it) {
 		if (it.hasNext()) {
 			analyzeData(data, it);
 			return null;
