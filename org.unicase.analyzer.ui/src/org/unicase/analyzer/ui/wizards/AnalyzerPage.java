@@ -98,7 +98,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		}
 
 		setCanFlipToNextPage(isPageComplete());
-		setPageComplete(false);
+		// setPageComplete(false);
 		setControl(composite);
 
 	}

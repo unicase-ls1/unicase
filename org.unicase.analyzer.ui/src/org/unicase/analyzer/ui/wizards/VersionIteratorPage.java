@@ -85,7 +85,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		stepText.setText("1");
 
 		defaultButton = new Button(composite, SWT.CHECK);
-		defaultButton.setText("Analyze all the versions");
+		defaultButton.setText("Analyze all versions");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		defaultButton.setLayoutData(gd);
@@ -132,7 +132,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		forwardButton.addListener(SWT.Selection, this);
 
 		returnCopyButton = new Button(group, SWT.CHECK);
-		returnCopyButton.setText("Return the deep copy of ProjectAnalysisData");
+		returnCopyButton.setText("Return a deep copy of ProjectAnalysisData");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
@@ -141,7 +141,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 
 		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
-		setPageComplete(true);
+		// setPageComplete(true);
 
 	}
 

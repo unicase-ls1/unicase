@@ -98,7 +98,7 @@ public class ExporterPage extends WizardPage implements Listener {
 		// exporterButton.addListener(SWT.Selection, this);
 
 		((ProjectAnalyzerWizard) getWizard()).setCanFinish(isPageComplete());
-		setPageComplete(false);
+		// setPageComplete(false);
 		setControl(composite);
 
 	}
