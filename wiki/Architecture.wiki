@@ -1,3 +1,4 @@
+This section contains an overview of the UNICASE's code structure.  
  * [Plugins] <br>
  * [Utility_Classes Utility classes] <br>
  * [ExtensionPoints Extension Points] <br>
