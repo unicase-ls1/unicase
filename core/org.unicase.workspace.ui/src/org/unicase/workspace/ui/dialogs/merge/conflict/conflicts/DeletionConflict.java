@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
@@ -43,7 +48,8 @@ public class DeletionConflict extends Conflict {
 		} else {
 			description = "The [modelelement] was deleted on the repository which conflicts with"
 					+ " the change on your [firstother]"
-					+ generateOthers() + ". Please choose an option.";
+					+ generateOthers()
+					+ ". Please choose an option.";
 		}
 
 		ConflictDescription conflictDescription = new ConflictDescription(

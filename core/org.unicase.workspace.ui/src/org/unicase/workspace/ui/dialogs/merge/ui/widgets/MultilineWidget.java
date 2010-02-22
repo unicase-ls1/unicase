@@ -5,98 +5,156 @@
  */
 package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 
-import org.eclipse.jface.resource.FontRegistry;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Link;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.TableWrapData;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
-import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
-import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
+import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch;
+import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch.Diff;
+import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch.Operation;
 
 /**
- * Widget. TODO REDO
+ * Is used to display longer conflicting text and to merge them.
  * 
  * @author wesendon
  */
-public class MultilineWidget extends Composite {
+public class MultilineWidget {
+
+	private final DecisionBox decisionBox;
+	private ArrayList<ConflictOption> options;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            parent
 	 * @param decisionBox
-	 *            decisionBox
+	 *            container
+	 */
+	public MultilineWidget(DecisionBox decisionBox) {
+		this.decisionBox = decisionBox;
+		options = new ArrayList<ConflictOption>();
+	}
+
+	/**
+	 * Add involved ConflictOptions.
+	 * 
 	 * @param option
 	 *            option
 	 */
-	public MultilineWidget(Composite parent, final DecisionBox decisionBox,
-			final ConflictOption option) {
-		super(parent, SWT.NONE);
-		setLayout(new TableWrapLayout());
-		setBackground(parent.getBackground());
+	public void addOption(ConflictOption option) {
+		options.add(option);
+	}
 
-		Composite column = new Composite(this, SWT.NONE);
-		column.setLayout(new TableWrapLayout());
-		column.setBackground(getBackground());
+	/**
+	 * Called by container in order to build gui.
+	 * 
+	 * @param parent
+	 *            container
+	 */
+	public void createContent(Composite parent) {
+		TabFolder tabFolder = new TabFolder(parent, SWT.NONE);
+		tabFolder.setBackground(parent.getBackground());
+		tabFolder.setLayout(new TableWrapLayout());
 
-		FontRegistry fontRegistry = DecisionUtil.getFontRegistry();
-
-		Composite titleComposite = new Composite(column, SWT.NONE);
-		titleComposite.setBackground(getBackground());
-		titleComposite.setLayout(new FillLayout());
-		titleComposite
-				.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-
-		String title;
-		switch (option.getType()) {
-		case MyOperation:
-			title = "My Change";
-			break;
-		case TheirOperation:
-			title = "Change on Repository";
-			break;
-		case Custom:
-			title = option.getOptionLabel();
-			break;
-		default:
-			title = "";
-			break;
-		}
-
-		Link titl = new Link(titleComposite, SWT.NONE);
-		titl.setText(title);
-		titl.setBackground(getBackground());
-		titl.setFont(fontRegistry.get("titleLabel"));
-		// GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-		// .grab(true, true).applyTo(titl);
-
-		final Text myAttribute = new Text(column, SWT.MULTI | SWT.WRAP);
-		myAttribute.setText(option.getFullOptionLabel());
-		myAttribute.setBackground(getBackground());
-		boolean isEditable = option.getDetailProvider().endsWith(
-				DecisionConfig.EDITABLE);
-		myAttribute.setEditable(isEditable);
-		if (isEditable && option instanceof MergeTextOption) {
-			myAttribute.addModifyListener(new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					String newText = myAttribute.getText();
-					String oldText = ((MergeTextOption) option).getMergedText();
-					if (newText != null && !newText.equals(oldText)) {
-						((MergeTextOption) option).setMergedText(newText);
-						decisionBox.setSolution(option);
-					}
-				}
-			});
+		for (ConflictOption option : options) {
+			createTab(tabFolder, option);
 		}
 	}
 
+	private void createTab(TabFolder tabFolder, ConflictOption option) {
+		TabItem tab = new TabItem(tabFolder, SWT.NONE);
+		tab.setText(getTitle(option));
+		StyledText text = new StyledText(tabFolder, SWT.MULTI | SWT.WRAP);
+		setText(option, text);
+		text.setBackground(tabFolder.getBackground());
+		text.setEditable(isEditable(option));
+		text.setWordWrap(true);
+		text.setTopMargin(5);
+		text.setLeftMargin(5);
+		text.setRightMargin(5);
+		tab.setControl(text);
+	}
+
+	private void setText(ConflictOption option, final StyledText styledText) {
+		if (option instanceof MergeTextOption) {
+			handleMergeTextOption(option, styledText);
+		} else {
+			styledText.setText(option.getFullOptionLabel());
+		}
+	}
+
+	private void handleMergeTextOption(ConflictOption option,
+			final StyledText styledText) {
+		final MergeTextOption mergeOption = (MergeTextOption) option;
+		diff_match_patch dmp = new diff_match_patch();
+		dmp.Diff_EditCost = 10;
+		LinkedList<Diff> diffMain = dmp.diff_main(mergeOption.getMyText(),
+				mergeOption.getTheirString());
+		dmp.diff_cleanupEfficiency(diffMain);
+
+		String description = "";
+		List<StyleRange> styleRanges = new ArrayList<StyleRange>();
+
+		for (Diff diff : diffMain) {
+			String text = diff.text;
+			if (!diff.operation.equals(Operation.EQUAL)) {
+				StyleRange styleRange = new StyleRange();
+				styleRange.start = description.length();
+				styleRange.length = text.length();
+
+				if (diff.operation.equals(Operation.DELETE)) {
+					styleRange.foreground = Display.getDefault()
+							.getSystemColor(SWT.COLOR_RED);
+				} else if (diff.operation.equals(Operation.INSERT)) {
+					styleRange.foreground = Display.getDefault()
+							.getSystemColor(SWT.COLOR_DARK_GREEN);
+				}
+				styleRanges.add(styleRange);
+			}
+			description += text;
+		}
+		styledText.setText(description);
+		styledText.setStyleRanges(styleRanges
+				.toArray(new StyleRange[styleRanges.size()]));
+		styledText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				String newText = styledText.getText();
+				String oldText = mergeOption.getMergedText();
+				if (newText != null && !newText.equals(oldText)) {
+					mergeOption.setMergedText(newText);
+					decisionBox.setSolution(mergeOption);
+				}
+			}
+		});
+	}
+
+	private boolean isEditable(ConflictOption option) {
+		return option instanceof MergeTextOption;
+	}
+
+	private String getTitle(ConflictOption option) {
+		switch (option.getType()) {
+		case MyOperation:
+			return "My Version";
+		case TheirOperation:
+			return "Version from Repository";
+		case Custom:
+		case MergeText:
+			return option.getOptionLabel();
+		default:
+			return "";
+		}
+	}
 }
