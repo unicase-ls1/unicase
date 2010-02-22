@@ -1,3 +1,4 @@
+This section contains helpful links and references that are related to the development of the UNICASE project. 
  * [http://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/index.jsp?topic=/org.eclipse.emf.doc/references/overview/EMF.html EMF Basics]<br>
  * [http://wiki.eclipse.org/Menu_Contributions/Problems_View_Example Menu Extension Point]<br>
  * [Creating_Update_Site Creating an Update Site]<br>
