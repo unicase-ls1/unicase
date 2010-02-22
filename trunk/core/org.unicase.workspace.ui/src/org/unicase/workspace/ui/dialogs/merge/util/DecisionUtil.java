@@ -1,5 +1,7 @@
 package org.unicase.workspace.ui.dialogs.merge.util;
 
+import java.util.List;
+
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
@@ -19,6 +21,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class DecisionUtil {
 
@@ -74,6 +77,16 @@ public class DecisionUtil {
 			DecisionConfig.initFonts(fontRegistry);
 		}
 		return fontRegistry;
+	}
+
+	public static ConflictOption getConflictOptionByType(
+			List<ConflictOption> options, OptionType type) {
+		for (ConflictOption option : options) {
+			if (option.getType().equals(type)) {
+				return option;
+			}
+		}
+		return null;
 	}
 
 	public static boolean isComposite(AbstractOperation operation) {

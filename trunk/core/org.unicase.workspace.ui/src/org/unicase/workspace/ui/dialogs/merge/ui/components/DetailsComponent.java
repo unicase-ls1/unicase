@@ -45,12 +45,14 @@ public class DetailsComponent extends Section {
 		setLayoutData(layoutData);
 		setBackground(decisionBox.getBackground());
 		// section.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		int columns = 0;
-		for (ConflictOption option : conflict.getOptions()) {
-			if (option.isDetailsProvider()) {
-				columns++;
-			}
-		}
+		int columns = 1;
+
+		//
+		// for (ConflictOption option : conflict.getOptions()) {
+		// if (option.isDetailsProvider()) {
+		// columns++;
+		// }
+		// }
 
 		Composite client = new Composite(this, SWT.NONE);
 		TableWrapLayout layout = new TableWrapLayout();
@@ -63,18 +65,26 @@ public class DetailsComponent extends Section {
 		client.setLayout(layout);
 		client.setBackground(this.getBackground());
 
+		MultilineWidget multiWidget = null;
 		for (ConflictOption option : conflict.getOptions()) {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
-				new MultilineWidget(client, decisionBox, option);
+				if (multiWidget == null) {
+					multiWidget = new MultilineWidget(decisionBox);
+				}
+				multiWidget.addOption(option);
 			} else if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_OTHERINVOLVED)) {
 				new OtherInvolvedWidget(client, decisionBox
 						.getDecisionManager(), option);
 			}
+		}
+
+		if (multiWidget != null) {
+			multiWidget.createContent(client);
 		}
 
 		setClient(client);

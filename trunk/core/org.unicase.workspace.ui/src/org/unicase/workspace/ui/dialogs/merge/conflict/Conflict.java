@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.conflict;
 
 import java.util.ArrayList;
@@ -9,6 +14,7 @@ import org.eclipse.core.runtime.Platform;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public abstract class Conflict {
 
@@ -17,6 +23,11 @@ public abstract class Conflict {
 	private ConflictOption solution;
 	private ConflictContext conflictContext;
 	private ConflictDescription conflictDescription;
+	/**
+	 * List of operations.
+	 * 
+	 * @see #Conflict(List, List, DecisionManager)
+	 */
 	protected List<AbstractOperation> operationsA;
 	protected List<AbstractOperation> operationsB;
 
@@ -40,6 +51,20 @@ public abstract class Conflict {
 		this(opsA, opsB, decisionManager, true);
 	}
 
+	/**
+	 * Additional constructor, which allows deactivating initialization.
+	 * 
+	 * @see #Conflict(List, List, DecisionManager)
+	 * @param opsA
+	 *            first list of operations (often: myOperations)
+	 * @param opsB
+	 *            second list of operations (often: theirOperations)
+	 * @param decisionManager
+	 *            decision manager
+	 * @param init
+	 *            allows to deactivate initialization, has to be done manually
+	 *            otherwise.
+	 */
 	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 			DecisionManager decisionManager, boolean init) {
 		this.operationsA = opsA;
@@ -50,6 +75,9 @@ public abstract class Conflict {
 		}
 	}
 
+	/**
+	 * Initiates the conflict.
+	 */
 	protected void init() {
 		conflictContext = initConflictContext();
 		conflictDescription = initConflictDescription();
@@ -88,28 +116,54 @@ public abstract class Conflict {
 		}
 	}
 
+	/**
+	 * Defines whether other option should be allowed via extension. E.g. Issue
+	 * option.
+	 * 
+	 * @return true, if other options are allowed
+	 */
 	protected boolean allowOtherOptions() {
 		return true;
 	}
 
-	abstract protected void initConflictOptions(List<ConflictOption> options);
+	protected abstract void initConflictOptions(List<ConflictOption> options);
 
 	protected abstract ConflictDescription initConflictDescription();
 
 	protected abstract ConflictContext initConflictContext();
 
+	/**
+	 * Returns the conflict context.
+	 * 
+	 * @return context.
+	 */
 	public ConflictContext getConflictContext() {
 		return conflictContext;
 	}
 
+	/**
+	 * Returns the conflict description.
+	 * 
+	 * @return conflict description
+	 */
 	public ConflictDescription getConflictDescription() {
 		return conflictDescription;
 	}
 
+	/**
+	 * Returns the list of options.
+	 * 
+	 * @return list options
+	 */
 	public List<ConflictOption> getOptions() {
 		return options;
 	}
 
+	/**
+	 * Returns whether this conflict is resolved.
+	 * 
+	 * @return true if resolved
+	 */
 	public boolean isResolved() {
 		return (solution != null);
 	}
@@ -168,12 +222,14 @@ public abstract class Conflict {
 		}
 	}
 
+	/**
+	 * Get an option by its type.
+	 * 
+	 * @param type
+	 *            type
+	 * @return option or null
+	 */
 	public ConflictOption getOptionOfType(OptionType type) {
-		for (ConflictOption option : getOptions()) {
-			if (option.getType().equals(type)) {
-				return option;
-			}
-		}
-		return null;
+		return DecisionUtil.getConflictOptionByType(getOptions(), type);
 	}
 }

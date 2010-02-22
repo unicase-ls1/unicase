@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.conflict.options;
 
 import java.util.ArrayList;
@@ -8,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MergeTextOption extends ConflictOption {
 
@@ -15,7 +21,7 @@ public class MergeTextOption extends ConflictOption {
 	private String text;
 
 	public MergeTextOption() {
-		super("Select Edited/Merged Value", OptionType.Custom);
+		super("Select Edited/Merged Value", OptionType.MergeText);
 		list = new ArrayList<ConflictOption>();
 		setDetailProvider(DecisionConfig.WIDGET_MULTILINE_EDITABLE);
 	}
@@ -31,6 +37,18 @@ public class MergeTextOption extends ConflictOption {
 			result += " " + option.getFullOptionLabel();
 		}
 		return result;
+	}
+
+	public String getMyText() {
+		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
+				OptionType.MyOperation);
+		return (option == null) ? "" : option.getFullOptionLabel();
+	}
+
+	public String getTheirString() {
+		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
+				OptionType.TheirOperation);
+		return (option == null) ? "" : option.getFullOptionLabel();
 	}
 
 	@Override
