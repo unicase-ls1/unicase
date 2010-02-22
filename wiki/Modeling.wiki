@@ -1,4 +1,4 @@
-This section contains hints on modeling design and implementation. 
+This section contains guidelines for modeling in UNICASE. 
  * [ModelingGuidelines Modeling Guidelines]
  * [Editor_hints_guidelines Editor Hints Guidelines]
  * [UNICASE_MODEL_DOCUMENTATION UNICASE Model Documentation]
