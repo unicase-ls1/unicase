@@ -9,7 +9,6 @@
  * [Diagram Diagram - Guidelines for the Diagram Framework in UNICASE]
  * [Setup Set-up and Configuration - Guidelines for the set-up of your development environment and configuration of plugins]
  * [Process Process - The development process of the UNICASE project]
- * [ReleaseAndDeploy How to release and deploy]
  * [Video_Tutorials Video Tutorials]
- * [FAQ FAQ]
  * [Links_and_References  Links and References]
+ * [FAQ FAQ]
