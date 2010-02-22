@@ -1,3 +1,4 @@
+This section contains helpful tips on writing code and debugging. 
  * [Coding_Guidelines Coding Guidelines]<br>
  * [Model_API_Usage_Guidelines Model API Usage Guidelines] <br>
  * [Exception_Handling_Guidelines Exception Handling Guidelines] <br>
