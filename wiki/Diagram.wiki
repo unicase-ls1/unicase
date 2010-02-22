@@ -1,3 +1,3 @@
-This section contains helpful tips on how to deal with the UNICASE diagram editor.
+This section contains guidelines for the diagram Framework in UNICASE.
  * [UNICASE_Diagram_Editor_Document UNICASE diagram editor documentation(GMF)]<br>
  * [MEDiagram_ID_Settings MEDiagram ID Settings] <br>
