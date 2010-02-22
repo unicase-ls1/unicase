@@ -122,24 +122,26 @@ public class ModelDocumentProvider extends
 	protected void setupDocument(Object element, IDocument document) {
 		// for subclasses
 	}
-
+	
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
-			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
-					result += file.getLocation().toFile().lastModified();
-				} else {
-					result += file.getModificationStamp();
-				}
-			}
-		}
+		// for (Iterator it = info.getResourceSet().getResources().iterator();
+		// it
+		// .hasNext();) {
+		// Resource nextResource = (Resource) it.next();
+		// IFile file = WorkspaceSynchronizer.getFile(nextResource);
+		// if (file != null) {
+		// if (file.getLocation() != null) {
+		// result += file.getLocation().toFile().lastModified();
+		// } else {
+		// result += file.getModificationStamp();
+		// }
+		// }
+		// }
 		return result;
 	}
 

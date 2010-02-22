@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -21,9 +22,12 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 /**
  * @generated
@@ -71,8 +75,10 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	}
 
 	/**
-	 * @generated
+	 * {@inheritDoc}
+	 * @generated NOT
 	 */
+	@SuppressWarnings("null")
 	protected Command getCommand(Request request) {
 		List operationSet = getOperationSet();
 		if (operationSet.isEmpty()) {
@@ -83,9 +89,18 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 				getEditingDomain(), getCommandLabel());
 		while (editParts.hasNext()) {
 			EditPart editPart = (EditPart) editParts.next();
-			Command curCommand = editPart.getCommand(request);
+			EObject element = EditPartUtility.getElement(editPart);
+			if (element==null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			
+			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(
+					element, false);
+
+			DeleteFromModelCommand curCommand = new DeleteFromModelCommand(
+					destroyElementRequest);
 			if (curCommand != null) {
-				command.compose(new CommandProxy(curCommand));
+				command.compose(curCommand);
 			}
 		}
 		if (command.isEmpty() || command.size() != operationSet.size()) {
