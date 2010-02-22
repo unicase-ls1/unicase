@@ -1,2 +1,3 @@
+This section contains helpful tips on how to deal with the UNICASE diagram editor.
  * [UNICASE_Diagram_Editor_Document UNICASE diagram editor documentation(GMF)]<br>
  * [MEDiagram_ID_Settings MEDiagram ID Settings] <br>
