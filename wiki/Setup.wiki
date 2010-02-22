@@ -1,4 +1,4 @@
-This section contains information on how to configure your development environment to deal with UNICASE plug-ins.  
+This section contains guidelines for the set-up of your development environment and configuration of UNICASE plugins.
  * [PluginConfiguration Plugin Configuration Guidelines]
  * [SVN_Repository SVN Repository]
  * [Unicase_repository_beta_server UNICASE Repository (beta server)]
