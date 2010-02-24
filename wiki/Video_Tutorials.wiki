@@ -1,5 +1,3 @@
 This section contains links to UNICASE developer's tutorials.
- * [http://unicase.googlecode.com/files/StartEmfStore.mov Run EMFStore as developer.]
- * [http://unicase.googlecode.com/files/StartUnicaseClient.mov  Run UNICASE client as developer.]
- * [http://unicase.googlecode.com/files/SetupProjectForEmfStore.mov Setup a project for EmfStore server.]
- * [http://unicase.googlecode.com/files/unicaseMDD.mov Model-driven development Tutorial.] 
+ * Run EMFStore as developer:
+ <wiki:video url="http://www.youtube.com/watch?v=cyC5ysvncwE"/>
