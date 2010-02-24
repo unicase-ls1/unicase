@@ -6,3 +6,5 @@ This section contains links to UNICASE developer's tutorials.
  <wiki:video url="http://www.youtube.com/watch?v=cyC5ysvncwE"/>
  * Run UNICASE EMFStore as a developer:
  <wiki:video url="http://www.youtube.com/watch?v=dQV7OJW_ewA"/>
+ * Setup a project for EmfStore server:
+<wiki:video url=""/> 
