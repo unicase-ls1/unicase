@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.unicase.ui.web.projectview.ProjectView"
+         name="org.unicase.ui.web.projectview.ProjectView"
+         point="org.unicase.ui.web.view">
+      <view
+            class="org.unicase.ui.web.projectview.ProjectView"
+            name="org.unicase.ui.web.projectview.ProjectView"
+            url="project">
+      </view>
+   </extension>
+
+</plugin>
