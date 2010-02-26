@@ -8,9 +8,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.ui.web.views.AbstractETableViewer;
 import org.unicase.workspace.ProjectSpace;
 
-public abstract class AbstractProjectListView extends AbstractListView implements ProjectChangeObserver {
+public abstract class AbstractProjectListView extends AbstractETableViewer implements ProjectChangeObserver {
 	
 	private ProjectSpace projectSpace;
 
@@ -34,7 +35,7 @@ public abstract class AbstractProjectListView extends AbstractListView implement
 	 */
 	public abstract void update(Project project, ModelElement modelElement);
 	
-	public void update() {
+	public void refreshView() {
 		// do nothing, since there's another update method
 	}
 	

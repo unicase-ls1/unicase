@@ -1,4 +1,4 @@
-package org.unicase.ui.web.tabs;
+package org.unicase.ui.web.views;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -6,10 +6,14 @@ import java.util.Collection;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.core.databinding.observable.map.IObservableMap;
+import org.eclipse.core.databinding.observable.set.IObservableSet;
+import org.eclipse.emf.databinding.EMFObservables;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -32,10 +36,10 @@ import org.unicase.ui.web.labelproviders.GenericColumnLabelProvider;
 
 /**
  * 
- * @author Edgar Müller
+ * @author Edgar Mueller
  * @author Fatih Ulusoy
  */
-public abstract class AbstractListView extends TableViewer {
+public abstract class AbstractETableViewer extends TableViewer {
 	
 	private final String WIDTH = "width";
 	private final String FEATURE = "feature";
@@ -48,14 +52,18 @@ public abstract class AbstractListView extends TableViewer {
 	 * @param projectSpace
 	 * @param composite
 	 */
-	public AbstractListView(Composite composite) {
+	public AbstractETableViewer(Composite composite) {
 		super(composite, SWT.BORDER);
 		contentProvider =  new ObservableListContentProvider();
 		setContentProvider(contentProvider);
 		init();
 	}
 	
-	public abstract void update();
+	/**
+	 * Returns the list of EStructuralFeature one is interested in.
+	 * 
+	 */
+	public abstract ArrayList<EStructuralFeature> getFeaturesList();
 	
 	/**
 	 * 
@@ -64,6 +72,17 @@ public abstract class AbstractListView extends TableViewer {
 		columns = new ArrayList<TableViewerColumn>();
 		getTable().setLinesVisible(true);
 		getTable().setHeaderVisible(true);
+		
+		ArrayList<EStructuralFeature> featureList = getFeaturesList();
+		EStructuralFeature[] featureArray = new EStructuralFeature[featureList.size()];
+		featureArray = featureList.toArray(featureArray);
+
+		IObservableSet knownElements = contentProvider.getKnownElements();
+		IObservableMap[] observeMaps = EMFObservables.observeMaps(
+				knownElements, featureArray);
+		ObservableMapLabelProvider labelProvider = new ObservableMapLabelProvider(observeMaps);
+
+		createColumns(featureList, labelProvider);
 	}
 
 	/**
