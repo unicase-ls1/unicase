@@ -26,11 +26,11 @@ import org.unicase.ui.web.tabs.*;
  * 
  * @author Fatih Ulusoy
  */
-public class TabbedView extends ViewPart implements ISelectionListener {
+public class TabbedView extends ViewPart { // implements ISelectionListener {
 
 	public static final String ID = "org.unicase.ui.web.TabbedView";
 	
-	private String currProjectName;
+//	private String currProjectName;
 	private TaskItemsTab taskItemsTab;
 	private TeamTab teamTab;
 	private BugReportTab bugReportTab;
@@ -45,8 +45,6 @@ public class TabbedView extends ViewPart implements ISelectionListener {
 		topFolder.marginHeight = 8;
 		ensureMinTabHeight(topFolder);
 
-		
-		
 		HttpServletRequest request = RWT.getRequest();
 		String projectName = request.getParameter("project");
 		
@@ -59,7 +57,7 @@ public class TabbedView extends ViewPart implements ISelectionListener {
 		});
 			
 		if (projectName != null) {
-			setCurrProjectName(projectName);
+//			setCurrProjectName(projectName);
 			taskItemsTab = new TaskItemsTab(projectName, topFolder);
 			teamTab = new TeamTab(projectName, topFolder);
 			bugReportTab = new BugReportTab(projectName, topFolder);
@@ -82,7 +80,7 @@ public class TabbedView extends ViewPart implements ISelectionListener {
 				}
 			});
 		} else {
-			InfoTab infoTab = new InfoTab(topFolder);
+//			InfoTab infoTab = new InfoTab(topFolder);
 		}
 	}
 
@@ -102,28 +100,28 @@ public class TabbedView extends ViewPart implements ISelectionListener {
 			folder.setTabHeight(18);
 		}
 	}
-
-	/**
-	 * Gets current project name.
-	 * 
-	 * @return
-	 */
-	public String getCurrProjectName() {
-		return currProjectName;
-	}
-
-	/**
-	 * Sets current project name.
-	 * 
-	 * @param currProjectName
-	 */
-	public void setCurrProjectName(String currProjectName) {
-		this.currProjectName = currProjectName;
-	}
-
-	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		System.out.println(selection);	
-	}
+//
+//	/**
+//	 * Gets current project name.
+//	 * 
+//	 * @return
+//	 */
+//	public String getCurrProjectName() {
+//		return currProjectName;
+//	}
+//
+//	/**
+//	 * Sets current project name.
+//	 * 
+//	 * @param currProjectName
+//	 */
+//	public void setCurrProjectName(String currProjectName) {
+//		this.currProjectName = currProjectName;
+//	}
+//
+//	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+//		System.out.println(selection);	
+//	}
 
 }
 
