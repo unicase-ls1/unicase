@@ -14,7 +14,7 @@ import org.unicase.ui.web.views.ProjectAwareView;
 
 public class ProjectView extends ProjectAwareView {
 	
-	public static final String ID = "org.unicase.ui.web.perspectives.defaultPerspective.projectview";
+	public static final String ID = "org.unicase.ui.web.projectview.ProjectView";
 	
 	private WorkItemsTab workItemsTab;
 	private TeamListTab teamListTab;

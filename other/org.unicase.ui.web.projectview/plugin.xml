@@ -11,28 +11,10 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension
-            targetID="org.unicase.ui.web.perspective">
-         <view
-               closeable="false"
-               id="org.unicase.ui.web.projectview.ProjectView"
-               minimized="false"
-               moveable="false"
-               ratio="0.95f"
-               relationship="left"
-               relative="org.eclipse.ui.editorss"
-               showTitle="true"
-               standalone="true"
-               visible="true">
-         </view>
-      </perspectiveExtension>
-   </extension>
-   <extension
          point="org.unicase.ui.web.view">
       <view
             class="org.unicase.ui.web.projectview.ProjectView"
-            id="org.unicase.ui.web.projectview"
+            id="org.unicase.ui.web.projectview.ProjectView"
             name="Project View"
             url="project">
       </view>
