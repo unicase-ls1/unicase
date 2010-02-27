@@ -35,6 +35,12 @@
             name="AbstractView"
             restorable="true">
       </view>
+      <view
+            class="org.unicase.ui.web.View"
+            id="test.view"
+            name="Test View"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.rap.ui.branding">
