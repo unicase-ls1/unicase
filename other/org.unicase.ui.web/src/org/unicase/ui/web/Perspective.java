@@ -21,12 +21,6 @@ import org.unicase.ui.web.views.AbstractView;
  */
 public class Perspective implements IPerspectiveFactory {
 	
-    /** The standard perspecive used in the application. */
-    public static final String PERSPECTIVE_ID = "org.unicase.ui.web.perspectives.defaultPerspective";
- 
-    /** View id. */
-    public static final String VIEW_ID = PERSPECTIVE_ID + ".view";
-	
 	// caches views with their corresponding URL 
 	private HashMap<String, AbstractView> views;
 	
@@ -44,16 +38,13 @@ public class Perspective implements IPerspectiveFactory {
 		String viewName = request.getParameter("view");
 		
 		AbstractView view = views.get(viewName);
-		
+
 		if (view != null) {
 			view.setHttpRequest(request);
 			
-//	        layout.createPlaceholderFolder("left",   IPageLayout.LEFT,   0.30f, editorArea);
-//	        layout.createPlaceholderFolder("bottom", IPageLayout.BOTTOM, 0.60f, editorArea); 
+			layout.addView("org.unicase.ui.web.projectview.ProjectView", IPageLayout.TOP,
+				IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
 			
-			// layout.createFolder(VIEW_ID,IPageLayout.TOP, 0.60f, editorArea );
-//			IFolderLayout folder = layout.createFolder("folder_id", IPageLayout.LEFT, 0.50f, editorArea);
-//			folder.addView(VIEW_ID);
 //			layout.addStandaloneView(view.getId(), false, 
 //					IPageLayout.LEFT, 0.50f, editorArea);
 		}
