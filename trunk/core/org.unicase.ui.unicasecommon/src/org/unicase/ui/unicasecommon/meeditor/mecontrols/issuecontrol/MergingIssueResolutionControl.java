@@ -124,6 +124,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			if (result instanceof MergingProposal) {
 				MergingProposal proposal = (MergingProposal) result;
 				MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
+				proposal.getProject().addModelElement(solution);
 				mergingIssue.setSolution(solution);
 				solution.getUnderlyingProposals().add(proposal);
 				check(solution);
