@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.rwt.RWT;
+import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.unicase.ui.web.views.AbstractView;
@@ -19,6 +20,12 @@ import org.unicase.ui.web.views.AbstractView;
  * @author Fatih Ulusoy
  */
 public class Perspective implements IPerspectiveFactory {
+	
+    /** The standard perspecive used in the application. */
+    public static final String PERSPECTIVE_ID = "org.unicase.ui.web.perspectives.defaultPerspective";
+ 
+    /** View id. */
+    public static final String VIEW_ID = PERSPECTIVE_ID + ".view";
 	
 	// caches views with their corresponding URL 
 	private HashMap<String, AbstractView> views;
@@ -40,8 +47,15 @@ public class Perspective implements IPerspectiveFactory {
 		
 		if (view != null) {
 			view.setHttpRequest(request);
-			layout.addStandaloneView(view.getId(), false, 
-					IPageLayout.LEFT, 0.50f, editorArea);
+			
+//	        layout.createPlaceholderFolder("left",   IPageLayout.LEFT,   0.30f, editorArea);
+//	        layout.createPlaceholderFolder("bottom", IPageLayout.BOTTOM, 0.60f, editorArea); 
+			
+			// layout.createFolder(VIEW_ID,IPageLayout.TOP, 0.60f, editorArea );
+//			IFolderLayout folder = layout.createFolder("folder_id", IPageLayout.LEFT, 0.50f, editorArea);
+//			folder.addView(VIEW_ID);
+//			layout.addStandaloneView(view.getId(), false, 
+//					IPageLayout.LEFT, 0.50f, editorArea);
 		}
 		
 
