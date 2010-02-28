@@ -84,7 +84,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		case Notification.SET:
 			// model element is added to containment hierachy
 			if (isAboutContainment(notification)) {
-				handleSingleAdd((EObject) notification.getNotifier());
+				handleSingleAdd((EObject) notification.getNewValue());
 			}
 			// fire notification must be triggered after a (possible) create!
 			fireNotification(notification);
