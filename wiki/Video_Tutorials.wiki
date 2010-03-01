@@ -1,10 +1,9 @@
 This section contains links to UNICASE developer's tutorials.
 
- * Checkout UNICASE SVN:
- <wiki:video url="http://www.youtube.com/watch?v=5PrlFqWIWgU"/> 
- * Run UNICASE client as a developer:
- <wiki:video url="http://www.youtube.com/watch?v=cyC5ysvncwE"/>
- * Run UNICASE EMFStore as a developer:
- <wiki:video url="http://www.youtube.com/watch?v=fkT13NOPY68"/>
- * Setup a project for EMFStore server:
- <wiki:video url="http://www.youtube.com/watch?v=JIUh1BzbDdI"/> 
+ * [CheckoutTutorial] Checkout UNICASE code from SVN
+ 
+ * [RunClientTutorial Run UNICASE client as a developer]
+
+ * [RunServerTutorial Run UNICASE EMFStore as a developer]
+
+ * [SetupProjectTutorial Setup a project for EMFStore server] 
