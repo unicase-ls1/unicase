@@ -1,7 +1,7 @@
- *  [EMFStore EMFStore]
- *  [ECP EMF Client Platform (ECP)]
- *  [UNICASEClient UNICASE Client]
-
+ * Sub-projects:
+   *  [EMFStore EMFStore]
+   *  [ECP EMF Client Platform (ECP)]
+   *  [UNICASEClient UNICASE Client]
  *  [Coding]
  *  [Modeling]
  *  [Architecture]
