@@ -246,12 +246,25 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10,
 					1), null, null);
 
-			setErrorMessage(e.getMessage());
+			setErrorMessage(getMessage(e));
 
 			txtPassword.setText("");
 			keyTest = false;
 
 			chkSavePassword.setSelection(false);
+		}
+	}
+
+	// preliminary fix. when new login dialog is used, we should think
+	// of a messagehandler or similar.
+	private String getMessage(Exception e) {
+		if (e.getCause() != null
+				&& e.getCause().getCause() != null
+				&& e.getCause().getCause().getMessage().contains(
+						"No trusted certificate found")) {
+			return "No suited certificate found. You might have to import a new certificate or update your client.";
+		} else {
+			return e.getMessage();
 		}
 	}
 
