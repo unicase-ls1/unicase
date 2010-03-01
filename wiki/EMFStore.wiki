@@ -23,5 +23,9 @@ Features:
    * Automatic client-side Persistence of Models
    * Views:
      * Commit/Update and Merge Views
-     * Repository Browser
-     * History Browser
+     * Repository Browser to view all repositories and their models
+     * History Browser to view the history of a model
+     * Navigator showing local models
+     * Reflective Editor showing model elements
+
+To get started with EMFStore please goto the [EMFStoreNavigation EMFStore Wiki].
