@@ -13,6 +13,8 @@ Video Tutorials:
 
 Documentation:
 
+ * [ModelingGuidelines Modeling Guidelines]
+
  * [EMFStore_Configuration How to configure the EMFStore]
 
  * [Creating_keystores_for_encryption How to create keystores for EMFStore]
