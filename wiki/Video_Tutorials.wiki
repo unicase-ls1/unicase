@@ -1,6 +1,6 @@
 This section contains links to UNICASE developer's tutorials.
 
- * [CheckoutTutorial] Checkout UNICASE code from SVN
+ * [CheckoutTutorial Checkout UNICASE code from SVN]
  
  * [RunClientTutorial Run UNICASE client as a developer]
 
