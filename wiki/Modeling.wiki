@@ -4,6 +4,8 @@ Guidelines:
  * [ModelingGuidelines Modeling Guidelines]
 
 How Tos:
+ * [UNICASE_Diagram_Editor_Document UNICASE diagram editor documentation(GMF)]<br>
+ * [MEDiagram_ID_Settings MEDiagram ID Settings] <br>
  * [Generating_code_from_UNICASE_class_model How to generate code from a UNICASE class model]
  * [Editor_hints_guidelines How to change the attribute layout in MEEditor - a.k.a Editor Hints]
  * [Design_Model_Element How to change the icon and label of a model element]
@@ -11,4 +13,3 @@ How Tos:
 
 Additional information
  * [UNICASE_MODEL_DOCUMENTATION Overview of Models of UNICASE]
-
