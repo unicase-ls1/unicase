@@ -2,7 +2,7 @@
 
 This wiki contains information for UNICASE developers. There are are two ways of exploring this information, step-by-step-paths and following the hierarchical structure.
 
-===Step-by-step paths
+===Step-by-step paths===
 Step-by-step paths guide you through the wiki following a predefined path step by step. They are a good way to discover all important information in a given scenario.
 Currently the following paths are available:
 
