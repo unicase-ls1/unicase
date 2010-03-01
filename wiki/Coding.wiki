@@ -9,6 +9,6 @@ Guidelines (most important):
 
 Additional information and documentation:
 
+ * [ExtensionPoints Description of available UNICASE Extension Points] <br>
  * [Utility_Classes Description of Utility classes] <br>
  * [Debug_Eclipse_Plugin How-to Debug Eclipse Plugins] <br>
- * [ExtensionPoints Extension Points] <br>
