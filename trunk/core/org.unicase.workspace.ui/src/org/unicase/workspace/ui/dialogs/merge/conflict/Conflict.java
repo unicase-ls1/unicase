@@ -16,6 +16,12 @@ import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Main class representing a conflict. it offers all kind of convenience methods
+ * and organizes the conflicts initialization.
+ * 
+ * @author wesendon
+ */
 public abstract class Conflict {
 
 	private DecisionManager decisionManager;
@@ -23,6 +29,7 @@ public abstract class Conflict {
 	private ConflictOption solution;
 	private ConflictContext conflictContext;
 	private ConflictDescription conflictDescription;
+
 	/**
 	 * List of operations.
 	 * 
@@ -126,10 +133,26 @@ public abstract class Conflict {
 		return true;
 	}
 
+	/**
+	 * Is called in order to init the options.
+	 * 
+	 * @param options
+	 *            list of options
+	 */
 	protected abstract void initConflictOptions(List<ConflictOption> options);
 
+	/**
+	 * Init conflict description.
+	 * 
+	 * @return description
+	 */
 	protected abstract ConflictDescription initConflictDescription();
 
+	/**
+	 * Inits the ConflictContext.
+	 * 
+	 * @return context.
+	 */
 	protected abstract ConflictContext initConflictContext();
 
 	/**
@@ -168,15 +191,26 @@ public abstract class Conflict {
 		return (solution != null);
 	}
 
+	/**
+	 * Checks whether the related options have details.
+	 * 
+	 * @return true, if at least one got details.
+	 */
 	public boolean hasDetails() {
 		for (ConflictOption option : getOptions()) {
-			if (option.isDetailsProvider() == true) {
+			if (option.isDetailsProvider()) {
 				return true;
 			}
 		}
 		return false;
 	}
 
+	/**
+	 * Sets an options as solution for this conflict.
+	 * 
+	 * @param conflictOption
+	 *            option
+	 */
 	public void setSolution(ConflictOption conflictOption) {
 		solution = conflictOption;
 		if (solution != null) {
@@ -184,14 +218,30 @@ public abstract class Conflict {
 		}
 	}
 
+	/**
+	 * Returns the {@link DecisionManager}.
+	 * 
+	 * @return decisionManager
+	 */
 	public DecisionManager getDecisionManager() {
 		return decisionManager;
 	}
 
+	/**
+	 * Returns the solution.
+	 * 
+	 * @return solution
+	 */
 	public ConflictOption getSolution() {
 		return solution;
 	}
 
+	/**
+	 * This method is used by {@link DecisionManager} in order to create the
+	 * resulting operations.
+	 * 
+	 * @return list of ops.
+	 */
 	public List<AbstractOperation> getRejectedTheirs() {
 		if (!isResolved()) {
 			throw new IllegalStateException(
@@ -210,6 +260,12 @@ public abstract class Conflict {
 		// return new ArrayList<AbstractOperation>();
 	}
 
+	/**
+	 * This method is used by {@link DecisionManager} in order to create the
+	 * resulting operations.
+	 * 
+	 * @return list of ops
+	 */
 	public List<AbstractOperation> getAcceptedMine() {
 		if (!isResolved()) {
 			throw new IllegalStateException(

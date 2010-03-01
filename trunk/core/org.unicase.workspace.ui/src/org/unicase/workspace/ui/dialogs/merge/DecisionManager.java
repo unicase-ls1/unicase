@@ -123,10 +123,22 @@ public class DecisionManager {
 				if (conflictDetector.doConflict(myOperation, theirOperation)) {
 					involved = true;
 					boolean conflictingYet = false;
+					List<Conflicting> tmpConf = new ArrayList<Conflicting>();
+					// check against conflicting
 					for (Conflicting conf : conflicting) {
 						if (conf.add(myOperation, theirOperation)) {
+							tmpConf.add(conf);
 							conflictingYet = true;
-							break;
+						}
+					}
+					// merge conflicting
+					if (tmpConf.size() > 1) {
+						Conflicting main = tmpConf.get(0);
+						for (int i = 1; i < tmpConf.size(); i++) {
+							Conflicting conf = tmpConf.get(i);
+							main.addMyOps(conf.getMyOperations());
+							main.addTheirOps(conf.getTheirOperations());
+							conflicting.remove(conf);
 						}
 					}
 					if (!conflictingYet) {
@@ -539,11 +551,31 @@ public class DecisionManager {
 		}
 
 		private void addToList(AbstractOperation my, AbstractOperation their) {
+			addMyOp(my);
+			addTheirOp(their);
+		}
+
+		private void addMyOp(AbstractOperation my) {
 			if (!myOps.contains(my)) {
 				myOps.add(my);
 			}
-			if (!theirOps.contains(my)) {
+		}
+
+		private void addTheirOp(AbstractOperation their) {
+			if (!theirOps.contains(their)) {
 				theirOps.add(their);
+			}
+		}
+
+		public void addMyOps(List<AbstractOperation> ops) {
+			for (AbstractOperation ao : ops) {
+				addMyOp(ao);
+			}
+		}
+
+		public void addTheirOps(List<AbstractOperation> ops) {
+			for (AbstractOperation ao : ops) {
+				addTheirOp(ao);
 			}
 		}
 	}
