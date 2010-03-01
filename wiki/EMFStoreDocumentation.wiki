@@ -1,5 +1,6 @@
 #summary Documentation and Tutorials on the EMFStore
 
+If you a new here try the [EMFStoreGettingStarted Getting-Started-Path] it will guide you through the documentation to get started.
 
 Video Tutorials:
 
@@ -10,6 +11,8 @@ Video Tutorials:
  * [RunClientTutorial Run UNICASE client as a developer]
 
  * [SetupProjectTutorial Setup a project for EMFStore server] 
+
+ * [Create a 
 
 Documentation:
 
