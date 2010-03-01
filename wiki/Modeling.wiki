@@ -1,6 +1,9 @@
-This section contains guidelines for modeling in UNICASE. 
+This section contains guidelines and additional information for modeling in UNICASE.
+ 
+Guidelines:
  * [ModelingGuidelines Modeling Guidelines]
  * [Editor_hints_guidelines Editor Hints Guidelines]
+
  * [UNICASE_MODEL_DOCUMENTATION UNICASE Model Documentation]
  * [Design_Model_Element Design Model Elements]
  * [Validation_rule_implementation Validation Rule Implementation]
