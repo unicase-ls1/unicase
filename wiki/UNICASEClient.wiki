@@ -1,6 +1,4 @@
-#summary UNICASE client - a unified CASE tool.
-
-= UNICASE client =
+#summary A unified CASE tool.
 
 UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. This unified model is highly traceable by design. The UNICASE client allows to view and edit these models in a textual, tabular and diagram visualization. The models are stored and versioned on a server comparable to svn but customized for models. Client and server are easily extensible to support integrating new models into the unified model. UNICASE is based on the Eclipse platform including EMF and GMF. It can also be used as a framework to build modeling applications that reuse its repository and visualization capabilities. The project is open-source and released under the Eclipse Public License v 1.0 (EPL). It builds on our experience from the Sysiphus project in building a CASE tool.
 
