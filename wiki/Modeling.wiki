@@ -8,6 +8,6 @@ HowTos:
 
 Additional information
  * [UNICASE_MODEL_DOCUMENTATION Overview of Models of UNICASE]
- * [Design_Model_Element Design Model Elements]
+ * [Design_Model_Element How to change the icon and label of a model element]
  * [Validation_rule_implementation Validation Rule Implementation]
  * [Generating_code_from_UNICASE_class_model Generating code from UNICASE class model]
