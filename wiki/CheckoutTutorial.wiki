@@ -1,0 +1,3 @@
+#summary Video Tutorial on how to check out the code from the SVN repository.
+
+ <wiki:video url="http://www.youtube.com/watch?v=5PrlFqWIWgU"/> 
