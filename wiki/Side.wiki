@@ -4,6 +4,8 @@
  *  [Setup Set-up and Configuration]
  *  [Process]
  *  [Mailinglist Mailinglist and Calendar]
- *  [http://code.google.com/p/unicase/wiki/FAQ FAQ]
+ *  [Video_Tutorials Video Tutorials]
+ *  [Links_and_References Links and References]
+ *  [FAQ FAQ]
 
 >> [http://code.google.com/p/unicase/wiki/DeveloperWiki?tm=6 Home]
