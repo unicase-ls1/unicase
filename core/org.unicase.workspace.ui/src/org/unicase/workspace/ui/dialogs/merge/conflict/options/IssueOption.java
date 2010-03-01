@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.options;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -20,6 +22,10 @@ import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -27,6 +33,8 @@ import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
+import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
+import org.unicase.workspace.util.NoCurrentUserException;
 
 public class IssueOption extends CustomConflictOption {
 
@@ -75,7 +83,7 @@ public class IssueOption extends CustomConflictOption {
 		List<AbstractOperation> myOperations = myOption.getOperations();
 		ConflictOption theirOption = conflict
 				.getOptionOfType(OptionType.TheirOperation);
-		List<AbstractOperation> theirOptions = theirOption.getOperations();
+		List<AbstractOperation> theirOperations = theirOption.getOperations();
 
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
 		EObject eContainer = project;
@@ -100,25 +108,17 @@ public class IssueOption extends CustomConflictOption {
 		mergeIssue.setTargetVersion(conflict.getDecisionManager()
 				.getTargetVersion());
 
-		MergingProposal myProposal = ChangeFactory.eINSTANCE
-				.createMergingProposal();
-		mergeIssue.getProposals().add(myProposal);
-		myProposal.setName("My Changes");
-		for (AbstractOperation myOp : myOperations) {
-			myProposal.getPendingOperations().add(
-					(AbstractOperation) EcoreUtil.copy(myOp));
-		}
-
-		MergingProposal theirProposal = ChangeFactory.eINSTANCE
-				.createMergingProposal();
-		mergeIssue.getProposals().add(theirProposal);
-		theirProposal.setName("Changes from Repository");
-		for (AbstractOperation theirOp : theirOptions) {
-			theirProposal.getPendingOperations().add(
-					(AbstractOperation) EcoreUtil.copy(theirOp));
-		}
-
 		addToContainer(mergeIssue, eContainer);
+
+		assignTo(projectSpace, mergeIssue);
+
+		ChangePackageVisualizationHelper helper = conflict.getDecisionManager()
+				.getChangePackageVisualizationHelper();
+
+		createProposal(myOperations, mergeIssue, "My Changes", helper);
+
+		createProposal(theirOperations, mergeIssue, "Changes from Repository",
+				helper);
 
 		try {
 			compositeOperation.end("Created Merge Issue",
@@ -136,6 +136,48 @@ public class IssueOption extends CustomConflictOption {
 		List<AbstractOperation> ops = projectSpace.getOperations();
 		AbstractOperation ab = ops.get(ops.size() - 1);
 		issueOperation = (AbstractOperation) EcoreUtil.copy(ab);
+	}
+
+	private void createProposal(List<AbstractOperation> myOperations,
+			MergingIssue mergeIssue, String name,
+			ChangePackageVisualizationHelper helper) {
+		MergingProposal myProposal = ChangeFactory.eINSTANCE
+				.createMergingProposal();
+		mergeIssue.getProposals().add(myProposal);
+		myProposal.setName(name);
+		String description = "";
+		for (AbstractOperation myOp : myOperations) {
+			description += helper.getDescription(myOp) + "\n\n";
+			myProposal.getPendingOperations().add(
+					(AbstractOperation) EcoreUtil.copy(myOp));
+		}
+		myProposal.setDescription(description);
+	}
+
+	private void assignTo(ProjectSpace projectSpace, MergingIssue mergeIssue) {
+		User user = null;
+		try {
+			user = OrgUnitHelper.getUser(projectSpace);
+		} catch (NoCurrentUserException e1) {
+		} catch (CannotMatchUserInProjectException e1) {
+		}
+		if (user != null) {
+			mergeIssue.setAssignee(user);
+		}
+
+		EList<User> users = projectSpace.getProject()
+				.getAllModelElementsbyClass(
+						OrganizationPackage.eINSTANCE.getUser(),
+						new BasicEList<User>());
+		for (User opponent : users) {
+			// match name by string, author from changepackage doesn't offer
+			// orgunitid
+			if (opponent.getName().equals(
+					conflict.getConflictContext().getOpponent())) {
+				mergeIssue.getParticipants().add(opponent);
+				return;
+			}
+		}
 	}
 
 	@Override

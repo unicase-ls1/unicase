@@ -127,6 +127,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 				proposal.getProject().addModelElement(solution);
 				mergingIssue.setSolution(solution);
 				solution.getUnderlyingProposals().add(proposal);
+				solution.setDescription(proposal.getDescription());
 				check(solution);
 				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
 				if (projectSpace != null) {
