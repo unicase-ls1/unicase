@@ -12,3 +12,7 @@ Video Tutorials:
  * [SetupProjectTutorial Setup a project for EMFStore server] 
 
 Documentation:
+
+ * [EMFStore_Configuration How to configure the EMFStore]
+
+ * [Creating_keystores_for_encryption How to create keystores for EMFStore]
