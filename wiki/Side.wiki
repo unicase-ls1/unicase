@@ -1,3 +1,7 @@
+ *  [EMFStore EMFStore]
+ *  [ECP EMF Client Platform (ECP)]
+ *  [UNICASEClient UNICASE Client]
+
  *  [Coding]
  *  [Modeling]
  *  [Architecture]
