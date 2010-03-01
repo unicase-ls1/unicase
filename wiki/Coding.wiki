@@ -3,7 +3,6 @@ This section contains helpful tips on general guidelines for coding and debuggin
  * [Model_API_Usage_Guidelines Model API Usage Guidelines] <br>
  * [Exception_Handling_Guidelines Exception Handling Guidelines] <br>
  * [Server_Request_Guidelines Server request Guidelines] <br>
- * [ReportingBugs Reporting Bugs]
  * [Utility_Classes Utility classes] <br>
  * [Debug_Eclipse_Plugin Debug Eclipse plugins] <br>
  * [ExtensionPoints Extension Points] <br>
