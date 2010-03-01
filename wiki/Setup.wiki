@@ -1,12 +1,20 @@
 This section contains guidelines for the set-up of your development environment and configuration of UNICASE plugins.
- * [PluginConfiguration Plugin Configuration Guidelines]
+
+Resources:
  * [SVN_Repository SVN Repository]
  * [Unicase_repository_beta_server UNICASE Repository (beta server)]
  * [Mailinglist Mailinglist and Calendar]
+
+Guidelines:
+ * [PluginConfiguration Plugin Configuration Guidelines]
+
+How Tos:
+ * [EMFStore_Configuration How to configure the EMFStore]
+ * [Creating_keystores_for_encryption How to creating keystores for EMFStore]
+ * [Use_External_Library How to use an external library]
+
+Additional information:
  * [Deployement_Environment_Troubleshooting Development Environment Troubleshooting]
- * [Use_External_Library Use External Library]
  * [Remove_API_Baseline_Warning Remove API Baseline Warning]
- * [UI_Test_Cases UI Testing]
  * [Eclipse_Configuration_for_RAP Eclipse Configuration for RAP]
- * [EMFStore_Configuration EMFStore Configuration]
- * [Creating_keystores_for_encryption Creating keystores for encryption]
+ * [UI_Test_Cases UI Testing]
