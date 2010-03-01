@@ -1,6 +1,6 @@
 #summary Documentation and Tutorials on the EMFStore
 
-If you a new here try the [EMFStoreGettingStarted Getting-Started-Path]. It will guide you through the documentation to get started.
+If you a new to EMFStore, try the [EMFStoreGettingStarted Getting-Started-Path]. It will guide you through the documentation to get started.
 
 Video Tutorials:
 
