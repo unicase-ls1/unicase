@@ -1,7 +1,7 @@
 This section contains links to UNICASE developer's tutorials.
 
  * Checkout UNICASE SVN:
- <wiki:video url="http://www.youtube.com/watch?v=k15lxwXDffs"/> 
+ <wiki:video url="http://www.youtube.com/watch?v=5PrlFqWIWgU"/> 
  * Run UNICASE client as a developer:
  <wiki:video url="http://www.youtube.com/watch?v=cyC5ysvncwE"/>
  * Run UNICASE EMFStore as a developer:
