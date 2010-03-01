@@ -18,7 +18,7 @@ Video Tutorials:
 
  * [CreateCustomClientTutorial Create a custom client for EMFStore]
 
- * [BackchannelTutorial] Use the EMFStore server events to listen for new versions of a model]
+ * [BackchannelTutorial Use the EMFStore server events to listen for new versions of a model]
 
 
 Documentation:
