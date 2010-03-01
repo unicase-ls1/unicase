@@ -1,10 +1,13 @@
-This section contains guidelines and additional information for modeling in UNICASE.
+This section contains guidelines, howtos and additional information for modeling in UNICASE.
  
 Guidelines:
  * [ModelingGuidelines Modeling Guidelines]
- * [Editor_hints_guidelines Editor Hints Guidelines]
 
- * [UNICASE_MODEL_DOCUMENTATION UNICASE Model Documentation]
+HowTos:
+ * [Editor_hints_guidelines How to change the attribute layout in MEEditor - a.k.a Editor Hints]
+
+Additional information
+ * [UNICASE_MODEL_DOCUMENTATION Overview of Models of UNICASE]
  * [Design_Model_Element Design Model Elements]
  * [Validation_rule_implementation Validation Rule Implementation]
  * [Generating_code_from_UNICASE_class_model Generating code from UNICASE class model]
