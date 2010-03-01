@@ -1,3 +1,4 @@
+=== Server Request Guidelines===
    
 If you are building a view or a widget of some kind and you want to request data form the server, you'll have to check if you are already logged in, if you have the right credentials, if any exceptions are thrown on the way, etc.
 
