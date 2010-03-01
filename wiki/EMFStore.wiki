@@ -19,6 +19,7 @@ Features:
    * Commit and Update Models
    * Offline Mode (No server connection neccessary)   
    * Extensible Model Conflict Detection and Merging
+   * Model Migration
    * Automatic client-side Persistence of Models
    * Views:
      * Commit/Update and Merge Views
