@@ -2,6 +2,8 @@
 
   * [EMFStore What is EMFStore?]
 
+  * [EMFStoreGettingStarted Getting Started with the EMFStore]
+
   * [EMFStoreArchitecture Architecture]
 
   * [EMFStoreDocumentation Documentation and Tutorials]
