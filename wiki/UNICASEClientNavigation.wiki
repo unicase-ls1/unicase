@@ -1,0 +1,7 @@
+#summary UNICASE client subproject navigational page.
+
+  * [UNICASEClient What is the UNICASE client?]
+
+  * [UNICASEArchitecture Architecture]
+
+  * [UNICASEDocumentation Documentation and Tutorials]
