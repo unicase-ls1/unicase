@@ -1,6 +1,6 @@
  * [Getting_started_as_developer Getting started as Developer]
- * [http://unicase.googlecode.com/files/UNICASECLIENTGUIDE_updated.pdf UNICASE client user guide] 
- * [http://unicase.googlecode.com/files/UNICASEHANDBOOK.pdf UNICASE handbook]
+ * [http://unicase.googlecode.com/files/UNICASECLIENTGUIDE_updated.pdf UNICASE Quick User Guide (12 pages, many screenshots)] 
+ * [http://unicase.googlecode.com/files/UNICASEHANDBOOK.pdf UNICASE manual (33 pages, detailed descriptions)]
 
 === Details ===
 
