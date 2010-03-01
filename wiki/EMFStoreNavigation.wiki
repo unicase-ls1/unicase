@@ -1,5 +1,7 @@
 #summary EMFStore subproject navigational page.
 
   * [EMFStore What is EMFStore?]
+
   * [EMFStoreArchitecture Architecture]
+
   * [EMFStoreDocumentation Documentation and Tutorials]
