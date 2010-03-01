@@ -1,4 +1,6 @@
-This section contains helpful tips on general guidelines for coding and debugging within the UNICASE Framework. 
+This section contains guidelines and information for coding within the UNICASE framework. 
+
+Guidelines:
  * [Coding_Guidelines Coding Guidelines]<br>
  * [Model_API_Usage_Guidelines Model API Usage Guidelines] <br>
  * [Exception_Handling_Guidelines Exception Handling Guidelines] <br>
