@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="1.0.4"
+      version="1.0.5"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -235,7 +235,6 @@ litigation.
       <import plugin="org.unicase.workspace.edit"/>
       <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.unicase.ui.unicasecommon"/>
    </requires>
 
    <plugin
