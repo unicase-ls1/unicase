@@ -961,4 +961,11 @@
           type="org.unicase.metamodel.ModelElement">
     </widget>
  </extension>
+ <extension
+       point="org.unicase.workspace.ui.merge.customoption">
+    <customoption
+          class="org.unicase.ui.unicasecommon.merge.IssueConflictOptionFactory"
+          name="org.unicase.ui.unicasecommon.merge.issuefactory">
+    </customoption>
+ </extension>
 </plugin>
