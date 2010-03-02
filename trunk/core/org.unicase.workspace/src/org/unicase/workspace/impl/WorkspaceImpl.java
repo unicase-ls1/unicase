@@ -7,6 +7,7 @@ package org.unicase.workspace.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -657,7 +658,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
 		// destruct project to notifiy listeners.
 		Project project = projectSpace.getProject();
-		for (ModelElement modelElement : project.getModelElements()) {
+
+		for (ModelElement modelElement : new ArrayList<ModelElement>(project.getModelElements())) {
 			modelElement.delete();
 		}
 
