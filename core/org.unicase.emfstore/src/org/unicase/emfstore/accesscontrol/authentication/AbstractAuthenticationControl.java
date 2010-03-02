@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Abstract class for authentication.
@@ -72,10 +73,9 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 		String[] versions = ServerConfiguration.getSplittedProperty(ServerConfiguration.ACCEPTED_VERSIONS);
 
 		if (versions == null) {
-			if (!ServerConfiguration.isReleaseVersion()) {
-				return;
-			}
-			throw new ClientVersionOutOfDateException("No server versions supplied");
+			String msg = "No server versions supplied";
+			ModelUtil.logWarning(msg, new ClientVersionOutOfDateException(msg));
+			return;
 		}
 		for (String str : versions) {
 			if (str.equals(clientVersionInfo.getVersion()) || str.equals(ServerConfiguration.ACCEPTED_VERSIONS_ANY)) {
