@@ -12,8 +12,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -78,13 +76,6 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol - 1;
 		name.setLayoutData(gd);
-		name.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				if (name.getText().equalsIgnoreCase("sysiphus")) {
-					new NewRepositoryWizardPageTwentyThree(getShell());
-				}
-			}
-		});
 
 		// Server URL
 		new Label(composite, SWT.NONE).setText("URL:");
