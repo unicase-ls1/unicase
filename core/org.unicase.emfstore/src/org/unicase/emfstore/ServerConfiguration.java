@@ -60,7 +60,7 @@ public final class ServerConfiguration {
 	/**
 	 * Default port for XML RPC.
 	 */
-	public static final String XML_RPC_PORT_DEFAULT = "443";
+	public static final String XML_RPC_PORT_DEFAULT = "8443";
 
 	/**
 	 * Default port for XML RPC if running developer version. This port differs to the normal default port due to port
