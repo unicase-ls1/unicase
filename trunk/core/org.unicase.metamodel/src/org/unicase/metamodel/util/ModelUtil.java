@@ -415,9 +415,9 @@ public final class ModelUtil {
 	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
 	 */
 	public static void log(String message, Exception exception, int statusInt) {
-		Status status = new Status(statusInt, Platform.getBundle("org.unicase.model").getSymbolicName(), statusInt,
+		Status status = new Status(statusInt, Platform.getBundle("org.unicase.metamodel").getSymbolicName(), statusInt,
 			message, exception);
-		Platform.getLog(Platform.getBundle("org.unicase.model")).log(status);
+		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).log(status);
 	}
 
 	/**
