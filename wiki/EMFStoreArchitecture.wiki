@@ -13,7 +13,7 @@ The EMFStore framework consists of three features:
     * org.unicase.workspace: contains the EMFStore API for client applications, the client data model and an API for remote calls to the server
     * org.unicase.workspace.edit: Edit plugin for the client data model
 
-  * EMFStore Client User Interface Feature (org.unicase.emfstore.client.ui)- contains views for EMFStore clients:
+  * EMFStore Client User Interface Feature (org.unicase.emfstore.client.ui) - contains views for EMFStore clients:
     * org.unicase.workspace.ui: contains views for update/commit/merge, a repository browser and a history browser.
     * org.unicase.ui.navigator: contains a reflective view for showing the local models and their structure in a tree view.
     * org.unicase.ui.meeditor: contains a reflective form-based editor to view single model elements.
