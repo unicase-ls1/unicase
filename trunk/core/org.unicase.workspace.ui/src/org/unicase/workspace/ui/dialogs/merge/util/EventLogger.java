@@ -19,7 +19,6 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
-import org.unicase.workspace.ui.dialogs.merge.conflict.options.IssueOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 
 public class EventLogger {
@@ -68,11 +67,12 @@ public class EventLogger {
 		} else if (conflict.getSolution() instanceof MergeTextOption) {
 			choiceEvent.setSelection(MergeChoiceSelection.MERGED_TEXT);
 			addOperations(conflict, choiceEvent);
-		} else if (conflict.getSolution() instanceof IssueOption) {
-			choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
-			choiceEvent.setCreatedIssueName(((IssueOption) conflict
-					.getSolution()).getOptionLabel());
 		}
+		// } else if (conflict.getSolution() instanceof IssueOption) {
+		// choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
+		// choiceEvent.setCreatedIssueName(((IssueOption) conflict
+		// .getSolution()).getOptionLabel());
+		// }
 
 		addEvent(choiceEvent);
 	}
