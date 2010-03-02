@@ -2,10 +2,22 @@
 
 The EMFStore framework consists of three features:
 
-  * EMFStore Server Feature (org.unicase.emfstore.server): Contains the plugins required for running the EMFStore server
+  * EMFStore Server Feature (org.unicase.emfstore.server) - contains the plugins required for running the EMFStore server:
+    * org.unicase.metamodel: contains the common metamodel including a ModelElement base class with a unique id.
+    * org.unicase.metamodel.edit: contains the label and item providers for the meta model
+    * org.unicase.emfstore: contains the business logic of the server
+    * org.unicase.emfstore.esmodel: data model of the server
+    * org.unicase.emfstore.esmodel.edit: Edit plugin for server data model
 
-  * EMFStore Client Feature (org.unicase.emfstore.client): Contains the plugins required to contact the EMFStore server from an EMFStore client
+  * EMFStore Client Feature (org.unicase.emfstore.client) - contains the plugins required to contact the EMFStore server from an EMFStore client:
+    * org.unicase.workspace: contains the EMFStore API for client applications, the client data model and an API for remote calls to the server
+    * org.unicase.workspace.edit: Edit plugin for the client data model
 
-  * EMFStore Client User Interface feature (org.unicase.emfstore.client.ui): Contains all views for EMFStore clients including views to commit, update, merge and show the history of a model.
+  * EMFStore Client User Interface feature (org.unicase.emfstore.client.ui)- contains views for EMFStore clients:
+    * org.unicase.workspace.ui: contains views for update/commit/merge, a repository browser and a history browser.
+    * org.unicase.ui.navigator: contains a reflective view for showing the local models and their structure in a tree view.
+    * org.unicase.ui.meeditor: contains a reflective form-based editor to view single model elements.
 
-In a typical deployment scenario conists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features.
+In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features.
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.pdf]
