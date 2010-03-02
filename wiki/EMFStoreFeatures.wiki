@@ -10,7 +10,9 @@ The EMFStore Framework delivers the following features for your application:
 
 => You can build an EMF-based application where users can collaborate on models by just providing an Ecore model.
 
+[EMFStoreDemo This video] shows an application built on the EMFStore framework to demonstrate its features:
 
+<wiki:video url="http://www.youtube.com/watch?v=3LkNlTNHZzE"/>
 
 
 
