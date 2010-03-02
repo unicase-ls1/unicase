@@ -615,7 +615,9 @@ public final class ModelUtil {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 		"org.unicase.metamodel.modelversion");
 		if (rawExtensions.length!=1) {
-			throw new MalformedModelVersionException("There is "+ rawExtensions.length +" Model Version(s) registered for the given model.");
+			String message = "There is "+ rawExtensions.length +" Model Version(s) registered for the given model. Migrator will assume model version 0.";
+			logWarning(message, new MalformedModelVersionException(message));
+			return 0;
 		}
 		IConfigurationElement extension = rawExtensions[0];
 		String string = extension.getAttribute("versionIdentifier");
