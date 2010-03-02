@@ -99,7 +99,7 @@ examplePage,examplePage2 would replace the pages named examplePage and examplePa
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.1
       </documentation>
    </annotation>
 
