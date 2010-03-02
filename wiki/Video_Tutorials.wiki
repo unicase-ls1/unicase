@@ -7,3 +7,5 @@ This section contains links to UNICASE developer's tutorials.
  * [RunServerTutorial Run UNICASE EMFStore as a developer]
 
  * [SetupProjectTutorial Setup a project for EMFStore server] 
+
+You Can Find all UNICASE Video Tutorials on the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE] channel hosted on YouTube. 
