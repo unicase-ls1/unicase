@@ -11,13 +11,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -70,41 +65,6 @@ public class DeleteProjectHandler extends AbstractHandler {
 
 			Workspace currentWorkspace = WorkspaceManager.getInstance()
 					.getCurrentWorkspace();
-
-			// close all open editors before deleting
-			IWorkbenchPage wbpage = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
-			IEditorReference[] editors = wbpage.getEditorReferences();
-			for (IEditorReference editorReference : editors) {
-				try {
-					if (editorReference.getEditorInput() instanceof MEEditorInput) {
-						MEEditorInput editorInput = (MEEditorInput) editorReference
-								.getEditorInput();
-						if (projectSpace.getProject().equals(
-								editorInput.getModelElement().getProject())) {
-							// don't ask for saving, because we delete the
-							// project anyways
-							wbpage.closeEditor(
-									editorReference.getEditor(false), false);
-						}
-					}
-					// TODO: AS: add delete project observer / ext.point
-
-					// if (editorReference.getEditorInput() instanceof
-					// DashboardEditorInput) {
-					// DashboardEditorInput editorInput = (DashboardEditorInput)
-					// editorReference
-					// .getEditorInput();
-					// if (projectSpace.equals(editorInput.getProjectSpace())) {
-					// wbpage.closeEditor(
-					// editorReference.getEditor(false), false);
-					// }
-					// }
-				} catch (PartInitException e) {
-					// Just print the stacktrace
-					e.printStackTrace();
-				}
-			}
 
 			try {
 				currentWorkspace.deleteProjectSpace(projectSpace);
