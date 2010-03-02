@@ -7,6 +7,7 @@ package org.unicase.metamodel.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.unicase.metamodel.ModelElement;
@@ -64,11 +65,13 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public final void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		if (this.isObservedElement(modelElement)) {
-			this.onElementDeleted(modelElement);
-
-			// removing the element from the list of observed elements is not neccessary,
-			// because the project want call this method anymore
+		Set<ModelElement> deletedElements = modelElement.getAllContainedModelElements();
+		deletedElements.add(modelElement);
+		for (ModelElement deletedElement: deletedElements) {
+			if (isObservedElement(deletedElement)) {
+				observedElements.remove(deletedElement);
+				this.onElementDeleted(deletedElement);
+			}
 		}
 	}
 
