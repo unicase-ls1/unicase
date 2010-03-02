@@ -1,0 +1,17 @@
+#summary Features of the EMFStore or Why should I use EMFStore?
+
+The EMFStore Framework delivers the following features for your application:
+
+  * A model repository supporting *offline operation*
+  * Built-in persistence for your models on client and server side
+  * Client-side API for updating your model or synchronizing your model with the repository
+  * Views for showing the repository, the models, the history and to commit/update and merge your models
+  * *Automated migration support* for model instances if you change your Ecore model
+
+=> You can build an EMF-based application where users can collaborate on models by just providing an Ecore model.
+
+
+
+
+
+
