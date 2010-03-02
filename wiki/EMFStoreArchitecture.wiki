@@ -1,0 +1,11 @@
+#summary Features of EMFStore and their dependencies
+
+The EMFStore framework consists of three features:
+
+  * EMFStore Server Feature (org.unicase.emfstore.server): Contains the plugins required for running the EMFStore server
+
+  * EMFStore Client Feature (org.unicase.emfstore.client): Contains the plugins required to contact the EMFStore server from an EMFStore client
+
+  * EMFStore Client User Interface feature (org.unicase.emfstore.client.ui): Contains all views for EMFStore clients including views to commit, update, merge and show the history of a model.
+
+In a typical deployment scenario conists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features.
