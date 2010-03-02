@@ -20,4 +20,4 @@ The EMFStore framework consists of three features:
 
 In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features.
 
-[http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.pdf]
+[http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.png]
