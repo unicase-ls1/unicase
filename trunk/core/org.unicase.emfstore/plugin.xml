@@ -4,7 +4,7 @@
    <extension-point id="org.unicase.emfstore.startuplistener" name="StartupListener" schema="schema/startuplistener.exsd"/>
    <extension-point id="org.unicase.emfstore.poststartuplistener" name="PostStartupListener" schema="schema/poststartuplistener.exsd"/>
    <extension
-         id="org.unicase.emfstore.server"
+         id="server"
          name="EMFStore server"
          point="org.eclipse.core.runtime.applications">
       <application
@@ -18,7 +18,7 @@
       </application>
    </extension>
    <extension
-         id="org.unicase.emfstore.server"
+         id="server"
          name="EMFStore"
          point="org.eclipse.core.runtime.products">
       <product
