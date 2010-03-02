@@ -589,13 +589,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	}
 
 	private void migrateServerInfo(ServerInfo serverInfo) {
-		if (serverInfo.getPort() == 1099) {
-			serverInfo.setPort(443);
-		}
 		if (serverInfo.getUrl() != null) {
-			if (serverInfo.getUrl().contains("localhost") || serverInfo.getUrl().contains("127.0.0.1")) {
-				serverInfo.setPort(8080);
-			}
 			if (serverInfo.getUrl().contains("unicase.in.tum.de")
 				|| serverInfo.getUrl().contains("unicase-internal.informatik.tu-muenchen.de")) {
 				if (serverInfo.getCertificateAlias() != null
