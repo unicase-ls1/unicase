@@ -42,6 +42,7 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
@@ -654,6 +655,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#deleteProjectSpace(org.unicase.workspace.ProjectSpace)
 	 */
 	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
+		// destruct project to notifiy listeners.
+		Project project = projectSpace.getProject();
+		for (ModelElement modelElement : project.getModelElements()) {
+			modelElement.delete();
+		}
+
 		getProjectSpaces().remove(projectSpace);
 		if (getActiveProjectSpace() == projectSpace) {
 			setActiveProjectSpace(null);
