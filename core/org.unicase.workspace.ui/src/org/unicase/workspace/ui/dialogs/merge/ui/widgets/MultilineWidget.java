@@ -6,25 +6,16 @@
 package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
-import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch;
-import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch.Diff;
-import org.unicase.workspace.ui.dialogs.merge.util.diff_match_patch.Operation;
 
 /**
  * Is used to display longer conflicting text and to merge them.
@@ -88,57 +79,57 @@ public class MultilineWidget {
 	}
 
 	private void setText(ConflictOption option, final StyledText styledText) {
-		if (option instanceof MergeTextOption) {
-			handleMergeTextOption(option, styledText);
-		} else {
-			styledText.setText(option.getFullOptionLabel());
-		}
+		// if (option instanceof MergeTextOption) {
+		// handleMergeTextOption(option, styledText);
+		// } else {
+		styledText.setText(option.getFullOptionLabel());
+		// }
 	}
 
-	private void handleMergeTextOption(ConflictOption option,
-			final StyledText styledText) {
-		final MergeTextOption mergeOption = (MergeTextOption) option;
-		diff_match_patch dmp = new diff_match_patch();
-		dmp.Diff_EditCost = 10;
-		LinkedList<Diff> diffMain = dmp.diff_main(mergeOption.getMyText(),
-				mergeOption.getTheirString());
-		dmp.diff_cleanupEfficiency(diffMain);
-
-		String description = "";
-		List<StyleRange> styleRanges = new ArrayList<StyleRange>();
-
-		for (Diff diff : diffMain) {
-			String text = diff.text;
-			if (!diff.operation.equals(Operation.EQUAL)) {
-				StyleRange styleRange = new StyleRange();
-				styleRange.start = description.length();
-				styleRange.length = text.length();
-
-				if (diff.operation.equals(Operation.DELETE)) {
-					styleRange.foreground = Display.getDefault()
-							.getSystemColor(SWT.COLOR_RED);
-				} else if (diff.operation.equals(Operation.INSERT)) {
-					styleRange.foreground = Display.getDefault()
-							.getSystemColor(SWT.COLOR_DARK_GREEN);
-				}
-				styleRanges.add(styleRange);
-			}
-			description += text;
-		}
-		styledText.setText(description);
-		styledText.setStyleRanges(styleRanges
-				.toArray(new StyleRange[styleRanges.size()]));
-		styledText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				String newText = styledText.getText();
-				String oldText = mergeOption.getMergedText();
-				if (newText != null && !newText.equals(oldText)) {
-					mergeOption.setMergedText(newText);
-					decisionBox.setSolution(mergeOption);
-				}
-			}
-		});
-	}
+	// private void handleMergeTextOption(ConflictOption option,
+	// final StyledText styledText) {
+	// final MergeTextOption mergeOption = (MergeTextOption) option;
+	// diff_match_patch dmp = new diff_match_patch();
+	// dmp.Diff_EditCost = 10;
+	// LinkedList<Diff> diffMain = dmp.diff_main(mergeOption.getMyText(),
+	// mergeOption.getTheirString());
+	// dmp.diff_cleanupEfficiency(diffMain);
+	//
+	// String description = "";
+	// List<StyleRange> styleRanges = new ArrayList<StyleRange>();
+	//
+	// for (Diff diff : diffMain) {
+	// String text = diff.text;
+	// if (!diff.operation.equals(Operation.EQUAL)) {
+	// StyleRange styleRange = new StyleRange();
+	// styleRange.start = description.length();
+	// styleRange.length = text.length();
+	//
+	// if (diff.operation.equals(Operation.DELETE)) {
+	// styleRange.foreground = Display.getDefault()
+	// .getSystemColor(SWT.COLOR_RED);
+	// } else if (diff.operation.equals(Operation.INSERT)) {
+	// styleRange.foreground = Display.getDefault()
+	// .getSystemColor(SWT.COLOR_DARK_GREEN);
+	// }
+	// styleRanges.add(styleRange);
+	// }
+	// description += text;
+	// }
+	// styledText.setText(description);
+	// styledText.setStyleRanges(styleRanges
+	// .toArray(new StyleRange[styleRanges.size()]));
+	// styledText.addModifyListener(new ModifyListener() {
+	// public void modifyText(ModifyEvent e) {
+	// String newText = styledText.getText();
+	// String oldText = mergeOption.getMergedText();
+	// if (newText != null && !newText.equals(oldText)) {
+	// mergeOption.setMergedText(newText);
+	// decisionBox.setSolution(mergeOption);
+	// }
+	// }
+	// });
+	// }
 
 	private boolean isEditable(ConflictOption option) {
 		return option instanceof MergeTextOption;
