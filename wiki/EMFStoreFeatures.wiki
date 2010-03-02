@@ -12,8 +12,6 @@ The EMFStore Framework delivers the following features for your application:
 
 [EMFStoreDemo This video] shows an application built on the EMFStore framework to demonstrate its features:
 
-<wiki:video url="http://www.youtube.com/watch?v=3LkNlTNHZzE"/>
-
-
+<wiki:video url="http://www.youtube.com/watch?v=fb9ZdOA1Z2Y"/>
 
 
