@@ -140,12 +140,6 @@
            name="deleteProject">
      </command>
      <command
-           categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.ImportUserHandler"
-           id="org.unicase.workspace.ui.importUser"
-           name="Import User">
-     </command>
-     <command
            defaultHandler="org.unicase.workspace.ui.commands.ShowHistoryHandler"
            id="org.unicase.workspace.ui.showHistory"
            name="showHistory">
@@ -626,37 +620,7 @@
                  </visibleWhen>
               </command>
            </menu>
-           <command
-                 commandId="org.unicase.workspace.ui.importUser"
-                 icon="icons/importuser.png"
-                 label="Import Users"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <and>
-                    <iterate
-                          ifEmpty="false"
-                          operator="and">
-                       <instanceof
-                             value="org.unicase.workspace.ProjectSpace">
-                       </instanceof>
-                       <test
-                             forcePluginActivation="true"
-                             property="org.unicase.workspace.ui.commands.projectIsShared"
-                             value="true">
-                       </test>
-                       <test
-                             forcePluginActivation="true"
-                             property="org.unicase.workspace.ui.commands.isAdmin"
-                             value="true">
-                       </test>
-                    </iterate>
-                    <count
-                          value="1">
-                    </count>
-                 </and>
-              </visibleWhen>
-           </command>
+           
            <command
                  commandId="org.unicase.workspace.ui.compareProjects"
                  icon="icons/compare.png"
