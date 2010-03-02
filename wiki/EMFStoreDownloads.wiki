@@ -1,0 +1,7 @@
+#summary Downloads and Update Site of the EMFStore
+
+The EMFStore features can be installed from this update site:
+
+[http://unicase.googlecode.com/svn/updatesite/emfstore http://unicase.googlecode.com/svn/updatesite/emfstore]
+
+We are also working on a standalone version as a product currently and will make it available on this website also.
