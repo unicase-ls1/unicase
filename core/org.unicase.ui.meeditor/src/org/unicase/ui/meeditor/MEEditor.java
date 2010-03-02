@@ -26,10 +26,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.ShortLabelProvider;
-import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -42,40 +40,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class MEEditor extends SharedHeaderFormEditor {
 
 	/**
-	 * Updates necessary UI elements on model changes.
-	 * 
-	 * @author Shterev
-	 */
-	private final class MEEditorListener implements ModelElementChangeListener {
-		private final IEditorInput input;
-
-		private MEEditorListener(IEditorInput input) {
-			this.input = input;
-		}
-
-		public void onChange(final Notification msg) {
-			if (msg.isTouch()) {
-				return;
-			}
-			Display.getDefault().asyncExec(new Runnable() {
-				public void run() {
-					updateIcon(input);
-					setPartName((new ShortLabelProvider()).getText(modelElement));
-					if (mePage != null) {
-						mePage.updateSectionTitle();
-					}
-
-				}
-			});
-
-		}
-
-		public void onRuntimeExceptionInListener(RuntimeException exception) {
-			modelElement.removeModelElementChangeListener(eAdapter);
-		}
-	}
-
-	/**
 	 * The Id for MEEditor. We need this to open a model element.
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
@@ -84,13 +48,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
 
-	private ModelElementChangeListener eAdapter;
-
 	private String creatorHint;
 
 	private ILabelProviderListener labelProviderListener;
 
-	private ProjectChangeObserver projectChangeObserver;
+	private ModelElementChangeObserver modelelementChangeObserver;
 
 	/**
 	 * Default constructor.
@@ -182,34 +144,36 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
-			eAdapter = new MEEditorListener(input);
-			this.modelElement.addModelElementChangeListener(eAdapter);
-			projectChangeObserver = new ProjectChangeObserver() {
 
-				public void notify(Notification notification, Project project, ModelElement modelElement) {
-					// Do nothing
+			modelelementChangeObserver = new ModelElementChangeObserver() {
+
+				@Override
+				protected void onNotify(Notification notification, ModelElement element) {
+
+					Display.getDefault().asyncExec(new Runnable() {
+						public void run() {
+							updateIcon(input);
+							setPartName((new ShortLabelProvider()).getText(modelElement));
+							if (mePage != null) {
+								mePage.updateSectionTitle();
+							}
+
+						}
+					});
 
 				}
 
-				public void modelElementDeleteStarted(Project project, ModelElement deletionME) {
-					if (deletionME == modelElement) {
-						modelElement.getProject().removeProjectChangeObserver(projectChangeObserver);
+				@Override
+				protected void onElementDeleted(ModelElement element) {
+					if (element == modelElement) {
 						close(false);
+						modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
 					}
 
 				}
-
-				public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-					// Do Nothing
-
-				}
-
-				public void modelElementAdded(Project project, ModelElement modelElement) {
-					// Do nothing
-
-				}
 			};
-			this.modelElement.getProject().addProjectChangeObserver(projectChangeObserver);
+			modelelementChangeObserver.observeElement(modelElement);
+			this.modelElement.getProject().addProjectChangeObserver(modelelementChangeObserver);
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
@@ -279,8 +243,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	public void dispose() {
 		if (modelElement != null && modelElement.getProject() != null) {
-			modelElement.getProject().removeProjectChangeObserver(projectChangeObserver);
-			modelElement.removeModelElementChangeListener(eAdapter);
+			modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
 		}
 
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
