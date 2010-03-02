@@ -14,17 +14,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -54,7 +50,6 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	private ChangePackage changes;
 	private EList<String> oldLogMessages;
 	private HashMap<AbstractOperation, ArrayList<ESNotification>> operationsMap;
-	private CommitNotificationsTray notificationsTray;
 	private ProjectSpace activeProjectSpace;
 
 	/**
@@ -71,7 +66,6 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		this.changes = changes;
 		activeProjectSpace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getActiveProjectSpace();
-		notificationsTray = new CommitNotificationsTray(this);
 	}
 
 	/**
@@ -182,11 +176,6 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		int height = area.height * 2 / 3;
 		newShell.setBounds((area.width - width) / 2,
 				(area.height - height) / 2, width, height);
-		newShell.addDisposeListener(new DisposeListener() {
-			public void widgetDisposed(DisposeEvent e) {
-				notificationsTray.dispose();
-			}
-		});
 	}
 
 	/**
@@ -206,12 +195,6 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 			// the list can only grow one element at a time,
 			// so only one element should be deleted
 			oldLogMessages.remove(0);
-		}
-
-		changes.getNotifications().addAll(notificationsTray.getNotifications());
-		// add the newly created notifications to the change package
-		for (ArrayList<ESNotification> list : operationsMap.values()) {
-			changes.getNotifications().addAll(list);
 		}
 
 		super.okPressed();
@@ -242,40 +225,6 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	 */
 	public void keyReleased(KeyEvent e) {
 		// nothing to do
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
-	 */
-	@Override
-	protected void createButtonsForButtonBar(Composite parent) {
-		final String notifyUsers = "Notify users";
-		final Button notificationsButton = createButton(parent, 2138,
-				notifyUsers + " >>", false);
-		notificationsButton.addSelectionListener(new SelectionAdapter() {
-			private boolean isOpen;
-
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				if (!isOpen) {
-					openTray(notificationsTray);
-					notificationsButton.setText(notifyUsers + " <<");
-					Rectangle bounds = getShell().getBounds();
-					bounds.x -= 100;
-					getShell().setBounds(bounds);
-				} else {
-					closeTray();
-					notificationsButton.setText(notifyUsers + " >>");
-					Rectangle bounds = getShell().getBounds();
-					bounds.x += 100;
-					getShell().setBounds(bounds);
-				}
-				isOpen = !isOpen;
-			}
-		});
-		super.createButtonsForButtonBar(parent);
 	}
 
 	/**
