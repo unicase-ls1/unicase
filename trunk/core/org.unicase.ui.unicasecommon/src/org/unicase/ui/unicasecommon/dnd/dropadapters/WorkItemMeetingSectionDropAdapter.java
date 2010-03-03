@@ -3,14 +3,15 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.common.dnd.dropadapters;
+package org.unicase.ui.unicasecommon.dnd.dropadapters;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 
@@ -19,27 +20,17 @@ import org.unicase.model.task.WorkItem;
  * 
  * @author Hodaie
  */
-public class WorkItemMeetingSectionDropAdapter extends MEDropAdapter {
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param domain TransactionalEditingDomain
-	 * @param viewer viewer
-	 */
-	public WorkItemMeetingSectionDropAdapter(TransactionalEditingDomain domain, StructuredViewer viewer) {
-		super(domain, viewer);
-	}
+public class WorkItemMeetingSectionDropAdapter extends UCDropAdapter {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
+	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
 	 *      org.unicase.metamodel.UnicaseModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
-		UnicaseModelElement dropee = source.get(0);
+	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		if (dropee instanceof WorkItem) {
 			dropWorkItemOnMeetingSection((WorkItemMeetingSection) target, source);
 
@@ -49,15 +40,19 @@ public class WorkItemMeetingSectionDropAdapter extends MEDropAdapter {
 
 	}
 
-	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target,
-		final List<UnicaseModelElement> source) {
+	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target, final List<ModelElement> source) {
 
-		for (UnicaseModelElement me : source) {
+		for (ModelElement me : source) {
 			if (me instanceof WorkItem) {
 				target.getIncludedWorkItems().add((WorkItem) me);
 			}
 		}
 
+	}
+
+	@Override
+	public EClass isDropAdapterfor() {
+		return MeetingPackage.eINSTANCE.getWorkItemMeetingSection();
 	}
 
 }

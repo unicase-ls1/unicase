@@ -15,14 +15,6 @@
       </category>
       <view
             category="org.unicase"
-            class="org.unicase.ui.unicasecommon.navigator.TreeView"
-            icon="icons/unicase.png"
-            id="org.unicase.ui.navigator.viewer"
-            name="Unicase Navigator"
-            restorable="true">
-      </view>
-      <view
-            category="org.unicase"
             class="org.unicase.ui.unicasecommon.common.views.Preview"
             icon="icons/user_comment.png"
             id="org.unicase.ui.common.views.previewID"
@@ -960,6 +952,36 @@
           name="org.unicase.ui.unicasecommon.meurllinkcontrol"
           type="org.unicase.metamodel.ModelElement">
     </widget>
+ </extension>
+ <extension
+       point="org.unicase.ui.common.medropadapter">
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.CompositeSectionDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.AnnotationDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.LeafSectionDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.MEDiagramDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.MeetingDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.ProjectDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.WorkItemMeetingSectionDropAdapter">
+    </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.WorkPackageDropAdapter">
+    </MEDropAdapter>
  </extension>
  <extension
        point="org.unicase.workspace.ui.merge.customoption">

@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.unicasecommon.common.dnd;
+package org.unicase.ui.common.dnd;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -23,24 +26,9 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.meeting.MeetingPackage;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.AnnotationDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.CompositeSectionDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.LeafSectionDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDiagramDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.MeetingDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.ProjectDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.WorkItemMeetingSectionDropAdapter;
-import org.unicase.ui.unicasecommon.common.dnd.dropadapters.WorkPackageDropAdapter;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,
@@ -48,15 +36,14 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Hodaie
  */
-public class UCDropAdapter extends DropTargetAdapter {
+public class ComposedDropAdapter extends DropTargetAdapter {
 
-	private TransactionalEditingDomain domain;
 	private StructuredViewer viewer;
 
-	private List<UnicaseModelElement> source;
-	private UnicaseModelElement target;
+	private List<ModelElement> source;
+	private ModelElement target;
 	private EObject targetConatiner;
-	private UnicaseModelElement dropee;
+	private ModelElement dropee;
 
 	private Map<EClass, MEDropAdapter> dropAdapters;
 
@@ -78,42 +65,54 @@ public class UCDropAdapter extends DropTargetAdapter {
 	 * @param editingDomain editing domain
 	 * @param viewer viewer
 	 */
-	public UCDropAdapter(TransactionalEditingDomain editingDomain, StructuredViewer viewer) {
+	public ComposedDropAdapter(TransactionalEditingDomain editingDomain, StructuredViewer viewer) {
 
 		super();
-		this.domain = editingDomain;
 		this.viewer = viewer;
 
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
+		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
+		"org.unicase.ui.common.medropadapter");
+		for(IConfigurationElement element:confs ){
+			try {
+				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");
+				dropAdapter.init(editingDomain, viewer);
+				dropAdapters.put( dropAdapter.isDropAdapterfor(), dropAdapter);
+				
+			} catch (CoreException e) {
+				WorkspaceUtil.logException(e.getMessage(), e);	
+			}
+		}
+	
 
-		// MEDropAdapter
-		dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
-
-		// LeafSectionDropAdapter
-		dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
-
-		// CompositeSectionDropAdapter
-		dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
-			viewer));
-
-		// WorkPackageDropAdapter
-		dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
-
-		// MeetingDropAdpater
-		dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
-
-		// WorkItemMeetingSectionDropAdapter
-		dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
-			domain, viewer));
-
-		// MEDiagramDropAdapter
-		dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
-
-		// AnnotationDropAdapter
-		dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
-
-		// ProjectDropAdapter
-		dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
+//		// MEDropAdapter
+//		dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
+//
+//		// LeafSectionDropAdapter
+//		dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
+//
+//		// CompositeSectionDropAdapter
+//		dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
+//			viewer));
+//
+//		// WorkPackageDropAdapter
+//		dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
+//
+//		// MeetingDropAdpater
+//		dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
+//
+//		// WorkItemMeetingSectionDropAdapter
+//		dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
+//			domain, viewer));
+//
+//		// MEDiagramDropAdapter
+//		dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
+//
+//		// AnnotationDropAdapter
+//		dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
+//
+//		// ProjectDropAdapter
+//		dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
 
 	}
 
@@ -158,12 +157,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof UnicaseModelElement)) {
+			if (!(obj instanceof ModelElement)) {
 				result = false;
 			}
 		}
 
-		source = (List<UnicaseModelElement>) DragSourcePlaceHolder.getDragSource();
+		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
@@ -171,14 +170,14 @@ public class UCDropAdapter extends DropTargetAdapter {
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
 		if (event.item == null || event.item.getData() == null
-			|| !(event.item.getData() instanceof UnicaseModelElement)) {
+			|| !(event.item.getData() instanceof ModelElement)) {
 			result = false;
 		}
 
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			target = (UnicaseModelElement) event.item.getData();
+			target = (ModelElement) event.item.getData();
 			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
 			}

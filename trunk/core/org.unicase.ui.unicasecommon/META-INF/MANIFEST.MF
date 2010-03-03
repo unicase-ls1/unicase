@@ -15,7 +15,6 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon.common,
  org.unicase.ui.unicasecommon.common.diagram,
  org.unicase.ui.unicasecommon.common.dialogs,
- org.unicase.ui.unicasecommon.common.dnd,
  org.unicase.ui.unicasecommon.common.filter,
  org.unicase.ui.unicasecommon.common.util,
  org.unicase.ui.unicasecommon.common.widgets,
@@ -26,6 +25,7 @@ Export-Package: org.unicase.ui.unicasecommon.common,
  org.unicase.ui.unicasecommon.diagram.providers,
  org.unicase.ui.unicasecommon.diagram.requests,
  org.unicase.ui.unicasecommon.diagram.util,
+ org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.meeditor,
  org.unicase.ui.unicasecommon.navigator.wizards
 Import-Package: org.unicase.ui.unicasecommon.common
