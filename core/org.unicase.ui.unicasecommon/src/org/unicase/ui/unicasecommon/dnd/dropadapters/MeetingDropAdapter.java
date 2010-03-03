@@ -3,17 +3,18 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.common.dnd.dropadapters;
+package org.unicase.ui.unicasecommon.dnd.dropadapters;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.Meeting;
+import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.unicasecommon.common.wizards.WorkPackageReviewWizard;
 
@@ -22,28 +23,18 @@ import org.unicase.ui.unicasecommon.common.wizards.WorkPackageReviewWizard;
  * 
  * @author Hodaie
  */
-public class MeetingDropAdapter extends MEDropAdapter {
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param domain TransactionalEditingDomain
-	 * @param viewer viewer
-	 */
-	public MeetingDropAdapter(TransactionalEditingDomain domain, StructuredViewer viewer) {
-		super(domain, viewer);
-	}
+public class MeetingDropAdapter extends UCDropAdapter {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
+	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
 	 *      org.unicase.metamodel.UnicaseModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
+	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
 
-		UnicaseModelElement dropee = source.get(0);
+		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		if (dropee instanceof WorkPackage) {
 			dropWorkPackageOnMeeting((Meeting) target, (WorkPackage) dropee);
 		}
@@ -57,5 +48,10 @@ public class MeetingDropAdapter extends MEDropAdapter {
 		wizard.setWindowTitle("Workpackage review wizard.");
 		dialog.create();
 		dialog.open();
+	}
+
+	@Override
+	public EClass isDropAdapterfor() {
+		return MeetingPackage.eINSTANCE.getMeeting();
 	}
 }

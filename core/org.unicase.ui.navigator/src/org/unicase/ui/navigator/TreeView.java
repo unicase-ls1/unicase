@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.navigator;
+package org.unicase.ui.navigator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -48,12 +48,9 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.UCDragAdapter;
+import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.TreeContentProvider;
-import org.unicase.ui.navigator.TreeLabelProvider;
-import org.unicase.ui.unicasecommon.common.dnd.UCDropAdapter;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -416,7 +413,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(Configuration.getEditingDomain(), viewer));
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(), viewer));
 
 	}
 

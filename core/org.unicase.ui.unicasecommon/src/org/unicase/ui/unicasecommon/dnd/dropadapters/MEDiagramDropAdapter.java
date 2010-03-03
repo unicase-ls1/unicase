@@ -3,23 +3,24 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.unicasecommon.common.dnd.dropadapters;
+package org.unicase.ui.unicasecommon.dnd.dropadapters;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
@@ -30,29 +31,18 @@ import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;
  * 
  * @author Hodaie
  */
-public class MEDiagramDropAdapter extends MEDropAdapter {
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param domain TransactionalEditingDomain
-	 * @param viewer viewer
-	 */
-	public MEDiagramDropAdapter(TransactionalEditingDomain domain, StructuredViewer viewer) {
-		super(domain, viewer);
-
-	}
+public class MEDiagramDropAdapter extends UCDropAdapter {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
+	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
+	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
 		ActionHelper.openModelElement(target, this.getClass().getName());
-		UnicaseModelElement dropee = source.get(0);
+		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {
 			DiagramDocumentEditor dde = (DiagramDocumentEditor) iep;
@@ -102,12 +92,12 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.unicasecommon.common.dnd.dropadapters.MEDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      java.util.List, org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
+	 * @see org.unicase.ui.common.dnd.MEDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent, java.util.List,
+	 *      org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
-		UnicaseModelElement target, UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
+		ModelElement dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (!isElementOfDiagram((MEDiagram) target, dropee) || ((MEDiagram) target).getElements().contains(dropee)) {
@@ -115,6 +105,11 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 		}
 
 		return result;
+	}
+
+	@Override
+	public EClass isDropAdapterfor() {
+		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
 
 }
