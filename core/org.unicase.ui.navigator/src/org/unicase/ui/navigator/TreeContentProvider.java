@@ -48,14 +48,13 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 			WorkspaceUtil.logWarning("Duplicate ProjectSpaceContent Provider registered", new IllegalStateException());
 		}
 
-		for (IConfigurationElement element : confs) {
-			try {
-				contentProvider = (ProjectSpaceContentProvider) confs[0].createExecutableExtension("class");
+		try {
+			contentProvider = (ProjectSpaceContentProvider) confs[0].createExecutableExtension("class");
 
-			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);
-			}
+		} catch (CoreException e) {
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
+
 	}
 
 }
