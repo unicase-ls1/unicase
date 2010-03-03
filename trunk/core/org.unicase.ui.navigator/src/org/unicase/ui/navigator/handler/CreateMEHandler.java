@@ -41,6 +41,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			EClass newMEType = (EClass) o;
+			@SuppressWarnings("unused")
 			final ModelElement newMEInstance;
 			// create a new model element from this EClass
 			newMEInstance = (ModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
