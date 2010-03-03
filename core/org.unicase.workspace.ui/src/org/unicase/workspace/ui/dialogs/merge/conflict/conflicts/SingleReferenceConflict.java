@@ -21,14 +21,32 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Conflict for two {@link SingleReferenceOperation}.
+ * 
+ * @author wesendon
+ */
 public class SingleReferenceConflict extends Conflict {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param myOperations
+	 *            list of my operations
+	 * @param theirOperations
+	 *            list of their operations
+	 * @param decisionManager
+	 *            decisionmanager
+	 */
 	public SingleReferenceConflict(List<AbstractOperation> myOperations,
 			List<AbstractOperation> theirOperations,
 			DecisionManager decisionManager) {
 		super(myOperations, theirOperations, decisionManager);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
@@ -37,6 +55,9 @@ public class SingleReferenceConflict extends Conflict {
 				getTheirOperation()));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
@@ -82,6 +103,9 @@ public class SingleReferenceConflict extends Conflict {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
 
@@ -105,11 +129,11 @@ public class SingleReferenceConflict extends Conflict {
 		options.add(theirOption);
 	}
 
-	public SingleReferenceOperation getMyOperation() {
+	private SingleReferenceOperation getMyOperation() {
 		return (SingleReferenceOperation) operationsA.get(0);
 	}
 
-	public SingleReferenceOperation getTheirOperation() {
+	private SingleReferenceOperation getTheirOperation() {
 		return (SingleReferenceOperation) operationsB.get(0);
 	}
 

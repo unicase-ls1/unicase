@@ -18,10 +18,28 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Conflict {@link CompositeOperation} involved.
+ * 
+ * @author wesendon
+ */
 public class CompositeConflict extends Conflict {
 
 	private final boolean meCausing;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param composite
+	 *            list of operations, with leading conflicting
+	 *            {@link CompositeOperation}
+	 * @param other
+	 *            list operations which conflict with composite
+	 * @param decisionManager
+	 *            decisionmanager
+	 * @param meCausing
+	 *            true, if composite caused by merging user
+	 */
 	public CompositeConflict(List<AbstractOperation> composite,
 			List<AbstractOperation> other, DecisionManager decisionManager,
 			boolean meCausing) {
@@ -30,6 +48,9 @@ public class CompositeConflict extends Conflict {
 		init();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
@@ -37,6 +58,9 @@ public class CompositeConflict extends Conflict {
 				getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
@@ -55,6 +79,9 @@ public class CompositeConflict extends Conflict {
 		return desc;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
 		ConflictOption myOption = null;
@@ -91,15 +118,15 @@ public class CompositeConflict extends Conflict {
 		options.add(theirOption);
 	}
 
-	public CompositeOperation getCompositeOperation() {
+	private CompositeOperation getCompositeOperation() {
 		return (CompositeOperation) operationsA.get(0);
 	}
 
-	public AbstractOperation getTheirOperation() {
+	private AbstractOperation getTheirOperation() {
 		return (!meCausing) ? operationsA.get(0) : operationsB.get(0);
 	}
 
-	public AbstractOperation getOtherOperation() {
+	private AbstractOperation getOtherOperation() {
 		return operationsB.get(0);
 	}
 }

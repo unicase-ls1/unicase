@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.util;
 
 import java.util.Date;
@@ -21,14 +26,37 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 
+/**
+ * Helper class for logging events in merge dialog.
+ * 
+ * @author wesendon
+ */
 public class EventLogger {
 
 	private ProjectSpace projectSpace;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param project
+	 *            active project
+	 */
 	public EventLogger(Project project) {
 		projectSpace = WorkspaceManager.getProjectSpace(project);
 	}
 
+	/**
+	 * Merge Event.
+	 * 
+	 * @param base
+	 *            version
+	 * @param target
+	 *            version
+	 * @param numberOfConflicts
+	 *            int
+	 * @param localChanges
+	 *            list of changes
+	 */
 	public void createMergeEvent(PrimaryVersionSpec base,
 			PrimaryVersionSpec target, int numberOfConflicts,
 			List<AbstractOperation> localChanges) {
@@ -44,6 +72,12 @@ public class EventLogger {
 		addEvent(mergeEvent);
 	}
 
+	/**
+	 * Option selected event.
+	 * 
+	 * @param conflict
+	 *            related conflict
+	 */
 	public void optionSelected(Conflict conflict) {
 		MergeChoiceEvent choiceEvent = EventsFactory.eINSTANCE
 				.createMergeChoiceEvent();
@@ -67,12 +101,13 @@ public class EventLogger {
 		} else if (conflict.getSolution() instanceof MergeTextOption) {
 			choiceEvent.setSelection(MergeChoiceSelection.MERGED_TEXT);
 			addOperations(conflict, choiceEvent);
+		} else if (conflict.getSolution().getClass().getSimpleName().equals(
+				"IssueOption")) {
+			System.err.println("test");
+			choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
+			choiceEvent.setCreatedIssueName(conflict.getSolution()
+					.getOptionLabel());
 		}
-		// } else if (conflict.getSolution() instanceof IssueOption) {
-		// choiceEvent.setSelection(MergeChoiceSelection.ISSUE);
-		// choiceEvent.setCreatedIssueName(((IssueOption) conflict
-		// .getSolution()).getOptionLabel());
-		// }
 
 		addEvent(choiceEvent);
 	}
@@ -86,22 +121,37 @@ public class EventLogger {
 		}
 	}
 
+	/**
+	 * Select all mine pressed.
+	 */
 	public void selectedAllMine() {
 		createGlobalChoiceEvent(MergeGlobalChoiceSelection.ALL_MINE);
 	}
 
+	/**
+	 * Select all theirs pressed.
+	 */
 	public void selectedAllTheirs() {
 		createGlobalChoiceEvent(MergeGlobalChoiceSelection.ALL_THEIR);
 	}
 
+	/**
+	 * Pressed ok and dialog closes.
+	 */
 	public void selectedOK() {
 		createGlobalChoiceEvent(MergeGlobalChoiceSelection.OK_FINISHED);
 	}
 
+	/**
+	 * Pressed ok, but not all decisions are resolved.
+	 */
 	public void selectedOKButNotFinished() {
 		createGlobalChoiceEvent(MergeGlobalChoiceSelection.OK_NOT_FINISHED);
 	}
 
+	/**
+	 * Dialog is canceled.
+	 */
 	public void selectedCancel() {
 		createGlobalChoiceEvent(MergeGlobalChoiceSelection.CANCEL);
 	}

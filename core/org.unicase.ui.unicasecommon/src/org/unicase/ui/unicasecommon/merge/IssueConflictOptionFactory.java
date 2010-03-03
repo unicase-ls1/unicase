@@ -9,8 +9,18 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory;
 
+/**
+ * Custom option factory for {@link IssueOption}.
+ * 
+ * @author wesendon
+ */
 public class IssueConflictOptionFactory implements CustomConflictOptionFactory {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#createCustomConflictOption(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
+	 */
 	public CustomConflictOption createCustomConflictOption(Conflict conflict) {
 		if (!isApplicableConflict(conflict)) {
 			return null;
@@ -20,6 +30,11 @@ public class IssueConflictOptionFactory implements CustomConflictOptionFactory {
 		return issueOption;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#isApplicableConflict(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
+	 */
 	public boolean isApplicableConflict(Conflict conflict) {
 		return true;
 	}

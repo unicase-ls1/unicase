@@ -14,10 +14,27 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
+/**
+ * Container for {@link MultiReferenceConflict} and
+ * {@link SingleReferenceConflict}.
+ * 
+ * @author wesendon
+ */
 public class ReferenceConflict extends Conflict {
 
 	private final Conflict conflict;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param conflict
+	 *            underlying conflict, {@link MultiReferenceConflict} or
+	 *            {@link SingleReferenceConflict}
+	 * @param myOps
+	 *            list of my operations
+	 * @param theirOps
+	 *            list of their operations
+	 */
 	public ReferenceConflict(Conflict conflict, List<AbstractOperation> myOps,
 			List<AbstractOperation> theirOps) {
 		super(myOps, theirOps, conflict.getDecisionManager(), false);
@@ -28,21 +45,33 @@ public class ReferenceConflict extends Conflict {
 		init();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected boolean allowOtherOptions() {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictContext initConflictContext() {
 		return conflict.getConflictContext();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		return conflict.getConflictDescription();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
 		for (ConflictOption option : conflict.getOptions()) {
