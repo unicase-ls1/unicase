@@ -39,6 +39,11 @@ public class AnnotationDropAdapter extends UCDropAdapter {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public EClass isDropAdapterfor() {
 		return ModelPackage.eINSTANCE.getAnnotation();

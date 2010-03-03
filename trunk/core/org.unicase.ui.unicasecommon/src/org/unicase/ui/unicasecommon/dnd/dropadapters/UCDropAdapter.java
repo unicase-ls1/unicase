@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.unicasecommon.dnd.dropadapters;
 
 import java.util.Arrays;
@@ -17,8 +22,17 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Parent class for all UNICASE drop adapters.
+ * 
+ * @author helming
+ */
 public class UCDropAdapter extends MEDropAdapter {
-
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
 		if (source.get(0) instanceof Annotation && target instanceof UnicaseModelElement) {
@@ -34,6 +48,11 @@ public class UCDropAdapter extends MEDropAdapter {
 		target.getAnnotations().addAll(newAnnotations);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
 		ModelElement dropee) {
@@ -55,6 +74,11 @@ public class UCDropAdapter extends MEDropAdapter {
 		return super.canDrop(eventFeedback, event, source, target, dropee);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public EClass isDropAdapterfor() {
 		return MetamodelPackage.eINSTANCE.getModelElement();

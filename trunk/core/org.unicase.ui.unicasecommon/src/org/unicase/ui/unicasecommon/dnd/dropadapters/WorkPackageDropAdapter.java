@@ -119,6 +119,11 @@ public class WorkPackageDropAdapter extends UCDropAdapter {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public EClass isDropAdapterfor() {
 		return TaskPackage.eINSTANCE.getWorkPackage();
