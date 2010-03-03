@@ -13,5 +13,27 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.ui.navigator.MenuConfigurationEnablementTester"
+            id="org.unicase.ui.navigator.menucontributionenablementtester"
+            namespace="org.unicase.ui.navigator"
+            properties="actionIsEnabled"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer">
+         <command
+               commandId="org.unicase.ui.navigator.command1"
+               icon="icons/ModelElement.png"
+               label="New ModelElement..."
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
