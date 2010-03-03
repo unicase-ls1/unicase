@@ -137,7 +137,9 @@ public final class UnicaseActionHelper {
 	 * 
 	 * @param diagram MEDiagram to open
 	 * @param withMEEditor If the diagram is open in the meeditor
+	 * @deprecated
 	 */
+	@Deprecated
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
 
 		String id = null;
