@@ -15,21 +15,39 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Special option to merge longer texts.
+ * 
+ * @author wesendon
+ */
 public class MergeTextOption extends ConflictOption {
 
 	private List<ConflictOption> list;
 	private String text;
 
+	/**
+	 * Default constructor.
+	 */
 	public MergeTextOption() {
 		super("Select Edited/Merged Value", OptionType.MergeText);
 		list = new ArrayList<ConflictOption>();
 		setDetailProvider(DecisionConfig.WIDGET_MULTILINE_EDITABLE);
 	}
 
+	/**
+	 * Add options which should be merged. ATM: only "my" and "their" are
+	 * supported
+	 * 
+	 * @param option
+	 *            other option
+	 */
 	public void add(ConflictOption option) {
 		list.add(option);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getFullOptionLabel() {
 		String result = "";
@@ -39,18 +57,31 @@ public class MergeTextOption extends ConflictOption {
 		return result;
 	}
 
+	/**
+	 * Returns "my" text.
+	 * 
+	 * @return text
+	 */
 	public String getMyText() {
 		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
 				OptionType.MyOperation);
 		return (option == null) ? "" : option.getFullOptionLabel();
 	}
 
+	/**
+	 * Returns "their" text.
+	 * 
+	 * @return text
+	 */
 	public String getTheirString() {
 		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
 				OptionType.TheirOperation);
 		return (option == null) ? "" : option.getFullOptionLabel();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<AbstractOperation> getOperations() {
 		if (text != null) {
@@ -76,10 +107,21 @@ public class MergeTextOption extends ConflictOption {
 		return super.getOperations();
 	}
 
+	/**
+	 * Set resulted merged text.
+	 * 
+	 * @param text
+	 *            text
+	 */
 	public void setMergedText(String text) {
 		this.text = text;
 	}
 
+	/**
+	 * Get merged text.
+	 * 
+	 * @return text
+	 */
 	public String getMergedText() {
 		return text;
 	}

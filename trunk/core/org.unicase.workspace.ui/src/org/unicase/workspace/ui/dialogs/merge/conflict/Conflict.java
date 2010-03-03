@@ -18,7 +18,9 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
  * Main class representing a conflict. it offers all kind of convenience methods
- * and organizes the conflicts initialization.
+ * and organizes the conflicts initialization. Read the constructor's
+ * description for further implemenation details (
+ * {@link #Conflict(List, List, DecisionManager)})
  * 
  * @author wesendon
  */

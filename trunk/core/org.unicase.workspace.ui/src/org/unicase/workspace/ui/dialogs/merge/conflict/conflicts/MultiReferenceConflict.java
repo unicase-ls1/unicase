@@ -18,10 +18,27 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
+/**
+ * Conflict between two {@link MultiReferenceConflict}.
+ * 
+ * @author wesendon
+ */
 public class MultiReferenceConflict extends Conflict {
 
 	private final boolean meAdding;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param addingOperation
+	 *            list of operations, with leading adding multiref operation
+	 * @param removingOperation
+	 *            list of operations, with leading removing multiref operation
+	 * @param decisionManager
+	 *            decisionmanager
+	 * @param meAdding
+	 *            true, if merging user has adding multiref
+	 */
 	public MultiReferenceConflict(List<AbstractOperation> addingOperation,
 			List<AbstractOperation> removingOperation,
 			DecisionManager decisionManager, boolean meAdding) {
@@ -30,6 +47,9 @@ public class MultiReferenceConflict extends Conflict {
 		init();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictContext initConflictContext() {
 		return new ConflictContext(getDecisionManager().getModelElement(
@@ -38,6 +58,9 @@ public class MultiReferenceConflict extends Conflict {
 				getTheirOperation()));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		String description = "";
@@ -63,6 +86,9 @@ public class MultiReferenceConflict extends Conflict {
 		return confDescription;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
 		ConflictOption myOption = null;

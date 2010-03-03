@@ -13,14 +13,34 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
+/**
+ * Conflict between two
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation}
+ * . Special case of {@link AttributeConflict}.
+ * 
+ * @author wesendon
+ */
 public class DiagramLayoutConflict extends AttributeConflict {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param myOperations
+	 *            list of my operations
+	 * @param theirOperations
+	 *            list of their operations
+	 * @param decisionManager
+	 *            decisionmanager
+	 */
 	public DiagramLayoutConflict(List<AbstractOperation> myOperations,
 			List<AbstractOperation> theirOperations,
 			DecisionManager decisionManager) {
 		super(myOperations, theirOperations, decisionManager);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConflictDescription initConflictDescription() {
 		ConflictDescription description = super.initConflictDescription();
@@ -29,6 +49,9 @@ public class DiagramLayoutConflict extends AttributeConflict {
 		return description;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
 		super.initOptionsWithOutMerge(options, false);

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.ui.dialogs.merge.util;
 
 import java.util.List;
@@ -8,8 +13,21 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 
+/**
+ * Switch for case study.
+ * 
+ * @author wesendon
+ */
 public class CaseStudySwitch {
 
+	/**
+	 * Flatten changepackages.
+	 * 
+	 * @param myChangePackage
+	 *            my cp
+	 * @param theirChangePackages
+	 *            their cps
+	 */
 	public void flattenChangePackages(ChangePackage myChangePackage,
 			List<ChangePackage> theirChangePackages) {
 		boolean openQuestion = MessageDialog
