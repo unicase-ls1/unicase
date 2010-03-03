@@ -39,6 +39,11 @@ public class CompositeSectionDropAdapter extends UCDropAdapter {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public EClass isDropAdapterfor() {
 

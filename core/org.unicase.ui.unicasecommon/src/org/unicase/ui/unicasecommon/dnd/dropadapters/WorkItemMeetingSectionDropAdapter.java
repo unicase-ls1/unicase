@@ -50,6 +50,11 @@ public class WorkItemMeetingSectionDropAdapter extends UCDropAdapter {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
 	@Override
 	public EClass isDropAdapterfor() {
 		return MeetingPackage.eINSTANCE.getWorkItemMeetingSection();
