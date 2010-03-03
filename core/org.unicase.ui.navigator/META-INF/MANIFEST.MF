@@ -8,5 +8,8 @@ Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.unicase.ui.meeditor;visibility:=reexport
-Export-Package: org.unicase.ui.navigator
+Export-Package: org.unicase.ui.navigator,
+ org.unicase.ui.navigator.commands,
+ org.unicase.ui.navigator.handler,
+ org.unicase.ui.navigator.wizards
 

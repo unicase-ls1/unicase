@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   
    <extension-point id="menuconfiguration" name="Menu Configuration" schema="schema/menuconfiguration.exsd"/>
+   <extension-point id="org.unicase.ui.navigator.replaceProjectSpaceContentProvider" name="Replace Project Space Provider" schema="schema/org.unicase.ui.navigator.replaceProjectSpaceContentProvider.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -13,6 +15,7 @@
             restorable="true">
       </view>
    </extension>
+   
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
