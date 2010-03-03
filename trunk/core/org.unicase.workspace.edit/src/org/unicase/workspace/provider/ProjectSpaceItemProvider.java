@@ -12,10 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,8 +27,6 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -432,19 +427,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			if (project == null) {
 				return Collections.EMPTY_LIST;
 			}
-
-			Collection<EObject> ret = new ArrayList<EObject>();
-			EList<ModelElement> modelElements = project.getModelElementsByClass(MetamodelPackage.eINSTANCE
-				.getModelElement(), new BasicEList<ModelElement>());
-			// FIXME: ugly hack to avoid dependency to model
-			for (ModelElement modelElement : modelElements) {
-				EObject econtainer = modelElement.eContainer();
-				if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
-					ret.add(modelElement);
-				}
-			}
-			ret.add(project);
-			return ret;
+			// TODO: Check for better way
+			return project.getModelElements();
 		}
 		return new ArrayList<Object>();
 
