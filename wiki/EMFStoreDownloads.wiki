@@ -4,4 +4,10 @@ The EMFStore features can be installed from this update site:
 
 [http://unicase.googlecode.com/svn/updatesite/emfstore http://unicase.googlecode.com/svn/updatesite/emfstore]
 
-We are also working on a standalone version as a product currently and will make it available on this website also.
+ You can also download Standalone version as a product from the links given below.
+
+* [http://www1.in.tum.de/static/shared/unicase/products/linux.gtk.x86.zip 0.4.3.nightly for Linux gtk x86]
+* [http://www1.in.tum.de/static/shared/unicase/products/macosx.carbon.x86.zip 0.4.3.nightly for MacOsX carbon x86]
+* [http://www1.in.tum.de/static/shared/unicase/products/macosx.cocoa.x86_64.zip 0.4.3.nightly for MacOsX cocoa x86 and 64bit]
+* [http://www1.in.tum.de/static/shared/unicase/products/macosx.cocoa.x86.zip 0.4.3.nightly for MacOsX cocoa x86]
+* [http://www1.in.tum.de/static/shared/unicase/products/win32.x86_64.zip 0.4.3.nightly for Windows x86 and 64bit]
