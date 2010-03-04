@@ -59,8 +59,7 @@ public class FeatureSetConstraintBase extends AbstractModelConstraint {
 	 * @return true if it applies, false otherwise
 	 */
 	protected boolean applies(EObject element) {
-		return element.eClass() == feature.getEContainingClass()
-			|| element.eClass().getEAllSuperTypes().contains(feature.getEContainingClass());
+		return feature.getEContainingClass().getInstanceClass().isAssignableFrom(element.eClass().getInstanceClass());
 	}
 
 }

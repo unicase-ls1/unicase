@@ -59,8 +59,8 @@ public abstract class WellFormedNameConstraintBase extends AbstractModelConstrai
 	 * @return true if it applies, false otherwise
 	 */
 	protected boolean applies(EObject element) {
-		return element.eClass() == nameAttribute.getEContainingClass()
-			|| element.eClass().getEAllSuperTypes().contains(nameAttribute.getEContainingClass());
+		return nameAttribute.getEContainingClass().getInstanceClass().isAssignableFrom(
+			element.eClass().getInstanceClass());
 	}
 
 	/**
