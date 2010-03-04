@@ -4,7 +4,7 @@ The EMFStore features can be installed from this update site:
 
 [http://unicase.googlecode.com/svn/updatesite/emfstore http://unicase.googlecode.com/svn/updatesite/emfstore]
 
- You can also download Standalone version as a product from the links given below.
+You can also download Standalone version as a product from the links given below.
 
   * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_linux.gtk.x86.zip 0.4.3.nightly for Linux gtk x86]
   * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_macosx.carbon.x86.zip 0.4.3.nightly for MacOsX carbon x86]
