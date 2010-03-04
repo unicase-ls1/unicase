@@ -113,7 +113,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			}
 
 			// do not create any command for NonDomainElement types
-			if (MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(containment.getEReferenceType())) {
+			if (MetamodelPackage.eINSTANCE.getNonDomainElement().getInstanceClass().isAssignableFrom(
+				containment.getEReferenceType().getInstanceClass())) {
 				continue;
 			}
 

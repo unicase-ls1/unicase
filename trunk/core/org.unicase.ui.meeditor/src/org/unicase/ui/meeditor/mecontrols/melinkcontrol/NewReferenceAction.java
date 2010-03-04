@@ -126,7 +126,8 @@ public class NewReferenceAction extends Action {
 					reference = containmentitem;
 
 					break;
-				} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+				} else if (containmentitem.getEReferenceType().getInstanceClass().isAssignableFrom(
+					newMEInstance.eClass().getInstanceClass())) {
 
 					reference = containmentitem;
 					break;

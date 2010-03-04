@@ -141,7 +141,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		Boolean subclasses) {
 
 		// sanity check
-		if (!MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
+		if (!MetamodelPackage.eINSTANCE.getModelElement().getInstanceClass().isAssignableFrom(modelElementClass.getInstanceClass())) {
 			return list;
 		}
 
@@ -174,7 +174,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public <T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list) {
 
-		if (!MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
+		if (!MetamodelPackage.eINSTANCE.getModelElement().getInstanceClass().isAssignableFrom(modelElementClass.getInstanceClass())) {
 			return list;
 		}
 		for (ModelElement modelElement : this.getModelElements()) {
@@ -529,7 +529,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				continue;
 			}
 				
-			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass)eType)) {
+			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().getInstanceClass().isAssignableFrom(((EClass)eType).getInstanceClass())) {
 				modelElement.eUnset(reference);
 			}
 		}

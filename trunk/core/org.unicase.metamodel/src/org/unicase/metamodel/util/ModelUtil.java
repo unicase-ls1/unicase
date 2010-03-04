@@ -282,7 +282,7 @@ public final class ModelUtil {
 	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
 		// sanity checks
 		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
-		if (!modelELementEClass.isSuperTypeOf(clazz)) {
+		if (!modelELementEClass.getInstanceClass().isAssignableFrom(clazz.getInstanceClass())) {
 			throw new IllegalStateException("Given EClass \"" + clazz.getName()
 				+ "\" is not a subtype of EClass ModelElement");
 		}
