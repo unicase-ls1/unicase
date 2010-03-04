@@ -125,8 +125,7 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 			} else if (oldElement != null && newElement == null) {
 				return "Unset " + op.getFeatureName() + " in " + elementName + " from previous value " + oldName;
 			} else {
-				return "Set " + op.getFeatureName() + " in " + elementName + " to " + newName + " from previous value "
-					+ oldName;
+				return "Set " + op.getFeatureName() + " in " + elementName + " from " + oldName + " to " + newName;
 			}
 		}
 		return super.getText(object);
