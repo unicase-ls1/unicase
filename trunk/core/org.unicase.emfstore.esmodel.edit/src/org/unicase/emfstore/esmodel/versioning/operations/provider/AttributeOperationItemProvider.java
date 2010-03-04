@@ -125,8 +125,8 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 				return "Unset " + op.getFeatureName() + " in " + elemNameAndClass + " from previous value \""
 					+ trim(oldValue) + "\"";
 			} else {
-				return "Set " + op.getFeatureName() + " in " + elemNameAndClass + " to \"" + trim(newValue)
-					+ "\" from previous value \"" + trim(oldValue) + "\"";
+				return "Set " + op.getFeatureName() + " in " + elemNameAndClass + " from \"" + trim(oldValue)
+					+ "\" to \"" + trim(newValue) + "\"";
 			}
 		}
 		return super.getText(object);
