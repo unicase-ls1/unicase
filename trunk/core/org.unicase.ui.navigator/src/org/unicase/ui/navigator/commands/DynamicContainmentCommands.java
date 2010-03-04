@@ -53,6 +53,9 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	protected IContributionItem[] getContributionItems() {
 		// 1. get selected EObject
 		selectedME = ActionHelper.getSelectedEObject();
+		if (selectedME == null) {
+			return new IContributionItem[0];
+		}
 		if (selectedME instanceof ProjectSpace) {
 			return createNewWizard(selectedME.eClass());
 		}
