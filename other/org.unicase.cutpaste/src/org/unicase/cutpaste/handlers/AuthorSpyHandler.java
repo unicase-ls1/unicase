@@ -11,7 +11,7 @@ import org.unicase.ui.common.util.ActionHelper;
 
 public class AuthorSpyHandler extends AbstractHandler {
 
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public final Object execute(final ExecutionEvent event) throws ExecutionException {
 				
 		ModelElement me = ActionHelper.getModelElement(event);
 				
@@ -22,15 +22,15 @@ public class AuthorSpyHandler extends AbstractHandler {
 		MessageDialog.openInformation(
 				null,
 				"w@iglt info_box",
-				"Object has been created by: "+author+" on the following date: "+creationDate+".") ;
+				"Object has been created by: "+author+" on the following date: "+creationDate+". Rest: -> "+me.toString());
 		return null;
 	}
 	
-	public String lookupAuthor(final ModelElement me) {
+	public final String lookupAuthor(final ModelElement me) {
 		String creator = me.getCreator();
 		return creator;
 	}
-	public String lookupCreationDate(final ModelElement me) {
+	public final String lookupCreationDate(final ModelElement me) {
 		Date creation = me.getCreationDate();
 		java.sql.Date formattedCreation = new java.sql.Date(creation.getTime()); 
 		return formattedCreation.toString();
