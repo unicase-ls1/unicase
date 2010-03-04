@@ -47,7 +47,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		if (confs.length > 1) {
 			WorkspaceUtil.logWarning("Duplicate ProjectSpaceContent Provider registered", new IllegalStateException());
 		}
-		if (confs.length >= 1) {
+		if (confs.length == 1) {
 			try {
 				contentProvider = (ProjectSpaceContentProvider) confs[0].createExecutableExtension("class");
 
