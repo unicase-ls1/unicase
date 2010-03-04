@@ -5,11 +5,11 @@
 Update sites and downloads of the EMFStore are on the [EMFStoreDownloads EMFStore Downloads page].
 
 
-=== EMFStore Downloads ===
+=== EMF Client Platform Downloads ===
 
 Update sites and downloads of the EMF Client Platform are on the [ECPDownloads ECP Downloads page].
 
 
-=== EMFStore Downloads ===
+=== UNICASE Client Downloads ===
 
 Update sites and downloads of the UNICASE client are on the [UNICASEClientDownloads UNICASE Client Downloads page].
