@@ -1,13 +1,15 @@
 #summary Downloads of the UNICASE project
 
-===Update Sites===
+=== EMFStore Downloads ===
 
-We currently have two different update sites. The internal update site contains a beta release that we also run on our beta server where we host the UNICASE project itself. The external update site is intended for end users to update their clients with the latest external release:
+Update sites and downloads of the EMFStore are on the [EMFStoreDownloads EMFStore Downloads page].
 
-Internal Update Site: [http://unicase.googlecode.com/svn/updatesite/internal/ http://unicase.googlecode.com/svn/updatesite/internal/]
 
-External Update Site: [http://wwwbruegge.in.tum.de/unicase/ http://wwwbruegge.in.tum.de/unicase/]
+=== EMFStore Downloads ===
 
-===Standalone Client Download===
+Update sites and downloads of the EMF Client Platform are on the [ECPDownloads ECP Downloads page].
 
-Standalone clients of UNICASE and its latest external release are available for download on the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/50f86/Downloads.html product website].
+
+=== EMFStore Downloads ===
+
+Update sites and downloads of the UNICASE client are on the [UNICASEClientDownloads UNICASE Client Downloads page].
