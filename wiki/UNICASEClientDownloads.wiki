@@ -12,4 +12,11 @@ External Update Site: [http://wwwbruegge.in.tum.de/unicase/ http://wwwbruegge.in
 
 Standalone clients of UNICASE and its latest external release are available for download on the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/50f86/Downloads.html product website].
 
-===UNICASE Server Download===
+===Standalone UNICASE Server Download===
+
+
+  * [http://www1.in.tum.de/static/shared/unicase/products/0.4.1/0.4.1-emfstorestandalone.linux.gtk.x86 Server for Linux gtk x86]
+  * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_macosx.carbon.x86.zip 0.4.3.nightly for MacOsX carbon x86]
+  * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_macosx.cocoa.x86_64.zip 0.4.3.nightly for MacOsX cocoa x86 and 64bit]
+  * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_macosx.cocoa.x86.zip 0.4.3.nightly for MacOsX cocoa x86]
+  * [http://unicase.googlecode.com/svn/standaloneproducts/emfstore/0.4.3.nightly_win32.x86_64.zip 0.4.3.nightly for Windows x86 and 64bit]
