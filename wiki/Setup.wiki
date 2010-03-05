@@ -9,9 +9,7 @@ Guidelines:
  * [PluginConfiguration Plugin Configuration Guidelines]
 
 How Tos:
- * [Build How to create and build a UNICASE feature or product]
- * [Release How to release a UNICASE feature or product]
- * [Deploy How to deploy a UNICASE feature or product]
+
  * [EMFStore_Configuration How to configure the EMFStore]
  * [Creating_keystores_for_encryption How to creating keystores for EMFStore]
  * [Use_External_Library How to use an external library]
