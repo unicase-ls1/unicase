@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -34,12 +35,11 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	public ModelTreeContentProvider(EClass selected) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.selected = selected;
-		Set<EClass> eClasses = new HashSet<EClass>();
-		// TODO: add classes
+		Set<EClass> eClasses = ModelUtil.getAllModelElementEClasses();
 		modelElementClasses = new HashSet<EClass>();
 		rootPackages = new HashSet<EPackage>();
 		for (EClass eClass : eClasses) {
-			if (!isNonDomainElement(eClass)) {
+			if (!isNonDomainElement(eClass) && !eClass.isAbstract()) {
 				modelElementClasses.add(eClass);
 			}
 		}
