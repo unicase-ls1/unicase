@@ -38,7 +38,7 @@ Following steps summarize how to add delta-pack in your eclipse instance.
 
 ==Emfstore product:==
 
-By this point we expect you to have a properly configured version of eclipse with delta-pack. If you still have some problem then we have a pre-configured eclipse instance for "Mac OS" which you can get from [here], But in this instance you will have to add delta-pack as mentioned above.
+By this point we expect you to have a properly configured version of eclipse with delta-pack. If you still have some problem then we have a pre-configured eclipse instance for "Mac OS" which you can get from [http://www1.in.tum.de/static/shared/unicase/products/eclipse_for_rcp.zip here], But in this instance you will have to add delta-pack as mentioned above.
 
  * In next steps we summarize the actual steps involved in building the emfstore product.
 
