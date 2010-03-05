@@ -14,7 +14,6 @@ We currently use the following development tools:
           o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
           o Checkstyle (use version 4.4.x): - http://eclipse-cs.sourceforge.net/update<br>
           o Findbugs: http://findbugs.cs.umd.edu/eclipse<br>
-          o Groovy: http://dist.springsource.org/release/GRECLIPSE/e3.5/<br>
           o SWTBOT: Please find [http://www.eclipse.org/swtbot/downloads.php here] the update site that is compatible with your eclipse version<br>
 
 
