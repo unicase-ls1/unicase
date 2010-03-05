@@ -1,4 +1,4 @@
-This section contains guidelines for the set-up of your development environment and configuration of UNICASE plugins.
+This section contains guidelines for the set-up of your development environment and configuration of UNICASE plugins. Also it explains how to create, release and deploy UNICASE features and products
 
 Resources:
  * [SVN_Repository SVN Repository]
@@ -9,6 +9,9 @@ Guidelines:
  * [PluginConfiguration Plugin Configuration Guidelines]
 
 How Tos:
+ * [Build How to create and build a UNICASE feature or product]
+ * [Release How to release a UNICASE feature or product]
+ * [Deploy How to deploy a UNICASE feature or product]
  * [EMFStore_Configuration How to configure the EMFStore]
  * [Creating_keystores_for_encryption How to creating keystores for EMFStore]
  * [Use_External_Library How to use an external library]
