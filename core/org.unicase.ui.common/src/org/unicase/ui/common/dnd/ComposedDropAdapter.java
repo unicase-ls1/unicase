@@ -271,7 +271,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			Set<EClass> toBeRemoved = new HashSet<EClass>();
 			for (EClass eClass1 : intersection) {
 				for (EClass eClass2 : intersection) {
-					if (!eClass2.equals(eClass1) && eClass2.getInstanceClass().isAssignableFrom(eClass1.getInstanceClass())) {
+					if (!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)) {
 						toBeRemoved.add(eClass2);
 					}
 				}

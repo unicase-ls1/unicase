@@ -201,7 +201,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		// drop only allowed elements
-		if (!reference.getEReferenceType().getInstanceClass().isAssignableFrom(dropee.eClass().getInstanceClass())) {
+		if (!reference.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
 			return false;
 		}
 

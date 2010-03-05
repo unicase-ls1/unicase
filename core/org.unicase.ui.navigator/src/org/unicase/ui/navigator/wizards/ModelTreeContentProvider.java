@@ -107,8 +107,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	private boolean isNonDomainElement(Object object) {
 
 		return object instanceof EClass
-			&& MetamodelPackage.eINSTANCE.getNonDomainElement().getInstanceClass().isAssignableFrom(
-				((EClass) object).getInstanceClass());
+			&& MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
 	}
 
 	/**
@@ -121,15 +120,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// if argument is instance of EClass and
 		// it inherits ModelElement and it is not abstract
 		// return true
-		if (!(object instanceof EClass)) {
-			return false;
-		}
-		EClass eClass = (EClass) object;
-		if (eClass.isAbstract()) {
-			return false;
-		}
-		return MetamodelPackage.eINSTANCE.getModelElement().getInstanceClass().isAssignableFrom(
-			eClass.getInstanceClass());
+		return object instanceof EClass
+			&& ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
+			&& !((EClass) object).isAbstract();
 	}
 
 	/**
