@@ -175,7 +175,7 @@ public final class ActionHelper {
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotDefinedException e) {
-			DialogHandler.showExceptionDialog(e);
+			//DialogHandler.showExceptionDialog(e);
 		} catch (NotEnabledException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
