@@ -11,5 +11,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.common.ui,
  org.unicase.workspace,
  org.unicase.ui.common,
- org.eclipse.ui.editors
+ org.eclipse.ui.editors,
+ org.unicase.ui.meeditor
 Bundle-ActivationPolicy: lazy
+Import-Package: org.unicase.ui.meeditor.mecontrols.melinkcontrol
