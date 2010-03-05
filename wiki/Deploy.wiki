@@ -1,11 +1,6 @@
-This section describes the various types of UNICASE deployment:
+This section describes how to deploy the UNICASE features and products:
 
- * [Create_update_site How to Create an Eclipse Feature and an Update Site]
  * [Client_Deployment_Internal_Version  Client Deployment (Internal Version)]
  * [Client_Deployment_External_Version  Client Deployment (External Version)]
  * Server Deployment
- * [Server_standalone_deployment Server standalone deployment]
- 
-This guide helps you create a command-line Eclipse product such as the emfstore:
 
-[Commandline_Product Commandline Product]
