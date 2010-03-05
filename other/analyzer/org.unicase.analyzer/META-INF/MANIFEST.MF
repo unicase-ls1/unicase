@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: UNICASE Analyzer Plugin
 Bundle-SymbolicName: org.unicase.analyzer;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.unicase.workspace;visibility:=reexport
