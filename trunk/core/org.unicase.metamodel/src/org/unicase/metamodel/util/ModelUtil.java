@@ -259,24 +259,20 @@ public final class ModelUtil {
 	 * returns all classes that have direct instances.
 	 * 
 	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @return a set of EClasses 
-	 * 
-	 * IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz) {
 		return getSubclasses(clazz, false);
 	}
 
-	
 	/**
-	 * Returns all subclasses of the given input class in the given package. 
+	 * Returns all subclasses of the given input class in the given package.
 	 * 
 	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the result
-	 * @return a set of EClasses 
-	 * 
-	 * IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the
+	 *            result
+	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
@@ -293,12 +289,15 @@ public final class ModelUtil {
 		}
 		return ret;
 	}
-	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage, boolean includeAbstractClassesAndInterfaces) {
+
+	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage,
+		boolean includeAbstractClassesAndInterfaces) {
 
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
 				EClass subClass = (EClass) classifier;
-				if (clazz.isSuperTypeOf(subClass) && (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
+				if (clazz.isSuperTypeOf(subClass)
+					&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
 					ret.add(subClass);
 				}
 			}
@@ -326,6 +325,50 @@ public final class ModelUtil {
 			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
 				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				result.add(model);
+			}
+		}
+		return result;
+	}
+
+	private static Set<EClass> modelElementEClasses;
+
+	/**
+	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
+	 * 
+	 * @return a set of EClasses
+	 */
+	public static Set<EClass> getAllModelElementEClasses() {
+		if (modelElementEClasses != null) {
+			return modelElementEClasses;
+		}
+		Set<EClass> result = new HashSet<EClass>();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
+			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+			result.addAll(getAllModelElementEClasses(ePackage));
+		}
+		modelElementEClasses = result;
+		return result;
+	}
+
+	/**
+	 * Retrieve all EClasses from the Ecore package that are model element subclasses.
+	 * 
+	 * @param ePackage the package to get the classes from
+	 * @return a set of EClasses
+	 */
+	private static Set<EClass> getAllModelElementEClasses(EPackage ePackage) {
+		Set<EClass> result = new HashSet<EClass>();
+		for (EPackage subPackage : ePackage.getESubpackages()) {
+			result.addAll(getAllModelElementEClasses(subPackage));
+		}
+		for (EClassifier classifier : ePackage.getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				EClass eClass = (EClass) classifier;
+				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(eClass)) {
+					result.add(eClass);
+				}
 			}
 		}
 		return result;
@@ -452,7 +495,7 @@ public final class ModelUtil {
 		EObject clone = EcoreUtil.copy(eObject);
 		return (T) clone;
 	}
-	
+
 	/**
 	 * Clone a list of EObjects.
 	 * 
@@ -463,11 +506,11 @@ public final class ModelUtil {
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> List<T> clone(List<T> list) {
 		ArrayList<T> result = new ArrayList<T>();
-		for (EObject eObject: list) {
+		for (EObject eObject : list) {
 			T clone = (T) EcoreUtil.copy(eObject);
 			result.add(clone);
 		}
-		return result;		
+		return result;
 	}
 
 	/**
@@ -608,14 +651,16 @@ public final class ModelUtil {
 
 	/**
 	 * Retrieve the current model version number.
+	 * 
 	 * @return an integer identifing the current model version
 	 * @throws MalformedModelVersionException if there is no well formed or defined model version
 	 */
-	public static int getModelVersionNumber() throws MalformedModelVersionException{
+	public static int getModelVersionNumber() throws MalformedModelVersionException {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-		"org.unicase.metamodel.modelversion");
-		if (rawExtensions.length!=1) {
-			String message = "There is "+ rawExtensions.length +" Model Version(s) registered for the given model. Migrator will assume model version 0.";
+			"org.unicase.metamodel.modelversion");
+		if (rawExtensions.length != 1) {
+			String message = "There is " + rawExtensions.length
+				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
 			logWarning(message, new MalformedModelVersionException(message));
 			return 0;
 		}
@@ -624,9 +669,9 @@ public final class ModelUtil {
 		try {
 			int version = Integer.parseInt(string);
 			return version;
-		}
-		catch (NumberFormatException e) {
-			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: " + string);
+		} catch (NumberFormatException e) {
+			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: "
+				+ string);
 		}
 	}
 }
