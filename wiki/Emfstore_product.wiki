@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Requirements:
+
+ * [http://www.eclipse.org/downloads/ Eclipse for RCP/Plug-in Developers]
+ * [http://update.eclipse.org/downloads/drops/R-3.5-200906111540/index.php delta pack]
