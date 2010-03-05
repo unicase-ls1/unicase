@@ -25,10 +25,9 @@ import org.unicase.metamodel.ModelElement;
  *
  * @see org.eclipse.example.library.LibraryPackage#getWriter()
  * @model
- * @extends ModelElement
  * @generated
  */
-public interface Writer extends ModelElement {
+public interface Writer extends LibraryBase {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

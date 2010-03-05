@@ -17,9 +17,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.example.library.Book;
 import org.eclipse.example.library.BookCategory;
 import org.eclipse.example.library.Library;
+import org.eclipse.example.library.LibraryBase;
 import org.eclipse.example.library.LibraryFactory;
 import org.eclipse.example.library.LibraryPackage;
 import org.eclipse.example.library.Writer;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +50,13 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * @generated
 	 */
 	private EClass writerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libraryBaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +110,9 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new LibraryPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theLibraryPackage.createPackageContents();
@@ -230,6 +242,15 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLibraryBase() {
+		return libraryBaseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getBookCategory() {
 		return bookCategoryEEnum;
 	}
@@ -277,6 +298,8 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		createEAttribute(writerEClass, WRITER__NAME);
 		createEReference(writerEClass, WRITER__BOOKS);
 
+		libraryBaseEClass = createEClass(LIBRARY_BASE);
+
 		// Create enums
 		bookCategoryEEnum = createEEnum(BOOK_CATEGORY);
 	}
@@ -304,11 +327,18 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		bookEClass.getESuperTypes().add(this.getLibrary());
+		libraryEClass.getESuperTypes().add(this.getLibraryBase());
+		writerEClass.getESuperTypes().add(this.getLibraryBase());
+		libraryBaseEClass.getESuperTypes().add(theMetamodelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(bookEClass, Book.class, "Book", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -325,6 +355,8 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		initEClass(writerEClass, Writer.class, "Writer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWriter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Writer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWriter_Books(), this.getBook(), this.getBook_Author(), "books", null, 0, -1, Writer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libraryBaseEClass, LibraryBase.class, "LibraryBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(bookCategoryEEnum, BookCategory.class, "BookCategory");

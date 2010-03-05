@@ -39,7 +39,7 @@ import org.eclipse.example.library.LibraryPackage;
  * @generated
  */
 public class LibraryItemProvider
-	extends ItemProviderAdapter
+	extends LibraryBaseItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -193,17 +193,6 @@ public class LibraryItemProvider
 			(createChildParameter
 				(LibraryPackage.Literals.LIBRARY__BOOKS,
 				 LibraryFactory.eINSTANCE.createBook()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return LibraryEditPlugin.INSTANCE;
 	}
 
 }

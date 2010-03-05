@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.example.library.*;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,18 +92,36 @@ public class LibrarySwitch<T> {
 			case LibraryPackage.BOOK: {
 				Book book = (Book)theEObject;
 				T result = caseBook(book);
+				if (result == null) result = caseLibrary(book);
+				if (result == null) result = caseLibraryBase(book);
+				if (result == null) result = caseModelElement(book);
+				if (result == null) result = caseIdentifiableElement(book);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case LibraryPackage.LIBRARY: {
 				Library library = (Library)theEObject;
 				T result = caseLibrary(library);
+				if (result == null) result = caseLibraryBase(library);
+				if (result == null) result = caseModelElement(library);
+				if (result == null) result = caseIdentifiableElement(library);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case LibraryPackage.WRITER: {
 				Writer writer = (Writer)theEObject;
 				T result = caseWriter(writer);
+				if (result == null) result = caseLibraryBase(writer);
+				if (result == null) result = caseModelElement(writer);
+				if (result == null) result = caseIdentifiableElement(writer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LibraryPackage.LIBRARY_BASE: {
+				LibraryBase libraryBase = (LibraryBase)theEObject;
+				T result = caseLibraryBase(libraryBase);
+				if (result == null) result = caseModelElement(libraryBase);
+				if (result == null) result = caseIdentifiableElement(libraryBase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,6 +171,51 @@ public class LibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseWriter(Writer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Base</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Base</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibraryBase(LibraryBase object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

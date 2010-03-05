@@ -9,6 +9,7 @@ package org.eclipse.example.library.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.unicase.metamodel.provider.MetamodelEditPlugin;
 
 /**
  * This is the central singleton for the Library edit plugin.
@@ -42,6 +43,7 @@ public final class LibraryEditPlugin extends EMFPlugin {
 	public LibraryEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     MetamodelEditPlugin.INSTANCE,
 		   });
 	}
 

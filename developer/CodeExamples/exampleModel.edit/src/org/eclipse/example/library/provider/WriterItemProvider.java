@@ -36,7 +36,7 @@ import org.eclipse.example.library.Writer;
  * @generated
  */
 public class WriterItemProvider
-	extends ItemProviderAdapter
+	extends LibraryBaseItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -168,17 +168,6 @@ public class WriterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return LibraryEditPlugin.INSTANCE;
 	}
 
 }
