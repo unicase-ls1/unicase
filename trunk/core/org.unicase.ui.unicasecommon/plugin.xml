@@ -996,4 +996,10 @@
           class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider">
     </ProjectSpaceContentProvider>
  </extension>
+ <extension
+       point="org.unicase.ui.navigator.menuconfiguration">
+    <ContainmentCreationActions
+          enabled="false">
+    </ContainmentCreationActions>
+ </extension>
 </plugin>
