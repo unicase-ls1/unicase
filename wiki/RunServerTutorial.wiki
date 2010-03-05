@@ -1,3 +1,3 @@
 #summary Video Tutorial on how to run the EMFStore as a developer.
 
- <wiki:video url="http://www.youtube.com/watch?v=fkT13NOPY68"/>
+ <wiki:video url="http://www.youtube.com/watch?v=uTE_neVwz-Q"/>
