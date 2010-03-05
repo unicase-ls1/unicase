@@ -123,7 +123,7 @@ public abstract class  MEDropAdapter {
 			// of drag source. We suppose that elements with different types are
 			// not allowed to be drag and dropped.
 			if (ref.getEReferenceType().equals(dropee.eClass())
-				|| ref.getEReferenceType().getInstanceClass().isAssignableFrom(dropee.eClass().getInstanceClass())) {
+				|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
 				return ref;
 			}
 		}
@@ -319,7 +319,8 @@ public abstract class  MEDropAdapter {
 		for (EReference ref : target.eClass().getEAllContainments()) {
 
 			if (!ref.isContainer()
-				&& (ref.getEReferenceType().getInstanceClass().isAssignableFrom(refType.getInstanceClass()))) {
+				&& (ref.getEReferenceType().equals(refType) || ref.getEReferenceType().isSuperTypeOf(refType))) {
+
 				result = true;
 				break;
 			}
