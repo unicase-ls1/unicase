@@ -1,12 +1,10 @@
-= Introduction =
-
-Requirements:
+==Requirements:==
 
  * [http://www.eclipse.org/downloads/ Eclipse for RCP/Plug-in Developers]
  * [http://update.eclipse.org/downloads/drops/R-3.5-200906111540/index.php delta pack]
  * Java 1.5 
 
-Initial Setup:
+===Initial Setup:===
 
  * Download eclipse for RCP/Plug-in development from the eclipse project home page.
  * Download delta-pack from the link given above.
@@ -16,7 +14,7 @@ You have to setup the build environment properly to build the product for differ
 
 NOTE: please make sure that you have Java 1.5 installed on your system and is set as the default execution environment for the eclipse instance you are using to build the product. This can be confirmed in the preferences of the eclipse and then under "Java -> Installed JREs -> Execution Environment". Please restart your instance if this is the first time you have configured this.
 
-  Adding Delta-pack plugins in eclipse:
+==Adding Delta-pack plugins in eclipse:==
 
 Once the correct version of Java is configured for the execution environment its time to add delta pack in the target-platform setting in the plug-in development setting within the eclipse instance. Delta pack has required plugin to ship the final product for various platforms like Windows, Mac, Linux etc.
 
@@ -35,7 +33,7 @@ Following steps summarize how to add delta-pack in your eclipse instance.
  * Click "OK" to finish configuring.
  * Better to restart your eclipse instance now!
 
-Emfstore product:
+==Emfstore product:==
 
 By this point we expect you to have a properly configured version of eclipse with delta-pack. If you still have some problem then we have a pre-configured eclipse instance for "Mac OS" which you can get from [here], But in this instance you will have to add delta-pack as mentioned above.
 
@@ -71,7 +69,7 @@ You can further configure various things within the "Splash", "Branding","Launch
   # If its working fine then its time to export it for stand-alone use.
   # Use the link within "Exporting" section to get to "Eclipse product export wizard".
 
-Exporting :
+==Exporting :==
 
   * Insert the destination information in the "Eclipse product export wizard".
   * Select "Export for multiple platforms" within "Export Options". (This option won't be available if your eclipse instance is not properly configure with delta-pack)
