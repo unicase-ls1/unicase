@@ -25,10 +25,9 @@ import org.unicase.metamodel.ModelElement;
  *
  * @see org.eclipse.example.library.LibraryPackage#getBook()
  * @model
- * @extends ModelElement
  * @generated
  */
-public interface Book extends ModelElement {
+public interface Book extends Library {
 	/**
 	 * Returns the value of the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->

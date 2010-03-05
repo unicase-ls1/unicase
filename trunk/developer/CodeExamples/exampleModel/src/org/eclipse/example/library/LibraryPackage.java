@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +62,52 @@ public interface LibraryPackage extends EPackage {
 	LibraryPackage eINSTANCE = org.eclipse.example.library.impl.LibraryPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.example.library.impl.LibraryBaseImpl <em>Base</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.example.library.impl.LibraryBaseImpl
+	 * @see org.eclipse.example.library.impl.LibraryPackageImpl#getLibraryBase()
+	 * @generated
+	 */
+	int LIBRARY_BASE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_BASE__IDENTIFIER = MetamodelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_BASE__CREATOR = MetamodelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_BASE__CREATION_DATE = MetamodelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The number of structural features of the '<em>Base</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_BASE_FEATURE_COUNT = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.example.library.impl.BookImpl <em>Book</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,51 +116,6 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 */
 	int BOOK = 0;
-
-	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__TITLE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Pages</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__PAGES = 1;
-
-	/**
-	 * The feature id for the '<em><b>Category</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__CATEGORY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Author</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__AUTHOR = 3;
-
-	/**
-	 * The number of structural features of the '<em>Book</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.example.library.impl.LibraryImpl <em>Library</em>}' class.
@@ -126,13 +128,40 @@ public interface LibraryPackage extends EPackage {
 	int LIBRARY = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__IDENTIFIER = LIBRARY_BASE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__CREATOR = LIBRARY_BASE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__CREATION_DATE = LIBRARY_BASE__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY__NAME = 0;
+	int LIBRARY__NAME = LIBRARY_BASE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Writers</b></em>' containment reference list.
@@ -141,7 +170,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY__WRITERS = 1;
+	int LIBRARY__WRITERS = LIBRARY_BASE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Books</b></em>' containment reference list.
@@ -150,7 +179,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY__BOOKS = 2;
+	int LIBRARY__BOOKS = LIBRARY_BASE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Library</em>' class.
@@ -159,7 +188,106 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_FEATURE_COUNT = 3;
+	int LIBRARY_FEATURE_COUNT = LIBRARY_BASE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__IDENTIFIER = LIBRARY__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CREATOR = LIBRARY__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CREATION_DATE = LIBRARY__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__NAME = LIBRARY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Writers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__WRITERS = LIBRARY__WRITERS;
+
+	/**
+	 * The feature id for the '<em><b>Books</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__BOOKS = LIBRARY__BOOKS;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__TITLE = LIBRARY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pages</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__PAGES = LIBRARY_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CATEGORY = LIBRARY_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__AUTHOR = LIBRARY_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Book</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK_FEATURE_COUNT = LIBRARY_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.example.library.impl.WriterImpl <em>Writer</em>}' class.
@@ -172,13 +300,40 @@ public interface LibraryPackage extends EPackage {
 	int WRITER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRITER__IDENTIFIER = LIBRARY_BASE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRITER__CREATOR = LIBRARY_BASE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRITER__CREATION_DATE = LIBRARY_BASE__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WRITER__NAME = 0;
+	int WRITER__NAME = LIBRARY_BASE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Books</b></em>' reference list.
@@ -187,7 +342,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WRITER__BOOKS = 1;
+	int WRITER__BOOKS = LIBRARY_BASE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Writer</em>' class.
@@ -196,7 +351,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WRITER_FEATURE_COUNT = 2;
+	int WRITER_FEATURE_COUNT = LIBRARY_BASE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.example.library.BookCategory <em>Book Category</em>}' enum.
@@ -206,7 +361,7 @@ public interface LibraryPackage extends EPackage {
 	 * @see org.eclipse.example.library.impl.LibraryPackageImpl#getBookCategory()
 	 * @generated
 	 */
-	int BOOK_CATEGORY = 3;
+	int BOOK_CATEGORY = 4;
 
 
 	/**
@@ -337,6 +492,16 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWriter_Books();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.example.library.LibraryBase <em>Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Base</em>'.
+	 * @see org.eclipse.example.library.LibraryBase
+	 * @generated
+	 */
+	EClass getLibraryBase();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.example.library.BookCategory <em>Book Category</em>}'.
@@ -471,6 +636,16 @@ public interface LibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference WRITER__BOOKS = eINSTANCE.getWriter_Books();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.example.library.impl.LibraryBaseImpl <em>Base</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.example.library.impl.LibraryBaseImpl
+		 * @see org.eclipse.example.library.impl.LibraryPackageImpl#getLibraryBase()
+		 * @generated
+		 */
+		EClass LIBRARY_BASE = eINSTANCE.getLibraryBase();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.example.library.BookCategory <em>Book Category</em>}' enum.

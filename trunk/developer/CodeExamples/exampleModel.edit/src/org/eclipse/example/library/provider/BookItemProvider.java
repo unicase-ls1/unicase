@@ -36,7 +36,7 @@ import org.eclipse.example.library.LibraryPackage;
  * @generated
  */
 public class BookItemProvider
-	extends ItemProviderAdapter
+	extends LibraryItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -179,7 +179,7 @@ public class BookItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Book)object).getTitle();
+		String label = ((Book)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Book_type") :
 			getString("_UI_Book_type") + " " + label;
@@ -216,17 +216,6 @@ public class BookItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return LibraryEditPlugin.INSTANCE;
 	}
 
 }

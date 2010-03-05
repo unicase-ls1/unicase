@@ -14,6 +14,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.example.library.*;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,6 +86,18 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 				return createWriterAdapter();
 			}
 			@Override
+			public Adapter caseLibraryBase(LibraryBase object) {
+				return createLibraryBaseAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiableElement(IdentifiableElement object) {
+				return createIdentifiableElementAdapter();
+			}
+			@Override
+			public Adapter caseModelElement(ModelElement object) {
+				return createModelElementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -142,6 +156,48 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWriterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.example.library.LibraryBase <em>Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.example.library.LibraryBase
+	 * @generated
+	 */
+	public Adapter createLibraryBaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.ModelElement
+	 * @generated
+	 */
+	public Adapter createModelElementAdapter() {
 		return null;
 	}
 

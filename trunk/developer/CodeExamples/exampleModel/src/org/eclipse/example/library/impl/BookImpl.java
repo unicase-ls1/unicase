@@ -38,7 +38,7 @@ import org.unicase.metamodel.impl.ModelElementImpl;
  *
  * @generated
  */
-public class BookImpl extends ModelElementImpl implements Book {
+public class BookImpl extends LibraryImpl implements Book {
 	/**
 	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -197,7 +197,7 @@ public class BookImpl extends ModelElementImpl implements Book {
 	 * @generated
 	 */
 	public Writer getAuthor() {
-		if (author != null && ((EObject)author).eIsProxy()) {
+		if (author != null && author.eIsProxy()) {
 			InternalEObject oldAuthor = (InternalEObject)author;
 			author = (Writer)eResolveProxy(oldAuthor);
 			if (author != oldAuthor) {

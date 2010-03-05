@@ -41,7 +41,7 @@ import org.unicase.metamodel.impl.ModelElementImpl;
  *
  * @generated
  */
-public class WriterImpl extends ModelElementImpl implements Writer {
+public class WriterImpl extends LibraryBaseImpl implements Writer {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

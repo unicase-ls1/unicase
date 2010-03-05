@@ -43,7 +43,7 @@ import org.unicase.metamodel.impl.ModelElementImpl;
  *
  * @generated
  */
-public class LibraryImpl extends ModelElementImpl implements Library {
+public class LibraryImpl extends LibraryBaseImpl implements Library {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
