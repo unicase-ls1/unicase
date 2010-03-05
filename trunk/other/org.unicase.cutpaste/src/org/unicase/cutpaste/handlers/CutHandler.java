@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -15,8 +14,8 @@ import org.unicase.ui.common.util.ActionHelper;
 
 public class CutHandler extends AbstractHandler {
 	
-	public String teststr = "test"; 
-	public ModelElement testme;
+	private String teststr = "test"; 
+	private ModelElement testme;
 	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
@@ -25,10 +24,7 @@ public class CutHandler extends AbstractHandler {
 		try {
 			cutModelElement(meSource);
 		} catch (Exception e) {
-			MessageDialog.openInformation(
-				null,
-				"w@iglt info_box",
-				"exception: "+e.toString());
+			e.printStackTrace();
 		} 
 	
 		
@@ -41,7 +37,7 @@ public class CutHandler extends AbstractHandler {
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
 		cb.setContents(copytrans, null);
 /*		
-		Testcode
+//		Testcode
 		
 		teststr = "false";
 		

@@ -4,50 +4,108 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
-
 
 public class PasteHandler extends AbstractHandler {
 
-	public ModelElement meClip;
+	private ModelElement meSource, meTarget;
+	private Clipboard cb;
+	private Transferable trans;
 	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 			
-		ModelElement meTarget =  ActionHelper.getModelElement(event);
+		meTarget =  ActionHelper.getModelElement(event);
 		
-		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-		Transferable trans = cb.getContents(null); 
-		
-		try{
-		meClip = (ModelElement) trans.getTransferData(DataFlavor.javaFileListFlavor);
-		}
-		catch (Exception e){
-			MessageDialog.openInformation(
-				null,
-				"w@iglt info_box",
-				e.toString());
-		}
+		cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+		trans = cb.getContents(null); 
 
-		paste (meClip, meTarget);
+	//	paste (meTarget);
+		canPasteString();
+		canPasteModelElement();
+		canPasteImage();
 	
 		return null;
 	}
 
 
-	public void paste (ModelElement meSource, ModelElement meTarget){
+	public void paste (ModelElement meTarget){
 
-		meSource.eSet(meTarget.eContainingFeature(), meTarget);
+		try{
+			meSource = (ModelElement) trans.getTransferData(new DataFlavor(org.unicase.metamodel.ModelElement.class, "UnicaseModelElement"));
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		meSource.eSet(meTarget.eContainingFeature(), meSource);
 
+	}
+	
+	public void canPasteString(){
+		try{
+			if (trans.isDataFlavorSupported(DataFlavor.stringFlavor))
+				{
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Can paste String.");
+				}
+			else {
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Cannot paste String.");
+			}
+				
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+	}
+	public void canPasteModelElement(){
+		try{
+			if (trans.isDataFlavorSupported(new DataFlavor(org.unicase.metamodel.ModelElement.class, "UnicaseModelElement")))
+				{
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Can paste ME.");
+				}
+			else {
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Cannot paste ME.");
+			}
+				
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+	}
+	public void canPasteImage(){
+		try{
+			if (trans.isDataFlavorSupported(DataFlavor.imageFlavor))
+				{
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Can paste Image.");
+				}
+			else {
+				MessageDialog.openInformation(
+					null,
+					"w@iglt info_box",
+					"Cannot paste Image.");
+			}
+				
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
 	}
 }
