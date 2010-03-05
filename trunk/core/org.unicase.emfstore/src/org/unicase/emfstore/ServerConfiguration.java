@@ -402,12 +402,17 @@ public final class ServerConfiguration {
 		return getConfDirectory() + "es.properties";
 	}
 
+	private static String serverHome;
+
 	/**
 	 * Return the server home directory location.
 	 * 
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
+		if (serverHome != null) {
+			return serverHome;
+		}
 		String[] applicationArgs = Platform.getApplicationArgs();
 		for (String arg : applicationArgs) {
 			if (arg.startsWith(EMFSTORE_HOME) && arg.length() > EMFSTORE_HOME.length()) {
@@ -417,7 +422,8 @@ public final class ServerConfiguration {
 				}
 				File file = new File(path);
 				if (file.exists() && file.isDirectory()) {
-					return path;
+					serverHome = path;
+					return serverHome;
 				} else if (file.exists() && !file.isDirectory()) {
 					String errorMessage = "Illegal EMFStore home path received:" + path;
 					ModelUtil.log(errorMessage, new IllegalStateException("The path exists as file already."),
@@ -433,7 +439,8 @@ public final class ServerConfiguration {
 					System.err.println(errorMessage);
 					break;
 				}
-				return path;
+				serverHome = path;
+				return serverHome;
 			}
 		}
 		StringBuffer sb = new StringBuffer(getUserHome());
@@ -451,7 +458,8 @@ public final class ServerConfiguration {
 		sb.append("emfstore");
 		sb.append(File.separatorChar);
 		System.out.println("Using default path for EMFStore home:" + sb.toString());
-		return sb.toString();
+		serverHome = sb.toString();
+		return serverHome;
 	}
 
 	/**
