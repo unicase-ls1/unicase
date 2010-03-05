@@ -27,14 +27,26 @@
       </propertyTester>
    </extension>
    <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.unicase.ui.navigator.project"
+            name="Project and Model Element Commands">
+      </category>
+      <command
+            categoryId="org.unicase.ui.navigator.project"
+            defaultHandler="org.unicase.ui.navigator.TestHandler"
+            id="org.unicase.ui.navigator.newModelElementCommand"
+            name="Create new model element...">
+      </command>
+   </extension>
+   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer">
-         <command
-               commandId="org.unicase.ui.navigator.newModelElementCommand"
-               icon="icons/unicase.png"
-               label="New ModelElement..."
-               style="push">
+            
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <dynamic
+               class="org.unicase.ui.navigator.commands.DynamicContainmentCommands"
+               id="org.unicase.ui.navigator.dynamicMECreationCommands">
             <visibleWhen
                   checkEnabled="false">
                <and>
@@ -61,27 +73,33 @@
                   </count>
                </and>
             </visibleWhen>
-         </command>
+         </dynamic>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
-      <category
-            id="org.unicase.ui.navigator.project"
-            name="Project and Model Element Commands">
-      </category>
       <command
-            categoryId="org.unicase.ui.navigator.project"
-            defaultHandler="org.unicase.ui.navigator.TestHandler"
-            id="org.unicase.ui.navigator.newModelElementCommand"
-            name="Create new model element...">
+            categoryId="org.unicase.ui.navigator"
+            defaultHandler="org.unicase.ui.navigator.handler.NewModelElementWizardHandler"
+            id="org.unicase.ui.navigator.newModelElementWizard"
+            name="New ModelElement Wizard">
+         <commandParameter
+               id="org.unicase.ui.navigator.eClassParameter"
+               name="eClassParameter"
+               optional="true"
+               typeId="org.unicase.ui.navigator.eClassType">
+         </commandParameter>
       </command>
+      <category
+            id="org.unicase.ui.navigator"
+            name="Navigator">
+      </category>
+            <commandParameterType
+            converter="org.unicase.ui.navigator.commands.EClassTypeConverter"
+            id="org.unicase.ui.navigator.eClassType"
+            type="org.eclipse.emf.ecore.EClass">
+      </commandParameterType>
    </extension>
-   <extension
-         point="org.unicase.ui.navigator.menuconfiguration">
-      <ContainmentCreationActions
-            enabled="true">
-      </ContainmentCreationActions>
-   </extension>
+   
 
 </plugin>

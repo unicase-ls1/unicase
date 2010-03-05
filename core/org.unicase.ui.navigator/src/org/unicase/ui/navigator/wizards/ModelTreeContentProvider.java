@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
@@ -24,15 +22,41 @@ import org.unicase.metamodel.MetamodelPackage;
 public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 	private final EClass selected;
+	private Set<EPackage> packages = new HashSet<EPackage>();
+	private HashSet<EClass> modelElementClasses;
+	private Set<EPackage> rootPackages;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param selected
+	 * @param selected the selected model element.
 	 */
 	public ModelTreeContentProvider(EClass selected) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.selected = selected;
+		Set<EClass> eClasses = new HashSet<EClass>();
+		// TODO: add classes
+		modelElementClasses = new HashSet<EClass>();
+		rootPackages = new HashSet<EPackage>();
+		for (EClass eClass : eClasses) {
+			if (!isNonDomainElement(eClass)) {
+				modelElementClasses.add(eClass);
+			}
+		}
+		sortPackages(modelElementClasses);
+
+	}
+
+	private void sortPackages(Set<EClass> eClasses) {
+		for (EClass eClass : eClasses) {
+			EPackage ePackage = eClass.getEPackage();
+			packages.add(ePackage);
+
+		}
+		for (EPackage ePackage : packages) {
+			packages.contains(ePackage.getESuperPackage());
+			rootPackages.add(ePackage);
+		}
 
 	}
 
@@ -41,19 +65,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
-		// TODO: Make better
-		Set<EPackage> result = new HashSet<EPackage>();
-		Registry registry = EPackage.Registry.INSTANCE;
-		Set<Entry<String, Object>> entrySet = registry.entrySet();
-		for (Entry<String, Object> entry : entrySet) {
-			if (entry.getKey().contains("library")) {
-				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+		return rootPackages.toArray();
 
-				result.add(model);
-			}
-		}
-		return result.toArray();
-		// return ModelUtil.getAllModelPackages().toArray();
+		// // return ModelUtil.getAllModelPackages().toArray();
 	}
 
 	/**
@@ -69,8 +83,16 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			// remove classes that do not inherit ModelElement
 			// or are abstract.
 			Object[] children = super.getChildren(object);
-			// TODO: reactivate
-			// removeNonModelElements(super.getChildren(object));
+			List<Object> ret = new ArrayList<Object>();
+			for (int i = 0; i < children.length; i++) {
+				Object child = children[i];
+				if (child instanceof EPackage && (packages.contains(child))) {
+					ret.add(child);
+				}
+				if (child instanceof EClass && modelElementClasses.contains(child)) {
+					ret.add(child);
+				}
+			}
 			return children;
 
 		} else {
@@ -136,7 +158,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		if (object instanceof EClass) {
 			return false;
 		} else {
-			return super.hasChildren(object);
+			return getChildren(object).length > 0;
 		}
 
 	}
