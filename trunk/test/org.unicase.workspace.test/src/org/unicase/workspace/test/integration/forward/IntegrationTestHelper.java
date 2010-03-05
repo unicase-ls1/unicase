@@ -1205,7 +1205,7 @@ public final class IntegrationTestHelper {
 		ModelElement modelElement = getRandomME(getTestProject());
 		modelElement.delete();
 		List<AbstractOperation> operations = WorkspaceManager.getProjectSpace(testProject).getOperations();
-		CreateDeleteOperation operation = (CreateDeleteOperation) operations.get(0);
+		CreateDeleteOperation operation = (CreateDeleteOperation) operations.get(operations.size() - 1);
 		CreateDeleteOperation reverse = (CreateDeleteOperation) operation.reverse();
 		reverse.apply(getTestProject());
 	}
