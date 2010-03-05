@@ -41,7 +41,7 @@ By this point we expect you to have a properly configured version of eclipse wit
 
  * In next steps we summarize the actual steps involved in building the emfstore product.
 
-   * Checkout the following 6 plugins from the google code SVN for UNICASE as per your build requirement (from trunk, branch or tag) :
+   * Checkout the following 6 plugins from the Google code SVN for UNICASE as per your build requirement (from trunk, branch or tag) :
     # org.unicase.emfstore
     # org.unicase.emfstore.esmodel
     # org.unciase.implementation
@@ -73,8 +73,8 @@ You can further configure various things within the "Splash", "Branding","Launch
 
 Exporting :
 
-  * Insert the destiantion information in the "Eclipse product export wizard".
-  * Select "Export for multiple platforms" within "Export Options". (This option won't be available if your eclispe instance is not properly configure with delta-pack)
+  * Insert the destination information in the "Eclipse product export wizard".
+  * Select "Export for multiple platforms" within "Export Options". (This option won't be available if your eclipse instance is not properly configure with delta-pack)
   * Select the platforms you want to export your product for.
-  * Click finish and wait and watch..If { the progress dialouge disappears without any message } then { you are done }..else...{ Try to fix the probelm based on error message! } 
+  * Click finish and "wait and watch"..If { the progress dialogue disappears without any message } then { you are done }..else...{ Try to fix the problem based on error message! } 
   
