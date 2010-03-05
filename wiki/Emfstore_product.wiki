@@ -1,4 +1,4 @@
-#Summary: In this section we describe how you can configure and build stand-alone RCP product for emfstore server, most or all of the procedure is the same in case of building UNICASE stand-alone client, except the plugin selection.
+*Summary:* In this section we describe how you can configure and build stand-alone RCP product for emfstore server, most or all of the procedure is the same in case of building UNICASE stand-alone client, except the plugin selection.
 
 
 ==Requirements:==
