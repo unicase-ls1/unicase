@@ -1,3 +1,6 @@
 #summary How to build UNICASE products and features
 
+ * [Server_standalone_deployment Create EMFStore Server Product]
+ * [Commandline_Product Configure EMFStore Server Product]
  * [Emfstore_product How to build an EMFStore product]
+ * [Create_update_site How to Create an Eclipse Feature and an Update Site]
