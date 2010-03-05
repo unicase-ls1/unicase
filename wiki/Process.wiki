@@ -3,4 +3,3 @@ This section provides an overview on the development process of the UNICASE proj
  * [Build_Deployable_Product Build Deployable Product]
  * [ReportingBugs Bug Report Lifecycle]
  * [WorkItemLifeCycle Work Item Lifecycle]
- * [ReleaseAndDeploy How to release and deploy]
