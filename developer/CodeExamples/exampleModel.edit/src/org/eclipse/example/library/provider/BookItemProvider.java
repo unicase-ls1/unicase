@@ -36,7 +36,7 @@ import org.eclipse.example.library.LibraryPackage;
  * @generated
  */
 public class BookItemProvider
-	extends LibraryItemProvider
+	extends LibraryBaseItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -179,7 +179,7 @@ public class BookItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Book)object).getName();
+		String label = ((Book)object).getIdentifier();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Book_type") :
 			getString("_UI_Book_type") + " " + label;

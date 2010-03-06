@@ -134,6 +134,78 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int BOOK__IDENTIFIER = LIBRARY_BASE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CREATOR = LIBRARY_BASE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CREATION_DATE = LIBRARY_BASE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__TITLE = LIBRARY_BASE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pages</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__PAGES = LIBRARY_BASE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__CATEGORY = LIBRARY_BASE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__AUTHOR = LIBRARY_BASE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Book</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK_FEATURE_COUNT = LIBRARY_BASE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int LIBRARY__IDENTIFIER = LIBRARY_BASE__IDENTIFIER;
 
 	/**
@@ -189,105 +261,6 @@ public interface LibraryPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIBRARY_FEATURE_COUNT = LIBRARY_BASE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__IDENTIFIER = LIBRARY__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__CREATOR = LIBRARY__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__CREATION_DATE = LIBRARY__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__NAME = LIBRARY__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Writers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__WRITERS = LIBRARY__WRITERS;
-
-	/**
-	 * The feature id for the '<em><b>Books</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__BOOKS = LIBRARY__BOOKS;
-
-	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__TITLE = LIBRARY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Pages</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__PAGES = LIBRARY_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Category</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__CATEGORY = LIBRARY_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Author</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK__AUTHOR = LIBRARY_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Book</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOK_FEATURE_COUNT = LIBRARY_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.example.library.impl.WriterImpl <em>Writer</em>}' class.

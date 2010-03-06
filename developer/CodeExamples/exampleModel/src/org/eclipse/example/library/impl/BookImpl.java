@@ -38,7 +38,7 @@ import org.unicase.metamodel.impl.ModelElementImpl;
  *
  * @generated
  */
-public class BookImpl extends LibraryImpl implements Book {
+public class BookImpl extends LibraryBaseImpl implements Book {
 	/**
 	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -335,7 +335,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		bookEClass.getESuperTypes().add(this.getLibrary());
+		bookEClass.getESuperTypes().add(this.getLibraryBase());
 		libraryEClass.getESuperTypes().add(this.getLibraryBase());
 		writerEClass.getESuperTypes().add(this.getLibraryBase());
 		libraryBaseEClass.getESuperTypes().add(theMetamodelPackage.getModelElement());
