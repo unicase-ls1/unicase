@@ -1,5 +1,11 @@
 Sub-projects:
  * [EMFStoreNavigation EMFStore]
+   * [EMFStore What is EMFStore?]
+   * [EMFStoreFeatures Why should I use EMFStore?]
+   * [EMFStoreGettingStarted Getting Started with the EMFStore]
+   * [EMFStoreArchitecture Architecture]
+   * [EMFStoreDownloads Downloads]
+   * [EMFStoreDocumentation Documentation and Tutorials]
  * [ECPNavigation EMF Client Platform (ECP)]
  * [UNICASEClientNavigation UNICASE Client]
 
