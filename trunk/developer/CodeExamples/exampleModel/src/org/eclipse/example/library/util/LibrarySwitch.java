@@ -92,7 +92,6 @@ public class LibrarySwitch<T> {
 			case LibraryPackage.BOOK: {
 				Book book = (Book)theEObject;
 				T result = caseBook(book);
-				if (result == null) result = caseLibrary(book);
 				if (result == null) result = caseLibraryBase(book);
 				if (result == null) result = caseModelElement(book);
 				if (result == null) result = caseIdentifiableElement(book);

@@ -27,7 +27,7 @@ import org.unicase.metamodel.ModelElement;
  * @model
  * @generated
  */
-public interface Book extends Library {
+public interface Book extends LibraryBase {
 	/**
 	 * Returns the value of the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
