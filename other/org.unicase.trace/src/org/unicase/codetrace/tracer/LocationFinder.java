@@ -7,7 +7,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.unicase.codetrace.tracer.algorithms.Algorithm;
 import org.unicase.codetrace.tracer.algorithms.AlgorithmBestMatch;
 import org.unicase.codetrace.tracer.algorithms.AlgorithmLineContext;
@@ -87,13 +93,44 @@ public final class LocationFinder {
 	 */
 	public synchronized FoundLocation find(CodeLocation c) {
 		
+		
 		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
+		
+		//TracerFile tf = null;
 		if (tf == null){
+			//search in the project for changed file
+			//EclipseWorkspaceManager
+		//	String value = "home/svetlana/runtime-EclipseApplication/Test/src/snippet";
+			String value = "/Test/src/snippet";
+			IPath path = new Path(value);
+			IWorkspace root = ResourcesPlugin.getWorkspace();
+			IProject eclipseProject = root.getRoot().getProject(c.getProjectName());
+			
+			
+				IPath projectPath = eclipseProject.getLocation();
+				try {
+					//String members = 
+					IResource[] resources = root.getRoot().getFolder(path).members();
+					System.out.println(resources);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 		TracerFile tf_project = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(c.getProjectName()));
 		tf = tf_project;
-		} else if (tf == null){
-		TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getWorkspace());
-		tf = tf_workspace;
+		} 
+		if (tf == null){
+			IWorkspace root = ResourcesPlugin.getWorkspace();
+		    IProject[] projects = root.getRoot().getProjects();
+
+		    for(IProject project: projects){
+		    	String projectName = project.getName();
+				TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(projectName));
+				tf = tf_workspace;
+				if(tf != null) break;
+		    //	project.getProject().g
+		    }
 		}
 
 		//Build facet map
