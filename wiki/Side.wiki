@@ -14,20 +14,20 @@ Sub-projects:
    * [UNICASEDocumentation Documentation and Tutorials]
 
 General Content:
- *  [Coding]
+ * [Coding]
    * [Coding_Guidelines Coding Guidelines]<br>
    * [Model_API_Usage_Guidelines Model API Usage Guidelines] <br>
    * [Exception_Handling_Guidelines Exception Handling Guidelines] <br>
    * [Server_Request_Guidelines Server Request Guidelines] <br>
    * [PluginConfiguration Plugin Configuration Guidelines]
- *  [Modeling]
- *  [Architecture]
- *  [Setup Set-up and Configuration]
- *  [BuildReleaseDeploy Build, Release and Deploy]
- *  [Process]
- *  [Mailinglist Mailinglist and Calendar]
- *  [Video_Tutorials Video Tutorials]
- *  [Links_and_References Links and References]
- *  [FAQ FAQ]
+ * [Modeling]
+ * [Architecture]
+ * [Setup Set-up and Configuration]
+ * [BuildReleaseDeploy Build, Release and Deploy]
+ * [Process]
+ * [Mailinglist Mailinglist and Calendar]
+ * [Video_Tutorials Video Tutorials]
+ * [Links_and_References Links and References]
+ * [FAQ FAQ]
 
 >> [http://code.google.com/p/unicase/wiki/DeveloperWiki?tm=6 Home]
