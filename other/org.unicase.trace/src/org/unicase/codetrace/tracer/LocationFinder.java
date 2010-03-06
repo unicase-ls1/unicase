@@ -20,6 +20,14 @@ import org.unicase.codetrace.tracer.algorithms.AlgorithmLineContext;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.TraceFactory;
 import org.unicase.model.trace.impl.CodeLocationImpl;
+import org.eclipse.core.filesystem.provider.FileInfo;
+import org.eclipse.core.filesystem.provider.FileSystem;
+import org.eclipse.core.filesystem.provider.FileTree;
+import org.eclipse.core.internal.filesystem.InternalFileSystemCore;
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileInfo;
+import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.core.filesystem.IFileSystem;
 
 /**
  * This is the main facade class to create source locations and to find
@@ -55,7 +63,6 @@ public final class LocationFinder {
 	private void addAlgorithm(Algorithm a, double v) {
 		featureSet.put(a, v);
 	}
-
 
 	/**
 	 * Creates a trackable source location.
@@ -94,44 +101,49 @@ public final class LocationFinder {
 	public synchronized FoundLocation find(CodeLocation c) {
 		
 		
-		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
+		//TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
 		
-		//TracerFile tf = null;
+		TracerFile tf = null;
+		IPath projectPath = null;
+		
 		if (tf == null){
 			//search in the project for changed file
-			//EclipseWorkspaceManager
-		//	String value = "home/svetlana/runtime-EclipseApplication/Test/src/snippet";
-			String value = "/Test/src/snippet";
-			IPath path = new Path(value);
+			
 			IWorkspace root = ResourcesPlugin.getWorkspace();
 			IProject eclipseProject = root.getRoot().getProject(c.getProjectName());
+			projectPath = eclipseProject.getLocation();
 			
+			LocalFileSystem test = null;
+		   // IProject[] projects = root.getRoot().getProjects();
+		    IFileSystem fs = EFS.getLocalFileSystem();
+
+		    IFileStore rootStore = fs.getStore(projectPath);
+		    test = new LocalFileSystem(rootStore);
+		    IFileInfo[] infos = test.getChildInfos(rootStore);
+		    System.out.println(infos);
+		  /*  for(IProject project: projects){
+		    	String projectName = project.getName();
+				TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(projectName));
+				tf = tf_workspace;
+				if(tf != null) break;
 			
-				IPath projectPath = eclipseProject.getLocation();
-				try {
+		    }*/ 	
+				/*try {
+				    String value = "/jhlkh/src/sdd";
+					IPath path = new Path(value);
 					//String members = 
 					IResource[] resources = root.getRoot().getFolder(path).members();
 					System.out.println(resources);
 				} catch (CoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 			
-		TracerFile tf_project = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(c.getProjectName()));
-		tf = tf_project;
-		} 
-		if (tf == null){
-			IWorkspace root = ResourcesPlugin.getWorkspace();
-		    IProject[] projects = root.getRoot().getProjects();
-
-		    for(IProject project: projects){
-		    	String projectName = project.getName();
-				TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(projectName));
-				tf = tf_workspace;
-				if(tf != null) break;
-		    //	project.getProject().g
-		    }
+		   //if file was changed and code location is in another project, we should search in the whole
+		   //worspace
+		    
 		}
+		
 
 		//Build facet map
 		Map<TracerFacet,Double> facets = new LinkedHashMap<TracerFacet,Double>();
