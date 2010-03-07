@@ -10,7 +10,9 @@ Video Tutorials:
 
  * [RunClientTutorial Run UNICASE client as a developer]
 
- * [SetupProjectTutorial Setup a project for EMFStore server] 
+ * [SetupProjectTutorial Setup a project for EMFStore server]
+
+ * [InstallEMFStore Install EMFStore Framework]
 
  * [PrepareModelTutorial Prepare Model for EMFStore]
 
