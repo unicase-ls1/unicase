@@ -13,6 +13,13 @@ Sub-projects:
    * [UNICASEClientDownloads Downloads]
    * [UNICASEDocumentation Documentation and Tutorials]
 
+  * [Coding]
+    * [Coding_Guidelines Coding Guidelines]
+    * [Model_API_Usage_Guidelines Model API Usage Guidelines]
+    * [Exception_Handling_Guidelines Exception Handling Guidelines]
+    * [Server_Request_Guidelines Server Request Guidelines]
+    * [PluginConfiguration Plugin Configuration Guidelines]
+
 General Content:
   * [Coding]
     * [Coding_Guidelines Coding Guidelines]
