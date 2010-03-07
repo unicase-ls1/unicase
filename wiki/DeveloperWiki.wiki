@@ -1,6 +1,13 @@
 ==Developer Wiki===
 
-This wiki contains information for UNICASE developers. There are are two ways of exploring this information, step-by-step-paths and following the hierarchical structure.
+This wiki contains information for UNICASE developers. There are are three ways of exploring this information: by the subprojects, step-by-step-paths or byfollowing the hierarchical structure.
+
+
+===Sub-projects===
+
+ * [EMFStoreNavigation  EMFStore] - a model repository for EMF
+ * [ECPNavigation EMF Client Platform (ECP)] - a framework for building EMF-based applications
+ * [UNICASEClientNavigation UNICASE client] - a unified CASE-Tool
 
 ===Step-by-step paths===
 Step-by-step paths guide you through the wiki following a predefined path step by step. They are a good way to discover all important information in a given scenario.
