@@ -6,13 +6,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.web.views.ProjectAwareView;
 
-public class ProjectView extends ProjectAwareView {
+public class WorkTeamItemsView extends ProjectAwareView {
 	
 	public static final String ID = "org.unicase.ui.web.projectview.ProjectView";
 	
@@ -20,7 +21,7 @@ public class ProjectView extends ProjectAwareView {
 	private TeamListTab teamListTab;
 	private CTabFolder tabFolder;
 	
-	public ProjectView() {
+	public WorkTeamItemsView() {
 		super();
 	}
 
@@ -43,17 +44,19 @@ public class ProjectView extends ProjectAwareView {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		parent.setLayout(new GridLayout(2, false));
+		parent.setLayout(new FillLayout());
 		int style = SWT.TOP | SWT.FLAT | SWT.BORDER;
 		
 		tabFolder = new CTabFolder(parent, style);
 		tabFolder.marginWidth = 8;
 		tabFolder.marginHeight = 8;
+		ensureMinTabHeight(tabFolder);
 		
 		workItemsTab = new WorkItemsTab(projectSpace, tabFolder);
 		teamListTab = new TeamListTab(projectSpace, tabFolder);
 		
-		ensureMinTabHeight(tabFolder);
+		workItemsTab.createTabContent();
+		teamListTab.createTabContent();
 		
 		tabFolder.setSelection(0);
 		tabFolder.addSelectionListener(new SelectionAdapter() {
