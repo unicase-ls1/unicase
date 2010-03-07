@@ -1,0 +1,8 @@
+#summary Tutorial on how to run the EMFStore with a custom model
+
+
+<wiki:video url="http://www.youtube.com/watch?v=mvjPh61VWKw"/> 
+
+Links to optional resources:
+  * [SVN_Repository SVN Repository]
+  * [http://unicase.googlecode.com/svn/trunk/other/developer/CodeExamples Example Model Projects]
