@@ -9,9 +9,9 @@ Sub-projects:
  * [ECPNavigation EMF Client Platform (ECP)]
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
-   * [UNICASEArchitecture Architecture]
+   * [Architecture Architecture]
    * [UNICASEClientDownloads Downloads]
-   * [UNICASEDocumentation Documentation and Tutorials]
+   * [Video_Tutorials Video Tutorials]
 
 General Content:
  * [Coding]
