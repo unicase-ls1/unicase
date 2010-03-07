@@ -1,0 +1,5 @@
+#summary How to build and release the EMFStore features and product.
+
+ * [Server_standalone_deployment Create EMFStore Server Product]
+ * [Commandline_Product Configure EMFStore Server Product]
+ * [Emfstore_product How to build an EMFStore product]
