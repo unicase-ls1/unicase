@@ -4,6 +4,11 @@
 
 EMFStore is the repository/server for UNICASE.
 
+==Data Storage Configuration==
+
+By default EMFStore will store its data in the user home in the ".unicase" folder in a subfolder called "emfstore". To change this behaviour you can configure the following start-up parameter:
+-EMFStoreHome=<your new path>
+
 == Loading a Model ==
 
 EMFStore is independent of the actual model and therefore only operates on the metamodel offered by UNICASE. It is possible to plug in any other model by inheriting the metamodel.
