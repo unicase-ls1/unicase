@@ -1,6 +1,6 @@
 ==Developer Wiki===
 
-This wiki contains information for UNICASE developers. There are are three ways of exploring this information: by the subprojects, step-by-step-paths or byfollowing the hierarchical structure.
+This wiki contains information for UNICASE developers. There are are three ways of exploring this information: by the sub-projects, step-by-step-paths or by following the hierarchical structure.
 
 
 ===Sub-projects===
