@@ -4,7 +4,9 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.impl;
+package library.impl;
+
+import library.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -14,8 +16,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.example.library.*;
 
 /**
  * <!-- begin-user-doc -->

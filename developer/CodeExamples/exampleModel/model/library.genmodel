@@ -7,8 +7,7 @@
     containmentProxies="true" complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
   <foreignModel>library.ecore</foreignModel>
   <foreignModel>../../../plugin/org.unicase.metamodel/model/metamodel.ecore</foreignModel>
-  <genPackages prefix="Library" basePackage="org.eclipse.example" disposableProviderFactory="true"
-      ecorePackage="library.ecore#/">
+  <genPackages prefix="Library" disposableProviderFactory="true" ecorePackage="library.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="library.ecore#//BookCategory">
       <genEnumLiterals ecoreEnumLiteral="library.ecore#//BookCategory/Mystery"/>
       <genEnumLiterals ecoreEnumLiteral="library.ecore#//BookCategory/ScienceFiction"/>

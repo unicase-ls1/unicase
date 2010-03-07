@@ -4,11 +4,9 @@
  *
  * $Id$
  */
-package org.eclipse.example.library;
+package library;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,12 +16,12 @@ import org.unicase.metamodel.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.example.library.Writer#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.example.library.Writer#getBooks <em>Books</em>}</li>
+ *   <li>{@link library.Writer#getName <em>Name</em>}</li>
+ *   <li>{@link library.Writer#getBooks <em>Books</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.example.library.LibraryPackage#getWriter()
+ * @see library.LibraryPackage#getWriter()
  * @model
  * @generated
  */
@@ -38,14 +36,14 @@ public interface Writer extends LibraryBase {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.example.library.LibraryPackage#getWriter_Name()
+	 * @see library.LibraryPackage#getWriter_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.example.library.Writer#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link library.Writer#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -56,8 +54,8 @@ public interface Writer extends LibraryBase {
 
 	/**
 	 * Returns the value of the '<em><b>Books</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.example.library.Book}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.example.library.Book#getAuthor <em>Author</em>}'.
+	 * The list contents are of type {@link library.Book}.
+	 * It is bidirectional and its opposite is '{@link library.Book#getAuthor <em>Author</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Books</em>' reference list isn't clear,
@@ -65,8 +63,8 @@ public interface Writer extends LibraryBase {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Books</em>' reference list.
-	 * @see org.eclipse.example.library.LibraryPackage#getWriter_Books()
-	 * @see org.eclipse.example.library.Book#getAuthor
+	 * @see library.LibraryPackage#getWriter_Books()
+	 * @see library.Book#getAuthor
 	 * @model opposite="author"
 	 * @generated
 	 */

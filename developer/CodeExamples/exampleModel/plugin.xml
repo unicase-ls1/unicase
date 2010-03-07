@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http:///org/eclipse/example/library.ecore"
-            class="org.eclipse.example.library.LibraryPackage"
+            class="library.LibraryPackage"
             genModel="model/library.genmodel"/>
    </extension>
    <extension

@@ -4,9 +4,8 @@
  *
  * $Id$
  */
-package org.eclipse.example.library;
+package library;
 
-import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,14 +15,14 @@ import org.unicase.metamodel.ModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.example.library.Book#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.example.library.Book#getPages <em>Pages</em>}</li>
- *   <li>{@link org.eclipse.example.library.Book#getCategory <em>Category</em>}</li>
- *   <li>{@link org.eclipse.example.library.Book#getAuthor <em>Author</em>}</li>
+ *   <li>{@link library.Book#getTitle <em>Title</em>}</li>
+ *   <li>{@link library.Book#getPages <em>Pages</em>}</li>
+ *   <li>{@link library.Book#getCategory <em>Category</em>}</li>
+ *   <li>{@link library.Book#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.example.library.LibraryPackage#getBook()
+ * @see library.LibraryPackage#getBook()
  * @model
  * @generated
  */
@@ -38,14 +37,14 @@ public interface Book extends LibraryBase {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Title</em>' attribute.
 	 * @see #setTitle(String)
-	 * @see org.eclipse.example.library.LibraryPackage#getBook_Title()
+	 * @see library.LibraryPackage#getBook_Title()
 	 * @model
 	 * @generated
 	 */
 	String getTitle();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.example.library.Book#getTitle <em>Title</em>}' attribute.
+	 * Sets the value of the '{@link library.Book#getTitle <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Title</em>' attribute.
@@ -65,14 +64,14 @@ public interface Book extends LibraryBase {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pages</em>' attribute.
 	 * @see #setPages(int)
-	 * @see org.eclipse.example.library.LibraryPackage#getBook_Pages()
+	 * @see library.LibraryPackage#getBook_Pages()
 	 * @model default="100"
 	 * @generated
 	 */
 	int getPages();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.example.library.Book#getPages <em>Pages</em>}' attribute.
+	 * Sets the value of the '{@link library.Book#getPages <em>Pages</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pages</em>' attribute.
@@ -83,7 +82,7 @@ public interface Book extends LibraryBase {
 
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.example.library.BookCategory}.
+	 * The literals are from the enumeration {@link library.BookCategory}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Category</em>' attribute isn't clear,
@@ -91,20 +90,20 @@ public interface Book extends LibraryBase {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Category</em>' attribute.
-	 * @see org.eclipse.example.library.BookCategory
+	 * @see library.BookCategory
 	 * @see #setCategory(BookCategory)
-	 * @see org.eclipse.example.library.LibraryPackage#getBook_Category()
+	 * @see library.LibraryPackage#getBook_Category()
 	 * @model
 	 * @generated
 	 */
 	BookCategory getCategory();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.example.library.Book#getCategory <em>Category</em>}' attribute.
+	 * Sets the value of the '{@link library.Book#getCategory <em>Category</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Category</em>' attribute.
-	 * @see org.eclipse.example.library.BookCategory
+	 * @see library.BookCategory
 	 * @see #getCategory()
 	 * @generated
 	 */
@@ -112,7 +111,7 @@ public interface Book extends LibraryBase {
 
 	/**
 	 * Returns the value of the '<em><b>Author</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.example.library.Writer#getBooks <em>Books</em>}'.
+	 * It is bidirectional and its opposite is '{@link library.Writer#getBooks <em>Books</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Author</em>' reference isn't clear,
@@ -121,15 +120,15 @@ public interface Book extends LibraryBase {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Author</em>' reference.
 	 * @see #setAuthor(Writer)
-	 * @see org.eclipse.example.library.LibraryPackage#getBook_Author()
-	 * @see org.eclipse.example.library.Writer#getBooks
+	 * @see library.LibraryPackage#getBook_Author()
+	 * @see library.Writer#getBooks
 	 * @model opposite="books" required="true"
 	 * @generated
 	 */
 	Writer getAuthor();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.example.library.Book#getAuthor <em>Author</em>}' reference.
+	 * Sets the value of the '{@link library.Book#getAuthor <em>Author</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Author</em>' reference.

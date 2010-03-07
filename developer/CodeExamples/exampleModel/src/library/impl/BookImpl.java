@@ -4,23 +4,20 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.impl;
+package library.impl;
+
+import library.Book;
+import library.BookCategory;
+import library.LibraryPackage;
+import library.Writer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.example.library.Book;
-import org.eclipse.example.library.BookCategory;
-import org.eclipse.example.library.LibraryPackage;
-import org.eclipse.example.library.Writer;
-
-import org.unicase.metamodel.impl.ModelElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +26,10 @@ import org.unicase.metamodel.impl.ModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.example.library.impl.BookImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.example.library.impl.BookImpl#getPages <em>Pages</em>}</li>
- *   <li>{@link org.eclipse.example.library.impl.BookImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link org.eclipse.example.library.impl.BookImpl#getAuthor <em>Author</em>}</li>
+ *   <li>{@link library.impl.BookImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link library.impl.BookImpl#getPages <em>Pages</em>}</li>
+ *   <li>{@link library.impl.BookImpl#getCategory <em>Category</em>}</li>
+ *   <li>{@link library.impl.BookImpl#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
  *
