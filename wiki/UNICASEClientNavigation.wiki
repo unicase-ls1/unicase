@@ -2,7 +2,7 @@
 
   * [UNICASEClient What is the UNICASE client?]
 
-  * [UNICASEArchitecture Architecture]
+  * [Architecture Architecture]
 
   * [UNICASEClientDownloads Downloads]
 
