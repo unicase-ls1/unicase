@@ -14,12 +14,12 @@ Sub-projects:
    * [UNICASEDocumentation Documentation and Tutorials]
 
 General Content:
- * [Coding]
-   * [Coding_Guidelines Coding Guidelines]
-   * [Model_API_Usage_Guidelines Model API Usage Guidelines]
-   * [Exception_Handling_Guidelines Exception Handling Guidelines]
-   * [Server_Request_Guidelines Server Request Guidelines]
-   * [PluginConfiguration Plugin Configuration Guidelines]
+  * [Coding]
+    * [Coding_Guidelines Coding Guidelines]
+    * [Model_API_Usage_Guidelines Model API Usage Guidelines]
+    * [Exception_Handling_Guidelines Exception Handling Guidelines]
+    * [Server_Request_Guidelines Server Request Guidelines]
+    * [PluginConfiguration Plugin Configuration Guidelines]
  * [Modeling]
    * [ModelingGuidelines Modeling Guidelines]
    * [UNICASE_Diagram_Editor_Document How to create a custom diagram editor in UNICASE based on GMF]
