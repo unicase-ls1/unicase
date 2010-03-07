@@ -1,3 +1,15 @@
-#summary Information on the ECP framework
+#summary ECP framework Navigational Page
 
-The EMF Client Platform is a framework to build EMF-based client applications.
+  * [ECPStore What is the EMF Client Platform?]
+
+  * [ECPStoreFeatures Why should I use the EMF Client Platform?]
+
+  * [ECPStoreGettingStarted Getting Started with the EMF Client Platform]
+
+  * [ECPStoreArchitecture Architecture]
+
+  * [ECPStoreBuild Build and Release]
+
+  * [ECPStoreDownloads Downloads]
+
+  * [ECPStoreDocumentation Documentation and Tutorials]
