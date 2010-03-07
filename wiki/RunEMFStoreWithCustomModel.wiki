@@ -5,4 +5,4 @@
 
 Links to optional resources:
   * [SVN_Repository SVN Repository]
-  * [http://unicase.googlecode.com/svn/trunk/other/developer/CodeExamples/ Example Model Projects]
+  * [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ Example Model Projects]
