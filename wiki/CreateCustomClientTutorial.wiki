@@ -1,0 +1,7 @@
+#summary Tutorial on how to create a custom client for the emfstore
+
+<wiki:video url="http://www.youtube.com/watch?v=mvjPh61VWKw"/> 
+
+Links to optional resources:
+  * [SVN_Repository SVN Repository]
+  * [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ Example Model and Client Projects]
