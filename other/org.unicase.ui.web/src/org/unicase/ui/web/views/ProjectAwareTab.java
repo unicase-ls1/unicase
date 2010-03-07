@@ -3,6 +3,9 @@ package org.unicase.ui.web.views;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.ProjectSpace;
@@ -32,7 +35,15 @@ public abstract class ProjectAwareTab implements ProjectChangeObserver {
 		tabItem.setText(tabName);
 		
 		composite = new Composite(parent, SWT.NONE);
+		
+		composite.setLayout(new GridLayout(1, false));
+		
+		// composite.setLayout(new FillLayout());	
+		
+	    tabItem.setControl(composite);
 	}
+	
+	public abstract void createTabContent();
 	
 	protected Composite getComposite() {
 		return composite;
