@@ -1,0 +1,7 @@
+#summary Tutorial how to install the EMFStore
+
+
+
+Links to required resources:
+[http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition Download]
+[EMFStoreDownloads EMFStore Update Site]
