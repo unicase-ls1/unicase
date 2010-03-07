@@ -1,1 +1,7 @@
 #summary Tutorial on how to prepare a model for the EMFStore
+
+
+<wiki:video url="http://www.youtube.com/watch?v=mvjPh61VWKw"/> 
+
+Links to required resources:
+  * [http://help.eclipse.org/galileo/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl Eclipse Library Example Model]
