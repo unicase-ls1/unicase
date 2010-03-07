@@ -1,20 +1,15 @@
 #summary How to get started with the EMFStore
 
-This page is a step by step path through the documentation to help you to get started with the EMFStore. You will learn how to run the EMFStore, how to create a custom model and how to create a custom client for EMFStore in 7 easy steps:
+This page is a step by step path through the documentation to help you to get started with the EMFStore. You will learn how to run the EMFStore, how to create a custom model and how to create a custom client for EMFStore in 4 easy steps:
 
 
- * Step 1: Checkout the source code from our repository, see [CheckoutTutorial this tutorial] for details.
- 
- * Step 2a (optional): Run the server with the default model, see [RunServerTutorial this tutorial] for details.
+ * Step 1: [InstallEMFStore Install EMFStore Framework]
 
- * Step 2b (optional): Run the UNICASE client as an example client for EMFStore, see [RunClientTutorial this tutorial] for details.
+ * Step 2: [PrepareModelTutorial Prepare Model for EMFStore]
 
- * Step 3: Setup a project (contains the model) on EMFStore, see [SetupProjectTutorial this tutorial] for details.
+ * Step 3: [RunEMFStoreWithCustomModel Run EMFStore with a custom model]
 
- * Step 4: Prepare an Ecore model to be stored on EMFStore, see [PrepareModelTutorial this tutorial] for details.
+ * Step 4: [CreateCustomClientTutorial Create a custom client for EMFStore]
 
- * Step 5: Run the EMFStore with you custom model, see [RunEMFStoreWithCustomModel this tutorial] for details.
 
- * Step 6: Create a custom client for the EMFStore, see [CreateCustomClientTutorial this tutorial] for details.
-
- * Step 7: Use pushed server events to update a client´s model as soon as there is a new version, see [BackchannelTutorial this tutorial] for details.
+More Video Tutorials are available [EMFStoreDocumentation here].
