@@ -12,7 +12,6 @@ Sub-projects:
    * [UNICASEArchitecture Architecture]
    * [UNICASEClientDownloads Downloads]
    * [UNICASEDocumentation Documentation and Tutorials]
-
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
    * [UNICASEArchitecture Architecture]
