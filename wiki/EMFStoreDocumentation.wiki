@@ -38,4 +38,4 @@ Documentation:
 
  * [Creating_keystores_for_encryption How to create keystores for EMFStore]
 
-We know that this documentation is only a first start and we are still working on extending the documentation. You feedback is important ot us to know where we need to improve and extend the existing documentation. If you have any suggestions or questions please do not hesitate to contact us on our [ * [Mailinglist Mailinglist and Calendar mailing lists].
+We know that this documentation is only a first start and we are still working on extending the documentation. You feedback is important ot us to know where we need to improve and extend the existing documentation. If you have any suggestions or questions please do not hesitate to contact us on our [Mailinglist Mailinglist and Calendar mailing lists].
