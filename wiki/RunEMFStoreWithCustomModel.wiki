@@ -4,5 +4,6 @@
 <wiki:video url="http://www.youtube.com/watch?v=mvjPh61VWKw"/> 
 
 Links to optional resources:
+  * [EMFStore_Configuration How to change the EMFStore default configuration]
   * [SVN_Repository SVN Repository]
   * [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ Example Model Projects]
