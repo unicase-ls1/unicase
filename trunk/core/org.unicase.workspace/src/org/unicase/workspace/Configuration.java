@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
  * Represents the current Workspace Configuration.
@@ -57,6 +61,37 @@ public final class Configuration {
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
+
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.workspaceLocationProvider");
+		if (rawExtensions.length > 0) {
+			if (rawExtensions.length > 1) {
+				String message = "More than one workspace location provider extension detected, defaulting to first preovider";
+				ModelUtil.logWarning(message, new IllegalStateException(message));
+			}
+			for (IConfigurationElement extension : rawExtensions) {
+				try {
+					Object executableExtension = extension.createExecutableExtension("providerClass");
+					if (executableExtension instanceof WorkspaceLocationProvider) {
+						WorkspaceLocationProvider provider = (WorkspaceLocationProvider) executableExtension;
+						String workspaceDirectory = provider.getWorkspaceDirectory();
+						File workspace = new File(workspaceDirectory);
+						if (!workspace.exists()) {
+							workspace.mkdir();
+						}
+						if (!workspaceDirectory.endsWith(File.separator)) {
+							return workspaceDirectory + File.separatorChar;
+						}
+						return workspaceDirectory;
+					}
+				} catch (CoreException e) {
+					String message = "Error while instantiating location provider, switching to default location!";
+					ModelUtil.logWarning(message, e);
+				}
+			}
+		}
+
+		// no valid extension registered, switching to default
 		StringBuffer sb = new StringBuffer();
 		sb.append(getUserHome());
 		sb.append(".unicase");
