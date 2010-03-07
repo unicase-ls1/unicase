@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.ui.web.projectview.ProjectView"
+            class="org.unicase.ui.web.projectview.WorkTeamItemsView"
             id="org.unicase.ui.web.projectview.ProjectView"
             name="Project View"
             restorable="true">
@@ -13,7 +13,7 @@
    <extension
          point="org.unicase.ui.web.view">
       <view
-            class="org.unicase.ui.web.projectview.ProjectView"
+            class="org.unicase.ui.web.projectview.WorkTeamItemsView"
             id="org.unicase.ui.web.projectview.ProjectView"
             name="Project View"
             url="project">
