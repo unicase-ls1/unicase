@@ -11,8 +11,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.rationale.Comment;
 import org.unicase.proxyclient.ProxyClient;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
@@ -41,23 +39,23 @@ public class CommentFixClient extends ProxyClient {
 						projectInfo.getVersion()));
 
 		for (ModelElement me : projectSpace.getProject().getAllModelElements()) {
-			if (me instanceof UnicaseModelElement) {
-				UnicaseModelElement modelElement = (UnicaseModelElement) me;
-				if (modelElement instanceof Comment) {
-					if (modelElement.getDescription() == null
-							|| modelElement.getDescription().equals("")) {
-						String name = modelElement.getName();
-						if (name == null) {
-							continue;
-						}
-						modelElement.setDescription(name);
-						if (20 < (name.length())) {
-							name = name.substring(0, 20) + "...";
-						}
-						modelElement.setName(name);
-					}
-				}
-			}
+//			if (me instanceof UnicaseModelElement) {
+//				UnicaseModelElement modelElement = (UnicaseModelElement) me;
+//				if (modelElement instanceof Comment) {
+//					if (modelElement.getDescription() == null
+//							|| modelElement.getDescription().equals("")) {
+//						String name = modelElement.getName();
+//						if (name == null) {
+//							continue;
+//						}
+//						modelElement.setDescription(name);
+//						if (20 < (name.length())) {
+//							name = name.substring(0, 20) + "...";
+//						}
+//						modelElement.setName(name);
+//					}
+//				}
+//			}
 		}
 
 		ChangePackage localChangePackage = projectSpace
