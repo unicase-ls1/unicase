@@ -35,6 +35,12 @@ public class TeamListTab extends ProjectAwareTab {
 		super(projectSpace, tabFolder, "Team Tab");
 		teamTableViewer = new TeamTableViewer(composite);
 	}
+	
+	@Override
+	public void createTabContent() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// TODO: Provide more efficient update methods
 	public void modelElementAdded(Project project, ModelElement modelElement) {
@@ -95,6 +101,7 @@ public class TeamListTab extends ProjectAwareTab {
 			});
 		}
 	}
+	
 }
 
 

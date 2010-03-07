@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.web.views.AbstractETableViewer;
 
@@ -28,6 +30,7 @@ public class TeamTableViewer extends AbstractETableViewer {
 	@Override
 	protected void init() {		
 		super.init();
+		// TODO: layouts??
 		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		tableData.horizontalSpan = 2;
 		getTable().setLayoutData(tableData);
@@ -42,5 +45,11 @@ public class TeamTableViewer extends AbstractETableViewer {
 		list.add(OrganizationPackage.Literals.USER__LAST_NAME);
 		list.add(OrganizationPackage.Literals.USER__EMAIL);
 		return list;
+	}
+
+	@Override
+	public void setInput(Project project) {
+		// TODO Auto-generated method stub
+		
 	}
 }
