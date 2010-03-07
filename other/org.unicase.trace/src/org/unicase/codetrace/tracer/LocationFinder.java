@@ -66,15 +66,12 @@ public final class LocationFinder {
 	}
 
 	/**
-	 * This method search recursiv in all children of element for a java source files. 
+	 * This method search recursiv in all contained files for a java source files. 
 	 */
-	private FoundLocation getChildren(File rootFile, CodeLocation c){
+	private FoundLocation getContainedFile(File rootFile, CodeLocation c){
 		FoundLocation location = null;
 		
 			File[] containedFiles = rootFile.listFiles();
-		//	IFileStore[] fileStores = rootStore.childStores(EFS.NONE, null);
-		//	IFileInfo[] fileInfos = rootStore.childInfos(EFS.NONE, null);
-
 		
 			for(int i = 0; i < containedFiles.length; i++){
 				if(!containedFiles[i].isDirectory()){
@@ -91,37 +88,13 @@ public final class LocationFinder {
 				}
 				else{
 
-					location = getChildren(containedFiles[i], c);
+					location = getContainedFile(containedFiles[i], c);
 					if(location != null){
 						return location;
 					}
 				}
 			}
-			/*	for(int i = 0; i < fileInfos.length; i++){
-				if(!fileInfos[i].isDirectory()){
-					if(fileInfos[i].getName().endsWith(".java")){
-						String fileName = fileStores[i].toURI().getPath();
-						TracerFile tf = TracerFile.getFileByName(fileName);						
-						IPath filePath = new Path(fileName);
-						location = find(c.getProjectName(), fileName, tf, c, filePath);
-						
-						if(location != null){
-							return location;
-						}
-					System.out.println(fileInfos[i].getName());
-					}
-				}
-				else{
-					
-				IFileStore tmpStore = fileStores[i];
-				location = getChildren(tmpStore, c);
-				if(location != null){
-					return location;
-				}
-					
-				}
-			}*/			
-		
+			
 		return null;
 	}
 
@@ -200,7 +173,7 @@ public final class LocationFinder {
 	//	IFileSystem fileSystem = EFS.getLocalFileSystem();
 		//IFileStore 	rootStore = fileSystem.getStore(projectPath); 
 		File rootFile = new File(projectPath.toOSString());
-		location = getChildren(rootFile, c);
+		location = getContainedFile(rootFile, c);
 		return location;
 	}
 	
