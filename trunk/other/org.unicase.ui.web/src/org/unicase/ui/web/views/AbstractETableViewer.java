@@ -65,6 +65,9 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 */
 	public abstract ArrayList<EStructuralFeature> getFeaturesList();
 	
+	
+	public abstract void setInput(Project project);
+	
 	/**
 	 * 
 	 */
@@ -78,8 +81,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 		featureArray = featureList.toArray(featureArray);
 
 		IObservableSet knownElements = contentProvider.getKnownElements();
-		IObservableMap[] observeMaps = EMFObservables.observeMaps(
-				knownElements, featureArray);
+		IObservableMap[] observeMaps = EMFObservables.observeMaps(knownElements, featureArray);
 		ObservableMapLabelProvider labelProvider = new ObservableMapLabelProvider(observeMaps);
 
 		createColumns(featureList, labelProvider);
@@ -95,9 +97,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 *            LabelProvider for some columns.
 	 * @return columns
 	 */
-	public List<TableViewerColumn> createColumns(
-			Collection<EStructuralFeature> features,
-			ILabelProvider labelProvider) {
+	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features, ILabelProvider labelProvider) {
 		
 		columns = new ArrayList<TableViewerColumn>();
 		
@@ -196,7 +196,10 @@ public abstract class AbstractETableViewer extends TableViewer {
 		
 		TableViewerColumn column = new TableViewerColumn(this, style);
 		
-		column.getColumn().setText(feature.getName());
+		String columnName = feature.getName();
+		columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
+		
+		column.getColumn().setText(columnName);
 		column.getColumn().setWidth(width);
 
 		column.getColumn().setMoveable(true);

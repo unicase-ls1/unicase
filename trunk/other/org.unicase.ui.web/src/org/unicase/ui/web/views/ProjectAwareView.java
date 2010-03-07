@@ -12,8 +12,7 @@ import org.unicase.workspace.WorkspaceManager;
  * @author emueller
  *
  */
-public abstract class ProjectAwareView extends AbstractView 
-	implements ProjectChangeObserver {
+public abstract class ProjectAwareView extends AbstractView implements ProjectChangeObserver {
 	
 	protected ProjectSpace projectSpace;
 	

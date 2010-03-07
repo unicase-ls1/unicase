@@ -2,6 +2,7 @@ package org.unicase.ui.web.views;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.rwt.RWT;
 import org.eclipse.ui.part.ViewPart;
 
 public abstract class AbstractView extends ViewPart {
@@ -11,6 +12,10 @@ public abstract class AbstractView extends ViewPart {
 	public abstract String getId();
 	
 	public abstract void init();
+	
+	public AbstractView() {
+		setHttpRequest(RWT.getRequest());
+	}
 	
 	public void setHttpRequest(HttpServletRequest request) {
 		httpRequest = request;
