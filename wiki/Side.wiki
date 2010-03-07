@@ -15,12 +15,22 @@ Sub-projects:
 
 General Content:
  * [Coding]
-   * [Coding_Guidelines Coding Guidelines]<br>
-   * [Model_API_Usage_Guidelines Model API Usage Guidelines] <br>
-   * [Exception_Handling_Guidelines Exception Handling Guidelines] <br>
-   * [Server_Request_Guidelines Server Request Guidelines] <br>
+   * [Coding_Guidelines Coding Guidelines]
+   * [Model_API_Usage_Guidelines Model API Usage Guidelines]
+   * [Exception_Handling_Guidelines Exception Handling Guidelines]
+   * [Server_Request_Guidelines Server Request Guidelines]
    * [PluginConfiguration Plugin Configuration Guidelines]
  * [Modeling]
+ * [ModelingGuidelines Modeling Guidelines]
+   * [UNICASE_Diagram_Editor_Document How to create a custom diagram editor in UNICASE based on GMF]
+   * [Generating_code_from_UNICASE_class_model How to generate code from a UNICASE class model]
+   * [Editor_hints_guidelines How to change the attribute layout in MEEditor - a.k.a Editor Hints]
+   * [Design_Model_Element How to change the icon and label of a model element]
+   * [Validation_rule_implementation How to implement a validation rule]
+
+Additional information
+ * [UNICASE_MODEL_DOCUMENTATION Overview of Models of UNICASE]
+ * [MEDiagram_ID_Settings Description of MEDiagram ID Settings] <br>
  * [Architecture]
  * [Setup Set-up and Configuration]
  * [BuildReleaseDeploy Build, Release and Deploy]
