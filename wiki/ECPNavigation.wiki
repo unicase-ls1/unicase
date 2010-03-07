@@ -1,7 +1,5 @@
 #summary ECP framework Navigational Page
 
-   * [ECPStore What is the ECP?]
-
    * [ECP What is the ECP?]
 
    * [ECPFeatures Why should I use the ECP?]
