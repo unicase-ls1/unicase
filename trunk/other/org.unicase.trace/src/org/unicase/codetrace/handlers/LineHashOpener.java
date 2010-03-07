@@ -26,7 +26,11 @@ public class LineHashOpener implements ModelElementOpener  {
 		
 		return 0;
 	}
-
+	
+	/**
+	 * Opens a certain model element.
+	 * @param modelElement the model element who will be opened
+	 */
 	public void openModelElement(ModelElement modelElement) {
 		if(!(modelElement instanceof LineHash)){
 			

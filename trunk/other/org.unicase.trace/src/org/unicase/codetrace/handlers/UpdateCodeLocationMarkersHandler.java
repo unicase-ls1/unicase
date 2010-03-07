@@ -30,9 +30,7 @@ public class UpdateCodeLocationMarkersHandler {
 		
 		//find source code for all code locations and set a marker
 	}
-	/**
-	 * blabla.
-	 */
+	
 	public void get(){
 		
 	}

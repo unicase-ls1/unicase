@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.codetrace.tracer;
 
 import java.util.HashMap;
@@ -58,7 +64,7 @@ public final class LocationFinder {
 	}
 
 	/**
-	 * This method search recursiv in all contained files for a java source files. 
+	 * This method search recursive in all contained files for a java source files. 
 	 */
 	private FoundLocation getContainedFile(File rootFile){		
 			File[] containedFiles = rootFile.listFiles();
@@ -125,7 +131,7 @@ public final class LocationFinder {
 	public synchronized FoundLocation find(CodeLocation c) {
 		codeLocation = c;
 		
-		//search in the previos source file
+		//search in the previous source file
 		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(codeLocation.getProjectName(),codeLocation.getPathInProject()));
 
 		location = find(codeLocation.getProjectName(), codeLocation.getPathInProject(), tf, null);
@@ -146,9 +152,9 @@ public final class LocationFinder {
 		    	String projectName = project.getName();
 		    	if(!projectName.equals(codeLocation.getProjectName())){
 				location = searchInProject(projectName);
-				if(location != null){
+					if(location != null){
 					return location;
-				}
+					}
 		    	}
 		    }
 		}
@@ -158,11 +164,7 @@ public final class LocationFinder {
 	private FoundLocation searchInProject(String projectName){
 		IWorkspace root = ResourcesPlugin.getWorkspace();
 		IProject eclipseProject = root.getRoot().getProject(projectName);
-		
 		IPath projectPath = eclipseProject.getLocation();
-
-	//	IFileSystem fileSystem = EFS.getLocalFileSystem();
-		//IFileStore 	rootStore = fileSystem.getStore(projectPath); 
 		File rootFile = new File(projectPath.toOSString());
 		location = getContainedFile(rootFile);
 		return location;

@@ -50,10 +50,23 @@ import java.util.Map;
 
 import org.unicase.codetrace.tracer.algorithms.Algorithm;
 import org.unicase.model.trace.CodeLocation;
+/**
+ * @author jfinis
+ * @author kterziewa
+ * 
+ */
 
 public interface TracerFacet {
-
+/**
+ * Return the using algorithm.
+ * @return the algorithm 
+ */
 	Algorithm getAlgorithm();
+/**
+ * 
+ * @param tf the tracefile
+ * @return 
+ */
 
 	Map<Integer, Double> getLines(TracerFile tf);
 
