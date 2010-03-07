@@ -12,9 +12,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.unicase.workspace,
  org.unicase.ui.common,
  org.eclipse.ui.editors,
- org.unicase.ui.meeditor
+ org.unicase.ui.meeditor,
+ org.eclipse.core.filesystem
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.core.filesystem,
- org.eclipse.core.filesystem.provider,
+Import-Package: org.eclipse.core.filesystem.provider,
  org.eclipse.core.internal.filesystem,
  org.unicase.ui.meeditor.mecontrols.melinkcontrol
