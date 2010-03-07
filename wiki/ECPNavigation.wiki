@@ -1,15 +1,17 @@
 #summary ECP framework Navigational Page
 
-  * [ECPStore What is the ECP?]
+   * [ECPStore What is the ECP?]
 
-  * [ECPStoreFeatures Why should I use the ECP?]
+   * [ECP What is the ECP?]
 
-  * [ECPStoreGettingStarted Getting Started with the ECP]
+   * [ECPFeatures Why should I use the ECP?]
 
-  * [ECPStoreArchitecture Architecture]
+   * [ECPGettingStarted Getting Started with the ECP]
 
-  * [ECPStoreBuild Build and Release]
+   * [ECPArchitecture Architecture]
 
-  * [ECPStoreDownloads Downloads]
+   * [ECPBuild Build and Release]
 
-  * [ECPStoreDocumentation Documentation and Tutorials]
+   * [ECPDownloads Downloads]
+
+   * [ECPDocumentation Documentation and Tutorials]
