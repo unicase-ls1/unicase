@@ -3,6 +3,7 @@ package org.unicase.codetrace.tracer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -23,11 +24,11 @@ import org.unicase.model.trace.impl.CodeLocationImpl;
 import org.eclipse.core.filesystem.provider.FileInfo;
 import org.eclipse.core.filesystem.provider.FileSystem;
 import org.eclipse.core.filesystem.provider.FileTree;
+import org.eclipse.core.filesystem.*;
+
 import org.eclipse.core.internal.filesystem.InternalFileSystemCore;
-import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileInfo;
-import org.eclipse.core.filesystem.IFileStore;
-import org.eclipse.core.filesystem.IFileSystem;
+import java.io.File;
+
 
 /**
  * This is the main facade class to create source locations and to find
@@ -65,6 +66,66 @@ public final class LocationFinder {
 	}
 
 	/**
+	 * This method search recursiv in all children of element for a java source files. 
+	 */
+	private FoundLocation getChildren(File rootFile, CodeLocation c){
+		FoundLocation location = null;
+		
+			File[] containedFiles = rootFile.listFiles();
+		//	IFileStore[] fileStores = rootStore.childStores(EFS.NONE, null);
+		//	IFileInfo[] fileInfos = rootStore.childInfos(EFS.NONE, null);
+
+		
+			for(int i = 0; i < containedFiles.length; i++){
+				if(!containedFiles[i].isDirectory()){
+					if(containedFiles[i].getName().endsWith(".java")){
+						String path = containedFiles[i].getPath();
+						TracerFile tf = TracerFile.getFileByName(path);						
+						IPath filePath = new Path(path);
+						location = find(c.getProjectName(), path, tf, c, filePath);
+
+						if(location != null){
+							return location;
+						}
+					}
+				}
+				else{
+
+					location = getChildren(containedFiles[i], c);
+					if(location != null){
+						return location;
+					}
+				}
+			}
+			/*	for(int i = 0; i < fileInfos.length; i++){
+				if(!fileInfos[i].isDirectory()){
+					if(fileInfos[i].getName().endsWith(".java")){
+						String fileName = fileStores[i].toURI().getPath();
+						TracerFile tf = TracerFile.getFileByName(fileName);						
+						IPath filePath = new Path(fileName);
+						location = find(c.getProjectName(), fileName, tf, c, filePath);
+						
+						if(location != null){
+							return location;
+						}
+					System.out.println(fileInfos[i].getName());
+					}
+				}
+				else{
+					
+				IFileStore tmpStore = fileStores[i];
+				location = getChildren(tmpStore, c);
+				if(location != null){
+					return location;
+				}
+					
+				}
+			}*/			
+		
+		return null;
+	}
+
+	/**
 	 * Creates a trackable source location.
 	 * @param projectName The name of the project in which the source file which contains the location is
 	 * @param pathInProject The path of the file which contains the source location, relative to the project root.
@@ -99,52 +160,53 @@ public final class LocationFinder {
 	 * @return the found code location or null if the location couldn't be found.
 	 */
 	public synchronized FoundLocation find(CodeLocation c) {
+		//search in the previos source file
+		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
+
+		FoundLocation location = find(c.getProjectName(), c.getPathInProject(), tf, c, null);
 		
-		
-		//TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(c.getProjectName(),c.getPathInProject()));
-		
-		TracerFile tf = null;
-		IPath projectPath = null;
-		
-		if (tf == null){
+		//if no code location found, search in the same project in the other files
+		if ( location == null){
 			//search in the project for changed file
-			
-			IWorkspace root = ResourcesPlugin.getWorkspace();
-			IProject eclipseProject = root.getRoot().getProject(c.getProjectName());
-			projectPath = eclipseProject.getLocation();
-			
-			LocalFileSystem test = null;
-		   // IProject[] projects = root.getRoot().getProjects();
-		    IFileSystem fs = EFS.getLocalFileSystem();
-
-		    IFileStore rootStore = fs.getStore(projectPath);
-		    test = new LocalFileSystem(rootStore);
-		    IFileInfo[] infos = test.getChildInfos(rootStore);
-		    System.out.println(infos);
-		  /*  for(IProject project: projects){
-		    	String projectName = project.getName();
-				TracerFile tf_workspace = TracerFile.getFileByName(EclipseWorkspaceManager.getProjectOfFile(projectName));
-				tf = tf_workspace;
-				if(tf != null) break;
-			
-		    }*/ 	
-				/*try {
-				    String value = "/jhlkh/src/sdd";
-					IPath path = new Path(value);
-					//String members = 
-					IResource[] resources = root.getRoot().getFolder(path).members();
-					System.out.println(resources);
-				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-			
-		   //if file was changed and code location is in another project, we should search in the whole
-		   //worspace
-		    
-		}
 		
+			location = searchInProject(c.getProjectName(), c);
+		
+		} 
+		//if no location in the previously project found, search in the whole workspace in the other projects
+		if (location == null){
+			IWorkspace root = ResourcesPlugin.getWorkspace();
+		    IProject[] projects = root.getRoot().getProjects();
 
+		    for(IProject project: projects){
+		    	String projectName = project.getName();
+		    	if(!projectName.equals(c.getProjectName())){
+				location = searchInProject(projectName, c);
+				if(location != null){
+					return location;
+				}
+		    	}
+		    }
+		}
+	return location;	
+	}
+	
+	private FoundLocation searchInProject(String projectName, CodeLocation c){
+		FoundLocation location = null;
+		IWorkspace root = ResourcesPlugin.getWorkspace();
+		IProject eclipseProject = root.getRoot().getProject(projectName);
+		
+		IPath projectPath = eclipseProject.getLocation();
+
+	//	IFileSystem fileSystem = EFS.getLocalFileSystem();
+		//IFileStore 	rootStore = fileSystem.getStore(projectPath); 
+		File rootFile = new File(projectPath.toOSString());
+		location = getChildren(rootFile, c);
+		return location;
+	}
+	
+	private FoundLocation find(String projectName, String pathInProject, TracerFile tf, CodeLocation location, IPath filePath){	
+		
+		
 		//Build facet map
 		Map<TracerFacet,Double> facets = new LinkedHashMap<TracerFacet,Double>();
 		for (Entry<Algorithm, Double> ent : featureSet.entrySet()) {
@@ -153,7 +215,7 @@ public final class LocationFinder {
 				continue;
 			}
 			Algorithm a = ent.getKey();
-			TracerFacet facet = a.createFacetFromCodeLocation(c);
+			TracerFacet facet = a.createFacetFromCodeLocation(location);
 			facets.put(facet, vx);
 		
 		}
@@ -219,9 +281,14 @@ public final class LocationFinder {
 		if (bestv < thresholdValue) {
 			return null;
 		}
+		IFile f = null;
+		if(filePath != null){
+			f = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(filePath);
+		}
+		else{
+			f = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName).getFile(pathInProject);
 
-		IFile f = ResourcesPlugin.getWorkspace().getRoot().getProject(c.getProjectName()).getFile(c.getPathInProject());
-		
+		}
 		return new FoundLocation(f, bestln);
 	}
 

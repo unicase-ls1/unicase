@@ -44,7 +44,10 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 		if (codeLocationLink instanceof CodeLocation) {
 			LocationFinder finder = LocationFinder.getInstance();
 			FoundLocation location = finder.find((CodeLocation)codeLocationLink);
-			
+			if(location == null){
+				System.out.println("No Code Location found.");
+				return;
+			}
 			//change current perspective to the java perspective
 			IWorkbench workbench = PlatformUI.getWorkbench();
 			try {
