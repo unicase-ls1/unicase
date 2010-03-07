@@ -13,8 +13,11 @@ Sub-projects:
    * [UNICASEClientDownloads Downloads]
    * [UNICASEDocumentation Documentation and Tutorials]
 
-  * [Coding]
-    * [Coding_Guidelines Coding Guidelines]
+ * [UNICASEClientNavigation UNICASE Client]
+   * [UNICASEClient What is the UNICASE client?]
+   * [UNICASEArchitecture Architecture]
+   * [UNICASEClientDownloads Downloads]
+   * [UNICASEDocumentation Documentation and Tutorials]
 
 General Content:
   * [Coding]
