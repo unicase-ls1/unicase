@@ -1,16 +1,19 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.codetrace.tracer;
 
-import java.io.File;
+
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.unicase.codetrace.tracer.algorithms.Algorithm;
-import org.unicase.codetrace.tracer.algorithms.AlgorithmBestMatch;
-import org.unicase.codetrace.tracer.algorithms.AlgorithmLineContext;
 
 public class Test {
 	
 	
+	@SuppressWarnings("unused")
 	private static void debug(Map<Integer,Double> in){
 		for(Entry<Integer,Double> cur: in.entrySet()){
 			System.out.println(cur.getKey() + ": " + cur.getValue());
