@@ -4,7 +4,15 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.impl;
+package library.impl;
+
+import library.Book;
+import library.BookCategory;
+import library.Library;
+import library.LibraryBase;
+import library.LibraryFactory;
+import library.LibraryPackage;
+import library.Writer;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -14,13 +22,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.example.library.Book;
-import org.eclipse.example.library.BookCategory;
-import org.eclipse.example.library.Library;
-import org.eclipse.example.library.LibraryBase;
-import org.eclipse.example.library.LibraryFactory;
-import org.eclipse.example.library.LibraryPackage;
-import org.eclipse.example.library.Writer;
 import org.unicase.metamodel.MetamodelPackage;
 
 /**
@@ -76,7 +77,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.example.library.LibraryPackage#eNS_URI
+	 * @see library.LibraryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

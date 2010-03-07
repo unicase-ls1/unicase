@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.example.library;
+package library;
 
 import org.unicase.metamodel.ModelElement;
 
@@ -14,7 +14,7 @@ import org.unicase.metamodel.ModelElement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.example.library.LibraryPackage#getLibraryBase()
+ * @see library.LibraryPackage#getLibraryBase()
  * @model abstract="true"
  * @extends ModelElement
  * @generated

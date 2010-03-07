@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.example.library;
+package library;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Book Category</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.example.library.LibraryPackage#getBookCategory()
+ * @see library.LibraryPackage#getBookCategory()
  * @model
  * @generated
  */

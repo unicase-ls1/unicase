@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.impl;
+package library.impl;
+
+import library.LibraryBase;
+import library.LibraryPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.example.library.LibraryBase;
-import org.eclipse.example.library.LibraryPackage;
 
 import org.unicase.metamodel.impl.ModelElementImpl;
 

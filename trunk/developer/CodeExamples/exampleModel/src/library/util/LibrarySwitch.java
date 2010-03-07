@@ -4,14 +4,15 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.util;
+package library.util;
 
 import java.util.List;
+
+import library.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.example.library.*;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 
@@ -25,7 +26,7 @@ import org.unicase.metamodel.ModelElement;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.example.library.LibraryPackage
+ * @see library.LibraryPackage
  * @generated
  */
 public class LibrarySwitch<T> {
