@@ -1,10 +1,10 @@
 #summary ECP framework Navigational Page
 
-  * [ECPStore What is the EMF Client Platform?]
+  * [ECPStore What is the ECP?]
 
-  * [ECPStoreFeatures Why should I use the EMF Client Platform?]
+  * [ECPStoreFeatures Why should I use the ECP?]
 
-  * [ECPStoreGettingStarted Getting Started with the EMF Client Platform]
+  * [ECPStoreGettingStarted Getting Started with the ECP]
 
   * [ECPStoreArchitecture Architecture]
 
