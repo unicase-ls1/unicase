@@ -4,16 +4,17 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.provider;
+package library.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
+import library.Book;
+import library.LibraryPackage;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -23,14 +24,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.example.library.Book;
-import org.eclipse.example.library.LibraryPackage;
-
 /**
- * This is the item provider adapter for a {@link org.eclipse.example.library.Book} object.
+ * This is the item provider adapter for a {@link library.Book} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

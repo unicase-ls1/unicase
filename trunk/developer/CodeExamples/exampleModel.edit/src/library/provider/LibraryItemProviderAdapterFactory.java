@@ -4,10 +4,12 @@
  *
  * $Id$
  */
-package org.eclipse.example.library.provider;
+package library.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import library.util.LibraryAdapterFactory;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -24,8 +26,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import org.eclipse.example.library.util.LibraryAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -76,7 +76,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.example.library.Book} instances.
+	 * This keeps track of the one adapter used for all {@link library.Book} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	protected BookItemProvider bookItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.example.library.Book}.
+	 * This creates an adapter for a {@link library.Book}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +99,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.example.library.Library} instances.
+	 * This keeps track of the one adapter used for all {@link library.Library} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +107,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	protected LibraryItemProvider libraryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.example.library.Library}.
+	 * This creates an adapter for a {@link library.Library}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +122,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.example.library.Writer} instances.
+	 * This keeps track of the one adapter used for all {@link library.Writer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,7 +130,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	protected WriterItemProvider writerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.example.library.Writer}.
+	 * This creates an adapter for a {@link library.Writer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
