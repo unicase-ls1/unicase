@@ -5,7 +5,7 @@
  */
 package org.unicase.codetrace.handlers;
 
-
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -17,10 +17,12 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.workspace.util.UnicaseCommand;
 
+
 /**
  * Command to find code location.
  * 
  * @author snogina
+ * @author kterziewa
  */
 public final class FindCodeLocationCommand  extends UnicaseCommand {
 	
@@ -34,7 +36,7 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 	public FindCodeLocationCommand(ModelElement linkToCodeLocation) {
 		this.link = linkToCodeLocation;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -45,9 +47,15 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 			LocationFinder finder = LocationFinder.getInstance();
 			FoundLocation location = finder.find((CodeLocation)codeLocationLink);
 			if(location == null){
-				System.out.println("No Code Location found.");
+				 MessageDialog.openWarning(
+                        PlatformUI.getWorkbench().
+                        getActiveWorkbenchWindow().getShell(),
+                        "Warning",
+                        "No code location found. \nThe code location was deleted or project was not checked out.");
 				return;
-			}
+				
+			 }
+		
 			//change current perspective to the java perspective
 			IWorkbench workbench = PlatformUI.getWorkbench();
 			try {

@@ -35,10 +35,9 @@ public class AttachLocationCommand extends UnicaseCommand {
 		this.attachTo = attachTo;
 		this.locationToAttach = locationToAttach;
 	}
-/*
+	
+/**
  * 
- * (non-Javadoc)
- * @see org.unicase.workspace.util.UnicaseCommand#doRun()
  */
 	@Override
 	protected void doRun() {

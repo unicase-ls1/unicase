@@ -9,14 +9,22 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 public class EclipseTest {
+	
+	/**
+	 * This class may not be instanced.
+	 */
 
+	private EclipseTest(){
+		
+	}
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		IWorkspace w = ResourcesPlugin.getWorkspace();
-		w.getRoot().getProject("Arsch").getLocation();
+		w.getRoot().getProject("test").getLocation();
 		if(true);
 	}
 
