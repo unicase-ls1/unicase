@@ -1,3 +1,9 @@
 #summary What the ECP framework is.
 
-The EMF Client Platform is a framework to build EMF-based client applications.
+The EMF Client Platform is a framework to build EMF-based client applications. The goal is to provide a one-click application based on a given EMF model. This application can then be adapted and customized step by step.
+
+The scope of ECP is:
+Tree-based Navigator
+Editor for single EObjects
+EMF-based Validation View
+Workspace for versioning and transparent persistency
