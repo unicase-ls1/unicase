@@ -2272,7 +2272,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// do not notify on composite start, wait until completion
 		if (operation instanceof CompositeOperation) {
-			return;
+			// check of automatic composite then continue
+			if (((CompositeOperation) operation).getMainOperation() == null) {
+				return;
+			}
 		}
 		this.notifyOperationExecuted(operation);
 	}
