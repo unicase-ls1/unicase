@@ -8,8 +8,8 @@ package org.unicase.analyzer.unicaseAnalyzers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
@@ -21,14 +21,14 @@ import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
  * 
  * @author helming
  */
-public class StatusEventAnalyzer implements TwoDDataAnalyzer {
+public class StatusEventAnalyzer implements DataAnalyzer {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getName()
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public List<String> getName() {
+	public List<String> getColumnNames() {
 		List<String> names = new ArrayList<String>();
 		names.add("Date");
 		names.add("Type");
@@ -40,30 +40,10 @@ public class StatusEventAnalyzer implements TwoDDataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
-	 */
-	public boolean isGlobal() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData,
+	 * @see org.unicase.analyzer.DataAnalyzer#getValues(org.unicase.analyzer.ProjectAnalysisData,
 	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
-	public void analyzeData(ProjectAnalysisData data, VersionIterator it) {
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData,
-	 *      org.unicase.analyzer.iterator.VersionIterator)
-	 */
-	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
+	public List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it) {
 		List<List<Object>> lines = new ArrayList<List<Object>>();
 
 		for (ChangePackage change : data.getChangePackages()) {
@@ -94,17 +74,6 @@ public class StatusEventAnalyzer implements TwoDDataAnalyzer {
 			}
 		}
 		return lines;
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -34,7 +34,7 @@ import org.unicase.analyzer.exporters.ExportersPackage;
 public class ExporterPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Exporter";
-	private static final String PAGE_DESCRIPTION = "Give the file name for the analyzed result.";
+	private static final String PAGE_DESCRIPTION = "Specify the file name for the analyzed result.";
 	private Text exportPath;
 	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
@@ -98,7 +98,7 @@ public class ExporterPage extends WizardPage implements Listener {
 		// exporterButton.addListener(SWT.Selection, this);
 
 		((ProjectAnalyzerWizard) getWizard()).setCanFinish(isPageComplete());
-		setPageComplete(false);
+		// setPageComplete(false);
 		setControl(composite);
 
 	}

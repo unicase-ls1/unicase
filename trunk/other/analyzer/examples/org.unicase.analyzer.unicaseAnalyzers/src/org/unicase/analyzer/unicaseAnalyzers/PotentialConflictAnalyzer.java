@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -36,58 +36,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author liya
  */
-public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
-
-	/**
-	 * @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData,
-	 *      org.unicase.analyzer.VersionIterator)
-	 * @param data {@link ProjectAnalysisData}
-	 * @param it {@link VersionIterator}
-	 * @return 2D list
-	 */
-
-	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
-		List<List<Object>> values = new ArrayList<List<Object>>();
-		PrimaryVersionSpec base;
-		PrimaryVersionSpec target;
-
-		PrimaryVersionSpec commitVersion = data.getPrimaryVersionSpec();
-
-		ConflictDetector conflictDetector = new ConflictDetector();
-
-		for (ChangePackage changePackage : data.getChangePackages()) {
-			for (Event event : changePackage.getEvents()) {
-				if (event instanceof UpdateEvent) {
-					base = ((UpdateEvent) event).getBaseVersion();
-					target = ((UpdateEvent) event).getTargetVersion();
-					if (target.getIdentifier() + 1 != commitVersion.getIdentifier()) {
-						continue;
-					}
-					try {
-						ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager()
-							.getChanges(it.getUsersession().getSessionId(), it.getProjectId(), base, target);
-						if (conflictDetector.doConflict(changePackage, updateChanges)) {
-							List<AbstractOperation> operationListA = changePackage.getOperations();
-							List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
-							for (ChangePackage updateChange : updateChanges) {
-								operationListB.addAll(updateChange.getOperations());
-							}
-							Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(
-								operationListA, operationListB);
-							List<Object> line = addLine(conflictOpSet, commitVersion, base, target);
-							values.add(line);
-						}
-					} catch (EmfStoreException e) {
-						String message = "Could not get changes from server";
-						WorkspaceUtil.logException(message, e);
-						throw new NoSuchElementException(message + ":\n" + e);
-					}
-				}
-			}
-		}
-
-		return values;
-	}
+public class PotentialConflictAnalyzer implements DataAnalyzer {
 
 	private List<Object> addLine(Set<AbstractOperation> conflictOpSet, PrimaryVersionSpec commitVersion,
 		PrimaryVersionSpec base, PrimaryVersionSpec target) {
@@ -157,10 +106,9 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#getName()
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-
-	public List<String> getName() {
+	public List<String> getColumnNames() {
 		List<String> names = new ArrayList<String>();
 		names.add("Commit Version");
 		names.add("Updated source Version");
@@ -181,35 +129,51 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 	}
 
 	/**
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 * @param data {@link ProjectAnalysisData}
-	 * @return list
-	 * @throws UnsupportedOperationException
-	 */
-
-	public List<Object> getValue(ProjectAnalysisData data) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData,
+	 * @see org.unicase.analyzer.DataAnalyzer#getValues(org.unicase.analyzer.ProjectAnalysisData,
 	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
+	public List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it) {
+		List<List<Object>> values = new ArrayList<List<Object>>();
+		PrimaryVersionSpec base;
+		PrimaryVersionSpec target;
 
-	public void analyzeData(ProjectAnalysisData data, VersionIterator it) {
-		// TODO Auto-generated method stub
+		PrimaryVersionSpec commitVersion = data.getPrimaryVersionSpec();
 
-	}
+		ConflictDetector conflictDetector = new ConflictDetector();
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
-	 */
+		for (ChangePackage changePackage : data.getChangePackages()) {
+			for (Event event : changePackage.getEvents()) {
+				if (event instanceof UpdateEvent) {
+					base = ((UpdateEvent) event).getBaseVersion();
+					target = ((UpdateEvent) event).getTargetVersion();
+					if (target.getIdentifier() + 1 != commitVersion.getIdentifier()) {
+						continue;
+					}
+					try {
+						ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager()
+							.getChanges(it.getUsersession().getSessionId(), it.getProjectId(), base, target);
+						if (conflictDetector.doConflict(changePackage, updateChanges)) {
+							List<AbstractOperation> operationListA = changePackage.getOperations();
+							List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
+							for (ChangePackage updateChange : updateChanges) {
+								operationListB.addAll(updateChange.getOperations());
+							}
+							Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(
+								operationListA, operationListB);
+							List<Object> line = addLine(conflictOpSet, commitVersion, base, target);
+							values.add(line);
+						}
+					} catch (EmfStoreException e) {
+						String message = "Could not get changes from server";
+						WorkspaceUtil.logException(message, e);
+						throw new NoSuchElementException(message + ":\n" + e);
+					}
+				}
+			}
+		}
 
-	public boolean isGlobal() {
-		return false;
+		return values;
 	}
 }

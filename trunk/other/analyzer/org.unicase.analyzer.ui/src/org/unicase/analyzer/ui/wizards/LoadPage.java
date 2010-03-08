@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
-import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -48,7 +47,7 @@ public class LoadPage extends WizardPage implements Listener {
 	/**
 	 * default path for the configuration file.
 	 */
-	public static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
+	public static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "default.conf";
 
 	/**
 	 * @param pageName Name of the page
@@ -95,14 +94,14 @@ public class LoadPage extends WizardPage implements Listener {
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
 
 		Button newFileLocation = new Button(composite, SWT.PUSH);
-		newFileLocation.setText("New Conf");
+		newFileLocation.setText("New Configuration");
 		newFileLocation.addSelectionListener(new NewFileLocationSelectionListener());
 
-		setCanFlipToNextPage(isPageComplete());
-		// ((ProjectAnalyzerWizard) getWizard()).setCanFinish(false);
-		setPageComplete(true);
-
 		setControl(composite);
+
+		setCanFlipToNextPage(true);
+		// setPageComplete(true);
+		((ProjectAnalyzerWizard) getWizard()).setCanFinish(false);
 
 	}
 
@@ -130,9 +129,6 @@ public class LoadPage extends WizardPage implements Listener {
 		URI fileURI = URI.createFileURI(path);
 		File analyzerFile = new File(path);
 
-		@SuppressWarnings("unused")
-		AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
-
 		final Resource resource;
 		if (!analyzerFile.exists()) {
 
@@ -155,16 +151,6 @@ public class LoadPage extends WizardPage implements Listener {
 		}
 
 		((ProjectAnalyzerWizard) getWizard()).setAnalyzerConfig(analyzerConfig);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
-	 */
-	@Override
-	public boolean isPageComplete() {
-		return super.isPageComplete();
 	}
 
 	/**
@@ -222,6 +208,7 @@ public class LoadPage extends WizardPage implements Listener {
 
 			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 				SWT.SAVE);
+			dialog.setFilterPath(Configuration.getPluginDataBaseDirectory());
 			dialog.setFilterNames(new String[] { "Configuration Files(*.conf)", "All Files(*.*)" });
 			dialog.setFilterExtensions(new String[] { ".conf", ".*" });
 			dialog.setOverwrite(true);
@@ -229,7 +216,7 @@ public class LoadPage extends WizardPage implements Listener {
 			dialog.setFileName(initialFileName);
 
 			// dialog
-			String selected = dialog.getFilterPath() + dialog.open();
+			String selected = dialog.open();
 
 			if (selected != null) {
 				configurationPath.setText(selected);

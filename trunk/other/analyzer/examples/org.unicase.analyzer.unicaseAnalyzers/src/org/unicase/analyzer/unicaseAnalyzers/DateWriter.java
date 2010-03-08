@@ -12,8 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.SimpleDataAnalyzer;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
@@ -21,7 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
  * 
  * @author liya
  */
-public class DateWriter implements DataAnalyzer {
+public class DateWriter extends SimpleDataAnalyzer {
 
 	private Date date;
 	private final DateFormat format;
@@ -37,20 +37,25 @@ public class DateWriter implements DataAnalyzer {
 		this.calendar = Calendar.getInstance();
 	}
 
-	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 */
-	public List<String> getName() {
-		List<String> names = new ArrayList<String>();
-		names.add("Date");
-		return names;
+	private void setTime(ChangePackage changePackage) {
+		if (changePackage.getLogMessage() != null) {
+			if (changePackage.getLogMessage().getDate() != null) {
+				calendar.setTime(changePackage.getLogMessage().getDate());
+			} else {
+				calendar.setTime(changePackage.getLogMessage().getClientDate());
+			}
+		} else {
+
+		}
 	}
 
 	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.SimpleDataAnalyzer#getSimpleValues(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
+	@Override
+	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		// if(projectIterator instanceof TimeIterator){
 		// TimeIterator it = (TimeIterator) projectIterator;
@@ -72,25 +77,15 @@ public class DateWriter implements DataAnalyzer {
 		return values;
 	}
 
-	private void setTime(ChangePackage changePackage) {
-		if (changePackage.getLogMessage() != null) {
-			if (changePackage.getLogMessage().getDate() != null) {
-				calendar.setTime(changePackage.getLogMessage().getDate());
-			} else {
-				calendar.setTime(changePackage.getLogMessage().getClientDate());
-			}
-		} else {
-
-		}
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public boolean isGlobal() {
-		return false;
+	public List<String> getColumnNames() {
+		List<String> names = new ArrayList<String>();
+		names.add("Date");
+		return names;
 	}
 
 }

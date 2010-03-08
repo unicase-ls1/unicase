@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.SimpleDataAnalyzer;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
@@ -31,14 +31,16 @@ import org.unicase.model.task.TaskFactory;
 /**
  * @author liya
  */
-public class ModelElementAnalyzer implements DataAnalyzer {
+public class ModelElementAnalyzer extends SimpleDataAnalyzer {
 
 	private static final String MECOUNT = "ModelElement #";
 
 	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.DataAnalyzer#getColumnNames()
 	 */
-	public List<String> getName() {
+	public List<String> getColumnNames() {
 		List<String> names = new ArrayList<String>();
 		names.add(MECOUNT);
 		names.add("Task #");
@@ -60,10 +62,12 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 	}
 
 	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 * @param data {@link ProjectAnalysisData}
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.analyzer.SimpleDataAnalyzer#getSimpleValues(org.unicase.analyzer.ProjectAnalysisData)
 	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
+	@Override
+	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		int task = 0;
 		int organization = 0;
@@ -137,14 +141,5 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 		values.add(attachment);
 
 		return values;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
-	 */
-	public boolean isGlobal() {
-		return false;
 	}
 }

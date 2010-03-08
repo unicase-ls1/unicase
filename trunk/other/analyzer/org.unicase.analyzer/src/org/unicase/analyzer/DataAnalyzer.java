@@ -7,6 +7,8 @@ package org.unicase.analyzer;
 
 import java.util.List;
 
+import org.unicase.analyzer.iterator.VersionIterator;
+
 /**
  */
 public interface DataAnalyzer {
@@ -14,19 +16,16 @@ public interface DataAnalyzer {
 	 * Returns the specified values of the given ProjectAnalysisData.
 	 * 
 	 * @param data ProjectAnalysisData
-	 * @return values per column
+	 * @param it version iterator
+	 * @return values per column ( m rows * n columns)
 	 */
-	List<Object> getValue(ProjectAnalysisData data);
+	List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it);
 
 	/**
-	 * Returns the names of the columns.
+	 * Returns the (header)names of the columns.
 	 * 
 	 * @return the names of the columns
 	 */
-	List<String> getName();
+	List<String> getColumnNames();
 
-	/**
-	 * @return true if just export once
-	 */
-	boolean isGlobal();
 } // DataAnalyzer
