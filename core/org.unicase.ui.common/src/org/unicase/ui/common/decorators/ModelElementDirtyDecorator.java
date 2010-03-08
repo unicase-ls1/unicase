@@ -44,26 +44,22 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 
 		URL url = null;
 		boolean dirty = false;
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		if (activeProjectSpace == null) {
-			return;
-		}
 		if (element instanceof ModelElement) {
 
-			ModelElement me = (ModelElement) element;
+			ModelElement modelElement = (ModelElement) element;
+			if(modelElement.getProject() == null) {
+				return;
+			}
+
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
+			if (projectSpace == null) {
+				return;
+			}
 
 			// if ME is dirty show decoration
-			if (activeProjectSpace.getModifiedModelElementsCache().isDirty(me.getModelElementId())) {
+			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(modelElement.getModelElementId())) {
 				dirty = true;
-
 			}
-			// if one of contained MEs within ME is dirty also show decoration
-			for (ModelElement containedME : me.getAllContainedModelElements()) {
-				if (activeProjectSpace.getModifiedModelElementsCache().isDirty(containedME.getModelElementId())) {
-					dirty = true;
-				}
-			}
-
 		}
 
 		if (dirty) {

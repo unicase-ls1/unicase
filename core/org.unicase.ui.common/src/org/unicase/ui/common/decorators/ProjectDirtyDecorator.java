@@ -50,24 +50,13 @@ public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 		if (element instanceof Project) {
-
-			Project project = (Project) element;
-
-			// if one of contained MEs within ME is dirty also show decoration
-			for (ModelElement orphan : project.getAllModelElements()) {
-				if (activeProjectSpace.getModifiedModelElementsCache().isDirty(orphan.getModelElementId())) {
-					dirty = true;
-				}
-			}
-
+			return;
 		}
-
 		if (dirty) {
 			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
 			descriptor = ImageDescriptor.createFromURL(url);
 			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
 		}
-
 	}
 
 	/**
