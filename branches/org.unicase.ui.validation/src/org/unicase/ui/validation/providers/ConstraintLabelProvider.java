@@ -3,17 +3,17 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.validation;
+package org.unicase.ui.validation.providers;
 
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
 /**
- * LbaleProvider for the Description Column.
+ * ColumnLabelProvider showing the constraint name.
  * 
- * @author helming
+ * @author naughton
  */
-public class DescriptionLabelProvider extends ColumnLabelProvider {
+public class ConstraintLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -22,7 +22,7 @@ public class DescriptionLabelProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof IConstraintStatus) {
 			IConstraintStatus constraint = (IConstraintStatus) element;
-			return constraint.getMessage();
+			return constraint.getConstraint().getDescriptor().getName();
 		}
 		return super.getText(element);
 	}

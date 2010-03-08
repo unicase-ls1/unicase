@@ -24,15 +24,14 @@ public class ValidationListener implements IValidationListener {
 	 */
 	public void validationOccurred(ValidationEvent event) {
 		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		.getActiveWorkbenchWindow().getActivePage();
 		ValidationView validationView = null;
 		try {
 			validationView = (ValidationView) page
-					.showView("org.unicase.workspace.ui.views.validationview.ValidationView");
+			.showView("org.unicase.workspace.ui.views.validationview.ValidationView");
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
 		validationView.updateTable(event.getValidationResults());
 	}
-
 }

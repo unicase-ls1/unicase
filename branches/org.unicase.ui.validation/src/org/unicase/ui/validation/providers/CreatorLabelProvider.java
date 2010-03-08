@@ -3,17 +3,19 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.validation;
+package org.unicase.ui.validation.providers;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.unicase.metamodel.ModelElement;
 
 /**
- * ColumnLabelProvider showing the constraint name.
+ * LabelProvider for the Creator Column.
  * 
- * @author naughton
+ * @author helming
  */
-public class ConstraintLabelProvider extends ColumnLabelProvider {
+public class CreatorLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -21,8 +23,10 @@ public class ConstraintLabelProvider extends ColumnLabelProvider {
 	@Override
 	public String getText(Object element) {
 		if (element instanceof IConstraintStatus) {
-			IConstraintStatus constraint = (IConstraintStatus) element;
-			return constraint.getConstraint().getDescriptor().getName();
+			EObject target = ((IConstraintStatus) element).getTarget();
+			if (target instanceof ModelElement) {
+				return ((ModelElement) target).getCreator();
+			}
 		}
 		return super.getText(element);
 	}

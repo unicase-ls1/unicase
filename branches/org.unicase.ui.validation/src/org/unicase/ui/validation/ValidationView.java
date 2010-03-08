@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
@@ -25,49 +29,53 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.validation.ConstraintLabelProvider;
-import org.unicase.ui.validation.CreatorLabelProvider;
+import org.unicase.ui.validation.providers.ConstraintLabelProvider;
+import org.unicase.ui.validation.providers.CreatorLabelProvider;
+import org.unicase.ui.validation.providers.DescriptionLabelProvider;
+import org.unicase.ui.validation.providers.SeverityLabelProvider;
+import org.unicase.ui.validation.providers.ValidationContentProvider;
+import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
+import org.unicase.ui.validation.providers.ValidationLableProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.ui.validation.filter.ValidationFilter;
+
 
 /**
  * Validation view.
  * 
  * @author wesendonk
+ * @author pfeifferc
  */
 public class ValidationView extends ViewPart {
 
 	private TableViewer tableViewer;
-	private Action filterToMyTeam;
-	private ValidationTeamFilter teamFilter;
-	private ValidationUserFilter userFilter;
-	private Action filterToMe;
 	private DialogSettings settings;
 	private String filename;
 	private final String viewId = getClass().getName();
 	private Workspace workspace;
 	private AdapterImpl workspaceListenerAdapter;
+	private Shell shell;
+
 
 	/**
 	 * Default constructor.
 	 */
 	public ValidationView() {
-		IPath path = org.unicase.ui.common.Activator.getDefault()
-				.getStateLocation();
+		IPath path = org.unicase.ui.common.Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
 		try {
@@ -75,7 +83,6 @@ public class ValidationView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspaceListenerAdapter = new AdapterImpl() {
 
@@ -86,7 +93,7 @@ public class ValidationView extends ViewPart {
 							&& (msg.getOldValue() instanceof List<?> || msg
 									.getOldValue() instanceof ProjectSpace)) {
 						tableViewer
-								.setInput(new ArrayList<IConstraintStatus>());
+						.setInput(new ArrayList<IConstraintStatus>());
 					}
 
 				}
@@ -104,82 +111,80 @@ public class ValidationView extends ViewPart {
 		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER
 				| SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		createTable();
-		initFilters();
-
+		this.shell = parent.getShell();
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
-		menuManager.add(filterToMe);
-		menuManager.add(filterToMyTeam);
+		OpenFilterDialogAction openFilterDialogAction = new OpenFilterDialogAction();
+		openFilterDialogAction.setImageDescriptor(Activator
+				.getImageDescriptor("icons/openfilterlist.png"));
+		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
+		menuManager.add(openFilterDialogAction);
 		hookDoubleClickAction();
 	}
 
 	private void createTable() {
+		// CREATE TABLE
 		Table table = tableViewer.getTable();
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 5;
 		table.setLayoutData(gridData);
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
+		TableViewerColumn column;
 
-		TableViewerColumn column = new TableViewerColumn(tableViewer,
+		// severity column
+		column = new TableViewerColumn(tableViewer,
 				SWT.CENTER, 0);
 		column.getColumn().setText("Severity");
 		column.getColumn().setWidth(50);
-		ColumnLabelProvider labelProvider = new SeverityLabelProvider();
-		column.setLabelProvider(labelProvider);
-		ViewerComparator comp = new TableViewerColumnSorter(tableViewer,
-				column, labelProvider);
-		column.getViewer().setComparator(comp);
+		setLabelProviderAndComparator(column, new SeverityLabelProvider());
 
+		// constraint column
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 1);
 		column.getColumn().setText("Constraint");
 		column.getColumn().setWidth(200);
-		labelProvider = new ConstraintLabelProvider();
-		column.setLabelProvider(labelProvider);
-		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
-		column.getViewer().setComparator(comp);
+		setLabelProviderAndComparator(column, new ConstraintLabelProvider());
 
+		// description column
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 2);
 		column.getColumn().setText("Description");
 		column.getColumn().setWidth(400);
-		labelProvider = new DescriptionLabelProvider();
-		column.setLabelProvider(labelProvider);
-		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
-		column.getViewer().setComparator(comp);
+		setLabelProviderAndComparator(column, new DescriptionLabelProvider());
 
+		// affected model element column
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 3);
 		column.getColumn().setText("Affected ModelElement");
 		column.getColumn().setWidth(200);
-		labelProvider = new ValidationLableProvider();
-		column.setLabelProvider(labelProvider);
-		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
-		column.getViewer().setComparator(comp);
+		setLabelProviderAndComparator(column, new ValidationLableProvider());
 
+		// creator column
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 4);
 		column.getColumn().setText("Creator");
 		column.getColumn().setWidth(100);
-		labelProvider = new CreatorLabelProvider();
-		column.setLabelProvider(labelProvider);
-		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
-		column.getViewer().setComparator(comp);
+		setLabelProviderAndComparator(column, new CreatorLabelProvider());
 
 		// content provider
 		tableViewer.setContentProvider(new ValidationContentProvider());
-		initFilters();
+	}
 
+	private void setLabelProviderAndComparator(TableViewerColumn column,
+			ColumnLabelProvider labelProvider) {
+		column.setLabelProvider(labelProvider);
+		column.getViewer().setComparator(new TableViewerColumnSorter(tableViewer, column, labelProvider));
 	}
 
 	private void hookDoubleClickAction() {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
+
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
+				.getSelection();
 				IConstraintStatus constraintStatus = (IConstraintStatus) selection
-						.getFirstElement();
+				.getFirstElement();
 
 				EObject me = constraintStatus.getTarget();
 				Iterator<EObject> iterator = constraintStatus.getResultLocus()
-						.iterator();
+				.iterator();
 				if (me instanceof ModelElement) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
@@ -188,10 +193,11 @@ public class ValidationView extends ViewPart {
 								errorLocation, viewId);
 					} else {
 						ActionHelper
-								.openModelElement((ModelElement) me, viewId);
+						.openModelElement((ModelElement) me, viewId);
 					}
 				}
 			}
+
 		});
 	}
 
@@ -223,120 +229,28 @@ public class ValidationView extends ViewPart {
 	 */
 	public void updateTable(List<IConstraintStatus> validationResults) {
 		tableViewer.setInput(validationResults);
-
 		// this is added to fix the bug regarding context menu not being shown
 		// correctly in navigator, after validation viewer was shown.
 		tableViewer.getTable().setFocus();
-		if (!validationResults.isEmpty()) {
-			IConstraintStatus iConstraintStatus = validationResults.get(0);
-			EObject target = iConstraintStatus.getTarget();
-			if (target instanceof ModelElement) {
-				ModelElement modelElement = (ModelElement) target;
-				ProjectSpace projectSpace = WorkspaceManager
-						.getProjectSpace(modelElement.getProject());
-				initFilters(projectSpace.getUsersession().getACUser());
-			}
-		} else {
-			initFilters(null);
-		}
-
 	}
 
-	private void initFilters(ACUser acUser) {
-
-		createTeamFilter(acUser);
-		createUserFilter(acUser);
-
-	}
-
-	private void createUserFilter(ACUser user) {
-		// Create User filter
-
-		if (filterToMe == null) {
-			filterToMe = new Action("", SWT.TOGGLE) {
-				@Override
-				public void run() {
-					setUserFilter(isChecked());
+	private ArrayList<ValidationFilter> getFiltersFromExtensionPoint() {
+		final ArrayList<ValidationFilter> validationFilters = new ArrayList<ValidationFilter>();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.unicase.ui.validation.filters");
+		for (IConfigurationElement element : config) {
+			try {
+				Object object = element.createExecutableExtension("filter");
+				if(object instanceof ValidationFilter) {
+					ValidationFilter validationFilter = (ValidationFilter) object;
+					validationFilters.add(validationFilter);
 				}
-
-			};
-			filterToMe.setImageDescriptor(org.unicase.ui.common.Activator
-					.getImageDescriptor("/icons/filtertouser.png"));
-		}
-		if (user == null) {
-			setUserFilter(false);
-			filterToMe.setEnabled(false);
-			return;
-		}
-		filterToMe.setEnabled(true);
-		Boolean isFilter = Boolean.parseBoolean(settings.get("UserFilter"));
-		userFilter = new ValidationUserFilter(user);
-		filterToMe.setChecked(isFilter);
-		setUserFilter(isFilter);
-	}
-
-	/**
-	 * Sets if the user filter is turned on.
-	 * 
-	 * @param checked
-	 *            if the filter is turned on.
-	 */
-	protected void setUserFilter(boolean checked) {
-		if (checked) {
-			EventUtil.logPresentationSwitchEvent(viewId, "UserFilter");
-			tableViewer.addFilter(userFilter);
-		} else {
-			if (userFilter != null) {
-				EventUtil.logPresentationSwitchEvent(viewId, "NoUserFilter");
-				tableViewer.removeFilter(userFilter);
+			} catch (CoreException e) {
+				e.printStackTrace();
 			}
 		}
-
+		return validationFilters;		
 	}
 
-	private void createTeamFilter(ACUser user) {
-		// Create Team filter
-		if (filterToMyTeam == null) {
-			filterToMyTeam = new Action("", SWT.TOGGLE) {
-				@Override
-				public void run() {
-					setTeamFilter(isChecked());
-				}
-
-			};
-			filterToMyTeam.setImageDescriptor(org.unicase.ui.common.Activator
-					.getImageDescriptor("/icons/filtertomyteam.png"));
-		}
-		if (user == null) {
-			setTeamFilter(false);
-			filterToMyTeam.setEnabled(false);
-			return;
-		}
-		filterToMyTeam.setEnabled(true);
-		teamFilter = new ValidationTeamFilter(user);
-		Boolean isteamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
-		filterToMyTeam.setChecked(isteamFilter);
-		setTeamFilter(isteamFilter);
-	}
-
-	/**
-	 * Sets the team filter.
-	 * 
-	 * @param checked
-	 *            if the team filter is turned on.
-	 */
-	protected void setTeamFilter(boolean checked) {
-		if (checked) {
-			EventUtil.logPresentationSwitchEvent(viewId, "TeamFilter");
-			tableViewer.addFilter(teamFilter);
-		} else {
-			if (teamFilter != null) {
-				EventUtil.logPresentationSwitchEvent(viewId, "NoTeamFilter");
-				tableViewer.removeFilter(teamFilter);
-			}
-		}
-
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -345,5 +259,41 @@ public class ValidationView extends ViewPart {
 	public void dispose() {
 		workspace.eAdapters().remove(workspaceListenerAdapter);
 		super.dispose();
+	}
+
+	/**
+	 * The filter dialog action.
+	 * 
+	 * @author pfeifferc
+	 */
+	private final class OpenFilterDialogAction extends Action {
+
+		@Override
+		public void run() {
+			ValidationFilterList validationFilterList = new ValidationFilterList(shell, new ValidationFilterLabelProvider());
+			validationFilterList.setElements(getFiltersFromExtensionPoint().toArray());
+			validationFilterList.setEmptySelectionMessage("No filter selected");
+			validationFilterList.setMultipleSelection(true);
+			validationFilterList.setTitle("Choose one or more filters");
+			validationFilterList.setImage(Activator
+					.getImageDescriptor("icons/openfilterlist.png").createImage());
+			validationFilterList.open();
+			if(validationFilterList.getReturnCode() == Status.OK) {
+				removeAllFilters();
+				for(Object object : validationFilterList.getResult()) {
+					if(object instanceof ValidationFilter) {
+						applyFilter((ValidationFilter) object);
+					}
+				}
+			}
+		}
+
+		private void applyFilter(ValidationFilter validationFilter) {
+			tableViewer.addFilter(validationFilter);
+		}
+
+		private void removeAllFilters() {
+			tableViewer.resetFilters();
+		}
 	}
 }

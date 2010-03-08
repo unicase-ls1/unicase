@@ -1,52 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
+	<extension-point id="org.unicase.ui.validation.filters" name="The validation filter extension point" schema="schema/org.unicase.ui.validation.filter.exsd"/>
+ <extension-point id="org.unicase.ui.validation.refactorings" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
+	<extension
          point="org.eclipse.ui.views">
-   </extension>
-   <view
+		<view
             category="org.unicase"
-            class="org.unicase.workspace.ui.views.validationview.ValidationView"
+            class="org.unicase.ui.validation.ValidationView"
             icon="icons/validation.png"
             id="org.unicase.workspace.ui.views.validationview.ValidationView"
             name="Validation View"
             restorable="true">
-      </view>
-    
-   </extension>
-     <extension
-           point="org.eclipse.emf.validation.validationListeners">
+		</view>
+	</extension>
+     <extension point="org.eclipse.emf.validation.validationListeners">
         <listener
-              class="org.unicase.workspace.ui.views.validationview.ValidationListener">
+              class="org.unicase.ui.validation.ValidationListener">
            <clientContext
                  id="org.unicase.model.validation">
            </clientContext>
         </listener>
-     </extension>
-     <command
-              commandId="org.unicase.ui.common.validate"
+	</extension>
+     <extension
+           point="org.eclipse.ui.editors">
+        <editor
+              class="org.unicase.ui.validation.alphaui.SimpleFormEditor"
+              default="false"
               icon="icons/validation.png"
-              label="Validate Project"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <and>
-                 <iterate
-                       ifEmpty="false"
-                       operator="and">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-                 <count
-                       value="1">
-                 </count>
-              </and>
-           </visibleWhen>
-        </command>
-            <command
-           defaultHandler="org.unicase.workspace.ui.commands.ValidateHandler"
-           id="org.unicase.ui.common.validate"
-           name="Validate">
-     </command>
+              id="org.unicase.ui.validation.editor"
+              name="Validation Editor">
+        </editor>
+     </extension>
 </plugin>
+
