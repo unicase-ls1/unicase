@@ -18,6 +18,6 @@ The EMFStore framework consists of three features:
     * org.unicase.ui.navigator: contains a reflective view for showing the local models and their structure in a tree view.
     * org.unicase.ui.meeditor: contains a reflective form-based editor to view single model elements.
 
-In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features.
+In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features. In contrast a headless client does not contain the EMFStore Client User Interface Feature since it does not need to display the models or interaction on the models.
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.png]
