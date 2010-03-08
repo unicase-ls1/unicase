@@ -4,7 +4,9 @@ The EMF Client Platform is a framework to build EMF-based client applications. T
 This application can then be customized step by step. This can be done by extending ECP or replacing single components completly.
 
 Features:
-Tree-based Navigator
-Editor for single EObjects
-EMF-based Validation View
-Workspace for versioning and transparent persistency
+  * Tree-based Navigator
+    * Strutured creation dialog 
+    * Dynamic creation actions
+  * Editor for single EObjects
+  * EMF-based Validation View
+  * Workspace for versioning and transparent persistency
