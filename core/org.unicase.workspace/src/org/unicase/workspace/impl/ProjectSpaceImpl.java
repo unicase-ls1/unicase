@@ -1895,6 +1895,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.setProjectId(createdProject.getProjectId());
 		this.saveProjectSpaceOnly();
 		getOperations().clear();
+		updateDirtyState();
 	}
 
 	/**
