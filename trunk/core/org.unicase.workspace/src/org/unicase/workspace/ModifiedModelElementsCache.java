@@ -14,35 +14,60 @@ import java.util.Set;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
+import org.unicase.workspace.observers.ShareObserver;
 
 /**
- * Caches all modified elements.
+ * Caches all modified model elements.
  * 
- * @author hodaie
+ * @author pfeifferc
  */
-public class ModifiedModelElementsCache implements OperationListener, CommitObserver {
+public class ModifiedModelElementsCache implements OperationListener, CommitObserver, ShareObserver {
 
-	private Map<ModelElementId, List<AbstractOperation>> modifiedMEs;
+	/**
+	 * Contains the model elements that were changed, and a list of operations that need to be remembered for undone's.
+	 */
+	private Map<ModelElementId, List<AbstractOperation>> modifiedModelElements;
+
+	/**
+	 * Direct parents of model elements who were affected of changes.
+	 */
+	private Map<ModelElementId, Integer> modifiedModelElementParents;
+
+	/**
+	 * Maps child to parent elements to be able to retrieve hierarchies already deconstructed in the project space.
+	 */
+	private HashMap<ModelElementId, ModelElementId> childParentMapping;
+
+	/**
+	 * The project space.
+	 */
+	private ProjectSpace projectSpace;
 
 	/**
 	 * Constructor.
+	 * 
+	 * @param projectSpace the project space
 	 */
-	public ModifiedModelElementsCache() {
-		modifiedMEs = new HashMap<ModelElementId, List<AbstractOperation>>();
+	public ModifiedModelElementsCache(ProjectSpace projectSpace) {
+		this.projectSpace = projectSpace;
+		modifiedModelElements = new HashMap<ModelElementId, List<AbstractOperation>>();
+		modifiedModelElementParents = new HashMap<ModelElementId, Integer>();
+		childParentMapping = new HashMap<ModelElementId, ModelElementId>();
 	}
 
 	/**
 	 * If this model element has been modified.
 	 * 
-	 * @param meId model element id
+	 * @param modelElementId model element id
 	 * @return If this model element has been modified.
 	 */
-	public boolean isDirty(ModelElementId meId) {
-
-		return modifiedMEs.containsKey(meId);
+	public boolean isModelElementDirty(ModelElementId modelElementId) {
+		return modifiedModelElementParents.containsKey(modelElementId)
+			|| modifiedModelElements.containsKey(modelElementId);
 	}
 
 	/**
@@ -50,20 +75,84 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @see org.unicase.workspace.observers.OperationListener#operationExecuted(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	public void operationExecuted(AbstractOperation operation) {
-		// add to cache
-		Set<ModelElementId> involvedMEs = operation.getAllInvolvedModelElements();
-		for (ModelElementId meId : involvedMEs) {
-			if (!modifiedMEs.containsKey(meId)) {
-				List<AbstractOperation> ops = new ArrayList<AbstractOperation>();
-				ops.add(operation);
-				modifiedMEs.put(meId, ops);
+	public void operationExecuted(AbstractOperation abstractOperation) {
+		// cache the model element and the operation, as well as the modified parents recursively
+		for (ModelElementId modelElementId : abstractOperation.getAllInvolvedModelElements()) {
+			if (modifiedModelElements.containsKey(modelElementId)) {
+				modifiedModelElements.get(modelElementId).add(abstractOperation);
 			} else {
-				modifiedMEs.get(meId).add(operation);
+				List<AbstractOperation> abstractOperations = new ArrayList<AbstractOperation>();
+				abstractOperations.add(abstractOperation);
+				modifiedModelElements.put(modelElementId, abstractOperations);
+				ModelElementId nextParentModelElementId = getNextParentModelElementId(modelElementId);
+				if (nextParentModelElementId != null) {
+					childParentMapping.put(modelElementId, nextParentModelElementId);
+					addOneToParent(nextParentModelElementId);
+				}
 			}
-
 		}
+	}
 
+	/**
+	 * Removes one from the number of dirty children a parent has. Moves through the hierarchy recursively.
+	 * 
+	 * @param parentModelElementId
+	 */
+	private void removeOneFromParent(ModelElementId parentModelElementId) {
+		Integer number = modifiedModelElementParents.get(parentModelElementId);
+		if (number == null || number - 1 == 0) {
+			modifiedModelElementParents.remove(parentModelElementId);
+			if (!modifiedModelElements.containsKey(parentModelElementId)) {
+				ModelElementId nextParentModelElementId = getNextParentModelElementId(parentModelElementId);
+				if (nextParentModelElementId != null) {
+					removeOneFromParent(nextParentModelElementId);
+				}
+			}
+		} else {
+			modifiedModelElementParents.put(parentModelElementId, number - 1);
+		}
+	}
+
+	private void addOneToParent(ModelElementId parentModelElementId) {
+		Integer number = modifiedModelElementParents.get(parentModelElementId);
+		if (number == null || number < 1) {
+			number = 1;
+			if (!modifiedModelElements.containsKey(parentModelElementId)) {
+				ModelElement nextParentModelElement = getModelElementForId(parentModelElementId)
+					.getContainerModelElement();
+				if (nextParentModelElement != null) {
+					addOneToParent(nextParentModelElement.getModelElementId());
+				}
+			}
+		} else {
+			number++;
+		}
+		modifiedModelElementParents.put(parentModelElementId, number);
+	}
+
+	/**
+	 * @param childModelElementId the
+	 * @return the model element id of the parent of the model element id passed as reference, or null if there is none
+	 */
+	private ModelElementId getNextParentModelElementId(ModelElementId childModelElementId) {
+		ModelElement childModelElement = getModelElementForId(childModelElementId);
+		if (childModelElement == null) {
+			return null;
+		}
+		ModelElement nextParentModelElement = childModelElement.getContainerModelElement();
+		if (nextParentModelElement == null) {
+			return null;
+		} else {
+			return nextParentModelElement.getModelElementId();
+		}
+	}
+
+	/**
+	 * @param modelElementId the
+	 * @return the model element for the model element id passed as reference
+	 */
+	private ModelElement getModelElementForId(ModelElementId modelElementId) {
+		return projectSpace.getProject().getModelElement(modelElementId);
 	}
 
 	/**
@@ -74,16 +163,16 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	public void operationUnDone(AbstractOperation operation) {
 		// remove from cache
 		Set<ModelElementId> involvedMEs = operation.getAllInvolvedModelElements();
-		for (ModelElementId meId : involvedMEs) {
-			if (modifiedMEs.containsKey(meId)) {
-				modifiedMEs.get(meId).remove(operation);
-				if (modifiedMEs.get(meId).size() == 0) {
-					modifiedMEs.remove(meId);
-
+		for (ModelElementId childModelElementId : involvedMEs) {
+			// update the model elements directly affected by the changes to the list of modified model elements
+			if (modifiedModelElements.containsKey(childModelElementId)) {
+				modifiedModelElements.get(childModelElementId).remove(operation);
+				if (modifiedModelElements.get(childModelElementId).size() == 0) {
+					modifiedModelElements.remove(childModelElementId);
+					removeOneFromParent(childParentMapping.get(childModelElementId));
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -93,7 +182,8 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
-		modifiedMEs.clear();
+		// do the same as when project has been shared
+		shareDone();
 	}
 
 	/**
@@ -106,4 +196,11 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void shareDone() {
+		modifiedModelElementParents.clear();
+		modifiedModelElements.clear();
+	}
 }

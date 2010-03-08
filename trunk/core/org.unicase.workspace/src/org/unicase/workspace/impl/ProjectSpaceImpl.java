@@ -91,6 +91,7 @@ import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.observers.OperationListener;
+import org.unicase.workspace.observers.ShareObserver;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
 import org.unicase.workspace.util.ResourceHelper;
@@ -359,6 +360,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private AutoSplitAndSaveResourceContainmentList<ESNotification> notificationList;
 
+	private ArrayList<ShareObserver> shareObservers;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -369,7 +372,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		super();
 		this.commitObservers = new ArrayList<CommitObserver>();
 		this.operationListeners = new ArrayList<OperationListener>();
+		this.shareObservers = new ArrayList<ShareObserver>();
 		this.propertyMap = new HashMap<String, OrgUnitProperty>();
+		modifiedModelElementsCache = new ModifiedModelElementsCache(this);
+		this.addOperationListener(modifiedModelElementsCache);
+		this.addCommitObserver(modifiedModelElementsCache);
+		shareObservers.add(modifiedModelElementsCache);
 	}
 
 	// end of custom code
@@ -1894,8 +1902,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
 		this.saveProjectSpaceOnly();
+		notifyShareObservers();
 		getOperations().clear();
-		updateDirtyState();
+
+	}
+
+	private void notifyShareObservers() {
+		for (ShareObserver shareObserver : shareObservers) {
+			try {
+				shareObserver.shareDone();
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				WorkspaceUtil.logException("ShareObserver failed with exception", e);
+			}
+		}
 	}
 
 	/**
@@ -2218,11 +2239,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#getModifiedModelElementsCache()
 	 */
 	public ModifiedModelElementsCache getModifiedModelElementsCache() {
-		if (modifiedModelElementsCache == null) {
-			modifiedModelElementsCache = new ModifiedModelElementsCache();
-			this.addOperationListener(modifiedModelElementsCache);
-			this.addCommitObserver(modifiedModelElementsCache);
-		}
 		return modifiedModelElementsCache;
 	}
 
@@ -2273,10 +2289,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// do not notify on composite start, wait until completion
 		if (operation instanceof CompositeOperation) {
-			// check of automatic composite then continue
-			if (((CompositeOperation) operation).getMainOperation() == null) {
-				return;
-			}
+			return;
 		}
 		this.notifyOperationExecuted(operation);
 	}
