@@ -107,12 +107,7 @@
             id="org.unicase.ui.common.newDocument"
             name="New Document">
       </command>
-      <command
-            categoryId="org.unicase.ui.common.modifyModelelement"
-            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.DeleteModelelementHandler"
-            id="org.unicase.ui.common.deleteModelelement"
-            name="Delete Modelelement">
-      </command>
+  
        <command
            categoryId="org.unicase.ui.common.modifyModelelement"
            defaultHandler="org.unicase.ui.unicasecommon.common.commands.ImportUserHandler"
@@ -401,27 +396,6 @@
                        operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-                 <count
-                       value="1">
-                 </count>
-              </and>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.deleteModelelement"
-              icon="icons/delete.gif"
-              label="Delete"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <and>
-                 <iterate
-                       ifEmpty="false"
-                       operator="and">
-                    <instanceof
-                          value="org.unicase.metamodel.ModelElement">
                     </instanceof>
                  </iterate>
                  <count

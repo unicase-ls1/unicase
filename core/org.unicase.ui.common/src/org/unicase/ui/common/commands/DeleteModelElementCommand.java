@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.meeditor.commands;
+package org.unicase.ui.common.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	 */
 	@Override
 	protected void doRun() {
-		if (closeEditor(me)) {
+		
 			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			String modelElementName = adapterFactoryLabelProvider.getText(me);
@@ -67,45 +67,8 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 				}
 
 			}
-		}
+		
 	}
 
-	private boolean closeEditor(ModelElement me) {
-
-		boolean result = true;
-
-		// we could find editors with this ME as input
-		// but we don't want to have a dependency on meeditor plug-in
-		// Therefore we have no access to MEEditorInput class
-		IEditorReference[] openEditors = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-			.getEditorReferences();
-
-		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
-		for (int i = 0; i < openEditors.length; i++) {
-			try {
-
-				IEditorInput editorInput = openEditors[i].getEditorInput();
-
-				if (editorInput instanceof URIEditorInput) {
-					ModelElement modelElement = WorkspaceUtil.getModelElementByUri(((URIEditorInput) editorInput)
-						.getURI());
-					if (modelElement != null && modelElement.equals(me)) {
-						toCloseEditors.add(openEditors[i]);
-					}
-				}
-
-			} catch (PartInitException e) {
-				DialogHandler.showExceptionDialog(e);
-				result = false;
-			}
-		}
-
-		if (toCloseEditors.size() > 0) {
-			result = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeEditors(
-				toCloseEditors.toArray(new IEditorReference[toCloseEditors.size()]), true);
-
-		}
-
-		return result;
-	}
+	
 }

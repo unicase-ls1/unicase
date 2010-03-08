@@ -26,6 +26,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.workspace.Configuration;
@@ -53,6 +54,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ILabelProviderListener labelProviderListener;
 
 	private ModelElementChangeObserver modelelementChangeObserver;
+
+	private Project project;
 
 	/**
 	 * Default constructor.
@@ -144,7 +147,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
-
+			project = modelElement.getProject();
 			modelelementChangeObserver = new ModelElementChangeObserver() {
 
 				@Override
@@ -167,7 +170,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 				protected void onElementDeleted(ModelElement element) {
 					if (element == modelElement) {
 						close(false);
-						modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
+						project.removeProjectChangeObserver(modelelementChangeObserver);
 					}
 
 				}

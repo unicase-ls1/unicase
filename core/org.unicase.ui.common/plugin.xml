@@ -6,7 +6,12 @@
    <extension
         point="org.eclipse.ui.commands">
      
-    
+        <command
+            categoryId="org.unicase.ui.common.modifyModelelement"
+            defaultHandler="org.unicase.ui.common.handler.DeleteModelelementHandler"
+            id="org.unicase.ui.common.deleteModelelement"
+            name="Delete Modelelement">
+      </command>
    
   </extension>
   <extension
@@ -24,6 +29,30 @@
               icon="icons/delete.gif"
               label="Delete"
               style="push">
+        </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
         </command>
      </menuContribution>
      
