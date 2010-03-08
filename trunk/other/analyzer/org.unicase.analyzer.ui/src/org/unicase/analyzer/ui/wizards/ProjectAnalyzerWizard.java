@@ -36,7 +36,6 @@ import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -46,8 +45,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
-	private static final String PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
-	private static final String DOMAIN_ID = "org.unicase.EditingDomain";
 	private TransactionalEditingDomain domain;
 	private Resource resource;
 	private boolean canFinish;

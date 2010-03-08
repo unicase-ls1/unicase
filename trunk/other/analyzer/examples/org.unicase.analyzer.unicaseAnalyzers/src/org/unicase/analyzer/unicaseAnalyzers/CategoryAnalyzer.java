@@ -132,7 +132,7 @@ public class CategoryAnalyzer extends SimpleDataAnalyzer {
 				category = 3;
 			}
 
-			if (dependency != null && dependency.size() > 0) {
+			if (dependency.size() > 0) {
 				depth = Collections.max(dependency);
 			}
 			leafOpSize = data.getChangePackages().get(0).getLeafOperations().size();
