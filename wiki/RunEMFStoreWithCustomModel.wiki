@@ -1,7 +1,7 @@
 #summary Tutorial on how to run the EMFStore with a custom model
 
 
-<wiki:video url="http://www.youtube.com/watch?v=mvjPh61VWKw"/> 
+<wiki:video url="http://www.youtube.com/watch?v=VnIuM1l2fyU"/> 
 
 Links to optional resources:
   * [EMFStore_Configuration How to change the EMFStore default configuration]
