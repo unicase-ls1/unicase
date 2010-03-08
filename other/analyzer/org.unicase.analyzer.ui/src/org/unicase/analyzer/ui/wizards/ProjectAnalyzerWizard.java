@@ -6,7 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -19,9 +18,6 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -34,9 +30,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
-import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
@@ -70,6 +64,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private Usersession selectedUsersession;
 	private ProjectId selectedProjectID;
 	private LoadPage loadPage;
+	private ProjectSpace selectedProject;
 
 	/**
 	 * {@inheritDoc}
@@ -90,6 +85,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			IExtensionPoint extensionPoint = registry.getExtensionPoint("org.unicase.analyzer.analyzer");
 			IExtension[] extensions = extensionPoint.getExtensions();
 
+			boolean notExisting = false;
 			// For each extension ...
 			for (int i = 0; i < extensions.length; i++) {
 				IExtension extension = extensions[i];
@@ -104,9 +100,18 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							} catch (CoreException e) {
 								WorkspaceUtil.logException("Problems occur when creating the analyzer!", e);
 							}
+						} else {
+							notExisting = true;
 						}
 					}
 				}
+			}
+			if (notExisting) {
+				MessageDialog
+					.openWarning(
+						Display.getCurrent().getActiveShell(),
+						"",
+						"Some of the analyers does not exist. Your analysis result might not be complete. Please check the .conf file and the extended cliend analyzers again!");
 			}
 		}
 
@@ -138,10 +143,19 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		try {
 			getContainer().run(true, true, new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor) {
-					monitor.beginTask("Analyzing...", 1);
-					@SuppressWarnings("unused")
 					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig
 						.getIterator(), analyzers, analyzerConfig.getExporter());
+					analyzerController.setMonitor(monitor);
+					int totalSteps = analyzerConfig.getIterator().getTotalSteps();
+					monitor.beginTask("Analyzing...", totalSteps);
+					try {
+						analyzerController.runAnalysis(analyzerConfig.getExporter());
+
+					} catch (IOException e) {
+						WorkspaceUtil.logException("Analysis is encountering problems!", e);
+					}
+					System.out.println("Finished Analysis");
+
 					monitor.done();
 				}
 			});
@@ -165,7 +179,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
 			if (firstElement instanceof ProjectSpace) {
-				ProjectSpace selectedProject = (ProjectSpace) firstElement;
+				selectedProject = (ProjectSpace) firstElement;
 				selectedProjectID = (ProjectId) EcoreUtil.copy(selectedProject.getProjectId());
 				selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
 				if (!selectedUsersession.isLoggedIn()) {
@@ -183,38 +197,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		setCanFinish(false);
 		// analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
 		// initConfig();
-	}
-
-	@SuppressWarnings("unused")
-	private void initConfig() {
-
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(DOMAIN_ID);
-
-		URI fileURI = URI.createFileURI(PATH);
-		File analyzerFile = new File(PATH);
-
-		AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
-
-		if (!analyzerFile.exists()) {
-
-			resource = domain.getResourceSet().createResource(fileURI);
-			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					resource.getContents().add(analyzerConfig);
-				}
-			});
-		} else {
-
-			resource = domain.getResourceSet().getResource(fileURI, true);
-			EList<EObject> directContents = resource.getContents();
-			// MK cast
-			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
-			canFinish = true;
-		}
-		// }
-		// });
 	}
 
 	/**
@@ -381,6 +363,20 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setDomain(TransactionalEditingDomain domain) {
 		this.domain = domain;
+	}
+
+	/**
+	 * @return the selectedProject
+	 */
+	public ProjectSpace getSelectedProject() {
+		return selectedProject;
+	}
+
+	/**
+	 * @param selectedProject the selectedProject to set
+	 */
+	public void setSelectedProject(ProjectSpace selectedProject) {
+		this.selectedProject = selectedProject;
 	}
 
 }

@@ -36,7 +36,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class AnalyzerPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Registered Analyzers";
-	private static final String PAGE_DESCRIPTION = "Choose the analyzer.";
+	private static final String PAGE_DESCRIPTION = "Choose the analyzer(s).";
 	private final List<Button> analyzerButton = new ArrayList<Button>();
 	private boolean canFlipToNextPage;
 	private ArrayList<DataAnalyzer> analyzers;
@@ -98,7 +98,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		}
 
 		setCanFlipToNextPage(isPageComplete());
-		setPageComplete(false);
+		// setPageComplete(false);
 		setControl(composite);
 
 	}

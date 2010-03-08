@@ -28,6 +28,9 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
  */
 public class PotentialConflictTest extends AnalyzersTest {
 
+	/**
+	 * Potential Conflict Analyzer test.
+	 */
 	public PotentialConflictTest() {
 		super();
 	}
