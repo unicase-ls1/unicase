@@ -22,15 +22,5 @@
            </clientContext>
         </listener>
 	</extension>
-     <extension
-           point="org.eclipse.ui.editors">
-        <editor
-              class="org.unicase.ui.validation.alphaui.SimpleFormEditor"
-              default="false"
-              icon="icons/validation.png"
-              id="org.unicase.ui.validation.editor"
-              name="Validation Editor">
-        </editor>
-     </extension>
 </plugin>
 
