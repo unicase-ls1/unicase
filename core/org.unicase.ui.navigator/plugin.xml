@@ -90,6 +90,19 @@
                typeId="org.unicase.ui.navigator.eClassType">
          </commandParameter>
       </command>
+          <command
+            defaultHandler="org.unicase.ui.navigator.handler.CreateContainmentHandler"
+            description="This generic command is used by dynamic commands to create containment MEs"
+            id="org.unicase.ui.navigator.createContaiment"
+            name="New Containment ME">
+         <commandParameter
+               id="org.unicase.ui.navigator.eClassParameter"
+               name="eClassParameter"
+               optional="true"
+               typeId="org.unicase.ui.navigator.eClassType">
+         </commandParameter>
+  
+      </command>
       <category
             id="org.unicase.ui.navigator"
             name="Navigator">

@@ -28,7 +28,7 @@ import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.handler.CreateMEHandler;
+import org.unicase.ui.navigator.handler.CreateContainmentHandler;
 import org.unicase.ui.navigator.handler.NewModelElementWizardHandler;
 import org.unicase.workspace.ProjectSpace;
 
@@ -137,7 +137,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 
-			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, containment.getEReferenceType());
+			commandParams.put(CreateContainmentHandler.COMMAND_ECLASS_PARAM, containment.getEReferenceType());
 			commandParam.label = "New " + containment.getEReferenceType().getName();
 			commandParam.icon = getImage(containment.getEReferenceType());
 
@@ -177,7 +177,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
-			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, eClass);
+			commandParams.put(CreateContainmentHandler.COMMAND_ECLASS_PARAM, eClass);
 			commandParam.label = "New " + eClass.getName();
 			commandParam.icon = getImage(eClass);
 

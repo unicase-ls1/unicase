@@ -48,24 +48,7 @@
                typeId="org.unicase.ui.navigator.diagramType">
          </commandParameter>
       </command>
-      <command
-            defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.CreateContainmentHandler"
-            description="This generic command is used by dynamic commands to create containment MEs"
-            id="org.unicase.ui.navigator.createContaiment"
-            name="New Containment ME">
-         <commandParameter
-               id="org.unicase.ui.navigator.eClassParameter"
-               name="eClassParameter"
-               optional="true"
-               typeId="org.unicase.ui.navigator.eClassType">
-         </commandParameter>
-         <commandParameter
-               id="org.unicase.ui.navigator.diagramTypeParameter"
-               name="diagramTypeParameter"
-               optional="true"
-               typeId="org.unicase.ui.navigator.diagramType">
-         </commandParameter>
-      </command>
+  
       <command
             defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.NewModelElementWizardHandler"
             id="org.unicase.ui.navigator.newMEWizard"
