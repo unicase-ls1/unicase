@@ -167,9 +167,10 @@ public class ExporterPage extends WizardPage implements Listener {
 			dialog.setFileName(initialFileName);
 
 			// dialog
-			String selected = dialog.getFilterPath() + dialog.open();
+			String fileName = dialog.open();
+			String selected = dialog.getFilterPath() + fileName;
 
-			if (selected != null) {
+			if (fileName != null) {
 				exportPath.setText(selected);
 				selectFileLocation.setFocus();
 			}
