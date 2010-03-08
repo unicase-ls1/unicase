@@ -6,6 +6,8 @@
 package org.unicase.analyzer.exceptions;
 
 /**
+ * Represents an internal error of the iterator.
+ * 
  * @author koegel
  */
 @SuppressWarnings("serial")

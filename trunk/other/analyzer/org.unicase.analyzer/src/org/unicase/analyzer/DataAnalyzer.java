@@ -10,16 +10,11 @@ import java.util.List;
 import org.unicase.analyzer.iterator.VersionIterator;
 
 /**
+ * Represents an Analyzer that is able to analyze a given project analysis data instance and return values for it.
+ * 
+ * @author koegel
  */
 public interface DataAnalyzer {
-	/**
-	 * Returns the specified values of the given ProjectAnalysisData.
-	 * 
-	 * @param data ProjectAnalysisData
-	 * @param it version iterator
-	 * @return values per column ( m rows * n columns)
-	 */
-	List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it);
 
 	/**
 	 * Returns the (header)names of the columns.
@@ -27,5 +22,14 @@ public interface DataAnalyzer {
 	 * @return the names of the columns
 	 */
 	List<String> getColumnNames();
+
+	/**
+	 * Returns a number of rows containing values for each column for a given project analysis data.
+	 * 
+	 * @param data ProjectAnalysisData
+	 * @param it version iterator
+	 * @return values per column ( m rows * n columns)
+	 */
+	List<List<Object>> getValues(ProjectAnalysisData data, VersionIterator it);
 
 } // DataAnalyzer

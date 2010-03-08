@@ -315,20 +315,6 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 		}
 	}
 
-	public void init(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit,
-		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
-
-		setForward(isForward);
-		setProjectId(projectId);
-		setReturnProjectDataCopy(returnProjectDataCopy);
-		setStepLength(stepLengthUnit);
-		setStepLengthUnit(stepLengthUnit);
-		setVersionSpecQuery(versionSpecQuery);
-
-		this.init(usersession);
-
-	}
-
 	private void defaultSet() {
 		VersionSpecQuery versionSpecQuery = IteratorFactoryImpl.eINSTANCE.createVersionSpecQuery();
 		versionSpecQuery.setStartVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());

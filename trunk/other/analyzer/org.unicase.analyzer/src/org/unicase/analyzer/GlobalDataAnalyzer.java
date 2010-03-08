@@ -10,7 +10,7 @@ import java.util.List;
 import org.unicase.analyzer.iterator.VersionIterator;
 
 /**
- * It is used for returning only a global result in the end.
+ * Represents an analyzer that only returns one global result at the end.
  * 
  * @author liya
  */
@@ -29,21 +29,20 @@ public abstract class GlobalDataAnalyzer implements DataAnalyzer {
 			analyzeData(data, it);
 			return null;
 		} else {
-			return getGlobalResults(data, it);
+			analyzeData(data, it);
+			return getGlobalResults();
 		}
 	}
 
 	/**
-	 * Global results will only be returned in the end.
+	 * Return the global results. Will only be called at the end of the analysis.
 	 * 
-	 * @param data project analysis data
-	 * @param it version iterator
 	 * @return global results
 	 */
-	public abstract List<List<Object>> getGlobalResults(ProjectAnalysisData data, VersionIterator it);
+	public abstract List<List<Object>> getGlobalResults();
 
 	/**
-	 * Analyze data for each iteration.
+	 * Called on each iteration. Analyze data for each iteration. Build up a global result internally.
 	 * 
 	 * @param data project analysis data
 	 * @param it version iterator

@@ -556,19 +556,6 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 
 	}
 
-	public void init(Usersession usersession, ProjectId projectId, int stepLength, VersionSpecQuery versionSpecQuery,
-		boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
-
-		setProjectId(projectId);
-		setStepLength(stepLength);
-		setReturnProjectDataCopy(returnProjectDataCopy);
-
-		setForward(isForward);
-
-		this.init(usersession);
-
-	}
-
 	/**
 	 * Updates the PrimaryVersionSpec.
 	 * 

@@ -83,8 +83,6 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			// For each member of the extension ...
 			for (int j = 0; j < elements.length; j++) {
 				final IConfigurationElement element = elements[j];
-				@SuppressWarnings("unused")
-				int count = i * elements.length + j;
 				extendedAnalyzers.add(element);
 				Button button = new Button(composite, SWT.CHECK);
 				button.setText(element.getAttribute("class"));

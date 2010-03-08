@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -38,6 +37,7 @@ import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -95,7 +95,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							try {
 								analyzers.add((DataAnalyzer) element.createExecutableExtension("class"));
 							} catch (CoreException e) {
-								WorkspaceUtil.logException("Problems occur when creating the analyzer!", e);
+								WorkspaceUtil.logException("Problems occured when creating the analyzer!", e);
 							}
 						} else {
 							notExisting = true;
@@ -112,10 +112,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			}
 		}
 
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					analyzerConfig.getIterator().init(selectedUsersession);
 					((CSVExporter) analyzerConfig.getExporter()).init();
@@ -125,8 +124,10 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 				} catch (IOException e) {
 					WorkspaceUtil.logException("Problems occur when creating the exporter!", e);
 				}
+
 			}
-		});
+		}.run();
+
 		try {
 			analyzerConfig.eResource().save(null);
 		} catch (IOException e) {
@@ -192,8 +193,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
 		setCanFinish(false);
-		// analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-		// initConfig();
 	}
 
 	/**
