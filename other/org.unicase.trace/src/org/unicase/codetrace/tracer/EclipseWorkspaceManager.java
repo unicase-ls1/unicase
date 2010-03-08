@@ -11,8 +11,15 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 public class EclipseWorkspaceManager {
+	
+	/**
+	 * Utility class.
+	 */
+	private EclipseWorkspaceManager(){
+		
+	}
 
-	private IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+	//private IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 	
 	static{
 		IWorkspace w = ResourcesPlugin.getWorkspace();
@@ -51,8 +58,8 @@ public class EclipseWorkspaceManager {
 	}
 	
 	/**
-	 * Returns the name of the workspace root. 
-	 * @return the name of the workspace
+	 * Returns the path of the workspace root. 
+	 * @return the path of the workspace
 	 */
 	public static String getWorkspace(){
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();

@@ -27,6 +27,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.LineHash;
 import org.unicase.ui.common.Activator;
@@ -62,8 +63,10 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 		EList<ModelElement> elementsFiltered = new BasicEList<ModelElement>();
 		if (elements != null) {
 			for (ModelElement me : (EList<ModelElement>) elements) {
-				if (!(me instanceof LineHash) & !(me instanceof CodeLocation))  {
+				if (me instanceof WorkItem){
 					elementsFiltered.add(me);
+			//	if (!(me instanceof LineHash) & !(me instanceof CodeLocation))  {
+			//		elementsFiltered.add(me);
 				}
 			}
 		}

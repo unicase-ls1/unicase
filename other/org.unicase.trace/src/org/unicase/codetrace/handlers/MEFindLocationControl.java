@@ -25,10 +25,7 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
  */
 public class MEFindLocationControl  extends MELinkControl {
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor, org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
-	 */
+	
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link,
 		ModelElement contextModelElement) {
