@@ -9,7 +9,6 @@ package org.unicase.analyzer.ui.wizards;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -32,6 +31,7 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -238,12 +238,10 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {
 		final ExporterPage page = ((ProjectAnalyzerWizard) getWizard()).getExporterPage();
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
 				conf.getIterator().setProjectId(wizard.getSelectedProjectID());
 				if (conf.getExporter() == null) {
@@ -251,9 +249,9 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 					conf.setExporter(exporter);
 				}
 				page.init();
-			}
-		});
 
+			}
+		}.run();
 		return page;
 	}
 

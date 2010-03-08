@@ -211,23 +211,7 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	 * @throws IteratorException if any error occurs
 	 * @generated NOT
 	 */
-
 	void init(Usersession usersession, ProjectId projectId, int stepLength) throws IteratorException;
-
-	/**
-	 * @param usersession the session id for authentication
-	 * @param projectId the project id of the project to get
-	 * @param stepLength the step length for the iterator to go through to the next
-	 * @param versionSpecQuery the version query for the iterator from start till the end
-	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false) However,
-	 *            doesn't work for backward currently, will be solved in the near future
-	 * @param returnProjectDataCopy the next() method will return the copy of ProjectAnalysisData when it is set to true
-	 * @throws IteratorException if any error occurs
-	 * @generated NOT
-	 */
-
-	void init(Usersession usersession, ProjectId projectId, int stepLength, VersionSpecQuery versionSpecQuery,
-		boolean isForward, boolean returnProjectDataCopy) throws IteratorException;
 
 	/**
 	 * Initialize the iterator, have to set at least ProjectId and StepLength to start the iterator, or choose to use

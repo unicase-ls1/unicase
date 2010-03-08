@@ -193,7 +193,7 @@ public class DetectionAnalyzer extends GlobalDataAnalyzer {
 	 *      org.unicase.analyzer.iterator.VersionIterator)
 	 */
 	@Override
-	public List<List<Object>> getGlobalResults(ProjectAnalysisData data, VersionIterator it) {
+	public List<List<Object>> getGlobalResults() {
 		List<List<Object>> values = new ArrayList<List<Object>>();
 
 		for (String user : users) {

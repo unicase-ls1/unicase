@@ -63,39 +63,16 @@ public class ExporterPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 
-		// exporterButton = new Button(composite, SWT.RADIO);
-		// exporterButton.setText("CVS Exporter");
-		// gd = new GridData(GridData.FILL_HORIZONTAL);
-		// gd.horizontalSpan = ncol;
-		// exporterButton.setLayoutData(gd);
-		// exporterButton.setSelection(true);
-		// exporterButton.addListener(SWT.Selection, this);
-
 		new Label(composite, SWT.NONE).setText("File Name:");
 		exportPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		exportPath.setLayoutData(gd);
-
-		//		
-		//		
-		// if(conf.getExporterName() != null){
-		//			
-		//			
-		// exportPath.setText(conf.getExporterName());
-		// }
 
 		selectFileLocation = new Button(composite, SWT.PUSH);
 		selectFileLocation.setText("Browse");
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
 		exportPath.setFocus();
 		exportPath.addListener(SWT.FocusOut, this);
-		// exporterButton = new Button(composite, SWT.PUSH);
-		// exporterButton.setText("Save Configuration");
-		// gd = new GridData(GridData.FILL_HORIZONTAL);
-		// gd.horizontalSpan = ncol;
-		// exporterButton.setLayoutData(gd);
-		// exporterButton.setSelection(false);
-		// exporterButton.addListener(SWT.Selection, this);
 
 		((ProjectAnalyzerWizard) getWizard()).setCanFinish(isPageComplete());
 		// setPageComplete(false);
@@ -154,9 +131,6 @@ public class ExporterPage extends WizardPage implements Listener {
 		 */
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			// DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
-			// fd.setText("select the folder where you want to save the analyzed results ");
-			// String selected = fd.open();
 
 			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 				SWT.SAVE);

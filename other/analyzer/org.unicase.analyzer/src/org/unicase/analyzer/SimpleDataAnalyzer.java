@@ -11,14 +11,14 @@ import java.util.List;
 import org.unicase.analyzer.iterator.VersionIterator;
 
 /**
- * It is used for only one list of data is output for a given projectAnalysisData.
+ * Represents an analyzer that only returns one row of data per iteration.
  * 
  * @author liya
  */
 public abstract class SimpleDataAnalyzer implements DataAnalyzer {
 
 	/**
-	 * It is used for only one row of data is output.
+	 * Get one row of values for the given project analysis data.
 	 * 
 	 * @param data project analysis data
 	 * @return a list of values
