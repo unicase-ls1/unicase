@@ -158,7 +158,11 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		if (object instanceof EClass) {
 			return false;
 		} else {
-			return getChildren(object).length > 0;
+			Object[] children = getChildren(object);
+			if (children != null) {
+				return children.length > 0;
+			} else
+				return false;
 		}
 
 	}
