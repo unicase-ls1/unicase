@@ -1,5 +1,7 @@
 This section contains links to UNICASE developer's tutorials.
 
+All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE channel]. You can enlarge the video and switch to HD for a better quality on !YouTube. To do this click into the video while it is running embedded in this website, this will open the video on !YouTube, where you can change the resolution and maximize to full screen.
+
  * [CheckoutTutorial Checkout UNICASE code from SVN]
  
  * [RunClientTutorial Run UNICASE client as a developer]
@@ -9,5 +11,4 @@ This section contains links to UNICASE developer's tutorials.
  * [SetupProjectTutorial Setup a project for EMFStore server] 
 
 Addtional Tutorials for developers that use EMFStore as a framework are available on the [EMFStoreDocumentation EMFStore Doucmentation site].
-
-*Note:* All the UNICASE video tutorials are available on the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE] channel hosted on {{{YouTube}}}. 
+ 
