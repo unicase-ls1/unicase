@@ -20,6 +20,6 @@ Features:
   * Workspace 
     * Transparent Persistency
     * Versioning
-    * Model Repository (EMFStore)
+    * Model Repository (([EMFStore EMFStore]))
   * Model-based GMF adapter to use GMF without files
   * Model Migration
