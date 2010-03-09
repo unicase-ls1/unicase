@@ -76,7 +76,8 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
-
+		// init ecore packages
+		ModelUtil.getAllModelElementEClasses();
 	}
 
 	/**
