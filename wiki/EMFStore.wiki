@@ -10,8 +10,6 @@ Features:
     * Persistency
     * Access Control
     * *Model Migration*
-    * File Storage
-
 
  * Model Workspace (Client):
    * Model Change Tracking
