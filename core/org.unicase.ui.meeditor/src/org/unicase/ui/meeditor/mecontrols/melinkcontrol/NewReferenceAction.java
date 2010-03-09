@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -85,7 +84,7 @@ public class NewReferenceAction extends Action {
 				// Returns the value of the Container
 				EObject parent = modelElement.eContainer();
 				while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
-					EReference reference = getPossibleContainingReference(newMEInstance, parent);
+					EReference reference = ModelUtil.getPossibleContainingReference(newMEInstance, parent);
 					if (reference != null && reference.isMany()) {
 						Object object = parent.eGet(reference);
 						EList<EObject> eList = (EList<EObject>) object;
@@ -112,28 +111,6 @@ public class NewReferenceAction extends Action {
 			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
-		/**
-		 * @param newMEInstance {@link ModelElement} the new modelElement instance.
-		 * @return EReference the Container
-		 */
-		private EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
-			// the value of the 'EAll Containments' reference list.
-			List<EReference> eallcontainments = parent.eClass().getEAllContainments();
-			EReference reference = null;
-			for (EReference containmentitem : eallcontainments) {
-
-				if (containmentitem.getEReferenceType().equals(newMEInstance)) {
-					reference = containmentitem;
-
-					break;
-				} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
-
-					reference = containmentitem;
-					break;
-				}
-			}
-			return reference;
-		}
 	}
 
 	private EReference eReference;

@@ -96,7 +96,43 @@ public final class ModelUtil {
 		modelElementId.setId(id);
 		return modelElementId;
 	}
+	/**
+	 * Gives all eClasses which can be contained in a given eClass.
+	 * @param eClass the EClass
+	 * @return all Classes which can be contained
+	 */
+	public static Set<EClass> getAllEContainments(EClass eClass) {
+		List<EReference> containments = eClass.getEAllContainments();
+		Set<EClass> eClazz = new HashSet<EClass>();
+		for (EReference ref : containments) {
+			EClass eReferenceType = ref.getEReferenceType();
+			eClazz.addAll(getAllSubEClasses(eReferenceType));
+		}
+		return eClazz;
+	}
+	/**
+	 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+	 * @return EReference the Container
+	 * @param parent The EObject to get conatinment references from 
+	 */
+	public static EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
+		// the value of the 'EAll Containments' reference list.
+		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		EReference reference = null;
+		for (EReference containmentitem : eallcontainments) {
 
+			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+				reference = containmentitem;
+
+				break;
+			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+
+				reference = containmentitem;
+				break;
+			}
+		}
+		return reference;
+	}
 	/**
 	 * Compares to projects. Two projects are equal if all model elements are equal.
 	 * 

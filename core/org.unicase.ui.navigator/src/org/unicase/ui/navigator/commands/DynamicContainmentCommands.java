@@ -7,7 +7,6 @@ package org.unicase.ui.navigator.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -61,17 +60,13 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		}
 
 		// 2. get its containments
-		List<EReference> containments = selectedME.eClass().getEAllContainments();
-		Set<EClass> eClazz = new HashSet<EClass>();
-		for (EReference ref : containments) {
-			EClass eReferenceType = ref.getEReferenceType();
-			eClazz.addAll(ModelUtil.getSubclasses(eReferenceType));
-		}
+		Set<EClass> eClazz = ModelUtil.getAllEContainments(selectedME.eClass());
 		if (eClazz.size() > 5) {
 			return createNewWizard(selectedME.eClass());
 		}
 
 		// 3. create commands for these containments
+		List<EReference> containments = selectedME.eClass().getEAllContainments();
 		IContributionItem[] commands = createCommands(containments);
 		return commands;
 	}
@@ -171,7 +166,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			return;
 		}
 
-		Set<EClass> eClazz = ModelUtil.getSubclasses(refClass);
+		Set<EClass> eClazz = ModelUtil.getAllSubEClasses(refClass);
+		eClazz.remove(refClass);
 		for (EClass eClass : eClazz) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
 				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);

@@ -5,14 +5,17 @@
  */
 package org.unicase.ui.navigator.wizards;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -61,7 +64,6 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
 			if (selectedEObject instanceof ProjectSpace) {
 				new UnicaseCommand() {
-
 					@Override
 					protected void doRun() {
 						((ProjectSpace) selectedEObject).getProject().addModelElement(newMEInstance);
@@ -69,6 +71,20 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					}
 				}.run();
 
+			} else {
+				final EReference possibleContainingReference = ModelUtil.getPossibleContainingReference(newMEInstance,
+					selectedEObject);
+				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
+					new UnicaseCommand() {
+						@Override
+						protected void doRun() {
+							Object object = selectedEObject.eGet(possibleContainingReference);
+							EList<EObject> eList = (EList<EObject>) object;
+							eList.add(newMEInstance);
+
+						}
+					}.run();
+				}
 			}
 			// 3.open the newly created ME
 			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
