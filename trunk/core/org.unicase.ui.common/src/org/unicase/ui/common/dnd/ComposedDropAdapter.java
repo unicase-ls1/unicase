@@ -219,7 +219,10 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		} else {
 			targetDropAdapter = getTargetDropAdapter(target.eClass());
 		}
-
+		if(targetDropAdapter==null){
+			event.detail = DND.DROP_NONE;
+		}
+		else
 		if (!targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
 			event.detail = DND.DROP_NONE;
 		}
@@ -237,7 +240,10 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		MEDropAdapter ret = dropAdapters.get(targetEClass);
 		if (ret == null) {
-			ret = getTargetDropAdapter(getSuperTypeHavingADropAdapter(targetEClass.getESuperTypes()));
+			EClass superTypeHavingADropAdapter = getSuperTypeHavingADropAdapter(targetEClass.getESuperTypes());
+			if(superTypeHavingADropAdapter!=null){
+			ret = getTargetDropAdapter(superTypeHavingADropAdapter);
+			}
 		}
 
 		return ret;
