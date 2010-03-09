@@ -18,7 +18,7 @@ You can also download a standalone version as a product from the links given bel
 
 ==Releases==
 
-*There are currently no releases available at the moment, but there will be releases soon.*
+*There are currently no releases available at the moment, but there will a release on April 1st.*
 
 Soon the EMFStore features can be installed from this update site:
 
