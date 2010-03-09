@@ -172,11 +172,11 @@ public class BookItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Book)object).getIdentifier();
+		String label = ((Book)object).getTitle();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Book_type") :
 			getString("_UI_Book_type") + " " + label;
