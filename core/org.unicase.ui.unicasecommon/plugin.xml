@@ -33,7 +33,7 @@
       <command
             defaultHandler="org.unicase.ui.unicasecommon.navigator.commands.CreateMEHandler"
             description="This generic command is used to by dynamic commands to create different MEs"
-            id="org.unicase.ui.navigator.createME"
+            id="org.unicase.ui.unicasecommon.navigator.createME"
             name="New Model Element">
          <commandParameter
                id="org.unicase.ui.navigator.eClassParameter"

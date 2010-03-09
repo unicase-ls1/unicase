@@ -41,7 +41,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-	private static final String COMMAND_ID = "org.unicase.ui.navigator.createME";
+	private static final String COMMAND_ID = "org.unicase.ui.unicasecommon.navigator.createME";
 
 	/**
 	 * . ({@inheritDoc})

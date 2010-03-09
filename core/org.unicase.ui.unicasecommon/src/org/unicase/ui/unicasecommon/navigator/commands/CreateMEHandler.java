@@ -25,9 +25,9 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * @author Hodaie This is the handler for createME command (org.unicase.ui.navigator.createME). This command is just a
- *         command definition with a parameter. This command is not shown itself in the context menu. In
- *         DynamicMECreationCommands class the actually required command to create a Model element are created and
+ * @author Hodaie This is the handler for createME command (org.unicase.ui.unicasecommon.navigator.createME). This
+ *         command is just a command definition with a parameter. This command is not shown itself in the context menu.
+ *         In DynamicMECreationCommands class the actually required command to create a Model element are created and
  *         assigned the ID of this generic createME command. When the user selects one of these commands this handler is
  *         executed. The generic createME command gets an EClass as parameter, and the handler creates a ModelElement of
  *         this EClass, adds it to the selected LeafSection and opens it for editing.
