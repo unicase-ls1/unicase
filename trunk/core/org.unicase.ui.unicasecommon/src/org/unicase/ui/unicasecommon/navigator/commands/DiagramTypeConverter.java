@@ -11,7 +11,7 @@ import org.unicase.model.diagram.DiagramType;
 
 /**
  * @author denglerm This is the converter for DiagramType parameter passed to createME command
- *         (org.unicase.ui.navigator.createME).
+ *         (org.unicase.ui.unicasecommon.navigator.createME).
  */
 public class DiagramTypeConverter extends AbstractParameterValueConverter {
 
