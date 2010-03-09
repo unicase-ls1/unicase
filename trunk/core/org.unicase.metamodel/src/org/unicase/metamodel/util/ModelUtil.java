@@ -333,15 +333,7 @@ public final class ModelUtil {
 	private static Set<EClass> modelElementEClasses;
 
 
-	/**
-	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
-	 * 
-	 * @return a set of EClasses
-	 */
-	public static Set<EClass> getAllModelElementEClasses() {
-		return getAllSubEClasses(MetamodelPackage.eINSTANCE.getModelElement());
-	}
-	
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass.
 	 * 
@@ -349,17 +341,33 @@ public final class ModelUtil {
 	 * @return a set of EClasses
 	 */
 	public static Set<EClass> getAllSubEClasses(EClass eClass) {
+		Set<EClass> allEClasses = getAllModelElementEClasses();
+		Set<EClass> result = new HashSet<EClass>();
+		for (EClass subClass: allEClasses) {
+			if (eClass.isSuperTypeOf(subClass)) {
+				result.add(subClass);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
+	 * 
+	 * @return a set of EClasses
+	 */
+	public static Set<EClass> getAllModelElementEClasses() {
 		if (modelElementEClasses != null) {
-			return modelElementEClasses;
+			return new HashSet<EClass>(modelElementEClasses);
 		}
 		Set<EClass> result = new HashSet<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
 			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			result.addAll(getAllSubEClasses(ePackage, eClass));
+			result.addAll(getAllModelElementEClasses(ePackage));
 		}
-		modelElementEClasses = result;
+		modelElementEClasses=result;
 		return result;
 	}
 
@@ -369,15 +377,15 @@ public final class ModelUtil {
 	 * @param ePackage the package to get the classes from
 	 * @return a set of EClasses
 	 */
-	private static Set<EClass> getAllSubEClasses(EPackage ePackage, EClass eClass) {
+	private static Set<EClass> getAllModelElementEClasses(EPackage ePackage) {
 		Set<EClass> result = new HashSet<EClass>();
 		for (EPackage subPackage : ePackage.getESubpackages()) {
-			result.addAll(getAllSubEClasses(subPackage, eClass));
+			result.addAll(getAllModelElementEClasses(subPackage));
 		}
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				EClass subEClass = (EClass) classifier;
-				if (eClass.isSuperTypeOf(subEClass)) {
+				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(subEClass)) {
 					result.add(subEClass);
 				}
 			}
