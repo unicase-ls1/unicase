@@ -93,7 +93,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 					ret.add(child);
 				}
 			}
-			return children;
+			return ret.toArray();
 
 		} else {
 			// for Children that are EClass, show nothing

@@ -32,12 +32,6 @@
             id="org.unicase.ui.navigator.project"
             name="Project and Model Element Commands">
       </category>
-      <command
-            categoryId="org.unicase.ui.navigator.project"
-            defaultHandler="org.unicase.ui.navigator.TestHandler"
-            id="org.unicase.ui.navigator.newModelElementCommand"
-            name="Create new model element...">
-      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -112,6 +106,18 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
+            <command
+                  defaultHandler="org.unicase.ui.navigator.handler.CreateMEHandler"
+                  description="This generic command is used to by dynamic commands to create different MEs"
+                  id="org.unicase.ui.navigator.createME"
+                  name="New Model Element">
+               <commandParameter
+                     id="org.unicase.ui.navigator.eClassParameter"
+                     name="eClassParameter"
+                     optional="true"
+                     typeId="org.unicase.ui.navigator.eClassType">
+               </commandParameter>
+            </command>
    </extension>
    
 
