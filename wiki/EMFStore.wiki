@@ -9,7 +9,6 @@ Features:
     * Versioning
     * Persistency
     * Access Control
-    * *Offline Clients*
     * *Model Migration*
     * File Storage
 
@@ -17,7 +16,7 @@ Features:
  * Model Workspace (Client):
    * Model Change Tracking
    * Commit and Update Models
-   * Offline Mode (No server connection neccessary)   
+   * *Offline Mode* (No server connection neccessary)   
    * Extensible Model Conflict Detection and Merging
    * Model Migration
    * Automatic client-side Persistence of Models
