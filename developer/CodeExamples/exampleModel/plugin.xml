@@ -22,5 +22,21 @@
             versionIdentifier="0">
       </ModelVersion>
    </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="library"
+            mandatory="true"
+            name="Library">
+      </category>
+      <constraintProvider
+            cache="true"
+            class="library.validation.BookConstraint"
+            mode="Batch">
+         <package
+               namespaceUri="http:///org/eclipse/example/library.ecore">
+         </package>
+      </constraintProvider>
+   </extension>
 
 </plugin>
