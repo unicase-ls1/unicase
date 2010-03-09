@@ -23,3 +23,5 @@ Features:
     * Model Repository (([EMFStore EMFStore]))
   * Model-based GMF adapter to use GMF without files
   * Model Migration
+
+ECP will be proposed as a Eclipse project in the next week. We are currently working on tutorials and a first release. Please contact us, if you are interested in trying out ECP [helming@in.tum.de]
