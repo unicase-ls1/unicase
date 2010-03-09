@@ -110,5 +110,11 @@
           name="Unicase">
     </page>
  </extension>
+ <extension
+       point="org.unicase.ui.common.medropadapter">
+    <MEDropAdapter
+          class="org.unicase.ui.common.dnd.DefaultMEDropAdapter">
+    </MEDropAdapter>
+ </extension>
 </plugin>
 
