@@ -91,6 +91,7 @@ import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.observers.OperationListener;
+import org.unicase.workspace.observers.ShareObserver;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
 import org.unicase.workspace.util.ResourceHelper;
