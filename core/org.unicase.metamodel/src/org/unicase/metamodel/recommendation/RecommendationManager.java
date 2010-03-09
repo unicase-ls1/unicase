@@ -105,7 +105,7 @@ public class RecommendationManager {
 //			System.out.println(ref.getName()+" " +getFullQualifiedClassName(base.eClass()));
 			
 
-			System.out.println("Step 1");
+		
 			// 1. Step: Is there a special recommendation for this reference and base?
 			for (StrategyExtension ex : extensions) {
 //				System.out.println(ex.getEReferenceName()+" " + ex.getBaseClassName());
@@ -115,7 +115,7 @@ public class RecommendationManager {
 				}
 			}
 			
-			System.out.println("Step 2");
+		
 			// 2. Step: Check super-type and interfaces for special recommendations
 			for (StrategyExtension ex : extensions) {
 				for (EClass superType : base.eClass().getEAllSuperTypes()) {
@@ -128,13 +128,13 @@ public class RecommendationManager {
 				}
 			}
 
-			System.out.println("Step 3");
+			
 			// 3. Step: is there a general strategy for this base?
 			if (general.containsKey(baseClassKey)) {
 				return general.get(baseClassKey).getRecommendationStrategy();
 			}
 
-			System.out.println("Step 4");
+			
 			// 4. Step: is there a general strategy for the super-type or interfaces
 			for (EClass superType : base.eClass().getEAllSuperTypes()) {
 				String key = this.getFullQualifiedClassName(superType);
@@ -145,7 +145,7 @@ public class RecommendationManager {
 				}
 			}
 
-			System.out.println("Step 5");
+			
 			// 5. Step: is there a general for the model element (the most basic)
 			if (general.containsKey(BASE_CLASS)) {
 				return general.get(BASE_CLASS).getRecommendationStrategy();
