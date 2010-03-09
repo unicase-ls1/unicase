@@ -22,4 +22,4 @@ Features:
     * Versioning
     * Model Repository (EMFStore)
   * Model-based GMF adapter to use GMF without files
-  * Model Migration via EDAPT
+  * Model Migration
