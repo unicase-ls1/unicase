@@ -1,0 +1,8 @@
+#summary Features of ECP or Why should I use ECP?
+
+The EMF Client Platform provides a standard one-click solution for EMF-based applications.  including the following features:
+  * Tree-based Navigator
+  * Form-based Editor
+  * Validation View
+  * Worspace for persistency, versioning and repository connection
+All components are customizable and replaceable. Therefore ECP provides a good starting point for the development of EMF-based applications.
