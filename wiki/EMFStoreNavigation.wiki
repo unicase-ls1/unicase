@@ -8,8 +8,6 @@
 
   * [EMFStoreArchitecture Architecture]
 
-  * [EMFStoreBuild Build and Release]
-
   * [EMFStoreDownloads Downloads]
 
   * [EMFStoreDocumentation Documentation and Tutorials]
