@@ -62,7 +62,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.workspace.ui.validation.filter.ValidationFilter:"/>
+                  <meta.attribute kind="java" basedOn="org.unicase.ui.validation.filter.ValidationFilter:"/>
                </appinfo>
             </annotation>
          </attribute>
