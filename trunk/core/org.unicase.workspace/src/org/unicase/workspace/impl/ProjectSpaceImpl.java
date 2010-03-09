@@ -91,7 +91,6 @@ import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.observers.OperationListener;
-import org.unicase.workspace.observers.ShareObserver;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
 import org.unicase.workspace.util.ResourceHelper;
@@ -1904,6 +1903,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.saveProjectSpaceOnly();
 		notifyShareObservers();
 		getOperations().clear();
+		updateDirtyState();
 
 	}
 
@@ -2289,7 +2289,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// do not notify on composite start, wait until completion
 		if (operation instanceof CompositeOperation) {
-			return;
+			// check of automatic composite if yes then continue
+			if (((CompositeOperation) operation).getMainOperation() == null) {
+				return;
+			}
 		}
 		this.notifyOperationExecuted(operation);
 	}
