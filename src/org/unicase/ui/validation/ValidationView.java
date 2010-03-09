@@ -40,6 +40,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.validation.filter.ValidationFilter;
 import org.unicase.ui.validation.providers.ConstraintLabelProvider;
 import org.unicase.ui.validation.providers.CreatorLabelProvider;
 import org.unicase.ui.validation.providers.DescriptionLabelProvider;
@@ -51,7 +52,6 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.ui.validation.filter.ValidationFilter;
 
 
 /**

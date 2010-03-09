@@ -9,7 +9,7 @@ package org.unicase.ui.validation.providers;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.ui.validation.Activator;
-import org.unicase.workspace.ui.validation.filter.ValidationFilter;
+import org.unicase.ui.validation.filter.ValidationFilter;
 
 /**
  * The label provider for the validation filter.
