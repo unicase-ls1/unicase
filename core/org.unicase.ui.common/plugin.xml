@@ -33,6 +33,10 @@
      </menuContribution>
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+        <separator
+              name="beforeDeleteSeparator"
+              visible="true">
+        </separator>
         <command
               commandId="org.unicase.ui.common.deleteModelelement"
               icon="icons/delete.gif"
