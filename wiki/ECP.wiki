@@ -7,6 +7,19 @@ Features:
   * Tree-based Navigator
     * Strutured creation dialog 
     * Dynamic creation actions
+    * EMF-based Drag and Drop Adapters
   * Editor for single EObjects
+    * Reflective, no generation
+    * Standard widgets for attributes and references
+    * Single widgets replaceable
   * EMF-based Validation View
-  * Workspace for versioning and transparent persistency
+    * Affected EObject can be opened
+    * Violations displayed in Editor
+    * Model-based filters
+    * Model-based refactorings
+  * Workspace 
+    * Transparent Persistency
+    * Versioning
+    * Model Repository (EMFStore)
+  * Model-based GMF adapter to use GMF without files
+  * Model Migration via EDAPT
