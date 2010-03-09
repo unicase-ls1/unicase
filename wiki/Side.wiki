@@ -4,7 +4,6 @@ Sub-projects:
    * [EMFStoreFeatures Why should I use EMFStore?]
    * [EMFStoreGettingStarted Getting Started with the EMFStore]
    * [EMFStoreArchitecture Architecture]
-   * [EMFStoreBuild Build and Release]
    * [EMFStoreDownloads Downloads]
    * [EMFStoreDocumentation Documentation and Tutorials]
  * [ECPNavigation EMF Client Platform (ECP)]
