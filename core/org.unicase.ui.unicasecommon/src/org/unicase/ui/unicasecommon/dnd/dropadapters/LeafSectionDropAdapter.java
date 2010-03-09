@@ -56,4 +56,14 @@ public class LeafSectionDropAdapter extends UCDropAdapter {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
+	 */
+	@Override
+	public EClass isDropAdapterfor() {
+		return DocumentPackage.eINSTANCE.getLeafSection();
+	}
+
 }
