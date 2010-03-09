@@ -40,5 +40,7 @@ Documentation:
 
  * [Creating_keystores_for_encryption How to create keystores for EMFStore]
 
+  * [EMFStoreBuild Build and Release]
+
 *Important Note*:
 We know that this documentation is only a first start and we are still working on extending the documentation. Your feedback is important to us so we can know where we need to improve and extend the existing documentation. If you have any suggestions or questions please do not hesitate to contact us on our [Mailinglist mailing lists].
