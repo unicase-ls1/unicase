@@ -332,12 +332,23 @@ public final class ModelUtil {
 
 	private static Set<EClass> modelElementEClasses;
 
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
 	 * 
 	 * @return a set of EClasses
 	 */
 	public static Set<EClass> getAllModelElementEClasses() {
+		return getAllSubEClasses(MetamodelPackage.eINSTANCE.getModelElement());
+	}
+	
+	/**
+	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass.
+	 * 
+	 * @param eClass the superClass of the subClasses to retrieve
+	 * @return a set of EClasses
+	 */
+	public static Set<EClass> getAllSubEClasses(EClass eClass) {
 		if (modelElementEClasses != null) {
 			return modelElementEClasses;
 		}
@@ -346,7 +357,7 @@ public final class ModelUtil {
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
 			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			result.addAll(getAllModelElementEClasses(ePackage));
+			result.addAll(getAllSubEClasses(ePackage, eClass));
 		}
 		modelElementEClasses = result;
 		return result;
@@ -358,16 +369,16 @@ public final class ModelUtil {
 	 * @param ePackage the package to get the classes from
 	 * @return a set of EClasses
 	 */
-	private static Set<EClass> getAllModelElementEClasses(EPackage ePackage) {
+	private static Set<EClass> getAllSubEClasses(EPackage ePackage, EClass eClass) {
 		Set<EClass> result = new HashSet<EClass>();
 		for (EPackage subPackage : ePackage.getESubpackages()) {
-			result.addAll(getAllModelElementEClasses(subPackage));
+			result.addAll(getAllSubEClasses(subPackage, eClass));
 		}
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
-				EClass eClass = (EClass) classifier;
-				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(eClass)) {
-					result.add(eClass);
+				EClass subEClass = (EClass) classifier;
+				if (eClass.isSuperTypeOf(subEClass)) {
+					result.add(subEClass);
 				}
 			}
 		}
