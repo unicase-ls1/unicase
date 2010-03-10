@@ -106,19 +106,7 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
-            <command
-                  defaultHandler="org.unicase.ui.navigator.handler.CreateMEHandler"
-                  description="This generic command is used to by dynamic commands to create different MEs"
-                  id="org.unicase.ui.navigator.createME"
-                  name="New Model Element">
-               <commandParameter
-                     id="org.unicase.ui.navigator.eClassParameter"
-                     name="eClassParameter"
-                     optional="true"
-                     typeId="org.unicase.ui.navigator.eClassType">
-               </commandParameter>
-            </command>
+
    </extension>
-   
 
 </plugin>
