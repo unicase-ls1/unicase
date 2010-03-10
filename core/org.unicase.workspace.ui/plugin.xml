@@ -417,6 +417,27 @@
               </and>
            </visibleWhen>
         </command>
+        <command
+              commandId="org.unicase.workspace.ui.validate"
+              icon="icons/validation.png"
+              label="Validate"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <count
+                       value="1">
+                 </count>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </and>
+           </visibleWhen>
+        </command>
         <menu
               icon="icons/createrepos.gif"
               id="org.unicase.workspace.ui.Other"
@@ -718,21 +739,6 @@
               icon="icons/historyview.png"
               label="Show History"
               style="push">
-        </command>
-     </menuContribution>
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
-        <command
-              commandId="org.unicase.workspace.ui.validate"
-              icon="icons/validation.png"
-              label="Validate"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <count
-                    value="1">
-              </count>
-           </visibleWhen>
         </command>
      </menuContribution>
   </extension>
