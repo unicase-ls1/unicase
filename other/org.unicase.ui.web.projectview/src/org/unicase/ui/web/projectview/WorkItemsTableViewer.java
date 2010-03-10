@@ -9,19 +9,14 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.web.views.AbstractETableViewer;
 
 public class WorkItemsTableViewer extends AbstractETableViewer {

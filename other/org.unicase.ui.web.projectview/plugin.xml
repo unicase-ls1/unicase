@@ -14,10 +14,23 @@
          point="org.unicase.ui.web.view">
       <view
             class="org.unicase.ui.web.projectview.WorkTeamItemsView"
-            id="org.unicase.ui.web.projectview.ProjectView"
             name="Project View"
             url="project">
       </view>
    </extension>
-
+   <extension
+         point="org.unicase.ui.web.config.tabs">
+      <config
+            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab"
+            name="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab">
+      </config>
+   </extension>
+   <extension
+         point="org.unicase.ui.web.config">
+      <config
+            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity"
+            name="org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity">
+      </config>
+   </extension>
+   
 </plugin>
