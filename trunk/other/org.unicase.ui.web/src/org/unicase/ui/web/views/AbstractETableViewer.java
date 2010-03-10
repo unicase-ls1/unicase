@@ -65,8 +65,8 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 */
 	public abstract ArrayList<EStructuralFeature> getFeaturesList();
 	
-	
-	public abstract void setInput(Project project);
+//	public abstract void refreshView();
+//	public abstract void setInput(Project project);
 	
 	/**
 	 * 
