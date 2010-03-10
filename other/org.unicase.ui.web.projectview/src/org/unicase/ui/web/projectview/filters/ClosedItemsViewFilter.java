@@ -2,22 +2,26 @@ package org.unicase.ui.web.projectview.filters;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.Checkable;
 
+/**
+ * 
+ * 
+ * @author Fatih Ulusoy
+ */
 public class ClosedItemsViewFilter extends ViewerFilter {
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-
-		if (element instanceof WorkItem) {
-			WorkItem workItem = (WorkItem) element;
-			
-			String str = workItem.getState();
-			if(str.equalsIgnoreCase("closed"))
-				return true;
-		}
+		return ((element instanceof Checkable) && (!((Checkable) element).isChecked()));
 		
-		return false;
+//		if (element instanceof UnicaseModelElement) {
+//			UnicaseModelElement workItem = (UnicaseModelElement) element;
+//			
+//				return !workItem.getState().equals(MEState.CLOSED);
+//		}
+//		
+//		return false;
 	}
 
 }

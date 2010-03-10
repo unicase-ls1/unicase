@@ -28,7 +28,6 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 	@Override
 	protected void init() {		
 		super.init();
-		// TODO : layouts??
 		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		tableData.horizontalSpan = 2;
 		getTable().setLayoutData(tableData);
