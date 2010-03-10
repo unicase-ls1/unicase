@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.ui.web" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.web" id="org.unicase.ui.web.view" name="org.unicase.ui.web.view"/>
+         <meta.schema plugin="org.unicase.ui.web" id="org.unicase.ui.web.config" name="org.unicase.ui.web.config"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="view"/>
+            <element ref="config"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,7 +47,7 @@
       </complexType>
    </element>
 
-   <element name="view">
+   <element name="config">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
@@ -55,18 +55,11 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.ui.web.views.AbstractView:"/>
+                  <meta.attribute kind="java"/>
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="url" type="string" use="required">
+         <attribute name="name" type="string">
             <annotation>
                <documentation>
                   

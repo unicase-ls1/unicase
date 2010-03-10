@@ -4,10 +4,6 @@ import org.osgi.framework.BundleContext;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-import org.unicase.web.util.Configuration;
-import org.unicase.web.updater.UpdateProjectHandler;
-import org.unicase.web.updater.handlers.LoginHandler;
-
 /**
  * The activator class controls the plug-in life cycle
  */

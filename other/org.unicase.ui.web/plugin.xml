@@ -3,6 +3,8 @@
 <plugin>
    <extension-point id="org.unicase.ui.web.view" name="org.unicase.ui.web.view" 
    schema="schema/org.unicase.ui.web.view.exsd"/>
+   <extension-point id="org.unicase.ui.web.config.tabs" name="org.unicase.ui.web.config.tabs" schema="schema/org.unicase.ui.web.config.tabs.exsd"/>
+   <extension-point id="org.unicase.ui.web.config" name="org.unicase.ui.web.config" schema="schema/org.unicase.ui.config.exsd"/>
 
    <extension
          point="org.eclipse.rap.ui.entrypoint">
@@ -41,6 +43,12 @@
             name="Test View"
             restorable="true">
       </view>
+      <view
+            class="org.unicase.ui.web.views.ConfigurationView"
+            id="org.unicase.ui.web.views.ConfigurationView"
+            name="Configuration view"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.rap.ui.branding">
@@ -77,6 +85,13 @@
             id="org.unicase.ui.web.theme"
             name="UNICASE Web Theme">
       </theme>
+   </extension>
+   <extension
+         point="org.unicase.ui.web.config">
+      <config
+            class="org.unicase.web.config.GeneralSettingsConfigEntity"
+            name="org.unicase.web.config.GeneralSettingsConfigEntity">
+      </config>
    </extension>
 
 </plugin>

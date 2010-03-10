@@ -11,7 +11,12 @@ import org.eclipse.rwt.RWT;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.web.tabs.GeneralSettingsTab;
 import org.unicase.ui.web.views.AbstractView;
+import org.unicase.ui.web.views.ConfigurationTabView;
+import org.unicase.ui.web.views.ConfigurationView;
 
 /**
  * Configures the perspective layout. This class is contributed 
@@ -24,9 +29,13 @@ public class Perspective implements IPerspectiveFactory {
 	// caches views with their corresponding URL 
 	private HashMap<String, AbstractView> views;
 	
+	
+	private ConfigurationView configView;
+	
 	public Perspective() {
 		views = new HashMap<String, AbstractView>();
 		initViews();
+		initConfigurationsTabs();
 	}
 	
 	public void createInitialLayout(IPageLayout layout) {
@@ -40,11 +49,19 @@ public class Perspective implements IPerspectiveFactory {
 		AbstractView view = views.get(viewName);
 
 		if (view != null) {
+			
 			view.setHttpRequest(request);
+			// TODO: use show view
 			
-			layout.addView("org.unicase.ui.web.projectview.ProjectView", IPageLayout.TOP,
-				IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
+			//layout.addView("org.unicase.ui.web.projectview.ProjectView", IPageLayout.TOP,
+				//IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
 			
+			configView.addConfigurationTab("General settings", new GeneralSettingsTab());
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+
+			layout.addView(view.getId(), IPageLayout.TOP,
+					IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
+						
 //			layout.addStandaloneView(view.getId(), false, 
 //					IPageLayout.LEFT, 0.50f, editorArea);
 		}
@@ -66,6 +83,10 @@ public class Perspective implements IPerspectiveFactory {
 	
 	private void initViews() {
 		
+		// TODO: add configuration view here
+		configView = new ConfigurationView();
+		views.put("config", configView);
+		
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.web.view");
@@ -79,6 +100,28 @@ public class Perspective implements IPerspectiveFactory {
 				newView = (AbstractView) e.createExecutableExtension("class");
 				views.put(url, newView);
 			} catch (CoreException e1) {				
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	private void initConfigurationsTabs() {
+		// Add views from the extension point
+		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.web.config.tabs");
+	
+		ConfigurationTabView cfgTab;
+		
+		
+		for (IConfigurationElement e : configIn) {
+			
+			String tabName = e.getAttribute("name");
+			
+			try {
+				cfgTab = (ConfigurationTabView) e.createExecutableExtension("class");
+				configView.addConfigurationTab(tabName, cfgTab);
+			} catch (CoreException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
