@@ -6,21 +6,22 @@
 	<extension
          point="org.eclipse.ui.views">
 		<view
-            category="org.unicase"
-            class="org.unicase.ui.validation.ValidationView"
-            icon="icons/validation.png"
-            id="org.unicase.workspace.ui.views.validationview.ValidationView"
-            name="Validation View"
-            restorable="true">
+        category="org.unicase"
+        class="org.unicase.ui.validation.ValidationView"
+        icon="icons/validation.png"
+        id="org.unicase.ui.validation.validationView"
+        name="Validation View"
+        restorable="true">
 		</view>
 	</extension>
-     <extension point="org.eclipse.emf.validation.validationListeners">
-        <listener
-              class="org.unicase.ui.validation.ValidationListener">
-           <clientContext
-                 id="org.unicase.model.validation">
-           </clientContext>
-        </listener>
-	</extension>
+ <extension
+       point="org.eclipse.emf.validation.validationListeners">
+    <listener
+          class="org.unicase.ui.validation.ValidationListener">
+       <clientContext
+             id="context">
+       </clientContext>
+    </listener>
+ </extension>
 </plugin>
 
