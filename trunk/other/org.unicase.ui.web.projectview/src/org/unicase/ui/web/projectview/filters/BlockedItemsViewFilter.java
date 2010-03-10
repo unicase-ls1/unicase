@@ -2,22 +2,25 @@ package org.unicase.ui.web.projectview.filters;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.util.MEState;
+import org.unicase.model.UnicaseModelElement;
 
+
+/**
+ * Filter to filter blocked items.
+ * 
+ * @author Fatih Ulusoy
+ */
 public class BlockedItemsViewFilter extends ViewerFilter {
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		
-		if (element instanceof WorkItem) {
-			WorkItem workItem = (WorkItem) element;
-			
-			String str = workItem.getState();
-			if(str.equalsIgnoreCase("blocked"))
-				return true;
+		if (element instanceof UnicaseModelElement) {
+			return !((UnicaseModelElement) element).getState().equals(MEState.BLOCKED);
 		}
 		
-		return false;
+		return true;
 	}
 
 }

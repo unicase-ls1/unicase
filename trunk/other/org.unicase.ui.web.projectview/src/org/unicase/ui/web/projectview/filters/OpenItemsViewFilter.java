@@ -3,7 +3,13 @@ package org.unicase.ui.web.projectview.filters;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.util.MEState;
 
+/**
+ * Filter to filter open items.
+ * 
+ * @author Fatih Ulusoy
+ */
 public class OpenItemsViewFilter extends ViewerFilter {
 
 	@Override
@@ -12,14 +18,7 @@ public class OpenItemsViewFilter extends ViewerFilter {
 		if (element instanceof WorkItem) {
 			WorkItem workItem = (WorkItem) element;
 			
-			System.out.println(workItem.getContainingWorkpackage().getName());
-			System.out.println(workItem.getName());
-			System.out.println(workItem.getState());
-			
-			String str = workItem.getState();
-			if(str.equalsIgnoreCase("open"))
-				return true;
-			
+			return workItem.getState().equals(MEState.OPEN);
 		}
 		
 		return false;

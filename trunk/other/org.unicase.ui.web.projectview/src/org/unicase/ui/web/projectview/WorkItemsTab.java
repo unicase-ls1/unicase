@@ -62,8 +62,13 @@ public class WorkItemsTab extends ProjectAwareTab {
 		closedItemsFilter = new ClosedItemsViewFilter();
 		blockedItemsFilter = new BlockedItemsViewFilter();
 		resolvedItemsFilter = new ResolvedItemsViewFilter();
+		
 		createFiltersPart(composite);
 		workItemsTableViewer = new WorkItemsTableViewer(composite);
+		
+		addFilter(closedItemsFilter);
+		addFilter(blockedItemsFilter);
+		addFilter(resolvedItemsFilter);
 	}
 	
 	public void createTabContent() {
@@ -88,7 +93,7 @@ public class WorkItemsTab extends ProjectAwareTab {
 
 			public void widgetSelected(final SelectionEvent e) {
 				boolean isShowOpenItems = showOpenButton.getSelection();
-				if(isShowOpenItems) {
+				if(!isShowOpenItems) {
 					addFilter(openItemsFilter);
 				} else {
 					removeFilter(openItemsFilter);
@@ -104,7 +109,7 @@ public class WorkItemsTab extends ProjectAwareTab {
 			
 			public void widgetSelected(final SelectionEvent e) {
 				boolean isShowClosedItems = showClosedButton.getSelection();
-				if(isShowClosedItems) {
+				if(!isShowClosedItems) {
 					addFilter(closedItemsFilter);
 				} else {
 					removeFilter(closedItemsFilter);
@@ -119,7 +124,7 @@ public class WorkItemsTab extends ProjectAwareTab {
 
 			public void widgetSelected(final SelectionEvent e) {
 				boolean isShowResolvedItems = showResolvedButton.getSelection();
-				if(isShowResolvedItems) {
+				if(!isShowResolvedItems) {
 					addFilter(resolvedItemsFilter);
 				} else {
 					removeFilter(resolvedItemsFilter);
@@ -134,7 +139,7 @@ public class WorkItemsTab extends ProjectAwareTab {
 
 			public void widgetSelected(final SelectionEvent e) {
 				boolean isShowBlockedItems = showblockedButton.getSelection();
-				if(isShowBlockedItems) {
+				if(!isShowBlockedItems) {
 					addFilter(blockedItemsFilter);
 				} else {
 					removeFilter(blockedItemsFilter);

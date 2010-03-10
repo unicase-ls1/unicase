@@ -38,8 +38,7 @@ public class TeamListTab extends ProjectAwareTab {
 	
 	@Override
 	public void createTabContent() {
-		// TODO Auto-generated method stub
-		
+		teamTableViewer.setInput(getProjectSpace().getProject());
 	}
 
 	// TODO: Provide more efficient update methods
