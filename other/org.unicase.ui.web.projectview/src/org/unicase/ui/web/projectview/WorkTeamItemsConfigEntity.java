@@ -35,7 +35,7 @@ public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
 	}
 
 	public void setTeamListVisible(boolean teamListVisible) {
-		properties.put(TEAMLIST_KEY, new Boolean(teamListVisible));
+		properties.put(TEAMLIST_KEY, new Boolean(teamListVisible).toString());
 	}
 
 	public boolean isTeamListVisible() {
@@ -44,7 +44,7 @@ public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
 	}
 
 	public void setWorkItemsVisible(boolean workItemsListVisible) {
-		properties.put(WORKITEMLIST_KEY, new Boolean(workItemsListVisible));
+		properties.put(WORKITEMLIST_KEY, new Boolean(workItemsListVisible).toString());
 	}
 
 	public boolean isWorkItemsVisible() {

@@ -12,7 +12,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.web.views.AbstractETableViewer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -38,16 +37,16 @@ public class ProjectsTableViewer extends AbstractETableViewer implements Selecti
 	}
 
 	public void widgetDefaultSelected(SelectionEvent e) {
-		System.out.println("ProjectListView: " + e.getID());	
+		System.out.println("ProjectListView: " + e.data.toString());
 	}
 
 	public void widgetSelected(SelectionEvent e) {
-		System.out.println("ProjectListView: " + e.getID());	
+		System.out.println("ProjectListView: " + e.item.getData().toString());	
 	}
 
 	@Override
 	public ArrayList<EStructuralFeature> getFeaturesList() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EStructuralFeature> list = new ArrayList<EStructuralFeature>();
+		return list;
 	}
 }

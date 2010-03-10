@@ -32,5 +32,19 @@
             name="org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity">
       </config>
    </extension>
+   <extension
+         point="org.unicase.ui.web.config.tabs">
+      <config
+            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab"
+            name="org.unicase.ui.web.projectview.ProjectConfigurationView">
+      </config>
+   </extension>
+   <extension
+         point="org.unicase.ui.web.config">
+      <config
+            class="org.unicase.ui.web.projectview.ProjectConfigEntity"
+            name="org.unicase.ui.web.projectview.ProjectConfigEntity">
+      </config>
+   </extension>
    
 </plugin>
