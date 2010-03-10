@@ -5,19 +5,9 @@
  */
 package org.unicase.ui.common.decorators;
 
-import java.net.URL;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The decorator to show dirty state of an element shown in viewers.
@@ -26,8 +16,8 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 
-	private String dirtyPath = "icons/dirty.jpg";
-	private ImageDescriptor descriptor;
+	//	private String dirtyPath = "icons/dirty.jpg";
+	//	private ImageDescriptor descriptor;
 
 	/**
 	 * {@inheritDoc}
@@ -43,20 +33,20 @@ public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 		 * specified image description and the integer representation of the placement option.
 		 */
 
-		URL url = null;
-		boolean dirty = false;
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		if (activeProjectSpace == null) {
-			return;
-		}
-		if (element instanceof Project) {
-			return;
-		}
-		if (dirty) {
-			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
-			descriptor = ImageDescriptor.createFromURL(url);
-			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
-		}
+		//		URL url = null;
+		//		boolean dirty = false;
+		//		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		//		if (activeProjectSpace == null) {
+		//			return;
+		//		}
+		//		if (element instanceof Project) {
+		//			return;
+		//		}
+		//		if (dirty) {
+		//			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+		//			descriptor = ImageDescriptor.createFromURL(url);
+		//			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
+		//		}
 	}
 
 	/**

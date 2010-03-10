@@ -40,21 +40,15 @@ public class ProjectSpaceDirtyDecorator implements ILightweightLabelDecorator {
 		 * specified image description and the integer representation of the placement option.
 		 */
 
-		URL url = null;
-		boolean dirty = false;
 
 		if (element instanceof ProjectSpace) {
 			ProjectSpace ps = (ProjectSpace) element;
 			if (ps.isDirty()) {
-				dirty = true;
+				URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+				descriptor = ImageDescriptor.createFromURL(url);
+				decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
 			}
 		}
-		if (dirty) {
-			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
-			descriptor = ImageDescriptor.createFromURL(url);
-			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
-		}
-
 	}
 
 	/**
