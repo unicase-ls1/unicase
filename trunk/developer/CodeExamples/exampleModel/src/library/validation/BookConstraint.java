@@ -22,7 +22,7 @@ public class BookConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Book) {
 				Book book = (Book) eObj;
-				if (book.getTitle().equals("")||book.getTitle()==null) {
+				if (book.getTitle()==null||book.getTitle().equals("")) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						book, "title");
 					ctx.addResult(errorFeature);

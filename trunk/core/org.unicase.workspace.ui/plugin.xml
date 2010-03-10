@@ -193,6 +193,11 @@
            id="org.unicase.ui.stem.ShowHistory"
            name="Show History">
      </command>
+     <command
+           defaultHandler="org.unicase.workspace.ui.commands.ValidateHandler"
+           id="org.unicase.workspace.ui.validate"
+           name="Validate">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -715,6 +720,21 @@
               style="push">
         </command>
      </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+        <command
+              commandId="org.unicase.workspace.ui.validate"
+              icon="icons/validation.png"
+              label="Validate"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <count
+                    value="1">
+              </count>
+           </visibleWhen>
+        </command>
+     </menuContribution>
   </extension>
   
      <extension
@@ -752,12 +772,6 @@
               sequence="Alt+P">
         </key>
         <key
-              commandId="org.unicase.ui.common.validate"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+V">
-        </key>
-        <key
               commandId="org.unicase.workspace.ui.deleteProject"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
@@ -767,7 +781,13 @@
               commandId="org.unicase.workspace.ui.projectProperties"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+Enter">
+              sequence="Alt+E">
+        </key>
+        <key
+              commandId="org.unicase.workspace.ui.validate"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+V">
         </key>
      </extension>
      <extension
@@ -794,18 +814,6 @@
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
      </extension>
-        <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.meeditor.separator1">
-         <command
-               commandId="org.unicase.workspace.ui.showHistory"
-               icon="icons/historyview.png"
-               style="push"
-               tooltip="show the history for this model element">
-         </command>
-      </menuContribution>
-   </extension>
         
            <extension
          point="org.eclipse.ui.views">

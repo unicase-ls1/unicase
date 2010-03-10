@@ -28,7 +28,7 @@ public class ValidationListener implements IValidationListener {
 		ValidationView validationView = null;
 		try {
 			validationView = (ValidationView) page
-			.showView("org.unicase.workspace.ui.views.validationview.ValidationView");
+			.showView("org.unicase.ui.validation.validationView");
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
