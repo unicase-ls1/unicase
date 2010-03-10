@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
-<!--
- <copyright>
- </copyright>
-
-
--->
-
 <plugin>
-
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/model" 
@@ -124,6 +115,30 @@
                  statusCode="1">
               <message>
                  {0} is annotated to another WorkItem, but not contained in the same work package.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.CircularDependencyConstraint"
+                 id="org.unicase.model.task.validation.CircularDependencyConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Circular Dependency Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has an identical predecessor and successor
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.BadDependencyConstraint"
+                 id="org.unicase.model.task.validation.BadDependencyConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Bad Dependency Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has work items depending on work items in another work package
               </message>
            </constraint>
         </constraints>
@@ -751,5 +766,12 @@
      <ModelVersion
            versionIdentifier="5">
      </ModelVersion>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <binding
+           category="org.unicase.model"
+           context="context">
+     </binding>
   </extension>
 </plugin>
