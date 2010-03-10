@@ -721,7 +721,7 @@
         </command>
      </menuContribution>
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
         <command
               commandId="org.unicase.workspace.ui.validate"
               icon="icons/validation.png"
