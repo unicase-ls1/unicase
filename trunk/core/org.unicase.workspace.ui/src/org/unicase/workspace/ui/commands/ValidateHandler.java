@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ValidationClientSelector;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -35,48 +36,43 @@ public class ValidateHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				validateWithoutCommand(projectSpace);
-			}
-		}.run();
+		final ModelElement modelElement = ActionHelper.getModelElement(event);
+		if (modelElement != null) {
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					validateWithoutCommand(modelElement);
+				}
+			}.run();
+		} else {
+			final ProjectSpace projectSpace = ActionHelper
+					.getProjectSpace(event);
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					validateWithoutCommand(projectSpace);
+				}
+			}.run();
+		}
 		return null;
 	}
 
-	private void validateWithoutCommand(ProjectSpace projectSpace) {
-
+	private void validateWithoutCommand(ModelElement modelElement) {
 		ValidationClientSelector.setRunning(true);
-
 		IBatchValidator validator = (IBatchValidator) ModelValidationService
 				.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
-
-		IStatus status = validator.validate(projectSpace.getProject());
-
+		IStatus status = validator.validate(modelElement);
 		ValidationClientSelector.setRunning(false);
-
-		// MultiStatus multi = new MultiStatus(
-		// "org.unicase.model", 1, status.getChildren(),
-		// "Problems were found by validation", null);
-		// //
-		// try {
-		// MarkerUtil.createMarkers(status);
-		// } catch (CoreException e) {
-		// // log this ...
-		// e.printStackTrace();
-		// }
-
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IResource resource = workspace.getRoot();
-
 		try {
 			resource.deleteMarkers(markerType, true, 5);
 		} catch (CoreException e1) {
 			e1.printStackTrace();
 		}
-
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
 				try {
@@ -90,6 +86,37 @@ public class ValidateHandler extends AbstractHandler {
 				}
 			}
 		}
+	}
 
+	private void validateWithoutCommand(ProjectSpace projectSpace) {
+		if (projectSpace == null || projectSpace.getProject() == null) {
+			return;
+		}
+		ValidationClientSelector.setRunning(true);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService
+				.getInstance().newValidator(EvaluationMode.BATCH);
+		validator.setIncludeLiveConstraints(true);
+		IStatus status = validator.validate(projectSpace.getProject());
+		ValidationClientSelector.setRunning(false);
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IResource resource = workspace.getRoot();
+		try {
+			resource.deleteMarkers(markerType, true, 5);
+		} catch (CoreException e1) {
+			e1.printStackTrace();
+		}
+		if (status.isMultiStatus()) {
+			for (IStatus stat : status.getChildren()) {
+				try {
+					IMarker marker = resource.createMarker(markerType);
+					marker.setAttribute(IMarker.MESSAGE, "unicase: "
+							+ stat.getMessage());
+					marker.setAttribute(IMarker.SEVERITY,
+							IMarker.SEVERITY_WARNING);
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
