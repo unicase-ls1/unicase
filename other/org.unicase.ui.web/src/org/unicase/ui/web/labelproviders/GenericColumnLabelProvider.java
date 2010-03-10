@@ -12,6 +12,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -76,7 +77,16 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 			EList<EObject> eList = (EList<EObject>) value;
 			return decoratingLabelProvider.getText(eList.get(0));
 		} else {
-			return decoratingLabelProvider.getText(value);
+			// TODO: label-provider can't return the text of ERefrence items??
+			// This solution is not good. it needs to be fixed. but, at least it works.
+			
+			String text = "";
+			if(value instanceof UnicaseModelElement) {
+				UnicaseModelElement element = (UnicaseModelElement) value;
+				text = element.getName();
+			}
+			// return decoratingLabelProvider.getText(value);
+			return text;
 		}
 	}
 
