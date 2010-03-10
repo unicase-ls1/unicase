@@ -26,21 +26,9 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.ui.web.TabbedView"
-            id="org.unicase.ui.web.TabbedView"
-            name="Tabbed View"
-            restorable="true">
-      </view>
-      <view
             class="org.unicase.ui.web.views.AbstractView"
             id="org.unicase.ui.web.views.AbstractView"
             name="AbstractView"
-            restorable="true">
-      </view>
-      <view
-            class="org.unicase.ui.web.View"
-            id="test.view"
-            name="Test View"
             restorable="true">
       </view>
       <view
