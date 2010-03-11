@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.ui.web" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.unicase.rap" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.web" id="org.unicase.ui.web.config" name="org.unicase.ui.web.config"/>
+         <meta.schema plugin="org.unicase.rap" id="org.unicase.rap.config" name="org.unicase.rap.config"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java"/>
+                  <meta.attribute kind="java" basedOn="org.unicase.rap.config.AbstractConfigEntity:"/>
                </appinfo>
             </annotation>
          </attribute>
