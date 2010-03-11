@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +17,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.web.views.AbstractETableViewer;
+import org.unicase.rap.ui.views.AbstractETableViewer;
 
 public class WorkItemsTableViewer extends AbstractETableViewer {
 

@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.rwt.graphics.Graphics;
@@ -7,11 +7,12 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.ui.web.views.ProjectAwareView;
+import org.unicase.rap.status.ui.tabs.TeamListTab;
+import org.unicase.rap.status.ui.tabs.WorkItemsTab;
+import org.unicase.rap.ui.views.ProjectAwareView;
 
 public class WorkTeamItemsView extends ProjectAwareView {
 	

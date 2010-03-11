@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui;
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
@@ -27,6 +27,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.rap.status.Activator;
 import org.unicase.workspace.ProjectSpace;
 
 /**

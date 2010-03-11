@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.ui.web.views.AbstractETableViewer;
+import org.unicase.rap.ui.views.AbstractETableViewer;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;

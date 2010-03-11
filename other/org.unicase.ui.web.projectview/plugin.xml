@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.ui.web.projectview.WorkTeamItemsView"
+            class="org.unicase.rap.status.WorkTeamItemsView"
             id="org.unicase.ui.web.projectview.ProjectView"
             name="Project View"
             restorable="true">
@@ -13,7 +13,7 @@
    <extension
          point="org.unicase.ui.web.view">
       <view
-            class="org.unicase.ui.web.projectview.WorkTeamItemsView"
+            class="org.unicase.rap.status.WorkTeamItemsView"
             name="Project View"
             url="project">
       </view>
@@ -21,28 +21,22 @@
    <extension
          point="org.unicase.ui.web.config.tabs">
       <config
-            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab"
+            class="org.unicase.rap.status.ui.tabs.WorkTeamItemsConfigurationTab"
+            name="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab">
+      </config>
+      <config
+            class="org.unicase.rap.status.WorkTeamItemsConfigurationTab:1"
             name="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab">
       </config>
    </extension>
    <extension
          point="org.unicase.ui.web.config">
       <config
-            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity"
+            class="org.unicase.rap.status.config.WorkTeamItemsConfigEntity"
             name="org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity">
       </config>
-   </extension>
-   <extension
-         point="org.unicase.ui.web.config.tabs">
       <config
-            class="org.unicase.ui.web.projectview.WorkTeamItemsConfigurationTab"
-            name="org.unicase.ui.web.projectview.ProjectConfigurationView">
-      </config>
-   </extension>
-   <extension
-         point="org.unicase.ui.web.config">
-      <config
-            class="org.unicase.ui.web.projectview.ProjectConfigEntity"
+            class="org.unicase.rap.status.ProjectConfigEntity"
             name="org.unicase.ui.web.projectview.ProjectConfigEntity">
       </config>
    </extension>

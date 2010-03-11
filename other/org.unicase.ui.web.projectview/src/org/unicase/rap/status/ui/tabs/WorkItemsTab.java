@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui.tabs;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,11 +25,12 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.web.projectview.filters.BlockedItemsViewFilter;
-import org.unicase.ui.web.projectview.filters.ClosedItemsViewFilter;
-import org.unicase.ui.web.projectview.filters.OpenItemsViewFilter;
-import org.unicase.ui.web.projectview.filters.ResolvedItemsViewFilter;
-import org.unicase.ui.web.views.ProjectAwareTab;
+import org.unicase.rap.status.ui.WorkItemsTableViewer;
+import org.unicase.rap.status.ui.filters.BlockedItemsViewFilter;
+import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
+import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
+import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
+import org.unicase.rap.ui.views.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 
 /**
