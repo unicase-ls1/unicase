@@ -3,6 +3,7 @@ package org.unicase.rap.status.ui.tabs;
 
 
 import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
@@ -18,9 +19,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
-import org.unicase.emfstore.esmodel.url.UrlFactory;
-import org.unicase.emfstore.esmodel.url.impl.ProjectUrlFragmentImpl;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.status.config.WorkTeamItemsConfigEntity;
@@ -28,14 +26,14 @@ import org.unicase.rap.status.ui.ProjectsTableViewer;
 import org.unicase.rap.status.ui.SelectWorkPackageDialog;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * 
  */
 public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 
+	private static final String SAVE_PATH = System.getProperty("user.home"); 
+	
 	private ProjectsTableViewer projectsTableViewer;
 	public static final String ID = "org.unicase.ui.web.projectview.ProjectConfigurationTab";
 	
@@ -66,6 +64,20 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	public void setFocus() {
 	}
 
+	private void loadConfig(String projectName) {
+		String loadPath = new File(SAVE_PATH).getAbsolutePath() + File.pathSeparatorChar + projectName; 
+		try {
+			WorkTeamItemsConfigEntity cfgEntity = (WorkTeamItemsConfigEntity) 
+				ConfigEntityStore.loadObject(loadPath);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	protected void createTab() {
 
@@ -140,8 +152,8 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 				cfgEntity.setTeamListVisible(cbTeamListVisisble.getSelection());
 				cfgEntity.setWorkItemsVisible(cbWorkItemListVisisble.getSelection());
 				
-				
-				String filename = new File(System.getProperty("user.home")).getAbsolutePath() 
+				// TODO: 
+				String filename = new File(SAVE_PATH).getAbsolutePath() 
 					+ File.separatorChar + "org.unicase.ui.web." + projectSpace.getProjectName();
 				
 				ConfigEntityStore.getInstance().saveEntity(cfgEntity, filename);
