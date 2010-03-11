@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="org.unicase.ui.web.view" name="org.unicase.ui.web.view" 
-   schema="schema/org.unicase.ui.web.view.exsd"/>
-   <extension-point id="org.unicase.ui.web.config.tabs" name="org.unicase.ui.web.config.tabs" schema="schema/org.unicase.ui.web.config.tabs.exsd"/>
-   <extension-point id="org.unicase.ui.web.config" name="org.unicase.ui.web.config" schema="schema/org.unicase.ui.config.exsd"/>
+   <extension-point id="org.unicase.rap.ui.view" name="org.unicase.rap.ui.view" 
+   schema="schema/org.unicase.rap.ui.view.exsd"/>
+   <extension-point id="org.unicase.rap.ui.config.tab" name="org.unicase.rap.ui.config.tabs" schema="schema/org.unicase.rap.ui.config.tab.exsd"/>
+   <extension-point id="org.unicase.rap.config" name="org.unicase.rap.config" schema="schema/org.unicase.rap.config.exsd"/>
 
    <extension
          point="org.eclipse.rap.ui.entrypoint">
@@ -73,13 +73,6 @@
             id="org.unicase.ui.web.theme"
             name="UNICASE Web Theme">
       </theme>
-   </extension>
-   <extension
-         point="org.unicase.ui.web.config">
-      <config
-            class="org.unicase.rap.config.GeneralSettingsConfigEntity"
-            name="org.unicase.web.config.GeneralSettingsConfigEntity">
-      </config>
    </extension>
 
 </plugin>
