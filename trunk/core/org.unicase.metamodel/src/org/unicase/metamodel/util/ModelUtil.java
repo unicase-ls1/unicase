@@ -249,7 +249,12 @@ public final class ModelUtil {
 		return result;
 	}
 
-	private static void checkIfSelfContained(EObject object) throws SerializationException {
+	/**
+	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it does not have references to eobjects outside the tree. 
+	 * @param object the eObject
+	 * @throws SerializationException if the object is not self-contained
+	 */
+	public static void checkIfSelfContained(EObject object) throws SerializationException {
 		// TODO: Should we allow eClass at all?
 		if (object instanceof EClass) {
 			return;
