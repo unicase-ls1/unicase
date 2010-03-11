@@ -42,7 +42,7 @@ public class AttachLocationCommand extends UnicaseCommand {
 	@Override
 	protected void doRun() {
 		Project p = attachTo.getProject();
-		try {
+
 			final ProjectSpace projectSpace = WorkspaceManager
 					.getProjectSpace(p);
 
@@ -60,9 +60,6 @@ public class AttachLocationCommand extends UnicaseCommand {
 				WorkspaceUtil.logException("Composite Operation failed!", e);
 			}
 
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
 
 	}
 

@@ -38,7 +38,7 @@ public class AttachLocationAction implements IEditorActionDelegate {
 
 	/**
 	 * @see IActionDelegate#run(IAction)
-	 * @param action 
+	 * @param action ignore
 	 */
 	public void run(IAction action) {
 
@@ -58,6 +58,7 @@ public class AttachLocationAction implements IEditorActionDelegate {
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * @see IActionDelegate#selectionChanged(IAction, ISelection)
 	 * @param action 
 	 * @param selection 
@@ -66,19 +67,17 @@ public class AttachLocationAction implements IEditorActionDelegate {
 	}
 	
 	/**
-	 * 
-	 * @param view
+	 * {@inheritDoc}
+	 * @param view ignore
 	 */
 
 	public void init(IViewPart view) {
-		// TODO Auto-generated method stub
-		System.out.println("bla");
 	}
 	
 	/**
 	 * Sets editor.
-	 * @param action
-	 * @param targetEditor
+	 * @param action ignore
+	 * @param targetEditor the target editor
 	 */
 	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
 		this.editorPart = targetEditor;
