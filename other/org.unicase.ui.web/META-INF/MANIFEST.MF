@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Rap
-Bundle-SymbolicName: org.unicase.ui.web;singleton:=true
+Bundle-SymbolicName: org.unicase.rap;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.ui.web.Activator
+Bundle-Activator: org.unicase.rap.Activator
 Require-Bundle: org.eclipse.rap.ui;bundle-version="1.3.0",
  org.eclipse.rap.ui.forms;bundle-version="1.3.0",
  org.eclipse.rap.ui.views;bundle-version="1.3.0",
@@ -21,5 +21,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: javax.servlet;version="2.4.0",
  javax.servlet.http;version="2.4.0",
  org.osgi.service.http;version="1.2.1"
-Export-Package: org.unicase.ui.web.config,
- org.unicase.ui.web.views
+Export-Package: org.unicase.rap.ui.views,
+ org.unicase.rap.config
