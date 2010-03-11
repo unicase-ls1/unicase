@@ -19,13 +19,20 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
 
 /**
- * 
+ * This class extends simple LinkControl. 
  * @author snogina
  *
  */
 public class MEFindLocationControl  extends MELinkControl {
 
-	
+	/**
+	 * This method checks the type of the link and makes the MEFindLocationControl only for
+	 * the Code Locations available. 
+	 * @param itemPropertyDescriptor - model element properties
+	 * @param link - attached link
+	 * @param contextModelElement - model element, which contains the link as attachment
+	 * @return -1 if the link is not a code location 
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link,
 		ModelElement contextModelElement) {
@@ -54,6 +61,7 @@ public class MEFindLocationControl  extends MELinkControl {
 		return linkComposite;
 	}
 	/**
+	 * Creates the image for the control and assigns the MouseListener to it.
 	 *@param style the style
 	 */
 	protected void createFindAction(int style) {
