@@ -5,6 +5,8 @@
  */
 package org.unicase.metamodel.util;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * Represents a failure in serialization or deserialization of an object.
  * 
@@ -20,5 +22,14 @@ public class SerializationException extends Exception {
 	 */
 	public SerializationException(Throwable cause) {
 		super("De-/Serialization failed", cause);
+	}
+	
+	/**
+	 * Default constructor.
+	 * 
+	 * @param eObject the eObject that failed to serialize
+	 */
+	public SerializationException(EObject eObject) {
+		super("De-/Serialization failed" + eObject.toString());
 	}
 }

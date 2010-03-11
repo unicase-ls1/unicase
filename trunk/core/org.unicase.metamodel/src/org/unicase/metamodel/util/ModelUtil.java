@@ -181,8 +181,10 @@ public final class ModelUtil {
 		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-		if (!overrideContainmentCheck) {
-			checkIfSelfContained(object);
+		if (!overrideContainmentCheck && !(object instanceof EClass)) {
+			if (!isSelfContained(object)) {
+				throw new SerializationException(object);
+			}
 		}
 
 		EObject copy = EcoreUtil.copy(object);
@@ -252,21 +254,18 @@ public final class ModelUtil {
 	/**
 	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it does not have references to eobjects outside the tree. 
 	 * @param object the eObject
-	 * @throws SerializationException if the object is not self-contained
+	 * @return true if it is selfcontained
 	 */
-	public static void checkIfSelfContained(EObject object) throws SerializationException {
-		// TODO: Should we allow eClass at all?
-		if (object instanceof EClass) {
-			return;
-		}
+	public static boolean isSelfContained(EObject object) {
 		Set<EObject> allEObjects = getNonTransientContents(object);
 		allEObjects.add(object);
 		// check if only cross references to known elements exist
 		for (EObject content : allEObjects) {
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
-				throw new SerializationException(new IllegalStateException("Content is not self contained!"));
+				return false;
 			}
 		}
+		return true;
 	}
 
 	/**
