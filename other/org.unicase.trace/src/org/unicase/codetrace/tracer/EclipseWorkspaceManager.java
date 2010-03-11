@@ -6,11 +6,16 @@
 package org.unicase.codetrace.tracer;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 
-public class EclipseWorkspaceManager {
+/**
+ * Utility class to cast between project names and file paths.
+ * @author jfinis
+ * @author kterziewa
+ *
+ */
+public final class EclipseWorkspaceManager {
 	
 	/**
 	 * Utility class.
@@ -18,17 +23,10 @@ public class EclipseWorkspaceManager {
 	private EclipseWorkspaceManager(){
 		
 	}
-
-	//private IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-	
-	static{
-		IWorkspace w = ResourcesPlugin.getWorkspace();
-		w.getRoot().getProject("test").getLocation();
-		if(true);
-	}
 	
 	/**
-	 * 
+	 * Returns the path of a file in a project if the project exists.
+	 * If no project with the specified name exists, null is returned.
 	 * @param projectName the name of the project
 	 * @param pathInProject the file path in the project
 	 * @return the path of the file 
@@ -44,7 +42,7 @@ public class EclipseWorkspaceManager {
 	}
 	
 	/**
-	 * Gets the name of the project location.
+	 * Gets the path of a project.
 	 * @param projectName the name of the project
 	 * @return the name of the project location
 	 */
@@ -61,7 +59,7 @@ public class EclipseWorkspaceManager {
 	 * Returns the path of the workspace root. 
 	 * @return the path of the workspace
 	 */
-	public static String getWorkspace(){
+	public static String getWorkspaceRootPath(){
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		return root.toString();
 	}

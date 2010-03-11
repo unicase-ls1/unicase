@@ -16,6 +16,7 @@ import org.unicase.ui.common.ModelElementOpener;
  *
  */
 public class LineHashOpener implements ModelElementOpener  {
+	
 	/**
 	 * {@inheritDoc}
 	 */

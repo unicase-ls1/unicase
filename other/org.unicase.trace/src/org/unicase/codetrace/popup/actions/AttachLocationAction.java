@@ -33,12 +33,8 @@ import org.unicase.model.trace.CodeLocation;
  */
 public class AttachLocationAction implements IEditorActionDelegate {
 
-	private IEditorPart editorPart = null;
+	private IEditorPart editorPart;
 
-	/**
-	 * 
-	 */
-	public static CodeLocation TEST_LOCATION;
 
 	/**
 	 * @see IActionDelegate#run(IAction)
@@ -53,7 +49,7 @@ public class AttachLocationAction implements IEditorActionDelegate {
 		IResource resource = ResourceUtil.getResource(editorInput);
 		int lineNumber = ((ITextSelection) selection).getStartLine();
 		LocationFinder tf = LocationFinder.getInstance();
-		UnicaseModelElement m = AttachCodeLocation.showUserDialog();
+		UnicaseModelElement m = AttachCodeLocation.showChooseMEForCodeLocationDialog();
 		CodeLocation tl = tf.createLocation(resource.getProject().getName(),
 				resource.getProjectRelativePath().toString(), lineNumber + 1);
 		

@@ -7,10 +7,8 @@
 package org.unicase.model.trace;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.Attachment;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc -->

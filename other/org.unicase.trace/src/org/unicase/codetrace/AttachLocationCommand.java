@@ -37,7 +37,7 @@ public class AttachLocationCommand extends UnicaseCommand {
 	}
 	
 /**
- * 
+ * 	Does the job.
  */
 	@Override
 	protected void doRun() {

@@ -12,7 +12,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.unicase.codetrace.tracer.FoundLocation;
 import org.unicase.codetrace.tracer.LocationFinder;
-import org.unicase.codetrace.ui.TaskLocationLoader;
+import org.unicase.codetrace.ui.CodeLocationViewer;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -31,7 +31,7 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param linkToCodeLocation the attached code location.
+	 * @param linkToCodeLocation a code location to be found
 	 */
 	public FindCodeLocationCommand(ModelElement linkToCodeLocation) {
 		this.link = linkToCodeLocation;
@@ -47,10 +47,10 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 			LocationFinder finder = LocationFinder.getInstance();
 			FoundLocation location = finder.find((CodeLocation)codeLocationLink);
 			if(location == null){
-				 MessageDialog.openWarning(
+				 MessageDialog.openError(
                         PlatformUI.getWorkbench().
                         getActiveWorkbenchWindow().getShell(),
-                        "Warning",
+                        "Error",
                         "No code location found. \nThe code location was deleted or project was not checked out.");
 				return;
 				
@@ -68,7 +68,7 @@ public final class FindCodeLocationCommand  extends UnicaseCommand {
 			
 			IWorkbenchPage page  = workbench.getActiveWorkbenchWindow().getActivePage();
 		
-			TaskLocationLoader.openTaskLocation(location.getFile(), location.getLineNumber(), page);
+			CodeLocationViewer.openTaskLocation(location.getFile(), location.getLineNumber(), page);
 		}
 
 	}
