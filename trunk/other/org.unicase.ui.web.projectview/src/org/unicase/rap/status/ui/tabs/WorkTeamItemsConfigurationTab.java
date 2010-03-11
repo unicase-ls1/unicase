@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui.tabs;
 
 
 
@@ -22,8 +22,11 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.url.impl.ProjectUrlFragmentImpl;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.web.config.ConfigEntityStore;
-import org.unicase.ui.web.views.ConfigurationTabView;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.status.config.WorkTeamItemsConfigEntity;
+import org.unicase.rap.status.ui.ProjectsTableViewer;
+import org.unicase.rap.status.ui.SelectWorkPackageDialog;
+import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;

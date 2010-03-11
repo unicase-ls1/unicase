@@ -1,6 +1,6 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.config;
 
-import org.unicase.ui.web.config.AbstractConfigEntity;
+import org.unicase.rap.config.AbstractConfigEntity;
 
 public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
 

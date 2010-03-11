@@ -1,4 +1,4 @@
-package org.unicase.ui.web.projectview;
+package org.unicase.rap.status.ui.tabs;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.web.projectview.TeamTableViewer;
-import org.unicase.ui.web.views.ProjectAwareTab;
+import org.unicase.rap.status.ui.TeamTableViewer;
+import org.unicase.rap.ui.views.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 
 /**
