@@ -78,6 +78,11 @@ public interface TracerFacet {
 	 */
 	void resetLine(TracerFile tf, int ln);
 	
+	/**
+	 * 
+	 * @param c
+	 */
+	
 	void addToCodeLocation(CodeLocation c);
 
 }
