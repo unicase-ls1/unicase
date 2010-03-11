@@ -9,7 +9,7 @@
    <extension
          point="org.eclipse.rap.ui.entrypoint">
       <entrypoint
-            class="org.unicase.ui.web.Application"
+            class="org.unicase.rap.Application"
             parameter="unicase"
             id="org.unicase.ui.web.Application">
       </entrypoint>
@@ -17,7 +17,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.unicase.ui.web.Perspective"
+            class="org.unicase.rap.Perspective"
             fixed="false"
             id="org.unicase.ui.web.perspective"
             name="UNICASE Web Perspective">
@@ -26,13 +26,13 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.ui.web.views.AbstractView"
+            class="org.unicase.rap.ui.views.AbstractView"
             id="org.unicase.ui.web.views.AbstractView"
             name="AbstractView"
             restorable="true">
       </view>
       <view
-            class="org.unicase.ui.web.views.ConfigurationView"
+            class="org.unicase.rap.ui.views.ConfigurationView"
             id="org.unicase.ui.web.views.ConfigurationView"
             name="Configuration view"
             restorable="true">
@@ -77,7 +77,7 @@
    <extension
          point="org.unicase.ui.web.config">
       <config
-            class="org.unicase.web.config.GeneralSettingsConfigEntity"
+            class="org.unicase.rap.config.GeneralSettingsConfigEntity"
             name="org.unicase.web.config.GeneralSettingsConfigEntity">
       </config>
    </extension>
