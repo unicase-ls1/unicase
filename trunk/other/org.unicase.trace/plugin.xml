@@ -31,7 +31,7 @@
 	point= "org.eclipse.ui.ide.markerImageProviders">
 	<imageprovider 
 		markertype= "org.unicase.taskmarker"
-		icon= "icons/t.png"
+		icon= "icons/bullet_purple.png"
 		id= "org.unicase.codetrace.NewAction" >
 	</imageprovider>
 
@@ -41,16 +41,7 @@
 
    <extension
          point="org.eclipse.ui.popupMenus">
-      <viewerContribution
-            id="org.unicase.codetrace.viewerContribution1"
-            targetID="#CompilationUnitRulerContext">
-         <action
-               class="org.unicase.codetrace.popup.actions.TestRetrieve"
-               id="org.unicase.codetrace.action2"
-               label="GET ME BACK TO THE MARKER"
-               menubarPath="additions">
-         </action>
-      </viewerContribution>
+      
       
       <viewerContribution
       		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
@@ -59,11 +50,24 @@
       		class="org.unicase.codetrace.popup.actions.AttachLocationAction"
     		id="org.unicase.codetrace.action1"
    			label="Link Source Code"
-   	 		icon="icons/t.png"
+   	 		icon="icons/bullet_purple.png"
    			menubarPath="additions" >
   		</action>
 	</viewerContribution>
+	
+	 <viewerContribution
+      		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
+      		targetID="#CompilationUnitRulerContext">
+      	<action
+      		class="org.unicase.codetrace.popup.actions.UpdateMarkersAction"
+    		id="org.unicase.codetrace.action_update"
+   			label="Update Markers for Code Locations"
+   			menubarPath="additions" >
+  		</action>
+	</viewerContribution>
+	
    </extension>
+   
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
