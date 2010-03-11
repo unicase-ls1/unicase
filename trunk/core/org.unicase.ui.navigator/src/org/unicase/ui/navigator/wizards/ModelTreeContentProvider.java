@@ -109,23 +109,6 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * Removes class that are abstract or do not inherit ModelElement form a list of EClass.
-	 * 
-	 * @param items list of EClass
-	 * @return
-	 */
-	private Object[] removeNonModelElements(Object[] items) {
-		List<EClass> modelElements = new ArrayList<EClass>();
-		for (int i = 0; i < items.length; i++) {
-			if (isModelElement(items[i]) && !isNonDomainElement(items[i])) {
-				modelElements.add((EClass) items[i]);
-			}
-		}
-
-		return modelElements.toArray();
-	}
-
-	/**
 	 * Checks if the argument is a NonDomainElement.
 	 * 
 	 * @param object EClass to be checked.
@@ -135,21 +118,6 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 		return object instanceof EClass
 			&& MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
-	}
-
-	/**
-	 * Checks if the argument inherits ME and is not abstract.
-	 * 
-	 * @param object EClass to be checked.
-	 * @return
-	 */
-	private boolean isModelElement(Object object) {
-		// if argument is instance of EClass and
-		// it inherits ModelElement and it is not abstract
-		// return true
-		return object instanceof EClass
-			&& ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
-			&& !((EClass) object).isAbstract();
 	}
 
 	/**
@@ -166,8 +134,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			Object[] children = getChildren(object);
 			if (children != null) {
 				return children.length > 0;
-			} else
+			} else {
 				return false;
+			}
 		}
 
 	}
