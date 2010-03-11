@@ -10,7 +10,6 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.proxyclient.ProxyClient;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
@@ -38,7 +37,7 @@ public class CommentFixClient extends ProxyClient {
 				.getProject(getSessionId(), projectInfo.getProjectId(),
 						projectInfo.getVersion()));
 
-		for (ModelElement me : projectSpace.getProject().getAllModelElements()) {
+//		for (ModelElement me : projectSpace.getProject().getAllModelElements()) {
 //			if (me instanceof UnicaseModelElement) {
 //				UnicaseModelElement modelElement = (UnicaseModelElement) me;
 //				if (modelElement instanceof Comment) {
@@ -56,7 +55,7 @@ public class CommentFixClient extends ProxyClient {
 //					}
 //				}
 //			}
-		}
+//		}
 
 		ChangePackage localChangePackage = projectSpace
 				.getLocalChangePackage(true);
