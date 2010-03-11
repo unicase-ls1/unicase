@@ -57,19 +57,25 @@ import org.unicase.model.trace.CodeLocation;
  */
 
 public interface TracerFacet {
-/**
- * Return the using algorithm.
- * @return the algorithm 
- */
+	/**
+	 * Return the using algorithm.
+	 * @return the algorithm 
+	 */
 	Algorithm getAlgorithm();
-/**
- * 
- * @param tf the tracefile
- * @return 
- */
 
+	/**
+	 * Returns a mapping from line number to likeliness
+	 * that this line is the searched one.
+	 * @param tf the file for whose lines to get the mapping
+	 * @return likeliness mapping
+	 */
 	Map<Integer, Double> getLines(TracerFile tf);
 
+	/**
+	 * 
+	 * @param tf
+	 * @param ln
+	 */
 	void resetLine(TracerFile tf, int ln);
 	
 	void addToCodeLocation(CodeLocation c);

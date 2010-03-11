@@ -170,9 +170,17 @@ public final class LocationFinder {
 		return location;
 	}
 	
+	/**
+	 * 
+	 * @param projectName
+	 * @param pathInProject
+	 * @param tf
+	 * @param filePath
+	 * @return
+	 */
+	// BEGIN COMPLEX CODE
 	private FoundLocation find(String projectName, String pathInProject, TracerFile tf, IPath filePath){	
-		
-		
+				
 		//Build facet map
 		Map<TracerFacet,Double> facets = new LinkedHashMap<TracerFacet,Double>();
 		for (Entry<Algorithm, Double> ent : featureSet.entrySet()) {
@@ -257,6 +265,7 @@ public final class LocationFinder {
 		}
 		return new FoundLocation(f, bestln);
 	}
+	// END COMPLEX CODE
 
 	@SuppressWarnings("unused")
 	/**

@@ -14,7 +14,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.unicase.codetrace.tracer.FoundLocation;
 import org.unicase.codetrace.tracer.LocationFinder;
-import org.unicase.codetrace.ui.TaskLocationLoader;
+import org.unicase.codetrace.ui.CodeLocationViewer;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.common.util.ActionHelper;
@@ -49,7 +49,7 @@ public class FindCodeLocationHandler extends AbstractHandler {
 			
 			IWorkbenchPage page  = workbench.getActiveWorkbenchWindow().getActivePage();
 		
-			TaskLocationLoader.openTaskLocation(location.getFile(), location.getLineNumber(), page);
+			CodeLocationViewer.openTaskLocation(location.getFile(), location.getLineNumber(), page);
 		}
 
 		return null;

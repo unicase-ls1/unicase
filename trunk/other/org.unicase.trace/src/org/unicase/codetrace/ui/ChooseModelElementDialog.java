@@ -5,9 +5,7 @@
  */
 package org.unicase.codetrace.ui;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -17,7 +15,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
@@ -25,27 +22,18 @@ import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
-import org.unicase.model.trace.CodeLocation;
-import org.unicase.model.trace.LineHash;
 import org.unicase.ui.common.Activator;
-//import org.unicase.ui.multiaction.MultiActionGenerator;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
- * 
- * @author jfinis A dialog to select users or groups.
+ * A dialog to select users or groups.
+ * @author jfinis 
  * @author kterziewa
  */
 public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 	private EList<ModelElement> elements;
-	private EList<ModelElement> elementsFiltered;
 	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
@@ -65,8 +53,6 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 			for (ModelElement me : (EList<ModelElement>) elements) {
 				if (me instanceof WorkItem){
 					elementsFiltered.add(me);
-			//	if (!(me instanceof LineHash) & !(me instanceof CodeLocation))  {
-			//		elementsFiltered.add(me);
 				}
 			}
 		}

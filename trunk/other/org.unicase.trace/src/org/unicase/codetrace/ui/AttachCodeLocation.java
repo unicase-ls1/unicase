@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.codetrace.ui;
 
 /**
@@ -14,7 +19,18 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class AttachCodeLocation {
+/**
+ * Utility class for attaching code locations.
+ * @author kterziewa
+ * @author snogina
+ *
+ */
+public final class AttachCodeLocation {
+	
+	/**
+	 * Utility Class.
+	 */
+	private AttachCodeLocation(){}
 
 	private static Project getActiveProject() {
 		final ProjectSpace ps = WorkspaceManager.getInstance()
@@ -28,7 +44,11 @@ public class AttachCodeLocation {
 
 	}
 
-	public static UnicaseModelElement showUserDialog() {
+	/**
+	 * Shows a dialog to select a model element to attach a code location to.
+	 * @return the chosen model element
+	 */
+	public static UnicaseModelElement showChooseMEForCodeLocationDialog() {
 		ChooseModelElementDialog cmed = new ChooseModelElementDialog(
 				getActiveProject(), "Choose Model Element for code location!");
 		if (cmed.open() == Window.OK) {
