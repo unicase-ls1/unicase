@@ -3,13 +3,13 @@
    <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
       Update Site for the EMFStore
    </description>
-   <feature url="features/org.unicase.emfstore.client_1.0.7.jar" id="org.unicase.emfstore.client" version="1.0.7">
+   <feature url="features/org.unicase.emfstore.client_0.5.1.nightly.jar" id="org.unicase.emfstore.client" version="0.5.1.nightly">
       <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.client.ui_1.0.7.jar" id="org.unicase.emfstore.client.ui" version="1.0.7">
+   <feature url="features/org.unicase.emfstore.client.ui_0.5.1.nightly.jar" id="org.unicase.emfstore.client.ui" version="0.5.1.nightly">
       <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.server_1.0.7.jar" id="org.unicase.emfstore.server" version="1.0.7">
+   <feature url="features/org.unicase.emfstore.server_0.5.1.nightly.jar" id="org.unicase.emfstore.server" version="0.5.1.nightly">
       <category name="org.unicase.emfstore"/>
    </feature>
    <category-def name="org.unicase.emfstore" label="EMFStore">
