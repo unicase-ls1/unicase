@@ -1,0 +1,3 @@
+#summary Extension Points of the EMFStore plugins
+
+WE ARE CURRENTLY WORKING ON CREATING THE CONTENTS OF THIS PAGE.
