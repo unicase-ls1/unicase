@@ -11,5 +11,7 @@ This page is a step by step path through the documentation to help you to get st
 
  * Step 4: [CreateCustomClientTutorial Create a custom client for EMFStore]
 
+ * Step 5: [Deploy Emfstore Stand-alone Product with custom model]
+
 
 More Video Tutorials and Documentation are available [EMFStoreDocumentation here].
