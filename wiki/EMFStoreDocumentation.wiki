@@ -29,6 +29,8 @@ Additional Tutorials:
 Documentation:
 
  * [Coding_Guidelines Coding Guidelines]
+ 
+ * [EMFStoreExtensionPoints Extension Point Documentation]
 
  * [ModelingGuidelines Modeling Guidelines]
 
@@ -40,7 +42,7 @@ Documentation:
 
  * [Creating_keystores_for_encryption How to create keystores for EMFStore]
 
-  * [EMFStoreBuild Build and Release]
+ * [EMFStoreBuild Build and Release]
 
 Additionally we have prepared a [EMFStoreScreenshotGallery screenshot gallery].
 
