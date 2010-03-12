@@ -16,7 +16,7 @@ import org.unicase.rap.ui.views.ProjectAwareView;
 
 public class WorkTeamItemsView extends ProjectAwareView {
 	
-	public static final String ID = "org.unicase.ui.web.projectview.ProjectView";
+	public static final String ID = "org.unicase.rap.status.ui.WorkTeamItemsView";
 	
 	private WorkItemsTab workItemsTab;
 	private TeamListTab teamListTab;

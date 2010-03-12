@@ -3,6 +3,12 @@ package org.unicase.rap.status.config;
 import org.unicase.rap.config.AbstractConfigEntity;
 
 public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
+	
+	public WorkTeamItemsConfigEntity(String id) {
+		super(id);
+	}
+
+	protected String id;
 
 	/**
 	 * 
@@ -14,9 +20,6 @@ public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
 	private static final String TEAMLIST_KEY = "TEAMLIST";
 	private static final String WORKITEMLIST_KEY = "WORKITEMLIST";
 	
-	public WorkTeamItemsConfigEntity() {
-	}
-
 	public void setCrypticElement(String crypticElement) {
 		properties.put(CRYPTIC_ELEMENT_KEY, crypticElement);
 	}
@@ -50,10 +53,5 @@ public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
 	public boolean isWorkItemsVisible() {
 		Boolean b = (Boolean) properties.get(WORKITEMLIST_KEY);
 		return b.booleanValue();
-	}
-
-	@Override
-	protected String getId() {
-		return "org.unicase.ui.web.projectview.WorkTeamItemsConfigEntity";
 	}
 }
