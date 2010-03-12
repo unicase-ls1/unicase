@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="unicase" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.0" useFeatures="false" includeLaunchers="true">
+<product name="unicase" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
@@ -291,7 +291,6 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.ui.navigator"/>
       <plugin id="org.eclipse.ui.navigator.resources"/>
       <plugin id="org.eclipse.ui.views"/>
-      <plugin id="org.eclipse.ui.views.log"/>
       <plugin id="org.eclipse.ui.views.properties.tabbed"/>
       <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
@@ -299,35 +298,35 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.junit"/>
       <plugin id="org.mortbay.jetty.server"/>
       <plugin id="org.mortbay.jetty.util"/>
-      <plugin id="org.unicase.client"/>
-      <plugin id="org.unicase.docExport" version="0.4.0"/>
-      <plugin id="org.unicase.emfstore" version="0.4.0"/>
-      <plugin id="org.unicase.emfstore.esmodel" version="0.4.0"/>
-      <plugin id="org.unicase.emfstore.esmodel.edit" version="0.4.0"/>
-      <plugin id="org.unicase.implementation" version="0.4.0"/>
-      <plugin id="org.unicase.implementation.edit" version="0.4.0"/>
-      <plugin id="org.unicase.implementation.ui" version="0.4.0"/>
-      <plugin id="org.unicase.metamodel" version="0.4.0"/>
-      <plugin id="org.unicase.metamodel.edit" version="0.4.0"/>
-      <plugin id="org.unicase.model" version="0.4.0"/>
-      <plugin id="org.unicase.model.edit" version="0.4.0"/>
-      <plugin id="org.unicase.model.migrator" version="0.4.0"/>
-      <plugin id="org.unicase.ui.common" version="0.4.0"/>
-      <plugin id="org.unicase.ui.dashboard" version="0.4.0"/>
-      <plugin id="org.unicase.ui.diagram.activityDiagram" version="0.4.0"/>
-      <plugin id="org.unicase.ui.diagram.classDiagram" version="0.4.0"/>
-      <plugin id="org.unicase.ui.diagram.componentDiagram" version="0.4.0"/>
-      <plugin id="org.unicase.ui.diagram.stateDiagram" version="0.4.0"/>
-      <plugin id="org.unicase.ui.diagram.usecaseDiagram" version="0.4.0"/>
-      <plugin id="org.unicase.ui.meeditor" version="0.4.0"/>
-      <plugin id="org.unicase.ui.multiaction" version="0.4.0"/>
-      <plugin id="org.unicase.ui.navigator" version="0.4.0"/>
-      <plugin id="org.unicase.ui.stem" version="0.4.0"/>
-      <plugin id="org.unicase.ui.tableview" version="0.4.0"/>
-      <plugin id="org.unicase.ui.unicasecommon" version="0.4.0"/>
-      <plugin id="org.unicase.workspace" version="0.4.0"/>
-      <plugin id="org.unicase.workspace.edit" version="0.4.0"/>
-      <plugin id="org.unicase.workspace.ui" version="0.4.0"/>
+      <plugin id="org.unicase.client" version="0.4.1"/>
+      <plugin id="org.unicase.docExport" version="0.4.1"/>
+      <plugin id="org.unicase.emfstore" version="0.4.1"/>
+      <plugin id="org.unicase.emfstore.esmodel" version="0.4.1"/>
+      <plugin id="org.unicase.emfstore.esmodel.edit" version="0.4.1"/>
+      <plugin id="org.unicase.implementation" version="0.4.1"/>
+      <plugin id="org.unicase.implementation.edit" version="0.4.1"/>
+      <plugin id="org.unicase.implementation.ui" version="0.4.1"/>
+      <plugin id="org.unicase.metamodel" version="0.4.1"/>
+      <plugin id="org.unicase.metamodel.edit" version="0.4.1"/>
+      <plugin id="org.unicase.model" version="0.4.1"/>
+      <plugin id="org.unicase.model.edit" version="0.4.1"/>
+      <plugin id="org.unicase.model.migrator" version="0.4.1"/>
+      <plugin id="org.unicase.ui.common" version="0.4.1"/>
+      <plugin id="org.unicase.ui.componentDiagram" version="0.4.1"/>
+      <plugin id="org.unicase.ui.dashboard" version="0.4.1"/>
+      <plugin id="org.unicase.ui.diagram.activityDiagram" version="0.4.1"/>
+      <plugin id="org.unicase.ui.diagram.classDiagram" version="0.4.1"/>
+      <plugin id="org.unicase.ui.diagram.stateDiagram" version="0.4.1"/>
+      <plugin id="org.unicase.ui.diagram.usecaseDiagram" version="0.4.1"/>
+      <plugin id="org.unicase.ui.meeditor" version="0.4.1"/>
+      <plugin id="org.unicase.ui.multiaction" version="0.4.1"/>
+      <plugin id="org.unicase.ui.navigator" version="0.4.1"/>
+      <plugin id="org.unicase.ui.stem" version="0.4.1"/>
+      <plugin id="org.unicase.ui.tableview" version="0.4.1"/>
+      <plugin id="org.unicase.ui.unicasecommon" version="0.4.1"/>
+      <plugin id="org.unicase.workspace" version="0.4.1"/>
+      <plugin id="org.unicase.workspace.edit" version="0.4.1"/>
+      <plugin id="org.unicase.workspace.ui" version="0.4.1"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
