@@ -4,7 +4,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -38,7 +37,7 @@ public class BugReportView extends ProjectAwareView {
 
 	public static final String ID = "org.unicase.rap.bugreport.BugReportView";
 	
-	public BugReportView(String projectName, CTabFolder parent) {
+	public BugReportView() {
 
 	}
 
