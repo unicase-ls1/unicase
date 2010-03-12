@@ -3,6 +3,7 @@ package org.unicase.rap.status.ui.tabs;
 import java.util.List;
 
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.core.databinding.observable.Realm;
@@ -37,7 +38,7 @@ public class TeamListTab extends ProjectAwareTab {
 	}
 	
 	@Override
-	public void createTabContent() {
+	public void createTab(Composite parent) {
 		teamTableViewer.setInput(getProjectSpace().getProject());
 	}
 

@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui;
+package org.unicase.rap.status.ui.views;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.rwt.graphics.Graphics;
@@ -14,7 +14,7 @@ import org.unicase.rap.status.ui.tabs.TeamListTab;
 import org.unicase.rap.status.ui.tabs.WorkItemsTab;
 import org.unicase.rap.ui.views.ProjectAwareView;
 
-public class WorkTeamItemsView extends ProjectAwareView {
+public class StatusView extends ProjectAwareView {
 	
 	public static final String ID = "org.unicase.rap.status.ui.WorkTeamItemsView";
 	
@@ -22,7 +22,7 @@ public class WorkTeamItemsView extends ProjectAwareView {
 	private TeamListTab teamListTab;
 	private CTabFolder tabFolder;
 	
-	public WorkTeamItemsView() {
+	public StatusView() {
 		super();
 	}
 
@@ -56,8 +56,8 @@ public class WorkTeamItemsView extends ProjectAwareView {
 		workItemsTab = new WorkItemsTab(projectSpace, tabFolder);
 		teamListTab = new TeamListTab(projectSpace, tabFolder);
 		
-		workItemsTab.createTabContent();
-		teamListTab.createTabContent();
+		workItemsTab.createPartControl();
+		teamListTab.createPartControl();
 		
 		tabFolder.setSelection(0);
 		tabFolder.addSelectionListener(new SelectionAdapter() {

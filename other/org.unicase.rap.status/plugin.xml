@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.rap.status.ui.WorkTeamItemsView"
+            class="org.unicase.rap.status.ui.views.StatusView"
             id="org.unicase.rap.status.ui.WorkTeamItemsView"
             name="Work-/Team Items"
             restorable="true">
@@ -13,9 +13,9 @@
    <extension
          point="org.unicase.rap.ui.view">
       <view
-            class="org.unicase.rap.status.ui.WorkTeamItemsView"
-            name="WorkTeamItemsView"
-            url="workteamview">
+            class="org.unicase.rap.status.ui.views.StatusView"
+            name="StatusView"
+            url="status">
       </view>
    </extension>
    <extension
