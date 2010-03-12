@@ -4,9 +4,9 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.rap.status.WorkTeamItemsView"
-            id="org.unicase.ui.web.projectview.ProjectView"
-            name="Project View"
+            class="org.unicase.rap.status.ui.WorkTeamItemsView"
+            id="org.unicase.rap.status.ui.WorkTeamItemsView"
+            name="Work-/Team Items"
             restorable="true">
       </view>
    </extension>
@@ -19,16 +19,10 @@
       </view>
    </extension>
    <extension
-         point="org.unicase.rap.config">
-      <config
-            class="org.unicase.rap.status.config.WorkTeamItemsConfigEntity">
-      </config>
-   </extension>
-   <extension
          point="org.unicase.rap.ui.config.tab">
       <config
             class="org.unicase.rap.status.ui.tabs.WorkTeamItemsConfigurationTab"
-            name="org.unicase.rap.status.config2">
+            name="Work-/Team Items ">
       </config>
    </extension>
    

@@ -1,13 +1,7 @@
 package org.unicase.rap.status.ui.tabs;
 
-
-
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -20,10 +14,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.AbstractConfigEntity;
+import org.unicase.rap.config.ui.ProjectsTableViewer;
 import org.unicase.rap.status.config.WorkTeamItemsConfigEntity;
-import org.unicase.rap.status.ui.ProjectsTableViewer;
-import org.unicase.rap.status.ui.SelectWorkPackageDialog;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
@@ -32,38 +25,41 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 
-	private static final String SAVE_PATH = System.getProperty("user.home"); 
-	
+	/**
+	 * The table viewer for projects.
+	 */
 	private ProjectsTableViewer projectsTableViewer;
-	public static final String ID = "org.unicase.ui.web.projectview.ProjectConfigurationTab";
+	
+	/**
+	 * The config entity used by the configuration tab
+	 */
+	WorkTeamItemsConfigEntity cfgEntity;
 	
 	// TODO: for now the project space is used to serve as
 	private WorkPackage bugContainer;
-	
-	private ProjectSpace projectSpace;
-	
-	public WorkTeamItemsConfigurationTab() {
 		
+	private String configEntityId;
+	
+	private Text crypticElementTextfield;
+	
+	private Button teamListVisisbleCheckBox;
+	
+	private Button workItemsVisibleCheckBox;
+	
+	
+	
+	/**
+	 * Initializes a new instance of the WorkTeamItemsConfigurationTab class.
+	 */
+	public WorkTeamItemsConfigurationTab() {
 	}
 
-	private void foo(final ProjectSpace pSpace) {
-		Display.getDefault().syncExec(new Runnable() {
-			
-			public void run() {
-				SelectWorkPackageDialog dlg = new SelectWorkPackageDialog(pSpace, "Select work package used as bug container");
-				
-				if (dlg.open() == Window.OK) {
-					WorkPackage workPackage = (WorkPackage) dlg.getFirstResult();
-					bugContainer = workPackage;
-				}
-			
-			}
-		});		
-	}
+	
 	
 	public void setFocus() {
 	}
 
+	/*
 	private void loadConfig(String projectName) {
 		String loadPath = new File(SAVE_PATH).getAbsolutePath() + File.pathSeparatorChar + projectName; 
 		try {
@@ -76,16 +72,16 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	@Override
-	protected void createTab() {
+	protected void createTab(Composite parent) {
 
 		
 		// TODO
 //		getSite().setSelectionProvider(projectsTableViewer);
 				 
-		Composite top = new Composite(getComposite(), SWT.BORDER);
+		Composite top = new Composite(parent, SWT.BORDER);
 		GridLayout layout = new GridLayout();		
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
@@ -107,72 +103,53 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 		Label l = new Label(banner, SWT.WRAP);
 		l.setText("Cryptic element:");
 		l.setFont(boldFont);
-		final Text tfCrypticElement = new Text(banner, SWT.BORDER);
-		//tf.
+		crypticElementTextfield = new Text(banner, SWT.BORDER);
+		
 
 		l = new Label(banner, SWT.WRAP);
 		l.setText("Team list visible:");
 		l.setFont(boldFont);
-		final Button cbTeamListVisisble = new Button(banner, SWT.CHECK); 
+		teamListVisisbleCheckBox = new Button(banner, SWT.CHECK); 
 		
 		l = new Label(banner, SWT.WRAP);
 		l.setText("Work item list visible:");
 		l.setFont(boldFont);
-		final Button cbWorkItemListVisisble = new Button(banner, SWT.CHECK); 
+		workItemsVisibleCheckBox = new Button(banner, SWT.CHECK); 
 		
 		l = new Label(banner, SWT.WRAP);
 		l.setText("Bug container:");
-		Button btSelectBugContainer = new Button(banner, SWT.BORDER);
-		btSelectBugContainer.setText("Select bug container");
-		btSelectBugContainer.addSelectionListener(new SelectionListener() {
-			
-			public void widgetSelected(SelectionEvent e) {
-				int selectedIndex = projectsTableViewer.getTable().getSelectionIndex();
-				projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
-				foo(projectSpace);
-			}
-			
-			public void widgetDefaultSelected(SelectionEvent e) {
-				
-			}
-		});
 		
-		
-		projectsTableViewer = new ProjectsTableViewer(getComposite());
+		projectsTableViewer = new ProjectsTableViewer(parent);
 		projectsTableViewer.refreshView();
-		
-		Button saveButton = new Button(getComposite(), SWT.NONE); 
-		saveButton.setText("Save settings");
-		saveButton.addSelectionListener(new SelectionListener() {
+		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
-				WorkTeamItemsConfigEntity cfgEntity = new WorkTeamItemsConfigEntity();
-				cfgEntity.setBugContainer(bugContainer.getModelElementId().toString());
-				cfgEntity.setCrypticElement(tfCrypticElement.getText());
-				cfgEntity.setTeamListVisible(cbTeamListVisisble.getSelection());
-				cfgEntity.setWorkItemsVisible(cbWorkItemListVisisble.getSelection());
-				
-				// TODO: 
-				String filename = new File(SAVE_PATH).getAbsolutePath() 
-					+ File.separatorChar + "org.unicase.ui.web." + projectSpace.getProjectName();
-				
-				ConfigEntityStore.getInstance().saveEntity(cfgEntity, filename);
-
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-						"Settings saved", "The settings were successfully saved.");
-
-				// TODO: retrieve bug container via..
-//				ProjectUrlFragment projUrlFrag = UrlFactory.eINSTANCE.createProjectUrlFragment();
-//				projUrlFrag.setName(projectName);
-//				WorkspaceManager.getInstance().getCurrentWorkspace().resolve(projUrlFrag);
-//				ProjectSpace p = null;
-//				p.getProject().contains(modelElementId)
+				ProjectSpace pSpace = (ProjectSpace) e.item.getData();
+				configEntityId = pSpace.getProjectId().getId();
+				System.out.println("WorkTeamItems: " + e.item.getData().toString());	
 			}
 			
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
+	}
+	
+	@Override
+	public AbstractConfigEntity getConfigEntity() {
+		
+		if (bugContainer == null) {
+			MessageDialog.openInformation(
+					Display.getDefault().getActiveShell(),
+					"Bugcontainer missing",
+					"You didn't selected any bug container.");
+			return null;
+		}
+		
+		cfgEntity = new WorkTeamItemsConfigEntity(configEntityId);
+		cfgEntity.setBugContainer(bugContainer.getModelElementId().toString());
+		cfgEntity.setCrypticElement(crypticElementTextfield.getText());
+		cfgEntity.setTeamListVisible(teamListVisisbleCheckBox.getSelection());
+		cfgEntity.setWorkItemsVisible(workItemsVisibleCheckBox.getSelection());
+
+		return cfgEntity;
 	}
 }
