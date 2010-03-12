@@ -12,6 +12,5 @@ Export-Package: library,
  library.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.metamodel;bundle-version="1.0.0";visibility:=reexport,
- org.unicase.metamodel.edit;bundle-version="1.0.0"
+ org.unicase.metamodel;visibility:=reexport
 Bundle-ActivationPolicy: lazy
