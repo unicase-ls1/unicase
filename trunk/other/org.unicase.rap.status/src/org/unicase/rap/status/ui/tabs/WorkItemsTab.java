@@ -17,6 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
@@ -72,11 +73,8 @@ public class WorkItemsTab extends ProjectAwareTab {
 		addFilter(resolvedItemsFilter);
 	}
 	
-	public void createTabContent() {
+	public void createTab(Composite parent) {
 		workItemsTableViewer.setInput(getProjectSpace().getProject());
-		
-		
-		
 	}
 	
 	private void createFiltersPart(final Composite parent) {
