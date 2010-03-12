@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: javax.servlet;version="2.4.0",
  javax.servlet.http;version="2.4.0",
  org.osgi.service.http;version="1.2.1"
-Export-Package: org.unicase.rap.ui.views,
- org.unicase.rap.config
+Export-Package: org.unicase.rap.config,
+ org.unicase.rap.config.ui,
+ org.unicase.rap.ui.views

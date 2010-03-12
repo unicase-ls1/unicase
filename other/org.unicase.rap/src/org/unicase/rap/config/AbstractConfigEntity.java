@@ -5,6 +5,8 @@ import java.util.Properties;
 
 public abstract class AbstractConfigEntity implements Serializable {
 	
+	protected String id;
+	
 	/**
 	 * 
 	 */
@@ -12,13 +14,17 @@ public abstract class AbstractConfigEntity implements Serializable {
 	
 	protected Properties properties;
 	
-	public AbstractConfigEntity() {
+	public AbstractConfigEntity(String id) {
 		properties = new Properties();
+		this.id = id;
 	}
 	
 	public Properties getProperties() {
 		return properties;
 	}
+	
+	public String getId() {
+		return id;
+	}
 
-	protected abstract String getId();
 }

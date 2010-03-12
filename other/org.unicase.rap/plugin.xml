@@ -4,7 +4,6 @@
    <extension-point id="org.unicase.rap.ui.view" name="org.unicase.rap.ui.view" 
    schema="schema/org.unicase.rap.ui.view.exsd"/>
    <extension-point id="org.unicase.rap.ui.config.tab" name="org.unicase.rap.ui.config.tabs" schema="schema/org.unicase.rap.ui.config.tab.exsd"/>
-   <extension-point id="org.unicase.rap.config" name="org.unicase.rap.config" schema="schema/org.unicase.rap.config.exsd"/>
 
    <extension
          point="org.eclipse.rap.ui.entrypoint">
@@ -33,7 +32,7 @@
       </view>
       <view
             class="org.unicase.rap.ui.views.ConfigurationView"
-            id="org.unicase.ui.web.views.ConfigurationView"
+            id="org.unicase.rap.ui.views.ConfigurationView"
             name="Configuration view"
             restorable="true">
       </view>

@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class ConfigurationView extends AbstractTabView {
 	
-	public static final String ID = "org.unicase.ui.web.views.ConfigurationView";
+	public static final String ID = "org.unicase.rap.ui.views.ConfigurationView";
 	
 	@Override
 	public String getId() {

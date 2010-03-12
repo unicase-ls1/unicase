@@ -1,6 +1,7 @@
 package org.unicase.rap.config;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,7 +11,6 @@ import java.util.Properties;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.unicase.rap.ui.views.ConfigurationTabView;
 
 
 public class ConfigEntityStore {
@@ -29,6 +29,9 @@ public class ConfigEntityStore {
 	
 	}
 	
+	/**
+	 * TODO: currently settings are saved into the user's home directory
+	 */
 	public static void saveSettings() {
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
@@ -43,7 +46,8 @@ public class ConfigEntityStore {
 			try {
 				configEntity = (AbstractConfigEntity) e.createExecutableExtension("class");
 				String filename = new File(System.getProperty("user.home")).getAbsolutePath() 
-					+ File.separatorChar + configEntity.getId();
+					+ File.separatorChar + configEntity.getClass().getSimpleName()
+					+ configEntity.getId();
 				saveEntity(configEntity, filename);
 			} catch (CoreException e1) {
 				// TODO Auto-generated catch block
@@ -69,10 +73,11 @@ public class ConfigEntityStore {
 		}
 	}
 	
-    public AbstractConfigEntity loadObject(String filename) throws ClassNotFoundException, IOException {
+    public static AbstractConfigEntity loadObject(String filename) throws ClassNotFoundException, IOException {
     	AbstractConfigEntity entity = null;
     	Properties properties = new Properties();
-    	properties.load(this.getClass().getClassLoader().getResourceAsStream(filename));
+        FileInputStream fis = new FileInputStream(filename);
+    	properties.load(fis);
 
     	return entity;
     }
