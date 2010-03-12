@@ -76,6 +76,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					selectedEObject);
 				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
 					new UnicaseCommand() {
+						@SuppressWarnings("unchecked")
 						@Override
 						protected void doRun() {
 							Object object = selectedEObject.eGet(possibleContainingReference);
