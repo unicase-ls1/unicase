@@ -23,7 +23,7 @@ import org.unicase.rap.ui.views.ConfigurationView;
  * 
  * @author Fatih Ulusoy
  */
-public class Perspective implements IPerspectiveFactory {
+public class ViewDispatcher implements IPerspectiveFactory {
 	
 	// caches views with their corresponding URL 
 	private HashMap<String, AbstractView> views;
@@ -31,7 +31,7 @@ public class Perspective implements IPerspectiveFactory {
 	
 	private ConfigurationView configView;
 	
-	public Perspective() {
+	public ViewDispatcher() {
 		views = new HashMap<String, AbstractView>();
 		initViews();
 		initConfigurationsTabs();

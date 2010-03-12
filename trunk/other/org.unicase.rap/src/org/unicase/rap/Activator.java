@@ -10,7 +10,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.unicase.ui.web";
+	public static final String PLUGIN_ID = "org.unicase.rap";
 
 	// The shared instance
 	private static Activator plugin;

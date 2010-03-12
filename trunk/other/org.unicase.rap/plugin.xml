@@ -16,7 +16,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.unicase.rap.Perspective"
+            class="org.unicase.rap.ViewDispatcher"
             fixed="false"
             id="org.unicase.ui.web.perspective"
             name="UNICASE Web Perspective">
