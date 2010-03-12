@@ -23,34 +23,6 @@
       </ModelVersion>
    </extension>
    <extension
-         point="org.eclipse.emf.validation.constraintProviders">
-      <category
-            id="library"
-            name="Library">
-      </category>
-      <constraintProvider
-            mode="Batch">
-         <package
-               namespaceUri="http:///org/eclipse/example/library.ecore">
-         </package>
-         <constraints
-               categories="library">
-            <constraint
-                  class="library.validation.BookConstraint"
-                  id="library.bookconstraint"
-                  lang="Java"
-                  mode="Batch"
-                  name="Book Empty Name Constraint"
-                  severity="WARNING"
-                  statusCode="1">
-               <message>
-                  {0} has no name set
-               </message>
-            </constraint>
-         </constraints>
-      </constraintProvider>
-   </extension>
-   <extension
          point="org.eclipse.emf.validation.constraintBindings">
       <binding
             category="library"
