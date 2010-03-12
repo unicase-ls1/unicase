@@ -8,3 +8,27 @@
 
  * All the codes for this documentation can be found at our SVN repository using this [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ link]. 
  * We have used the example model project created in the tutorial [http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel Run EMFStore with a custom model].
+
+==Deploy==
+Below we describe the complete procedure to create a plugin based Emfstore product with custom model.
+
+ * Open your eclipse instance, if not already opened.
+ * Make sure that your model plugin is available in your eclipse-workspace.
+ * Create a new "Empty EMF Project" with a meaningful name. 
+ * You can see in the image given below that we have already checked out the example model plugins in the workspace for this tutorial and now creating a project which will hold the product configuration.
+http://unicase.googlecode.com/files/Picture%201.png
+ * Once the project is created, create a new "Product Configuration" file within it.
+http://unicase.googlecode.com/files/Picture%204.png
+ * Open the newly created "Product Configuration" file and specify the ID, Version and Name in their respective fields.
+http://unicase.googlecode.com/files/Picture%205.png
+ * Make sure that within the "Product Definition" section "The product configuration is based on:" has value "plug-ins" selected until unless you want to make your product based on features(This tutorial strictly follows the plug-ins based approach only).
+ * In the "Product Definition" section, for the field "Product" click the associated button with text "New.." to define the new Eclipse product and its default entry point.
+http://unicase.googlecode.com/files/Picture%206.png
+    * Specify the plugin which holds your product configuration in the "Defining Plug-in" field.
+    * Specify a "Product ID".
+    * Select "org.unciase.emfstore.server" as the default Product Application.
+    * Click on Finish.
+http://unicase.googlecode.com/files/Picture%2022.png
+ 
+ * Now its time to add your custom model in the dependencies and the core Emfstore plugins.
+ * Select on the dependencies tab and 
