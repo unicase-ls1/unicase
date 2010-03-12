@@ -1,0 +1,3 @@
+==Requirements:==
+
+This documentation consider that you have already set-up an eclipse instance for making Emfstore product with your custom model. In case if you want to make Emfstore stand-alone product for multiple operating systems then please also configure delta-pack within your eclipse. A detailed doucmentation to configure delta-pack can be found [here http://code.google.com/p/unicase/wiki/Emfstore_product]. 
