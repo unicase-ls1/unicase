@@ -1,0 +1,2 @@
+#summary Screenshot Gallery of the EMFStore
+
