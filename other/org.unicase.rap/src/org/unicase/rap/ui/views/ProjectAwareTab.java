@@ -1,12 +1,17 @@
 package org.unicase.rap.ui.views;
 
+
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.ProjectSpace;
 
@@ -37,18 +42,28 @@ public abstract class ProjectAwareTab implements ProjectChangeObserver {
 		composite = new Composite(parent, SWT.NONE);
 		
 		composite.setLayout(new GridLayout(1, false));
-		
-		// composite.setLayout(new FillLayout());	
-		
 	    tabItem.setControl(composite);
 	}
 	
-	public abstract void createTabContent();
-	
-	protected Composite getComposite() {
-		return composite;
+	public void createPartControl() {
+		createTabContent(composite);
 	}
 	
+	private void createTabContent(Composite composite) {
+		
+		// check whether a project name has been passed
+		if (projectSpace == null) {
+			Label l = new Label(composite, SWT.NONE);
+			l.setText("No project name was set.");
+			Color red = new Color(Display.getDefault(), 255, 0, 0);
+			l.setForeground(red);
+		} else {
+			createTab(composite);
+		}
+	}
+
+	protected abstract void createTab(Composite parent);
+		
 	protected ProjectSpace getProjectSpace() {
 		return projectSpace;
 	}
