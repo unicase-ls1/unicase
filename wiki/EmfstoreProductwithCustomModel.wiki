@@ -4,4 +4,5 @@ This document consider that you have already set-up an eclipse instance for maki
 
 ==Source:==
 
-All the codes for this documentation can be found at our SVN repositories using this [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ link]. We have used the example model project created in the tutorial [http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel Run EMFStore with a custom model].
+ * All the codes for this documentation can be found at our SVN repository using this [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ link]. 
+ * We have used the example model project created in the tutorial [http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel Run EMFStore with a custom model].
