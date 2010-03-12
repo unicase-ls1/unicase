@@ -40,6 +40,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 	/**
 	 * Constructor.
 	 * 
+	 * @param selected the selected EClass
 	 * @param pageName page name
 	 */
 	protected ModelTreePage(String pageName, EClass selected) {

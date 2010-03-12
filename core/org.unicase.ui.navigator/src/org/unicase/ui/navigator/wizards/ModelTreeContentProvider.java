@@ -23,7 +23,6 @@ import org.unicase.workspace.WorkspacePackage;
  */
 public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
-	private final EClass selected;
 	private Set<EPackage> packages = new HashSet<EPackage>();
 	private HashSet<EClass> modelElementClasses;
 	private Set<EPackage> rootPackages;
@@ -35,7 +34,6 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	public ModelTreeContentProvider(EClass selected) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		this.selected = selected;
 		Set<EClass> eClasses = ModelUtil.getAllModelElementEClasses();
 		modelElementClasses = new HashSet<EClass>();
 		rootPackages = new HashSet<EPackage>();
@@ -44,25 +42,33 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 				modelElementClasses.add(eClass);
 			}
 		}
+
 		if (!(selected.equals(WorkspacePackage.eINSTANCE.getProjectSpace()))) {
 			Set<EClass> allEContainments = ModelUtil.getAllEContainments(selected);
 			modelElementClasses.retainAll(allEContainments);
 		}
-		sortPackages(modelElementClasses);
-
+		extractRootPackages(modelElementClasses);
 	}
 
-	private void sortPackages(Set<EClass> eClasses) {
+	private void extractRootPackages(Set<EClass> eClasses) {
 		for (EClass eClass : eClasses) {
 			EPackage ePackage = eClass.getEPackage();
 			packages.add(ePackage);
-
+			extractAllSuperPackages(ePackage);
 		}
-		for (EPackage ePackage : packages) {
-			packages.contains(ePackage.getESuperPackage());
+	}
+
+	private void extractAllSuperPackages(EPackage ePackage) {
+		EPackage eSuperPackage = ePackage.getESuperPackage();
+		if (eSuperPackage == null) {
 			rootPackages.add(ePackage);
+			return;
 		}
-
+		if (packages.contains(eSuperPackage)) {
+			return;
+		}
+		packages.add(eSuperPackage);
+		extractAllSuperPackages(eSuperPackage);
 	}
 
 	/**
