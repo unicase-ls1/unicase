@@ -16,7 +16,7 @@ Below we describe the complete procedure to create a plugin based Emfstore produ
  * Make sure that your model plugin is available in your eclipse-workspace.
  * Create a new "Empty EMF Project" with a meaningful name. 
  * You can see in the image given below that we have already checked out the example model plugins in the workspace for this tutorial and now creating a project which will hold the product configuration.
-http://unicase.googlecode.com/files/Picture%201.png
+[http://unicase.googlecode.com/files/Picture%201.png]
  * Once the project is created, create a new "Product Configuration" file within it.
 http://unicase.googlecode.com/files/Picture%204.png
  * Open the newly created "Product Configuration" file and specify the ID, Version and Name in their respective fields.
