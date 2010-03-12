@@ -11,10 +11,9 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 
 	private static final String ADMIN_USER_NAME = "ADMIN_USER_NAME";
 	private static final String ADMIN_PASSWORD = "ADMIN_PASSWORD";
-	
-	@Override
-	public String getId() {
-		return "org.unicase.web.config.GeneralSettingsConfigEntity";
+
+	public GeneralSettingsConfigEntity(String id) {
+		super(id);
 	}
 
 	/**
@@ -34,7 +33,7 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 	public String getAdminUsername() {
 		return (String) properties.get(ADMIN_USER_NAME);
 	}
-	
+
 	/**
 	 * Sets the password of the admin user.
 	 * 

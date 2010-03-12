@@ -8,7 +8,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.rwt.RWT;
-import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.IWorkbenchPage;
@@ -41,7 +40,7 @@ public class Perspective implements IPerspectiveFactory {
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
 		// TODO: how to put something into editor area
-		layout.setEditorAreaVisible(true);
+		layout.setEditorAreaVisible(false);
 		
 		HttpServletRequest request = RWT.getRequest();
 		String viewName = request.getParameter("view");
@@ -89,7 +88,7 @@ public class Perspective implements IPerspectiveFactory {
 		
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.web.view");
+			"org.unicase.rap.ui.view");
 	
 		for (IConfigurationElement e : configIn) {
 
@@ -108,7 +107,7 @@ public class Perspective implements IPerspectiveFactory {
 	private void initConfigurationsTabs() {
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.web.config.tabs");
+			"org.unicase.rap.ui.config.tab");
 	
 		ConfigurationTabView cfgTab;
 		
