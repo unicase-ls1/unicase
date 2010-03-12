@@ -36,7 +36,6 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <dynamic
                class="org.unicase.ui.navigator.commands.DynamicContainmentCommands"
@@ -96,6 +95,11 @@
                typeId="org.unicase.ui.navigator.eClassType">
          </commandParameter>
   
+      </command>
+             <command
+            defaultHandler="org.unicase.ui.navigator.handler.ImportModelHandler"
+            id="org.unicase.ui.navigator.importModel"
+            name="Import model">
       </command>
       <category
             id="org.unicase.ui.navigator"

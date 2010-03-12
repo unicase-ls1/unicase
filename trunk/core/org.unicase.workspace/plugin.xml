@@ -12,6 +12,7 @@
    <extension-point id="org.unicase.workspace.notification.providers" name="Notification Providers" schema="schema/notificationProviders.exsd"/>
    <extension-point id="org.unicase.workspace.filetransfer.ondone" name="File Transfer On Done" schema="schema/org.unicase.workspace.filetransfer.ondone.exsd"/>
    <extension-point id="org.unicase.workspace.workspaceLocationProvider" name="Workspace Location Provider" schema="schema/org.unicase.workspace.workspaceLocationProvider.exsd"/>
+   <extension-point id="org.unicase.workspace.wrapperfactories" name="Wrapper factories" schema="schema/wrapperfactories.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 
