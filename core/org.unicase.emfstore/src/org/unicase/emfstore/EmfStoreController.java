@@ -50,6 +50,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the EmfStore.
@@ -282,6 +283,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 	private void initLogging() {
 		logger = LogFactory.getLog(EmfStoreController.class);
+		ModelUtil.getAllModelElementEClasses();
 
 		// OW: fix logging config
 		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
