@@ -17,7 +17,7 @@ Below we describe the complete procedure to create a plugin based Emfstore produ
  * Create a new "Empty EMF Project" with a meaningful name. 
  * You can see in the image given below that we have already checked out the example model plugins in the workspace for this tutorial and now creating a project which will hold the product configuration.
 <br>
-<img src="http://unicase.googlecode.com/files/Picture%201.png" width="800" height="800">
+<img src="http://unicase.googlecode.com/files/Picture%201.png" width="1000" height="800">
 <br>
  * Once the project is created, create a new "Product Configuration" file within it.
 <br>
