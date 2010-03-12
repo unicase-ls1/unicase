@@ -17,19 +17,26 @@ Below we describe the complete procedure to create a plugin based Emfstore produ
  * Create a new "Empty EMF Project" with a meaningful name. 
  * You can see in the image given below that we have already checked out the example model plugins in the workspace for this tutorial and now creating a project which will hold the product configuration.
 
-<img src="http://unicase.googlecode.com/files/Picture%201.png" width="600" height="600">
+<img src="http://unicase.googlecode.com/files/Picture%201.png" width="800" height="600">
 
  * Once the project is created, create a new "Product Configuration" file within it.
+
 http://unicase.googlecode.com/files/Picture%204.png
+
  * Open the newly created "Product Configuration" file and specify the ID, Version and Name in their respective fields.
+
 http://unicase.googlecode.com/files/Picture%205.png
+
  * Make sure that within the "Product Definition" section "The product configuration is based on:" has value "plug-ins" selected until unless you want to make your product based on features(This tutorial strictly follows the plug-ins based approach only).
  * In the "Product Definition" section, for the field "Product" click the associated button with text "New.." to define the new Eclipse product and its default entry point.
+
 http://unicase.googlecode.com/files/Picture%206.png
+
     * Specify the plugin which holds your product configuration in the "Defining Plug-in" field.
     * Specify a "Product ID".
     * Select "org.unciase.emfstore.server" as the default Product Application.
     * Click on Finish.
+
 http://unicase.googlecode.com/files/Picture%2019.png
 
  
@@ -40,33 +47,43 @@ http://unicase.googlecode.com/files/Picture%2019.png
    * org.unicase.emfstore.esmodel
    * org.unicase.metamodel
 
+
  http://unicase.googlecode.com/files/Picture%2011.png
+
 
  * The final selection of plugins is:
  
+
 http://unicase.googlecode.com/files/Picture%2026.png
+
 
  * Once these plug-ins are added, you can click on the button in the right with test "Add Required Plug-ins" add the other plugins which might be required for the product to run properly. 
  * You can also select the check-box to include optional dependencies to avoid any unwanted trouble. It may increase the size of your final product in terms of storage space by adding additional plug-ins which may not be required.
 
+
 http://unicase.googlecode.com/files/Screen%20shot%202010-03-12%20at%204.35.38%20PM.png
+
 
  * Once done with adding plug-ins, go back "Overview" tab and click on "synchronize" link within "Testing" section.
  * Now you can test if your Emfstore server with the custom model is working properly or not, before you export it as a stand-alone product.
 
+
 http://unicase.googlecode.com/files/Picture%2020.png
+
 
  * Once the Emfstore server is running without any issue, its time to export it as stand-alone product.
  * Open "Eclipse Product export wizard" from the link given in "Exporting" section of the "Overview" tab.
   * Specify the path and other details.
  * You will be able to see the check-box to export for multiple platforms if your eclipse instance is configured to use delta-pack plugin.
 
+
 http://unicase.googlecode.com/files/Picture%2022.png
+
 
  * If you have delta-pack configured and you have already selected the check-box to export for multiple platforms then you will get a menu like the one shown in image below.  Just select the desired OS platforms and click the finish.
 
+
 http://unicase.googlecode.com/files/Picture%2023.png
 
- * Once the progress bar disappears without any message your products are ready to be shipped, else there was some issue while exporting.
 
- * You will be able to ex
+ * Once the progress bar disappears without any message your products are ready to be shipped, else there was some issue while exporting.
