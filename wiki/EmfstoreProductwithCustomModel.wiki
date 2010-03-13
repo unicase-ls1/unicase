@@ -17,27 +17,27 @@ Below we describe the complete procedure to create a plugin based Emfstore produ
  * Create a new "Empty EMF Project" with a meaningful name. 
  * You can see in the image given below that we have already checked out the example model plugins in the workspace for this tutorial and now creating a project which will hold the product configuration.
 <br>
-<img src="http://unicase.googlecode.com/files/Picture%201.png" width="1000" height="600">
+<img src="http://unicase.googlecode.com/files/emptyemfproject.png" width="1000" height="600">
 <br>
  * Once the project is created, create a new "Product Configuration" file within it.
 <br>
-http://unicase.googlecode.com/files/Picture%204.png
+http://unicase.googlecode.com/files/newproductfileforemfstore.png
 <br>
  * Open the newly created "Product Configuration" file and specify the ID, Version and Name in their respective fields.
 <br>
-http://unicase.googlecode.com/files/Picture%205.png
+http://unicase.googlecode.com/files/open%20prodcutfile.png
 <br>
  * Make sure that within the "Product Definition" section "The product configuration is based on:" has value "plug-ins" selected until unless you want to make your product based on features(This tutorial strictly follows the plug-ins based approach only).
  * In the "Product Definition" section, for the field "Product" click the associated button with text "New.." to define the new Eclipse product and its default entry point.
 <br>
-http://unicase.googlecode.com/files/Picture%206.png
+http://unicase.googlecode.com/files/openentrypointwindow.png
 <br>
     * Specify the plugin which holds your product configuration in the "Defining Plug-in" field.
     * Specify a "Product ID".
     * Select "org.unciase.emfstore.server" as the default Product Application.
     * Click on Finish.
 <br>
-http://unicase.googlecode.com/files/Picture%2019.png
+http://unicase.googlecode.com/files/defineentrypoint.png
 <br> 
  * Now its time to add your custom model in the dependencies and the core Emfstore plugins.
  * Open the dependencies tab and click on "Add.." button to add your custom model plugin. Please also make sure to add the newly created Plug-in which holds your product file.
@@ -47,13 +47,13 @@ http://unicase.googlecode.com/files/Picture%2019.png
    * org.unicase.metamodel
 <br>
 
- http://unicase.googlecode.com/files/Picture%2011.png
+http://unicase.googlecode.com/files/emfstorepluginscore.png
 
 <br>
  * The final selection of plugins is:
  
 <br>
-http://unicase.googlecode.com/files/Picture%2026.png
+http://unicase.googlecode.com/files/selectedplugins.png
 
 <br>
  * Once these plug-ins are added, you can click on the button in the right with text "Add Required Plug-ins" add the other plugins which might be required for the product to run properly. 
@@ -67,7 +67,7 @@ http://unicase.googlecode.com/files/Screen%20shot%202010-03-12%20at%204.35.38%20
  * Now you can test if your Emfstore server with the custom model is working properly or not, before you export it as a stand-alone product.
 
 <br>
-http://unicase.googlecode.com/files/Picture%2020.png
+http://unicase.googlecode.com/files/validate%20the%20product.png
 
 <br>
  * Once the Emfstore server is running without any issue, its time to export it as stand-alone product.
@@ -76,13 +76,13 @@ http://unicase.googlecode.com/files/Picture%2020.png
  * You will be able to see the check-box to export for multiple platforms if your eclipse instance is configured to use delta-pack plugin.
 <br>
 
-http://unicase.googlecode.com/files/Picture%2022.png
+http://unicase.googlecode.com/files/exporttheproducts.png
 
 <br>
  * If you have delta-pack configured and you have already selected the check-box to export for multiple platforms then you will get a menu like the one shown in image below.  Just select the desired OS platforms and click the finish.
 <br>
 
-http://unicase.googlecode.com/files/Picture%2023.png
+http://unicase.googlecode.com/files/selectmultipleos.png
 <br>
 
  * Once the progress bar disappears without any message your products are ready to be shipped, else there was some issue while exporting.
