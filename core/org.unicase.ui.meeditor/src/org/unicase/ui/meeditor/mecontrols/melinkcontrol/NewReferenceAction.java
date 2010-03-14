@@ -56,7 +56,7 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			Set<EClass> subclasses = ModelUtil.getSubclasses(clazz);
+			Set<EClass> subclasses = ModelUtil.getAllSubEClasses(clazz);
 			if (subclasses.size() == 1) {
 				newClass = subclasses.iterator().next();
 			} else {

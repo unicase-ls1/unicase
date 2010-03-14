@@ -140,12 +140,7 @@
             id="org.unicase.ui.common.commands.annotateActionItem"
             name="annotateActionItem">
       </command>
-      <command
-            categoryId="org.unicase.ui.common.modifyModelelement"
-            defaultHandler="org.unicase.ui.unicasecommon.common.handlers.OpenMEShortcutHandler"
-            id="org.unicase.ui.common.handlers.open_me_ID"
-            name="Search for Modelelement">
-      </command>
+    
       <command
             defaultHandler="org.unicase.ui.unicasecommon.common.handlers.SubscriptionHandler"
             id="org.unicase.ui.common.commands.subscribeToModelElement"
@@ -576,28 +571,7 @@
               visible="true">
         </separator>
      </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
-         <command
-               commandId="org.unicase.ui.common.handlers.open_me_ID"
-               icon="icons/magnifier.png"
-               id="SearchElementButon"
-               style="push"
-               tooltip="Search for model element">
-        </command>
-     </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.unicase.ui.common.UnicaseToolbar">
-          <command
-                 commandId="org.unicase.ui.common.handlers.open_me_ID"
-                 icon="icons/magnifier.png"
-                 style="push"
-                 tooltip="Search model element">
-           </command>
-        </toolbar>
-     </menuContribution>
+    
      <menuContribution
            locationURI="toolbar:org.unicase.ui.navigator.viewer?before=SearchElementButon">
         <command
@@ -675,70 +649,7 @@
            Shows state of a model element (Blocked/Running).
         </description>
      </decorator>
-     <decorator
-           adaptable="true"
-           class="org.unicase.ui.common.decorators.VersionDecorator"
-           id="org.unicase.ui.common.decorators.VersionDecorator"
-           label="Version Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <objectClass
-                 name="org.unicase.workspace.ProjectSpace">
-           </objectClass>
-        </enablement>
-        <description>
-           Shows version of current project.
-        </description>
-     </decorator>
-     <decorator
-           adaptable="true"
-           class="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
-           id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
-           label="ProjectSpaceDirty Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <objectClass
-                 name="org.unicase.workspace.ProjectSpace">
-           </objectClass>
-        </enablement>
-        <description>
-           If the porject has local changes.
-        </description>
-     </decorator>
-     <decorator
-           adaptable="true"
-           class="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
-           id="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
-           label="ModelElement Dirty Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <objectClass
-                 name="org.unicase.metamodel.ModelElement">
-           </objectClass>
-        </enablement>
-        <description>
-           If the porject has local changes.
-        </description>
-     </decorator>
-     <decorator
-           adaptable="true"
-           class="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
-           id="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
-           label="Project Dirty Decorator"
-           lightweight="true"
-           state="true">
-        <enablement>
-           <objectClass
-                 name="org.unicase.metamodel.Project">
-           </objectClass>
-        </enablement>
-        <description>
-           If the porject has local changes.
-        </description>
-     </decorator>
+    
      <decorator
            adaptable="true"
            class="org.unicase.ui.common.decorators.ChildrenDecorator"
