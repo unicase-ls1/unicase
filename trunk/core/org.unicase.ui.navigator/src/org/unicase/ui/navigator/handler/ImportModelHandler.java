@@ -22,6 +22,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.dialogs.ImportResourcesDialog;
 import org.unicase.workspace.ProjectSpace;
@@ -104,7 +105,9 @@ public class ImportModelHandler extends AbstractHandler {
 		if (wrapper == null) {
 			wrapper = element;
 		}
+
 		// add the wrapper or the element itself to the project
-		projectSpace.getProject().addModelElement(wrapper);
+		// copy wrapper to reset model element ids
+		projectSpace.getProject().addModelElement(ModelUtil.copy(wrapper));
 	}
 }
