@@ -35,7 +35,7 @@
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
         <separator
               name="beforeDeleteSeparator"
-              visible="true">
+              visible="false">
         </separator>
         <command
               commandId="org.unicase.ui.common.deleteModelelement"
@@ -74,28 +74,7 @@
         </instanceof>
      </definition>
   </extension>
-    <extension
-          point="org.eclipse.ui.ide.markerSupport">
-    </extension>
    
-    <extension point="org.eclipse.ui.popupMenus">
-	</extension>
-	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-		<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
-				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
-				<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-			</popupContribution>
-		</contributionItemProvider>
-				<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
-				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
-				<popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-			</popupContribution>
-		</contributionItemProvider>
-</extension>
  <extension
        point="org.eclipse.core.expressions.propertyTesters">
         <propertyTester
@@ -129,5 +108,14 @@
           sequence="Ctrl+Delete">
     </key>
  </extension>
+    <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="context">
+         <selector
+               class="org.unicase.ui.common.util.ValidationClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
 </plugin>
 

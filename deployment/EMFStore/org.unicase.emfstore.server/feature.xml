@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.server"
       label="EMFStore Server Feature"
-      version="0.5.2.nightly"
+      version="1.0.0.qualifier"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -233,34 +233,34 @@ litigation.
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"/>
+         version="1.0.0.qualifier"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel.edit"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.metamodel"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.metamodel.edit"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>
