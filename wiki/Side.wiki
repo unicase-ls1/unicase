@@ -6,7 +6,7 @@ Sub-projects:
    * [EMFStoreArchitecture Architecture]
    * [EMFStoreDownloads Downloads]
    * [EMFStoreDocumentation Documentation and Tutorials]
-   * [http://http://unicase.blogspot.com/ Blog]
+   * [http://unicase.blogspot.com/ Blog]
    * [http://twitter.com/emfstore EMFStore Twitter]
  * [ECPNavigation EMF Client Platform (ECP)]
    * [ECP What is the ECP?]
