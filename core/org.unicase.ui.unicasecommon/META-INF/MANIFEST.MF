@@ -9,7 +9,11 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.navigator;visibility:=reexport,
  org.unicase.ui.meeditor;visibility:=reexport,
  org.unicase.model.edit;visibility:=reexport,
- org.unicase.workspace.ui;visibility:=reexport
+ org.unicase.workspace.ui;visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.core;visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui;visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui.providers;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon.common,
