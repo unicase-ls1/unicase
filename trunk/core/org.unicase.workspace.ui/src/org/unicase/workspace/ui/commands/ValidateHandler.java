@@ -18,8 +18,8 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.util.ValidationClientSelector;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.ValidationClientSelector;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
