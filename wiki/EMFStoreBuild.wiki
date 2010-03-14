@@ -1,5 +1,9 @@
 #summary How to build and release the EMFStore features and product.
 
+ * [EmfstoreProductwithCustomModel How to build a server product based on EMFStore]
+
+Additional Documentation:
+
  * [Server_standalone_deployment Create EMFStore Server Product]
  * [Commandline_Product Configure EMFStore Server Product]
  * [Emfstore_product How to build an EMFStore product]
