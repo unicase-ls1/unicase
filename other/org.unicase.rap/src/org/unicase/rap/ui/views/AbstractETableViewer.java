@@ -1,34 +1,25 @@
 package org.unicase.rap.ui.views;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
 import org.eclipse.emf.databinding.EMFObservables;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ViewerComparator;
-import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-
-import org.unicase.metamodel.Project;
-import org.unicase.model.ModelPackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.rap.ui.labelproviders.DateColumnLabelProvider;
 import org.unicase.rap.ui.labelproviders.GenericColumnLabelProvider;
@@ -57,7 +48,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 		super(composite, SWT.BORDER);
 		contentProvider =  new ObservableListContentProvider();
 		setContentProvider(contentProvider);
-		init();
+		init();	
 	}
 	
 	/**

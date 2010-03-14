@@ -13,6 +13,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.ModelPackage;
 import org.unicase.rap.ui.views.AbstractETableViewer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -39,7 +40,7 @@ public class ProjectsTableViewer extends AbstractETableViewer implements Selecti
 
 		// the case of first time of input setting to table
 		WritableList emfList = new WritableList(Realm.getDefault(),
-				spaces, ModelElement.class);
+				spaces, ProjectSpace.class);
 		setInput(emfList);
 	}
 
@@ -61,6 +62,7 @@ public class ProjectsTableViewer extends AbstractETableViewer implements Selecti
 	@Override
 	public ArrayList<EStructuralFeature> getFeaturesList() {
 		ArrayList<EStructuralFeature> list = new ArrayList<EStructuralFeature>();
+		list.add(ModelPackage.Literals.PROJECT.eContainmentFeature());
 		return list;
 	}
 	

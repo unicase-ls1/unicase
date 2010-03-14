@@ -1,6 +1,8 @@
 package org.unicase.rap.ui.views;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
@@ -8,15 +10,14 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.omg.CORBA.OMGVMCID;
 import org.unicase.rap.config.AbstractConfigEntity;
 import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.IValidator;
 
 /**
  * This class represents a tab in the configuration view.
@@ -34,8 +35,10 @@ public abstract class ConfigurationTabView {
 	
 	private Button saveButton;
 	
+	private List<IValidator> validators;
+	
 	public ConfigurationTabView() {
-		
+		validators = new ArrayList<IValidator>();
 	}
 
 	private void init() {
@@ -65,7 +68,13 @@ public abstract class ConfigurationTabView {
 		saveButton.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
+				
+				if (!validate()) {
+					return; 
+				}
+				
 				saveConfigEntity();
+				
 				MessageDialog.openInformation(Display.getDefault().getActiveShell(),
 						"Settings saved", "The settings were successfully saved.");
 
@@ -82,6 +91,30 @@ public abstract class ConfigurationTabView {
 			}
 		});
 
+	}
+	
+	private boolean validate() {
+		
+		StringBuffer buffer = new StringBuffer();
+		
+		for (IValidator validator : validators) {
+			boolean result = validator.validate();
+			
+			if (!result) {
+				buffer.append(validator.getValidationErrorMessage() + "\n");
+			}
+		}
+		
+		if (buffer.length() > 0) {
+			MessageDialog.openWarning(
+					Display.getDefault().getActiveShell(), 
+					"Validation error occured", 
+					buffer.toString());
+			
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**
@@ -116,6 +149,14 @@ public abstract class ConfigurationTabView {
 				cfgEntity.getId();
 			ConfigEntityStore.getInstance().saveEntity(cfgEntity, filename);
 		}
+	}
+	
+	public void addValidator(IValidator validator) {
+		validators.add(validator);
+	}
+	
+	public void removeValidationListener(IValidator validator) {
+		validators.remove(validator);
 	}
 	
 	/**
