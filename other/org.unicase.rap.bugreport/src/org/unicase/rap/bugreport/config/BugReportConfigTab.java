@@ -4,13 +4,11 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.WorkPackage;
@@ -55,25 +53,46 @@ public class BugReportConfigTab extends ConfigurationTabView {
 		
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 1;
-	    gridLayout.makeColumnsEqualWidth = true;
+	    GridData data = new GridData();
+	    data.horizontalAlignment = SWT.FILL;
+	    data.verticalAlignment = SWT.FILL;
+	    data.grabExcessHorizontalSpace = true;
+	    data.grabExcessVerticalSpace = true;
 	    parent.setLayout(gridLayout);
+	    parent.setLayoutData(data);
 
 		projectsTableViewer = new ProjectsTableViewer(parent);		
 		projectsTableViewer.refreshView();
+		projectsTableViewer.getTable().setLayoutData(data);
 		
+//		data = new GridData();
+//		data.horizontalAlignment = SWT.FILL;
+//		projectsTableViewer.setLayoutData(data);
 		
-		Composite c = new Composite(parent, SWT.NONE);
+		final Label currentlySelectedProject = new Label(parent, SWT.BORDER);
+		currentlySelectedProject.setLayoutData(data);
+		currentlySelectedProject.setText("Selected project:");
+		
+		Composite c = new Composite(parent, SWT.BORDER);
 		GridLayout g = new GridLayout();
 		g.numColumns = 3;
 		c.setLayout(g);
+		data = new GridData();
+		data.grabExcessHorizontalSpace = true;
+		data.horizontalAlignment = SWT.FILL;
+		c.setLayoutData(data);
 		
 		Label l = new Label(c, SWT.NONE);
 		l.setText("Current bug reporting container:");
 		
+//		data.horizontalAlignment = SWT.FILL;
 		bugContainerIdTextField = new Text(c, SWT.BORDER);
+		bugContainerIdTextField.setEditable(false);
+		bugContainerIdTextField.setLayoutData(data);
 	
-		Button btSelectBugContainer = new Button(c, SWT.BORDER);
+		final Button btSelectBugContainer = new Button(c, SWT.BORDER);
 		btSelectBugContainer.setText("Select bug container");
+		btSelectBugContainer.setEnabled(false);
 		btSelectBugContainer.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
@@ -85,7 +104,22 @@ public class BugReportConfigTab extends ConfigurationTabView {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				
 			}
-		});	
+		});
+		
+		projectsTableViewer.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				int selectedIndex = projectsTableViewer.getTable().getSelectionIndex();
+				ProjectSpace projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
+				currentlySelectedProject.setText("Selected project: " + projectSpace.getProjectName());
+				btSelectBugContainer.setEnabled(true);
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	private void foo(final ProjectSpace pSpace) {
@@ -97,6 +131,7 @@ public class BugReportConfigTab extends ConfigurationTabView {
 				if (dlg.open() == Window.OK) {
 					WorkPackage workPackage = (WorkPackage) dlg.getFirstResult();
 					currentBugContainer = workPackage;
+					bugContainerIdTextField.setText(currentBugContainer.getIdentifier());
 				}
 			
 			}

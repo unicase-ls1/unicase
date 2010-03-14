@@ -49,20 +49,25 @@ public class BugReportView extends ProjectAwareView {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);	
-//		gridData.
-		
+	
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
 		parent.setLayout(gridLayout);
+		
+		GridData gridData = new GridData();
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.grabExcessVerticalSpace = true;
+		gridData.horizontalAlignment = SWT.FILL;
+		parent.setLayoutData(gridData);
+		
 
 		// group widget
-		Group group = new Group(parent, SWT.NONE);
-		group.setText("Bug reporting");
-		group.setLayoutData(gridData);
-		group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+//		Group group = new Group(parent, SWT.NONE);
+//		group.setText("Bug reporting");
+	//	group.setLayoutData(gridData);
+//		group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-		Composite formComp = new Composite(group, SWT.NONE);
+		Composite formComp = new Composite(parent, SWT.NONE);
 		formComp.setLayout(new GridLayout(2, false));
 		
 		new Label(formComp, SWT.NONE).setText("Name:");
