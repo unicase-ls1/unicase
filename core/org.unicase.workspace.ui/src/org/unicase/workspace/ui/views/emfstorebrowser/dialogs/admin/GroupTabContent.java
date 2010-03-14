@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -62,7 +61,8 @@ public class GroupTabContent extends TabContent implements
 	@Override
 	protected Composite createContents(TabFolder tabFolder) {
 		Composite tabContent = new Composite(tabFolder, SWT.NONE);
-		tabContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tabContent.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.FILL,
+				SWT.FILL, true, true));
 		tabContent.setLayout(new GridLayout(2, false));
 
 		ToolBar toolBar = new ToolBar(tabContent, SWT.FLAT | SWT.RIGHT);
