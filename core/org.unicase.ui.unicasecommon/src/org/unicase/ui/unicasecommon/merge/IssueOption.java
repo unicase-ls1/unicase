@@ -144,7 +144,6 @@ public class IssueOption extends CustomConflictOption {
 	private void createProposal(List<AbstractOperation> myOperations, MergingIssue mergeIssue, String name,
 		ChangePackageVisualizationHelper helper) {
 		MergingProposal myProposal = ChangeFactory.eINSTANCE.createMergingProposal();
-		mergeIssue.getProposals().add(myProposal);
 		myProposal.setName(name);
 		String description = "";
 		for (AbstractOperation myOp : myOperations) {
@@ -152,6 +151,8 @@ public class IssueOption extends CustomConflictOption {
 			myProposal.getPendingOperations().add((AbstractOperation) EcoreUtil.copy(myOp));
 		}
 		myProposal.setDescription(description);
+		// has to be added at the end, otherwise the addition of the change operations isn't recorded.
+		mergeIssue.getProposals().add(myProposal);
 	}
 
 	private void assignTo(ProjectSpace projectSpace, MergingIssue mergeIssue) {
