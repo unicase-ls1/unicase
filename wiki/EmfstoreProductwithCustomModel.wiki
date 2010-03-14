@@ -1,4 +1,4 @@
-#summary : Documentation on how to build a product based on EMFStore
+#summary Documentation on how to build a product based on EMFStore
 
 ==Requirements:==
 
