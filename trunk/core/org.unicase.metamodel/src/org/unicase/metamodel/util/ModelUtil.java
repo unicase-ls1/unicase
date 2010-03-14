@@ -96,8 +96,10 @@ public final class ModelUtil {
 		modelElementId.setId(id);
 		return modelElementId;
 	}
+
 	/**
 	 * Gives all eClasses which can be contained in a given eClass.
+	 * 
 	 * @param eClass the EClass
 	 * @return all Classes which can be contained
 	 */
@@ -110,10 +112,11 @@ public final class ModelUtil {
 		}
 		return eClazz;
 	}
+
 	/**
 	 * @param newMEInstance {@link ModelElement} the new modelElement instance.
 	 * @return EReference the Container
-	 * @param parent The EObject to get conatinment references from 
+	 * @param parent The EObject to get conatinment references from
 	 */
 	public static EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
@@ -133,6 +136,7 @@ public final class ModelUtil {
 		}
 		return reference;
 	}
+
 	/**
 	 * Compares to projects. Two projects are equal if all model elements are equal.
 	 * 
@@ -252,7 +256,9 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it does not have references to eobjects outside the tree. 
+	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
+	 * does not have references to eobjects outside the tree.
+	 * 
 	 * @param object the eObject
 	 * @return true if it is selfcontained
 	 */
@@ -372,10 +378,9 @@ public final class ModelUtil {
 
 	private static Set<EClass> modelElementEClasses;
 
-
-
 	/**
-	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass.
+	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
+	 * abstract classes or interfaces.
 	 * 
 	 * @param eClass the superClass of the subClasses to retrieve
 	 * @return a set of EClasses
@@ -383,14 +388,14 @@ public final class ModelUtil {
 	public static Set<EClass> getAllSubEClasses(EClass eClass) {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
 		Set<EClass> result = new HashSet<EClass>();
-		for (EClass subClass: allEClasses) {
-			if (eClass.isSuperTypeOf(subClass)) {
+		for (EClass subClass : allEClasses) {
+			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
 	 * 
@@ -407,7 +412,7 @@ public final class ModelUtil {
 			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 			result.addAll(getAllModelElementEClasses(ePackage));
 		}
-		modelElementEClasses=result;
+		modelElementEClasses = result;
 		return result;
 	}
 
