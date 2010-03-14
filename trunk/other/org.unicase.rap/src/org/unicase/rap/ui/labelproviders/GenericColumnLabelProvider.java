@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -13,6 +14,7 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -73,19 +75,28 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 			return "";
 		}
 
+		// TODO: Is it possible to filter projects by use of EStruturalFeature?
+		// Meanwhile this clause does its work..
+		if (item instanceof ProjectSpace) {
+			ProjectSpace p = (ProjectSpace) item;
+			return p.getProjectName();
+		}
+		
 		if (feature.isMany()) {
 			EList<EObject> eList = (EList<EObject>) value;
+			
 			return decoratingLabelProvider.getText(eList.get(0));
 		} else {
 			// TODO: label-provider can't return the text of ERefrence items??
 			// This solution is not good. it needs to be fixed. but, at least it works.
-			
 			String text = "";
 			if(value instanceof UnicaseModelElement) {
 				UnicaseModelElement element = (UnicaseModelElement) value;
 				text = element.getName();
-			}
-			// return decoratingLabelProvider.getText(value);
+				
+				
+			} 
+		
 			return text;
 		}
 	}
