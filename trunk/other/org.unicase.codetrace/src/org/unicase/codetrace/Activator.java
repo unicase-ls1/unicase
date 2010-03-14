@@ -36,6 +36,7 @@ public class Activator extends AbstractUIPlugin {
 	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		System.out.println("SDLKJ");
 		plugin = this;
 	}
 

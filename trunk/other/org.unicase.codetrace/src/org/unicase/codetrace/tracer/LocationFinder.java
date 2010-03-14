@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.codetrace.tracer.algorithms.Algorithm;
 import org.unicase.codetrace.tracer.algorithms.AlgorithmBestMatch;
 import org.unicase.codetrace.tracer.algorithms.AlgorithmLineContext;
@@ -106,7 +107,7 @@ public final class LocationFinder {
 		if (projectName == null || pathInProject == null || line < 0) {
 			return null;
 		}
-		TracerFile lf = TracerFile.getFileByName(EclipseWorkspaceManager
+		TracerFile lf = TracerFile.getFileByName(CodetraceUtil
 				.getPathOfFile(projectName, pathInProject));
 		if (lf == null) {
 			return null;
@@ -132,7 +133,7 @@ public final class LocationFinder {
 		codeLocation = c;
 		
 		//search in the previous source file
-		TracerFile tf = TracerFile.getFileByName(EclipseWorkspaceManager.getPathOfFile(codeLocation.getProjectName(),codeLocation.getPathInProject()));
+		TracerFile tf = TracerFile.getFileByName(CodetraceUtil.getPathOfFile(codeLocation.getProjectName(),codeLocation.getPathInProject()));
 
 		location = find(codeLocation.getProjectName(), codeLocation.getPathInProject(), tf, null);
 		

@@ -8,6 +8,7 @@ package org.unicase.codetrace.handlers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.model.trace.CodeLocation;
 
 /**
@@ -17,7 +18,7 @@ import org.unicase.model.trace.CodeLocation;
  */
 public class MEFindCodeLocationAdapter  extends MouseAdapter {
 
-	private EObject link;
+	private EObject link; 
 
 	/**
 	 * Default constructor.
@@ -34,8 +35,7 @@ public class MEFindCodeLocationAdapter  extends MouseAdapter {
 	 */
 	@Override
 	public void mouseUp(MouseEvent e) {
-	
-		new FindCodeLocationCommand((CodeLocation) link).run();
+		CodetraceUtil.findCodeLocation((CodeLocation) link);
 	}
 }
 
