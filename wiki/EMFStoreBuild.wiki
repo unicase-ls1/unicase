@@ -5,4 +5,4 @@
 Additional Documentation:
 
  * [Commandline_Product Configure EMFStore Server Product]
- * [Emfstore_product How to build the EMFStore product]
+ * [Emfstore_product How to build the EMFStore Product]
