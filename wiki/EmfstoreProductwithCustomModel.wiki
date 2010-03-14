@@ -1,12 +1,12 @@
 ==Requirements:==
 
- * This document consider that you have already set-up an eclipse instance for making Emfstore product with your custom model. In case if you want to make Emfstore stand-alone product for multiple operating systems then please also configure delta-pack within your eclipse. 
+ * This document assumes that you have already set-up an eclipse instance for making Emfstore product with your custom model. In case if you want to make Emfstore stand-alone product for multiple operating systems then please also configure delta-pack within your eclipse. 
  * A detailed doucmentation to configure delta-pack can be found [http://code.google.com/p/unicase/wiki/Emfstore_product here]. 
- * This document also considers that you have already installed Install EMFStore Framework, if not then you can do it following this [http://code.google.com/p/unicase/wiki/InstallEMFStore tutorial].
+ * This document also assumes that you have already installed the EMFStore Framework, if you did not then you can do it following this [http://code.google.com/p/unicase/wiki/InstallEMFStore tutorial].
 
 ==Source:==
 <br>
- * All the codes for this documentation can be found at our SVN repository using this [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ link]. 
+ * All the code for this documentation can be found at our SVN repository using this [http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/ link]. 
  * We have used the example model project created in the tutorial [http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel Run EMFStore with a custom model].
 
 ==Deploy==
@@ -27,7 +27,7 @@ http://unicase.googlecode.com/files/newproductfileforemfstore.png
 <br>
 http://unicase.googlecode.com/files/open%20prodcutfile.png
 <br>
- * Make sure that within the "Product Definition" section "The product configuration is based on:" has value "plug-ins" selected until unless you want to make your product based on features(This tutorial strictly follows the plug-ins based approach only).
+ * Make sure that within the "Product Definition" section "The product configuration is based on:" has value "plug-ins" selected unless you want to make your product based on features(This tutorial strictly follows the plug-ins based approach only).
  * In the "Product Definition" section, for the field "Product" click the associated button with text "New.." to define the new Eclipse product and its default entry point.
 <br>
 http://unicase.googlecode.com/files/openentrypointwindow.png
@@ -85,7 +85,4 @@ http://unicase.googlecode.com/files/exporttheproducts.png
 http://unicase.googlecode.com/files/selectmultipleos.png
 <br>
 
- * Once the progress bar disappears without any message your products are ready to be shipped, else there was some issue while exporting.
-<br>
-<br>
-<br>
+ * Once the export completes your products are ready to be shipped.
