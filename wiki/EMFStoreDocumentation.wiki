@@ -42,7 +42,7 @@ Documentation:
 
  * [Creating_keystores_for_encryption How to create keystores for EMFStore]
 
- * [EMFStoreBuild Build and Release]
+ * [EMFStoreBuild Build an EMFStore-based product]
 
 Additionally we have prepared a [EMFStoreScreenshotGallery screenshot gallery].
 
