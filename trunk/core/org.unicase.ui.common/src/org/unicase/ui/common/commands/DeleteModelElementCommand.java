@@ -5,22 +5,13 @@
  */
 package org.unicase.ui.common.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Command to delete a modelelement.
