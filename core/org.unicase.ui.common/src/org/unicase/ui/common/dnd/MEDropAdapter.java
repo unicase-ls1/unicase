@@ -32,13 +32,16 @@ public abstract class  MEDropAdapter {
 	/**
 	 * Constructor.
 	 * 
-	 * @param domain TransactionalEditingDomain
-	 * @param viewer viewer
 	 */
 	public MEDropAdapter(){
 		
 	}
 
+	/**
+	 * Init the adapter.
+	 * @param domain the editing domain
+	 * @param viewer the viewer
+	 */
 	public void init(TransactionalEditingDomain domain, StructuredViewer viewer) {
 		this.domain = domain;
 		this.viewer = viewer;
@@ -58,6 +61,10 @@ public abstract class  MEDropAdapter {
 
 	}
 	
+	/**
+	 * Determine the class the Drop adapter is for.
+	 * @return the EClass
+	 */
 	public abstract EClass isDropAdapterfor();
 
 
