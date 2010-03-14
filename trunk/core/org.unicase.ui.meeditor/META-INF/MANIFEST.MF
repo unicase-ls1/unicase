@@ -5,9 +5,8 @@ Bundle-SymbolicName: org.unicase.ui.meeditor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.meeditor.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.eclipse.ui.forms;visibility:=reexport,
- org.eclipse.jface.text,
- org.unicase.ui.common;visibility:=reexport
+Require-Bundle: org.unicase.ui.common;visibility:=reexport,
+ org.eclipse.jface.text;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.meeditor,
