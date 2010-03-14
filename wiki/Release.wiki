@@ -31,19 +31,18 @@ Create a tag for the release:
 [http://unicase.googlecode.com/files/1b723.png]
 
 Configure the tag according to the release version number, e.g. in this case set the "To URL" to:  {{{https://unicase.googlecode.com/svn/tags/0.1.0/org.unicase.ui.navigator}}} (replace org.unicase.ui.navigator with the plugin you are working with and 0.1.0 with your version).
-<br/>
-
+<br>
+<br>
 <img src= "http://unicase.googlecode.com/files/commitapluginintag.PNG" width="70%" height="70%">
 
-
-
+<br>
 If you release all plugins, use: {{{https://unicase.googlecode.com/svn/tags/X.X.X}}}
 
 
 
 <img src= "http://unicase.googlecode.com/files/commitmultiplepluginsintag.PNG" width="70%" height="70%">
 
-
+<br>
 
 *Step 4:*
 
