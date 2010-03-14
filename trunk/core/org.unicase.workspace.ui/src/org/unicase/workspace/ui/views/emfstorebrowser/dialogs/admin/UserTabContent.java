@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -40,7 +39,8 @@ import org.unicase.workspace.ui.Activator;
 /**
  * @author gurcankarakoc, deser
  */
-public class UserTabContent extends TabContent implements IPropertyChangeListener {
+public class UserTabContent extends TabContent implements
+		IPropertyChangeListener {
 
 	/**
 	 * Action to delete a user.
@@ -54,7 +54,8 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 
 		@Override
 		public void run() {
-			IStructuredSelection selection = (IStructuredSelection) getTableViewer().getSelection();
+			IStructuredSelection selection = (IStructuredSelection) getTableViewer()
+					.getSelection();
 			Iterator<?> iterator = selection.iterator();
 
 			while (iterator.hasNext()) {
@@ -64,20 +65,24 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 				}
 
 				try {
-					String superUser = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
-						ServerConfiguration.SUPER_USER_DEFAULT);
+					String superUser = ServerConfiguration.getProperties()
+							.getProperty(ServerConfiguration.SUPER_USER,
+									ServerConfiguration.SUPER_USER_DEFAULT);
 					boolean isAdmin = false;
-					for (Iterator<Role> it = ou.getRoles().iterator(); it.hasNext();) {
+					for (Iterator<Role> it = ou.getRoles().iterator(); it
+							.hasNext();) {
 						Role userRole = it.next();
-						if ((ou.getName().compareTo(superUser) == 0) && (userRole instanceof ServerAdmin)) {
+						if ((ou.getName().compareTo(superUser) == 0)
+								&& (userRole instanceof ServerAdmin)) {
 							isAdmin = true;
 							break;
 						}
 					}
 					if (isAdmin) {
 						Display display = Display.getCurrent();
-						MessageDialog.openInformation(display.getActiveShell(), "Illegal deletion attempt",
-							"It is not allowed to delete the super user!");
+						MessageDialog.openInformation(display.getActiveShell(),
+								"Illegal deletion attempt",
+								"It is not allowed to delete the super user!");
 					} else {
 						getAdminBroker().deleteUser(ou.getId());
 					}
@@ -85,7 +90,8 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 					DialogHandler.showExceptionDialog(e);
 				}
 
-				if (getForm().getCurrentInput() instanceof ACOrgUnit && getForm().getCurrentInput().equals(ou)) {
+				if (getForm().getCurrentInput() instanceof ACOrgUnit
+						&& getForm().getCurrentInput().equals(ou)) {
 					getForm().setInput(null);
 				}
 			}
@@ -94,11 +100,16 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 	}
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
 	 */
-	public UserTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public UserTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
@@ -106,12 +117,14 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
 	 * @return Composite.
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 */
 	@Override
 	protected Composite createContents(TabFolder tabFolder) {
 		Composite tabContent = new Composite(tabFolder, SWT.NONE);
-		tabContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tabContent.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.FILL,
+				SWT.FILL, true, true));
 		tabContent.setLayout(new GridLayout(2, false));
 
 		ToolBar toolBar = new ToolBar(tabContent, SWT.FLAT | SWT.RIGHT);
@@ -136,12 +149,14 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 
 		};
 
-		createNewUser.setImageDescriptor(Activator.getImageDescriptor("icons/user.png"));
+		createNewUser.setImageDescriptor(Activator
+				.getImageDescriptor("icons/user.png"));
 		createNewUser.setToolTipText("Create new user");
 
 		Action deleteUser = new DeleteUserAction("Delete user");
 
-		deleteUser.setImageDescriptor(Activator.getImageDescriptor("icons/delete.gif"));
+		deleteUser.setImageDescriptor(Activator
+				.getImageDescriptor("icons/delete.gif"));
 		deleteUser.setToolTipText("Delete user");
 
 		Action importOrgUnit = new AcUserImportAction(getAdminBroker());
@@ -178,7 +193,8 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 			}
 
 			public Image getColumnImage(Object element, int columnIndex) {
-				return Activator.getImageDescriptor("icons/user.png").createImage();
+				return Activator.getImageDescriptor("icons/user.png")
+						.createImage();
 			}
 
 			public String getColumnText(Object element, int columnIndex) {
@@ -209,15 +225,18 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 			}
 		};
 	}
 
 	/**
-	 * Refresh the tableViewer after a property change. (Used e.g. after importing users via e.g. CSV.)
+	 * Refresh the tableViewer after a property change. (Used e.g. after
+	 * importing users via e.g. CSV.)
 	 * 
-	 * @param event The event to deal with.
+	 * @param event
+	 *            The event to deal with.
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		getTableViewer().refresh();

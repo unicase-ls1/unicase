@@ -8,7 +8,6 @@ package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -84,7 +83,8 @@ public class ProjectTabContent extends TabContent {
 	@Override
 	protected Composite createContents(TabFolder tabFolder) {
 		Composite tabContent = new Composite(tabFolder, SWT.NONE);
-		tabContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tabContent.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.FILL,
+				SWT.FILL, true, true));
 		tabContent.setLayout(new GridLayout(2, false));
 
 		initList(tabContent);
