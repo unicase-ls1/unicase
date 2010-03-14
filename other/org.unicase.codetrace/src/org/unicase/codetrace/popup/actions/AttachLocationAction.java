@@ -16,8 +16,8 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
 import org.unicase.codetrace.AttachLocationCommand;
+import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.codetrace.tracer.LocationFinder;
-import org.unicase.codetrace.ui.AttachCodeLocation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
 
@@ -49,7 +49,7 @@ public class AttachLocationAction implements IEditorActionDelegate {
 		IResource resource = ResourceUtil.getResource(editorInput);
 		int lineNumber = ((ITextSelection) selection).getStartLine();
 		LocationFinder tf = LocationFinder.getInstance();
-		UnicaseModelElement m = AttachCodeLocation.showChooseMEForCodeLocationDialog();
+		UnicaseModelElement m = CodetraceUtil.showChooseMEForCodeLocationDialog();
 		CodeLocation tl = tf.createLocation(resource.getProject().getName(),
 				resource.getProjectRelativePath().toString(), lineNumber + 1);
 		
@@ -68,6 +68,7 @@ public class AttachLocationAction implements IEditorActionDelegate {
 	
 	/**
 	 * {@inheritDoc}
+	 * does nothing.
 	 * @param view ignore
 	 */
 
