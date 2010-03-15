@@ -16,7 +16,6 @@ Sub-projects:
    * [ECPDownloads Downloads]
    * [ECPDocumentation Documentation and Tutorials]
 </wiki:comment>
-
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
    * [Architecture Architecture]
