@@ -10,12 +10,13 @@ import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.proxyclient.ProxyClient;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
 public class DemoBackchannelClient extends ProxyClient {
 
 	public void run() {
 		try {
-			loginServer("super", "super", "localhost", null, null);
+			loginServer("super", "super", "localhost", null, KeyStoreManager.DEFAULT_DEV_CERTIFICATE, 8443);
 
 			BackchannelConnectionManager manager = new BackchannelConnectionManager();
 			manager.initConnection(getBackChannelServerInfo(), getSessionId());
