@@ -14,4 +14,4 @@ This page is a step by step path through the documentation to help you to get st
  * Step 5: [EmfstoreProductwithCustomModel Deploy Emfstore Stand-alone Product with custom model]
 
 
-More Video Tutorials and Documentation are available [EMFStoreDocumentation here]. A [EMFStoreScreenshots screenshot gallery] to get an overview is also available.
+More Video Tutorials and Documentation are available [EMFStoreDocumentation here]. A [EMFStoreScreenshotGallery screenshot gallery] to get an overview is also available.
