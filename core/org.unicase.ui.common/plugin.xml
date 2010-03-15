@@ -7,17 +7,21 @@
         point="org.eclipse.ui.commands">
      
         <command
-            categoryId="org.unicase.ui.common.modifyModelelement"
+            categoryId="org.unicase.ui.common"
             defaultHandler="org.unicase.ui.common.handler.DeleteModelelementHandler"
             id="org.unicase.ui.common.deleteModelelement"
             name="Delete Modelelement">
       </command>
         <command
-            categoryId="org.unicase.ui.common.modifyModelelement"
+            categoryId="org.unicase.ui.common"
             defaultHandler="org.unicase.ui.common.handler.OpenMEShortcutHandler"
             id="org.unicase.ui.common.handlers.open_me_ID"
             name="Search for Modelelement">
       </command>
+        <category
+              id="org.unicase.ui.common"
+              name="org.unicase.ui.common">
+        </category>
    
   </extension>
   <extension
@@ -145,11 +149,7 @@
       </clientContext>
    </extension>
     <extension
-          point="org.eclipse.ui.decorators">
-       <decorator
-             id="org.unicase.ui.common.decorator1"
-             label="label">
-       </decorator> <decorator
+          point="org.eclipse.ui.decorators"> <decorator
            adaptable="true"
            class="org.unicase.ui.common.decorators.VersionDecorator"
            id="org.unicase.ui.common.decorators.VersionDecorator"
