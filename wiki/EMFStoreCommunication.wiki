@@ -3,8 +3,9 @@
 === Mailinglists ===
 
 If you have feature requests, questions, bugs or if you want to discuss something, you can send us email to this mailinglist, where all EMFStore framework developers are subscribed to:
- 	
+
 [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com]
+
 
 We also have a mailinglist to announce news about the EMFStore such as new releases. You can subscribe here:
 
