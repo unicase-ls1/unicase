@@ -381,17 +381,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	private void checkForCrossReferences(ModelElement modelElement) {
-		if (modelElement.getCrossReferencedModelElements().size() > 0) {
+		if (!ModelUtil.isSelfContained(modelElement)) {
 			String message = "ModelElements may not contain cross references to other model elements when added to project!";
 			IllegalStateException exception = new IllegalStateException(message);
 			ModelUtil.logException(message, exception);
 			throw exception;
 		}
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			checkForCrossReferences(child);
-		}
 	}
-
+	
 	private void addModelElementAndChildrenToCache(ModelElement modelElement) {
 		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
 		for (ModelElement child : modelElement.getAllContainedModelElements()) {
