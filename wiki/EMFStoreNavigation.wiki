@@ -6,10 +6,10 @@
 
   * [EMFStoreGettingStarted Getting Started with the EMFStore]
 
+  * [EMFStoreCommunication Get in contact with the developers]
+
   * [EMFStoreArchitecture Architecture]
 
   * [EMFStoreDownloads Downloads]
-
-  * [EMFStoreCommunication Get in contact with the developers]
 
   * [EMFStoreDocumentation Documentation and Tutorials]
