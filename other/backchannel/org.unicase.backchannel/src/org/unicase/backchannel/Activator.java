@@ -30,7 +30,9 @@ public class Activator extends Plugin {
 	/**
 	 * {@inheritDoc}
 	 */
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception {
+		// END SUPRESS CATCH EXCEPTION
 		super.start(context);
 		plugin = this;
 	}
@@ -38,7 +40,9 @@ public class Activator extends Plugin {
 	/**
 	 * {@inheritDoc}
 	 */
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void stop(BundleContext context) throws Exception {
+		// END SUPRESS CATCH EXCEPTION
 		plugin = null;
 		super.stop(context);
 	}
