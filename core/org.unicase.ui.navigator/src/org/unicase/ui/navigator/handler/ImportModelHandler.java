@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.ModelElement;
@@ -69,6 +70,7 @@ public class ImportModelHandler extends AbstractHandler {
 				}
 			}.run();
 		}
+		MessageDialog.openInformation(null, "Import Model Elements", "Model ELements imported");
 		return null;
 	}
 
@@ -81,6 +83,8 @@ public class ImportModelHandler extends AbstractHandler {
 	private List<URI> collectURIsToImport(ExecutionEvent event) {
 		ImportResourcesDialog dialog = new ImportResourcesDialog(HandlerUtil.getActiveShell(event), "Import model",
 			SWT.MULTI);
+		dialog.setBlockOnOpen(true);
+		dialog.create();
 		int result = dialog.open();
 
 		return result == Dialog.OK ? dialog.getURIs() : new ArrayList<URI>();
