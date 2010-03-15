@@ -28,7 +28,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.dialogs.ImportResourcesDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.ModelElementWrapperDescriptor;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Handles the import of ModelElements into a project.
@@ -52,13 +52,15 @@ public class ImportModelHandler extends AbstractHandler {
 		// create resource set and resource
 		ResourceSet resourceSet = new ResourceSetImpl();
 
+		int importedElementsCount = 0;
 		// iterate all the resources and import them
 		for (final org.eclipse.emf.common.util.URI uri : uris) {
 			final Resource resource = resourceSet.getResource(uri, true);
 
-			new UnicaseCommand() {
+			Integer addedElementsCount = new UnicaseCommandWithResult<Integer>() {
+
 				@Override
-				protected void doRun() {
+				protected Integer doRun() {
 
 					EList<EObject> contents = resource.getContents();
 					if (contents.size() > 0) {
@@ -67,10 +69,12 @@ public class ImportModelHandler extends AbstractHandler {
 							runImport(projectSpace, uri, (ModelElement) EcoreUtil.copy(contents.get(i)), i);
 						}
 					}
+					return contents.size();
 				}
 			}.run();
+			importedElementsCount += addedElementsCount;
 		}
-		MessageDialog.openInformation(null, "Import Model Elements", "Model ELements imported");
+		MessageDialog.openInformation(null, "Model Import", importedElementsCount + " Model Element(s) imported.");
 		return null;
 	}
 
