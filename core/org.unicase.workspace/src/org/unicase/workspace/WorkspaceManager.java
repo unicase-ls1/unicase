@@ -68,6 +68,13 @@ public final class WorkspaceManager {
 	}
 
 	/**
+	 * Initialize the Workspace Manager singleton.
+	 */
+	public static void init() {
+		getInstance();
+	}
+
+	/**
 	 * Default constructor.
 	 * 
 	 * @generated NOT
