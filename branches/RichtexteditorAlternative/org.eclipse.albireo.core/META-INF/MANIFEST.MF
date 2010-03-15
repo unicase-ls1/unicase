@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Albireo Core (Incubation)
+Bundle-SymbolicName: org.eclipse.albireo.core
+Bundle-Version: 1.0.0
+Bundle-ClassPath: org.eclipse.albireo.core_0.0.3.v20081031.jar
+Bundle-Vendor: Albireo Project (Eclipse Foundation)
+Export-Package: org.eclipse.albireo.core,org.eclipse.albireo.internal;x-internal:=true
+Require-Bundle: org.eclipse.swt
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
