@@ -35,22 +35,22 @@ public class ProxyClient {
 	private ProjectSpaceImpl projectSpace;
 
 	public void loginServer(String username, String password, String url,
-			String clientVersion, String certificate) throws EmfStoreException {
+			String clientVersion, String certificate, int port) throws EmfStoreException {
 		setConnectionManager(WorkspaceManager.getInstance()
 				.getConnectionManager());
 		ClientVersionInfo _clientVersion = Configuration.getClientVersion();
 		if (clientVersion != null) {
 			_clientVersion.setVersion(clientVersion);
 		}
-		ServerInfo serverInfo = getServerInfo(url, certificate);
+		ServerInfo serverInfo = getServerInfo(url, certificate, port);
 		setSessionId(getConnectionManager().logIn(username, KeyStoreManager
 				.getInstance().encrypt(password, serverInfo), serverInfo,
 				_clientVersion));
 	}
 
-	public ServerInfo getServerInfo(String url, String certificate) {
+	public ServerInfo getServerInfo(String url, String certificate, int port) {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(8080);
+		serverInfo.setPort(port);
 		serverInfo.setUrl(url);
 		if (certificate != null) {
 			serverInfo.setCertificateAlias(certificate);
