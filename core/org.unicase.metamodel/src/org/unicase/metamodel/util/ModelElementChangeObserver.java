@@ -29,7 +29,9 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @param project the deleted project
 	 */
 	public final void projectDeleted(Project project) {
-		for (ModelElement modelElement : this.observedElements) {
+		
+		List<ModelElement> elements = new ArrayList<ModelElement>(observedElements);
+		for (ModelElement modelElement : elements) {
 			this.modelElementDeleteCompleted(project, modelElement);
 		}
 
