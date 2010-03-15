@@ -42,6 +42,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
