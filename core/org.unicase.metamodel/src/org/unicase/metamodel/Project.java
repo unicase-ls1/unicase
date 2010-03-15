@@ -147,5 +147,10 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements
 	 */
 	EList<ModelElement> getAllModelElements();
+	
+	/**
+	 * Deletes a project by notifying all project change observers about the deletion.
+	 */
+	void delete();
 
 } // Project

@@ -573,4 +573,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		undetachableObservers.add(observer);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.metamodel.Project#delete()
+	 */
+	public void delete() {
+		final Project project = this;
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.projectDeleted(project);
+			}
+		};
+		notifyProjectChangeObservers(command);
+	}
+
 }
