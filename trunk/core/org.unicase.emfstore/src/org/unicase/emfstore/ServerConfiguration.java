@@ -284,7 +284,7 @@ public final class ServerConfiguration {
 	/**
 	 * Default value for {@link #LOAD_STARTUP_LISTENER}.
 	 */
-	public static final String LOAD_STARTUP_LISTENER_DEFAULT = FALSE;
+	public static final String LOAD_STARTUP_LISTENER_DEFAULT = TRUE;
 
 	/**
 	 * Property name of accepted client versions. Enter the version's names or any, seperate multiple entries with
