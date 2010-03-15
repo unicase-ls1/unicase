@@ -32,7 +32,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
-import org.unicase.ui.meeditor.ShortLabelProvider;
+import org.unicase.ui.common.util.ShortLabelProvider;
 
 /**
  * GUI Control for the ME reference links.

@@ -28,6 +28,7 @@ import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
+import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
