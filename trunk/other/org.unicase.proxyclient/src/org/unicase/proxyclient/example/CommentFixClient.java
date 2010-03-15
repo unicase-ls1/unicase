@@ -18,7 +18,7 @@ public class CommentFixClient extends ProxyClient {
 	public void run() throws Exception {
 
 		loginServer("super", "blub", "unicase.in.tum.de", "0.3.40",
-				"unicase.org 2009#1");
+				"unicase.org 2009#1", 443);
 
 		// ProjectInfo projectInfo = getProjectInfo("unicase", false);
 
