@@ -654,12 +654,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#deleteProjectSpace(org.unicase.workspace.ProjectSpace)
 	 */
 	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
-		// // destruct project to notifiy listeners.
-		// Project project = projectSpace.getProject();
-		//
-		// for (ModelElement modelElement : new ArrayList<ModelElement>(project.getModelElements())) {
-		// modelElement.delete();
-		// }
+
+		// delete project to notify listeners
+		projectSpace.getProject().delete();
 
 		getProjectSpaces().remove(projectSpace);
 		if (getActiveProjectSpace() == projectSpace) {
