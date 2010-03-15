@@ -15,4 +15,4 @@
   * [EMFStoreDocumentation Documentation and Tutorials]
 
 
-More information and news also available on our blog [http://unicase.blogspot.com/ Blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
+More information and news also available on our [http://unicase.blogspot.com/ blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
