@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.backchannel.example.client;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.backchannel.example.client.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.unicase.backchannel;bundle-version="1.0.0",
- org.unicase.proxyclient;bundle-version="1.0.0"
+ org.unicase.backchannel,
+ org.unicase.proxyclient
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
