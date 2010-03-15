@@ -24,9 +24,9 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
-import org.unicase.metamodel.provider.ShortLabelProvider;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
+import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.multiaction.MultiActionGenerator;
 
 
