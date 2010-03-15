@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="0.5.2.nightly"
+      version="0.5.5.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -237,28 +237,28 @@ litigation.
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="0.5.5.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="0.5.5.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="0.5.5.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.ui"
          download-size="0"
          install-size="0"
-         version="0.5.2.nightly"
+         version="0.5.5.nightly"
          unpack="false"/>
 
 </feature>
