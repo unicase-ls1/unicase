@@ -207,4 +207,13 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		// nothing to do, do not implement anything here, this will cause loop otherwise
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 */
+	public void projectDeleted(Project project) {
+		// nothing to do, is already handled by workspace.deleteProjectSpace()
+	}
+
 }

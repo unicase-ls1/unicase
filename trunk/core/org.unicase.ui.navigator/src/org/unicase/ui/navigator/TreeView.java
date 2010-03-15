@@ -47,8 +47,8 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
+import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.workspace.Configuration;
@@ -413,7 +413,8 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(), viewer));
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(),
+			viewer));
 
 	}
 
@@ -614,6 +615,16 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 */
+	public void projectDeleted(Project project) {
+		viewer.refresh();
+
 	}
 
 }

@@ -287,4 +287,14 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		super.dispose();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 */
+	public void projectDeleted(Project project) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

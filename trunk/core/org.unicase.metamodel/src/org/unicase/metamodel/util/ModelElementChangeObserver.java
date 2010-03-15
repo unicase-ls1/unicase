@@ -21,6 +21,18 @@ import org.unicase.metamodel.Project;
  * @author andy
  */
 public abstract class ModelElementChangeObserver implements ProjectChangeObserver {
+	/**
+	 * Notify all modelelement listener cause a project delete is also deleting all model element.
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @param project the deleted project
+	 */
+	public void projectDeleted(Project project) {
+		for (ModelElement modelElement : this.observedElements) {
+			this.modelElementDeleteCompleted(project, modelElement);
+		}
+
+	}
 
 	private List<ModelElement> observedElements;
 
@@ -67,7 +79,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	public final void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		Set<ModelElement> deletedElements = modelElement.getAllContainedModelElements();
 		deletedElements.add(modelElement);
-		for (ModelElement deletedElement: deletedElements) {
+		for (ModelElement deletedElement : deletedElements) {
 			if (isObservedElement(deletedElement)) {
 				observedElements.remove(deletedElement);
 				this.onElementDeleted(deletedElement);
