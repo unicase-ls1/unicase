@@ -8,6 +8,7 @@ If you have feature requests, questions, bugs or if you want to discuss somethin
 emfstore-dev@googlegroups.com]
 
 We also have a mailinglist to announce news about the EMFStore such as new releases. You can subscribe here:
+
 [http://groups.google.com/group/emfstore http://groups.google.com/group/emfstore]
 
 === Twitter ===
@@ -24,5 +25,7 @@ http://unicase.blogspot.com
 === Plain Email ===
 
 Of course you can also send direct email to one of the project leads:
+
 [mailto:koegel@headstrong.de Maximilian]
+
 [mailto:helming@in.tum.de Jonas]
