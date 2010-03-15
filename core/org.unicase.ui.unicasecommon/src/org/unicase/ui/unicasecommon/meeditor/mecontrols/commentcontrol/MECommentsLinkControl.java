@@ -44,6 +44,36 @@ import org.unicase.workspace.WorkspaceManager;
  * @author shterev
  */
 public class MECommentsLinkControl extends AbstractMEControl {
+	/**
+	 * Project Changeobserever for comment thread.
+	 * 
+	 * @author helming
+	 */
+	private final class ProjectChangeObserverImplementation implements ProjectChangeObserver {
+		public void modelElementAdded(Project project, ModelElement modelElement) {
+			if (modelElement instanceof Comment) {
+				Comment newComment = (Comment) modelElement;
+				UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
+				if (currentModelElement.getAllContainedModelElements().contains(newComment)) {
+					update();
+				}
+			}
+		}
+
+		public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		}
+
+		public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		}
+
+		public void notify(Notification notification, Project project, ModelElement modelElement) {
+		}
+
+		public void projectDeleted(Project project) {
+			// TODO Auto-generated method stub
+
+		}
+	}
 
 	private ProjectChangeObserver observerImpl;
 	private EReference reference;
@@ -64,28 +94,7 @@ public class MECommentsLinkControl extends AbstractMEControl {
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-		observerImpl = new ProjectChangeObserver() {
-
-			public void modelElementAdded(Project project, ModelElement modelElement) {
-				if (modelElement instanceof Comment) {
-					Comment newComment = (Comment) modelElement;
-					UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
-					if (currentModelElement.getAllContainedModelElements().contains(newComment)) {
-						update();
-					}
-				}
-			}
-
-			public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-			}
-
-			public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-			}
-
-			public void notify(Notification notification, Project project, ModelElement modelElement) {
-			}
-
-		};
+		observerImpl = new ProjectChangeObserverImplementation();
 
 		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(getModelElement())) {
 			UnicaseModelElement me = (UnicaseModelElement) getModelElement();

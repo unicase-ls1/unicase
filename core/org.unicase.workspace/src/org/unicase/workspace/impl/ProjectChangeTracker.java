@@ -393,4 +393,14 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		CompositeOperationHandle handle = new CompositeOperationHandle(this, compositeOperation);
 		return handle;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 */
+	public void projectDeleted(Project project) {
+		// TODO Auto-generated method stub
+
+	}
 }
