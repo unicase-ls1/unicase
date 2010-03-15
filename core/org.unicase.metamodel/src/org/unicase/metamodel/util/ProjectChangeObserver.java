@@ -53,7 +53,7 @@ public interface ProjectChangeObserver {
 	void modelElementDeleteCompleted(Project project, ModelElement modelElement);
 
 	/**
-	 * The project has beend deleted including all contained model elements.
+	 * The project of has been deleted including all contained model elements.
 	 * 
 	 * @param project the deleted project
 	 */
