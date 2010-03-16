@@ -263,11 +263,30 @@ public final class ModelUtil {
 	 * @return true if it is selfcontained
 	 */
 	public static boolean isSelfContained(EObject object) {
-		Set<EObject> allEObjects = getNonTransientContents(object);
-		allEObjects.add(object);
+		return isSelfContained(object, false);
+	}
+	/**
+	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
+	 * does not have references to eobjects outside the tree.
+	 * 
+	 * @param object the eObject
+	 * @param ignoreContainer true if references of object to its container should be ignored in the check.
+	 * @return true if it is selfcontained
+	 */
+	public static boolean isSelfContained(EObject object, boolean ignoreContainer) {
+		Set<EObject> allChildEObjects = getNonTransientContents(object);
+		
+		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
+		if (ignoreContainer && object.eContainer()!=null) {
+			nonTransientCrossReferences.remove(object.eContainer());
+		}
+		if (!allChildEObjects.containsAll(nonTransientCrossReferences)) {
+			return false;
+		}
+		
 		// check if only cross references to known elements exist
-		for (EObject content : allEObjects) {
-			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
+		for (EObject content : allChildEObjects) {
+			if (!allChildEObjects.containsAll(getNonTransientCrossReferences(content))) {
 				return false;
 			}
 		}
