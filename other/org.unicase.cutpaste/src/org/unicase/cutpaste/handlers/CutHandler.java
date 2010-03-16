@@ -16,6 +16,8 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.cutpaste.stuff.UnicaseTransferable;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
@@ -79,13 +81,12 @@ public final class CutHandler extends AbstractHandler {
 				System.out.println("Try to abort old CompositeOperation.");
 				if (handle.isValid()) {
 					handle.end("Aborted Cut Operation.", "Aborted Cut Operation.", ((UnicaseModelElement) meClipboard)
-						.getModelElementId()); // Why is this end and not abort?
+						.getModelElementId());
 				}
 				clipboard.setContents(new StringSelection(""), null);
 				System.out.println("Done");
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
-				System.out.println("ERROR cut");
 			}
 
 		} catch (UnsupportedFlavorException e) {
@@ -97,8 +98,15 @@ public final class CutHandler extends AbstractHandler {
 			handle = projectSpace.beginCompositeOperation();
 			transferable = new UnicaseTransferable(meSource, handle);
 			clipboard.setContents(transferable, null);
-			// --> //INSERT REFRESH NAVIGATOR VIEW HERE
+			refreshNavigator();
 		}
 	}
 
+	private void refreshNavigator() {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
+			}
+		});
+	}
 }

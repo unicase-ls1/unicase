@@ -56,7 +56,7 @@
             class="org.unicase.cutpaste.handlers.PasteHandler"
             commandId="org.unicase.cutpaste.paste">
          <activeWhen>
-         	<with variable="selection">
+         	<with variable="activeMenu">
             <test
                   forcePluginActivation="true"
                   property="org.unicase.cutpaste.testers.canPaste">
@@ -100,9 +100,9 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.unicase.cutpaste.stuff.CanPaste"
+            class="org.unicase.cutpaste.stuff.CanPasteTester"
             id="org.uorg.unicase.cutpaste.testers.canPasteTester"          namespace="org.unicase.cutpaste.testers"
-            properties="canPaste"          type="org.eclipse.jface.viewers.ISelection">
+            properties="canPaste"          type="java.lang.Object">
       </propertyTester>
    </extension>
 
