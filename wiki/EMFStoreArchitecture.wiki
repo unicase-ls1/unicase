@@ -1,5 +1,9 @@
 #summary Features of EMFStore and their dependencies
 
+This page describes the EMFStore features and their plugins and dependencies to external frameworks.
+
+=== EMFStore Features and Plugins ===
+
 The EMFStore framework consists of five features:
 
   * EMFStore Metamodel Feature (org.unicase.emfstore.metamodel) - contains plugins required to build a model that can be stored in the EMFStore:
@@ -26,3 +30,9 @@ The EMFStore framework consists of five features:
 In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features. In contrast a headless client does not contain the EMFStore Client User Interface Feature since it does not need to display the models or interaction on the models.
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.png]
+
+=== External Dependencies ===
+
+The EMFStore features depend on the following external bundles and libraries. While the external bundles need to be present in the runtime environment, libraries are included in the respective bundles as jars.
+
+*This is work in progress.*
