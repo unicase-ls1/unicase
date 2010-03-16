@@ -275,18 +275,20 @@ public final class ModelUtil {
 	 */
 	public static boolean isSelfContained(EObject object, boolean ignoreContainer) {
 		Set<EObject> allChildEObjects = getNonTransientContents(object);
-		
+		Set<EObject> allEObjects = new HashSet<EObject>(allChildEObjects);
+		allEObjects.add(object);
+
 		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
 		if (ignoreContainer && object.eContainer()!=null) {
 			nonTransientCrossReferences.remove(object.eContainer());
 		}
-		if (!allChildEObjects.containsAll(nonTransientCrossReferences)) {
+		if (!allEObjects.containsAll(nonTransientCrossReferences)) {
 			return false;
 		}
 		
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
-			if (!allChildEObjects.containsAll(getNonTransientCrossReferences(content))) {
+			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
 				return false;
 			}
 		}
