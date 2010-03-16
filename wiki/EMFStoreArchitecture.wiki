@@ -1,10 +1,11 @@
 #summary Features of EMFStore and their dependencies
 
-The EMFStore framework consists of three features:
+The EMFStore framework consists of five features:
 
+  * EMFStore Metamodel Feature (org.unicase.emfstore.metamodel) - contains plugins required to build a model that can be stored in the EMFStore:
+  * org.unicase.metamodel: contains the common metamodel including a ModelElement base class with a unique id.
+    * org.unicase.metamodel.edit: contains the label and item providers for the meta model 
   * EMFStore Server Feature (org.unicase.emfstore.server) - contains the plugins required for running the EMFStore server:
-    * org.unicase.metamodel: contains the common metamodel including a ModelElement base class with a unique id.
-    * org.unicase.metamodel.edit: contains the label and item providers for the meta model
     * org.unicase.emfstore: contains the business logic of the server
     * org.unicase.emfstore.esmodel: data model of the server
     * org.unicase.emfstore.esmodel.edit: Edit plugin for server data model
@@ -17,6 +18,9 @@ The EMFStore framework consists of three features:
     * org.unicase.workspace.ui: contains views for update/commit/merge, a repository browser and a history browser.
     * org.unicase.ui.navigator: contains a reflective view for showing the local models and their structure in a tree view.
     * org.unicase.ui.meeditor: contains a reflective form-based editor to view single model elements.
+
+  * EMFStore Backchannel Feature (org.unicase.emfstore.backchannel) - contains plugins to establish a communication channel from server to client, can be used to update client models on new versions automatically:
+    * org.unicase.backchannel: contains an API to send events from server to client and to register for events from the server on the client. 
 
 In a typical deployment scenario consists of an EMFStore Server node and an EMFStore client node. While the server node contains only the EMFStore Server Feature, the client node contains all features. In contrast a headless client does not contain the EMFStore Client User Interface Feature since it does not need to display the models or interaction on the models.
 
