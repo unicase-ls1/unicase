@@ -8,6 +8,7 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -26,10 +27,13 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.Solution;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
+import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Special widget for resolving MerginIssues.
@@ -122,17 +126,24 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			}
 			Object result = selectionDialog.getFirstResult();
 			if (result instanceof MergingProposal) {
-				MergingProposal proposal = (MergingProposal) result;
-				MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
-				proposal.getProject().addModelElement(solution);
-				mergingIssue.setSolution(solution);
-				solution.getUnderlyingProposals().add(proposal);
-				solution.setDescription(proposal.getDescription());
-				check(solution);
 				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
 				if (projectSpace != null) {
+					CompositeOperationHandle compositeOperation = projectSpace.beginCompositeOperation();
+					MergingProposal proposal = (MergingProposal) result;
+					MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
+					proposal.getProject().addModelElement(solution);
+					mergingIssue.setSolution(solution);
+					solution.getUnderlyingProposals().add(proposal);
+					solution.setDescription(proposal.getDescription());
+					check(solution);
 					((ProjectSpaceImpl) projectSpace).applyOperationsWithRecording(proposal.getPendingOperations(),
 						true);
+					try {
+						compositeOperation.end("Created Solution for MergeIssue", "A Solution for the MergingIssue \""
+							+ mergingIssue.getName() + "\" was created.", mergingIssue.getModelElementId());
+					} catch (InvalidHandleException e) {
+						WorkspaceUtil.log("Couldn't create MergingSolution", e, IStatus.ERROR);
+					}
 				}
 			} else if (result instanceof Proposal) {
 				Solution solution = RationaleFactory.eINSTANCE.createSolution();

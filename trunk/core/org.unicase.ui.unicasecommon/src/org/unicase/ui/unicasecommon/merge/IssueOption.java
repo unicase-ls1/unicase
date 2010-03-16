@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.merge;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -16,7 +17,9 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
@@ -121,6 +124,8 @@ public class IssueOption extends CustomConflictOption {
 
 		assignTo(projectSpace, mergeIssue);
 
+		addAnnotations(project, myOperations, theirOperations, mergeIssue);
+
 		ChangePackageVisualizationHelper helper = conflict.getDecisionManager().getChangePackageVisualizationHelper();
 
 		createProposal(myOperations, mergeIssue, "My Changes", helper);
@@ -139,6 +144,26 @@ public class IssueOption extends CustomConflictOption {
 		List<AbstractOperation> ops = projectSpace.getOperations();
 		AbstractOperation ab = ops.get(ops.size() - 1);
 		issueOperation = (AbstractOperation) EcoreUtil.copy(ab);
+	}
+
+	private void addAnnotations(Project project, List<AbstractOperation> myOperations,
+		List<AbstractOperation> theirOperations, MergingIssue mergeIssue) {
+		HashSet<ModelElementId> set = new HashSet<ModelElementId>();
+		for (AbstractOperation operation : myOperations) {
+			set.addAll(operation.getAllInvolvedModelElements());
+		}
+		for (AbstractOperation operation : theirOperations) {
+			set.addAll(operation.getAllInvolvedModelElements());
+		}
+		for (ModelElementId id : set) {
+			ModelElement modelElement = project.getModelElement(id);
+			if (modelElement instanceof UnicaseModelElement) {
+				EList<Annotation> annotations = ((UnicaseModelElement) modelElement).getAnnotations();
+				if (!annotations.contains(mergeIssue)) {
+					annotations.add(mergeIssue);
+				}
+			}
+		}
 	}
 
 	private void createProposal(List<AbstractOperation> myOperations, MergingIssue mergeIssue, String name,
