@@ -5,17 +5,10 @@
  */
 package org.unicase.cutpaste.stuff;
 
-import java.awt.AWTException;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.unicase.metamodel.ModelElement;
@@ -29,7 +22,7 @@ import org.unicase.workspace.CompositeOperationHandle;
 public class UnicaseTransferable implements Transferable {
 
 	private ModelElement me;
-	private CompositeOperationHandle cOH;
+	private CompositeOperationHandle handle;
 	private DataFlavor[] providedFlavors;
 
 	/**
@@ -37,11 +30,11 @@ public class UnicaseTransferable implements Transferable {
 	 * representation of a Modelelement.
 	 * 
 	 * @param me The ModelElement to be copied to the clipboard.
-	 * @param cOH The CompositeOperationHandle on which a CompositeOperation was started.
+	 * @param handle The CompositeOperationHandle on which a CompositeOperation was started.
 	 */
-	public UnicaseTransferable(ModelElement me, CompositeOperationHandle cOH) {
+	public UnicaseTransferable(ModelElement me, CompositeOperationHandle handle) {
 		this.me = me;
-		this.cOH = cOH;
+		this.handle = handle;
 
 		providedFlavors = new DataFlavor[] { new DataFlavor(org.unicase.metamodel.ModelElement.class, "ModelElement"),
 			new DataFlavor(org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"),
@@ -56,7 +49,7 @@ public class UnicaseTransferable implements Transferable {
 		if (dataFlavor.equals(providedFlavors[0])) {
 			return me;
 		} else if (dataFlavor.equals(providedFlavors[1])) {
-			return cOH;
+			return handle;
 		} else if (dataFlavor.equals(providedFlavors[2])) {
 			return me.toString();
 		} else if (dataFlavor.equals(providedFlavors[3])) {
@@ -89,23 +82,14 @@ public class UnicaseTransferable implements Transferable {
 		// this could be an icon extractor method for me, or a diagram rendering method, etc.
 		// for now it returns <see current code>
 
-		final Dimension rQVGA = new Dimension(320, 240);
-		Dimension thumbnail = rQVGA;
-		BufferedImage screenshot = null;
-		BufferedImage resizedScreenshot = null;
-		try {
-			Toolkit toolkit = Toolkit.getDefaultToolkit();
-			Robot robot = new Robot();
-			screenshot = robot.createScreenCapture(new Rectangle(toolkit.getScreenSize()));
-			resizedScreenshot = new BufferedImage(thumbnail.width, thumbnail.height, BufferedImage.TYPE_INT_ARGB);
-			Graphics2D g = resizedScreenshot.createGraphics();
-			g.drawImage(screenshot, 0, 0, thumbnail.width, thumbnail.height, null);
-			g.dispose();
-		} catch (AWTException e) {
-			e.printStackTrace();
-		}
-		BufferedImage result = resizedScreenshot;
-
-		return result;
+		/*
+		 * final Dimension rQVGA = new Dimension(320, 240); Dimension thumbnail = rQVGA; BufferedImage screenshot =
+		 * null; BufferedImage resizedScreenshot = null; try { Toolkit toolkit = Toolkit.getDefaultToolkit(); Robot
+		 * robot = new Robot(); screenshot = robot.createScreenCapture(new Rectangle(toolkit.getScreenSize()));
+		 * resizedScreenshot = new BufferedImage(thumbnail.width, thumbnail.height, BufferedImage.TYPE_INT_ARGB);
+		 * Graphics2D g = resizedScreenshot.createGraphics(); g.drawImage(screenshot, 0, 0, thumbnail.width,
+		 * thumbnail.height, null); g.dispose(); } catch (AWTException e) { e.printStackTrace(); } BufferedImage result
+		 * = resizedScreenshot; return result;
+		 */return null;
 	}
 }
