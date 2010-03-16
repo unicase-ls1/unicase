@@ -2,7 +2,7 @@
 
 The EMFStore is a model repository. Models can be checked out to a local workspace and changes can be commited to or updated from the repository, similar to SVN or CVS.
 
-With the EMFStore Browser you can view EMFStore repositories and the projects (models) that are stored on the servers. Also you can checkout a project (model) from the server.
+With the EMFStore Browser you can view EMFStore repositories and the projects (models) that are stored on the servers. Also you can create and delete projects (models) on the server and checkout a project (model) from the server.
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/1.png]
 
