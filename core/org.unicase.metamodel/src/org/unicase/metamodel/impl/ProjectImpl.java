@@ -381,7 +381,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	private void checkForCrossReferences(ModelElement modelElement) {
-		if (!ModelUtil.isSelfContained(modelElement)) {
+		if (!ModelUtil.isSelfContained(modelElement, true)) {
 			String message = "ModelElements may not contain cross references to other model elements when added to project!";
 			IllegalStateException exception = new IllegalStateException(message);
 			ModelUtil.logException(message, exception);
