@@ -6,17 +6,6 @@ With the EMFStore Browser you can view EMFStore repositories and the projects (m
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/1.png]
 
-Furthermore you can configure access control in the EMFStore Browser. You can add groups and users and decide how they can access a project (read/write/administer).
-
-[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/12.png]
-
-[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/13.png]
-
-[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/14.png]
-
-[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/15.png]
-
-
 The EMFStore Navigator shows all local copies of models and their containment structure.
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/2.png]
@@ -44,5 +33,18 @@ If another user changes the same model element a conflict can occur. The EMFStor
 The EMFStore retains every version of a model and the changes that were made in the repository. They can be displayed with the history browser. It displays the versions and the changes that were made in a version. It can be filtered to a single model element instead of the whole project and it supports different modes of visualization, e.g. grouping changes by model elements instead of time.
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/7.png]
+
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/8.png]
+
 [http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/9.png]
+
+
+You can configure access control for the EMFStore in the EMFStore Browser. You can add groups and users and decide how they can access a project (read/write/administer).
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/12.png]
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/13.png]
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/14.png]
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/15.png]
