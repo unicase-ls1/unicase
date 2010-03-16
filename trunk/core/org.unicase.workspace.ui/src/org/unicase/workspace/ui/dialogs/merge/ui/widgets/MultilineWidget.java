@@ -82,9 +82,9 @@ public class MultilineWidget {
 		text.setBackground(tabFolder.getBackground());
 		text.setEditable(isEditable(option));
 		text.setWordWrap(true);
-		text.setTopMargin(5);
-		text.setLeftMargin(5);
-		text.setRightMargin(5);
+		// text.setTopMargin(5);
+		// text.setLeftMargin(5);
+		// text.setRightMargin(5);
 		tab.setControl(text);
 	}
 

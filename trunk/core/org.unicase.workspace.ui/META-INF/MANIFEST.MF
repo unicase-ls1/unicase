@@ -28,5 +28,5 @@ Export-Package: diff.match.patch,
  org.unicase.workspace.ui.views.historybrowserview,
  org.unicase.workspace.ui.views.scm
 Bundle-Vendor: unicase.org
-Bundle-ClassPath: lib/dmp.jar,
- .
+Bundle-ClassPath: .,
+ lib/dmp.jar
