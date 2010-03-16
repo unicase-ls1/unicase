@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.attributecontrols" name="org.unicase.ui.meeditor.attributecontrols"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Allows to register MEControls replacing standard widgets of the MEEditor for attributes (not references).
       </documentation>
    </annotation>
 
@@ -91,7 +91,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 
