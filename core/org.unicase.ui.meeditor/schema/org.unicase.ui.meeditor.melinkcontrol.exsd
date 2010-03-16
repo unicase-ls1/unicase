@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.melinkcontrols" name="melinkcontrol"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Allows to replace the Hyperlink widget inside of the MELinkControl.
       </documentation>
    </annotation>
 
@@ -84,7 +84,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 

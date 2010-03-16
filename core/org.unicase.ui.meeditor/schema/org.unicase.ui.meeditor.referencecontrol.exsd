@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.meeditor" id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols"/>
       </appinfo>
       <documentation>
-         This extension point is used to add new or replace existing controls in the MEEditor, which render reference attributes, single or multi.
+         Allows to add new or replace existing controls in the MEEditor, which render reference attributes, single or multi.
       </documentation>
    </annotation>
 
@@ -91,7 +91,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 
