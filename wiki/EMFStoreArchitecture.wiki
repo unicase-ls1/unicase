@@ -3,7 +3,7 @@
 The EMFStore framework consists of five features:
 
   * EMFStore Metamodel Feature (org.unicase.emfstore.metamodel) - contains plugins required to build a model that can be stored in the EMFStore:
-    * org.unicase.metamodel: contains the common metamodel including a Model Element base class with a unique id.
+    * org.unicase.metamodel: contains the common metamodel including a model element base class with a unique id.
     * org.unicase.metamodel.edit: contains the label and item providers for the meta model
 
   * EMFStore Server Feature (org.unicase.emfstore.server) - contains the plugins required for running the EMFStore server:
