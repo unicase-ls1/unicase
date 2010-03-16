@@ -103,6 +103,11 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		initLogging();
 
+		// copy es.properties file to workspace if not existent
+		copyFileToWorkspace(ServerConfiguration.getConfFile(), "es.properties",
+			"Couldn't copy es.properties file to config folder.",
+			"Default es.properties file was copied to config folder.");
+
 		properties = initProperties();
 
 		new MigrationManager().migrateModel();
@@ -117,7 +122,10 @@ public class EmfStoreController implements IApplication, Runnable {
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
 
-		setupKeyStore();
+		// copy keystore file to workspace if not existent
+		copyFileToWorkspace(ServerConfiguration.getServerKeyStorePath(), "unicaseServer.keystore",
+			"Failed to copy keystore.", "Keystore was copied to server workspace.");
+
 		connectionHandlers = initConnectionHandlers();
 
 		TaskManager taskManager = TaskManager.getInstance();
@@ -152,15 +160,15 @@ public class EmfStoreController implements IApplication, Runnable {
 		}
 	}
 
-	private void setupKeyStore() {
-		File keyStore = new File(ServerConfiguration.getServerKeyStorePath());
+	private void copyFileToWorkspace(String target, String source, String failure, String success) {
+		File keyStore = new File(target);
 		if (!keyStore.exists()) {
 			try {
-				FileUtil.copyFile(getClass().getResourceAsStream("unicaseServer.keystore"), keyStore);
+				FileUtil.copyFile(getClass().getResourceAsStream(source), keyStore);
 			} catch (IOException e) {
-				logger.warn("Failed to copy keystore.");
+				logger.warn(failure);
 			}
-			logger.info("keystore was copied to server workspace.");
+			logger.info(success);
 		}
 	}
 
