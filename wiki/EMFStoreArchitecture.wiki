@@ -31,6 +31,11 @@ In a typical deployment scenario consists of an EMFStore Server node and an EMFS
 
 [http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitecture.png]
 
+To support sending events from server to client there is the backchannel feature. This feature supplies an API to create events for distribution to the clients on the server and an API for registering for server events on the clients. The feature already sends events if the model in the repository is changed due to a commit. Thereby an automatic update of models on the clients (online mode) is supported.
+
+[http://unicase.googlecode.com/svn/trunk/documentation/images/EMFStoreArchitectureWithBackchannel.png]
+
+
 === External Dependencies ===
 
 The EMFStore features depend on the following external bundles and libraries. While the external bundles need to be present in the runtime environment, libraries are included in the respective bundles as jars.
