@@ -64,10 +64,6 @@
             </with>
          </activeWhen>
       </handler>
-      <handler
-            class="org.unicase.cutpaste.handlers.ContainerSpyHandler"
-            commandId="org.unicase.cutpaste.containerspy">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
