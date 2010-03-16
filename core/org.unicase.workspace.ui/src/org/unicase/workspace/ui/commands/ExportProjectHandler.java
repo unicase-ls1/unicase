@@ -31,8 +31,7 @@ public class ExportProjectHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -48,16 +47,19 @@ public class ExportProjectHandler extends AbstractHandler {
 
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
-		String initialFileName = projectSpace.getProjectName() + "@"
+		try {
+			String initialFileName = projectSpace.getProjectName() + "@"
 				+ projectSpace.getBaseVersion().getIdentifier() + ".ucp";
-		dialog.setFileName(initialFileName);
+			dialog.setFileName(initialFileName);
+			// NPE raised when project is not shared yet, since getBaseVersion needs the project on the server already.
+			// dialog
+		} catch (NullPointerException e) {
 
-		// dialog
+		}
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
@@ -65,19 +67,17 @@ public class ExportProjectHandler extends AbstractHandler {
 
 		final File file = new File(fn);
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Export project...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(file.getAbsolutePath());
-					MessageDialog.openInformation(null, "Export",
-							"Exported project to file " + file.getName());
+					MessageDialog.openInformation(null, "Export", "Exported project to file " + file.getName());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 					// BEGIN SUPRESS CATCH EXCEPTION
