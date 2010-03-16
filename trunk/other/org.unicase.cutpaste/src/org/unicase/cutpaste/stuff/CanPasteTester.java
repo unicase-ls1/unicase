@@ -13,11 +13,14 @@ import java.awt.datatransfer.Transferable;
 import org.eclipse.core.expressions.PropertyTester;
 
 /**
- * This property tester checks if the paste button is active.
+ * This property tester checks if the paste handler is active.
  * 
  * @author weiglt
  */
-public class CanPaste extends PropertyTester {
+public class CanPasteTester extends PropertyTester {
+
+	private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+	private Transferable transferable;
 
 	/**
 	 * {@inheritDoc}
@@ -26,14 +29,10 @@ public class CanPaste extends PropertyTester {
 	 *      java.lang.Object)
 	 */
 	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
-
-		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		Transferable transferable = clipboard.getContents(null);
-
+		transferable = clipboard.getContents(null);
 		return (transferable.isDataFlavorSupported(new DataFlavor(org.unicase.metamodel.ModelElement.class,
 			"ModelElement")))
 			&& (transferable.isDataFlavorSupported(new DataFlavor(org.unicase.workspace.CompositeOperationHandle.class,
 				"CompositeOperationHandle")));
-
 	}
 }

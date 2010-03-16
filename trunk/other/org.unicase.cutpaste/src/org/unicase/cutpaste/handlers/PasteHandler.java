@@ -132,9 +132,7 @@ public final class PasteHandler extends AbstractHandler {
 					+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName()
 					+ "\"", ((UnicaseModelElement) meSource).getModelElementId());
 				clipboard.setContents(new StringSelection(""), null);
-				System.out.println("Pasted. CompositeOperation finished");
-				// --> //INSERT REFRESH MENU HERE
-
+				System.out.println("Pasted. CompositeOperation finished.");
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
 				System.out.println("ERROR paste: there was no begun cut action.");
