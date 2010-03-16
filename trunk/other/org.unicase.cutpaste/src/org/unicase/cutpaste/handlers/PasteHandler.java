@@ -8,23 +8,33 @@ package org.unicase.cutpaste.handlers;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.classes.Attribute;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
+import org.unicase.model.component.Component;
+import org.unicase.model.component.ComponentService;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.meeting.CompositeMeetingSection;
+import org.unicase.model.meeting.Meeting;
+import org.unicase.model.meeting.MeetingSection;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The Paste Handler. Loads a UnicaseTransferable from the system clipboard, handles the paste action and ends the begun
@@ -35,13 +45,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public final class PasteHandler extends AbstractHandler {
 
 	private ModelElement meSource, meTarget;
-	private CompositeOperationHandle cOH;
+	private CompositeOperationHandle handle;
 	private Clipboard clipboard;
 	private Transferable transferable;
 	private String prevLocation, prevLocationType;
 
 	/**
-	 * Executes the Button Command for "Paste" Gadget.
+	 * Executes the paste command.
 	 * 
 	 * @param event The MouseClick Event
 	 * @return null
@@ -54,64 +64,89 @@ public final class PasteHandler extends AbstractHandler {
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		transferable = clipboard.getContents(null);
 
-		paste(meTarget);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				paste(meTarget);
+			}
+		}.run();
 
 		return null;
 	}
 
 	private void paste(final ModelElement meTarget) {
 
-		try {
+		try { // get data from clipboard
 			meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
 				org.unicase.metamodel.ModelElement.class, "ModelElement"));
-			cOH = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
+			handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
 				org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
-		} catch (IOException e) {
-			e.printStackTrace();
+
+			// Save old ME data before changing
+			prevLocation = ((UnicaseModelElement) ((UnicaseModelElement) meSource).getContainerModelElement())
+				.getName();
+			prevLocationType = (((UnicaseModelElement) meSource).getContainerModelElement()).eClass().getName();
+
+			// paste implements AllowedCutPaste-v2.txt, can also be found in this package
+
+			if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement) {
+				((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
+			} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
+				((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
+			} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
+				((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
+			} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
+				((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
+			} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
+				// generic approach necessary
+				((MeetingSection) meSource).eSet(((UnicaseModelElement) meSource).eContainingFeature(), (meTarget));
+			} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
+				// generic approach necessary
+			} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
+				((ComponentService) meSource).setOfferingComponent((Component) meTarget);
+			} else if (meTarget instanceof org.unicase.model.classes.Package) {
+				if (meSource instanceof org.unicase.model.classes.Class) {
+					((org.unicase.model.classes.Class) meSource)
+						.setParentPackage((org.unicase.model.classes.Package) meTarget);
+				} else if (meSource instanceof org.unicase.model.classes.Package) {
+					((org.unicase.model.classes.Package) meSource)
+						.setParentPackage((org.unicase.model.classes.Package) meTarget);
+				}
+			} else if (meTarget instanceof org.unicase.model.classes.Class) {
+				if (meSource instanceof Method) {
+					((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+
+				} else if (meSource instanceof Attribute) {
+					((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+				}
+			} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
+				// generic approach necessary
+			} else {
+				System.out.println("still something missing here.");
+			}
+
+			// end CompositeOperation, clear clipboard
+			try {
+				handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+					+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
+					+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName()
+					+ "\"", ((UnicaseModelElement) meSource).getModelElementId());
+				clipboard.setContents(new StringSelection(""), null);
+				System.out.println("Pasted. CompositeOperation finished");
+				// --> //INSERT REFRESH MENU HERE
+
+			} catch (InvalidHandleException e) {
+				e.printStackTrace();
+				System.out.println("ERROR paste: there was no begun cut action.");
+			}
+
 		} catch (UnsupportedFlavorException e) {
 			e.printStackTrace();
+			// flavor could not be provided (clipboard empty/corrupted?). actually the
+			// propertytester should prevent this and thus this exception should never be thrown.
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		final EReference theRef = getTargetRef(meTarget, meSource);
-
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				prevLocation = ((UnicaseModelElement) ((UnicaseModelElement) meSource).getContainerModelElement())
-					.getName();
-				prevLocationType = (((UnicaseModelElement) meSource).getContainerModelElement()).eClass().getName();
-				meSource.eSet(theRef.getEOpposite(), meTarget);
-				// ((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource); Alternative Lösung
-				// für LeafSections
-			}
-		}.run();
-
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				try {
-					cOH.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
-						+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \""
-						+ prevLocation + "\" to " + meTarget.eClass().getName() + " \""
-						+ ((UnicaseModelElement) meTarget).getName() + "\"", meSource.getModelElementId());
-				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException("Composite Operation failed!", e);
-				}
-			}
-		}.run();
-	}
-
-	private EReference getTargetRef(EObject targetContainer, ModelElement me) {
-
-		List<EReference> refs = targetContainer.eClass().getEAllContainments();
-		for (EReference ref : refs) {
-			if (ref.isContainer()) {
-				continue;
-			}
-			if (ref.getEReferenceType().equals(me.eClass()) || ref.getEReferenceType().isSuperTypeOf(me.eClass())) {
-				return ref;
-			}
-		}
-		return null;
 
 	}
 }

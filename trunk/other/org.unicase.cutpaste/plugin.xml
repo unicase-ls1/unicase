@@ -12,15 +12,6 @@
                style="push">
          </command>
       </menuContribution>
-            <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?before=org.unicase.cutpaste.cut">
-         <command
-               commandId="org.unicase.cutpaste.authorspy"
-               icon="icons/magnifier.png"
-               label="Lookup author"
-               style="push">
-         </command>
-      </menuContribution>
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.cutpaste.cut">
          <command
@@ -51,10 +42,6 @@
             name="paste">
       </command>
       <command
-            id="org.unicase.cutpaste.authorspy"
-            name="authorspy">
-      </command>
-      <command
             id="org.unicase.cutpaste.containerspy"
             name="containerspy">
       </command>
@@ -68,10 +55,14 @@
       <handler
             class="org.unicase.cutpaste.handlers.PasteHandler"
             commandId="org.unicase.cutpaste.paste">
-      </handler>
-      <handler
-            class="org.unicase.cutpaste.handlers.AuthorSpyHandler"
-            commandId="org.unicase.cutpaste.authorspy">
+         <activeWhen>
+         	<with variable="selection">
+            <test
+                  forcePluginActivation="true"
+                  property="org.unicase.cutpaste.testers.canPaste">
+            </test>
+            </with>
+         </activeWhen>
       </handler>
       <handler
             class="org.unicase.cutpaste.handlers.ContainerSpyHandler"
@@ -91,15 +82,28 @@
             sequence="M1+INSERT">
       </key>
       <key
-            commandId="org.unicase.cutpaste.authorspy"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+ENTER">
-      </key>
-      <key
             commandId="org.unicase.cutpaste.containerspy"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+#">
       </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            class="org.unicase.cutpaste.stuff.CutAndPasteDecorator"
+            id="org.unicase.cutpaste.decorator1"
+            label="CutAndPasteLabelDecorator"
+            lightweight="true"
+            state="true">
+      </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.cutpaste.stuff.CanPaste"
+            id="org.uorg.unicase.cutpaste.testers.canPasteTester"          namespace="org.unicase.cutpaste.testers"
+            properties="canPaste"          type="org.eclipse.jface.viewers.ISelection">
+      </propertyTester>
    </extension>
 
 

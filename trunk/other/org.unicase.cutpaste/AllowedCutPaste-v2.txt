@@ -1,0 +1,22 @@
+Target :(canHold) Source
+=======================
+
+(LeafSection) : (UnicaseModelElement)
+
+(UnicaseModelElement) : (Comment)
+
+(FunctionalRequirement) : (FunctionalRequirement)
+
+(Workpackage) : (WorkItem)
+
+(Meeting) : (MeetingSection)
+
+(CompositeMeetingSection) : (MeetingSection)
+
+(Component) : (ComponentService)
+
+(Package) : {(Class),(Package)}
+
+(Class) : {(Method),(Attribute)}
+
+(Method) : (MethodArgument)
