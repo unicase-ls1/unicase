@@ -126,6 +126,8 @@ public final class PasteHandler extends AbstractHandler {
 				}
 			} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
 				genericPaste(meTarget, meSource);
+			} else {
+				System.out.println("Cannot paste into type: " + meTarget.getClass());
 			}
 
 			// end CompositeOperation, clear clipboard

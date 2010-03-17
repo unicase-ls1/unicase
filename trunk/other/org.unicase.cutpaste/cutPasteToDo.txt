@@ -1,0 +1,6 @@
+- CyclomaticComplexity Warning
+- extend CanPasteTester
+- rethink about activation of CanPasteTester with ActiveMenu really a perfect solution
+
+possible future features:
+- extend for ModelElement[] meSource
