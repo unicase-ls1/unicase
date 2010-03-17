@@ -137,7 +137,7 @@ public final class PasteHandler extends AbstractHandler {
 					+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName()
 					+ "\"", ((UnicaseModelElement) meSource).getModelElementId());
 				clipboard.setContents(new StringSelection(""), null);
-				System.out.println("Pasted. CompositeOperation finished.");
+				System.out.println("Paste Operation finished. CompositeOperation finished.");
 				refreshDecorator();
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
