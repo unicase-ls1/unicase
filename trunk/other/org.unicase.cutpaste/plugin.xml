@@ -51,6 +51,14 @@
       <handler
             class="org.unicase.cutpaste.handlers.CutHandler"
             commandId="org.unicase.cutpaste.cut">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <test
+                     property="org.unicase.cutpaste.testers.canCut">
+               </test>
+            </with>
+         </activeWhen>
       </handler>
       <handler
             class="org.unicase.cutpaste.handlers.PasteHandler"
@@ -96,9 +104,9 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.unicase.cutpaste.stuff.CanPasteTester"
-            id="org.uorg.unicase.cutpaste.testers.canPasteTester"          namespace="org.unicase.cutpaste.testers"
-            properties="canPaste"          type="java.lang.Object">
+            class="org.unicase.cutpaste.stuff.CanCutPasteCombiTester"
+            id="org.uorg.unicase.cutpaste.testers.canCutPasteCombiTester"          namespace="org.unicase.cutpaste.testers"
+            properties="canPaste, canCut"          type="java.lang.Object">
       </propertyTester>
    </extension>
 
