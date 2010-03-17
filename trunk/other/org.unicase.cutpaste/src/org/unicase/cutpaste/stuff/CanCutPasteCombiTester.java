@@ -38,7 +38,6 @@ public class CanCutPasteCombiTester extends PropertyTester {
 				&& (transferable.isDataFlavorSupported(new DataFlavor(
 					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle")));
 		} else if (property.equals("canCut")) {
-			System.out.println(((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement());
 			if ((((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof UnicaseModelElement)
 				&& !(((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof CompositeSection)) {
 				return true;
