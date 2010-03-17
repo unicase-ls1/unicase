@@ -12,10 +12,16 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Attribute;
@@ -98,10 +104,9 @@ public final class PasteHandler extends AbstractHandler {
 			} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
 				((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
 			} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
-				// generic approach necessary
-				((MeetingSection) meSource).eSet(((UnicaseModelElement) meSource).eContainingFeature(), (meTarget));
+				genericPaste(meTarget, meSource);
 			} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
-				// generic approach necessary
+				genericPaste(meTarget, meSource);
 			} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
 				((ComponentService) meSource).setOfferingComponent((Component) meTarget);
 			} else if (meTarget instanceof org.unicase.model.classes.Package) {
@@ -120,9 +125,7 @@ public final class PasteHandler extends AbstractHandler {
 					((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
 				}
 			} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
-				// generic approach necessary
-			} else {
-				System.out.println("still something missing here.");
+				genericPaste(meTarget, meSource);
 			}
 
 			// end CompositeOperation, clear clipboard
@@ -133,6 +136,7 @@ public final class PasteHandler extends AbstractHandler {
 					+ "\"", ((UnicaseModelElement) meSource).getModelElementId());
 				clipboard.setContents(new StringSelection(""), null);
 				System.out.println("Pasted. CompositeOperation finished.");
+				refreshDecorator();
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
 				System.out.println("ERROR paste: there was no begun cut action.");
@@ -146,5 +150,67 @@ public final class PasteHandler extends AbstractHandler {
 			e.printStackTrace();
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	private void genericPaste(final ModelElement meTarget, final ModelElement source) {
+
+		EReference theRef = getTargetRef(meTarget, meSource);
+		if (theRef == null) {
+			return;
+		}
+
+		if (theRef.getEOpposite() != null) {
+			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
+			// reference.
+			EReference oppositeRef = theRef.getEOpposite();
+
+			Object object = meSource.eGet(oppositeRef);
+			if (oppositeRef.isMany()) {
+				EList<EObject> eList = (EList<EObject>) object;
+				eList.add(meTarget);
+			} else {
+				meSource.eSet(oppositeRef, meTarget);
+			}
+
+		} else {
+			if (theRef.isMany()) {
+
+				Object object = meTarget.eGet(theRef);
+				EList<EObject> eList = (EList<EObject>) object;
+				eList.add(meSource);
+			} else {
+				meTarget.eSet(theRef, meSource);
+			}
+
+		}
+
+	}
+
+	private EReference getTargetRef(EObject targetContainer, ModelElement dropee) {
+
+		List<EReference> refs = targetContainer.eClass().getEAllContainments();
+		for (EReference ref : refs) {
+			if (ref.isContainer()) {
+				continue;
+			}
+			// checking for source reference type is based only on first element
+			// of drag source. We suppose that elements with different types are
+			// not allowed to be drag and dropped.
+			if (ref.getEReferenceType().equals(dropee.eClass())
+				|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
+				return ref;
+			}
+		}
+		return null;
+
+	}
+
+	private void refreshDecorator() {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
+			}
+		});
 	}
 }

@@ -80,7 +80,7 @@ public final class CutHandler extends AbstractHandler {
 			try {
 				System.out.println("Try to abort old CompositeOperation.");
 				if (handle.isValid()) {
-					handle.end("Aborted Cut Operation.", "Aborted Cut Operation.", ((UnicaseModelElement) meClipboard)
+					handle.end("Aborted Cut Operation", "Aborted Cut Operation", ((UnicaseModelElement) meClipboard)
 						.getModelElementId());
 				}
 				clipboard.setContents(new StringSelection(""), null);
@@ -98,11 +98,11 @@ public final class CutHandler extends AbstractHandler {
 			handle = projectSpace.beginCompositeOperation();
 			transferable = new UnicaseTransferable(meSource, handle);
 			clipboard.setContents(transferable, null);
-			refreshNavigator();
+			refreshDecorator();
 		}
 	}
 
-	private void refreshNavigator() {
+	private void refreshDecorator() {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
