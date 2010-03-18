@@ -14,11 +14,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.rap.config.AbstractConfigEntity;
+import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ui.ProjectsTableViewer;
 import org.unicase.rap.status.config.WorkTeamItemsConfigEntity;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
+
+import config.ConfigEntity;
 
 /**
  * 
@@ -35,17 +37,17 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	 */
 	WorkTeamItemsConfigEntity cfgEntity;
 	
-	// TODO: for now the project space is used to serve as
-	private WorkPackage bugContainer;
-		
-	private String configEntityId;
-	
 	private Text crypticElementTextfield;
 	
 	private Button teamListVisisbleCheckBox;
 	
 	private Button workItemsVisibleCheckBox;
 	
+
+	/**
+	 * The currently selected project space.
+	 */
+	ProjectSpace currentProjectSpace;
 	
 	
 	/**
@@ -75,81 +77,118 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	}*/
 	
 	@Override
-	protected void createTab(Composite parent) {
+	public void createTab(Composite parent) {
 
 		
 		// TODO
 //		getSite().setSelectionProvider(projectsTableViewer);
 				 
-		Composite top = new Composite(parent, SWT.BORDER);
-		GridLayout layout = new GridLayout();		
-		layout.marginHeight = 0;
-		layout.marginWidth = 0;
-		top.setLayout(layout);
+//		Composite top = new Composite(parent, SWT.BORDER);
+		GridLayout gridLayout = new GridLayout();
+	    gridLayout.numColumns = 1;
+	    GridData data = new GridData();
+	    data.horizontalAlignment = SWT.FILL;
+	    data.verticalAlignment = SWT.FILL;
+	    data.grabExcessHorizontalSpace = true;
+	    data.grabExcessVerticalSpace = true;
+	    parent.setLayout(gridLayout);
+	    parent.setLayoutData(data);
+//		top.setLayout(layout);
 		
 		
 		// top banner
-		Composite banner = new Composite(top, SWT.NONE);
-		banner.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_BEGINNING, true, false));
-		layout = new GridLayout();
-		layout.marginHeight = 5;
-		layout.marginWidth = 10;
-		layout.numColumns = 2;
-		banner.setLayout(layout);
-		
-		// setup bold font
-		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);    
-		
-		Label l = new Label(banner, SWT.WRAP);
-		l.setText("Cryptic element:");
-		l.setFont(boldFont);
-		crypticElementTextfield = new Text(banner, SWT.BORDER);
-		
-
-		l = new Label(banner, SWT.WRAP);
-		l.setText("Team list visible:");
-		l.setFont(boldFont);
-		teamListVisisbleCheckBox = new Button(banner, SWT.CHECK); 
-		
-		l = new Label(banner, SWT.WRAP);
-		l.setText("Work item list visible:");
-		l.setFont(boldFont);
-		workItemsVisibleCheckBox = new Button(banner, SWT.CHECK); 
-		
-		l = new Label(banner, SWT.WRAP);
-		l.setText("Bug container:");
-		
-		projectsTableViewer = new ProjectsTableViewer(parent);
+//		Composite banner = new Composite(parent, SWT.NONE);
+//		banner.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_BEGINNING, true, false));
+//		layout = new GridLayout();
+//		layout.marginHeight = 5;
+//		layout.marginWidth = 10;
+//		layout.numColumns = 2;
+//		banner.setLayout(layout);
+	    
+	    projectsTableViewer = new ProjectsTableViewer(parent);
 		projectsTableViewer.refreshView();
+		projectsTableViewer.getTable().setLayoutData(data);
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				ProjectSpace pSpace = (ProjectSpace) e.item.getData();
-				configEntityId = pSpace.getProjectId().getId();
-				System.out.println("WorkTeamItems: " + e.item.getData().toString());	
+				currentProjectSpace = pSpace;
+				loadSettings();
 			}
 			
 			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
+		
+		// setup bold font
+		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);
+		
+		data = new GridData();
+		data.horizontalAlignment = SWT.FILL;
+	
+		Composite c = new Composite(parent, SWT.BORDER);
+		GridLayout g = new GridLayout();
+		g.numColumns = 2;
+		c.setLayoutData(data);
+		c.setLayout(g);
+		
+		Label l = new Label(c, SWT.WRAP);
+		l.setText("Cryptic element:");
+		l.setFont(boldFont);
+		crypticElementTextfield = new Text(c, SWT.BORDER);
+		data = new GridData();
+		data.horizontalAlignment = SWT.FILL;
+		crypticElementTextfield.setLayoutData(data);
+		
+		l = new Label(c, SWT.WRAP);
+		l.setText("Team list visible:");
+		l.setFont(boldFont);
+		teamListVisisbleCheckBox = new Button(c, SWT.CHECK); 
+		
+		l = new Label(c, SWT.WRAP);
+		l.setText("Work item list visible:");
+		l.setFont(boldFont);
+		workItemsVisibleCheckBox = new Button(c, SWT.CHECK); 
 	}
 	
 	@Override
-	public AbstractConfigEntity getConfigEntity() {
-		
-		if (bugContainer == null) {
-			MessageDialog.openInformation(
-					Display.getDefault().getActiveShell(),
-					"Bugcontainer missing",
-					"You didn't selected any bug container.");
-			return null;
-		}
-		
-		cfgEntity = new WorkTeamItemsConfigEntity(configEntityId);
-		cfgEntity.setBugContainer(bugContainer.getModelElementId().toString());
+	public ConfigEntity getConfigEntity() {
+		cfgEntity = new WorkTeamItemsConfigEntity();
+		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
 		cfgEntity.setCrypticElement(crypticElementTextfield.getText());
 		cfgEntity.setTeamListVisible(teamListVisisbleCheckBox.getSelection());
 		cfgEntity.setWorkItemsVisible(workItemsVisibleCheckBox.getSelection());
 
 		return cfgEntity;
+	}
+
+	@Override
+	public String getConfigFilename() {
+		if (currentProjectSpace == null) {
+			return  WorkTeamItemsConfigEntity.class.getCanonicalName();
+		} else {
+			return currentProjectSpace.getProjectName() + "." + WorkTeamItemsConfigEntity.class.getCanonicalName(); 
+		}
+	}
+
+
+
+	@Override
+	public void loadSettings() {
+		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(
+				getConfigFilename(), new WorkTeamItemsConfigEntity().eClass());
+		
+		// TODO: eliminate code redundancy
+		if (cfgEntity != null) {
+			String crypticElement = (String) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.CRYPTIC_ELEMENT_KEY);
+			Boolean teamListVisible = (Boolean) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.TEAMLIST_KEY);
+			Boolean workItemsVisible = (Boolean) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.WORKITEMLIST_KEY);
+			teamListVisisbleCheckBox.setSelection(teamListVisible);
+			workItemsVisibleCheckBox.setSelection(workItemsVisible);
+			crypticElementTextfield.setText(crypticElement);
+		} else {
+			teamListVisisbleCheckBox.setSelection(false);
+			workItemsVisibleCheckBox.setSelection(false);
+			crypticElementTextfield.setText("");
+		}
 	}
 }

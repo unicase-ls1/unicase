@@ -1,57 +1,44 @@
 package org.unicase.rap.status.config;
 
-import org.unicase.rap.config.AbstractConfigEntity;
+import config.impl.ConfigEntityImpl;
 
-public class WorkTeamItemsConfigEntity extends AbstractConfigEntity {
+public class WorkTeamItemsConfigEntity extends ConfigEntityImpl {
 	
-	public WorkTeamItemsConfigEntity(String id) {
-		super(id);
-	}
-
-	protected String id;
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1726480282495024383L;
 	
-	private static final String CRYPTIC_ELEMENT_KEY = "CRYPTIC_ELEMENT";
-	private static final String BUG_CONTAINER_KEY = "BUG_CONTAINER";
-	private static final String TEAMLIST_KEY = "TEAMLIST";
-	private static final String WORKITEMLIST_KEY = "WORKITEMLIST";
+	
+	public class Keys {
+		public static final String CRYPTIC_ELEMENT_KEY = "CRYPTIC_ELEMENT";
+		public static final String TEAMLIST_KEY = "TEAMLIST";
+		public static final String WORKITEMLIST_KEY = "WORKITEMLIST";
+	}
 	
 	public void setCrypticElement(String crypticElement) {
-		properties.put(CRYPTIC_ELEMENT_KEY, crypticElement);
+		getProperties().put(Keys.CRYPTIC_ELEMENT_KEY, crypticElement);
 	}
 
 	public String getCrypticElement() {
-		return (String) properties.get(CRYPTIC_ELEMENT_KEY);
-	}
-
-	// TODO: parameter should be of type ModelElement of similiar
-	public void setBugContainer(Object bugContainer) {
-		properties.put(BUG_CONTAINER_KEY, bugContainer);
-	}
-
-	public Object getBugContainer() {
-		return properties.get(BUG_CONTAINER_KEY);
+		return (String) getProperties().get(Keys.CRYPTIC_ELEMENT_KEY);
 	}
 
 	public void setTeamListVisible(boolean teamListVisible) {
-		properties.put(TEAMLIST_KEY, new Boolean(teamListVisible).toString());
+		getProperties().put(Keys.TEAMLIST_KEY, new Boolean(teamListVisible));
 	}
 
 	public boolean isTeamListVisible() {
-		Boolean b = (Boolean) properties.get(TEAMLIST_KEY);
+		Boolean b = (Boolean) getProperties().get(Keys.TEAMLIST_KEY);
 		return b.booleanValue();
 	}
 
 	public void setWorkItemsVisible(boolean workItemsListVisible) {
-		properties.put(WORKITEMLIST_KEY, new Boolean(workItemsListVisible).toString());
+		getProperties().put(Keys.WORKITEMLIST_KEY, new Boolean(workItemsListVisible));
 	}
 
 	public boolean isWorkItemsVisible() {
-		Boolean b = (Boolean) properties.get(WORKITEMLIST_KEY);
+		Boolean b = (Boolean) getProperties().get(Keys.WORKITEMLIST_KEY);
 		return b.booleanValue();
 	}
 }
