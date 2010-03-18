@@ -15,7 +15,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.bugreport.SelectWorkPackageDialog;
 import org.unicase.rap.bugreport.config.BugReportingConfigEntity.Keys;
 import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.ui.ProjectsTableViewer;
+import org.unicase.rap.ui.viewers.ProjectsTableViewer;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
