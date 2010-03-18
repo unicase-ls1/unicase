@@ -1,0 +1,41 @@
+#summary Documentation of ECP
+
+If you a new to ECP, try the [EMFStoreGettingStarted Getting-Started-Path]. It will guide you through the documentation to get started.
+
+All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE channel]. You can enlarge the video and switch to HD for a better quality on !YouTube. To do this click into the video while it is running embedded in this website, this will open the video on !YouTube, where you can change the resolution and maximize to full screen.
+
+Video Tutorials:
+
+ * [InstallEMFStore Install EMFStore Framework]
+
+ * [PrepareModelTutorial Prepare Model for EMFStore]
+
+ * [RunEMFStoreWithCustomModel Run EMFStore with a custom model]
+
+ * [CreateCustomClientTutorial Create a custom client for EMFStore]
+
+
+Additional Tutorials:
+
+ * [CheckoutTutorial Checkout UNICASE code from SVN]
+ 
+ * [RunServerTutorial Run UNICASE EMFStore as a developer]
+
+ * [RunClientTutorial Run UNICASE Client as a developer]
+
+ * [SetupProjectTutorial Setup a project for EMFStore server]
+
+
+Documentation:
+
+ * [Coding_Guidelines Coding Guidelines]
+
+ * [ModelingGuidelines Modeling Guidelines]
+
+ * [Model_API_Usage_Guidelines Model API Usage Guidelines]
+
+
+
+
+*Important Note*:
+We know that this documentation is only a first start and we are still working on extending the documentation. Your feedback is important to us so we can know where we need to improve and extend the existing documentation. If you have any suggestions or questions please do not hesitate to [EMFStoreCommunication contact us].
