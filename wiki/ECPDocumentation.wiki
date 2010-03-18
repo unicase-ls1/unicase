@@ -12,6 +12,8 @@ Video Tutorials:
 
  * [ExtendECPEditor How to extens the Editor by replacing and customizing Controls]
 
+ * [AddNewTabsToEditor How to add new tabs to the editor]
+
 
 Additional Tutorials:
 
