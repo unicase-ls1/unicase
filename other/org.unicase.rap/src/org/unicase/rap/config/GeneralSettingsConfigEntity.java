@@ -1,5 +1,6 @@
 package org.unicase.rap.config;
 
+import config.impl.ConfigEntityImpl;
 
 /**
  * Config entity for generel settings.
@@ -7,13 +8,15 @@ package org.unicase.rap.config;
  * @author emueller
  *
  */
-public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
+public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
 
-	private static final String ADMIN_USER_NAME = "ADMIN_USER_NAME";
-	private static final String ADMIN_PASSWORD = "ADMIN_PASSWORD";
-
-	public GeneralSettingsConfigEntity(String id) {
-		super(id);
+	public class Keys {
+		public static final String ADMIN_USER_NAME_KEY = "ADMIN_USER_NAME";
+		public static final String ADMIN_PASSWORD_KEY = "ADMIN_PASSWORD";
+	}
+	
+	public GeneralSettingsConfigEntity() {
+		super();
 	}
 
 	/**
@@ -22,7 +25,7 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 	 * @param username The username of the admin user
 	 */
 	public void setAdminUsername(String username) {
-		properties.put(ADMIN_USER_NAME, username);
+		getProperties().put(Keys.ADMIN_USER_NAME_KEY, username);
 	}
 
 	/**
@@ -31,7 +34,7 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 	 * @return
 	 */
 	public String getAdminUsername() {
-		return (String) properties.get(ADMIN_USER_NAME);
+		return (String) getProperties().get(Keys.ADMIN_USER_NAME_KEY);
 	}
 
 	/**
@@ -40,7 +43,7 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 	 * @param password The username of the admin user
 	 */
 	public void setAdminPassword(String password) {
-		properties.put(ADMIN_PASSWORD, password);
+		getProperties().put(Keys.ADMIN_PASSWORD_KEY, password);
 	}
 
 	/**
@@ -50,6 +53,6 @@ public class GeneralSettingsConfigEntity extends AbstractConfigEntity {
 	 */
 	// TODO: encryption
 	public String getAdminPassword() {
-		return (String) properties.get(ADMIN_PASSWORD);
+		return (String) getProperties().get(Keys.ADMIN_PASSWORD_KEY);
 	}
 }
