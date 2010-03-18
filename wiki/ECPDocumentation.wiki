@@ -6,6 +6,8 @@ All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/T
 
 Video Tutorials:
 
+ * [ How to prepare the model for ECP (analogously to EMFStore]
+
  * [CoreFeaturesECP Demonstration of the core fetaures of ECP]
 
  * [ArrangeAttributesInECP Arrange Attributes in ECP Editor]
