@@ -46,7 +46,7 @@ public class CanCutPasteCombiTester extends PropertyTester {
 	 */
 	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 
-		if (property.equals("canPaste")) {
+		if (property.equals("canPaste") && receiver instanceof org.eclipse.jface.viewers.TreeSelection) {
 
 			clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 			transferable = clipboard.getContents(null);
@@ -85,7 +85,7 @@ public class CanCutPasteCombiTester extends PropertyTester {
 				}
 			}
 
-		} else if (property.equals("canCut")) {
+		} else if (property.equals("canCut") && receiver instanceof org.eclipse.jface.viewers.TreeSelection) {
 			if ((((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof UnicaseModelElement)
 				&& !(((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof CompositeSection)) {
 				return true;
