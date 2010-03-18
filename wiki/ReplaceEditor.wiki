@@ -1,0 +1,2 @@
+#summary How to replace the editor
+<wiki:video url="http://www.youtube.com/watch?v=cR8nLDRrVc4"/>
