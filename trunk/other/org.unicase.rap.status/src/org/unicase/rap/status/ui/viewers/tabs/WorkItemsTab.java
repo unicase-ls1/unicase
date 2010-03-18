@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui.tabs;
+package org.unicase.rap.status.ui.viewers.tabs;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
@@ -26,11 +25,11 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.rap.status.ui.WorkItemsTableViewer;
-import org.unicase.rap.status.ui.filters.BlockedItemsViewFilter;
-import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
-import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
-import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.filters.BlockedItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.filters.ClosedItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.filters.OpenItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.filters.ResolvedItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.WorkItemsTableViewer;
 import org.unicase.rap.ui.views.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 

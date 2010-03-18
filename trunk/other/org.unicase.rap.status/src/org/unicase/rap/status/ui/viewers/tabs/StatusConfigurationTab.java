@@ -1,6 +1,5 @@
-package org.unicase.rap.status.ui.tabs;
+package org.unicase.rap.status.ui.viewers.tabs;
 
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -10,13 +9,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ui.ProjectsTableViewer;
-import org.unicase.rap.status.config.WorkTeamItemsConfigEntity;
+import org.unicase.rap.status.config.StatusConfigEntity;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
@@ -25,7 +22,7 @@ import config.ConfigEntity;
 /**
  * 
  */
-public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
+public class StatusConfigurationTab extends ConfigurationTabView {
 
 	/**
 	 * The table viewer for projects.
@@ -35,7 +32,7 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	/**
 	 * The config entity used by the configuration tab
 	 */
-	WorkTeamItemsConfigEntity cfgEntity;
+	StatusConfigEntity cfgEntity;
 	
 	private Text crypticElementTextfield;
 	
@@ -53,7 +50,7 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	/**
 	 * Initializes a new instance of the WorkTeamItemsConfigurationTab class.
 	 */
-	public WorkTeamItemsConfigurationTab() {
+	public StatusConfigurationTab() {
 	}
 
 	
@@ -152,7 +149,7 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	
 	@Override
 	public ConfigEntity getConfigEntity() {
-		cfgEntity = new WorkTeamItemsConfigEntity();
+		cfgEntity = new StatusConfigEntity();
 		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
 		cfgEntity.setCrypticElement(crypticElementTextfield.getText());
 		cfgEntity.setTeamListVisible(teamListVisisbleCheckBox.getSelection());
@@ -164,9 +161,9 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	@Override
 	public String getConfigFilename() {
 		if (currentProjectSpace == null) {
-			return  WorkTeamItemsConfigEntity.class.getCanonicalName();
+			return  StatusConfigEntity.class.getCanonicalName();
 		} else {
-			return currentProjectSpace.getProjectName() + "." + WorkTeamItemsConfigEntity.class.getCanonicalName(); 
+			return currentProjectSpace.getProjectName() + "." + StatusConfigEntity.class.getCanonicalName(); 
 		}
 	}
 
@@ -175,13 +172,13 @@ public class WorkTeamItemsConfigurationTab extends ConfigurationTabView {
 	@Override
 	public void loadSettings() {
 		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(
-				getConfigFilename(), new WorkTeamItemsConfigEntity().eClass());
+				getConfigFilename(), new StatusConfigEntity().eClass());
 		
 		// TODO: eliminate code redundancy
 		if (cfgEntity != null) {
-			String crypticElement = (String) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.CRYPTIC_ELEMENT_KEY);
-			Boolean teamListVisible = (Boolean) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.TEAMLIST_KEY);
-			Boolean workItemsVisible = (Boolean) cfgEntity.getProperties().get(WorkTeamItemsConfigEntity.Keys.WORKITEMLIST_KEY);
+			String crypticElement = (String) cfgEntity.getProperties().get(StatusConfigEntity.Keys.CRYPTIC_ELEMENT_KEY);
+			Boolean teamListVisible = (Boolean) cfgEntity.getProperties().get(StatusConfigEntity.Keys.TEAMLIST_KEY);
+			Boolean workItemsVisible = (Boolean) cfgEntity.getProperties().get(StatusConfigEntity.Keys.WORKITEMLIST_KEY);
 			teamListVisisbleCheckBox.setSelection(teamListVisible);
 			workItemsVisibleCheckBox.setSelection(workItemsVisible);
 			crypticElementTextfield.setText(crypticElement);

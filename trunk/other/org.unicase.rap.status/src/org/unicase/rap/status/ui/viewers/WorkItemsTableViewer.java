@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui;
+package org.unicase.rap.status.ui.viewers;
 
 import java.util.ArrayList;
 import java.util.Iterator;

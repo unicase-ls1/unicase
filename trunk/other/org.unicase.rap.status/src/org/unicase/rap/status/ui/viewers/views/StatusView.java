@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui.views;
+package org.unicase.rap.status.ui.viewers.views;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.rwt.graphics.Graphics;
@@ -10,8 +10,8 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.rap.status.ui.tabs.TeamListTab;
-import org.unicase.rap.status.ui.tabs.WorkItemsTab;
+import org.unicase.rap.status.ui.viewers.tabs.TeamListTab;
+import org.unicase.rap.status.ui.viewers.tabs.WorkItemsTab;
 import org.unicase.rap.ui.views.ProjectAwareView;
 
 public class StatusView extends ProjectAwareView {
