@@ -146,6 +146,9 @@ public final class CodetraceUtil {
 	private static Project getActiveProject() {
 		final ProjectSpace ps = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getActiveProjectSpace();
+		if(ps == null) {
+			return null;
+		}
 		if (ps.getProject() != null) {
 			return ps.getProject();
 		} else {
@@ -159,8 +162,17 @@ public final class CodetraceUtil {
 	 * @return the chosen model element
 	 */
 	public static UnicaseModelElement showChooseMEForCodeLocationDialog() {
+		Project p = getActiveProject();
+		if(p == null){
+			MessageDialog.openError(
+				PlatformUI.getWorkbench().
+				getActiveWorkbenchWindow().getShell(),
+				"Error",
+				"No unicase project is active at the moment. \n Please open a unicase project and try again.");
+			return null;
+		}
 		ChooseModelElementDialog cmed = new ChooseModelElementDialog(
-				getActiveProject(), "Choose Model Element for code location!");
+				p, "Choose Model Element for code location!");
 		if (cmed.open() == Window.OK) {
 			Object[] result = cmed.getResult();
 

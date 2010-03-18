@@ -31,7 +31,7 @@
 	point= "org.eclipse.ui.ide.markerImageProviders">
 	<imageprovider 
 		markertype= "org.unicase.taskmarker"
-		icon= "icons/bullet_purple.png"
+		icon= "icons/unicase.png"
 		id= "org.unicase.codetrace.NewAction" >
 	</imageprovider>
 
@@ -47,10 +47,10 @@
       		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
       		targetID="#CompilationUnitRulerContext">
       	<action
-      		class="org.unicase.codetrace.popup.actions.AttachLocationAction"
+      		class="org.unicase.codetrace.popup.actions.AttachCodeLocationActionDelegate"
     		id="org.unicase.codetrace.action1"
-   			label="Link Source Code"
-   	 		icon="icons/bullet_purple.png"
+   			label="Link Source Code to Unicase"
+   	 		icon="icons/unicase.png"
    			menubarPath="additions" >
   		</action>
 	</viewerContribution>
@@ -96,9 +96,10 @@
               visible="true">
       	 </separator>
        <command
-	          commandId="org.unicase.trace.findCodeLocation"
-	          label="Get to the code location"
-	          style="push">
+             commandId="org.unicase.trace.findCodeLocation"
+             icon="icons/CodeLocation.png"
+             label="Get to the code location"
+             style="push">
 	       <visibleWhen
 	             checkEnabled="false">
 	          <iterate
