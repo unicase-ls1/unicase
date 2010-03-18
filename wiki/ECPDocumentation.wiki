@@ -1,6 +1,6 @@
 #summary Documentation of ECP
 
-If you a new to ECP, try the [EMFStoreGettingStarted Getting-Started-Path]. It will guide you through the documentation to get started.
+If you a new to ECP, try the [ECPGettingStarted Getting-Started-Path]. It will guide you through the documentation to get started.
 
 All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE channel]. You can enlarge the video and switch to HD for a better quality on !YouTube. To do this click into the video while it is running embedded in this website, this will open the video on !YouTube, where you can change the resolution and maximize to full screen.
 
