@@ -173,7 +173,27 @@ public final class PasteHandler extends AbstractHandler {
 			}
 		} else if (target instanceof ProjectSpace) {
 			psTarget = (ProjectSpace) target;
-			System.out.print("Paste on ProjectSpace detected. Not possible yet, sorry.");
+			System.out.println("Paste attempt in ProjectSpace detected. Not possible yet, sorry.");
+			try {
+				meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
+					org.unicase.metamodel.ModelElement.class, "ModelElement"));
+				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
+					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
+			} catch (UnsupportedFlavorException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				handle.end("Paste attempt in ProjectSpace", "Paste attempt in ProjectSpace",
+					((UnicaseModelElement) meSource).getModelElementId());
+				clipboard.setContents(new StringSelection(""), null);
+				System.out.println("Paste Operation finished. CompositeOperation finished.");
+				refreshDecorator();
+			} catch (InvalidHandleException e) {
+				e.printStackTrace();
+				System.out.println("ERROR paste: there was no begun cut action.");
+			}
 
 		}
 	}
