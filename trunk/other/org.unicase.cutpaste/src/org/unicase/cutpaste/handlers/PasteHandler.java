@@ -29,6 +29,7 @@ import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentService;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -39,6 +40,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -51,6 +53,8 @@ import org.unicase.workspace.util.UnicaseCommand;
 public final class PasteHandler extends AbstractHandler {
 
 	private ModelElement meSource, meTarget;
+	private ProjectSpace psTarget;
+	private Object target; // Since Target can also be a ProjectSpace which is not a ME
 	private CompositeOperationHandle handle;
 	private Clipboard clipboard;
 	private Transferable transferable;
@@ -65,93 +69,113 @@ public final class PasteHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		meTarget = ActionHelper.getModelElement(event);
-
-		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		transferable = clipboard.getContents(null);
+		target = ActionHelper.getModelElement(event);
+		if (target == null) {
+			target = ActionHelper.getProjectSpace(event);
+		}
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				paste(meTarget);
+				paste(target);
 			}
 		}.run();
 
 		return null;
 	}
 
-	private void paste(final ModelElement meTarget) {
+	private void paste(final Object target) {
 
-		try { // get data from clipboard
-			meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
-				org.unicase.metamodel.ModelElement.class, "ModelElement"));
-			handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
-				org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
+		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		transferable = clipboard.getContents(null);
 
-			// Save old ME data before changing
-			prevLocation = ((UnicaseModelElement) ((UnicaseModelElement) meSource).getContainerModelElement())
-				.getName();
-			prevLocationType = (((UnicaseModelElement) meSource).getContainerModelElement()).eClass().getName();
+		if (target instanceof ModelElement) {
+			meTarget = (ModelElement) target;
 
-			// paste implements AllowedCutPaste-v2.txt, can also be found in this package
+			try { // get data from clipboard
+				meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
+					org.unicase.metamodel.ModelElement.class, "ModelElement"));
+				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
+					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
 
-			if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement) {
-				((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
-			} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
-				((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
-			} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
-				((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
-			} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
-				((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
-			} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
-				genericPaste(meTarget, meSource);
-			} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
-				genericPaste(meTarget, meSource);
-			} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
-				((ComponentService) meSource).setOfferingComponent((Component) meTarget);
-			} else if (meTarget instanceof org.unicase.model.classes.Package) {
-				if (meSource instanceof org.unicase.model.classes.Class) {
-					((org.unicase.model.classes.Class) meSource)
-						.setParentPackage((org.unicase.model.classes.Package) meTarget);
-				} else if (meSource instanceof org.unicase.model.classes.Package) {
-					((org.unicase.model.classes.Package) meSource)
-						.setParentPackage((org.unicase.model.classes.Package) meTarget);
+				// Save old ME data before changing
+				if (((UnicaseModelElement) meSource).getContainerModelElement() instanceof UnicaseModelElement) {
+					prevLocation = ((UnicaseModelElement) ((UnicaseModelElement) meSource).getContainerModelElement())
+						.getName();
+					prevLocationType = (((UnicaseModelElement) meSource).getContainerModelElement()).eClass().getName();
 				}
-			} else if (meTarget instanceof org.unicase.model.classes.Class) {
-				if (meSource instanceof Method) {
-					((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
 
-				} else if (meSource instanceof Attribute) {
-					((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+				// paste implements AllowedCutPaste-v3.txt, can also be found in this package
+
+				if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
+					&& !(meSource instanceof CompositeSection)) {
+					((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
+				} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
+					((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
+				} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
+					((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
+				} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
+					((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
+				} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
+					genericPaste(meTarget, meSource);
+				} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
+					genericPaste(meTarget, meSource);
+				} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
+					((ComponentService) meSource).setOfferingComponent((Component) meTarget);
+				} else if (meTarget instanceof org.unicase.model.classes.Package) {
+					if (meSource instanceof org.unicase.model.classes.Class) {
+						((org.unicase.model.classes.Class) meSource)
+							.setParentPackage((org.unicase.model.classes.Package) meTarget);
+					} else if (meSource instanceof org.unicase.model.classes.Package) {
+						((org.unicase.model.classes.Package) meSource)
+							.setParentPackage((org.unicase.model.classes.Package) meTarget);
+					}
+				} else if (meTarget instanceof org.unicase.model.classes.Class) {
+					if (meSource instanceof Method) {
+						((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+
+					} else if (meSource instanceof Attribute) {
+						((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+					}
+				} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
+					genericPaste(meTarget, meSource);
+				} else if (meTarget instanceof CompositeSection) {
+					if (meSource instanceof CompositeSection) {
+						genericPaste(meTarget, meSource);
+					} else if (meSource instanceof LeafSection) {
+						genericPaste(meTarget, meSource);
+					}
+				} else {
+					System.out.println("Cannot paste into type: " + meTarget.getClass());
 				}
-			} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
-				genericPaste(meTarget, meSource);
-			} else {
-				System.out.println("Cannot paste into type: " + meTarget.getClass());
-			}
 
-			// end CompositeOperation, clear clipboard
-			try {
-				handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
-					+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
-					+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName()
-					+ "\"", ((UnicaseModelElement) meSource).getModelElementId());
-				clipboard.setContents(new StringSelection(""), null);
-				System.out.println("Paste Operation finished. CompositeOperation finished.");
-				refreshDecorator();
-			} catch (InvalidHandleException e) {
+				// end CompositeOperation, clear clipboard
+				try {
+					handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+						+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \""
+						+ prevLocation + "\" to " + meTarget.eClass().getName() + " \""
+						+ ((UnicaseModelElement) meTarget).getName() + "\"", ((UnicaseModelElement) meSource)
+						.getModelElementId());
+					clipboard.setContents(new StringSelection(""), null);
+					System.out.println("Paste Operation finished. CompositeOperation finished.");
+					refreshDecorator();
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+					System.out.println("ERROR paste: there was no begun cut action.");
+				}
+
+			} catch (UnsupportedFlavorException e) {
 				e.printStackTrace();
-				System.out.println("ERROR paste: there was no begun cut action.");
+				// flavor could not be provided (clipboard empty/corrupted?). actually the
+				// propertytester should prevent this and thus this exception should never be thrown.
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+		} else if (target instanceof ProjectSpace) {
+			psTarget = (ProjectSpace) target;
+			System.out.print("Paste on ProjectSpace detected. Not possible yet, sorry.");
 
-		} catch (UnsupportedFlavorException e) {
-			e.printStackTrace();
-			// flavor could not be provided (clipboard empty/corrupted?). actually the
-			// propertytester should prevent this and thus this exception should never be thrown.
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-
 	}
 
 	@SuppressWarnings("unchecked")

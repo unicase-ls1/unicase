@@ -1,7 +1,7 @@
 Target :(canHold) Source
 =======================
 
-(LeafSection) : (UnicaseModelElement)
+(LeafSection) : {(UnicaseModelElement), !(CompositeSection)}
 
 (UnicaseModelElement) : (Comment)
 
@@ -21,4 +21,8 @@ Target :(canHold) Source
 
 (Method) : (MethodArgument)
 
-thus minimum complexity is: |list| = 22
+(CompositeSection) : {(CompositeSection),(LeafSection)}
+
+(Project) : (CompositeSection)
+
+thus minimum complexity is: |list| = 28
