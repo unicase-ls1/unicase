@@ -8,7 +8,7 @@ Video Tutorials:
 
  * [PrepareModelTutorial How to prepare the model for ECP (analogously to EMFStore)]
 
- * [CoreFeaturesECP Demonstration of the core fetaures of ECP]
+ * [CoreFeaturesECP Demonstration of the core features of ECP]
 
  * [ArrangeAttributesInECP Arrange Attributes in ECP Editor]
 
