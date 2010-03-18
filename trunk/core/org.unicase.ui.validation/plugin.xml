@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension-point id="org.unicase.ui.validation.filters" name="The validation filter extension point" schema="schema/org.unicase.ui.validation.filter.exsd"/>
+ <extension-point id="org.unicase.ui.validation.refactorings" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
+	<extension
+         point="org.eclipse.ui.views">
+		<view
+        category="org.unicase"
+        class="org.unicase.ui.validation.ValidationView"
+        icon="icons/validation.png"
+        id="org.unicase.ui.validation.validationView"
+        name="Validation View"
+        restorable="true">
+		</view>
+	</extension>
+ <extension
+       point="org.eclipse.emf.validation.validationListeners">
+    <listener
+          class="org.unicase.ui.validation.ValidationListener">
+       <clientContext
+             id="context">
+       </clientContext>
+    </listener>
+ </extension>
+</plugin>
+
