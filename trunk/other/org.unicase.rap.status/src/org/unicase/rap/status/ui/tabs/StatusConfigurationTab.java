@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.ui.ProjectsTableViewer;
 import org.unicase.rap.status.config.StatusConfigEntity;
+import org.unicase.rap.ui.viewers.ProjectsTableViewer;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
