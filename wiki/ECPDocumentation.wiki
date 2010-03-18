@@ -6,28 +6,17 @@ All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/T
 
 Video Tutorials:
 
- * [PrepareModelTutorial How to prepare the model for ECP (analogously to EMFStore)]
-
  * [CoreFeaturesECP Demonstration of the core features of ECP]
 
  * [ArrangeAttributesInECP Arrange Attributes in ECP Editor]
 
- * [ExtendECPEditor How to extens the Editor by replacing and customizing Controls]
+ * [ExtendECPEditor How to extend the Editor by replacing and customizing Controls]
 
  * [AddNewTabsToEditor How to add new tabs to the editor]
 
  * [ReplaceEditor How to replace the Editor]
 
-
-Additional Tutorials:
-
- * [CheckoutTutorial Checkout UNICASE code from SVN]
- 
- * [RunServerTutorial Run UNICASE EMFStore as a developer]
-
- * [RunClientTutorial Run UNICASE Client as a developer]
-
- * [SetupProjectTutorial Setup a project for EMFStore server]
+ * [PrepareModelTutorial How to prepare the model for ECP (analogously to EMFStore)]
 
 
 Documentation:
@@ -42,4 +31,4 @@ Documentation:
 
 
 *Important Note*:
-We know that this documentation is only a first start and we are still working on extending the documentation. Your feedback is important to us so we can know where we need to improve and extend the existing documentation. If you have any suggestions or questions please do not hesitate to [EMFStoreCommunication contact us].
+We know that this documentation is only a first start and we are still working on extending the documentation. 
