@@ -1,4 +1,5 @@
 - CyclomaticComplexity Warning
+- Implement paste CompositeSection in ProjectSpace
 - rethink activation of CanCutPasteCombiTester
 - rethink canCut/Paste recognition methods for more elegant solution
 

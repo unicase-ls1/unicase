@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Method;
@@ -29,6 +30,7 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * This property tester checks if the paste handler is active.
@@ -51,43 +53,61 @@ public class CanCutPasteCombiTester extends PropertyTester {
 			clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 			transferable = clipboard.getContents(null);
 
-			if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ModelElement
-				&& transferable.isDataFlavorSupported(new DataFlavor(org.unicase.metamodel.ModelElement.class,
-					"ModelElement"))
+			if (transferable.isDataFlavorSupported(new DataFlavor(org.unicase.metamodel.ModelElement.class,
+				"ModelElement"))
 				&& transferable.isDataFlavorSupported(new DataFlavor(
 					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"))) {
 
-				meTarget = (ModelElement) ((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement();
+				if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ModelElement) {
 
-				try {
-					meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
-						org.unicase.metamodel.ModelElement.class, "ModelElement"));
+					meTarget = (ModelElement) ((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement();
 
-					if ((meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement)
-						|| (meTarget instanceof UnicaseModelElement && meSource instanceof Comment)
-						|| (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement)
-						|| (meTarget instanceof WorkPackage && meSource instanceof WorkItem)
-						|| (meTarget instanceof Meeting && meSource instanceof MeetingSection)
-						|| (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection)
-						|| (meTarget instanceof Component && meSource instanceof ComponentService)
-						|| (meTarget instanceof org.unicase.model.classes.Package && (meSource instanceof org.unicase.model.classes.Class || meSource instanceof org.unicase.model.classes.Package))
-						|| (meTarget instanceof org.unicase.model.classes.Class && (meSource instanceof Method) || (meSource instanceof Attribute))
-						|| (meTarget instanceof Method && meSource instanceof MethodArgument)) {
+					try {
+						meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
+							org.unicase.metamodel.ModelElement.class, "ModelElement"));
 
-						return true;
+						if ((meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement && !(meSource instanceof CompositeSection))
+							|| (meTarget instanceof UnicaseModelElement && meSource instanceof Comment)
+							|| (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement)
+							|| (meTarget instanceof WorkPackage && meSource instanceof WorkItem)
+							|| (meTarget instanceof Meeting && meSource instanceof MeetingSection)
+							|| (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection)
+							|| (meTarget instanceof Component && meSource instanceof ComponentService)
+							|| (meTarget instanceof org.unicase.model.classes.Package && (meSource instanceof org.unicase.model.classes.Class || meSource instanceof org.unicase.model.classes.Package))
+							|| (meTarget instanceof org.unicase.model.classes.Class && (meSource instanceof Method || meSource instanceof Attribute))
+							|| (meTarget instanceof Method && meSource instanceof MethodArgument)
+							|| (meTarget instanceof CompositeSection && (meSource instanceof CompositeSection || meSource instanceof LeafSection))
+							|| (meTarget instanceof Project && meSource instanceof CompositeSection)) {
 
+							return true;
+
+						}
+					} catch (UnsupportedFlavorException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 
-				} catch (UnsupportedFlavorException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} else if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ProjectSpace) {
+
+					try {
+						meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
+							org.unicase.metamodel.ModelElement.class, "ModelElement"));
+
+						if (meSource instanceof CompositeSection) {
+							return true;
+						}
+					} catch (UnsupportedFlavorException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+
 			}
 
 		} else if (property.equals("canCut") && receiver instanceof org.eclipse.jface.viewers.TreeSelection) {
-			if ((((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof UnicaseModelElement)
-				&& !(((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof CompositeSection)) {
+			if ((((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof UnicaseModelElement)) {
 				return true;
 			}
 		}
