@@ -21,15 +21,6 @@
                style="push">
          </command>
       </menuContribution>
-      <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.cutpaste.authorspy">
-         <command
-               commandId="org.unicase.cutpaste.containerspy"
-               icon="icons/briefcase.png"
-               label="Lookup container element"
-               style="push">
-         </command>
-      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -40,10 +31,6 @@
       <command
             id="org.unicase.cutpaste.paste"
             name="paste">
-      </command>
-      <command
-            id="org.unicase.cutpaste.containerspy"
-            name="containerspy">
       </command>
    </extension>
    <extension
@@ -64,7 +51,7 @@
             class="org.unicase.cutpaste.handlers.PasteHandler"
             commandId="org.unicase.cutpaste.paste">
          <activeWhen>
-         	<with variable="activeMenu">
+         	<with variable="selection">
             <test
                   forcePluginActivation="true"
                   property="org.unicase.cutpaste.testers.canPaste">
@@ -72,24 +59,6 @@
             </with>
          </activeWhen>
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.ui.bindings">
-      <key
-            commandId="org.unicase.cutpaste.cut"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+DEL">
-      </key>
-      <key
-            commandId="org.unicase.cutpaste.paste"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+INSERT">
-      </key>
-      <key
-            commandId="org.unicase.cutpaste.containerspy"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+#">
-      </key>
    </extension>
    <extension
          point="org.eclipse.ui.decorators">
@@ -105,7 +74,7 @@
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
             class="org.unicase.cutpaste.stuff.CanCutPasteCombiTester"
-            id="org.uorg.unicase.cutpaste.testers.canCutPasteCombiTester"          namespace="org.unicase.cutpaste.testers"
+            id="org.unicase.cutpaste.testers.canCutPasteCombiTester"          namespace="org.unicase.cutpaste.testers"
             properties="canPaste, canCut"          type="java.lang.Object">
       </propertyTester>
    </extension>
