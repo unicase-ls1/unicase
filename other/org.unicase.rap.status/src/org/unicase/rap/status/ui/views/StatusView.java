@@ -22,7 +22,7 @@ import org.unicase.rap.ui.views.ProjectAwareView;
  */
 public class StatusView extends ProjectAwareView {
 	
-	public static final String ID = "org.unicase.rap.status.ui.StatusView";
+	public static final String ID = "org.unicase.rap.status.ui.views.StatusView";
 	
 	/**
 	 * Tab that holds an overview of workitems and their status.
