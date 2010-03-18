@@ -15,9 +15,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.rap.config.AbstractConfigEntity;
 import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.GeneralSettingsConfigEntity;
 import org.unicase.rap.config.IValidator;
+
+import config.ConfigEntity;
 
 /**
  * This class represents a tab in the configuration view.
@@ -121,7 +123,7 @@ public abstract class ConfigurationTabView {
 	 * 
 	 * @param parent
 	 */
-	protected abstract void createTab(Composite parent);
+	public abstract void createTab(Composite parent);
 
 	public void setTabName(String tabName) {
 		this.tabName = tabName;
@@ -142,12 +144,12 @@ public abstract class ConfigurationTabView {
 	}
 
 	public void saveConfigEntity() {
-		AbstractConfigEntity cfgEntity = getConfigEntity();
+		ConfigEntity cfgEntity = getConfigEntity();
 		if (cfgEntity != null) {
-			String filename = new File(SAVE_PATH).getAbsolutePath() 
-				+ File.separatorChar + "org.unicase.rap.config." +
-				cfgEntity.getId();
-			ConfigEntityStore.getInstance().saveEntity(cfgEntity, filename);
+//			String filename = new File(SAVE_PATH).getAbsolutePath() 
+//				+ File.separatorChar + "org.unicase.rap.config." +
+//				cfgEntity.getIdentifier();
+			ConfigEntityStore.getInstance().saveEntity(cfgEntity);
 		}
 	}
 	
@@ -163,5 +165,16 @@ public abstract class ConfigurationTabView {
 	 * Returs the config entity that needs to be saved
 	 * @return The config entity to be saved
 	 */
-	public abstract AbstractConfigEntity getConfigEntity();
+	public abstract ConfigEntity getConfigEntity();
+	
+	/**
+	 * Returns the name of the configuration file that is used to store configuration settings.
+	 * @return
+	 */
+	public abstract String getConfigFilename();
+	
+	/**
+	 * Loads 
+	 */
+	public abstract void loadSettings();
 }
