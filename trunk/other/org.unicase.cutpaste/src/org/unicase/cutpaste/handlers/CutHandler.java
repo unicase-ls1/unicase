@@ -78,7 +78,7 @@ public final class CutHandler extends AbstractHandler {
 				org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
 
 			try {
-				System.out.println("Try to abort old CompositeOperation.");
+				System.out.println("Try to end old CompositeOperation.");
 				if (handle.isValid()) {
 					handle.end("Aborted Cut Operation", "Aborted Cut Operation", ((UnicaseModelElement) meClipboard)
 						.getModelElementId());
