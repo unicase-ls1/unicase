@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.rap.status.ui.views.StatusView"
+            class="org.unicase.rap.status.ui.viewers.views.StatusView"
             id="org.unicase.rap.status.ui.WorkTeamItemsView"
             name="Work-/Team Items"
             restorable="true">
@@ -13,7 +13,7 @@
    <extension
          point="org.unicase.rap.ui.view">
       <view
-            class="org.unicase.rap.status.ui.views.StatusView"
+            class="org.unicase.rap.status.ui.viewers.views.StatusView"
             name="StatusView"
             url="status">
       </view>
@@ -21,7 +21,7 @@
    <extension
          point="org.unicase.rap.ui.config.tab">
       <config
-            class="org.unicase.rap.status.ui.tabs.WorkTeamItemsConfigurationTab"
+            class="org.unicase.rap.status.ui.viewers.tabs.StatusConfigurationTab"
             name="Work-/Team Items ">
       </config>
    </extension>
