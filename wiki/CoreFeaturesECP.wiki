@@ -1,2 +1,2 @@
 #summary The core features of ECP
-<wiki:video url="http://www.youtube.com/user/TutorialsForUNICASE?feature=mhw4#p/u/2/OA4hh2Vkebc"/>
+<wiki:video url="http://www.youtube.com/watch?v=OA4hh2Vkebc""/>
