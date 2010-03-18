@@ -6,13 +6,9 @@ All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/T
 
 Video Tutorials:
 
- * [InstallEMFStore Install EMFStore Framework]
+ * [CoreFeaturesECP Demonstration of the core fetaures of ECP]
 
- * [PrepareModelTutorial Prepare Model for EMFStore]
-
- * [RunEMFStoreWithCustomModel Run EMFStore with a custom model]
-
- * [CreateCustomClientTutorial Create a custom client for EMFStore]
+ * [ArrangeAttributesInECP Arrange Attributes in ECP Editor]
 
 
 Additional Tutorials:
