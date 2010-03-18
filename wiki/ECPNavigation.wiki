@@ -13,3 +13,5 @@
    * [ECPArchitecture Architecture]
    * [ECPBuild Build and Release]
 </wiki:comment>
+
+More information and news also available on our  [http://twitter.com/emfcp ECP Twitter].
