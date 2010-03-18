@@ -1,2 +1,2 @@
-#summary One-sentence summary of this page.
-[ArrangeAttributesInECP Arrange Attributes in ECP Editor]
+#summary Extend the Editor by replacing Controls.
+<wiki:video url="http://www.youtube.com/watch?v=2RxSVJfUbyM"/>
