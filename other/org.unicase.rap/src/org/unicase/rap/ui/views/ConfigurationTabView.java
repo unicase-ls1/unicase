@@ -1,6 +1,5 @@
 package org.unicase.rap.ui.views;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.GeneralSettingsConfigEntity;
 import org.unicase.rap.config.IValidator;
 
 import config.ConfigEntity;

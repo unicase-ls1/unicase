@@ -1,4 +1,4 @@
-package org.unicase.rap.config.ui;
+package org.unicase.rap.ui.viewers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,11 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.CellEditor.LayoutData;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.rap.ui.views.AbstractETableViewer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 

@@ -1,7 +1,5 @@
 package org.unicase.rap.ui.views;
 
-import java.util.HashMap;
-
 import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -9,7 +7,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * An project independent view with tabs.
+ * An project independent view with multiple tabs.
  * 
  * @author emueller
  *
@@ -17,12 +15,6 @@ import org.eclipse.swt.widgets.Composite;
 public abstract class AbstractTabView extends AbstractView {
 	
 	private CTabFolder tabFolder;
-	
-	/**
-	 *  Contains all tabs, that should be shown in the configuration view 
-	 */
-	protected static HashMap<String, ConfigurationTabView> tabs = 
-		new HashMap<String, ConfigurationTabView>();
 	
 	/**
 	 * Ensures minimum tab height.
@@ -59,14 +51,4 @@ public abstract class AbstractTabView extends AbstractView {
 
 	
 	protected abstract void createTabs(Composite parent);		
-	
-	/**
-	 * Add an additional tab to the configuration view.
-	 * @param tabName The name of the tab that will be used when displaying the tab.
-	 * @param configTab The tab itself
-	 */
-	public static void addConfigurationTab(String tabName, 
-			ConfigurationTabView configTab) {
-		tabs.put(tabName, configTab);
-	}
 }
