@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui.viewers.filters;
+package org.unicase.rap.status.ui.filters;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
