@@ -1,0 +1,17 @@
+#summary Downloads and Update Site of the EMF Client Platform (ECP)
+
+This site contains releases and nightly builds of the ECP. Currently there are only nightly builds.
+
+==Nightly builds==
+
+The ECP features can be installed from this update site:
+
+[http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
+
+==Releases==
+
+*There are currently no releases available at the moment, but there will a release on April 1st.*
+
+Soon the ECP features can be installed from this update site:
+
+[http://unicase.googlecode.com/svn/updatesite/ecp http://unicase.googlecode.com/svn/updatesite/ecp]
