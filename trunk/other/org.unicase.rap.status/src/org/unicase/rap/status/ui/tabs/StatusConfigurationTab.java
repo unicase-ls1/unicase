@@ -1,4 +1,4 @@
-package org.unicase.rap.status.ui.viewers.tabs;
+package org.unicase.rap.status.ui.tabs;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
