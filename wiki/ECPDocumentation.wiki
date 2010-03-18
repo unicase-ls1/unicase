@@ -14,6 +14,8 @@ Video Tutorials:
 
  * [AddNewTabsToEditor How to add new tabs to the editor]
 
+ * [ReplaceEditor How to replace the Editor]
+
 
 Additional Tutorials:
 
