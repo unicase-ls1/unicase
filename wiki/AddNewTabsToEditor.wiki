@@ -1,0 +1,2 @@
+#summary How to add new Tabs to the Editor
+<wiki:video url="http://www.youtube.com/watch?v=jw9cLEUs3gk"/>
