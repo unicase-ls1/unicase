@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp"
       label="EMF Client Platform"
-      version="1.0.0.qualifier"
+      version="0.5.7.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -217,7 +217,7 @@ litigation.
    </license>
 
    <includes
-         id="edu.tum.cs.cope.runtime.feature"
+         id="org.unicase.emfstore.client.ui"
          version="0.0.0"/>
 
    <requires>
@@ -244,76 +244,7 @@ litigation.
    </requires>
 
    <plugin
-         id="org.unicase.metamodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.metamodel.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.meeditor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.navigator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace.ui"
+         id="org.unicase.ui.validation"
          download-size="0"
          install-size="0"
          version="0.0.0"
