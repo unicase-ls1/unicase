@@ -13,12 +13,16 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.bugreport.SelectWorkPackageDialog;
-import org.unicase.rap.config.AbstractConfigEntity;
+import org.unicase.rap.bugreport.config.BugReportingConfigEntity.Keys;
+import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ui.ProjectsTableViewer;
 import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
+import config.ConfigEntity;
+
 public class BugReportConfigTab extends ConfigurationTabView {
+	
 	
 	private BugReportingConfigEntity cfgEntity;
 	
@@ -41,7 +45,7 @@ public class BugReportConfigTab extends ConfigurationTabView {
 	/**
 	 * The current bug container.
 	 */
-	WorkPackage currentBugContainer;
+	String currentBugContainerId;
 	
 	
 	public BugReportConfigTab() {
@@ -49,7 +53,7 @@ public class BugReportConfigTab extends ConfigurationTabView {
 	}
 	
 	@Override
-	protected void createTab(Composite parent) {
+	public void createTab(Composite parent) {
 		
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 1;
@@ -113,6 +117,8 @@ public class BugReportConfigTab extends ConfigurationTabView {
 				ProjectSpace projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
 				currentlySelectedProject.setText("Selected project: " + projectSpace.getProjectName());
 				btSelectBugContainer.setEnabled(true);
+				currentProjectSpace = projectSpace;
+				loadSettings();
 			}
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -130,8 +136,8 @@ public class BugReportConfigTab extends ConfigurationTabView {
 				
 				if (dlg.open() == Window.OK) {
 					WorkPackage workPackage = (WorkPackage) dlg.getFirstResult();
-					currentBugContainer = workPackage;
-					bugContainerIdTextField.setText(currentBugContainer.getIdentifier());
+					currentBugContainerId = workPackage.getIdentifier();
+					bugContainerIdTextField.setText(currentBugContainerId);
 				}
 			
 			}
@@ -139,11 +145,32 @@ public class BugReportConfigTab extends ConfigurationTabView {
 	}
 
 	@Override
-	public AbstractConfigEntity getConfigEntity() {
-		cfgEntity = new BugReportingConfigEntity(currentProjectSpace.getProjectName());
-		// TODO
-		cfgEntity.setBugContainerId(currentBugContainer.getIdentifier());
+	public ConfigEntity getConfigEntity() {
+		cfgEntity = new BugReportingConfigEntity();
+		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
+		cfgEntity.setBugContainerId(currentBugContainerId);
 		return cfgEntity;
 	}
 
+	@Override
+	public void loadSettings() {
+		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(
+				getConfigFilename(), new BugReportingConfigEntity().eClass());
+		
+		if (cfgEntity != null) {
+			currentBugContainerId = (String) cfgEntity.getProperties().get(Keys.BUG_CONTAINER);
+			bugContainerIdTextField.setText(currentBugContainerId);
+		} else {
+			bugContainerIdTextField.setText("");
+		}
+	}
+
+	@Override
+	public String getConfigFilename() {
+		if (currentProjectSpace == null) {
+			return BugReportingConfigEntity.class.getCanonicalName();
+		} else {
+			return currentProjectSpace.getProjectName() + "." + BugReportingConfigEntity.class.getCanonicalName(); 
+		}
+	}
 }
