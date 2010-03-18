@@ -6,8 +6,10 @@
 package org.unicase.codetrace.popup.actions;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.source.IVerticalRulerInfo;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorInput;
@@ -15,6 +17,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
+import org.eclipse.ui.texteditor.ITextEditor;
 import org.unicase.codetrace.AttachLocationCommand;
 import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.codetrace.tracer.LocationFinder;
@@ -31,29 +34,37 @@ import org.unicase.model.trace.CodeLocation;
  * 
  *
  */
-public class AttachLocationAction implements IEditorActionDelegate {
+public class AttachLocationAction extends Action {
 
 	private IEditorPart editorPart;
 
+	private ITextEditor editor;
+	private IVerticalRulerInfo rulerInfo;
+	public AttachLocationAction(ITextEditor editor, IVerticalRulerInfo rulerInfo){
+		this.editor = editor;
+		this.rulerInfo = rulerInfo;
+	}
 
 	/**
 	 * @see IActionDelegate#run(IAction)
 	 * @param action ignore
 	 */
-	public void run(IAction action) {
-
-		IEditorInput editorInput = editorPart.getEditorInput();
-		ISelection selection = ((AbstractTextEditor) editorPart)
-				.getSelectionProvider().getSelection();
-
-		IResource resource = ResourceUtil.getResource(editorInput);
-		int lineNumber = ((ITextSelection) selection).getStartLine();
-		LocationFinder tf = LocationFinder.getInstance();
-		UnicaseModelElement m = CodetraceUtil.showChooseMEForCodeLocationDialog();
-		CodeLocation tl = tf.createLocation(resource.getProject().getName(),
-				resource.getProjectRelativePath().toString(), lineNumber + 1);
-		
-		new AttachLocationCommand(m,tl).run();
+	@Override
+	public void run() {
+		System.out.println("RUN");
+//		
+//		IEditorInput editorInput = editorPart.getEditorInput();
+//		ISelection selection = ((AbstractTextEditor) editorPart)
+//				.getSelectionProvider().getSelection();
+//		((AbstractTextEditor) editorPart).
+//		IResource resource = ResourceUtil.getResource(editorInput);
+//		int lineNumber = ((ITextSelection) selection).getStartLine();
+//		LocationFinder tf = LocationFinder.getInstance();
+//		UnicaseModelElement m = CodetraceUtil.showChooseMEForCodeLocationDialog();
+//		CodeLocation tl = tf.createLocation(resource.getProject().getName(),
+//				resource.getProjectRelativePath().toString(), lineNumber + 1);
+//		
+//		new AttachLocationCommand(m,tl).run();
 
 	}
 
