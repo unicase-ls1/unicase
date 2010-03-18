@@ -19,6 +19,12 @@ import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.rap.ui.views.AbstractETableViewer;
 
+/**
+ * Viewer class for workitems.
+ * 
+ * @author emueller
+ *
+ */
 public class WorkItemsTableViewer extends AbstractETableViewer {
 
 	public WorkItemsTableViewer(Composite composite) {

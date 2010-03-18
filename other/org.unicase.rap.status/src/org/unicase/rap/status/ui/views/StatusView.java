@@ -14,12 +14,26 @@ import org.unicase.rap.status.ui.tabs.TeamListTab;
 import org.unicase.rap.status.ui.tabs.WorkItemsTab;
 import org.unicase.rap.ui.views.ProjectAwareView;
 
+/**
+ * Project specific status view that contains an overview of team members and work items.
+ * 
+ * @author emueller
+ *
+ */
 public class StatusView extends ProjectAwareView {
 	
-	public static final String ID = "org.unicase.rap.status.ui.WorkTeamItemsView";
+	public static final String ID = "org.unicase.rap.status.ui.StatusView";
 	
+	/**
+	 * Tab that holds an overview of workitems and their status.
+	 */
 	private WorkItemsTab workItemsTab;
+	
+	/**
+	 * Tab that holds an overview of team members.
+	 */
 	private TeamListTab teamListTab;
+	
 	private CTabFolder tabFolder;
 	
 	public StatusView() {
@@ -38,11 +52,17 @@ public class StatusView extends ProjectAwareView {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getId() {
 		return ID;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
@@ -62,34 +82,48 @@ public class StatusView extends ProjectAwareView {
 		tabFolder.setSelection(0);
 		tabFolder.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent evt) {
-				int index = tabFolder.getSelectionIndex();
-		
+//				int index = tabFolder.getSelectionIndex();
 			}
 		});
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setFocus() {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		workItemsTab.refreshInput();
 		teamListTab.refreshInput();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void modelElementDeleteCompleted(Project project,
 			ModelElement modelElement) {
 		workItemsTab.refreshInput();
 		teamListTab.refreshInput();		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void modelElementDeleteStarted(Project project,
 			ModelElement modelElement) {
 		workItemsTab.refreshInput();
 		teamListTab.refreshInput();		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
 		workItemsTab.refreshInput();

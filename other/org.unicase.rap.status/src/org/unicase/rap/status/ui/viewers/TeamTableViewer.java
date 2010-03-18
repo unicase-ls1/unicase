@@ -18,6 +18,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
 /**
+ * Viewer class for team members.
  * 
  * @author Edgar Mueller
  * @author Fatih Ulusoy
