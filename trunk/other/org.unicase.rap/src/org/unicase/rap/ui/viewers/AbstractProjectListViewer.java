@@ -1,4 +1,4 @@
-package org.unicase.rap.ui.tabs;
+package org.unicase.rap.ui.viewers;
 
 import java.util.ArrayList;
 
@@ -8,14 +8,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.rap.ui.views.AbstractETableViewer;
 import org.unicase.workspace.ProjectSpace;
 
-public abstract class AbstractProjectListView extends AbstractETableViewer implements ProjectChangeObserver {
+public abstract class AbstractProjectListViewer extends AbstractETableViewer implements ProjectChangeObserver {
 	
 	private ProjectSpace projectSpace;
 
-	public AbstractProjectListView(ProjectSpace projectSpace, Composite parent) {
+	public AbstractProjectListViewer(ProjectSpace projectSpace, Composite parent) {
 		super(parent);
 		this.projectSpace = projectSpace;
 	}

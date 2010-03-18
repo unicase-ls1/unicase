@@ -73,5 +73,20 @@
             name="UNICASE Web Theme">
       </theme>
    </extension>
+   <extension
+         point="org.unicase.rap.ui.view">
+      <view
+            class="org.unicase.rap.ui.views.ConfigurationView"
+            name="Configuration view"
+            url="config">
+      </view>
+   </extension>
+   <extension
+         point="org.unicase.rap.ui.config.tab">
+      <config
+            class="org.unicase.rap.ui.tabs.GeneralSettingsTab"
+            name="General settings">
+      </config>
+   </extension>
 
 </plugin>

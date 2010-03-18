@@ -1,4 +1,4 @@
-package org.unicase.rap.ui.views;
+package org.unicase.rap.ui.viewers;
 
 import java.util.ArrayList;
 import java.util.Collection;

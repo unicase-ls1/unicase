@@ -17,7 +17,11 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	protected ProjectSpace projectSpace;
 	
 	public ProjectAwareView() {
-		
+		String projectName = getHttpRequest().getParameter("name");
+		if (projectName != null) {
+			resolveProject(projectName);
+			getProject().addProjectChangeObserver(this);
+		}
 	}
 	
 	public void setProjectSpace(ProjectSpace projectSpace) {
@@ -30,15 +34,6 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	
 	public Project getProject() {
 		return projectSpace.getProject();
-	}
-	
-	public void init() {
-		// TODO: connect parameter to 
-		String projectName = getHttpRequest().getParameter("name");
-		if (projectName != null) {
-			resolveProject(projectName);
-			getProject().addProjectChangeObserver(this);
-		}
 	}
 	
 	// TODO: 
