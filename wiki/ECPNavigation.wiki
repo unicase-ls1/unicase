@@ -6,10 +6,12 @@
 
    * [ECPGettingStarted Getting Started with the ECP]
 
-   * [ECPArchitecture Architecture]
-
-   * [ECPBuild Build and Release]
-
    * [ECPDownloads Downloads]
 
    * [ECPDocumentation Documentation and Tutorials]
+
+<wiki:comment>
+   * [ECPArchitecture Architecture]
+   * [ECPBuild Build and Release]
+</wiki:comment>
+
