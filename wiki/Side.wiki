@@ -9,6 +9,7 @@ Sub-projects:
  * [ECPNavigation EMF Client Platform (ECP)]
    * [ECP What is the ECP?]
    * [ECPFeatures Why should I use the ECP?]
+   * [ECPDocumentation Documentation and Tutorials]
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
    * [Architecture Architecture]
