@@ -7,7 +7,7 @@ Target :(canHold) Source
 
 (FunctionalRequirement) : (FunctionalRequirement)
 
-(Workpackage) : (WorkItem)
+(WorkPackage) : (WorkItem)
 
 (Meeting) : (MeetingSection)
 
@@ -20,3 +20,5 @@ Target :(canHold) Source
 (Class) : {(Method),(Attribute)}
 
 (Method) : (MethodArgument)
+
+thus minimum complexity is: |list| = 22
