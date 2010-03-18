@@ -10,6 +10,8 @@ Video Tutorials:
 
  * [ArrangeAttributesInECP Arrange Attributes in ECP Editor]
 
+ * [ExtendECPEditor How to extens the Editor by replacing and customizing Controls]
+
 
 Additional Tutorials:
 
