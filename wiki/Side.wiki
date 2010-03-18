@@ -11,6 +11,7 @@ Sub-projects:
    * [ECPFeatures Why should I use the ECP?]
    * [ECPDownloads Downloads]
    * [ECPDocumentation Documentation and Tutorials]
+   * [http://twitter.com/emfcp ECP Twitter].
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
    * [Architecture Architecture]
