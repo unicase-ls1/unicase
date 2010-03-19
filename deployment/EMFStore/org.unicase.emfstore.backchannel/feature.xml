@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.backchannel"
       label="EMFStore Backchannel"
-      version="0.5.5.nightly"
+      version="0.5.8.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
