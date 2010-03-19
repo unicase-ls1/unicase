@@ -3,10 +3,10 @@
    <description name="EMF Client Platform (ECP) Update Site" url="http://unicase.googlecode.com/svn/updatesite/ecp">
       Update Site for the EMF Client Platform. Provides Features to build a EMF-based application from an Ecore model.
    </description>
-   <feature url="features/org.unicase.emfstore.server_0.5.7.nightly.jar" id="org.unicase.emfstore.server" version="0.5.7.nightly">
+   <feature url="features/org.unicase.emfstore.server_0.5.8.nightly.jar" id="org.unicase.emfstore.server" version="0.5.8.nightly">
       <category name="org.unicase.ecp"/>
    </feature>
-   <feature url="features/org.unicase.ecp_0.5.7.nightly.jar" id="org.unicase.ecp" version="0.5.7.nightly">
+   <feature url="features/org.unicase.ecp_0.5.8.nightly.jar" id="org.unicase.ecp" version="0.5.8.nightly">
       <category name="org.unicase.ecp"/>
    </feature>
    <category-def name="org.unicase.ecp" label="EMF Client Platform">
