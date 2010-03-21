@@ -11,12 +11,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * The EcoreLoader to load ecore files in Unicase.
@@ -36,12 +46,13 @@ public final class EcoreLoader extends AbstractHandler {
 	public static final String[] FILTER_EXTS = { "*.ecore", "*.*" };
 
 	/**
-	 * Executes the cut command.
+	 * Executes the EcoreLoader.
 	 * 
 	 * @param event The MouseClick Event
 	 * @return null
 	 * @throws ExecutionException ExecutionException
 	 */
+	@SuppressWarnings("null")
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		final String absoluteFileName = showOpenFileDialog();
@@ -58,10 +69,60 @@ public final class EcoreLoader extends AbstractHandler {
 		try {
 			reader.readLine(); // btw, equals approx reader.skip(41);
 			if (reader.readLine().substring(1, 6).equals("ecore")) { // now thats my first ugly hack - or is it?
-				System.out.println("Looks like you loaded a valid ecore File.");
+				System.out.println("Looks like you loaded a valid ecore File." + '\n');
 			} else {
 				System.out.println("ERROR no valid ecore File.");
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// maybe an alternative:
+		// org.eclipse.emf.ecore.xmi.util.XMLProcessor p = new org.eclipse.emf.ecore.xmi.util.XMLProcessor();
+
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder theDocBuilder = dbf.newDocumentBuilder();
+			File file = new File(absoluteFileName);
+			if (file.exists()) {
+				Document doc = theDocBuilder.parse(file);
+				Element eDoc = doc.getDocumentElement();
+
+				System.out.println("Root element: " + eDoc.getNodeName() + '\n');
+
+				NodeList eClassifiersList = eDoc.getElementsByTagName("eClassifiers");
+
+				System.out.println("Number of Elements detected: " + eClassifiersList.getLength() + '\n');
+
+				if (eClassifiersList != null && eClassifiersList.getLength() > 0) {
+
+					for (int i = 0; i < eClassifiersList.getLength(); i++) {
+
+						Node node = eClassifiersList.item(i);
+						System.out.print("Detected new Element "
+							+ node.getAttributes().getNamedItem("name").getNodeValue());
+
+						if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+							Element e = (Element) node;
+							NodeList nodeList = e.getElementsByTagName("eStructuralFeatures");
+							System.out.println(" has " + nodeList.getLength() + " attributes:");
+
+							for (int j = 0; j < nodeList.getLength(); j++) {
+
+								NamedNodeMap map = nodeList.item(j).getAttributes();
+								System.out.print("  " + map.getNamedItem("name").getNodeValue() + "  ");
+
+							}
+							System.out.println('\n');
+						}
+					}
+				}
+			}
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
