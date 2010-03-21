@@ -13,6 +13,15 @@
       <handler
             class="org.unicase.ecoreloader.handlers.EcoreLoader"
             commandId="org.unicase.loadecorefile">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.unicase.ecoreLoader.testers.allowedLocation">
+               </test>
+            </with>
+         </activeWhen>
       </handler>
    </extension>
    <extension
@@ -21,10 +30,21 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?before=org.unicase.ui.common.deleteModelelement">
          <command
                commandId="org.unicase.loadecorefile"
+               icon="icons/xhtml_add.png"
                label="Load Ecore"
                style="push">
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.ecoreloader.testers.EcoreLoaderTester"
+            id="org.unicase.ecoreLoader.ecoreLoaderTester"
+            namespace="org.unicase.ecoreLoader.testers"
+            properties="allowedLocation"
+            type="java.lang.Object">
+      </propertyTester>
    </extension>
 
 </plugin>
