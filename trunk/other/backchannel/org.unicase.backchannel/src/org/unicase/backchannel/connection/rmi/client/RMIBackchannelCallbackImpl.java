@@ -33,7 +33,7 @@ public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
 	 */
 	protected RMIBackchannelCallbackImpl(EMFStoreEventListener listener)
 			throws RemoteException {
-		super();
+		super(2002);
 		this.listener = listener;
 	}
 

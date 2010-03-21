@@ -34,7 +34,7 @@ public class RMIBackchannelImpl extends UnicastRemoteObject implements
 	 */
 	protected RMIBackchannelImpl(BackchannelInterface backchannel)
 			throws RemoteException {
-		super();
+		super(2001);
 		this.backchannel = backchannel;
 	}
 
