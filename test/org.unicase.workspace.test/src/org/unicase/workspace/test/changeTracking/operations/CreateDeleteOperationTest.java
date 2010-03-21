@@ -444,7 +444,7 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(solution.getModelElementId(), createDeleteOperation.getModelElementId());
 		assertEquals(solution.getModelElementId(), createDeleteOperation.getModelElement().getModelElementId());
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
-		assertEquals(1, subOperations.size());
+		assertEquals(2, subOperations.size());
 
 	}
 

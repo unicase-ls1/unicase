@@ -16,7 +16,7 @@ public class DemoBackchannelClient extends ProxyClient {
 
 	public void run() {
 		try {
-			loginServer("super", "super", "localhost", null, KeyStoreManager.DEFAULT_DEV_CERTIFICATE, 8443);
+			loginServer("super", "super", "localhost", null, KeyStoreManager.DEFAULT_DEV_CERTIFICATE, 8080);
 
 			BackchannelConnectionManager manager = new BackchannelConnectionManager();
 			manager.initConnection(getBackChannelServerInfo(), getSessionId());

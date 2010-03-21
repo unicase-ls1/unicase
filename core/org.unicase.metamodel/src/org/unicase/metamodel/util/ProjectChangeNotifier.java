@@ -158,7 +158,10 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			// this works only because the contains cache is not yet updated
 			if (!projectImpl.contains(modelElement)) {
 				newValue.eAdapters().add(this);
-				projectImpl.handleEMFModelElementAdded(projectImpl, (ModelElement) newValue);
+				for (ModelElement child: modelElement.getAllContainedModelElements()) {
+					child.eAdapters().add(this);
+				}
+				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
 			} else {
 				if (projectImpl.getModelElement(modelElement.getModelElementId()) != modelElement) {
 					throw new IllegalStateException("Two elements with the same id but different instance detected!");
