@@ -21,6 +21,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.model.classes.Package;
+import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -33,6 +37,9 @@ import org.xml.sax.SAXException;
  * 
  * @author weiglt
  */
+
+// Flo: geh erstmal davon aus dass da Klassen, Packages, Attribute und Operationen drin stehen
+
 public final class EcoreLoader extends AbstractHandler {
 
 	/**
@@ -55,7 +62,13 @@ public final class EcoreLoader extends AbstractHandler {
 	@SuppressWarnings("null")
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		assert (ActionHelper.getSelectedModelElement() instanceof LeafSection); // propertytester:
+		// org.unicase.ecoreLoader.testers.allowedLocation
+		final LeafSection leafsection = (LeafSection) ActionHelper.getSelectedModelElement();
+		final String packageName;
+
 		final String absoluteFileName = showOpenFileDialog();
+
 		if (absoluteFileName == null) {
 			System.out.println("Loading Error.");
 		}
@@ -84,23 +97,29 @@ public final class EcoreLoader extends AbstractHandler {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder theDocBuilder = dbf.newDocumentBuilder();
 			File file = new File(absoluteFileName);
+
 			if (file.exists()) {
 				Document doc = theDocBuilder.parse(file);
 				Element eDoc = doc.getDocumentElement();
 
 				System.out.println("Root element: " + eDoc.getNodeName() + '\n');
+				packageName = eDoc.getAttribute("name");
 
 				NodeList eClassifiersList = eDoc.getElementsByTagName("eClassifiers");
 
 				System.out.println("Number of Elements detected: " + eClassifiersList.getLength() + '\n');
+
+				final String[] packageElements = new String[eClassifiersList.getLength()];
+				final String[] packageElementNames = new String[eClassifiersList.getLength()];
 
 				if (eClassifiersList != null && eClassifiersList.getLength() > 0) {
 
 					for (int i = 0; i < eClassifiersList.getLength(); i++) {
 
 						Node node = eClassifiersList.item(i);
-						System.out.print("Detected new Element "
-							+ node.getAttributes().getNamedItem("name").getNodeValue());
+						packageElements[i] = node.getAttributes().getNamedItem("xsi:type").getNodeValue().substring(6);
+						packageElementNames[i] = node.getAttributes().getNamedItem("name").getNodeValue();
+						System.out.print("Detected new Element " + packageElements[i] + " " + packageElementNames[i]);
 
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -118,7 +137,24 @@ public final class EcoreLoader extends AbstractHandler {
 						}
 					}
 				}
+				new UnicaseCommand() {
+					@Override
+					protected void doRun() {
+						Package p = org.unicase.model.classes.ClassesFactory.eINSTANCE.createPackage();
+						p.setName(packageName);
+						leafsection.getModelElements().add(p);
+						for (int i = 0; i < packageElements.length; i++) {
+							if (packageElements[i].equals("EClass")) {
+								org.unicase.model.classes.Class c = org.unicase.model.classes.ClassesFactory.eINSTANCE
+									.createClass();
+								c.setName(packageElementNames[i]);
+								c.setParentPackage(p);
+							}
+						}
+					}
+				}.run();
 			}
+
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
