@@ -39,6 +39,7 @@ public class DemoBackchannelClient extends ProxyClient {
 							info.getProjectId());
 					System.out.println("registered listener at project: "+info.getName());
 				} catch (EmfStoreException e) {
+					System.out.println("Error while registring project: "+info.getName() + ", " + e.toString());					
 				}
 			}
 			
