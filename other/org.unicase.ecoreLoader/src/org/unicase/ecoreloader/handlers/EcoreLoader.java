@@ -64,7 +64,7 @@ public final class EcoreLoader extends AbstractHandler {
 	 * @return null
 	 * @throws ExecutionException ExecutionException
 	 */
-	@SuppressWarnings("null")
+
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		assert (ActionHelper.getSelectedModelElement() instanceof LeafSection); // propertytester:
