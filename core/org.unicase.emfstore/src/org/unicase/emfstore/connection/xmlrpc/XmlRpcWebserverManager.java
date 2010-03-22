@@ -47,11 +47,7 @@ public final class XmlRpcWebserverManager {
 		try {
 			tmp = Integer.valueOf(ServerConfiguration.getProperties().getProperty(ServerConfiguration.XML_RPC_PORT));
 		} catch (NumberFormatException e) {
-			if (ServerConfiguration.isReleaseVersion()) {
-				tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEFAULT);
-			} else {
-				tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEVELOPER_DEFAULT);
-			}
+			tmp = Integer.valueOf(ServerConfiguration.XML_RPC_PORT_DEFAULT);
 		}
 		port = tmp;
 	}
