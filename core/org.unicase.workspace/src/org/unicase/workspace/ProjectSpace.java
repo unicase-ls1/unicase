@@ -455,6 +455,16 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException;
 
 	/**
+	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
+	 * 
+	 * @return new base version
+	 * @throws EmfStoreException if commit fails <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	PrimaryVersionSpec commit() throws EmfStoreException;
+
+	/**
 	 * <!-- begin-user-doc --> Update the project to the head version.
 	 * 
 	 * @return the new base version
