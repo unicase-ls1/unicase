@@ -75,8 +75,8 @@ public class ConfigEntityStore {
 	public static void saveEntity(ConfigEntity entity) {
 		
 		String filePath = System.getProperty("user.home") + File.separatorChar + 
-			(entity.getAssociatedProjectIdentifier() == null ? "" : entity.getAssociatedProjectIdentifier()) + 
-					"." + entity.getClass().getCanonicalName();
+			(entity.getAssociatedProjectIdentifier() == null ? "" : entity.getAssociatedProjectIdentifier() + ".") 
+					+ entity.getClass().getCanonicalName();
 						
 		try {
 			ModelUtil.saveObjectToResource(entity, URI.createFileURI(filePath));
