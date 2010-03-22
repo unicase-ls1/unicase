@@ -92,6 +92,30 @@
            </command>
         </toolbar>
      </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.deleteModelelement">
+        <command
+              commandId="org.unicase.workspace.ui.validate"
+              icon="icons/validation.png"
+              label="Validate"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+     </menuContribution>
      
      
     

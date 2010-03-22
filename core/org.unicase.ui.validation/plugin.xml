@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
 	<extension-point id="org.unicase.ui.validation.filters" name="The validation filter extension point" schema="schema/org.unicase.ui.validation.filter.exsd"/>
- <extension-point id="org.unicase.ui.validation.refactorings" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
+ <extension-point id="org.unicase.ui.validation.refactoring.strategies" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
 	<extension
          point="org.eclipse.ui.views">
 		<view
@@ -24,4 +24,5 @@
     </listener>
  </extension>
 </plugin>
+
 

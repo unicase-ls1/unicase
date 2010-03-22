@@ -30,10 +30,17 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MenuDetectEvent;
+import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.metamodel.ModelElement;
@@ -48,6 +55,7 @@ import org.unicase.ui.validation.providers.SeverityLabelProvider;
 import org.unicase.ui.validation.providers.ValidationContentProvider;
 import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
 import org.unicase.ui.validation.providers.ValidationLableProvider;
+import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -120,6 +128,7 @@ public class ValidationView extends ViewPart {
 		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
 		menuManager.add(openFilterDialogAction);
 		hookDoubleClickAction();
+		hookLeftClickAction();
 	}
 
 	private void createTable() {
@@ -199,6 +208,58 @@ public class ValidationView extends ViewPart {
 			}
 
 		});
+	}
+
+	private void hookLeftClickAction() {
+		tableViewer.getTable().addMenuDetectListener(new MenuDetectListener() {
+
+			public void menuDetected(MenuDetectEvent e) {
+				Table table = (Table) e.getSource();
+				TableItem[] tableItems = table.getSelection();
+				final ArrayList<IConstraintStatus> stati = new ArrayList<IConstraintStatus>();
+				for(TableItem tableItem : tableItems) {
+					stati.add((IConstraintStatus) (tableItem.getData()));
+				}
+				Menu leftClickMenu = new Menu(shell, SWT.POP_UP);
+				MenuItem refactorMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+				refactorMenuItem.setText("Refactor the violation");
+				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell_go.png").createImage());
+				refactorMenuItem.addListener(SWT.Selection, new Listener() {
+
+					public void handleEvent(Event event) {
+						for(AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
+							refactoringStrategy.startRefactoring(shell);
+						}
+					}
+
+				});
+				leftClickMenu.setVisible(true);
+			}
+			
+		});
+	}
+
+	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(ArrayList<IConstraintStatus> stati) {
+		ArrayList<AbstractRefactoringStrategy> refactoringStrategies = new ArrayList<AbstractRefactoringStrategy>();
+		for(IConstraintStatus status: stati) {
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.unicase.ui.validation.refactoring.strategies");
+			for (IConfigurationElement element : config) {
+				try {
+					if(element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())){
+						final Object object = element.createExecutableExtension("strategy");
+						AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
+						strategy.setConstraintStatus(status);
+						strategy.setId(element.getAttribute("id"));
+						refactoringStrategies.add(strategy);
+					}
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		}
+		return refactoringStrategies;
 	}
 
 	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator,

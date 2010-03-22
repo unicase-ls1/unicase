@@ -13,11 +13,14 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ValidationClientSelector;
 import org.unicase.workspace.ProjectSpace;
@@ -36,35 +39,33 @@ public class ValidateHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ModelElement modelElement = ActionHelper.getModelElement(event);
-		if (modelElement != null) {
+		EObject toValidate = ActionHelper.getModelElement(event);
+		if (toValidate == null) {
+			ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+			if (projectSpace != null && projectSpace.getProject() != null) {
+				toValidate = projectSpace.getProject();
+			}
+		}
+		if (toValidate != null) {
+			final EObject validate = toValidate;
 			new UnicaseCommand() {
 
 				@Override
 				protected void doRun() {
-					validateWithoutCommand(modelElement);
+					validateWithoutCommand(validate);
 				}
-			}.run();
-		} else {
-			final ProjectSpace projectSpace = ActionHelper
-					.getProjectSpace(event);
-			new UnicaseCommand() {
 
-				@Override
-				protected void doRun() {
-					validateWithoutCommand(projectSpace);
-				}
 			}.run();
 		}
 		return null;
 	}
 
-	private void validateWithoutCommand(ModelElement modelElement) {
+	private void validateWithoutCommand(EObject object) {
 		ValidationClientSelector.setRunning(true);
 		IBatchValidator validator = (IBatchValidator) ModelValidationService
 				.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
-		IStatus status = validator.validate(modelElement);
+		IStatus status = validator.validate(object);
 		ValidationClientSelector.setRunning(false);
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IResource resource = workspace.getRoot();
@@ -88,35 +89,23 @@ public class ValidateHandler extends AbstractHandler {
 		}
 	}
 
-	private void validateWithoutCommand(ProjectSpace projectSpace) {
-		if (projectSpace == null || projectSpace.getProject() == null) {
-			return;
-		}
-		ValidationClientSelector.setRunning(true);
-		IBatchValidator validator = (IBatchValidator) ModelValidationService
-				.getInstance().newValidator(EvaluationMode.BATCH);
-		validator.setIncludeLiveConstraints(true);
-		IStatus status = validator.validate(projectSpace.getProject());
-		ValidationClientSelector.setRunning(false);
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IResource resource = workspace.getRoot();
-		try {
-			resource.deleteMarkers(markerType, true, 5);
-		} catch (CoreException e1) {
-			e1.printStackTrace();
-		}
-		if (status.isMultiStatus()) {
-			for (IStatus stat : status.getChildren()) {
-				try {
-					IMarker marker = resource.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: "
-							+ stat.getMessage());
-					marker.setAttribute(IMarker.SEVERITY,
-							IMarker.SEVERITY_WARNING);
-				} catch (CoreException e) {
-					e.printStackTrace();
+	@SuppressWarnings("unused")
+	private void getConstraintsFromExtensionPoint() {
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.validation.constraintProviders");
+		for (IConfigurationElement element : config) {
+			for (IConfigurationElement child : element.getChildren()) {
+				for (IConfigurationElement child2 : child.getChildren()) {
+					try {
+						AbstractModelConstraint constraint = (AbstractModelConstraint) child2
+								.createExecutableExtension("class");
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
+
 	}
 }

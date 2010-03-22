@@ -49,20 +49,27 @@
 
    <element name="refactoring">
       <complexType>
-         <attribute name="name" type="string" use="required">
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="refactoring" type="string" use="required">
+         <attribute name="applicableFor" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="strategy" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.ui.validation.refactoring.rules.RefactoringRule:"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy"/>
                </appinfo>
             </annotation>
          </attribute>
