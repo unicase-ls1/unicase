@@ -21,10 +21,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.model.classes.Attribute;
+import org.unicase.model.classes.Class;
 import org.unicase.model.classes.Package;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithParameterAndResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -85,6 +87,7 @@ public final class EcoreLoader extends AbstractHandler {
 				System.out.println("Looks like you loaded a valid ecore File." + '\n');
 			} else {
 				System.out.println("ERROR no valid ecore File.");
+				return null;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -109,50 +112,79 @@ public final class EcoreLoader extends AbstractHandler {
 
 				System.out.println("Number of Elements detected: " + eClassifiersList.getLength() + '\n');
 
-				final String[] packageElements = new String[eClassifiersList.getLength()];
-				final String[] packageElementNames = new String[eClassifiersList.getLength()];
+				Package p = null;
 
-				if (eClassifiersList != null && eClassifiersList.getLength() > 0) {
+				if (eClassifiersList != null && eClassifiersList.getLength() > 0) { // Create Package
 
-					for (int i = 0; i < eClassifiersList.getLength(); i++) {
+					p = new UnicaseCommandWithParameterAndResult<Package, Package>() {
+						@Override
+						protected Package doRun(Package p) {
+							p = org.unicase.model.classes.ClassesFactory.eINSTANCE.createPackage();
+							p.setName(packageName);
+							leafsection.getModelElements().add(p);
+							return p;
+						}
+					}.run(p);
 
-						Node node = eClassifiersList.item(i);
-						packageElements[i] = node.getAttributes().getNamedItem("xsi:type").getNodeValue().substring(6);
-						packageElementNames[i] = node.getAttributes().getNamedItem("name").getNodeValue();
-						System.out.print("Detected new Element " + packageElements[i] + " " + packageElementNames[i]);
+					for (int i = 0; i < eClassifiersList.getLength(); i++) { // Create Package Contents
 
-						if (node.getNodeType() == Node.ELEMENT_NODE) {
+						Node packageContent = eClassifiersList.item(i);
+						final String packageElement = packageContent.getAttributes().getNamedItem("xsi:type")
+							.getNodeValue().substring(6);
+						final String packageElementName = packageContent.getAttributes().getNamedItem("name")
+							.getNodeValue();
+						System.out.print("Detected new Element " + packageElement + " " + packageElementName);
 
-							Element e = (Element) node;
-							NodeList nodeList = e.getElementsByTagName("eStructuralFeatures");
-							System.out.println(" has " + nodeList.getLength() + " attributes:");
+						if (packageElement.equals("EClass")) {
+							Class c = new UnicaseCommandWithParameterAndResult<Class, Package>() {
+								@Override
+								protected Class doRun(Package p) {
+									Class c = null;
+									c = org.unicase.model.classes.ClassesFactory.eINSTANCE.createClass();
+									c.setName(packageElementName);
+									c.setParentPackage(p);
 
-							for (int j = 0; j < nodeList.getLength(); j++) {
+									return c;
+								}
+							}.run(p);
 
-								NamedNodeMap map = nodeList.item(j).getAttributes();
-								System.out.print("  " + map.getNamedItem("name").getNodeValue() + "  ");
+							if (packageContent.getNodeType() == Node.ELEMENT_NODE) {
 
+								Element e = (Element) packageContent;
+								NodeList eStructuralFeatureList = e.getElementsByTagName("eStructuralFeatures");
+								System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+
+								for (int j = 0; j < eStructuralFeatureList.getLength(); j++) { // Create Contents
+									// Attributes
+
+									NamedNodeMap map = eStructuralFeatureList.item(j).getAttributes();
+
+									final String contentElement = map.getNamedItem("xsi:type").getNodeValue()
+										.substring(6);
+									final String contentElementName = map.getNamedItem("name").getNodeValue();
+
+									System.out.print("  " + contentElement + contentElementName);
+
+									if (contentElement.equals("EAttribute")) {
+										Attribute a = new UnicaseCommandWithParameterAndResult<Attribute, Class>() {
+											@Override
+											protected Attribute doRun(Class c) {
+												Attribute a = null;
+												a = org.unicase.model.classes.ClassesFactory.eINSTANCE
+													.createAttribute();
+												a.setName(contentElementName);
+												a.setDefiningClass(c);
+												return a;
+											}
+										}.run(c);
+									}
+								}
+								System.out.println('\n');
 							}
-							System.out.println('\n');
 						}
 					}
 				}
-				new UnicaseCommand() {
-					@Override
-					protected void doRun() {
-						Package p = org.unicase.model.classes.ClassesFactory.eINSTANCE.createPackage();
-						p.setName(packageName);
-						leafsection.getModelElements().add(p);
-						for (int i = 0; i < packageElements.length; i++) {
-							if (packageElements[i].equals("EClass")) {
-								org.unicase.model.classes.Class c = org.unicase.model.classes.ClassesFactory.eINSTANCE
-									.createClass();
-								c.setName(packageElementNames[i]);
-								c.setParentPackage(p);
-							}
-						}
-					}
-				}.run();
+
 			}
 
 		} catch (ParserConfigurationException e) {

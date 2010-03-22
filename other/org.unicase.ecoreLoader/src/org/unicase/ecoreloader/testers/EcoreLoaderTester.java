@@ -9,7 +9,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.model.document.LeafSection;
 
 /**
- * This property tester provides various test cases for the cut and paste operation.
+ * The property tester for the EcoreLoader.
  * 
  * @author weiglt
  */
