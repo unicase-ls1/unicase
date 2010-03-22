@@ -2511,4 +2511,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
 		return fHandler;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#commit()
+	 */
+	public PrimaryVersionSpec commit() throws EmfStoreException {
+		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+		String commiter = "UNKOWN";
+		if (this.getUsersession().getACUser() != null && this.getUsersession().getACUser().getName() != null) {
+			commiter = this.getUsersession().getACUser().getName();
+		}
+		logMessage.setAuthor(commiter);
+		logMessage.setClientDate(new Date());
+		logMessage.setMessage("");
+		return commit(logMessage);
+	}
 } // ProjectContainerImpl
