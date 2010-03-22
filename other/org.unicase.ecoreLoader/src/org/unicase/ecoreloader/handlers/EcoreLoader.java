@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
+import org.unicase.model.classes.Enumeration;
 import org.unicase.model.classes.Method;
 import org.unicase.model.classes.Package;
 import org.unicase.model.document.LeafSection;
@@ -117,15 +118,8 @@ public final class EcoreLoader extends AbstractHandler {
 			System.out.println("Root element: " + root.getNodeName() + '\n');
 			packageName = root.getAttribute("name");
 
-			Package p = createPackage(leafsection, packageName);
-
-			Node temp = root.getFirstChild(), temp2 = temp;
-			do {
-				if (temp2.getNodeName().equals("eClassifiers")) {
-					resourceCreator(temp2, p);
-				}
-				temp2 = temp2.getNextSibling();
-			} while (!temp.isSameNode(temp2));
+			Package p = createMasterPackage(leafsection, packageName);
+			init(p, root);
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
@@ -137,20 +131,33 @@ public final class EcoreLoader extends AbstractHandler {
 		return null;
 	}
 
-	private void resourceCreator(Node n, Package p) {
+	private Object init(Package p, Node root) {
+		Node temp = root.getFirstChild(), temp2 = temp;
+		do {
+			if (temp2.getNodeName().equals("eClassifiers")) { // move this code to resourceCreator
+				resourceCreator(temp2, p);
+			} else if (temp2.getNodeName().equals("eSubpackages")) {
+				packageCreator(temp2, p);
+				// todo: init rekursiv
+			}
+			temp2 = temp2.getNextSibling();
+		} while (!temp.isSameNode(temp2));
+		return null;
+	}
 
-		Node packageContent = n;
-		final String packageElement = n.getAttributes().getNamedItem("xsi:type").getNodeValue().substring(6);
-		final String packageElementName = n.getAttributes().getNamedItem("name").getNodeValue();
+	private void resourceCreator(Node node, Package p) {
+
+		final String packageElement = node.getAttributes().getNamedItem("xsi:type").getNodeValue().substring(6);
+		final String packageElementName = node.getAttributes().getNamedItem("name").getNodeValue();
 		System.out.print("Detected new Element " + packageElement + " " + packageElementName);
 
 		if (packageElement.equals("EClass")) {
 
 			Class c = createClass(p, packageElementName);
 
-			if (packageContent.getNodeType() == Node.ELEMENT_NODE) {
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
 
-				Element e = (Element) packageContent;
+				Element e = (Element) node;
 				NodeList eStructuralFeatureList = e.getElementsByTagName("eStructuralFeatures");
 				System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
 
@@ -168,10 +175,51 @@ public final class EcoreLoader extends AbstractHandler {
 						createMethod(c, contentElementName);
 					}
 				}
-				System.out.println('\n');
+			}
+		}
+		if (packageElement.equals("EEnum")) {
+
+			@SuppressWarnings("unused")
+			Enumeration en = createEnumeration(p, packageElementName);
+
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+				Element e = (Element) node;
+				NodeList eStructuralFeatureList = e.getElementsByTagName("eStructuralFeatures");
+				System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+
+				for (int j = 0; j < eStructuralFeatureList.getLength(); j++) { // Create Attributes
+
+					NamedNodeMap map = eStructuralFeatureList.item(j).getAttributes();
+					final String contentElement = map.getNamedItem("xsi:type").getNodeValue().substring(6);
+					final String contentElementName = map.getNamedItem("name").getNodeValue();
+
+					System.out.print("  " + contentElement + contentElementName);
+				}
 			}
 		}
 
+	}
+
+	private Package packageCreator(final Node node, final Package pa) {
+		System.out.println("\'n'Attempting to create Subpackage");
+
+		final String packageElementName = node.getAttributes().getNamedItem("name").getNodeValue();
+		System.out.print("Detected new Element " + packageElementName);
+
+		Package p = null;
+		p = new UnicaseCommandWithParameterAndResult<Package, Package>() {
+
+			@Override
+			protected Package doRun(Package p) {
+				p = org.unicase.model.classes.ClassesFactory.eINSTANCE.createPackage();
+				p.setName(packageElementName);
+				p.setParentPackage(pa);
+				return p;
+			}
+		}.run(p);
+
+		return p;
 	}
 
 	private String showOpenFileDialog() {
@@ -188,7 +236,7 @@ public final class EcoreLoader extends AbstractHandler {
 		return file.getAbsolutePath();
 	}
 
-	private Package createPackage(final LeafSection leafsection, final String packageName) {
+	private Package createMasterPackage(final LeafSection leafsection, final String packageName) {
 		Package p = null;
 		p = new UnicaseCommandWithParameterAndResult<Package, Package>() {
 
@@ -215,6 +263,20 @@ public final class EcoreLoader extends AbstractHandler {
 			}
 		}.run(p);
 		return c;
+	}
+
+	private Enumeration createEnumeration(final Package p, final String packageElementName) {
+		Enumeration e = new UnicaseCommandWithParameterAndResult<Enumeration, Package>() {
+			@Override
+			protected Enumeration doRun(Package p) {
+				Enumeration e = null;
+				e = org.unicase.model.classes.ClassesFactory.eINSTANCE.createEnumeration();
+				e.setName(packageElementName);
+				e.setParentPackage(p);
+				return e;
+			}
+		}.run(p);
+		return e;
 	}
 
 	private Attribute createAttribute(final Class c, final String contentElementName) {
