@@ -44,7 +44,8 @@ import org.xml.sax.SAXException;
 
 // Flo: geh erstmal davon aus dass da Klassen, Packages, Attribute und Operationen drin stehen
 
-// note: Method seems not to be exported by "generate ecore"
+// note:
+// Method seems not to be exported by ecore-generator, use hacked example "hardcoreTestPackage.ecore" in this package
 
 public final class EcoreLoader extends AbstractHandler {
 
@@ -142,7 +143,7 @@ public final class EcoreLoader extends AbstractHandler {
 
 	private void traverse(Node n, Package p) {
 		if (hasTraversableSiblings(n)) {
-			if (n.getUserData(TRAVERSED) != null) { // analyzed node wasn't yet traversed
+			if (hasBeenTraversed(n)) {
 				traverse(n.getNextSibling(), p);
 			} else {
 				if (n.getNodeName().equals(TREECONTENT)) {
@@ -173,7 +174,7 @@ public final class EcoreLoader extends AbstractHandler {
 
 		final String packageElement = node.getAttributes().getNamedItem("xsi:type").getNodeValue().substring(6);
 		final String packageElementName = node.getAttributes().getNamedItem("name").getNodeValue();
-		System.out.print("Detected new Element " + packageElement + " " + packageElementName);
+		System.out.println("Created new Element " + packageElement + " " + packageElementName);
 
 		if (packageElement.equals("EClass")) {
 
@@ -183,7 +184,10 @@ public final class EcoreLoader extends AbstractHandler {
 
 				Element e = (Element) node;
 				NodeList eStructuralFeatureList = e.getElementsByTagName("eStructuralFeatures");
-				System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+
+				if (eStructuralFeatureList.getLength() > 0) {
+					System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+				}
 
 				for (int j = 0; j < eStructuralFeatureList.getLength(); j++) { // Create Attributes
 
@@ -191,7 +195,7 @@ public final class EcoreLoader extends AbstractHandler {
 					final String contentElement = map.getNamedItem("xsi:type").getNodeValue().substring(6);
 					final String contentElementName = map.getNamedItem("name").getNodeValue();
 
-					System.out.print("  " + contentElement + contentElementName);
+					System.out.println("  -  " + contentElement + contentElementName);
 
 					if (contentElement.equals("EAttribute")) {
 						createAttribute(c, contentElementName);
@@ -210,7 +214,10 @@ public final class EcoreLoader extends AbstractHandler {
 
 				Element e = (Element) node;
 				NodeList eStructuralFeatureList = e.getElementsByTagName("eStructuralFeatures");
-				System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+
+				if (eStructuralFeatureList.getLength() > 0) {
+					System.out.println(" has " + eStructuralFeatureList.getLength() + " attributes:");
+				}
 
 				for (int j = 0; j < eStructuralFeatureList.getLength(); j++) { // Create Attributes
 
@@ -226,10 +233,8 @@ public final class EcoreLoader extends AbstractHandler {
 	}
 
 	private Package subPackageCreator(final Node node, final Package pp) {
-		System.out.println('\n' + "Attempting to create Subpackage");
 
 		final String packageElementName = node.getAttributes().getNamedItem("name").getNodeValue();
-		System.out.print("Detected new Element " + packageElementName);
 
 		Package p = null;
 		p = new UnicaseCommandWithParameterAndResult<Package, Package>() {
@@ -242,7 +247,7 @@ public final class EcoreLoader extends AbstractHandler {
 				return p;
 			}
 		}.run(p);
-
+		System.out.println("Created new Subpackage " + packageElementName);
 		return p;
 	}
 
@@ -338,10 +343,19 @@ public final class EcoreLoader extends AbstractHandler {
 			if (temp == null) {
 				return false;
 			}
-			if (temp.getUserData(TRAVERSED) == null) {
+			if (!hasBeenTraversed(temp)) {
 				return true;
 			}
 		} while (!n.isSameNode(temp));
+		return false;
+	}
+
+	private boolean hasBeenTraversed(Node n) {
+		if (n.getUserData(TRAVERSED) instanceof Boolean) {
+			if ((Boolean) n.getUserData(TRAVERSED)) {
+				return true;
+			}
+		}
 		return false;
 	}
 }
