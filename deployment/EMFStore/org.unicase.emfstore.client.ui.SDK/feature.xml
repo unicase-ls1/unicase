@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.emfstore.metamodel"
-      label="EMFStore Metamodel"
+      id="org.unicase.emfstore.client.ui.SDK"
+      label="EMFStore Client UI Feature SDK"
       version="0.5.8.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
-      The EMFStore Metamodel feature includes all plugins to create
-a model that can be stored in the EMFStore repository.
+      This feature contains all plugins to provide user interfaces
+for client applications connecting to the EMFStore server.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -216,27 +216,12 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-   </requires>
-
-   <plugin
-         id="org.unicase.metamodel"
-         download-size="0"
-         install-size="0"
-         version="0.5.8.nightly"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.metamodel.edit"
-         download-size="0"
-         install-size="0"
-         version="0.5.8.nightly"
-         unpack="false"/>
+   <includes
+         id="org.unicase.emfstore.client.ui"
+         version="0.0.0"/>
+         
+            <includes
+         id="org.unicase.emfstore.client.ui.source"
+         version="0.0.0"/>
 
 </feature>

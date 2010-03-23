@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="0.5.11.nightly"
+      version="0.5.8.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -216,20 +216,20 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <includes
-         id="org.unicase.emfstore.client"
-         version="0.0.0"/>
-
    <requires>
-      <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
       <import plugin="org.eclipse.emf.databinding.edit"/>
       <import plugin="org.eclipse.emf.transaction.ui"/>
+      <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="org.unicase.workspace.edit"/>
+      <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.jface.text"/>
    </requires>
 
@@ -237,28 +237,28 @@ litigation.
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.5.11.nightly"
+         version="0.5.8.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.5.11.nightly"
+         version="0.5.8.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.5.11.nightly"
+         version="0.5.8.nightly"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.ui"
          download-size="0"
          install-size="0"
-         version="0.5.11.nightly"
+         version="0.5.8.nightly"
          unpack="false"/>
 
 </feature>
