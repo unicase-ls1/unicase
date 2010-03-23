@@ -14,8 +14,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
-import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
-import org.unicase.emfstore.accesscontrol.authentication.SimplePropertyFileVerifyer;
+import org.unicase.emfstore.accesscontrol.authentication.factory.AuthenticationControlFactory;
+import org.unicase.emfstore.accesscontrol.authentication.factory.AuthenticationControlFactoryImpl;
 import org.unicase.emfstore.core.MonitorProvider;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -29,7 +29,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.emfstore.exceptions.SessionTimedOutException;
 import org.unicase.metamodel.ModelElement;
 
@@ -55,16 +54,12 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
 
-		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.AUTHENTICATION_POLICY,
-			ServerConfiguration.AUTHENTICATION_POLICY_DEFAULT);
-		if (property.equals(ServerConfiguration.AUTHENTICATION_LDAP)) {
-			authenticationControl = new LDAPVerifier();
-		} else if (property.equals(ServerConfiguration.AUTHENTICATION_SPFV)) {
-			authenticationControl = new SimplePropertyFileVerifyer(ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH, ServerConfiguration.getDefaultSPFVFilePath()));
-		} else {
-			throw new InvalidPropertyException();
-		}
+		authenticationControl = getAuthenticationFactory().createAuthenticationControl();
+	}
+
+	private AuthenticationControlFactory getAuthenticationFactory() {
+		// TODO: OW create extension point
+		return new AuthenticationControlFactoryImpl();
 	}
 
 	/**

@@ -60,7 +60,7 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 	 * 
 	 * @param username the username
 	 * @param password the password
-	 * @return boolean true if authentication was successful
+	 * @return boolean true if authentication was successful, false if not
 	 * @throws AccessControlException an exception
 	 */
 	protected abstract boolean verifyPassword(String username, String password) throws AccessControlException;
