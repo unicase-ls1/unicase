@@ -37,6 +37,8 @@ Documentation:
  * [Model_API_Usage_Guidelines Model API Usage Guidelines]
 
  * [EMFStore_Configuration How to configure the EMFStore]
+ 
+ * [EMFStore_Extension_Points EMFStore extension points ]
 
  * [Server_Request_Guidelines Server Request Guidelines]
 
