@@ -8,21 +8,21 @@ The EMFStore framework consists of five features:
 
   * EMFStore Metamodel Feature (org.unicase.emfstore.metamodel) - contains plugins required to build a model that can be stored in the EMFStore:
     * org.unicase.metamodel: contains the common metamodel including a model element base class with a unique id.
-    * org.unicase.metamodel.edit: contains the label and item providers for the meta model
 
   * EMFStore Server Feature (org.unicase.emfstore.server) - contains the plugins required for running the EMFStore server:
     * org.unicase.emfstore: contains the business logic of the server
-    * org.unicase.emfstore.esmodel: data model of the server
-    * org.unicase.emfstore.esmodel.edit: Edit plugin for server data model
+    * org.unicase.emfstore.esmodel: versioning data model of the server
 
   * EMFStore Client Feature (org.unicase.emfstore.client) - contains the plugins required to contact the EMFStore server from an EMFStore client:
     * org.unicase.workspace: contains the EMFStore API for client applications, the client data model and an API for remote calls to the server
-    * org.unicase.workspace.edit: Edit plugin for the client data model
 
   * EMFStore Client User Interface Feature (org.unicase.emfstore.client.ui) - contains views for EMFStore clients:
     * org.unicase.workspace.ui: contains views for update/commit/merge, a repository browser and a history browser.
     * org.unicase.ui.navigator: contains a reflective view for showing the local models and their structure in a tree view.
     * org.unicase.ui.meeditor: contains a reflective form-based editor to view single model elements.
+    * org.unicase.metamodel.edit: contains the label and item providers for the meta model
+    * org.unicase.emfstore.esmodel.edit: Edit plugin for versioning model
+    * org.unicase.workspace.edit: Edit plugin for the workspace model
 
   * EMFStore Backchannel Feature (org.unicase.emfstore.backchannel) - contains plugins to establish a communication channel from server to client, can be used to update client models on new versions automatically:
     * org.unicase.backchannel: contains an API to send events from server to client and to register for events from the server on the client. 
