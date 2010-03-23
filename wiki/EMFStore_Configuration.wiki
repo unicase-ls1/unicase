@@ -29,6 +29,23 @@ Due to this decoupling EMFStore does not know where to find your model and it mu
 
  * Finally press _Apply_ and you are ready to go
 
+==Note about ports==
+EMFStore can run with RMI and XML-RPC. XML-RPC was introduced to be able to run via HTTPS and therefore work in firewalled environments. HTTPS known port lies on 443, this causes a problem for the EMFStore on Unix based systems (e.g. Linux and Mac OS). These operating systems only allow low port numbers (<1024) if the process has root access. Because we wanted to avoid giving the server root access, we decided to use rerouting of the port.
+So we reroute port 443 to 8443 for example and EMFStore then listens on 8443.
+
+System administrators should know how to do this, but if you want to try it out, here are the command lines (replace the IP with your adress):
+
+Mac OS
+
+{{{
+ sudo ipfw add forward 123.123.123.123,8443 ip from any to 123.123.123.123 443 in
+}}}
+
+Linux
+
+{{{
+sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+}}}
 
 == Configuration File ==
 
