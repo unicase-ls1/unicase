@@ -58,6 +58,10 @@ public final class EcoreLoader extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ecore", "*.*" };
 
+	private static final String TRAVERSED = "traversed";
+	private static final String TREEKNOT = "eSubpackages";
+	private static final String TREECONTENT = "eClassifiers";
+
 	/**
 	 * Executes the EcoreLoader.
 	 * 
@@ -119,7 +123,7 @@ public final class EcoreLoader extends AbstractHandler {
 			packageName = root.getAttribute("name");
 
 			Package p = createMasterPackage(leafsection, packageName);
-			init(p, root);
+			initSynchronizedDFS(root, p);
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
@@ -131,18 +135,38 @@ public final class EcoreLoader extends AbstractHandler {
 		return null;
 	}
 
-	private Object init(Package p, Node root) {
-		Node temp = root.getFirstChild(), temp2 = temp;
-		do {
-			if (temp2.getNodeName().equals("eClassifiers")) { // move this code to resourceCreator
-				resourceCreator(temp2, p);
-			} else if (temp2.getNodeName().equals("eSubpackages")) {
-				packageCreator(temp2, p);
-				// todo: init rekursiv
+	private void initSynchronizedDFS(Node root, Package masterpackage) {
+		root.setUserData(TRAVERSED, true, null);
+		traverse(root.getFirstChild(), masterpackage);
+	}
+
+	private void traverse(Node n, Package p) {
+		if (hasTraversableSiblings(n)) {
+			if (n.getUserData(TRAVERSED) != null) { // analyzed node wasn't yet traversed
+				traverse(n.getNextSibling(), p);
+			} else {
+				if (n.getNodeName().equals(TREECONTENT)) {
+					n.setUserData(TRAVERSED, true, null);
+					resourceCreator(n, p);
+					traverse(n.getNextSibling(), p);
+				} else if (n.getNodeName().equals(TREEKNOT) && n.hasChildNodes()) {
+					traverse(n.getFirstChild(), subPackageCreator(n, p));
+				} else if (n.getNodeName().equals(TREEKNOT) && !n.hasChildNodes()) {
+					n.setUserData(TRAVERSED, true, null);
+					subPackageCreator(n, p);
+					traverse(n.getNextSibling(), p);
+				}
+				// if we cannot detect type of knot, get next
+				n.setUserData(TRAVERSED, true, null);
+				traverse(n.getNextSibling(), p);
 			}
-			temp2 = temp2.getNextSibling();
-		} while (!temp.isSameNode(temp2));
-		return null;
+		} else // hasNoTraversableSiblings
+		{
+			// since all children have been traversed the parent is dead now
+			// especially, the parent has already been created during the downwards path
+			n.getParentNode().setUserData(TRAVERSED, true, null);
+			traverse(n.getParentNode(), p.getParentPackage());
+		}
 	}
 
 	private void resourceCreator(Node node, Package p) {
@@ -201,8 +225,8 @@ public final class EcoreLoader extends AbstractHandler {
 
 	}
 
-	private Package packageCreator(final Node node, final Package pa) {
-		System.out.println("\'n'Attempting to create Subpackage");
+	private Package subPackageCreator(final Node node, final Package pp) {
+		System.out.println('\n' + "Attempting to create Subpackage");
 
 		final String packageElementName = node.getAttributes().getNamedItem("name").getNodeValue();
 		System.out.print("Detected new Element " + packageElementName);
@@ -214,7 +238,7 @@ public final class EcoreLoader extends AbstractHandler {
 			protected Package doRun(Package p) {
 				p = org.unicase.model.classes.ClassesFactory.eINSTANCE.createPackage();
 				p.setName(packageElementName);
-				p.setParentPackage(pa);
+				p.setParentPackage(pp);
 				return p;
 			}
 		}.run(p);
@@ -305,5 +329,19 @@ public final class EcoreLoader extends AbstractHandler {
 			}
 		}.run(c);
 		return m;
+	}
+
+	private boolean hasTraversableSiblings(Node n) {
+		Node temp = n;
+		do {
+			temp = temp.getNextSibling();
+			if (temp == null) {
+				return false;
+			}
+			if (temp.getUserData(TRAVERSED) == null) {
+				return true;
+			}
+		} while (!n.isSameNode(temp));
+		return false;
 	}
 }
