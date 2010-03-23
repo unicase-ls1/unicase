@@ -59,9 +59,7 @@ public final class EcoreLoader extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ecore", "*.*" };
 
-	private static final String TRAVERSED = "traversed";
-	private static final String TREEKNOT = "eSubpackages";
-	private static final String TREECONTENT = "eClassifiers";
+	private static final String TRAVERSED = "traversed", TREEKNOT = "eSubpackages", TREECONTENT = "eClassifiers";
 
 	/**
 	 * Executes the EcoreLoader.
@@ -73,8 +71,9 @@ public final class EcoreLoader extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		assert (ActionHelper.getSelectedModelElement() instanceof LeafSection); // propertytester:
-		// org.unicase.ecoreLoader.testers.allowedLocation
+		// propertytester:org.unicase.ecoreLoader.testers.allowedLocation allows us to
+		assert (ActionHelper.getSelectedModelElement() instanceof LeafSection);
+
 		final LeafSection leafsection = (LeafSection) ActionHelper.getSelectedModelElement();
 		final String packageName;
 
