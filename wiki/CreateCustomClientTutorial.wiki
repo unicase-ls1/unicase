@@ -1,6 +1,6 @@
 #summary Tutorial on how to create a custom client for the emfstore
 
-<wiki:video url="http://www.youtube.com/watch?v=Vs9I7gGr72w"/> 
+<wiki:video url="http://www.youtube.com/watch?v=ezdhCWjjqxU"/> 
 
 Links to optional resources:
   * [SVN_Repository SVN Repository]
