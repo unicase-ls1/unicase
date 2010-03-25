@@ -5,4 +5,4 @@ This section contains helpful links and references that are related to the devel
  * [Internationalization Internationalization]<br>
  * [RMI RMI]<br>
  * [Important_Notice_about_using_Images_in_Eclipse Important notice about using Images in Eclipse]<br>
- * [How_To_Make_ScreenFlow_Video_Tutorials How to make ScreenFlow video tutorials] 
+ * [How_To_Make_A_ScreenFlow_Video_Tutorial How to make a ScreenFlow video tutorial] 
