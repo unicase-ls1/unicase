@@ -7,7 +7,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * An project independent view with multiple tabs.
+ * A view with multiple tabs.
  * 
  * @author emueller
  *

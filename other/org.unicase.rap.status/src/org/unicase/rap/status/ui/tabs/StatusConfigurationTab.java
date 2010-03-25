@@ -149,7 +149,7 @@ public class StatusConfigurationTab extends ConfigurationTabView {
 	
 	@Override
 	public ConfigEntity getConfigEntity() {
-		cfgEntity = new StatusConfigEntity();
+		cfgEntity = new StatusConfigEntity(currentProjectSpace);
 		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
 		cfgEntity.setCrypticElement(crypticElementTextfield.getText());
 		cfgEntity.setTeamListVisible(teamListVisisbleCheckBox.getSelection());
@@ -158,21 +158,15 @@ public class StatusConfigurationTab extends ConfigurationTabView {
 		return cfgEntity;
 	}
 
-	@Override
-	public String getConfigFilename() {
-		if (currentProjectSpace == null) {
-			return  StatusConfigEntity.class.getCanonicalName();
-		} else {
-			return currentProjectSpace.getProjectName() + "." + StatusConfigEntity.class.getCanonicalName(); 
-		}
-	}
-
-
+	
 
 	@Override
 	public void loadSettings() {
+		
+		StatusConfigEntity configEntity = new StatusConfigEntity(currentProjectSpace);
+		
 		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(
-				getConfigFilename(), new StatusConfigEntity().eClass());
+				configEntity, configEntity.eClass());
 		
 		// TODO: eliminate code redundancy
 		if (cfgEntity != null) {

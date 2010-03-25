@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -29,6 +28,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 
 /**
+ * Bug reporting view.
  * 
  * @author Edgar Mueller
  * @author Fatih Ulusoy

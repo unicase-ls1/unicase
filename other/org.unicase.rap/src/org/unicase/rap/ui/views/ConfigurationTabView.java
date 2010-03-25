@@ -23,9 +23,6 @@ import config.ConfigEntity;
  * This class represents a tab in the configuration view.
  */
 public abstract class ConfigurationTabView {
-
-	// TODO: temporary save path
-	private static final String SAVE_PATH = System.getProperty("user.home");
 	
 	private String tabName;
 	private CTabFolder parentFolder;
@@ -164,12 +161,6 @@ public abstract class ConfigurationTabView {
 	 * @return The config entity to be saved
 	 */
 	public abstract ConfigEntity getConfigEntity();
-	
-	/**
-	 * Returns the name of the configuration file that is used to store configuration settings.
-	 * @return
-	 */
-	public abstract String getConfigFilename();
 	
 	/**
 	 * Loads 

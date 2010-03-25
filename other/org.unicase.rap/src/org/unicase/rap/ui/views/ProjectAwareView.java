@@ -7,7 +7,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * Abstract class for implementing a view that is dependant on a project.
+ * Abstract class for a view that is dependant of a project.
  * 
  * @author emueller
  *
@@ -17,6 +17,7 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	protected ProjectSpace projectSpace;
 	
 	public ProjectAwareView() {
+		// TODO: parameter name currently hard coded
 		String projectName = getHttpRequest().getParameter("name");
 		if (projectName != null) {
 			resolveProject(projectName);

@@ -12,7 +12,7 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * Project aware tab.
+ * An single project aware tab.
  * 
  * @author Edgar Mueller
  * @author Fatih Ulusoy
@@ -58,8 +58,16 @@ public abstract class ProjectAwareTab implements ProjectChangeObserver {
 		}
 	}
 
+	/**
+	 * Creates the tab content.
+	 * @param parent The composite upon the the tab can place its content.
+	 */
 	protected abstract void createTab(Composite parent);
 		
+	/**
+	 * Gets the project space this tab is aware of.
+	 * @return The project this tab is aware of.
+	 */
 	protected ProjectSpace getProjectSpace() {
 		return projectSpace;
 	}

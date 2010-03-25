@@ -4,6 +4,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="config"
     nsURI="http://unicase.org/model/config" nsPrefix="org.unicase.model.config">
   <eClassifiers xsi:type="ecore:EClass" name="ConfigEntity" eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement">
+    <eOperations name="getConfigFilename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//StringToObject" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associatedProjectIdentifier"

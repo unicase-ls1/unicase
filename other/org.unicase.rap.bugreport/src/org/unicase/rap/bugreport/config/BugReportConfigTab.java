@@ -146,7 +146,7 @@ public class BugReportConfigTab extends ConfigurationTabView {
 
 	@Override
 	public ConfigEntity getConfigEntity() {
-		cfgEntity = new BugReportingConfigEntity();
+		cfgEntity = new BugReportingConfigEntity(currentProjectSpace);
 		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
 		cfgEntity.setBugContainerId(currentBugContainerId);
 		return cfgEntity;
@@ -154,23 +154,16 @@ public class BugReportConfigTab extends ConfigurationTabView {
 
 	@Override
 	public void loadSettings() {
-		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(
-				getConfigFilename(), new BugReportingConfigEntity().eClass());
+		
+		BugReportingConfigEntity configEntity = new BugReportingConfigEntity(currentProjectSpace);
+		
+		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
 		
 		if (cfgEntity != null) {
 			currentBugContainerId = (String) cfgEntity.getProperties().get(Keys.BUG_CONTAINER);
 			bugContainerIdTextField.setText(currentBugContainerId);
 		} else {
 			bugContainerIdTextField.setText("");
-		}
-	}
-
-	@Override
-	public String getConfigFilename() {
-		if (currentProjectSpace == null) {
-			return BugReportingConfigEntity.class.getCanonicalName();
-		} else {
-			return currentProjectSpace.getProjectName() + "." + BugReportingConfigEntity.class.getCanonicalName(); 
 		}
 	}
 }
