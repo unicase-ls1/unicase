@@ -26,21 +26,20 @@
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="compatible"/>
       <import plugin="org.eclipse.emf.validation" version="1.2.0" match="compatible"/>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="org.eclipse.core.resources" version="3.4.0" match="compatible"/>
       <import plugin="org.eclipse.emf.common" version="2.5.0" match="compatible"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
-      <import plugin="net.sourceforge.lpg.lpgjavaruntime"/>
       <import plugin="org.eclipse.osgi" version="3.2.0" match="compatible"/>
       <import plugin="org.apache.ant" version="1.7.0" match="compatible"/>
+      <import plugin="org.eclipse.core.jobs" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.core.commands" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.ocl.ecore"/>
+      <import plugin="net.sourceforge.lpg.lpgjavaruntime"/>
       <import plugin="org.junit"/>
-      <import plugin="org.eclipse.emf.codegen" version="2.5.0" match="compatible"/>
       <import plugin="com.ibm.icu"/>
       <import plugin="org.eclipse.osgi.services"/>
-      <import plugin="org.eclipse.core.jobs" version="3.2.0" match="compatible"/>
       <import plugin="javax.servlet"/>
-      <import plugin="org.hamcrest.core" version="1.1.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -207,14 +206,6 @@
          download-size="0"
          install-size="0"
          version="1.2.0.v20090507"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.filesystem.macosx"
-         download-size="0"
-         install-size="0"
-         version="1.1.0.v20090112"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -404,5 +395,61 @@
          download-size="0"
          install-size="0"
          version="4.5.0.v20090824"/>
+
+   <plugin
+         id="org.hamcrest.core"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v20090501071000"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.codegen"
+         download-size="0"
+         install-size="0"
+         version="2.5.0.v200906151043"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jdt.core"
+         download-size="0"
+         install-size="0"
+         version="3.5.1.v_972_R35x"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.text"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v20090513-2000"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jdt.launching"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v20090527"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jdt.debug"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v20090526"/>
+
+   <plugin
+         id="org.eclipse.debug.core"
+         download-size="0"
+         install-size="0"
+         version="3.5.0.v20090526-1600"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.filesystem.macosx"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v20090112"
+         fragment="true"
+         unpack="false"/>
 
 </feature>
