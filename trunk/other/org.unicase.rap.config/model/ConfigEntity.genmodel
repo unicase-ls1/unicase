@@ -9,6 +9,7 @@
     <genClasses ecoreClass="ConfigEntity.ecore#//ConfigEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ConfigEntity.ecore#//ConfigEntity/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigEntity.ecore#//ConfigEntity/associatedProjectIdentifier"/>
+      <genOperations ecoreOperation="ConfigEntity.ecore#//ConfigEntity/getConfigFilename"/>
     </genClasses>
     <genClasses ecoreClass="ConfigEntity.ecore#//StringToObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigEntity.ecore#//StringToObject/key"/>

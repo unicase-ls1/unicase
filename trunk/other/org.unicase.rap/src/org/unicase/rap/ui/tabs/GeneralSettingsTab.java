@@ -15,11 +15,6 @@ import config.ConfigEntity;
 
 public class GeneralSettingsTab extends ConfigurationTabView {
 	
-	/**
-	 * Name of the configuration file used.
-	 */
-	private static final String CFG_FILENAME = "org.unicase.rap.config.GeneralSettingsConfigEntity";
-
 	private GeneralSettingsConfigEntity cfgEntity;
 	
 	private Text adminUserNameTextField;
@@ -77,8 +72,11 @@ public class GeneralSettingsTab extends ConfigurationTabView {
 
 	@Override
 	public void loadSettings() {
-		 ConfigEntity entity = ConfigEntityStore.loadConigEntity(getConfigFilename(),
-				 new GeneralSettingsConfigEntity().eClass()); 
+		
+		 GeneralSettingsConfigEntity configEntity = new GeneralSettingsConfigEntity();
+		
+		 ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity,
+				 configEntity.eClass());
 		 
 		 if (entity != null) {
 			 adminUserNameTextField.setText((String) entity.getProperties()
@@ -90,10 +88,5 @@ public class GeneralSettingsTab extends ConfigurationTabView {
 			 passwordTextField.setText(password);
 			 passwordConfirmationTextField.setText(password);
 		 }
-	}
-
-	@Override
-	public String getConfigFilename() {
-		return CFG_FILENAME;
 	}
 }

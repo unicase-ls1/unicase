@@ -71,4 +71,12 @@ public interface ConfigEntity extends ModelElement {
 	 */
 	void setAssociatedProjectIdentifier(String value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	String getConfigFilename();
+
 } // ConfigEntity

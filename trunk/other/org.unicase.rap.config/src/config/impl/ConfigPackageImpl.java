@@ -235,6 +235,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEReference(getConfigEntity_Properties(), this.getStringToObject(), null, "properties", null, 0, -1, ConfigEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfigEntity_AssociatedProjectIdentifier(), ecorePackage.getEString(), "associatedProjectIdentifier", null, 0, 1, ConfigEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		addEOperation(configEntityEClass, ecorePackage.getEString(), "getConfigFilename", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(stringToObjectEClass, Map.Entry.class, "StringToObject", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringToObject_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStringToObject_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

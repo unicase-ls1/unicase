@@ -104,15 +104,19 @@ public class ConfigEntityStore {
 		}*/
 	}
 	
-	public static ConfigEntity loadConigEntity(String configFilename,
+	/**
+	 * Loads the given config entity
+	 * 
+	 * @param configEntity The config entity whose 
+	 * @param eClass The type of class the config entity actually is.
+	 * @return
+	 */
+	public static ConfigEntity loadConigEntity(ConfigEntity configEntity,
 			EClass eClass) {
 	
-//		/Users/emueller/org.eclipse.emf.ecore.impl.EClassImpl
-		// TODO: check whether filepath really exists
-		
-		String filename = System.getProperty("user.home") + File.separatorChar + configFilename;
-		
+		String filename = System.getProperty("user.home") + File.separatorChar + configEntity.getConfigFilename();
 		File f = new File(filename);
+		
 		if (!f.exists()) {
 			return null;
 		}
@@ -121,11 +125,8 @@ public class ConfigEntityStore {
 			ConfigEntity cfgEntity = ModelUtil.loadEObjectFromResource(eClass , URI.createFileURI(filename));
 			return cfgEntity;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+			return null;
+		}				
 	}
 	
     public static ConfigEntity loadObject(String filename) throws ClassNotFoundException, IOException {

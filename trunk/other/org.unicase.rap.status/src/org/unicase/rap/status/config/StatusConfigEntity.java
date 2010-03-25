@@ -1,5 +1,7 @@
 package org.unicase.rap.status.config;
 
+import org.unicase.workspace.ProjectSpace;
+
 import config.impl.ConfigEntityImpl;
 
 /**
@@ -17,6 +19,8 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 	 */
 	private static final long serialVersionUID = -1726480282495024383L;
 	
+	private ProjectSpace projectSpace;
+	
 	/**
 	 * Keys used for storing configuration settings.
 	 * 
@@ -27,6 +31,10 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 		public static final String CRYPTIC_ELEMENT_KEY = "CRYPTIC_ELEMENT";
 		public static final String TEAMLIST_KEY = "TEAMLIST";
 		public static final String WORKITEMLIST_KEY = "WORKITEMLIST";
+	}
+	
+	public StatusConfigEntity(ProjectSpace projectSpace) {
+		this.projectSpace = projectSpace;
 	}
 	
 	/**
@@ -86,4 +94,15 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 		Boolean b = (Boolean) getProperties().get(Keys.WORKITEMLIST_KEY);
 		return b.booleanValue();
 	}
+	
+	@Override
+	public String getConfigFilename() {
+		if (projectSpace == null) {
+			return  StatusConfigEntity.class.getCanonicalName();
+		} else {
+			return projectSpace.getProjectName() + "." + StatusConfigEntity.class.getCanonicalName(); 
+		}
+	}
+
+
 }

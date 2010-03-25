@@ -9,6 +9,11 @@ import config.impl.ConfigEntityImpl;
  *
  */
 public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
+	
+	/**
+	 * Name of the configuration file used.
+	 */
+	private static final String CFG_FILENAME = "org.unicase.rap.config.GeneralSettingsConfigEntity";
 
 	public class Keys {
 		public static final String ADMIN_USER_NAME_KEY = "ADMIN_USER_NAME";
@@ -54,5 +59,9 @@ public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
 	// TODO: encryption
 	public String getAdminPassword() {
 		return (String) getProperties().get(Keys.ADMIN_PASSWORD_KEY);
+	}
+
+	public String getConfigFilename() {
+		return CFG_FILENAME;
 	}
 }
