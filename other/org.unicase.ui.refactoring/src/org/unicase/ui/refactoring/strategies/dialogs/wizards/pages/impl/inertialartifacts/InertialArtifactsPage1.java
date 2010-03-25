@@ -4,27 +4,21 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.inertialartifacts;
 
-import java.util.List;
-
-import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
-import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 
 /**
  * @author pfeifferc
  */
-public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
+public class InertialArtifactsPage1 extends AbstractRefactoringWizardPage {
 
 	/**
 	 * The default constructor.
@@ -32,7 +26,7 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 	 * @param wizard the
 	 * @param pageName the
 	 */
-	public DiscussionIntoIssuePage1(String pageName, AbstractRefactoringWizard wizard) {
+	public InertialArtifactsPage1(String pageName, AbstractRefactoringWizard wizard) {
 		super(pageName, wizard);
 	}
 
@@ -60,11 +54,7 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 		composite = new Composite(scrolledComposite, SWT.NONE);
 		composite.setLayout(new GridLayout(1, true));
 		// add comments
-		List<Comment> comments = ((UnicaseModelElement) getRefactoringWizard().getInvalidModelElement()).getComments();
-		for (Comment comment : comments) {
-			MECommentWidget widget = new MECommentWidget(comment, composite);
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
-		}
+		
 		// set scrolled composite properties
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolledComposite.setExpandHorizontal(true);

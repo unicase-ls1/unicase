@@ -62,7 +62,7 @@ public class DiscussionIntoIssuePage2 extends AbstractRefactoringWizardPage {
 		tree = new Tree(composite, SWT.MULTI | SWT.BORDER);
 		tree.setLayoutData(new GridData(GridData.FILL_BOTH));
 		// populate the tree
-		populateTree(tree, getRefactoringWizard().getInvalidModelElement());
+		populateTree(tree, (UnicaseModelElement)getRefactoringWizard().getInvalidModelElement());
 		// set scrolled composite properties
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolledComposite.setContent(composite);

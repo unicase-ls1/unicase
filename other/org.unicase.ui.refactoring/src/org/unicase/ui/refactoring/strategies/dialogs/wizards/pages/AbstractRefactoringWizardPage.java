@@ -91,19 +91,19 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		// create composite to put other widgets on
 		Composite composite = createComposite(parent, SWT.TOP, new GridLayout(2, false), new GridData(SWT.FILL,
 			SWT.TOP, true, false));
-		// create action item icon
+		// create model element icon
 		createIconLabel(composite, getRefactoringWizard().getLabelProvider().getImage(
 			getRefactoringWizard().getInvalidModelElement()));
-		// create affected action item text
-		createText(composite, "Affected model element: " + getRefactoringWizard().getInvalidModelElement().getName(),
+		// create affected model element text
+		createText(composite, "Affected model element: " + getRefactoringWizard().getLabelProvider().getText(getRefactoringWizard().getInvalidModelElement()),
 			true);
-		// create action item icon
+		// create creator icon
 		createIconLabel(composite, "filtertouser.png");
-		// create affected action item text
+		// create affected model element text text
 		createText(composite, "Creator: " + getRefactoringWizard().getInvalidModelElement().getCreator(), true);
 		// create date icon
 		createIconLabel(composite, "date.png");
-		// create affected action item text
+		// create affected model element text
 		createText(composite, "Created: "
 			+ getRefactoringWizard().getInvalidModelElement().getCreationDate().toString(), true);
 	}
