@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="0.5.8.nightly"
+      version="0.5.13.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -227,38 +227,62 @@ litigation.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
       <import plugin="org.eclipse.emf.databinding.edit"/>
       <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.jface.databinding"/>
-      <import plugin="org.unicase.workspace.edit"/>
       <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.unicase.workspace"/>
+      <import plugin="org.unicase.emfstore.esmodel" version="0.5.13.nightly" match="greaterOrEqual"/>
+      <import plugin="org.unicase.metamodel.edit" version="0.5.13.nightly" match="greaterOrEqual"/>
+      <import plugin="org.unicase.metamodel"/>
+      <import plugin="org.eclipse.emf.edit"/>
    </requires>
 
    <plugin
          id="org.unicase.ui.common"
          download-size="0"
          install-size="0"
-         version="0.5.8.nightly"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
          install-size="0"
-         version="0.5.8.nightly"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.5.8.nightly"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.ui"
          download-size="0"
          install-size="0"
-         version="0.5.8.nightly"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.esmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.metamodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
