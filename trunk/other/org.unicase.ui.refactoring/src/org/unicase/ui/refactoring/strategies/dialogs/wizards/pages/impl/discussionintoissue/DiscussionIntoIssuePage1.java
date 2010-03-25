@@ -14,6 +14,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
@@ -59,7 +60,7 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 		composite = new Composite(scrolledComposite, SWT.NONE);
 		composite.setLayout(new GridLayout(1, true));
 		// add comments
-		List<Comment> comments = getRefactoringWizard().getInvalidModelElement().getComments();
+		List<Comment> comments = ((UnicaseModelElement) getRefactoringWizard().getInvalidModelElement()).getComments();
 		for (Comment comment : comments) {
 			MECommentWidget widget = new MECommentWidget(comment, composite);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
