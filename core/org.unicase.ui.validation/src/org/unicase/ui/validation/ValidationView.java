@@ -229,6 +229,7 @@ public class ValidationView extends ViewPart {
 					public void handleEvent(Event event) {
 						for(AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
 							refactoringStrategy.startRefactoring(shell);
+							break;
 						}
 					}
 

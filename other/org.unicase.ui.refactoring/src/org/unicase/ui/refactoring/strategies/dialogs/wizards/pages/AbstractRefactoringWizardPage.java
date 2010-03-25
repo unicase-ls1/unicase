@@ -258,14 +258,21 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 */
 	@Override
 	public void dispose() {
-		for (AbstractMEControl control : abstractControls) {
-			control.dispose();
-		}
+		disposeMEControls();
 		for (Control control : controls) {
 			if (!control.isDisposed()) {
 				control.dispose();
 			}
 		}
 		super.dispose();
+	}
+
+	/**
+	 * Dispose ME controls.
+	 */
+	protected void disposeMEControls() {
+		for (AbstractMEControl control : abstractControls) {
+			control.dispose();
+		}
 	}
 }
