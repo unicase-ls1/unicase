@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site>
+<site
+      mirrorsURL="http://www1.in.tum.de/static/unicase/emfstoreNightly/">
    <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
       Update Site for the EMFStore
    </description>
-   <feature url="features/org.unicase.emfstore.server.SDK_0.5.8.nightly.jar" id="org.unicase.emfstore.server.SDK" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
+   <feature url="features/org.unicase.emfstore.backchannel_0.5.13.nightly.jar" id="org.unicase.emfstore.backchannel" version="0.5.13.nightly">
+      <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.server_0.5.8.nightly.jar" id="org.unicase.emfstore.server" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
+   <feature url="features/org.unicase.emfstore.client_0.5.13.nightly.jar" id="org.unicase.emfstore.client" version="0.5.13.nightly">
+      <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.client_0.5.8.nightly.jar" id="org.unicase.emfstore.client" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
+   <feature url="features/org.unicase.emfstore.client.ui_0.5.13.nightly.jar" id="org.unicase.emfstore.client.ui" version="0.5.13.nightly">
+      <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.client.SDK_0.5.8.nightly.jar" id="org.unicase.emfstore.client.SDK" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
+   <feature url="features/org.unicase.emfstore.metamodel_0.5.13.nightly.jar" id="org.unicase.emfstore.metamodel" version="0.5.13.nightly">
+      <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.client.ui_0.5.8.nightly.jar" id="org.unicase.emfstore.client.ui" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
+   <feature url="features/org.unicase.emfstore.server_0.5.13.nightly.jar" id="org.unicase.emfstore.server" version="0.5.13.nightly">
+      <category name="org.unicase.emfstore"/>
    </feature>
-   <feature url="features/org.unicase.emfstore.client.ui.SDK_0.5.8.nightly.jar" id="org.unicase.emfstore.client.ui.SDK" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.metamodel_0.5.8.nightly.jar" id="org.unicase.emfstore.metamodel" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.metamodel.SDK_0.5.8.nightly.jar" id="org.unicase.emfstore.metamodel.SDK" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.backchannel_0.5.8.nightly.jar" id="org.unicase.emfstore.backchannel" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.backchannel.SDK_0.5.8.nightly.jar" id="org.unicase.emfstore.backchannel.SDK" version="0.5.8.nightly">
-      <category name="org.unicase.emfstore.server"/>
-   </feature>
-   <category-def name="org.unicase.emfstore.server" label="EMFStore">
+   <category-def name="org.unicase.emfstore" label="EMFStore">
       <description>
          Update site of the EMFSTore, a model repository for EMF.
       </description>
