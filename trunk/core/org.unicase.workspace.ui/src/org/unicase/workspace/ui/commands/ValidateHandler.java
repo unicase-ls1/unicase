@@ -13,11 +13,8 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
@@ -87,25 +84,5 @@ public class ValidateHandler extends AbstractHandler {
 				}
 			}
 		}
-	}
-
-	@SuppressWarnings("unused")
-	private void getConstraintsFromExtensionPoint() {
-		IConfigurationElement[] config = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.eclipse.emf.validation.constraintProviders");
-		for (IConfigurationElement element : config) {
-			for (IConfigurationElement child : element.getChildren()) {
-				for (IConfigurationElement child2 : child.getChildren()) {
-					try {
-						AbstractModelConstraint constraint = (AbstractModelConstraint) child2
-								.createExecutableExtension("class");
-					} catch (CoreException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
 	}
 }

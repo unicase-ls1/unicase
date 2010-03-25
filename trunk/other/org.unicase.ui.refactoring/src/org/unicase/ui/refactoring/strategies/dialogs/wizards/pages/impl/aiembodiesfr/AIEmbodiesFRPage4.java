@@ -13,7 +13,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
@@ -80,9 +79,7 @@ public class AIEmbodiesFRPage4 extends AbstractRefactoringWizardPage {
 	private void updateInputWidgets() {
 		// dispose composite
 		if (composite != null) {
-			for (Control control : composite.getChildren()) {
-				control.dispose();
-			}
+			super.disposeMEControls();
 			composite.dispose();
 		}
 		composite = createComposite(body, SWT.NONE, new GridLayout(3, false), new GridData(SWT.FILL, SWT.FILL, true,
@@ -146,8 +143,8 @@ public class AIEmbodiesFRPage4 extends AbstractRefactoringWizardPage {
 			if (index >= 0 && index < getRefactoringWizard().getChildModelElements().size()) {
 				currentActionItem = (ActionItem) getRefactoringWizard().getChildModelElements().get(index);
 			}
-			// updateInputWidgets();
-			// updateCombo();
+			 updateInputWidgets();
+			 updateCombo();
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
