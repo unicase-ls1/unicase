@@ -1,18 +1,29 @@
 package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.GeneralSettingsConfigEntity;
-import org.unicase.rap.config.IValidator;
-import org.unicase.rap.ui.views.ConfigurationTabView;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 
 import config.ConfigEntity;
+import org.unicase.rap.LoginDialog;
+import org.unicase.rap.config.IValidator;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.GeneralSettingsConfigEntity;
+import org.unicase.rap.ui.views.ConfigurationTabView;
 
+
+/**
+ * General settings tab.
+ * 
+ * @author Edgar Müller, Fatih Ulusoy
+ */
 public class GeneralSettingsTab extends ConfigurationTabView {
 	
 	private GeneralSettingsConfigEntity cfgEntity;
@@ -22,6 +33,9 @@ public class GeneralSettingsTab extends ConfigurationTabView {
 	private Text passwordConfirmationTextField;
 
 	public void createTab(Composite parent) {
+		
+//		if(!login())
+//			return;
 		
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 2;
@@ -89,4 +103,50 @@ public class GeneralSettingsTab extends ConfigurationTabView {
 			 passwordConfirmationTextField.setText(password);
 		 }
 	}
+	
+	/**
+	 * Logins to configuration view.
+	 * 
+	 * @return
+	 */
+    private boolean login() {
+    	
+    	boolean isLoggedIn = false;
+		Display display = PlatformUI.createDisplay();
+		LoginDialog loginDialog = new LoginDialog(display.getActiveShell(), "Login Window");
+		boolean returnValue = false;
+		
+		while (!returnValue) {
+            returnValue = loginDialog.open() == IDialogConstants.OK_ID ? true : false;
+            
+			if (returnValue) {
+				// validate user
+				GeneralSettingsConfigEntity configEntity = new GeneralSettingsConfigEntity();
+				ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity,
+					new GeneralSettingsConfigEntity().eClass());
+				String userName = (String) entity.getProperties().get(
+					GeneralSettingsConfigEntity.Keys.ADMIN_USER_NAME_KEY);
+				String password = (String) entity.getProperties().get(
+					GeneralSettingsConfigEntity.Keys.ADMIN_PASSWORD_KEY);
+
+				if (loginDialog.getUsername().equals(userName) 
+						&& loginDialog.getPassword().equals(password)) {
+					isLoggedIn = true;
+					returnValue = true;
+				} else {
+					MessageDialog.openError(display.getActiveShell(), "Error",
+						"Aunthenticaiton failed \n Invalid username and password");
+					returnValue = false;
+				}
+			} else {
+				MessageDialog.openError(display.getActiveShell(), "Error",
+					"Aunthenticaiton failed \n Please enter valid username and password");
+			}
+		}
+		return isLoggedIn;
+	}
+    
+	
 }
+
+
