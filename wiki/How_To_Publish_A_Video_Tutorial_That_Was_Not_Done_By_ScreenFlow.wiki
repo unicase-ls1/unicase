@@ -25,6 +25,6 @@ For more detailed information on how to produce HD videos that can be published 
 =Publishing=
 After acquiring your video in HD format, you're now ready to publish your video tutorial on the web. You will first need to log-in to our [http://www.youtube.com/user/TutorialsForUNICASE YouTube Channel] and sign-in with the correct information, concerning the log-in information please contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group].
 
-Please take a quick look on this video tutorial on how to upload a video to your {{{YouTube}}} channel:
+Please take a quick look on this video tutorial that explains how you can  upload a video to a {{{YouTube}}} channel:
 <wiki:video url="http://www.youtube.com/watch?v=_O7iUiftbKU&NR=1"/>
  
