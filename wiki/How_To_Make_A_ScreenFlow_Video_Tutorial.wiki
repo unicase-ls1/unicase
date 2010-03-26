@@ -104,5 +104,5 @@ Press “Publish” to submit your video to {{{YouTube}}}.
 *Important note:*
 
  
-After recording your video tutorial please add the {{{ScreenFlow}}} document to the following URL: {{{wwwbruegge/shared/unicase/ScreenFlowTutorials/ScreenFlowFiles}}}
+After recording your video tutorial please add the {{{ScreenFlow}}} document to the following URL: {{{wwwbruegge/shared/unicase/ScreenFlowTutorials/ScreenFlowFiles}}}. 
 This done to make sure that in case if the video output is lost we can re-export it again from your {{{ScreenFlow}}} document. 
