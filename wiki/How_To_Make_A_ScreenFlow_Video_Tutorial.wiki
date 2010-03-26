@@ -24,3 +24,5 @@ It's a must that you record your video with the screen resolution 1024x768.
 When you finish your recording, {{{ScreenFlow}}} creates a new document, as shown below :
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_2%20.png]
+
+If you want to add another video to your current document just press the media tab and then press on “Add Recording” button as shown  below.
