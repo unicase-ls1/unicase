@@ -15,4 +15,6 @@ If the tool you're using can't produce a video with the previously mentioned set
 
  * [http://www.divx.com/en/software/affiliates/divx-plus/buy?AID=10391330&PID=2928607 DivX Plus Software]
  * [http://www.movavi.com/ Movavi Video Software]
- * [http://virtualdub.sourceforge.net/ VirtualDub]   
+ * [http://virtualdub.sourceforge.net/ VirtualDub]
+   
+For more detailed information on how to produce HD videos that can be published on {{{YouTube}}} please refere to this [http://www.squidoo.com/youtubehd online tutorial] 
