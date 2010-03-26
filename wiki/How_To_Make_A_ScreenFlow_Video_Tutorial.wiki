@@ -91,13 +91,13 @@ Now after configuring your export settings, press the “Export” button. After
 
 =Publishing=
 This option will allow you to publish your video on the web. Select “Publish to 
-{{{YouTube}}}” from the File menu. You will first get a login dialog, write the correct login information of our {{{YouTube Channel}}}, contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group] for further information.
+{{{YouTube}}}” from the File menu. You will first get a login dialog, write the correct log-in information of our {{{YouTube Channel}}}, contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group] for further information.
  
-[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_13.png]
 
-When you have successfully logged in you get a dialog for the metadata for your video clip. Make sure to select publish in HD video before press the publish burton. 
 
-[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_14%20.png]
+When you have successfully logged in you get a dialog for the metadata for your video clip. Make sure to select publish in HD video before press the publish button. 
+
+
 
 Press “Publish” to submit your video to YouTube. 
 
