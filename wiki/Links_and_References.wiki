@@ -6,5 +6,5 @@ This section contains helpful links and references that are related to the devel
  * [RMI RMI]<br>
  * [Important_Notice_about_using_Images_in_Eclipse Important notice about using Images in Eclipse]<br>
  * [How_To_Make_A_ScreenFlow_Video_Tutorial How to make a ScreenFlow video tutorial] 
- * [How_To_Publish_A_Video_Tutorial_That_Was_Not_Done_By_ScreenFlow How to publish a V
-video tutorial that was not done by ScreenFlow]  
+ * [How_To_Publish_A_Video_Tutorial_That_Was_Not_Done_By_ScreenFlow How to publish a 
+video tutorial that was not done by {{{ScreenFlow}}}]  
