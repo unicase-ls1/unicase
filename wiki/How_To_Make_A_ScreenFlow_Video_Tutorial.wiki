@@ -1,5 +1,7 @@
-This section  will explain in details how to make a ScreenFlow video tutorial and publish it.
+This section  will explain in details how to make a {{{ScreenFlow}}} video tutorial and publish it.
 
 *Recording:
-When you start ScreenFlow the recording dialog shall appear. 
+
+When you start {{{ScreenFlow}}} the recording dialog shall appear. 
+
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_1%20.png]
