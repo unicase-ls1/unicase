@@ -18,6 +18,7 @@ If the tool you're using can't produce a video with the previously mentioned set
  * [http://virtualdub.sourceforge.net/ VirtualDub]
 For more detailed information on How to Upload HD Video to {{{YouTube}}} using freeware  please view this video tutorial:
 <wiki:video url="http://www.youtube.com/watch?v=xPOAdhWoWxw"/> 
+
    
 For more detailed information on how to produce HD videos that can be published on {{{YouTube}}} please refere to this [http://www.squidoo.com/youtubehd online tutorial] 
 
