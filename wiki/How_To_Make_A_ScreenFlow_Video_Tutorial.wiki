@@ -67,7 +67,7 @@ choose any codec and configure it as you like.
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_10.png]
 
-*For optimum quality : 
+*For optimum quality: 
 
 Just keep the default settings. 
 
