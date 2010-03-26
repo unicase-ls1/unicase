@@ -62,7 +62,7 @@ Press Command-E or select “Export” from the File menu to export your present
 
 *Important Exporting Settings:
 
-Press the “Customize” button, ScreenFlow opens the QuickTime Codec dialog to allow you to 
+Press the “Customize” button, {{{ScreenFlow}}} opens the {{{QuickTime}}} Codec dialog to allow you to 
 choose any codec and configure it as you like.  
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_10.png]
