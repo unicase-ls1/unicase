@@ -91,4 +91,4 @@ Now after configuring your export settings, press the “Export” button. After
 
 =Publishing=
 This option will allow you to publish your video on the web. Select “Publish to 
-YouTube” from the File menu. You will first get a login dialog, write the correct login information of our YouTube Channel, contact [koegel@in.tum.de Maximilian Koegel] for that information . 
+YouTube” from the File menu. You will first get a login dialog, write the correct login information of our {{{YouTube Channel}}}, contact for that information . 
