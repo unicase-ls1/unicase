@@ -34,6 +34,6 @@ A new recording dialog will appear where you can start recording another video, 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_4%20.png]
 
 *Digitized Voice recording:
-To add a digitized audio recording to your existing video tutorial, you need to prepare ahead the text you want it to be spoken in your video tutorial. Write your text in .rtf format and use the TextEdit speech feature to transfer your text into an audio. 
 
-This is very simple just highlight the text you want to be spoken in your video tutorial and select speech<  “Start Speaking”  as shown below. In order to add the audio of the spoken text in your video all you have to do is to record the audio resulting from the speech feature as a ScreenFlow audio. 
+To add a digitized audio recording to your existing video tutorial, you need to prepare ahead the text you want it to be spoken in your video tutorial. Write your text in .rtf format and use the {{{TextEdit}}} speech feature to transfer your text into an audio. 
+This is very simple just highlight the text you want to be spoken in your video tutorial and select speech<  “Start Speaking”  as shown below. In order to add the audio of the spoken text in your video all you have to do is to record the audio resulting from the speech feature as a {{{ScreenFlow}}} audio. 
