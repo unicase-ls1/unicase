@@ -5,3 +5,6 @@ This section  will explain in details how to make a {{{ScreenFlow}}} video tutor
 When you start {{{ScreenFlow}}} the recording dialog shall appear. 
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_1%20.png]
+
+Choose the devices you wish to record, and press the record button. 
+To stop the recording, press command-shift-2. 
