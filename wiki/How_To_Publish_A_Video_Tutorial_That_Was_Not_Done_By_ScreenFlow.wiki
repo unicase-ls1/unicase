@@ -18,3 +18,6 @@ If the tool you're using can't produce a video with the previously mentioned set
  * [http://virtualdub.sourceforge.net/ VirtualDub]
    
 For more detailed information on how to produce HD videos that can be published on {{{YouTube}}} please refere to this [http://www.squidoo.com/youtubehd online tutorial] 
+
+=Publishing=
+After acquiring your video in HD format, you're now ready to publish your video tutorial on the web. You will first need to log-in to our [http://www.youtube.com/user/TutorialsForUNICASE YouTube Channel] and sign-in with the correct information, concerning the log-in information please contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group].
