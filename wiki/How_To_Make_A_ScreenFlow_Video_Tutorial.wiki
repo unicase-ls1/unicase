@@ -49,5 +49,9 @@ After that an audio file will be added to your {{{ScreenFlow}}} document as show
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_7.png]
 
+To add it to your video just select it and place it within the timeline of your video as shown below: 
+
+[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_8.png]
+
 
  
