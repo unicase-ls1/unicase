@@ -1,13 +1,18 @@
-#summary One-sentence summary of this page.
+This section will explain in details how to publish on {{{YouTube}}} your video tutorial that was not recorded by {{{ScreenFlow}}}. 
 
-= Introduction =
+=Compressing Configurations=
+Your Video should be in the highest quality, please make sure that the tool you're using produces the video within the following settings:
 
-Add your content here.
+    * Codec format: H.264, MPEG-2 or MPEG-4 format.
+    * Resolution: 1024x768 resolution.
+    * Audio: 44.1KHz Stereo MP3 or AAC audio.
+    * Frame rate as the original video.
+    * Duration and Size: Up to 1GB file size and 10 min. duration in HD form.
 
+*Important note:
 
-= Details =
+If the tool you're using can't produce a video with the previously mentioned settings you can use one of the following video converting tools: 
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * [http://www.divx.com/en/software/affiliates/divx-plus/buy?AID=10391330&PID=2928607 DivX Plus Software]
+ * [http://www.movavi.com/ Movavi Video Software]
+ * [http://virtualdub.sourceforge.net/ VirtualDub]   
