@@ -90,5 +90,5 @@ Change the settings to the following:
 Now after configuring your export settings, press the “Export” button. After that {{{ScreenFlow}}} will create a movie called {{{“ScreenFlow.mov”}}} on your desktop. 
 
 =Publishing=
-This option will allow you to publish your video on the web. Select {{{“Publish to 
-YouTube”}}} from the File menu. You will first get a login dialog, write the correct login information of our {{{YouTube Channel}}}, contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group] for further information . 
+This option will allow you to publish your video on the web. Select “Publish to 
+{{{YouTube}}}” from the File menu. You will first get a login dialog, write the correct login information of our {{{YouTube Channel}}}, contact us via our [http://groups.google.com/group/google-code-hosting?lnk=sg Google Group] for further information . 
