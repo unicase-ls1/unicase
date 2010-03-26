@@ -56,5 +56,6 @@ To add it to your video just select it and place it within the timeline of your 
 After can that you can play your video by pressing the play button that is located just below the video view. 
 
 =Exporting=
-Press Command-E or select “Export” from the File menu to export your presentation:
+Press Command-E or select “Export” from the File menu to export your presentation the following dialog will appear: 
+
  
