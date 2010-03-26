@@ -29,7 +29,7 @@ If you want to add another video to your current document just press the media t
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_3%20.png]
 
-A new recording dialog will appear where you can start recording another video, with the same steps that is previously mentioned  in the Recording section [Recording].
+A new recording dialog will appear where you can start recording another video, with the same steps that is previously mentioned  in the Recording section.
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_4%20.png]
 
