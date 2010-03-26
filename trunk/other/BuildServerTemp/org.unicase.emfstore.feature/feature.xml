@@ -26,20 +26,19 @@
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="compatible"/>
       <import plugin="org.eclipse.emf.validation" version="1.2.0" match="compatible"/>
-      <import plugin="org.eclipse.core.resources" version="3.4.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.common" version="2.5.0" match="compatible"/>
-      <import plugin="org.eclipse.osgi" version="3.2.0" match="compatible"/>
-      <import plugin="org.apache.ant" version="1.7.0" match="compatible"/>
-      <import plugin="org.eclipse.core.jobs" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.core.commands" version="3.5.0" match="compatible"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.core.resources" version="3.4.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.common" version="2.5.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="net.sourceforge.lpg.lpgjavaruntime"/>
+      <import plugin="org.eclipse.osgi" version="3.2.0" match="compatible"/>
+      <import plugin="org.apache.ant" version="1.7.0" match="compatible"/>
       <import plugin="org.junit"/>
-      <import plugin="com.ibm.icu"/>
-      <import plugin="org.eclipse.osgi.services"/>
+      <import plugin="org.eclipse.core.jobs" version="3.2.0" match="compatible"/>
       <import plugin="javax.servlet"/>
+      <import plugin="org.eclipse.core.commands" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.osgi.services"/>
    </requires>
 
    <plugin
@@ -81,13 +80,6 @@
          download-size="0"
          install-size="0"
          version="0.4.1"
-         unpack="false"/>
-
-   <plugin
-         id="com.ibm.icu"
-         download-size="0"
-         install-size="0"
-         version="4.0.1.v20090415"
          unpack="false"/>
 
    <plugin
@@ -184,28 +176,28 @@
          id="org.eclipse.ant.core"
          download-size="0"
          install-size="0"
-         version="3.2.100.v20090520"
+         version="3.2.101.v20091110_r352"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.core.contenttype"
          download-size="0"
          install-size="0"
-         version="3.4.0.v20090429-1800"
+         version="3.4.1.R35x_v20090826-0451"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.core.expressions"
          download-size="0"
          install-size="0"
-         version="3.4.100.v20090429-1800"
+         version="3.4.101.R35x_v20100209"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.core.filesystem"
          download-size="0"
          install-size="0"
-         version="1.2.0.v20090507"
+         version="1.2.1.R35x_v20091203-1235"
          unpack="false"/>
 
    <plugin
@@ -219,14 +211,14 @@
          id="org.eclipse.core.resources"
          download-size="0"
          install-size="0"
-         version="3.5.0.v20090512"
+         version="3.5.2.R35x_v20091203-1235"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.core.resources.compatibility"
          download-size="0"
          install-size="0"
-         version="3.4.0.v20090505"
+         version="3.4.1.R35x_v20100113-0530"
          fragment="true"
          unpack="false"/>
 
@@ -325,21 +317,21 @@
          id="org.eclipse.equinox.app"
          download-size="0"
          install-size="0"
-         version="1.2.0.v20090520-1800"
+         version="1.2.1.R35x_v20091203"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.equinox.common"
          download-size="0"
          install-size="0"
-         version="3.5.0.v20090520-1800"
+         version="3.5.1.R35x_v20090807-1100"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.equinox.preferences"
          download-size="0"
          install-size="0"
-         version="3.2.300.v20090520-1800"
+         version="3.2.301.R35x_v20091117"
          unpack="false"/>
 
    <plugin
@@ -353,7 +345,7 @@
          id="org.eclipse.gmf.runtime.notation"
          download-size="0"
          install-size="0"
-         version="1.2.0.v20090521-1925"
+         version="1.2.0.v20091021-2333"
          unpack="false"/>
 
    <plugin
@@ -374,7 +366,7 @@
          id="org.eclipse.osgi"
          download-size="0"
          install-size="0"
-         version="3.5.0.v20090520"
+         version="3.5.2.R35x_v20100126"
          unpack="false"/>
 
    <plugin
@@ -414,7 +406,7 @@
          id="org.eclipse.jdt.core"
          download-size="0"
          install-size="0"
-         version="3.5.1.v_972_R35x"
+         version="3.5.2.v_981_R35x"
          unpack="false"/>
 
    <plugin
@@ -428,7 +420,7 @@
          id="org.eclipse.jdt.launching"
          download-size="0"
          install-size="0"
-         version="3.5.0.v20090527"
+         version="3.5.1.v20100108_r352"
          unpack="false"/>
 
    <plugin
@@ -441,7 +433,7 @@
          id="org.eclipse.debug.core"
          download-size="0"
          install-size="0"
-         version="3.5.0.v20090526-1600"
+         version="3.5.1.v20091103_r352"
          unpack="false"/>
 
    <plugin
@@ -450,6 +442,13 @@
          install-size="0"
          version="1.1.0.v20090112"
          fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.ibm.icu"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
