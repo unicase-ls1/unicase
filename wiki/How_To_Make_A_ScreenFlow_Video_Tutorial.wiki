@@ -45,4 +45,9 @@ To do that just select the media tab and press “Add Recording” button.  A re
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_5.png]
 
 Then open your text file and  start using the {{{TextEdit}}} speech feature to the recording. 
-After that an audio file will be added to your {{{ScreenFlow}}} document as shown below: 
+After that an audio file will be added to your {{{ScreenFlow}}} document as shown below:
+
+[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_7.png]
+
+
+ 
