@@ -81,4 +81,8 @@ Change the settings to the following:
 
  * Sound settings:
 
-[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_12.png] 
+[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_12.png]
+
+ * Dimensions settings: 
+
+[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_13.png]
