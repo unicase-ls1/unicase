@@ -11,10 +11,10 @@ To stop the recording, press command-shift-2.
 
 *Important Recording Settings:
 
-* Audio settings:
+ * Audio settings:
 
 If you are recording a live tutorial using your own voice then choose select “Record Audio from Built-in Microphone” box. In the case you are going to use a digitized voice uncheck the  “Record Audio from” and  “Record Computer Audio” boxes and then record the voice separately see the  Digitized Voice Recording section.  
 
-* Screen resolution settings:
+ * Screen resolution settings:
  
 It's a must that you record your video with the screen resolution 1024x768.
