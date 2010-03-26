@@ -7,4 +7,4 @@ This section contains helpful links and references that are related to the devel
  * [Important_Notice_about_using_Images_in_Eclipse Important notice about using Images in Eclipse]<br>
  * [How_To_Make_A_ScreenFlow_Video_Tutorial How to make a ScreenFlow video tutorial] 
  * [How_to_publish_a_video_tutorial How to publish a 
-video tutorial that was not done by {{{ScreenFlow}}}]  
+video tutorial that was not done by ScreenFlow]  
