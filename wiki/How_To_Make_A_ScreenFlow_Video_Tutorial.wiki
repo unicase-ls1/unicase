@@ -99,7 +99,7 @@ When you have successfully logged in you get a dialog for the metadata for your 
 
 [http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_15%20.png]
 
-Press “Publish” to submit your video to YouTube. 
+Press “Publish” to submit your video to {{{YouTube}}}. 
 
 * Important note:
  
