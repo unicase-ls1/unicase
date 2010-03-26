@@ -11,4 +11,9 @@ All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/T
  * [SetupProjectTutorial Setup a project for EMFStore server] 
 
 Addtional Tutorials for developers that use EMFStore as a framework are available on the [EMFStoreDocumentation EMFStore Documentation site].
- 
+
+Also we have tutorials on how to create video tutorials ;):
+
+ * [How_To_Make_A_ScreenFlow_Video_Tutorial]
+
+ * [How_To_Publish_A_Video_Tutorial_That_Was_Not_Done_By_ScreenFlow]
