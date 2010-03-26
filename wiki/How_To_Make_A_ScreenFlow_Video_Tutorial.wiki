@@ -73,4 +73,7 @@ Just keep the default settings.
 
 *For HD videos:
 
-Change the settings to the following 
+Change the settings to the following:
+
+* Video settings:
+ 
