@@ -18,3 +18,7 @@ If you are recording a live tutorial using your own voice then choose select “
  * Screen resolution settings:
  
 It's a must that you record your video with the screen resolution 1024x768.
+
+*After Recording :
+
+When you finish your recording, {{{ScreenFlow}}} creates a new document, as shown below :
