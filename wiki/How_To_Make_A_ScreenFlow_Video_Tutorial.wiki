@@ -58,4 +58,4 @@ After can that you can play your video by pressing the play button that is locat
 =Exporting=
 Press Command-E or select “Export” from the File menu to export your presentation the following dialog will appear: 
 
- 
+[http://unicase.googlecode.com/files/how_to_make_ascreenflow_video_tutorial_image_9.png] 
