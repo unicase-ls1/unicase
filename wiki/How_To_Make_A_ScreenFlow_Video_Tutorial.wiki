@@ -19,7 +19,7 @@ If you are recording a live tutorial using your own voice then choose select “
  
 It's a must that you record your video with the screen resolution 1024x768.
 
- *Duration and Size settings: 
+ * Duration and Size settings: 
 
 It can be Up to 1GB file size and 10 min. duration.  
 
