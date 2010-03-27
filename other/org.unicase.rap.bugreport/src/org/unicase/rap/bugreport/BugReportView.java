@@ -119,8 +119,6 @@ public class BugReportView extends ProjectAwareView {
 	    		final BugReport newBugReport = BugFactory.eINSTANCE.createBugReport();
 	    		newBugReport.setName(bugNameText.getText());
 	    		newBugReport.setDescription(bugDescriptionText.getText());
-
-	    		final Display myDisplay = Display.getDefault();
 	    		
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("org.unicase.EditingDomain");
@@ -230,6 +228,10 @@ public class BugReportView extends ProjectAwareView {
 
 	public void notify(Notification notification, Project project,
 			ModelElement modelElement) {
+		
+	}
+
+	public void projectDeleted(Project project) {
 		
 	}
 }
