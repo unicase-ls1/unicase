@@ -11,9 +11,14 @@ import java.util.Properties;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
@@ -122,11 +127,32 @@ public class ConfigEntityStore {
 		}
 
 		try {
-			ConfigEntity cfgEntity = ModelUtil.loadEObjectFromResource(eClass , URI.createFileURI(filename));
+			ConfigEntity cfgEntity = loadEObjectFromResource(eClass , URI.createFileURI(filename));			
 			return cfgEntity;
 		} catch (IOException e) {
 			return null;
 		}				
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI) throws IOException {
+	
+			ResourceSet resourceSet = new ResourceSetImpl();
+			// TODO: HACK: second parameter has been changed for our purpose
+			Resource resource = resourceSet.getResource(resourceURI, true);
+			EList<EObject> contents = resource.getContents();
+			if (contents.size() > 1) {
+				throw new IOException("Resource containes multiple objects!");
+			}
+			if (contents.size() < 1) {
+				throw new IOException("Resource contains no objects");
+			}
+			EObject eObject = contents.get(0);
+			if (!(eClass.isInstance(eObject))) {
+				throw new IOException("Resource contains no objects of given class");
+			}
+			return (T) eObject;
+		
 	}
 	
     public static ConfigEntity loadObject(String filename) throws ClassNotFoundException, IOException {
