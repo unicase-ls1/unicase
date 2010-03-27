@@ -10,10 +10,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.rwt.RWT;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-import org.unicase.rap.ui.tabs.GeneralSettingsTab;
 import org.unicase.rap.ui.views.AbstractView;
-import org.unicase.rap.ui.views.ConfigurationTabView;
-import org.unicase.rap.ui.views.ConfigurationView;
 
 /**
  * Configures the perspective layout. This class is contributed 
