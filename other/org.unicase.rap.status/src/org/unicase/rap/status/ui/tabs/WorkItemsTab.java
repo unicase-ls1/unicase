@@ -269,4 +269,8 @@ public class WorkItemsTab extends ProjectAwareTab {
 			}
 	}
 
+	public void projectDeleted(Project project) {
+		refreshInput();
+	}
+
 }

@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.GeneralSettingsConfigEntity;
 import org.unicase.rap.status.config.StatusConfigEntity;
 import org.unicase.rap.status.ui.tabs.TeamListTab;
 import org.unicase.rap.status.ui.tabs.WorkItemsTab;
@@ -149,5 +148,13 @@ public class StatusView extends ProjectAwareView {
 			ModelElement modelElement) {
 		workItemsTab.refreshInput();
 		teamListTab.refreshInput();		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void projectDeleted(Project project) {
+		workItemsTab.refreshInput();
+		teamListTab.refreshInput();
 	}
 }
