@@ -1261,67 +1261,67 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
-          element="model.ecore#//diagram/DiagramType">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType"
+          element="#//@releases.6/@changes.0/@changes.7/@element">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element"
             featureName="name" dataValue="DiagramType"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//diagram/MEDiagram"
-          referenceName="eStructuralFeatures" element="model.ecore#//diagram/MEDiagram/type">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/type"
+          referenceName="eStructuralFeatures" element="#//@releases.6/@changes.0/@changes.6/@element">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.6/@element"
             featureName="name" dataValue="type"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/type"
-            featureName="eType" referenceValue="model.ecore#//diagram/DiagramType"/>
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.6/@element"
+            featureName="eType" referenceValue="#//@releases.6/@changes.0/@changes.7/@element"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/CLASS_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/CLASS_DIAGRAM"
             featureName="name" dataValue="CLASS_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/CLASS_DIAGRAM"
             featureName="literal" dataValue="CLASS_DIAGRAM"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/USECASE_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/USECASE_DIAGRAM"
             featureName="name" dataValue="USECASE_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/USECASE_DIAGRAM"
             featureName="value" dataValue="1" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/USECASE_DIAGRAM"
             featureName="literal" dataValue="USECASE_DIAGRAM"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/COMPONENT_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/COMPONENT_DIAGRAM"
             featureName="name" dataValue="COMPONENT_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/COMPONENT_DIAGRAM"
             featureName="value" dataValue="2" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/COMPONENT_DIAGRAM"
             featureName="literal" dataValue="COMPONENT_DIAGRAM"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/STATE_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/STATE_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/STATE_DIAGRAM"
             featureName="name" dataValue="STATE_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/STATE_DIAGRAM"
             featureName="value" dataValue="3" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/STATE_DIAGRAM"
             featureName="literal" dataValue="STATE_DIAGRAM"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/ACTIVITY_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/ACTIVITY_DIAGRAM"
             featureName="name" dataValue="ACTIVITY_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/ACTIVITY_DIAGRAM"
             featureName="value" dataValue="4" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/ACTIVITY_DIAGRAM"
             featureName="literal" dataValue="ACTIVITY_DIAGRAM"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//diagram/DiagramType"
-          referenceName="eLiterals" element="model.ecore#//diagram/DiagramType/WORKITEM_DIAGRAM">
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/WORKITEM_DIAGRAM"
+      <changes xsi:type="history:Create" target="#//@releases.6/@changes.0/@changes.7/@element"
+          referenceName="eLiterals" element="#//@releases.6/@changes.0/@changes.7/@element/WORKITEM_DIAGRAM">
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/WORKITEM_DIAGRAM"
             featureName="name" dataValue="WORKITEM_DIAGRAM"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/WORKITEM_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/WORKITEM_DIAGRAM"
             featureName="value" dataValue="5" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/WORKITEM_DIAGRAM"
+        <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element/WORKITEM_DIAGRAM"
             featureName="literal" dataValue="WORKITEM_DIAGRAM"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
@@ -7735,6 +7735,148 @@
         referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
         referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+  </releases>
+  <releases date="2010-03-28T11:49:07.828+0200" label="">
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/ClassDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/ClassDiagram"
+            featureName="name" dataValue="CLASS_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/ClassDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/UseCaseDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/UseCaseDiagram"
+            featureName="name" dataValue="USECASE_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/UseCaseDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/ComponentDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/ComponentDiagram"
+            featureName="name" dataValue="COMPONENT_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/ComponentDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/StateDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/StateDiagram"
+            featureName="name" dataValue="STATE_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/StateDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/ActivityDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/ActivityDiagram"
+            featureName="name" dataValue="ACTIVITY_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/ActivityDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//diagram" referenceName="eClassifiers"
+          element="model.ecore#//diagram/WorkItemDiagram">
+        <changes xsi:type="history:Set" element="model.ecore#//diagram/WorkItemDiagram"
+            featureName="name" dataValue="WORKITEM_DIAGRAM"/>
+        <changes xsi:type="history:Add" element="model.ecore#//diagram/WorkItemDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//diagram/MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Delete" target="model.ecore#//diagram/MEDiagram"
+          referenceName="eStructuralFeatures">
+        <element xsi:type="ecore:EAttribute" name="type" eType="#//@releases.6/@changes.0/@changes.7/@element"/>
+      </changes>
+      <changes xsi:type="history:Delete" target="model.ecore#//diagram" referenceName="eClassifiers">
+        <element xsi:type="ecore:EEnum" name="DiagramType">
+          <eLiterals name="CLASS_DIAGRAM" literal="CLASS_DIAGRAM"/>
+          <eLiterals name="USECASE_DIAGRAM" value="1" literal="USECASE_DIAGRAM"/>
+          <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
+          <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
+          <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
+          <eLiterals name="WORKITEM_DIAGRAM" value="5" literal="WORKITEM_DIAGRAM"/>
+        </element>
+      </changes>
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram" featureName="abstract"
+          dataValue="true" oldDataValue="false"/>
+      <operation name="enumerationToSubClasses">
+        <parameters name="enumAttribute">
+          <referenceValue element="#//@releases.6/@changes.0/@changes.6/@element"/>
+        </parameters>
+        <parameters name="ePackage">
+          <referenceValue element="model.ecore#//diagram"/>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/ClassDiagram"
+          featureName="name" dataValue="ClassDiagram" oldDataValue="CLASS_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/ClassDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>ClassDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/ComponentDiagram"
+          featureName="name" dataValue="ComponentDiagram" oldDataValue="COMPONENT_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/ComponentDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>ComponentDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/StateDiagram"
+          featureName="name" dataValue="StateDiagram" oldDataValue="STATE_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/StateDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>StateDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/ActivityDiagram"
+          featureName="name" dataValue="ActivityDiagram" oldDataValue="ACTIVITY_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/ActivityDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>ActivityDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/WorkItemDiagram"
+          featureName="name" dataValue="WorkItemDiagram" oldDataValue="WORKITEM_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/WorkItemDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>WorkItemDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Set" element="model.ecore#//diagram/UseCaseDiagram"
+          featureName="name" dataValue="UseCaseDiagram" oldDataValue="USECASE_DIAGRAM"/>
+      <operation name="rename">
+        <parameters name="element">
+          <referenceValue element="model.ecore#//diagram/UseCaseDiagram"/>
+        </parameters>
+        <parameters name="name">
+          <dataValue>UseCaseDiagram</dataValue>
+        </parameters>
+      </operation>
+    </changes>
   </releases>
   <releases/>
 </history:History>
