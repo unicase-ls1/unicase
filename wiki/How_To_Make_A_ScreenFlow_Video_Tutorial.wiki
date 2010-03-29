@@ -105,8 +105,10 @@ When you have successfully logged in you get a dialog for the metadata for your 
 
 Press “Publish” to submit your video to {{{YouTube}}}. 
 
+For more details about on how to use {{{ScreenFlow}}}'s features please refere to this [http://www.telestream.net/screen-flow/overview.htm link].  
+
 *Important note:*
 
  
 After recording your video tutorial please add the {{{ScreenFlow}}} document to the following URL: {{{wwwbruegge/shared/unicase/ScreenFlowTutorials/ScreenFlowFiles}}}. 
-This done to make sure that in case if the video output is lost we can re-export it again from your {{{ScreenFlow}}} document. 
+This is done to make sure that in case if the video output is lost we can re-export it again from your {{{ScreenFlow}}} document. 
