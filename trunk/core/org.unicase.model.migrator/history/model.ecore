@@ -270,24 +270,21 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
-    <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//Attachment">
+    <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" abstract="true" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//UnicaseModelElement" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
           transient="true" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
           eType="#//UnicaseModelElement" transient="true" containment="true" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//diagram/DiagramType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
-      <eLiterals name="CLASS_DIAGRAM" literal="CLASS_DIAGRAM"/>
-      <eLiterals name="USECASE_DIAGRAM" value="1" literal="USECASE_DIAGRAM"/>
-      <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
-      <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
-      <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
-      <eLiterals name="WORKITEM_DIAGRAM" value="5" literal="WORKITEM_DIAGRAM"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//diagram/MEDiagram"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram" eSuperTypes="#//diagram/MEDiagram"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram" eSuperTypes="#//diagram/MEDiagram"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StateDiagram" eSuperTypes="#//diagram/MEDiagram"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram" eSuperTypes="#//diagram/MEDiagram"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkItemDiagram" eSuperTypes="#//diagram/MEDiagram"/>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//classes/PackageElement">
@@ -989,7 +986,7 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//UnicaseModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//UnicaseModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="userStep" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCase" eType="#//requirement/UseCase"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -1094,7 +1091,7 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//UnicaseModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Proposal" eSuperTypes="#//UnicaseModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assessments" upperBound="-1"
           eType="#//rationale/Assessment" containment="true" eOpposite="#//rationale/Assessment/proposal"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
@@ -1111,7 +1108,7 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//UnicaseModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//UnicaseModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="underlyingProposals"
           upperBound="-1" eType="#//rationale/Proposal" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -1137,14 +1134,14 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//UnicaseModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Assessment" eSuperTypes="#//UnicaseModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposal" eType="#//rationale/Proposal"
           eOpposite="#//rationale/Proposal/assessments" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" eType="#//rationale/Criterion"
           eOpposite="#//rationale/Criterion/assessments" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//UnicaseModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//UnicaseModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sender" eType="#//organization/OrgUnit"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"
@@ -1159,19 +1156,19 @@
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.change">
     <eClassifiers xsi:type="ecore:EClass" name="MergingIssue" eSuperTypes="#//rationale/Issue">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MergingProposal" eSuperTypes="#//rationale/Proposal">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pendingOperations" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MergingSolution" eSuperTypes="#//rationale/Solution">
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedOperations" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+          eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
           containment="true"/>
     </eClassifiers>
   </eSubpackages>

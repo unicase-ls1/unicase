@@ -3,4 +3,10 @@
 <plugin>
 <extension point="edu.tum.cs.cope.migrators">
 <migrator path="migrator/"/></extension>
+<extension
+      point="edu.tum.cs.cope.operations">
+   <operations
+         declaration="model/operations.declaration">
+   </operations>
+</extension>
 </plugin>
