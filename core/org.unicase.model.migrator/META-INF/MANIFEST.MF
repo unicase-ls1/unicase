@@ -5,4 +5,6 @@ Bundle-SymbolicName: org.unicase.model.migrator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.model
+Require-Bundle: org.unicase.model,
+ edu.tum.cs.cope.declaration.registry,
+ edu.tum.cs.cope.migration.execution
