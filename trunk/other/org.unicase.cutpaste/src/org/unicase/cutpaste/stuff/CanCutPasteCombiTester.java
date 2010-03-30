@@ -33,7 +33,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This property tester checks if the paste handler is active.
+ * This property tester provides various test cases for the cut and paste operation.
  * 
  * @author weiglt
  */
