@@ -41,6 +41,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -98,11 +99,16 @@ public final class PasteHandler extends AbstractHandler {
 				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
 					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
 
-				// Save old ME data before changing
-				if (((UnicaseModelElement) meSource).getContainerModelElement() instanceof UnicaseModelElement) {
-					prevLocation = ((UnicaseModelElement) ((UnicaseModelElement) meSource).getContainerModelElement())
-						.getName();
-					prevLocationType = (((UnicaseModelElement) meSource).getContainerModelElement()).eClass().getName();
+				// Remember old ME data before changing
+				UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
+					.getContainerModelElement();
+				if (umeSourceContainer instanceof UnicaseModelElement) {
+					prevLocation = umeSourceContainer.getName();
+					prevLocationType = umeSourceContainer.eClass().getName();
+				} else if (umeSourceContainer == null) { // then parent is project
+					prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
+					System.out.println(prevLocation);
+					prevLocationType = meSource.getProject().eClass().getName();
 				}
 
 				// paste implements AllowedCutPaste-v3.txt, can also be found in this package
@@ -158,7 +164,7 @@ public final class PasteHandler extends AbstractHandler {
 						.getModelElementId());
 					clipboard.setContents(new StringSelection(""), null);
 					System.out.println("Paste Operation finished. CompositeOperation finished.");
-					refreshDecorator();
+					refreshCutAndPasteDecorator();
 				} catch (InvalidHandleException e) {
 					e.printStackTrace();
 					System.out.println("ERROR paste: there was no begun cut action.");
@@ -173,23 +179,39 @@ public final class PasteHandler extends AbstractHandler {
 			}
 		} else if (target instanceof ProjectSpace) {
 			psTarget = (ProjectSpace) target;
-			System.out.println("Paste attempt in ProjectSpace detected. Not possible yet, sorry.");
+
+			// Remember old ME data before changing
+			UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
+				.getContainerModelElement();
+			if (umeSourceContainer instanceof UnicaseModelElement) {
+				prevLocation = umeSourceContainer.getName();
+				prevLocationType = umeSourceContainer.eClass().getName();
+			} else if (umeSourceContainer == null) { // then parent is project
+				prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
+				System.out.println(prevLocation);
+				prevLocationType = meSource.getProject().eClass().getName();
+			}
+
 			try {
 				meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
 					org.unicase.metamodel.ModelElement.class, "ModelElement"));
 				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
 					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
+				psTarget.getProject().getModelElements().add(meSource);
+
 			} catch (UnsupportedFlavorException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			try {
-				handle.end("Paste attempt in ProjectSpace", "Paste attempt in ProjectSpace",
-					((UnicaseModelElement) meSource).getModelElementId());
+				handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+					+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
+					+ "\" to " + "Project \"" + psTarget.getProjectName() + "\"", ((UnicaseModelElement) meSource)
+					.getModelElementId());
 				clipboard.setContents(new StringSelection(""), null);
 				System.out.println("Paste Operation finished. CompositeOperation finished.");
-				refreshDecorator();
+				refreshCutAndPasteDecorator();
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
 				System.out.println("ERROR paste: there was no begun cut action.");
@@ -252,7 +274,7 @@ public final class PasteHandler extends AbstractHandler {
 
 	}
 
-	private void refreshDecorator() {
+	private void refreshCutAndPasteDecorator() {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
