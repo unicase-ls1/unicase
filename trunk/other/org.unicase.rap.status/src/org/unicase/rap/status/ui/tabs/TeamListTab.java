@@ -15,7 +15,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.rap.status.ui.viewers.TeamTableViewer;
-import org.unicase.rap.ui.views.ProjectAwareTab;
+import org.unicase.rap.ui.tabs.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 
 /**

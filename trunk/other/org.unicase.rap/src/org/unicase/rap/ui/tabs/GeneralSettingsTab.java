@@ -1,22 +1,21 @@
 package org.unicase.rap.ui.tabs;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
-
-import config.ConfigEntity;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.rap.LoginDialog;
-import org.unicase.rap.config.IValidator;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.GeneralSettingsConfigEntity;
-import org.unicase.rap.ui.views.ConfigurationTabView;
+import org.unicase.rap.config.IValidator;
+
+import config.ConfigEntity;
 
 
 /**
@@ -24,7 +23,7 @@ import org.unicase.rap.ui.views.ConfigurationTabView;
  * 
  * @author Edgar Müller, Fatih Ulusoy
  */
-public class GeneralSettingsTab extends ConfigurationTabView {
+public class GeneralSettingsTab extends ConfigurationTab {
 	
 	private GeneralSettingsConfigEntity cfgEntity;
 	
@@ -32,7 +31,7 @@ public class GeneralSettingsTab extends ConfigurationTabView {
 	private Text passwordTextField;
 	private Text passwordConfirmationTextField;
 
-	public void createTab(Composite parent) {
+	public void createConfigurationTab(Composite parent) {
 		
 //		if(!login())
 //			return;

@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.rap.ui.tabs.AbstractTab;
 
 /**
  * View that contains all configuration options.
@@ -20,12 +21,6 @@ public class ConfigurationView extends AbstractTabView {
 	
 	public static final String ID = "org.unicase.rap.ui.views.ConfigurationView";
 	
-	/**
-	 *  Contains all tabs, that should be shown in the configuration view 
-	 */
-	protected HashMap<String, ConfigurationTabView> tabs = 
-		new HashMap<String, ConfigurationTabView>();
-	
 	@Override
 	public String getId() {
 		return ID;
@@ -34,21 +29,19 @@ public class ConfigurationView extends AbstractTabView {
 	// TODO: Maybe remove this method
 	public void init() {
 		
-		tabs = new HashMap<String, ConfigurationTabView>();
-		
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.rap.ui.config.tab");
 	
-		ConfigurationTabView cfgTab;
+		AbstractTab cfgTab;
 		
 		for (IConfigurationElement e : configIn) {
 			
 			String tabName = e.getAttribute("name");
 			
 			try {
-				cfgTab = (ConfigurationTabView) e.createExecutableExtension("class");
-				addConfigurationTab(tabName, cfgTab);
+				cfgTab = (AbstractTab) e.createExecutableExtension("class");
+				addTab(tabName, cfgTab);
 			} catch (CoreException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -62,24 +55,9 @@ public class ConfigurationView extends AbstractTabView {
 		init();
 		
 		for (String tabName : tabs.keySet()) {
-			ConfigurationTabView view = tabs.get(tabName);
+			AbstractTab view = tabs.get(tabName);
 			view.setTabName(tabName);
 			view.setParentFolder(getTabFolder());
 		}
-	}
-
-	@Override
-	public void setFocus() {
-
-	}
-	
-	/**
-	 * Add an additional tab to the configuration view.
-	 * @param tabName The name of the tab that will be used when displaying the tab.
-	 * @param configTab The tab itself
-	 */
-	public void addConfigurationTab(String tabName, 
-			ConfigurationTabView configTab) {
-		tabs.put(tabName, configTab);
 	}
 }

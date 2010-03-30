@@ -21,7 +21,9 @@ import org.unicase.rap.ui.views.AbstractView;
  */
 public class ViewDispatcher implements IPerspectiveFactory {
 	
-	// caches views with their corresponding URL 
+	/**
+	 * Caches views with their corresponding URL 
+	 */
 	private HashMap<String, AbstractView> views;
 			
 	public ViewDispatcher() {
@@ -31,16 +33,18 @@ public class ViewDispatcher implements IPerspectiveFactory {
 	
 	public void createInitialLayout(IPageLayout layout) {
 		layout.setEditorAreaVisible(false);
-		
-		// determine which view has been requsted
+		// determine which view has been requested
 		HttpServletRequest request = RWT.getRequest();
 		String viewName = request.getParameter("view");
 		AbstractView view = views.get(viewName);
 
 		if (view != null) {
 //			configView.addConfigurationTab("General settings", new GeneralSettingsTab());
-			layout.addView(view.getId(), IPageLayout.TOP,
+
+			layout.addStandaloneView(view.getId(), false, IPageLayout.TOP,
 					IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
+//			layout.getViewLayout(view.getId()).setCloseable(false);
+//			layout.getViewLayout(view.getId()).getShow
 		}	
 	}
 	

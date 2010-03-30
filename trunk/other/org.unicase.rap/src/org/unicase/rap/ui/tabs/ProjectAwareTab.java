@@ -1,4 +1,4 @@
-package org.unicase.rap.ui.views;
+package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
