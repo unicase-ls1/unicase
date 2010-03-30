@@ -60,7 +60,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.rap.ui.views.ConfigurationTabView:"/>
+                  <meta.attribute kind="java" basedOn="org.unicase.rap.ui.tabs.ConfigurationTab:"/>
                </appinfo>
             </annotation>
          </attribute>

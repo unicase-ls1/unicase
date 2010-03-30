@@ -1,5 +1,6 @@
 package org.unicase.rap.config;
 
+import config.ConfigEntity;
 import config.impl.ConfigEntityImpl;
 
 /**
@@ -15,6 +16,19 @@ public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	 */
 	private static final String CFG_FILENAME = "org.unicase.rap.config.ProjectKeysConfigEntity";
 	
+	private class Keys {
+		final static String POSTFIX_ACTIVATED = "_ACTIVATED";
+		final static String POSTFIX_ACCESS_KEY = "_ACCESS_KEY";
+	}
+	
+	public ProjectKeysConfigEntity() {
+		
+	}
+	
+	public ProjectKeysConfigEntity(ConfigEntity configEntity) {
+		properties = configEntity.getProperties();
+	}
+	
 	/**
 	 * Adds a project name and its access key to the configuration entity. 
 	 * 
@@ -22,7 +36,7 @@ public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	 * @param key The access key of the project
 	 */
 	public void addAccessKey(String projectName, String key) {
-		getProperties().put(projectName, key);
+		getProperties().put(projectName + Keys.POSTFIX_ACCESS_KEY, key);
 	}
 	
 	/**
@@ -33,13 +47,39 @@ public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	 */
 	public String getAccessKey(String projectName) {
 		
-		Object o = getProperties().get(projectName);
+		Object o = getProperties().get(projectName + Keys.POSTFIX_ACCESS_KEY);
 		
 		if (o != null) {
 			return (String) o;
 		}
 		
 		return null; 
+	}
+	
+	/**
+	 * Sets the activated bit for the given project.
+	 * @param projectName The name of a project.
+	 * @param isActivated Whether the project should be activated.
+	 */
+	public void setProjectActivated(String projectName, boolean isActivated) {
+		getProperties().put(projectName + Keys.POSTFIX_ACTIVATED, new Boolean(isActivated));
+	}
+	
+	/**
+	 * Returns whether the given project is activated.
+	 * 
+	 * @param projectName The name of the project, which should be determined whether it is activated.
+	 * @return True, if the project is activated, false else.
+	 */
+	public boolean getProjectActivated(String projectName) {
+		
+		Object o = getProperties().get(projectName + Keys.POSTFIX_ACTIVATED);
+		
+		if (o != null) {
+			return ((Boolean) o).booleanValue();
+		}
+		
+		return false; 
 	}
 	
 	/**

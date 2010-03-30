@@ -1,6 +1,7 @@
 package org.unicase.rap.ui.views;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.swt.SWT;
@@ -19,7 +20,7 @@ public abstract class AbstractTabView extends AbstractView {
 	/**
 	 *  Contains all tabs, that should be shown in the configuration view 
 	 */
-	protected HashMap<String, AbstractTab> tabs = 
+	private Map<String, AbstractTab> tabs = 
 		new HashMap<String, AbstractTab>();
 	
 	private CTabFolder tabFolder;
@@ -34,6 +35,15 @@ public abstract class AbstractTabView extends AbstractView {
 		if (result < 18) {
 			folder.setTabHeight(18);
 		}
+	}
+	
+	/**
+	 * Returns a map of the tabs, this view currently holds, and their name.
+	 * 
+	 * @return Map of tabs and their name
+	 */
+	public Map<String, AbstractTab> getTabs() {
+		return tabs;
 	}
 
 	/**

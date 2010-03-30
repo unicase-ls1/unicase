@@ -1,7 +1,5 @@
 package org.unicase.rap.ui.views;
 
-import java.util.HashMap;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -21,6 +19,9 @@ public class ConfigurationView extends AbstractTabView {
 	
 	public static final String ID = "org.unicase.rap.ui.views.ConfigurationView";
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getId() {
 		return ID;
@@ -49,13 +50,16 @@ public class ConfigurationView extends AbstractTabView {
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createTabs(Composite parent) {
 		
 		init();
 		
-		for (String tabName : tabs.keySet()) {
-			AbstractTab view = tabs.get(tabName);
+		for (String tabName : getTabs().keySet()) {
+			AbstractTab view = getTabs().get(tabName);
 			view.setTabName(tabName);
 			view.setParentFolder(getTabFolder());
 		}

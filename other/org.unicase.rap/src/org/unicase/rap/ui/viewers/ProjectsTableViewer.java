@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Provides a table like overview of all available projects.
@@ -24,21 +23,16 @@ import org.unicase.workspace.WorkspaceManager;
 public class ProjectsTableViewer extends AbstractETableViewer implements SelectionListener {
 
 	private List<SelectionListener> listeners;
-	private Composite composite;
 	
 	public ProjectsTableViewer(Composite composite) {
 		super(composite);	
 		listeners = new ArrayList<SelectionListener>();
 		getTable().addSelectionListener((SelectionListener) this);
 	}
-
-	public void refreshView() {
-		List<ProjectSpace> spaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
-
-		// the case of first time of input setting to table
-		WritableList emfList = new WritableList(Realm.getDefault(),
-				spaces, ProjectSpace.class);
-		setInput(emfList);
+	
+	public void setInput(List<ProjectSpace> projectSpaces) {
+		WritableList emfList = new WritableList(Realm.getDefault(), projectSpaces, ProjectSpace.class);
+		super.setInput(emfList);
 	}
 
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {

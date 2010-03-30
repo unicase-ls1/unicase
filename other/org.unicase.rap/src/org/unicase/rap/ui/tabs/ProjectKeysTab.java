@@ -5,12 +5,15 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.rap.config.ActivatedProjectsCache;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ProjectKeysConfigEntity;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 import config.ConfigEntity;
 
@@ -28,6 +31,11 @@ public class ProjectKeysTab extends ConfigurationTab {
 	
 	private Text crypticElementTextField;
 	
+	/**
+	 * Checkbox for determining whether a project should be observed or not.
+	 */
+	private Button checkBox;
+	
 
 	@Override
 	public void createConfigurationTab(Composite parent) {
@@ -40,20 +48,9 @@ public class ProjectKeysTab extends ConfigurationTab {
 	    data.grabExcessVerticalSpace = true;
 	    parent.setLayout(gridLayout);
 	    parent.setLayoutData(data);
-//		top.setLayout(layout);
-		
-		
-		// top banner
-//		Composite banner = new Composite(parent, SWT.NONE);
-//		banner.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_BEGINNING, true, false));
-//		layout = new GridLayout();
-//		layout.marginHeight = 5;
-//		layout.marginWidth = 10;
-//		layout.numColumns = 2;
-//		banner.setLayout(layout);
 	    
 	    projectsTableViewer = new ProjectsTableViewer(parent);
-		projectsTableViewer.refreshView();
+		projectsTableViewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces());
 		projectsTableViewer.getTable().setLayoutData(data);
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
@@ -67,34 +64,62 @@ public class ProjectKeysTab extends ConfigurationTab {
 		});
 		
 		crypticElementTextField = new Text(parent, SWT.BORDER);
+		checkBox = new Button(parent, SWT.CHECK);
+		checkBox.setText("Activated:");
+		
+		addSaveButtonListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				ActivatedProjectsCache.getInstance().reloadActivatedProjects();
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
 				
+			}
+		});
 	}
 
 	@Override
 	public ConfigEntity getConfigEntity() {
-		ProjectKeysConfigEntity cfgEntity = new ProjectKeysConfigEntity();
-		cfgEntity.addAccessKey(currentProjectSpace.getProjectName(), crypticElementTextField.getText());
-		return cfgEntity;
-	}
-
-	@Override
-	public void loadSettings() {
+		// TODO: simplify these calls
 		ProjectKeysConfigEntity configEntity = new ProjectKeysConfigEntity();
 		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+		ProjectKeysConfigEntity projectConfigEntity = new ProjectKeysConfigEntity(cfgEntity);
 		
+		String projectName = currentProjectSpace.getProjectName();
+		projectConfigEntity.addAccessKey(projectName, crypticElementTextField.getText());
+		projectConfigEntity.setProjectActivated(projectName, checkBox.getSelection());
+		return projectConfigEntity;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void loadSettings() {
+		
+		ProjectKeysConfigEntity configEntity = new ProjectKeysConfigEntity();
+		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+
 		if (cfgEntity != null) {
-			String crypticElement = (String) cfgEntity.getProperties().get(currentProjectSpace.getProjectName());
-			
+			ProjectKeysConfigEntity projectConfigEntity = new ProjectKeysConfigEntity(cfgEntity);
+			String projectName = currentProjectSpace.getProjectName();
+			String accessKey = projectConfigEntity.getAccessKey(projectName);
+			boolean isActivated = projectConfigEntity.getProjectActivated(projectName);
+				
 			// cryptic element may not be set
-			if (crypticElement != null) {
-				crypticElementTextField.setText(crypticElement);
-				return;
+			if (accessKey != null) {
+				crypticElementTextField.setText(accessKey);
+			} else {
+				crypticElementTextField.setText("");
+			}
+			
+			if (isActivated) {
+				checkBox.setSelection(true);
+			} else {
+				checkBox.setSelection(false);
 			}
 		} 
-			
-		crypticElementTextField.setText("");
-
-		
 	}
 
 }
