@@ -30,8 +30,7 @@ Of course you can also send direct email to one of the project leads:
 
 [mailto:koegel@headstrong.de Maximilian]
 
-<img src="http://unicase.googlecode.com/files/jonas.jpg"/>
+<img src="http://unicase.googlecode.com/files/jonas.jpg" height =210 />
 
-[http://www1.in.tum.de/JonasHelming ] 
 
 [mailto:helming@in.tum.de Jonas]
