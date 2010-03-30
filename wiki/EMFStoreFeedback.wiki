@@ -1,6 +1,6 @@
 #summary Describes how to report bugs and feature requests for the EMFStore
 
-We appreciate your input to improve EMFStore. You are the our most valuable source of bug reports and feature requests. If you find a bug or if you have feature request please do not hesitate to report it to us. Please give us as much information on the feature or bug as you can, in particular the following information is very useful to us in descending order of priority:
+We highly appreciate your input to improve EMFStore. You are the our most valuable source of bug reports and feature requests. If you find a bug or if you have feature request please do not hesitate to report it to us. Please give us as much information on the feature or bug as you can, in particular the following information is very useful to us in descending order of priority:
 
     * The version of EMFStore the problem occured in
     * Steps to reproduce the problem
