@@ -14,6 +14,6 @@ Some things are explained faster and better in a video showing the contents of y
     * [http://screenr.com Screenr]: Web application that can be launched from a web browser without installation, only requires a [http://twitter.com Twitter] account
     * [http://www.jingproject.com/ Jing]: Desktop application that shares a video via screencast with on mouse click, very easy to use
 
-Please send your report to the developer mailinglist at emfstore-dev@googlegroups.com.
+Please send your report to the developer mailinglist at [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com].
 
 Thank you!
