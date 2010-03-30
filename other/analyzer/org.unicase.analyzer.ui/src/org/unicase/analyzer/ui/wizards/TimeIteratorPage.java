@@ -6,14 +6,9 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -40,10 +35,7 @@ import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -208,44 +200,46 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
 		conf = wizard.getAnalyzerConfig();
 		// startDate for TimeIterator
-		if (conf.getIterator() instanceof TimeIterator) {
-			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.MINUTE, -2);
-			Date start = ((TimeIterator) conf.getIterator()).getStartDate();
-			if (start == null || start.compareTo(cal.getTime()) < 0) {
-				List<HistoryInfo> historyList;
-				try {
-					historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
-						wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
-						VersioningFactory.eINSTANCE.createHistoryQuery());
-					HistoryInfo initialHistory = historyList.get(historyList.size());
-					startDate.setSelection(initialHistory.getLogMessage().getDate());
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Can not get the date of the project creation", e);
-				}
-
-			} else {
-				startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
-			}
-		}
+		// if (conf.getIterator() instanceof TimeIterator) {
+		// Calendar cal = Calendar.getInstance();
+		// cal.add(Calendar.MINUTE, -2);
+		// Date start = ((TimeIterator) conf.getIterator()).getStartDate();
+		// if (start == null || start.compareTo(cal.getTime()) < 0) {
+		// List<HistoryInfo> historyList;
+		// try {
+		// historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
+		// wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
+		// VersioningFactory.eINSTANCE.createHistoryQuery());
+		// HistoryInfo initialHistory = historyList.get(historyList.size());
+		// startDate.setSelection(initialHistory.getLogMessage().getDate());
+		// } catch (EmfStoreException e) {
+		// WorkspaceUtil.logException("Can not get the date of the project creation", e);
+		// }
+		//
+		// } else {
+		// startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
+		// }
+		// }
 
 		// endDate for TimeIterator
-		if (conf.getIterator() instanceof TimeIterator) {
-			if (((TimeIterator) conf.getIterator()).getEndDate() == null) {
-				List<HistoryInfo> historyList;
-				try {
-					historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
-						wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
-						VersioningFactory.eINSTANCE.createHistoryQuery());
-					HistoryInfo initialHistory = historyList.get(0);
-					endDate.setSelection(initialHistory.getLogMessage().getDate());
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Can not get the date of the project creation", e);
-				}
-			} else {
-				endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
-			}
-		}
+		// if (conf.getIterator() instanceof TimeIterator) {
+		// if (((TimeIterator) conf.getIterator()).getEndDate() == null) {
+		// List<HistoryInfo> historyList;
+		// try {
+		// historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
+		// wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
+		// VersioningFactory.eINSTANCE.createHistoryQuery());
+		// HistoryInfo initialHistory = historyList.get(0);
+		// endDate.setSelection(initialHistory.getLogMessage().getDate());
+		// } catch (EmfStoreException e) {
+		// WorkspaceUtil.logException("Can not get the date of the project creation", e);
+		// }
+		// } else {
+		// endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
+		// }
+		// }
+		startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
+		endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
 
 		// forward
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(),
@@ -294,12 +288,9 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {
 		final ExporterPage page = ((ProjectAnalyzerWizard) getWizard()).getExporterPage();
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
 
 				timeIterator = (TimeIterator) conf.getIterator();
@@ -321,7 +312,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 				}
 				page.init();
 			}
-		});
+		}.run();
 
 		return page;
 	}

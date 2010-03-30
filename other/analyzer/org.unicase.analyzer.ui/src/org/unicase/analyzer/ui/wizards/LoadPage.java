@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -32,6 +31,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -134,12 +134,13 @@ public class LoadPage extends WizardPage implements Listener {
 
 			resource = editingDomain.getResourceSet().createResource(fileURI);
 			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			new UnicaseCommand() {
+
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					resource.getContents().add(analyzerConfig);
 				}
-			});
+			}.run();
 
 		} else {
 
@@ -166,12 +167,13 @@ public class LoadPage extends WizardPage implements Listener {
 			initConfig(DEFAULT_PATH);
 		}
 		final AnalyzerPage page = (AnalyzerPage) super.getNextPage();
-		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+		new UnicaseCommand() {
+
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				page.init();
 			}
-		});
+		}.run();
 		return super.getNextPage();
 	}
 

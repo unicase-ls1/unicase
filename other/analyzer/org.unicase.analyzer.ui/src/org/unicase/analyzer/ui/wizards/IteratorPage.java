@@ -6,7 +6,8 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import org.eclipse.emf.transaction.RecordingCommand;
+import java.util.Calendar;
+
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -25,6 +26,7 @@ import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -38,7 +40,6 @@ public class IteratorPage extends WizardPage implements Listener {
 	private Button timeIteratorButton;
 
 	private AnalyzerConfiguration conf;
-	private final TransactionalEditingDomain editingDomain;
 
 	/**
 	 * @param pageName Name of the page
@@ -48,7 +49,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/**
@@ -74,9 +75,10 @@ public class IteratorPage extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 		if (versionIteratorButton.getSelection()) {
 			final VersionIteratorPage page = ((ProjectAnalyzerWizard) getWizard()).getVersionIteratorPage();
-			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			new UnicaseCommand() {
+
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 					if (conf.getIterator() == null || conf.getIterator() instanceof TimeIterator) {
 						PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
@@ -91,14 +93,15 @@ public class IteratorPage extends WizardPage implements Listener {
 					page.initDefaulGroup();
 					page.initGroup();
 				}
-			});
+			}.run();
 			return page;
 
 		} else if (timeIteratorButton.getSelection()) {
 			final TimeIteratorPage page = ((ProjectAnalyzerWizard) getWizard()).getTimeIteratorPage();
-			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			new UnicaseCommand() {
+
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 					if (conf.getIterator() == null || !(conf.getIterator() instanceof TimeIterator)) {
 						DateVersionSpec startVer = VersioningFactory.eINSTANCE.createDateVersionSpec();
@@ -108,12 +111,13 @@ public class IteratorPage extends WizardPage implements Listener {
 						versionQuery.setEndVersion(endVer);
 						TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
 						timeIterator.setVersionSpecQuery(versionQuery);
+						timeIterator.setStepLengthUnit(Calendar.YEAR);
 						conf.setIterator(timeIterator);
 					}
 					page.initDefaulGroup();
 					page.initGroup();
 				}
-			});
+			}.run();
 			return page;
 		} else {
 			return super.getNextPage();
