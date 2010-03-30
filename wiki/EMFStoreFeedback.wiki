@@ -13,6 +13,7 @@ Some things are explained faster and better in a video showing the contents of y
 
     * [http://screenr.com Screenr]: Web application that can be launched from a web browser without installation, only requires a [http://twitter.com Twitter] account
     * [http://www.jingproject.com/ Jing]: Desktop application that shares a video via screencast with on mouse click, very easy to use
+    * [http://www.youtube.com/watch?v=-rv5vvwCYMU Windows Problem Steps Reporter]: If you are a Windows 7 user, it already ships with a tool for this purpose.
 
 Please send your report to the developer mailinglist at [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com].
 
