@@ -9,7 +9,7 @@ We highly appreciate your input to improve EMFStore. You are the our most valuab
     * A log entry of the problem
     * A zipped copy of your emfstore data folder (default is .unicase in your user home)
 
-Some things are explained faster and better in a video showing the contents of your screen. There is two very easy ways to record a screencast including audio:
+Some things are explained faster and better in a video showing the contents of your screen. There are very easy ways to record a screencast including audio:
 
     * [http://screenr.com Screenr]: Web application that can be launched from a web browser without installation, only requires a [http://twitter.com Twitter] account
     * [http://www.jingproject.com/ Jing]: Desktop application that shares a video via screencast with on mouse click, very easy to use
