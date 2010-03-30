@@ -71,20 +71,20 @@ public class StatusView extends ProjectAwareView {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		String crypticElement = getHttpRequest().getParameter("key");
-		
-		StatusConfigEntity configEntity = new StatusConfigEntity(projectSpace);
-		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
-		
-		Object savedCrypticElement = cfgEntity.getProperties().get(StatusConfigEntity.Keys.CRYPTIC_ELEMENT_KEY); 
-		
-		// if savedCrypticElement == null, we assume that this has been set intentional
-		if (savedCrypticElement != null && !((String) savedCrypticElement).equals(crypticElement)) {
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), 
-					"Access denied", "You aren't allowed to view this project.");
-			return;
-		}
-		
+//		String crypticElement = getHttpRequest().getParameter("key");
+//		
+//		StatusConfigEntity configEntity = new StatusConfigEntity(projectSpace);
+//		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+//		
+//		Object savedCrypticElement = cfgEntity.getProperties().get(StatusConfigEntity.Keys.CRYPTIC_ELEMENT_KEY); 
+//		
+//		// if savedCrypticElement == null, we assume that this has been set intentional
+//		if (savedCrypticElement != null && !((String) savedCrypticElement).equals(crypticElement)) {
+//			MessageDialog.openInformation(Display.getDefault().getActiveShell(), 
+//					"Access denied", "You aren't allowed to view this project.");
+//			return;
+//		}
+//		
 		parent.setLayout(new FillLayout());
 		int style = SWT.TOP | SWT.FLAT | SWT.BORDER;
 		

@@ -24,6 +24,10 @@
             class="org.unicase.rap.status.ui.tabs.StatusConfigurationTab"
             name="Status view">
       </config>
+      <config
+            class="org.unicase.rap.status.ConfigurationTabView:1"
+            name="org.unicase.rap.status.config1">
+      </config>
    </extension>
    
 </plugin>
