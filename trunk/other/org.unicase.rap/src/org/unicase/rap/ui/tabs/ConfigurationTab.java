@@ -34,8 +34,11 @@ public abstract class ConfigurationTab extends AbstractTab {
 	 */
 	private List<IValidator> validators;
 	
+	private List<SelectionListener> saveButtonCallbackListeners;
+	
 	public ConfigurationTab() {
 		validators = new ArrayList<IValidator>();
+		saveButtonCallbackListeners = new ArrayList<SelectionListener>();
 	}
 
 	
@@ -59,16 +62,13 @@ public abstract class ConfigurationTab extends AbstractTab {
 				}
 
 				saveConfigEntity();
+				
+				for (SelectionListener listener : saveButtonCallbackListeners) {
+					listener.widgetSelected(e);
+				}
 
 				MessageDialog.openInformation(Display.getDefault().getActiveShell(),
 						"Settings saved", "The settings were successfully saved.");
-
-				// TODO: retrieve bug container via..
-				//					ProjectUrlFragment projUrlFrag = UrlFactory.eINSTANCE.createProjectUrlFragment();
-				//					projUrlFrag.setName(projectName);
-				//					WorkspaceManager.getInstance().getCurrentWorkspace().resolve(projUrlFrag);
-				//					ProjectSpace p = null;
-				//					p.getProject().contains(modelElementId)
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -88,6 +88,14 @@ public abstract class ConfigurationTab extends AbstractTab {
 		if (cfgEntity != null) {
 			ConfigEntityStore.getInstance().saveEntity(cfgEntity);
 		}
+	}
+	
+	public void addSaveButtonListener(SelectionListener listener) {
+		saveButtonCallbackListeners.add(listener);
+	}
+	
+	public void removeSaveButtonListener(SelectionListener listener) {
+		saveButtonCallbackListeners.remove(listener);
 	}
 	
 	/**

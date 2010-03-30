@@ -1,5 +1,7 @@
 package org.unicase.rap.status.ui.tabs;
 
+import java.util.List;
+
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -11,7 +13,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.rap.config.ActivatedProjectsCache;
 import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.IActivatedProjectsListener;
 import org.unicase.rap.status.config.StatusConfigEntity;
 import org.unicase.rap.ui.tabs.ConfigurationTab;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
@@ -22,7 +26,7 @@ import config.ConfigEntity;
 /**
  * 
  */
-public class StatusConfigurationTab extends ConfigurationTab {
+public class StatusConfigurationTab extends ConfigurationTab implements IActivatedProjectsListener {
 
 	/**
 	 * The table viewer for projects.
@@ -103,7 +107,8 @@ public class StatusConfigurationTab extends ConfigurationTab {
 //		banner.setLayout(layout);
 	    
 	    projectsTableViewer = new ProjectsTableViewer(parent);
-		projectsTableViewer.refreshView();
+	    projectsTableViewer.setInput(ActivatedProjectsCache.getInstance().getProjects());
+		ActivatedProjectsCache.getInstance().addListener(this);
 		projectsTableViewer.getTable().setLayoutData(data);
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
@@ -181,5 +186,11 @@ public class StatusConfigurationTab extends ConfigurationTab {
 			workItemsVisibleCheckBox.setSelection(false);
 			crypticElementTextfield.setText("");
 		}
+	}
+
+
+
+	public void activatedProjectsChangd(List<ProjectSpace> projectSpaces) {
+		projectsTableViewer.setInput(projectSpaces);
 	}
 }

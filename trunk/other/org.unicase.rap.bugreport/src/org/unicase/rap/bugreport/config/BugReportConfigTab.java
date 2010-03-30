@@ -1,5 +1,7 @@
 package org.unicase.rap.bugreport.config;
 
+import java.util.List;
+
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -14,14 +16,16 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.bugreport.SelectWorkPackageDialog;
 import org.unicase.rap.bugreport.config.BugReportingConfigEntity.Keys;
+import org.unicase.rap.config.ActivatedProjectsCache;
 import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.IActivatedProjectsListener;
 import org.unicase.rap.ui.tabs.ConfigurationTab;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
 import org.unicase.workspace.ProjectSpace;
 
 import config.ConfigEntity;
 
-public class BugReportConfigTab extends ConfigurationTab {
+public class BugReportConfigTab extends ConfigurationTab implements IActivatedProjectsListener {
 	
 	
 	private BugReportingConfigEntity cfgEntity;
@@ -65,8 +69,11 @@ public class BugReportConfigTab extends ConfigurationTab {
 	    parent.setLayout(gridLayout);
 	    parent.setLayoutData(data);
 
-		projectsTableViewer = new ProjectsTableViewer(parent);		
-		projectsTableViewer.refreshView();
+		projectsTableViewer = new ProjectsTableViewer(parent);	
+		ActivatedProjectsCache.getInstance().addListener(this);
+		
+		// set initial input
+		projectsTableViewer.setInput(ActivatedProjectsCache.getInstance().getProjects());
 		projectsTableViewer.getTable().setLayoutData(data);
 		
 //		data = new GridData();
@@ -165,5 +172,12 @@ public class BugReportConfigTab extends ConfigurationTab {
 		} else {
 			bugContainerIdTextField.setText("");
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void activatedProjectsChangd(List<ProjectSpace> projectSpaces) {
+		projectsTableViewer.setInput(projectSpaces);
 	}
 }
