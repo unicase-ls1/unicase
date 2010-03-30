@@ -16,7 +16,6 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -43,8 +42,10 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 			.getActivePart();
 		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
-		final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-			.getProject();
+		final Project project = currentOpenME.getProject();
+		//
+		// final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+		// .getProject();
 
 		new UnicaseCommand() {
 			@Override

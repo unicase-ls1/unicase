@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -28,6 +27,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -180,12 +180,13 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					}
 					if (add) {
 						analyzers.add(analyzer);
-						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+						new UnicaseCommand() {
+
 							@Override
-							protected void doExecute() {
+							protected void doRun() {
 								analyzerList.add(button.getText());
 							}
-						});
+						}.run();
 
 					}
 					wizard.setAnalyzers(analyzers);
@@ -198,22 +199,24 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				}
 			} else {
-				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				new UnicaseCommand() {
+
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						analyzerList.remove(button.getText());
 					}
-				});
+				}.run();
 
 			}
 		}
 		final IteratorPage page = (IteratorPage) super.getNextPage();
-		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+		new UnicaseCommand() {
+
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				page.init();
 			}
-		});
+		}.run();
 		return super.getNextPage();
 	}
 
