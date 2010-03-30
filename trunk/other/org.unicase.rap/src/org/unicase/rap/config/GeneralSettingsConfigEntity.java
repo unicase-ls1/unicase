@@ -20,10 +20,6 @@ public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
 		public static final String ADMIN_PASSWORD_KEY = "ADMIN_PASSWORD";
 	}
 	
-	public GeneralSettingsConfigEntity() {
-		super();
-	}
-
 	/**
 	 * Sets the username of the admin user.
 	 * 
@@ -53,14 +49,16 @@ public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
 
 	/**
 	 * Returns the password of the admin.
-	 * 
-	 * @return
+	 * NOTE: Currently no encryption is used to persist the password!.
+	 * @return The password of the admin.
 	 */
-	// TODO: encryption
 	public String getAdminPassword() {
 		return (String) getProperties().get(Keys.ADMIN_PASSWORD_KEY);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getConfigFilename() {
 		return CFG_FILENAME;
 	}

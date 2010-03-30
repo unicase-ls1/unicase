@@ -39,12 +39,8 @@ public class ViewDispatcher implements IPerspectiveFactory {
 		AbstractView view = views.get(viewName);
 
 		if (view != null) {
-//			configView.addConfigurationTab("General settings", new GeneralSettingsTab());
-
 			layout.addStandaloneView(view.getId(), false, IPageLayout.TOP,
 					IPageLayout.RATIO_MAX, IPageLayout.ID_EDITOR_AREA);
-//			layout.getViewLayout(view.getId()).setCloseable(false);
-//			layout.getViewLayout(view.getId()).getShow
 		}	
 	}
 	
@@ -52,8 +48,6 @@ public class ViewDispatcher implements IPerspectiveFactory {
 	 * Initializes all views that contribute to the extension point <code>org.unicase.rap.ui.view</code>
 	 */
 	private void initViews() {
-
-//		views.put("config", configView);
 		
 		// Add views from the extension point
 		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
