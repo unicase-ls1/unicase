@@ -87,6 +87,10 @@
             class="org.unicase.rap.ui.tabs.GeneralSettingsTab"
             name="General settings">
       </config>
+      <config
+            class="org.unicase.rap.ui.tabs.ProjectKeysTab"
+            name="Access Keys">
+      </config>
    </extension>
 
 </plugin>

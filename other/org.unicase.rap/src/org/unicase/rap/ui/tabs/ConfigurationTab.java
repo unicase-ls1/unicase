@@ -41,6 +41,9 @@ public abstract class ConfigurationTab extends AbstractTab {
 	
 	@Override
 	public void createTab(Composite parent) {
+		
+		createConfigurationTab(parent);
+		
 		saveButton = new Button(parent, SWT.NONE);
 		GridData gridData = new GridData();
 		gridData.grabExcessHorizontalSpace = true;
@@ -72,8 +75,6 @@ public abstract class ConfigurationTab extends AbstractTab {
 
 			}
 		});
-
-		createConfigurationTab(parent);
 	}
 
 	public abstract ConfigEntity getConfigEntity();
