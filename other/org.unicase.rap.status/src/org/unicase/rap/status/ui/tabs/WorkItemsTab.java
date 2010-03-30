@@ -30,7 +30,7 @@ import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
 import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
 import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
 import org.unicase.rap.status.ui.viewers.WorkItemsTableViewer;
-import org.unicase.rap.ui.views.ProjectAwareTab;
+import org.unicase.rap.ui.tabs.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 
 /**

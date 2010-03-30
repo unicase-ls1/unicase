@@ -15,13 +15,13 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.rap.bugreport.SelectWorkPackageDialog;
 import org.unicase.rap.bugreport.config.BugReportingConfigEntity.Keys;
 import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.ui.tabs.ConfigurationTab;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
-import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
 import config.ConfigEntity;
 
-public class BugReportConfigTab extends ConfigurationTabView {
+public class BugReportConfigTab extends ConfigurationTab {
 	
 	
 	private BugReportingConfigEntity cfgEntity;
@@ -53,7 +53,7 @@ public class BugReportConfigTab extends ConfigurationTabView {
 	}
 	
 	@Override
-	public void createTab(Composite parent) {
+	public void createConfigurationTab(Composite parent) {
 		
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 1;

@@ -13,8 +13,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.status.config.StatusConfigEntity;
+import org.unicase.rap.ui.tabs.ConfigurationTab;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
-import org.unicase.rap.ui.views.ConfigurationTabView;
 import org.unicase.workspace.ProjectSpace;
 
 import config.ConfigEntity;
@@ -22,7 +22,7 @@ import config.ConfigEntity;
 /**
  * 
  */
-public class StatusConfigurationTab extends ConfigurationTabView {
+public class StatusConfigurationTab extends ConfigurationTab {
 
 	/**
 	 * The table viewer for projects.
@@ -74,7 +74,7 @@ public class StatusConfigurationTab extends ConfigurationTabView {
 	}*/
 	
 	@Override
-	public void createTab(Composite parent) {
+	public void createConfigurationTab(Composite parent) {
 
 		
 		// TODO
