@@ -14,5 +14,7 @@
 
   * [EMFStoreDocumentation Documentation and Tutorials]
 
+  * [EMFStoreFeedback Reporting Bugs and Feature Requests]
+
 
 More information and news also available on our [http://unicase.blogspot.com/ blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
