@@ -34,28 +34,28 @@ import org.unicase.model.requirement.Scenario;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -63,9 +63,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -73,9 +73,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -93,9 +93,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -103,9 +103,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected static final String RETURN_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -113,9 +113,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected String returnType = RETURN_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -133,9 +133,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected EList<MethodArgument> arguments;
 
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -143,9 +143,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected static final String PROPERTIES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -153,9 +153,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -173,9 +173,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isStubbed()
 	 * @generated
 	 * @ordered
@@ -183,9 +183,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected static final boolean STUBBED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isStubbed()
 	 * @generated
 	 * @ordered
@@ -193,9 +193,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	protected boolean stubbed = STUBBED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCalledMethods() <em>Called Methods</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getCalledMethods() <em>Called Methods</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCalledMethods()
 	 * @generated
 	 * @ordered
@@ -224,7 +224,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MethodImpl() {
@@ -233,7 +232,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +241,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -252,7 +249,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
@@ -265,7 +261,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -274,7 +269,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
@@ -286,7 +280,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
@@ -297,7 +290,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
@@ -308,7 +300,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
@@ -319,7 +310,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
@@ -343,7 +333,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getReturnType() {
@@ -352,7 +341,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReturnType(String newReturnType) {
@@ -419,7 +407,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<MethodArgument> getArguments() {
@@ -432,7 +419,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -456,7 +442,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -478,7 +463,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -493,7 +477,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -531,7 +514,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -581,7 +563,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -626,7 +607,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -662,7 +642,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -689,7 +668,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -698,7 +676,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
@@ -799,7 +776,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isStubbed() {
@@ -808,7 +784,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStubbed(boolean newStubbed) {
@@ -820,7 +795,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getCalledMethods() {
@@ -833,7 +807,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getCallingMethods() {
@@ -846,7 +819,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getDemoParticipations() {

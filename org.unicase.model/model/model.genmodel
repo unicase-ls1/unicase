@@ -5,7 +5,7 @@
     modelDirectory="/org.unicase.model/src" modelPluginID="org.unicase.model" modelName="Model"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" containmentProxies="true"
     complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="org.unicase.model.provider.RootElementItemProvider"
-    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
@@ -99,23 +99,20 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//diagram">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//diagram/DiagramType">
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/WORKITEM_DIAGRAM"/>
-      </genEnums>
       <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/elements"/>
         <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/gmfdiagram"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//diagram/MEDiagram/type"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//diagram/MEDiagram/diagramLayout"/>
       </genClasses>
+      <genClasses ecoreClass="model.ecore#//diagram/ClassDiagram"/>
+      <genClasses ecoreClass="model.ecore#//diagram/UseCaseDiagram"/>
+      <genClasses ecoreClass="model.ecore#//diagram/ComponentDiagram"/>
+      <genClasses ecoreClass="model.ecore#//diagram/StateDiagram"/>
+      <genClasses ecoreClass="model.ecore#//diagram/ActivityDiagram"/>
+      <genClasses ecoreClass="model.ecore#//diagram/WorkItemDiagram"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Classes" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//classes">

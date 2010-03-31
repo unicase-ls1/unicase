@@ -20,36 +20,35 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.profile.ProfileFactory
  * @model kind="package"
  * @generated
  */
 public interface ProfilePackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "profile";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/profile";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.profile";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	ProfilePackage eINSTANCE = org.unicase.model.profile.impl.ProfilePackageImpl.init();
@@ -65,40 +64,40 @@ public interface ProfilePackage extends EPackage {
 	int PROFILE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -123,26 +122,26 @@ public interface ProfilePackage extends EPackage {
 	int PROFILE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -158,35 +157,35 @@ public interface ProfilePackage extends EPackage {
 	int PROFILE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Affected Containers</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Affected Containers</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__AFFECTED_CONTAINERS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stereotypes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotypes</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROFILE__STEREOTYPES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Profile</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Profile</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -195,7 +194,6 @@ public interface ProfilePackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeImpl <em>Stereotype</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.profile.impl.StereotypeImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotype()
 	 * @generated
@@ -203,40 +201,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -261,26 +259,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -296,17 +294,17 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Required</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Required</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -322,18 +320,18 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE__PROFILE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Instances</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype Instances</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE__STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Attributes</b></em>' containment reference list. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Stereotype Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -349,9 +347,8 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeInstanceImpl
-	 * <em>Stereotype Instance</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeInstanceImpl <em>Stereotype Instance</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.profile.impl.StereotypeInstanceImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeInstance()
 	 * @generated
@@ -359,40 +356,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_INSTANCE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -417,26 +414,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_INSTANCE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -452,26 +449,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Stereotype</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE__STEREOTYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Model Element</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -487,18 +484,17 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Stereotype Instance</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Stereotype Instance</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_INSTANCE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeImpl
-	 * <em>Stereotype Attribute</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeImpl <em>Stereotype Attribute</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.profile.impl.StereotypeAttributeImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttribute()
 	 * @generated
@@ -506,40 +502,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -564,26 +560,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -599,45 +595,44 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__STEREOTYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Stereotype Attribute</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Stereotype Attribute</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl
-	 * <em>Stereotype Attribute Simple</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl <em>Stereotype Attribute Simple</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeSimple()
 	 * @generated
@@ -645,40 +640,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_SIMPLE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__IDENTIFIER = STEREOTYPE_ATTRIBUTE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATOR = STEREOTYPE_ATTRIBUTE__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATION_DATE = STEREOTYPE_ATTRIBUTE__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__NAME = STEREOTYPE_ATTRIBUTE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -703,26 +698,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__ATTACHMENTS = STEREOTYPE_ATTRIBUTE__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__INCOMING_DOCUMENT_REFERENCES = STEREOTYPE_ATTRIBUTE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__LEAF_SECTION = STEREOTYPE_ATTRIBUTE__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -738,53 +733,52 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__APPLIED_STEREOTYPE_INSTANCES = STEREOTYPE_ATTRIBUTE__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__COMMENTS = STEREOTYPE_ATTRIBUTE__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__STEREOTYPE = STEREOTYPE_ATTRIBUTE__STEREOTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__STEREOTYPE_ATTRIBUTE_INSTANCES = STEREOTYPE_ATTRIBUTE__STEREOTYPE_ATTRIBUTE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE = STEREOTYPE_ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Stereotype Attribute Simple</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Stereotype Attribute Simple</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE_FEATURE_COUNT = STEREOTYPE_ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl
-	 * <em>Stereotype Attribute Instance</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl <em>Stereotype Attribute Instance</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeInstance()
 	 * @generated
@@ -792,40 +786,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -850,26 +844,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -885,45 +879,44 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Attribute</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype Attribute</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Stereotype Attribute Instance</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Stereotype Attribute Instance</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl
-	 * <em>Stereotype Attribute Instance String</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl <em>Stereotype Attribute Instance String</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl
 	 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeInstanceString()
 	 * @generated
@@ -931,40 +924,40 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING = 6;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__IDENTIFIER = STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATOR = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATION_DATE = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__NAME = STEREOTYPE_ATTRIBUTE_INSTANCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -989,26 +982,26 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__ATTACHMENTS = STEREOTYPE_ATTRIBUTE_INSTANCE__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__INCOMING_DOCUMENT_REFERENCES = STEREOTYPE_ATTRIBUTE_INSTANCE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__LEAF_SECTION = STEREOTYPE_ATTRIBUTE_INSTANCE__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -1024,35 +1017,35 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__APPLIED_STEREOTYPE_INSTANCES = STEREOTYPE_ATTRIBUTE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__COMMENTS = STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__STEREOTYPE_INSTANCE = STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Attribute</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Stereotype Attribute</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__STEREOTYPE_ATTRIBUTE = STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -1078,9 +1071,8 @@ public interface ProfilePackage extends EPackage {
 	EClass getProfile();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.profile.Profile#getAffectedContainers
-	 * <em>Affected Containers</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.profile.Profile#getAffectedContainers <em>Affected Containers</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Affected Containers</em>'.
 	 * @see org.unicase.model.profile.Profile#getAffectedContainers()
 	 * @see #getProfile()
@@ -1089,10 +1081,9 @@ public interface ProfilePackage extends EPackage {
 	EReference getProfile_AffectedContainers();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.profile.Profile#getStereotypes <em>Stereotypes</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.profile.Profile#getStereotypes <em>Stereotypes</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Stereotypes</em>'.
 	 * @see org.unicase.model.profile.Profile#getStereotypes()
 	 * @see #getProfile()
@@ -1111,9 +1102,8 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotype();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.profile.Stereotype#isRequired
-	 * <em>Required</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.profile.Stereotype#isRequired <em>Required</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Required</em>'.
 	 * @see org.unicase.model.profile.Stereotype#isRequired()
 	 * @see #getStereotype()
@@ -1122,9 +1112,8 @@ public interface ProfilePackage extends EPackage {
 	EAttribute getStereotype_Required();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.profile.Stereotype#getProfile
-	 * <em>Profile</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.unicase.model.profile.Stereotype#getProfile <em>Profile</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Profile</em>'.
 	 * @see org.unicase.model.profile.Stereotype#getProfile()
 	 * @see #getStereotype()
@@ -1157,9 +1146,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotype_StereotypeAttributes();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeInstance
-	 * <em>Stereotype Instance</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeInstance <em>Stereotype Instance</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Stereotype Instance</em>'.
 	 * @see org.unicase.model.profile.StereotypeInstance
 	 * @generated
@@ -1167,9 +1155,8 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotypeInstance();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.profile.StereotypeInstance#getStereotype
-	 * <em>Stereotype</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.profile.StereotypeInstance#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Stereotype</em>'.
 	 * @see org.unicase.model.profile.StereotypeInstance#getStereotype()
 	 * @see #getStereotypeInstance()
@@ -1178,10 +1165,9 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeInstance_Stereotype();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.unicase.model.profile.StereotypeInstance#getModelElement <em>Model Element</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the container reference '{@link org.unicase.model.profile.StereotypeInstance#getModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Model Element</em>'.
 	 * @see org.unicase.model.profile.StereotypeInstance#getModelElement()
 	 * @see #getStereotypeInstance()
@@ -1190,10 +1176,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeInstance_ModelElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances
-	 * <em>Stereotype Attribute Instances</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Stereotype Attribute Instances</em>'.
 	 * @see org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances()
 	 * @see #getStereotypeInstance()
@@ -1202,9 +1186,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeInstance_StereotypeAttributeInstances();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttribute
-	 * <em>Stereotype Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttribute <em>Stereotype Attribute</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Stereotype Attribute</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttribute
 	 * @generated
@@ -1212,10 +1195,9 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotypeAttribute();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.unicase.model.profile.StereotypeAttribute#getStereotype <em>Stereotype</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the container reference '{@link org.unicase.model.profile.StereotypeAttribute#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Stereotype</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttribute#getStereotype()
 	 * @see #getStereotypeAttribute()
@@ -1224,10 +1206,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeAttribute_Stereotype();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances
-	 * <em>Stereotype Attribute Instances</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Stereotype Attribute Instances</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances()
 	 * @see #getStereotypeAttribute()
@@ -1236,9 +1216,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeAttribute_StereotypeAttributeInstances();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeSimple
-	 * <em>Stereotype Attribute Simple</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeSimple <em>Stereotype Attribute Simple</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Stereotype Attribute Simple</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeSimple
 	 * @generated
@@ -1246,9 +1225,8 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotypeAttributeSimple();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.profile.StereotypeAttributeSimple#getType
-	 * <em>Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.profile.StereotypeAttributeSimple#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeSimple#getType()
 	 * @see #getStereotypeAttributeSimple()
@@ -1257,9 +1235,8 @@ public interface ProfilePackage extends EPackage {
 	EAttribute getStereotypeAttributeSimple_Type();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeInstance
-	 * <em>Stereotype Attribute Instance</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeInstance <em>Stereotype Attribute Instance</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Stereotype Attribute Instance</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance
 	 * @generated
@@ -1267,10 +1244,8 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotypeAttributeInstance();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Stereotype Instance</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance()
 	 * @see #getStereotypeAttributeInstance()
@@ -1279,10 +1254,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeAttributeInstance_StereotypeInstance();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute
-	 * <em>Stereotype Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute <em>Stereotype Attribute</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Stereotype Attribute</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute()
 	 * @see #getStereotypeAttributeInstance()
@@ -1291,9 +1264,8 @@ public interface ProfilePackage extends EPackage {
 	EReference getStereotypeAttributeInstance_StereotypeAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeInstanceString
-	 * <em>Stereotype Attribute Instance String</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.profile.StereotypeAttributeInstanceString <em>Stereotype Attribute Instance String</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Stereotype Attribute Instance String</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstanceString
 	 * @generated
@@ -1301,10 +1273,9 @@ public interface ProfilePackage extends EPackage {
 	EClass getStereotypeAttributeInstanceString();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.model.profile.StereotypeAttributeInstanceString#getValue <em>Value</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the attribute '{@link org.unicase.model.profile.StereotypeAttributeInstanceString#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstanceString#getValue()
 	 * @see #getStereotypeAttributeInstanceString()
@@ -1313,8 +1284,8 @@ public interface ProfilePackage extends EPackage {
 	EAttribute getStereotypeAttributeInstanceString_Value();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1329,14 +1300,12 @@ public interface ProfilePackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.profile.impl.ProfileImpl <em>Profile</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.profile.impl.ProfileImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getProfile()
 		 * @generated
@@ -1360,9 +1329,8 @@ public interface ProfilePackage extends EPackage {
 		EReference PROFILE__STEREOTYPES = eINSTANCE.getProfile_Stereotypes();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeImpl <em>Stereotype</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeImpl <em>Stereotype</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotype()
 		 * @generated
@@ -1370,17 +1338,17 @@ public interface ProfilePackage extends EPackage {
 		EClass STEREOTYPE = eINSTANCE.getStereotype();
 
 		/**
-		 * The meta object literal for the '<em><b>Required</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute STEREOTYPE__REQUIRED = eINSTANCE.getStereotype_Required();
 
 		/**
-		 * The meta object literal for the '<em><b>Profile</b></em>' container reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Profile</b></em>' container reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference STEREOTYPE__PROFILE = eINSTANCE.getStereotype_Profile();
@@ -1396,15 +1364,13 @@ public interface ProfilePackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Stereotype Attributes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference STEREOTYPE__STEREOTYPE_ATTRIBUTES = eINSTANCE.getStereotype_StereotypeAttributes();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeInstanceImpl
-		 * <em>Stereotype Instance</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeInstanceImpl <em>Stereotype Instance</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeInstanceImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeInstance()
 		 * @generated
@@ -1412,9 +1378,9 @@ public interface ProfilePackage extends EPackage {
 		EClass STEREOTYPE_INSTANCE = eINSTANCE.getStereotypeInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference STEREOTYPE_INSTANCE__STEREOTYPE = eINSTANCE.getStereotypeInstance_Stereotype();
@@ -1428,18 +1394,16 @@ public interface ProfilePackage extends EPackage {
 		EReference STEREOTYPE_INSTANCE__MODEL_ELEMENT = eINSTANCE.getStereotypeInstance_ModelElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype Attribute Instances</b></em>' containment reference list
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Stereotype Attribute Instances</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES = eINSTANCE
 			.getStereotypeInstance_StereotypeAttributeInstances();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeImpl
-		 * <em>Stereotype Attribute</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeImpl <em>Stereotype Attribute</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeAttributeImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttribute()
 		 * @generated
@@ -1447,9 +1411,9 @@ public interface ProfilePackage extends EPackage {
 		EClass STEREOTYPE_ATTRIBUTE = eINSTANCE.getStereotypeAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype</b></em>' container reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' container reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference STEREOTYPE_ATTRIBUTE__STEREOTYPE = eINSTANCE.getStereotypeAttribute_Stereotype();
@@ -1464,9 +1428,8 @@ public interface ProfilePackage extends EPackage {
 			.getStereotypeAttribute_StereotypeAttributeInstances();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl
-		 * <em>Stereotype Attribute Simple</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl <em>Stereotype Attribute Simple</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeSimple()
 		 * @generated
@@ -1474,17 +1437,16 @@ public interface ProfilePackage extends EPackage {
 		EClass STEREOTYPE_ATTRIBUTE_SIMPLE = eINSTANCE.getStereotypeAttributeSimple();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE = eINSTANCE.getStereotypeAttributeSimple_Type();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl
-		 * <em>Stereotype Attribute Instance</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl <em>Stereotype Attribute Instance</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeInstance()
 		 * @generated
@@ -1501,18 +1463,17 @@ public interface ProfilePackage extends EPackage {
 			.getStereotypeAttributeInstance_StereotypeInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype Attribute</b></em>' reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Stereotype Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE = eINSTANCE
 			.getStereotypeAttributeInstance_StereotypeAttribute();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl
-		 * <em>Stereotype Attribute Instance String</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl <em>Stereotype Attribute Instance String</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl
 		 * @see org.unicase.model.profile.impl.ProfilePackageImpl#getStereotypeAttributeInstanceString()
 		 * @generated
@@ -1520,9 +1481,9 @@ public interface ProfilePackage extends EPackage {
 		EClass STEREOTYPE_ATTRIBUTE_INSTANCE_STRING = eINSTANCE.getStereotypeAttributeInstanceString();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__VALUE = eINSTANCE.getStereotypeAttributeInstanceString_Value();

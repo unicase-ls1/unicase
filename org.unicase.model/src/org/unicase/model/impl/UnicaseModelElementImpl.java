@@ -45,20 +45,18 @@ import org.unicase.model.task.util.MEStateImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAnnotations <em>Annotations</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAttachments <em>Attachments</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getIncomingDocumentReferences <em>Incoming Document
- * References</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getState <em>State</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype
- * Instances</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAttachments <em>Attachments</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
+ *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class UnicaseModelElementImpl extends ModelElementImpl implements UnicaseModelElement {
@@ -84,9 +82,9 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -94,9 +92,9 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -104,9 +102,9 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -114,9 +112,9 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected EList<Annotation> annotations;
 
 	/**
-	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAttachments()
 	 * @generated
 	 * @ordered
@@ -124,9 +122,8 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected EList<Attachment> attachments;
 
 	/**
-	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIncomingDocumentReferences()
 	 * @generated
 	 * @ordered
@@ -134,9 +131,9 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getState()
 	 * @generated
 	 * @ordered
@@ -144,9 +141,8 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 	protected static final String STATE_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAppliedStereotypeInstances()
 	 * @generated
 	 * @ordered
@@ -182,7 +178,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,7 +187,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -201,7 +195,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -214,7 +207,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -223,7 +215,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -236,7 +227,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
@@ -249,7 +239,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Attachment> getAttachments() {
@@ -262,7 +251,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
@@ -276,7 +264,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
@@ -287,7 +274,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
@@ -298,7 +284,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
@@ -309,7 +294,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
@@ -349,7 +333,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<StereotypeInstance> getAppliedStereotypeInstances() {
@@ -363,7 +346,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Comment> getComments() {
@@ -477,7 +459,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -506,7 +487,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -530,7 +510,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -545,7 +524,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -577,7 +555,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -619,7 +596,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -655,7 +631,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -685,7 +660,6 @@ public abstract class UnicaseModelElementImpl extends ModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

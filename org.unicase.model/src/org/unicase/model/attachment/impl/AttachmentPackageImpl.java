@@ -52,27 +52,23 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass urlAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass fileAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum fileAttachmentTypeEEnum = null;
@@ -96,18 +92,17 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link AttachmentPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link AttachmentPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -226,7 +221,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUrlAttachment() {
@@ -235,7 +229,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUrlAttachment_Url() {
@@ -244,7 +237,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getFileAttachment() {
@@ -253,7 +245,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileName() {
@@ -262,7 +253,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileHash() {
@@ -271,7 +261,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileID() {
@@ -280,7 +269,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileSize() {
@@ -289,7 +277,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_RequiredOffline() {
@@ -298,7 +285,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileType() {
@@ -307,7 +293,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_Downloading() {
@@ -316,7 +301,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_Uploading() {
@@ -325,7 +309,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getFileAttachmentType() {
@@ -334,7 +317,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttachmentFactory getAttachmentFactory() {
@@ -343,15 +325,14 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -379,15 +360,14 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -457,8 +437,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
