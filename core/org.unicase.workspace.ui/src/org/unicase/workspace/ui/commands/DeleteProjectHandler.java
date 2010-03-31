@@ -10,13 +10,18 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.DeleteProjectSpaceObserver;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Handler for delete project menu item.
@@ -65,6 +70,23 @@ public class DeleteProjectHandler extends AbstractHandler {
 
 			Workspace currentWorkspace = WorkspaceManager.getInstance()
 					.getCurrentWorkspace();
+
+			// notify all registered listeners
+
+			IConfigurationElement[] config = Platform.getExtensionRegistry()
+					.getConfigurationElementsFor(
+							"org.unicase.ui.common.notify.deleteprojectspace");
+
+			for (IConfigurationElement e : config) {
+				try {
+					DeleteProjectSpaceObserver o = (DeleteProjectSpaceObserver) e
+							.createExecutableExtension("class");
+					o.projectDeleted(projectSpace);
+				} catch (CoreException e1) {
+					WorkspaceUtil.logException("Cannot instantiate extension!",
+							e1);
+				}
+			}
 
 			try {
 				currentWorkspace.deleteProjectSpace(projectSpace);
