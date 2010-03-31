@@ -24,20 +24,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.classes.Attribute;
-import org.unicase.model.classes.Method;
-import org.unicase.model.classes.MethodArgument;
-import org.unicase.model.component.Component;
-import org.unicase.model.component.ComponentService;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.meeting.CompositeMeetingSection;
-import org.unicase.model.meeting.Meeting;
-import org.unicase.model.meeting.MeetingSection;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.task.WorkItem;
-import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
@@ -114,61 +100,18 @@ public final class PasteHandler extends AbstractHandler {
 
 		if (target instanceof ModelElement) {
 			ModelElement meTarget = (ModelElement) target;
-			pasteInME(meTarget);
+			pasteIntoME(meTarget);
 
 		} else if (target instanceof ProjectSpace) {
 			ProjectSpace psTarget = (ProjectSpace) target;
-			pasteInProject(psTarget);
-
+			pasteIntoProject(psTarget);
 		}
 	}
 
-	private void pasteInME(ModelElement meTarget) {
-		// paste implements AllowedCutPaste-v3.txt, can also be found in this package
+	private void pasteIntoME(ModelElement meTarget) {
 
-		if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
-			&& !(meSource instanceof CompositeSection)) {
-			((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
-		} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
-			((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
-		} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
-			((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
-		} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
-			((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
-		} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
-			genericPaste(meTarget, meSource);
-		} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
-			genericPaste(meTarget, meSource);
-		} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
-			((ComponentService) meSource).setOfferingComponent((Component) meTarget);
-		} else if (meTarget instanceof org.unicase.model.classes.Package) {
-			if (meSource instanceof org.unicase.model.classes.Class) {
-				((org.unicase.model.classes.Class) meSource)
-					.setParentPackage((org.unicase.model.classes.Package) meTarget);
-			} else if (meSource instanceof org.unicase.model.classes.Package) {
-				((org.unicase.model.classes.Package) meSource)
-					.setParentPackage((org.unicase.model.classes.Package) meTarget);
-			}
-		} else if (meTarget instanceof org.unicase.model.classes.Class) {
-			if (meSource instanceof Method) {
-				((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
+		genericPaste(meTarget, meSource);
 
-			} else if (meSource instanceof Attribute) {
-				((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
-			}
-		} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
-			genericPaste(meTarget, meSource);
-		} else if (meTarget instanceof CompositeSection) {
-			if (meSource instanceof CompositeSection) {
-				genericPaste(meTarget, meSource);
-			} else if (meSource instanceof LeafSection) {
-				genericPaste(meTarget, meSource);
-			}
-		} else {
-			System.out.println("Cannot paste into type: " + meTarget.getClass());
-		}
-
-		// end CompositeOperation, clear clipboard
 		try {
 			handle.end("Cut and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
 				+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
@@ -181,7 +124,7 @@ public final class PasteHandler extends AbstractHandler {
 		}
 	}
 
-	private void pasteInProject(ProjectSpace psTarget) {
+	private void pasteIntoProject(ProjectSpace psTarget) {
 
 		psTarget.getProject().getModelElements().add(meSource);
 
