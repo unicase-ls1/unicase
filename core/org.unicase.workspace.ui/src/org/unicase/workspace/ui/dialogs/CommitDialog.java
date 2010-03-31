@@ -10,17 +10,24 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -51,6 +58,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	private EList<String> oldLogMessages;
 	private HashMap<AbstractOperation, ArrayList<ESNotification>> operationsMap;
 	private ProjectSpace activeProjectSpace;
+	private HashMap<String, CommitDialogTray> trays;
 
 	/**
 	 * Constructor.
@@ -66,6 +74,21 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		this.changes = changes;
 		activeProjectSpace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getActiveProjectSpace();
+		trays = new HashMap<String, CommitDialogTray>();
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.unicase.workspace.ui.commitdialog.tray");
+		for (IConfigurationElement c : config) {
+			try {
+				CommitDialogTray tray = (CommitDialogTray) c
+						.createExecutableExtension("class");
+				String name = c.getAttribute("name");
+				tray.init(this);
+				trays.put(name, tray);
+			} catch (CoreException e) {
+
+			}
+		}
 	}
 
 	/**
@@ -176,6 +199,13 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		int height = area.height * 2 / 3;
 		newShell.setBounds((area.width - width) / 2,
 				(area.height - height) / 2, width, height);
+		newShell.addDisposeListener(new DisposeListener() {
+			public void widgetDisposed(DisposeEvent e) {
+				for (CommitDialogTray tray : trays.values()) {
+					tray.dispose();
+				}
+			}
+		});
 	}
 
 	/**
@@ -197,6 +227,14 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 			oldLogMessages.remove(0);
 		}
 
+		for (CommitDialogTray t : trays.values()) {
+			t.okPressed();
+		}
+		// add the newly created notifications to the change package
+		for (ArrayList<ESNotification> list : operationsMap.values()) {
+			changes.getNotifications().addAll(list);
+		}
+
 		super.okPressed();
 	}
 
@@ -213,7 +251,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	 * @see org.eclipse.swt.events.KeyListener#keyPressed(org.eclipse.swt.events.KeyEvent)
 	 */
 	public void keyPressed(KeyEvent e) {
-		if (e.keyCode == SWT.CR && (e.stateMask & SWT.CTRL) != 0) {
+		if (e.keyCode == SWT.CR && (e.stateMask & SWT.MOD1) != 0) {
 			this.okPressed();
 		}
 	}
@@ -225,6 +263,50 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	 */
 	public void keyReleased(KeyEvent e) {
 		// nothing to do
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		// final String notifyUsers = "Notify users";
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.unicase.workspace.ui.commitdialog.tray");
+		for (IConfigurationElement c : config) {
+			final String name = c.getAttribute("name");
+			final CommitDialogTray tray = trays.get(name);
+			if (tray != null) {
+				final Button notificationsButton = createButton(parent, 2138,
+						name + " >>", false);
+				notificationsButton
+						.addSelectionListener(new SelectionAdapter() {
+							private boolean isOpen;
+
+							@Override
+							public void widgetSelected(SelectionEvent e) {
+								if (!isOpen) {
+									openTray(tray);
+									notificationsButton.setText(name + " <<");
+									Rectangle bounds = getShell().getBounds();
+									bounds.x -= 100;
+									getShell().setBounds(bounds);
+								} else {
+									closeTray();
+									notificationsButton.setText(name + " >>");
+									Rectangle bounds = getShell().getBounds();
+									bounds.x += 100;
+									getShell().setBounds(bounds);
+								}
+								isOpen = !isOpen;
+							}
+						});
+			}
+		}
+		super.createButtonsForButtonBar(parent);
 	}
 
 	/**
