@@ -10,13 +10,13 @@ import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.rap.util.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
+import org.unicase.rap.config.EMFServerSettingsConfigEntity;
 
 
 
@@ -44,6 +44,7 @@ public class LoginHandler {
 	public void run() {
 
 		WorkspaceManager.getInstance();
+		final EMFServerSettingsConfigEntity entity = new EMFServerSettingsConfigEntity();
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -59,8 +60,8 @@ public class LoginHandler {
 					session.setServerInfo(serverInfo);
 				}
 				// TODO: password should get from encrypted file
-				session.setUsername(Configuration.getProperties().getProperty("username"));
-				session.setPassword(Configuration.getProperties().getProperty("password"));
+				session.setUsername(entity.getEmfServerUserName());
+				session.setPassword(entity.getEmfServerUserPassword());
 				try {
 					session.logIn();
 					serverInfo.setLastUsersession(session);
@@ -93,12 +94,9 @@ public class LoginHandler {
 		Set<ServerInfo> serverInfos = null;
 		ServerUrl serverUrl = UrlFactory.eINSTANCE.createServerUrl();
 		serverUrl.setHostName(serverUrlStr);
-		try {
-			serverUrl.setPort(Integer.parseInt(Configuration.getProperties().getProperty("port")));
-		} catch (NumberFormatException e) {
-			WorkspaceUtil.logException("Error on server port number:"
-					+ Configuration.getProperties().getProperty("port"), e);
-		}
+		EMFServerSettingsConfigEntity entity = new EMFServerSettingsConfigEntity();
+	
+		serverUrl.setPort(entity.getEmfServerPort());
 		try {
 			serverInfos = WorkspaceManager.getInstance()
 					.getCurrentWorkspace().resolve(serverUrl);

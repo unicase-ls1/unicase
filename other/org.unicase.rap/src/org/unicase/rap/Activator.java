@@ -1,10 +1,9 @@
 package org.unicase.rap;
 
 import org.osgi.framework.BundleContext;
-import org.unicase.rap.updater.ProjectUpdater;
-import org.unicase.rap.util.Configuration;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.unicase.rap.updater.ProjectUpdater;
 
 /**
  * The activator class controls the plug-in life cycle

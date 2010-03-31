@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import org.unicase.rap.util.Configuration;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -22,7 +21,7 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-
+import org.unicase.rap.config.EMFServerSettingsConfigEntity;
 
 /**
  * Project update handler.
@@ -61,13 +60,12 @@ public class UpdateProjectHandler implements UpdateObserver, Runnable {
 	
 	private ServerUrl createServerUrl() {
 		ServerUrl serverUrl = UrlFactory.eINSTANCE.createServerUrl();
-		serverUrl.setHostName(Configuration.getProperties().getProperty("hostname"));
-		try {
-			serverUrl.setPort(Integer.parseInt(Configuration.getProperties().getProperty("port")));
-		} catch (NumberFormatException e) {
-			WorkspaceUtil.logException("Error on server port number:"
-					+ Configuration.getProperties().getProperty("port"), e);
-		}
+		
+		EMFServerSettingsConfigEntity entity = new EMFServerSettingsConfigEntity();
+		
+		serverUrl.setHostName(entity.getEmfServerUrl());
+		serverUrl.setPort(entity.getEmfServerPort());
+
 		return serverUrl;
 	}
 
