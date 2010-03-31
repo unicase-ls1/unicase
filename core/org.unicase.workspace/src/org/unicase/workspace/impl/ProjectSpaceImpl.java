@@ -1904,6 +1904,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.saveProjectSpaceOnly();
 		notifyShareObservers();
 		getOperations().clear();
+		usersession.updateProjectInfos();
 		updateDirtyState();
 
 	}
@@ -2092,7 +2093,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 */
-	public void loginCompleted() {
+	public void loginCompleted(Usersession session) {
 		try {
 			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
 			if (stopTransfers()) {

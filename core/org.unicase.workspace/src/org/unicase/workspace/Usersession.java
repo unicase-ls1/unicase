@@ -354,5 +354,10 @@ public interface Usersession extends EObject {
 	 */
 	void logout() throws EmfStoreException;
 
+	/**
+	 * Updates the ProjectInfos for the current ServerInfo.
+	 */
+	void updateProjectInfos();
+
 	// end of custom code
 } // Usersession

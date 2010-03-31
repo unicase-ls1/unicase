@@ -3,23 +3,20 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.observers;
+package org.unicase.workspace.util;
 
-import org.unicase.workspace.Usersession;
+import org.unicase.workspace.ProjectSpace;
 
 /**
- * Observer interface for logging in.
+ * Receives a notification when a project is deleted from the workspace
  * 
- * @author pfeifferc
- * @author shterev
+ * @author Shterev
  */
-public interface LoginObserver {
+public interface DeleteProjectSpaceObserver {
 
 	/**
-	 * To be called when login is completed.
-	 * 
-	 * @param session the usersession which was logged in.
+	 * Notifies that the project space has been deleted. This is a
+	 * <b>PRE-DELETE</b> event.
 	 */
-	void loginCompleted(Usersession session);
-
+	public void projectDeleted(ProjectSpace projectSpace);
 }
