@@ -14,8 +14,6 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -31,14 +29,12 @@ public class UsernameDecorator extends AdapterImpl implements ILightweightLabelD
 	/**
 	 * {@inheritDoc}
 	 */
-	public void decorate(Object element, IDecoration decoration) {
+	public void decorate(Object element, final IDecoration decoration) {
 		if (element instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) element;
 			if(projectSpace.getUsersession() != null){
 				String string = " "+projectSpace.getUsersession().getUsername();
 				decoration.addSuffix(string);
-				decoration.setForegroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW));
-				
 			}
 		}
 	}
