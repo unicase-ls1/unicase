@@ -69,6 +69,9 @@ public final class PasteHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * The paste operation.
+	 */
 	private void paste(final Object target) {
 
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -108,6 +111,9 @@ public final class PasteHandler extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * Paste into another ModelElement.
+	 */
 	private void pasteIntoME(ModelElement meTarget) {
 
 		genericPaste(meTarget, meSource);
@@ -124,6 +130,9 @@ public final class PasteHandler extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * Paste into project root.
+	 */
 	private void pasteIntoProject(ProjectSpace psTarget) {
 
 		psTarget.getProject().getModelElements().add(meSource);
@@ -191,7 +200,6 @@ public final class PasteHandler extends AbstractHandler {
 			}
 		}
 		return null;
-
 	}
 
 	private void refreshCutAndPasteDecorator() {

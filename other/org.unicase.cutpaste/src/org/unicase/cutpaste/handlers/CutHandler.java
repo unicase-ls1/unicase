@@ -63,6 +63,9 @@ public final class CutHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * The cut operation.
+	 */
 	private void cut(ModelElement meSource) {
 
 		final Project project = meSource.getProject();

@@ -79,9 +79,7 @@ public class CanCutPasteCombiTester extends PropertyTester {
 					&& ((org.eclipse.jface.viewers.TreeSelection) receiver).size() <= 1) {
 
 					return canPasteIntoPSTest();
-
 				}
-
 			}
 
 		} else if (property.equals("canCut") && receiver instanceof org.eclipse.jface.viewers.TreeSelection
@@ -93,6 +91,9 @@ public class CanCutPasteCombiTester extends PropertyTester {
 		return false;
 	}
 
+	/**
+	 * Tests, if the source element can be pasted into target.
+	 */
 	private boolean canPasteIntoMETest() {
 
 		if (meSource.equals(meTarget) || EcoreUtil.isAncestor(meSource, meTarget)) {
@@ -117,6 +118,9 @@ public class CanCutPasteCombiTester extends PropertyTester {
 		return canPasteIntoMETest2();
 	}
 
+	/**
+	 * Tests, if the source element can be pasted into target. (cont...)
+	 */
 	private boolean canPasteIntoMETest2() {
 		if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
 			return true;
@@ -138,6 +142,9 @@ public class CanCutPasteCombiTester extends PropertyTester {
 		return canPasteIntoMETest3();
 	}
 
+	/**
+	 * Tests, if the source element can be pasted into target. (cont...)
+	 */
 	private boolean canPasteIntoMETest3() {
 		if (meTarget instanceof CompositeSection
 			&& (meSource instanceof CompositeSection || meSource instanceof LeafSection)) {
@@ -149,12 +156,14 @@ public class CanCutPasteCombiTester extends PropertyTester {
 		return false;
 	}
 
+	/**
+	 * Tests, if the source element can be pasted into project root.
+	 */
 	private boolean canPasteIntoPSTest() {
 
 		if (meSource instanceof CompositeSection) {
 			return true;
 		}
-
 		return false;
 	}
 }
