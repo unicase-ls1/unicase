@@ -67,4 +67,9 @@ public class UpcomingEventsView extends ProjectAwareView {
 
 	}
 
+	public void projectDeleted(Project project) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

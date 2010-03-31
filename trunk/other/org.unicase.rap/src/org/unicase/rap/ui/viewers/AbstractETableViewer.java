@@ -11,13 +11,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
+import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Layout;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.OrganizationPackage;
@@ -37,6 +40,8 @@ public abstract class AbstractETableViewer extends TableViewer {
 	private final String FEATURE = "feature";
 
 	private List<TableViewerColumn> columns;
+	private int numColumns;
+	private Composite composite;
 	private ObservableListContentProvider contentProvider;
 	
 	/**
@@ -46,6 +51,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 */
 	public AbstractETableViewer(Composite composite) {
 		super(composite, SWT.BORDER);
+		this.composite = composite;
 		contentProvider =  new ObservableListContentProvider();
 		setContentProvider(contentProvider);
 		init();	
@@ -56,15 +62,11 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 * 
 	 */
 	public abstract ArrayList<EStructuralFeature> getFeaturesList();
-	
-//	public abstract void refreshView();
-//	public abstract void setInput(Project project);
-	
+		
 	/**
 	 * 
 	 */
 	protected void init() {
-		columns = new ArrayList<TableViewerColumn>();
 		getTable().setLinesVisible(true);
 		getTable().setHeaderVisible(true);
 		
@@ -91,7 +93,9 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 */
 	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features, ILabelProvider labelProvider) {
 		
-		columns = new ArrayList<TableViewerColumn>();
+		// prevent div by 0
+		numColumns = features.size() > 0 ? features.size() : 1;
+		columns = new ArrayList<TableViewerColumn>(numColumns);
 		
 		for (EStructuralFeature feature : features) {
 			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
@@ -198,12 +202,21 @@ public abstract class AbstractETableViewer extends TableViewer {
 		column.getColumn().setResizable(resizeable);
 
 		column.setLabelProvider(labelProvider);
+		
 		if (setSorter) {
 			ViewerComparator comp = new TableViewerColumnSorter(this, column, labelProvider);
 			column.getViewer().setComparator(comp);
 		}
+		
 		column.getColumn().setData(WIDTH, new Integer(width));
 		column.getColumn().setData(FEATURE, feature.getName());
+		
+		TableColumnLayout columnLayout = new TableColumnLayout();
+		columnLayout.setColumnData(column.getColumn(), new ColumnWeightData(100/numColumns));
+		
+		composite.setLayout(columnLayout);
+//		this.getTable().setLayout(columnLayout);
+		
 		return column;
 	}
 }

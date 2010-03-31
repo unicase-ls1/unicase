@@ -62,21 +62,6 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 	public void setFocus() {
 	}
 
-	/*
-	private void loadConfig(String projectName) {
-		String loadPath = new File(SAVE_PATH).getAbsolutePath() + File.pathSeparatorChar + projectName; 
-		try {
-			WorkTeamItemsConfigEntity cfgEntity = (WorkTeamItemsConfigEntity) 
-				ConfigEntityStore.loadObject(loadPath);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
-	
 	@Override
 	public void createConfigurationTab(Composite parent) {
 
@@ -94,22 +79,13 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 	    data.grabExcessVerticalSpace = true;
 	    parent.setLayout(gridLayout);
 	    parent.setLayoutData(data);
-//		top.setLayout(layout);
-		
-		
-		// top banner
-//		Composite banner = new Composite(parent, SWT.NONE);
-//		banner.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_BEGINNING, true, false));
-//		layout = new GridLayout();
-//		layout.marginHeight = 5;
-//		layout.marginWidth = 10;
-//		layout.numColumns = 2;
-//		banner.setLayout(layout);
-	    
-	    projectsTableViewer = new ProjectsTableViewer(parent);
+
+	    Composite tableComposite = new Composite(parent, SWT.NONE);
+	    projectsTableViewer = new ProjectsTableViewer(tableComposite);
+	    tableComposite.setLayoutData(data);
 	    projectsTableViewer.setInput(ActivatedProjectsCache.getInstance().getProjects());
 		ActivatedProjectsCache.getInstance().addListener(this);
-		projectsTableViewer.getTable().setLayoutData(data);
+
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
