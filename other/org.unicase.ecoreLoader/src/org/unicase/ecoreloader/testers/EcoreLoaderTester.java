@@ -21,7 +21,6 @@ public class EcoreLoaderTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 
 		if (property.equals("allowedLocation") && receiver instanceof org.eclipse.jface.viewers.TreeSelection) {
-
 			if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof LeafSection) {
 				return true;
 			}
