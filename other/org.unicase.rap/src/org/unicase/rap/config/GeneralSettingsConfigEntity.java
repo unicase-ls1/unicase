@@ -20,6 +20,10 @@ public class GeneralSettingsConfigEntity extends ConfigEntityImpl {
 		public static final String ADMIN_PASSWORD_KEY = "ADMIN_PASSWORD";
 	}
 	
+	public static final String DEFAULT_ADMIN_USERNAME = "admin";
+	
+	public static final String DEFAULT_ADMIN_PASSWORD = "admin";
+	
 	/**
 	 * Sets the username of the admin user.
 	 * 

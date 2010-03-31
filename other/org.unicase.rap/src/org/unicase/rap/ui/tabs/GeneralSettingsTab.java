@@ -1,22 +1,16 @@
 package org.unicase.rap.ui.tabs;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.rap.LoginDialog;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.GeneralSettingsConfigEntity;
 import org.unicase.rap.config.IValidator;
 
 import config.ConfigEntity;
-
 
 /**
  * General settings tab.
@@ -32,10 +26,7 @@ public class GeneralSettingsTab extends ConfigurationTab {
 	private Text passwordConfirmationTextField;
 
 	public void createConfigurationTab(Composite parent) {
-		
-//		if(!authenticate())
-//			return;
-		
+
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 2;
 	    gridLayout.makeColumnsEqualWidth = true;
@@ -102,49 +93,6 @@ public class GeneralSettingsTab extends ConfigurationTab {
 			 passwordConfirmationTextField.setText(password);
 		 }
 	}
-	
-	/**
-	 * Authenticates login to configuration view.
-	 * 
-	 * @return
-	 */
-    private boolean authenticate() {
-    	
-    	boolean isLoggedIn = false;
-    	boolean isOKClicked = false;
-		Display display = PlatformUI.createDisplay();
-		LoginDialog loginDialog = new LoginDialog(display.getActiveShell(), "Admin Login");
-		
-		while (!isOKClicked) {
-            isOKClicked = loginDialog.open() == IDialogConstants.OK_ID ? true : false;
-            
-			if (isOKClicked) {
-				// validate user
-				GeneralSettingsConfigEntity configEntity = new GeneralSettingsConfigEntity();
-				ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity,
-					new GeneralSettingsConfigEntity().eClass());
-				String userName = (String) entity.getProperties().get(
-					GeneralSettingsConfigEntity.Keys.ADMIN_USER_NAME_KEY);
-				String password = (String) entity.getProperties().get(
-					GeneralSettingsConfigEntity.Keys.ADMIN_PASSWORD_KEY);
-
-				if (loginDialog.getUsername().equals(userName) 
-						&& loginDialog.getPassword().equals(password)) {
-					isLoggedIn = true;
-					isOKClicked = true;
-				} else {
-					MessageDialog.openError(display.getActiveShell(), "Error",
-						"Authentication failed \n Invalid username and password");
-					isOKClicked = false;
-				}
-			} else {
-				MessageDialog.openError(display.getActiveShell(), "Error",
-					"Authentication failed \n Please enter valid username and password");
-			}
-		}
-		return isLoggedIn;
-	}
-    
 	
 }
 
