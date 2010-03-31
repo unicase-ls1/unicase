@@ -58,13 +58,18 @@ public class CanCutPasteCombiTester extends PropertyTester {
 				&& transferable.isDataFlavorSupported(new DataFlavor(
 					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"))) {
 
-				if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ModelElement) {
+				if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ModelElement
+					&& ((org.eclipse.jface.viewers.TreeSelection) receiver).size() <= 1) {
 
 					meTarget = (ModelElement) ((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement();
 
 					try {
 						meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
 							org.unicase.metamodel.ModelElement.class, "ModelElement"));
+
+						if (meSource.equals(meTarget)) {
+							return false;
+						}
 
 						if ((meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement && !(meSource instanceof CompositeSection))
 							|| (meTarget instanceof UnicaseModelElement && meSource instanceof Comment)
@@ -88,7 +93,8 @@ public class CanCutPasteCombiTester extends PropertyTester {
 						e.printStackTrace();
 					}
 
-				} else if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ProjectSpace) {
+				} else if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ProjectSpace
+					&& ((org.eclipse.jface.viewers.TreeSelection) receiver).size() <= 1) {
 
 					try {
 						meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
@@ -106,7 +112,8 @@ public class CanCutPasteCombiTester extends PropertyTester {
 
 			}
 
-		} else if (property.equals("canCut") && receiver instanceof org.eclipse.jface.viewers.TreeSelection) {
+		} else if (property.equals("canCut") && receiver instanceof org.eclipse.jface.viewers.TreeSelection
+			&& ((org.eclipse.jface.viewers.TreeSelection) receiver).size() <= 1) {
 			if ((((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof UnicaseModelElement)) {
 				return true;
 			}
