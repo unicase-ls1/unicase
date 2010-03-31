@@ -4,21 +4,22 @@ import java.util.List;
 
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
-import org.unicase.metamodel.ModelElement;
+
 import org.unicase.metamodel.Project;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.organization.User;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
-import org.unicase.rap.status.ui.viewers.TeamTableViewer;
+
 import org.unicase.rap.ui.tabs.ProjectAwareTab;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.rap.status.ui.viewers.TeamTableViewer;
 
 /**
+ * 
  * 
  * @author Edgar Mueller
  * @author Fatih Ulusoy
@@ -41,26 +42,6 @@ public class TeamListTab extends ProjectAwareTab {
 	public void createTab(Composite parent) {
 		teamTableViewer.setInput(getProjectSpace().getProject());
 	}
-
-	// TODO: Provide more efficient update methods
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		refreshInput();	
-	}
-
-	public void modelElementDeleteCompleted(Project project,
-			ModelElement modelElement) {
-		refreshInput();	
-	}
-
-	public void modelElementDeleteStarted(Project project,
-			ModelElement modelElement) {
-		refreshInput();
-	}
-
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
-		refreshInput();
-	}
 	
 	public void refreshInput() {
 		List<Group> groups = null;
@@ -72,8 +53,7 @@ public class TeamListTab extends ProjectAwareTab {
 
 		if (projectSpace.getProject() != null) {
 			groups = projectSpace.getProject().getAllModelElementsbyClass(
-					OrganizationPackage.eINSTANCE.getGroup(),
-					new BasicEList<Group>());
+					OrganizationPackage.eINSTANCE.getGroup(), new BasicEList<Group>());
 		}
 
 		for (Group group : groups) {
@@ -91,14 +71,14 @@ public class TeamListTab extends ProjectAwareTab {
 		} else {
 			final List<OrgUnit> members = teamMembers;
 			
-			oldItems.getRealm().asyncExec(new Runnable() {
-				public void run() {
+//			oldItems.getRealm().asyncExec(new Runnable() {
+//				public void run() {
 					// remove all elements
 					oldItems.retainAll(new BasicEList<OrgUnit>());
 					// adds 
 					oldItems.addAll(members);
-				}
-			});
+//				}
+//			});
 		}
 	}
 
