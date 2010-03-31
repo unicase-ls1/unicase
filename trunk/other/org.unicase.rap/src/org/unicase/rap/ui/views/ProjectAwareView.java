@@ -1,16 +1,15 @@
 package org.unicase.rap.ui.views;
 
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.ProjectKeysConfigEntity;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import config.ConfigEntity;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.ProjectKeysConfigEntity;
 
 /**
  * Abstract class for a view that is dependant of a project.
