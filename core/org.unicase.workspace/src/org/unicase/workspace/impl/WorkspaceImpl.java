@@ -673,6 +673,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
 		FileUtil.deleteFolder(new File(pathToProject));
 
+		// BEGIN SUPRESS CATCH EXCEPTION
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.workspace.notify.deleteprojectspace");
 		for (IConfigurationElement e : config) {
@@ -685,6 +686,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				WorkspaceUtil.logException("Severe runtime exception occured", e2);
 			}
 		}
+		// END SUPRESS CATCH EXCEPTION
 
 	}
 

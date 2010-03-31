@@ -50,7 +50,6 @@ public class AcUserImportPageTwo extends WizardPage {
 	 *            composite, that will be filled.
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	@SuppressWarnings("deprecation")
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 

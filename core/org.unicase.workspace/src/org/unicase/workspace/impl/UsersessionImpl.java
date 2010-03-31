@@ -591,6 +591,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 				observer.loginCompleted(this);
 			}
 		}
+		// BEGIN SUPRESS CATCH EXCEPTION
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.workspace.notify.login");
 		for (IConfigurationElement e : config) {
@@ -606,12 +607,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 				WorkspaceUtil.logException(e1.getMessage(), e1);
 			}
 		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void updateProjectInfos() {
+		// BEGIN SUPRESS CATCH EXCEPTION
 		try {
 			getServerInfo().getProjectInfos().clear();
 			getServerInfo().getProjectInfos().addAll(getRemoteProjectList());
@@ -620,6 +623,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		} catch (RuntimeException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	private void migrateServerInfo(ServerInfo serverInfo) {
