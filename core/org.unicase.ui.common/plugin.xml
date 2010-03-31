@@ -190,6 +190,22 @@
         </description>
      </decorator>
      <decorator
+	      adaptable="true"
+	      class="org.unicase.ui.common.decorators.UsernameDecorator"
+	      id="org.unicase.ui.common.decorators.UsernameDecorator"
+	      label="Username Decorator"
+	      lightweight="true"
+	      state="true">
+	   <enablement>
+	      <objectClass
+	            name="org.unicase.workspace.ProjectSpace">
+	      </objectClass>
+	   </enablement>
+	   <description>
+	      Shows the username for the current session.
+	   </description>
+	</decorator>
+     <decorator
            adaptable="true"
            class="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
            id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
