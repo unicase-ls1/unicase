@@ -69,16 +69,13 @@ public class BugReportConfigTab extends ConfigurationTab implements IActivatedPr
 	    parent.setLayout(gridLayout);
 	    parent.setLayoutData(data);
 
-		projectsTableViewer = new ProjectsTableViewer(parent);	
+	    Composite tableComposite = new Composite(parent, SWT.NONE);
+		projectsTableViewer = new ProjectsTableViewer(tableComposite);	
 		ActivatedProjectsCache.getInstance().addListener(this);
 		
 		// set initial input
 		projectsTableViewer.setInput(ActivatedProjectsCache.getInstance().getProjects());
-		projectsTableViewer.getTable().setLayoutData(data);
-		
-//		data = new GridData();
-//		data.horizontalAlignment = SWT.FILL;
-//		projectsTableViewer.setLayoutData(data);
+		tableComposite.setLayoutData(data);
 		
 		final Label currentlySelectedProject = new Label(parent, SWT.BORDER);
 		currentlySelectedProject.setLayoutData(data);

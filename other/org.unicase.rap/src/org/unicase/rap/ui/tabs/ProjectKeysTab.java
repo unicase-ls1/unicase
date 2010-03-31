@@ -49,9 +49,10 @@ public class ProjectKeysTab extends ConfigurationTab {
 	    parent.setLayout(gridLayout);
 	    parent.setLayoutData(data);
 	    
-	    projectsTableViewer = new ProjectsTableViewer(parent);
+	    Composite tableComposite = new Composite(parent, SWT.NONE);
+	    projectsTableViewer = new ProjectsTableViewer(tableComposite);
 		projectsTableViewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces());
-		projectsTableViewer.getTable().setLayoutData(data);
+		tableComposite.setLayoutData(data);
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
