@@ -445,7 +445,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			ToggleDrawerAdapter toggleDrawerAdapter = new ToggleDrawerAdapter();
 			toogleDrawer.addMouseListener(toggleDrawerAdapter);
 			entryMessage.addMouseListener(toggleDrawerAdapter);
-			notificationComposite.addMouseListener(toggleDrawerAdapter);
+//			notificationComposite.addMouseListener(toggleDrawerAdapter);
 		}
 		if (comments.size() > 0 && comments.get(0).eContainer() != null) {
 			DashboardToolbarAction openThread = new DashboardToolbarAction(

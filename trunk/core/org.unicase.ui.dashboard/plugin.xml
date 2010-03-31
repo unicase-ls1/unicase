@@ -56,7 +56,8 @@
            <page
                  class="org.unicase.ui.dashboard.prefs.DashboardPropertyPage"
                  id="org.unicase.ui.dashboard.dashboardProperties"
-                 name="Dashboard">
+                 name="Dashboard"
+                 objectClass="org.unicase.metamodel.Project">
               <enabledWhen>
                  <iterate
                        ifEmpty="false"
@@ -137,15 +138,6 @@
    </extension>
                   
    <extension
-           point="org.eclipse.ui.bindings">
-                   <key
-              commandId="org.unicase.ui.dashboard.showDashboard"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+D">
-        </key>
-   </extension>
-   <extension
          point="org.unicase.ui.dashboard.widgets">
       <widget
             class="org.unicase.ui.dashboard.view.widgets.DashboardTaskWidget"
@@ -162,5 +154,11 @@
             name="Related Tasks Widget"
             position="3">
       </widget>
+   </extension>
+   <extension
+         point="org.unicase.workspace.notify.deleteprojectspace">
+      <observer
+            class="org.unicase.ui.dashboard.DashboardDeleteProjectObserver">
+      </observer>
    </extension>
 </plugin>
