@@ -70,7 +70,7 @@ public class CanCutPasteCombiTester extends PropertyTester {
 						if (meSource.equals(meTarget)) {
 							return false;
 						}
-
+						// implements AllowedCutPaste-v3.txt, can also be found in this package
 						if ((meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement && !(meSource instanceof CompositeSection))
 							|| (meTarget instanceof UnicaseModelElement && meSource instanceof Comment)
 							|| (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement)
