@@ -170,16 +170,14 @@ public final class PasteHandler extends AbstractHandler {
 
 		// end CompositeOperation, clear clipboard
 		try {
-			handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+			handle.end("Cut and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
 				+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
 				+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName() + "\"",
 				((UnicaseModelElement) meSource).getModelElementId());
-			clipboard.setContents(new StringSelection(""), null);
-			System.out.println("Paste Operation finished. CompositeOperation finished.");
 			refreshCutAndPasteDecorator();
+			clearClipboard();
 		} catch (InvalidHandleException e) {
 			e.printStackTrace();
-			System.out.println("ERROR paste: there was no begun cut action.");
 		}
 	}
 
@@ -188,16 +186,14 @@ public final class PasteHandler extends AbstractHandler {
 		psTarget.getProject().getModelElements().add(meSource);
 
 		try {
-			handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+			handle.end("Cut and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
 				+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
-				+ "\" to " + "Project \"" + psTarget.getProjectName() + "\"", ((UnicaseModelElement) meSource)
-				.getModelElementId());
-			clipboard.setContents(new StringSelection(""), null);
-			System.out.println("Paste Operation finished. CompositeOperation finished.");
+				+ "\" to " + psTarget.getProject().eClass().getName() + " \"" + psTarget.getProjectName() + "\"",
+				((UnicaseModelElement) meSource).getModelElementId());
 			refreshCutAndPasteDecorator();
+			clearClipboard();
 		} catch (InvalidHandleException e) {
 			e.printStackTrace();
-			System.out.println("ERROR paste: there was no begun cut action.");
 		}
 	}
 
@@ -261,5 +257,9 @@ public final class PasteHandler extends AbstractHandler {
 				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
 			}
 		});
+	}
+
+	private void clearClipboard() {
+		clipboard.setContents(new StringSelection(""), null);
 	}
 }

@@ -70,7 +70,7 @@ public final class CutHandler extends AbstractHandler {
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
 		try {
-			System.out.println("Try to load from clipboard:");
+			// Try to load from clipboard
 			transferable = clipboard.getContents(null);
 			meClipboard = (ModelElement) transferable.getTransferData(new DataFlavor(
 				org.unicase.metamodel.ModelElement.class, "ModelElement"));
@@ -78,35 +78,37 @@ public final class CutHandler extends AbstractHandler {
 				org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
 
 			try {
-				System.out.println("Try to end old CompositeOperation.");
+				// Try to end old CompositeOperation if there is any
 				if (handle.isValid()) {
-					handle.end("Aborted Cut Operation", "Aborted Cut Operation", ((UnicaseModelElement) meClipboard)
+					handle.end("Canceled Cut Operation", "Canceled Cut Operation", ((UnicaseModelElement) meClipboard)
 						.getModelElementId());
 				}
-				clipboard.setContents(new StringSelection(""), null);
-				System.out.println("Done");
+				clearClipboard();
 			} catch (InvalidHandleException e) {
 				e.printStackTrace();
 			}
 
 		} catch (UnsupportedFlavorException e) {
-			System.out.println("Clipboard was empty.");
+			// clipboard was empty, this was not necessarily an unwanted exception
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("Init new CompositeOperation.");
 			handle = projectSpace.beginCompositeOperation();
 			transferable = new UnicaseTransferable(meSource, handle);
 			clipboard.setContents(transferable, null);
-			refreshDecorator();
+			refreshCutAndPasteDecorator();
 		}
 	}
 
-	private void refreshDecorator() {
+	private void refreshCutAndPasteDecorator() {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.cutpaste.decorator1");
 			}
 		});
+	}
+
+	private void clearClipboard() {
+		clipboard.setContents(new StringSelection(""), null);
 	}
 }
