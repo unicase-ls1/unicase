@@ -8,15 +8,16 @@ package org.unicase.workspace.util;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * Receives a notification when a project is deleted from the workspace
+ * Receives a notification when a project is deleted from the workspace.
  * 
  * @author Shterev
  */
 public interface DeleteProjectSpaceObserver {
 
 	/**
-	 * Notifies that the project space has been deleted. This is a
-	 * <b>PRE-DELETE</b> event.
+	 * Notifies that the project space has been deleted. This is a <b>PRE-DELETE</b> event.
+	 * 
+	 * @param projectSpace the project space
 	 */
-	public void projectDeleted(ProjectSpace projectSpace);
+	void projectDeleted(ProjectSpace projectSpace);
 }

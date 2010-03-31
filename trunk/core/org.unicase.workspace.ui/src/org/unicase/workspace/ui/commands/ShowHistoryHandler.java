@@ -7,7 +7,6 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.Date;
 
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -50,11 +49,12 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 			// return null;
 			// }
 			// projectSpace = activeProjectSpace;
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpace(
-				modelElement.getProject());
+			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getProjectSpace(modelElement.getProject());
 		}
 
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
 		HistoryBrowserView historyBrowserView = null;
 		String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
 		try {
@@ -69,10 +69,9 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 		return null;
 	}
 
-	private Shell shell;
-
 	private void logEvent(final ProjectSpace finalProjectSpace, String viewId) {
-		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE
+				.createPluginFocusEvent();
 		historyEvent.setPluginId(viewId);
 		historyEvent.setTimestamp(new Date());
 		finalProjectSpace.addEvent(historyEvent);

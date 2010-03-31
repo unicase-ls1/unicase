@@ -17,6 +17,10 @@ import org.unicase.workspace.impl.UsersessionImpl;
  */
 public final class LoginManager {
 
+	private LoginManager() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Login using the given session.
 	 * 
@@ -31,12 +35,19 @@ public final class LoginManager {
 	/**
 	 * Sends a logout call to the server.
 	 * 
+	 * @param session the usersession.
 	 * @throws EmfStoreException forwards any exception.
 	 */
 	public static void logout(Usersession session) throws EmfStoreException {
 		session.logout();
 	}
 
+	/**
+	 * Sets a new password for the given session.
+	 * 
+	 * @param session the usersession.
+	 * @param newPassword the new password
+	 */
 	public static void setPassword(Usersession session, String newPassword) {
 		if (newPassword != null) {
 			((UsersessionImpl) session).setPasswordGen(KeyStoreManager.getInstance().encrypt(newPassword,
@@ -52,10 +63,21 @@ public final class LoginManager {
 		}
 	}
 
+	/**
+	 * Updates the project info cache.
+	 * 
+	 * @see Usersession#updateProjectInfos()
+	 * @param session the usersession
+	 */
 	public static void updateProjectInfos(Usersession session) {
 		session.updateProjectInfos();
 	}
 
+	/**
+	 * @see Usersession#updateACUser()
+	 * @param session the usersession
+	 * @throws EmfStoreException if thrown
+	 */
 	public static void updateACUser(Usersession session) throws EmfStoreException {
 		session.updateACUser();
 	}
