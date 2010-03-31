@@ -886,4 +886,11 @@
           enabled="false">
     </ContainmentCreationActions>
  </extension>
+  <extension
+       point="org.unicase.workspace.ui.commitdialog.tray">
+    <dialogTray
+          class="org.unicase.ui.unicasecommon.common.dialogs.CommitNotificationsTray"
+          name="Notify users">
+    </dialogTray>
+ </extension>
 </plugin>
