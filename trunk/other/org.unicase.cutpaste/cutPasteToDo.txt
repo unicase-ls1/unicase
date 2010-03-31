@@ -1,4 +1,0 @@
-- rethink activation of CanCutPasteCombiTester
-
-possible future features:
-- extend for ModelElement[] meSource
