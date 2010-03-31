@@ -53,12 +53,10 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public final class PasteHandler extends AbstractHandler {
 
-	private ModelElement meSource, meTarget;
-	private ProjectSpace psTarget;
-	private Object target; // Since Target can also be a ProjectSpace which is not a ME
-	private CompositeOperationHandle handle;
 	private Clipboard clipboard;
-	private Transferable transferable;
+	private CompositeOperationHandle handle;
+	private ModelElement meSource;
+	private Object target; // Target can be a Project or a ME
 	private String prevLocation, prevLocationType;
 
 	/**
@@ -88,19 +86,7 @@ public final class PasteHandler extends AbstractHandler {
 	private void paste(final Object target) {
 
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		transferable = clipboard.getContents(null);
-
-		// Remember old ME data before changing
-		UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
-			.getContainerModelElement();
-		if (umeSourceContainer instanceof UnicaseModelElement) {
-			prevLocation = umeSourceContainer.getName();
-			prevLocationType = umeSourceContainer.eClass().getName();
-		} else if (umeSourceContainer == null) { // then parent is project
-			prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
-			System.out.println(prevLocation);
-			prevLocationType = meSource.getProject().eClass().getName();
-		}
+		Transferable transferable = clipboard.getContents(null);
 
 		try { // get data from clipboard
 			meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
@@ -115,18 +101,31 @@ public final class PasteHandler extends AbstractHandler {
 			e1.printStackTrace();
 		}
 
+		// Remember old ME data before changing
+		UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
+			.getContainerModelElement();
+		if (umeSourceContainer instanceof UnicaseModelElement) {
+			prevLocation = umeSourceContainer.getName();
+			prevLocationType = umeSourceContainer.eClass().getName();
+		} else if (umeSourceContainer == null) { // then parent is project
+			prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
+			System.out.println(prevLocation);
+			prevLocationType = meSource.getProject().eClass().getName();
+		}
+
 		if (target instanceof ModelElement) {
-			meTarget = (ModelElement) target;
-			pasteInME();
+			ModelElement meTarget = (ModelElement) target;
+			pasteInME(meTarget);
 
 		} else if (target instanceof ProjectSpace) {
-			psTarget = (ProjectSpace) target;
-			pasteInProject();
+			ProjectSpace psTarget = (ProjectSpace) target;
+			pasteInProject(psTarget);
 
 		}
 	}
 
-	private void pasteInME() { // paste implements AllowedCutPaste-v3.txt, can also be found in this package
+	private void pasteInME(ModelElement meTarget) {
+		// paste implements AllowedCutPaste-v3.txt, can also be found in this package
 
 		if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
 			&& !(meSource instanceof CompositeSection)) {
@@ -185,7 +184,7 @@ public final class PasteHandler extends AbstractHandler {
 		}
 	}
 
-	private void pasteInProject() {
+	private void pasteInProject(ProjectSpace psTarget) {
 
 		psTarget.getProject().getModelElements().add(meSource);
 
