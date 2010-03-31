@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
@@ -41,8 +42,6 @@ import org.xml.sax.SAXException;
  * 
  * @author weiglt
  */
-
-// Flo: geh erstmal davon aus dass da Klassen, Packages, Attribute und Operationen drin stehen
 
 // note:
 // Method seems not to be exported by ecore-generator, use hacked example "hardcoreTestPackage.ecore" in this package
@@ -68,7 +67,6 @@ public final class EcoreLoader extends AbstractHandler {
 	 * @return null
 	 * @throws ExecutionException ExecutionException
 	 */
-
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		// propertytester:org.unicase.ecoreLoader.testers.allowedLocation allows us to
@@ -84,18 +82,18 @@ public final class EcoreLoader extends AbstractHandler {
 		}
 
 		FileReader fileIn = null;
+
 		try {
 			fileIn = new FileReader(absoluteFileName);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		BufferedReader reader = new BufferedReader(fileIn);
+
 		try {
 			reader.readLine(); // btw, equals approx reader.skip(41);
-			if (reader.readLine().substring(1, 6).equals("ecore")) { // now thats my first ugly hack - or is it?
-				System.out.println("Looks like you loaded a valid ecore File." + '\n');
-			} else {
-				System.out.println("ERROR no valid ecore File.");
+			if (!reader.readLine().substring(1, 6).equals("ecore")) {
+				MessageDialog.openError(null, "Invalid File", "Ecore file could not be loaded.");
 				return null;
 			}
 		} catch (IOException e) {
