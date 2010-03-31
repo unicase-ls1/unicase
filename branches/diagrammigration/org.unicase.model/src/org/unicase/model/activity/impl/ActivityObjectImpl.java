@@ -23,11 +23,11 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- * <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
+ *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
+ *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ActivityObjectImpl extends UnicaseModelElementImpl implements ActivityObject {
@@ -53,7 +53,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityObjectImpl() {
@@ -62,7 +61,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,7 +70,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getIncomingTransitions() {
@@ -85,7 +82,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getOutgoingTransitions() {
@@ -98,7 +94,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -117,7 +112,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,7 +127,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +142,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -170,7 +162,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +179,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

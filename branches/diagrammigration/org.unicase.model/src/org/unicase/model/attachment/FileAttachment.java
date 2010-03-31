@@ -9,33 +9,34 @@ import org.unicase.model.Attachment;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>File Attachment</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.attachment.FileAttachment#getFileName <em>File Name</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment()
  * @model
  * @generated
  */
 public interface FileAttachment extends Attachment {
 	/**
-	 * Returns the value of the '<em><b>File Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File Name</em>' attribute.
 	 * @see #setFileName(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileName()
@@ -45,9 +46,8 @@ public interface FileAttachment extends Attachment {
 	String getFileName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileName <em>File Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileName <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Name</em>' attribute.
 	 * @see #getFileName()
 	 * @generated
@@ -55,13 +55,13 @@ public interface FileAttachment extends Attachment {
 	void setFileName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>File Hash</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File Hash</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Hash</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File Hash</em>' attribute.
 	 * @see #setFileHash(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileHash()
@@ -71,9 +71,8 @@ public interface FileAttachment extends Attachment {
 	String getFileHash();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Hash</em>' attribute.
 	 * @see #getFileHash()
 	 * @generated
@@ -81,13 +80,13 @@ public interface FileAttachment extends Attachment {
 	void setFileHash(String value);
 
 	/**
-	 * Returns the value of the '<em><b>File ID</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File ID</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File ID</em>' attribute.
 	 * @see #setFileID(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileID()
@@ -99,7 +98,6 @@ public interface FileAttachment extends Attachment {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>File ID</em>' attribute.
 	 * @see #getFileID()
 	 * @generated
@@ -107,13 +105,13 @@ public interface FileAttachment extends Attachment {
 	void setFileID(String value);
 
 	/**
-	 * Returns the value of the '<em><b>File Size</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Size</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File Size</em>' attribute.
 	 * @see #setFileSize(long)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileSize()
@@ -123,9 +121,8 @@ public interface FileAttachment extends Attachment {
 	long getFileSize();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Size</em>' attribute.
 	 * @see #getFileSize()
 	 * @generated
@@ -133,13 +130,13 @@ public interface FileAttachment extends Attachment {
 	void setFileSize(long value);
 
 	/**
-	 * Returns the value of the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Required Offline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Required Offline</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Required Offline</em>' attribute.
 	 * @see #setRequiredOffline(boolean)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_RequiredOffline()
@@ -149,9 +146,8 @@ public interface FileAttachment extends Attachment {
 	boolean isRequiredOffline();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline
-	 * <em>Required Offline</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Required Offline</em>' attribute.
 	 * @see #isRequiredOffline()
 	 * @generated
@@ -159,14 +155,14 @@ public interface FileAttachment extends Attachment {
 	void setRequiredOffline(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>File Type</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.attachment.FileAttachmentType}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.attachment.FileAttachmentType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Type</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File Type</em>' attribute.
 	 * @see org.unicase.model.attachment.FileAttachmentType
 	 * @see #setFileType(FileAttachmentType)
@@ -177,9 +173,8 @@ public interface FileAttachment extends Attachment {
 	FileAttachmentType getFileType();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Type</em>' attribute.
 	 * @see org.unicase.model.attachment.FileAttachmentType
 	 * @see #getFileType()
@@ -188,13 +183,13 @@ public interface FileAttachment extends Attachment {
 	void setFileType(FileAttachmentType value);
 
 	/**
-	 * Returns the value of the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Downloading</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Downloading</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Downloading</em>' attribute.
 	 * @see #setDownloading(boolean)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_Downloading()
@@ -204,9 +199,8 @@ public interface FileAttachment extends Attachment {
 	boolean isDownloading();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Downloading</em>' attribute.
 	 * @see #isDownloading()
 	 * @generated
@@ -214,13 +208,13 @@ public interface FileAttachment extends Attachment {
 	void setDownloading(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Uploading</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Uploading</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Uploading</em>' attribute.
 	 * @see #setUploading(boolean)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_Uploading()
@@ -230,9 +224,8 @@ public interface FileAttachment extends Attachment {
 	boolean isUploading();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Uploading</em>' attribute.
 	 * @see #isUploading()
 	 * @generated

@@ -34,7 +34,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 	/**
 	 * The cached value of the '{@link #getAppliedOperations() <em>Applied Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAppliedOperations()
 	 * @generated
 	 * @ordered
@@ -43,7 +42,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergingSolutionImpl() {
@@ -52,7 +50,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,7 +59,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getAppliedOperations() {
@@ -75,7 +71,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,7 +84,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +97,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -120,7 +113,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,7 +127,6 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

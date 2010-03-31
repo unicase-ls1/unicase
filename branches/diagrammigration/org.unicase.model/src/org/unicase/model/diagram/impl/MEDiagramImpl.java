@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.impl.AttachmentImpl;
 
@@ -46,14 +46,13 @@ import org.unicase.model.impl.AttachmentImpl;
  * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
  * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
  * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
+public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	/**
 	 * 
 	 */
@@ -88,26 +87,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @ordered
 	 */
 	protected EList<UnicaseModelElement> newElements;
-
-	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final DiagramType TYPE_EDEFAULT = DiagramType.CLASS_DIAGRAM;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected DiagramType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
@@ -269,27 +248,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public DiagramType getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setType(DiagramType newType) {
-		DiagramType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -343,8 +301,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			return basicGetGmfdiagram();
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			return getNewElements();
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			return getType();
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
 			return getDiagramLayout();
 		}
@@ -371,9 +327,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			getNewElements().clear();
 			getNewElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			setType((DiagramType) newValue);
-			return;
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
 			setDiagramLayout((String) newValue);
 			return;
@@ -398,9 +351,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			getNewElements().clear();
 			return;
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			setType(TYPE_EDEFAULT);
-			return;
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
 			setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
 			return;
@@ -422,8 +372,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			return gmfdiagram != null;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			return newElements != null && !newElements.isEmpty();
-		case DiagramPackage.ME_DIAGRAM__TYPE:
-			return type != TYPE_EDEFAULT;
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
 			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null : !DIAGRAM_LAYOUT_EDEFAULT
 				.equals(diagramLayout);
@@ -442,9 +390,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(type);
-		result.append(", diagramLayout: ");
+		result.append(" (diagramLayout: ");
 		result.append(diagramLayout);
 		result.append(')');
 		return result.toString();
@@ -507,7 +453,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
 		 * reason: Check for the old and incompatible layout information and convert it.
 		 */
-		if (this.getType() == DiagramType.USECASE_DIAGRAM) {
+		if (this.getClass().equals(UseCaseDiagram.class)) {
 			if (this.diagramLayout.contains("type=\"1001\"") || this.diagramLayout.contains("type=\"1002\"")) {
 				this.diagramLayout = this.convertUsecaseLayout(this.diagramLayout);
 			}

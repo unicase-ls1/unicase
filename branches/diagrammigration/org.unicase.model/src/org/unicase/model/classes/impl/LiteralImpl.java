@@ -21,18 +21,18 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.LiteralImpl#getEnumeration <em>Enumeration</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.LiteralImpl#getLiteral <em>Literal</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.LiteralImpl#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.LiteralImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 	/**
-	 * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLiteral()
 	 * @generated
 	 * @ordered
@@ -40,9 +40,9 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 	protected static final String LITERAL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLiteral()
 	 * @generated
 	 * @ordered
@@ -51,7 +51,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralImpl() {
@@ -60,7 +59,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +68,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Enumeration getEnumeration() {
@@ -81,7 +78,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Enumeration basicGetEnumeration() {
@@ -92,7 +88,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEnumeration(Enumeration newEnumeration, NotificationChain msgs) {
@@ -102,7 +97,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEnumeration(Enumeration newEnumeration) {
@@ -126,7 +120,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -135,7 +128,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLiteral(String newLiteral) {
@@ -147,7 +139,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +154,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +167,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,7 +181,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,7 +198,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +215,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,7 +232,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,7 +247,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

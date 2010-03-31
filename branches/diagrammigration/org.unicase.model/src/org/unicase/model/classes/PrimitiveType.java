@@ -14,15 +14,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Primitive Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.classes.ClassesPackage#getPrimitiveType()
  * @model
  * @generated
  */
 public enum PrimitiveType implements Enumerator {
 	/**
-	 * The '<em><b>String</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>String</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #STRING_VALUE
 	 * @generated
 	 * @ordered
@@ -30,8 +29,8 @@ public enum PrimitiveType implements Enumerator {
 	STRING(0, "String", "String"),
 
 	/**
-	 * The '<em><b>Boolean</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>Boolean</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #BOOLEAN_VALUE
 	 * @generated
 	 * @ordered
@@ -39,8 +38,8 @@ public enum PrimitiveType implements Enumerator {
 	BOOLEAN(1, "Boolean", "Boolean"),
 
 	/**
-	 * The '<em><b>Integer</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>Integer</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #INTEGER_VALUE
 	 * @generated
 	 * @ordered
@@ -48,8 +47,8 @@ public enum PrimitiveType implements Enumerator {
 	INTEGER(2, "Integer", "Integer"),
 
 	/**
-	 * The '<em><b>Date</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>Date</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #DATE_VALUE
 	 * @generated
 	 * @ordered
@@ -57,8 +56,8 @@ public enum PrimitiveType implements Enumerator {
 	DATE(3, "Date", "Date"),
 
 	/**
-	 * The '<em><b>Double</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>Double</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #DOUBLE_VALUE
 	 * @generated
 	 * @ordered
@@ -66,8 +65,8 @@ public enum PrimitiveType implements Enumerator {
 	DOUBLE(4, "Double", "Double"),
 
 	/**
-	 * The '<em><b>Enumeration</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>Enumeration</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #ENUMERATION_VALUE
 	 * @generated
 	 * @ordered
@@ -75,13 +74,13 @@ public enum PrimitiveType implements Enumerator {
 	ENUMERATION(5, "Enumeration", "Enumeration");
 
 	/**
-	 * The '<em><b>String</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>String</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>String</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STRING
 	 * @model name="String"
 	 * @generated
@@ -90,13 +89,13 @@ public enum PrimitiveType implements Enumerator {
 	public static final int STRING_VALUE = 0;
 
 	/**
-	 * The '<em><b>Boolean</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Boolean</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BOOLEAN
 	 * @model name="Boolean"
 	 * @generated
@@ -105,13 +104,13 @@ public enum PrimitiveType implements Enumerator {
 	public static final int BOOLEAN_VALUE = 1;
 
 	/**
-	 * The '<em><b>Integer</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Integer</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #INTEGER
 	 * @model name="Integer"
 	 * @generated
@@ -120,13 +119,13 @@ public enum PrimitiveType implements Enumerator {
 	public static final int INTEGER_VALUE = 2;
 
 	/**
-	 * The '<em><b>Date</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Date</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Date</b></em>' literal object isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DATE
 	 * @model name="Date"
 	 * @generated
@@ -135,13 +134,13 @@ public enum PrimitiveType implements Enumerator {
 	public static final int DATE_VALUE = 3;
 
 	/**
-	 * The '<em><b>Double</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Double</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Double</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DOUBLE
 	 * @model name="Double"
 	 * @generated
@@ -150,13 +149,13 @@ public enum PrimitiveType implements Enumerator {
 	public static final int DOUBLE_VALUE = 4;
 
 	/**
-	 * The '<em><b>Enumeration</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>Enumeration</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Enumeration</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ENUMERATION
 	 * @model name="Enumeration"
 	 * @generated
@@ -165,25 +164,25 @@ public enum PrimitiveType implements Enumerator {
 	public static final int ENUMERATION_VALUE = 5;
 
 	/**
-	 * An array of all the '<em><b>Primitive Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * An array of all the '<em><b>Primitive Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final PrimitiveType[] VALUES_ARRAY = new PrimitiveType[] { STRING, BOOLEAN, INTEGER, DATE, DOUBLE,
 		ENUMERATION, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Primitive Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * A public read-only list of all the '<em><b>Primitive Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<PrimitiveType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
+	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PrimitiveType get(String literal) {
@@ -197,9 +196,9 @@ public enum PrimitiveType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PrimitiveType getByName(String name) {
@@ -213,9 +212,9 @@ public enum PrimitiveType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
+	 * Returns the '<em><b>Primitive Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PrimitiveType get(int value) {
@@ -238,28 +237,25 @@ public enum PrimitiveType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private PrimitiveType(int value, String name, String literal) {
@@ -270,7 +266,6 @@ public enum PrimitiveType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -279,7 +274,6 @@ public enum PrimitiveType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -288,7 +282,6 @@ public enum PrimitiveType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -296,9 +289,9 @@ public enum PrimitiveType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -10,69 +10,68 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.activity.ActivityPackage
  * @generated
  */
 public interface ActivityFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	ActivityFactory eINSTANCE = org.unicase.model.activity.impl.ActivityFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Transition</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Transition</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Transition</em>'.
 	 * @generated
 	 */
 	Transition createTransition();
 
 	/**
-	 * Returns a new object of class '<em>Activity</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Activity</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Activity</em>'.
 	 * @generated
 	 */
 	Activity createActivity();
 
 	/**
-	 * Returns a new object of class '<em>Fork</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Fork</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Fork</em>'.
 	 * @generated
 	 */
 	Fork createFork();
 
 	/**
-	 * Returns a new object of class '<em>Branch</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Branch</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Branch</em>'.
 	 * @generated
 	 */
 	Branch createBranch();
 
 	/**
-	 * Returns a new object of class '<em>Initial</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Initial</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Initial</em>'.
 	 * @generated
 	 */
 	ActivityInitial createActivityInitial();
 
 	/**
-	 * Returns a new object of class '<em>End</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>End</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>End</em>'.
 	 * @generated
 	 */
 	ActivityEnd createActivityEnd();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

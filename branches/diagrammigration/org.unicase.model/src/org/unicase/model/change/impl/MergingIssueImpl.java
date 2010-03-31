@@ -20,11 +20,11 @@ import org.unicase.model.rationale.impl.IssueImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getBaseVersion <em>Base Version</em>}</li>
- * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getTargetVersion <em>Target Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MergingIssueImpl extends IssueImpl implements MergingIssue {
@@ -50,7 +50,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergingIssueImpl() {
@@ -59,7 +58,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,7 +67,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -96,7 +93,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -105,7 +101,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -124,7 +119,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -146,7 +140,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -173,7 +166,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -182,7 +174,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
@@ -201,7 +192,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
@@ -223,7 +213,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,7 +228,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +247,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,7 +264,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,7 +281,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
