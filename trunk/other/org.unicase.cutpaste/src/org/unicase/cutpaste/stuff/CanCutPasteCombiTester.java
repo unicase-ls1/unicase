@@ -73,12 +73,12 @@ public class CanCutPasteCombiTester extends PropertyTester {
 
 					meTarget = (ModelElement) ((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement();
 
-					canPasteIntoMETest();
+					return canPasteIntoMETest();
 
 				} else if (((org.eclipse.jface.viewers.TreeSelection) receiver).getFirstElement() instanceof ProjectSpace
 					&& ((org.eclipse.jface.viewers.TreeSelection) receiver).size() <= 1) {
 
-					canPasteIntoPSTest();
+					return canPasteIntoPSTest();
 
 				}
 
