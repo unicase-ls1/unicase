@@ -33,7 +33,7 @@ public class GeneralSettingsTab extends ConfigurationTab {
 
 	public void createConfigurationTab(Composite parent) {
 		
-//		if(!login())
+//		if(!authenticate())
 //			return;
 		
 		GridLayout gridLayout = new GridLayout();
@@ -104,21 +104,21 @@ public class GeneralSettingsTab extends ConfigurationTab {
 	}
 	
 	/**
-	 * Logins to configuration view.
+	 * Authenticates login to configuration view.
 	 * 
 	 * @return
 	 */
-    private boolean login() {
+    private boolean authenticate() {
     	
     	boolean isLoggedIn = false;
+    	boolean isOKClicked = false;
 		Display display = PlatformUI.createDisplay();
-		LoginDialog loginDialog = new LoginDialog(display.getActiveShell(), "Login Window");
-		boolean returnValue = false;
+		LoginDialog loginDialog = new LoginDialog(display.getActiveShell(), "Admin Login");
 		
-		while (!returnValue) {
-            returnValue = loginDialog.open() == IDialogConstants.OK_ID ? true : false;
+		while (!isOKClicked) {
+            isOKClicked = loginDialog.open() == IDialogConstants.OK_ID ? true : false;
             
-			if (returnValue) {
+			if (isOKClicked) {
 				// validate user
 				GeneralSettingsConfigEntity configEntity = new GeneralSettingsConfigEntity();
 				ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity,
@@ -131,15 +131,15 @@ public class GeneralSettingsTab extends ConfigurationTab {
 				if (loginDialog.getUsername().equals(userName) 
 						&& loginDialog.getPassword().equals(password)) {
 					isLoggedIn = true;
-					returnValue = true;
+					isOKClicked = true;
 				} else {
 					MessageDialog.openError(display.getActiveShell(), "Error",
-						"Aunthenticaiton failed \n Invalid username and password");
-					returnValue = false;
+						"Authentication failed \n Invalid username and password");
+					isOKClicked = false;
 				}
 			} else {
 				MessageDialog.openError(display.getActiveShell(), "Error",
-					"Aunthenticaiton failed \n Please enter valid username and password");
+					"Authentication failed \n Please enter valid username and password");
 			}
 		}
 		return isLoggedIn;

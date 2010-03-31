@@ -30,9 +30,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
  * @author Fatih Ulusoy
  */
 public class UpdateProjectHandler implements UpdateObserver, Runnable {
-
-	/** Default interval for project updates from emf-server. */
-	private static int UPDATE_INTERVAL = 5 * 60 * 100;
 	
 	private Usersession usersession;
 	
@@ -96,28 +93,13 @@ public class UpdateProjectHandler implements UpdateObserver, Runnable {
 
 	
 	public void run() {
-		try {
-			UPDATE_INTERVAL = 60 * 10 * Integer.parseInt(Configuration
-					.getProperties().getProperty("updateinterval"));
-		} catch (NumberFormatException e) {
-			WorkspaceUtil.logException("Error on project update interval:"
-					+ Configuration.getProperties().getProperty("updateinterval"), e);
+
+		if (projectSpace == null) {
+			checkoutProjectFromServer();
 		}
-		while(true) {
-			try {
-				if (projectSpace == null) {
-					checkoutProjectFromServer();
-				}
-				
-				update(projectSpace);
-				System.out.println(new Date());
-				Thread.sleep(UPDATE_INTERVAL);
-				
-				
-			} catch (InterruptedException e) {
-				WorkspaceUtil.logException("Project updater tread was crashed.", e);
-			}
-		}
+
+		update(projectSpace);
+		System.out.println(new Date());
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package org.unicase.rap;
 
 import org.osgi.framework.BundleContext;
+import org.unicase.rap.updater.ProjectUpdater;
+import org.unicase.rap.util.Configuration;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 
@@ -64,6 +66,8 @@ public class Activator extends AbstractUIPlugin {
 	 * Initializes the configuration object and project updater thread.
 	 */
 	private static void init() {
+//		Thread updaterThread = new Thread(ProjectUpdater.getInstance());
+//		updaterThread.start();
 //		Configuration.initialize();
 //		String projectName = Configuration.getProperties().getProperty("projectname");
 //		LoginHandler login = new LoginHandler(Configuration.getProperties().getProperty("hostname"));
