@@ -98,20 +98,52 @@ public class CanCutPasteCombiTester extends PropertyTester {
 		if (meSource.equals(meTarget) || EcoreUtil.isAncestor(meSource, meTarget)) {
 			return false;
 		}
+		if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
+			&& !(meSource instanceof CompositeSection)) {
+			return true;
+		}
+		if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
+			return true;
+		}
+		if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
+			return true;
+		}
+		if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
+			return true;
+		}
+		if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
+			return true;
+		}
+		return canPasteIntoMETest2();
+	}
 
-		if ((meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement && !(meSource instanceof CompositeSection))
-			|| (meTarget instanceof UnicaseModelElement && meSource instanceof Comment)
-			|| (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement)
-			|| (meTarget instanceof WorkPackage && meSource instanceof WorkItem)
-			|| (meTarget instanceof Meeting && meSource instanceof MeetingSection)
-			|| (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection)
-			|| (meTarget instanceof Component && meSource instanceof ComponentService)
-			|| (meTarget instanceof org.unicase.model.classes.Package && (meSource instanceof org.unicase.model.classes.Class || meSource instanceof org.unicase.model.classes.Package))
-			|| (meTarget instanceof org.unicase.model.classes.Class && (meSource instanceof Method || meSource instanceof Attribute))
-			|| (meTarget instanceof Method && meSource instanceof MethodArgument)
-			|| (meTarget instanceof CompositeSection && (meSource instanceof CompositeSection || meSource instanceof LeafSection))
-			|| (meTarget instanceof Project && meSource instanceof CompositeSection)) {
+	private boolean canPasteIntoMETest2() {
+		if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
+			return true;
+		}
+		if (meTarget instanceof Component && meSource instanceof ComponentService) {
+			return true;
+		}
+		if (meTarget instanceof org.unicase.model.classes.Package
+			&& (meSource instanceof org.unicase.model.classes.Class || meSource instanceof org.unicase.model.classes.Package)) {
+			return true;
+		}
+		if (meTarget instanceof org.unicase.model.classes.Class
+			&& (meSource instanceof Method || meSource instanceof Attribute)) {
+			return true;
+		}
+		if (meTarget instanceof Method && meSource instanceof MethodArgument) {
+			return true;
+		}
+		return canPasteIntoMETest3();
+	}
 
+	private boolean canPasteIntoMETest3() {
+		if (meTarget instanceof CompositeSection
+			&& (meSource instanceof CompositeSection || meSource instanceof LeafSection)) {
+			return true;
+		}
+		if (meTarget instanceof Project && meSource instanceof CompositeSection) {
 			return true;
 		}
 		return false;
