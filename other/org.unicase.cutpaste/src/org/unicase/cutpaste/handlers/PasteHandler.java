@@ -109,7 +109,6 @@ public final class PasteHandler extends AbstractHandler {
 			prevLocationType = umeSourceContainer.eClass().getName();
 		} else if (umeSourceContainer == null) { // then parent is project
 			prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
-			System.out.println(prevLocation);
 			prevLocationType = meSource.getProject().eClass().getName();
 		}
 
