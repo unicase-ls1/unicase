@@ -192,7 +192,7 @@ public final class EcoreLoader extends AbstractHandler {
 					final String contentElement = map.getNamedItem("xsi:type").getNodeValue().substring(6);
 					final String contentElementName = map.getNamedItem("name").getNodeValue();
 
-					System.out.println("  -  " + contentElement + contentElementName);
+					System.out.println("  -  " + contentElement + " " + contentElementName);
 
 					if (contentElement.equals("EAttribute")) {
 						createAttribute(c, contentElementName);
@@ -222,11 +222,10 @@ public final class EcoreLoader extends AbstractHandler {
 					final String contentElement = map.getNamedItem("xsi:type").getNodeValue().substring(6);
 					final String contentElementName = map.getNamedItem("name").getNodeValue();
 
-					System.out.print("  " + contentElement + contentElementName);
+					System.out.print("  " + contentElement + " " + contentElementName);
 				}
 			}
 		}
-
 	}
 
 	private Package subPackageCreator(final Node node, final Package pp) {

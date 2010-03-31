@@ -33,6 +33,16 @@
                icon="icons/xhtml_add.png"
                label="Load Ecore"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.unicase.ecoreLoader.testers.allowedLocation">
+                  </test>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
