@@ -207,25 +207,6 @@ public class WorkItemsTab extends ProjectAwareTab {
 		preferredSizeButton.setText("Shrink container to its preferred size");
 	}
 	
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		refreshInput();
-	}
-
-	public void modelElementDeleteCompleted(Project project,
-			ModelElement modelElement) {
-		refreshInput();
-	}
-
-	public void modelElementDeleteStarted(Project project,
-			ModelElement modelElement) {
-		refreshInput();
-	}
-
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
-		refreshInput();
-	}
-	
 	public void refreshInput() {
 			final List<? extends Checkable> taskItems = projectSpace
 					.getProject().getAllModelElementsbyClass(

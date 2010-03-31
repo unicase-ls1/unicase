@@ -3,26 +3,38 @@
 <plugin>
    <extension
          point="org.eclipse.ui.views">
-      <view
+      <view  
             class="org.unicase.rap.status.ui.views.StatusView"
             id="org.unicase.rap.status.ui.views.StatusView"
             name="Status view"
             restorable="true">
       </view>
+      <view
+            class="org.unicase.rap.status.ui.UpcomingEventsView"
+            id="org.unicase.rap.status.ui.UpcomingEventsView"
+            name="UpcomingEvents"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.unicase.rap.ui.view">
+         
       <view
             class="org.unicase.rap.status.ui.views.StatusView"
             name="StatusView"
             url="status">
+      </view>
+      <view
+            class="org.unicase.rap.status.ui.UpcomingEventsView"
+            name="UpcomingEvents"
+            url="events">
       </view>
    </extension>
    <extension
          point="org.unicase.rap.ui.config.tab">
       <config
             class="org.unicase.rap.status.ui.tabs.StatusConfigurationTab"
-            name="Status view">
+            name="Status View Settings">
       </config>
    </extension>
    
