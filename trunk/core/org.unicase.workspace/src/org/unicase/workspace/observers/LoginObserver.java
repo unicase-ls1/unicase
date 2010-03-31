@@ -5,16 +5,21 @@
  */
 package org.unicase.workspace.observers;
 
+import org.unicase.workspace.Usersession;
+
 /**
  * Observer interface for logging in.
  * 
  * @author pfeifferc
+ * @author shterev
  */
 public interface LoginObserver {
 
 	/**
 	 * To be called when login is completed.
+	 * 
+	 * @param session the usersession which was logged in.
 	 */
-	void loginCompleted();
+	void loginCompleted(Usersession session);
 
 }
