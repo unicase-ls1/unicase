@@ -7,13 +7,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.EMFServerSettingsConfigEntity;
-import org.unicase.rap.config.GeneralSettingsConfigEntity;
-import org.unicase.rap.config.IValidator;
 
 import config.ConfigEntity;
+import org.unicase.rap.config.IValidator;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.EMFServerSettingsConfigEntity;
 
+/**
+ * 
+ * 
+ * @author fxulusoy
+ *
+ */
 public class EMFServerSettingsTab extends ConfigurationTab {
 
 	private EMFServerSettingsConfigEntity cfgEntity;
@@ -62,7 +67,7 @@ public class EMFServerSettingsTab extends ConfigurationTab {
 	public void createConfigurationTab(Composite parent) {
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 2;
+		gridLayout.numColumns = 3;
 		gridLayout.makeColumnsEqualWidth = true;
 		parent.setLayout(gridLayout);
 
@@ -71,15 +76,16 @@ public class EMFServerSettingsTab extends ConfigurationTab {
 
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = GridData.FILL;
+		gridData.horizontalSpan = 2;
 
 		emfServerUrlTextField = new Text(parent, SWT.BORDER);
 		emfServerUrlTextField.setLayoutData(gridData);
-
+		
 		label = new Label(parent, SWT.NONE);
 		label.setText("EMF Server Port:");
 
 		emfServerPortField = new Spinner(parent, SWT.BORDER);
-		emfServerPortField.setValues(1099, 1, 999999, 0, 1, 10);
+		emfServerPortField.setValues(443, 1, 999999, 0, 1, 10);
 		emfServerPortField.setLayoutData(gridData);
 		
 		label = new Label(parent, SWT.NONE);
@@ -89,13 +95,13 @@ public class EMFServerSettingsTab extends ConfigurationTab {
 		emfServerUserNameTextField.setLayoutData(gridData);
 
 		label = new Label(parent, SWT.NONE);
-		label.setText("Web client password");
+		label.setText("Web client password:");
 
 		emfServerUserPasswordTextField = new Text(parent, SWT.BORDER | SWT.PASSWORD);
 		emfServerUserPasswordTextField.setLayoutData(gridData);
 
 		label = new Label(parent, SWT.NONE);
-		label.setText("Admin password confirmation");
+		label.setText("Password confirmation:");
 		emfServerUserPasswordConfirmationTextField = new Text(parent, SWT.BORDER | SWT.PASSWORD);
 		emfServerUserPasswordConfirmationTextField.setLayoutData(gridData);
 
@@ -116,3 +122,5 @@ public class EMFServerSettingsTab extends ConfigurationTab {
 	}
 
 }
+
+
