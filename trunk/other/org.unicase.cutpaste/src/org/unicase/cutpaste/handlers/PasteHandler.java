@@ -90,133 +90,116 @@ public final class PasteHandler extends AbstractHandler {
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		transferable = clipboard.getContents(null);
 
+		// Remember old ME data before changing
+		UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
+			.getContainerModelElement();
+		if (umeSourceContainer instanceof UnicaseModelElement) {
+			prevLocation = umeSourceContainer.getName();
+			prevLocationType = umeSourceContainer.eClass().getName();
+		} else if (umeSourceContainer == null) { // then parent is project
+			prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
+			System.out.println(prevLocation);
+			prevLocationType = meSource.getProject().eClass().getName();
+		}
+
+		try { // get data from clipboard
+			meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
+				org.unicase.metamodel.ModelElement.class, "ModelElement"));
+			handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
+				org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
+		} catch (UnsupportedFlavorException e1) {
+			// flavor could not be provided (clipboard empty/corrupted?). actually the
+			// propertytester should prevent this and thus this exception should never be thrown.
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		if (target instanceof ModelElement) {
 			meTarget = (ModelElement) target;
+			pasteInME();
 
-			try { // get data from clipboard
-				meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
-					org.unicase.metamodel.ModelElement.class, "ModelElement"));
-				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
-					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
-
-				// Remember old ME data before changing
-				UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
-					.getContainerModelElement();
-				if (umeSourceContainer instanceof UnicaseModelElement) {
-					prevLocation = umeSourceContainer.getName();
-					prevLocationType = umeSourceContainer.eClass().getName();
-				} else if (umeSourceContainer == null) { // then parent is project
-					prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
-					System.out.println(prevLocation);
-					prevLocationType = meSource.getProject().eClass().getName();
-				}
-
-				// paste implements AllowedCutPaste-v3.txt, can also be found in this package
-
-				if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
-					&& !(meSource instanceof CompositeSection)) {
-					((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
-				} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
-					((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
-				} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
-					((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
-				} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
-					((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
-				} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
-					genericPaste(meTarget, meSource);
-				} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
-					genericPaste(meTarget, meSource);
-				} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
-					((ComponentService) meSource).setOfferingComponent((Component) meTarget);
-				} else if (meTarget instanceof org.unicase.model.classes.Package) {
-					if (meSource instanceof org.unicase.model.classes.Class) {
-						((org.unicase.model.classes.Class) meSource)
-							.setParentPackage((org.unicase.model.classes.Package) meTarget);
-					} else if (meSource instanceof org.unicase.model.classes.Package) {
-						((org.unicase.model.classes.Package) meSource)
-							.setParentPackage((org.unicase.model.classes.Package) meTarget);
-					}
-				} else if (meTarget instanceof org.unicase.model.classes.Class) {
-					if (meSource instanceof Method) {
-						((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
-
-					} else if (meSource instanceof Attribute) {
-						((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
-					}
-				} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
-					genericPaste(meTarget, meSource);
-				} else if (meTarget instanceof CompositeSection) {
-					if (meSource instanceof CompositeSection) {
-						genericPaste(meTarget, meSource);
-					} else if (meSource instanceof LeafSection) {
-						genericPaste(meTarget, meSource);
-					}
-				} else {
-					System.out.println("Cannot paste into type: " + meTarget.getClass());
-				}
-
-				// end CompositeOperation, clear clipboard
-				try {
-					handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
-						+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \""
-						+ prevLocation + "\" to " + meTarget.eClass().getName() + " \""
-						+ ((UnicaseModelElement) meTarget).getName() + "\"", ((UnicaseModelElement) meSource)
-						.getModelElementId());
-					clipboard.setContents(new StringSelection(""), null);
-					System.out.println("Paste Operation finished. CompositeOperation finished.");
-					refreshCutAndPasteDecorator();
-				} catch (InvalidHandleException e) {
-					e.printStackTrace();
-					System.out.println("ERROR paste: there was no begun cut action.");
-				}
-
-			} catch (UnsupportedFlavorException e) {
-				e.printStackTrace();
-				// flavor could not be provided (clipboard empty/corrupted?). actually the
-				// propertytester should prevent this and thus this exception should never be thrown.
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		} else if (target instanceof ProjectSpace) {
 			psTarget = (ProjectSpace) target;
+			pasteInProject();
 
-			// Remember old ME data before changing
-			UnicaseModelElement umeSourceContainer = (UnicaseModelElement) ((UnicaseModelElement) meSource)
-				.getContainerModelElement();
-			if (umeSourceContainer instanceof UnicaseModelElement) {
-				prevLocation = umeSourceContainer.getName();
-				prevLocationType = umeSourceContainer.eClass().getName();
-			} else if (umeSourceContainer == null) { // then parent is project
-				prevLocation = WorkspaceManager.getProjectSpace(meSource.getProject()).getProjectName();
-				System.out.println(prevLocation);
-				prevLocationType = meSource.getProject().eClass().getName();
+		}
+	}
+
+	private void pasteInME() { // paste implements AllowedCutPaste-v3.txt, can also be found in this package
+
+		if (meTarget instanceof LeafSection && meSource instanceof UnicaseModelElement
+			&& !(meSource instanceof CompositeSection)) {
+			((LeafSection) meTarget).getModelElements().add((UnicaseModelElement) meSource);
+		} else if (meTarget instanceof UnicaseModelElement && meSource instanceof Comment) {
+			((Comment) meSource).setCommentedElement((UnicaseModelElement) meTarget);
+		} else if (meTarget instanceof FunctionalRequirement && meSource instanceof FunctionalRequirement) {
+			((FunctionalRequirement) meSource).setRefinedRequirement((FunctionalRequirement) meTarget);
+		} else if (meTarget instanceof WorkPackage && meSource instanceof WorkItem) {
+			((WorkItem) meSource).setContainingWorkpackage((WorkPackage) meTarget);
+		} else if (meTarget instanceof Meeting && meSource instanceof MeetingSection) {
+			genericPaste(meTarget, meSource);
+		} else if (meTarget instanceof CompositeMeetingSection && meSource instanceof MeetingSection) {
+			genericPaste(meTarget, meSource);
+		} else if (meTarget instanceof Component && meSource instanceof ComponentService) {
+			((ComponentService) meSource).setOfferingComponent((Component) meTarget);
+		} else if (meTarget instanceof org.unicase.model.classes.Package) {
+			if (meSource instanceof org.unicase.model.classes.Class) {
+				((org.unicase.model.classes.Class) meSource)
+					.setParentPackage((org.unicase.model.classes.Package) meTarget);
+			} else if (meSource instanceof org.unicase.model.classes.Package) {
+				((org.unicase.model.classes.Package) meSource)
+					.setParentPackage((org.unicase.model.classes.Package) meTarget);
 			}
+		} else if (meTarget instanceof org.unicase.model.classes.Class) {
+			if (meSource instanceof Method) {
+				((Method) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
 
-			try {
-				meSource = (ModelElement) transferable.getTransferData(new DataFlavor(
-					org.unicase.metamodel.ModelElement.class, "ModelElement"));
-				handle = (CompositeOperationHandle) transferable.getTransferData(new DataFlavor(
-					org.unicase.workspace.CompositeOperationHandle.class, "CompositeOperationHandle"));
-				psTarget.getProject().getModelElements().add(meSource);
-
-			} catch (UnsupportedFlavorException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} else if (meSource instanceof Attribute) {
+				((Attribute) meSource).setDefiningClass((org.unicase.model.classes.Class) meTarget);
 			}
-			try {
-				handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
-					+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
-					+ "\" to " + "Project \"" + psTarget.getProjectName() + "\"", ((UnicaseModelElement) meSource)
-					.getModelElementId());
-				clipboard.setContents(new StringSelection(""), null);
-				System.out.println("Paste Operation finished. CompositeOperation finished.");
-				refreshCutAndPasteDecorator();
-			} catch (InvalidHandleException e) {
-				e.printStackTrace();
-				System.out.println("ERROR paste: there was no begun cut action.");
+		} else if (meTarget instanceof Method && meSource instanceof MethodArgument) {
+			genericPaste(meTarget, meSource);
+		} else if (meTarget instanceof CompositeSection) {
+			if (meSource instanceof CompositeSection) {
+				genericPaste(meTarget, meSource);
+			} else if (meSource instanceof LeafSection) {
+				genericPaste(meTarget, meSource);
 			}
+		} else {
+			System.out.println("Cannot paste into type: " + meTarget.getClass());
+		}
 
+		// end CompositeOperation, clear clipboard
+		try {
+			handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+				+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
+				+ "\" to " + meTarget.eClass().getName() + " \"" + ((UnicaseModelElement) meTarget).getName() + "\"",
+				((UnicaseModelElement) meSource).getModelElementId());
+			clipboard.setContents(new StringSelection(""), null);
+			System.out.println("Paste Operation finished. CompositeOperation finished.");
+			refreshCutAndPasteDecorator();
+		} catch (InvalidHandleException e) {
+			e.printStackTrace();
+			System.out.println("ERROR paste: there was no begun cut action.");
+		}
+	}
+
+	private void pasteInProject() {
+
+		psTarget.getProject().getModelElements().add(meSource);
+
+		try {
+			handle.end("Cutted and pasted ModelElement", "Moved " + meSource.eClass().getName() + " \""
+				+ ((UnicaseModelElement) meSource).getName() + "\" from " + prevLocationType + " \"" + prevLocation
+				+ "\" to " + "Project \"" + psTarget.getProjectName() + "\"", ((UnicaseModelElement) meSource)
+				.getModelElementId());
+			clipboard.setContents(new StringSelection(""), null);
+			System.out.println("Paste Operation finished. CompositeOperation finished.");
+			refreshCutAndPasteDecorator();
+		} catch (InvalidHandleException e) {
+			e.printStackTrace();
+			System.out.println("ERROR paste: there was no begun cut action.");
 		}
 	}
 
