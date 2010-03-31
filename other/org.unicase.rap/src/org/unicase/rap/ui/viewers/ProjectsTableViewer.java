@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * Provides a table like overview of all available projects.
@@ -53,7 +54,8 @@ public class ProjectsTableViewer extends AbstractETableViewer implements Selecti
 	@Override
 	public ArrayList<EStructuralFeature> getFeaturesList() {
 		ArrayList<EStructuralFeature> list = new ArrayList<EStructuralFeature>();
-		list.add(ModelPackage.Literals.PROJECT.eContainmentFeature());
+		//list.add(ModelPackage.Literals.PROJECT.eContainmentFeature());
+		list.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_NAME);
 		return list;
 	}
 	
