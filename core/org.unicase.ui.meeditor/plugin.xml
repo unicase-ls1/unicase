@@ -76,4 +76,10 @@
             type="org.unicase.metamodel.ModelElement">
       </widget>
    </extension>
+   <extension
+         point="org.unicase.workspace.notify.deleteprojectspace">
+      <observer
+            class="org.unicase.ui.meeditor.MEEditorDeleteProjectObserver">
+      </observer>
+   </extension>
 </plugin>
