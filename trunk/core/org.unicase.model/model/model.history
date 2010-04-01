@@ -7878,5 +7878,22 @@
       </operation>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/UrlAttachment/url"
+        referenceName="eAnnotations" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"
+        featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.0"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.0"
+        featureName="key" dataValue="position"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="left"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.1"
+        featureName="key" dataValue="priority"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.1"
+        featureName="value" dataValue="2.5"/>
+  </releases>
 </history:History>
