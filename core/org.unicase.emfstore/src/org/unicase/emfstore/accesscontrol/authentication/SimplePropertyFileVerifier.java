@@ -12,10 +12,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This verifyer can be used to store user and passwords in a property file. Entries in the property file look should
@@ -26,8 +25,6 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 public class SimplePropertyFileVerifier extends AbstractAuthenticationControl {
 
 	private Properties passwordFile;
-
-	private final Log logger;
 
 	private final Hash hash;
 
@@ -67,7 +64,7 @@ public class SimplePropertyFileVerifier extends AbstractAuthenticationControl {
 			throw new FatalEmfStoreException("Hash may not be null for verifier.");
 		}
 		this.hash = hash;
-		logger = LogFactory.getLog(SimplePropertyFileVerifier.class);
+
 		passwordFile = new Properties();
 		try {
 			File propertyFile = new File(filePath);
@@ -75,7 +72,7 @@ public class SimplePropertyFileVerifier extends AbstractAuthenticationControl {
 			passwordFile.load(fis);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Couldn't load password file from path: " + filePath);
+			ModelUtil.logWarning("Couldn't load password file from path: " + filePath, e);
 			// Run with empty password file
 			// throw new AccessControlException("Couldn't load password file from path: "+filePath);
 		}

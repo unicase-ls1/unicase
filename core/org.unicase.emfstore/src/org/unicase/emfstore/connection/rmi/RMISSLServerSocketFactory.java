@@ -15,12 +15,11 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.ServerKeyStoreException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Custom SocketFactory for rmi with encryption.
@@ -29,8 +28,6 @@ import org.unicase.emfstore.exceptions.ServerKeyStoreException;
  */
 @SuppressWarnings("serial")
 public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serializable {
-
-	private static Log logger;
 
 	/**
 	 * in development.
@@ -42,7 +39,6 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serial
 	 */
 	public RMISSLServerSocketFactory() {
 		super();
-		logger = LogFactory.getLog(RMISSLServerSocketFactory.class);
 		id = 07701522;
 	}
 
@@ -58,13 +54,13 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serial
 			context.init(ServerKeyStoreManager.getInstance().getKeyManagerFactory().getKeyManagers(), null, null);
 			serverSocketFactory = context.getServerSocketFactory();
 		} catch (NoSuchAlgorithmException e) {
-			logger.error("Couldn't initialize server socket.");
+			ModelUtil.logException("Couldn't initialize server socket.", e);
 			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (KeyManagementException e) {
-			logger.error("Couldn't initialize server socket.");
+			ModelUtil.logException("Couldn't initialize server socket.", e);
 			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		} catch (ServerKeyStoreException e) {
-			logger.error("Couldn't initialize server socket.");
+			ModelUtil.logException("Couldn't initialize server socket.", e);
 			EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 		}
 

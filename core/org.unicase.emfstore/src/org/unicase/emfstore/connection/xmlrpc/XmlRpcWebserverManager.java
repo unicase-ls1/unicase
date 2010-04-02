@@ -14,8 +14,6 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
@@ -28,6 +26,7 @@ import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeConverterFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.ServerKeyStoreException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Manages the webserver for XML RPC connections.
@@ -39,10 +38,8 @@ public final class XmlRpcWebserverManager {
 	private static XmlRpcWebserverManager instance;
 	private WebServer webServer;
 	private final int port;
-	private Log logger;
 
 	private XmlRpcWebserverManager() {
-		logger = LogFactory.getLog(XmlRpcWebserverManager.class);
 		int tmp = 8080;
 		try {
 			tmp = Integer.valueOf(ServerConfiguration.getProperties().getProperty(ServerConfiguration.XML_RPC_PORT));
@@ -85,20 +82,20 @@ public final class XmlRpcWebserverManager {
 							null);
 						serverSocketFactory = context.getServerSocketFactory();
 					} catch (NoSuchAlgorithmException e) {
-						logger.error("Couldn't initialize server socket.");
+						ModelUtil.logException("Couldn't initialize server socket.", e);
 						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					} catch (KeyManagementException e) {
-						logger.error("Couldn't initialize server socket.");
+						ModelUtil.logException("Couldn't initialize server socket.", e);
 						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					} catch (ServerKeyStoreException e) {
-						logger.error("Couldn't initialize server socket.");
+						ModelUtil.logException("Couldn't initialize server socket.", e);
 						EmfStoreController.getInstance().shutdown(new FatalEmfStoreException());
 					}
 					return serverSocketFactory.createServerSocket(pPort, backlog, addr);
 				}
 			};
 
-			logger.info("Started XML RPC Webserver on port: " + port);
+			ModelUtil.logInfo("Started XML RPC Webserver on port: " + port);
 
 			XmlRpcServer xmlRpcServer = webServer.getXmlRpcServer();
 			xmlRpcServer.setTypeFactory(new EObjectTypeFactory(xmlRpcServer));
