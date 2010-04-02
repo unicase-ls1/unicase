@@ -27,7 +27,7 @@ public final class BackchannelConfiguration {
 	/**
 	 * Default value for rmi port property.
 	 */
-	public static final String BACKCHANNEL_RMI_PORT_DEFAULT = "2000";
+	public static final String BACKCHANNEL_RMI_PORT_DEFAULT = "3000";
 
 	/**
 	 * Returns the properties, using {@link ServerConfiguration}.
