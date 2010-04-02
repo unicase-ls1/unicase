@@ -54,7 +54,7 @@ public class DemoBackchannelClient extends ProxyClient {
 
 	private ServerInfo getBackChannelServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(2000);
+		serverInfo.setPort(3000);
 		serverInfo.setUrl("localhost");
 		return serverInfo;
 	}
