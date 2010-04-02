@@ -15,10 +15,9 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.AccessControlException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Verifies username/password using LDAP.
@@ -35,8 +34,6 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
 
-	private final Log logger;
-
 	/**
 	 * Default constructor.
 	 * 
@@ -44,7 +41,6 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 */
 	public LDAPVerifier() {
 		super();
-		logger = LogFactory.getLog(LDAPVerifier.class);
 	}
 
 	/**
@@ -88,7 +84,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("LDAP Directory " + ldapUrl + " not found.", e);
+			ModelUtil.logWarning("LDAP Directory " + ldapUrl + " not found.", e);
 			return false;
 		}
 
@@ -99,7 +95,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 			results = dirContext.search(ldapBase, "(& (" + searchDn + "=" + username + ") (objectclass=*))",
 				constraints);
 		} catch (NamingException e) {
-			logger.error("Search failed, base = " + ldapBase, e);
+			ModelUtil.logWarning("Search failed, base = " + ldapBase, e);
 			return false;
 		}
 
@@ -117,12 +113,12 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 				break;
 			}
 		} catch (NamingException e) {
-			logger.error("Search returned invalid results, base = " + ldapBase, e);
+			ModelUtil.logException("Search returned invalid results, base = " + ldapBase, e);
 			return false;
 		}
 
 		if (resolvedName == null) {
-			logger.info("Distinguished name not found on " + ldapBase);
+			ModelUtil.logWarning("Distinguished name not found on " + ldapBase);
 			return false;
 		}
 
@@ -139,7 +135,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("Login failed on " + ldapBase + " .");
+			ModelUtil.logWarning("Login failed on " + ldapBase + " .", e);
 			return false;
 		}
 		return true;

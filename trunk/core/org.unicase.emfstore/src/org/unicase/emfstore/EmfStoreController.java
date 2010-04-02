@@ -17,8 +17,9 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.eclipse.core.runtime.ILogListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -50,6 +51,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the EmfStore.
@@ -64,7 +66,6 @@ public class EmfStoreController implements IApplication, Runnable {
 	private AccessControlImpl accessControl;
 	private Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers;
 	private Properties properties;
-	private static Log logger;
 	private ServerSpace serverSpace;
 	private Resource resource;
 
@@ -81,7 +82,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		run(true);
 		instance = null;
-		logger.info("Server is STOPPED.");
+		ModelUtil.logInfo("Server is STOPPED.");
 		return IApplication.EXIT_OK;
 
 	}
@@ -134,19 +135,34 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		handlePostStartupListener();
 
-		logger.info("Initialitation COMPLETE.");
-		logger.info("Server is RUNNING...");
+		ModelUtil.logInfo("Initialitation COMPLETE.");
+		ModelUtil.logInfo("Server is RUNNING...");
 
 		if (waitForTermination) {
 			waitForTermination();
 		}
 	}
 
+	private void initLogging() {
+		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).addLogListener(new ILogListener() {
+
+			public void logging(IStatus status, String plugin) {
+				if (status.getSeverity() == IStatus.INFO) {
+					System.out.println(status.getMessage());
+				} else if (!status.isOK()) {
+					System.err.println(status.getMessage());
+					status.getException().printStackTrace(System.err);
+				}
+			}
+
+		});
+	}
+
 	private void handleStartupListener() {
 		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.LOAD_STARTUP_LISTENER,
 			ServerConfiguration.LOAD_STARTUP_LISTENER_DEFAULT);
 		if (ServerConfiguration.TRUE.equals(property)) {
-			logger.info("Notifying startup listener");
+			ModelUtil.logInfo("Notifying startup listener");
 			ExtensionManager.notifyStartupListener(serverSpace.getProjects());
 		}
 	}
@@ -155,7 +171,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		String property = ServerConfiguration.getProperties().getProperty(
 			ServerConfiguration.LOAD_POST_STARTUP_LISTENER, ServerConfiguration.LOAD_STARTUP_LISTENER_DEFAULT);
 		if (ServerConfiguration.TRUE.equals(property)) {
-			logger.info("Notifying post startup listener");
+			ModelUtil.logInfo("Notifying post startup listener");
 			ExtensionManager.notifyPostStartupListener(serverSpace, accessControl, connectionHandlers);
 		}
 	}
@@ -166,16 +182,15 @@ public class EmfStoreController implements IApplication, Runnable {
 			try {
 				FileUtil.copyFile(getClass().getResourceAsStream(source), keyStore);
 			} catch (IOException e) {
-				logger.warn(failure);
+				ModelUtil.logWarning("Copy of file from " + source + " to " + target + " failed", e);
 			}
-			logger.info(success);
 		}
 	}
 
 	private HistoryCache initHistoryCache() {
 		HistoryCache cache = new HistoryCache();
 		cache.initCache(serverSpace.getProjects());
-		logger.info("History cache has been initialized.");
+		ModelUtil.logInfo("History cache has been initialized.");
 		return cache;
 	}
 
@@ -222,9 +237,9 @@ public class EmfStoreController implements IApplication, Runnable {
 			resource.load(resourceSet.getLoadOptions());
 
 			if (properties.getProperty(ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART, "true").equals("true")) {
-				logger.info("Validating serverspace ...");
+				ModelUtil.logInfo("Validating serverspace ...");
 				validateServerSpace(resource);
-				logger.info("Validation complete.");
+				ModelUtil.logInfo("Validation complete.");
 			}
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
@@ -243,7 +258,7 @@ public class EmfStoreController implements IApplication, Runnable {
 			result.setResource(resource);
 		} else {
 			// if no serverspace can be loaded, create one
-			logger.debug("Creating initial server space...");
+			ModelUtil.logInfo("Creating initial server space...");
 			result = EsmodelFactory.eINSTANCE.createServerSpace();
 
 			result.setResource(resource);
@@ -288,25 +303,6 @@ public class EmfStoreController implements IApplication, Runnable {
 		return instance;
 	}
 
-	private void initLogging() {
-		logger = LogFactory.getLog(EmfStoreController.class);
-
-		// OW: fix logging config
-		// ConsoleAppender console = new ConsoleAppender(new SimpleLayout());
-		// try {
-		// FileAppender fileLog = new FileAppender(new SimpleLayout(),
-		// ServerConfiguration.getServerHome() + "emfstore.log", true);
-		// Logger rootLogger = Logger.getRootLogger();
-		// rootLogger.addAppender(console);
-		// rootLogger.addAppender(fileLog);
-		// rootLogger.setLevel(Level.ALL);
-		// } catch (IOException e) {
-		// String message =
-		// "Logging initialization failed! Logging might be disabled!";
-		// logger.warn(message, e);
-		// }
-	}
-
 	private ResourceStorage initStorage() throws FatalEmfStoreException {
 		String className = properties.getProperty(ServerConfiguration.RESOURCE_STORAGE,
 			ServerConfiguration.RESOURCE_STORAGE_DEFAULT);
@@ -314,29 +310,29 @@ public class EmfStoreController implements IApplication, Runnable {
 		ResourceStorage resourceStorage;
 		final String failMessage = "Failed loading ressource storage!";
 		try {
-			logger.debug("Using RessourceStorage \"" + className + "\".");
+			ModelUtil.logInfo("Using RessourceStorage \"" + className + "\".");
 			resourceStorage = (ResourceStorage) Class.forName(className).getConstructor().newInstance();
 			return resourceStorage;
 		} catch (IllegalArgumentException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (SecurityException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (InstantiationException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (IllegalAccessException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (InvocationTargetException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (NoSuchMethodException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		} catch (ClassNotFoundException e) {
-			logger.fatal(failMessage, e);
+			ModelUtil.logException(failMessage, e);
 			throw new FatalEmfStoreException(failMessage, e);
 		}
 	}
@@ -366,7 +362,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
-		logger.info("added superuser " + superuser);
+		ModelUtil.logInfo("added superuser " + superuser);
 	}
 
 	private Properties initProperties() {
@@ -377,9 +373,9 @@ public class EmfStoreController implements IApplication, Runnable {
 			properties.load(fis);
 			ServerConfiguration.setProperties(properties);
 			fis.close();
-			logger.info("Property file read. (" + propertyFile.getAbsolutePath() + ")");
+			ModelUtil.logInfo("Property file read. (" + propertyFile.getAbsolutePath() + ")");
 		} catch (IOException e) {
-			logger.warn("Property initialization failed, using default properties.");
+			ModelUtil.logWarning("Property initialization failed, using default properties.", e);
 		}
 		return properties;
 	}
@@ -394,7 +390,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		for (ConnectionHandler<? extends EmfStoreInterface> handler : connectionHandlers) {
 			handler.stop(false);
 		}
-		logger.info("Server was stopped.");
+		ModelUtil.logInfo("Server was stopped.");
 		instance = null;
 		wakeForTermination();
 	}
@@ -406,14 +402,14 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * @generated NOT
 	 */
 	public void shutdown(FatalEmfStoreException exception) {
-		logger.debug("Stopping all connection handlers...");
+		ModelUtil.logWarning("Stopping all connection handlers...");
 		for (ConnectionHandler<? extends EmfStoreInterface> handler : connectionHandlers) {
-			logger.debug("Stopping connection handler \"" + handler.getName() + "\".");
+			ModelUtil.logWarning("Stopping connection handler \"" + handler.getName() + "\".");
 			handler.stop(true);
-			logger.debug("Connection handler \"" + handler.getName() + "\" stopped.");
+			ModelUtil.logWarning("Connection handler \"" + handler.getName() + "\" stopped.");
 		}
-		logger.fatal("Server was forcefully stopped.", exception);
-		logger.fatal("Cause: ", exception.getCause());
+		ModelUtil.logException("Server was forcefully stopped.", exception);
+		ModelUtil.logException("Cause for server shutdown: ", exception.getCause());
 		wakeForTermination();
 	}
 
@@ -421,7 +417,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		try {
 			wait();
 		} catch (InterruptedException e) {
-			logger.warn("Waiting for termination was interrupted", e);
+			ModelUtil.logWarning("Waiting for termination was interrupted", e);
 		}
 	}
 

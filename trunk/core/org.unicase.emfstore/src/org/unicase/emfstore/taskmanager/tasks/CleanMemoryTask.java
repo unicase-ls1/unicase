@@ -7,8 +7,6 @@ package org.unicase.emfstore.taskmanager.tasks;
 
 import java.util.Date;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -18,6 +16,7 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.taskmanager.Task;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This task is used to clean the memory by proxifying the projectstates.
@@ -27,11 +26,6 @@ import org.unicase.metamodel.Project;
 public class CleanMemoryTask extends Task {
 
 	private static final long PERIOD = 1000 * 60 * 5;
-
-	// for debugging
-	// private static final long PERIOD = 10000;
-
-	private static final Log LOGGER = LogFactory.getLog(CleanMemoryTask.class);
 
 	private final ServerSpace serverSpace;
 
@@ -62,7 +56,7 @@ public class CleanMemoryTask extends Task {
 						Project project = (Project) contents.get(0);
 						if (project.eContainer() instanceof Version
 							&& ((Version) project.eContainer()).getNextVersion() != null) {
-							LOGGER.info("unloading: " + project);
+							ModelUtil.logInfo("unloading: " + project);
 							res.unload();
 						}
 					}

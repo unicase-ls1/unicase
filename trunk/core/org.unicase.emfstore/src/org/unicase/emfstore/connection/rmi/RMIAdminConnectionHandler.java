@@ -9,12 +9,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.AdminEmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * ConnectionHandler for the AdminEmfStore interface using rmi.
@@ -34,8 +33,6 @@ public class RMIAdminConnectionHandler implements ConnectionHandler<AdminEmfStor
 	public static final String RMI_NAME = "RMIAdminEmfStoreFacade";
 
 	private RMIAdminEmfStoreFacade stub;
-
-	private static Log logger = LogFactory.getLog(RMIAdminConnectionHandler.class);
 
 	/**
 	 * Default constructor.
@@ -57,10 +54,10 @@ public class RMIAdminConnectionHandler implements ConnectionHandler<AdminEmfStor
 			registry.rebind(RMI_NAME, stub);
 		} catch (RemoteException e) {
 			String message = "RMI initialisation failed!";
-			logger.fatal(message, e);
+			ModelUtil.logException(message, e);
 			throw new FatalEmfStoreException(message, e);
 		}
-		logger.debug("RMIAdminConnectionHandler is running.");
+		System.out.println("RMIAdminConnectionHandler is running.");
 	}
 
 	/**
@@ -77,10 +74,10 @@ public class RMIAdminConnectionHandler implements ConnectionHandler<AdminEmfStor
 			try {
 				registry.unbind(RMI_NAME);
 			} catch (NotBoundException e1) {
-				logger.warn("Unbinding AdminEmfStore failed!", e1);
+				ModelUtil.logWarning("Unbinding AdminEmfStore failed!", e1);
 			}
 		} catch (RemoteException e2) {
-			logger.warn("Locate registry failed!", e2);
+			ModelUtil.logWarning("Locate registry failed!", e2);
 			return;
 		}
 

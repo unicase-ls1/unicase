@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.EmfStoreController;
@@ -37,6 +35,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This subinterfaces implements all version related functionality for the
@@ -46,7 +45,6 @@ import org.unicase.metamodel.Project;
  */
 public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
-	private Log logger;
 	private HistoryCache historyCache;
 
 	/**
@@ -57,7 +55,6 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	public VersionSubInterfaceImpl(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
 		super(parentInterface);
-		logger = LogFactory.getLog(VersionSubInterfaceImpl.class);
 	}
 
 	/**
@@ -195,7 +192,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				throw new EmfStoreException("Shutting down server.");
 			}
 
-			logger.info("Total time for commit: " + (System.currentTimeMillis() - currentTimeMillis));
+			ModelUtil.logInfo("Total time for commit: " + (System.currentTimeMillis() - currentTimeMillis));
 			return newVersionSpec;
 		}
 	}

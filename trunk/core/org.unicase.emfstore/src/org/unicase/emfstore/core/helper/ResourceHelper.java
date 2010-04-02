@@ -7,8 +7,6 @@ package org.unicase.emfstore.core.helper;
 
 import java.io.File;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -22,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Helper for creating resources etc.
@@ -30,7 +29,6 @@ import org.unicase.metamodel.Project;
  */
 public class ResourceHelper {
 
-	private Log logger;
 	private final ServerSpace serverSpace;
 
 	/**
@@ -41,7 +39,6 @@ public class ResourceHelper {
 	 */
 	public ResourceHelper(ServerSpace serverSpace) throws FatalEmfStoreException {
 		this.serverSpace = serverSpace;
-		logger = LogFactory.getLog(ResourceHelper.class);
 	}
 
 	/**
@@ -138,15 +135,15 @@ public class ResourceHelper {
 			x = Integer.parseInt(ServerConfiguration.getProperties().getProperty(policy, defaultPolicy));
 		} catch (NumberFormatException e) {
 			x = 1;
-			logger.warn("Couldn't read property: " + policy + " , x set to 1");
+			ModelUtil.logWarning("Couldn't read property: " + policy + " , x set to 1", e);
 		}
 		if (x < 0) {
 			x = 1;
-			logger.warn("Policy " + policy + " with x < 0 not possible, x set to 1.");
+			ModelUtil.logWarning("Policy " + policy + " with x < 0 not possible, x set to 1.");
 		}
 		if (!allowZero && x == 0) {
 			x = 1;
-			logger.warn("Policy " + policy + " with x = 0 not possible, x set to 1.");
+			ModelUtil.logWarning("Policy " + policy + " with x = 0 not possible, x set to 1.");
 		}
 		return x;
 	}
