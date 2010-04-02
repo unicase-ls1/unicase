@@ -8,6 +8,7 @@ package org.unicase.backchannel.connection.rmi.client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.unicase.backchannel.server.BackchannelConfiguration;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
 import org.unicase.emfstore.eventmanager.EMFStoreEventListener;
@@ -33,7 +34,10 @@ public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
 	 */
 	protected RMIBackchannelCallbackImpl(EMFStoreEventListener listener)
 			throws RemoteException {
-		super(2002);
+		super(BackchannelConfiguration
+				.getNumberProperty(
+						BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
+						BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT)+2);
 		this.listener = listener;
 	}
 
