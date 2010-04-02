@@ -542,7 +542,7 @@ public final class ModelUtil {
 	 * @param exception exception
 	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
 	 */
-	public static void log(String message, Exception exception, int statusInt) {
+	public static void log(String message, Throwable exception, int statusInt) {
 		Status status = new Status(statusInt, Platform.getBundle("org.unicase.metamodel").getSymbolicName(), statusInt,
 			message, exception);
 		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).log(status);
@@ -554,7 +554,7 @@ public final class ModelUtil {
 	 * @param message the message
 	 * @param exception the exception
 	 */
-	public static void logException(String message, Exception exception) {
+	public static void logException(String message, Throwable exception) {
 		log(message, exception, IStatus.ERROR);
 	}
 
@@ -564,8 +564,26 @@ public final class ModelUtil {
 	 * @param message the message
 	 * @param exception the exception
 	 */
-	public static void logWarning(String message, Exception exception) {
+	public static void logWarning(String message, Throwable exception) {
 		log(message, exception, IStatus.WARNING);
+	}
+	
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param message the message
+	 */
+	public static void logWarning(String message) {
+		log(message, null, IStatus.WARNING);
+	}
+	
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param message the message
+	 */
+	public static void logInfo(String message) {
+		log(message, null, IStatus.INFO);
 	}
 
 	/**
