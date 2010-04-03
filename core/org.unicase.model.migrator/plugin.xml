@@ -6,7 +6,7 @@
 <extension
       point="edu.tum.cs.cope.operations">
    <operations
-         declaration="model/operations.declaration">
+         declaration="operations/operations.declaration">
    </operations>
 </extension>
 </plugin>
