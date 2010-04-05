@@ -73,7 +73,7 @@ public class DetailsComponent extends Section {
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
 				if (multiWidget == null) {
-					multiWidget = new MultilineWidget(decisionBox);
+					multiWidget = new MultilineWidget(decisionBox, this);
 				}
 				multiWidget.addOption(option);
 			} else if (option.getDetailProvider().startsWith(
