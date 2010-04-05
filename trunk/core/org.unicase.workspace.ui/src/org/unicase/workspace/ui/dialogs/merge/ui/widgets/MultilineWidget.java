@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.dialogs.merge.ui.widgets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
@@ -19,9 +21,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
+import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.options.MergeTextOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
+import org.unicase.workspace.ui.dialogs.merge.ui.components.DetailsComponent;
 
 import diff.match.patch.diff_match_patch;
 import diff.match.patch.diff_match_patch.Diff;
@@ -32,20 +36,26 @@ import diff.match.patch.diff_match_patch.Operation;
  * 
  * @author wesendon
  */
-public class MultilineWidget {
+public class MultilineWidget implements Observer {
 
 	private final DecisionBox decisionBox;
 	private ArrayList<ConflictOption> options;
+	private TabFolder tabFolder;
+	private final DetailsComponent detailsComponent;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param decisionBox
 	 *            container
+	 * @param detailsComponent
 	 */
-	public MultilineWidget(DecisionBox decisionBox) {
+	public MultilineWidget(DecisionBox decisionBox,
+			DetailsComponent detailsComponent) {
 		this.decisionBox = decisionBox;
+		this.detailsComponent = detailsComponent;
 		options = new ArrayList<ConflictOption>();
+		decisionBox.getConflict().addObserver(this);
 	}
 
 	/**
@@ -65,7 +75,7 @@ public class MultilineWidget {
 	 *            container
 	 */
 	public void createContent(Composite parent) {
-		TabFolder tabFolder = new TabFolder(parent, SWT.NONE);
+		tabFolder = new TabFolder(parent, SWT.NONE);
 		tabFolder.setBackground(parent.getBackground());
 		tabFolder.setLayout(new TableWrapLayout());
 
@@ -86,6 +96,7 @@ public class MultilineWidget {
 		// text.setLeftMargin(5);
 		// text.setRightMargin(5);
 		tab.setControl(text);
+
 	}
 
 	private void setText(ConflictOption option, final StyledText styledText) {
@@ -156,6 +167,21 @@ public class MultilineWidget {
 			return option.getOptionLabel();
 		default:
 			return "";
+		}
+	}
+
+	public void update(Observable o, Object arg) {
+		Conflict conflict = decisionBox.getConflict();
+		if (conflict != null && conflict == o) {
+			ConflictOption solution = conflict.getSolution();
+			if (solution instanceof MergeTextOption) {
+				for (int i = 0; i < options.size(); i++) {
+					if (options.get(i) == solution) {
+						detailsComponent.setExpanded(true);
+						tabFolder.setSelection(i);
+					}
+				}
+			}
 		}
 	}
 }

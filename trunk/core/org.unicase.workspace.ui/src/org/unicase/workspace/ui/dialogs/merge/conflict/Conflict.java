@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.dialogs.merge.conflict;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -24,7 +25,7 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
  * 
  * @author wesendon
  */
-public abstract class Conflict {
+public abstract class Conflict extends Observable {
 
 	private DecisionManager decisionManager;
 	private ArrayList<ConflictOption> options;
@@ -218,6 +219,8 @@ public abstract class Conflict {
 		if (solution != null) {
 			getDecisionManager().getEventLogger().optionSelected(this);
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
