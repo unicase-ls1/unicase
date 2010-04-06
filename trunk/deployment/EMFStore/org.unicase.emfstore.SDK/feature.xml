@@ -2,11 +2,12 @@
 <feature
       id="org.unicase.emfstore.SDK"
       label="EMFStore SDK"
-      version="0.5.14.nightly"
+      version="0.5.15.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
-      This feature contains all plugins to develop an application based on the EMFStore framework including the source code.
+      This feature contains all features and plugins to develop an application based
+on the EMFStore framework including the source code. If you are a developer then only install this feature. The other features of emfstore are intended for use in a target platform.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -236,10 +237,6 @@ litigation.
          version="0.0.0"/>
 
    <includes
-         id="org.unicase.emfstore.server"
-         version="0.0.0"/>
-
-   <includes
          id="org.unicase.emfstore.backchannel"
          version="0.0.0"/>
 
@@ -253,6 +250,10 @@ litigation.
 
    <includes
          id="org.unicase.emfstore.metamodel"
+         version="0.0.0"/>
+
+   <includes
+         id="org.unicase.emfstore.server"
          version="0.0.0"/>
 
 </feature>
