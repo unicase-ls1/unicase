@@ -1,13 +1,18 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
 0.5.15.nightly:
-
   - removed dependency to apache.commons.logging, replaced by import
 
   - changed default backchannel port to 3000
+
   - added SDK feature containing source code
+
   - copy default configuration (es.properties) to default location on first start-up
+
   - added EMFStoreUtil to ease building EMFStore clients
+
   - added commit method without log message parameter to project space
+
   - fixed model import for models with nested root nodes
+
   - fixed project export for unshared projects
