@@ -17,12 +17,12 @@ You can also download a standalone version as a product from the links given bel
   * [http://www1.in.tum.de/static/shared/unicase/products/0.5.1.nightly/emfstore-model-independent/macosx.carbon.x86.zip 0.5.1.nightly for MacOsX carbon x86]
   * [http://www1.in.tum.de/static/shared/unicase/products/0.5.1.nightly/emfstore-model-independent/win32.win32.x86.zip 0.5.1.nightly for Windows x86] 
   * [http://www1.in.tum.de/static/shared/unicase/products/0.5.1.nightly/emfstore-model-independent/win32.win32.x86_64.zip 0.5.1.nightly for Windows x86 and 64bit] 
-
+</wiki:comment>
 
 
 ==Releases==
 
-*There are currently no releases available at the moment.*
+*There are currently no releases available.*
 <wiki:comment>
 
 , but there will a release on April 1st.
