@@ -22,7 +22,7 @@ You can also download a standalone version as a product from the links given bel
 
 ==Releases==
 
-*There are currently no releases available.*
+*There are currently no releases available.* If you are waiting for a release [EMFStoreCommunication please contact us].
 <wiki:comment>
 
 , but there will a release on April 1st.
