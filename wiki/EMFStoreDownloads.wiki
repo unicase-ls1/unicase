@@ -9,6 +9,7 @@ The EMFStore features can be installed from this update site:
 [http://unicase.googlecode.com/svn/updatesite/emfstoreNightly http://unicase.googlecode.com/svn/updatesite/emfstoreNightly]
 
 There is also a backup update site for the nightly builds:
+
 [http://www1.in.tum.de/static/unicase/emfstoreNightly http://www1.in.tum.de/static/unicase/emfstoreNightly]
 
 <wiki:comment>
