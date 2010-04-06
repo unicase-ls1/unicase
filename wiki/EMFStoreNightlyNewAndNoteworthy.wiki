@@ -2,7 +2,6 @@
 
 0.5.15.nightly:
   - removed dependency to apache.commons.logging, replaced by import
-
   - changed default backchannel port to 3000
 
   - added SDK feature containing source code
