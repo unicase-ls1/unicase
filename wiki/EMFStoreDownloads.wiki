@@ -1,6 +1,6 @@
 #summary Downloads and Update Site of the EMFStore
 
-This site contains releases and nightly builds of the EMFStore. Currently there are only nightly builds.
+This site contains releases and nightly builds of the EMFStore. Also we provide new and noteworthy information on the releases and nightly builds here. Currently there are only nightly builds. 
 
 ==Nightly builds==
 
@@ -29,3 +29,7 @@ Soon the EMFStore features can be installed from this update site:
 [http://unicase.googlecode.com/svn/updatesite/emfstore http://unicase.googlecode.com/svn/updatesite/emfstore]
 
 You can download the standalone version as a product from the links given below.
+
+==New and Noteworthy==
+
+New and noteworthy information on the nightly build can be found [EMFStoreNightlyNewAndNoteworthy here].
