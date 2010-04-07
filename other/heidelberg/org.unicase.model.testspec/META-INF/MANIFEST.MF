@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TestSpecModel
 Bundle-SymbolicName: org.unicase.model.testspec;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.3
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
