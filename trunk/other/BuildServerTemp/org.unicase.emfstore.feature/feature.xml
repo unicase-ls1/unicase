@@ -35,10 +35,11 @@
       <import plugin="org.eclipse.osgi" version="3.2.0" match="compatible"/>
       <import plugin="org.apache.ant" version="1.7.0" match="compatible"/>
       <import plugin="org.junit"/>
+      <import plugin="com.ibm.icu"/>
+      <import plugin="org.eclipse.osgi.services"/>
       <import plugin="org.eclipse.core.jobs" version="3.2.0" match="compatible"/>
       <import plugin="javax.servlet"/>
       <import plugin="org.eclipse.core.commands" version="3.5.0" match="compatible"/>
-      <import plugin="org.eclipse.osgi.services"/>
    </requires>
 
    <plugin
@@ -118,14 +119,6 @@
          unpack="false"/>
 
    <plugin
-         id="javax.transaction"
-         download-size="0"
-         install-size="0"
-         version="1.1.1.v201002111330"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="javax.servlet"
          download-size="0"
          install-size="0"
@@ -149,14 +142,14 @@
          id="org.apache.commons.codec"
          download-size="0"
          install-size="0"
-         version="1.3.0.v20100106-1700"
+         version="1.3.0.v20080530-1600"
          unpack="false"/>
 
    <plugin
          id="org.apache.commons.logging"
          download-size="0"
          install-size="0"
-         version="1.1.1.v200904062255"
+         version="1.0.4.v200904062259"
          unpack="false"/>
 
    <plugin
@@ -164,13 +157,6 @@
          download-size="0"
          install-size="0"
          version="1.5.7.20081120_2330"/>
-
-   <plugin
-         id="org.eclipse.acceleo.common"
-         download-size="0"
-         install-size="0"
-         version="0.8.1.v200909161003"
-         unpack="false"/>
 
    <plugin
          id="org.eclipse.ant.core"
@@ -437,18 +423,10 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.core.filesystem.macosx"
-         download-size="0"
-         install-size="0"
-         version="1.1.0.v20090112"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="com.ibm.icu"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="4.0.1.v20090822"
          unpack="false"/>
 
 </feature>
