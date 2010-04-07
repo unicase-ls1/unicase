@@ -398,7 +398,6 @@ public class TestStepTableControl extends AbstractMEControl {
                                     final int finalColumn = tempColumn;
                                     /* Stop editing when ENTER or ESC is pressed */
                                     text.addKeyListener(new KeyListener() {
-                                        @Override
                                         public void keyPressed(KeyEvent event) {
                                             switch (event.keyCode) {
                                             /* Cancel editing without saving */
@@ -418,19 +417,16 @@ public class TestStepTableControl extends AbstractMEControl {
                                             }
                                         }
         
-                                        @Override
                                         public void keyReleased(KeyEvent e) {
                                             /* Nothing to do */
                                         }
                                     });
                                     /* Save changes when focus is lost */
                                     text.addFocusListener(new FocusListener() {
-                                        @Override
                                         public void focusGained(FocusEvent e) {
                                             /* Nothing to do */
                                         }
         
-                                        @Override
                                         public void focusLost(FocusEvent e) {
                                             saveChanges(treeItem, finalColumn);
                                             /* On a PC with Mac OS is a bug. This method is called
