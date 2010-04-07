@@ -43,7 +43,6 @@ public class TestStepTreeContentProvider implements ITreeContentProvider {
      *            - the test step, input or output parameter
      * @return Object[] - empty or input and output parameters
      */
-    @Override
     public Object[] getChildren(Object parentElement) {
         /* Get all input and output parameter of a given test step */
         ArrayList<UnicaseModelElement> testStepParameter = new ArrayList<UnicaseModelElement>();
@@ -62,7 +61,6 @@ public class TestStepTreeContentProvider implements ITreeContentProvider {
      * @param - input or output parameter
      * @return Object - test step
      */
-    @Override
     public Object getParent(Object element) {
         if (element instanceof TestStepInput && element != null) {
             return ((TestStepInput) element).getTestStep();
@@ -81,7 +79,6 @@ public class TestStepTreeContentProvider implements ITreeContentProvider {
      *            - test step, input or output parameter
      * @return boolean - element has/has not children
      */
-    @Override
     public boolean hasChildren(Object element) {
         return getChildren(element).length > 0;
     }
