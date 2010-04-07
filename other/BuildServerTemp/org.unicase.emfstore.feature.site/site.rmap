@@ -8,7 +8,7 @@
 
     <searchPath name="resources">
         <provider readerType="local" componentTypes="osgi.bundle,eclipse.feature"
-                  mutable="true" source="true">
+                  mutable="false" source="false">
             <uri format="file:///{0}/{1}/">
                 <bc:propertyRef key="workspace.root" />
                 <bc:propertyRef key="buckminster.component" />
@@ -18,3 +18,4 @@
 
     <locator searchPathRef="resources"/>
 </rmap>
+
