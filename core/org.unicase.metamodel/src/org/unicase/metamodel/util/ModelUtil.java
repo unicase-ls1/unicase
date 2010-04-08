@@ -384,14 +384,21 @@ public final class ModelUtil {
 	 * 
 	 * @return a set of EPackages
 	 */
-	public static Set<EPackage> getAllModelPackages() {
+	private static Set<EPackage> getAllModelPackages() {
 		Set<EPackage> result = new HashSet<EPackage>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
 			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
-				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				result.add(model);
+				try {
+					EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+					result.add(model);
+				}
+				// BEGIN SUPRESS CATCH EXCEPTION
+				catch (RuntimeException exception) {
+				// END SUPRESS CATCH EXCEPTION
+					logException("Failed to load model package " + entry.getKey(), exception);
+				}
 			}
 		}
 		return result;
