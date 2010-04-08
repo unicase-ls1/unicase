@@ -6,7 +6,7 @@ We currently have two different update sites. The internal update site contains 
 
 Internal Update Site: [http://unicase.googlecode.com/svn/updatesite/internal/ http://unicase.googlecode.com/svn/updatesite/internal/]
 
-External Update Site: [http://wwwbruegge.in.tum.de/unicase/ http://wwwbruegge.in.tum.de/unicase/]
+External Update Site: [http://wwwbruegge.in.tum.de/static/unicase/ http://wwwbruegge.in.tum.de/static/unicase/]
 
 ===Standalone UNICASE Client Download===
 
