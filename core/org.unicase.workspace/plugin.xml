@@ -14,6 +14,7 @@
    <extension-point id="org.unicase.workspace.notify.deleteprojectspace" name="org.unicase.workspace.notify.deleteprojectspace" schema="schema/org.unicase.workspace.notify.deleteprojectspace.exsd"/>
    <extension-point id="org.unicase.workspace.notify.login" name="org.unicase.workspace.notify.login" schema="schema/org.unicase.workspace.notify.login.exsd"/>
    <extension-point id="org.unicase.workspace.wrapperfactories" name="Wrapper factories" schema="schema/wrapperfactories.exsd"/>
+   <extension-point id="org.unicase.workspace.workspaceLocationProvider" name="Workspace Location Provider" schema="schema/org.unicase.workspace.workspaceLocationProvider.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 
