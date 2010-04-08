@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Model Plug-in
 Bundle-SymbolicName: org.unicase.model; singleton:=true
-Bundle-Version: 0.4.1
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin

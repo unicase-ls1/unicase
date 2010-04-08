@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="emfstore" uid="org.unicase.emfstore.product" id="org.unicase.emfstore.emfstore" application="org.unicase.emfstore.emfstore" version="0.3.24.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="emfstore" uid="org.unicase.emfstore.product" id="org.unicase.emfstore.emfstore" application="org.unicase.emfstore.emfstore" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
