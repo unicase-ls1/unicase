@@ -1,5 +1,9 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
+0.5.16.nightly:
+  * Recovered workspace location extension point (had been disabled)
+  * Added robustness against load failure of EPackages
+
 0.5.15.nightly:
   * removed dependency to apache.commons.logging, replaced by import
   * changed default backchannel port to 3000
