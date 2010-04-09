@@ -8,7 +8,7 @@ The ECP features can be installed from this update site:
 
 [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
 
-=New and Noteworthy=
+==New and Noteworthy==
 
 0.5.17.nightly:
 
