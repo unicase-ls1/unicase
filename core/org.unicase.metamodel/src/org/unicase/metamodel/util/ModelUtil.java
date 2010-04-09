@@ -384,7 +384,7 @@ public final class ModelUtil {
 	 * 
 	 * @return a set of EPackages
 	 */
-	private static Set<EPackage> getAllModelPackages() {
+	public static Set<EPackage> getAllModelPackages() {
 		Set<EPackage> result = new HashSet<EPackage>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
