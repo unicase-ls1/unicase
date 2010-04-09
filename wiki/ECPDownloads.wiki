@@ -19,4 +19,10 @@ Soon the ECP features can be installed from this update site:
 [http://unicase.googlecode.com/svn/updatesite/ecp http://unicase.googlecode.com
 /svn/updatesite/ecp]
 
+=New and Noteworthy=
+
+0.5.17.nightly:
+
+  * Added extension points to release
+
 </wiki:comment>
