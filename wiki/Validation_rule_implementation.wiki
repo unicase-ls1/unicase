@@ -1,3 +1,4 @@
+#labels Phase-Implementation
 	
 *Overview*
 
@@ -7,28 +8,32 @@ A validation rule always refers to a particular type of model element as well as
 
 *Integration of the Validation Framework*
 
-To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding.
+To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding. The binding is definied in `org.unicase.metamodel`. Extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.metamodel/plugin.xml):
 
 {{{
-<extensionpoint="org.eclipse.emf.validation.constraintBindings">
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.unicase.model.validation">
+         <selector
+               class="org.unicase.metamodel.util.ValidationClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
+}}}
 
-   <clientContextdefault="false"id="org.unicase.model.validation">
+The context for model-specific constraints is defined in `org.unicase.model`.
+Extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.model/plugin.xml):
 
-      <selector class="org.unicase.model.validation.ValidationClientSelector">
-
-      </selector>
-
-   </clientContext>
-
-   <bindingcontext="org.unicase.model.validation">
-
-      <category ref="org.unicase.model">
-
-      </category>
-
-   </binding>
-
-</extension>
+{{{
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <binding
+           category="org.unicase.model"
+           context="context">
+     </binding>
+  </extension>
 }}}
 
 The binding here is to the model plug-in itself, the client is bound to the class !ValidationClientSelector, which controls the checking of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
@@ -36,81 +41,46 @@ The binding here is to the model plug-in itself, the client is bound to the clas
 *Defining rules*
 
 After setting up this extension, in the second step, rules can be defined. Adding new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking the package which the rules should be used for the model package, and the style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
+See the following example on how to define a model-specific constraint, extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.model/plugin.xml):
 
 {{{
-<extensionpoint="org.eclipse.emf.validation.constraintProviders">
-
-   <category
-
-      id="org.unicase.model"
-
-      name="Unicase">
-
-   </category>
-
-   <constraintProvider
-
-      cache="true"
-
-      mode="Batch">
-
-      <package namespaceUri="http://unicase.org/model/task">
-
-      </package>
-
-      <constraintscategories="org.unicase.model">
-
-         <constraint
-
-            ...
-
-         </constraint>
-
-      </constraints>
-
-   </constraintProvider>
-
+<extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="org.unicase.model"
+           name="Unicase">
+     </category>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/task">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+             ....see below   >
+           </constraint>
+        </constraints>
+     </constraintProvider>
 </extension>
 }}}
 
 A constraint places other than name and id, the language (language - OCL or Java), the degree (severity), the validation mode (mode - batch or live), and (for Java constraints), the class which implements the constraint set. As the sub entry message, the message template is shown what the user is given.
 
 {{{
-<constraintclass="org.unicase.model.task.validation.ActionItemActivityConstraint"
-
-
-   id="org.unicase.model.task.ActionItemActivity"
-
-
-   lang="Java"
-
-
-   mode="Batch"
-
-
-   name="ActionItem Activity Constraint"
-
-
-   severity="WARNING"
-
-
-   statusCode="1">
-
-
-   <message>
-
-
-      {0} does not have an activity assigned.
-
-
-   </message>
-
-		
-	
-	
-
-
-</constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemAssigneeConstraint"
+                 id="org.unicase.model.task.ActionItemAssignee"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Assignee Constraint"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} has no Assignee.
+              </message>
+           </constraint>
 }}}
 
 *Java Validation*
