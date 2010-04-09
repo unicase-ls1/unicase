@@ -219,6 +219,10 @@ litigation.
          id="edu.tum.cs.cope.runtime.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.unicase.emfstore.metamodel"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.2" match="greaterOrEqual"/>
