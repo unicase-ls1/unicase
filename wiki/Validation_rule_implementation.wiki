@@ -8,8 +8,7 @@ A validation rule always refers to a particular type of model element as well as
 
 *Integration of the Validation Framework*
 
-To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding. The binding is definied in `org.unicase.metamodel`. Extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.metamodel/plugin.xml):
-
+To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding. The binding is definied in `org.unicase.metamodel`. Extracted from the `plugin.xml`:
 {{{
    <extension
          point="org.eclipse.emf.validation.constraintBindings">
@@ -24,7 +23,7 @@ To be able to use the EMF Validation Framework, as the first step the `org.eclip
 }}}
 
 The context for model-specific constraints is defined in `org.unicase.model`.
-Extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.model/plugin.xml):
+Extracted from the `plugin.xml`:
 
 {{{
   <extension
@@ -41,7 +40,7 @@ The binding here is to the model plug-in itself, the client is bound to the clas
 *Defining rules*
 
 After setting up this extension, in the second step, rules can be defined. Adding new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking the package which the rules should be used for the model package, and the style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
-See the following example on how to define a model-specific constraint, extracted from the `plugin.xml` (http://code.google.com/p/unicase/source/browse/trunk/core/org.unicase.model/plugin.xml):
+See the following example on how to define a model-specific constraint, extracted from the `plugin.xml`:
 
 {{{
 <extension
