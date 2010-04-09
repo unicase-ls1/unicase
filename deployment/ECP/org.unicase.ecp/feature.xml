@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp"
       label="EMF Client Platform"
-      version="0.5.8.nightly"
+      version="0.5.9.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
