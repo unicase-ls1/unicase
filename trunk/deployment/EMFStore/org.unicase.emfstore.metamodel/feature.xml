@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.metamodel"
       label="EMFStore Metamodel"
-      version="0.5.17.nightly"
+      version="0.5.18.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -225,7 +225,7 @@ litigation.
          id="org.unicase.metamodel"
          download-size="0"
          install-size="0"
-         version="0.5.17.nightly"
+         version="0.5.18.nightly"
          unpack="false"/>
 
 </feature>
