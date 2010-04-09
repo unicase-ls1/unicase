@@ -1,5 +1,9 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
+0.5.18.nightly:
+  * All extension point schemas added to build
+  * EMFStore features now include all required features
+
 0.5.17.nightly:
   * removed dependency to apache.commons.logging in backchannel also, replaced by import
 
