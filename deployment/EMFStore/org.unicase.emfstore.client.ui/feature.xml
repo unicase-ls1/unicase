@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="0.5.16.nightly"
+      version="0.5.17.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">

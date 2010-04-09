@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.backchannel"
       label="EMFStore Backchannel"
-      version="0.5.16.nightly"
+      version="0.5.17.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
@@ -219,7 +219,7 @@ litigation.
 
    <requires>
       <import plugin="org.unicase.workspace"/>
-      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.logging"/>
    </requires>
 
    <plugin
