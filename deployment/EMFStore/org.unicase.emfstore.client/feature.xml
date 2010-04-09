@@ -215,6 +215,10 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <includes
+         id="org.unicase.emfstore.server"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.unicase.emfstore"/>
       <import plugin="org.eclipse.emf.transaction"/>
@@ -224,6 +228,7 @@ litigation.
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-        version="0.5.17.nightly"
+         version="0.5.17.nightly"
          unpack="false"/>
+
 </feature>
