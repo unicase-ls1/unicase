@@ -17,10 +17,12 @@ import org.apache.xmlrpc.client.XmlRpcSun15HttpTransportFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.exceptions.CertificateStoreException;
+import org.xml.sax.SAXException;
 
 /**
  * Manager for XML RPC server calls.
@@ -140,10 +142,15 @@ public class XmlRpcClientManager {
 		} catch (XmlRpcException e) {
 			if (e.getCause() instanceof EmfStoreException) {
 				throw ((EmfStoreException) e.getCause());
+			} else if (e.linkedException instanceof SAXException
+				&& ((SAXException) e.linkedException).getException() instanceof SerializationException) {
+				SerializationException serialE = (SerializationException) ((SAXException) e.linkedException)
+					.getException();
+				// repack exception because SerializationException doesn't inherit from EMFStoreException
+				throw new EmfStoreException(serialE.getMessage(), serialE);
 			} else {
 				throw new ConnectionException(ConnectionManager.REMOTE, e);
 			}
 		}
 	}
-
 }
