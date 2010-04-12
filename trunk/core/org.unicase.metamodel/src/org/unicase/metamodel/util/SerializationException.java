@@ -21,7 +21,7 @@ public class SerializationException extends Exception {
 	 * @param cause the cause
 	 */
 	public SerializationException(Throwable cause) {
-		super("De-/Serialization failed", cause);
+		super("(De-)Serialization failed.", cause);
 	}
 	
 	/**
@@ -30,6 +30,6 @@ public class SerializationException extends Exception {
 	 * @param eObject the eObject that failed to serialize
 	 */
 	public SerializationException(EObject eObject) {
-		super("De-/Serialization failed" + eObject.toString());
+		super("(De-)Serialization failed: " + eObject.toString());
 	}
 }
