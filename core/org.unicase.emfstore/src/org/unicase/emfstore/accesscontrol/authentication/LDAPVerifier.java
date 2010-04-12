@@ -15,7 +15,6 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -27,9 +26,7 @@ import org.unicase.metamodel.util.ModelUtil;
 public class LDAPVerifier extends AbstractAuthenticationControl {
 
 	private String ldapUrl;
-
 	private String ldapBase;
-
 	private String searchDn;
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
@@ -37,10 +34,14 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param properties
+	 * @param ldapUrl url
+	 * @param ldapBase base
+	 * @param searchDn dn
 	 */
-	public LDAPVerifier() {
-		super();
+	public LDAPVerifier(String ldapUrl, String ldapBase, String searchDn) {
+		this.ldapUrl = ldapUrl;
+		this.ldapBase = ldapBase;
+		this.searchDn = searchDn;
 	}
 
 	/**
@@ -48,27 +49,13 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 */
 	@Override
 	public boolean verifyPassword(String username, String password) throws AccessControlException {
-		Properties properties = ServerConfiguration.getProperties();
 
-		int count = 1;
-		while (count != -1) {
+		// under construction 10.04.2010
 
-			ldapUrl = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
-				+ ServerConfiguration.AUTHENTICATION_LDAP_URL);
-			ldapBase = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
-				+ ServerConfiguration.AUTHENTICATION_LDAP_BASE);
-			searchDn = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
-				+ ServerConfiguration.AUTHENTICATION_LDAP_SEARCHDN);
-
-			if (ldapUrl != null && ldapBase != null && searchDn != null) {
-				if (verifyPasswordWithLdap(username, password)) {
-					return true;
-				}
-				count++;
-			} else {
-				count = -1;
-			}
+		if (verifyPasswordWithLdap(username, password)) {
+			return true;
 		}
+
 		return false;
 	}
 
