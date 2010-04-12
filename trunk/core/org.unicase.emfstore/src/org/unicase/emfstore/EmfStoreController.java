@@ -127,6 +127,8 @@ public class EmfStoreController implements IApplication, Runnable {
 		copyFileToWorkspace(ServerConfiguration.getServerKeyStorePath(), "unicaseServer.keystore",
 			"Failed to copy keystore.", "Keystore was copied to server workspace.");
 
+		ExtensionManager.checkModel();
+
 		connectionHandlers = initConnectionHandlers();
 
 		TaskManager taskManager = TaskManager.getInstance();
