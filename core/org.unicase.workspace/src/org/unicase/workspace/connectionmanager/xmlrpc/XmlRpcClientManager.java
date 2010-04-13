@@ -80,7 +80,17 @@ public class XmlRpcClientManager {
 	}
 
 	private URL createURL(ServerInfo serverInfo) throws MalformedURLException {
+		checkUrl(serverInfo.getUrl());
 		return new URL("https", serverInfo.getUrl(), serverInfo.getPort(), "xmlrpc");
+	}
+
+	private void checkUrl(String url) throws MalformedURLException {
+		if (url != null && !url.isEmpty()) {
+			if (!(url.contains(":") || url.contains("/"))) {
+				return;
+			}
+		}
+		throw new MalformedURLException();
 	}
 
 	/**
