@@ -841,6 +841,13 @@
               properties="isAdmin"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
+        <propertyTester
+              class="org.unicase.workspace.ui.commands.IsACUserTester"
+              id="org.unicase.workspace.ui.commands.isACUserTester"
+              namespace="org.unicase.workspace.ui.commands"
+              properties="isACUser"
+              type="org.unicase.workspace.ProjectSpace">
+        </propertyTester>
      </extension>
         
            <extension
