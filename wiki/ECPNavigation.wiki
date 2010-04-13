@@ -15,3 +15,6 @@
 </wiki:comment>
 
 More information and news also available on our  [http://twitter.com/emfcp ECP Twitter].
+
+
+[http://www.eclipse.org/donate/images/friendslogo200.jpg]
