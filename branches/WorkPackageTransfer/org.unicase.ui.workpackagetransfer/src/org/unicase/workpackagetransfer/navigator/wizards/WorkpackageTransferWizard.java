@@ -28,9 +28,11 @@ public class WorkpackageTransferWizard extends Wizard implements IWorkbenchWizar
 	 */
 	@Override
 	public boolean performFinish() {
+		
+		
 		new UnicaseCommand() {
 			@Override
-			protected void doRun() {
+			protected void doRun() {				
 				WorkItemTransferOperator.moveWorkItems(chooseWorkItemPage.getSelectedWorkItems(), chooseWorkItemPage.getTargetWorkPackage(), selectedWorkpackage);				
 			}
 		}.run();		

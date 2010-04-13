@@ -5,7 +5,9 @@
  */
 package org.unicase.workpackagetransfer.navigator.wizards;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -21,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.Activator;
 
@@ -33,17 +36,23 @@ import org.unicase.ui.common.Activator;
 public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 	
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
+	private static final String DIALOG_TITLE = "Select target WorkPackage";
+	private static final String INIT_PATTERN = "**";
+	
 	private EList<WorkPackage> workPackages;
+	private List<WorkPackage> excludeWorkPackages;
+	
 	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
 	 * The constructor.
 	 * @param project the project from which the WorkPackes should be listed and selected
+	 * @param sourceWorkPackage from which the WorkItems come from 
 	 */
-	public ChooseWorkPackagePage(Project project) {
+	public ChooseWorkPackagePage(Project project, WorkPackage sourceWorkPackage) {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),false);
 		workPackages = project.getAllModelElementsbyClass(TaskPackage.Literals.WORK_PACKAGE,new BasicEList<WorkPackage>());
-		
+		excludeWorkPackages = getExcludeWorkPackages(sourceWorkPackage);
 		
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.setListLabelProvider(labelProvider);
@@ -51,10 +60,23 @@ public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 
 		
 		this.setBlockOnOpen(true);
-		this.setTitle("Choose target WorkPackage");
-		this.setInitialPattern("**");
+		this.setTitle(DIALOG_TITLE);
+		this.setInitialPattern(INIT_PATTERN);
 	}
 	
+	private List<WorkPackage> getExcludeWorkPackages(WorkPackage sourceWorkPackage) {
+		List<WorkPackage> result = new ArrayList<WorkPackage>();
+		
+		result.add(sourceWorkPackage);
+		List<WorkItem> workItems = sourceWorkPackage.getAllContainedWorkItems();
+		for(WorkItem workItem : workItems) {
+			if(workItem instanceof WorkPackage) {
+				result.add((WorkPackage)workItem);
+			}
+		}
+				
+		return result;
+	}
 	
 	/**
 	 * Does nothing.
@@ -87,7 +109,9 @@ public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 
 		progressMonitor.beginTask("Searching", workPackages.size());
 		for (WorkPackage workPackage : workPackages) {
-			contentProvider.add(workPackage, itemsFilter);
+			if(!excludeWorkPackages.contains(workPackage)) {
+				contentProvider.add(workPackage, itemsFilter);
+			}
 			progressMonitor.worked(1);
 		}
 		progressMonitor.done();

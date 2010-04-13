@@ -7,6 +7,8 @@ package org.unicase.ui.workpackagetransfer;
 
 import java.util.List;
 
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -36,34 +38,46 @@ public final class WorkItemTransferOperator {
 		
 		final Project project = targetWorkPackage.getProject();
 		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
-		
-		CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
-	
-		for(WorkItem selectedWorkItem : selectedWorkItems){
-			//Don't move the source-WorkPackage itself
-			if(selectedWorkItem instanceof WorkPackage && ((WorkPackage)selectedWorkItem).equals(sourceWorkPackage)) {
-				//do nothing
-				continue;
-			}
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
-			//Don't move WorkItems when their parent-WorkPackages also selected for moving because here moving of the containing-WorkPackages implied the moving of the WorkItem
-			//AND the containing WorkPackage of the WorkItem isn't the source-WorkPackage because the sourceWorkPackage won't be moved, so the former rule doesn't work
-			else if(selectedWorkItems.contains(selectedWorkItem.getContainingWorkpackage()) && !selectedWorkItem.getContainingWorkpackage().equals(sourceWorkPackage)) {
-				//do nothing
-				continue;
-			}
-			//all other WorkItems move
-			else {
-				targetWorkPackage.getContainedWorkItems().add(selectedWorkItem);
-			}
-
-		}		
-		
 		try {
-			operationHandle.end("Move WorkItems", "Move "+ selectedWorkItems.size()+" WorkItems to WorkPackage "
-				+ targetWorkPackage.getName(), null);
-		} catch (InvalidHandleException e) {
-			WorkspaceUtil.logException("Composite Operation failed!", e);
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Move workitems...", 100);
+					
+			
+			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+		
+			for(WorkItem selectedWorkItem : selectedWorkItems){
+				//Don't move the source-WorkPackage itself
+				if(selectedWorkItem instanceof WorkPackage && ((WorkPackage)selectedWorkItem).equals(sourceWorkPackage)) {
+					//do nothing
+					continue;
+				}
+	
+				//Don't move WorkItems when their parent-WorkPackages also selected for moving because here moving of the containing-WorkPackages implied the moving of the WorkItem
+				//AND the containing WorkPackage of the WorkItem isn't the source-WorkPackage because the sourceWorkPackage won't be moved, so the former rule doesn't work
+				else if(selectedWorkItems.contains(selectedWorkItem.getContainingWorkpackage()) && !selectedWorkItem.getContainingWorkpackage().equals(sourceWorkPackage)) {
+					//do nothing
+					continue;
+				}
+				//all other WorkItems move
+				else {
+					targetWorkPackage.getContainedWorkItems().add(selectedWorkItem);
+				}
+	
+				progressDialog.getProgressMonitor().worked(10);
+			}		
+			
+			try {
+				operationHandle.end("Move WorkItems", "Move "+ selectedWorkItems.size()+" WorkItems to WorkPackage "
+					+ targetWorkPackage.getName(), targetWorkPackage.getModelElementId());
+			} catch (InvalidHandleException e) {
+				WorkspaceUtil.logException("Composite Operation failed!", e);
+			}
+		}  finally {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
 		}
 	}
 	

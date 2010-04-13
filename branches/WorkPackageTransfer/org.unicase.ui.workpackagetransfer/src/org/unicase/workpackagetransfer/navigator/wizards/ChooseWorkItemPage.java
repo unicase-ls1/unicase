@@ -12,6 +12,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -20,7 +21,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
@@ -38,6 +38,8 @@ public class ChooseWorkItemPage extends WizardPage {
 	//Title and description
 	private static final String PAGE_TITLE = "Move WorkItems";
 	private static final String PAGE_DESCRIPTION = "Select WorkItems for moving in new Workpackage";
+	private static final String BROWSE_BUTTON_TEXT = "Browse Workpackages";
+	private static final String CLABEL_INIT_TEXT = ">> Select target Workpackage <<";
 	
 	private AdapterFactoryLabelProvider labelProvider;
 	
@@ -50,7 +52,7 @@ public class ChooseWorkItemPage extends WizardPage {
 	
 	//Button for browsing the WorkPackages
 	private Button browseButton;
-	private Text textField;
+	private CLabel workPackageLabel;
 	
 	private ChooseWorkItemPageListener listener;
 	private TreeHandler treeHandler;
@@ -87,14 +89,15 @@ public class ChooseWorkItemPage extends WizardPage {
 		//Layout managing
 		GridLayout gridLayout = new GridLayout(4, false);
 		composite.setLayout(gridLayout);		
-					
-		textField = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		textField.setLayoutData(new GridData(SWT.FILL,SWT.TOP,true,false,1,1));
-		textField.setEditable(false);
+		
+		workPackageLabel = new CLabel(composite, SWT.BORDER);
+		workPackageLabel.setLayoutData(new GridData(SWT.FILL,SWT.CENTER,true,false,2,1));
+		workPackageLabel.setAlignment(SWT.CENTER);
+		workPackageLabel.setText(CLABEL_INIT_TEXT);				
 		
 		browseButton = new Button(composite, SWT.PUSH);
-		browseButton.setText("Browse Workpackages");
-		browseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP,false,false,1,1));
+		browseButton.setText(BROWSE_BUTTON_TEXT);
+		browseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP,false,false,2,1));
 		browseButton.addListener(SWT.Selection, listener);
 					
 		tree = new Tree(composite, SWT.CHECK | SWT.BORDER);
@@ -166,7 +169,7 @@ public class ChooseWorkItemPage extends WizardPage {
 		 * shows the dialog for choosing the target workPackage of the move-operation.
 		 */
 		private void showChooseWorkPackageDialog() {
-			ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(parentWizard.getSelectedWorkPackage().getProject());
+			ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(parentWizard.getSelectedWorkPackage().getProject(), parentWizard.getSelectedWorkPackage());
 			
 			if(dialog.open() == Window.OK) {
 				Object[] result = dialog.getResult();
@@ -174,7 +177,10 @@ public class ChooseWorkItemPage extends WizardPage {
 				if(result.length == 1) {
 					if(result[0] instanceof WorkPackage){
 						targetWorkPackage = (WorkPackage) result[0];
-						textField.setText(targetWorkPackage.getName());
+						
+						workPackageLabel.setImage(labelProvider.getImage(targetWorkPackage));
+						workPackageLabel.setText(labelProvider.getText(targetWorkPackage));
+						
 						parentWizard.setCanFinish(true);
 						setPageComplete(true);
 					}
