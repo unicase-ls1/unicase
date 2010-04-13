@@ -85,7 +85,7 @@ public class XmlRpcClientManager {
 	}
 
 	private void checkUrl(String url) throws MalformedURLException {
-		if (url != null && !url.isEmpty()) {
+		if (url != null && !url.equals("")) {
 			if (!(url.contains(":") || url.contains("/"))) {
 				return;
 			}
