@@ -507,6 +507,11 @@
                           property="org.unicase.workspace.ui.commands.isAdmin"
                           value="true">
                     </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.ui.commands.isACUser"
+                          value="true">
+                    </test>
                  </iterate>
                  <count
                        value="1">
