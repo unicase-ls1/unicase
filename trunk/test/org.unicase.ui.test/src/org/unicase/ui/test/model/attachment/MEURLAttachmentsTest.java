@@ -30,11 +30,11 @@ import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
-public class MEURLAttachmentsTest extends MeControlTest {
+public class MEURLAttachmentsTest extends MEEditorTest {
 private ActionItem actionItem;
 private UrlAttachment urlAttachment;	
 	

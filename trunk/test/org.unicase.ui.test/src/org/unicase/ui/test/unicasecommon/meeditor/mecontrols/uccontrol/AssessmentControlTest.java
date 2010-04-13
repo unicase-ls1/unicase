@@ -32,11 +32,11 @@ import org.unicase.model.rationale.impl.ProposalImpl;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
-public class AssessmentControlTest extends MeControlTest {
+public class AssessmentControlTest extends MEEditorTest {
 	private Issue issue;
 
 	/**

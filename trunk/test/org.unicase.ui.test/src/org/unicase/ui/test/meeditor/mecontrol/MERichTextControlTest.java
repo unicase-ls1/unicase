@@ -16,11 +16,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 
 
 
-public class MERichTextControlTest extends MeControlTest {
+public class MERichTextControlTest extends MEEditorTest {
 
 	private ActionItem actionItem;
 	
