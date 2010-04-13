@@ -9,7 +9,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
-        upperBound="-1" eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementWrappers" upperBound="-1"
+        eType="#//ModelElementEObjectWrapper" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newModelElementWrappers"
+        upperBound="-1" eType="#//ModelElementEObjectWrapper" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -24,4 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="releaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElementEObjectWrapper" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wrappedEObject" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </eClassifiers>
 </ecore:EPackage>

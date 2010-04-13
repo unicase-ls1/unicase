@@ -47,6 +47,15 @@ public interface MetamodelFactory extends EFactory {
 	ModelVersion createModelVersion();
 
 	/**
+	 * Returns a new object of class '<em>Model Element EObject Wrapper</em>'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return a new object of class '<em>Model Element EObject Wrapper</em>'.
+	 * @generated
+	 */
+	ModelElementEObjectWrapper createModelElementEObjectWrapper();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

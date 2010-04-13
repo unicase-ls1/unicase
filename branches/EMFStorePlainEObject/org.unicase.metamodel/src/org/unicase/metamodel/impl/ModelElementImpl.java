@@ -65,12 +65,12 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @see org.unicase.model.UnicaseModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
 	 */
 	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
-		//if we are notifying listeners at the moment than just add listener for later removal
+		// if we are notifying listeners at the moment than just add listener for later removal
 		if (isNotifying) {
 			listenersToBeRemoved.add(listener);
 			return;
 		}
-		
+
 		this.changeListeners.remove(listener);
 		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
 			this.eAdapters().remove(internalChangeListener);
@@ -99,7 +99,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			}
 			// END SUPRESS CATCH EXCEPTION
 		}
-		isNotifying=false;
+		isNotifying = false;
 		for (ModelElementChangeListener listener : listenersToBeRemoved) {
 			removeModelElementChangeListener(listener);
 		}
@@ -119,74 +119,12 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
-	 * @see org.unicase.model.UnicaseModelElement#getAllContainedModelElements()
-	 */
-	public Set<ModelElement> getAllContainedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject containee : this.eContents()) {
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
-				ModelElement containeeModelElement = (ModelElement) containee;
-				Set<ModelElement> elements = containeeModelElement.getAllContainedModelElements();
-				result.add(containeeModelElement);
-				result.addAll(elements);
-			}
-		}
-		return result;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.UnicaseModelElement#getReferencedModelElements()
+	 * @see org.unicase.model.UnicaseModelElement#getAllContainedModelElements()
 	 */
-	public Set<ModelElement> getCrossReferencedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject crossReference : this.eCrossReferences()) {
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(crossReference)) {
-				result.add((ModelElement) crossReference);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @see org.unicase.model.UnicaseModelElement#getContainedModelElements()
-	 */
-	public Set<ModelElement> getContainedElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject containee : this.eContents()) {
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
-				result.add((ModelElement) containee);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @see org.unicase.model.UnicaseModelElement#getContainerModelElement()
-	 */
-	public ModelElement getContainerModelElement() {
-		EObject container = this.eContainer();
-		if (container == null) {
-			return null;
-		}
-		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(container)) {
-			return (ModelElement) container;
-		}
-		return null;
-	}
-
-	/**
-	 * @see org.unicase.model.UnicaseModelElement#getLinkedModelElements()
-	 */
-	public Set<ModelElement> getLinkedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject referencedEObject : this.eCrossReferences()) {
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(referencedEObject)) {
-				result.add((ModelElement) referencedEObject);
-			}
-		}
-		return result;
+	public Set<EObject> getAllContainedModelElements(boolean includeTransientContainments) {
+		return ModelUtil.getAllContainedModelElements(this, includeTransientContainments);
 	}
 
 	/**
@@ -246,7 +184,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected ModelElementImpl() {
 		super();
 		changeListeners = new ArrayList<ModelElementChangeListener>();
-		isNotifying=false;
+		isNotifying = false;
 		listenersToBeRemoved = new HashSet<ModelElementChangeListener>();
 	}
 
@@ -381,41 +319,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
 	public Project getProject() {
-
-		Set<ModelElement> seenModelElements = new HashSet<ModelElement>();
-		seenModelElements.add(this);
-		return getProject(seenModelElements);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
-	 * 
-	 * @generated NOT
-	 * @return the project in which the modelelement is contained or null if it not in any project.
-	 */
-	private Project getProject(Set<ModelElement> seenModelElements) {
-
-		EObject container = this.eContainer();
-
-		if (container == null) {
-			return null;
-		}
-
-		if (seenModelElements.contains(container)) {
-			throw new IllegalStateException("ModelElement is in a containment cycle");
-		}
-		// check if my container is a project
-		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
-			return (Project) container;
-		}
-		// check if my container is a model element
-		else if (container instanceof ModelElementImpl) {
-			// seenModelElements.add(this);
-			seenModelElements.add((ModelElement) container);
-			return ((ModelElementImpl) container).getProject(seenModelElements);
-		} else {
-			throw new IllegalStateException("ModelElement is not contained by any project");
-		}
+		return ModelUtil.getProject(this);
 	}
 
 	// begin of custom code

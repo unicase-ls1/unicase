@@ -8,6 +8,9 @@ package org.unicase.ui.navigator.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import library.Book;
+import library.LibraryFactory;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -28,6 +31,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.dialogs.ImportResourcesDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.ModelElementWrapperDescriptor;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
@@ -43,6 +47,21 @@ public class ImportModelHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		if (projectSpace == null) {
+			return null;
+		}
+		if (true) {
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					library.Library library = LibraryFactory.eINSTANCE.createLibrary();
+					projectSpace.getProject().addModelElement(library);
+					library.setName("hans");
+					Book book = LibraryFactory.eINSTANCE.createBook();
+					book.setTitle("mofut");
+					library.getBooks().add(book);
+				}
+			}.run();
 			return null;
 		}
 

@@ -35,9 +35,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -77,10 +79,13 @@ public final class ModelUtil {
 		// reset id
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		copy.setIdentifier(modelElementId.getId());
+
 		// reset ids of containment children
-		for (ModelElement child : copy.getAllContainedModelElements()) {
+		for (EObject child : copy.getAllContainedModelElements(false)) {
 			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			child.setIdentifier(childId.getId());
+			if (child instanceof ModelElement) {
+				((IdentifiableElement) child).setIdentifier(childId.getId());
+			}
 		}
 		return copy;
 	}
@@ -265,6 +270,7 @@ public final class ModelUtil {
 	public static boolean isSelfContained(EObject object) {
 		return isSelfContained(object, false);
 	}
+
 	/**
 	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
 	 * does not have references to eobjects outside the tree.
@@ -279,13 +285,13 @@ public final class ModelUtil {
 		allEObjects.add(object);
 
 		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
-		if (ignoreContainer && object.eContainer()!=null) {
+		if (ignoreContainer && object.eContainer() != null) {
 			nonTransientCrossReferences.remove(object.eContainer());
 		}
 		if (!allEObjects.containsAll(nonTransientCrossReferences)) {
 			return false;
 		}
-		
+
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
@@ -574,7 +580,7 @@ public final class ModelUtil {
 	public static void logWarning(String message, Throwable exception) {
 		log(message, exception, IStatus.WARNING);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -583,7 +589,7 @@ public final class ModelUtil {
 	public static void logWarning(String message) {
 		log(message, null, IStatus.WARNING);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -783,5 +789,82 @@ public final class ModelUtil {
 			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: "
 				+ string);
 		}
+	}
+
+	/**
+	 * Get Project that contains a model element.
+	 * 
+	 * @param modelElement the model element
+	 * @return the project or null if the element is not contained in a project.
+	 */
+	public static Project getProject(EObject modelElement) {
+		if (modelElement instanceof ModelElementEObjectWrapper) {
+			return (Project) modelElement.eContainer();
+		} else {
+			Set<EObject> seenModelElements = new HashSet<EObject>();
+			seenModelElements.add(modelElement);
+			return getProject(modelElement, seenModelElements);
+		}
+	}
+
+	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
+
+		EObject container = eObject.eContainer();
+
+		if (container == null) {
+			return null;
+		}
+
+		if (seenModelElements.contains(container)) {
+			throw new IllegalStateException("ModelElement is in a containment cycle");
+		}
+		// check if my container is a project
+		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
+			return (Project) container;
+		}
+		// check if my container is a model element
+		else {
+			seenModelElements.add(container);
+			return getProject(container, seenModelElements);
+		}
+	}
+
+	/**
+	 * Get all contained elements of a given element.
+	 * 
+	 * @param modelElement the model element
+	 * @param includeTransientContainments true if transient containments should be included in the result
+	 * @return a set of contained model elements
+	 */
+	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments) {
+		Set<EObject> result = new HashSet<EObject>();
+		for (EObject containee : modelElement.eContents()) {
+			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
+				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+				result.add(containee);
+				result.addAll(elements);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Get all contained elements of a given element as a list.
+	 * 
+	 * @param modelElement the model element
+	 * @param includeTransientContainments true if transient containments should be included in the result
+	 * @return a list of contained model elements
+	 */
+	public static List<EObject> getAllContainedModelElementsAsList(EObject modelElement,
+		boolean includeTransientContainments) {
+		List<EObject> result = new ArrayList<EObject>();
+		for (EObject containee : modelElement.eContents()) {
+			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
+				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+				result.add(containee);
+				result.addAll(elements);
+			}
+		}
+		return result;
 	}
 }

@@ -16,6 +16,8 @@
     </genClasses>
     <genClasses ecoreClass="metamodel.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElementWrappers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/newModelElementWrappers"/>
     </genClasses>
     <genClasses image="false" ecoreClass="metamodel.ecore#//UniqueIdentifier">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//UniqueIdentifier/id"/>
@@ -28,5 +30,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelVersion/releaseNumber"/>
     </genClasses>
     <genClasses image="false" ecoreClass="metamodel.ecore#//NonDomainElement"/>
+    <genClasses ecoreClass="metamodel.ecore#//ModelElementEObjectWrapper">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ModelElementEObjectWrapper/wrappedEObject"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

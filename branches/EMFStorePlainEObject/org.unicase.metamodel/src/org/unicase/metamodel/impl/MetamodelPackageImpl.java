@@ -14,6 +14,7 @@ import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.NonDomainElement;
@@ -74,6 +75,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass modelElementEObjectWrapperEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -186,6 +194,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * 
 	 * @generated
 	 */
+	public EReference getProject_ModelElementWrappers() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getProject_NewModelElementWrappers() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getUniqueIdentifier() {
 		return uniqueIdentifierEClass;
 	}
@@ -258,6 +284,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * 
 	 * @generated
 	 */
+	public EClass getModelElementEObjectWrapper() {
+		return modelElementEObjectWrapperEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getModelElementEObjectWrapper_WrappedEObject() {
+		return (EReference) modelElementEObjectWrapperEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public MetamodelFactory getMetamodelFactory() {
 		return (MetamodelFactory) getEFactoryInstance();
 	}
@@ -287,6 +331,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
+		createEReference(projectEClass, PROJECT__MODEL_ELEMENT_WRAPPERS);
+		createEReference(projectEClass, PROJECT__NEW_MODEL_ELEMENT_WRAPPERS);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -300,6 +346,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(modelVersionEClass, MODEL_VERSION__RELEASE_NUMBER);
 
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
+
+		modelElementEObjectWrapperEClass = createEClass(MODEL_ELEMENT_EOBJECT_WRAPPER);
+		createEReference(modelElementEObjectWrapperEClass, MODEL_ELEMENT_EOBJECT_WRAPPER__WRAPPED_EOBJECT);
 	}
 
 	/**
@@ -332,6 +381,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Add supertypes to classes
 		modelElementEClass.getESuperTypes().add(this.getIdentifiableElement());
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		modelElementEObjectWrapperEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
@@ -343,10 +393,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1,
+		initEReference(getProject_ModelElements(), ecorePackage.getEObject(), null, "modelElements", null, 0, -1,
 			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		getProject_ModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getProject_ModelElementWrappers(), this.getModelElementEObjectWrapper(), null,
+			"modelElementWrappers", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_NewModelElementWrappers(), this.getModelElementEObjectWrapper(), null,
+			"newModelElementWrappers", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -371,6 +426,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(modelElementEObjectWrapperEClass, ModelElementEObjectWrapper.class, "ModelElementEObjectWrapper",
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelElementEObjectWrapper_WrappedEObject(), ecorePackage.getEObject(), null,
+			"wrappedEObject", null, 0, 1, ModelElementEObjectWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

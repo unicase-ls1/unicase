@@ -6,18 +6,16 @@
  */
 package library;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Base</b></em>'.
- * <!-- end-user-doc -->
- *
- *
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Base</b></em>'. <!-- end-user-doc -->
+ * 
+ * 
  * @see library.LibraryPackage#getLibraryBase()
  * @model abstract="true"
- * @extends ModelElement
  * @generated
  */
-public interface LibraryBase extends ModelElement {
+public interface LibraryBase extends EObject {
 } // LibraryBase

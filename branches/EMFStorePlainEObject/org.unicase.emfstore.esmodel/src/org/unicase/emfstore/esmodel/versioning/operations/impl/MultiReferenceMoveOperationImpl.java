@@ -376,34 +376,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		list.move(getNewIndex(), referencedModelElement);
 	}
 
-	/**
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#canApply(org.unicase.metamodel.Project)
-	 */
-	@Override
-	public boolean canApply(Project project) {
-		if (!super.canApply(project)) {
-			return false;
-		}
-		ModelElement modelElement = project.getModelElement(getModelElementId());
-		if (modelElement == null) {
-			return false;
-		}
-		EReference reference;
-		try {
-			reference = (EReference) this.getFeature(modelElement);
-		} catch (UnkownFeatureException e) {
-			// fail silently
-			return false;
-		}
-		Object object = modelElement.eGet(reference);
-		@SuppressWarnings("unchecked")
-		EList<ModelElement> list = (EList<ModelElement>) object;
-		if (getNewIndex() >= list.size() || getNewIndex() < 0) {
-			return false;
-		}
-		return true;
-	}
-
 	@Override
 	public String getDescription() {
 		StringBuilder stringBuilder = new StringBuilder();

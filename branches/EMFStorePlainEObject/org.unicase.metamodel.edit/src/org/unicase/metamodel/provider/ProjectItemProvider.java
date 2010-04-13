@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
@@ -70,6 +71,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS);
 		}
 		return childrenFeatures;
 	}
@@ -100,6 +103,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		switch (notification.getFeatureID(Project.class)) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_WRAPPERS:
+		case MetamodelPackage.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -115,6 +120,46 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS,
+			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS,
+			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

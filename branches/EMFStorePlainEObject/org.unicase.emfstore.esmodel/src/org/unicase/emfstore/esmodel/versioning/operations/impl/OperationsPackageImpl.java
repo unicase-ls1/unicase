@@ -429,6 +429,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
+	public EReference getCreateDeleteOperation_ModelElementWrappers() {
+		return (EReference) createDeleteOperationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getAttributeOperation() {
 		return attributeOperationEClass;
 	}
@@ -716,6 +725,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		createEAttribute(createDeleteOperationEClass, CREATE_DELETE_OPERATION__DELETE);
 		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__SUB_OPERATIONS);
+		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS);
 
 		attributeOperationEClass = createEClass(ATTRIBUTE_OPERATION);
 		createEAttribute(attributeOperationEClass, ATTRIBUTE_OPERATION__OLD_VALUE);
@@ -853,12 +863,18 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getCreateDeleteOperation_Delete(), ecorePackage.getEBoolean(), "delete", null, 0, 1,
 			CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getCreateDeleteOperation_ModelElement(), theMetamodelPackage.getModelElement(), null,
-			"modelElement", null, 0, 1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCreateDeleteOperation_ModelElement(), ecorePackage.getEObject(), null, "modelElement", null,
+			0, 1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCreateDeleteOperation_SubOperations(), this.getReferenceOperation(), null, "subOperations",
 			null, 0, -1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCreateDeleteOperation_ModelElementWrappers(), theMetamodelPackage
+			.getModelElementEObjectWrapper(), null, "modelElementWrappers", null, 0, -1, CreateDeleteOperation.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getCreateDeleteOperation_ModelElementWrappers().getEKeys().add(
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(attributeOperationEClass, AttributeOperation.class, "AttributeOperation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

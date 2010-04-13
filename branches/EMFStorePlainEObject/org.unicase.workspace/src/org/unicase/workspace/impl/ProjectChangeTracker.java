@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -20,7 +21,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -76,7 +79,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
 		if (isRecording) {
-			appendCreator(modelElement);
+			// appendCreator(modelElement);
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(createDeleteOperation);
@@ -100,11 +103,14 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			@Override
 			protected void doRun() {
 				addElementToResouce(modelElement);
+				if (modelElement instanceof ModelElementEObjectWrapper) {
+					addElementToResouce(((ModelElementEObjectWrapper) modelElement).getWrappedEObject());
+				}
 			}
 		}.run();
 	}
 
-	private void addElementToResouce(final ModelElement modelElement) {
+	private void addElementToResouce(final EObject modelElement) {
 		Resource oldResource = modelElement.eResource();
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
@@ -165,7 +171,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 				resource.getContents().remove(modelElement);
 				dirtyResourceSet.addDirtyResource(resource);
 			}
-			for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			for (EObject child : modelElement.getAllContainedModelElements(false)) {
 				Resource childResource = child.eResource();
 				if (childResource != null) {
 					childResource.getContents().remove(child);
@@ -220,7 +226,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		notificationRecorder.record(notification);
+		notificationRecorder.record(notification, modelElement);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
@@ -352,8 +358,34 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
 		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		createDeleteOperation.setDelete(delete);
-		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
+		EObject element = modelElement;
+		if (modelElement instanceof ModelElementEObjectWrapper) {
+			ModelElementEObjectWrapper wrapper = (ModelElementEObjectWrapper) modelElement;
+			element = wrapper.getWrappedEObject();
+		}
+
+		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
+		allContainedModelElements.add(element);
+		EObject copiedElement = EcoreUtil.copy(element);
+		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
+			false);
+		copiedAllContainedModelElements.add(copiedElement);
+
+		for (int i = 0; i < allContainedModelElements.size(); i++) {
+			EObject child = allContainedModelElements.get(i);
+			if (!(child instanceof ModelElement)) {
+				EObject copiedChild = copiedAllContainedModelElements.get(i);
+				ModelElementEObjectWrapper childWrapper = projectSpace.getProject().getModelElement(child);
+				ModelElementEObjectWrapper copiedChildWrapper = MetamodelFactory.eINSTANCE
+					.createModelElementEObjectWrapper();
+				copiedChildWrapper.setIdentifier(childWrapper.getIdentifier());
+				copiedChildWrapper.setWrappedEObject(copiedChild);
+				createDeleteOperation.getModelElementWrappers().add(copiedChildWrapper);
+			}
+		}
+		createDeleteOperation.setModelElement(copiedElement);
 		createDeleteOperation.setModelElementId(modelElement.getModelElementId());
+
 		createDeleteOperation.setClientDate(new Date());
 		return createDeleteOperation;
 	}

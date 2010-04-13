@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -212,7 +213,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			Object content = o;
 			if (o instanceof ModelElementId) {
 				ModelElementId modelElementId = (ModelElementId) o;
-				ModelElement modelElement = changePackageVisualizationHelper
+				EObject modelElement = changePackageVisualizationHelper
 						.getModelElement(modelElementId);
 				if (modelElement != null) {
 					content = modelElement;
@@ -344,10 +345,10 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		@Override
 		protected Object[] getChildren(ChangePackage changePackage,
 				TreeNode treeNode) {
-			ArrayList<ModelElement> modelElements = changePackageVisualizationHelper
+			ArrayList<EObject> modelElements = changePackageVisualizationHelper
 					.getModelElements(changePackage
 							.getAllInvolvedModelElements(),
-							new ArrayList<ModelElement>());
+							new ArrayList<EObject>());
 			List<TreeNode> nodes = nodify(treeNode, modelElements);
 			return nodes.toArray();
 

@@ -440,16 +440,6 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	}
 
 	@Override
-	public boolean canApply(Project project) {
-		for (AbstractOperation abstractOperation : getSubOperations()) {
-			if (!abstractOperation.canApply(project)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
 	public String getDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		if (isReversed()) {

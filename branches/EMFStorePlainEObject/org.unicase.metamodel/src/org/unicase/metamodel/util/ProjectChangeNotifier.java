@@ -6,6 +6,7 @@
 package org.unicase.metamodel.util;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -14,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
 
@@ -32,15 +35,18 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * Constructor.
 	 * 
 	 * @param projectImpl the projectImpl
+	 * @param idToElementMap a map of the contents that need to be initialized
 	 */
-	public ProjectChangeNotifier(ProjectImpl projectImpl) {
+	public ProjectChangeNotifier(ProjectImpl projectImpl, Map<ModelElementId, ModelElement> idToElementMap) {
 		this.projectImpl = projectImpl;
 		TreeIterator<EObject> allContents = projectImpl.eAllContents();
 		while (allContents.hasNext()) {
 			EObject next = allContents.next();
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-				ModelElement modelElement = (ModelElement) next;
-				modelElement.eAdapters().add(this);
+			if (!next.eContainingFeature().isTransient()) {
+				next.eAdapters().add(this);
+				if (next instanceof ModelElement) {
+					idToElementMap.put(((ModelElement) next).getModelElementId(), (ModelElement) next);
+				}
 			}
 		}
 		projectImpl.eAdapters().add(this);
@@ -73,9 +79,8 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			// model element is removed from containment hierachy
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
-				if (oldValue instanceof ModelElement) {
-					ModelElement child = (ModelElement) oldValue;
-					handleSingleRemove(notification, child);
+				if (oldValue instanceof EObject) {
+					handleSingleRemove(notification, (EObject) oldValue);
 				}
 
 			}
@@ -94,8 +99,8 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 				Object oldValue = notification.getOldValue();
 				if (oldValue instanceof List<?>) {
 					@SuppressWarnings("unchecked")
-					List<ModelElement> list = (List<ModelElement>) oldValue;
-					for (ModelElement child : list) {
+					List<EObject> list = (List<EObject>) oldValue;
+					for (EObject child : list) {
 						handleSingleRemove(notification, child);
 					}
 				}
@@ -109,8 +114,8 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		}
 	}
 
-	private void handleSingleRemove(Notification notification, ModelElement child) {
-		if (!isDeleting && child.getProject() != projectImpl) {
+	private void handleSingleRemove(Notification notification, EObject child) {
+		if (!isDeleting && ModelUtil.getProject(child) != projectImpl) {
 			projectImpl.addModelElement(child);
 		}
 	}
@@ -119,6 +124,11 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof ModelElement) {
 			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
+		} else if (notifier instanceof Project) {
+			// do nothing
+		} else if (notifier instanceof EObject) {
+			ModelElementEObjectWrapper wrapper = projectImpl.getModelElement((EObject) notifier);
+			projectImpl.handleEMFNotification(notification, projectImpl, wrapper);
 		}
 	}
 
@@ -138,7 +148,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		Object feature = notification.getFeature();
 		if (feature instanceof EReference) {
 			EReference reference = (EReference) feature;
-			if (reference.isContainment()) {
+			if (reference.isContainment() && reference != MetamodelPackage.eINSTANCE.getProject_ModelElementWrappers()) {
 				return true;
 			}
 		}
@@ -153,17 +163,20 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	}
 
 	private void handleSingleAdd(EObject newValue) {
-		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(newValue)) {
-			ModelElement modelElement = (ModelElement) newValue;
-			// this works only because the contains cache is not yet updated
-			if (!projectImpl.contains(modelElement)) {
-				newValue.eAdapters().add(this);
-				for (ModelElement child: modelElement.getAllContainedModelElements()) {
-					child.eAdapters().add(this);
-				}
-				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
-			} else {
-				if (projectImpl.getModelElement(modelElement.getModelElementId()) != modelElement) {
+		// this works only because the contains cache is not yet updated
+		if (newValue instanceof ModelElementEObjectWrapper) {
+			//do nothing
+			return;
+		}
+		if (!projectImpl.contains(newValue)) {
+			newValue.eAdapters().add(this);
+			for (EObject child : ModelUtil.getAllContainedModelElements(newValue, false)) {
+				child.eAdapters().add(this);
+			}
+			projectImpl.handleEMFModelElementAdded(projectImpl, newValue);
+		} else {
+			if (newValue instanceof ModelElement) {
+				if (projectImpl.getModelElement(((ModelElement) newValue).getModelElementId()) != newValue) {
 					throw new IllegalStateException("Two elements with the same id but different instance detected!");
 				}
 			}

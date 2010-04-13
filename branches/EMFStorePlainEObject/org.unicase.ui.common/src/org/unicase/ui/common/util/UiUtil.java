@@ -12,6 +12,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
@@ -120,7 +121,7 @@ public final class UiUtil {
 	 * @param modelElement the model element
 	 * @return the name for the model element
 	 */
-	public static String getNameForModelElement(ModelElement modelElement) {
+	public static String getNameForModelElement(EObject modelElement) {
 		if (labelProvider==null) {
 			labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -30,14 +31,16 @@ public class NotificationInfo implements Notification {
 	private Notification notification;
 	private boolean valid;
 	private String validationMessage;
+	private ModelElement modelElement;
 
 	/**
 	 * The constructor needs the notification to wrap.
 	 * 
 	 * @param n the notification to wrap
 	 */
-	public NotificationInfo(Notification n) {
+	public NotificationInfo(Notification n, ModelElement modelElement) {
 		this.notification = n;
+		this.modelElement = modelElement;
 		NotificationValidator.getInstance().validate(this);
 	}
 
@@ -194,7 +197,7 @@ public class NotificationInfo implements Notification {
 			// notifications from project are never propagated, thus considered nonexistent
 			// however, they themselves might have followups
 			if (nextNotification.getNotifier() instanceof Project) {
-				NotificationInfo nextNextInfo = new NotificationInfo(nextNotification);
+				NotificationInfo nextNextInfo = new NotificationInfo(nextNotification, null);
 				return nextNextInfo.hasNext();
 			} else {
 				return true;
@@ -310,8 +313,8 @@ public class NotificationInfo implements Notification {
 	/**
 	 * @return @see org.eclipse.emf.common.notify.Notification#getNewValue()
 	 */
-	public ModelElement getNewModelElementValue() {
-		return (ModelElement) notification.getNewValue();
+	public EObject getNewModelElementValue() {
+		return (EObject) notification.getNewValue();
 	}
 
 	/**
@@ -394,8 +397,34 @@ public class NotificationInfo implements Notification {
 	/**
 	 * @return @see org.eclipse.emf.common.notify.Notification#getOldValue()
 	 */
-	public ModelElement getOldModelElementValue() {
-		return (ModelElement) notification.getOldValue();
+	public EObject getOldModelElementValue() {
+		return (EObject) notification.getOldValue();
+	}
+
+	/**
+	 * @return the id of the old value.
+	 */
+	public ModelElementId getOldModelElementValueId() {
+		EObject oldValue = (EObject) notification.getOldValue();
+		if (oldValue instanceof ModelElement) {
+			return ((ModelElement) oldValue).getModelElementId();
+		} else {
+			Project project = getNotifierModelElement().getProject();
+			return project.getModelElement(oldValue).getModelElementId();
+		}
+	}
+
+	/**
+	 * @return the id of the old value.
+	 */
+	public ModelElementId getNewModelElementValueId() {
+		EObject newValue = (EObject) notification.getNewValue();
+		if (newValue instanceof ModelElement) {
+			return ((ModelElement) newValue).getModelElementId();
+		} else {
+			Project project = getNotifierModelElement().getProject();
+			return project.getModelElement(newValue).getModelElementId();
+		}
 	}
 
 	/**
@@ -447,7 +476,7 @@ public class NotificationInfo implements Notification {
 	 * @return @see org.eclipse.emf.common.notify.Notification#getNotifier()
 	 */
 	public ModelElement getNotifierModelElement() {
-		return (ModelElement) notification.getNotifier();
+		return this.modelElement;
 	}
 
 	/**

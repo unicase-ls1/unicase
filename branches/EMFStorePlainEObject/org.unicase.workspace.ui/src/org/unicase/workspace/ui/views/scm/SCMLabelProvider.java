@@ -92,7 +92,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			} else if (value instanceof ModelElement) {
 				ret = UiUtil.getNameForModelElement(((ModelElement) value));
 			} else if (value instanceof ModelElementId) {
-				ModelElement modelElement = changePackageVisualizationHelper
+				EObject modelElement = changePackageVisualizationHelper
 						.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
 					ret = UiUtil.getNameForModelElement(modelElement);

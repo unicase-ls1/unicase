@@ -37,7 +37,8 @@ public interface ProjectChangeObserver {
 	void modelElementAdded(Project project, ModelElement modelElement);
 
 	/**
-	 * The given model element and its siblings is starting to be deleted now. Note that you will NOT receive a separate notification for each sibling.
+	 * The given model element and its siblings is starting to be deleted now. Note that you will NOT receive a separate
+	 * notification for each sibling.
 	 * 
 	 * @param project the project
 	 * @param modelElement the model element
@@ -45,7 +46,8 @@ public interface ProjectChangeObserver {
 	void modelElementDeleteStarted(Project project, ModelElement modelElement);
 
 	/**
-	 * The given model element has been completely deleted. Note that you will NOT receive a separate notification for each sibling.
+	 * The given model element has been completely deleted. Note that you will NOT receive a separate notification for
+	 * each sibling.
 	 * 
 	 * @param project the project
 	 * @param modelElement the model element

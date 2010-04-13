@@ -19,7 +19,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -285,21 +284,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	protected void reverse(AbstractOperation abstractOperation) {
 		abstractOperation.setModelElementId(ModelUtil.clone(getModelElementId()));
 		abstractOperation.setClientDate(new Date());
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
-	 */
-	public boolean canApply(Project project) {
-		if (getModelElementId() == null) {
-			return true;
-		}
-		if (!project.contains(getModelElementId())) {
-			return false;
-		}
-		return true;
 	}
 
 	// end of custom code

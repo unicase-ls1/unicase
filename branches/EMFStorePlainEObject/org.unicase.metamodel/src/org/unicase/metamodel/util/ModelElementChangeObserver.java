@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
@@ -21,7 +22,7 @@ import org.unicase.metamodel.Project;
  * @author andy
  */
 public abstract class ModelElementChangeObserver implements ProjectChangeObserver {
-	
+
 	/**
 	 * Notify all model elements listener because a project delete is also deleting all contained model elements.
 	 * 
@@ -29,7 +30,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @param project the deleted project
 	 */
 	public final void projectDeleted(Project project) {
-		
+
 		List<ModelElement> elements = new ArrayList<ModelElement>(observedElements);
 		for (ModelElement modelElement : elements) {
 			this.modelElementDeleteCompleted(project, modelElement);
@@ -80,12 +81,13 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public final void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		Set<ModelElement> deletedElements = modelElement.getAllContainedModelElements();
+		Set<EObject> deletedElements = modelElement.getAllContainedModelElements(false);
 		deletedElements.add(modelElement);
-		for (ModelElement deletedElement : deletedElements) {
-			if (isObservedElement(deletedElement)) {
+		for (EObject deletedElement : deletedElements) {
+			ModelElement deletedModelElement = project.getModelElement(deletedElement);
+			if (isObservedElement(deletedModelElement)) {
 				observedElements.remove(deletedElement);
-				this.onElementDeleted(deletedElement);
+				this.onElementDeleted(deletedModelElement);
 			}
 		}
 	}

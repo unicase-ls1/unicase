@@ -141,6 +141,29 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelElementEObjectWrapper}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ModelElementEObjectWrapperItemProvider modelElementEObjectWrapperItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.metamodel.ModelElementEObjectWrapper}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementEObjectWrapperAdapter() {
+		if (modelElementEObjectWrapperItemProvider == null) {
+			modelElementEObjectWrapperItemProvider = new ModelElementEObjectWrapperItemProvider(this);
+		}
+
+		return modelElementEObjectWrapperItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -240,6 +263,8 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 			modelElementIdItemProvider.dispose();
 		if (modelVersionItemProvider != null)
 			modelVersionItemProvider.dispose();
+		if (modelElementEObjectWrapperItemProvider != null)
+			modelElementEObjectWrapperItemProvider.dispose();
 	}
 
 }
