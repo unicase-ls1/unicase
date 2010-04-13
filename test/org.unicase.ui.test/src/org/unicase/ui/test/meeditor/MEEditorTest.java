@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.test.meeditor.mecontrol;
+package org.unicase.ui.test.meeditor;
 
 import static org.junit.Assert.fail;
 
@@ -29,7 +29,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-public class MeControlTest {
+public class MEEditorTest {
 
 	private final class RunnableWithType<T> implements Runnable {
 		private final UnicaseCommandWithResult<T> command;
@@ -77,7 +77,7 @@ public class MeControlTest {
 	private static SWTWorkbenchBot bot;
 	private static boolean runcount ;
 
-	public MeControlTest() {
+	public MEEditorTest() {
 		super();
 	}
 	

@@ -34,7 +34,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
@@ -42,7 +42,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 /**
  * Tests the UseCase Step widget.
  */
-public class UseCaseStepsControlTest extends MeControlTest {
+public class UseCaseStepsControlTest extends MEEditorTest {
 	
 	private UseCase usecase;
 	/**

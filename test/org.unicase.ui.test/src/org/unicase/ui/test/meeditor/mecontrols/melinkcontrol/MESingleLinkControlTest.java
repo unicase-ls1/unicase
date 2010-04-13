@@ -27,11 +27,11 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
-public class MESingleLinkControlTest extends MeControlTest {
+public class MESingleLinkControlTest extends MEEditorTest {
 private ActionItem actionItem;
 private User user;
 	

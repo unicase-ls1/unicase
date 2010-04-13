@@ -13,9 +13,10 @@ import static org.junit.Assert.fail;
 			import org.unicase.model.task.ActionItem;
 			import org.unicase.model.task.ActivityType;
 			import org.unicase.model.task.TaskFactory;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 			
-			public class MeEnumControlTest extends MeControlTest {
+			public class MeEnumControlTest extends MEEditorTest {
 				private ActionItem actionItem;
 				
 					

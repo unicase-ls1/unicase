@@ -24,11 +24,11 @@ package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 		import org.unicase.model.task.ActionItem;
 		import org.unicase.model.task.TaskFactory;
 		import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.test.meeditor.mecontrol.MeControlTest;
+import org.unicase.ui.test.meeditor.MEEditorTest;
 		import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 		
-		public class MEHyperlinkDeleteAdapterTest extends MeControlTest {
+		public class MEHyperlinkDeleteAdapterTest extends MEEditorTest {
 			private ActionItem actionItem;
 			
 			
