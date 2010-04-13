@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.NonDomainElement;
@@ -102,6 +103,11 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseNonDomainElement(NonDomainElement object) {
 			return createNonDomainElementAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElementEObjectWrapper(ModelElementEObjectWrapper object) {
+			return createModelElementEObjectWrapperAdapter();
 		}
 
 		@Override
@@ -214,6 +220,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNonDomainElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElementEObjectWrapper
+	 * <em>Model Element EObject Wrapper</em>}'. <!-- begin-user-doc --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.ModelElementEObjectWrapper
+	 * @generated
+	 */
+	public Adapter createModelElementEObjectWrapperAdapter() {
 		return null;
 	}
 

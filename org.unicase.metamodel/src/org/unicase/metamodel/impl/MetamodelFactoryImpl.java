@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
@@ -63,6 +64,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			return createModelElementId();
 		case MetamodelPackage.MODEL_VERSION:
 			return createModelVersion();
+		case MetamodelPackage.MODEL_ELEMENT_EOBJECT_WRAPPER:
+			return createModelElementEObjectWrapper();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +99,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public ModelVersion createModelVersion() {
 		ModelVersionImpl modelVersion = new ModelVersionImpl();
 		return modelVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ModelElementEObjectWrapper createModelElementEObjectWrapper() {
+		ModelElementEObjectWrapperImpl modelElementEObjectWrapper = new ModelElementEObjectWrapperImpl();
+		return modelElementEObjectWrapper;
 	}
 
 	/**

@@ -8,6 +8,7 @@ package org.unicase.emfstore.conflictDetection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
@@ -71,13 +72,13 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 	}
 
 	private ModelElement getRootLevelParent(ModelElement modelElement) {
-		ModelElement parent = modelElement;
-		ModelElement nextParent = modelElement.getContainerModelElement();
-		while (nextParent != null) {
+		EObject parent = modelElement;
+		EObject nextParent = modelElement.eContainer();
+		while (nextParent != project) {
 			parent = nextParent;
-			nextParent = nextParent.getContainerModelElement();
+			nextParent = nextParent.eContainer();
 		}
-		return parent;
+		return project.getModelElement(parent);
 	}
 
 }

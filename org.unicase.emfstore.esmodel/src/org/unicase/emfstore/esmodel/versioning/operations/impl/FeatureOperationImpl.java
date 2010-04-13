@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -18,7 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.Project;
 
 /**
@@ -35,25 +36,6 @@ import org.unicase.metamodel.Project;
  * @generated
  */
 public abstract class FeatureOperationImpl extends AbstractOperationImpl implements FeatureOperation {
-
-	@Override
-	public boolean canApply(Project project) {
-		if (!super.canApply(project)) {
-			return false;
-		}
-		ModelElement element = project.getModelElement(getModelElementId());
-		try {
-			getFeature(element);
-		} catch (UnkownFeatureException e) {
-			return false;
-		}
-		for (ModelElementId otherElementId : getOtherInvolvedModelElements()) {
-			if (!project.contains(otherElementId)) {
-				return false;
-			}
-		}
-		return true;
-	}
 
 	@Override
 	protected void reverse(AbstractOperation abstractOperation) {
@@ -265,9 +247,9 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @generated NOT
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.ModelElement)
 	 */
-	public EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException {
-		if (!modelElement.getIdentifier().equals(this.getModelElementId().getId())) {
-			throw new IllegalArgumentException("model element id does not match id of operations model element");
+	public EStructuralFeature getFeature(EObject modelElement) throws UnkownFeatureException {
+		if (modelElement instanceof ModelElementEObjectWrapper) {
+			modelElement = ((ModelElementEObjectWrapper) modelElement).getWrappedEObject();
 		}
 		EList<EStructuralFeature> features = modelElement.eClass().getEAllStructuralFeatures();
 		for (EStructuralFeature feature : features) {

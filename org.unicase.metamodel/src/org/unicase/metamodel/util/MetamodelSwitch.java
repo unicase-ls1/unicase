@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.NonDomainElement;
@@ -135,6 +136,17 @@ public class MetamodelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case MetamodelPackage.MODEL_ELEMENT_EOBJECT_WRAPPER: {
+			ModelElementEObjectWrapper modelElementEObjectWrapper = (ModelElementEObjectWrapper) theEObject;
+			T result = caseModelElementEObjectWrapper(modelElementEObjectWrapper);
+			if (result == null)
+				result = caseModelElement(modelElementEObjectWrapper);
+			if (result == null)
+				result = caseIdentifiableElement(modelElementEObjectWrapper);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -232,6 +244,20 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseNonDomainElement(NonDomainElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element EObject Wrapper</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element EObject Wrapper</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementEObjectWrapper(ModelElementEObjectWrapper object) {
 		return null;
 	}
 

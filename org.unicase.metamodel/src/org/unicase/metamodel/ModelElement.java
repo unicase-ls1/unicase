@@ -8,6 +8,7 @@ package org.unicase.metamodel;
 import java.util.Date;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 
 /**
@@ -79,39 +80,12 @@ public interface ModelElement extends IdentifiableElement {
 	void setCreationDate(Date value);
 
 	/**
-	 * Retrieve all elements this element links to. Only outgoing and bidrectional links are considered.
+	 * Get all contained element of this element recursively.
 	 * 
+	 * @param includeTransientContainments true if transient containments should be included in the result
 	 * @return a set of model elements
 	 */
-	Set<ModelElement> getLinkedModelElements();
-
-	/**
-	 * Retrieve the contained model elements of this element. Only includes direct children.
-	 * 
-	 * @return a set of child model elements
-	 */
-	Set<ModelElement> getContainedElements();
-
-	/**
-	 * Get the container model element of this element. Returns null if there is no parent.
-	 * 
-	 * @return the parent element
-	 */
-	ModelElement getContainerModelElement();
-
-	/**
-	 * Get all contained element of this element recursivly.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElement> getAllContainedModelElements();
-
-	/**
-	 * Get all model elements that are cross referenced by this element.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElement> getCrossReferencedModelElements();
+	Set<EObject> getAllContainedModelElements(boolean includeTransientContainments);
 
 	/**
 	 * Delete the model element from its project.

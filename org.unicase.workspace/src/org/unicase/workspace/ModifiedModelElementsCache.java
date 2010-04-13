@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -118,10 +119,10 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		if (number == null || number < 1) {
 			number = 1;
 			if (!modifiedModelElements.containsKey(parentModelElementId)) {
-				ModelElement nextParentModelElement = getModelElementForId(parentModelElementId)
-					.getContainerModelElement();
-				if (nextParentModelElement != null) {
-					addOneToParent(nextParentModelElement.getModelElementId());
+				EObject nextParentModelElement = getModelElementForId(parentModelElementId).eContainer();
+				if (nextParentModelElement != null && nextParentModelElement != this.projectSpace.getProject()) {
+					addOneToParent(this.projectSpace.getProject().getModelElement(nextParentModelElement)
+						.getModelElementId());
 				}
 			}
 		} else {
@@ -139,11 +140,11 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		if (childModelElement == null) {
 			return null;
 		}
-		ModelElement nextParentModelElement = childModelElement.getContainerModelElement();
-		if (nextParentModelElement == null) {
+		EObject nextParentModelElement = childModelElement.eContainer();
+		if (nextParentModelElement == null || nextParentModelElement == this.projectSpace.getProject()) {
 			return null;
 		} else {
-			return nextParentModelElement.getModelElementId();
+			return this.projectSpace.getProject().getModelElement(nextParentModelElement).getModelElementId();
 		}
 	}
 

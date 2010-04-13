@@ -62,7 +62,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int IDENTIFIABLE_ELEMENT = 3;
-	
+
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -143,12 +143,30 @@ public interface MetamodelPackage extends EPackage {
 	int PROJECT__MODEL_ELEMENTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Model Element Wrappers</b></em>' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__MODEL_ELEMENT_WRAPPERS = 1;
+
+	/**
+	 * The feature id for the '<em><b>New Model Element Wrappers</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__NEW_MODEL_ELEMENT_WRAPPERS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 1;
+	int PROJECT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.metamodel.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}'
@@ -250,8 +268,59 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelElementEObjectWrapperImpl
+	 * <em>Model Element EObject Wrapper</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.metamodel.impl.ModelElementEObjectWrapperImpl
+	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelElementEObjectWrapper()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER__CREATOR = MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Wrapped EObject</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER__WRAPPED_EOBJECT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Model Element EObject Wrapper</em>' class. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_EOBJECT_WRAPPER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
-	
+
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -305,6 +374,30 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_ModelElements();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.metamodel.Project#getModelElementWrappers <em>Model Element Wrappers</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Model Element Wrappers</em>'.
+	 * @see org.unicase.metamodel.Project#getModelElementWrappers()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_ModelElementWrappers();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.metamodel.Project#getNewModelElementWrappers <em>New Model Element Wrappers</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>New Model Element Wrappers</em>'.
+	 * @see org.unicase.metamodel.Project#getNewModelElementWrappers()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_NewModelElementWrappers();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.UniqueIdentifier <em>Unique Identifier</em>}'.
@@ -390,6 +483,28 @@ public interface MetamodelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElementEObjectWrapper
+	 * <em>Model Element EObject Wrapper</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Model Element EObject Wrapper</em>'.
+	 * @see org.unicase.metamodel.ModelElementEObjectWrapper
+	 * @generated
+	 */
+	EClass getModelElementEObjectWrapper();
+
+	/**
+	 * Returns the meta object for the reference '
+	 * {@link org.unicase.metamodel.ModelElementEObjectWrapper#getWrappedEObject <em>Wrapped EObject</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Wrapped EObject</em>'.
+	 * @see org.unicase.metamodel.ModelElementEObjectWrapper#getWrappedEObject()
+	 * @see #getModelElementEObjectWrapper()
+	 * @generated
+	 */
+	EReference getModelElementEObjectWrapper_WrappedEObject();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -453,6 +568,22 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE.getProject_ModelElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Element Wrappers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__MODEL_ELEMENT_WRAPPERS = eINSTANCE.getProject_ModelElementWrappers();
+
+		/**
+		 * The meta object literal for the '<em><b>New Model Element Wrappers</b></em>' containment reference list
+		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__NEW_MODEL_ELEMENT_WRAPPERS = eINSTANCE.getProject_NewModelElementWrappers();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.metamodel.impl.UniqueIdentifierImpl
@@ -527,6 +658,25 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelElementEObjectWrapperImpl
+		 * <em>Model Element EObject Wrapper</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.metamodel.impl.ModelElementEObjectWrapperImpl
+		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelElementEObjectWrapper()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_EOBJECT_WRAPPER = eINSTANCE.getModelElementEObjectWrapper();
+
+		/**
+		 * The meta object literal for the '<em><b>Wrapped EObject</b></em>' reference feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT_EOBJECT_WRAPPER__WRAPPED_EOBJECT = eINSTANCE
+			.getModelElementEObjectWrapper_WrappedEObject();
 
 	}
 

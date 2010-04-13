@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -22,6 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -109,30 +111,35 @@ public final class NotificationToOperationConverter {
 		op.setIndex(n.getPosition());
 		List<ModelElementId> referencedModelElements = op.getReferencedModelElements();
 
-		List<ModelElement> list = null;
+		List<EObject> list = null;
 
 		switch (n.getEventType()) {
 
 		case Notification.ADD:
-			list = new ArrayList<ModelElement>();
+			list = new ArrayList<EObject>();
 			list.add(n.getNewModelElementValue());
 			break;
 		case Notification.ADD_MANY:
-			list = (List<ModelElement>) n.getNewValue();
+			list = (List<EObject>) n.getNewValue();
 			break;
 		case Notification.REMOVE:
-			list = new ArrayList<ModelElement>();
+			list = new ArrayList<EObject>();
 			list.add(n.getOldModelElementValue());
 			break;
 		case Notification.REMOVE_MANY:
-			list = (List<ModelElement>) n.getOldValue();
+			list = (List<EObject>) n.getOldValue();
 			break;
 		default:
 			break;
 		}
 
-		for (ModelElement valueElement : list) {
-			referencedModelElements.add(valueElement.getModelElementId());
+		for (EObject valueElement : list) {
+			if (valueElement instanceof ModelElement) {
+				referencedModelElements.add(((ModelElement) valueElement).getModelElementId());
+			} else {
+				Project project = n.getNotifierModelElement().getProject();
+				referencedModelElements.add(project.getModelElement(valueElement).getModelElementId());
+			}
 		}
 		return op;
 
@@ -143,7 +150,7 @@ public final class NotificationToOperationConverter {
 		MultiReferenceMoveOperation op = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
-		op.setReferencedModelElementId(n.getNewModelElementValue().getModelElementId());
+		op.setReferencedModelElementId(n.getNewModelElementValueId());
 		op.setNewIndex(n.getPosition());
 		op.setOldIndex((Integer) n.getOldValue());
 
@@ -155,7 +162,7 @@ public final class NotificationToOperationConverter {
 		AttributeOperation op = null;
 
 		// special handling for diagram layout changes
-		if (isDiagramLayoutAttribute(n.getAttribute(), n.getNotifierModelElement())) {
+		if (isDiagramLayoutAttribute(n.getAttribute())) {
 			op = OperationsFactory.eINSTANCE.createDiagramLayoutOperation();
 		} else {
 			op = OperationsFactory.eINSTANCE.createAttributeOperation();
@@ -172,16 +179,16 @@ public final class NotificationToOperationConverter {
 	private static AbstractOperation handleSetReference(NotificationInfo n) {
 
 		SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
-		setCommonValues(op, (ModelElement) n.getNotifier());
+		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
 		setBidirectionalAndContainmentInfo(op, n.getReference());
 
 		if (n.getOldValue() != null) {
-			op.setOldValue(n.getOldModelElementValue().getModelElementId());
+			op.setOldValue(n.getOldModelElementValueId());
 		}
 
 		if (n.getNewValue() != null) {
-			op.setNewValue(n.getNewModelElementValue().getModelElementId());
+			op.setNewValue(n.getNewModelElementValueId());
 		}
 		return op;
 
@@ -208,7 +215,7 @@ public final class NotificationToOperationConverter {
 		}
 	}
 
-	private static boolean isDiagramLayoutAttribute(EAttribute attribute, ModelElement modelElement) {
+	private static boolean isDiagramLayoutAttribute(EAttribute attribute) {
 		// FIXME: HACK to check if attribute is the layout of a diagram
 		boolean isLayoutAttribute = attribute.getName().equals("diagramLayout");
 		return isLayoutAttribute;

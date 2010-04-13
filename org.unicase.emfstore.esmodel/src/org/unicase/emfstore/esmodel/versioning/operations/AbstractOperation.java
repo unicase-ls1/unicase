@@ -152,15 +152,6 @@ public interface AbstractOperation extends IdentifiableElement {
 	void apply(Project project);
 
 	/**
-	 * Determine if the operation can be applied to a given project. Can be used before apply to make sure that an
-	 * operation can be applied, since apply() will just fail silently.
-	 * 
-	 * @param project the project
-	 * @return true if it can be applied
-	 */
-	boolean canApply(Project project);
-
-	/**
 	 * Reverse the operation. The reversed operation is build such that applying this operation and then the reversed
 	 * operation to a project does not change the project in total effect.
 	 * 

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -29,8 +30,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException
 import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.UiUtil;
 
 /**
@@ -43,7 +46,7 @@ public class ChangePackageVisualizationHelper {
 
 	private static final int MAX_NAME_SIZE = 30;
 	private Project project;
-	private Map<ModelElementId, ModelElement> modelElementMap;
+	private Map<ModelElementId, EObject> modelElementMap;
 	private static final String UNKOWN_ELEMENT = "(Unkown Element)";
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
@@ -57,7 +60,7 @@ public class ChangePackageVisualizationHelper {
 	 */
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages,
 			Project project) {
-		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
+		this.modelElementMap = new HashMap<ModelElementId, EObject>();
 		for (ChangePackage changePackage : changePackages) {
 			initModelElementMap(changePackage);
 		}
@@ -71,13 +74,16 @@ public class ChangePackageVisualizationHelper {
 		List<AbstractOperation> operations = changePackage.getLeafOperations();
 		for (AbstractOperation abstractOperation : operations) {
 			if (abstractOperation instanceof CreateDeleteOperation) {
-				ModelElement modelElement = ((CreateDeleteOperation) abstractOperation)
+				EObject modelElement = ((CreateDeleteOperation) abstractOperation)
 						.getModelElement();
-				modelElementMap.put(modelElement.getModelElementId(),
+				modelElementMap.put(abstractOperation.getModelElementId(),
 						modelElement);
-				for (ModelElement sibling : modelElement
-						.getAllContainedModelElements()) {
-					modelElementMap.put(sibling.getModelElementId(), sibling);
+				for (EObject sibling : ModelUtil.getAllContainedModelElements(
+						modelElement, false)) {
+					ModelElement siblingElement = project
+							.getModelElement(sibling);
+					modelElementMap.put(siblingElement.getModelElementId(),
+							siblingElement);
 				}
 			}
 		}
@@ -90,11 +96,16 @@ public class ChangePackageVisualizationHelper {
 	 *            the id
 	 * @return the model element instance
 	 */
-	public ModelElement getModelElement(ModelElementId modelElementId) {
+	public EObject getModelElement(ModelElementId modelElementId) {
 		if (modelElementId == null) {
 			return null;
 		} else if (project.contains(modelElementId)) {
-			return project.getModelElement(modelElementId);
+			ModelElement modelElement = project.getModelElement(modelElementId);
+			if (modelElement instanceof ModelElementEObjectWrapper) {
+				return ((ModelElementEObjectWrapper) modelElement)
+						.getWrappedEObject();
+			}
+			return modelElement;
 		} else {
 			return modelElementMap.get(modelElementId);
 		}
@@ -217,7 +228,7 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	private String resolveTypes(String unresolvedString, ReferenceOperation op) {
-		ModelElement modelElement = getModelElement(op.getModelElementId());
+		EObject modelElement = getModelElement(op.getModelElementId());
 		String type;
 		if (modelElement == null) {
 			type = "ModelElement";
@@ -260,7 +271,7 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	private String getModelElementName(ModelElementId modelElementId) {
-		ModelElement modelElement = getModelElement(modelElementId);
+		EObject modelElement = getModelElement(modelElementId);
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
@@ -290,19 +301,25 @@ public class ChangePackageVisualizationHelper {
 		return getModelElementClassAndName(getModelElement(modelElementId));
 	}
 
-	private String getModelElementClassAndName(ModelElement modelElement) {
+	private String getModelElementClassAndName(EObject modelElement) {
 		if (modelElement == null) {
 			return UNKOWN_ELEMENT;
 		}
-		String className = modelElement.eClass().getName();
+		String className;
+		if (modelElement instanceof ModelElementEObjectWrapper) {
+			className = ((ModelElementEObjectWrapper) modelElement)
+					.getWrappedEObject().eClass().getName();
+		} else {
+			className = modelElement.eClass().getName();
+		}
 		return className + " \""
 				+ trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
 	}
 
-	public <T extends Collection<ModelElement>, S extends Collection<ModelElementId>> T getModelElements(
+	public <T extends Collection<EObject>, S extends Collection<ModelElementId>> T getModelElements(
 			S modelElementIds, T resultCollection) {
 		for (ModelElementId modelElementId : modelElementIds) {
-			ModelElement modelElement = getModelElement(modelElementId);
+			EObject modelElement = getModelElement(modelElementId);
 			if (modelElement != null) {
 				resultCollection.add(modelElement);
 			}

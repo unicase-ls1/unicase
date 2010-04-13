@@ -28,5 +28,5 @@
     <eLiterals name="ScienceFiction" value="1"/>
     <eLiterals name="Biography" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibraryBase" abstract="true" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibraryBase" abstract="true"/>
 </ecore:EPackage>

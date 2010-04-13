@@ -5,8 +5,12 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -21,6 +25,8 @@ import org.unicase.metamodel.Project;
  * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
  * Operations</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElementWrappers <em>Model
+ * Element Wrappers</em>}</li>
  * </ul>
  * </p>
  * 
@@ -64,12 +70,12 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Model Element</em>' containment reference.
-	 * @see #setModelElement(ModelElement)
+	 * @see #setModelElement(EObject)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_ModelElement()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	ModelElement getModelElement();
+	EObject getModelElement();
 
 	/**
 	 * Sets the value of the '
@@ -80,7 +86,7 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @see #getModelElement()
 	 * @generated
 	 */
-	void setModelElement(ModelElement value);
+	void setModelElement(EObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list. The list contents are of
@@ -99,6 +105,22 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	EList<ReferenceOperation> getSubOperations();
 
 	/**
+	 * Returns the value of the '<em><b>Model Element Wrappers</b></em>' containment reference list. The list contents
+	 * are of type {@link org.unicase.metamodel.ModelElementEObjectWrapper}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Element Wrappers</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Model Element Wrappers</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_ModelElementWrappers()
+	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 * @generated
+	 */
+	EList<ModelElementEObjectWrapper> getModelElementWrappers();
+
+	/**
 	 * Get the id of the previous parent of the deleted element. Returns null if the deleted element did not have a
 	 * parent at the time of deletion or the parent cannot be determined anymore since it has also been removed from the
 	 * given project.
@@ -109,4 +131,18 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 */
 	ModelElementId getParentofDeletedElement(Project project);
 
+	/**
+	 * Get all deleted model elements.
+	 * 
+	 * @return a set of the ids of the deleted elements.
+	 */
+	Set<ModelElementId> getAllDeletedModelElements();
+
+	/**
+	 * Retrieve the ModelElement of the given id in this operation. Returns null if element is not in this operation
+	 * 
+	 * @param modelElementId the model element id
+	 * @return the model element or null
+	 */
+	ModelElement getModelElement(ModelElementId modelElementId);
 } // CreateDeleteOperation

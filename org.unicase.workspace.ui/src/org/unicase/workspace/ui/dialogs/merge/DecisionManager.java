@@ -484,18 +484,13 @@ public class DecisionManager {
 
 	private ModelElement searchCreateAndDelete(CreateDeleteOperation cdo,
 			ModelElementId modelElementId) {
-		ModelElement modelElement = cdo.getModelElement();
-		if (modelElement == null) {
-			return null;
-		}
-		Set<ModelElement> containedModelElements = modelElement
-				.getAllContainedModelElements();
-		containedModelElements.add(modelElement);
 
-		for (ModelElement child : containedModelElements) {
-			if (child != null
-					&& child.getModelElementId().equals(modelElementId)) {
-				return child;
+		Set<ModelElementId> containedModelElements = cdo
+				.getAllDeletedModelElements();
+
+		for (ModelElementId child : containedModelElements) {
+			if (child.equals(modelElementId)) {
+				return cdo.getModelElement(child);
 			}
 		}
 		return null;

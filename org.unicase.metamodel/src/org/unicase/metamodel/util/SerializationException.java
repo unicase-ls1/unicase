@@ -23,7 +23,7 @@ public class SerializationException extends Exception {
 	public SerializationException(Throwable cause) {
 		super("(De-)Serialization failed.", cause);
 	}
-	
+
 	/**
 	 * Default constructor.
 	 * 

@@ -13,33 +13,30 @@ import library.Writer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Book</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Book</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link library.impl.BookImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link library.impl.BookImpl#getPages <em>Pages</em>}</li>
- *   <li>{@link library.impl.BookImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link library.impl.BookImpl#getAuthor <em>Author</em>}</li>
+ * <li>{@link library.impl.BookImpl#getTitle <em>Title</em>}</li>
+ * <li>{@link library.impl.BookImpl#getPages <em>Pages</em>}</li>
+ * <li>{@link library.impl.BookImpl#getCategory <em>Category</em>}</li>
+ * <li>{@link library.impl.BookImpl#getAuthor <em>Author</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BookImpl extends LibraryBaseImpl implements Book {
 	/**
 	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTitle()
 	 * @generated
 	 * @ordered
@@ -48,8 +45,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 
 	/**
 	 * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTitle()
 	 * @generated
 	 * @ordered
@@ -58,8 +55,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 
 	/**
 	 * The default value of the '{@link #getPages() <em>Pages</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPages()
 	 * @generated
 	 * @ordered
@@ -68,8 +65,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 
 	/**
 	 * The cached value of the '{@link #getPages() <em>Pages</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPages()
 	 * @generated
 	 * @ordered
@@ -77,9 +74,9 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	protected int pages = PAGES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getCategory() <em>Category</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCategory()
 	 * @generated
 	 * @ordered
@@ -87,9 +84,9 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	protected static final BookCategory CATEGORY_EDEFAULT = BookCategory.MYSTERY;
 
 	/**
-	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCategory()
 	 * @generated
 	 * @ordered
@@ -98,8 +95,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 
 	/**
 	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAuthor()
 	 * @generated
 	 * @ordered
@@ -107,8 +104,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	protected Writer author;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BookImpl() {
@@ -116,8 +113,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,8 +123,8 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTitle() {
@@ -135,20 +132,21 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTitle(String newTitle) {
 		String oldTitle = title;
 		title = newTitle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.BOOK__TITLE, oldTitle, title));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					LibraryPackage.BOOK__TITLE, oldTitle, title));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getPages() {
@@ -156,20 +154,21 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPages(int newPages) {
 		int oldPages = pages;
 		pages = newPages;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.BOOK__PAGES, oldPages, pages));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					LibraryPackage.BOOK__PAGES, oldPages, pages));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BookCategory getCategory() {
@@ -177,37 +176,39 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCategory(BookCategory newCategory) {
 		BookCategory oldCategory = category;
 		category = newCategory == null ? CATEGORY_EDEFAULT : newCategory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.BOOK__CATEGORY, oldCategory, category));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					LibraryPackage.BOOK__CATEGORY, oldCategory, category));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Writer getAuthor() {
 		if (author != null && author.eIsProxy()) {
-			InternalEObject oldAuthor = (InternalEObject)author;
-			author = (Writer)eResolveProxy(oldAuthor);
+			InternalEObject oldAuthor = (InternalEObject) author;
+			author = (Writer) eResolveProxy(oldAuthor);
 			if (author != oldAuthor) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.BOOK__AUTHOR, oldAuthor, author));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							LibraryPackage.BOOK__AUTHOR, oldAuthor, author));
 			}
 		}
 		return author;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Writer basicGetAuthor() {
@@ -215,166 +216,181 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAuthor(Writer newAuthor, NotificationChain msgs) {
+	public NotificationChain basicSetAuthor(Writer newAuthor,
+			NotificationChain msgs) {
 		Writer oldAuthor = author;
 		author = newAuthor;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.BOOK__AUTHOR, oldAuthor, newAuthor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, LibraryPackage.BOOK__AUTHOR, oldAuthor,
+					newAuthor);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAuthor(Writer newAuthor) {
 		if (newAuthor != author) {
 			NotificationChain msgs = null;
 			if (author != null)
-				msgs = ((InternalEObject)author).eInverseRemove(this, LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
+				msgs = ((InternalEObject) author).eInverseRemove(this,
+						LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
 			if (newAuthor != null)
-				msgs = ((InternalEObject)newAuthor).eInverseAdd(this, LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
+				msgs = ((InternalEObject) newAuthor).eInverseAdd(this,
+						LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
 			msgs = basicSetAuthor(newAuthor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.BOOK__AUTHOR, newAuthor, newAuthor));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					LibraryPackage.BOOK__AUTHOR, newAuthor, newAuthor));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__AUTHOR:
-				if (author != null)
-					msgs = ((InternalEObject)author).eInverseRemove(this, LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
-				return basicSetAuthor((Writer)otherEnd, msgs);
+		case LibraryPackage.BOOK__AUTHOR:
+			if (author != null)
+				msgs = ((InternalEObject) author).eInverseRemove(this,
+						LibraryPackage.WRITER__BOOKS, Writer.class, msgs);
+			return basicSetAuthor((Writer) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__AUTHOR:
-				return basicSetAuthor(null, msgs);
+		case LibraryPackage.BOOK__AUTHOR:
+			return basicSetAuthor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__TITLE:
-				return getTitle();
-			case LibraryPackage.BOOK__PAGES:
-				return getPages();
-			case LibraryPackage.BOOK__CATEGORY:
-				return getCategory();
-			case LibraryPackage.BOOK__AUTHOR:
-				if (resolve) return getAuthor();
-				return basicGetAuthor();
+		case LibraryPackage.BOOK__TITLE:
+			return getTitle();
+		case LibraryPackage.BOOK__PAGES:
+			return getPages();
+		case LibraryPackage.BOOK__CATEGORY:
+			return getCategory();
+		case LibraryPackage.BOOK__AUTHOR:
+			if (resolve)
+				return getAuthor();
+			return basicGetAuthor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__TITLE:
-				setTitle((String)newValue);
-				return;
-			case LibraryPackage.BOOK__PAGES:
-				setPages((Integer)newValue);
-				return;
-			case LibraryPackage.BOOK__CATEGORY:
-				setCategory((BookCategory)newValue);
-				return;
-			case LibraryPackage.BOOK__AUTHOR:
-				setAuthor((Writer)newValue);
-				return;
+		case LibraryPackage.BOOK__TITLE:
+			setTitle((String) newValue);
+			return;
+		case LibraryPackage.BOOK__PAGES:
+			setPages((Integer) newValue);
+			return;
+		case LibraryPackage.BOOK__CATEGORY:
+			setCategory((BookCategory) newValue);
+			return;
+		case LibraryPackage.BOOK__AUTHOR:
+			setAuthor((Writer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__TITLE:
-				setTitle(TITLE_EDEFAULT);
-				return;
-			case LibraryPackage.BOOK__PAGES:
-				setPages(PAGES_EDEFAULT);
-				return;
-			case LibraryPackage.BOOK__CATEGORY:
-				setCategory(CATEGORY_EDEFAULT);
-				return;
-			case LibraryPackage.BOOK__AUTHOR:
-				setAuthor((Writer)null);
-				return;
+		case LibraryPackage.BOOK__TITLE:
+			setTitle(TITLE_EDEFAULT);
+			return;
+		case LibraryPackage.BOOK__PAGES:
+			setPages(PAGES_EDEFAULT);
+			return;
+		case LibraryPackage.BOOK__CATEGORY:
+			setCategory(CATEGORY_EDEFAULT);
+			return;
+		case LibraryPackage.BOOK__AUTHOR:
+			setAuthor((Writer) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LibraryPackage.BOOK__TITLE:
-				return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
-			case LibraryPackage.BOOK__PAGES:
-				return pages != PAGES_EDEFAULT;
-			case LibraryPackage.BOOK__CATEGORY:
-				return category != CATEGORY_EDEFAULT;
-			case LibraryPackage.BOOK__AUTHOR:
-				return author != null;
+		case LibraryPackage.BOOK__TITLE:
+			return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT
+					.equals(title);
+		case LibraryPackage.BOOK__PAGES:
+			return pages != PAGES_EDEFAULT;
+		case LibraryPackage.BOOK__CATEGORY:
+			return category != CATEGORY_EDEFAULT;
+		case LibraryPackage.BOOK__AUTHOR:
+			return author != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (title: ");
@@ -387,4 +403,4 @@ public class BookImpl extends LibraryBaseImpl implements Book {
 		return result.toString();
 	}
 
-} //BookImpl
+} // BookImpl

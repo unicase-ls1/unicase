@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,6 +29,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -44,6 +46,8 @@ import org.unicase.metamodel.util.ModelUtil;
  * Model Element</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
  * Operations</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getModelElementWrappers
+ * <em>Model Element Wrappers</em>}</li>
  * </ul>
  * </p>
  * 
@@ -64,7 +68,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				// silently fail
 				return;
 			}
-			project.getModelElements().add(ModelUtil.clone(getModelElement()));
+			CreateDeleteOperationImpl clone = ModelUtil.clone(this);
+			project.addModelElement(clone.getModelElement(), clone.getModelElementWrappers());
 			for (ReferenceOperation operation : getSubOperations()) {
 				operation.apply(project);
 			}
@@ -72,24 +77,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	@Override
-	public boolean canApply(Project project) {
-		checkValidity();
-		if (isDelete()) {
-			return project.contains(getModelElementId());
-		} else {
-			return !project.contains(getModelElementId());
-		}
-	}
-
-	private void checkValidity() {
-		if (!getModelElementId().equals(getModelElement().getModelElementId())) {
-			throw new IllegalStateException("CreateDeleteOperation has different ids in model element and id features!");
-		}
-	}
-
-	@Override
 	public AbstractOperation reverse() {
-		checkValidity();
 		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		super.reverse(createDeleteOperation);
 		createDeleteOperation.setDelete(!this.isDelete());
@@ -129,7 +117,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElement modelElement;
+	protected EObject modelElement;
 
 	/**
 	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list. <!--
@@ -140,6 +128,16 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * @ordered
 	 */
 	protected EList<ReferenceOperation> subOperations;
+
+	/**
+	 * The cached value of the '{@link #getModelElementWrappers() <em>Model Element Wrappers</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getModelElementWrappers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElementEObjectWrapper> modelElementWrappers;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -187,10 +185,10 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		if (modelElement != null && modelElement.eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject) modelElement;
-			modelElement = (ModelElement) eResolveProxy(oldModelElement);
+			modelElement = eResolveProxy(oldModelElement);
 			if (modelElement != oldModelElement) {
 				InternalEObject newModelElement = (InternalEObject) modelElement;
 				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
@@ -214,7 +212,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
-	public ModelElement basicGetModelElement() {
+	public EObject basicGetModelElement() {
 		return modelElement;
 	}
 
@@ -223,8 +221,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
-		ModelElement oldModelElement = modelElement;
+	public NotificationChain basicSetModelElement(EObject newModelElement, NotificationChain msgs) {
+		EObject oldModelElement = modelElement;
 		modelElement = newModelElement;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -242,7 +240,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
-	public void setModelElement(ModelElement newModelElement) {
+	public void setModelElement(EObject newModelElement) {
 		if (newModelElement != modelElement) {
 			NotificationChain msgs = null;
 			if (modelElement != null)
@@ -277,6 +275,20 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
+	public EList<ModelElementEObjectWrapper> getModelElementWrappers() {
+		if (modelElementWrappers == null) {
+			modelElementWrappers = new EObjectContainmentEList.Resolving<ModelElementEObjectWrapper>(
+				ModelElementEObjectWrapper.class, this,
+				OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS);
+		}
+		return modelElementWrappers;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -284,6 +296,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return basicSetModelElement(null, msgs);
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS:
+			return ((InternalEList<?>) getModelElementWrappers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -304,6 +318,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return basicGetModelElement();
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return getSubOperations();
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS:
+			return getModelElementWrappers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -321,11 +337,15 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			setDelete((Boolean) newValue);
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-			setModelElement((ModelElement) newValue);
+			setModelElement((EObject) newValue);
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
 			getSubOperations().addAll((Collection<? extends ReferenceOperation>) newValue);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS:
+			getModelElementWrappers().clear();
+			getModelElementWrappers().addAll((Collection<? extends ModelElementEObjectWrapper>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -343,10 +363,13 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			setDelete(DELETE_EDEFAULT);
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-			setModelElement((ModelElement) null);
+			setModelElement((EObject) null);
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS:
+			getModelElementWrappers().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -366,6 +389,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return modelElement != null;
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return subOperations != null && !subOperations.isEmpty();
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS:
+			return modelElementWrappers != null && !modelElementWrappers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -397,7 +422,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		}
 		stringBuilder.append(getModelElement().eClass().getName());
 		stringBuilder.append(" ");
-		stringBuilder.append(getModelElement().getIdentifier());
+		stringBuilder.append(getModelElementId().getId());
 		// stringBuilder.append(".");
 		return stringBuilder.toString();
 	}
@@ -409,7 +434,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			stringBuilder.append("Deleted  ");
 			stringBuilder.append(getModelElement().eClass().getName());
 			stringBuilder.append(" \"");
-			stringBuilder.append(getModelElement().getIdentifier());
+			stringBuilder.append(getModelElementId().getId());
 			stringBuilder.append("\"");
 		} else {
 			stringBuilder.append("Created ");
@@ -423,12 +448,22 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 */
 	@Override
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
-		Set<ModelElementId> result = new HashSet<ModelElementId>();
-		for (ModelElement modelElement : getModelElement().getAllContainedModelElements()) {
-			result.add(modelElement.getModelElementId());
-		}
+		Set<ModelElementId> result = getAllDeletedModelElements();
 		for (ReferenceOperation operation : getSubOperations()) {
 			result.addAll(operation.getAllInvolvedModelElements());
+		}
+		return result;
+	}
+
+	public Set<ModelElementId> getAllDeletedModelElements() {
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
+		for (EObject modelElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
+			if (modelElement instanceof ModelElement) {
+				result.add(((ModelElement) modelElement).getModelElementId());
+			}
+		}
+		for (ModelElementEObjectWrapper wrapper : getModelElementWrappers()) {
+			result.add(wrapper.getModelElementId());
 		}
 		return result;
 	}
@@ -491,4 +526,25 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return null;
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElement(org.unicase.metamodel.ModelElementId)
+	 */
+	public ModelElement getModelElement(ModelElementId modelElementId) {
+		for (ModelElementEObjectWrapper wrapper : getModelElementWrappers()) {
+			if (wrapper.getModelElementId().equals(modelElementId)) {
+				return wrapper;
+			}
+		}
+		for (EObject deletedElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
+			if (deletedElement instanceof ModelElement
+				&& ((ModelElement) deletedElement).getIdentifier().equals(modelElementId)) {
+				return (ModelElement) deletedElement;
+			}
+		}
+		return null;
+	}
+
 } // CreateDeleteOperationImpl

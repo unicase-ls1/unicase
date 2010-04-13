@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -16,7 +15,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 
 /**
@@ -117,14 +115,14 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		// we need to check whether the other operation changes any of the deleted elements
 		if (opB instanceof CreateDeleteOperation) {
-			Set<ModelElementId> allDeletedElementsA = getAllDeletedElements(opA);
-			Set<ModelElementId> allDeletedElementsB = getAllDeletedElements((CreateDeleteOperation) opB);
+			Set<ModelElementId> allDeletedElementsA = opA.getAllDeletedModelElements();
+			Set<ModelElementId> allDeletedElementsB = ((CreateDeleteOperation) opB).getAllDeletedModelElements();
 			boolean intersecting = allDeletedElementsA.removeAll(allDeletedElementsB);
 			if (intersecting) {
 				return true;
 			}
 		} else {
-			for (ModelElementId m : getAllDeletedElements(opA)) {
+			for (ModelElementId m : opA.getAllDeletedModelElements()) {
 				if (changesModelElement(opB, m)) {
 					return true;
 				}
@@ -139,16 +137,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		return false;
-	}
-
-	private Set<ModelElementId> getAllDeletedElements(CreateDeleteOperation op) {
-		Set<ModelElement> allDeleteTreeElements = op.getModelElement().getAllContainedModelElements();
-		allDeleteTreeElements.add(op.getModelElement());
-		Set<ModelElementId> result = new HashSet<ModelElementId>(allDeleteTreeElements.size());
-		for (ModelElement modelElement : allDeleteTreeElements) {
-			result.add(modelElement.getModelElementId());
-		}
-		return result;
 	}
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {

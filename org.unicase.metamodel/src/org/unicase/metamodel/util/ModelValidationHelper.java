@@ -71,7 +71,7 @@ public final class ModelValidationHelper {
 			for (EObject object : danglingEObjects) {
 				// if it is a lost model element add to project
 				if (object instanceof ModelElement) {
-					project.addModelElement((ModelElement) object);
+					project.addModelElement(object);
 					result = true;
 				}
 				// else add to resource
