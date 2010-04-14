@@ -36,7 +36,7 @@ import diff.match.patch.diff_match_patch.Operation;
  * 
  * @author wesendon
  */
-public class MultilineWidget implements Observer {
+public class MergeTextWidget implements Observer {
 
 	private final DecisionBox decisionBox;
 	private ArrayList<ConflictOption> options;
@@ -50,7 +50,7 @@ public class MultilineWidget implements Observer {
 	 *            container
 	 * @param detailsComponent
 	 */
-	public MultilineWidget(DecisionBox decisionBox,
+	public MergeTextWidget(DecisionBox decisionBox,
 			DetailsComponent detailsComponent) {
 		this.decisionBox = decisionBox;
 		this.detailsComponent = detailsComponent;
