@@ -17,7 +17,7 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
-import org.unicase.workspace.ui.dialogs.merge.ui.widgets.MultilineWidget;
+import org.unicase.workspace.ui.dialogs.merge.ui.widgets.MergeTextWidget;
 import org.unicase.workspace.ui.dialogs.merge.ui.widgets.OtherInvolvedWidget;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 
@@ -65,7 +65,7 @@ public class DetailsComponent extends Section {
 		client.setLayout(layout);
 		client.setBackground(this.getBackground());
 
-		MultilineWidget multiWidget = null;
+		MergeTextWidget multiWidget = null;
 		for (ConflictOption option : conflict.getOptions()) {
 			if (!option.isDetailsProvider()) {
 				continue;
@@ -73,7 +73,7 @@ public class DetailsComponent extends Section {
 			if (option.getDetailProvider().startsWith(
 					DecisionConfig.WIDGET_MULTILINE)) {
 				if (multiWidget == null) {
-					multiWidget = new MultilineWidget(decisionBox, this);
+					multiWidget = new MergeTextWidget(decisionBox, this);
 				}
 				multiWidget.addOption(option);
 			} else if (option.getDetailProvider().startsWith(
