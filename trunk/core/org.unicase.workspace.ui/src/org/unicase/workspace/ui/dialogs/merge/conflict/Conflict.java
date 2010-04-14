@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Main class representing a conflict. it offers all kind of convenience methods
@@ -121,6 +122,8 @@ public abstract class Conflict extends Observable {
 
 				}
 			} catch (CoreException e1) {
+				WorkspaceUtil.logException(
+						"Couldn't load merge option extension point.", e1);
 				// fail silently
 			}
 		}
