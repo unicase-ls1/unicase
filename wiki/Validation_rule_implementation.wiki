@@ -1,5 +1,14 @@
 #labels Phase-Implementation
-	
+
+*Quick how-to*
+
+If you prefer a simple how-to to the full length explanation, just read the following bullet points and the section "Defining rules" and be enlightened.
+
+- The validation framework consists of three "indirections" (I, II, III). You will need a constraint binding with a context (I), which specifies a ValidationClientSelector.
+- You will then bind the context to a category (II), and the category will be used when registering constraints (III)
+- Steps I and II are already accomplished within the project, so all you need to do is to register your own constraints, for example for your own model.
+- To register a new constraint, take a look at the section "Defining rules" below. Don't forget to specfiy the correct package URI. It is recommended to take a look at the existing implementations, which can be found in the org.unicase.model plugin.
+
 *Overview*
 
 This document describes how the automatic validation is implemented in UNICASE and how new validation rules in Java as well as in OCL can be defined. Validation is the automatic verification of model constraints. For the implementation of validation in UNICASE, the Eclipse Modeling Framework (EMF) Validation Framework (http://www.eclipse.org/modeling/emf/?project=validation) was used. The framework supports the definition of validation rules initially from Java and OCL. In addition, other validation language can be integrated. Validation can take place on both static and dynamic way, i.e. as a batch job or live. This means that the validation is triggered either by the user, or continuously executed.
