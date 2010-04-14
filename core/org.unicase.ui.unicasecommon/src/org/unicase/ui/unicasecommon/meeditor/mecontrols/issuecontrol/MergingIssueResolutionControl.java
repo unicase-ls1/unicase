@@ -14,11 +14,12 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -112,20 +113,42 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 		}
 
 		private void solveIssue() {
-			ElementListSelectionDialog selectionDialog = new ElementListSelectionDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), provider);
+			// ElementListSelectionDialog selectionDialog = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+			// .getActiveWorkbenchWindow().getShell(), provider);
+			// selectionDialog.setTitle("Select MergingSolution");
+			// selectionDialog.setMessage("Please select a Proposal to create a Solution for this Issue."
+			// + "\n If you select a MergingProposal, the underlying Operations are applied.");
+			// selectionDialog.setElements(mergingIssue.getProposals().toArray(
+			// new Proposal[mergingIssue.getProposals().size()]));
+
+			// selectionDialog.setBlockOnOpen(true);
+			// if (!(selectionDialog.open() == Window.OK)) {
+			// return;
+			// }
+			// Object result = selectionDialog.getFirstResult();
+
+			SolutionSelectionDialog selectionDialog = new SolutionSelectionDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell());
+
 			selectionDialog.setTitle("Select MergingSolution");
-			selectionDialog.setMessage("Please select a Proposal to create a Solution for this Issue."
+			selectionDialog.setDescription("Please select a Proposal to create a Solution for this Issue."
 				+ "\n If you select a MergingProposal, the underlying Operations are applied.");
+
 			selectionDialog.setElements(mergingIssue.getProposals().toArray(
 				new Proposal[mergingIssue.getProposals().size()]));
 
-			selectionDialog.setBlockOnOpen(true);
-			if (!(selectionDialog.open() == Window.OK)) {
+			if (selectionDialog.open() != Window.OK) {
 				return;
 			}
-			Object result = selectionDialog.getFirstResult();
+
+			UnicaseModelElement result = selectionDialog.getSolution();
+
 			if (result instanceof MergingProposal) {
+
+				MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+					"Merging Solution", "You have selected a merging solution with attached change operations."
+						+ " If you continue, these operations will be executed.");
+
 				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(mergingIssue);
 				if (projectSpace != null) {
 					CompositeOperationHandle compositeOperation = projectSpace.beginCompositeOperation();

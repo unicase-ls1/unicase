@@ -48,6 +48,7 @@ public class SolutionSelectionDialog extends Dialog {
 	private List<Entry> entries;
 	private String description;
 	private int selectedIndex;
+	private String title;
 
 	/**
 	 * Default constructor.
@@ -144,6 +145,9 @@ public class SolutionSelectionDialog extends Dialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setSize(450, 350);
+		if (title != null) {
+			newShell.setText(title);
+		}
 	}
 
 	private void refreshItems() {
@@ -270,6 +274,16 @@ public class SolutionSelectionDialog extends Dialog {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set the shell's title.
+	 * 
+	 * @param title title
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+
 	}
 
 }
