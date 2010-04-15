@@ -6,26 +6,15 @@
 package org.unicase.workpackagetransfer.navigator.wizards;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 
 /**
  * @author mkagel 
@@ -33,16 +22,13 @@ import org.unicase.ui.common.Activator;
  * Dialog to choose the WorkPackage in which the WorkItems should be moved.
  *
  */
-public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
+public class ChooseWorkPackagePage extends ModelElementSelectionDialog { 
 	
-	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 	private static final String DIALOG_TITLE = "Select target WorkPackage";
-	private static final String INIT_PATTERN = "**";
+	private static final String DIALOG_MESSAGE = "Enter workpackage name";
 	
-	private EList<WorkPackage> workPackages;
 	private List<WorkPackage> excludeWorkPackages;
 	
-	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
 	 * The constructor.
@@ -50,18 +36,12 @@ public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 	 * @param sourceWorkPackage from which the WorkItems come from 
 	 */
 	public ChooseWorkPackagePage(Project project, WorkPackage sourceWorkPackage) {
-		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),false);
-		workPackages = project.getAllModelElementsbyClass(TaskPackage.Literals.WORK_PACKAGE,new BasicEList<WorkPackage>());
+		super(project, TaskPackage.Literals.WORK_PACKAGE, false);
 		excludeWorkPackages = getExcludeWorkPackages(sourceWorkPackage);
-		
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		this.setListLabelProvider(labelProvider);
-		this.setDetailsLabelProvider(labelProvider);
-
-		
+				
 		this.setBlockOnOpen(true);
 		this.setTitle(DIALOG_TITLE);
-		this.setInitialPattern(INIT_PATTERN);
+		this.setMessage(DIALOG_MESSAGE);
 	}
 	
 	private List<WorkPackage> getExcludeWorkPackages(WorkPackage sourceWorkPackage) {
@@ -77,25 +57,6 @@ public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 				
 		return result;
 	}
-	
-	/**
-	 * Does nothing.
-	 * @param parent the parent
-	 * @return null
-	 */
-	@Override
-	protected Control createExtendedContentArea(Composite parent) {
-		return null;
-	}
-
-	/**
-	 * Returns a new instance of class WorkPackageFilter.
-	 * @return new instance of class WorkPackageFilter
-	 */
-	@Override
-	protected ItemsFilter createFilter() {
-		return new WorkPackageFilter();
-	}
 
 	/**
 	 * Fills the content provider with all elements matching the items filter.
@@ -107,101 +68,14 @@ public class ChooseWorkPackagePage extends FilteredItemsSelectionDialog {
 	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
 		IProgressMonitor progressMonitor) {
 
-		progressMonitor.beginTask("Searching", workPackages.size());
-		for (WorkPackage workPackage : workPackages) {
+		progressMonitor.beginTask("Searching", getModelElements().size());
+		for (ModelElement workPackage : getModelElements()) {
 			if(!excludeWorkPackages.contains(workPackage)) {
 				contentProvider.add(workPackage, itemsFilter);
 			}
 			progressMonitor.worked(1);
 		}
 		progressMonitor.done();
-	}
-
-	/**
-	 * Gets the dialog settings.
-	 * @return the dialog settings
-	 */
-	@Override
-	protected IDialogSettings getDialogSettings() {
-		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-		if (settings == null) {
-			settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
-		}
-		return settings;
-	}
-
-	/**
-	 * Gets the name of an element by asking the labelProvider.
-	 * @return the name as provided by the labelProvider
-	 * @param item the element to get the name from
-	 */
-	@Override
-	public String getElementName(Object item) {
-		if (item instanceof WorkPackage) {
-			return labelProvider.getText(item);
-		} else {
-			return item.toString();
-		}
-	}
-
-	/**
-	 * Returns an alphabetical comparator.
-	 * @return an alphabetical comparator
-	 */
-	@Override
-	protected Comparator<Object> getItemsComparator() {
-		return new Comparator<Object>() {
-	         public int compare(Object arg0, Object arg1) {
-	            return arg0.toString().compareTo(arg1.toString());
-	         }
-	      };
-	}
-
-	/**
-	 * Always returns Status.OK_STATUS.
-	 * @return Status.OK_STATUS
-	 * @param item an item
-	 */
-	@Override
-	protected IStatus validateItem(Object item) {
-		return Status.OK_STATUS;
-	}
-	
-	/**
-	 * 
-	 * @author mkagel A simple filter class.
-	 *
-	 */
-	class WorkPackageFilter extends ItemsFilter {
-
-		/**
-		 * @param item the item
-		 * @return true
-		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#isConsistentItem(java.lang.Object)
-		 */
-		@Override
-		public boolean isConsistentItem(Object item) {
-			return true;
-		}
-
-		/**
-		 * Matches ModelElement's toString Methods.
-		 * 
-		 * @param item an WorkPackage
-		 * @return bool
-		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#matchItem(java.lang.Object)
-		 */
-		@Override
-		public boolean matchItem(Object item) {
-			String pattern = this.getPattern();
-			String label = labelProvider.getText(item);
-			if (pattern == null || pattern.equals("*") || pattern.equals("")) {
-				return true;
-			}
-
-			return matches(label);
-		}
-		
 	}
 
 }
