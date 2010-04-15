@@ -16,13 +16,10 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
-import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.model.task.util.CircularDependencyException;
-import org.unicase.model.task.util.MEState;
+import org.unicase.model.task.util.TaskUtil;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.common.util.EventUtil;
@@ -93,37 +90,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 * Subclasses may override this default behavior.
 	 */
 	protected void dropNonWorkItemOnWorkPackage() {
-		// if one of work items annotating the source is assigned to the same team as work package and is not already
-		// closed,
-		// then add this work item to work package.
-		// otherwise create an AI annotating source and add it to work items of currentOpenME
-
-		Set<UnicaseModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-			.getLeafOpeners(dragSource);
-		int i = 0;
-		for (UnicaseModelElement me : openersForSource) {
-			if (me instanceof WorkItem) {
-				try {
-					if (!me.getMEState().getStatus().equals(MEState.CLOSED) && isAssignedToTheSameTeam((WorkItem) me)) {
-
-						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
-						i++;
-					}
-
-				} catch (CircularDependencyException e) {
-					// Do nothing
-				}
-
-			}
-		}
-		if (i == 0) {
-			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
-			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
-			ai.setName("New Action Item relating " + dragSource.getName());
-			ai.getAnnotatedModelElements().add(dragSource);
-
-		}
-
+		TaskUtil.putNonWorkItemInWorkPackage(dragSource, (WorkPackage) currentOpenME);
 	}
 
 	/**
