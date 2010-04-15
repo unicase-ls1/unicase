@@ -8,13 +8,14 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.Project;
 
 /**
@@ -224,15 +225,20 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	}
 
 	public void apply(Project project) {
-		ModelElement modelElement = project.getModelElement(this.getModelElementId());
-		if (modelElement == null) {
+		ModelElementEObjectWrapper modelElementWrapper = (ModelElementEObjectWrapper) project.getModelElement(this
+			.getModelElementId());
+
+		if (modelElementWrapper == null) {
 			// silently fail
 			return;
 		}
+
+		EObject object = modelElementWrapper.getWrappedEObject();
+
 		EAttribute attribute;
 		try {
-			attribute = (EAttribute) this.getFeature(modelElement);
-			modelElement.eSet(attribute, this.getNewValue());
+			attribute = (EAttribute) this.getFeature(object);
+			object.eSet(attribute, this.getNewValue());
 		} catch (UnkownFeatureException e) {
 			// fail silently
 			return;
