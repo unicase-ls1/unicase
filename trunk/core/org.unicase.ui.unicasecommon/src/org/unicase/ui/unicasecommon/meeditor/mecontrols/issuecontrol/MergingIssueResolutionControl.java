@@ -131,8 +131,8 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 				.getActiveWorkbenchWindow().getShell());
 
 			selectionDialog.setTitle("Select MergingSolution");
-			selectionDialog.setDescription("Please select a Proposal to create a Solution for this Issue."
-				+ "\n If you select a MergingProposal, the underlying Operations are applied.");
+			selectionDialog.setDescription("Please select a proposal to create a solution for this issue."
+				+ "\n If you select a MergingProposal the underlying change operations are applied.");
 
 			selectionDialog.setElements(mergingIssue.getProposals().toArray(
 				new Proposal[mergingIssue.getProposals().size()]));
