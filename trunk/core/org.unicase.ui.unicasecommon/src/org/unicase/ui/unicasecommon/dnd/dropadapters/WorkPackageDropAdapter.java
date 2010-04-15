@@ -10,16 +10,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.model.task.util.TaskUtil;
 
 /**
  * This is the drop adapter for WorkPackages.
@@ -78,19 +75,9 @@ public class WorkPackageDropAdapter extends UCDropAdapter {
 	 */
 	private void dropMEOnWorkpackage(final ModelElement target, final List<ModelElement> source) {
 
-		String viewId = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite()
-			.getId();
-		for (ModelElement me : source) {
-			if (me instanceof UnicaseModelElement) {
-				UnicaseModelElement ucme = (UnicaseModelElement) me;
-
-				ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
-				ai.setName("New Action Item relating " + ucme.getName());
-				ai.getAnnotatedModelElements().add(ucme);
-				// bidirectional reference
-				// ((WorkPackage) target).getContainedWorkItems().add(ai);
-				ai.setContainingWorkpackage((WorkPackage) target);
-				ActionHelper.openModelElement(ai, viewId);
+		for (ModelElement dragSource : source) {
+			if (dragSource instanceof UnicaseModelElement) {
+				TaskUtil.putNonWorkItemInWorkPackage((UnicaseModelElement) dragSource, (WorkPackage) target);
 			}
 		}
 	}
