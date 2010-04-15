@@ -5,9 +5,9 @@
  */
 package org.unicase.ui.meeditor;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ui.forms.editor.FormPage;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * An abstract class for the MEEditorPages.
@@ -24,6 +24,6 @@ public abstract class AbstractMEEditorPage {
 	 * @param modelElement the modelElement
 	 * @return FormPage
 	 */
-	public abstract FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement);
+	public abstract FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement);
 
 }

@@ -8,11 +8,11 @@ package org.unicase.ui.meeditor.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
@@ -39,7 +39,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 		// This variable is already set, in the method which calls to execute
 		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
-		ModelElement me = (ModelElement) o;
+		EObject me = (EObject) o;
 
 		EStructuralFeature problemFeature;
 

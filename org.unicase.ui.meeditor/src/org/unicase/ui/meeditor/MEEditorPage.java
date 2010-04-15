@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -41,7 +42,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
@@ -57,7 +57,7 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
 public class MEEditorPage extends FormPage {
 
 	private EditingDomain editingDomain;
-	private ModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
 
@@ -80,7 +80,7 @@ public class MEEditorPage extends FormPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
+	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, EObject modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -96,8 +96,7 @@ public class MEEditorPage extends FormPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain,
-		ModelElement modelElement) {
+	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain, EObject modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -114,7 +113,7 @@ public class MEEditorPage extends FormPage {
 	 *@param problemFeature the problemFeature
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, TransactionalEditingDomain editingDomain,
-		ModelElement modelElement, EStructuralFeature problemFeature) {
+		EObject modelElement, EStructuralFeature problemFeature) {
 		this(editor, id, title, editingDomain, modelElement);
 		this.problemFeature = problemFeature;
 	}

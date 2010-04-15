@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.meeditor;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -19,7 +20,6 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
@@ -30,7 +30,7 @@ import org.unicase.metamodel.ModelElement;
  */
 public class MEEditorInput implements IEditorInput {
 
-	private ModelElement modelElement;
+	private EObject modelElement;
 	private EStructuralFeature problemFeature;
 	private DecoratingLabelProvider labelProvider;
 
@@ -39,7 +39,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param me the modelElement
 	 */
-	public MEEditorInput(ModelElement me) {
+	public MEEditorInput(EObject me) {
 		super();
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -81,7 +81,7 @@ public class MEEditorInput implements IEditorInput {
 	 * @param me the modelElement
 	 * @param problemFeature the feature having a problem
 	 */
-	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
+	public MEEditorInput(EObject me, EStructuralFeature problemFeature) {
 		this(me);
 		this.problemFeature = problemFeature;
 	}
@@ -129,7 +129,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @return the modelElement
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		return modelElement;
 	}
 
@@ -138,7 +138,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param modelElement the modelElement
 	 */
-	public void setModelElement(ModelElement modelElement) {
+	public void setModelElement(EObject modelElement) {
 		this.modelElement = modelElement;
 	}
 
@@ -186,7 +186,7 @@ public class MEEditorInput implements IEditorInput {
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class clazz) {
 
-		if (clazz.equals(ModelElement.class)) {
+		if (clazz.equals(EObject.class)) {
 			return getModelElement();
 		}
 		return null;
