@@ -208,24 +208,28 @@ public class SolutionSelectionDialog extends Dialog {
 			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).applyTo(this);
 			AdapterFactoryLabelProvider labelProvider = getAdapterFactory();
 
-			title = new CLabel(this, SWT.WRAP);
-			title.setText(labelProvider.getText(element));
-			title.setImage(labelProvider.getImage(element));
-			title.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false));
-
-			text = new StyledText(this, SWT.WRAP | SWT.MULTI);
-			text.setText(cutString(stripNewLine(element.getDescription()), 250, true));
-			text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-			text.setEditable(false);
-			text.setEnabled(false);
-
 			OptionMouseListener listener = new OptionMouseListener(this);
 			this.addListener(SWT.MouseEnter, listener);
 			this.addListener(SWT.MouseExit, listener);
 			this.addListener(SWT.MouseUp, listener);
+
+			title = new CLabel(this, SWT.WRAP);
+			title.setText(labelProvider.getText(element));
+			title.setImage(labelProvider.getImage(element));
+			title.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false));
 			title.addListener(SWT.MouseEnter, listener);
 			title.addListener(SWT.MouseExit, listener);
 			title.addListener(SWT.MouseUp, listener);
+
+			String description = cutString(stripNewLine(element.getDescription()), 250, true).trim();
+			if (!(description != null && !description.equals(""))) {
+				return;
+			}
+			text = new StyledText(this, SWT.WRAP | SWT.MULTI);
+			text.setText(description);
+			text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			text.setEditable(false);
+			text.setEnabled(false);
 			text.addListener(SWT.MouseEnter, listener);
 			text.addListener(SWT.MouseExit, listener);
 			text.addListener(SWT.MouseUp, listener);
@@ -233,11 +237,14 @@ public class SolutionSelectionDialog extends Dialog {
 
 		public void setColor(Color background, Color foreground) {
 			this.setBackground(background);
-			title.setBackground(background);
-			text.setBackground(background);
 
+			title.setBackground(background);
 			title.setForeground(foreground);
-			text.setForeground(foreground);
+
+			if (text != null) {
+				text.setBackground(background);
+				text.setForeground(foreground);
+			}
 		}
 
 		/**
