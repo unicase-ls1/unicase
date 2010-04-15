@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="EMFStoreFeatureUpdateite"
+      id="org.unicase.emfstore.feature.updateSite"
       label="EMFStoreFeatureUpdateite"
-      version="0.5.18.qualifier">
+      version="0.5.18.qualifier"
+      provider-name="unicase.org">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
