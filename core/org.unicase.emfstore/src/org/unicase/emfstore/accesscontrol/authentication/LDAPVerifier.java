@@ -15,6 +15,7 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -28,13 +29,14 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	private String ldapUrl;
 	private String ldapBase;
 	private String searchDn;
+	private boolean useSSL;
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param ldapUrl url
+	 * @param ldapUrl url, if url starts with ldaps:// SSL is used.
 	 * @param ldapBase base
 	 * @param searchDn dn
 	 */
@@ -42,6 +44,11 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		this.ldapUrl = ldapUrl;
 		this.ldapBase = ldapBase;
 		this.searchDn = searchDn;
+
+		if (ldapUrl.startsWith("ldaps://")) {
+			useSSL = true;
+			ServerKeyStoreManager.getInstance().setJavaSSLProperties();
+		}
 	}
 
 	/**
@@ -49,32 +56,59 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 */
 	@Override
 	public boolean verifyPassword(String username, String password) throws AccessControlException {
-
-		// under construction 10.04.2010
-
-		if (verifyPasswordWithLdap(username, password)) {
-			return true;
-		}
-
-		return false;
-	}
-
-	private boolean verifyPasswordWithLdap(String username, String password) {
-		Properties props = new Properties();
 		DirContext dirContext = null;
 
-		// anonymous bind
-		props.put("java.naming.ldap.version", "3");
-		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, ldapUrl);
-		// props.put(Context.SECURITY_PROTOCOL, "ssl");
+		// anonymous bind and resolve user
 		try {
-			dirContext = new InitialDirContext(props);
+			dirContext = new InitialDirContext(anonymousBind());
 		} catch (NamingException e) {
 			ModelUtil.logWarning("LDAP Directory " + ldapUrl + " not found.", e);
 			return false;
 		}
+		String resolvedName = resolveUser(username, dirContext);
+		if (resolvedName == null) {
+			return false;
+		}
 
+		// Authenticated bind and check user's password
+		try {
+			dirContext = new InitialDirContext(authenticatedBind(resolvedName, password));
+		} catch (NamingException e) {
+			e.printStackTrace();
+			ModelUtil.logWarning("Login failed on " + ldapBase + " .", e);
+			return false;
+		}
+		return true;
+	}
+
+	private Properties anonymousBind() {
+		Properties props = new Properties();
+		props.put("java.naming.ldap.version", "3");
+		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
+		props.put(Context.PROVIDER_URL, ldapUrl);
+
+		if (useSSL()) {
+			props.put(Context.SECURITY_PROTOCOL, "ssl");
+		}
+
+		return props;
+	}
+
+	private boolean useSSL() {
+		return useSSL;
+	}
+
+	private Properties authenticatedBind(String principal, String credentials) {
+		Properties bind = anonymousBind();
+
+		bind.put(Context.SECURITY_AUTHENTICATION, "simple");
+		bind.put(Context.SECURITY_PRINCIPAL, principal + ", " + ldapBase);
+		bind.put(Context.SECURITY_CREDENTIALS, credentials);
+
+		return bind;
+	}
+
+	private String resolveUser(String username, DirContext dirContext) {
 		SearchControls constraints = new SearchControls();
 		constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 		NamingEnumeration<SearchResult> results = null;
@@ -83,11 +117,11 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 				constraints);
 		} catch (NamingException e) {
 			ModelUtil.logWarning("Search failed, base = " + ldapBase, e);
-			return false;
+			return null;
 		}
 
 		if (results == null) {
-			return false;
+			return null;
 		}
 
 		String resolvedName = null;
@@ -101,30 +135,13 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 			}
 		} catch (NamingException e) {
 			ModelUtil.logException("Search returned invalid results, base = " + ldapBase, e);
-			return false;
+			return null;
 		}
 
 		if (resolvedName == null) {
 			ModelUtil.logWarning("Distinguished name not found on " + ldapBase);
-			return false;
+			return null;
 		}
-
-		// OW: use ssl? password hash?
-		// Authenticated bind
-		props = new Properties();
-		// props.put(Context.SECURITY_PROTOCOL, "ssl");
-		props.put(Context.SECURITY_AUTHENTICATION, "simple");
-		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + ldapBase);
-		props.put(Context.SECURITY_CREDENTIALS, password);
-		props.put("java.naming.ldap.version", "3");
-		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, ldapUrl);
-		try {
-			dirContext = new InitialDirContext(props);
-		} catch (NamingException e) {
-			ModelUtil.logWarning("Login failed on " + ldapBase + " .", e);
-			return false;
-		}
-		return true;
+		return resolvedName;
 	}
 }

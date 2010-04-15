@@ -140,6 +140,12 @@ public final class ServerKeyStoreManager {
 		}
 	}
 
+	public void setJavaSSLProperties() {
+		System.setProperty("javax.net.ssl.keyStore", ServerConfiguration.getServerKeyStorePath());
+		System.setProperty("javax.net.ssl.trustStore", ServerConfiguration.getServerKeyStorePath());
+		System.setProperty("javax.net.ssl.keyStorePassword", getKeyStorePassword().toString());
+	}
+
 	private char[] getKeyStorePassword() {
 		return ServerConfiguration.getProperties().getProperty(ServerConfiguration.KEYSTORE_PASSWORD,
 			ServerConfiguration.KEYSTORE_PASSWORD_DEFAULT).toCharArray();
