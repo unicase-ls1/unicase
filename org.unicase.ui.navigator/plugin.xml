@@ -101,6 +101,12 @@
             id="org.unicase.ui.navigator.importModel"
             name="Import model">
       </command>
+
+      <command
+            defaultHandler="org.unicase.ui.navigator.handler.ChangeAttributeHandler"
+            id="org.unicase.ui.navigator.changeAttribute"
+            name="Change attribute">
+      </command>
       <category
             id="org.unicase.ui.navigator"
             name="Navigator">
