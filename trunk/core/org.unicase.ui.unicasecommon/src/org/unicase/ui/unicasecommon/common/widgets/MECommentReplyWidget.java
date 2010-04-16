@@ -38,8 +38,11 @@ import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.common.Activator;
+import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Standard widget to show an input field for comment replies.
@@ -65,6 +68,8 @@ public class MECommentReplyWidget extends Composite {
 
 		@Override
 		protected void doExecute() {
+			CompositeOperationHandle compositeOperationHandle = WorkspaceManager.getProjectSpace(modelElement)
+				.beginCompositeOperation();
 			final Comment newComment = RationaleFactory.eINSTANCE.createComment();
 
 			modelElement.getComments().add(newComment);
@@ -81,7 +86,13 @@ public class MECommentReplyWidget extends Composite {
 				newComment.setDescription(text);
 			}
 			newComment.setSender(sender);
-			notifyCommentAdded(newComment);
+			try {
+				compositeOperationHandle.end("add comment", "Added new comment", modelElement.getModelElementId());
+				notifyCommentAdded(newComment);
+			} catch (InvalidHandleException e) {
+				WorkspaceUtil.logException("Could not add comment, there was a composite operation handle exception.",
+					e);
+			}
 		}
 	}
 

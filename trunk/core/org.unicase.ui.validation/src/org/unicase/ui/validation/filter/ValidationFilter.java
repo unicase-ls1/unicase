@@ -23,11 +23,11 @@ public abstract class ValidationFilter extends ViewerFilter {
 	public abstract String getDescription();
 
 	/**
-	 * An id of the filter.
+	 * A name of the filter.
 	 * 
-	 * @return the id
+	 * @return the name
 	 */
-	public abstract String getId();
+	public abstract String getName();
 
 	/**
 	 * An icon for the filter.
