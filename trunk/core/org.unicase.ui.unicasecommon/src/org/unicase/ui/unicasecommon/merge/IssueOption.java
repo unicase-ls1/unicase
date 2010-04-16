@@ -74,8 +74,8 @@ public class IssueOption extends CustomConflictOption {
 	@Override
 	public boolean optionChosen() {
 		String label = getOptionLabel();
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), "Issue Name",
-			"Please enter a name for the issue", (label == null) ? "" : label, null);
+		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create An Issue",
+			"Please enter a name for the issue:", (label == null) ? "" : label, null);
 		inputDialog.setBlockOnOpen(true);
 		int open = inputDialog.open();
 		if (open == 0) {
