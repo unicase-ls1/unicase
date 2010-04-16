@@ -57,7 +57,6 @@ public class ActionItemEmbodiesRequirementConstraint extends AbstractModelConstr
 		context.addResult(errorFeature);
 		return context.createFailureStatus(new Object[] { eObject.eClass().getName() + ": '"
 			+ ((ActionItem) eObject).getName() + "'" });
-
 	}
 
 	private boolean containsKeywords(ActionItem actionItem) {
