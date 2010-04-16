@@ -50,6 +50,7 @@ public class CleanMemoryTask extends Task {
 	@Override
 	public void executeTask() {
 		synchronized (MonitorProvider.getInstance().getMonitor()) {
+			boolean unloadedSomething = false;
 			// LOGGER.info("checking whether projectstates have to be unloaded.");
 			ResourceSet resourceSet = serverSpace.eResource().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
@@ -64,6 +65,7 @@ public class CleanMemoryTask extends Task {
 						if (version != null && version.getNextVersion() != null) {
 							log("unloading: " + project);
 							unload(res);
+							unloadedSomething = true;
 						}
 					}
 
@@ -77,11 +79,14 @@ public class CleanMemoryTask extends Task {
 							&& version.getPrimarySpec().getIdentifier() > (history.getVersions().size() - keep)) {
 							log("unloading: " + cp);
 							unload(res);
+							unloadedSomething = true;
 						}
 					}
 				}
 			}
-			System.gc();
+			if (unloadedSomething) {
+				System.gc();
+			}
 		}
 	}
 
