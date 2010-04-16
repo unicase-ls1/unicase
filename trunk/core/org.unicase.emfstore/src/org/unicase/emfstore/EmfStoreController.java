@@ -133,6 +133,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		TaskManager taskManager = TaskManager.getInstance();
 		taskManager.addTask(new CleanMemoryTask(serverSpace));
+		// taskManager.addTask(new MemoryPlotter(new Date(), 20 * 1000));
 		taskManager.start();
 
 		handlePostStartupListener();
