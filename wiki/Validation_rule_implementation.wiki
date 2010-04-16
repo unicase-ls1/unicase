@@ -7,6 +7,7 @@ If you prefer a simple how-to to the full length explanation, just read the foll
  * You will then bind the context to a category (II), and the category will be used when registering constraints (III)
  * Steps I and II are already accomplished within the project, so all you need to do is to register your own constraints, for example for your own model.
  * To register a new constraint, take a look at the section "Defining rules" below. Don't forget to specfiy the correct package URI, in case you add a new constraint provider for a specific package. It is recommended to take a look at the existing implementations, which can be found in the org.unicase.model plugin.
+ * The current context is `context` and the category for model-specific constraints is `org.unicase.model`. The binding of context to selector can be found in `org.unicase.ui.common`.
 
 *Overview*
 
