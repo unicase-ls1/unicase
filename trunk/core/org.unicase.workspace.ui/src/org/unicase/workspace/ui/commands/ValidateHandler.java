@@ -22,27 +22,36 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ValidationClientSelector;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Handler to validate the project.
  * 
- * @author unicase
+ * @author pfeifferc
  */
 public class ValidateHandler extends AbstractHandler {
 
+	/**
+	 * The marker type.
+	 */
 	private static String markerType = "org.unicase.model.validation.marker";
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		// the object that is to be validated
 		EObject toValidate = ActionHelper.getModelElement(event);
+		// check if null, in which case the project will be used instead
 		if (toValidate == null) {
 			ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+			// check null for project space, when triggering validation run too
+			// many times too quickly in a row, there might be an NPE otherwise.
 			if (projectSpace != null && projectSpace.getProject() != null) {
 				toValidate = projectSpace.getProject();
 			}
 		}
+		// if still null, do nothing, otherwise trigger validation run
 		if (toValidate != null) {
 			final EObject validate = toValidate;
 			new UnicaseCommand() {
@@ -57,6 +66,12 @@ public class ValidateHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * Perform validation run.
+	 * 
+	 * @param object
+	 *            the
+	 */
 	private void validateWithoutCommand(EObject object) {
 		ValidationClientSelector.setRunning(true);
 		IBatchValidator validator = (IBatchValidator) ModelValidationService
@@ -68,8 +83,9 @@ public class ValidateHandler extends AbstractHandler {
 		IResource resource = workspace.getRoot();
 		try {
 			resource.deleteMarkers(markerType, true, 5);
-		} catch (CoreException e1) {
-			e1.printStackTrace();
+		} catch (CoreException e) {
+			WorkspaceUtil.logException(
+					"Validate handler encountered an exception", e);
 		}
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
@@ -80,7 +96,8 @@ public class ValidateHandler extends AbstractHandler {
 					marker.setAttribute(IMarker.SEVERITY,
 							IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
-					e.printStackTrace();
+					WorkspaceUtil.logException(
+							"Validate handler encountered an exception", e);
 				}
 			}
 		}
