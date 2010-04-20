@@ -1,54 +1,59 @@
-package org.unicase.rap.bugreport;
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
+package org.unicase.rap.bugreport;
 
 import java.util.Comparator;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
-import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.UnicaseModelElement;
 
 /**
+ * A dialog to select users or groups.
  * 
- * @author jfinis A dialog to select users or groups.
- *
+ * @author jfinis
  */
 public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
+
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
+
 	private EList<? extends Checkable> workPackages;
+
 	private LabelProvider labelProvider;
-	
+
 	/**
-	 * The constructor.
-	 * {@inheritDoc}
-	 * @param p the project from which the users / groups should be gathered
-	 * @param message the message shown in the dialog.
+	 * The constructor. {@inheritDoc}
+	 * 
+	 * @param pSpace the project-space from which the users / groups should be gathered.
+	 * @param message the message shown in the dialog window.
 	 */
-	public SelectWorkPackageDialog(ProjectSpace pSpace, String message){
-		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),true);
+	public SelectWorkPackageDialog(ProjectSpace pSpace, String message) {
+
+		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), true);
 		workPackages = pSpace.getProject().getAllModelElementsbyClass(
 				TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<Checkable>());
 		
 		// TODO
-		labelProvider = new LabelProvider();// AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-//		setListLabelProvider(labelProvider);
-//		setDetailsLabelProvider(labelProvider);
+		labelProvider = new MyLabelProvider();
+		// AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		setListLabelProvider(labelProvider);
+		setDetailsLabelProvider(labelProvider);
 
 		setBlockOnOpen(true);
 		setInitialPattern("**", NONE);
@@ -56,9 +61,9 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 		setTitle("Select work package used as bug container");
 	}
 
-
 	/**
 	 * Does nothing.
+	 * 
 	 * @param parent the parent
 	 * @return null
 	 */
@@ -69,6 +74,7 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 
 	/**
 	 * Returns a new instance of class UserFilter.
+	 * 
 	 * @return new instance of class UserFilter
 	 */
 	@Override
@@ -78,13 +84,14 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 
 	/**
 	 * Fills the content provider with all elements matching the items filter.
+	 * 
 	 * @param contentProvider the content provider which gets added the items
 	 * @param itemsFilter the used items filter
 	 * @param progressMonitor a progress monitor stating the progress
 	 */
 	@Override
-	protected void fillContentProvider(AbstractContentProvider contentProvider,
-			ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
+	protected void fillContentProvider(AbstractContentProvider contentProvider, 
+						ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", workPackages.size());
 		for (UnicaseModelElement me : workPackages) {
@@ -92,11 +99,11 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 			progressMonitor.worked(1);
 		}
 		progressMonitor.done();
-		
 	}
 
 	/**
 	 * Gets the dialog settings.
+	 * 
 	 * @return the dialog settings
 	 */
 	@Override
@@ -110,6 +117,7 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 
 	/**
 	 * Gets the name of an element by asking the labelProvider.
+	 * 
 	 * @return the name as provided by the labelProvider
 	 * @param item the element to get the name from
 	 */
@@ -124,20 +132,22 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 
 	/**
 	 * Returns an alphabetical comparator.
+	 * 
 	 * @return an alphabetical comparator
 	 */
 	@Override
 	protected Comparator<Object> getItemsComparator() {
-	    return new Comparator<Object>() {
-	         public int compare(Object arg0, Object arg1) {
-	            return arg0.toString().compareTo(arg1.toString());
-	         }
-	      };
+		return new Comparator<Object>() {
+			public int compare(Object arg0, Object arg1) {
+				return arg0.toString().compareTo(arg1.toString());
+			}
+		};
 
 	}
 
 	/**
 	 * Always returns Status.OK_STATUS.
+	 * 
 	 * @return Status.OK_STATUS
 	 * @param item an item
 	 */
@@ -147,11 +157,12 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 	}
 	
 	/**
+	 * A simple filter class.
 	 * 
-	 * @author jfinis A simple filter class.
-	 *
+	 * @author jfinis
 	 */
 	class UserFilter extends ItemsFilter {
+		
 		/**
 		 * Matches ModelElement's toString Methods.
 		 * 
@@ -179,5 +190,41 @@ public class SelectWorkPackageDialog extends FilteredItemsSelectionDialog {
 		public boolean isConsistentItem(Object item) {
 			return true;
 		}
+
 	}
+	
+	/**
+	 * 
+	 * @author fxulusoy
+	 *
+	 */
+	class MyLabelProvider extends LabelProvider {
+		
+		/**
+		 * The constructor.
+		 */
+		public MyLabelProvider() {
+			super();
+		}
+		
+		/**
+		 * @param element e
+		 * @return e
+		 */ 
+		public String getText(Object element) {
+			
+			if (element instanceof UnicaseModelElement) {
+				return ((UnicaseModelElement) element).getName();
+			} else {
+				if(element != null) {
+					return element.toString();
+				} else {
+					return "";
+				}
+			}
+		}
+		
+	}
+	
 }
+
