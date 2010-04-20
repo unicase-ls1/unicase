@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.unicase.rap.updater.handlers.CheckoutProjectHandler;
-import org.unicase.rap.updater.handlers.ProjectInfoLoadingHandler;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ProjectSpace;
@@ -22,14 +20,15 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
+import org.unicase.rap.updater.handlers.CheckoutProjectHandler;
+import org.unicase.rap.updater.handlers.ProjectInfoLoadingHandler;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
-
 
 /**
  * Utility class for retrieving a project independently of whether
  * it has been checked out or not.
  * 
- * @author emueller, svetlana nogina, fatih ulusoy
+ * @author Edgar Müller, Svetlana Nogina, Fatih Ulusoy
  */
 public final class ProjectFacade {
 	
@@ -45,7 +44,6 @@ public final class ProjectFacade {
 		if (projectProxy == null) {
 			projectProxy = new ProjectFacade();
 		}
-		
 		return projectProxy;
 	}
 	
@@ -57,7 +55,8 @@ public final class ProjectFacade {
 	/**
 	 * Check out the project according to project and server URLs.
 	 * 
-	 * @param url the URL of a model element belonging to the project to be looked for.
+	 * @param serverUrl the URL of a model element belonging to the project to be looked for.
+	 * @param projectUrlFrag the URL fragment of the project.
 	 * @return the ProjectSpace in which the project with the given URL is embedded.
 	 */
 	public ProjectSpace checkoutProjectFromServer(ServerUrl serverUrl,
@@ -78,8 +77,7 @@ public final class ProjectFacade {
 				if (projectInfos == null || projectInfos.size() == 0) {
 					
 					// if there are no saved projectInfos for server, load them
-					final ProjectInfoLoadingHandler infoLoadHandler = new ProjectInfoLoadingHandler(
-							currSession);
+					final ProjectInfoLoadingHandler infoLoadHandler = new ProjectInfoLoadingHandler(currSession);
 					try {
 						infoLoadHandler.run();
 					} catch (EmfStoreException e) {

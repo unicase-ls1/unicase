@@ -1,21 +1,40 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.labelproviders;
 
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
-import org.eclipse.swt.graphics.Image;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.Severity;
-import org.unicase.model.change.MergingIssue;
-import org.unicase.model.rationale.Issue;
-import org.unicase.rap.Activator;
 
+import org.unicase.rap.Activator;
+import org.unicase.model.bug.Severity;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.change.MergingIssue;
+
+/**
+ * Observable Map Label Provider.
+ * 
+ * @author Fatih Ulusoy
+ */
 public class UnicaseObservableMapLabelProvider extends
 		ObservableMapLabelProvider {
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param attributeMaps Attribute maps.
+	 */
 	public UnicaseObservableMapLabelProvider(IObservableMap[] attributeMaps) {
 		super(attributeMaps);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Image getImage(Object element) {
 		Image image = null;
 		if (element instanceof BugReport) {
@@ -62,3 +81,4 @@ public class UnicaseObservableMapLabelProvider extends
 	}
 	
 }
+

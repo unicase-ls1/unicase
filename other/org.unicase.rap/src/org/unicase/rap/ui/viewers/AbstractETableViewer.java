@@ -1,37 +1,42 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.viewers;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-import org.eclipse.core.databinding.observable.map.IObservableMap;
-import org.eclipse.core.databinding.observable.set.IObservableSet;
-import org.eclipse.emf.databinding.EMFObservables;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
-import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
-import org.eclipse.jface.layout.TableColumnLayout;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.databinding.EMFObservables;
+import org.eclipse.jface.layout.TableColumnLayout;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.core.databinding.observable.map.IObservableMap;
+import org.eclipse.core.databinding.observable.set.IObservableSet;
+import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+
 import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.rap.ui.sorters.TableViewerColumnSorter;
+import org.unicase.rap.ui.labelproviders.StatusLabelProvider;
 import org.unicase.rap.ui.labelproviders.DateColumnLabelProvider;
 import org.unicase.rap.ui.labelproviders.GenericColumnLabelProvider;
-import org.unicase.rap.ui.labelproviders.StatusLabelProvider;
-import org.unicase.rap.ui.sorters.TableViewerColumnSorter;
 
 /**
  * 
- * @author Edgar Mueller
- * @author Fatih Ulusoy
+ * @author Edgar Mueller, Fatih Ulusoy
  */
 public abstract class AbstractETableViewer extends TableViewer {
 	
@@ -46,7 +51,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 	/**
 	 * 
 	 * @param projectSpace
-	 * @param composite
+	 * @param composite Composite.
 	 */
 	public AbstractETableViewer(Composite composite) {
 		super(composite, SWT.BORDER);
@@ -59,6 +64,7 @@ public abstract class AbstractETableViewer extends TableViewer {
 	/**
 	 * Returns the list of EStructuralFeature one is interested in.
 	 * 
+	 * @return Featural list of the table.
 	 */
 	public abstract ArrayList<EStructuralFeature> getFeaturesList();
 		

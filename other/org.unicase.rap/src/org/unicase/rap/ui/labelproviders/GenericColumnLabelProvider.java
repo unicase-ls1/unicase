@@ -1,20 +1,25 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.labelproviders;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
+
 import org.unicase.model.ModelPackage;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -36,16 +41,14 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 	/**
 	 * Creates a specific ColumnLabelProvider for the display of features of Checkable instances.
 	 * 
+	 * @param labelProvider the label provider that
 	 * @param feature the feature that this provider shall return a label for
 	 */
 	public GenericColumnLabelProvider(ILabelProvider labelProvider,EStructuralFeature feature) {
 		super();
 		this.feature = feature;
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
-				.getDecoratorManager();
-		decoratingLabelProvider = new DecoratingLabelProvider(labelProvider,
-				decoratorManager.getLabelDecorator());
-
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		decoratingLabelProvider = new DecoratingLabelProvider(labelProvider, decoratorManager.getLabelDecorator());
 	}
 
 	/**

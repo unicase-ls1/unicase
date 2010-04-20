@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap;
 
 import org.eclipse.swt.SWT;
@@ -13,14 +18,25 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
  */
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param configurer Workbench window configurer.
+	 */
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
         return new ApplicationActionBarAdvisor(configurer);
     }
     
+	/**
+	 * {@inheritDoc}
+	 */
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
         configurer.setShellStyle( SWT.NO_TRIM );
@@ -31,6 +47,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setTitle("UNICASE Web App");
     }
     
+	/**
+	 * {@inheritDoc}
+	 */
 	public void postWindowCreate() {
 		Shell shell = getWindowConfigurer().getWindow().getShell();
 		shell.setMaximized(true);

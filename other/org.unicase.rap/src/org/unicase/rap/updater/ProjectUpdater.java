@@ -1,109 +1,199 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.updater;
 
+import java.util.Date;
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.eventmanager.EMFStoreEventListener;
-import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.emfstore.connection.rmi.SerializationUtil;
-import org.unicase.backchannel.connection.rmi.client.BackchannelConnectionManager;
+import org.eclipse.emf.common.util.EList;
 
-import org.unicase.proxyclient.ProxyClient;
-import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.rap.config.ActivatedProjectsCache;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.emfstore.esmodel.url.ServerUrl;
+import org.unicase.emfstore.esmodel.url.UrlFactory;
+import org.unicase.workspace.observers.UpdateObserver;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.workspace.exceptions.NoChangesOnServerException;
 
+import config.ConfigEntity;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.EMFServerSettingsConfigEntity;
 
 /**
+ * Project update handler.
  * 
- * 
- * @author fxulusoy
+ * @author Fatih Ulusoy
  */
-public class ProjectUpdater extends ProxyClient implements Runnable {
-
-	private static ProjectUpdater instance;
+public class ProjectUpdater implements UpdateObserver, Runnable {
 	
-	private EMFStoreEventListener listener;
+	private Usersession usersession;
 	
-	private ProjectUpdater() {
-		listener = new MyEMFStoreEventListener();
-	}
+	private ProjectSpace projectSpace;
 	
-	public static ProjectUpdater getInstance() {
-		if(instance == null)
-			instance = new ProjectUpdater();
+	private ServerUrl serverUrl;
+	
+	private ProjectUrlFragment projectUrlFrag;
+	
+	/**
+	 * The constructor.
+	 * 
+	 * @param projectName Name of the project to be updated.
+	 */
+	public ProjectUpdater(String projectName) {
+		serverUrl = createServerUrl();
+		projectUrlFrag = createProjectUrlFragment(projectName);
+		usersession = getUsersession(serverUrl.getHostName());
 		
-		return instance;
-	}
-	
-	public void registerProject(ProjectId projectId) {
-		try {
-			loginServer("super", "super", "localhost", null, KeyStoreManager.DEFAULT_DEV_CERTIFICATE, 8080);
-
-			BackchannelConnectionManager manager = new BackchannelConnectionManager();
-			manager.initConnection(getBackChannelServerInfo(), getSessionId());
-			
-			try {
-				manager.registerRemoteListener(getSessionId(), listener, projectId);
-			} catch (EmfStoreException e) {
-				
+		// TODO: use more efficient to retrieve project
+		List<ProjectSpace> projectSpaces = WorkspaceManager.getInstance()
+			.getCurrentWorkspace().getProjectSpaces();
+		
+		for (ProjectSpace projSpace : projectSpaces) {
+			if ((projSpace.getProjectName() != null)
+					&& projSpace.getProjectName().equals(projectName)) {
+				projectSpace = projSpace;
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
+	private ServerUrl createServerUrl() {
+		ServerUrl serverUrl = UrlFactory.eINSTANCE.createServerUrl();
+		
+		EMFServerSettingsConfigEntity configEntity = new EMFServerSettingsConfigEntity();
+		ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+		
+		serverUrl.setHostName((String) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_URL));
+		serverUrl.setPort((Integer) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_PORT));
+
+		return serverUrl;
+	}
+
+	private ProjectUrlFragment createProjectUrlFragment(String projectName) {
+		ProjectUrlFragment projUrlFrag = UrlFactory.eINSTANCE.createProjectUrlFragment();
+		projUrlFrag.setName(projectName);
+		return projUrlFrag;
+	}
+	
+	private Usersession getUsersession(String serverUrl) {
+		Usersession currSession = null;
+		EList<Usersession> sessions = WorkspaceManager.getInstance()
+			.getCurrentWorkspace().getUsersessions();
+		
+		for(Usersession session: sessions){
+			if(session.getServerInfo().getUrl().equals(serverUrl)){
+				 currSession = session;
+			}	
+		}
+		
+		return currSession;
+	}
+
+	/**
+	 * 
+	 */
 	public void run() {
-		try {
-			List<ProjectSpace> projs = ActivatedProjectsCache.getInstance().getProjects();
-			
-			for (ProjectSpace projectSpace : projs) {
-				registerProject(projectSpace.getProjectId());
-			}
-			
-			while(!Thread.currentThread().isInterrupted()) {
-				Thread.sleep(1000);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		if (projectSpace == null) {
+			checkoutProjectFromServer();
 		}
-	}
 
-	private ServerInfo getBackChannelServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(2000);
-		serverInfo.setUrl("localhost");
-		return serverInfo;
+		update(projectSpace);
+		System.out.println(new Date());
 	}
 	
-	private class MyEMFStoreEventListener implements EMFStoreEventListener {
+	/**
+	 * Checks out the project from server.
+	 */
+	private void checkoutProjectFromServer() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				ProjectFacade projectFacade = ProjectFacade.getInstance();
+				projectSpace = projectFacade.checkoutProjectFromServer(serverUrl, projectUrlFrag);
+			}
+		}.run();
+	}
+	
 
-		public boolean handleEvent(ServerEvent event) {
-			try {
-				List<ProjectSpace> projs = ActivatedProjectsCache.getInstance().getProjects();
-				
-				for (ProjectSpace projectSpace : projs) {
-					Thread updaterThread = new Thread(new UpdateProjectHandler(projectSpace.getProjectName()));
-					updaterThread.start();
+	/**
+	 * Updates the projectspace.
+	 * 
+	 * @param projectSpace the target project space
+	 */
+	private void update(final ProjectSpace projectSpace) {
+		
+		if (projectSpace == null) {
+			return;
+		}
+		
+		usersession = projectSpace.getUsersession();
+		if (usersession == null) {
+			System.out.println("This project is not yet shared with a server, you cannot update.");
+			return;
+		}
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				try {
+					PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
+					PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION,
+						ProjectUpdater.this);
+					WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
+
+				} catch (ChangeConflictException e1) {
+					handleChangeConflictException(e1);
+					// TODO : what should we do if there conflict occurs?
+					// maybe, we can delete the project and check out new one???
+				} catch (NoChangesOnServerException e) {
+					System.out
+						.println("No need to update\n" + "Your project is up to date, you do not need to update.");
+				} catch (EmfStoreException e) {
+					WorkspaceUtil.logException("Error during the project update.", e);
 				}
-				
-				System.out.println(SerializationUtil.eObjectToString(event));
-			} catch (RMISerializationException e) {
-				e.printStackTrace();
 			}
-			return true;
-		}
-
+		}.run();
 	}
-	
-	
-	
+
+	/**
+	 * Conflict resolver opens dialog to get user's decision. In web application, we don't
+	 * open any dialog. Therefore, this method makes nothing. 
+	 * 
+	 * @param conflictException
+	 */
+	private void handleChangeConflictException(ChangeConflictException conflictException) {
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean inspectChanges(List<ChangePackage> changePackages) {
+		// don't need to user approve. There is no real user in web application.
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
+	 */
+	public void updateCompleted() {
+		System.out.println("Update completed...");
+	}
+
 }
 
 

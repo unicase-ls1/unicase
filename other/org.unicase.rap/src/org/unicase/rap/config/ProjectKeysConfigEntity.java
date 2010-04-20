@@ -1,13 +1,17 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.config;
 
 import config.ConfigEntity;
 import config.impl.ConfigEntityImpl;
 
 /**
- * Config entity that is responsible for saving the access keys for each project.
+ * Configuration entity that is responsible for saving the access keys for each project.
  * 
- * @author emueller
- *
+ * @author Edgar Müller
  */
 public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	
@@ -16,15 +20,26 @@ public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	 */
 	private static final String CFG_FILENAME = "org.unicase.rap.config.ProjectKeysConfigEntity";
 	
+	/**
+	 * Keys.
+	 */
 	private class Keys {
-		final static String POSTFIX_ACTIVATED = "_ACTIVATED";
-		final static String POSTFIX_ACCESS_KEY = "_ACCESS_KEY";
+		static final String POSTFIX_ACTIVATED = "_ACTIVATED";
+		static final String POSTFIX_ACCESS_KEY = "_ACCESS_KEY";
 	}
 	
+	/**
+	 * The constructor.
+	 */
 	public ProjectKeysConfigEntity() {
 		
 	}
 	
+	/**
+	 * Copy constructor.
+	 * 
+	 * @param configEntity Configuration entity that will be copied.
+	 */
 	public ProjectKeysConfigEntity(ConfigEntity configEntity) {
 		properties = configEntity.getProperties();
 	}
@@ -89,4 +104,6 @@ public class ProjectKeysConfigEntity extends ConfigEntityImpl {
 	public String getConfigFilename() {
 		return CFG_FILENAME;
 	}
+	
 }
+

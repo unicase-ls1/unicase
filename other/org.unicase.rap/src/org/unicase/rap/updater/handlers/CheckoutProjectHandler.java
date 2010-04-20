@@ -13,7 +13,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 /**
  * Simple handler for checking out projects.
  * 
- * @author emueller, svetlana nogina
+ * @author Edgar Müller, Svetlana Nogina
  */
 public class CheckoutProjectHandler {
 
@@ -38,7 +38,7 @@ public class CheckoutProjectHandler {
 	
 	/**
 	 * 
-	 * 
+	 * @throws EmfStoreException if checkout fails.
 	 */
 	public void run() throws EmfStoreException {
 		projectspace = session.checkout(projectInfo);
@@ -54,3 +54,4 @@ public class CheckoutProjectHandler {
 	}
 
 }
+

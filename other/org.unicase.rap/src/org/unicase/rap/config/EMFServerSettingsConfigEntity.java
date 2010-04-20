@@ -1,11 +1,16 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.config;
 
 import config.impl.ConfigEntityImpl;
 
 /**
+ * EMFServer settings configuration entity.
  * 
- * 
- * @author fxulusoy
+ * @author Edgar Mueller, Fatih Ulusoy
  */
 public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 
@@ -14,10 +19,17 @@ public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 	 */
 	private static final String CFG_FILENAME = "org.unicase.rap.config.EMFServerSettingsConfigEntity";
 
+	/**
+	 * Keys.
+	 */
 	public class Keys {
+		/** EMFServer URL. */
 		public static final String EMF_SERVER_URL = "EMF_SERVER_URL";
+		/** EMFServer port. */
 		public static final String EMF_SERVER_PORT = "EMF_SERVER_PORT";
+		/** EMFServer web client's user-name. */
 		public static final String EMF_SERVER_USER_NAME = "EMF_SERVER_WEB_USER_NAME";
+		/** EMFServer web client's user-password. */
 		public static final String EMF_SERVER_USER_PASSWORD = "EMF_SERVER_WEB_USER_PASSWORD";
 	}
 
@@ -33,7 +45,7 @@ public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 	/**
 	 * Returns the URL of the EMF-Server.
 	 * 
-	 * @return
+	 * @return URL of EMFServer.
 	 */
 	public String getEmfServerUrl() {
 		return (String) getProperties().get(Keys.EMF_SERVER_URL);
@@ -51,7 +63,7 @@ public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 	/**
 	 * Returns the port of the EMF-Server.
 	 * 
-	 * @return
+	 * @return Port of EMFServer.
 	 */
 	public int getEmfServerPort() {
 		return (Integer) getProperties().get(Keys.EMF_SERVER_PORT);
@@ -60,16 +72,15 @@ public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 	/**
 	 * Sets the user-name of the EMF-Server's web client.
 	 * 
-	 * @param emfServerPort The URL of the EMF-Server
+	 * @param emfServerUserName The user-name of the EMF-Server's web client.
 	 */
-	public void setEmfServerUserName(String emfServerPort) {
-		getProperties().put(Keys.EMF_SERVER_USER_NAME, emfServerPort);
+	public void setEmfServerUserName(String emfServerUserName) {
+		getProperties().put(Keys.EMF_SERVER_USER_NAME, emfServerUserName);
 	}
 
 	/**
-	 * Returns the user-name of the EMF-Server's web client.
 	 * 
-	 * @return
+	 * @return The user-name of the EMF-Server's web client.
 	 */
 	public String getEmfServerUserName() {
 		return (String) getProperties().get(Keys.EMF_SERVER_USER_NAME);
@@ -78,16 +89,15 @@ public class EMFServerSettingsConfigEntity extends ConfigEntityImpl {
 	/**
 	 * Sets the password of the EMF-Server's web client.
 	 * 
-	 * @param emfServerPort The URL of the EMF-Server
+	 * @param emfServerUserPassword The password of the EMF-Server's web client.
 	 */
-	public void setEmfServerUserPassword(String emfServerPort) {
-		getProperties().put(Keys.EMF_SERVER_USER_PASSWORD, emfServerPort);
+	public void setEmfServerUserPassword(String emfServerUserPassword) {
+		getProperties().put(Keys.EMF_SERVER_USER_PASSWORD, emfServerUserPassword);
 	}
 
 	/**
-	 * Returns the password of the EMF-Server's web client.
 	 * 
-	 * @return
+	 * @return The password of the EMF-Server's web client.
 	 */
 	public String getEmfServerUserPassword() {
 		return (String) getProperties().get(Keys.EMF_SERVER_USER_PASSWORD);

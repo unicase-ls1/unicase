@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
@@ -14,15 +19,16 @@ import org.unicase.workspace.ProjectSpace;
 /**
  * An single project aware tab.
  * 
- * @author Edgar Mueller
- * @author Fatih Ulusoy
+ * @author Edgar Müller, Fatih Ulusoy
  */
 public abstract class ProjectAwareTab {
 
 	private CTabItem tabItem;
 	
+	/**  */
 	protected Composite composite;
 	
+	/**  */
 	protected ProjectSpace projectSpace;
 	
 	/**
@@ -43,6 +49,9 @@ public abstract class ProjectAwareTab {
 		tabItem.setControl(composite);
 	}
 	
+	/**
+	 * 
+	 */
 	public void createPartControl() {
 		createTabContent(composite);
 	}
