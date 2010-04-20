@@ -1,36 +1,48 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.viewers;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
+
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.rap.ui.viewers.AbstractETableViewer;
 
 /**
- * Viewer class for workitems.
+ * Viewer class for work-items.
  * 
- * @author emueller
- *
+ * @author Edgar Müller
  */
 public class WorkItemsTableViewer extends AbstractETableViewer {
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param composite Parent composite.
+	 */
 	public WorkItemsTableViewer(Composite composite) {
 		super(composite);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void init() {		
 		super.init();
@@ -39,6 +51,9 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 		getTable().setLayoutData(tableData);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ArrayList<EStructuralFeature> getFeaturesList() {
 		ArrayList<EStructuralFeature> list = new ArrayList<EStructuralFeature>();
@@ -54,12 +69,16 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 		return list;
 	}
 	
+	/**
+	 * 
+	 * @param project Project.
+	 */
 	public void setInput(Project project) {
 		final List<? extends Checkable> taskItems = project.getAllModelElementsbyClass(
 			TaskPackage.eINSTANCE.getCheckable(), new BasicEList<Checkable>());
 
-		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator.hasNext();) {
-			Checkable item = iterator.next();
+//		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator.hasNext();) {
+//			Checkable item = iterator.next();
 //			if (item instanceof ActionItem) {
 //				if (((ActionItem) item).isDone()) {
 //					iterator.remove();
@@ -73,7 +92,7 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 //					iterator.remove();
 //				}
 //			}
-		}
+//		}
 
 		final WritableList list = (WritableList) (this.getInput());
 		if (list == null) {

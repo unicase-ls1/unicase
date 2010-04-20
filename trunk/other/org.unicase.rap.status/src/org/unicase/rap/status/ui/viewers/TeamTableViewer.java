@@ -1,39 +1,47 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.viewers;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
-import org.unicase.metamodel.Project;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.rap.ui.viewers.AbstractETableViewer;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
+
+import org.unicase.metamodel.Project;
+import org.unicase.model.organization.User;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
+import org.unicase.rap.ui.viewers.AbstractETableViewer;
 
 /**
  * Table viewer for team members.
  * 
- * @author Edgar Mueller
- * @author Fatih Ulusoy
+ * @author Edgar Müller, Fatih Ulusoy
  */
 public class TeamTableViewer extends AbstractETableViewer {
 	
 	/**
 	 * 
 	 * @param projectSpace
-	 * @param composite
+	 * @param composite Parent composite.
 	 */
 	public TeamTableViewer(Composite composite) {
 		super(composite);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void init() {		
 		super.init();
@@ -53,6 +61,10 @@ public class TeamTableViewer extends AbstractETableViewer {
 		return list;
 	}
 
+	/**
+	 * 
+	 * @param project Project
+	 */
 	public void setInput(Project project) {
 		final WritableList oldItems = (WritableList) (this.getInput());
 		
@@ -88,8 +100,9 @@ public class TeamTableViewer extends AbstractETableViewer {
 		
 		for(Group group : groups) {
 			// TODO: group name will be got from configuration
-			if(group.getName().toLowerCase().contains("myproject"))
+			if(group.getName().toLowerCase().contains("myproject")) {
 				teamMembers = group.getOrgUnits();
+			}
 		}
 		
 		return teamMembers;

@@ -1,10 +1,18 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.UnicaseModelElement;
 
+/**
+ * Utility class.
+ * 
+ * @author Fatih Ulusoy
+ */
 public final class Utility {
 	
 	/**
@@ -33,7 +41,6 @@ public final class Utility {
 	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
 	 * @param modelElement The model element
-	 * @param projectSpace the project space
 	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
 	 * @return a HTML link as string
 	 */
@@ -61,6 +68,12 @@ public final class Utility {
 		return name;
 	}
 	
+	/**
+	 * 
+	 * @param ps Project space.
+	 * @param me Unicase model element
+	 * @return The URL of model element.
+	 */
 	public static String getLinkForModelElement(ProjectSpace ps, UnicaseModelElement me) {
 		String meName = ((UnicaseModelElement) me).getName().replaceAll(" ", "");
 		// Get model element id
@@ -81,3 +94,4 @@ public final class Utility {
 	}
 
 }
+
