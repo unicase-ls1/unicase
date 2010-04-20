@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap;
 
 import org.eclipse.swt.SWT;
@@ -30,19 +35,25 @@ public class LoginDialog extends Dialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 * @param title
+	 * @param parent Parent.
+	 * @param title Title of login dialog window.
 	 */
 	public LoginDialog(final Shell parent, final String title) {
 		super(parent);
 		this.title = title;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void createButtonsForButtonBar(final Composite parent) {
 		createButton(parent, IDialogConstants.CANCEL_ID, "Cancel", false);
 		createButton(parent, LOGIN_ID, "Login", true);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected Control createDialogArea(final Composite parent) {
 		// create composite
 		Composite composite = (Composite) super.createDialogArea(parent);
@@ -86,6 +97,9 @@ public class LoginDialog extends Dialog {
 		return composite;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void configureShell(final Shell shell) {
 		super.configureShell(shell);
 		if (title != null) {
@@ -93,6 +107,9 @@ public class LoginDialog extends Dialog {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void buttonPressed(final int buttonId) {
 		if (buttonId == LOGIN_ID) {
 			username = userText.getText();

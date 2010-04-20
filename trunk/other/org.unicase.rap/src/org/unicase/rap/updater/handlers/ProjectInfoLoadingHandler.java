@@ -7,17 +7,16 @@ package org.unicase.rap.updater.handlers;
 
 import java.util.List;
 
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-
 /**
  * Handler for loading project informations from the server.
  * 
- * @author svetlana nogina, fatih ulusoy
+ * @author Svetlana nogina, Fatih Ulusoy
  */
 public class ProjectInfoLoadingHandler {
 	
@@ -35,7 +34,10 @@ public class ProjectInfoLoadingHandler {
 		this.session = session;	
 	}
 	
-	
+	/**
+	 * 
+	 * @throws EmfStoreException if any error in the EmfStore occurs
+	 */
     public void run() throws EmfStoreException {
      	if(session != null){
             SessionId id = session.getSessionId();
@@ -53,3 +55,4 @@ public class ProjectInfoLoadingHandler {
 	 }
 	 
 }
+

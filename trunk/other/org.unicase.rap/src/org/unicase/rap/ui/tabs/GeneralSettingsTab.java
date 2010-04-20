@@ -1,16 +1,21 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.unicase.rap.config.ConfigEntityStore;
-import org.unicase.rap.config.GeneralSettingsConfigEntity;
-import org.unicase.rap.config.IValidator;
 
 import config.ConfigEntity;
+import org.unicase.rap.config.IValidator;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.config.GeneralSettingsConfigEntity;
 
 /**
  * General settings tab.
@@ -25,6 +30,9 @@ public class GeneralSettingsTab extends ConfigurationTab {
 	private Text passwordTextField;
 	private Text passwordConfirmationTextField;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createConfigurationTab(Composite parent) {
 
 		GridLayout gridLayout = new GridLayout();
@@ -66,6 +74,9 @@ public class GeneralSettingsTab extends ConfigurationTab {
 		loadSettings();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ConfigEntity getConfigEntity() {
 		cfgEntity = new GeneralSettingsConfigEntity();
@@ -74,13 +85,14 @@ public class GeneralSettingsTab extends ConfigurationTab {
 		return cfgEntity;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void loadSettings() {
 		
 		 GeneralSettingsConfigEntity configEntity = new GeneralSettingsConfigEntity();
-		
-		 ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity,
-				 configEntity.eClass());
+		 ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
 		 
 		 if (entity != null) {
 			 adminUserNameTextField.setText((String) entity.getProperties()

@@ -1,41 +1,61 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.updater.handlers;
 
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import org.unicase.emfstore.esmodel.url.ServerUrl;
-import org.unicase.emfstore.esmodel.url.UrlFactory;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.emfstore.esmodel.url.ServerUrl;
+import org.unicase.emfstore.esmodel.url.UrlFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
+import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.EMFServerSettingsConfigEntity;
 
-
+import config.ConfigEntity;
 
 /**
- * Login handler. Web application login to EMF server via login handler.
+ * Login handler. Web application login to EMF server.
  * 
  * @author Fatih Ulusoy
  */
 public class LoginHandler {
 	
-	private String serverUrlStr;
+	private int emfServerPort;
+	private String emfServerUrl;
+	private ServerInfo serverInfo;
+	private Usersession userSession;
+	private String emfServerUserName;
+	private String emfServerUserPassword;;
 	
 	/**
-	 * Constructor.
-	 * 
-	 * @param serverUrl
+	 * The constructor.
 	 */
-	public LoginHandler(String serverUrl) {
-		this.serverUrlStr = serverUrl;
+	public LoginHandler() {
+		
+		EMFServerSettingsConfigEntity configEntity = new EMFServerSettingsConfigEntity();
+		ConfigEntity entity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+		
+		emfServerUrl = (String) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_URL);		
+		emfServerPort = (Integer) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_PORT);
+		emfServerUserName = (String) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_USER_NAME);
+		emfServerUserPassword = (String) entity.getProperties().get(
+			EMFServerSettingsConfigEntity.Keys.EMF_SERVER_USER_PASSWORD);
 	}
 	
 	/**
@@ -43,60 +63,64 @@ public class LoginHandler {
 	 */
 	public void run() {
 
-		WorkspaceManager.getInstance();
-		final EMFServerSettingsConfigEntity entity = new EMFServerSettingsConfigEntity();
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		final Workspace wokspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		final ServerInfo serverInfo = createServerInfo();
+		
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
-				ServerInfo serverInfo = getServerInfo();
-				Usersession session = serverInfo.getLastUsersession();
-				
-				if (session == null) {
-					session = WorkspaceFactory.eINSTANCE.createUsersession();
-					session.setServerInfo(serverInfo);
+			protected void doRun() {
+				userSession = serverInfo.getLastUsersession();
+				if (userSession == null) {
+					userSession = WorkspaceFactory.eINSTANCE.createUsersession();
+					userSession.setServerInfo(serverInfo);
 				}
-				// TODO: password should get from encrypted file
-				session.setUsername(entity.getEmfServerUserName());
-				session.setPassword(entity.getEmfServerUserPassword());
+				userSession.setUsername(emfServerUserName);
+				userSession.setPassword(emfServerUserPassword);
 				try {
-					session.logIn();
-					serverInfo.setLastUsersession(session);
-
-					// add the newly created session
+					userSession.logIn();
+					serverInfo.setLastUsersession(userSession);
 					// TODO : in what condition should I add
-					if (getUsersession() == null)
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.getUsersessions().add(session);
-
-					WorkspaceManager.getInstance().getCurrentWorkspace().save();
+					if (getSession() == null) {
+						wokspace.getUsersessions().add(userSession);
+					}
+					wokspace.save();
 				} catch (AccessControlException e) {
 					WorkspaceUtil.logException("Login failed.", e);
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logException("", e);
 				}
 			}
-		});
+		}.run();
 		
 	}
 	
 	/**
-	 * Gets server info.
 	 * 
 	 * @return server info
 	 */
-	private ServerInfo getServerInfo() {
+	public ServerInfo getServerInfo() {
+		return serverInfo;
+	}
+	
+	/**
+	 * 
+	 * @return user session
+	 */
+	public Usersession getUserSession() {
+		return userSession;
+	}
+	
+	/**
+	 * Creates server info.
+	 * 
+	 * @return server info
+	 */
+	private ServerInfo createServerInfo() {
 		
-		ServerInfo serverInfo = null;
 		Set<ServerInfo> serverInfos = null;
 		ServerUrl serverUrl = UrlFactory.eINSTANCE.createServerUrl();
-		serverUrl.setHostName(serverUrlStr);
-		EMFServerSettingsConfigEntity entity = new EMFServerSettingsConfigEntity();
-	
-		serverUrl.setPort(entity.getEmfServerPort());
+		serverUrl.setHostName(emfServerUrl);
+		serverUrl.setPort(emfServerPort);
 		try {
 			serverInfos = WorkspaceManager.getInstance()
 					.getCurrentWorkspace().resolve(serverUrl);
@@ -113,18 +137,20 @@ public class LoginHandler {
 		return serverInfo;
 	}
 	
+
+	
 	/**
 	 * Gets user session.
 	 * 
 	 * @return user session
 	 */
-	private Usersession getUsersession() {
+	private Usersession getSession() {
 		Usersession currSession = null;
 		EList<Usersession> sessions = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getUsersessions();
 
 		for (Usersession session : sessions) {
-			if (session.getServerInfo().getUrl().equals(serverUrlStr)) {
+			if (session.getServerInfo().getUrl().equals(emfServerUrl)) {
 				currSession = session;
 			}
 		}

@@ -1,21 +1,27 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.views;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
+
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.metamodel.util.ProjectChangeObserver;
+
 import config.ConfigEntity;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ProjectKeysConfigEntity;
 
 /**
- * Abstract class for a view that is dependant of a project.
+ * Abstract class for a view that is dependent of a project.
  * 
- * @author emueller
- *
+ * @author Edgar Müller
  */
 public abstract class ProjectAwareView extends AbstractView implements ProjectChangeObserver {
 	
@@ -24,6 +30,9 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	 */
 	protected ProjectSpace projectSpace;
 	
+	/**
+	 * The constructor.
+	 */
 	public ProjectAwareView() {
 		// TODO: parameter names 'key' and 'name' currently hard coded
 		String projectName = getHttpRequest().getParameter("name");
@@ -91,6 +100,10 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param projectName Name of project.
+	 */
 	protected void resolveProject(String projectName) {
 		
 		// TODO: resolve project via projectname directly

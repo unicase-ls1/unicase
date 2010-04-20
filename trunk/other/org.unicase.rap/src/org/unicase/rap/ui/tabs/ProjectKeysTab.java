@@ -1,28 +1,39 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+
+import config.ConfigEntity;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.rap.config.ActivatedProjectsCache;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.ProjectKeysConfigEntity;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
-import config.ConfigEntity;
 
+/**
+ * 
+ * 
+ * @author Edgar Müller, Fatih Ulusoy
+ */
 public class ProjectKeysTab extends ConfigurationTab {
 	
 	/**
 	 * The currently selected project space.
 	 */
-	ProjectSpace currentProjectSpace;
+	private ProjectSpace currentProjectSpace;
 	
 	/**
 	 * The table viewer for projects.
@@ -36,7 +47,9 @@ public class ProjectKeysTab extends ConfigurationTab {
 	 */
 	private Button checkBox;
 	
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createConfigurationTab(Composite parent) {
 		GridLayout gridLayout = new GridLayout();
@@ -80,12 +93,16 @@ public class ProjectKeysTab extends ConfigurationTab {
 		});
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ConfigEntity getConfigEntity() {
 		// TODO: simplify these calls
 		ProjectKeysConfigEntity configEntity = new ProjectKeysConfigEntity();
-		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
-		ProjectKeysConfigEntity projectConfigEntity = new ProjectKeysConfigEntity(cfgEntity);
+		ConfigEntityStore.loadConfigEntity(configEntity, configEntity.eClass());
+		
+		ProjectKeysConfigEntity projectConfigEntity = new ProjectKeysConfigEntity(configEntity);
 		
 		String projectName = currentProjectSpace.getProjectName();
 		projectConfigEntity.addAccessKey(projectName, crypticElementTextField.getText());

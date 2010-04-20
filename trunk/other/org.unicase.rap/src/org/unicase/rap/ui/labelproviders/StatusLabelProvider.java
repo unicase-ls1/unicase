@@ -1,23 +1,26 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.ui.labelproviders;
 
 import java.util.Map;
 import java.util.HashMap;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.IColorProvider;
 
+import org.unicase.rap.Activator;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 
-import org.unicase.rap.Activator;
-
-
 /**
- * This label provider shows the status of a modelelement represented as an image.
+ * This label provider shows the status of a model element represented as an image.
  * 
  * @author helming
  */
