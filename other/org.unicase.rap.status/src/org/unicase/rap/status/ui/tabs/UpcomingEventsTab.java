@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.tabs;
 
 import java.util.Date;
@@ -35,22 +40,34 @@ import org.unicase.rap.ui.tabs.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
 
 /**
+ * Up-coming events tab.
  * 
- * @author fxulusoy
+ * @author Fatih Ulusoy
  */
 public class UpcomingEventsTab extends ProjectAwareTab {
 
-	
+	/**
+	 * The constructor.
+	 * 
+	 * @param projectSpace Project Space.
+	 * @param parent Tab Folder.
+	 * @param tabName Name of the tab.
+	 */
 	public UpcomingEventsTab(ProjectSpace projectSpace, CTabFolder parent, String tabName) {
 		super(projectSpace, parent, tabName);		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createTab(Composite parent) {
 		
 	}
 
-	// TODO :
+	/**
+	 * 
+	 */
 	public void createTabContent() {
 		
 		Group group = new Group(composite, SWT.NONE);
@@ -98,14 +115,15 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 				
 				String str = Utility.getLinkForModelElement(getProjectSpace(), modelElement);
 				
-				if(modelElement instanceof Meeting)
-					addEvent(modelElement, group, image1, modelElement.getName(), str,stringBuilder.toString());
-				else if(modelElement instanceof BugReport) 
+				if (modelElement instanceof Meeting) {
+					addEvent(modelElement, group, image1, modelElement.getName(), str, stringBuilder.toString());
+				} else if (modelElement instanceof BugReport) {
 					addEvent(modelElement, group, image4, modelElement.getName(), str, stringBuilder.toString());
-				else if(modelElement instanceof ActionItem) 
+				} else if (modelElement instanceof ActionItem) {
 					addEvent(modelElement, group, image3, modelElement.getName(), str, stringBuilder.toString());
-				else 
-					addEvent(modelElement, group, image2, modelElement.getName(), str, stringBuilder.toString());				
+				} else {
+					addEvent(modelElement, group, image2, modelElement.getName(), str, stringBuilder.toString());
+				}			
 			}
 		} else {
 			eventItems = new String[5];

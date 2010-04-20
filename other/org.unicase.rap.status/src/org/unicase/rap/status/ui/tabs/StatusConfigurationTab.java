@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.tabs;
 
 import java.util.List;
@@ -24,7 +29,9 @@ import org.unicase.workspace.ProjectSpace;
 import config.ConfigEntity;
 
 /**
+ * Status configuration tab.
  * 
+ * @author Edgar Müller.
  */
 public class StatusConfigurationTab extends ConfigurationTab implements IActivatedProjectsListener {
 
@@ -34,9 +41,9 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 	private ProjectsTableViewer projectsTableViewer;
 	
 	/**
-	 * The config entity used by the configuration tab
+	 * The configuration entity used by the configuration tab.
 	 */
-	StatusConfigEntity cfgEntity;
+	private StatusConfigEntity cfgEntity;
 	
 	private Text crypticElementTextfield;
 	
@@ -48,27 +55,31 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 	/**
 	 * The currently selected project space.
 	 */
-	ProjectSpace currentProjectSpace;
+	private ProjectSpace currentProjectSpace;
 	
 	
 	/**
 	 * Initializes a new instance of the WorkTeamItemsConfigurationTab class.
 	 */
 	public StatusConfigurationTab() {
+		
 	}
-
 	
-	
+	/**
+	 * 
+	 */
 	public void setFocus() {
+		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createConfigurationTab(Composite parent) {
-
 		
 		// TODO
 //		getSite().setSelectionProvider(projectsTableViewer);
-				 
 //		Composite top = new Composite(parent, SWT.BORDER);
 		GridLayout gridLayout = new GridLayout();
 	    gridLayout.numColumns = 1;
@@ -128,6 +139,9 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 		workItemsVisibleCheckBox = new Button(c, SWT.CHECK); 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ConfigEntity getConfigEntity() {
 		cfgEntity = new StatusConfigEntity(currentProjectSpace);
@@ -139,8 +153,9 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 		return cfgEntity;
 	}
 
-	
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void loadSettings() {
 		
@@ -163,10 +178,13 @@ public class StatusConfigurationTab extends ConfigurationTab implements IActivat
 			crypticElementTextfield.setText("");
 		}
 	}
-
-
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void activatedProjectsChangd(List<ProjectSpace> projectSpaces) {
 		projectsTableViewer.setInput(projectSpaces);
 	}
+	
 }
+

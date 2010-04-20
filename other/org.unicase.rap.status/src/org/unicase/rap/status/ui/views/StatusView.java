@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.views;
 
 import org.eclipse.swt.SWT;
@@ -22,8 +27,7 @@ import org.unicase.rap.status.config.StatusConfigEntity;
 /**
  * Project specific status view that contains an overview of team members and work items.
  * 
- * @author Edgar Mueller
- * @author Fatih Ulusoy
+ * @author Edgar Müller, Fatih Ulusoy
  */
 public class StatusView extends ProjectAwareView {
 
@@ -133,10 +137,12 @@ public class StatusView extends ProjectAwareView {
 	 * Refreshes the all tabs in the view.
 	 */
 	private void refreshAllTabs() {
-		if (workItemsTab != null)
+		if (workItemsTab != null) {
 			workItemsTab.refreshInput();
-		if (teamListTab != null)
+		}
+		if (teamListTab != null) {
 			teamListTab.refreshInput();
+		}
 	}
 
 	/**
@@ -151,8 +157,9 @@ public class StatusView extends ProjectAwareView {
 
 		Object value = cfgEntity.getProperties().get(tabKey);
 
-		if (value instanceof Boolean)
+		if (value instanceof Boolean) {
 			return (Boolean) value;
+		}
 
 		return false;
 	}

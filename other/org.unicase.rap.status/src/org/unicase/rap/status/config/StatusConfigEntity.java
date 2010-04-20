@@ -1,22 +1,23 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.config;
 
+import config.impl.ConfigEntityImpl;
 import org.unicase.workspace.ProjectSpace;
 
-import config.impl.ConfigEntityImpl;
-
 /**
- * Config entity that holds status view related configuration settings for a project.
+ * Configuration entity that holds status view related configuration settings for a project.
  * This is just a convenience class for wrapping <code>getProperties()</code> 
  * calls of the parent class. 
  * 
- * @author emueller
- *
+ * @author Edgar Müller
  */
 public class StatusConfigEntity extends ConfigEntityImpl {
 	
-	/**
-	 * 
-	 */
+	/** Serial-version ID. */
 	private static final long serialVersionUID = -1726480282495024383L;
 	
 	private ProjectSpace projectSpace;
@@ -25,14 +26,21 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 	 * Keys used for storing configuration settings.
 	 * 
 	 * @author emueller
-	 *
 	 */
 	public class Keys {
+		/**  */
 		public static final String CRYPTIC_ELEMENT_KEY = "CRYPTIC_ELEMENT";
+		/**  */
 		public static final String TEAMLIST_KEY = "TEAMLIST";
+		/**  */
 		public static final String WORKITEMLIST_KEY = "WORKITEMLIST";
 	}
 	
+	/**
+	 *  The constructor.
+	 *  
+	 * @param projectSpace Project space.
+	 */
 	public StatusConfigEntity(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
 	}
@@ -95,6 +103,9 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 		return b.booleanValue();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getConfigFilename() {
 		if (projectSpace == null) {
@@ -104,5 +115,6 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 		}
 	}
 
-
 }
+
+

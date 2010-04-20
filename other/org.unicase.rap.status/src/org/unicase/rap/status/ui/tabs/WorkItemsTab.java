@@ -1,43 +1,46 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.status.ui.tabs;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
 
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.list.WritableList;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.WritableList;
+
 import org.unicase.metamodel.Project;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.rap.status.ui.filters.BlockedItemsViewFilter;
-import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
-import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
-import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
-import org.unicase.rap.status.ui.viewers.WorkItemsTableViewer;
-import org.unicase.rap.ui.tabs.ProjectAwareTab;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.rap.ui.tabs.ProjectAwareTab;
+import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
+import org.unicase.rap.status.ui.viewers.WorkItemsTableViewer;
+import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
+import org.unicase.rap.status.ui.filters.BlockedItemsViewFilter;
+import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
 
 /**
  * A tab that shows open work items.
  * 
- * @author emueller
- *
+ * @author Edgar Müller
  */
 public class WorkItemsTab extends ProjectAwareTab {
 	
@@ -72,6 +75,9 @@ public class WorkItemsTab extends ProjectAwareTab {
 		addFilter(resolvedItemsFilter);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createTab(Composite parent) {
 		workItemsTableViewer.setInput(getProjectSpace().getProject());
 	}
@@ -190,6 +196,10 @@ public class WorkItemsTab extends ProjectAwareTab {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param parent Parent composite for buttons.
+	 */
 	protected void createControlButtons(final Composite parent) {
 		Group group = new Group(parent, SWT.NONE);
 		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
@@ -207,6 +217,9 @@ public class WorkItemsTab extends ProjectAwareTab {
 		preferredSizeButton.setText("Shrink container to its preferred size");
 	}
 	
+	/**
+	 * 
+	 */
 	public void refreshInput() {
 			final List<? extends Checkable> taskItems = projectSpace
 					.getProject().getAllModelElementsbyClass(
@@ -250,8 +263,14 @@ public class WorkItemsTab extends ProjectAwareTab {
 			}
 	}
 
+	/**
+	 * 
+	 * @param project Project
+	 */
 	public void projectDeleted(Project project) {
 		refreshInput();
 	}
 
 }
+
+
