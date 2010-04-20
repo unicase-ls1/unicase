@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.rap.bugreport.config;
 
 import java.util.List;
@@ -25,37 +30,49 @@ import org.unicase.workspace.ProjectSpace;
 
 import config.ConfigEntity;
 
-public class BugReportConfigTab extends ConfigurationTab implements IActivatedProjectsListener {
-	
+/**
+ * Configuration tab for bug reporting app.
+ * 
+ * @author Edgar Müller
+ */
+public class BugReportConfigTab extends ConfigurationTab 
+					implements IActivatedProjectsListener {
 	
 	private BugReportingConfigEntity cfgEntity;
 	
 	/**
-	 * Textfield that holds the ID of the container that is used to place
-	 * fresh bug reports.
+	 * Text field that holds the ID of the container that 
+	 * is used to place fresh bug reports.
 	 */
 	private Text bugContainerIdTextField;
-	
+
 	/**
 	 * A table viewer of all available projects.
 	 */
-	ProjectsTableViewer projectsTableViewer;
-	
+	private ProjectsTableViewer projectsTableViewer;
+
 	/**
 	 * The currently selected project space.
 	 */
-	ProjectSpace currentProjectSpace;
+	private ProjectSpace currentProjectSpace;
 	
 	/**
 	 * The current bug container.
 	 */
-	String currentBugContainerId;
+	private String currentBugContainerId;
 	
-	
+	/**
+	 * The constructor.
+	 */
 	public BugReportConfigTab() {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.rap.ui.tabs.ConfigurationTab#createConfigurationTab(Composite)
+	 */
 	@Override
 	public void createConfigurationTab(Composite parent) {
 		
@@ -102,20 +119,20 @@ public class BugReportConfigTab extends ConfigurationTab implements IActivatedPr
 		btSelectBugContainer.setText("Select bug container");
 		btSelectBugContainer.setEnabled(false);
 		btSelectBugContainer.addSelectionListener(new SelectionListener() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
 				int selectedIndex = projectsTableViewer.getTable().getSelectionIndex();
 				ProjectSpace projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
-				foo(projectSpace);
+				openDialogWindow(projectSpace);
 			}
-			
+
 			public void widgetDefaultSelected(SelectionEvent e) {
-				
+
 			}
 		});
 		
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
 				int selectedIndex = projectsTableViewer.getTable().getSelectionIndex();
 				ProjectSpace projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
@@ -124,45 +141,60 @@ public class BugReportConfigTab extends ConfigurationTab implements IActivatedPr
 				currentProjectSpace = projectSpace;
 				loadSettings();
 			}
-			
+
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}
 	
-	private void foo(final ProjectSpace pSpace) {
+	/**
+	 * @param pSpace
+	 */
+	private void openDialogWindow(final ProjectSpace pSpace) {
 		Display.getDefault().syncExec(new Runnable() {
-			
+
 			public void run() {
-				SelectWorkPackageDialog dlg = new SelectWorkPackageDialog(pSpace, "Select work package used as bug container");
-				
+				SelectWorkPackageDialog dlg = new SelectWorkPackageDialog(pSpace,
+					"Select work package used as bug container");
+
 				if (dlg.open() == Window.OK) {
+					// TODO: 
 					WorkPackage workPackage = (WorkPackage) dlg.getFirstResult();
 					currentBugContainerId = workPackage.getIdentifier();
 					bugContainerIdTextField.setText(currentBugContainerId);
 				}
-			
+
 			}
-		});		
+		});
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.rap.ui.tabs.ConfigurationTab#getConfigEntity()
+	 */
 	@Override
 	public ConfigEntity getConfigEntity() {
 		cfgEntity = new BugReportingConfigEntity(currentProjectSpace);
 		cfgEntity.setAssociatedProjectIdentifier(currentProjectSpace.getProjectName());
-		cfgEntity.setBugContainerId(currentBugContainerId);
+		cfgEntity.setBugContainerName(currentBugContainerId);
 		return cfgEntity;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.rap.ui.tabs.ConfigurationTab#loadSettings()
+	 */
 	@Override
 	public void loadSettings() {
-		
+
 		BugReportingConfigEntity configEntity = new BugReportingConfigEntity(currentProjectSpace);
-		
+
 		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
-		
+
 		if (cfgEntity != null) {
 			currentBugContainerId = (String) cfgEntity.getProperties().get(Keys.BUG_CONTAINER);
 			bugContainerIdTextField.setText(currentBugContainerId);
@@ -173,8 +205,12 @@ public class BugReportConfigTab extends ConfigurationTab implements IActivatedPr
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.rap.config.IActivatedProjectsListener#activatedProjectsChangd(List)
 	 */
 	public void activatedProjectsChangd(List<ProjectSpace> projectSpaces) {
 		projectsTableViewer.setInput(projectSpaces);
 	}
+	
 }
+
