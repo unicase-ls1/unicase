@@ -1,24 +1,21 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package config.util;
 
-import config.*;
-
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
-import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.metamodel.IdentifiableElement;
+import config.ConfigEntity;
+import config.ConfigPackage;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
