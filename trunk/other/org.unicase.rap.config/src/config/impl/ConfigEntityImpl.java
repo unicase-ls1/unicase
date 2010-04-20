@@ -1,28 +1,22 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package config.impl;
 
-import config.ConfigEntity;
-import config.ConfigPackage;
-
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.common.notify.NotificationChain;
 
-import org.eclipse.emf.common.util.EMap;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EcoreEMap;
-import org.eclipse.emf.ecore.util.InternalEList;
-
+import config.ConfigEntity;
+import config.ConfigPackage;
 import org.unicase.metamodel.impl.ModelElementImpl;
 
 /**
@@ -134,7 +128,7 @@ public class ConfigEntityImpl extends ModelElementImpl implements ConfigEntity {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

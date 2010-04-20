@@ -1,23 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package config.impl;
 
-import config.ConfigPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.BasicEMap;
-import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import config.ConfigPackage;
 
 /**
  * <!-- begin-user-doc -->
