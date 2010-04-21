@@ -239,7 +239,7 @@ public final class LocationFinder {
 	// BEGIN COMPLEX CODE
 	private FoundLocation findIn(CodeLocation codeLocation, IFile file){
 
-		TracerFile content = TracerFile.getFileByName(file.getFullPath().toOSString());		
+		TracerFile content = TracerFile.getFileByName(file.getLocation().toOSString());		
 		
 		//No trace file existant? Nothing to find!
 		if(content == null){

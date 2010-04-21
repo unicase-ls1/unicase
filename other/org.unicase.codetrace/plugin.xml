@@ -122,7 +122,17 @@
              commandId="org.unicase.trace.findCodeLocation"
              icon="icons/page_go.png"
              label="Go to the code location"
+             style="push"
              tooltip="Go to the code location">
+          <visibleWhen
+                checkEnabled="false">
+             <with
+                   variable="activeModelelement">
+                <reference
+                      definitionId="org.unicase.codetrace.isCodeLocation">
+                </reference>
+             </with>
+          </visibleWhen>
        </command>
     </menuContribution>
 
@@ -142,6 +152,15 @@
                class="org.unicase.codetrace.handlers.LineHashOpener"
                name="org.unicase.trace.LineHashOpener">
          </ModelElementOpener>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.unicase.codetrace.isCodeLocation">
+         <instanceof
+               value="org.unicase.model.trace.CodeLocation">
+         </instanceof>
+      </definition>
    </extension>
   
   
