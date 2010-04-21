@@ -23,9 +23,9 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.spellcheck.SpellcheckedSourceViewer;
 
 /**
- * Standard widgets to edit a single line text attribute.
+ * Spellchecked version of the METextControl.
  * 
- * @author helming
+ * @author jfinis
  */
 public class MESpellcheckTextControl extends METextControl {
 
@@ -73,6 +73,9 @@ public class MESpellcheckTextControl extends METextControl {
 		GridDataFactory.fillDefaults().grab(true, false).hint(250, 16).align(SWT.FILL, SWT.TOP).applyTo(text);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);

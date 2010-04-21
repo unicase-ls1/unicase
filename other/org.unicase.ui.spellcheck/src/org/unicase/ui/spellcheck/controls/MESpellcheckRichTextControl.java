@@ -16,9 +16,9 @@ import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.spellcheck.SpellcheckedSourceViewer;
 
 /**
- * The standard widget for multi line text fields.
+ * Spellchecked version of the MERichTextControl.
  * 
- * @author helming
+ * @author jfinis
  */
 public class MESpellcheckRichTextControl extends MERichTextControl {
 
@@ -34,6 +34,9 @@ public class MESpellcheckRichTextControl extends MERichTextControl {
 			| SWT.MULTI | SWT.WRAP | SWT.V_SCROLL));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
