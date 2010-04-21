@@ -18,8 +18,10 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
 
 /**
- * This class extends simple LinkControl. 
+ * This class extends simple LinkControl and adds a "go to associated code location"
+ * button.
  * @author snogina
+ * @author jfinis
  *
  */
 public class MEFindLocationControl  extends MELinkControl {

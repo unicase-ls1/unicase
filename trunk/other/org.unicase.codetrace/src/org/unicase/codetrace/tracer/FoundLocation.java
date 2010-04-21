@@ -44,6 +44,7 @@ public class FoundLocation {
 	 */
 	public FoundLocation(IFile file, int lineNumber) {
 		super();
+		System.out.println("LOCATION FOUND IN " + file.getFullPath().toString() + " line " + lineNumber);
 		this.file = file;
 		this.lineNumber = lineNumber;
 	}

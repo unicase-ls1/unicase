@@ -5,8 +5,12 @@
  */
 package org.unicase.codetrace;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.codetrace.handlers.MarkerUpdater;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -33,10 +37,13 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		System.out.println("SDLKJ");
+		
+		//Register the "update markers on file save" listener
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		workspace.addResourceChangeListener(new MarkerUpdater(),IResourceChangeEvent.PRE_BUILD);		
+		
 		plugin = this;
 	}
 

@@ -72,15 +72,15 @@ public interface TracerFacet {
 	Map<Integer, Double> getLines(TracerFile tf);
 
 	/**
-	 * 
-	 * @param tf
-	 * @param ln
+	 * (not used at the moment).
+	 * @param tf .
+	 * @param ln .
 	 */
 	void resetLine(TracerFile tf, int ln);
 	
 	/**
-	 * 
-	 * @param c
+	 * (not used at the moment).
+	 * @param c .
 	 */
 	
 	void addToCodeLocation(CodeLocation c);

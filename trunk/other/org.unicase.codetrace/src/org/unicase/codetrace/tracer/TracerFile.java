@@ -24,25 +24,31 @@ import java.util.Map;
  */
 public final class TracerFile {
 
-	/********************************************************************************/
-	/*										*/
-	/* Private storage */
-	/*										*/
-	/********************************************************************************/
 
+	/**
+	 * File name.
+	 */
 	private String fileName;
+	
+	/**
+	 * Content.
+	 */
 	private String[] lineData;
+	
+	/**
+	 * Modification date.
+	 */
 	private long lastModified;
 	
+	/**
+	 * The last files are cached for speed enhancement.
+	 */
 	private static Map<String,TracerFile> fileCache = new HashMap<String,TracerFile>();
-	
 
-	/********************************************************************************/
-	/*										*/
-	/* Constructors */
-	/*										*/
-	/********************************************************************************/
-
+	/**
+	 * Private constructor, instances are created by static factory method instead.
+	 * @param f the file for which to create the tracer file.
+	 */
 	private TracerFile(File f) {
 		try {
 			fileName = f.getCanonicalPath();
@@ -66,43 +72,65 @@ public final class TracerFile {
 			br.close();
 			lineData = ldata.toArray(new String[ldata.size()]);
 		} catch (IOException e) {
-			System.err.println("Problem reading file " + f + ": " + e);
 		}
 		
 		fileCache.put(fileName, this);
 	}
 
-	/********************************************************************************/
-	/*										*/
-	/* Access methods */
-	/*										*/
-	/********************************************************************************/
 
+	/**
+	 * Is this instance still valid?
+	 * @return validity
+	 */
 	boolean isValid() {
 		return lineData != null;
 	}
 
+	/**
+	 * The file name.
+	 * @return file name
+	 */
 	public String getFileName() {
 		return fileName;
 	}
 
+	/**
+	 * Last modification date.
+	 * @return last modification date
+	 */
 	public long getLastModified() {
 		return lastModified;
 	}
 
+	/**
+	 * Gets the content of a line.
+	 * @param n line number
+	 * @return  the line content or null if the line doesn't exist.
+	 */
 	public String getLine(int n) {
-		if (n <= 0)
+		if (n <= 0) {
 			return null;
-		if (n > lineData.length)
+		}
+		if (n > lineData.length) {
 			return null;
+		}
 
 		return lineData[n - 1];
 	}
 
+	/**
+	 * Returns the number of lines in this file.
+	 * @return number of lines.
+	 */
 	public int getLineCount() {
 		return lineData.length;
 	}
 	
+	/**
+	 * Returns a tracer file for a given file name / path.
+	 * @param name the path of the file
+	 * @return the file, or null if it doesn't exist
+	 */
 	public static TracerFile getFileByName(String name){
 		File f = new File(name);
 		String fileName;
@@ -112,12 +140,19 @@ public final class TracerFile {
 			fileName = f.getPath();
 		}
 		
+		//Does the file exist and is a file
+		if(!f.exists()||f.isDirectory()) {
+			return null;
+		}
+		
 		//File in cache?
 		if(fileCache.containsKey(fileName)){
 			TracerFile tf = fileCache.get(fileName);
 			
 			//Cached and cache is still valid
-			if(tf.getLastModified()>= f.lastModified()) return tf;
+			if(tf.getLastModified()>= f.lastModified()) {
+				return tf;
+			}
 			
 			//Cache invalid, overwrite!
 			return new TracerFile(f);

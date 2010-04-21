@@ -36,9 +36,9 @@ public class AttachLocationCommand extends UnicaseCommand {
 		this.locationToAttach = locationToAttach;
 	}
 	
-/**
- * 	Does the job.
- */
+	/**
+	 * 	Does the job.
+	 */
 	@Override
 	protected void doRun() {
 		Project p = attachTo.getProject();
@@ -49,6 +49,7 @@ public class AttachLocationCommand extends UnicaseCommand {
 			// Begin composite operation
 			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 
+			//Add the model element and link it
 			p.addModelElement(locationToAttach);
 			attachTo.getAttachments().add(locationToAttach);
 			
