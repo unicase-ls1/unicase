@@ -8,15 +8,15 @@ package org.unicase.ui.spellcheck;
 import org.unicase.ui.spellcheck.controls.MESpellcheckRichTextControl;
 import org.unicase.ui.unicasecommon.meeditor.MEDescriptionPage;
 /**
- * The editor page for the description feature.
+ * The editor page for the description feature with spellchecking.
  * 
- * @author shterev
+ * @author jfinis
  */
 public class MESpellcheckDescriptionPage extends MEDescriptionPage {
 
-	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.descriptionpage";
-	private static final String NAME = "Description";
-
+	/**
+	 * Default constructor. Creates a description page with spellchecking.
+	 */
 	public MESpellcheckDescriptionPage(){
 		super(new MESpellcheckRichTextControl());		
 	}
