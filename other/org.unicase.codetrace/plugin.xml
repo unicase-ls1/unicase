@@ -6,7 +6,7 @@
          point="org.eclipse.ui.commands">
          <command
             id="org.unicase.trace.findCodeLocation"
-            name="Get to the code location">
+            name="Go to the code location">
       </command>
   
   </extension>
@@ -21,18 +21,21 @@
 
 <extension 
 		point="org.eclipse.core.resources.markers"
-		id="org.unicase.taskmarker"
-		name="Unicase Task Marker">
+		id="org.unicase.codetrace.locationmarker"
+		name="Unicase Code Location Marker">
     	<super type="org.eclipse.core.resources.marker"/>
     	<persistent value="true"/>
+     <attribute
+           name="modelElementId">
+     </attribute>
 </extension>
 
 <extension 
 	point= "org.eclipse.ui.ide.markerImageProviders">
 	<imageprovider 
-		markertype= "org.unicase.taskmarker"
+		markertype= "org.unicase.codetrace.locationmarker"
 		icon= "icons/unicase.png"
-		id= "org.unicase.codetrace.NewAction" >
+		id= "org.unicase.codetrace.locationmarkerimageprovider" >
 	</imageprovider>
 
 </extension>
@@ -55,16 +58,17 @@
   		</action>
 	</viewerContribution>
 	
-	 <viewerContribution
-      		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
-      		targetID="#CompilationUnitRulerContext">
-      	<action
-      		class="org.unicase.codetrace.popup.actions.UpdateMarkersAction"
-    		id="org.unicase.codetrace.action_update"
-   			label="Update Markers for Code Locations"
-   			menubarPath="additions" >
-  		</action>
-	</viewerContribution>
+  <viewerContribution
+        id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
+        targetID="#CompilationUnitRulerContext">
+     <action
+           class="org.unicase.codetrace.popup.actions.JumpToCodeLocationActionDelegate"
+           icon="icons/unicase.png"
+           id="org.unicase.codetrace.jumpToCodeLocationAction"
+           label="Jump to associated code location"
+           menubarPath="additions">
+     </action>
+  </viewerContribution>
 	
    </extension>
    
@@ -97,8 +101,8 @@
       	 </separator>
        <command
              commandId="org.unicase.trace.findCodeLocation"
-             icon="icons/CodeLocation.png"
-             label="Get to the code location"
+             icon="icons/page_go.png"
+             label="Go to the code location"
              style="push">
 	       <visibleWhen
 	             checkEnabled="false">
@@ -112,6 +116,15 @@
     	</command>
         
      </menuContribution>
+    <menuContribution
+          locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.common.deleteModelElement">
+       <command
+             commandId="org.unicase.trace.findCodeLocation"
+             icon="icons/page_go.png"
+             label="Go to the code location"
+             tooltip="Go to the code location">
+       </command>
+    </menuContribution>
 
      </extension>
    <extension

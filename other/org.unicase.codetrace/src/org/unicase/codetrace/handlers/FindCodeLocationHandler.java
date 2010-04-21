@@ -5,23 +5,10 @@
  */
 package org.unicase.codetrace.handlers;
 
-import java.util.HashMap;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.WorkbenchException;
-import org.eclipse.ui.ide.IDE;
 import org.unicase.codetrace.CodetraceUtil;
-import org.unicase.codetrace.tracer.FoundLocation;
-import org.unicase.codetrace.tracer.LocationFinder;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.common.util.ActionHelper;

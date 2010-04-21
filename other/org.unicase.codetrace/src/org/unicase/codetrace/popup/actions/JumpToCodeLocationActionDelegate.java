@@ -11,17 +11,17 @@ import org.eclipse.ui.texteditor.AbstractRulerActionDelegate;
 import org.eclipse.ui.texteditor.ITextEditor;
 
 /**
- * Action delegate for attaching a code location.
+ * Action delegate for jumping from a marker to a code location.
  * @author jfinis
  */
-public class AttachCodeLocationActionDelegate extends AbstractRulerActionDelegate{
+public class JumpToCodeLocationActionDelegate extends AbstractRulerActionDelegate{
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected IAction createAction(ITextEditor editor, IVerticalRulerInfo rulerInfo) {
-		return new AttachLocationAction(editor, rulerInfo);
+		return new JumpToCodeLocationAction(editor, rulerInfo);
 	}
 
 }

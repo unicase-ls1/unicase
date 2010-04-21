@@ -6,11 +6,13 @@
 
 package org.unicase.codetrace.tracer;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -23,7 +25,6 @@ import org.unicase.codetrace.tracer.algorithms.AlgorithmBestMatch;
 import org.unicase.codetrace.tracer.algorithms.AlgorithmLineContext;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.TraceFactory;
-import java.io.File;
 
 
 /**
@@ -36,13 +37,21 @@ import java.io.File;
  */
 public final class LocationFinder {
 
-	private static LocationFinder theInstance;
-	private double thresholdValue;
-	private Map<Algorithm, Double> featureSet = new HashMap<Algorithm, Double>();
-	private static FoundLocation location;
-	private static CodeLocation codeLocation;
-
+	/**
+	 * Determines up to which similarity value a code location is treated as "found".
+	 * If the location finder returns too many false positives, reduce this value.
+	 * If it finds too few locations after changes to them, increase the value.
+	 */
+	private static final double THRESHOLD_VALUE = 0.45;
 	
+	
+	private static LocationFinder theInstance;
+	private double thresholdValue = THRESHOLD_VALUE;
+	private Map<Algorithm, Double> featureSet = new HashMap<Algorithm, Double>();
+
+	/**
+	 * Singleton.
+	 */
 	private LocationFinder() {
 	}
 
@@ -67,16 +76,15 @@ public final class LocationFinder {
 	/**
 	 * This method search recursive in all contained files for a java source files. 
 	 */
-	private FoundLocation getContainedFile(File rootFile){		
+	private FoundLocation getContainedFile(CodeLocation codeLocation, File rootFile){		
 			File[] containedFiles = rootFile.listFiles();
-		
+			FoundLocation location;
 			for(int i = 0; i < containedFiles.length; i++){
 				if(!containedFiles[i].isDirectory()){
 					if(containedFiles[i].getName().endsWith(".java")){
-						String path = containedFiles[i].getPath();
-						TracerFile tf = TracerFile.getFileByName(path);						
-						IPath filePath = new Path(path);
-						location = find(codeLocation.getProjectName(), path, tf, filePath);
+						IPath filePath = new Path(containedFiles[i].getPath());
+						IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(filePath);
+						location = findIn(codeLocation,file);
 
 						if(location != null){
 							return location;
@@ -85,7 +93,7 @@ public final class LocationFinder {
 				}
 				else{
 
-					location = getContainedFile(containedFiles[i]);
+					location = getContainedFile(codeLocation,containedFiles[i]);
 					if(location != null){
 						return location;
 					}
@@ -125,63 +133,118 @@ public final class LocationFinder {
 	}
 
 	/**
-	 * Tries to find a previously code location. If it cannot be found, the function returns null.
+	 * Tries to find a previously defined code location. If it cannot be found, the function returns null.
 	 * @param c the code location to find
 	 * @return the found code location or null if the location couldn't be found.
 	 */
 	public synchronized FoundLocation find(CodeLocation c) {
-		codeLocation = c;
-		
-		//search in the previous source file
-		TracerFile tf = TracerFile.getFileByName(CodetraceUtil.getPathOfFile(codeLocation.getProjectName(),codeLocation.getPathInProject()));
-
-		location = find(codeLocation.getProjectName(), codeLocation.getPathInProject(), tf, null);
-		
-		//if no code location found, search in the same project in the other files
-		if ( location == null){
-			//search in the project for changed file
-		
-			location = searchInProject(codeLocation.getProjectName());
-		
-		} 
-		//if no location in the previously project found, search in the whole workspace in the other projects
-		if (location == null){
-			IWorkspace root = ResourcesPlugin.getWorkspace();
-		    IProject[] projects = root.getRoot().getProjects();
-
-		    for(IProject project: projects){
-		    	String projectName = project.getName();
-		    	if(!projectName.equals(codeLocation.getProjectName())){
-				location = searchInProject(projectName);
-					if(location != null){
-					return location;
-					}
-		    	}
-		    }
-		}
-	return location;	
-	}
-	
-	private FoundLocation searchInProject(String projectName){
-		IWorkspace root = ResourcesPlugin.getWorkspace();
-		IProject eclipseProject = root.getRoot().getProject(projectName);
-		IPath projectPath = eclipseProject.getLocation();
-		File rootFile = new File(projectPath.toOSString());
-		location = getContainedFile(rootFile);
-		return location;
+		return find(c,null);		
 	}
 	
 	/**
-	 * 
-	 * @param projectName
-	 * @param pathInProject
-	 * @param tf
-	 * @param filePath
-	 * @return
+	 * Tries to find a previously defined code location. If it cannot be found, the function returns null.
+	 * If the code location cannot be found in its "home" file. Then alternativeFile is tried first
+	 * before searching the whole project.
+	 * @param codeLocation the code location to find
+	 * @param alternativeFile the file in which to search if the code location was not found in its normal file
+	 * @return the found code location or null if the location couldn't be found.
+	 */
+	public synchronized FoundLocation find(CodeLocation codeLocation, IFile alternativeFile) {
+
+		
+		String fileName = CodetraceUtil.getPathOfFile(codeLocation.getProjectName(),codeLocation.getPathInProject());
+		
+		//search in the previous source file
+		IFile theFile = ResourcesPlugin.getWorkspace().getRoot().getProject(codeLocation.getProjectName()).getFile(codeLocation.getPathInProject());
+		FoundLocation location = findIn(codeLocation,theFile);
+		
+		//If an alternative file was used, check this if it is not the same file
+		if( location == null && alternativeFile != null && !theFile.equals(alternativeFile)){
+			location = findIn(codeLocation,alternativeFile);
+			
+		}
+		
+		//if no code location found, search in the same package for other files
+		if ( location == null){
+			//search in the package
+			File file = new File(fileName).getAbsoluteFile().getParentFile();
+			
+			if(file.exists()) {
+				location = searchInFolder(codeLocation,file);
+			}
+		
+		} 
+		
+		//Still not found? Search in project
+		if(location == null){
+			location = searchInProject(codeLocation,codeLocation.getProjectName());
+		}
+		
+/*
+ *	This is commented out because we agreed that we do not want to search the whole
+ *	workspace (too much time consumption). 
+ */
+//		//if no location in the previously project found, search in the whole workspace in the other projects
+//		if (location == null){
+//			IWorkspace root = ResourcesPlugin.getWorkspace();
+//		    IProject[] projects = root.getRoot().getProjects();
+//
+//		    for(IProject project: projects){
+//		    	String projectName = project.getName();
+//		    	if(!projectName.equals(codeLocation.getProjectName())){
+//				location = searchInProject(projectName);
+//					if(location != null){
+//					return location;
+//					}
+//		    	}
+//		    }
+//		}
+		return location;	
+	}
+	
+	/**
+	 * Searches a code location in all files of a folder.
+	 * @param file the folder
+	 * @return the found location or null if not found
+	 */
+	private FoundLocation searchInFolder(CodeLocation codeLocation, File file) {
+		return getContainedFile(codeLocation,file);
+	}
+
+	/**
+	 * Searches a code location in a project.
+	 * @param projectName the name of the project in which to search
+	 * @return the found location or null if not found
+	 */
+	private FoundLocation searchInProject(CodeLocation codeLocation, String projectName){
+		IWorkspace root = ResourcesPlugin.getWorkspace();		
+		IProject eclipseProject = root.getRoot().getProject(projectName);
+		
+		//Project does not exist anymore?
+		if(!eclipseProject.exists()) {
+			return null;
+		}
+		
+		IPath projectPath = eclipseProject.getLocation();
+		File rootFile = new File(projectPath.toOSString());
+		return getContainedFile(codeLocation,rootFile);
+	}
+	
+	/**
+	 * The actual find routine that searches a code location in a file.
+	 * @param codeLocation the code location to be found
+	 * @param file where to search
+	 * @return the found location or null if none was found
 	 */
 	// BEGIN COMPLEX CODE
-	private FoundLocation find(String projectName, String pathInProject, TracerFile tf, IPath filePath){	
-				
+	private FoundLocation findIn(CodeLocation codeLocation, IFile file){
+
+		TracerFile content = TracerFile.getFileByName(file.getFullPath().toOSString());		
+		
+		//No trace file existant? Nothing to find!
+		if(content == null){
+			return null;
+		}
 		//Build facet map
 		Map<TracerFacet,Double> facets = new LinkedHashMap<TracerFacet,Double>();
 		for (Entry<Algorithm, Double> ent : featureSet.entrySet()) {
@@ -198,7 +261,7 @@ public final class LocationFinder {
 
 		for (Entry<TracerFacet,Double> ent : facets.entrySet()) {
 			
-			Map<Integer, Double> fvs = ent.getKey().getLines(tf);
+			Map<Integer, Double> fvs = ent.getKey().getLines(content);
 			if (fvs != null) {
 				// normalize(fvs);
 				for (Map.Entry<Integer, Double> e1 : fvs.entrySet()) {
@@ -224,7 +287,7 @@ public final class LocationFinder {
 			if (vx > 0) {
 				continue;
 			}
-			Map<Integer, Double> fvs = ent.getKey().getLines(tf);
+			Map<Integer, Double> fvs = ent.getKey().getLines(content);
 			for (Iterator<Map.Entry<Integer, Double>> it = values.entrySet()
 					.iterator(); it.hasNext();) {
 				Map.Entry<Integer, Double> e1 = it.next();
@@ -249,24 +312,18 @@ public final class LocationFinder {
 				bestln = ent.getKey();
 			}
 		}
-
+		
 		if (bestln < 0) {
 			return null;
 		}
 		if (bestv < thresholdValue) {
 			return null;
 		}
-		IFile f = null;
-		if(filePath != null){
-			f = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(filePath);
-		}
-		else{
-			f = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName).getFile(pathInProject);
-
-		}
-		return new FoundLocation(f, bestln);
+		return new FoundLocation(file, bestln);
 	}
 	// END COMPLEX CODE
+	
+	
 
 	@SuppressWarnings("unused")
 	/**

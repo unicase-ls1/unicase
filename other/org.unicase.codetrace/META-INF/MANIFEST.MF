@@ -18,3 +18,4 @@ Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.filesystem.provider,
  org.eclipse.core.internal.filesystem,
  org.unicase.ui.meeditor.mecontrols.melinkcontrol
+Bundle-Activator: org.unicase.codetrace.Activator
