@@ -160,16 +160,6 @@ public final class CodetraceUtil {
 	}
 	
 	/**
-	 * Returns the path of the workspace root. 
-	 * @return the path of the workspace
-	 */
-	public static String getWorkspaceRootPath(){
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		return root.toString();
-	}
-	
-	
-	/**
 	 * Returns the active unicase project or null if none is active.
 	 * @return the active unicase project
 	 */
