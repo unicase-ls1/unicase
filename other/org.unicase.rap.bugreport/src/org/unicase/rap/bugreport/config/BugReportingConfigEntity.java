@@ -55,7 +55,6 @@ public class BugReportingConfigEntity extends ConfigEntityImpl {
 		if (w == null) {
 			return null;
 		}
-		
 		return (String) w;
 	}
 	

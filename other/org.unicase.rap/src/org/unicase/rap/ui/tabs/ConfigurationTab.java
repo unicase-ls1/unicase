@@ -78,7 +78,7 @@ public abstract class ConfigurationTab extends AbstractTab {
 				MessageDialog.openInformation(Display.getDefault().getActiveShell(),
 						"Settings saved", "The settings were successfully saved.");
 				
-				System.out.println("a");
+				System.out.println("The settings were successfully saved.");
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {

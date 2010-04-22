@@ -21,7 +21,12 @@ import org.unicase.model.organization.User;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.status.config.StatusConfigEntity;
 import org.unicase.rap.ui.viewers.AbstractETableViewer;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.UnkownProjectException;
 
 /**
  * Table viewer for team members.
@@ -45,8 +50,7 @@ public class TeamTableViewer extends AbstractETableViewer {
 	@Override
 	protected void init() {		
 		super.init();
-		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		tableData.horizontalSpan = 2;
+		GridData tableData = new GridData(SWT.FILL, SWT.FILL, false, false);
 		getTable().setLayoutData(tableData);
 	}
 	
@@ -98,9 +102,19 @@ public class TeamTableViewer extends AbstractETableViewer {
 					new BasicEList<Group>());
 		}
 		
+		ProjectSpace pSpace = null;
+		try {
+			pSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpace(project);
+		} catch (UnkownProjectException e) {
+			e.printStackTrace();
+		}
+		
+		StatusConfigEntity cnfgEntity = new StatusConfigEntity(pSpace);
+		ConfigEntityStore.loadConfigEntity(cnfgEntity, cnfgEntity.eClass());
+		String groupName = cnfgEntity.getUserGroupName();
+		
 		for(Group group : groups) {
-			// TODO: group name will be got from configuration
-			if(group.getName().toLowerCase().contains("myproject")) {
+			if(group.getIdentifier().equals(groupName)) {
 				teamMembers = group.getOrgUnits();
 			}
 		}

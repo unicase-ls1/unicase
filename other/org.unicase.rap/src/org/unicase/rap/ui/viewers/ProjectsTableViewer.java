@@ -10,13 +10,16 @@ import java.util.ArrayList;
 
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -45,9 +48,29 @@ public class ProjectsTableViewer extends AbstractETableViewer implements Selecti
 	 * 
 	 * @param projectSpaces Project spaces that sets the project table.
 	 */
-	public void setInput(List<ProjectSpace> projectSpaces) {
-		WritableList emfList = new WritableList(Realm.getDefault(), projectSpaces, ProjectSpace.class);
-		super.setInput(emfList);
+	public void setInput(final List<ProjectSpace> projectSpaces) {
+		
+		final WritableList list = (WritableList) (super.getInput());
+		if (list == null) {
+			WritableList emfList = new WritableList(Realm.getDefault(), projectSpaces, ProjectSpace.class);
+			super.setInput(emfList);
+			super.refresh();
+		} else {
+			final List<ProjectSpace> mylist = projectSpaces;
+			final ProjectsTableViewer myThis = this;
+			list.getRealm().asyncExec(new Runnable() {
+
+				public void run() {
+					// remove all elements
+					list.retainAll(new BasicEList<UnicaseModelElement>());
+					// adds new task items
+					list.addAll(mylist);
+					myThis.refresh();
+				}
+			});
+		}
+		
+		
 	}
 
 	/**

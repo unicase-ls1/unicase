@@ -5,6 +5,7 @@
  */
 package org.unicase.rap.bugreport.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.window.Window;
@@ -91,7 +92,9 @@ public class BugReportConfigTab extends ConfigurationTab
 		ActivatedProjectsCache.getInstance().addListener(this);
 		
 		// set initial input
-		projectsTableViewer.setInput(ActivatedProjectsCache.getInstance().getProjects());
+		List<ProjectSpace> inputList = new ArrayList<ProjectSpace>();
+		inputList.addAll(ActivatedProjectsCache.getInstance().getProjects());
+		projectsTableViewer.setInput(inputList);
 		tableComposite.setLayoutData(data);
 		
 		final Label currentlySelectedProject = new Label(parent, SWT.BORDER);
@@ -110,7 +113,6 @@ public class BugReportConfigTab extends ConfigurationTab
 		Label l = new Label(c, SWT.NONE);
 		l.setText("Current bug reporting container:");
 		
-//		data.horizontalAlignment = SWT.FILL;
 		bugContainerIdTextField = new Text(c, SWT.BORDER);
 		bugContainerIdTextField.setEditable(false);
 		bugContainerIdTextField.setLayoutData(data);

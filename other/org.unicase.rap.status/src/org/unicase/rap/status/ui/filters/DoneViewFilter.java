@@ -15,7 +15,7 @@ import org.unicase.model.task.Checkable;
  * 
  * @author Fatih Ulusoy
  */
-public class ClosedItemsViewFilter extends ViewerFilter {
+public class DoneViewFilter extends ViewerFilter {
 
 	/**
 	 * {@inheritDoc}
@@ -23,14 +23,6 @@ public class ClosedItemsViewFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		return ((element instanceof Checkable) && (!((Checkable) element).isChecked()));
-		
-//		if (element instanceof UnicaseModelElement) {
-//			UnicaseModelElement workItem = (UnicaseModelElement) element;
-//			
-//				return !workItem.getState().equals(MEState.CLOSED);
-//		}
-//		
-//		return false;
 	}
 
 }

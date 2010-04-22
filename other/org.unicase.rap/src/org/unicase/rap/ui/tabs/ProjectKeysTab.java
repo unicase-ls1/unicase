@@ -6,6 +6,8 @@
 package org.unicase.rap.ui.tabs;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.layout.GridData;
@@ -13,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.jface.resource.JFaceResources;
 
 import config.ConfigEntity;
 import org.unicase.workspace.ProjectSpace;
@@ -65,6 +68,7 @@ public class ProjectKeysTab extends ConfigurationTab {
 	    Composite tableComposite = new Composite(parent, SWT.NONE);
 	    projectsTableViewer = new ProjectsTableViewer(tableComposite);
 		projectsTableViewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces());
+		data.horizontalSpan = 2;
 		tableComposite.setLayoutData(data);
 		projectsTableViewer.addSelectionListener(new SelectionListener() {
 			
@@ -77,9 +81,26 @@ public class ProjectKeysTab extends ConfigurationTab {
 			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
 		
-		crypticElementTextField = new Text(parent, SWT.BORDER);
-		checkBox = new Button(parent, SWT.CHECK);
-		checkBox.setText("Activated:");
+		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);
+		
+		data = new GridData();
+		data.horizontalAlignment = SWT.FILL;
+		
+		Composite c = new Composite(parent, SWT.BORDER);
+		GridLayout g = new GridLayout();
+		g.numColumns = 2;
+		c.setLayoutData(data);
+		c.setLayout(g);
+		
+		Label l = new Label(c, SWT.WRAP);
+		l.setText("Cryptic element:");
+		l.setFont(boldFont);
+		crypticElementTextField = new Text(c, SWT.BORDER);
+		
+		l = new Label(c, SWT.WRAP);
+		l.setText("Activation:");
+		l.setFont(boldFont);
+		checkBox = new Button(c, SWT.CHECK);
 		
 		addSaveButtonListener(new SelectionListener() {
 			

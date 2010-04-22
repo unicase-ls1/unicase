@@ -23,17 +23,14 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 
 import org.unicase.metamodel.Project;
-import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.Checkable;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.rap.ui.tabs.ProjectAwareTab;
 import org.unicase.rap.status.ui.filters.OpenItemsViewFilter;
 import org.unicase.rap.status.ui.viewers.WorkItemsTableViewer;
-import org.unicase.rap.status.ui.filters.ClosedItemsViewFilter;
+import org.unicase.rap.status.ui.filters.DoneViewFilter;
 import org.unicase.rap.status.ui.filters.BlockedItemsViewFilter;
 import org.unicase.rap.status.ui.filters.ResolvedItemsViewFilter;
 
@@ -46,7 +43,7 @@ public class WorkItemsTab extends ProjectAwareTab {
 	
 	private OpenItemsViewFilter openItemsFilter;
 	
-	private ClosedItemsViewFilter closedItemsFilter;
+	private DoneViewFilter closedItemsFilter;
 	
 	private BlockedItemsViewFilter blockedItemsFilter;
 	
@@ -61,17 +58,18 @@ public class WorkItemsTab extends ProjectAwareTab {
 	 * @param tabFolder The parent tab folder of this tab
 	 */
 	public WorkItemsTab(ProjectSpace projectSpace, CTabFolder tabFolder) {
-		super(projectSpace, tabFolder, "Open work items");
-		openItemsFilter = new OpenItemsViewFilter();
-		closedItemsFilter = new ClosedItemsViewFilter();
+		super(projectSpace, tabFolder, "Task View");
+		// openItemsFilter = new OpenItemsViewFilter();
+		closedItemsFilter = new DoneViewFilter();
 		blockedItemsFilter = new BlockedItemsViewFilter();
 		resolvedItemsFilter = new ResolvedItemsViewFilter();
-		
-		createFiltersPart(composite);
+
+ 		createFiltersPart(composite);
+ 		
 		workItemsTableViewer = new WorkItemsTableViewer(composite);
 		
-		addFilter(closedItemsFilter);
 		addFilter(blockedItemsFilter);
+		addFilter(closedItemsFilter);
 		addFilter(resolvedItemsFilter);
 	}
 	
@@ -86,29 +84,29 @@ public class WorkItemsTab extends ProjectAwareTab {
 		Group group = new Group(parent, SWT.NONE);
 		group.setText("Filters");
 		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);		
-		
 		group.setLayoutData(gridData);
-		GridLayout gridLayout = new GridLayout(4, false);
+		
+		GridLayout gridLayout = new GridLayout(3, false);
 		group.setLayout(gridLayout);
 		
-		final Button showOpenButton = new Button(group, SWT.CHECK);
-		showOpenButton.setText("Show Open Items");
-		showOpenButton.addSelectionListener(new SelectionAdapter() {
-
-			public void widgetSelected(final SelectionEvent e) {
-				boolean isShowOpenItems = showOpenButton.getSelection();
-				if(!isShowOpenItems) {
-					addFilter(openItemsFilter);
-				} else {
-					removeFilter(openItemsFilter);
-				}
-				workItemsTableViewer.refresh();
-			}
-		});
+//		final Button showOpenButton = new Button(group, SWT.CHECK);
+//		showOpenButton.setText("Show Open Items");
+//		showOpenButton.addSelectionListener(new SelectionAdapter() {
+//
+//			public void widgetSelected(final SelectionEvent e) {
+//				boolean isShowOpenItems = showOpenButton.getSelection();
+//				if(!isShowOpenItems) {
+//					addFilter(openItemsFilter);
+//				} else {
+//					removeFilter(openItemsFilter);
+//				}
+//				workItemsTableViewer.refresh();
+//			}
+//		});
 		
 		
 		final Button showClosedButton = new Button(group, SWT.CHECK);
-		showClosedButton.setText("Show Closed Items");
+		showClosedButton.setText("Show Done Items");
 		showClosedButton.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(final SelectionEvent e) {
@@ -221,46 +219,25 @@ public class WorkItemsTab extends ProjectAwareTab {
 	 * 
 	 */
 	public void refreshInput() {
-			final List<? extends Checkable> taskItems = projectSpace
-					.getProject().getAllModelElementsbyClass(
-							TaskPackage.eINSTANCE.getCheckable(),
-							new BasicEList<Checkable>());
+		final List<? extends Checkable> taskItems = projectSpace.getProject().getAllModelElementsbyClass(
+			TaskPackage.eINSTANCE.getCheckable(), new BasicEList<Checkable>());
 
-			for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator
-					.hasNext();) {
-				Checkable item = iterator.next();
-				if (item instanceof ActionItem) {
-					if (((ActionItem) item).isDone()) {
-						iterator.remove();
-					}
-				} else if (item instanceof BugReport) {
-					if (((BugReport) item).isDone()) {
-						iterator.remove();
-					}
-				} else if (item instanceof Issue) {
-					if (((Issue) item).getSolution() != null) {
-						iterator.remove();
-					}
+		final WritableList list = (WritableList) (workItemsTableViewer.getInput());
+		if (list == null) {
+			// the case of first time of input setting to table
+			WritableList emfList = new WritableList(Realm.getDefault(), taskItems, UnicaseModelElement.class);
+			workItemsTableViewer.setInput(emfList);
+		} else {
+			list.getRealm().asyncExec(new Runnable() {
+
+				public void run() {
+					// remove all elements
+					list.retainAll(new BasicEList<UnicaseModelElement>());
+					// adds new task items
+					list.addAll(taskItems);
 				}
-			}
-			
-			final WritableList list = (WritableList) (workItemsTableViewer.getInput());
-			if (list == null) {
-				// the case of first time of input setting to table
-				WritableList emfList = new WritableList(Realm.getDefault(),
-						taskItems, UnicaseModelElement.class);
-				workItemsTableViewer.setInput(emfList);
-			} else {
-				list.getRealm().asyncExec(new Runnable() {
-
-					public void run() {
-						// remove all elements
-						list.retainAll(new BasicEList<UnicaseModelElement>());
-						// adds new task items
-						list.addAll(taskItems);
-					}
-				});
-			}
+			});
+		}
 	}
 
 	/**

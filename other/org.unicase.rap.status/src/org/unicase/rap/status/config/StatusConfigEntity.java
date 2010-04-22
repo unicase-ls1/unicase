@@ -6,6 +6,7 @@
 package org.unicase.rap.status.config;
 
 import config.impl.ConfigEntityImpl;
+
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -29,11 +30,11 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 	 */
 	public class Keys {
 		/**  */
-		public static final String CRYPTIC_ELEMENT_KEY = "CRYPTIC_ELEMENT";
-		/**  */
 		public static final String TEAMLIST_KEY = "TEAMLIST";
 		/**  */
 		public static final String WORKITEMLIST_KEY = "WORKITEMLIST";
+		/**  */
+		public static final String USERGROUP_KEY = "USERGROUP";
 	}
 	
 	/**
@@ -43,26 +44,6 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 	 */
 	public StatusConfigEntity(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
-	}
-	
-	/**
-	 * Sets the cryptic element that is needed in order to access the project status view.
-	 * 
-	 * @param crypticElement The cryptic element that is needed to appear in the URL.
-	 * The cryptic element may be any string, but whitespaces will be removed.
-	 */
-	public void setCrypticElement(String crypticElement) {
-		String c = crypticElement.trim().replaceAll("\\s", "");	
-		getProperties().put(Keys.CRYPTIC_ELEMENT_KEY, c);
-	}
-
-	/**
-	 * Returns the cryptic element that is needed to appear in the URL when accessing a project.
-	 * 
-	 * @return The cryptic element.
-	 */
-	public String getCrypticElement() {
-		return (String) getProperties().get(Keys.CRYPTIC_ELEMENT_KEY);
 	}
 
 	/**
@@ -101,6 +82,27 @@ public class StatusConfigEntity extends ConfigEntityImpl {
 	public boolean isWorkItemsVisible() {
 		Boolean b = (Boolean) getProperties().get(Keys.WORKITEMLIST_KEY);
 		return b.booleanValue();
+	}
+	
+	/**
+	 * 
+	 * @param userGroupName user group name
+	 */
+	public void setUserGroupName(String userGroupName) {
+		getProperties().put(Keys.USERGROUP_KEY, userGroupName);
+	}
+
+	/**
+	 * 
+	 * @return document name of user group for team members
+	 */
+	public String getUserGroupName() {
+		Object w = getProperties().get(Keys.USERGROUP_KEY);
+		
+		if (w == null) {
+			return null;
+		}
+		return (String) w;
 	}
 	
 	/**

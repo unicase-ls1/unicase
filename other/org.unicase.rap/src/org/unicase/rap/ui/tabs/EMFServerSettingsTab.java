@@ -107,15 +107,17 @@ public class EMFServerSettingsTab extends ConfigurationTab {
 				if(ProjectUpdaterManager.isRunning()) {
 					ProjectUpdaterManager.stop();
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-						"Updater stoped", "Operation is successful.");
+						"Updater stopped", "Updater stopped successful.");
 					activateButton.setText("Start Project Updater");
 					messageLabel.setText("Updater was stopped.");
 				} else {
+					// before updater runs, saves config entity.
+					saveConfigEntity();
 					ProjectUpdaterManager mng = ProjectUpdaterManager.getInstance();
 					Thread updaterThread = new Thread(mng);
 					updaterThread.start();
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-						"Updater started", "Operation is successful.");
+						"Updater started", "Updater started successful.");
 					activateButton.setText("Stop Project Updater");
 					messageLabel.setText("Updater is running.");
 				}

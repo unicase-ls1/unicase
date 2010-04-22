@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.TableViewer;
@@ -54,11 +56,31 @@ public abstract class AbstractETableViewer extends TableViewer {
 	 * @param composite Composite.
 	 */
 	public AbstractETableViewer(Composite composite) {
-		super(composite, SWT.BORDER);
-		this.composite = composite;
-		contentProvider =  new ObservableListContentProvider();
-		setContentProvider(contentProvider);
-		init();	
+//		super(composite, SWT.MULTI | SWT.H_SCROLL
+//			| SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+//		this.composite = composite;
+//		contentProvider =  new ObservableListContentProvider();
+//		setContentProvider(contentProvider);
+//		init();	
+		
+		super(composite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI);
+
+		  contentProvider =  new ObservableListContentProvider();
+		  setContentProvider(contentProvider);
+		  init();
+
+		  composite.setLayout(new GridLayout());
+		  GridData gridData = new GridData();
+		  gridData.verticalAlignment = GridData.FILL;
+		  gridData.grabExcessHorizontalSpace = true;
+		  gridData.grabExcessVerticalSpace = true;
+		  gridData.horizontalAlignment = GridData.FILL;
+		  composite.setLayoutData(gridData);
+		  
+		  getTable().setLayout(new GridLayout());
+		  getTable().setLayoutData(gridData);
+		
+		
 	}
 	
 	/**
@@ -216,11 +238,10 @@ public abstract class AbstractETableViewer extends TableViewer {
 		column.getColumn().setData(WIDTH, new Integer(width));
 		column.getColumn().setData(FEATURE, feature.getName());
 		
-		TableColumnLayout columnLayout = new TableColumnLayout();
-		columnLayout.setColumnData(column.getColumn(), new ColumnWeightData(100/numColumns));
-		
-		composite.setLayout(columnLayout);
-//		this.getTable().setLayout(columnLayout);
+//		TableColumnLayout columnLayout = new TableColumnLayout();
+//		columnLayout.setColumnData(column.getColumn(), new ColumnWeightData(100/numColumns));
+//		
+//		composite.setLayout(columnLayout);
 		
 		return column;
 	}
