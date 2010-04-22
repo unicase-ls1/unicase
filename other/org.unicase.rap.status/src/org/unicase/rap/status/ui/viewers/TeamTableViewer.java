@@ -78,13 +78,15 @@ public class TeamTableViewer extends AbstractETableViewer {
 			this.setInput(emfList);
 		} else {
 			final List<OrgUnit> teamMembers = getTeamMembers(project);
-			
+			final TeamTableViewer myThis = this;
 			oldItems.getRealm().asyncExec(new Runnable() {
 				public void run() {
+					WritableList emfList = new WritableList(Realm.getDefault(), teamMembers, User.class);
+					myThis.setInput(emfList);
 					// remove all elements
-					oldItems.retainAll(new BasicEList<OrgUnit>());
-					// adds 
-					oldItems.addAll(teamMembers);
+//					oldItems.retainAll(new BasicEList<OrgUnit>());
+//					// adds 
+//					oldItems.addAll(teamMembers);
 				}
 			});
 		}

@@ -89,10 +89,12 @@ public class TeamListTab extends ProjectAwareTab {
 			
 			oldItems.getRealm().asyncExec(new Runnable() {
 				public void run() {
+					WritableList emfList = new WritableList(Realm.getDefault(), members, User.class);
+					teamTableViewer.setInput(emfList);
 					// remove all elements
-					oldItems.retainAll(new BasicEList<OrgUnit>());
-					// adds 
-					oldItems.addAll(members);
+//					oldItems.retainAll(new BasicEList<OrgUnit>());
+//					// adds 
+//					oldItems.addAll(members);
 				}
 			});
 		}

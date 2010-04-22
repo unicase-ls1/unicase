@@ -18,6 +18,7 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -77,22 +78,6 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 		final List<? extends Checkable> taskItems = project.getAllModelElementsbyClass(
 			TaskPackage.eINSTANCE.getCheckable(), new BasicEList<Checkable>());
 
-//		for (Iterator<? extends Checkable> iterator = taskItems.iterator(); iterator.hasNext();) {
-//			Checkable item = iterator.next();
-//			if (item instanceof ActionItem) {
-//				if (((ActionItem) item).isDone()) {
-//					iterator.remove();
-//				}
-//			} else if (item instanceof BugReport) {
-//				if (((BugReport) item).isDone()) {
-//					iterator.remove();
-//				}
-//			} else if (item instanceof Issue) {
-//				if (((Issue) item).getSolution() != null) {
-//					iterator.remove();
-//				}
-//			}
-//		}
 
 		final WritableList list = (WritableList) (this.getInput());
 		if (list == null) {
@@ -100,13 +85,16 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 			WritableList emfList = new WritableList(Realm.getDefault(), taskItems, UnicaseModelElement.class);
 			this.setInput(emfList);
 		} else {
+			final WorkItemsTableViewer myThis = this;
+			
 			list.getRealm().asyncExec(new Runnable() {
-
 				public void run() {
+					WritableList emfList = new WritableList(Realm.getDefault(), taskItems, User.class);
+					myThis.setInput(emfList);
 					// remove all elements
-					list.retainAll(new BasicEList<UnicaseModelElement>());
-					// adds new task items
-					list.addAll(taskItems);
+//					list.retainAll(new BasicEList<UnicaseModelElement>());
+//					// adds new task items
+//					list.addAll(taskItems);
 				}
 			});
 		}
