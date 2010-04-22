@@ -10,7 +10,7 @@
             restorable="true">
       </view>
       <view
-            class="org.unicase.rap.status.ui.UpcomingEventsView"
+            class="org.unicase.rap.status.ui.views.UpcomingEventsView"
             id="org.unicase.rap.status.ui.UpcomingEventsView"
             name="UpcomingEvents"
             restorable="true">
@@ -25,7 +25,7 @@
             url="status">
       </view>
       <view
-            class="org.unicase.rap.status.ui.UpcomingEventsView"
+            class="org.unicase.rap.status.ui.views.UpcomingEventsView"
             name="UpcomingEvents"
             url="events">
       </view>
