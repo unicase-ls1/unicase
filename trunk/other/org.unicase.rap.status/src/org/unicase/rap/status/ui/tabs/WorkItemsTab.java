@@ -23,6 +23,7 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 
 import org.unicase.metamodel.Project;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
@@ -88,21 +89,6 @@ public class WorkItemsTab extends ProjectAwareTab {
 		
 		GridLayout gridLayout = new GridLayout(3, false);
 		group.setLayout(gridLayout);
-		
-//		final Button showOpenButton = new Button(group, SWT.CHECK);
-//		showOpenButton.setText("Show Open Items");
-//		showOpenButton.addSelectionListener(new SelectionAdapter() {
-//
-//			public void widgetSelected(final SelectionEvent e) {
-//				boolean isShowOpenItems = showOpenButton.getSelection();
-//				if(!isShowOpenItems) {
-//					addFilter(openItemsFilter);
-//				} else {
-//					removeFilter(openItemsFilter);
-//				}
-//				workItemsTableViewer.refresh();
-//			}
-//		});
 		
 		
 		final Button showClosedButton = new Button(group, SWT.CHECK);
@@ -231,10 +217,12 @@ public class WorkItemsTab extends ProjectAwareTab {
 			list.getRealm().asyncExec(new Runnable() {
 
 				public void run() {
+					WritableList emfList = new WritableList(Realm.getDefault(), taskItems, User.class);
+					workItemsTableViewer.setInput(emfList);
 					// remove all elements
-					list.retainAll(new BasicEList<UnicaseModelElement>());
-					// adds new task items
-					list.addAll(taskItems);
+//					list.retainAll(new BasicEList<UnicaseModelElement>());
+//					// adds new task items
+//					list.addAll(taskItems);
 				}
 			});
 		}
