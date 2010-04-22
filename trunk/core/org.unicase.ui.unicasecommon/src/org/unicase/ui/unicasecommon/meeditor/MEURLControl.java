@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -24,6 +25,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.Hyperlink;
@@ -129,7 +131,13 @@ public class MEURLControl extends AbstractMEControl {
 				if (url == null) {
 					return;
 				}
-				Program.launch(url);
+				boolean isLaunched = Program.launch(url);
+				if (!isLaunched) {
+					MessageBox box = new MessageBox(parent.getShell(), SWT.OK | SWT.ICON_ERROR);
+					box.setText("Invalid URL");
+					box.setMessage(url + " is not a valid URL, browser couldn't be started!");
+					box.open();
+				}
 				ModelElement modelElement = getModelElement();
 				logEvent(modelElement.getModelElementId(), modelElement.getModelElementId(), WorkspaceManager
 					.getProjectSpace(modelElement), "org.unicase.ui.meeditor");
@@ -143,7 +151,7 @@ public class MEURLControl extends AbstractMEControl {
 			@Override
 			public void run() {
 				InputDialog input = new InputDialog(parent.getShell(), "Edit URL", "Please enter the URL",
-					urlattachement.getUrl(), null);
+					urlattachement.getUrl(), new URLValidator());
 				input.setBlockOnOpen(true);
 				int result = input.open();
 				if (result == InputDialog.OK) {
@@ -223,5 +231,22 @@ public class MEURLControl extends AbstractMEControl {
 			}
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+
+	/**
+	 * Validator class for validating the input of URL Input-Dialog.
+	 * 
+	 * @author mkagel
+	 */
+	private class URLValidator implements IInputValidator {
+
+		public String isValid(String newText) {
+
+			if (newText.matches("(((https?|ftp)://)?(www\\.)?(\\w+\\.)?\\w+){1}(/.*)*")) {
+				return null;
+			} else {
+				return "Invalid URL!";
+			}
+		}
 	}
 }
