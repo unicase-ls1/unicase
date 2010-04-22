@@ -55,7 +55,7 @@ public class UnicaseObservableMapLabelProvider extends
 				break;
 			case Severity.BLOCKER_VALUE:
 				image = Activator.getImageDescriptor(
-						"icons/obj16/Bug_bloker.png").createImage();
+						"icons/obj16/Bug_blocker.png").createImage();
 				break;
 			case Severity.TRIVIAL_VALUE:
 				image = Activator.getImageDescriptor(
