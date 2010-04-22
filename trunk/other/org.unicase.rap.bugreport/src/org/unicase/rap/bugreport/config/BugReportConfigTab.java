@@ -5,6 +5,9 @@
  */
 package org.unicase.rap.bugreport.config;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +28,10 @@ import org.unicase.rap.bugreport.config.BugReportingConfigEntity.Keys;
 import org.unicase.rap.config.ActivatedProjectsCache;
 import org.unicase.rap.config.ConfigEntityStore;
 import org.unicase.rap.config.IActivatedProjectsListener;
+import org.unicase.rap.config.ProjectKeysConfigEntity;
 import org.unicase.rap.ui.tabs.ConfigurationTab;
 import org.unicase.rap.ui.viewers.ProjectsTableViewer;
+import org.unicase.rap.ui.viewers.URLDialog;
 import org.unicase.workspace.ProjectSpace;
 
 import config.ConfigEntity;
@@ -101,6 +106,33 @@ public class BugReportConfigTab extends ConfigurationTab
 		currentlySelectedProject.setLayoutData(data);
 		currentlySelectedProject.setText("Selected project:");
 		
+		final Button button = new Button(parent, SWT.BORDER);
+		button.setText("Get View URL");
+		button.setEnabled(false);
+		button.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				int selectedIndex = projectsTableViewer.getTable().getSelectionIndex();
+				ProjectSpace projectSpace = (ProjectSpace) projectsTableViewer.getTable().getItem(selectedIndex).getData();
+				
+				ProjectKeysConfigEntity configEntity = new ProjectKeysConfigEntity();
+				ConfigEntityStore.loadConfigEntity(configEntity, configEntity.eClass());
+				
+				String url = "http://127.0.0.1:2222/rap?startup=unicase&view=bugreport&name=" + projectSpace.getProjectName() 
+								+ "&key=" + configEntity.getAccessKey(projectSpace.getProjectName());
+				// place the link on the system clipboard
+				StringSelection stringSelection = new StringSelection(url);
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				clipboard.setContents(stringSelection, stringSelection);
+				URLDialog dlg = new URLDialog(Display.getCurrent().getActiveShell(), "The URL has been copied to the clipboard.", url);
+				dlg.open();
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+			}
+		});
+		
 		Composite c = new Composite(parent, SWT.BORDER);
 		GridLayout g = new GridLayout();
 		g.numColumns = 3;
@@ -141,6 +173,7 @@ public class BugReportConfigTab extends ConfigurationTab
 				currentlySelectedProject.setText("Selected project: " + projectSpace.getProjectName());
 				btSelectBugContainer.setEnabled(true);
 				currentProjectSpace = projectSpace;
+				button.setEnabled(true);
 				loadSettings();
 			}
 
