@@ -29,9 +29,11 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.Severity;
+import org.unicase.model.change.MergingIssue;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingPackage;
-import org.unicase.model.task.ActionItem;
+import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -76,13 +78,7 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 		group.setLayoutData(gridData);
 		GridLayout gridLayout = new GridLayout(3, false);
 		group.setLayout(gridLayout);
-		
-	    ClassLoader classLoader = getClass().getClassLoader();
-		Image image1 = Graphics.getImage("icons/Meeting.gif", classLoader);
-		Image image2 = Graphics.getImage("icons/WorkPackage.gif", classLoader);
-		Image image3 = Graphics.getImage("icons/ActionItem.png", classLoader);
-		Image image4 = Graphics.getImage("icons/Bug_major.png", classLoader);		
-		
+				
 		EList<ModelElement> items = initItems();
 
 		final int count = items.size();
@@ -95,6 +91,7 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 			for (int i = 0; i < Math.min(10, count); i++) {
 				UnicaseModelElement modelElement = (UnicaseModelElement) items.get(i);
 				
+				Image image = getImage(modelElement);
 				
 				String msg = "";
 				if (modelElement instanceof WorkItem) {
@@ -115,15 +112,7 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 				
 				String str = Utility.getLinkForModelElement(getProjectSpace(), modelElement);
 				
-				if (modelElement instanceof Meeting) {
-					addEvent(modelElement, group, image1, modelElement.getName(), str, stringBuilder.toString());
-				} else if (modelElement instanceof BugReport) {
-					addEvent(modelElement, group, image4, modelElement.getName(), str, stringBuilder.toString());
-				} else if (modelElement instanceof ActionItem) {
-					addEvent(modelElement, group, image3, modelElement.getName(), str, stringBuilder.toString());
-				} else {
-					addEvent(modelElement, group, image2, modelElement.getName(), str, stringBuilder.toString());
-				}			
+				addEvent(modelElement, group, image, modelElement.getName(), str, stringBuilder.toString());
 			}
 		} else {
 			eventItems = new String[5];
@@ -144,7 +133,7 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 		link.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(final SelectionEvent e) {
-				ExternalBrowser.open("www.google.de", linkStr, SWT.NONE);
+				ExternalBrowser.open("UNICASE", linkStr, SWT.NONE);
 			}
 		});
 
@@ -214,6 +203,46 @@ public class UpcomingEventsTab extends ProjectAwareTab {
 			date = ((Meeting) modelElement).getStarttime();
 		}
 		return date;
+	}
+	
+	private Image getImage(Object element) {
+		Image image = null;
+	    ClassLoader classLoader = getClass().getClassLoader();
+		if (element instanceof BugReport) {
+			BugReport bugReport = (BugReport) element;
+			Severity sev = bugReport.getSeverity();
+			switch (sev.getValue()) {
+			case Severity.MAJOR_VALUE:
+				image = Graphics.getImage("icons/obj16/Bug_major.png", classLoader);
+				break;
+			case Severity.MINOR_VALUE:
+				image = Graphics.getImage("icons/obj16/Bug_minor.png", classLoader); 
+				break;
+			case Severity.FEATURE_VALUE:
+				image = Graphics.getImage("icons/obj16/Bug_feature.png", classLoader); 
+				break;
+			case Severity.BLOCKER_VALUE:
+				image = Graphics.getImage("icons/obj16/Bug_blocker.png", classLoader); 
+				break;
+			case Severity.TRIVIAL_VALUE:
+				image = Graphics.getImage("icons/obj16/Bug_trivial.png", classLoader); 
+				break;
+			default:
+				image = Graphics.getImage("icons/obj16/BugReport.png", classLoader); 
+			}
+		} else if (element instanceof MergingIssue) {
+			image = Graphics.getImage("icons/obj16/MergingIssue.gif", classLoader);
+		} else if (element instanceof Issue) {
+			image = Graphics.getImage("icons/obj16/Issue.gif", classLoader);
+		} else if (element instanceof Meeting) { 
+			image = Graphics.getImage("icons/Meeting.gif", classLoader);
+		}else if (element instanceof WorkPackage) { 
+			image = Graphics.getImage("icons/WorkPackage.gif", classLoader);
+		} else{
+			image = Graphics.getImage("icons/obj16/ActionItem.png", classLoader);
+		}
+
+		return image;
 	}
 
 

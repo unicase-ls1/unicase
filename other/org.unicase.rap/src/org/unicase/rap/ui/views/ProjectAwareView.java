@@ -50,6 +50,9 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 			Project project = getProject();
 			if(project != null) {
 				project.addProjectChangeObserver(this);
+			}else {
+				MessageDialog.openInformation(Display.getDefault().getActiveShell(), 
+					"Access error", "One of your url argument is wrong.");
 			}
 		}
 		String viewName = getHttpRequest().getParameter(NAME_OF_VIEW_ARGUMENT);
