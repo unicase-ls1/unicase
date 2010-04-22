@@ -127,6 +127,14 @@ public class LoginHandler {
 		} catch (ServerUrlResolutionException e) {
 			System.out.println("Could not find the server you are looking for.");
 			WorkspaceUtil.logException(e.getMessage(), e);
+			addNewServerInfo();
+			try {
+				serverInfos = WorkspaceManager.getInstance()
+						.getCurrentWorkspace().resolve(serverUrl);
+			} catch (ServerUrlResolutionException e2) {
+				System.out.println("Could not find the server you are looking for.");
+				WorkspaceUtil.logException(e2.getMessage(), e2);
+			}
 		}
 
 		for (ServerInfo server : serverInfos) {
@@ -137,7 +145,22 @@ public class LoginHandler {
 		return serverInfo;
 	}
 	
-
+	private void addNewServerInfo() {
+		final ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("EMFServer for RAP");
+		serverInfo.setUrl(emfServerUrl);
+		serverInfo.setPort(emfServerPort);
+		serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate for RAP");
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				// save serverInfo to workspace
+				Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+				workspace.getServerInfos().add(serverInfo);
+				workspace.save();
+			}
+		}.run();
+	}
 	
 	/**
 	 * Gets user session.

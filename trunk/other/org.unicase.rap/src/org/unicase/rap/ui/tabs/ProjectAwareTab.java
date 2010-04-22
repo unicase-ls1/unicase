@@ -42,8 +42,8 @@ public abstract class ProjectAwareTab {
 		tabItem = new CTabItem(parent, SWT.NONE);
 		this.projectSpace = projectSpace;
 		tabItem.setText(tabName);
-
-		composite = new Composite(parent, SWT.NONE);
+		
+		composite = new Composite(parent, SWT.NORMAL);
 
 		composite.setLayout(new GridLayout(1, false));
 		tabItem.setControl(composite);

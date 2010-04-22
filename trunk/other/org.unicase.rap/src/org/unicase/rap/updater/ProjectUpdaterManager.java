@@ -83,7 +83,7 @@ public final class ProjectUpdaterManager implements Runnable {
 
 		try {
 			while (!Thread.currentThread().isInterrupted() && isRunning()) {
-				Thread.sleep(1000);
+				Thread.sleep(100000);
 				updateProjectLists();
 				sychronizeProjectLists();
 			}

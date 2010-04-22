@@ -47,7 +47,7 @@ public class WorkItemsTableViewer extends AbstractETableViewer {
 	protected void init() {		
 		super.init();
 		GridData tableData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		tableData.horizontalSpan = 2;
+//		tableData.horizontalSpan = 2;
 		getTable().setLayoutData(tableData);
 	}
 

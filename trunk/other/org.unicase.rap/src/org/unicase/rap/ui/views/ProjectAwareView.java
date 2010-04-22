@@ -24,6 +24,15 @@ import org.unicase.rap.config.ProjectKeysConfigEntity;
  * @author Edgar Müller
  */
 public abstract class ProjectAwareView extends AbstractView implements ProjectChangeObserver {
+
+	/**  */
+	public static final String NAME_OF_VIEW_ARGUMENT = "view";
+	
+	/**  */
+	public static final String NAME_OF_PROJECT_ARGUMENT = "name";
+	
+	/**  */
+	public static final String NAME_OF_KEY_ARGUMENT = "key";
 	
 	/**
 	 * The project space this view is associated with.
@@ -35,15 +44,21 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	 */
 	public ProjectAwareView() {
 		// TODO: parameter names 'key' and 'name' currently hard coded
-		String projectName = getHttpRequest().getParameter("name");
+		String projectName = getHttpRequest().getParameter(NAME_OF_PROJECT_ARGUMENT);
 		if (projectName != null) {
 			resolveProject(projectName);
-			getProject().addProjectChangeObserver(this);
+			Project project = getProject();
+			if(project != null) {
+				project.addProjectChangeObserver(this);
+			}
 		}
+		String viewName = getHttpRequest().getParameter(NAME_OF_VIEW_ARGUMENT);
 		
-		if (!isKeyParameterValid()) {
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), 
-					"Access denied", "You aren't allowed to access this site.");
+		if(viewName != null && !viewName.equals("config")) {
+			if (!isKeyParameterValid()) {
+				MessageDialog.openInformation(Display.getDefault().getActiveShell(), 
+						"Access denied", "You aren't allowed to access this site.");
+			}
 		}
 	}
 	
@@ -53,17 +68,18 @@ public abstract class ProjectAwareView extends AbstractView implements ProjectCh
 	 */
 	private boolean isKeyParameterValid() {
 		
-		String crypticElement = getHttpRequest().getParameter("key");
+		String crypticElement = getHttpRequest().getParameter(NAME_OF_KEY_ARGUMENT);
 		
 		ProjectKeysConfigEntity configEntity = new ProjectKeysConfigEntity();
-		ConfigEntity cfgEntity = ConfigEntityStore.loadConigEntity(configEntity, configEntity.eClass());
+		ConfigEntityStore.loadConfigEntity(configEntity, configEntity.eClass());
 		
-		if (cfgEntity != null && projectSpace != null) {
-			Object savedCrypticElement = cfgEntity.getProperties().get(projectSpace.getProjectName());
+		if (configEntity != null && (configEntity.getProperties().size() > 0) && projectSpace != null) {
+			String savedCrypticElement = configEntity.getAccessKey(projectSpace.getProjectName());
 			
-			if (savedCrypticElement != null && !savedCrypticElement.equals(crypticElement)) {
+			if (savedCrypticElement == null || !savedCrypticElement.equals(crypticElement)) {
 				return false;
 			}
+			return true;
 		}
 		
 		return true;

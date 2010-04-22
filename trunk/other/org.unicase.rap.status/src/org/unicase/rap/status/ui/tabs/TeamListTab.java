@@ -21,6 +21,8 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 
 import org.unicase.rap.ui.tabs.ProjectAwareTab;
+import org.unicase.rap.config.ConfigEntityStore;
+import org.unicase.rap.status.config.StatusConfigEntity;
 import org.unicase.rap.status.ui.viewers.TeamTableViewer;
 
 /**
@@ -39,7 +41,7 @@ public class TeamListTab extends ProjectAwareTab {
 	 * @param tabFolder Tab folder.
 	 */
 	public TeamListTab(ProjectSpace projectSpace, CTabFolder tabFolder) {
-		super(projectSpace, tabFolder, "Team Tab");
+		super(projectSpace, tabFolder, "Team View");		
 		teamTableViewer = new TeamTableViewer(composite);
 	}
 	
@@ -66,10 +68,13 @@ public class TeamListTab extends ProjectAwareTab {
 			groups = projectSpace.getProject().getAllModelElementsbyClass(
 					OrganizationPackage.eINSTANCE.getGroup(), new BasicEList<Group>());
 		}
-
+		
+		StatusConfigEntity cnfgEntity = new StatusConfigEntity(projectSpace);
+		ConfigEntityStore.loadConfigEntity(cnfgEntity, cnfgEntity.eClass());
+		String groupName = cnfgEntity.getUserGroupName();
+		
 		for (Group group : groups) {
-			if (group.getName().toLowerCase().contains(
-					projectSpace.getProjectName().toLowerCase())) {
+			if (group.getIdentifier().equals(groupName)) {
 				teamMembers = group.getOrgUnits();
 			}
 		}

@@ -84,16 +84,16 @@
    <extension
          point="org.unicase.rap.ui.config.tab">
       <config
-            class="org.unicase.rap.ui.tabs.GeneralSettingsTab"
-            name="General Settings">
+            class="org.unicase.rap.ui.tabs.ProjectKeysTab"
+            name="Project Activation">
       </config>
       <config
             class="org.unicase.rap.ui.tabs.EMFServerSettingsTab"
             name="EMFServer Settings">
       </config>
       <config
-            class="org.unicase.rap.ui.tabs.ProjectKeysTab"
-            name="Access Keys">
+            class="org.unicase.rap.ui.tabs.GeneralSettingsTab"
+            name="General Settings">
       </config>
    </extension>
 

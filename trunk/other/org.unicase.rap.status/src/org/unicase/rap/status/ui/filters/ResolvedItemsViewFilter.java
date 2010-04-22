@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.model.task.WorkItem;
 
 /**
- * 
+ * This filter prevents showing of resolved bug reports in viewers.
  * 
  * @author Fatih Ulusoy
  */
