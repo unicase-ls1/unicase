@@ -1,6 +1,6 @@
 package org.unicase.backchannel.example.client;
 
-import org.unicase.backchannel.connection.rmi.client.BackchannelConnectionManager;
+import org.unicase.backchannel.client.BackchannelConnectionManager;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
