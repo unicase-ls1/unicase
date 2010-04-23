@@ -66,6 +66,7 @@ public class BackchannelImpl extends AbstractEmfstoreInterface implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void initSubInterfaces() throws FatalEmfStoreException {
 	}
 
