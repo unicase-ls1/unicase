@@ -131,7 +131,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 		if (meDiagram instanceof UseCaseDiagram) {
 			id = "UseCase";
 		} else if (meDiagram instanceof ClassDiagram) {
-			id = "Model";
+			id = "Class";
 		} else if (meDiagram instanceof ComponentDiagram) {
 			id = "Component";
 		} else if (meDiagram instanceof StateDiagram) {

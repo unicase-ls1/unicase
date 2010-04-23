@@ -1034,12 +1034,6 @@
   <diagramUpdater/>
   <propertySheet>
     <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="appearance"/>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="diagram"/>
-    <tabs
         xsi:type="gmfgen:GenCustomPropertyTab"
         iD="domain"
         label="Core">
