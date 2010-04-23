@@ -8,6 +8,7 @@ package org.unicase.ui.diagram.classDiagram.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -86,30 +87,35 @@ public class PackageItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT Generates the relationship and passes the diagram to the custom constructor
+	 * @param req The request that triggered the command
+	 * @return The created command
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(req, req
+				.getSource(), req.getTarget(),
+			// custom code
+				(EObject) getHost().getModel()));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT Generates the relationship and passes the diagram to the custom constructor
+	 * @param req The request that triggered the command
+	 * @return The created command
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(req, req
+				.getSource(), req.getTarget(),
+			// custom code
+				(EObject) getHost().getModel()));
 		}
 		return null;
 	}
+
 
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
