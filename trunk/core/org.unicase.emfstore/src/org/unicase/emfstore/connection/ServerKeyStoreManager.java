@@ -140,6 +140,9 @@ public final class ServerKeyStoreManager {
 		}
 	}
 
+	/**
+	 * Sets java runtime properties for ssl.
+	 */
 	public void setJavaSSLProperties() {
 		System.setProperty("javax.net.ssl.keyStore", ServerConfiguration.getServerKeyStorePath());
 		System.setProperty("javax.net.ssl.trustStore", ServerConfiguration.getServerKeyStorePath());
