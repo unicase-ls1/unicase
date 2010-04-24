@@ -32,15 +32,15 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart) {
 			ArrayList types = new ArrayList(2);
-			types
-					.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentService_2001);
+			//types
+			//		.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentService_2001);
 			types
 					.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.Component_2002);
 			return types;
