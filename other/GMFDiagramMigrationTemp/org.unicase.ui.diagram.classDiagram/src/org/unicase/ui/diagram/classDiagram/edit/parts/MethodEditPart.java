@@ -48,6 +48,7 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.ui.unicasecommon.common.diagram.OnFirstCharTextDirectEditManager;
 
 /**
  * @generated
@@ -318,15 +319,14 @@ public class MethodEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * @return A {@link TextDirectEditManager}
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(
-					this,
-					TextDirectEditManager.getTextCellEditorClass(this),
-					org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
-							.getTextCellEditorLocator(this)));
+			setManager(new OnFirstCharTextDirectEditManager(this, OnFirstCharTextDirectEditManager
+				.getTextCellEditorClass(this), org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
+				.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -543,46 +543,50 @@ public class MethodEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * This method handles notifications posted for model changes. There are some issues with the features passed to
+	 * this method, as they never equal the edit parts feature. Though, the label does not get updated after model
+	 * changes.
+	 * 
+	 * @author schroech
+	 * @generated NOT
+	 * @param event The notification to be handled
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(
-				feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough()
-				.equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(
-				feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(
-						feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold()
-						.equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(
-						feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+			|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
+			|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+			|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
-			if (getParser() != null
-					&& getParser().isAffectingEvent(event,
-							getParserOptions().intValue())) {
+			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
 				ISemanticParser modelParser = (ISemanticParser) getParser();
-				if (modelParser.areSemanticElementsAffected(null, event)) {
-					removeSemanticListeners();
-					if (resolveSemanticElement() != null) {
-						addSemanticListeners();
-					}
-					refreshLabel();
-				}
+				refreshSemanticListeners(event, modelParser);
 			}
+			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
+	}
+
+	private void refreshSemanticListeners(Notification event, ISemanticParser modelParser) {
+		if (modelParser.areSemanticElementsAffected(null, event)) {
+			removeSemanticListeners();
+			if (resolveSemanticElement() != null) {
+				addSemanticListeners();
+			}
+			refreshLabel();
+		}
 	}
 
 	/**

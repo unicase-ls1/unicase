@@ -49,6 +49,7 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.ui.unicasecommon.common.diagram.OnFirstCharTextDirectEditManager;
 
 /**
  * @generated
@@ -327,15 +328,14 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * @return A {@link TextDirectEditManager}
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(
-					this,
-					TextDirectEditManager.getTextCellEditorClass(this),
-					org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
-							.getTextCellEditorLocator(this)));
+			setManager(new OnFirstCharTextDirectEditManager(this, OnFirstCharTextDirectEditManager
+				.getTextCellEditorClass(this), org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
+				.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
