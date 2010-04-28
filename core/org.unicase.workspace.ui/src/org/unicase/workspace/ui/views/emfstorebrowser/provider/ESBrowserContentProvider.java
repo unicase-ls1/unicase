@@ -66,10 +66,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	private Object[] getChildren(ServerInfo serverInfo) {
-		if (serverInfo.getLastUsersession() == null) {
-			return new Object[0];
-		}
-		if (!serverInfo.getLastUsersession().isLoggedIn()) {
+		if (serverInfo.getLastUsersession() == null
+				|| !serverInfo.getLastUsersession().isLoggedIn()) {
 			LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
 					.getDisplay().getActiveShell(), serverInfo);
 			dialog.open();

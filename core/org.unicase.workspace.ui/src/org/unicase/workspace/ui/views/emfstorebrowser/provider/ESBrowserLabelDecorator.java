@@ -8,7 +8,9 @@ package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
+import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.ui.Activator;
 
 /**
  * @see ILightweightLabelDecorator
@@ -21,19 +23,22 @@ public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 
-		ServerInfo server;
-		if (element instanceof ServerInfo) {
-			server = (ServerInfo) element;
-		} else {
-			return;
+		if (element instanceof TreeNode) {
+			TreeNode node = (TreeNode) element;
+			if (node.getValue() instanceof ServerInfo) {
+				ServerInfo server = (ServerInfo) node.getValue();
+				if (server.getLastUsersession() != null
+						&& server.getLastUsersession().isLoggedIn()) {
+					decoration.addOverlay(Activator
+							.getImageDescriptor("icons/bullet_green.png"),
+							IDecoration.BOTTOM_RIGHT);
+				} else {
+					decoration.addOverlay(Activator
+							.getImageDescriptor("icons/bullet_delete.png"),
+							IDecoration.BOTTOM_RIGHT);
+				}
+			}
 		}
-		String suffix = "[" + server.getUrl() + "]";
-		if (server.getLastUsersession() != null
-				&& server.getLastUsersession().isLoggedIn()) {
-			suffix = "[" + server.getLastUsersession().getUsername() + "@"
-					+ server.getUrl() + "] logged in ";
-		}
-		decoration.addSuffix(suffix);
 
 	}
 
