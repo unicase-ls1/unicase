@@ -6,23 +6,21 @@
 package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Work Item Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Work Item Diagram</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class WorkItemDiagramImpl extends MEDiagramImpl implements WorkItemDiagram {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkItemDiagramImpl() {
@@ -30,8 +28,8 @@ public class WorkItemDiagramImpl extends MEDiagramImpl implements WorkItemDiagra
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -39,4 +37,9 @@ public class WorkItemDiagramImpl extends MEDiagramImpl implements WorkItemDiagra
 		return DiagramPackage.Literals.WORK_ITEM_DIAGRAM;
 	}
 
-} //WorkItemDiagramImpl
+	@Override
+	public String getType() {
+		return "WorkItem";
+	}
+
+} // WorkItemDiagramImpl

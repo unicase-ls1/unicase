@@ -6,23 +6,21 @@
 package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Component Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Component Diagram</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiagram {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentDiagramImpl() {
@@ -30,8 +28,8 @@ public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiag
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -39,4 +37,9 @@ public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiag
 		return DiagramPackage.Literals.COMPONENT_DIAGRAM;
 	}
 
-} //ComponentDiagramImpl
+	@Override
+	public String getType() {
+		return "Class";
+	}
+
+} // ComponentDiagramImpl

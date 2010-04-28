@@ -6,32 +6,35 @@
 package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Activity Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Activity Diagram</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagram {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityDiagramImpl() {
 		super();
 	}
 
+	@Override
+	public String getType() {
+		return "Activity";
+	}
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -39,4 +42,4 @@ public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagra
 		return DiagramPackage.Literals.ACTIVITY_DIAGRAM;
 	}
 
-} //ActivityDiagramImpl
+} // ActivityDiagramImpl

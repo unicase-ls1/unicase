@@ -270,6 +270,17 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	}
 
 	/**
+	 * <!-- begin-user-doc --> This method has be implemented by the subtypes of MEDiagram and return the type of the
+	 * diagram. <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 * @return Type of the diagram
+	 */
+	public String getType() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

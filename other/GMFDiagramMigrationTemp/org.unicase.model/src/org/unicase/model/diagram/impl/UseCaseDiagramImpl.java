@@ -6,23 +6,21 @@
 package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.UseCaseDiagram;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Use Case Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Use Case Diagram</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UseCaseDiagramImpl() {
@@ -30,8 +28,8 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -39,4 +37,9 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 		return DiagramPackage.Literals.USE_CASE_DIAGRAM;
 	}
 
-} //UseCaseDiagramImpl
+	@Override
+	public String getType() {
+		return "UseCase";
+	}
+
+} // UseCaseDiagramImpl
