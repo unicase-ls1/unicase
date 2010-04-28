@@ -15,7 +15,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -84,10 +83,9 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 				commandParam.icon = getImage((EClass) contentTypes[i]);
 			}
 			// set the DiagramType Parameter if the object is a MEiagram
-			if (contentTypes[i] instanceof DiagramType) {
-				// MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
+			if (contentTypes[i] instanceof MEDiagram) {
 				DiagramType type = (DiagramType) contentTypes[i];
-				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
+				// map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
 				map.put(CreateMEHandler.COMMAND_DIAGRAMTYPE_PARAM, type);
 				commandParam.label = "New " + type.getLiteral();
 			}
@@ -119,13 +117,9 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		for (UnicaseModelElement me : leafSection.getModelElements()) {
 			Object key = null;
-			// separated count for the different diagram types
-			if (me instanceof MEDiagram) {
-				Diagram type = ((MEDiagram) me).getGmfdiagram();
-				key = type;
-			} else {
-				key = me.eClass();
-			}
+			// Same for diagrams and other model elements.
+			key = me.eClass();
+
 			if (meCounts.containsKey(key)) {
 				// if Count for this ME is already added to the map,
 				// increment its count.
