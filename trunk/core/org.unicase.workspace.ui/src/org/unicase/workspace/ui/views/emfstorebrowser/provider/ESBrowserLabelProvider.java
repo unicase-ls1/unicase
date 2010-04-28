@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
@@ -24,27 +25,32 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider {
 	 */
 	@Override
 	public void update(ViewerCell cell) {
-		Object element = cell.getElement();
-		if (element instanceof ServerInfo) {
-			ServerInfo serverInfo = (ServerInfo) element;
-			StyledString styledString = new StyledString(serverInfo.getName());
-			String url = serverInfo.getUrl();
-			styledString.append(" [" + url + "]",
-					StyledString.DECORATIONS_STYLER);
+		Object obj = cell.getElement();
+		if (obj instanceof TreeNode) {
+			Object element = ((TreeNode) obj).getValue();
+			if (element instanceof ServerInfo) {
+				ServerInfo serverInfo = (ServerInfo) element;
+				StyledString styledString = new StyledString(serverInfo
+						.getName());
+				String url = serverInfo.getUrl();
+				styledString.append(" [" + url + "]",
+						StyledString.DECORATIONS_STYLER);
 
-			cell.setText(styledString.toString());
-			cell.setStyleRanges(styledString.getStyleRanges());
+				cell.setText(styledString.toString());
+				cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif")
-					.createImage());
-		} else if (element instanceof ProjectInfo) {
-			ProjectInfo projectInfo = (ProjectInfo) element;
-			StyledString styledString = new StyledString(projectInfo.getName());
-			cell.setText(styledString.toString());
-			cell.setStyleRanges(styledString.getStyleRanges());
+				cell.setImage(Activator.getImageDescriptor(
+						"icons/ServerInfo.gif").createImage());
+			} else if (element instanceof ProjectInfo) {
+				ProjectInfo projectInfo = (ProjectInfo) element;
+				StyledString styledString = new StyledString(projectInfo
+						.getName());
+				cell.setText(styledString.toString());
+				cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
-					.createImage());
+				cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
+						.createImage());
+			}
 		}
 		super.update(cell);
 	}

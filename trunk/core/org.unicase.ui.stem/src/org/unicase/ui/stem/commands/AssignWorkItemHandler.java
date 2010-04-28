@@ -43,9 +43,6 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
 		final Project project = currentOpenME.getProject();
-		//
-		// final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-		// .getProject();
 
 		new UnicaseCommand() {
 			@Override
