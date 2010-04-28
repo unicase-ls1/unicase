@@ -1,2 +1,2 @@
-Video Tutorial on how to run model driven development with UNICASE
+Video Tutorial on how to run model driven development with UNICASE.
  <wiki:video url="http://www.youtube.com/watch?v=dctQTKHR080"/> 
