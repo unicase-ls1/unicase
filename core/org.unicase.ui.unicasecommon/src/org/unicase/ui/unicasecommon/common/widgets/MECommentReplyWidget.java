@@ -37,6 +37,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.Activator;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
@@ -182,15 +183,20 @@ public class MECommentReplyWidget extends Composite {
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).applyTo(recipients);
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
-		Comment comment = null;
 		if (modelElement instanceof Comment) {
-			comment = ((Comment) modelElement);
+			Comment comment = ((Comment) modelElement);
+			if (comment.getSender() != null) {
+				recipientsList.add(comment.getSender());
+			}
 		}
-		if (comment != null && comment.getSender() != null) {
-			recipientsList.add(comment.getSender());
-			rebuildRecipientList(recipients, recipientsList);
-			recipientsComposite.layout();
+		if (modelElement instanceof WorkItem) {
+			WorkItem workItem = (WorkItem) modelElement;
+			if (workItem.getAssignee() != null) {
+				recipientsList.add(workItem.getAssignee());
+			}
 		}
+		rebuildRecipientList(recipients, recipientsList);
+		recipientsComposite.layout();
 
 		ImageHyperlink addButton = new ImageHyperlink(recipientsComposite, SWT.TOP);
 		ImageHyperlink removeButton = new ImageHyperlink(recipientsComposite, SWT.TOP);
@@ -256,11 +262,14 @@ public class MECommentReplyWidget extends Composite {
 	}
 
 	private void rebuildRecipientList(Label recipients, List<OrgUnit> list) {
+		StringBuilder builder = new StringBuilder();
 		String string = "";
 		if (list.size() > 0) {
 			for (OrgUnit orgUnit : list) {
-				string += orgUnit.getName() + ", ";
+				builder.append(orgUnit.getName());
+				builder.append(", ");
 			}
+			string = builder.toString();
 			string = string.substring(0, string.length() - 2);
 		}
 		recipients.setText(string);
