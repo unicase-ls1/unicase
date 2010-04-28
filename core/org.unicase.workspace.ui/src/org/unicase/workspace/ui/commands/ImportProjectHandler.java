@@ -53,6 +53,8 @@ public class ImportProjectHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		final String absoluteFileName = showOpenFileDialog();
+		String test = "ggg";
+
 		if (absoluteFileName == null) {
 			return null;
 		}
