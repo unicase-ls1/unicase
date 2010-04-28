@@ -112,6 +112,14 @@ public interface MEDiagram extends Attachment {
 	 */
 	void setDiagramLayout(String value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	String getType();
+
 	void saveDiagramLayout() throws DiagramStoreException;
 
 	void loadDiagramLayout() throws DiagramLoadException;
