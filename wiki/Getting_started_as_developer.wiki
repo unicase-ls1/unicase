@@ -29,7 +29,7 @@ Getting started as developer in 7 easy steps:
 
 5. Start the UNICASE server from Eclipse, see this [http://unicase.googlecode.com/files/StartEmfStore.mov video tutorial].
 
-6. Start the UNICASE client from Eclipse, see this [http://unicase.googlecode.com/files/StartUnicaseClient.mov video tutorial].
+6. Start the UNICASE client from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunClientTutorial video tutorial].
 
 7. Register for our [http://code.google.com/p/unicase/wiki/Mailinglist mailinglists].
 
