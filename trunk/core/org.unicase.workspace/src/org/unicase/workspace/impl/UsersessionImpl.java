@@ -5,9 +5,9 @@
  */
 package org.unicase.workspace.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -194,7 +194,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	protected EList<OrgUnitProperty> changedProperties;
 
-	private List<LoginObserver> loginObservers;
+	private HashSet<LoginObserver> loginObservers;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -617,7 +617,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		// BEGIN SUPRESS CATCH EXCEPTION
 		try {
 			getServerInfo().getProjectInfos().clear();
-			getServerInfo().getProjectInfos().addAll(getRemoteProjectList());
+			// TODO MK: is this correct?
+			if (isLoggedIn()) {
+				getServerInfo().getProjectInfos().addAll(getRemoteProjectList());
+			}
+			getWorkspaceManager().getCurrentWorkspace().save();
 		} catch (EmfStoreException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		} catch (RuntimeException e) {
@@ -652,6 +656,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void logout() throws EmfStoreException {
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		connectionManager.logout(getSessionId());
+		// TODO AS OW MK: is this correct?
+		sessionId = null;
+		updateProjectInfos();
 	}
 
 	// begin of custom code
@@ -943,9 +950,18 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void addLoginObserver(LoginObserver observer) {
 		if (loginObservers == null) {
-			loginObservers = new ArrayList<LoginObserver>();
+			loginObservers = new HashSet<LoginObserver>();
 		}
 		loginObservers.add(observer);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeLoginObserver(LoginObserver observer) {
+		if (loginObservers != null) {
+			loginObservers.remove(observer);
+		}
 	}
 
 } // UsersessionImpl
