@@ -837,7 +837,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.workspace.ServerInfo">
                  </test>
                  <test
@@ -860,7 +860,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.workspace.ServerInfo">
                  </test>
                  <test
@@ -883,7 +883,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.emfstore.esmodel.ProjectInfo">
                  </test>
               </iterate>
@@ -903,7 +903,7 @@
 	               operator="and">
 	                <test
 	                    forcePluginActivation="true"
-                        property="org.unicase.ui.common.commands.treeNodeClassTester"
+                        property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                         value="org.unicase.workspace.ServerInfo">
                     </test>
                  <test
@@ -931,7 +931,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.workspace.ServerInfo">
                  </test>
                  <test
@@ -959,7 +959,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.emfstore.esmodel.ProjectInfo">
                  </test>
                  <test
@@ -982,7 +982,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.emfstore.esmodel.ProjectInfo">
                  </test>
                  <test
@@ -1006,7 +1006,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.emfstore.esmodel.ProjectInfo">
                  </test>
                  <test
@@ -1029,7 +1029,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.workspace.ServerInfo">
                  </test>
               </iterate>
@@ -1054,7 +1054,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.emfstore.esmodel.ProjectInfo">
                  </test>
               </iterate>
@@ -1072,7 +1072,7 @@
                     operator="and">
                  <test
                        forcePluginActivation="true"
-                       property="org.unicase.ui.common.commands.treeNodeClassTester"
+                       property="org.unicase.workspace.ui.commands.treeNodeClassTester"
                        value="org.unicase.workspace.ServerInfo">
                  </test>
               </iterate>
@@ -1212,13 +1212,13 @@
      <decorator
            adaptable="true"
            class="org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelDecorator"
-           id="org.unicase.ui.estorebrowser.LoginDecorator"
+           id="org.unicase.ui.emfstorebrowser.LoginDecorator"
            label="Login Decorator"
            lightweight="true"
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.workspace.ServerInfo">
+                 name="org.eclipse.jface.viewers.TreeNode">
            </objectClass>
         </enablement>
      </decorator>

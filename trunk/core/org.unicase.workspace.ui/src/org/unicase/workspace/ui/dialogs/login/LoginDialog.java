@@ -52,6 +52,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class LoginDialog extends TitleAreaDialog {
 
 	private static final String NEW_SESSION_NAME = "new session";
+	private static final String FIXE_PW_TEXT = "sysiphus";
 	private ServerInfo serverInfo;
 	private Usersession usersession;
 	private Composite contents;
@@ -316,7 +317,7 @@ public class LoginDialog extends TitleAreaDialog {
 			userText.setEnabled(false);
 			String pass = "";
 			if (session.getPassword() != null) {
-				pass = session.getPassword();
+				pass = FIXE_PW_TEXT;
 			}
 			passText.setText(pass);
 			savePassButton.setSelection(session.isSavePassword());

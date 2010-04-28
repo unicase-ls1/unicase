@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -17,7 +18,9 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.common.util.EventUtil;
@@ -54,16 +57,25 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 		for (Usersession u : currentWorkspace.getUsersessions()) {
 			u.addLoginObserver(this);
 		}
-		for (ServerInfo serverInfo : currentWorkspace.getServerInfos()) {
+		for (final ServerInfo serverInfo : currentWorkspace.getServerInfos()) {
 			serverInfoAdapter = new AdapterImpl() {
 				@Override
-				public void notifyChanged(Notification msg) {
-					if (msg.getFeature().equals(
-							WorkspacePackage.eINSTANCE
-									.getServerInfo_ProjectInfos())) {
-						if (!viewer.isBusy()) {
-							viewer.refresh();
-						}
+				public void notifyChanged(final Notification msg) {
+					if (msg.getFeature() != null
+							&& msg.getFeature().equals(
+									WorkspacePackage.eINSTANCE
+											.getServerInfo_ProjectInfos())) {
+						Display.getCurrent().asyncExec(new Runnable() {
+							public void run() {
+								if (msg.getEventType() == Notification.ADD_MANY) {
+									viewer.refresh(serverInfo);
+								} else if (msg.getEventType() == Notification.REMOVE_MANY) {
+									viewer.collapseToLevel(new TreeNode(
+											serverInfo), 0);
+								}
+
+							}
+						});
 					}
 				}
 			};
@@ -77,8 +89,10 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 					serverInfo.eAdapters().add(serverInfoAdapter);
 					viewer.refresh();
 				}
-				if (msg.getFeature().equals(
-						WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
+				if (msg.getFeature() != null
+						&& msg.getFeature().equals(
+								WorkspacePackage.eINSTANCE
+										.getWorkspace_Usersessions())) {
 					if (msg.getEventType() == Notification.ADD) {
 						Usersession session = (Usersession) msg.getNewValue();
 						session.addLoginObserver(ESBrowserView.this);
@@ -103,7 +117,11 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 
 		contentProvider = new ESBrowserContentProvider();
 		viewer.setContentProvider(contentProvider);
-		viewer.setLabelProvider(new ESBrowserLabelProvider());
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
+		viewer.setLabelProvider(new DecoratingLabelProvider(
+				new ESBrowserLabelProvider(), decoratorManager
+						.getLabelDecorator()));
 		viewer.setSorter(new ESBrowserViewerSorter());
 
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
@@ -128,6 +146,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 			public void doubleClick(DoubleClickEvent event) {
 				Object firstElement = ((IStructuredSelection) viewer
 						.getSelection()).getFirstElement();
+				viewer.refresh(firstElement);
 				viewer.expandToLevel(firstElement, 1);
 			}
 		});
