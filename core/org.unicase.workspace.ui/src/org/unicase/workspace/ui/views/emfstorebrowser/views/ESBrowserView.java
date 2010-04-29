@@ -67,13 +67,11 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 											.getServerInfo_ProjectInfos())) {
 						Display.getCurrent().asyncExec(new Runnable() {
 							public void run() {
-								if (msg.getEventType() == Notification.ADD_MANY) {
-									viewer.refresh(serverInfo);
-								} else if (msg.getEventType() == Notification.REMOVE_MANY) {
-									viewer.collapseToLevel(new TreeNode(
-											serverInfo), 0);
+								TreeNode element = new TreeNode(serverInfo);
+								if (msg.getEventType() == Notification.REMOVE_MANY) {
+									viewer.collapseToLevel(element, 0);
 								}
-
+								viewer.refresh(element, true);
 							}
 						});
 					}
