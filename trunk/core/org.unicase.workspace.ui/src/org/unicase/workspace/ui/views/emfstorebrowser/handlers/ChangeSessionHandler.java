@@ -53,7 +53,6 @@ public class ChangeSessionHandler extends AbstractHandler {
 				if (!element.getLastUsersession().isSavePassword()) {
 					element.getLastUsersession().setPassword(null);
 				}
-				element.setLastUsersession(null);
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			}
 		}.run();
