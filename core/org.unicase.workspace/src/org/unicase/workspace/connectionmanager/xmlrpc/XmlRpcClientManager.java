@@ -156,8 +156,7 @@ public class XmlRpcClientManager {
 				&& ((SAXException) e.linkedException).getException() instanceof SerializationException) {
 				SerializationException serialE = (SerializationException) ((SAXException) e.linkedException)
 					.getException();
-				// repack exception because SerializationException doesn't inherit from EMFStoreException
-				throw new EmfStoreException(serialE.getMessage(), serialE);
+				throw new org.unicase.emfstore.exceptions.SerializationException(serialE);
 			} else {
 				throw new ConnectionException(ConnectionManager.REMOTE, e);
 			}
