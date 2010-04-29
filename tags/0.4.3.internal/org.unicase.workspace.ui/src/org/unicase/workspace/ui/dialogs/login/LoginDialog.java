@@ -18,6 +18,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -196,6 +198,18 @@ public class LoginDialog extends TitleAreaDialog {
 			}
 
 			public void keyPressed(KeyEvent e) {
+				if (!(e.character == '	') || e.character == '\0') {
+					isPasswordModified = true;
+				}
+			}
+		});
+		passText.addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent e) {
+				isPasswordModified = true;
+			}
+
+			public void focusGained(FocusEvent e) {
+				isPasswordModified = true;
 			}
 		});
 
