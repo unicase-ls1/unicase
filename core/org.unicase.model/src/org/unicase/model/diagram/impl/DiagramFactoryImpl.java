@@ -6,15 +6,18 @@
 package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.DiagramType;
-import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -57,8 +60,18 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case DiagramPackage.ME_DIAGRAM:
-			return createMEDiagram();
+		case DiagramPackage.CLASS_DIAGRAM:
+			return createClassDiagram();
+		case DiagramPackage.USE_CASE_DIAGRAM:
+			return createUseCaseDiagram();
+		case DiagramPackage.COMPONENT_DIAGRAM:
+			return createComponentDiagram();
+		case DiagramPackage.STATE_DIAGRAM:
+			return createStateDiagram();
+		case DiagramPackage.ACTIVITY_DIAGRAM:
+			return createActivityDiagram();
+		case DiagramPackage.WORK_ITEM_DIAGRAM:
+			return createWorkItemDiagram();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -69,14 +82,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * 
 	 * @generated
 	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-		case DiagramPackage.DIAGRAM_TYPE:
-			return createDiagramTypeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
+	public ClassDiagram createClassDiagram() {
+		ClassDiagramImpl classDiagram = new ClassDiagramImpl();
+		return classDiagram;
 	}
 
 	/**
@@ -84,14 +92,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * 
 	 * @generated
 	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-		case DiagramPackage.DIAGRAM_TYPE:
-			return convertDiagramTypeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
+	public UseCaseDiagram createUseCaseDiagram() {
+		UseCaseDiagramImpl useCaseDiagram = new UseCaseDiagramImpl();
+		return useCaseDiagram;
 	}
 
 	/**
@@ -99,9 +102,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * 
 	 * @generated
 	 */
-	public MEDiagram createMEDiagram() {
-		MEDiagramImpl meDiagram = new MEDiagramImpl();
-		return meDiagram;
+	public ComponentDiagram createComponentDiagram() {
+		ComponentDiagramImpl componentDiagram = new ComponentDiagramImpl();
+		return componentDiagram;
 	}
 
 	/**
@@ -109,12 +112,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * 
 	 * @generated
 	 */
-	public DiagramType createDiagramTypeFromString(EDataType eDataType, String initialValue) {
-		DiagramType result = DiagramType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-				+ eDataType.getName() + "'");
-		return result;
+	public StateDiagram createStateDiagram() {
+		StateDiagramImpl stateDiagram = new StateDiagramImpl();
+		return stateDiagram;
 	}
 
 	/**
@@ -122,8 +122,19 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * 
 	 * @generated
 	 */
-	public String convertDiagramTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public ActivityDiagram createActivityDiagram() {
+		ActivityDiagramImpl activityDiagram = new ActivityDiagramImpl();
+		return activityDiagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public WorkItemDiagram createWorkItemDiagram() {
+		WorkItemDiagramImpl workItemDiagram = new WorkItemDiagramImpl();
+		return workItemDiagram;
 	}
 
 	/**

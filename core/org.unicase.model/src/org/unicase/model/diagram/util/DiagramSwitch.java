@@ -13,8 +13,14 @@ import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -95,6 +101,108 @@ public class DiagramSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case DiagramPackage.CLASS_DIAGRAM: {
+			ClassDiagram classDiagram = (ClassDiagram) theEObject;
+			T result = caseClassDiagram(classDiagram);
+			if (result == null)
+				result = caseMEDiagram(classDiagram);
+			if (result == null)
+				result = caseAttachment(classDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(classDiagram);
+			if (result == null)
+				result = caseModelElement(classDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(classDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiagramPackage.USE_CASE_DIAGRAM: {
+			UseCaseDiagram useCaseDiagram = (UseCaseDiagram) theEObject;
+			T result = caseUseCaseDiagram(useCaseDiagram);
+			if (result == null)
+				result = caseMEDiagram(useCaseDiagram);
+			if (result == null)
+				result = caseAttachment(useCaseDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(useCaseDiagram);
+			if (result == null)
+				result = caseModelElement(useCaseDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(useCaseDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiagramPackage.COMPONENT_DIAGRAM: {
+			ComponentDiagram componentDiagram = (ComponentDiagram) theEObject;
+			T result = caseComponentDiagram(componentDiagram);
+			if (result == null)
+				result = caseMEDiagram(componentDiagram);
+			if (result == null)
+				result = caseAttachment(componentDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(componentDiagram);
+			if (result == null)
+				result = caseModelElement(componentDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(componentDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiagramPackage.STATE_DIAGRAM: {
+			StateDiagram stateDiagram = (StateDiagram) theEObject;
+			T result = caseStateDiagram(stateDiagram);
+			if (result == null)
+				result = caseMEDiagram(stateDiagram);
+			if (result == null)
+				result = caseAttachment(stateDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(stateDiagram);
+			if (result == null)
+				result = caseModelElement(stateDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(stateDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiagramPackage.ACTIVITY_DIAGRAM: {
+			ActivityDiagram activityDiagram = (ActivityDiagram) theEObject;
+			T result = caseActivityDiagram(activityDiagram);
+			if (result == null)
+				result = caseMEDiagram(activityDiagram);
+			if (result == null)
+				result = caseAttachment(activityDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(activityDiagram);
+			if (result == null)
+				result = caseModelElement(activityDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(activityDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiagramPackage.WORK_ITEM_DIAGRAM: {
+			WorkItemDiagram workItemDiagram = (WorkItemDiagram) theEObject;
+			T result = caseWorkItemDiagram(workItemDiagram);
+			if (result == null)
+				result = caseMEDiagram(workItemDiagram);
+			if (result == null)
+				result = caseAttachment(workItemDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(workItemDiagram);
+			if (result == null)
+				result = caseModelElement(workItemDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(workItemDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -110,6 +218,88 @@ public class DiagramSwitch<T> {
 	 * @generated
 	 */
 	public T caseMEDiagram(MEDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Diagram</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassDiagram(ClassDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Use Case Diagram</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Use Case Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUseCaseDiagram(UseCaseDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Diagram</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComponentDiagram(ComponentDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Diagram</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateDiagram(StateDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activity Diagram</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activity Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityDiagram(ActivityDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkItemDiagram(WorkItemDiagram object) {
 		return null;
 	}
 
