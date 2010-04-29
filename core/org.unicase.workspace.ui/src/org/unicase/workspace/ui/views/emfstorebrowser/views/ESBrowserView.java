@@ -68,7 +68,8 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 						Display.getCurrent().asyncExec(new Runnable() {
 							public void run() {
 								TreeNode element = new TreeNode(serverInfo);
-								if (msg.getEventType() == Notification.REMOVE_MANY) {
+								if (msg.getEventType() == Notification.REMOVE_MANY
+										|| msg.getEventType() == Notification.REMOVE) {
 									viewer.collapseToLevel(element, 0);
 								}
 								viewer.refresh(element, true);
