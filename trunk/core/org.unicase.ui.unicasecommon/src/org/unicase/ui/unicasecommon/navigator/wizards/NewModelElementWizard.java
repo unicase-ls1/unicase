@@ -15,7 +15,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -74,14 +73,14 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
 
-			if (newMEInstance instanceof MEDiagram) {
-				if (newDiagramType != null) {
-					((MEDiagram) newMEInstance).setType(this.newDiagramType);
-					newMEInstance.setName("new " + this.newDiagramType.getLiteral());
-				} else {
-					newMEInstance.setName("newDiagram");
-				}
-			}
+			// if (newMEInstance instanceof MEDiagram) {
+			// if (newDiagramType != null) {
+			// ((MEDiagram) newMEInstance).setType(this.newDiagramType);
+			// newMEInstance.setName("new " + this.newDiagramType.getLiteral());
+			// } else {
+			// newMEInstance.setName("newDiagram");
+			// }
+			// }
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
 			if (selectedME instanceof LeafSection) {

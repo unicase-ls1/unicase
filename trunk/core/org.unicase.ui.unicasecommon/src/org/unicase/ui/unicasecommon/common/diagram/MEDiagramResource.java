@@ -27,8 +27,13 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -123,17 +128,17 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 
 	private void createNewGMFDiagram() {
 		String id = null;
-		if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
+		if (meDiagram instanceof UseCaseDiagram) {
 			id = "UseCase";
-		} else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "Model";
-		} else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+		} else if (meDiagram instanceof ClassDiagram) {
+			id = "Class";
+		} else if (meDiagram instanceof ComponentDiagram) {
 			id = "Component";
-		} else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+		} else if (meDiagram instanceof StateDiagram) {
 			id = "State";
-		} else if (meDiagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
+		} else if (meDiagram instanceof ActivityDiagram) {
 			id = "Activity";
-		} else if (meDiagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
+		} else if (meDiagram instanceof WorkItemDiagram) {
 			id = "WorkItem";
 		}
 

@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
@@ -144,12 +143,12 @@ public class ModelTreePage extends WizardPage implements Listener {
 			canFinish = false;
 		}
 
-		if (o instanceof MEDiagram) {
-			wizard.setNewMEType(((MEDiagram) o).eClass());
-			wizard.setNewDiagramType(((MEDiagram) o).getType());
-			wizard.setTreePageCompleted(true);
-			return true;
-		}
+		// if (o instanceof MEDiagram) {
+		// wizard.setNewMEType(((MEDiagram) o).eClass());
+		// wizard.setNewDiagramType(((MEDiagram) o).getType());
+		// wizard.setTreePageCompleted(true);
+		// return true;
+		// }
 		if (canFinish) {
 			EClass newMEType = (EClass) o;
 			wizard.setNewMEType(newMEType);
