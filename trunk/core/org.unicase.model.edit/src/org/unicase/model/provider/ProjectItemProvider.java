@@ -125,7 +125,22 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			TaskFactory.eINSTANCE.createMilestone()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			DiagramFactory.eINSTANCE.createMEDiagram()));
+			DiagramFactory.eINSTANCE.createClassDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createUseCaseDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createComponentDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createStateDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createActivityDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createWorkItemDiagram()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ClassesFactory.eINSTANCE.createClass()));

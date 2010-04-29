@@ -203,7 +203,22 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			TaskFactory.eINSTANCE.createMilestone()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			DiagramFactory.eINSTANCE.createMEDiagram()));
+			DiagramFactory.eINSTANCE.createClassDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createUseCaseDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createComponentDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createStateDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createActivityDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			DiagramFactory.eINSTANCE.createWorkItemDiagram()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ClassesFactory.eINSTANCE.createClass()));

@@ -463,6 +463,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getUrlAttachment_Url(), source, new String[] { "position", "left", "priority", "2.5" });
 		addAnnotation(getFileAttachment_FileName(), source, new String[] { "priority", "2", "position", "left" });
 		addAnnotation(getFileAttachment_FileHash(), source, new String[] { "priority", "2", "position", "left" });
 		addAnnotation(getFileAttachment_FileID(), source, new String[] { "priority", "2", "position", "left" });
