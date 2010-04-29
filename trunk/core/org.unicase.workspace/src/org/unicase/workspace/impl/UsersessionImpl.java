@@ -655,9 +655,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void logout() throws EmfStoreException {
 		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
-		connectionManager.logout(getSessionId());
-		// TODO AS OW MK: is this correct?
-		sessionId = null;
+		connectionManager.logout(sessionId);
+		setSessionId(null);
 		updateProjectInfos();
 	}
 
@@ -902,16 +901,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @see org.unicase.workspace.Usersession#getSessionId()
 	 */
 	public SessionId getSessionId() {
-		SessionId sessionIdGen = getSessionIdGen();
-		if (sessionIdGen == null) {
-			try {
-				logIn();
-			} catch (AccessControlException e) {
-				return null;
-			} catch (EmfStoreException e) {
-				return null;
-			}
-		}
 		return getSessionIdGen();
 	}
 

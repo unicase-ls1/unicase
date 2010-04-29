@@ -685,7 +685,7 @@
               <command
                     commandId="org.unicase.ui.navigator.importModel"
                     icon="icons/import.gif"
-                    label="Import Model "
+                    label="Import Model Element"
                     style="push">
                  <visibleWhen
                        checkEnabled="false">
