@@ -229,7 +229,6 @@ public class SetupHelper {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
 			ServerInfo serverInfo = getServerInfo();
-
 			usersession.setServerInfo(serverInfo);
 			usersession.setUsername("super");
 			usersession.setPassword("super");
@@ -253,9 +252,11 @@ public class SetupHelper {
 	 */
 	public static ServerInfo getServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(1099);
-		serverInfo.setUrl("127.0.0.1");
+		serverInfo.setPort(8080);
+		// serverInfo.setUrl("127.0.0.1");
+		serverInfo.setUrl("localhost");
 		serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
+
 		return serverInfo;
 	}
 
