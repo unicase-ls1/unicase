@@ -28,7 +28,7 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
  * @author wesendon
  * 
  */
-public class ProxyClient {
+public abstract class ProxyClient {
 
 	private ConnectionManager connectionManager;
 	private SessionId sessionId;
@@ -74,6 +74,8 @@ public class ProxyClient {
 		}
 		return null;
 	}
+	
+	abstract public void run() throws Exception;
 	
 	public ProjectSpaceImpl createTransientProjectSpace(Project project) {
 		setProjectSpace((ProjectSpaceImpl) WorkspaceFactory.eINSTANCE.createProjectSpace());
