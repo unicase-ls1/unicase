@@ -564,6 +564,16 @@ public final class ModelUtil {
 	public static void logException(String message, Throwable exception) {
 		log(message, exception, IStatus.ERROR);
 	}
+	
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param exception the exception
+	 */
+	public static void logException(Throwable exception) {
+		logException(exception.getMessage(), exception);
+	}
+
 
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
