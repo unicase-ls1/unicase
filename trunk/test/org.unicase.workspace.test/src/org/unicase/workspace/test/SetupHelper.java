@@ -488,41 +488,29 @@ public class SetupHelper {
 	 * This shares test project with server.
 	 */
 	public void shareProject() {
-		if (usersession == null) {
-			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
-
-			ServerInfo serverInfo = getServerInfo();
-
-			usersession.setServerInfo(serverInfo);
-			usersession.setUsername("super");
-			usersession.setPassword("super");
-
-		}
-
-		try {
-			if (!usersession.isLoggedIn()) {
-				usersession.logIn();
-			}
-			new UnicaseCommand() {
-
-				@Override
-				protected void doRun() {
-					try {
-						getTestProjectSpace().shareProject(usersession);
-					} catch (EmfStoreException e) {
-						e.printStackTrace();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				if (usersession == null) {
+					usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+					ServerInfo serverInfo = getServerInfo();
+					usersession.setServerInfo(serverInfo);
+					usersession.setUsername("super");
+					usersession.setPassword("super");
+					WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(usersession);
+				}
+				try {
+					if (!usersession.isLoggedIn()) {
+						usersession.logIn();
 					}
 
+					getTestProjectSpace().shareProject(usersession);
+				} catch (EmfStoreException e) {
+					e.printStackTrace();
 				}
-			}.run();
-
-		} catch (AccessControlException e) {
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
-		}
-
-		projectId = testProjectSpace.getProjectId();
+				projectId = testProjectSpace.getProjectId();
+			}
+		}.run();
 	}
 
 	/**
