@@ -8,9 +8,8 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -25,8 +24,8 @@ import org.unicase.metamodel.Project;
  * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
  * Operations</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElementWrappers <em>Model
- * Element Wrappers</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap <em>Eobjects Id
+ * Map</em>}</li>
  * </ul>
  * </p>
  * 
@@ -105,20 +104,22 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	EList<ReferenceOperation> getSubOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Wrappers</b></em>' containment reference list. The list contents
-	 * are of type {@link org.unicase.metamodel.ModelElementEObjectWrapper}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Eobjects Id Map</b></em>' map. The key is of type
+	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Element Wrappers</em>' containment reference list isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Eobjects Id Map</em>' map isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Model Element Wrappers</em>' containment reference list.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_ModelElementWrappers()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 * @return the value of the '<em>Eobjects Id Map</em>' map.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_EobjectsIdMap()
+	 * @model mapType=
+	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
 	 * @generated
 	 */
-	EList<ModelElementEObjectWrapper> getModelElementWrappers();
+	EMap<EObject, ModelElementId> getEobjectsIdMap();
 
 	/**
 	 * Get the id of the previous parent of the deleted element. Returns null if the deleted element did not have a
@@ -144,5 +145,5 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @param modelElementId the model element id
 	 * @return the model element or null
 	 */
-	ModelElement getModelElement(ModelElementId modelElementId);
+	EObject getModelElement(ModelElementId modelElementId);
 } // CreateDeleteOperation

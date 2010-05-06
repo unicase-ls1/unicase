@@ -397,13 +397,12 @@ public interface OperationsPackage extends EPackage {
 	int CREATE_DELETE_OPERATION__SUB_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Wrappers</b></em>' containment reference list. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Eobjects Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
+	int CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Create Delete Operation</em>' class. <!-- begin-user-doc --> <!--
@@ -1372,16 +1371,16 @@ public interface OperationsPackage extends EPackage {
 	EReference getCreateDeleteOperation_SubOperations();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElementWrappers
-	 * <em>Model Element Wrappers</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the map '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap
+	 * <em>Eobjects Id Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '<em>Model Element Wrappers</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElementWrappers()
+	 * @return the meta object for the map '<em>Eobjects Id Map</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap()
 	 * @see #getCreateDeleteOperation()
 	 * @generated
 	 */
-	EReference getCreateDeleteOperation_ModelElementWrappers();
+	EReference getCreateDeleteOperation_EobjectsIdMap();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation
@@ -1869,13 +1868,12 @@ public interface OperationsPackage extends EPackage {
 		EReference CREATE_DELETE_OPERATION__SUB_OPERATIONS = eINSTANCE.getCreateDeleteOperation_SubOperations();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Element Wrappers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Eobjects Id Map</b></em>' map feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference CREATE_DELETE_OPERATION__MODEL_ELEMENT_WRAPPERS = eINSTANCE
-			.getCreateDeleteOperation_ModelElementWrappers();
+		EReference CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP = eINSTANCE.getCreateDeleteOperation_EobjectsIdMap();
 
 		/**
 		 * The meta object literal for the '

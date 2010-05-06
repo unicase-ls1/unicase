@@ -26,8 +26,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -289,7 +287,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	}
 
 	public void apply(Project project) {
-		ModelElement modelElement = project.getModelElement(getModelElementId());
+		EObject modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
 			// fail silently
 			return;
@@ -297,13 +295,15 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<EObject> referencedModelElements = new ArrayList<EObject>();
 		for (ModelElementId refrencedModelElementId : referencedModelElementIds) {
-			ModelElement referencedME = project.getModelElement(refrencedModelElementId);
+			// Project p = ModelUtil.getProject(refrencedModelElementId);
+
+			EObject referencedME = project.getModelElement(refrencedModelElementId);
 			if (referencedME != null) {
-				if (referencedME instanceof ModelElementEObjectWrapper) {
-					referencedModelElements.add(((ModelElementEObjectWrapper) referencedME).getWrappedEObject());
-				} else {
-					referencedModelElements.add(referencedME);
-				}
+				// if (referencedME instanceof ModelElementEObjectWrapper) {
+				// referencedModelElements.add(((ModelElementEObjectWrapper) referencedME).getWrappedEObject());
+				// } else {
+				referencedModelElements.add(referencedME);
+				// }
 			}
 		}
 		EReference reference;
@@ -314,11 +314,11 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 			return;
 		}
 		Object object;
-		if (modelElement instanceof ModelElementEObjectWrapper) {
-			object = ((ModelElementEObjectWrapper) modelElement).getWrappedEObject().eGet(reference);
-		} else {
-			object = modelElement.eGet(reference);
-		}
+		// if (modelElement instanceof ModelElementEObjectWrapper) {
+		// object = ((ModelElementEObjectWrapper) modelElement).getWrappedEObject().eGet(reference);
+		// } else {
+		object = modelElement.eGet(reference);
+		// }
 		@SuppressWarnings("unchecked")
 		EList<EObject> list = (EList<EObject>) object;
 		if (isAdd()) {

@@ -18,8 +18,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.Project;
 
 /**
@@ -189,7 +187,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @generated NOT
 	 */
 	public EStructuralFeature getFeature(Project project) throws UnkownFeatureException {
-		ModelElement modelElement = project.getModelElement(getModelElementId());
+		EObject modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
 			throw new IllegalArgumentException("Model Element is not in the given project");
 		}
@@ -248,9 +246,9 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.ModelElement)
 	 */
 	public EStructuralFeature getFeature(EObject modelElement) throws UnkownFeatureException {
-		if (modelElement instanceof ModelElementEObjectWrapper) {
-			modelElement = ((ModelElementEObjectWrapper) modelElement).getWrappedEObject();
-		}
+		// if (modelElement instanceof ModelElementEObjectWrapper) {
+		// modelElement = ((ModelElementEObjectWrapper) modelElement).getWrappedEObject();
+		// }
 		EList<EStructuralFeature> features = modelElement.eClass().getEAllStructuralFeatures();
 		for (EStructuralFeature feature : features) {
 			if (feature.getName().equals(this.getFeatureName())) {

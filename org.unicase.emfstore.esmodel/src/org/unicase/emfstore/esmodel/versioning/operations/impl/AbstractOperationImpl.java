@@ -268,6 +268,20 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 				oldClientDate, clientDate));
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			return basicSetModelElementId(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
 	// begin of custom code
 	/**
 	 * {@inheritDoc}
@@ -287,20 +301,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	}
 
 	// end of custom code
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			return basicSetModelElementId(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
