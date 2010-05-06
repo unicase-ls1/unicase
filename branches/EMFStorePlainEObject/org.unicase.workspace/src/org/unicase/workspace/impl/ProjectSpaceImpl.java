@@ -54,7 +54,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
@@ -378,6 +377,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.addOperationListener(modifiedModelElementsCache);
 		this.addCommitObserver(modifiedModelElementsCache);
 		shareObservers.add(modifiedModelElementsCache);
+		
 	}
 
 	// end of custom code
@@ -1547,9 +1547,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<ModelElement> modelElements = getProject().getAllModelElements();
+		List<EObject> modelElements = getProject().getAllModelElements();
 		int counter = Configuration.getMaxMECountPerResource() + 1;
-		for (ModelElement modelElement : modelElements) {
+		for (EObject modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
@@ -1888,12 +1888,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ProjectInfo createdProject;
 
 		// Set user as creator when sharing a project
-		for (ModelElement me : this.getProject().getAllModelElements()) {
-			if (me.getCreator() == null || me.getCreator().equals("")
-				|| me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
-				me.setCreator(usersession.getUsername());
-			}
-		}
+		// for (EObject me : this.getProject().getAllModelElements()) {
+		// // TODO
+		// // if (me instanceof ModelElement) {
+		// // ModelElement e = (ModelElement) me;
+		// if (e.getCreator() == null || e.getCreator().equals("")
+		// || e.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
+		// e.setCreator(usersession.getUsername());
+		// }
+		// // }
+		// }
 
 		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
 			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
@@ -2045,9 +2049,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
 	 */
-	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
+	public EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
-		ModelElement modelElement = getProject().getModelElement(modelElementId);
+		EObject modelElement = getProject().getModelElement(modelElementId);
 		if (modelElement == null) {
 			throw new MEUrlResolutionException();
 		}

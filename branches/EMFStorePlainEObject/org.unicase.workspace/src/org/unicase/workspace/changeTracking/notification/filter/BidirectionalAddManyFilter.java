@@ -9,7 +9,7 @@ package org.unicase.workspace.changeTracking.notification.filter;
 import java.util.Iterator;
 import java.util.List;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 
@@ -38,9 +38,9 @@ public class BidirectionalAddManyFilter implements NotificationFilter {
 			return;
 		}
 
-		List<ModelElement> addedElems = null;
+		List<EObject> addedElems = null;
 		if (nLast.getNewValue() instanceof List) {
-			addedElems = (List<ModelElement>) nLast.getNewValue();
+			addedElems = (List<EObject>) nLast.getNewValue();
 		} else {
 			// should never happen, ADD_MANY always provides a list of what was added
 			return;
