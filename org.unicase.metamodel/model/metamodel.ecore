@@ -3,18 +3,14 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="metamodel"
     nsURI="http://unicase.org/metamodel" nsPrefix="org.unicase.metamodel">
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//IdentifiableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementWrappers" upperBound="-1"
-        eType="#//ModelElementEObjectWrapper" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="newModelElementWrappers"
-        upperBound="-1" eType="#//ModelElementEObjectWrapper" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eobjectsIdMap" upperBound="-1"
+        eType="#//EObjectToModelElementIdMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newEObjectsIdMap" upperBound="-1"
+        eType="#//EObjectToModelElementIdMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -29,7 +25,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="releaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElementEObjectWrapper" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="wrappedEObject" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EObjectToModelElementIdMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ModelElementId"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

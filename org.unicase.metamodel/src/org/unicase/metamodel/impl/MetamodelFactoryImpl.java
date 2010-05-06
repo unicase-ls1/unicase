@@ -5,27 +5,27 @@
  */
 package org.unicase.metamodel.impl;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.metamodel.*;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static MetamodelFactory init() {
@@ -42,8 +42,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MetamodelFactoryImpl() {
@@ -52,7 +52,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,8 +63,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			return createModelElementId();
 		case MetamodelPackage.MODEL_VERSION:
 			return createModelVersion();
-		case MetamodelPackage.MODEL_ELEMENT_EOBJECT_WRAPPER:
-			return createModelElementEObjectWrapper();
+		case MetamodelPackage.EOBJECT_TO_MODEL_ELEMENT_ID_MAP:
+			return (EObject) createEObjectToModelElementIdMap();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -73,7 +72,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project createProject() {
@@ -83,7 +81,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId createModelElementId() {
@@ -93,7 +90,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelVersion createModelVersion() {
@@ -102,18 +98,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementEObjectWrapper createModelElementEObjectWrapper() {
-		ModelElementEObjectWrapperImpl modelElementEObjectWrapper = new ModelElementEObjectWrapperImpl();
-		return modelElementEObjectWrapper;
+	public Map.Entry<EObject, ModelElementId> createEObjectToModelElementIdMap() {
+		EObjectToModelElementIdMapImpl eObjectToModelElementIdMap = new EObjectToModelElementIdMapImpl();
+		return eObjectToModelElementIdMap;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	//	public ModelElementEObjectWrapper createModelElementEObjectWrapper() {
+	//		ModelElementEObjectWrapperImpl modelElementEObjectWrapper = new ModelElementEObjectWrapperImpl();
+	//		return modelElementEObjectWrapper;
+	//	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MetamodelPackage getMetamodelPackage() {
@@ -122,7 +126,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */
