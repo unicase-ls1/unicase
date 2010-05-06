@@ -6,9 +6,9 @@
 package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the annotation in the genmodel.
@@ -22,7 +22,7 @@ public class AnnotationPriorityDescriptor implements IAttributeDescriptor<Double
 	/**
 	 * {@inheritDoc}
 	 */
-	public Double getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement) {
+	public Double getValue(IItemPropertyDescriptor propertyDescriptor, EObject modelElement) {
 		EAnnotation priority = ((EStructuralFeature) propertyDescriptor.getFeature(modelElement))
 			.getEAnnotation("org.unicase.ui.meeditor");
 		if (priority == null || priority.getDetails() == null) {
