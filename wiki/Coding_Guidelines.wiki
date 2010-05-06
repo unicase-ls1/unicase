@@ -44,6 +44,10 @@ The coding guidelines may not be very sensible in some situations, please discus
 
 Please note that both the Eclipse java guidelines and the Checkstyle settings are workspace specific and not global for your Eclipse installation.
 
+UNICASE uses project specific code template for which the template can be download from here "codetemplates.xml". To set-up UNICASE specific Code Templates go to : Project Context Menu -> Properties -> Java Code Style -> Code Templates -> Import
+
+
+and then select the template downloaded from the link mentioned above. Now click on "apply" button for changes to take effect and then "OK" to finish the setup.
 
 <br>
 
