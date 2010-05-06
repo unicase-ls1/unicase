@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
 public interface UniqueIdentifier extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute. The default value is
-	 * <code>"Default Value Literal\t"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"Default Value Literal\t"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.unicase.metamodel.MetamodelPackage#getUniqueIdentifier_Id()

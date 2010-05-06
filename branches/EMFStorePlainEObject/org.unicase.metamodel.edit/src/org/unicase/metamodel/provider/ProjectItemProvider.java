@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,20 +25,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.metamodel.Project} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.metamodel.Project} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ProjectItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,9 +61,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -71,15 +71,15 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS);
-			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS);
-			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -103,8 +103,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		switch (notification.getFeatureID(Project.class)) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
-		case MetamodelPackage.PROJECT__MODEL_ELEMENT_WRAPPERS:
-		case MetamodelPackage.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS:
+		case MetamodelPackage.PROJECT__EOBJECTS_ID_MAP:
+		case MetamodelPackage.PROJECT__NEW_EOBJECTS_ID_MAP:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -112,9 +112,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -131,19 +131,19 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			MetamodelFactory.eINSTANCE.createModelVersion()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS,
-			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS,
-			MetamodelFactory.eINSTANCE.createModelElementEObjectWrapper()));
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,8 +152,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		Object childObject = child;
 
 		boolean qualify = childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS
-			|| childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENT_WRAPPERS
-			|| childFeature == MetamodelPackage.Literals.PROJECT__NEW_MODEL_ELEMENT_WRAPPERS;
+			|| childFeature == MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP
+			|| childFeature == MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
@@ -163,8 +163,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -200,18 +200,22 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		return "Project";
 	}
 
+	/**
+	 * @generated NOT {@inheritDoc}
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getChildren(java.lang.Object)
+	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			final Project project = (Project) object;
-			final Collection<ModelElement> ret = new ArrayList<ModelElement>();
+			final Collection<EObject> ret = new ArrayList<EObject>();
 			EObject econtainer = null;
-			EList<ModelElement> allmes = project.getAllModelElements();
+			EList<EObject> allmes = project.getAllModelElements();
 			// FIXME: ugly hack to avoid dependency to workspace
 			boolean isInProjectSpace = project.eContainer() != null
 				&& project.eContainer().eClass().getName().equals("ProjectSpace");
 			// FIXME: ugly hack to avoid dependency to model
-			for (ModelElement temp : allmes) {
+			for (EObject temp : allmes) {
 				econtainer = temp.eContainer();
 				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp.eClass().getName()
 					.equals("CompositeSection")))

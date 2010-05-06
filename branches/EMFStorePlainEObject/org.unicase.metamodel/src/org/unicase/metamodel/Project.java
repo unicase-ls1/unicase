@@ -5,10 +5,12 @@
  */
 package org.unicase.metamodel;
 
+import java.util.Map;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -17,14 +19,16 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getModelElementWrappers <em>Model Element Wrappers</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getNewModelElementWrappers <em>New Model Element Wrappers</em>}</li>
- *             </ul>
- *             </p>
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getEobjectsIdMap <em>Eobjects Id Map</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getNewEObjectsIdMap <em>New EObjects Id Map</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.unicase.metamodel.MetamodelPackage#getProject()
  * @model
  * @generated
@@ -32,14 +36,14 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
-	 * type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" ordered="false"
@@ -48,36 +52,38 @@ public interface Project extends EObject, IAdaptable {
 	EList<EObject> getModelElements();
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Wrappers</b></em>' containment reference list. The list contents
-	 * are of type {@link org.unicase.metamodel.ModelElementEObjectWrapper}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Eobjects Id Map</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.ecore.EObject},
+	 * and the value is of type {@link org.unicase.metamodel.ModelElementId},
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Element Wrappers</em>' containment reference list isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Eobjects Id Map</em>' map isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Model Element Wrappers</em>' containment reference list.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElementWrappers()
-	 * @model containment="true" resolveProxies="true"
+	 * @return the value of the '<em>Eobjects Id Map</em>' map.
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_EobjectsIdMap()
+	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
 	 * @generated
 	 */
-	EList<ModelElementEObjectWrapper> getModelElementWrappers();
+	EMap<EObject, ModelElementId> getEobjectsIdMap();
 
 	/**
-	 * Returns the value of the '<em><b>New Model Element Wrappers</b></em>' containment reference list. The list
-	 * contents are of type {@link org.unicase.metamodel.ModelElementEObjectWrapper}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>New EObjects Id Map</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.ecore.EObject},
+	 * and the value is of type {@link org.unicase.metamodel.ModelElementId},
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>New Model Element Wrappers</em>' containment reference list isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>New EObjects Id Map</em>' map isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>New Model Element Wrappers</em>' containment reference list.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_NewModelElementWrappers()
-	 * @model containment="true" resolveProxies="true"
+	 * @return the value of the '<em>New EObjects Id Map</em>' map.
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_NewEObjectsIdMap()
+	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
 	 * @generated
 	 */
-	EList<ModelElementEObjectWrapper> getNewModelElementWrappers();
+	EMap<EObject, ModelElementId> getNewEObjectsIdMap();
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -130,7 +136,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @param modelElement the model element
 	 * @return true if the project contains the instance
 	 */
-	boolean containsInstance(ModelElement modelElement);
+	boolean containsInstance(EObject modelElement);
 
 	/**
 	 * Get the model element with the given id from the project.
@@ -138,7 +144,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @param modelElementId the model element id
 	 * @return the model element or null if it is not in the project
 	 */
-	ModelElement getModelElement(ModelElementId modelElementId);
+	EObject getModelElement(ModelElementId modelElementId);
 
 	/**
 	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
@@ -159,7 +165,7 @@ public interface Project extends EObject, IAdaptable {
 	 * 
 	 * @param modelElementImpl the model element to delete
 	 */
-	void deleteModelElement(ModelElement modelElementImpl);
+	void deleteModelElement(EObject modelElementImpl);
 
 	/**
 	 * Add a model element to the project.
@@ -181,7 +187,10 @@ public interface Project extends EObject, IAdaptable {
 	 * 
 	 * @return a list of model elements
 	 */
-	EList<ModelElement> getAllModelElements();
+	EList<EObject> getAllModelElements();
+	
+	// TODO: NEW
+	EList<EObject> getAllModelElementsAsList();
 
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.
@@ -194,7 +203,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @param eObject the eObject
 	 * @return the wrapper
 	 */
-	ModelElementEObjectWrapper getModelElement(EObject eObject);
+	ModelElementId getModelElementId(EObject eObject);
 
 	/**
 	 * Add a model element to the project including the existing wrappers of the model element and its siblings.
@@ -202,5 +211,5 @@ public interface Project extends EObject, IAdaptable {
 	 * @param newModelElement the new model element
 	 * @param wrappers the wrappers
 	 */
-	void addModelElement(EObject newModelElement, Collection<ModelElementEObjectWrapper> wrappers);
+	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map); //(EObject newModelElement, Collection<ModelElementId> ids);
 } // Project

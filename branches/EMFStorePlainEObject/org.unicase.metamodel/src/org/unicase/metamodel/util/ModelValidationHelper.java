@@ -12,7 +12,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -69,17 +68,18 @@ public final class ModelValidationHelper {
 		if (danglingEObjects.size() > 0) {
 			// FIXME MK: add log messages
 			for (EObject object : danglingEObjects) {
+				// TODO: how to differentiate?
 				// if it is a lost model element add to project
-				if (object instanceof ModelElement) {
+//				if (object instanceof ModelElement) {
 					project.addModelElement(object);
 					result = true;
-				}
+//				}
 				// else add to resource
-				else {
-					Resource resource = project.eResource();
-					resource.getContents().add(object);
-					result = true;
-				}
+//				else {
+//					Resource resource = project.eResource();
+//					resource.getContents().add(object);
+//					result = true;
+//				}
 			}
 		}
 		return result;
@@ -93,8 +93,8 @@ public final class ModelValidationHelper {
 	 */
 	public static List<EObject> findDanglingEObjects(Project project) {
 		List<EObject> result = new ArrayList<EObject>();
-		EList<ModelElement> allModelElements = project.getAllModelElements();
-		for (ModelElement modelElement : allModelElements) {
+		EList<EObject> allModelElements = project.getAllModelElements();
+		for (EObject modelElement : allModelElements) {
 			EList<EObject> crossReferences = modelElement.eCrossReferences();
 			// check if all cross referenced objects are contained in a resource
 			for (EObject crossReference : crossReferences) {

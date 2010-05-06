@@ -35,11 +35,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -74,18 +71,18 @@ public final class ModelUtil {
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
-	public static ModelElement copy(ModelElement modelElement) {
-		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
+	public static EObject copy(EObject modelElement) {
+		EObject copy = EcoreUtil.copy(modelElement);
 		// reset id
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		copy.setIdentifier(modelElementId.getId());
+//		copy.setIdentifier(modelElementId.getId());
 
 		// reset ids of containment children
-		for (EObject child : copy.getAllContainedModelElements(false)) {
+		for (EObject child : ModelUtil.getAllContainedModelElements(copy, false)) {
 			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			if (child instanceof ModelElement) {
-				((IdentifiableElement) child).setIdentifier(childId.getId());
-			}
+//			if (child instanceof ModelElement) {
+//				((IdentifiableElement) child).setIdentifier(childId.getId());
+//			}
 		}
 		return copy;
 	}
@@ -123,7 +120,7 @@ public final class ModelUtil {
 	 * @return EReference the Container
 	 * @param parent The EObject to get conatinment references from
 	 */
-	public static EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
+	public static EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
 		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 		EReference reference = null;
@@ -349,12 +346,13 @@ public final class ModelUtil {
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
+		// TODO
 		// sanity checks
-		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
-		if (!modelELementEClass.isSuperTypeOf(clazz)) {
-			throw new IllegalStateException("Given EClass \"" + clazz.getName()
-				+ "\" is not a subtype of EClass ModelElement");
-		}
+//		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
+//		if (!modelELementEClass.isSuperTypeOf(clazz)) {
+//			throw new IllegalStateException("Given EClass \"" + clazz.getName()
+//				+ "\" is not a subtype of EClass ModelElement");
+//		}
 
 		Set<EClass> ret = new HashSet<EClass>();
 		for (EPackage ePackage : getAllModelPackages()) {
@@ -464,9 +462,10 @@ public final class ModelUtil {
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				EClass subEClass = (EClass) classifier;
-				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(subEClass)) {
+				// TODO
+//				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(subEClass)) {
 					result.add(subEClass);
-				}
+//				;;}
 			}
 		}
 		return result;
@@ -514,15 +513,16 @@ public final class ModelUtil {
 	 *         package and all its sub-packages.
 	 */
 	public static Set<EClass> getAllMETypes(EPackage ePackage) {
-		EClass modelElementEClass = MetamodelPackage.eINSTANCE.getModelElement();
+		// TODO
+//		EClass modelElementEClass = MetamodelPackage.eINSTANCE.getModelElement();
 		Set<EClass> meTypes = new HashSet<EClass>();
 
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
-				if (modelElementEClass.isSuperTypeOf(eClass)) {
+//				if (modelElementEClass.isSuperTypeOf(eClass)) {
 					meTypes.add(eClass);
-				}
+//				}
 			} else if (eObject instanceof EPackage) {
 				EPackage eSubPackage = (EPackage) eObject;
 				meTypes.addAll(getAllMETypes(eSubPackage));
@@ -539,12 +539,17 @@ public final class ModelUtil {
 	 * @param modelElement fu!
 	 * @return fu!
 	 */
-	public static boolean listContains(Collection<? extends ModelElement> collection, ModelElement modelElement) {
-		for (ModelElement me : collection) {
-			if (me.getIdentifier().equals(modelElement.getIdentifier()) || me == modelElement) {
-				return true;
+	public static boolean listContains(Collection<? extends EObject> collection, EObject modelElement) {
+		for (EObject me : collection) {
+			
+			Project p1 = getProject(me);
+			Project p2 = getProject(modelElement);
+			
+			if (p1 != null && p1 == p2) {
+				return p1.getModelElementId(me).equals(p2.getModelElementId(modelElement));
 			}
 		}
+		
 		return false;
 	}
 
@@ -798,15 +803,17 @@ public final class ModelUtil {
 	 * @return the project or null if the element is not contained in a project.
 	 */
 	public static Project getProject(EObject modelElement) {
-		if (modelElement instanceof ModelElementEObjectWrapper) {
-			return (Project) modelElement.eContainer();
+		// TODO
+		if (modelElement instanceof ModelElementId) {
+			// TODO: id is contained in map 
+			return (Project) modelElement.eContainer().eContainer();
 		} else {
 			Set<EObject> seenModelElements = new HashSet<EObject>();
 			seenModelElements.add(modelElement);
 			return getProject(modelElement, seenModelElements);
 		}
 	}
-
+	
 	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
 
 		EObject container = eObject.eContainer();

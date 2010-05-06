@@ -10,14 +10,14 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
@@ -37,22 +37,22 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * @param projectImpl the projectImpl
 	 * @param idToElementMap a map of the contents that need to be initialized
 	 */
-	public ProjectChangeNotifier(ProjectImpl projectImpl, Map<ModelElementId, ModelElement> idToElementMap) {
+	public ProjectChangeNotifier(ProjectImpl projectImpl, Map<ModelElementId, EObject> idToElementMap) {
 		this.projectImpl = projectImpl;
 		TreeIterator<EObject> allContents = projectImpl.eAllContents();
 		while (allContents.hasNext()) {
 			EObject next = allContents.next();
 			if (!next.eContainingFeature().isTransient()) {
 				next.eAdapters().add(this);
-				if (next instanceof ModelElement) {
-					idToElementMap.put(((ModelElement) next).getModelElementId(), (ModelElement) next);
-				}
+//				if (next instanceof ModelElement) {
+					idToElementMap.put(projectImpl.getModelElementId(next), next);
+//				}
 			}
 		}
 		projectImpl.eAdapters().add(this);
 		projectImpl.addProjectChangeObserver(this);
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -122,13 +122,13 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 
 	private void fireNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
-		if (notifier instanceof ModelElement) {
-			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
-		} else if (notifier instanceof Project) {
+//		if (notifier instanceof ModelElement) {
+//			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
+		if (notifier instanceof Project) {
 			// do nothing
 		} else if (notifier instanceof EObject) {
-			ModelElementEObjectWrapper wrapper = projectImpl.getModelElement((EObject) notifier);
-			projectImpl.handleEMFNotification(notification, projectImpl, wrapper);
+			ModelElementId id = projectImpl.getModelElementId((EObject) notifier);
+			projectImpl.handleEMFNotification(notification, projectImpl, projectImpl.getModelElement(id));
 		}
 	}
 
@@ -148,7 +148,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		Object feature = notification.getFeature();
 		if (feature instanceof EReference) {
 			EReference reference = (EReference) feature;
-			if (reference.isContainment() && reference != MetamodelPackage.eINSTANCE.getProject_ModelElementWrappers()) {
+			if (reference.isContainment()) {
 				return true;
 			}
 		}
@@ -164,7 +164,8 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 
 	private void handleSingleAdd(EObject newValue) {
 		// this works only because the contains cache is not yet updated
-		if (newValue instanceof ModelElementEObjectWrapper) {
+		// TODO: newValue is null, when deletion has taken place??
+		if (newValue instanceof EObjectToModelElementIdMapImpl || newValue == null) {
 			//do nothing
 			return;
 		}
@@ -175,11 +176,17 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			}
 			projectImpl.handleEMFModelElementAdded(projectImpl, newValue);
 		} else {
-			if (newValue instanceof ModelElement) {
-				if (projectImpl.getModelElement(((ModelElement) newValue).getModelElementId()) != newValue) {
-					throw new IllegalStateException("Two elements with the same id but different instance detected!");
-				}
-			}
+			// TODO: sanity checks
+//			if (newValue instanceof ModelElement) {
+//				if (projectImpl.getModelElementId(newValue) != newValue) {
+//					throw new IllegalStateException("Two elements with the same id but different instance detected!");
+//				}
+//			} else {
+//				// TODO
+//				if (projectImpl.getModelElementId(newValue).getWrappedEObject() != newValue) {
+//					throw new IllegalStateException("Two elements with the same id but different instance detected!");
+//				}
+//			}
 		}
 	}
 
@@ -189,7 +196,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		// nothing to do, do not implement anything here, this will cause loop otherwise
 	}
 
@@ -199,7 +206,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, EObject modelElement) {
 		this.isDeleting = false;
 	}
 
@@ -209,7 +216,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, EObject modelElement) {
 		this.isDeleting = true;
 	}
 
@@ -219,7 +226,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		// nothing to do, do not implement anything here, this will cause loop otherwise
 	}
 
