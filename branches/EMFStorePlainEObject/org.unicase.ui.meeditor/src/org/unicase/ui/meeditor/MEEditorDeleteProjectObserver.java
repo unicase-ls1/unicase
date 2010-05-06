@@ -9,6 +9,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.DeleteProjectSpaceObserver;
 
@@ -30,7 +31,7 @@ public class MEEditorDeleteProjectObserver implements DeleteProjectSpaceObserver
 			try {
 				if (editorReference.getEditorInput() instanceof MEEditorInput) {
 					MEEditorInput editorInput = (MEEditorInput) editorReference.getEditorInput();
-					if (projectSpace.getProject().equals(editorInput.getModelElement().getProject())) {
+					if (projectSpace.getProject().equals(ModelUtil.getProject(editorInput.getModelElement()))) {
 						// don't ask for saving, because we delete the
 						// project anyways
 						wbpage.closeEditor(editorReference.getEditor(false), false);

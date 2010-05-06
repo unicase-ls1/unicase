@@ -23,7 +23,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
@@ -75,10 +74,10 @@ public class NewReferenceAction extends Action {
 					newClass = (EClass) result;
 				}
 			}
-			final ModelElement newMEInstance;
+			final EObject newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
+			newMEInstance = ePackage.getEFactoryInstance().create(newClass);
 
 			if (!eReference.isContainer()) {
 				// Returns the value of the Container
@@ -94,7 +93,7 @@ public class NewReferenceAction extends Action {
 				}
 
 				if (newMEInstance.eContainer() == null) {
-					modelElement.getProject().addModelElement(newMEInstance);
+					ModelUtil.getProject(modelElement).addModelElement(newMEInstance);
 				}
 
 			}
@@ -114,7 +113,7 @@ public class NewReferenceAction extends Action {
 	}
 
 	private EReference eReference;
-	private ModelElement modelElement;
+	private EObject modelElement;
 
 	/**
 	 * Default constructor.
@@ -123,7 +122,7 @@ public class NewReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
+	public NewReferenceAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

@@ -7,8 +7,8 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 public class MELinkControlFactory {
@@ -44,8 +44,8 @@ public class MELinkControlFactory {
 
 	}
 
-	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link,
-		ModelElement contextModelElement) {
+	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final EObject link,
+		EObject contextModelElement) {
 		ArrayList<MELinkControl> candidates = new ArrayList<MELinkControl>();
 		Set<Class<?>> keySet = controlRegistry.keySet();
 		for (Class<?> clazz : keySet) {
@@ -70,7 +70,7 @@ public class MELinkControlFactory {
 	}
 
 	private MELinkControl getBestCandidate(ArrayList<MELinkControl> candidates,
-		IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link, ModelElement contextModelElement) {
+		IItemPropertyDescriptor itemPropertyDescriptor, final EObject link, EObject contextModelElement) {
 		int bestValue = 0;
 		MELinkControl bestCandidate = null;
 		for (MELinkControl abstractMEControl : candidates) {

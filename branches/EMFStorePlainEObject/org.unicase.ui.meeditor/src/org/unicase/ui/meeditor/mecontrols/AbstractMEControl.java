@@ -5,12 +5,12 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Abstract class for the ME controls.
@@ -31,7 +31,7 @@ public abstract class AbstractMEControl {
 	/**
 	 * the modelElement.
 	 */
-	private ModelElement modelElement;
+	private EObject modelElement;
 	/**
 	 * the editingDomain.
 	 */
@@ -48,7 +48,7 @@ public abstract class AbstractMEControl {
 		return toolkit;
 	}
 
-	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement);
+	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement);
 
 	/**
 	 * @param toolkit the toolkit to set
@@ -60,14 +60,14 @@ public abstract class AbstractMEControl {
 	/**
 	 * @return the modelElement
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		return modelElement;
 	}
 
 	/**
 	 * @param modelElement the modelElement to set
 	 */
-	public void setModelElement(ModelElement modelElement) {
+	public void setModelElement(EObject modelElement) {
 		this.modelElement = modelElement;
 	}
 
@@ -114,7 +114,7 @@ public abstract class AbstractMEControl {
 	 * @return the widget
 	 */
 	public Control createControl(Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		ModelElement modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
+		EObject modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;

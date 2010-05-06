@@ -5,10 +5,11 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -22,8 +23,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkListener {
 
-	private ModelElement target;
-	private final ModelElement source;
+	private EObject target;
+	private final EObject source;
 	private final String featureName;
 
 	/**
@@ -33,7 +34,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 * @param target the target of the model link
 	 * @param featureName the feature of the model link
 	 */
-	public MEHyperLinkAdapter(ModelElement target, ModelElement source, String featureName) {
+	public MEHyperLinkAdapter(EObject target, EObject source, String featureName) {
 		super();
 		this.target = target;
 		this.source = source;
@@ -51,8 +52,8 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 					.getActiveProjectSpace();
-				WorkspaceUtil.logTraceEvent(activeProjectSpace, source.getModelElementId(), target.getModelElementId(),
-					featureName);
+				WorkspaceUtil.logTraceEvent(activeProjectSpace, ModelUtil.getProject(source).getModelElementId(source),
+					ModelUtil.getProject(target).getModelElementId(target), featureName);
 			}
 		}.run();
 		super.linkActivated(event);

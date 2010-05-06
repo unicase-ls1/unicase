@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
@@ -25,9 +26,9 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -45,7 +46,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 
-	private ModelElement modelElement;
+	private EObject modelElement;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
 
@@ -147,11 +148,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
-			project = modelElement.getProject();
+			project = ModelUtil.getProject(modelElement);
 			modelelementChangeObserver = new ModelElementChangeObserver() {
 
 				@Override
-				protected void onNotify(Notification notification, ModelElement element) {
+				protected void onNotify(Notification notification, EObject element) {
 
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
@@ -167,7 +168,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 				}
 
 				@Override
-				protected void onElementDeleted(ModelElement element) {
+				protected void onElementDeleted(EObject element) {
 					if (element == modelElement) {
 						close(false);
 						project.removeProjectChangeObserver(modelelementChangeObserver);
@@ -176,20 +177,20 @@ public class MEEditor extends SharedHeaderFormEditor {
 				}
 			};
 			modelelementChangeObserver.observeElement(modelElement);
-			this.modelElement.getProject().addProjectChangeObserver(modelelementChangeObserver);
+			ModelUtil.getProject(modelElement).addProjectChangeObserver(modelelementChangeObserver);
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
-			Date creationDate = modelElement.getCreationDate();
+			Date creationDate = null;// modelElement.getCreationDate();
 			creatorHint = "";
 			if (creationDate != null) {
-				creationDate = modelElement.getCreationDate();
+				// creationDate = modelElement.getCreationDate();
 				stringBuffer.append("Created on ");
 				stringBuffer.append(dateFormat.format(creationDate));
 				stringBuffer.append(" at ");
 				stringBuffer.append(timeFormat.format(creationDate));
 				stringBuffer.append(" by ");
-				stringBuffer.append(modelElement.getCreator());
+				// stringBuffer.append(modelElement.getCreator());
 				creatorHint = stringBuffer.toString();
 			}
 			updateCreatorHint();
@@ -245,8 +246,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-		if (modelElement != null && modelElement.getProject() != null) {
-			modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
+		if (modelElement != null && ModelUtil.getProject(modelElement) != null) {
+			ModelUtil.getProject(modelElement).removeProjectChangeObserver(modelelementChangeObserver);
 		}
 
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);

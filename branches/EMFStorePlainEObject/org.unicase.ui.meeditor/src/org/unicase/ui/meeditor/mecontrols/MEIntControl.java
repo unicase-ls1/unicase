@@ -9,12 +9,12 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Spinner;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Standard widgets to edit a integer attribute.
@@ -49,7 +49,7 @@ public class MEIntControl extends AbstractMEControl {
 	}
 
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(int.class)) {
 
