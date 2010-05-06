@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.hd_1.0.3.jar" id="org.unicase.hd" version="1.0.3">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="unicase"/>
+</site>
