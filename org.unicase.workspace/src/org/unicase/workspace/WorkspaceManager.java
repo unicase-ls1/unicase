@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
@@ -387,18 +386,20 @@ public final class WorkspaceManager {
 	/**
 	 * Retrieve the project space for a model element.
 	 * 
-	 * @param modelElement the model element
+	 * @param eObject the model element
 	 * @return the project space
 	 */
-	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
-		if (modelElement == null) {
+	public static ProjectSpace getProjectSpace(EObject eObject) {
+		if (eObject == null) {
 			throw new IllegalArgumentException("The model element is null");
 		}
-		Project project = modelElement.getProject();
+
+		Project project = ModelUtil.getProject(eObject);
+
 		if (project == null) {
-			throw new IllegalArgumentException("The model element with ID " + modelElement.getIdentifier()
-				+ " has no project");
+			throw new IllegalArgumentException("Given model element has no project");
 		}
+
 		return getProjectSpace(project);
 	}
 

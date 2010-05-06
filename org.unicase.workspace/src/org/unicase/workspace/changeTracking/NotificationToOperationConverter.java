@@ -21,9 +21,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -134,12 +134,23 @@ public final class NotificationToOperationConverter {
 		}
 
 		for (EObject valueElement : list) {
-			if (valueElement instanceof ModelElement) {
-				referencedModelElements.add(((ModelElement) valueElement).getModelElementId());
+			Project project = ModelUtil.getProject(n.getNotifierModelElement());
+			if (project.getModelElementId(valueElement) != null) {
+				referencedModelElements.add(project.getModelElementId(valueElement));
 			} else {
-				Project project = n.getNotifierModelElement().getProject();
-				referencedModelElements.add(project.getModelElement(valueElement).getModelElementId());
+				// TODO: DELETE
+				// if (n instanceof NotificationInfoWrapper) {
+				// NotificationInfoWrapper wrapper = (NotificationInfoWrapper) n;
+				// referencedModelElements.add(wrapper.getId());
+				// }
 			}
+
+			// if (valueElement instanceof ModelElement) {
+			// referencedModelElements.add(((ModelElement) valueElement).getModelElementId());
+			// } else {
+			// Project project = n.getNotifierModelElement().getProject();
+			// referencedModelElements.add(project.getModelElement(valueElement).getModelElementId());
+			// }
 		}
 		return op;
 
@@ -167,7 +178,7 @@ public final class NotificationToOperationConverter {
 		} else {
 			op = OperationsFactory.eINSTANCE.createAttributeOperation();
 		}
-
+		
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getAttribute().getName());
 		op.setNewValue(n.getNewValue());
@@ -195,9 +206,11 @@ public final class NotificationToOperationConverter {
 	}
 
 	// utility methods
-	private static void setCommonValues(AbstractOperation operation, ModelElement modelElement) {
+	private static void setCommonValues(AbstractOperation operation, EObject modelElement) {
 		operation.setClientDate(new Date());
-		operation.setModelElementId(modelElement.getModelElementId());
+		// TODO
+		operation
+			.setModelElementId(ModelUtil.clone(ModelUtil.getProject(modelElement).getModelElementId(modelElement)));
 	}
 
 	private static void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {

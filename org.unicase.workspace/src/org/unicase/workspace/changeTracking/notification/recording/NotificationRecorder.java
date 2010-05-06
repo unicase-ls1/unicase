@@ -8,7 +8,7 @@ package org.unicase.workspace.changeTracking.notification.recording;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
@@ -28,7 +28,7 @@ public class NotificationRecorder {
 	 * 
 	 * @param n the notification to record
 	 */
-	public void record(Notification n, ModelElement modelElement) {
+	public void record(Notification n, EObject modelElement) {
 
 		if (recording == null || isRecordingComplete()) {
 			newRecording();

@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
@@ -121,8 +120,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 			if (!modifiedModelElements.containsKey(parentModelElementId)) {
 				EObject nextParentModelElement = getModelElementForId(parentModelElementId).eContainer();
 				if (nextParentModelElement != null && nextParentModelElement != this.projectSpace.getProject()) {
-					addOneToParent(this.projectSpace.getProject().getModelElement(nextParentModelElement)
-						.getModelElementId());
+					addOneToParent(this.projectSpace.getProject().getModelElementId(nextParentModelElement));
 				}
 			}
 		} else {
@@ -136,7 +134,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @return the model element id of the parent of the model element id passed as reference, or null if there is none
 	 */
 	private ModelElementId getNextParentModelElementId(ModelElementId childModelElementId) {
-		ModelElement childModelElement = getModelElementForId(childModelElementId);
+		EObject childModelElement = getModelElementForId(childModelElementId);
 		if (childModelElement == null) {
 			return null;
 		}
@@ -144,7 +142,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		if (nextParentModelElement == null || nextParentModelElement == this.projectSpace.getProject()) {
 			return null;
 		} else {
-			return this.projectSpace.getProject().getModelElement(nextParentModelElement).getModelElementId();
+			return this.projectSpace.getProject().getModelElementId(nextParentModelElement);
 		}
 	}
 
@@ -152,7 +150,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @param modelElementId the
 	 * @return the model element for the model element id passed as reference
 	 */
-	private ModelElement getModelElementForId(ModelElementId modelElementId) {
+	private EObject getModelElementForId(ModelElementId modelElementId) {
 		return projectSpace.getProject().getModelElement(modelElementId);
 	}
 

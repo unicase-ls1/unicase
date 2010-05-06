@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Validates an EMF notification. Optionally generates a status message, describing potential problems.
@@ -298,9 +297,10 @@ final class NotificationValidator {
 	private boolean checkModelElementList(List<?> aList) {
 
 		for (Object value : aList) {
-			if (!(value instanceof ModelElement)) {
-				return false;
-			}
+			// TODO: Must not be instance of ModelEelment
+			// if (!(value instanceof ModelElement)) {
+			// return false;
+			// }
 		}
 
 		return true;
