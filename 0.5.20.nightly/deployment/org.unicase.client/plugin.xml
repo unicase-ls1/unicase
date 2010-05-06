@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.unicase.client.Unicase">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.unicase.client.UnicasePerspective"
+            icon="icons/unicase.png"
+            id="org.unicase.client.UnicasePerspective"
+            name="Unicase Perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.unicase.client.application"
+            name="unicase">
+         <property
+               name="appName"
+               value="unicase">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="aboutText"
+               value="The unicase client.">
+         </property>
+         <property
+               name="aboutImage"
+               value="about.png">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif,icons/alt_window_48.gif,icons/alt_window_64.gif,icons/alt_window_128.gif">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,280,556,17">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000579">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="20,252,445,20">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

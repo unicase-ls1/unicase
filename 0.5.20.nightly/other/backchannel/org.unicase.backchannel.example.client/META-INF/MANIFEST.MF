@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Client
+Bundle-SymbolicName: org.unicase.backchannel.example.client;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.backchannel.example.client.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.proxyclient,
+ org.unicase.backchannel.client
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
