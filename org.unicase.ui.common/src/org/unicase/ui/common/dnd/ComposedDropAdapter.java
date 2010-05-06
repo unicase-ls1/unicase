@@ -26,7 +26,8 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.ui.internal.keys.model.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -40,10 +41,10 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 	private StructuredViewer viewer;
 
-	private List<ModelElement> source;
-	private ModelElement target;
+	private List<EObject> source;
+	private EObject target;
 	private EObject targetConatiner;
-	private ModelElement dropee;
+	private EObject dropee;
 
 	private Map<EClass, MEDropAdapter> dropAdapters;
 
@@ -157,12 +158,12 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof ModelElement)) {
+			if (!(obj instanceof EObject)) {
 				result = false;
 			}
 		}
 
-		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
+		source = (List<EObject>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
@@ -170,15 +171,15 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
 		if (event.item == null || event.item.getData() == null
-			|| !(event.item.getData() instanceof ModelElement)) {
+			|| !(event.item.getData() instanceof EObject)) {
 			result = false;
 		}
 
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			target = (ModelElement) event.item.getData();
-			if (!target.getProject().equals(dropee.getProject())) {
+			target = (EObject) event.item.getData();
+			if (!ModelUtil.getProject(target).equals(ModelUtil.getProject(dropee))) {
 				result = false;
 			}
 		}

@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.common.commands;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -16,7 +17,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
@@ -108,7 +108,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 			return;
 		}
 
-		ModelElement me = ActionHelper.getSelectedModelElement();
+		EObject me = ActionHelper.getSelectedModelElement();
 		if (me == null) {
 			return;
 		}

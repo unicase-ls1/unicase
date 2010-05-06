@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.dialogs.ErrorReportDialog;
 import org.unicase.workspace.ProjectSpace;
@@ -78,8 +77,8 @@ public final class UiUtil {
 	 * @return selected elements
 	 */
 	public static Object[] showMESelectionDialog(Shell shell, EClass meType, Project project, boolean multiSelection) {
-		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType,
-			new BasicEList<ModelElement>());
+		List<? extends EObject> elements = project.getAllModelElementsbyClass(meType,
+			new BasicEList<EObject>());
 		return showMESelectionDialog(shell, elements, "Select " + meType.getName(), multiSelection);
 	}
 

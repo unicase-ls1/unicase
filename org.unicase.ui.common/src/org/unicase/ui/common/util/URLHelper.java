@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.common.util;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -17,7 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 
@@ -67,7 +68,7 @@ public final class URLHelper {
 	 */
 	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, int style) {
 
-		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
+		EObject modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null) {
 			return getHTMLLinkForModelElement(modelElement, projectSpace, style);
 		}
@@ -82,7 +83,7 @@ public final class URLHelper {
 	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace, int style) {
+	public static String getHTMLLinkForModelElement(EObject modelElement, ProjectSpace projectSpace, int style) {
 		if (modelElement == null) {
 			return "";
 		}
@@ -106,7 +107,7 @@ public final class URLHelper {
 		}
 		ret.append(name);
 		ret.append("%");
-		ret.append(modelElement.getIdentifier());
+		ret.append(projectSpace.getProject().getModelElementId(modelElement).getId());
 		ret.append("\">");
 		int limit = style;
 		if (style == UNLTD) {
@@ -133,9 +134,9 @@ public final class URLHelper {
 	 */
 	public static Control getModelElementLink(Composite parent, ModelElementId modelElementId,
 		ProjectSpace projectSpace, int style) {
-		ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
+		EObject modelElement = projectSpace.getProject().getModelElement(modelElementId);
 		if (modelElement != null) {
-			return getModelElementLink(parent, modelElement, projectSpace, style);
+			return getModelElementLink(parent, projectSpace.getProject().getModelElementId(modelElement), projectSpace, style);
 		}
 		Label deleted = new Label(parent, SWT.WRAP);
 		deleted.setText("(deleted element)");
@@ -151,7 +152,7 @@ public final class URLHelper {
 	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
 	 * @return the link composite
 	 */
-	public static Control getModelElementLink(Composite parent, final ModelElement modelElement,
+	public static Control getModelElementLink(Composite parent, final EObject modelElement,
 		ProjectSpace projectSpace, int style) {
 		Composite c = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 0).applyTo(c);

@@ -13,6 +13,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -21,7 +22,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.util.ActionHelper;
@@ -59,11 +59,11 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 		} else {
 
 			project = projectSpace.getProject();
-			List<ModelElement> modelElements = new ArrayList<ModelElement>();
+			List<EObject> modelElements = new ArrayList<EObject>();
 			modelElements.addAll(project.getAllModelElements());
 			// Remove Non Domain Elements
-			List<ModelElement> filteredModelElements = new ArrayList<ModelElement>();
-			for (ModelElement me : modelElements) {
+			List<EObject> filteredModelElements = new ArrayList<EObject>();
+			for (EObject me : modelElements) {
 				if (!(me instanceof NonDomainElement)) {
 					filteredModelElements.add(me);
 				}
@@ -103,7 +103,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 			result = dialog.getResult();
 		}
 
-		ModelElement mod = (ModelElement) dialog.getFirstResult();
+		EObject mod = (EObject) dialog.getFirstResult();
 		if (mod != null) {
 			ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
 		}
