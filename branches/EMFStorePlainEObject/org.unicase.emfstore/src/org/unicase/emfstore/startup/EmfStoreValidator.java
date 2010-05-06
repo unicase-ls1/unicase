@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -22,7 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
 /**
@@ -142,8 +143,9 @@ public class EmfStoreValidator {
 					}
 				}
 				if (version.getProjectState() != null) {
-					for (ModelElement me : version.getProjectState().getAllModelElements()) {
-						if (me.getModelElementId() == null || me.getModelElementId().getId() == null) {
+					for (EObject me : version.getProjectState().getAllModelElements()) {
+						ModelElementId id = version.getProjectState().getModelElementId(me);
+						if (id == null || id.getId() == null) {
 							errors.add("ModelElement has no ModelElementId in project: "
 								+ projectHistory.getProjectId() + " version: "
 								+ version.getPrimarySpec().getIdentifier());

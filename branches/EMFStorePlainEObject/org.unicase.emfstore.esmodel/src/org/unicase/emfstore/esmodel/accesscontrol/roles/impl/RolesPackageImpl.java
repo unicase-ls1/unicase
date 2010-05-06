@@ -335,19 +335,19 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 
 		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canCreate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canDelete", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canModify", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canRead", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMetamodelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(readerRoleEClass, ReaderRole.class, "ReaderRole", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

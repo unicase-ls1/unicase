@@ -10,7 +10,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -42,17 +41,17 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		Set<ModelElementId> allInvolvedModelElementsA = operationA.getAllInvolvedModelElements();
 		Set<ModelElementId> allInvolvedModelElementsB = operationB.getAllInvolvedModelElements();
-		Set<ModelElement> allInvolvedRootElementsA = new HashSet<ModelElement>();
-		Set<ModelElement> allInvolvedRootElementsB = new HashSet<ModelElement>();
+		Set<EObject> allInvolvedRootElementsA = new HashSet<EObject>();
+		Set<EObject> allInvolvedRootElementsB = new HashSet<EObject>();
 		for (ModelElementId modelElementId : allInvolvedModelElementsA) {
-			ModelElement modelElement = project.getModelElement(modelElementId);
+			EObject modelElement = project.getModelElement(modelElementId);
 			if (modelElement == null) {
 				continue;
 			}
 			allInvolvedRootElementsA.add(getRootLevelParent(modelElement));
 		}
 		for (ModelElementId modelElementId : allInvolvedModelElementsB) {
-			ModelElement modelElement = project.getModelElement(modelElementId);
+			EObject modelElement = project.getModelElement(modelElementId);
 			if (modelElement == null) {
 				continue;
 			}
@@ -71,14 +70,14 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 		return this.doConflict(requiredOperation, operation);
 	}
 
-	private ModelElement getRootLevelParent(ModelElement modelElement) {
+	private EObject getRootLevelParent(EObject modelElement) {
 		EObject parent = modelElement;
 		EObject nextParent = modelElement.eContainer();
 		while (nextParent != project) {
 			parent = nextParent;
 			nextParent = nextParent.eContainer();
 		}
-		return project.getModelElement(parent);
+		return project.getModelElementId(parent);
 	}
 
 }

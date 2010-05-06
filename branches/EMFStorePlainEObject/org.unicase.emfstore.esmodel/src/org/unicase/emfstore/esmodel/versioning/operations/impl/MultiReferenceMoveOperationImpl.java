@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -20,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -352,8 +352,8 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	}
 
 	public void apply(Project project) {
-		ModelElement modelElement = project.getModelElement(getModelElementId());
-		ModelElement referencedModelElement = project.getModelElement(getReferencedModelElementId());
+		EObject modelElement = project.getModelElement(getModelElementId());
+		EObject referencedModelElement = project.getModelElement(getReferencedModelElementId());
 		if (modelElement == null) {
 			// fail silently
 			return;
@@ -367,7 +367,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		}
 		Object object = modelElement.eGet(reference);
 		@SuppressWarnings("unchecked")
-		EList<ModelElement> list = (EList<ModelElement>) object;
+		EList<EObject> list = (EList<EObject>) object;
 		if (getNewIndex() >= list.size() || getNewIndex() < 0 || referencedModelElement == null
 			|| !list.contains(referencedModelElement)) {
 			// do nothing if index out of bound or element not in list.

@@ -15,7 +15,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.Project;
 
 /**
@@ -225,15 +224,12 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	}
 
 	public void apply(Project project) {
-		ModelElementEObjectWrapper modelElementWrapper = (ModelElementEObjectWrapper) project.getModelElement(this
-			.getModelElementId());
+		EObject object = project.getModelElement(this.getModelElementId());
 
-		if (modelElementWrapper == null) {
+		if (object == null) {
 			// silently fail
 			return;
 		}
-
-		EObject object = modelElementWrapper.getWrappedEObject();
 
 		EAttribute attribute;
 		try {
