@@ -47,11 +47,12 @@ Please note that both the Eclipse java guidelines and the Checkstyle settings ar
 http://unicase.googlecode.com/files/checkstyle.png
 
 
-UNICASE uses project specific code template for which the template can be download from here "codetemplates.xml". To set-up UNICASE specific Code Templates go to : Project Context Menu -> Properties -> Java Code Style -> Code Templates -> Import
+UNICASE uses project specific code template for which the template can be download from here [http://unicase.googlecode.com/files/codetemplates.xml codetemplates.xml]. To set-up UNICASE specific Code Templates go to : Project Context Menu -> Properties -> Java Code Style -> Code Templates -> Import
 
 http://unicase.googlecode.com/files/unicasecodetemplate.png
 
 <br>
+
 
 and then select the template downloaded from the link mentioned above. Now click on "apply" button for changes to take effect and then "OK" to finish the setup.
 
