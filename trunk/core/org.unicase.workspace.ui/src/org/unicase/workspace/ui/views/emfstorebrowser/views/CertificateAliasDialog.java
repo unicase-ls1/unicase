@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author pfeifferc
  */
+@Deprecated
 public class CertificateAliasDialog extends Dialog {
 
 	/**
