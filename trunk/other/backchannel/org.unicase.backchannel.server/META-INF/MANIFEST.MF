@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Server
+Bundle-Name: Server Backchannel Plugin
 Bundle-SymbolicName: org.unicase.backchannel.server;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.backchannel.server.Activator
@@ -10,3 +10,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.backchannel.server,
  org.unicase.backchannel.server.connection.client,
  org.unicase.backchannel.server.connection.server
+Bundle-Vendor: unicase.org
+Bundle-ClassPath: bin/
