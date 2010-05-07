@@ -1,6 +1,6 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
-0.5.22.nightly:
+0.5.29.nightly:
   * Backchannel Feature split into two features: client and server
   * Added Util Classes for using EMFStore-Metamodel-based models with XMI Resources (EMFStoreXMIResource)
   * Added new and improved EMFStore Browser View
@@ -8,7 +8,7 @@
   * Bug Fixes in Login and Logout
   * Improvements and Bug Fixes in Model Import
 
-(0.5.19.nightly - 0.5.21.nightly: version was never available at update site, version number skipped) 
+(0.5.19.nightly - 0.5.28.nightly: version was never available at update site, version number skipped) 
 
 0.5.18.nightly:
   * All extension point schemas added to build
