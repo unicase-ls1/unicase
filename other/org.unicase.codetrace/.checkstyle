@@ -3,7 +3,7 @@
     <local-check-config name="unicaseStyle" location="coding.guidelines/unicaseStyle.xml" type="project" description="">
         <additional-data name="protect-config-file" value="false"/>
     </local-check-config>
-    <fileset name="Alle" enabled="true" check-config-name="unicaseStyle" local="false">
+    <fileset name="Alle" enabled="true" check-config-name="unicase Style" local="false">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
 </fileset-config>
