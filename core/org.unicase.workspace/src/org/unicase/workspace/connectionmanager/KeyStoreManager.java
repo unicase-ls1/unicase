@@ -187,20 +187,37 @@ public final class KeyStoreManager {
 	 *             operations.
 	 */
 	public void addCertificate(String alias, String path) throws InvalidCertificateException, CertificateStoreException {
+		try {
+			addCertificate(alias, new FileInputStream(path));
+		} catch (FileNotFoundException e) {
+			String message = "Storing certificate failed!";
+			WorkspaceUtil.logException(message, e);
+			throw new CertificateStoreException(message, e);
+		}
+	}
+
+	/**
+	 * Adds a certificate to the KeyStore.
+	 * 
+	 * @param alias alias for the certificate
+	 * @param certificate inputstream delivering the certificate
+	 * @throws InvalidCertificateException certificate cannot be found, accessed or identified
+	 * @throws CertificateStoreException is thrown when problems occur with the CertificateStore, i.e. illegal
+	 *             operations
+	 */
+	public void addCertificate(String alias, InputStream certificate) throws InvalidCertificateException,
+		CertificateStoreException {
 		if (!isDefaultCertificate(alias)) {
 			loadKeyStore();
 			try {
 				CertificateFactory factory = CertificateFactory.getInstance(CERTIFICATE_TYPE);
-				Certificate newCertificate = factory.generateCertificate(new FileInputStream(path));
+				Certificate newCertificate = factory.generateCertificate(certificate);
 				keyStore.setCertificateEntry(alias, newCertificate);
+				storeKeyStore();
 			} catch (CertificateException e) {
 				String message = "Please choose a valid certificate!";
 				throw new InvalidCertificateException(message);
 			} catch (KeyStoreException e) {
-				String message = "Storing certificate failed!";
-				WorkspaceUtil.logException(message, e);
-				throw new CertificateStoreException(message, e);
-			} catch (FileNotFoundException e) {
 				String message = "Storing certificate failed!";
 				WorkspaceUtil.logException(message, e);
 				throw new CertificateStoreException(message, e);
