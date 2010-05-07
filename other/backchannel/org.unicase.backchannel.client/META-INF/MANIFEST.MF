@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Client
+Bundle-Name: Backchannel Client Plugin
 Bundle-SymbolicName: org.unicase.backchannel.client
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.backchannel.client.Activator
@@ -9,3 +9,5 @@ Require-Bundle: org.unicase.workspace,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.backchannel.client
+Bundle-Vendor: unicase.org
+Bundle-ClassPath: .
