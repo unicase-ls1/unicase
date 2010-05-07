@@ -18,8 +18,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -188,8 +186,9 @@ public class LoginDialog extends TitleAreaDialog {
 		Label passLabel = new Label(parent, SWT.WRAP);
 		passLabel.setText("Password");
 
-		passText = new Text(parent, SWT.BORDER | SWT.PASSWORD);
+		passText = new Text(parent, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(passText);
+		passText.setEchoChar('\u2022');
 		passText.addKeyListener(new KeyListener() {
 			public void keyReleased(KeyEvent e) {
 				if (!(e.character == '	') || e.character == '\0') {
@@ -201,15 +200,6 @@ public class LoginDialog extends TitleAreaDialog {
 				if (!(e.character == '	') || e.character == '\0') {
 					isPasswordModified = true;
 				}
-			}
-		});
-		passText.addFocusListener(new FocusListener() {
-			public void focusLost(FocusEvent e) {
-				isPasswordModified = true;
-			}
-
-			public void focusGained(FocusEvent e) {
-				isPasswordModified = true;
 			}
 		});
 
