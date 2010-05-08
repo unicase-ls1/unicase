@@ -10,10 +10,12 @@ import java.security.cert.X509Certificate;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -232,13 +234,19 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 				String location = fileDialog.getFilterPath()
 						+ System.getProperty("file.separator")
 						+ fileDialog.getFileName();
-				CertificateAliasDialog certificateAliasDialog = new CertificateAliasDialog(
+
+				InputDialog inputDialog = new InputDialog(
 						Display.getCurrent().getActiveShell(),
 						"Select certificate designation",
 						"Please choose a designation for the previously selected certificate: ",
-						"");
-				certificateAliasDialog.open();
-				String alias = certificateAliasDialog.getValue();
+						"", null);
+
+				inputDialog.setBlockOnOpen(true);
+				if (inputDialog.open() != Window.OK) {
+					return;
+				}
+
+				String alias = inputDialog.getValue();
 				if (alias.equals("")) {
 					alias = "unnamed:" + EcoreUtil.generateUUID();
 				}
