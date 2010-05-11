@@ -15,6 +15,7 @@
    <extension-point id="org.unicase.workspace.notify.login" name="org.unicase.workspace.notify.login" schema="schema/org.unicase.workspace.notify.login.exsd"/>
    <extension-point id="org.unicase.workspace.wrapperfactories" name="Wrapper factories" schema="schema/wrapperfactories.exsd"/>
    <extension-point id="org.unicase.workspace.workspaceLocationProvider" name="Workspace Location Provider" schema="schema/org.unicase.workspace.workspaceLocationProvider.exsd"/>
+   <extension-point id="org.unicase.workspace.defaultConfigurationProvider" name="Default Configuration Provider" schema="schema/org.unicase.workspace.defaultConfigurationProvider.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 
@@ -26,5 +27,11 @@
      <editingDomain
            id="org.unicase.workspace.editingDomain">
      </editingDomain>
+  </extension>
+  <extension
+        point="org.unicase.workspace.defaultConfigurationProvider">
+     <configurationProvider
+           providerClass="org.unicase.workspace.UnicaseConfigurationProvider">
+     </configurationProvider>
   </extension>
 </plugin>
