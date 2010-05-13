@@ -233,6 +233,10 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
 				.createMultiReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
+				.createMultiReferenceSetOperation()));
 	}
 
 }
