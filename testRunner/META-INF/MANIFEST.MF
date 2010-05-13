@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TestRunner
+Bundle-SymbolicName: testRunner; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: testrunner.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.workspace;bundle-version="1.0.0",
+ testProject;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
