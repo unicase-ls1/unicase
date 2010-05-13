@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/testProject/src"
+    modelPluginID="testProject" modelName="My" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
+  <foreignModel>My.ecore</foreignModel>
+  <genPackages prefix="TestModel" disposableProviderFactory="true" ecorePackage="My.ecore#/">
+    <genClasses ecoreClass="My.ecore#//TestProject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute My.ecore#//TestProject/values"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
