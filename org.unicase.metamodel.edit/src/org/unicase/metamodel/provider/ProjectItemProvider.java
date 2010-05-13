@@ -155,6 +155,11 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		return "Project";
 	}
 
+	/**
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
+	 * @generated NOT {@inheritDoc}
+	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {

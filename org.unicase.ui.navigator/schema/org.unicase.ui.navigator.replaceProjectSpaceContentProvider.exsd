@@ -6,7 +6,7 @@
          <meta.schema plugin="org.unicase.ui.navigator" id="org.unicase.ui.navigator.replaceProjectSpaceContentProvider" name="Replace Project Space Provider"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Replaces the root provider for the navigator
       </documentation>
    </annotation>
 

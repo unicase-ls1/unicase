@@ -5,9 +5,11 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
-import org.eclipse.jface.viewers.StyledCellLabelProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.ui.Activator;
@@ -17,34 +19,74 @@ import org.unicase.workspace.ui.Activator;
  * 
  * @author shterev
  */
-public class ESBrowserLabelProvider extends StyledCellLabelProvider {
+public class ESBrowserLabelProvider extends ColumnLabelProvider {
+
+	@Override
+	public String getText(Object obj) {
+		if (obj instanceof TreeNode) {
+			Object element = ((TreeNode) obj).getValue();
+			if (element instanceof ServerInfo) {
+				ServerInfo serverInfo = (ServerInfo) element;
+				StringBuilder builder = new StringBuilder();
+				builder.append(serverInfo.getUrl());
+				builder.append(" [");
+				builder.append(serverInfo.getName());
+				builder.append("]");
+				return builder.toString();
+			} else if (element instanceof ProjectInfo) {
+				ProjectInfo projectInfo = (ProjectInfo) element;
+				return projectInfo.getName();
+			}
+		}
+		return super.getText(obj);
+	}
+
+	@Override
+	public Image getImage(Object obj) {
+		if (obj instanceof TreeNode) {
+			Object element = ((TreeNode) obj).getValue();
+			if (element instanceof ServerInfo) {
+				return Activator.getImageDescriptor("icons/ServerInfo.gif")
+						.createImage();
+			} else if (element instanceof ProjectInfo) {
+				return Activator.getImageDescriptor("icons/prj_obj.gif")
+						.createImage();
+			}
+		}
+		return super.getImage(obj);
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void update(ViewerCell cell) {
-		Object element = cell.getElement();
-		if (element instanceof ServerInfo) {
-			ServerInfo serverInfo = (ServerInfo) element;
-			StyledString styledString = new StyledString(serverInfo.getName());
-			String url = serverInfo.getUrl();
-			styledString.append(" [" + url + "]",
-					StyledString.DECORATIONS_STYLER);
+		Object obj = cell.getElement();
+		if (obj instanceof TreeNode) {
+			Object element = ((TreeNode) obj).getValue();
+			if (element instanceof ServerInfo) {
+				ServerInfo serverInfo = (ServerInfo) element;
+				StyledString styledString = new StyledString(serverInfo
+						.getName());
+				String url = serverInfo.getUrl();
+				styledString.append(" [" + url + "]",
+						StyledString.DECORATIONS_STYLER);
 
-			cell.setText(styledString.toString());
-			cell.setStyleRanges(styledString.getStyleRanges());
+				cell.setText(styledString.toString());
+				cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif")
-					.createImage());
-		} else if (element instanceof ProjectInfo) {
-			ProjectInfo projectInfo = (ProjectInfo) element;
-			StyledString styledString = new StyledString(projectInfo.getName());
-			cell.setText(styledString.toString());
-			cell.setStyleRanges(styledString.getStyleRanges());
+				cell.setImage(Activator.getImageDescriptor(
+						"icons/ServerInfo.gif").createImage());
+			} else if (element instanceof ProjectInfo) {
+				ProjectInfo projectInfo = (ProjectInfo) element;
+				StyledString styledString = new StyledString(projectInfo
+						.getName());
+				cell.setText(styledString.toString());
+				cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
-					.createImage());
+				cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
+						.createImage());
+			}
 		}
 		super.update(cell);
 	}

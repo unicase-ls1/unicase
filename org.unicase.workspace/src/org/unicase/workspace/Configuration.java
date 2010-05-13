@@ -145,50 +145,22 @@ public final class Configuration {
 	 * @return server info
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
-		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
-
-		if (isReleaseVersion()) {
-			serverInfos.add(getReleaseServerInfo());
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.defaultConfigurationProvider");
+		for (IConfigurationElement extension : rawExtensions) {
+			try {
+				ConfigurationProvider provider = (ConfigurationProvider) extension
+					.createExecutableExtension("providerClass");
+				List<ServerInfo> defaultServerInfos = provider.getDefaultServerInfos();
+				if (defaultServerInfos != null) {
+					return defaultServerInfos;
+				}
+			} catch (CoreException e) {
+				// fail silently
+			}
 		}
-		if (isInternalReleaseVersion()) {
-			serverInfos.add(getInternalServerInfo());
-		}
-		if (isDeveloperVersion()) {
-			serverInfos.add(getLocalhostServerInfo());
-		}
-		return serverInfos;
-	}
 
-	private static ServerInfo getReleaseServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("unicase Server");
-		serverInfo.setPort(443);
-		serverInfo.setUrl("unicase.in.tum.de");
-		return serverInfo;
-	}
-
-	private static ServerInfo getInternalServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("unicase Developer Server");
-		serverInfo.setPort(443);
-		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
-		return serverInfo;
-	}
-
-	private static ServerInfo getLocalhostServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("Localhost Server");
-		serverInfo.setPort(8080);
-		serverInfo.setUrl("localhost");
-
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
-		superUsersession.setServerInfo(serverInfo);
-		superUsersession.setPassword("super");
-		superUsersession.setSavePassword(true);
-		superUsersession.setUsername("super");
-		serverInfo.setLastUsersession(superUsersession);
-
-		return serverInfo;
+		return new ArrayList<ServerInfo>();
 	}
 
 	/**

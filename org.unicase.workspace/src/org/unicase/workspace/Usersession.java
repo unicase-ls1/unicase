@@ -348,6 +348,13 @@ public interface Usersession extends EObject {
 	void addLoginObserver(LoginObserver observer);
 
 	/**
+	 * De-Register a new login observer.
+	 * 
+	 * @param observer the login observer
+	 */
+	void removeLoginObserver(LoginObserver observer);
+
+	/**
 	 * Sends a logout call to the server.
 	 * 
 	 * @throws EmfStoreException forwards any exception.

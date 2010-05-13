@@ -11,7 +11,7 @@ package org.unicase.emfstore.exceptions;
  * @author koegel
  */
 @SuppressWarnings("serial")
-public class RMISerializationException extends EmfStoreException {
+public class RMISerializationException extends SerializationException {
 
 	/**
 	 * Default constructor.

@@ -41,14 +41,6 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 		ProjectSpace projectSpace = getProjectSpace();
 		ModelElement modelElement = getModelElement();
 		if (projectSpace == null) {
-			// ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-			// .getCurrentWorkspace().getActiveProjectSpace();
-			// if (activeProjectSpace == null) {
-			// MessageDialog.openInformation(shell, "Information",
-			// "You must select the Project");
-			// return null;
-			// }
-			// projectSpace = activeProjectSpace;
 			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 					.getProjectSpace(modelElement.getProject());
 		}

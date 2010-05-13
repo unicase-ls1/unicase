@@ -48,6 +48,8 @@ public final class NotificationToOperationConverter {
 			return null;
 		}
 
+		System.out.println(n);
+
 		switch (n.getEventType()) {
 
 		case Notification.SET:
@@ -59,32 +61,28 @@ public final class NotificationToOperationConverter {
 
 		case Notification.ADD:
 			if (n.isAttributeNotification()) {
-				// not supported
-				return null;
+				return handleMultiAttribute(n);
 			} else {
 				return handleMultiReference(n);
 			}
 
 		case Notification.ADD_MANY:
 			if (n.isAttributeNotification()) {
-				// not supported
-				return null;
+				return handleMultiAttribute(n);
 			} else {
 				return handleMultiReference(n);
 			}
 
 		case Notification.REMOVE:
 			if (n.isAttributeNotification()) {
-				// not supported
-				return null;
+				return handleMultiAttribute(n);
 			} else {
 				return handleMultiReference(n);
 			}
 
 		case Notification.REMOVE_MANY:
 			if (n.isAttributeNotification()) {
-				// not supported
-				return null;
+				return handleMultiAttribute(n);
 			} else {
 				return handleMultiReference(n);
 			}
@@ -96,6 +94,10 @@ public final class NotificationToOperationConverter {
 			return null;
 
 		}
+	}
+
+	private static AbstractOperation handleMultiAttribute(NotificationInfo n) {
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
