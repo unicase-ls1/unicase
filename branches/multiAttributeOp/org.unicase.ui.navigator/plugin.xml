@@ -68,6 +68,23 @@
             </visibleWhen>
          </dynamic>
       </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.ui.navigator.exportModel"
+               icon="icons/export.gif"
+               label="Export Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.metamodel.ModelElement">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -110,6 +127,11 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
+            <command
+                  defaultHandler="org.unicase.ui.navigator.handler.ExportModelHandler"
+                  id="org.unicase.ui.navigator.exportModel"
+                  name="Export model">
+            </command>
 
    </extension>
 

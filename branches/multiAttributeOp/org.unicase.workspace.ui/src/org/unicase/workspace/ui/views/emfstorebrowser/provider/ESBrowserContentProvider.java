@@ -5,26 +5,15 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
-import org.unicase.workspace.ui.dialogs.LoginDialog;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.workspace.ui.dialogs.login.LoginDialog;
 
 /**
  * Content provider for the tree view.
@@ -33,8 +22,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 
-	private Usersession session;
-	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 	private AccessControlHelper accessControl;
 
 	/**
@@ -43,17 +30,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 * @param usersession
 	 *            the usersession used for logging in
 	 */
-	public ESBrowserContentProvider(Usersession usersession) {
+	public ESBrowserContentProvider() {
 		super(new WorkspaceItemProviderAdapterFactory());
-		this.session = usersession;
-	}
-
-	/**
-	 * @return the HashMap mapping ProjectInfos with their corresponding
-	 *         ServerInfo parents
-	 */
-	public HashMap<ProjectInfo, ServerInfo> getProjectServerMap() {
-		return projectServerMap;
 	}
 
 	/**
@@ -70,26 +48,48 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof Workspace) {
-			return ((Workspace) object).getServerInfos().toArray();
-		} else if (object instanceof ServerInfo) {
-			final ServerInfo serverInfo = (ServerInfo) object;
-
-			List<ProjectInfo> pis = new ContentProviderRecordingCommand(
-					session, serverInfo).run();
-			Display.getDefault().asyncExec(new Runnable() {
-				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update(
-							"org.unicase.ui.esbrowser.LoginDecorator");
-				}
-			});
-			for (ProjectInfo pi : pis) {
-				projectServerMap.put(pi, serverInfo);
+		if (object instanceof TreeNode) {
+			TreeNode node = (TreeNode) object;
+			Object value = node.getValue();
+			Object[] children;
+			if (value instanceof Workspace) {
+				children = ((Workspace) value).getServerInfos().toArray();
+			} else if (value instanceof ServerInfo) {
+				ServerInfo serverInfo = (ServerInfo) value;
+				children = getChildren(serverInfo);
+			} else {
+				children = super.getChildren(node.getValue());
 			}
-			return pis.toArray();
+			return nodify(node, children);
 		}
-		throw new IllegalStateException("Received parent node of unkown type: "
-				+ object.getClass());
+		return super.getChildren(object);
+	}
+
+	private Object[] getChildren(ServerInfo serverInfo) {
+		if (serverInfo.getLastUsersession() == null
+				|| !serverInfo.getLastUsersession().isLoggedIn()) {
+			LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
+					.getDisplay().getActiveShell(), serverInfo);
+			dialog.open();
+
+			// the login has been canceled and the project list should be
+			// cleared since the user is no longer logged
+			// in
+			if (dialog.getReturnCode() == Window.CANCEL) {
+				return new Object[0];
+			}
+		}
+		return serverInfo.getProjectInfos().toArray();
+	}
+
+	private TreeNode[] nodify(TreeNode parent, Object[] children) {
+		TreeNode[] ret = new TreeNode[children.length];
+		for (int i = 0; i < children.length; i++) {
+			TreeNode node = new TreeNode(children[i]);
+			node.setParent(parent);
+			ret[i] = node;
+		}
+		return ret;
 	}
 
 	/**
@@ -97,8 +97,10 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public boolean hasChildren(Object parent) {
-		if (parent instanceof ServerInfo) {
-			return true;
+		if (parent instanceof TreeNode) {
+			if (((TreeNode) parent).getValue() instanceof ServerInfo) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -108,76 +110,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object object) {
-		return getChildren(WorkspaceManager.getInstance().getCurrentWorkspace());
-	}
-
-	/**
-	 * The {@link UnicaseCommandWithResult} for the ContentProvider.
-	 * 
-	 * @author shterev
-	 */
-	private class ContentProviderRecordingCommand extends
-			UnicaseCommandWithResult<List<ProjectInfo>> {
-
-		private ServerInfo serverInfo;
-		private Usersession session;
-		private List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-
-		public ContentProviderRecordingCommand(Usersession usersession,
-				ServerInfo serverInfo) {
-			this.serverInfo = serverInfo;
-			this.session = usersession;
-		}
-
-		@Override
-		protected List<ProjectInfo> doRun() {
-			session = serverInfo.getLastUsersession();
-
-			// if no usersession has been set yet or if the current one is not
-			// logged in
-			if (session == null || !session.isLoggedIn()) {
-				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
-						.getDisplay().getActiveShell(), session, serverInfo);
-				dialog.open();
-
-				// the login has been canceled and the project list should be
-				// cleared since the user is no longer logged
-				// in
-				if (dialog.getReturnCode() == Window.CANCEL) {
-					return result;
-				}
-				session = dialog.getSession();
-				try {
-					session.updateACUser();
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException(e.getMessage(), e);
-				}
-			}
-			if (session != null && session.isLoggedIn()) {
-				try {
-					serverInfo.getProjectInfos().clear();
-					serverInfo.getProjectInfos().addAll(
-							session.getRemoteProjectList());
-					WorkspaceManager.getInstance().getCurrentWorkspace().save();
-					result = serverInfo.getProjectInfos();
-					accessControl = new AccessControlHelper(session);
-				} catch (EmfStoreException e) {
-					DialogHandler.showExceptionDialog(e);
-				}
-			}
-			return result;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @see org.eclipse.emf.common.command.AbstractCommand#getResult()
-		 */
-		@Override
-		public List<ProjectInfo> getResult() {
-			return result;
-		}
-
+		TreeNode node = new TreeNode(object);
+		return getChildren(node);
 	}
 
 }

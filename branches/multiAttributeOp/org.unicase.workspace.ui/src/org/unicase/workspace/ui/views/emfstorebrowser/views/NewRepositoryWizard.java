@@ -31,7 +31,6 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 
 	private IWorkbench workbench;
 
-	private ESBrowserView view;
 	private boolean edit;
 
 	/**
@@ -40,9 +39,8 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	 * @param view
 	 *            callback to the repository view
 	 */
-	public NewRepositoryWizard(ESBrowserView view) {
+	public NewRepositoryWizard() {
 		super();
-		this.view = view;
 	}
 
 	/**
@@ -112,7 +110,6 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 					workspace.save();
 				}
 			}.run();
-			view.getViewer().refresh();
 			dispose();
 		} else {
 			MessageDialog.openError(workbench.getActiveWorkbenchWindow()

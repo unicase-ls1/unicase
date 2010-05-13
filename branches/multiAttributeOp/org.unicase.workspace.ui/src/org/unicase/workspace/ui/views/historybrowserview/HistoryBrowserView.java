@@ -88,7 +88,8 @@ import org.unicase.workspace.util.ProjectSpaceContainer;
  * @author Wesendonk
  * @author Shterev
  */
-public class HistoryBrowserView extends ViewPart implements ProjectSpaceContainer {
+public class HistoryBrowserView extends ViewPart implements
+		ProjectSpaceContainer {
 
 	/**
 	 * Provides popup menu for versions.
@@ -102,11 +103,14 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
 				if (node.getValue() instanceof HistoryInfo
-					&& ((HistoryInfo) node.getValue()).getChangePackage() != null
-					&& ((HistoryInfo) node.getValue()).getChangePackage().getLogMessage() != null) {
-					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
+						&& ((HistoryInfo) node.getValue()).getChangePackage() != null
+						&& ((HistoryInfo) node.getValue()).getChangePackage()
+								.getLogMessage() != null) {
+					AccessControlHelper helper = new AccessControlHelper(
+							projectSpace.getUsersession());
 					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
+						helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+								.copy(projectSpace.getProjectId()));
 						manager.add(addTagAction);
 						manager.add(removeTagAction);
 						manager.add(new Separator());
@@ -116,15 +120,19 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 					}
 
 				}
-				manager.add(checkoutAction);
-				AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
-				try {
-					helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-					manager.add(revertAction);
-					manager.add(forceRevertAction);
-				} catch (AccessControlException e) {
-					// do nothing
-					System.out.println("");
+				if (node.getValue() instanceof HistoryInfo) {
+					manager.add(checkoutAction);
+					AccessControlHelper helper = new AccessControlHelper(
+							projectSpace.getUsersession());
+					try {
+						helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+								.copy(projectSpace.getProjectId()));
+						manager.add(revertAction);
+						manager.add(forceRevertAction);
+					} catch (AccessControlException e) {
+						// do nothing
+						System.out.println("");
+					}
 				}
 			}
 		}
@@ -147,8 +155,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			ISelection selection = viewer.getSelection();
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), tagLabelProvider);
+			ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getShell(), tagLabelProvider);
 			dlg.setElements(historyInfo.getTagSpecs().toArray());
 			dlg.setTitle("Tag selection");
 			dlg.setBlockOnOpen(true);
@@ -225,8 +234,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		this.parent = parent;
 
 		noProjectHint = new Label(parent, SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, true).applyTo(noProjectHint);
-		noProjectHint.setText("Please call 'Show history' from the context menu of an element in the navigator.");
+		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true,
+				true).applyTo(noProjectHint);
+		noProjectHint
+				.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
 		viewer = new TreeViewer(parent, SWT.NONE) {
 
@@ -234,15 +245,18 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		getSite().setSelectionProvider(viewer);
 
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				viewer.getControl());
 		ColumnViewerToolTipSupport.enableFor(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
+					TreeNode node = (TreeNode) ((IStructuredSelection) event
+							.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
+						ActionHelper.openModelElement((ModelElement) node
+								.getValue(), VIEW_ID);
 					}
 				}
 
@@ -275,8 +289,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	private void addExpandAllAndCollapseAllAction(IToolBarManager menuManager) {
-		final ImageDescriptor expandImg = Activator.getImageDescriptor("icons/expandall.gif");
-		final ImageDescriptor collapseImg = Activator.getImageDescriptor("icons/collapseall.gif");
+		final ImageDescriptor expandImg = Activator
+				.getImageDescriptor("icons/expandall.gif");
+		final ImageDescriptor collapseImg = Activator
+				.getImageDescriptor("icons/collapseall.gif");
 
 		Action expandAndCollapse = new Action("", SWT.TOGGLE) {
 			@Override
@@ -292,7 +308,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 		expandAndCollapse.setImageDescriptor(expandImg);
-		expandAndCollapse.setToolTipText("Use this toggle to expand or collapse all elements");
+		expandAndCollapse
+				.setToolTipText("Use this toggle to expand or collapse all elements");
 		menuManager.add(expandAndCollapse);
 	}
 
@@ -304,18 +321,21 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
-		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
+		refresh.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
 	}
 
 	private void addGroupByModelElementButton(IToolBarManager menuManager) {
-		boolean isGroupByME = Activator.getDefault().getDialogSettings().getBoolean("GroupByModelElement");
+		boolean isGroupByME = Activator.getDefault().getDialogSettings()
+				.getBoolean("GroupByModelElement");
 		groupByMe = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
 				boolean showRootsCache = contentProvider.showRootNodes();
-				Activator.getDefault().getDialogSettings().put("GroupByModelElement", isChecked());
+				Activator.getDefault().getDialogSettings().put(
+						"GroupByModelElement", isChecked());
 				if (isChecked()) {
 					contentProvider = new SCMContentProvider.Compact(viewer);
 				} else {
@@ -328,7 +348,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 
-		groupByMe.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
+		groupByMe.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/groupByME.png"));
 		groupByMe.setToolTipText("Group by model element");
 		groupByMe.setChecked(isGroupByME);
 		menuManager.add(groupByMe);
@@ -349,9 +370,12 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
-			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		showRoots.setImageDescriptor(ImageDescriptor
+				.createFromImage(adapterFactoryLabelProvider
+						.getImage(VersioningFactory.eINSTANCE
+								.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
@@ -369,7 +393,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
-		prev.setImageDescriptor(Activator.getImageDescriptor("/icons/prev.png"));
+		prev
+				.setImageDescriptor(Activator
+						.getImageDescriptor("/icons/prev.png"));
 		prev.setToolTipText("Previous " + (startOffset + 1) + " items");
 		menuManager.add(prev);
 
@@ -384,7 +410,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
-		next.setImageDescriptor(Activator.getImageDescriptor("/icons/next.png"));
+		next
+				.setImageDescriptor(Activator
+						.getImageDescriptor("/icons/next.png"));
 		next.setToolTipText("Next " + (startOffset + 1) + " items");
 		menuManager.add(next);
 	}
@@ -393,37 +421,43 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		Action jumpTo = new Action() {
 			@Override
 			public void run() {
-				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Go to revision", "Revision", "", null);
+				InputDialog inputDialog = new InputDialog(getSite().getShell(),
+						"Go to revision", "Revision", "", null);
 				if (inputDialog.open() == Window.OK) {
 					try {
 						int temp = Integer.parseInt(inputDialog.getValue());
 						currentEnd = temp;
 						refresh();
 					} catch (NumberFormatException e) {
-						MessageDialog.openError(getSite().getShell(), "Error", "A numeric value was expected!");
+						MessageDialog.openError(getSite().getShell(), "Error",
+								"A numeric value was expected!");
 						run();
 					}
 				}
 			}
 
 		};
-		jumpTo.setImageDescriptor(Activator.getImageDescriptor("/icons/magnifier.png"));
+		jumpTo.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/magnifier.png"));
 		jumpTo.setToolTipText("Go to revision...");
 		menuManager.add(jumpTo);
 	}
 
 	private void addLinkWithNavigatorAction(IToolBarManager menuManager) {
-		isUnlinkedFromNavigator = Activator.getDefault().getDialogSettings().getBoolean("LinkWithNavigator");
+		isUnlinkedFromNavigator = Activator.getDefault().getDialogSettings()
+				.getBoolean("LinkWithNavigator");
 		Action linkWithNavigator = new Action("Link with navigator", SWT.TOGGLE) {
 
 			@Override
 			public void run() {
-				Activator.getDefault().getDialogSettings().put("LinkWithNavigator", !this.isChecked());
+				Activator.getDefault().getDialogSettings().put(
+						"LinkWithNavigator", !this.isChecked());
 				isUnlinkedFromNavigator = (!this.isChecked());
 			}
 
 		};
-		linkWithNavigator.setImageDescriptor(Activator.getImageDescriptor("icons/link_with_editor.gif"));
+		linkWithNavigator.setImageDescriptor(Activator
+				.getImageDescriptor("icons/link_with_editor.gif"));
 		linkWithNavigator.setToolTipText("Link with Navigator");
 		linkWithNavigator.setChecked(!isUnlinkedFromNavigator);
 		menuManager.add(linkWithNavigator);
@@ -447,7 +481,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				try {
 					loadContent(end);
 				} catch (InvalidVersionSpecException e) {
-					MessageDialog.openError(getShell(), "Invalid revision", "The requested revision was invalid");
+					MessageDialog.openError(getShell(), "Invalid revision",
+							"The requested revision was invalid");
 					currentEnd = projectSpace.getBaseVersion().getIdentifier();
 					refresh();
 				}
@@ -473,17 +508,19 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 		HistoryQuery query = getQuery(end);
 		List<HistoryInfo> historyInfo = projectSpace.getUsersession()
-			.getHistoryInfo(projectSpace.getProjectId(), query);
+				.getHistoryInfo(projectSpace.getProjectId(), query);
 
 		// Event logging
-		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE.createShowHistoryEvent();
+		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE
+				.createShowHistoryEvent();
 		historyEvent.setSourceVersion(query.getSource());
 		historyEvent.setTargetVersion(query.getTarget());
 		historyEvent.setTimestamp(new Date());
 		EList<ModelElementId> modelElements = query.getModelElements();
 		if (modelElements != null) {
 			for (ModelElementId modelElementId : modelElements) {
-				historyEvent.getModelElement().add(ModelUtil.clone(modelElementId));
+				historyEvent.getModelElement().add(
+						ModelUtil.clone(modelElementId));
 			}
 		}
 		projectSpace.addEvent(historyEvent);
@@ -491,7 +528,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		if (historyInfo != null) {
 			for (HistoryInfo hi : historyInfo) {
 				if (hi.getPrimerySpec().equals(projectSpace.getBaseVersion())) {
-					TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+					TagVersionSpec spec = VersioningFactory.eINSTANCE
+							.createTagVersionSpec();
 					spec.setName(VersionSpec.BASE);
 					hi.getTagSpecs().add(spec);
 					break;
@@ -500,24 +538,31 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			historyInfos.clear();
 			historyInfos.addAll(historyInfo);
 		}
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(ModelUtil.clone(projectSpace.getOperations()));
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		changePackage.getOperations().addAll(
+				ModelUtil.clone(projectSpace.getOperations()));
 		changePackageCache.put(-1, changePackage);
 		for (HistoryInfo hi : historyInfos) {
 			if (hi.getChangePackage() != null) {
-				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi.getChangePackage());
+				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi
+						.getChangePackage());
 			}
 		}
-		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(
-			changePackageCache.values()), projectSpace.getProject());
-		labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(
+				new ArrayList<ChangePackage>(changePackageCache.values()),
+				projectSpace.getProject());
+		labelProvider
+				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		contentProvider
+				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 	}
 
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace the input project space
+	 * @param projectSpace
+	 *            the input project space
 	 */
 	public void setInput(ProjectSpace projectSpace) {
 		setInput(projectSpace, null);
@@ -526,8 +571,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace the input project space
-	 * @param me the input model element
+	 * @param projectSpace
+	 *            the input project space
+	 * @param me
+	 *            the input model element
 	 */
 	public void setInput(ProjectSpace projectSpace, ModelElement me) {
 		noProjectHint.dispose();
@@ -545,7 +592,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			contentProvider.setShowRootNodes(false);
 		} else {
 			label += projectSpace.getProjectName();
-			boolean isGroupedByME = Activator.getDefault().getDialogSettings().getBoolean("GroupByModelElement");
+			boolean isGroupedByME = Activator.getDefault().getDialogSettings()
+					.getBoolean("GroupByModelElement");
 			groupByMe.setChecked(isGroupedByME);
 			showRoots.setChecked(true);
 			if (isGroupedByME) {
@@ -561,7 +609,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	private void getHeadVersionIdentifier() throws EmfStoreException {
-		PrimaryVersionSpec resolveVersionSpec = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec resolveVersionSpec = projectSpace
+				.resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		int identifier = resolveVersionSpec.getIdentifier();
 		headVersion = identifier;
 	}
@@ -577,9 +626,11 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 
-		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		source.setIdentifier(start);
-		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		PrimaryVersionSpec target = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		target.setIdentifier(end);
 		query.setSource(source);
 		query.setTarget(target);
@@ -601,20 +652,24 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		ArrayList<HistoryInfo> revisions = new ArrayList<HistoryInfo>();
 		if (projectSpace != null) {
 			// TODO: add a feature "hide local revision"
-			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE.createHistoryInfo();
-			ChangePackage changePackage = projectSpace.getLocalChangePackage(false);
+			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE
+					.createHistoryInfo();
+			ChangePackage changePackage = projectSpace
+					.getLocalChangePackage(false);
 			// filter for modelelement
 			if (modelElement != null) {
 				Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
 				for (AbstractOperation ao : changePackage.getOperations()) {
-					if (!ao.getAllInvolvedModelElements().contains(modelElement.getModelElementId())) {
+					if (!ao.getAllInvolvedModelElements().contains(
+							modelElement.getModelElementId())) {
 						operationsToRemove.add(ao);
 					}
 				}
 				changePackage.getOperations().removeAll(operationsToRemove);
 			}
 			localHistoryInfo.setChangePackage(changePackage);
-			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
 			versionSpec.setIdentifier(-1);
 			localHistoryInfo.setPrimerySpec(versionSpec);
 			revisions.add(localHistoryInfo);
@@ -627,10 +682,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Adds a tag to a version.
 	 * 
-	 * @param versionSpec the version
-	 * @param tag the tag
+	 * @param versionSpec
+	 *            the version
+	 * @param tag
+	 *            the tag
 	 */
-	public void addTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
+	public void addTag(final PrimaryVersionSpec versionSpec,
+			final TagVersionSpec tag) {
 
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
@@ -655,15 +713,17 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Checks out a specific revision.
 	 * 
-	 * @param versionSpec the version
+	 * @param versionSpec
+	 *            the version
 	 */
 	public void checkout(final PrimaryVersionSpec versionSpec) {
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(projectSpace.getUsersession(),
-					projectSpace.getProjectInfo(), versionSpec);
+				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
+						projectSpace.getUsersession(),
+						projectSpace.getProjectInfo(), versionSpec);
 				return null;
 			}
 
@@ -680,18 +740,22 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	/**
-	 * Reverts the commit from a certain revision in a local workspace that can be commited later.
+	 * Reverts the commit from a certain revision in a local workspace that can
+	 * be commited later.
 	 * 
-	 * @param versionSpec the version of the commit to revert
+	 * @param versionSpec
+	 *            the version of the commit to revert
 	 */
 	public void revertCommit(final PrimaryVersionSpec versionSpec) {
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-					"Do you really want to revert changes of this version on project " + projectSpace.getProjectName(),
-					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+				MessageDialog dialog = new MessageDialog(null, "Confirmation",
+						null,
+						"Do you really want to revert changes of this version on project "
+								+ projectSpace.getProjectName(),
+						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == Window.OK) {
 					checkoutAndReverseCommit(versionSpec);
@@ -712,18 +776,22 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	/**
-	 * Reverts the commit from a certain revision in a local workspace on the HEAD version that can be committed later.
+	 * Reverts the commit from a certain revision in a local workspace on the
+	 * HEAD version that can be committed later.
 	 * 
-	 * @param versionSpec the version of the commit to revert
+	 * @param versionSpec
+	 *            the version of the commit to revert
 	 */
 	public void forceRevertCommit(final PrimaryVersionSpec versionSpec) {
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-					"Do you really want to force to revert changes of this version on project "
-						+ projectSpace.getProjectName(), MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+				MessageDialog dialog = new MessageDialog(null, "Confirmation",
+						null,
+						"Do you really want to force to revert changes of this version on project "
+								+ projectSpace.getProjectName(),
+						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == Window.OK) {
 					checkoutHeadAndReverseCommit(versionSpec);
@@ -743,34 +811,44 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 	}
 
-	private void checkoutHeadAndReverseCommit(final PrimaryVersionSpec versionSpec) throws EmfStoreException {
+	private void checkoutHeadAndReverseCommit(
+			final PrimaryVersionSpec versionSpec) throws EmfStoreException {
 
-		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+		ConnectionManager connectionManager = WorkspaceManager.getInstance()
+				.getConnectionManager();
 
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(),
-			projectSpace.getProjectInfo(),
-			connectionManager.resolveVersionSpec(projectSpace.getUsersession().getSessionId(), projectSpace
-				.getProjectId(), VersionSpec.HEAD_VERSION));
+		ProjectSpace revertSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().checkout(
+						projectSpace.getUsersession(),
+						projectSpace.getProjectInfo(),
+						connectionManager.resolveVersionSpec(projectSpace
+								.getUsersession().getSessionId(), projectSpace
+								.getProjectId(), VersionSpec.HEAD_VERSION));
 		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
 		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
-		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
+		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion,
+				versionSpec);
 		if (changes.size() != 1) {
-			throw new EmfStoreException("Zero or more than 1 Change Package received for one revision!");
+			throw new EmfStoreException(
+					"Zero or more than 1 Change Package received for one revision!");
 		}
 		ChangePackage changePackage = changes.get(0);
 		ChangePackage reversedChangePackage = changePackage.reverse();
 		reversedChangePackage.apply(revertSpace.getProject(), true);
 	}
 
-	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec) throws EmfStoreException {
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(), projectSpace.getProjectInfo(), versionSpec);
+	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec)
+			throws EmfStoreException {
+		ProjectSpace revertSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().checkout(projectSpace.getUsersession(),
+						projectSpace.getProjectInfo(), versionSpec);
 		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
 		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
-		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
+		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion,
+				versionSpec);
 		if (changes.size() != 1) {
-			throw new EmfStoreException("Zero or more than 1 Change Package received for one revision!");
+			throw new EmfStoreException(
+					"Zero or more than 1 Change Package received for one revision!");
 		}
 		ChangePackage changePackage = changes.get(0);
 		ChangePackage reversedChangePackage = changePackage.reverse();
@@ -780,10 +858,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Removes a tag to a version.
 	 * 
-	 * @param versionSpec the version
-	 * @param tag the tag
+	 * @param versionSpec
+	 *            the version
+	 * @param tag
+	 *            the tag
 	 */
-	public void removeTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
+	public void removeTag(final PrimaryVersionSpec versionSpec,
+			final TagVersionSpec tag) {
 
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
@@ -827,9 +908,12 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
 				checkout(versionSpec);
 			}
 		};
@@ -840,43 +924,53 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
 				revertCommit(versionSpec);
 			}
 		};
 		revertAction.setText("Revert this revision");
 		revertAction
-			.setToolTipText("Revert this revision of the project, the reversed changes between the previous revision has been applied");
+				.setToolTipText("Revert this revision of the project, the reversed changes between the previous revision has been applied");
 
 		forceRevertAction = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
 				forceRevertCommit(versionSpec);
 			}
 		};
 		forceRevertAction.setText("Force to revert this revision");
 		forceRevertAction
-			.setToolTipText("Force to revert, the reversed changes between the previous revision has been applied");
+				.setToolTipText("Force to revert, the reversed changes between the previous revision has been applied");
 
 		addTagAction = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
-				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Add tag",
-					"Please enter the tag's name.", "", null);
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
+						.getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
+						.copy(historyInfo.getPrimerySpec());
+				InputDialog inputDialog = new InputDialog(getSite().getShell(),
+						"Add tag", "Please enter the tag's name.", "", null);
 				inputDialog.open();
 				String str = inputDialog.getValue().trim();
 				if (!(str == null || str.equals(""))) {
-					TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
+					TagVersionSpec tag = VersioningFactory.eINSTANCE
+							.createTagVersionSpec();
 					tag.setName(str);
 					addTag(versionSpec, tag);
 					refresh();
@@ -907,7 +1001,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Highlights the given operations.
 	 * 
-	 * @param operations the operations
+	 * @param operations
+	 *            the operations
 	 */
 	public void highlightOperations(List<OperationId> operations) {
 		labelProvider.getHighlighted().clear();

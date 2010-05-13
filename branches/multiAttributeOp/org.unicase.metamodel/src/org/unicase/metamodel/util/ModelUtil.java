@@ -564,6 +564,16 @@ public final class ModelUtil {
 	public static void logException(String message, Throwable exception) {
 		log(message, exception, IStatus.ERROR);
 	}
+	
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param exception the exception
+	 */
+	public static void logException(Throwable exception) {
+		logException(exception.getMessage(), exception);
+	}
+
 
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
@@ -745,6 +755,20 @@ public final class ModelUtil {
 	}
 
 	/**
+	 *
+	 * @param eObjects fjd
+	 * @param resourceURI dj
+	 * @throws IOException dj
+	 */
+	public static void saveObjectToResource(List<? extends EObject> eObjects, URI resourceURI) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(resourceURI);
+		EList<EObject> contents = resource.getContents();
+		contents.addAll(eObjects);
+		resource.save(null);
+	}
+	
+	/**
 	 * Save an Eobject to a resource.
 	 * 
 	 * @param eObject the object
@@ -752,11 +776,9 @@ public final class ModelUtil {
 	 * @throws IOException if saving to the resource fails.
 	 */
 	public static void saveObjectToResource(EObject eObject, URI resourceURI) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(resourceURI);
-		EList<EObject> contents = resource.getContents();
-		contents.add(eObject);
-		resource.save(null);
+		ArrayList<EObject> list = new ArrayList<EObject>();
+		list.add(eObject);
+		saveObjectToResource(list, resourceURI);
 	}
 
 	/**

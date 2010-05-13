@@ -8,10 +8,11 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.ui.dialogs.LoginDialog;
+import org.unicase.workspace.ui.dialogs.login.LoginDialog;
 
 /**
  * Resolves the ACOrgUnit, opens the login dialog and handles any login
@@ -54,9 +55,9 @@ public class LoginHandler extends AbstractHandler {
 	 *         canceled.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		LoginDialog loginDialog = new LoginDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), usersession,
-				usersession.getServerInfo());
+		Shell parentShell = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell();
+		LoginDialog loginDialog = new LoginDialog(parentShell, usersession);
 		loginDialog.open();
 		return loginDialog.getReturnCode();
 	}
