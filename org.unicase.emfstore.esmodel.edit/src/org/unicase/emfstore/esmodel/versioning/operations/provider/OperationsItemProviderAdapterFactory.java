@@ -145,6 +145,80 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation} instances. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiAttributeOperationItemProvider multiAttributeOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiAttributeOperationAdapter() {
+		if (multiAttributeOperationItemProvider == null) {
+			multiAttributeOperationItemProvider = new MultiAttributeOperationItemProvider(this);
+		}
+
+		return multiAttributeOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiAttributeSetOperationItemProvider multiAttributeSetOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiAttributeSetOperationAdapter() {
+		if (multiAttributeSetOperationItemProvider == null) {
+			multiAttributeSetOperationItemProvider = new MultiAttributeSetOperationItemProvider(this);
+		}
+
+		return multiAttributeSetOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiAttributeMoveOperationItemProvider multiAttributeMoveOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiAttributeMoveOperationAdapter() {
+		if (multiAttributeMoveOperationItemProvider == null) {
+			multiAttributeMoveOperationItemProvider = new MultiAttributeMoveOperationItemProvider(this);
+		}
+
+		return multiAttributeMoveOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -189,6 +263,31 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 		}
 
 		return multiReferenceOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiReferenceSetOperationItemProvider multiReferenceSetOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiReferenceSetOperationAdapter() {
+		if (multiReferenceSetOperationItemProvider == null) {
+			multiReferenceSetOperationItemProvider = new MultiReferenceSetOperationItemProvider(this);
+		}
+
+		return multiReferenceSetOperationItemProvider;
 	}
 
 	/**
@@ -412,10 +511,18 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 			createDeleteOperationItemProvider.dispose();
 		if (attributeOperationItemProvider != null)
 			attributeOperationItemProvider.dispose();
+		if (multiAttributeOperationItemProvider != null)
+			multiAttributeOperationItemProvider.dispose();
+		if (multiAttributeSetOperationItemProvider != null)
+			multiAttributeSetOperationItemProvider.dispose();
+		if (multiAttributeMoveOperationItemProvider != null)
+			multiAttributeMoveOperationItemProvider.dispose();
 		if (singleReferenceOperationItemProvider != null)
 			singleReferenceOperationItemProvider.dispose();
 		if (multiReferenceOperationItemProvider != null)
 			multiReferenceOperationItemProvider.dispose();
+		if (multiReferenceSetOperationItemProvider != null)
+			multiReferenceSetOperationItemProvider.dispose();
 		if (multiReferenceMoveOperationItemProvider != null)
 			multiReferenceMoveOperationItemProvider.dispose();
 		if (diagramLayoutOperationItemProvider != null)
