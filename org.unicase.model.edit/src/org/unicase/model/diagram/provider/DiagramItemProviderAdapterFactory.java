@@ -72,26 +72,141 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.MEDiagram} instances. <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.ClassDiagram} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected MEDiagramItemProvider meDiagramItemProvider;
+	protected ClassDiagramItemProvider classDiagramItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.diagram.MEDiagram}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.diagram.ClassDiagram}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createMEDiagramAdapter() {
-		if (meDiagramItemProvider == null) {
-			meDiagramItemProvider = new MEDiagramItemProvider(this);
+	public Adapter createClassDiagramAdapter() {
+		if (classDiagramItemProvider == null) {
+			classDiagramItemProvider = new ClassDiagramItemProvider(this);
 		}
 
-		return meDiagramItemProvider;
+		return classDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.UseCaseDiagram} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected UseCaseDiagramItemProvider useCaseDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.diagram.UseCaseDiagram}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createUseCaseDiagramAdapter() {
+		if (useCaseDiagramItemProvider == null) {
+			useCaseDiagramItemProvider = new UseCaseDiagramItemProvider(this);
+		}
+
+		return useCaseDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.ComponentDiagram} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ComponentDiagramItemProvider componentDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.diagram.ComponentDiagram}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createComponentDiagramAdapter() {
+		if (componentDiagramItemProvider == null) {
+			componentDiagramItemProvider = new ComponentDiagramItemProvider(this);
+		}
+
+		return componentDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.StateDiagram} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected StateDiagramItemProvider stateDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.diagram.StateDiagram}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateDiagramAdapter() {
+		if (stateDiagramItemProvider == null) {
+			stateDiagramItemProvider = new StateDiagramItemProvider(this);
+		}
+
+		return stateDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.ActivityDiagram} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ActivityDiagramItemProvider activityDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.diagram.ActivityDiagram}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityDiagramAdapter() {
+		if (activityDiagramItemProvider == null) {
+			activityDiagramItemProvider = new ActivityDiagramItemProvider(this);
+		}
+
+		return activityDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.WorkItemDiagram} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected WorkItemDiagramItemProvider workItemDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.diagram.WorkItemDiagram}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkItemDiagramAdapter() {
+		if (workItemDiagramItemProvider == null) {
+			workItemDiagramItemProvider = new WorkItemDiagramItemProvider(this);
+		}
+
+		return workItemDiagramItemProvider;
 	}
 
 	/**
@@ -188,8 +303,18 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (meDiagramItemProvider != null)
-			meDiagramItemProvider.dispose();
+		if (classDiagramItemProvider != null)
+			classDiagramItemProvider.dispose();
+		if (useCaseDiagramItemProvider != null)
+			useCaseDiagramItemProvider.dispose();
+		if (componentDiagramItemProvider != null)
+			componentDiagramItemProvider.dispose();
+		if (stateDiagramItemProvider != null)
+			stateDiagramItemProvider.dispose();
+		if (activityDiagramItemProvider != null)
+			activityDiagramItemProvider.dispose();
+		if (workItemDiagramItemProvider != null)
+			workItemDiagramItemProvider.dispose();
 	}
 
 }

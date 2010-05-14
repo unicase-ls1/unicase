@@ -61,19 +61,19 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 		if (dropee instanceof MEDiagram) {
 			return false;
 		}
-		DiagramType type = diagram.getType();
+		String type = diagram.getGmfdiagram().getType();
 		String clientContextID = "ModelClientContext";
-		if (type == DiagramType.USECASE_DIAGRAM) {
+		if (type == DiagramType.USECASE_DIAGRAM.getName()) {
 			clientContextID = "UseCaseClientContext";
-		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
+		} else if (type == DiagramType.COMPONENT_DIAGRAM.getName()) {
 			clientContextID = "ComponentClientContext";
-		} else if (type == DiagramType.CLASS_DIAGRAM) {
+		} else if (type == DiagramType.CLASS_DIAGRAM.getName()) {
 			clientContextID = "ModelClientContext";
-		} else if (type == DiagramType.STATE_DIAGRAM) {
+		} else if (type == DiagramType.STATE_DIAGRAM.getName()) {
 			clientContextID = "StateClientContext";
-		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
+		} else if (type == DiagramType.ACTIVITY_DIAGRAM.getName()) {
 			clientContextID = "ActivityClientContext";
-		} else if (type == DiagramType.WORKITEM_DIAGRAM) {
+		} else if (type == DiagramType.WORKITEM_DIAGRAM.getName()) {
 			clientContextID = "WorkItemClientContext";
 		}
 		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);

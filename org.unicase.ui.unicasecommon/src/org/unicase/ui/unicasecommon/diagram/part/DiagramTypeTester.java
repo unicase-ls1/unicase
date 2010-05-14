@@ -53,9 +53,9 @@ public class DiagramTypeTester extends PropertyTester {
 
 		DiagramType expectedType = getExpectedType((String) expectedValue);
 
-		DiagramType diagramType;
+		String diagramType;
 		MEDiagram diagram = (MEDiagram) receiver;
-		diagramType = diagram.getType();
+		diagramType = diagram.getGmfdiagram().getType();
 
 		if (expectedType.equals(diagramType)) {
 			return true;

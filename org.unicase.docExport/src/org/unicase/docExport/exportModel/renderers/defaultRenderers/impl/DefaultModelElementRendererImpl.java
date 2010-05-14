@@ -198,7 +198,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 		image.setFitToPage(true);
 		parent.add(image);
 
-		UParagraph label = new UParagraph(diagram.getType() + ": " + modelElement.getName(), template
+		UParagraph label = new UParagraph(diagram.getGmfdiagram().getType() + ": " + modelElement.getName(), template
 			.getLayoutOptions().getDefaultTextOption());
 		label.getOption().setTextAlign(TextAlign.CENTER);
 		label.getBoxModel().setMarginTop(5);

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.WorkspaceManager;
@@ -123,20 +122,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 
 	private void createNewGMFDiagram() {
 		String id = null;
-		if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "UseCase";
-		} else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "Model";
-		} else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "Component";
-		} else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "State";
-		} else if (meDiagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "Activity";
-		} else if (meDiagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
-			id = "WorkItem";
-		}
-
+		id = meDiagram.getType();
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
