@@ -125,13 +125,7 @@ public class MECommentWidget extends Composite {
 		}
 
 		Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
-
-		final OrgUnit sender = comment.getSender();
-		if (sender == null) {
-			commentAuthor.setText(comment.getCreator() + "");
-		} else {
-			commentAuthor.setText(sender.getName() + "");
-		}
+		commentAuthor.setText(getTitlebarText(comment));
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentAuthor);
 
 		Composite toolbar = new Composite(commentTitleBar, SWT.NONE);
@@ -221,6 +215,31 @@ public class MECommentWidget extends Composite {
 			reloadReplies();
 		}
 		updateTitleBar();
+	}
+
+	private String getTitlebarText(Comment comment) {
+		StringBuilder builder = new StringBuilder();
+
+		// author
+		final OrgUnit sender = comment.getSender();
+		if (sender == null) {
+			builder.append(comment.getCreator());
+		} else {
+			builder.append(sender.getName() + "");
+		}
+		// recipients
+		if (!comment.getRecipients().isEmpty()) {
+			builder.append(" @ ");
+			int size = comment.getRecipients().size();
+			for (int i = 0; i < size; i++) {
+				builder.append(comment.getRecipients().get(i).getName());
+				if (i < size - 1) {
+					builder.append(", ");
+				}
+			}
+		}
+
+		return builder.toString();
 	}
 
 	/**

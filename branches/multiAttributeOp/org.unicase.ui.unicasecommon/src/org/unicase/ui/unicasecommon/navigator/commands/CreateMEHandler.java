@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.diagram.DiagramType;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -59,12 +57,12 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// if model element if MEDiagram, set the diagram type
-			if (newMEInstance instanceof MEDiagram) {
-				Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
-				DiagramType newDiagramType = (DiagramType) p;
-				((MEDiagram) newMEInstance).setType(newDiagramType);
-				newMEInstance.setName("new " + newDiagramType.getLiteral());
-			}
+			// if (newMEInstance instanceof MEDiagram) {
+			// Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
+			// Diagram newDiagramType = (Diagram) p;
+			// ((MEDiagram) newMEInstance).setGmfdiagram(newDiagramType);
+			// newMEInstance.setName("new " + newDiagramType.getDiagram().getType());
+			// }
 
 			// add this newly created model element to LeafSection
 			final LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();

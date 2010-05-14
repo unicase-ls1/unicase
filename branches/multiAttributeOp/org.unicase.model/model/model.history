@@ -7895,5 +7895,11 @@
         featureName="key" dataValue="priority"/>
     <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.1"
         featureName="value" dataValue="2.5"/>
+    <changes xsi:type="history:Create" target="model.ecore#//diagram/MEDiagram" referenceName="eOperations"
+        element="model.ecore#//diagram/MEDiagram/getType"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/getType"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/getType"
+        featureName="name" dataValue="getType"/>
   </releases>
 </history:History>

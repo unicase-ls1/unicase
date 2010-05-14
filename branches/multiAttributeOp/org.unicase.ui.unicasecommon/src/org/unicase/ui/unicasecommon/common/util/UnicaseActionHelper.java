@@ -22,8 +22,13 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -143,17 +148,17 @@ public final class UnicaseActionHelper {
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
 
 		String id = null;
-		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
+		if (diagram instanceof ClassDiagram) {
 			id = "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
+		} else if (diagram instanceof UseCaseDiagram) {
 			id = "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+		} else if (diagram instanceof ComponentDiagram) {
 			id = "org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+		} else if (diagram instanceof StateDiagram) {
 			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
+		} else if (diagram instanceof ActivityDiagram) {
 			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
+		} else if (diagram instanceof WorkItemDiagram) {
 			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
 		}
 

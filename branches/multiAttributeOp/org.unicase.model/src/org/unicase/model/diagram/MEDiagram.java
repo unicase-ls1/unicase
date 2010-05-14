@@ -20,13 +20,12 @@ import org.unicase.model.diagram.impl.DiagramStoreException;
  * <li>{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}</li>
  * <li>{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
  * <li>{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}</li>
- * <li>{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}</li>
  * <li>{@link org.unicase.model.diagram.MEDiagram#getDiagramLayout <em>Diagram Layout</em>}</li>
  * </ul>
  * </p>
  * 
  * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface MEDiagram extends Attachment {
@@ -89,32 +88,16 @@ public interface MEDiagram extends Attachment {
 	EList<UnicaseModelElement> getNewElements();
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.diagram.DiagramType}. <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see org.unicase.model.diagram.DiagramType
-	 * @see #setType(DiagramType)
-	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Type()
-	 * @model
+	 * @model kind="operation"
 	 * @generated
 	 */
-	DiagramType getType();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see org.unicase.model.diagram.DiagramType
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(DiagramType value);
+	String getType();
 
 	/**
 	 * Returns the value of the '<em><b>Diagram Layout</b></em>' attribute. <!-- begin-user-doc -->

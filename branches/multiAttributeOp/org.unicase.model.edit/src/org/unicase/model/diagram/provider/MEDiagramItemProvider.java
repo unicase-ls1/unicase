@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityFactory;
@@ -30,7 +29,6 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
@@ -71,7 +69,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			super.getPropertyDescriptors(object);
 
 			addElementsPropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,19 +83,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MEDiagram_elements_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_MEDiagram_elements_feature", "_UI_MEDiagram_type"),
 			DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MEDiagram_type_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_MEDiagram_type_feature", "_UI_MEDiagram_type"),
-			DiagramPackage.Literals.ME_DIAGRAM__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-			null, null));
 	}
 
 	/**
@@ -141,19 +125,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	@Override
 	public Object getImage(Object object) {
 		String imgStr = "full/obj16/MEDiagram";
-		DiagramType type = ((MEDiagram) object).getType();
-		if (type == DiagramType.CLASS_DIAGRAM) {
-			imgStr = "full/obj16/ClassDiagram.png";
-		} else if (type == DiagramType.USECASE_DIAGRAM) {
-			imgStr = "full/obj16/UsecaseDiagram.gif";
-		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
-			imgStr = "full/obj16/ComponentDiagram.gif";
-		} else if (type == DiagramType.STATE_DIAGRAM) {
-			imgStr = "full/obj16/StateDiagram.gif";
-		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
-			imgStr = "full/obj16/ActivityDiagram.gif";
-		}
-
 		return overlayImage(object, getResourceLocator().getImage(imgStr));
 	}
 
@@ -180,7 +151,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		switch (notification.getFeatureID(MEDiagram.class)) {
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-		case DiagramPackage.ME_DIAGRAM__TYPE:
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
@@ -202,7 +172,22 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-			DiagramFactory.eINSTANCE.createMEDiagram()));
+			DiagramFactory.eINSTANCE.createClassDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			DiagramFactory.eINSTANCE.createUseCaseDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			DiagramFactory.eINSTANCE.createComponentDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			DiagramFactory.eINSTANCE.createStateDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			DiagramFactory.eINSTANCE.createActivityDiagram()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			DiagramFactory.eINSTANCE.createWorkItemDiagram()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			OrganizationFactory.eINSTANCE.createUser()));

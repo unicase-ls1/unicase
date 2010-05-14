@@ -14,9 +14,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramType;
-import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -54,9 +51,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// Also remove the Children that are abstract or not ModelElement.
 		if (object instanceof EPackage) {
 			// Check if it is Diagram Package for special view
-			if (((EPackage) object).getName().equals("diagram")) {
-				return getDiagramTypes();
-			}
+			// if (((EPackage) object).getName().equals("diagram")) {
+			// return getDiagramTypes();
+			// }
 
 			// remove classes that do not inherit ModelElement
 			// or are abstract.
@@ -71,19 +68,19 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 	}
 
-	private Object[] getDiagramTypes() {
-		Object[] ret = new Object[DiagramType.values().length];
-		int i = 0;
-		for (DiagramType diagramType : DiagramType.values()) {
-			MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
-			createMEDiagram.setType(diagramType);
-			createMEDiagram.setName(diagramType.getLiteral());
-			ret[i] = createMEDiagram;
-			i++;
-		}
-
-		return ret;
-	}
+	// private Object[] getDiagramTypes() {
+	// Object[] ret = new Object[DiagramType.values().length];
+	// int i = 0;
+	// for (DiagramType diagramType : DiagramType.values()) {
+	// MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
+	// createMEDiagram.setType(diagramType);
+	// // createMEDiagram.setName(diagramType.getLiteral());
+	// ret[i] = createMEDiagram;
+	// i++;
+	// }
+	//
+	// return ret;
+	// }
 
 	/**
 	 * Removes class that are abstract or do not inherit ModelElement form a list of EClass.

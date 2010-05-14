@@ -7,7 +7,6 @@ package org.unicase.model.diagram.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -27,10 +26,15 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
@@ -69,7 +73,42 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * 
 	 * @generated
 	 */
-	private EEnum diagramTypeEEnum = null;
+	private EClass classDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass useCaseDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass componentDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stateDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass activityDiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass workItemDiagramEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -259,7 +298,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMEDiagram_Type() {
+	public EAttribute getMEDiagram_DiagramLayout() {
 		return (EAttribute) meDiagramEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -268,8 +307,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMEDiagram_DiagramLayout() {
-		return (EAttribute) meDiagramEClass.getEStructuralFeatures().get(4);
+	public EClass getClassDiagram() {
+		return classDiagramEClass;
 	}
 
 	/**
@@ -277,8 +316,44 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * 
 	 * @generated
 	 */
-	public EEnum getDiagramType() {
-		return diagramTypeEEnum;
+	public EClass getUseCaseDiagram() {
+		return useCaseDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getComponentDiagram() {
+		return componentDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getStateDiagram() {
+		return stateDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getActivityDiagram() {
+		return activityDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getWorkItemDiagram() {
+		return workItemDiagramEClass;
 	}
 
 	/**
@@ -313,11 +388,19 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(meDiagramEClass, ME_DIAGRAM__ELEMENTS);
 		createEReference(meDiagramEClass, ME_DIAGRAM__GMFDIAGRAM);
 		createEReference(meDiagramEClass, ME_DIAGRAM__NEW_ELEMENTS);
-		createEAttribute(meDiagramEClass, ME_DIAGRAM__TYPE);
 		createEAttribute(meDiagramEClass, ME_DIAGRAM__DIAGRAM_LAYOUT);
 
-		// Create enums
-		diagramTypeEEnum = createEEnum(DIAGRAM_TYPE);
+		classDiagramEClass = createEClass(CLASS_DIAGRAM);
+
+		useCaseDiagramEClass = createEClass(USE_CASE_DIAGRAM);
+
+		componentDiagramEClass = createEClass(COMPONENT_DIAGRAM);
+
+		stateDiagramEClass = createEClass(STATE_DIAGRAM);
+
+		activityDiagramEClass = createEClass(ACTIVITY_DIAGRAM);
+
+		workItemDiagramEClass = createEClass(WORK_ITEM_DIAGRAM);
 	}
 
 	/**
@@ -356,9 +439,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		// Add supertypes to classes
 		meDiagramEClass.getESuperTypes().add(theModelPackage.getAttachment());
+		classDiagramEClass.getESuperTypes().add(this.getMEDiagram());
+		useCaseDiagramEClass.getESuperTypes().add(this.getMEDiagram());
+		componentDiagramEClass.getESuperTypes().add(this.getMEDiagram());
+		stateDiagramEClass.getESuperTypes().add(this.getMEDiagram());
+		activityDiagramEClass.getESuperTypes().add(this.getMEDiagram());
+		workItemDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMEDiagram_Elements(), theModelPackage.getUnicaseModelElement(), null, "elements", null, 0,
 			-1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
@@ -371,20 +460,29 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 			0, -1, MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getMEDiagram_NewElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getMEDiagram_Type(), this.getDiagramType(), "type", null, 0, 1, MEDiagram.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMEDiagram_DiagramLayout(), ecorePackage.getEString(), "diagramLayout", null, 0, 1,
 			MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
-		// Initialize enums and add enum literals
-		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.CLASS_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.USECASE_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.COMPONENT_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.STATE_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.ACTIVITY_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.WORKITEM_DIAGRAM);
+		addEOperation(meDiagramEClass, ecorePackage.getEString(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(useCaseDiagramEClass, UseCaseDiagram.class, "UseCaseDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(componentDiagramEClass, ComponentDiagram.class, "ComponentDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(stateDiagramEClass, StateDiagram.class, "StateDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(workItemDiagramEClass, WorkItemDiagram.class, "WorkItemDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // DiagramPackageImpl

@@ -13,8 +13,14 @@ import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.diagram.ActivityDiagram;
+import org.unicase.model.diagram.ClassDiagram;
+import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.StateDiagram;
+import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -73,6 +79,36 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseClassDiagram(ClassDiagram object) {
+			return createClassDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseUseCaseDiagram(UseCaseDiagram object) {
+			return createUseCaseDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseComponentDiagram(ComponentDiagram object) {
+			return createComponentDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseStateDiagram(StateDiagram object) {
+			return createStateDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityDiagram(ActivityDiagram object) {
+			return createActivityDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseWorkItemDiagram(WorkItemDiagram object) {
+			return createWorkItemDiagramAdapter();
+		}
+
+		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -120,6 +156,90 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMEDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.ClassDiagram
+	 * <em>Class Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.ClassDiagram
+	 * @generated
+	 */
+	public Adapter createClassDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.UseCaseDiagram
+	 * <em>Use Case Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.UseCaseDiagram
+	 * @generated
+	 */
+	public Adapter createUseCaseDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.ComponentDiagram
+	 * <em>Component Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.ComponentDiagram
+	 * @generated
+	 */
+	public Adapter createComponentDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.StateDiagram
+	 * <em>State Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.StateDiagram
+	 * @generated
+	 */
+	public Adapter createStateDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.ActivityDiagram
+	 * <em>Activity Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.ActivityDiagram
+	 * @generated
+	 */
+	public Adapter createActivityDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.WorkItemDiagram
+	 * <em>Work Item Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.WorkItemDiagram
+	 * @generated
+	 */
+	public Adapter createWorkItemDiagramAdapter() {
 		return null;
 	}
 
