@@ -408,11 +408,19 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			return "<not assigned>";
 		}
 
-		String ret;
+		String ret = "";
 		if (orgUnit instanceof User) {
+			if (((User) orgUnit).getFirstName() != null) {
+				ret += ((User) orgUnit).getFirstName();
+			}
 			if (((User) orgUnit).getLastName() != null) {
-				ret = ((User) orgUnit).getLastName();
-			} else {
+				String lastName = ((User) orgUnit).getLastName();
+				if (!ret.equals("")) {
+					ret += " ";
+				}
+				ret += lastName;
+			}
+			if (ret.equals("")) {
 				ret = orgUnit.getName();
 			}
 
