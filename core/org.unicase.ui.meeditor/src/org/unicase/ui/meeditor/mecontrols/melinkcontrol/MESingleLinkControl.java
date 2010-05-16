@@ -79,6 +79,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(addAction.getImageDescriptor().createImage());
+		selectButton.setToolTipText(addAction.getToolTipText());
 		selectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -88,6 +89,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		});
 		Button newButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		newButton.setImage(newAction.getImageDescriptor().createImage());
+		newButton.setToolTipText(newAction.getToolTipText());
 		newButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
