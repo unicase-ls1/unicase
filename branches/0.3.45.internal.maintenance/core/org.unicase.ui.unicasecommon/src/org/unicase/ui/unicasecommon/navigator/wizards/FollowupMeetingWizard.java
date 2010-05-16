@@ -127,7 +127,11 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 				followupMeeting.setName(namePage.getMeetingName());
 				followupMeeting.setDescription(namePage.getMeetingDescription());
+
 				leafSection.getModelElements().add(followupMeeting);
+				followupMeeting.setFacilitator(getSelectedMeeting().getFacilitator());
+				followupMeeting.setLocation(getSelectedMeeting().getLocation());
+				followupMeeting.getParticipants().addAll(getSelectedMeeting().getParticipants());
 				addMeetingSections(followupMeeting);
 				addMeetingSubSections(followupMeeting);
 				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
