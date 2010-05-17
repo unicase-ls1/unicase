@@ -28,7 +28,12 @@ import org.eclipse.ui.PlatformUI;
  * @author shterev
  * @author naughton
  */
-public class MEEditorInput implements IEditorInput {
+public class MEEditorInput implements ECPEditorInput {
+
+	public ModelElementContext getModelElementContext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	private EObject modelElement;
 	private EStructuralFeature problemFeature;

@@ -29,8 +29,6 @@ import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ShortLabelProvider;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * GUI view for editing MEs.
@@ -56,6 +54,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ModelElementChangeObserver modelelementChangeObserver;
 
 	private Project project;
+
+	private ModelElementContext modelElementContext;
 
 	/**
 	 * Default constructor.
@@ -141,13 +141,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 		super.init(site, input);
 		if (input instanceof MEEditorInput) {
 			setInput(input);
-			final MEEditorInput meInput = (MEEditorInput) input;
+			final ECPEditorInput meInput = (ECPEditorInput) input;
 			modelElement = meInput.getModelElement();
 			setPartName((new ShortLabelProvider()).getText(modelElement));
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
-			project = modelElement.getProject();
+			modelElementContext = meInput.getModelElementContext();
+
 			modelelementChangeObserver = new ModelElementChangeObserver() {
 
 				@Override
