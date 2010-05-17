@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -129,6 +130,32 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
+
+	private final class ProjectSpaceCommandObserver implements CommandObserver {
+
+		private final ProjectSpace projectSpace;
+
+		public ProjectSpaceCommandObserver(ProjectSpace projectSpace) {
+			this.projectSpace = projectSpace;
+		}
+
+		@Override
+		public void commandStarted(Command command) {
+			System.out.println("Started: " + command);
+			ProjectSpaceImpl.this.getFilter().setFilteringStarted(command, projectSpace);
+		}
+
+		@Override
+		public void commandEnded(Command command) {
+			System.out.println("Ended: " + command);
+			ProjectSpaceImpl.this.getFilter().setFilteringOver(command, projectSpace);
+		}
+
+		@Override
+		public void commandFailed(Command command) {
+			ProjectSpaceImpl.this.getFilter().setCommandFailed();
+		}
+	}
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
@@ -361,6 +388,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private AutoSplitAndSaveResourceContainmentList<ESNotification> notificationList;
 
 	private ArrayList<ShareObserver> shareObservers;
+
+	private EObject eobject;
+
+	private OperationFilter filter;
+
+	// Getter and setter for the filter which operates on the operations list created during the command execution!
+
+	public OperationFilter getFilter() {
+		return filter;
+	}
+
+	public void setFilter(OperationFilter filter) {
+		this.filter = filter;
+	}
 
 	// begin of custom code
 	/**
@@ -1474,7 +1515,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void init() {
 		initCompleted = true;
 		this.changeTracker = new ProjectChangeTracker(this);
+		this.filter = new OperationFilter();
 		this.getProject().addProjectChangeObserver(this.changeTracker);
+		CommandStackChangedListener obse = (CommandStackChangedListener) Configuration.getEditingDomain()
+			.getCommandStack();
+		obse.addCommandStackListener(new ProjectSpaceCommandObserver(this));
+
 		if (project instanceof ProjectImpl) {
 			((ProjectImpl) this.getProject()).setUndetachable(changeTracker);
 		}
@@ -2285,7 +2331,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @param operation the operation
 	 */
-	void addOperation(AbstractOperation operation) {
+	public void addOperation(AbstractOperation operation) {
 		this.getOperations().add(operation);
 		updateDirtyState();
 
@@ -2529,4 +2575,5 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setMessage("");
 		return commit(logMessage);
 	}
+
 } // ProjectContainerImpl
