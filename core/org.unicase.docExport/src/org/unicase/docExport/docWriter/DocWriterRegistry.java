@@ -26,13 +26,12 @@ public final class DocWriterRegistry {
 	 */
 	public static ArrayList<DocWriter> getDocWriters() {
 		ArrayList<DocWriter> docWriters = new ArrayList<DocWriter>();
-
-		docWriters.add(new ITextPdfWriter());
-		docWriters.add(new ITextRtfWriter());
-		docWriters.add(new ITextRtfHeadingWriter());
 		docWriters.add(new FopPdfWriter());
 		docWriters.add(new FopRtfWriter());
 		docWriters.add(new FopHTMLWriter());
+		docWriters.add(new ITextPdfWriter());
+		docWriters.add(new ITextRtfWriter());
+		docWriters.add(new ITextRtfHeadingWriter());
 
 		return docWriters;
 	}
