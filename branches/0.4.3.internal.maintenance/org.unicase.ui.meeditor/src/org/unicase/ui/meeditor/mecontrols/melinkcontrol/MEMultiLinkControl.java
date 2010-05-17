@@ -175,7 +175,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 
 			public void onChange(Notification notification) {
-				if (notification.getFeature().equals(feature)) {
+				if ((notification.getEventType() != Notification.RESOLVE)
+					&& (notification.getFeature().equals(feature))) {
 					rebuildLinkSection();
 				}
 
