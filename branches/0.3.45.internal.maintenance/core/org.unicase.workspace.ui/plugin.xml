@@ -203,6 +203,11 @@
            id="org.unicase.ui.stem.ShowHistory"
            name="Show History">
      </command>
+     <command
+                 defaultHandler="org.unicase.workspace.ui.commands.ExportModelHandler"
+                 id="org.unicase.ui.navigator.exportModel"
+               name="Export model">
+      </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -765,6 +770,23 @@
                name="org.unicase.ui.stem.ShowHistoryViewSeperator"
                visible="true">
          </separator>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
+         <command
+               commandId="org.unicase.ui.navigator.exportModel"
+               icon="icons/export.gif"
+               label="Export Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.metamodel.ModelElement">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
       </menuContribution>
   </extension>
   
