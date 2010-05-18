@@ -257,7 +257,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>Precondition</em>' attribute.
 	 * @see #setPrecondition(String)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Precondition()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='10.2' position='left'"
 	 * @generated
 	 */
 	String getPrecondition();
@@ -302,7 +302,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>Postcondition</em>' attribute.
 	 * @see #setPostcondition(String)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Postcondition()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='10.3' position='left'"
 	 * @generated
 	 */
 	String getPostcondition();
