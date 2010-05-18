@@ -1374,7 +1374,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		addAnnotation(getUseCase_InitiatingActor(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getUseCase_ParticipatingActors(), source, new String[] { "priority", "11.0", "position", "left" });
 		addAnnotation(getUseCase_RealizedUserTask(), source, new String[] { "priority", "10.1", "position", "left" });
+		addAnnotation(getUseCase_Precondition(), source, new String[] { "priority", "10.2", "position", "left" });
 		addAnnotation(getUseCase_UseCaseSteps(), source, new String[] { "priority", "10.1", "position", "bottom" });
+		addAnnotation(getUseCase_Postcondition(), source, new String[] { "priority", "10.3", "position", "left" });
 		addAnnotation(getUseCase_Scenarios(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getUseCase_FunctionalRequirements(), source, new String[] { "priority", "11.0", "position",
 			"right" });
