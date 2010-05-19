@@ -25,10 +25,10 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.unicase.client.application"
-            name="unicase">
+            name="UNICASE">
          <property
                name="appName"
-               value="unicase">
+               value="UNICASE">
          </property>
          <property
                name="preferenceCustomization"
@@ -36,7 +36,7 @@
          </property>
          <property
                name="aboutText"
-               value="The unicase client.">
+               value="UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. The project is open-source and released under the Eclipse Public License v 1.0 (EPL).&#x0A;&#x0A;More details can be found at the project home-page : &#x0A;http://www.unicase.org">
          </property>
          <property
                name="aboutImage"

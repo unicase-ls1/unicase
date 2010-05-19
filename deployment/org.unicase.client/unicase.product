@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="unicase" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.4" useFeatures="false" includeLaunchers="true">
+<product name="UNICASE" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.4" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
       <text>
-         The unicase client.
+         UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. The project is open-source and released under the Eclipse Public License v 1.0 (EPL).More details can be found at the project home-page : http://www.unicase.org
       </text>
    </aboutInfo>
 
@@ -317,7 +317,6 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.unicase.model"/>
       <plugin id="org.unicase.model.edit"/>
       <plugin id="org.unicase.model.migrator"/>
-      <plugin id="org.unicase.ui.IterationPlanner"/>
       <plugin id="org.unicase.ui.common"/>
       <plugin id="org.unicase.ui.componentDiagram"/>
       <plugin id="org.unicase.ui.dashboard"/>
