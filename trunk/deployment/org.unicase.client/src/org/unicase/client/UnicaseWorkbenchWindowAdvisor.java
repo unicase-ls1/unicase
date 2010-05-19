@@ -46,6 +46,6 @@ public class UnicaseWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(true);
         configurer.setShowProgressIndicator(true);
-        configurer.setTitle("unicase");
+        configurer.setTitle("UNICASE");
     }
 }
