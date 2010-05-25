@@ -128,6 +128,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	protected void createButtonForAction(final Action action) {
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(action.getImageDescriptor().createImage());
+		selectButton.setToolTipText(action.getToolTipText());
 		selectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
