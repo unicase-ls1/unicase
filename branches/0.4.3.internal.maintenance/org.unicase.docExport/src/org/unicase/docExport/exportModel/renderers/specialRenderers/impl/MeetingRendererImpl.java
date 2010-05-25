@@ -79,7 +79,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	/**
 	 * protokoll text.
 	 */
-	public static final String TOPIC_PROTOKOLL = "Protokoll: ";
+	public static final String TOPIC_PROTOKOLL = "Minutes: ";
 
 	private transient Meeting meeting;
 	private TextOption workItemTextOption;
@@ -102,7 +102,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		String topic = "";
 		if (getMeeting().getStarttime() == null) {
 			topic += TOPIC_AGENDA;
-		} else if (getMeeting().getStarttime().compareTo(Calendar.getInstance().getTime()) > 0) {
+		} else if (getMeeting().getStarttime().compareTo(Calendar.getInstance().getTime()) < 0) {
 			topic += TOPIC_PROTOKOLL;
 		} else {
 			topic += TOPIC_AGENDA;
@@ -151,8 +151,8 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		table.getBoxModel().setKeepTogether(true);
 		table.getBoxModel().setKeepWithPrevious(true);
 
-		UTableCell wannUndWo = new UTableCell("Wann und Wo");
-		UTableCell rollen = new UTableCell("Rollen");
+		UTableCell wannUndWo = new UTableCell("Time and Location");
+		UTableCell rollen = new UTableCell("Roles");
 		Color background = new Color(210, 210, 210);
 		wannUndWo.getBoxModel().setBackgroundColor(background);
 		wannUndWo.getBoxModel().setBorder(0.8);
@@ -171,7 +171,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.add("Datum: " + text);
+		table.add("Date: " + text);
 
 		if (getMeeting().getFacilitator() != null) {
 			text = getOrgUnitName(getMeeting().getFacilitator());
@@ -194,7 +194,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.add("Zeitnehmer: " + text);
+		table.add("Time Keeper: " + text);
 
 		if (getMeeting().getEndtime() != null) {
 			Calendar cal = new GregorianCalendar();
@@ -203,26 +203,26 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.add("Ende: " + text);
+		table.add("End: " + text);
 
 		if (getMeeting().getMinutetaker() != null) {
 			text = getOrgUnitName(getMeeting().getMinutetaker());
 		} else {
 			text = "";
 		}
-		table.add("Protokollant: " + text);
+		table.add("Minute Taker: " + text);
 
 		if (getMeeting().getLocation() != null) {
 			text = getMeeting().getLocation();
 		} else {
 			text = "";
 		}
-		UTableCell ort = new UTableCell("Ort: " + text);
+		UTableCell ort = new UTableCell("Location: " + text);
 		ort.setColspan(2);
 		ort.setBoxModel(table.getDefaultCellBoxModel());
 		table.add(ort);
 
-		String text2 = "Teilnehmer: ";
+		String text2 = "Participants: ";
 		for (OrgUnit orgUnit : getMeeting().getParticipants()) {
 			text2 += getOrgUnitName(orgUnit) + ", ";
 		}
@@ -343,7 +343,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 				Date dueDate = ((ActionItem) workItem).getDueDate();
 				Calendar cal = new GregorianCalendar();
 				cal.setTime(dueDate);
-				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + (cal.get(Calendar.MONTH) + 1);
+				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + (cal.get(Calendar.MONTH) + 1) + ".";
 			}
 			workItemText += "]: " + workItem.getName();
 		} else {
@@ -389,7 +389,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	protected String getMeetingSectionTitle(MeetingSection meetingSection) {
 		String title = meetingSection.getName();
 		if (meetingSection.getAllocatedTime() > 0) {
-			title += " [" + meetingSection.getAllocatedTime() + " Minuten]";
+			title += " [" + meetingSection.getAllocatedTime() + " Minutes]";
 		}
 		return title;
 	}
@@ -408,11 +408,19 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			return "<not assigned>";
 		}
 
-		String ret;
+		String ret = "";
 		if (orgUnit instanceof User) {
+			if (((User) orgUnit).getFirstName() != null) {
+				ret += ((User) orgUnit).getFirstName();
+			}
 			if (((User) orgUnit).getLastName() != null) {
-				ret = ((User) orgUnit).getLastName();
-			} else {
+				String lastName = ((User) orgUnit).getLastName();
+				if (!ret.equals("")) {
+					ret += " ";
+				}
+				ret += lastName;
+			}
+			if (ret.equals("")) {
 				ret = orgUnit.getName();
 			}
 
