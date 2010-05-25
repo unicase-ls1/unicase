@@ -308,6 +308,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				}
 			}
 			projectChangeNotifier = new ProjectChangeNotifier(this);
+			//new ProjectChangeNotifier2(this);
 		}
 	}
 
@@ -332,7 +333,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void handleEMFModelElementAdded(final Project project, final ModelElement modelElement) {
+	public void handleEMFModelElementAdded (final Project project, final ModelElement modelElement) {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
@@ -396,6 +397,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 	}
 
+	private void removeModelElementAndChildrenFromCache(ModelElement modelElement) {
+		this.modelElementCache.remove(modelElement.getModelElementId());
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			this.modelElementCache.remove(child.getModelElementId());
+		}
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -585,6 +593,17 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 		};
 		notifyProjectChangeObservers(command);
+	}
+
+	/**
+	 * Handle the removal of an element from the containment hierachy.
+	 * 
+	 * @param projectImpl the project
+	 * @param modelElement the model element
+	 */
+	public void handleEMFModelElementRemoved(ProjectImpl projectImpl, ModelElement modelElement) {
+		this.removeModelElementAndChildrenFromCache(modelElement);
+		//TODO: notify and observer here
 	}
 
 }
