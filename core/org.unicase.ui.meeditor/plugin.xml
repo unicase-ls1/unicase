@@ -5,6 +5,7 @@
    <extension-point id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols" schema="schema/org.unicase.ui.meeditor.referencecontrol.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.pages" name="org.unicase.ui.meeditor.pages" schema="schema/org.unicase.ui.meeditor.pages.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.melinkcontrols" name="org.unicase.ui.meeditor.melinkcontrols" schema="schema/org.unicase.ui.meeditor.melinkcontrol.exsd"/>
+   <extension-point id="org.unicase.ui.meeditor.statusmessage" name="Status Message" schema="schema/org.unicase.ui.meeditor.statusmessage.exsd"/>
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget

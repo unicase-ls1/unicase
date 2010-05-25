@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.meeditor;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -49,13 +49,13 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
 
-	private String creatorHint;
-
 	private ILabelProviderListener labelProviderListener;
 
 	private ModelElementChangeObserver modelelementChangeObserver;
 
 	private Project project;
+
+	private StatusMessageProvider statusMessageProvider;
 
 	/**
 	 * Default constructor.
@@ -177,21 +177,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			};
 			modelelementChangeObserver.observeElement(modelElement);
 			this.modelElement.getProject().addProjectChangeObserver(modelelementChangeObserver);
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-			StringBuffer stringBuffer = new StringBuffer();
-			Date creationDate = modelElement.getCreationDate();
-			creatorHint = "";
-			if (creationDate != null) {
-				creationDate = modelElement.getCreationDate();
-				stringBuffer.append("Created on ");
-				stringBuffer.append(dateFormat.format(creationDate));
-				stringBuffer.append(" at ");
-				stringBuffer.append(timeFormat.format(creationDate));
-				stringBuffer.append(" by ");
-				stringBuffer.append(modelElement.getCreator());
-				creatorHint = stringBuffer.toString();
-			}
+			initStatusProvider();
 			updateCreatorHint();
 
 			labelProviderListener = new ILabelProviderListener() {
@@ -206,8 +192,32 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 	}
 
+	private void initStatusProvider() {
+		IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.meeditor.statusmessage");
+		ArrayList<IConfigurationElement> provider = new ArrayList<IConfigurationElement>();
+		provider.addAll(Arrays.asList(configurationElements));
+		int priority = 0;
+		for (IConfigurationElement e : provider) {
+			try {
+				StatusMessageProvider statusMessageProvider = (StatusMessageProvider) e
+					.createExecutableExtension("class");
+				int newpriority = statusMessageProvider.canRender(modelElement);
+				if (newpriority > priority) {
+					priority = newpriority;
+					this.statusMessageProvider = statusMessageProvider;
+				}
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			}
+		}
+	}
+
 	private void updateCreatorHint() {
-		getEditorSite().getActionBars().getStatusLineManager().setMessage(creatorHint);
+		if (statusMessageProvider != null) {
+			getEditorSite().getActionBars().getStatusLineManager().setMessage(
+				statusMessageProvider.getMessage(modelElement));
+		}
 	}
 
 	/**
