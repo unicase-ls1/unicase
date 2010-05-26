@@ -90,7 +90,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 			// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
 			// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
 			// be nicer to add the default certificate to the given keystore.
-			if (keyStoreManager.getCertificate(keyStoreManager.getDefaultCertificate()) == null) {
+			if (!keyStoreManager.certificateExists(keyStoreManager.getDefaultCertificate())) {
 				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());
 				clientKeyTarget.delete();
 				InputStream inputStream = getClass().getResourceAsStream(KeyStoreManager.KEYSTORENAME);
@@ -101,5 +101,4 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		} catch (IOException e) {
 		}
 	}
-
 }
