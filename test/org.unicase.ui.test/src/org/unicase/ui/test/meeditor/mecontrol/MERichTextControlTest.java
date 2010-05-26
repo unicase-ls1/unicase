@@ -113,8 +113,7 @@ public class MERichTextControlTest extends MEEditorTest {
 			
 			@Override
 			protected void doRun() {
-				String linebreaks  = actionItem.getDescription();
-				assertEquals(newDescription, linebreaks);
+				assertEquals("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n", actionItem.getDescription());
 			}
 		}.run();
 	

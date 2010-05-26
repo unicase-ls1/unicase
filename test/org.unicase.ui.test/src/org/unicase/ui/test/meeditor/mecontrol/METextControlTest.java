@@ -39,9 +39,11 @@ public class METextControlTest extends MEEditorTest {
 	public void testNameChange() {
 		
 		openModelElement(actionItem);
-		
+		String oldName = getBot().activeEditor().bot().textWithLabel("Name").getText();
 		final String newName = "changed text in name field by MEEditor";
 		getBot().activeEditor().bot().textWithLabel("Name").typeText(newName,2);
+		final StringBuffer buffer = new StringBuffer(newName);
+		buffer.append(oldName);
 		
 		getBot().sleep(2000);
 		
@@ -53,7 +55,7 @@ public class METextControlTest extends MEEditorTest {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				assertEquals(newName, actionItem.getName());
+				assertEquals(buffer.toString(), actionItem.getName());
 			}
 		}.run();
 		
