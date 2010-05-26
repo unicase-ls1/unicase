@@ -1153,12 +1153,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
 		throws EmfStoreException {
-
-		// check if there are any changes
 		if (!this.isDirty()) {
 			throw new NoLocalChangesException();
 		}
+		List<AbstractOperation> allOperations = new ArrayList<AbstractOperation>();
+		allOperations.addAll(getLocalOperations().getOperations());
+		return commit(logMessage, commitObserver, allOperations);
+		// check if there are any changes
 
+	}
+
+	private PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver,
+		List<AbstractOperation> allOperations) throws EmfStoreException {
 		// check if we need to update first
 		PrimaryVersionSpec resolvedVersion;
 		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
@@ -1204,6 +1210,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		updateDirtyState();
 		return newBaseVersion;
+
 	}
 
 	/**
