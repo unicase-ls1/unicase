@@ -265,6 +265,7 @@ public final class ModelUtil {
 	public static boolean isSelfContained(EObject object) {
 		return isSelfContained(object, false);
 	}
+
 	/**
 	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
 	 * does not have references to eobjects outside the tree.
@@ -279,13 +280,13 @@ public final class ModelUtil {
 		allEObjects.add(object);
 
 		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
-		if (ignoreContainer && object.eContainer()!=null) {
+		if (ignoreContainer && object.eContainer() != null) {
 			nonTransientCrossReferences.remove(object.eContainer());
 		}
 		if (!allEObjects.containsAll(nonTransientCrossReferences)) {
 			return false;
 		}
-		
+
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
@@ -396,7 +397,7 @@ public final class ModelUtil {
 				}
 				// BEGIN SUPRESS CATCH EXCEPTION
 				catch (RuntimeException exception) {
-				// END SUPRESS CATCH EXCEPTION
+					// END SUPRESS CATCH EXCEPTION
 					logException("Failed to load model package " + entry.getKey(), exception);
 				}
 			}
@@ -437,8 +438,15 @@ public final class ModelUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
-			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			result.addAll(getAllModelElementEClasses(ePackage));
+			try {
+				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				result.addAll(getAllModelElementEClasses(ePackage));			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				// END SUPRESS CATCH EXCEPTION
+				logException("Failed to load model package " + entry.getKey(), exception);
+			}
+
 		}
 		modelElementEClasses = result;
 		return result;
@@ -564,7 +572,7 @@ public final class ModelUtil {
 	public static void logException(String message, Throwable exception) {
 		log(message, exception, IStatus.ERROR);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -573,7 +581,6 @@ public final class ModelUtil {
 	public static void logException(Throwable exception) {
 		logException(exception.getMessage(), exception);
 	}
-
 
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
@@ -584,7 +591,7 @@ public final class ModelUtil {
 	public static void logWarning(String message, Throwable exception) {
 		log(message, exception, IStatus.WARNING);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -593,7 +600,7 @@ public final class ModelUtil {
 	public static void logWarning(String message) {
 		log(message, null, IStatus.WARNING);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -755,7 +762,6 @@ public final class ModelUtil {
 	}
 
 	/**
-	 *
 	 * @param eObjects fjd
 	 * @param resourceURI dj
 	 * @throws IOException dj
@@ -767,7 +773,7 @@ public final class ModelUtil {
 		contents.addAll(eObjects);
 		resource.save(null);
 	}
-	
+
 	/**
 	 * Save an Eobject to a resource.
 	 * 
