@@ -1,5 +1,6 @@
 package org.unicase.ui.navigator.handler;
 
+import library.Book;
 import library.Library;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -11,10 +12,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
-/*
- * Changes name of first library to 'foo'
- */
-public class ChangeAttributeHandler extends AbstractHandler {
+public class DeleteEObject extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -22,21 +20,35 @@ public class ChangeAttributeHandler extends AbstractHandler {
 		if (projectSpace == null) {
 			return null;
 		}
+
+		EList<EObject> models = projectSpace.getProject().getAllModelElements();
+
 		if (true) {
 			new UnicaseCommand() {
 
 				@Override
 				protected void doRun() {
-					EList<EObject> models = projectSpace.getProject().getAllModelElements();
+					EList<EObject> models = projectSpace.getProject().getAllModelElementsAsList();
+
 					if (models.size() > 0) {
-						Library lib = (Library) models.get(0);
-						lib.setName("foo " + System.currentTimeMillis());
+
+						for (EObject o : models) {
+
+							if (o instanceof Library) {
+								Library library = (Library) o;
+								if (library.getBooks().size() > 0) {
+									Book b = library.getBooks().get(0);
+									projectSpace.getProject().deleteModelElement(b);
+								}
+							}
+						}
+
 					}
 				}
 			}.run();
+
 		}
 
 		return null;
 	}
-
 }
