@@ -43,9 +43,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
@@ -243,14 +243,14 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		}
 
 		MEEditor meEditor = (MEEditor) editor;
-		ModelElement me = (ModelElement) meEditor.getEditorInput().getAdapter(ModelElement.class);
+		EObject me = (EObject) meEditor.getEditorInput().getAdapter(EObject.class);
 		if (me != null) {
 			revealME(me);
 		}
 
 	}
 
-	private void revealME(ModelElement me) {
+	private void revealME(EObject me) {
 
 		if (me == null) {
 			return;
@@ -296,9 +296,10 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 						linkWithEditor(obj);
 					}
 
-					if (obj instanceof ModelElement) {
-						getViewSite().getActionBars().getStatusLineManager().setMessage(
-							((ModelElement) obj).getIdentifier());
+					if (obj instanceof EObject) {
+						// / TODO
+						// getViewSite().getActionBars().getStatusLineManager().setMessage(
+						// ModelUtil.getProject((EObject) obj).getModelElementId(((EObject) obj)).getId());
 					}
 				}
 			}
@@ -316,11 +317,8 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		if (selectedME == null) {
 			return;
 		}
-		if (!(selectedME instanceof ModelElement)) {
-			return;
-		}
 
-		ModelElement me = (ModelElement) selectedME;
+		EObject me = (EObject) selectedME;
 		if (!isEditorOpen(me)) {
 			return;
 		} else {
@@ -333,12 +331,12 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	 * 
 	 * @param selectedME
 	 */
-	private void activateEditor(ModelElement selectedME) {
+	private void activateEditor(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(EObject.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -355,12 +353,12 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	 * @param selectedME
 	 * @return
 	 */
-	private boolean isEditorOpen(ModelElement selectedME) {
+	private boolean isEditorOpen(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(EObject.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -378,11 +376,12 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 			return;
 		}
 		final ProjectSpace projectSpace;
-		if (obj instanceof ModelElement) {
-			ModelElement me = (ModelElement) obj;
-			projectSpace = WorkspaceManager.getProjectSpace(me);
-		} else if (obj instanceof ProjectSpace) {
+
+		if (obj instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) obj;
+		} else if (obj instanceof EObject) {
+			EObject me = (EObject) obj;
+			projectSpace = WorkspaceManager.getProjectSpace(me);
 		} else {
 			projectSpace = null;
 		}
@@ -520,7 +519,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		if (modelElement.eContainer().equals(project)) {
 			Runnable runnable = new Runnable() {
 				public void run() {
@@ -535,7 +534,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, EObject modelElement) {
 		if (shouldRefresh) {
 			viewer.refresh();
 		}
@@ -544,7 +543,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, EObject modelElement) {
 		shouldRefresh = false;
 		if (modelElement.eContainer().equals(project)) {
 			shouldRefresh = true;
@@ -554,7 +553,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	/**
 	 * {@inheritDoc}
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 	}
 
 	/**
@@ -586,10 +585,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		if (element == null) {
 			return;
 		}
-		if (element instanceof ModelElement) {
-			ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
-			revealME(project.getModelElement(modelElementId));
-		} else if (element instanceof CompositeOperation) {
+		if (element instanceof CompositeOperation) {
 			CompositeOperation comop = (CompositeOperation) element;
 			AbstractOperation mainOperation = comop.getMainOperation();
 			if (mainOperation != null) {
@@ -598,6 +594,10 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 			}
 		} else if (element instanceof AbstractOperation) {
 			ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
+			revealME(project.getModelElement(modelElementId));
+		} else if (element instanceof EObject) {
+			ModelElementId modelElementId = ModelUtil.getProject(((EObject) element)).getModelElementId(
+				((EObject) element));
 			revealME(project.getModelElement(modelElementId));
 		}
 

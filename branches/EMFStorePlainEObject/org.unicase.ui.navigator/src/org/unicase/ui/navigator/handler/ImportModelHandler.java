@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import library.Book;
+import library.Library;
 import library.LibraryFactory;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -25,12 +26,10 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.dialogs.ImportResourcesDialog;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.ModelElementWrapperDescriptor;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -54,12 +53,23 @@ public class ImportModelHandler extends AbstractHandler {
 
 				@Override
 				protected void doRun() {
-					library.Library library = LibraryFactory.eINSTANCE.createLibrary();
-					projectSpace.getProject().addModelElement(library);
+					Library library = LibraryFactory.eINSTANCE.createLibrary();
 					library.setName("hans");
+					projectSpace.getProject().addModelElement(library);
+
 					Book book = LibraryFactory.eINSTANCE.createBook();
 					book.setTitle("mofut");
 					library.getBooks().add(book);
+					// book = LibraryFactory.eINSTANCE.createBook();
+					// book.setTitle("42");
+					// library.getBooks().add(book);
+
+					Library newLib = LibraryFactory.eINSTANCE.createLibrary();
+					newLib.setName("newLib");
+
+					// projectSpace.getProject().addModelElement(library);
+					// projectSpace.getProject().addModelElement(newLib);
+
 				}
 			}.run();
 			return null;
@@ -85,7 +95,7 @@ public class ImportModelHandler extends AbstractHandler {
 					if (contents.size() > 0) {
 						for (int i = 0; i < contents.size(); i++) {
 							// run the import command
-							runImport(projectSpace, uri, (ModelElement) EcoreUtil.copy(contents.get(i)), i);
+							runImport(projectSpace, uri, EcoreUtil.copy(contents.get(i)), i);
 						}
 					}
 					return contents.size();
@@ -122,19 +132,19 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
 	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
-		final ModelElement element, final int resourceIndex) {
+		final EObject element, final int resourceIndex) {
 
 		// try to find a wrapper for the element which will be added to the project
-		ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
-			element, uri, resourceIndex);
+		// ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
+		// element, uri, resourceIndex);
 
 		// if no wrapper could be created, use the element itself to add it to the project
-		if (wrapper == null) {
-			wrapper = element;
-		}
+		// if (wrapper == null) {
+		// wrapper = element;
+		// }
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		projectSpace.getProject().addModelElement(ModelUtil.copy(wrapper));
+		projectSpace.getProject().addModelElement(ModelUtil.copy(element));
 	}
 }

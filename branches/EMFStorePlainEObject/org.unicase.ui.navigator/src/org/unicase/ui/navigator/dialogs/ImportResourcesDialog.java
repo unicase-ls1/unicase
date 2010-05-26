@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -66,16 +65,16 @@ public class ImportResourcesDialog extends ResourceDialog {
 				if (contents.size() > 0) {
 					for (int i = 0; i < contents.size(); i++) {
 						EObject content = contents.get(i);
-						if (!(content instanceof ModelElement)) {
-							if (contents.size() > 1) {
-								errors.append(String.format(
-									"%s - resourceIndex:%s is no instance of org.unicase.metamodel.ModelElement\n\n",
-									uri.toString(), i));
-							} else {
-								errors.append(String.format(
-									"%s is no instance of org.unicase.metamodel.ModelElement\n\n", uri.toString()));
-							}
+						// if (!(content instanceof ModelElement)) {
+						if (contents.size() > 1) {
+							errors.append(String.format(
+								"%s - resourceIndex:%s is no instance of org.unicase.metamodel.ModelElement\n\n", uri
+									.toString(), i));
+						} else {
+							errors.append(String.format("%s is no instance of org.unicase.metamodel.ModelElement\n\n",
+								uri.toString()));
 						}
+						// }
 						if (!ModelUtil.isSelfContained(content)) {
 							if (contents.size() > 1) {
 								errors.append(String.format("%s - resourceIndex:%s is not self contained.\n\n", uri

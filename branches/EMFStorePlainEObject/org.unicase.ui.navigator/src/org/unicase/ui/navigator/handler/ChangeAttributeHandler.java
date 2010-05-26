@@ -27,7 +27,7 @@ public class ChangeAttributeHandler extends AbstractHandler {
 
 				@Override
 				protected void doRun() {
-					EList<EObject> models = projectSpace.getProject().getModelElements();
+					EList<EObject> models = projectSpace.getProject().getAllModelElements();
 					if (models.size() > 0) {
 						Library lib = (Library) models.get(0);
 						lib.setName("foo " + System.currentTimeMillis());

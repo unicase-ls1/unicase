@@ -116,6 +116,21 @@
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
+            <command
+                  defaultHandler="org.unicase.ui.navigator.handler.ChangeReferenceHandler"
+                  id="org.unicase.ui.navigator.changeReference"
+                  name="Change reference">
+            </command>
+            <command
+                  defaultHandler="org.unicase.ui.navigator.handler.DeleteLibraryHandler"
+                  id="org.unicase.ui.navigator.delete"
+                  name="Delete">
+            </command>
+            <command
+                  defaultHandler="org.unicase.ui.navigator.handler.DeleteEObject"
+                  id="org.unicase.ui.navigator.deleteBook"
+                  name="Delete Book">
+            </command>
 
    </extension>
 

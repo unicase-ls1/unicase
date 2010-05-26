@@ -24,7 +24,6 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
@@ -147,7 +146,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		ModelElement instance = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;
@@ -161,10 +160,11 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	 */
 	private void addCommandsForSubTypes(EClass refClass, List<IContributionItem> commands) {
 
+		// TODO
 		// do not create commands for subclasses of ModelElement
-		if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
-			return;
-		}
+		// if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
+		// return;
+		// }
 
 		Set<EClass> eClazz = ModelUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);
