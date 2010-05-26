@@ -37,7 +37,7 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		// it inherits ModelElement then return its name.
 		if (object instanceof EClass) {
 			EClass eclass = (EClass) object;
-			// TODO
+			// TODO: EMFPlainObjectTransition, ModelElement class check
 //			if (eclass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
 				text = eclass.getName();
 //			}

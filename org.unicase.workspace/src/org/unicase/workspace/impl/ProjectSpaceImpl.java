@@ -377,7 +377,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.addOperationListener(modifiedModelElementsCache);
 		this.addCommitObserver(modifiedModelElementsCache);
 		shareObservers.add(modifiedModelElementsCache);
-		
+
 	}
 
 	// end of custom code
@@ -1889,7 +1889,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// Set user as creator when sharing a project
 		// for (EObject me : this.getProject().getAllModelElements()) {
-		// // TODO
+		// // TODO: EMFPlainEObjectTransition, ModelElement class check
 		// // if (me instanceof ModelElement) {
 		// // ModelElement e = (ModelElement) me;
 		// if (e.getCreator() == null || e.getCreator().equals("")

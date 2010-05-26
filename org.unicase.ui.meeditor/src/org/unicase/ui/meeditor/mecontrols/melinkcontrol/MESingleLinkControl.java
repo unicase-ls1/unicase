@@ -91,7 +91,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 			}
 		};
 
-		// TODO
+		// TODO: EMFPlainEObjectTransition, ModelElementChangeListener
 		// getModelElement().addModelElementChangeListener(modelElementChangeListener);
 
 		return composite;

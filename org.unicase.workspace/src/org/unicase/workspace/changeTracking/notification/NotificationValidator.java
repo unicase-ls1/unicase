@@ -297,7 +297,7 @@ final class NotificationValidator {
 	private boolean checkModelElementList(List<?> aList) {
 
 		for (Object value : aList) {
-			// TODO: Must not be instance of ModelEelment
+			// TODO: EMFPlainEObjectTransition, ModelElement class check
 			// if (!(value instanceof ModelElement)) {
 			// return false;
 			// }

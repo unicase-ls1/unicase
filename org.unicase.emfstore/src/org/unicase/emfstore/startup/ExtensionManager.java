@@ -81,7 +81,7 @@ public final class ExtensionManager {
 	/**
 	 * Checks whether the server was started with a model. Note: At the moment only the UNICASE model is checked. This
 	 * method should check against any model which inherits from metamodel. This is a bit problematic because of the
-	 * lazyloading behavior. TODO
+	 * lazyloading behavior.
 	 */
 	public static void checkModel() {
 		EPackage model = EPackage.Registry.INSTANCE.getEPackage("http://unicase.org/model");

@@ -452,7 +452,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
 		 * reason: Check for the old and incompatible layout information and convert it.
 		 */
-		// TODO
+		// TODO: EMFPlainEObjectTransition, diagram type
 		// if (this.getType() == DiagramType.USECASE_DIAGRAM) {
 		// if (this.diagramLayout.contains("type=\"1001\"") || this.diagramLayout.contains("type=\"1002\"")) {
 		// this.diagramLayout = this.convertUsecaseLayout(this.diagramLayout);

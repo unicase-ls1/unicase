@@ -127,7 +127,7 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	public Object getImage(Object object) {
 		String imgStr = "full/obj16/MEDiagram";
 
-		// TODO
+		// TODO: EMFPlainEObjectTransition, diagram type
 		DiagramType type = null;// ((MEDiagram) object).getType();
 		if (type == DiagramType.CLASS_DIAGRAM) {
 			imgStr = "full/obj16/ClassDiagram.png";

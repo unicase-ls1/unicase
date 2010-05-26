@@ -71,7 +71,7 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: handle getCreator method here and in else if branch
+			// TODO: EMFPlainObjectTransition: getCreator, getAssignee
 			// if (user.getName().equals(workItem.getCreator()) && workItem.getAssignee() == null) {
 			// return true;
 			// }
@@ -108,7 +108,7 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: getCreator method
+			// TODO: EMFPlainEObjectTransition, getCreator method
 			// if (workItem.getAssignee() == null) {
 			// for (OrgUnit orgUnit : team) {
 			// if (orgUnit.getName().equals(workItem.getCreator())) {

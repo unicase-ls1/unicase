@@ -153,6 +153,7 @@ public class Topology1to1Test extends TopologyTest {
 
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		Solution solutionOld = RationaleFactory.eINSTANCE.createSolution();
+		solutionOld.setName("old solution");
 		Solution solutionNew = RationaleFactory.eINSTANCE.createSolution();
 
 		getProject().addModelElement(issue);

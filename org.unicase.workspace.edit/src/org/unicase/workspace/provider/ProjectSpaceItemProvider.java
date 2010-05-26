@@ -427,7 +427,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			if (project == null) {
 				return Collections.EMPTY_LIST;
 			}
-			// TODO: Check for better way
+			// TODO: EMFPlainObjectTransition: Check for better way
 			return project.getModelElements();
 		}
 		return new ArrayList<Object>();

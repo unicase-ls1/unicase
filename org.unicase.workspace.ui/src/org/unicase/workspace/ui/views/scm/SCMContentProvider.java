@@ -18,11 +18,12 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 /**
@@ -80,13 +81,14 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		if (element instanceof HistoryInfo) {
 			HistoryInfo historyInfo = (HistoryInfo) element;
 			return getChildren(historyInfo, treeNode);
-		} else if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
-			return getChildren(me, treeNode);
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cp = (ChangePackage) element;
 			return getChildren(cp, treeNode);
+		} else if (element instanceof EObject) {
+			EObject me = (EObject) element;
+			return getChildren(me, treeNode);
 		}
+
 		return nodify(treeNode,
 				Arrays.asList(contentProvider.getChildren(element))).toArray();
 	}
@@ -117,7 +119,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	 *            the parent TreeNode
 	 * @return the subelements of the modelElement
 	 */
-	protected abstract Object[] getChildren(ModelElement modelElement,
+	protected abstract Object[] getChildren(EObject modelElement,
 			TreeNode treeNode);
 
 	/**
@@ -297,8 +299,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 * @return an empty array
 		 */
 		@Override
-		protected Object[] getChildren(ModelElement modelElement,
-				TreeNode treeNode) {
+		protected Object[] getChildren(EObject modelElement, TreeNode treeNode) {
 			Object[] children = super.contentProvider.getChildren(modelElement);
 			List<TreeNode> result = nodify(treeNode, Arrays.asList(children));
 			return result.toArray();
@@ -360,8 +361,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 * @return an array of {@link AbstractOperation}s
 		 */
 		@Override
-		protected Object[] getChildren(ModelElement modelElement,
-				TreeNode treeNode) {
+		protected Object[] getChildren(EObject modelElement, TreeNode treeNode) {
 			ChangePackage changePackage;
 			if (treeNode.getParent().getValue() instanceof HistoryInfo) {
 				HistoryInfo historyInfo = (HistoryInfo) treeNode.getParent()
@@ -373,7 +373,8 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 				return new Object[0];
 			}
 			List<AbstractOperation> operations = changePackage
-					.getTouchingOperations(modelElement.getModelElementId());
+					.getTouchingOperations(ModelUtil.getProject(modelElement)
+							.getModelElementId(modelElement));
 			List<TreeNode> nodes = nodify(treeNode, operations);
 			if (isReverseNodes()) {
 				Collections.reverse(nodes);

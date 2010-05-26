@@ -79,7 +79,7 @@ public class MEURLLinkControl extends MELinkControl {
 			listener = new ModelElementChangeListener() {
 
 				public void onRuntimeExceptionInListener(RuntimeException exception) {
-					// TODO: ModelElementChangeListener
+					// TODO : EMFPlainEObjectTransition: ModelElementChangeListener
 					// link.removeModelElementChangeListener(listener);
 
 				}
@@ -90,7 +90,7 @@ public class MEURLLinkControl extends MELinkControl {
 				}
 			};
 
-			// TODO: ModelElementChangeListener
+			// TODO : EMFPlainEObjectTransition: ModelElementChangeListener
 			// link.addModelElementChangeListener(listener);
 
 			String url = ((UrlAttachment) link).getUrl();
@@ -139,7 +139,7 @@ public class MEURLLinkControl extends MELinkControl {
 	@Override
 	public void dispose() {
 		super.dispose();
-		// TODO: ModelElementChangeListener
+		// TODO : EMFPlainEObjectTransition: ModelElementChangeListener
 		// link.removeModelElementChangeListener(listener);
 
 	}

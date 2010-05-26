@@ -60,7 +60,7 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 		if (dropee instanceof MEDiagram) {
 			return false;
 		}
-		// TODO: diagram type
+		// TODO : EMFPlainEObjectTransition: diagram type
 
 		DiagramType type = null; // diagram.getType();
 		String clientContextID = "ModelClientContext";

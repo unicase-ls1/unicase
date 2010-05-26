@@ -75,11 +75,13 @@ public final class ModelUtil {
 		EObject copy = EcoreUtil.copy(modelElement);
 		// reset id
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		// TODO: EMFPlainEObjectTransition, setIdentifier
 //		copy.setIdentifier(modelElementId.getId());
 
 		// reset ids of containment children
 		for (EObject child : ModelUtil.getAllContainedModelElements(copy, false)) {
 			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
+			// TODO: EMFPlainEObjectTransition, ModelElement class check
 //			if (child instanceof ModelElement) {
 //				((IdentifiableElement) child).setIdentifier(childId.getId());
 //			}
@@ -346,7 +348,7 @@ public final class ModelUtil {
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
-		// TODO
+		// TODO: EMFPlainEObjectTransition, ModelElement class check
 		// sanity checks
 //		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
 //		if (!modelELementEClass.isSuperTypeOf(clazz)) {
@@ -462,7 +464,7 @@ public final class ModelUtil {
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				EClass subEClass = (EClass) classifier;
-				// TODO
+				// TODO: EMFPlainEObjectTransition: ModelElement class check
 //				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(subEClass)) {
 					result.add(subEClass);
 //				;;}
@@ -513,13 +515,14 @@ public final class ModelUtil {
 	 *         package and all its sub-packages.
 	 */
 	public static Set<EClass> getAllMETypes(EPackage ePackage) {
-		// TODO
+		// TODO: EMFPlainEObjectTransition, ModelElement class check
 //		EClass modelElementEClass = MetamodelPackage.eINSTANCE.getModelElement();
 		Set<EClass> meTypes = new HashSet<EClass>();
 
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
+				// TODO: EMFPlainEObjectTransition, ModelElement class check
 //				if (modelElementEClass.isSuperTypeOf(eClass)) {
 					meTypes.add(eClass);
 //				}
@@ -803,9 +806,8 @@ public final class ModelUtil {
 	 * @return the project or null if the element is not contained in a project.
 	 */
 	public static Project getProject(EObject modelElement) {
-		// TODO
 		if (modelElement instanceof ModelElementId) {
-			// TODO: id is contained in map 
+			// TODO	: EMFPlainEObjectTransition: id is contained in map 
 			return (Project) modelElement.eContainer().eContainer();
 		} else {
 			Set<EObject> seenModelElements = new HashSet<EObject>();
@@ -813,12 +815,12 @@ public final class ModelUtil {
 			return getProject(modelElement, seenModelElements);
 		}
 	}
-	
+		
 	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
 
 		EObject container = eObject.eContainer();
 
-		if (container == null) {
+		if (container == null) {	
 			return null;
 		}
 

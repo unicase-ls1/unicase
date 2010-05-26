@@ -73,6 +73,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__DELETED_EOBJECT_ID_MAP);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -105,6 +107,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 		case MetamodelPackage.PROJECT__EOBJECTS_ID_MAP:
 		case MetamodelPackage.PROJECT__NEW_EOBJECTS_ID_MAP:
+		case MetamodelPackage.PROJECT__DELETED_EOBJECT_ID_MAP:
+		case MetamodelPackage.PROJECT__DELETED_MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -133,11 +137,32 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP)));
+
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP,
 			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP,
 			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_EOBJECT_ID_MAP,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP)));
 	}
 
 	/**
@@ -152,8 +177,10 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		Object childObject = child;
 
 		boolean qualify = childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS
 			|| childFeature == MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP
-			|| childFeature == MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP;
+			|| childFeature == MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP
+			|| childFeature == MetamodelPackage.Literals.PROJECT__DELETED_EOBJECT_ID_MAP;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),

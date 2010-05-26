@@ -47,7 +47,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		EObject destructee = null;
-		// TODO: instanceof ModelElement has been replaced with null check, ok?
+		// TODO: EMFPlainObjectTransition: instanceof ModelElement has been replaced with null check, ok?
 		if (this.getElementToDestroy() != null) {
 			destructee = this.getElementToDestroy();
 		} else {

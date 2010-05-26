@@ -11,6 +11,11 @@
         eType="#//EObjectToModelElementIdMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newEObjectsIdMap" upperBound="-1"
         eType="#//EObjectToModelElementIdMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deletedEObjectIdMap" ordered="false"
+        upperBound="-1" eType="#//EObjectToModelElementIdMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deletedModelElements" ordered="false"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -27,6 +32,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="EObjectToModelElementIdMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ModelElementId"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EObjectToModelElementIdContainmentMap"
+      instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ModelElementId"
         containment="true"/>
   </eClassifiers>

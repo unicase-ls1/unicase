@@ -81,7 +81,7 @@ public class UCDropAdapter extends MEDropAdapter {
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		// TODO: any criteria?
+		// TODO: EMFPlainEObjectTransition, ModelElement class check: any criteria to filter for?
 		return EcoreFactory.eINSTANCE.createEObject().eClass(); // MetamodelPackage.eINSTANCE.getModelElement();
 	}
 

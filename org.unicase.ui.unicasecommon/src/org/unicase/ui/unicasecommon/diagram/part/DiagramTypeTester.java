@@ -55,7 +55,7 @@ public class DiagramTypeTester extends PropertyTester {
 
 		DiagramType diagramType;
 		MEDiagram diagram = (MEDiagram) receiver;
-		// TODO: diagram type
+		// TODO : EMFPlainEObjectTransition: diagram type
 		// diagramType = diagram.getType();
 		//
 		// if (expectedType.equals(diagramType)) {

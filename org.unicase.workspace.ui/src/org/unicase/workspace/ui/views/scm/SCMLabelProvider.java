@@ -28,9 +28,9 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
@@ -89,8 +89,6 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			} else if (value instanceof AbstractOperation) {
 				ret = changePackageVisualizationHelper
 						.getDescription((AbstractOperation) value);
-			} else if (value instanceof ModelElement) {
-				ret = UiUtil.getNameForModelElement(((ModelElement) value));
 			} else if (value instanceof ModelElementId) {
 				EObject modelElement = changePackageVisualizationHelper
 						.getModelElement((ModelElementId) value);
@@ -103,7 +101,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				ChangePackage changePackage = (ChangePackage) value;
 				return getText(changePackage);
 			} else if (value instanceof EObject) {
-				ret = adapterFactoryLabelProvider.getText(value);
+				ret = UiUtil.getNameForModelElement(((EObject) value));
 			} else {
 				ret = value.toString();
 			}
@@ -245,8 +243,9 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 					.getParent().getValue();
 			if ((value instanceof ModelElementId && value.equals(op
 					.getModelElementId()))
-					|| (value instanceof ModelElement && ((ModelElement) value)
-							.getModelElementId().equals(op.getModelElementId()))) {
+					|| (value instanceof EObject && ModelUtil.getProject(
+							((EObject) value)).getModelElementId(
+							((EObject) value)).equals(op.getModelElementId()))) {
 				return bold;
 			}
 		}

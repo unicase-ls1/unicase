@@ -8,7 +8,7 @@ package org.unicase.workspace.ui.dialogs.merge.conflict;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
@@ -108,9 +108,9 @@ public class ConflictDescription {
 		for (String token : values.keySet()) {
 			String tmp = "[" + token + "]";
 			Object value = values.get(token);
-			if (value instanceof ModelElement) {
-				value = DecisionUtil.getClassAndName((ModelElement) value);
-			}
+			// if (value instanceof ModelElement) {
+			value = DecisionUtil.getClassAndName((EObject) value);
+			// }
 			result = result.replace(tmp, (value != null) ? value.toString()
 					: "");
 		}

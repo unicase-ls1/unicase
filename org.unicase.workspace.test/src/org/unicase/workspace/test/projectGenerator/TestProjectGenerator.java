@@ -285,7 +285,7 @@ public class TestProjectGenerator {
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
-			// TODO:
+			// TODO: EMFPlainObjectTransition, class check
 			// if (obj instanceof e) {
 			project.addModelElement(obj);
 			// }
@@ -377,7 +377,7 @@ public class TestProjectGenerator {
 		if (me instanceof MEDiagram && ref.equals(DiagramPackage.eINSTANCE.getMEDiagram_Elements())) {
 			diagramElementsProvider = new MEDiagramElementsProvider(project);
 			MEDiagram diagram = (MEDiagram) me;
-			// TODO: diagram type
+			// TODO : EMFPlainEObjectTransition: diagram type
 			// DiagramType diagramType = diagram.getType();
 			// instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagramType));
 			// numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagramType);
@@ -737,7 +737,7 @@ public class TestProjectGenerator {
 				continue;
 			}
 			if (attribute.getEType() instanceof EEnum) {
-				// TODO: diagram type
+				// TODO : EMFPlainEObjectTransition: diagram type
 				// if (attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_Type())) {
 				// DiagramType diagramType = getRandomDiagramType();
 				// instance.eSet(attribute, diagramType);

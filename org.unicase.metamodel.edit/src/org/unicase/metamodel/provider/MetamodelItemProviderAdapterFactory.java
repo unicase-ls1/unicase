@@ -164,6 +164,30 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EObjectToModelElementIdContainmentMapItemProvider eObjectToModelElementIdContainmentMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectToModelElementIdContainmentMapAdapter() {
+		if (eObjectToModelElementIdContainmentMapItemProvider == null) {
+			eObjectToModelElementIdContainmentMapItemProvider = new EObjectToModelElementIdContainmentMapItemProvider(
+				this);
+		}
+
+		return eObjectToModelElementIdContainmentMapItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelElementEObjectWrapper} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -285,6 +309,8 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 			modelVersionItemProvider.dispose();
 		if (eObjectToModelElementIdMapItemProvider != null)
 			eObjectToModelElementIdMapItemProvider.dispose();
+		if (eObjectToModelElementIdContainmentMapItemProvider != null)
+			eObjectToModelElementIdContainmentMapItemProvider.dispose();
 	}
 
 }

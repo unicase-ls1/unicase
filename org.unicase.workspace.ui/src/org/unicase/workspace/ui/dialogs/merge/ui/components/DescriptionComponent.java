@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
@@ -19,7 +20,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.ui.DecisionBox;
@@ -106,14 +106,15 @@ public class DescriptionComponent extends Composite {
 			if (split.length > 1) {
 				Object obj = conflict.getValues().get(split[0]);
 				String tmp = "";
-				if (obj instanceof ModelElement) {
-					tmp = DecisionUtil.getClassAndName((ModelElement) obj);
-					tmp = DecisionUtil.cutString(tmp, 45, true);
-				} else if (obj instanceof AbstractOperation) {
+
+				if (obj instanceof AbstractOperation) {
 					tmp = visualHelper.getDescription((AbstractOperation) obj);
 				} else if (obj != null) {
 					tmp = obj.toString();
 					tmp = DecisionUtil.cutString(tmp, 85, true);
+				} else if (obj instanceof EObject) {
+					tmp = DecisionUtil.getClassAndName((EObject) obj);
+					tmp = DecisionUtil.cutString(tmp, 45, true);
 				} else {
 					tmp = "";
 				}

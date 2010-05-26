@@ -7,9 +7,9 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
@@ -61,7 +61,7 @@ public class AttributeConflict extends Conflict {
 		/* + " Please decide which value you want to keep." */);
 
 		conflictDescription.add("attribute", getMyOperation().getFeatureName());
-		ModelElement modelElement = getDecisionManager().getModelElement(
+		EObject modelElement = getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId());
 		// conflictDescription.add("type", modelElement.eClass().getName());
 		conflictDescription.add("modelelement", modelElement);

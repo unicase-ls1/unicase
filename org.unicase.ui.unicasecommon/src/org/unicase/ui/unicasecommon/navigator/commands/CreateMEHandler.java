@@ -62,7 +62,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			if (newMEInstance instanceof MEDiagram) {
 				Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
 				DiagramType newDiagramType = (DiagramType) p;
-				// TODO: diagram type
+				// TODO : EMFPlainEObjectTransition: diagram type
 				// ((MEDiagram) newMEInstance).setType(newDiagramType);
 				newMEInstance.setName("new " + newDiagramType.getLiteral());
 			}

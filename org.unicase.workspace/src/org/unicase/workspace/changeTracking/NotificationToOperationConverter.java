@@ -134,17 +134,15 @@ public final class NotificationToOperationConverter {
 		}
 
 		for (EObject valueElement : list) {
-			Project project = ModelUtil.getProject(n.getNotifierModelElement());
-			if (project.getModelElementId(valueElement) != null) {
-				referencedModelElements.add(project.getModelElementId(valueElement));
-			} else {
-				// TODO: DELETE
-				// if (n instanceof NotificationInfoWrapper) {
-				// NotificationInfoWrapper wrapper = (NotificationInfoWrapper) n;
-				// referencedModelElements.add(wrapper.getId());
-				// }
+			Project project = ModelUtil.getProject(valueElement);
+			// TODO: EMFPlainEObjectTransition
+			if (project == null) {
+				ModelUtil.getProject(valueElement);
+			} else if (project.getModelElementId(valueElement) != null) {
+				referencedModelElements.add(ModelUtil.getProject(valueElement).getModelElementId(valueElement));
 			}
 
+			// TODO : EMFPlainEObjectTransition: ModelElement class check
 			// if (valueElement instanceof ModelElement) {
 			// referencedModelElements.add(((ModelElement) valueElement).getModelElementId());
 			// } else {
@@ -161,7 +159,8 @@ public final class NotificationToOperationConverter {
 		MultiReferenceMoveOperation op = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
-		op.setReferencedModelElementId(n.getNewModelElementValueId());
+		op.setReferencedModelElementId(ModelUtil.getProject(n.getNewModelElementValue()).getModelElementId(
+			n.getNewModelElementValue()));
 		op.setNewIndex(n.getPosition());
 		op.setOldIndex((Integer) n.getOldValue());
 
@@ -178,7 +177,7 @@ public final class NotificationToOperationConverter {
 		} else {
 			op = OperationsFactory.eINSTANCE.createAttributeOperation();
 		}
-		
+
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getAttribute().getName());
 		op.setNewValue(n.getNewValue());
@@ -190,16 +189,29 @@ public final class NotificationToOperationConverter {
 	private static AbstractOperation handleSetReference(NotificationInfo n) {
 
 		SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
+
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
 		setBidirectionalAndContainmentInfo(op, n.getReference());
 
+		// ModelUtil.getProject(n.getOldModelElementValue());
 		if (n.getOldValue() != null) {
-			op.setOldValue(n.getOldModelElementValueId());
+			EObject obj = (EObject) n.getOldValue();
+			Project p = ModelUtil.getProject(obj);
+
+			if (p != null) {
+				op.setOldValue(p.getModelElementId(obj));
+			}
 		}
 
 		if (n.getNewValue() != null) {
-			op.setNewValue(n.getNewModelElementValueId());
+			// TOOD op.setNewValue(n.getNewModelElementValueId());
+			EObject obj = (EObject) n.getNewValue();
+			Project p = ModelUtil.getProject(obj);
+
+			if (p != null) {
+				op.setNewValue(p.getModelElementId(obj));
+			}
 		}
 		return op;
 
@@ -208,9 +220,12 @@ public final class NotificationToOperationConverter {
 	// utility methods
 	private static void setCommonValues(AbstractOperation operation, EObject modelElement) {
 		operation.setClientDate(new Date());
-		// TODO
-		operation
-			.setModelElementId(ModelUtil.clone(ModelUtil.getProject(modelElement).getModelElementId(modelElement)));
+		Project p = ModelUtil.getProject(modelElement);
+		if (p != null) {
+			operation.setModelElementId(p.getModelElementId(modelElement));
+		} else {
+			operation.setModelElementId(null);
+		}
 	}
 
 	private static void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {

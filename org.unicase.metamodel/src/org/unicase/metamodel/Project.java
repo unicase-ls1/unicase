@@ -26,6 +26,8 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  *   <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
  *   <li>{@link org.unicase.metamodel.Project#getEobjectsIdMap <em>Eobjects Id Map</em>}</li>
  *   <li>{@link org.unicase.metamodel.Project#getNewEObjectsIdMap <em>New EObjects Id Map</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getDeletedEObjectIdMap <em>Deleted EObject Id Map</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getDeletedModelElements <em>Deleted Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +86,39 @@ public interface Project extends EObject, IAdaptable {
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getNewEObjectsIdMap();
+
+	/**
+	 * Returns the value of the '<em><b>Deleted EObject Id Map</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.ecore.EObject},
+	 * and the value is of type {@link org.unicase.metamodel.ModelElementId},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Deleted EObject Id Map</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Deleted EObject Id Map</em>' map.
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedEObjectIdMap()
+	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>" ordered="false"
+	 * @generated
+	 */
+	EMap<EObject, ModelElementId> getDeletedEObjectIdMap();
+
+	/**
+	 * Returns the value of the '<em><b>Deleted Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Deleted Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Deleted Model Elements</em>' containment reference list.
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedModelElements()
+	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @generated
+	 */
+	EList<EObject> getDeletedModelElements();
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -188,8 +223,8 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements
 	 */
 	EList<EObject> getAllModelElements();
-	
-	// TODO: NEW
+
+	// TODO: EMFPlainObjectTransition: NEW method, should be removed and replaced by getAllModelElementsyClass, if possible
 	EList<EObject> getAllModelElementsAsList();
 
 	/**

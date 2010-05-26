@@ -12,10 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import library.Book;
-import library.Library;
-import library.LibraryFactory;
-
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -35,19 +31,6 @@ import org.unicase.workspace.exceptions.UnsupportedNotificationException;
  * @author koegel
  */
 public class MultiReferenceOperationTest extends OperationTest {
-
-	@Test
-	public void changeMultiReference2() throws UnsupportedOperationException, UnsupportedNotificationException {
-		Library lib = LibraryFactory.eINSTANCE.createLibrary();
-		Library newLib = LibraryFactory.eINSTANCE.createLibrary();
-		Book b = LibraryFactory.eINSTANCE.createBook();
-		lib.getBooks().add(b);
-
-		clearOperations();
-
-		newLib.getBooks().add(b);
-		assertEquals(1, newLib.getBooks().size());
-	}
 
 	/**
 	 * Change a multi reference and check the generated operation.
