@@ -513,7 +513,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
 		if (contains(eObject)) {
 			throw new IllegalStateException("ModelElement is already in the project!");
-		} else if (eObject instanceof EObjectToModelElementIdContainmentMapImpl) {
+			// TODO : EMFPlainEObjectTransition: check necessary?
+		} else if (eObject instanceof EObjectToModelElementIdMapImpl) {
 			return;
 		}
 		checkForCrossReferences(eObject);
@@ -716,20 +717,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		if (element instanceof ModelElementId) {
 			EObject o = getModelElement((ModelElementId) element);
-			//			eobjectsIdMap.remove(o);
-			//			getModelElementsFromCache().remove(o);
+			
 			getDeletedModelElements().add(o);
+			eobjectsIdMap.values().remove(element);
+			getModelElementsFromCache().keySet().remove(element);
 			getDeletedEObjectIdMap().put(o, (ModelElementId) element);
-			// TODO: NEW, zusammenfassen
+			// TODO: EMFPlainEObjectTransition: NEW, zusammenfassen
 			//			getNewEObjectsIdMap().put(ModelUtil.clone(eObject), (ModelElementId) element);
 			//			getDeletedModelElements().add(eObject);
 		} else {
 			ModelElementId id = getModelElementId(eObject);
-			//				eobjectsIdMap.remove(element);	
-			//			getModelElementsFromCache().remove(element);
+				
 			getDeletedModelElements().add(element);
+			eobjectsIdMap.values().remove(id);
+			getModelElementsFromCache().keySet().remove(id);
 			getDeletedEObjectIdMap().put(element, id);
-			
+
 			//			getNewEObjectsIdMap().put(ModelUtil.clone(eObject), id);
 			//			getDeletedModelElements().add(eObject);
 		}
@@ -822,14 +825,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public ModelElementId getModelElementId(EObject eObject) {
 		for (Map.Entry<ModelElementId, EObject> entry : getModelElementsFromCache().entrySet()) {
-			if (entry.getValue().equals(eObject)) {
-				return ModelUtil.clone(entry.getKey());
+			if (entry.getValue() != null) {
+				if (entry.getValue().equals(eObject)) {
+					return ModelUtil.clone(entry.getKey());
+				}
+			} else {
+				System.out.println("foo");
 			}
 		}
 
 		// also check newEObjects cache, as it contains IDs of already deleted EObjects 
 		ModelElementId id = getDeletedEObjectIdMap().get(eObject);
-		
+
 		if (id != null) {
 			return ModelUtil.clone(id);
 		}
