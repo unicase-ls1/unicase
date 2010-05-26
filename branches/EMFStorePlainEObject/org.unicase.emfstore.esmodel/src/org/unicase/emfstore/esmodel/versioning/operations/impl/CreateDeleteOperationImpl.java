@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -66,7 +67,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			EObject localModelElement = project.getModelElement(getModelElementId());
 			project.deleteModelElement(localModelElement);
 		} else {
-			// TODO
 			if (project.contains(getModelElementId())) {
 				// silently fail
 				return;
@@ -85,6 +85,10 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		super.reverse(createDeleteOperation);
 		createDeleteOperation.setDelete(!this.isDelete());
 		createDeleteOperation.setModelElement(ModelUtil.clone(this.getModelElement()));
+		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
+			createDeleteOperation.getEobjectsIdMap().put(e.getKey(), e.getValue());
+		}
+
 		EList<ReferenceOperation> clonedSubOperations = createDeleteOperation.getSubOperations();
 		for (ReferenceOperation operation : getSubOperations()) {
 			clonedSubOperations.add(0, (ReferenceOperation) operation.reverse());

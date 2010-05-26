@@ -68,7 +68,7 @@ public final class ModelValidationHelper {
 		if (danglingEObjects.size() > 0) {
 			// FIXME MK: add log messages
 			for (EObject object : danglingEObjects) {
-				// TODO: how to differentiate?
+				// TODO: EMFPlainEObjectTransition: ModelElement class check
 				// if it is a lost model element add to project
 //				if (object instanceof ModelElement) {
 					project.addModelElement(object);

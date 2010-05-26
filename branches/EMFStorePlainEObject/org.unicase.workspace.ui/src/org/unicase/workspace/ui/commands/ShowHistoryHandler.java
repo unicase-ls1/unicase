@@ -7,13 +7,14 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.Date;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -39,7 +40,7 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 	@Override
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
-		ModelElement modelElement = getModelElement();
+		EObject modelElement = getModelElement();
 		if (projectSpace == null) {
 			// ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
 			// .getCurrentWorkspace().getActiveProjectSpace();
@@ -50,7 +51,7 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 			// }
 			// projectSpace = activeProjectSpace;
 			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getProjectSpace(modelElement.getProject());
+					.getProjectSpace(ModelUtil.getProject(modelElement));
 		}
 
 		IWorkbenchPage page = PlatformUI.getWorkbench()

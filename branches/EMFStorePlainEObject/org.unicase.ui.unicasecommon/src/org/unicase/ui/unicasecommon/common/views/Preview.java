@@ -246,7 +246,7 @@ public class Preview extends ViewPart implements ISelectionListener {
 		if (namelabel != null) {
 			namelabel.setText(labelprovider.getText(me));
 		}
-		// TODO: creator and creationdate
+		// TODO : EMFPlainEObjectTransition: creator and creationdate
 		/*
 		 * if (creatorAndDatelabel != null) { String creator = me.getCreator(); Date creationdate =
 		 * me.getCreationDate(); String creationdateStr = ""; if (creator == null || creator.equals("")) { creator = "";

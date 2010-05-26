@@ -76,7 +76,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 			if (newMEInstance instanceof MEDiagram) {
 				if (newDiagramType != null) {
-					// TODO: diagram type
+					// TODO : EMFPlainEObjectTransition: diagram type
 					// ((MEDiagram) newMEInstance).setType(this.newDiagramType);
 					newMEInstance.setName("new " + this.newDiagramType.getLiteral());
 				} else {

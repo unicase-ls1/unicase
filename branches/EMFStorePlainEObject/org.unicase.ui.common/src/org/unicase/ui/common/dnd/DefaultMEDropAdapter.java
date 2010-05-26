@@ -21,7 +21,6 @@ public class DefaultMEDropAdapter extends MEDropAdapter {
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		// TODO
 		return MetamodelPackage.eINSTANCE.eClass();
 	}
 

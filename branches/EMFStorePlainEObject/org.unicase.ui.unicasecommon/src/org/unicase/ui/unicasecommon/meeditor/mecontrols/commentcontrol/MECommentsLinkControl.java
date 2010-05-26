@@ -95,7 +95,7 @@ public class MECommentsLinkControl extends AbstractMEControl {
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
-		// TODO:
+		// TODO: EMFPlainEObjectTransition, ModelElement class check
 		// if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(getModelElement())) {
 		if (getModelElement() instanceof UnicaseModelElement) {
 			UnicaseModelElement me = (UnicaseModelElement) getModelElement();

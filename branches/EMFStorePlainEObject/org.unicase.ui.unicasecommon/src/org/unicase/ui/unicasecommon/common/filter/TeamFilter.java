@@ -61,7 +61,7 @@ public class TeamFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: getCreator method
+			// TODO: EMFPlainEObjectTransition, getCreator method
 			// if (workItem.getAssignee() == null) {
 			// for (OrgUnit orgUnit : team) {
 			// if (orgUnit.getName().equals(workItem.getCreator())) {

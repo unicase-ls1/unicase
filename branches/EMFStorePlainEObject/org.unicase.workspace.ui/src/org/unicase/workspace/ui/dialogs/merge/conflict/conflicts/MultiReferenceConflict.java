@@ -7,9 +7,9 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
@@ -94,7 +94,7 @@ public class MultiReferenceConflict extends Conflict {
 		ConflictOption myOption = null;
 		ConflictOption theirOption = null;
 		if (meAdding) {
-			ModelElement target = getDecisionManager().getModelElement(
+			EObject target = getDecisionManager().getModelElement(
 					getMyOperation().getReferencedModelElements().get(0));
 			myOption = new ConflictOption("Add "
 					+ DecisionUtil.getClassAndName(target),
@@ -106,7 +106,7 @@ public class MultiReferenceConflict extends Conflict {
 					OptionType.TheirOperation);
 			theirOption.addOperations(getRemovingOperations());
 		} else {
-			ModelElement target = getDecisionManager().getModelElement(
+			EObject target = getDecisionManager().getModelElement(
 					getMyOperation().getReferencedModelElements().get(0));
 			myOption = new ConflictOption("Remove "
 					+ DecisionUtil.getClassAndName(target),

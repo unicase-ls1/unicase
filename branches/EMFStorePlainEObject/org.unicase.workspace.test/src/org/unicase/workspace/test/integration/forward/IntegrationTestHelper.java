@@ -721,7 +721,7 @@ public final class IntegrationTestHelper {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on ");
-				// TODO
+				// TODO: EMFPlainEObjectTransition
 				// + me.getIdentifier());
 			} else {
 				int position = getRandomPosition(eList.size());
@@ -750,7 +750,7 @@ public final class IntegrationTestHelper {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on ");
-				// TODO
+				// TODO : EMFPlainEObjectTransition
 				// + me.getIdentifier());
 			} else {
 				int position = getRandomPosition(eList.size());
@@ -799,7 +799,7 @@ public final class IntegrationTestHelper {
 		EList<EObject> eList = (EList<EObject>) object;
 		if (eList == null) {
 			throw new IllegalStateException("Null list return for feature " + ref.getName() + " on ");
-			// TODO
+			// TODO : EMFPlainEObjectTransition
 			// + me.getIdentifier());
 		} else {
 			int position1 = getRandomPosition(eList.size());
@@ -866,7 +866,7 @@ public final class IntegrationTestHelper {
 
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on ");
-				// TODO
+				// TODO : EMFPlainEObjectTransition
 				// + me.getIdentifier());
 
 			} else {

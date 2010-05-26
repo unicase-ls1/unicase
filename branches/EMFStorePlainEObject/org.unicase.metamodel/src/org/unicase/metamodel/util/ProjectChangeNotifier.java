@@ -91,6 +91,9 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			if (isAboutContainment(notification)) {
 				handleSingleAdd((EObject) notification.getNewValue());
 			}
+			else if (isAboutContainer(notification)) {
+				handleSingleRemove(notification, (EObject) notification.getNotifier());
+			}
 			// fire notification must be triggered after a (possible) create!
 			fireNotification(notification);
 			break;
@@ -112,6 +115,17 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			fireNotification(notification);
 			break;
 		}
+	}
+
+	private boolean isAboutContainer(Notification notification) {
+		Object feature = notification.getFeature();
+		if (feature instanceof EReference) {
+			EReference reference = (EReference) feature;
+			if (reference.isContainer()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void handleSingleRemove(Notification notification, EObject child) {
@@ -164,7 +178,6 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 
 	private void handleSingleAdd(EObject newValue) {
 		// this works only because the contains cache is not yet updated
-		// TODO: newValue is null, when deletion has taken place??
 		if (newValue instanceof EObjectToModelElementIdMapImpl || newValue == null) {
 			//do nothing
 			return;
@@ -176,13 +189,13 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			}
 			projectImpl.handleEMFModelElementAdded(projectImpl, newValue);
 		} else {
-			// TODO: sanity checks
+			// TODO: EMFPlainEObjectTransition: ModelElement class check
 //			if (newValue instanceof ModelElement) {
 //				if (projectImpl.getModelElementId(newValue) != newValue) {
 //					throw new IllegalStateException("Two elements with the same id but different instance detected!");
 //				}
 //			} else {
-//				// TODO
+//				// TODO: EMFPlainEObjectTransition: duplicate id sanity check?
 //				if (projectImpl.getModelElementId(newValue).getWrappedEObject() != newValue) {
 //					throw new IllegalStateException("Two elements with the same id but different instance detected!");
 //				}

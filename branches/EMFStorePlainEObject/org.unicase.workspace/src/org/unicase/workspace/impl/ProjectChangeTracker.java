@@ -153,7 +153,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			}
 			deleteOperation.setDelete(true);
 			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
-			deleteOperation.setModelElementId(deletedElementId);
+			deleteOperation.setModelElementId(ModelUtil.clone(deletedElementId));
 			deletedElementId = null;
 			// deleteOperation.setModelElementId(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 
@@ -195,8 +195,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 
-			deletedElementId = ModelUtil.clone(project.getModelElementId(modelElement));
-			// deleteOperation.setModelElementId(project.getModelElementId(modelElement));
+			deletedElementId = project.getModelElementId(modelElement);
 			deleteOperation.setClientDate(new Date());
 			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 		}
@@ -338,7 +337,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 */
 	private void appendCreator(EObject modelElement) {
 		stopChangeRecording();
-		// TODO
+		// TODO: EMFPlainEObjectTransition : getCreator
 		// if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
 		// Usersession usersession = projectSpace.getUsersession();
 		// // used when the project has not been shared yet

@@ -122,7 +122,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 
 	private void createNewGMFDiagram() {
 		String id = null;
-		// TODO: diagram type
+		// TODO : EMFPlainEObjectTransition: diagram type
 		/*
 		 * if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) { id = "UseCase"; } else if
 		 * (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) { id = "Model"; } else if

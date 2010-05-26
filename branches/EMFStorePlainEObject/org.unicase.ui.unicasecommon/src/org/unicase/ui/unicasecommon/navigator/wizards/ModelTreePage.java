@@ -146,7 +146,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 
 		if (o instanceof MEDiagram) {
 			wizard.setNewMEType(((MEDiagram) o).eClass());
-			// TODO: diagram type
+			// TODO : EMFPlainEObjectTransition: diagram type
 			// wizard.setNewDiagramType(((MEDiagram) o).getType());
 			wizard.setTreePageCompleted(true);
 			return true;

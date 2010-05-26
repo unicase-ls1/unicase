@@ -128,7 +128,7 @@ public class MECommentWidget extends Composite {
 		Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
 
 		final OrgUnit sender = comment.getSender();
-		// TODO: creator
+		// TODO : EMFPlainEObjectTransition: getCreator
 		if (sender == null) {
 			// commentAuthor.setText(comment.getCreator() + "");
 		} else {
@@ -146,7 +146,7 @@ public class MECommentWidget extends Composite {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		Label commentTime = new Label(commentTitleBar, SWT.WRAP);
-		// TODO: creation date
+		// TODO : EMFPlainEObjectTransition: creation date
 		// commentTime.setText(dateFormat.format(comment.getCreationDate()));
 
 		Composite commentTitleBarBorder = new Composite(this, SWT.NONE);

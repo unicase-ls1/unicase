@@ -73,7 +73,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		Object[] ret = new Object[DiagramType.values().length];
 		int i = 0;
 		for (DiagramType diagramType : DiagramType.values()) {
-			// TODO: create diagram
+			// TODO : EMFPlainEObjectTransition: create diagram
 			// MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
 			// createMEDiagram.setType(diagramType);
 			// createMEDiagram.setName(diagramType.getLiteral());

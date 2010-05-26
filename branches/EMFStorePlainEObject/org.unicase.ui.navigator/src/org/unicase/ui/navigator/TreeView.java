@@ -297,7 +297,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 					}
 
 					if (obj instanceof EObject) {
-						// / TODO
+						// / TODO:EMFPlainEObjectTransition
 						// getViewSite().getActionBars().getStatusLineManager().setMessage(
 						// ModelUtil.getProject((EObject) obj).getModelElementId(((EObject) obj)).getId());
 					}

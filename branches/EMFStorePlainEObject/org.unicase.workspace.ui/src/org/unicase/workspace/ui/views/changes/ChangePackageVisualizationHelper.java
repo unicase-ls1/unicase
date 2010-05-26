@@ -29,8 +29,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.ModelElementEObjectWrapper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -61,10 +59,11 @@ public class ChangePackageVisualizationHelper {
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages,
 			Project project) {
 		this.modelElementMap = new HashMap<ModelElementId, EObject>();
+		this.project = project;
 		for (ChangePackage changePackage : changePackages) {
 			initModelElementMap(changePackage);
 		}
-		this.project = project;
+
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -80,10 +79,9 @@ public class ChangePackageVisualizationHelper {
 						modelElement);
 				for (EObject sibling : ModelUtil.getAllContainedModelElements(
 						modelElement, false)) {
-					ModelElement siblingElement = project
-							.getModelElement(sibling);
-					modelElementMap.put(siblingElement.getModelElementId(),
-							siblingElement);
+					ModelElementId siblingId = project
+							.getModelElementId(sibling);
+					modelElementMap.put(siblingId, sibling);
 				}
 			}
 		}
@@ -100,11 +98,11 @@ public class ChangePackageVisualizationHelper {
 		if (modelElementId == null) {
 			return null;
 		} else if (project.contains(modelElementId)) {
-			ModelElement modelElement = project.getModelElement(modelElementId);
-			if (modelElement instanceof ModelElementEObjectWrapper) {
-				return ((ModelElementEObjectWrapper) modelElement)
-						.getWrappedEObject();
-			}
+			EObject modelElement = project.getModelElement(modelElementId);
+			// if (modelElement instanceof ModelElementEObjectWrapper) {
+			// return ((ModelElementEObjectWrapper) modelElement)
+			// .getWrappedEObject();
+			// }
 			return modelElement;
 		} else {
 			return modelElementMap.get(modelElementId);
@@ -306,12 +304,12 @@ public class ChangePackageVisualizationHelper {
 			return UNKOWN_ELEMENT;
 		}
 		String className;
-		if (modelElement instanceof ModelElementEObjectWrapper) {
-			className = ((ModelElementEObjectWrapper) modelElement)
-					.getWrappedEObject().eClass().getName();
-		} else {
-			className = modelElement.eClass().getName();
-		}
+		// if (modelElement instanceof ModelElementEObjectWrapper) {
+		// className = ((ModelElementEObjectWrapper) modelElement)
+		// .getWrappedEObject().eClass().getName();
+		// } else {
+		className = modelElement.eClass().getName();
+		// }
 		return className + " \""
 				+ trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
 	}

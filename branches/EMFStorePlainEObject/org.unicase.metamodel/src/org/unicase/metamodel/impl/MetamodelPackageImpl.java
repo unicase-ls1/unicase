@@ -69,6 +69,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	private EClass eObjectToModelElementIdMapEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eObjectToModelElementIdContainmentMapEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
 	 * EPackage.Registry} by the package package URI value.
 	 * <p>
@@ -164,6 +171,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProject_DeletedEObjectIdMap() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProject_DeletedModelElements() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -255,6 +280,33 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEObjectToModelElementIdContainmentMap() {
+		return eObjectToModelElementIdContainmentMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEObjectToModelElementIdContainmentMap_Key() {
+		return (EReference) eObjectToModelElementIdContainmentMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEObjectToModelElementIdContainmentMap_Value() {
+		return (EReference) eObjectToModelElementIdContainmentMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -284,6 +336,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
 		createEReference(projectEClass, PROJECT__EOBJECTS_ID_MAP);
 		createEReference(projectEClass, PROJECT__NEW_EOBJECTS_ID_MAP);
+		createEReference(projectEClass, PROJECT__DELETED_EOBJECT_ID_MAP);
+		createEReference(projectEClass, PROJECT__DELETED_MODEL_ELEMENTS);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -301,6 +355,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		eObjectToModelElementIdMapEClass = createEClass(EOBJECT_TO_MODEL_ELEMENT_ID_MAP);
 		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY);
 		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE);
+
+		eObjectToModelElementIdContainmentMapEClass = createEClass(EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP);
+		createEReference(eObjectToModelElementIdContainmentMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__KEY);
+		createEReference(eObjectToModelElementIdContainmentMapEClass,
+			EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__VALUE);
 	}
 
 	/**
@@ -343,6 +402,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getProject_NewEObjectsIdMap(), this.getEObjectToModelElementIdMap(), null, "newEObjectsIdMap",
 			null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_DeletedEObjectIdMap(), this.getEObjectToModelElementIdMap(), null,
+			"deletedEObjectIdMap", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getProject_DeletedModelElements(), ecorePackage.getEObject(), null, "deletedModelElements",
+			null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -375,6 +440,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEObjectToModelElementIdMap_Value(), this.getModelElementId(), null, "value", null, 0, 1,
 			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eObjectToModelElementIdContainmentMapEClass, Map.Entry.class,
+			"EObjectToModelElementIdContainmentMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEObjectToModelElementIdContainmentMap_Key(), ecorePackage.getEObject(), null, "key", null, 0,
+			1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEObjectToModelElementIdContainmentMap_Value(), this.getModelElementId(), null, "value", null,
+			0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

@@ -108,12 +108,30 @@ public interface MetamodelPackage extends EPackage {
 	int PROJECT__NEW_EOBJECTS_ID_MAP = 2;
 
 	/**
+	 * The feature id for the '<em><b>Deleted EObject Id Map</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_EOBJECT_ID_MAP = 3;
+
+	/**
+	 * The feature id for the '<em><b>Deleted Model Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_MODEL_ELEMENTS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 3;
+	int PROJECT_FEATURE_COUNT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -256,6 +274,43 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int EOBJECT_TO_MODEL_ELEMENT_ID_MAP_FEATURE_COUNT = 2;
 
+	/**
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.EObjectToModelElementIdContainmentMapImpl <em>EObject To Model Element Id Containment Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.metamodel.impl.EObjectToModelElementIdContainmentMapImpl
+	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getEObjectToModelElementIdContainmentMap()
+	 * @generated
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP = 7;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EObject To Model Element Id Containment Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP_FEATURE_COUNT = 2;
+
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
 
 	/**
@@ -300,6 +355,28 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_NewEObjectsIdMap();
+
+	/**
+	 * Returns the meta object for the map '{@link org.unicase.metamodel.Project#getDeletedEObjectIdMap <em>Deleted EObject Id Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Deleted EObject Id Map</em>'.
+	 * @see org.unicase.metamodel.Project#getDeletedEObjectIdMap()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_DeletedEObjectIdMap();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.metamodel.Project#getDeletedModelElements <em>Deleted Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Deleted Model Elements</em>'.
+	 * @see org.unicase.metamodel.Project#getDeletedModelElements()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_DeletedModelElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.UniqueIdentifier <em>Unique Identifier</em>}'.
@@ -413,6 +490,40 @@ public interface MetamodelPackage extends EPackage {
 	EReference getEObjectToModelElementIdMap_Value();
 
 	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EObject To Model Element Id Containment Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EObject To Model Element Id Containment Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="org.eclipse.emf.ecore.EObject" keyContainment="true" keyResolveProxies="true"
+	 *        valueType="org.unicase.metamodel.ModelElementId" valueContainment="true" valueResolveProxies="true"
+	 * @generated
+	 */
+	EClass getEObjectToModelElementIdContainmentMap();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEObjectToModelElementIdContainmentMap()
+	 * @generated
+	 */
+	EReference getEObjectToModelElementIdContainmentMap_Key();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEObjectToModelElementIdContainmentMap()
+	 * @generated
+	 */
+	EReference getEObjectToModelElementIdContainmentMap_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -465,6 +576,22 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__NEW_EOBJECTS_ID_MAP = eINSTANCE.getProject_NewEObjectsIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Deleted EObject Id Map</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__DELETED_EOBJECT_ID_MAP = eINSTANCE.getProject_DeletedEObjectIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Deleted Model Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__DELETED_MODEL_ELEMENTS = eINSTANCE.getProject_DeletedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.metamodel.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}' class.
@@ -560,6 +687,34 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE = eINSTANCE.getEObjectToModelElementIdMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.EObjectToModelElementIdContainmentMapImpl <em>EObject To Model Element Id Containment Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.metamodel.impl.EObjectToModelElementIdContainmentMapImpl
+		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getEObjectToModelElementIdContainmentMap()
+		 * @generated
+		 */
+		EClass EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP = eINSTANCE.getEObjectToModelElementIdContainmentMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__KEY = eINSTANCE
+			.getEObjectToModelElementIdContainmentMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__VALUE = eINSTANCE
+			.getEObjectToModelElementIdContainmentMap_Value();
 
 	}
 

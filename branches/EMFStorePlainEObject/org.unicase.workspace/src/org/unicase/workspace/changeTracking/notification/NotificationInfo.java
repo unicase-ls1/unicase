@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -399,41 +397,6 @@ public class NotificationInfo implements Notification {
 	 */
 	public EObject getOldModelElementValue() {
 		return (EObject) notification.getOldValue();
-	}
-
-	/**
-	 * @return the id of the old value.
-	 */
-	public ModelElementId getOldModelElementValueId() {
-		EObject oldValue = (EObject) notification.getOldValue();
-
-		if (oldValue instanceof ModelElementId) {
-			return (ModelElementId) oldValue; // ModelUtil.getProject(oldValue).getModelElementId(oldValue);
-		} else {
-			Project project = ModelUtil.getProject(getNotifierModelElement());
-			return project.getModelElementId(oldValue);
-		}
-
-		// `if (oldValue instanceof ModelElement) {
-		// return ((ModelElement) oldValue).getModelElementId();
-		// } else {
-		// Project project = getNotifierModelElement().getProject();
-		// return project.getModelElementId(oldValue).getModelElementId();
-		// }
-	}
-
-	/**
-	 * @return the id of the old value.
-	 */
-	public ModelElementId getNewModelElementValueId() {
-		EObject newValue = (EObject) notification.getNewValue();
-		return ModelUtil.getProject(newValue).getModelElementId(newValue);
-		// if (newValue instanceof ModelElement) {
-		// return ((ModelElement) newValue).getModelElementId();
-		// } else {
-		// Project project = getNotifierModelElement().getProject();
-		// return project.getModelElementId(newValue).getModelElementId();
-		// }
 	}
 
 	/**

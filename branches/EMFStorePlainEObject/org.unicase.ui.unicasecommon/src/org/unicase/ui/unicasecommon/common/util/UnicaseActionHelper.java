@@ -141,7 +141,7 @@ public final class UnicaseActionHelper {
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
 
 		String id = null;
-		// TODO: diagram type
+		// TODO : EMFPlainEObjectTransition: diagram type
 		/*
 		 * if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) { id =
 		 * "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID"; } else if

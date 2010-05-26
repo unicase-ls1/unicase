@@ -95,8 +95,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		assessmentListener = new AssessmentListener();
 		proposalListener = new ProposalListener();
 
-		// TODO: add listeners
-
+		// TODO: EMFPlainEObjectTransition: handle ModelElementChangeListeners
 		// issue.addModelElementChangeListener(issueListener);
 		for (Criterion criterion : issue.getCriteria()) {
 			// criterion.addModelElementChangeListener(criterionListener);
@@ -149,7 +148,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 		disposeControls();
 
-		// TODO: dispose listeners
+		// TODO: EMFPlainEObjectTransition: dispose listeners
 
 		if (issue != null) {
 			for (Proposal proposal : issue.getProposals()) {
@@ -296,7 +295,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				assessment.setName("new Assessment");
 				assessment.setProposal(p);
 				assessment.setCriterion(c);
-				// TODO: listeners
+				// TODO : EMFPlainEObjectTransition: listeners
 				// assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}.run();
@@ -337,7 +336,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		c.layout();
 	}
 
-	// TODO: listeners
+	// TODO: EMFPlainEObjectTransition: listeners
 	private void removeAssessmentListener(Proposal proposal) {
 		// proposal.removeModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
@@ -347,7 +346,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		}
 	}
 
-	// TODO: listeners
+	// TODO: EMFPlainEObjectTransition: listeners
 	private void removeAssessmentListener(Criterion criterion) {
 		// criterion.removeModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {
@@ -357,7 +356,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		}
 	}
 
-	// TODO: listeners
+	// TODO: EMFPlainEObjectTransition: ModelElementChangeListener
 	private void addAssessmentListener(Proposal proposal) {
 		// proposal.addModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
@@ -367,7 +366,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 		}
 	}
 
-	// TODO: listeners
+	// TODO: EMFPlainEObjectTransition: ModelElementChangeListener
 	private void addAssessmentListener(Criterion criterion) {
 		// criterion.addModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {

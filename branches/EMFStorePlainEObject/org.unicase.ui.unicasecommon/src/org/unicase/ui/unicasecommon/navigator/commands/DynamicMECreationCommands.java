@@ -84,7 +84,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 			}
 			// set the DiagramType Parameter if the object is a MEiagram
 			if (contentTypes[i] instanceof DiagramType) {
-				// TODO: create diagram
+				// TODO : EMFPlainEObjectTransition: create diagram
 				// MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
 				DiagramType type = (DiagramType) contentTypes[i];
 				// map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
@@ -120,7 +120,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		for (UnicaseModelElement me : leafSection.getModelElements()) {
 			Object key = null;
 			// separated count for the different diagram types
-			// TODO: diagram type
+			// TODO : EMFPlainEObjectTransition diagram type
 			if (me instanceof MEDiagram) {
 				// DiagramType type = ((MEDiagram) me).getType();
 				// key = type;
