@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.meeditor;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -67,6 +68,16 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+	/**
+	 *Logs exception.
+	 * 
+	 * @param e
+	 */
+	public static void logException(Exception e) {
+		getDefault().getLog().log(
+			new Status(Status.ERROR, Activator.getDefault().getBundle().getSymbolicName(), e.getMessage(), e));
 	}
 
 }

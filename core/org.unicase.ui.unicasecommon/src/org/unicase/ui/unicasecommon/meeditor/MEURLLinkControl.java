@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
@@ -36,8 +37,7 @@ public class MEURLLinkControl extends MELinkControl {
 	 *      org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
-		ModelElement contextModelElement2) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
 		if (link2 instanceof UrlAttachment) {
 			return PRIORITY;
 		} else {

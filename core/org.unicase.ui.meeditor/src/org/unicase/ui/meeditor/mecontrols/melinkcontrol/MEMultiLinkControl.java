@@ -94,7 +94,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 						MELinkControl meControl = controlFactory.createMELinkControl(getItemPropertyDescriptor(), me,
 							getModelElement());
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
-							getItemPropertyDescriptor(), me, getModelElement(), getToolkit());
+							getItemPropertyDescriptor(), me, (ModelElement) getModelElement(), getToolkit());
 						linkControls.add(meControl);
 					}
 				}
@@ -153,8 +153,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor()));
-		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor()));
+		toolBarManager.add(new AddReferenceAction((ModelElement) getModelElement(), eReference,
+			getItemPropertyDescriptor()));
+		toolBarManager.add(new NewReferenceAction((ModelElement) getModelElement(), eReference,
+			getItemPropertyDescriptor()));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
@@ -170,7 +172,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		modelElementChangeListener = new ModelElementChangeListener() {
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				getModelElement().removeModelElementChangeListener(modelElementChangeListener);
+				((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
 
 			}
 
@@ -182,7 +184,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 			}
 		};
-		getModelElement().addModelElementChangeListener(modelElementChangeListener);
+		((ModelElement) getModelElement()).addModelElementChangeListener(modelElementChangeListener);
 
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
@@ -234,7 +236,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		getModelElement().removeModelElementChangeListener(modelElementChangeListener);
+		((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
@@ -244,7 +246,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	}
 
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference
 			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())

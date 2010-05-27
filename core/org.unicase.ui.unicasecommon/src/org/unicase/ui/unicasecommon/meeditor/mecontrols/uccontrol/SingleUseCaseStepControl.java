@@ -40,6 +40,7 @@ import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -47,7 +48,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class SingleUseCaseStepControl extends AbstractMEControl {
+public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 
 	private EReference reference;
 	private Composite parentComposite;
