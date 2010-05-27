@@ -3,6 +3,7 @@
 0.5.31.nightly:
   * EMFStore will ignore (and only log) Exceptions from the package registry when 
 EPackages are loaded
+  * New extension point for default server infos and certificates added to workspace plugin
 
 (0.5.30.nightly: version was never available at update site, version number skipped)
 
