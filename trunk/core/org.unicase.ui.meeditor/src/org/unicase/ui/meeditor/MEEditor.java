@@ -30,7 +30,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * GUI view for editing MEs.
@@ -80,7 +79,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			addPage(mePage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
-			WorkspaceUtil.logException(e.getMessage(), e);
+			Activator.logException(e);
 		}
 
 		// Add the pages from the extension point
@@ -98,7 +97,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					addPage(createPage);
 				}
 			} catch (CoreException e1) {
-				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
+				Activator.logException(e1);
 			}
 		}
 		// commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
@@ -208,7 +207,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					this.statusMessageProvider = statusMessageProvider;
 				}
 			} catch (CoreException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
+				Activator.logException(e1);
 			}
 		}
 	}
