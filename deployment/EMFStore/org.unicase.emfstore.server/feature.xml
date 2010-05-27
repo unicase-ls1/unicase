@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.server"
       label="EMFStore Server Feature"
-      version="0.5.29.nightly"
+      version="0.5.31.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
@@ -227,7 +227,7 @@ litigation.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.2" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
-      <import plugin="org.unicase.metamodel" version="0.5.29.nightly" match="greaterOrEqual"/>
+      <import plugin="org.unicase.metamodel" version="0.5.31.nightly" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
    </requires>
 
@@ -235,13 +235,13 @@ litigation.
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.5.29.nightly"/>
+         version="0.5.31.nightly"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="0.5.29.nightly"
+         version="0.5.31.nightly"
          unpack="false"/>
 
 </feature>
