@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 public class PageCandidate {
 
@@ -73,8 +72,8 @@ public class PageCandidate {
 
 		// Entry the page into the candidates map. Log an exception if there are colliding names
 		if (candidates.containsKey(name)) {
-			WorkspaceUtil.logException("Two pages to be added to the MEEditor have the same name (" + name
-				+ ")! One of them will not be visible.", new Exception());
+			Activator.logException(new Exception("Two pages to be added to the MEEditor have the same name (" + name
+				+ ")! One of them will not be visible."));
 		}
 		candidates.put(name, this);
 	}

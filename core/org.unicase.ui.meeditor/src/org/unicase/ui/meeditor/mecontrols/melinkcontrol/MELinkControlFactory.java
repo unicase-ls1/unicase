@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.ui.meeditor.Activator;
 
 public class MELinkControlFactory {
 	private HashMap<Class<?>, ArrayList<MELinkControl>> controlRegistry;
@@ -36,9 +36,9 @@ public class MELinkControlFactory {
 				controlRegistry.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
+				Activator.logException(e1);
 			} catch (CoreException e2) {
-				WorkspaceUtil.logException(e2.getMessage(), e2);
+				Activator.logException(e2);
 			}
 		}
 

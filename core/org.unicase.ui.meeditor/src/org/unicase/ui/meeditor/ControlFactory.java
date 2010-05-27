@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Factory for generating {@link AbstractMEControl}'s according to a {@link IItemPropertyDescriptor}.
@@ -65,9 +64,9 @@ public class ControlFactory {
 				controlRegistry.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
-				WorkspaceUtil.logException(e1.getMessage(), e1);
+				Activator.logException(e1);
 			} catch (CoreException e2) {
-				WorkspaceUtil.logException(e2.getMessage(), e2);
+				Activator.logException(e2);
 			}
 		}
 
