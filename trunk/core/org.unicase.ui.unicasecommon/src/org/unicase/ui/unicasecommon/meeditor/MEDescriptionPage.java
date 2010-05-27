@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -20,7 +21,6 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.MEEditor;
@@ -96,7 +96,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
+	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {
 			this.modelElement = (UnicaseModelElement) modelElement;
 		} else {
