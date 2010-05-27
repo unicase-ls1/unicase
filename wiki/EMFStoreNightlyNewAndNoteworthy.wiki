@@ -1,7 +1,10 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
-0.5.30.nightly:
-  * EMFStore will ignore (and only log) Exceptions from the package registry when EPackages are loaded
+0.5.31.nightly:
+  * EMFStore will ignore (and only log) Exceptions from the package registry when 
+EPackages are loaded
+
+(0.5.30.nightly: version was never available at update site, version number skipped)
 
 0.5.29.nightly:
   * Backchannel Feature split into two features: client and server
