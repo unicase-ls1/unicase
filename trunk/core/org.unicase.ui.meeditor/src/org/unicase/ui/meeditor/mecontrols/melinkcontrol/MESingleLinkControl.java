@@ -92,7 +92,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 			}
 		};
 
-		getModelElement().addModelElementChangeListener(modelElementChangeListener);
+		((ModelElement) getModelElement()).addModelElementChangeListener(modelElementChangeListener);
 
 		return composite;
 	}
@@ -104,10 +104,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	protected List<Action> initActions() {
 		List<Action> result = new ArrayList<Action>();
-		AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
+		AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
 			getItemPropertyDescriptor());
 		result.add(addAction);
-		NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
+		NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
 			getItemPropertyDescriptor());
 		result.add(newAction);
 		return result;
@@ -152,10 +152,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				if (opposite != null && opposite instanceof ModelElement) {
 					MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
-					meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(),
-						(ModelElement) opposite, getModelElement());
+					meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(), opposite,
+						getModelElement());
 					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), (ModelElement) opposite,
-						getModelElement(), getToolkit());
+						(ModelElement) getModelElement(), getToolkit());
 				} else {
 					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setBackground(parent.getBackground());
@@ -173,7 +173,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		getModelElement().removeModelElementChangeListener(modelElementChangeListener);
+		((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
 		if (meControl != null) {
 			meControl.dispose();
 		}
@@ -181,7 +181,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	}
 
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference && !((EReference) feature).isMany()
 			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())) {

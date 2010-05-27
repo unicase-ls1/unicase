@@ -38,6 +38,7 @@ import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -50,7 +51,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author shterev
  * @author nagel
  */
-public class MEURLControl extends AbstractMEControl {
+public class MEURLControl extends AbstractUnicaseMEControl {
 	private static final int PRIORITY = 2;
 
 	/**

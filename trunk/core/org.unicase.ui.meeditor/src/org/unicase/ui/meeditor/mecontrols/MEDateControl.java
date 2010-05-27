@@ -10,6 +10,7 @@ import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -27,7 +28,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -84,6 +84,7 @@ public class MEDateControl extends AbstractMEControl {
 					@Override
 					protected void doRun() {
 						getModelElement().eSet(attribute, new Date());
+
 					}
 				}.run();
 			}
@@ -167,7 +168,7 @@ public class MEDateControl extends AbstractMEControl {
 	}
 
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		return PRIORITY;
 	}
 }

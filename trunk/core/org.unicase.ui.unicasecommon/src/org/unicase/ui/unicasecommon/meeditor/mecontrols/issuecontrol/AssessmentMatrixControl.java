@@ -36,6 +36,7 @@ import org.unicase.model.rationale.impl.RationaleFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -43,7 +44,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class AssessmentMatrixControl extends AbstractMEControl {
+public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 
 	private static final int MAX_LENGTH_CRITERIA_NAME = 20;
 	private static final int PRIORITY = 2;

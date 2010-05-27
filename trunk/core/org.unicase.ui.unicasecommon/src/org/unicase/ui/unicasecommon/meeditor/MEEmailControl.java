@@ -23,11 +23,12 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
  * @author hamid Control for an email attribute. Includes a button to send an email.
  */
-public class MEEmailControl extends AbstractMEControl {
+public class MEEmailControl extends AbstractUnicaseMEControl {
 	private METextControl meAreaControl;
 
 	/**

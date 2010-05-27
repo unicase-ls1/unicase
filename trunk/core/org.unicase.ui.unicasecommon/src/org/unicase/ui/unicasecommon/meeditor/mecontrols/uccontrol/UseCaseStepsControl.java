@@ -27,7 +27,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -35,7 +35,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class UseCaseStepsControl extends AbstractMEControl {
+public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 
 	private static final int PRIORITY = 2;
 

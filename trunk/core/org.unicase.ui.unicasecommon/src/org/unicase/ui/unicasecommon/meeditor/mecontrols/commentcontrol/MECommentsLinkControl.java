@@ -35,6 +35,7 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -43,7 +44,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class MECommentsLinkControl extends AbstractMEControl {
+public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	/**
 	 * Project Changeobserever for comment thread.
 	 * 

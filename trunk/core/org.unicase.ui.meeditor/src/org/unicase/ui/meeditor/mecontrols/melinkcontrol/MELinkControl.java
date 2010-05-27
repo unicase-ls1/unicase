@@ -8,6 +8,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -160,8 +161,7 @@ public class MELinkControl {
 		}
 	}
 
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
-		ModelElement contextModelElement2) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
 		return 0;
 	}
 

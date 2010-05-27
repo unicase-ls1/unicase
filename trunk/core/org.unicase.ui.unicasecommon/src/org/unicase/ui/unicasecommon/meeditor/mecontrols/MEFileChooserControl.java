@@ -43,14 +43,13 @@ import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.filetransfer.FileTransferUtil;
 
 /**
  * @author pfeifferc
  */
-public class MEFileChooserControl extends AbstractMEControl {
+public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
 		+ "\nThe file attachment will be transferred when online. "
