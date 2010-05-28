@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.ui.stem;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.stem.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.ui.tableview;bundle-version="1.0.0.qualifier",
+Require-Bundle: org.unicase.ui.tableview,
  org.unicase.ui.unicasecommon
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
