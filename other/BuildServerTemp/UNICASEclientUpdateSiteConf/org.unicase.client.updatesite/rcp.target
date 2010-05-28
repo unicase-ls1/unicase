@@ -21,6 +21,10 @@
 <repository location="http://download.eclipse.org/releases/galileo"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.2"/>
+<repository location="http://unicase.googlecode.com/svn/updatesite/internal/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
 <unit id="org.eclipse.platform.ide" version="3.5.1.M20090917-0800"/>
 <unit id="org.eclipse.sdk.feature.group" version="3.5.1.R35x_v20090811-7Q7bAIBPVUBVbKSMTyyfpOteKTem7_g2paS1__z-Rrmf4"/>
 <unit id="org.eclipse.gmf.feature.group" version="1.2.1.v20090729-2029-7d8D7CFXwnKwGb_GGuSCBqELpPk0"/>
@@ -30,3 +34,4 @@
 <location path="/home/unicase/Desktop/eclipsemodelling" type="Directory"/>
 </locations>
 </target>
+
