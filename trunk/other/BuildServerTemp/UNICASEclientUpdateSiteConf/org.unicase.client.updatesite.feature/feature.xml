@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client.updatesite.feature"
       label="UNICASE Feature"
-      version="0.4.4.qualifier">
+      version="0.4.3.qualifier">
 
    <description url="http://www.example.com/description">
       UNICASE Client feature
