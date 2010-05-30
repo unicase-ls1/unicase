@@ -19,6 +19,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -33,22 +34,28 @@ public class ContainmentNotificationTest extends NotificationTest {
 	@Test
 	public void moveOnSameFeature() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(useCase);
+		new UnicaseCommand() {
 
-		useCase.setName("testUseCase");
-		section1.getModelElements().add(useCase);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(useCase);
 
-		// reattach usecase to another leaf section
-		// section2.getModelElements().add(useCase);
-		useCase.setLeafSection(section2);
+				useCase.setName("testUseCase");
+				section1.getModelElements().add(useCase);
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// reattach usecase to another leaf section
+				// section2.getModelElements().add(useCase);
+				useCase.setLeafSection(section2);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one SET notification is expected, resetting the leaf section
@@ -83,21 +90,27 @@ public class ContainmentNotificationTest extends NotificationTest {
 	@Test
 	public void moveOnDifferentFeatures() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		FunctionalRequirement req = RequirementFactory.eINSTANCE.createFunctionalRequirement();
-		FunctionalRequirement child = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final FunctionalRequirement req = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+		final FunctionalRequirement child = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(req);
-		getProject().addModelElement(child);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(child);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(req);
+				getProject().addModelElement(child);
 
-		// reattach child to a functional requirement
-		// req.getRefiningRequirements().add(child);
-		child.setRefinedRequirement(req);
+				section.getModelElements().add(child);
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// reattach child to a functional requirement
+				// req.getRefiningRequirements().add(child);
+				child.setRefinedRequirement(req);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// one REMOVE and two SET notification are expected, resetting the leaf section to "null" and the refined req to

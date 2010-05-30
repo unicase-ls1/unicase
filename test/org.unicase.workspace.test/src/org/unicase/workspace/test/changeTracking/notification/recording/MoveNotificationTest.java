@@ -17,6 +17,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -31,26 +32,32 @@ public class MoveNotificationTest extends NotificationTest {
 	@Test
 	public void changeList() {
 
-		Actor actor1 = RequirementFactory.eINSTANCE.createActor();
-		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor1 = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor1);
-		getProject().addModelElement(actor2);
+		new UnicaseCommand() {
 
-		actor1.setName("testActor1");
-		actor2.setName("testActor2");
-		useCase.setName("testUseCase");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor1);
+				getProject().addModelElement(actor2);
 
-		// notifications from this operations are tested
-		useCase.getParticipatingActors().add(actor1);
-		useCase.getParticipatingActors().add(actor2);
+				actor1.setName("testActor1");
+				actor2.setName("testActor2");
+				useCase.setName("testUseCase");
 
-		// now move actor 2 to top of the list
-		useCase.getParticipatingActors().move(0, actor2);
+				// notifications from this operations are tested
+				useCase.getParticipatingActors().add(actor1);
+				useCase.getParticipatingActors().add(actor2);
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// now move actor 2 to top of the list
+				useCase.getParticipatingActors().move(0, actor2);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one MOVE notification is expected

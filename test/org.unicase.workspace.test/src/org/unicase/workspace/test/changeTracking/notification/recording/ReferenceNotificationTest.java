@@ -20,6 +20,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -33,23 +34,29 @@ public class ReferenceNotificationTest extends NotificationTest {
 	 */
 	@Test
 	public void changeReference1toN() {
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+			@Override
+			protected void doRun() {
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		actor.setName("testActor");
-		useCase.setName("testUseCase");
+				actor.setName("testActor");
+				useCase.setName("testUseCase");
 
-		// notifications from this operations are tested
-		useCase.setInitiatingActor(actor);
+				// notifications from this operations are tested
+				useCase.setInitiatingActor(actor);
+			}
+		}.run();
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// exactly one SET notification is expected with attribute feature "initiatingActor" on our useCase and newValue
+		// exactly one SET notification is expected with attribute feature "initiatingActor" on our useCase and
+		// newValue
 		// actor
 
 		// due to refactoring and removing the bidirectional filter two notifications are expected.
@@ -89,19 +96,26 @@ public class ReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void addReferenceNto1() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase.setName("testUseCase");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		actor.getInitiatedUseCases().add(useCase);
+				actor.setName("testActor");
+				useCase.setName("testUseCase");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getInitiatedUseCases().add(useCase);
+
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one ADD notification is expected
@@ -133,19 +147,25 @@ public class ReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void addReferenceNtoN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase.setName("testUseCase");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		useCase.getParticipatingActors().add(actor);
+				actor.setName("testActor");
+				useCase.setName("testUseCase");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				useCase.getParticipatingActors().add(actor);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly two ADD notification is expected
@@ -175,26 +195,27 @@ public class ReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void removeReferenceNto1() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase.setName("testUseCase");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		actor.getInitiatedUseCases().add(useCase);
-		actor.getInitiatedUseCases().remove(useCase);
+				actor.setName("testActor");
+				useCase.setName("testUseCase");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getInitiatedUseCases().add(useCase);
+				actor.getInitiatedUseCases().remove(useCase);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-
-		// was has set mit bidi zu tun?
-		// for (NotificationInfo info : rec) {
-		// System.out.println(info);
-		// }
 
 		// exactly one REMOVE notification is expected from the actor
 
@@ -224,20 +245,26 @@ public class ReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void removeReferenceNtoN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase.setName("testUseCase");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		useCase.getParticipatingActors().add(actor);
-		useCase.getParticipatingActors().remove(actor);
+				actor.setName("testActor");
+				useCase.setName("testUseCase");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				useCase.getParticipatingActors().add(actor);
+				useCase.getParticipatingActors().remove(actor);
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly two REMOVE notifications are expected

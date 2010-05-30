@@ -7,6 +7,7 @@ package org.unicase.workspace.test.changeTracking.canonization;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -20,13 +21,15 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests canonization of composite operations.
  * 
  * @author chodnick
  */
-public class CompositeTest extends CanonizationTest {
+public class CompositeTest extends WorkspaceTest {
 
 	/**
 	 * Tests canonization of empty composite operations.
@@ -36,14 +39,30 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void emptyComposite() throws InvalidHandleException {
 
-		// create an empty composite, should be canonized out
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
-		handle.end("sectionCreation", "description", null);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				// create an empty composite, should be canonized out
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				try {
+					handle.end("sectionCreation", "description", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(operations.size(), 1);
-		OperationsCanonizer.canonize(operations);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
+
 		assertEquals(operations.size(), 0);
 
 	}
@@ -56,32 +75,54 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void noOpComposite() throws InvalidHandleException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		Project expectedProject = ModelUtil.clone(getProject());
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
+			}
+		}.run();
+
+		final Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				clearOperations();
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 
-		useCase.setName("A");
-		useCase.setName("B");
-		useCase.setName("C");
-		useCase.setName("oldName");
+				useCase.setName("A");
+				useCase.setName("B");
+				useCase.setName("C");
+				useCase.setName("oldName");
 
-		assertEquals("oldName", useCase.getName());
+				assertEquals("oldName", useCase.getName());
 
-		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		handle.end("blubb", "blibb", null);
+				try {
+					handle.end("blubb", "blibb", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
+
 		// should not have left any operations, we were just resetting the name to its original value
-		OperationsCanonizer.canonize(operations);
 		assertEquals(operations.size(), 0);
 
 	}
@@ -94,35 +135,57 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void multiFeatureNoOpComposite() throws InvalidHandleException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
-		useCase.setDescription("oldDescription");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		Project expectedProject = ModelUtil.clone(getProject());
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
+				useCase.setDescription("oldDescription");
+			}
+		}.run();
+
+		final Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				clearOperations();
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 
-		useCase.setName("A");
-		useCase.setDescription("X");
-		useCase.setName("B");
-		useCase.setDescription("Y");
-		useCase.setName("C");
+				useCase.setName("A");
+				useCase.setDescription("X");
+				useCase.setName("B");
+				useCase.setDescription("Y");
+				useCase.setName("C");
 
-		useCase.setDescription("oldDescription");
-		useCase.setName("oldName");
+				useCase.setDescription("oldDescription");
+				useCase.setName("oldName");
 
-		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		handle.end("blubb", "blibb", null);
+				try {
+					handle.end("blubb", "blibb", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
+
 		// should not have left any operations, we were just resetting the name to its original value
-		OperationsCanonizer.canonize(operations);
 		assertEquals(operations.size(), 0);
 
 	}
@@ -135,25 +198,41 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void mainDeleteCompositeImplicitRestore() throws InvalidHandleException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
+				clearOperations();
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 
-		useCase.setName("A");
-		useCase.setName("B");
-		useCase.setName("newName");
+				useCase.setName("A");
+				useCase.setName("B");
+				useCase.setName("newName");
 
-		handle.end("blubb", "blibb", null);
+				try {
+					handle.end("blubb", "blibb", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
-		CompositeOperation comp = (CompositeOperation) operations.get(0);
-		comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
-		OperationsCanonizer.canonize(operations);
+		final CompositeOperation comp = (CompositeOperation) operations.get(0);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
+
 		// the main one was a candidate for removal, but since it is the main one, it may not be touched
 		// in this case it will not even be modified
 		assertTrue(comp.getSubOperations().contains(comp.getMainOperation()));
@@ -167,25 +246,42 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void mainDeleteCompositeImplicitMainOpModification() throws InvalidHandleException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				clearOperations();
 
-		useCase.setName("A");
-		useCase.setName("B");
-		useCase.setName("newName");
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 
-		handle.end("blubb", "blibb", null);
+				useCase.setName("A");
+				useCase.setName("B");
+				useCase.setName("newName");
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+				try {
+					handle.end("blubb", "blibb", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
+
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
-		CompositeOperation comp = (CompositeOperation) operations.get(0);
-		comp.setMainOperation(comp.getSubOperations().get(0)); // setName to from "oldName" to "A"
-		OperationsCanonizer.canonize(operations);
+		final CompositeOperation comp = (CompositeOperation) operations.get(0);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				comp.setMainOperation(comp.getSubOperations().get(0)); // setName to from "oldName" to "A"
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
+
 		// the main one was a candidate for removal, but since it is the main one, it may not be removed
 		// it might have been altered though (newValue, oldValue etc., might have changed in the canonization
 		// process)
@@ -200,25 +296,40 @@ public class CompositeTest extends CanonizationTest {
 	@Test
 	public void mainDeleteNoOpComposite() throws InvalidHandleException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				clearOperations();
 
-		useCase.setName("A");
-		useCase.setName("B");
-		useCase.setName("oldName");
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 
-		handle.end("blubb", "blibb", null);
+				useCase.setName("A");
+				useCase.setName("B");
+				useCase.setName("oldName");
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
+				try {
+					handle.end("blubb", "blibb", null);
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
+
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
-		CompositeOperation comp = (CompositeOperation) operations.get(0);
-		comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
-		OperationsCanonizer.canonize(operations);
+		final CompositeOperation comp = (CompositeOperation) operations.get(0);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
 		// since this composite is a noop, everything should have been removed
 		assertEquals(comp.getSubOperations().size(), 0);
 	}
