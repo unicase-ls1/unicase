@@ -46,7 +46,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -65,7 +64,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author helming
  */
-public class TreeView extends ViewPart implements ProjectChangeObserver, ISelectionListener { // implements
+public class TreeView extends ViewPart implements ISelectionListener { // implements
 	// IShowInSource
 
 	private static TreeViewer viewer;
@@ -76,7 +75,6 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	private PartListener partListener;
 	private Workspace currentWorkspace;
 	private AdapterImpl workspaceListenerAdapter;
-	private boolean shouldRefresh;
 	private SimpleOperationListener simpleOperationListener;
 	private boolean internalSelectionEvent;
 
@@ -87,7 +85,6 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		createOperationListener();
 		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
-			projectSpace.getProject().addProjectChangeObserver(this);
 			projectSpace.addOperationListener(simpleOperationListener);
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
@@ -98,12 +95,10 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 					if (msg.getEventType() == Notification.ADD
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
-						projectSpace.getProject().addProjectChangeObserver(TreeView.this);
 						projectSpace.addOperationListener(simpleOperationListener);
 					} else if (msg.getEventType() == Notification.REMOVE
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
-						projectSpace.getProject().removeProjectChangeObserver(TreeView.this);
 						projectSpace.removeOperationListener(simpleOperationListener);
 					}
 				}
@@ -145,9 +140,6 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	public void dispose() {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().removeSelectionListener(this);
 		getSite().getPage().removePartListener(partListener);
-		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
-			projectSpace.getProject().removeProjectChangeObserver(this);
-		}
 		currentWorkspace.eAdapters().remove(workspaceListenerAdapter);
 		super.dispose();
 	}
@@ -515,46 +507,6 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		public void partVisible(IWorkbenchPartReference partRef) {
 		}
 
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		if (modelElement.eContainer().equals(project)) {
-			Runnable runnable = new Runnable() {
-				public void run() {
-					viewer.refresh();
-				}
-			};
-
-			Display.getDefault().asyncExec(runnable);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		if (shouldRefresh) {
-			viewer.refresh();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		shouldRefresh = false;
-		if (modelElement.eContainer().equals(project)) {
-			shouldRefresh = true;
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
 	}
 
 	/**
