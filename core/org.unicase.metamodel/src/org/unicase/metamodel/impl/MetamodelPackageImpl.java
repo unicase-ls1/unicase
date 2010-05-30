@@ -186,6 +186,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * 
 	 * @generated
 	 */
+	public EReference getProject_CutElements() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getUniqueIdentifier() {
 		return uniqueIdentifierEClass;
 	}
@@ -287,6 +296,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
+		createEReference(projectEClass, PROJECT__CUT_ELEMENTS);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -347,6 +357,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		getProject_ModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getProject_CutElements(), this.getModelElement(), null, "cutElements", null, 0, -1,
+			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getProject_CutElements().getEKeys().add(this.getIdentifiableElement_Identifier());
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
