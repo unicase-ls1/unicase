@@ -19,6 +19,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -35,26 +36,32 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void addReferences1toN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase[] useCases = { useCase1, useCase2, useCase3 };
 
-		getProject().addModelElement(useCase1);
-		getProject().addModelElement(useCase2);
-		getProject().addModelElement(useCase3);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase1.setName("testUseCase1");
-		useCase2.setName("testUseCase2");
-		useCase3.setName("testUseCase3");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase1);
+				getProject().addModelElement(useCase2);
+				getProject().addModelElement(useCase3);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		UseCase[] useCases = { useCase1, useCase2, useCase3 };
-		actor.getInitiatedUseCases().addAll(Arrays.asList(useCases));
+				actor.setName("testActor");
+				useCase1.setName("testUseCase1");
+				useCase2.setName("testUseCase2");
+				useCase3.setName("testUseCase3");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getInitiatedUseCases().addAll(Arrays.asList(useCases));
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one ADD_MANY notification is expected
@@ -88,26 +95,32 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void addReferencesNtoN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase[] useCases = { useCase1, useCase2, useCase3 };
 
-		getProject().addModelElement(useCase1);
-		getProject().addModelElement(useCase2);
-		getProject().addModelElement(useCase3);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase1.setName("testUseCase1");
-		useCase2.setName("testUseCase2");
-		useCase3.setName("testUseCase3");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase1);
+				getProject().addModelElement(useCase2);
+				getProject().addModelElement(useCase3);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		UseCase[] useCases = { useCase1, useCase2, useCase3 };
-		actor.getParticipatedUseCases().addAll(Arrays.asList(useCases));
+				actor.setName("testActor");
+				useCase1.setName("testUseCase1");
+				useCase2.setName("testUseCase2");
+				useCase3.setName("testUseCase3");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getParticipatedUseCases().addAll(Arrays.asList(useCases));
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one ADD_MANY notification is expected
@@ -141,28 +154,34 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void removeReferences1ToN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
+		final UseCase[] useCasesOut = { useCase1, useCase3 };
 
-		getProject().addModelElement(useCase1);
-		getProject().addModelElement(useCase2);
-		getProject().addModelElement(useCase3);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase1.setName("testUseCase1");
-		useCase2.setName("testUseCase2");
-		useCase3.setName("testUseCase3");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase1);
+				getProject().addModelElement(useCase2);
+				getProject().addModelElement(useCase3);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
-		UseCase[] useCasesOut = { useCase1, useCase3 };
-		actor.getInitiatedUseCases().addAll(Arrays.asList(useCasesIn));
-		actor.getInitiatedUseCases().removeAll(Arrays.asList(useCasesOut));
+				actor.setName("testActor");
+				useCase1.setName("testUseCase1");
+				useCase2.setName("testUseCase2");
+				useCase3.setName("testUseCase3");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getInitiatedUseCases().addAll(Arrays.asList(useCasesIn));
+				actor.getInitiatedUseCases().removeAll(Arrays.asList(useCasesOut));
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one REMOVE_MANY notification is expected
@@ -197,28 +216,35 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 	@Test
 	public void removeReferencesNtoN() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
+		final UseCase[] useCasesOut = { useCase1, useCase3 };
 
-		getProject().addModelElement(useCase1);
-		getProject().addModelElement(useCase2);
-		getProject().addModelElement(useCase3);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		actor.setName("testActor");
-		useCase1.setName("testUseCase1");
-		useCase2.setName("testUseCase2");
-		useCase3.setName("testUseCase3");
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase1);
+				getProject().addModelElement(useCase2);
+				getProject().addModelElement(useCase3);
+				getProject().addModelElement(actor);
 
-		// notifications from this operations are tested
-		UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
-		UseCase[] useCasesOut = { useCase1, useCase3 };
-		actor.getParticipatedUseCases().addAll(Arrays.asList(useCasesIn));
-		actor.getParticipatedUseCases().removeAll(Arrays.asList(useCasesOut));
+				actor.setName("testActor");
+				useCase1.setName("testUseCase1");
+				useCase2.setName("testUseCase2");
+				useCase3.setName("testUseCase3");
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
+				// notifications from this operations are tested
+				actor.getParticipatedUseCases().addAll(Arrays.asList(useCasesIn));
+				actor.getParticipatedUseCases().removeAll(Arrays.asList(useCasesOut));
+
+			}
+		}.run();
+
+		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one REMOVE_MANY notification is expected

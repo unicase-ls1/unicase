@@ -3,25 +3,24 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.test.changeTracking.canonization;
 
-import java.util.Date;
+package org.unicase.workspace.test;
 
+import org.junit.After;
 import org.junit.Before;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Abstract super class for operation tests, contains setup.
+ * Abstract Superclass for WOrkspace Tests. Provides Setup and Tear-down.
  * 
- * @author chodnick
+ * @author koegel
  */
-public abstract class CanonizationTest {
-
+public abstract class WorkspaceTest {
 	private Project project;
 	private ProjectSpace projectSpace;
 
@@ -30,24 +29,27 @@ public abstract class CanonizationTest {
 	 */
 	@Before
 	public void setupProjectSpace() {
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		projectSpace.setBaseVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
-		projectSpace.setIdentifier("testProjectSpace");
-		projectSpace.setLastUpdated(new Date());
-		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
-		projectSpace.setProjectDescription("ps description");
-		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
-		projectSpace.setProjectName("ps name");
+		Configuration.setTesting(true);
+		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		new UnicaseCommand() {
 
-		setProject(MetamodelFactory.eINSTANCE.createProject());
+			@Override
+			protected void doRun() {
 
-		projectSpace.setProject(getProject());
+				ProjectSpace localProject = workspace.createLocalProject("testProject", "test Project");
+				setProjectSpace(localProject);
+				setProject(getProjectSpace().getProject());
+			}
+		}.run();
 
-		projectSpace.makeTransient();
-		projectSpace.init();
+	}
 
-		setProjectSpace(projectSpace);
-
+	/**
+	 * Clean workspace.
+	 */
+	@After
+	public void cleanProjectSpace() {
+		SetupHelper.cleanupWorkspace();
 	}
 
 	/**
@@ -84,5 +86,4 @@ public abstract class CanonizationTest {
 	protected void clearOperations() {
 		getProjectSpace().getOperations().clear();
 	}
-
 }

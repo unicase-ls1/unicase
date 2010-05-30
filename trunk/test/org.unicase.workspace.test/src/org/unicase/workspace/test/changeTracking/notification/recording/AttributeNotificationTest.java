@@ -17,6 +17,7 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -34,25 +35,31 @@ public class AttributeNotificationTest extends NotificationTest {
 	@Test
 	public void changeAttribute() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+				getProject().addModelElement(useCase);
 
-		useCase.setName("newName");
-		assertEquals("newName", useCase.getName());
+				useCase.setName("newName");
+				assertEquals("newName", useCase.getName());
 
-		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
-		List<NotificationInfo> rec = recording.asMutableList();
+				NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
+				List<NotificationInfo> rec = recording.asMutableList();
 
-		// exactly one SET notification is expected with attribute feature "name" on our useCase and newValue newName
-		assertEquals(1, rec.size());
+				// exactly one SET notification is expected with attribute feature "name" on our useCase and newValue
+				// newName
+				assertEquals(1, rec.size());
 
-		NotificationInfo n = rec.get(0);
-		assertSame(useCase, n.getNotifier());
-		assertTrue(n.isAttributeNotification());
-		assertTrue(n.isSetEvent());
-		assertEquals(n.getNewValue(), "newName");
-		assertEquals(n.getAttribute().getName(), "name");
-		assertEquals(n.getOldValue(), "new UseCase");
+				NotificationInfo n = rec.get(0);
+				assertSame(useCase, n.getNotifier());
+				assertTrue(n.isAttributeNotification());
+				assertTrue(n.isSetEvent());
+				assertEquals(n.getNewValue(), "newName");
+				assertEquals(n.getAttribute().getName(), "name");
+				assertEquals(n.getOldValue(), "new UseCase");
+			}
+		}.run();
 
 	}
 }

@@ -12,11 +12,14 @@ import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Abstract super class for operation tests, contains setup.
@@ -63,24 +66,18 @@ public abstract class ConflictDetectionTest {
 	@Before
 	public void setupProjectSpaces() {
 
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		projectSpace.setBaseVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
-		projectSpace.setIdentifier("testProjectSpace1");
-		projectSpace.setLastUpdated(new Date());
-		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
-		projectSpace.setProjectDescription("ps description");
-		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
-		projectSpace.setProjectName("ps name");
+		Configuration.setTesting(true);
+		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		new UnicaseCommand() {
 
-		project = MetamodelFactory.eINSTANCE.createProject();
+			@Override
+			protected void doRun() {
 
-		projectSpace.setProject(project);
-
-		projectSpace.makeTransient();
-		projectSpace.init();
-
-		setProjectSpace(projectSpace);
-		setProject(project);
+				ProjectSpace localProject = workspace.createLocalProject("testProject", "test Project");
+				setProjectSpace(localProject);
+				setProject(getProjectSpace().getProject());
+			}
+		}.run();
 
 	}
 

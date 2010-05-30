@@ -19,13 +19,15 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the Attribute Operation.
  * 
  * @author koegel
  */
-public class AttributeOperationTest extends OperationTest {
+public class AttributeOperationTest extends WorkspaceTest {
 
 	/**
 	 * Change an attribute and check the generated operation.
@@ -36,13 +38,20 @@ public class AttributeOperationTest extends OperationTest {
 	@Test
 	public void changeAttribute() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setName("newName");
-		assertEquals("newName", useCase.getName());
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+
+				clearOperations();
+
+				useCase.setName("newName");
+				assertEquals("newName", useCase.getName());
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -65,17 +74,36 @@ public class AttributeOperationTest extends OperationTest {
 	 */
 	@Test
 	public void changeAttributeTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setName("newName");
-		useCase.setName("otherName");
-		assertEquals("otherName", useCase.getName());
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
 
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		OperationsCanonizer.canonize(operations);
+				clearOperations();
+
+				useCase.setName("newName");
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				useCase.setName("otherName");
+				assertEquals("otherName", useCase.getName());
+			}
+		}.run();
+
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				OperationsCanonizer.canonize(operations);
+			}
+		}.run();
 
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
@@ -97,19 +125,26 @@ public class AttributeOperationTest extends OperationTest {
 	@Test
 	public void changeAttributeAndReverse() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setName("newName");
-		assertEquals("newName", useCase.getName());
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
+
+				clearOperations();
+
+				useCase.setName("newName");
+				assertEquals("newName", useCase.getName());
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		AbstractOperation operation = operations.get(0);
+		final AbstractOperation operation = operations.get(0);
 		assertEquals(true, operation instanceof AttributeOperation);
 		AttributeOperation attributeOperation = (AttributeOperation) operation;
 
@@ -118,14 +153,20 @@ public class AttributeOperationTest extends OperationTest {
 		assertEquals("name", attributeOperation.getFeatureName());
 		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
 
-		AbstractOperation reverse = operation.reverse();
-		reverse.apply(getProject());
-		assertEquals(true, reverse instanceof AttributeOperation);
-		AttributeOperation reversedAttributeOperation = (AttributeOperation) reverse;
-		assertEquals("newName", reversedAttributeOperation.getOldValue());
-		assertEquals("oldName", reversedAttributeOperation.getNewValue());
-		assertEquals("name", reversedAttributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				AbstractOperation reverse = operation.reverse();
+				reverse.apply(getProject());
+				assertEquals(true, reverse instanceof AttributeOperation);
+				AttributeOperation reversedAttributeOperation = (AttributeOperation) reverse;
+				assertEquals("newName", reversedAttributeOperation.getOldValue());
+				assertEquals("oldName", reversedAttributeOperation.getNewValue());
+				assertEquals("name", reversedAttributeOperation.getFeatureName());
+				assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
+			}
+		}.run();
 
 		assertEquals("oldName", useCase.getName());
 	}
@@ -139,14 +180,21 @@ public class AttributeOperationTest extends OperationTest {
 	@Test
 	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("oldName");
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setName("newName");
-		assertEquals("newName", useCase.getName());
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				useCase.setName("oldName");
+
+				clearOperations();
+
+				useCase.setName("newName");
+				assertEquals("newName", useCase.getName());
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -154,7 +202,7 @@ public class AttributeOperationTest extends OperationTest {
 		AbstractOperation operation = operations.get(0);
 
 		assertEquals(true, operation instanceof AttributeOperation);
-		AttributeOperation attributeOperation = (AttributeOperation) operation;
+		final AttributeOperation attributeOperation = (AttributeOperation) operation;
 
 		AttributeOperation cmpOperation = (AttributeOperation) attributeOperation.reverse().reverse();
 
@@ -167,16 +215,28 @@ public class AttributeOperationTest extends OperationTest {
 
 		Project expectedProject = ModelUtil.clone(getProject());
 
-		AbstractOperation r = attributeOperation.reverse();
-		AbstractOperation rr = r.reverse();
+		final AbstractOperation r = attributeOperation.reverse();
+		final AbstractOperation rr = r.reverse();
 
-		r.apply(getProject());
-		rr.apply(getProject());
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				r.apply(getProject());
+				rr.apply(getProject());
+			}
+		}.run();
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		attributeOperation.reverse().apply(getProject());
-		attributeOperation.reverse().reverse().apply(getProject());
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				attributeOperation.reverse().apply(getProject());
+				attributeOperation.reverse().reverse().apply(getProject());
+			}
+		}.run();
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 

@@ -23,13 +23,15 @@ import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the MultiReferenceOperation.
  * 
  * @author koegel
  */
-public class MultiReferenceOperationTest extends OperationTest {
+public class MultiReferenceOperationTest extends WorkspaceTest {
 
 	/**
 	 * Change a multi reference and check the generated operation.
@@ -39,16 +41,23 @@ public class MultiReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void changeMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase");
-		getProject().addModelElement(useCase);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(actor);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		actor.getInitiatedUseCases().add(useCase);
+			@Override
+			protected void doRun() {
+				useCase.setIdentifier("usecase");
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
+				clearOperations();
+
+				actor.getInitiatedUseCases().add(useCase);
+
+			}
+		}.run();
 		assertEquals(actor, useCase.getInitiatingActor());
 		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
 		assertEquals(1, initiatedUseCases.size());
@@ -103,20 +112,27 @@ public class MultiReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void reverseMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
-		getProject().addModelElement(useCase);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(actor);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		actor.getInitiatedUseCases().add(useCase);
+			@Override
+			protected void doRun() {
+				useCase.setIdentifier("usecase1");
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		assertEquals(actor, useCase.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+				clearOperations();
+
+				actor.getInitiatedUseCases().add(useCase);
+
+				assertEquals(actor, useCase.getInitiatingActor());
+				EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+				assertEquals(1, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -136,7 +152,7 @@ public class MultiReferenceOperationTest extends OperationTest {
 		AbstractOperation reverse = multiReferenceOperation.reverse();
 		assertEquals(true, reverse instanceof MultiReferenceOperation);
 
-		MultiReferenceOperation reversedMultiReferenceOperation = (MultiReferenceOperation) reverse;
+		final MultiReferenceOperation reversedMultiReferenceOperation = (MultiReferenceOperation) reverse;
 		assertEquals("initiatedUseCases", reversedMultiReferenceOperation.getFeatureName());
 		assertEquals(0, reversedMultiReferenceOperation.getIndex());
 		assertEquals(actor.getModelElementId(), reversedMultiReferenceOperation.getModelElementId());
@@ -153,7 +169,13 @@ public class MultiReferenceOperationTest extends OperationTest {
 		assertEquals(1, otherInvolvedModelElements.size());
 		assertEquals(true, otherInvolvedModelElements.contains(useCase.getModelElementId()));
 
-		reversedMultiReferenceOperation.apply(getProject());
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				reversedMultiReferenceOperation.apply(getProject());
+			}
+		}.run();
 
 		assertEquals(0, actor.getInitiatedUseCases().size());
 		assertEquals(null, useCase.getInitiatingActor());
@@ -167,34 +189,40 @@ public class MultiReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void addManyMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
-		getProject().addModelElement(useCase);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(actor);
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
-		getProject().addModelElement(useCase2);
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
-		getProject().addModelElement(useCase3);
-
-		clearOperations();
-
-		List<UseCase> useCases = new ArrayList<UseCase>();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final List<UseCase> useCases = new ArrayList<UseCase>();
 		useCases.add(useCase);
 		useCases.add(useCase2);
 		useCases.add(useCase3);
-		actor.getInitiatedUseCases().addAll(useCases);
 
-		assertEquals(actor, useCase.getInitiatingActor());
-		assertEquals(actor, useCase2.getInitiatingActor());
-		assertEquals(actor, useCase3.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
-		assertEquals(3, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
-		assertEquals(useCase2, initiatedUseCases.get(1));
-		assertEquals(useCase3, initiatedUseCases.get(2));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				useCase.setIdentifier("usecase1");
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
+				useCase2.setIdentifier("usecase2");
+				getProject().addModelElement(useCase2);
+				useCase3.setIdentifier("usecase3");
+				getProject().addModelElement(useCase3);
+				clearOperations();
+
+				actor.getInitiatedUseCases().addAll(useCases);
+
+				assertEquals(actor, useCase.getInitiatingActor());
+				assertEquals(actor, useCase2.getInitiatingActor());
+				assertEquals(actor, useCase3.getInitiatingActor());
+				EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+				assertEquals(3, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+				assertEquals(useCase2, initiatedUseCases.get(1));
+				assertEquals(useCase3, initiatedUseCases.get(2));
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -253,39 +281,51 @@ public class MultiReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void removeManyMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
-		getProject().addModelElement(useCase);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(actor);
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
-		getProject().addModelElement(useCase2);
-		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
-		getProject().addModelElement(useCase3);
-		List<UseCase> useCases = new ArrayList<UseCase>();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		final List<UseCase> useCases = new ArrayList<UseCase>();
 		useCases.add(useCase);
 		useCases.add(useCase2);
 		useCases.add(useCase3);
-		actor.getInitiatedUseCases().addAll(useCases);
 
-		clearOperations();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				useCase.setIdentifier("usecase1");
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
+				useCase2.setIdentifier("usecase2");
+				getProject().addModelElement(useCase2);
+				useCase3.setIdentifier("usecase3");
+				getProject().addModelElement(useCase3);
+				actor.getInitiatedUseCases().addAll(useCases);
 
-		assertEquals(actor, useCase.getInitiatingActor());
-		assertEquals(actor, useCase2.getInitiatingActor());
-		assertEquals(actor, useCase3.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
-		assertEquals(3, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
-		assertEquals(useCase2, initiatedUseCases.get(1));
-		assertEquals(useCase3, initiatedUseCases.get(2));
+				clearOperations();
 
-		actor.getInitiatedUseCases().removeAll(useCases);
+				assertEquals(actor, useCase.getInitiatingActor());
+				assertEquals(actor, useCase2.getInitiatingActor());
+				assertEquals(actor, useCase3.getInitiatingActor());
+				EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+				assertEquals(3, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+				assertEquals(useCase2, initiatedUseCases.get(1));
+				assertEquals(useCase3, initiatedUseCases.get(2));
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				actor.getInitiatedUseCases().removeAll(useCases);
+			}
+		}.run();
 
 		assertEquals(null, useCase.getInitiatingActor());
 		assertEquals(null, useCase2.getInitiatingActor());
 		assertEquals(null, useCase3.getInitiatingActor());
+		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
 		assertEquals(0, initiatedUseCases.size());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();

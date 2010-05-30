@@ -7,6 +7,7 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -17,46 +18,64 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the comnposite operation recording.
  * 
  * @author koegel
  */
-public class CompositeOperationTest extends OperationTest {
+public class CompositeOperationTest extends WorkspaceTest {
 
 	/**
 	 * Test the creation and completion of a composite operation.
-	 * 
-	 * @throws InvalidHandleException if the test fails
 	 */
 	@Test
-	public void createSmallComposite() throws InvalidHandleException {
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
-		section.setName("Name");
-		section.setDescription("Description");
+	public void createSmallComposite() {
 
-		assertEquals(true, getProject().contains(section));
-		assertEquals("Name", section.getName());
-		assertEquals("Description", section.getDescription());
-		assertEquals(0, section.getModelElements().size());
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
-		section.setName("newName");
-		section.setDescription("newDescription");
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		section.getModelElements().add(useCase);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.setName("Name");
+				section.setDescription("Description");
 
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(getProject(), useCase.getProject());
-		assertEquals(useCase, section.getModelElements().iterator().next());
-		assertEquals("newName", section.getName());
-		assertEquals("newDescription", section.getDescription());
+				assertEquals(true, getProject().contains(section));
+				assertEquals("Name", section.getName());
+				assertEquals("Description", section.getDescription());
+				assertEquals(0, section.getModelElements().size());
 
-		handle.end("sectionCreation", "description", section.getModelElementId());
+				clearOperations();
+			}
+		}.run();
+
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				section.setName("newName");
+				section.setDescription("newDescription");
+				section.getModelElements().add(useCase);
+
+				assertEquals(true, getProject().contains(useCase));
+				assertEquals(getProject(), useCase.getProject());
+				assertEquals(useCase, section.getModelElements().iterator().next());
+				assertEquals("newName", section.getName());
+				assertEquals("newDescription", section.getDescription());
+
+				try {
+					handle.end("sectionCreation", "description", section.getModelElementId());
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), useCase.getProject());
@@ -79,31 +98,49 @@ public class CompositeOperationTest extends OperationTest {
 	 */
 	@Test
 	public void abortSmallComposite() throws InvalidHandleException {
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
-		section.setName("Name");
-		section.setDescription("Description");
 
-		assertEquals(true, getProject().contains(section));
-		assertEquals("Name", section.getName());
-		assertEquals("Description", section.getDescription());
-		assertEquals(0, section.getModelElements().size());
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
-		section.setName("newName");
-		section.setDescription("newDescription");
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		section.getModelElements().add(useCase);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.setName("Name");
+				section.setDescription("Description");
 
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(getProject(), useCase.getProject());
-		assertEquals(useCase, section.getModelElements().iterator().next());
-		assertEquals("newName", section.getName());
-		assertEquals("newDescription", section.getDescription());
+				assertEquals(true, getProject().contains(section));
+				assertEquals("Name", section.getName());
+				assertEquals("Description", section.getDescription());
+				assertEquals(0, section.getModelElements().size());
 
-		handle.abort();
+				clearOperations();
+			}
+		}.run();
+
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+				section.setName("newName");
+				section.setDescription("newDescription");
+				section.getModelElements().add(useCase);
+
+				assertEquals(true, getProject().contains(useCase));
+				assertEquals(getProject(), useCase.getProject());
+				assertEquals(useCase, section.getModelElements().iterator().next());
+				assertEquals("newName", section.getName());
+				assertEquals("newDescription", section.getDescription());
+
+				try {
+					handle.abort();
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run();
 
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());

@@ -31,13 +31,15 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Tests the MultiReferenceOperation.
+ * Test creating an deleting elements.
  * 
  * @author koegel
  */
-public class CreateDeleteOperationTest extends OperationTest {
+public class CreateDeleteOperationTest extends WorkspaceTest {
 
 	/**
 	 * Test element creation tracking.
@@ -48,8 +50,13 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	public void createElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -73,12 +80,21 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	public void deleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				clearOperations();
+			}
+		}.run();
 
-		clearOperations();
-
-		getProject().deleteModelElement(useCase);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(useCase);
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -102,25 +118,36 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	// BEGIN COMPLEX CODE
 	public void complexDeleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		section.getModelElements().add(useCase);
-		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-		section.getModelElements().add(oldActor);
-		Actor newActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(newActor);
-		Actor otherActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(otherActor);
-		useCase.setInitiatingActor(oldActor);
-		useCase.getParticipatingActors().add(newActor);
-		useCase.getParticipatingActors().add(otherActor);
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(getProject(), useCase.getProject());
 
-		clearOperations();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor oldActor = RequirementFactory.eINSTANCE.createActor();
+		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherActor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().deleteModelElement(useCase);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(useCase);
+				section.getModelElements().add(oldActor);
+				getProject().addModelElement(newActor);
+				getProject().addModelElement(otherActor);
+				useCase.setInitiatingActor(oldActor);
+				useCase.getParticipatingActors().add(newActor);
+				useCase.getParticipatingActors().add(otherActor);
+				assertEquals(true, getProject().contains(useCase));
+				assertEquals(getProject(), useCase.getProject());
+				clearOperations();
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(useCase);
+			}
+		}.run();
 
 		assertEquals(false, getProject().contains(useCase));
 		assertEquals(null, useCase.eContainer());
@@ -235,34 +262,45 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	public void complexDeleteElementReverseTest() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		section.getModelElements().add(useCase);
-		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-		section.getModelElements().add(oldActor);
-		Actor newActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(newActor);
-		Actor otherActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(otherActor);
-		useCase.setInitiatingActor(oldActor);
-		useCase.getParticipatingActors().add(newActor);
-		useCase.getParticipatingActors().add(otherActor);
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor oldActor = RequirementFactory.eINSTANCE.createActor();
+		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherActor = RequirementFactory.eINSTANCE.createActor();
 
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(true, getProject().contains(oldActor));
-		assertEquals(true, getProject().contains(newActor));
-		assertEquals(true, getProject().contains(otherActor));
-		assertEquals(1, oldActor.getInitiatedUseCases().size());
-		assertEquals(1, newActor.getParticipatedUseCases().size());
-		assertEquals(1, otherActor.getParticipatedUseCases().size());
-		assertEquals(useCase, oldActor.getInitiatedUseCases().get(0));
-		assertEquals(useCase, newActor.getParticipatedUseCases().get(0));
-		assertEquals(useCase, otherActor.getParticipatedUseCases().get(0));
+		new UnicaseCommand() {
 
-		clearOperations();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(useCase);
+				section.getModelElements().add(oldActor);
+				getProject().addModelElement(newActor);
+				getProject().addModelElement(otherActor);
+				useCase.setInitiatingActor(oldActor);
+				useCase.getParticipatingActors().add(newActor);
+				useCase.getParticipatingActors().add(otherActor);
+				assertEquals(true, getProject().contains(useCase));
+				assertEquals(true, getProject().contains(oldActor));
+				assertEquals(true, getProject().contains(newActor));
+				assertEquals(true, getProject().contains(otherActor));
+				assertEquals(1, oldActor.getInitiatedUseCases().size());
+				assertEquals(1, newActor.getParticipatedUseCases().size());
+				assertEquals(1, otherActor.getParticipatedUseCases().size());
+				assertEquals(useCase, oldActor.getInitiatedUseCases().get(0));
+				assertEquals(useCase, newActor.getParticipatedUseCases().get(0));
+				assertEquals(useCase, otherActor.getParticipatedUseCases().get(0));
 
-		getProject().deleteModelElement(useCase);
+				clearOperations();
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(useCase);
+			}
+		}.run();
 
 		assertEquals(false, getProject().contains(useCase));
 		assertEquals(0, oldActor.getInitiatedUseCases().size());
@@ -274,7 +312,7 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
 
-		AbstractOperation reverse = operation.reverse();
+		final AbstractOperation reverse = operation.reverse();
 
 		assertEquals(true, reverse instanceof CreateDeleteOperation);
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) reverse;
@@ -372,7 +410,12 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(1, referencedModelElements3.size());
 		assertEquals(useCase.getModelElementId(), referencedModelElements3.get(0));
 
-		reverse.apply(getProject());
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				reverse.apply(getProject());
+			}
+		}.run();
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(true, getProject().contains(oldActor));
@@ -396,19 +439,24 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	public void complexCreateTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 		for (int i = 0; i < 10; i++) {
-			CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+			final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 			createCompositeSection.setName("Helmut" + i);
-			getProject().addModelElement(createCompositeSection);
-			LeafSection createLeafSection = DocumentFactory.eINSTANCE.createLeafSection();
-			createCompositeSection.getSubsections().add(createLeafSection);
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					getProject().addModelElement(createCompositeSection);
+					LeafSection createLeafSection = DocumentFactory.eINSTANCE.createLeafSection();
+					createCompositeSection.getSubsections().add(createLeafSection);
 
-			for (int j = 0; j < 100; j++) {
-				ActionItem createActionItem = TaskFactory.eINSTANCE.createActionItem();
-				createActionItem.setName("Max tu dies" + j);
-				createLeafSection.getModelElements().add(createActionItem);
-			}
+					for (int j = 0; j < 10; j++) {
+						ActionItem createActionItem = TaskFactory.eINSTANCE.createActionItem();
+						createActionItem.setName("Max tu dies" + j);
+						createLeafSection.getModelElements().add(createActionItem);
+					}
+				}
+			}.run();
 		}
-		assertEquals(2030, getProjectSpace().getOperations().size());
+		assertEquals(230, getProjectSpace().getOperations().size());
 	}
 
 	/**
@@ -416,19 +464,30 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 */
 	@Test
 	public void deleteWithSingleReferenceChildTest() {
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution = RationaleFactory.eINSTANCE.createSolution();
-		issue.setSolution(solution);
-		getProject().addModelElement(issue);
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
 
-		assertEquals(true, getProject().contains(issue));
-		assertEquals(true, getProject().contains(solution));
-		assertEquals(solution, issue.getSolution());
-		assertEquals(issue, solution.getIssue());
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				issue.setSolution(solution);
+				getProject().addModelElement(issue);
 
-		clearOperations();
+				assertEquals(true, getProject().contains(issue));
+				assertEquals(true, getProject().contains(solution));
+				assertEquals(solution, issue.getSolution());
+				assertEquals(issue, solution.getIssue());
 
-		getProject().deleteModelElement(solution);
+				clearOperations();
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(solution);
+			}
+		}.run();
 
 		assertEquals(true, getProject().contains(issue));
 		assertEquals(false, getProject().contains(solution));
@@ -473,15 +532,21 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 */
 	@Test
 	public void createInNonProjectContainmentTest() {
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
 
-		assertEquals(true, getProject().contains(section));
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
 
-		clearOperations();
+				assertEquals(true, getProject().contains(section));
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		section.getModelElements().add(useCase);
+				clearOperations();
+
+				section.getModelElements().add(useCase);
+			}
+		}.run();
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(true, getProject().contains(section));

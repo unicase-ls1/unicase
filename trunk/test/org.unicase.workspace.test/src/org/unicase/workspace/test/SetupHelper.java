@@ -416,7 +416,7 @@ public class SetupHelper {
 	/**
 	 * Cleans workspace up.
 	 */
-	public void cleanupWorkspace() {
+	public static void cleanupWorkspace() {
 
 		String workspacePath = Configuration.getWorkspaceDirectory();
 		File workspaceDirectory = new File(workspacePath);

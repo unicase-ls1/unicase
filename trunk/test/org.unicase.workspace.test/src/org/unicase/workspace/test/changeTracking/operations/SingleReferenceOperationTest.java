@@ -17,7 +17,9 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.unicase.metamodel.ModelElementId;
@@ -33,13 +35,15 @@ import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+import org.unicase.workspace.test.WorkspaceTest;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the SingleReferenceOperation.
  * 
  * @author koegel
  */
-public class SingleReferenceOperationTest extends OperationTest {
+public class SingleReferenceOperationTest extends WorkspaceTest {
 
 	/**
 	 * Change a single reference and check the generated operation.
@@ -49,19 +53,26 @@ public class SingleReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void changeSingleReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(actor);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setInitiatingActor(actor);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
 
-		assertEquals(actor, useCase.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+				clearOperations();
+
+				useCase.setInitiatingActor(actor);
+
+				assertEquals(actor, useCase.getInitiatingActor());
+				EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+				assertEquals(1, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -155,25 +166,32 @@ public class SingleReferenceOperationTest extends OperationTest {
 	@Test
 	public void reverseSingleReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(oldActor);
-		Actor newActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(newActor);
-		useCase.setInitiatingActor(oldActor);
-		assertEquals(oldActor, useCase.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor oldActor = RequirementFactory.eINSTANCE.createActor();
+		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		useCase.setInitiatingActor(newActor);
-		assertEquals(newActor, useCase.getInitiatingActor());
-		initiatedUseCases = newActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(oldActor);
+				getProject().addModelElement(newActor);
+				useCase.setInitiatingActor(oldActor);
+				assertEquals(oldActor, useCase.getInitiatingActor());
+				EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
+				assertEquals(1, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+
+				clearOperations();
+
+				useCase.setInitiatingActor(newActor);
+				assertEquals(newActor, useCase.getInitiatingActor());
+				initiatedUseCases = newActor.getInitiatedUseCases();
+				assertEquals(1, initiatedUseCases.size());
+				assertEquals(useCase, initiatedUseCases.get(0));
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -206,9 +224,15 @@ public class SingleReferenceOperationTest extends OperationTest {
 
 		AbstractOperation reverse = singleReferenceOperation.reverse();
 		assertEquals(true, reverse instanceof SingleReferenceOperation);
-		SingleReferenceOperation reversedSingleReferenceOperation = (SingleReferenceOperation) reverse;
+		final SingleReferenceOperation reversedSingleReferenceOperation = (SingleReferenceOperation) reverse;
 
-		reversedSingleReferenceOperation.apply(getProject());
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				reversedSingleReferenceOperation.apply(getProject());
+			}
+		}.run();
 
 		assertEquals(oldActor, useCase.getInitiatingActor());
 
@@ -230,33 +254,36 @@ public class SingleReferenceOperationTest extends OperationTest {
 	@Test
 	public void containmentSingleReferenceReversibilityTest() {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection oldSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection oldSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(section);
-		getProject().addModelElement(oldSection);
+		new UnicaseCommand() {
 
-		useCase.setLeafSection(oldSection);
-		actor.setLeafSection(oldSection);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(section);
+				getProject().addModelElement(oldSection);
+				useCase.setLeafSection(oldSection);
+				actor.setLeafSection(oldSection);
 
-		Project expectedProject = ModelUtil.clone(getProject());
-		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+				Project expectedProject = ModelUtil.clone(getProject());
+				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		clearOperations();
+				clearOperations();
+				useCase.setLeafSection(section);
+				List<AbstractOperation> operations = getProjectSpace().getOperations();
+				// composite operation containing a multiref operation and a singleref operation expected
+				assertEquals(operations.size(), 1);
+				AbstractOperation reverse = operations.get(0).reverse();
+				reverse.apply(getProject());
 
-		useCase.setLeafSection(section);
-
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		// composite operation containing a multiref operation and a singleref operation expected
-		assertEquals(operations.size(), 1);
-		AbstractOperation reverse = operations.get(0).reverse();
-		reverse.apply(getProject());
-
-		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+			}
+		}.run();
 
 	}
 
@@ -268,26 +295,33 @@ public class SingleReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void moveContainmentReference() throws UnsupportedOperationException, UnsupportedNotificationException {
-		Issue oldIssue = RationaleFactory.eINSTANCE.createIssue();
-		getProject().addModelElement(oldIssue);
-		Issue newIssue = RationaleFactory.eINSTANCE.createIssue();
-		getProject().addModelElement(newIssue);
-		Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
-		getProject().addModelElement(proposal);
-		proposal.setIssue(oldIssue);
-		clearOperations();
+		final Issue oldIssue = RationaleFactory.eINSTANCE.createIssue();
+		final Issue newIssue = RationaleFactory.eINSTANCE.createIssue();
+		final Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
 
-		assertEquals(0, newIssue.getProposals().size());
-		assertEquals(1, oldIssue.getProposals().size());
-		assertEquals(proposal, oldIssue.getProposals().get(0));
-		assertEquals(oldIssue, proposal.getIssue());
+		new UnicaseCommand() {
 
-		proposal.setIssue(newIssue);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(oldIssue);
+				getProject().addModelElement(newIssue);
+				getProject().addModelElement(proposal);
+				proposal.setIssue(oldIssue);
+				clearOperations();
 
-		assertEquals(0, oldIssue.getProposals().size());
-		assertEquals(1, newIssue.getProposals().size());
-		assertEquals(proposal, newIssue.getProposals().get(0));
-		assertEquals(newIssue, proposal.getIssue());
+				assertEquals(0, newIssue.getProposals().size());
+				assertEquals(1, oldIssue.getProposals().size());
+				assertEquals(proposal, oldIssue.getProposals().get(0));
+				assertEquals(oldIssue, proposal.getIssue());
+
+				proposal.setIssue(newIssue);
+
+				assertEquals(0, oldIssue.getProposals().size());
+				assertEquals(1, newIssue.getProposals().size());
+				assertEquals(proposal, newIssue.getProposals().get(0));
+				assertEquals(newIssue, proposal.getIssue());
+			}
+		}.run();
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -344,46 +378,62 @@ public class SingleReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void removeContainment() throws UnsupportedOperationException {
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		getProject().addModelElement(issue);
-		Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
-		getProject().addModelElement(proposal);
-		proposal.setIssue(issue);
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
 
-		clearOperations();
+		new UnicaseCommand() {
 
-		assertEquals(1, issue.getProposals().size());
-		assertEquals(proposal, issue.getProposals().get(0));
-		assertEquals(issue, proposal.getIssue());
+			@Override
+			protected void doRun() {
+				proposal.setName("proposal");
+				getProject().addModelElement(issue);
+				getProject().addModelElement(proposal);
+				proposal.setIssue(issue);
+
+				clearOperations();
+
+				assertEquals(1, issue.getProposals().size());
+				assertEquals(proposal, issue.getProposals().get(0));
+				assertEquals(issue, proposal.getIssue());
+				assertEquals(true, getProject().contains(issue));
+				assertEquals(true, getProject().contains(proposal));
+				assertEquals(getProject(), issue.getProject());
+				assertEquals(getProject(), proposal.getProject());
+				assertEquals(issue, proposal.eContainer());
+			}
+		}.run();
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				proposal.setIssue(null);
+			}
+		}.run();
+
 		assertEquals(true, getProject().contains(issue));
-		assertEquals(true, getProject().contains(proposal));
+		assertEquals(false, getProject().contains(proposal));
 		assertEquals(getProject(), issue.getProject());
-		assertEquals(getProject(), proposal.getProject());
-		assertEquals(issue, proposal.eContainer());
-
-		proposal.setIssue(null);
-
-		assertEquals(true, getProject().contains(issue));
-		assertEquals(true, getProject().contains(proposal));
-		assertEquals(getProject(), issue.getProject());
-		assertEquals(getProject(), proposal.getProject());
+		assertEquals(null, proposal.getProject());
 		assertEquals(0, issue.getProposals().size());
 		assertEquals(null, proposal.getIssue());
-		assertEquals(getProject(), proposal.eContainer());
+		assertEquals(null, proposal.eContainer());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
 
-		if (operations.get(0) instanceof CompositeOperation) {
-			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
-		} else {
-			fail("composite operation expected");
-		}
+		assertEquals(true, operations.get(0) instanceof CreateDeleteOperation);
+		CreateDeleteOperation deleteOperation = (CreateDeleteOperation) operations.get(0);
+		assertEquals(true, deleteOperation.isDelete());
+		assertEquals(true, deleteOperation.getModelElement() instanceof Proposal);
+		assertEquals("proposal", ((Proposal) deleteOperation.getModelElement()).getName());
+		assertEquals(proposal.getModelElementId(), deleteOperation.getModelElementId());
 
-		assertEquals(2, operations.size());
+		List<ReferenceOperation> subOperations = ((CreateDeleteOperation) operations.get(0)).getSubOperations();
+		assertEquals(2, subOperations.size());
 
-		AbstractOperation op0 = operations.get(0);
+		AbstractOperation op0 = subOperations.get(0);
 		assertTrue(op0 instanceof MultiReferenceOperation);
 		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) op0;
 		assertEquals(multiReferenceOperation.getModelElementId(), issue.getModelElementId());
@@ -392,7 +442,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
 		assertEquals(multiReferenceOperation.getIndex(), 0);
 
-		AbstractOperation operation = operations.get(1);
+		AbstractOperation operation = subOperations.get(1);
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
