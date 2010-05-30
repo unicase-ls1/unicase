@@ -5,218 +5,149 @@
  */
 package org.unicase.metamodel.util;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
- * Notifies about changes in a projectImpl. WARNING: Only for use in Project! Use addProjectObserver of Project to
- * listen for a Project.
- * 
- * @author koegel
+ * @author maximilian2
  */
-public final class ProjectChangeNotifier extends AdapterImpl implements ProjectChangeObserver {
+public class ProjectChangeNotifier extends EContentAdapter {
 
-	private ProjectImpl projectImpl;
-	private boolean isDeleting;
+	private final ProjectImpl projectImpl;
+	private boolean isInitializing;
+	private ModelElement removedModelElement;
+	private Notification currentNotification;
 
 	/**
-	 * Constructor.
+	 * Constructor. Attaches the Adapter to the given {@link ProjectImpl}.
 	 * 
-	 * @param projectImpl the projectImpl
+	 * @param projectImpl the project
 	 */
 	public ProjectChangeNotifier(ProjectImpl projectImpl) {
 		this.projectImpl = projectImpl;
-		TreeIterator<EObject> allContents = projectImpl.eAllContents();
-		while (allContents.hasNext()) {
-			EObject next = allContents.next();
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-				ModelElement modelElement = (ModelElement) next;
-				modelElement.eAdapters().add(this);
-			}
-		}
+		isInitializing = true;
 		projectImpl.eAdapters().add(this);
-		projectImpl.addProjectChangeObserver(this);
+		isInitializing = false;
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.emf.ecore.util.EContentAdapter#addAdapter(org.eclipse.emf.common.notify.Notifier)
+	 */
+	@Override
+	protected void addAdapter(Notifier notifier) {
+		if (!isInitializing && notifier instanceof ModelElement) {
+			ModelElement modelElement = (ModelElement) notifier;
+			//handle same id but different instance, probably copied element
+			if (projectImpl.contains(modelElement) && projectImpl.getModelElement(modelElement.getModelElementId())!=modelElement) {
+				ModelUtil.reassignModelElementIds(modelElement);
+			}
+			
+			if (!projectImpl.contains(modelElement) && isInProject(modelElement)) {
+				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
+			}
+		}
+		if (!notifier.eAdapters().contains(this)) {
+			super.addAdapter(notifier);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.ecore.util.EContentAdapter#removeAdapter(org.eclipse.emf.common.notify.Notifier)
+	 */
+	@Override
+	protected void removeAdapter(Notifier notifier) {
+		if (isInitializing) {
+			return;
+		}
+		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
+			EReference eReference = (EReference) currentNotification.getFeature();
+			if (eReference.isContainment() && eReference.getEOpposite() != null) {
+				return;
+			}
+		}
+
+		if (notifier instanceof ModelElement) {
+			ModelElement modelElement = (ModelElement) notifier;
+			if (!isInProject(modelElement) && projectImpl.contains(modelElement)) {
+				removedModelElement = modelElement;
+				super.removeAdapter(modelElement);
+			}
+		}
+	}
+
+	private boolean isInProject(ModelElement modelElement) {
+		EObject parent = modelElement.eContainer();
+		if (parent == null) {
+			return false;
+		}
+
+		if (parent == projectImpl) {
+			return true;
+		}
+
+		if (!(parent instanceof ModelElement)) {
+			return false;
+		}
+
+		ModelElement parentModelElement = (ModelElement) parent;
+
+		if (projectImpl.contains(parentModelElement)) {
+			return true;
+		}
+
+		return isInProject(parentModelElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		if (notification.isTouch()) {
-			return;
-		}
-		switch (notification.getEventType()) {
-		case Notification.ADD:
-			handleAddNotification(notification);
-			// fire notification must be triggered after a (possible) create!
-			fireNotification(notification);
-			break;
-		case Notification.ADD_MANY:
-			handleAddAllNotification(notification);
-			// fire notification must be triggered after a (possible) create!
-			fireNotification(notification);
-			break;
-		case Notification.REMOVE:
-			// model element is removed from containment hierachy
-			if (isAboutContainment(notification)) {
-				Object oldValue = notification.getOldValue();
-				if (oldValue instanceof ModelElement) {
-					ModelElement child = (ModelElement) oldValue;
-					handleSingleRemove(notification, child);
-				}
-
-			}
-			fireNotification(notification);
-			break;
-		case Notification.SET:
-			// model element is added to containment hierachy
-			if (isAboutContainment(notification)) {
-				handleSingleAdd((EObject) notification.getNewValue());
-			}
-			// fire notification must be triggered after a (possible) create!
-			fireNotification(notification);
-			break;
-		case Notification.REMOVE_MANY:
-			if (isAboutContainment(notification)) {
-				Object oldValue = notification.getOldValue();
-				if (oldValue instanceof List<?>) {
-					@SuppressWarnings("unchecked")
-					List<ModelElement> list = (List<ModelElement>) oldValue;
-					for (ModelElement child : list) {
-						handleSingleRemove(notification, child);
-					}
-				}
-			}
-			fireNotification(notification);
-			break;
-		default:
-			// There's no add or delete operation. Just fire notification.
-			fireNotification(notification);
-			break;
-		}
-	}
-
-	private void handleSingleRemove(Notification notification, ModelElement child) {
-		if (!isDeleting && child.getProject() != projectImpl) {
-			projectImpl.addModelElement(child);
-		}
-	}
-
-	private void fireNotification(Notification notification) {
-		Object notifier = notification.getNotifier();
-		if (notifier instanceof ModelElement) {
-			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
-		}
-	}
-
-	// cast cannot be checked properly, flaw in EMF notification design
-	@SuppressWarnings("unchecked")
-	private void handleAddAllNotification(Notification notification) {
-		if (isAboutContainment(notification)) {
-			List<EObject> newValues = (List<EObject>) notification.getNewValue();
-			for (EObject newElement : newValues) {
-				handleSingleAdd(newElement);
-			}
-		}
-
-	}
-
-	private boolean isAboutContainment(Notification notification) {
+		currentNotification = notification;
 		Object feature = notification.getFeature();
 		if (feature instanceof EReference) {
-			EReference reference = (EReference) feature;
-			if (reference.isContainment()) {
-				return true;
+			EReference eReference = (EReference) feature;
+			if (eReference.isContainer()) {
+				handleContainer(notification, eReference);
 			}
 		}
-		return false;
-	}
 
-	private void handleAddNotification(Notification notification) {
-		if (isAboutContainment(notification)) {
-			EObject newValue = (EObject) notification.getNewValue();
-			handleSingleAdd(newValue);
+		super.notifyChanged(notification);
+
+		Object notifier = notification.getNotifier();
+		if (!notification.isTouch() && notifier instanceof ModelElement) {
+			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
+		}
+		if (removedModelElement != null) {
+			projectImpl.handleEMFModelElementRemoved(projectImpl, removedModelElement);
+			super.removeAdapter(removedModelElement);
+			removedModelElement = null;
 		}
 	}
 
-	private void handleSingleAdd(EObject newValue) {
-		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(newValue)) {
-			ModelElement modelElement = (ModelElement) newValue;
-			// this works only because the contains cache is not yet updated
-			if (!projectImpl.contains(modelElement)) {
-				newValue.eAdapters().add(this);
-				for (ModelElement child: modelElement.getAllContainedModelElements()) {
-					child.eAdapters().add(this);
-				}
-				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
-			} else {
-				if (projectImpl.getModelElement(modelElement.getModelElementId()) != modelElement) {
-					throw new IllegalStateException("Two elements with the same id but different instance detected!");
-				}
+	/**
+	 * @param notification
+	 */
+	private void handleContainer(Notification notification, EReference eReference) {
+		if (notification.getEventType() == Notification.SET) {
+			Object newValue = notification.getNewValue();
+			Object oldValue = notification.getOldValue();
+			if (newValue == null && oldValue != null) {
+				removeAdapter((Notifier) notification.getNotifier());
 			}
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		// nothing to do, do not implement anything here, this will cause loop otherwise
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		this.isDeleting = false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		this.isDeleting = true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
-	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		// nothing to do, do not implement anything here, this will cause loop otherwise
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
-	 */
-	public void projectDeleted(Project project) {
-		// nothing to do, is already handled by workspace.deleteProjectSpace()
 	}
 
 }

@@ -150,18 +150,8 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		// nothing to do;
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
-	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		// nothing to do
 
 	}
 

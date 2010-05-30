@@ -61,18 +61,16 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 			}
 		}
 
-		public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		}
-
-		public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		public void modelElementRemoved(Project project, ModelElement modelElement) {
+			// nothing to do
 		}
 
 		public void notify(Notification notification, Project project, ModelElement modelElement) {
+			// nothing to do
 		}
 
 		public void projectDeleted(Project project) {
-			// TODO Auto-generated method stub
-
+			// nothing to do
 		}
 	}
 

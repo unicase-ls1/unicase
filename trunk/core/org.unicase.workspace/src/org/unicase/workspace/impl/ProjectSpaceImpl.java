@@ -1159,6 +1159,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			throw new NoLocalChangesException();
 		}
 
+		cleanCutElements();
+
 		// check if we need to update first
 		PrimaryVersionSpec resolvedVersion;
 		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
@@ -1488,6 +1490,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		startChangeRecording();
+		cleanCutElements();
+
+	}
+
+	private void cleanCutElements() {
+		for (ModelElement cutElement : getProject().getCutElements()) {
+			project.deleteModelElement(cutElement);
+		}
 
 	}
 
