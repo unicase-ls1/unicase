@@ -16,12 +16,11 @@ import org.unicase.metamodel.ModelElement;
  * Implementation of an XMI Resource that will ignore the id attributes of EMFStore {@link ModelElement}s.
  * 
  * @author koegel
- *
  */
-public class EMFStoreXMIResourceImpl extends XMIResourceImpl{
+public class EMFStoreXMIResourceImpl extends XMIResourceImpl {
 
 	private static final EClass MODEL_ELEMENT_ECLASS = MetamodelPackage.eINSTANCE.getModelElement();
-	
+
 	/**
 	 * Default Construtor.
 	 */
@@ -31,6 +30,7 @@ public class EMFStoreXMIResourceImpl extends XMIResourceImpl{
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param uri URI
 	 */
 	public EMFStoreXMIResourceImpl(URI uri) {
@@ -39,6 +39,7 @@ public class EMFStoreXMIResourceImpl extends XMIResourceImpl{
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#getURIFragment(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
@@ -46,25 +47,24 @@ public class EMFStoreXMIResourceImpl extends XMIResourceImpl{
 		String uriFragment;
 		if (MODEL_ELEMENT_ECLASS.isInstance(eObject)) {
 			ModelElement modelElement = (ModelElement) eObject;
-			//save old values
+			// save old values
 			boolean deliveryMode = modelElement.eDeliver();
 			String id = modelElement.getIdentifier();
-			
-			//turn off notification delivery and set id to null
+
+			// turn off notification delivery and set id to null
 			modelElement.eSetDeliver(false);
 			modelElement.setIdentifier(null);
-			
-			//retrieve fragment when id is set to null
+
+			// retrieve fragment when id is set to null
 			uriFragment = super.getURIFragment(eObject);
-			
-			//restore old values and delivery mode
+
+			// restore old values and delivery mode
 			modelElement.setIdentifier(id);
 			modelElement.eSetDeliver(deliveryMode);
-		}
-		else {
-			uriFragment = super.getURIFragment(eObject);			
+		} else {
+			uriFragment = super.getURIFragment(eObject);
 		}
 		return uriFragment;
 	}
-             
+
 }
