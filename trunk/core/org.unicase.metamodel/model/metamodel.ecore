@@ -10,6 +10,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cutElements" upperBound="-1"
+        eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
