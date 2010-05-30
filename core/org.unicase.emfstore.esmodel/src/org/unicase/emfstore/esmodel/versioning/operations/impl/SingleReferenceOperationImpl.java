@@ -332,9 +332,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 		try {
 			reference = (EReference) this.getFeature(modelElement);
 			modelElement.eSet(reference, newModelElement);
-			if (newModelElement == null && reference.isContainer()) {
-				project.addModelElement(modelElement);
-			}
 		} catch (UnkownFeatureException e) {
 			// silently fail
 			return;

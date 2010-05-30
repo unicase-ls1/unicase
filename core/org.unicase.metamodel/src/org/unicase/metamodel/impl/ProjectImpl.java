@@ -49,13 +49,21 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected EList<ModelElement> modelElements;
+	/**
+	 * The cached value of the '{@link #getCutElements() <em>Cut Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getCutElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElement> cutElements;
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
-	private ProjectChangeNotifier projectChangeNotifier;
 	private boolean isNotifiying;
-	private Set<ProjectChangeObserver > exceptionThrowingObservers;
-	private Set<ProjectChangeObserver > observersToRemove;
-	private Set<ProjectChangeObserver > undetachableObservers;
+	private Set<ProjectChangeObserver> exceptionThrowingObservers;
+	private Set<ProjectChangeObserver> observersToRemove;
+	private Set<ProjectChangeObserver> undetachableObservers;
 
 	// begin of custom code
 	/**
@@ -95,6 +103,19 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				MetamodelPackage.PROJECT__MODEL_ELEMENTS);
 		}
 		return modelElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<ModelElement> getCutElements() {
+		if (cutElements == null) {
+			cutElements = new EObjectContainmentEList.Resolving<ModelElement>(ModelElement.class, this,
+				MetamodelPackage.PROJECT__CUT_ELEMENTS);
+		}
+		return cutElements;
 	}
 
 	// begin of custom code
@@ -197,6 +218,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		switch (featureID) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
+		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+			return ((InternalEList<?>) getCutElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -211,6 +234,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		switch (featureID) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 			return getModelElements();
+		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+			return getCutElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,6 +253,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			getModelElements().clear();
 			getModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
+		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+			getCutElements().clear();
+			getCutElements().addAll((Collection<? extends ModelElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -243,6 +272,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 			getModelElements().clear();
 			return;
+		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+			getCutElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +289,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		switch (featureID) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
+		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+			return cutElements != null && !cutElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -307,23 +341,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 					modelElementCache.put(modelElement.getModelElementId(), modelElement);
 				}
 			}
-			projectChangeNotifier = new ProjectChangeNotifier(this);
-			//new ProjectChangeNotifier2(this);
-		}
-	}
-
-	private void handleModelElementDeleted(ModelElement modelElement) {
-		this.getModelElementsFromCache().remove(modelElement.getModelElementId());
-		// MK: hack to remove adapter of project change observer
-		if (this.projectChangeNotifier != null) {
-			modelElement.eAdapters().remove(this.projectChangeNotifier);
-		}
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			this.getModelElementsFromCache().remove(child.getModelElementId());
-			// MK: hack to remove adapter of project change observer
-			if (this.projectChangeNotifier != null) {
-				child.eAdapters().remove(this.projectChangeNotifier);
-			}
+			// projectChangeNotifier = new ProjectChangeNotifier(this);
+			new ProjectChangeNotifier(this);
 		}
 	}
 
@@ -333,7 +352,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void handleEMFModelElementAdded (final Project project, final ModelElement modelElement) {
+	public void handleEMFModelElementAdded(final Project project, final ModelElement modelElement) {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
@@ -346,7 +365,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		};
 		notifyProjectChangeObservers(command);
 	}
-	
+
 	private void notifyProjectChangeObservers(ProjectChangeObserverNotificationCommand command) {
 		isNotifiying = true;
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
@@ -358,24 +377,24 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
 					if (undetachableObservers.contains(projectChangeObserver)) {
 						observersToRemove.add(projectChangeObserver);
-						ModelUtil.logException("Project Change Observer threw an exception again, it has been detached, UI may not update now: "
-							+ projectChangeObserver.getClass().getName(), ex);
+						ModelUtil.logException(
+							"Project Change Observer threw an exception again, it has been detached, UI may not update now: "
+								+ projectChangeObserver.getClass().getName(), ex);
+					} else {
+						ModelUtil.logException(
+							"Project Change Observer threw an exception again, but it will not be detached."
+								+ projectChangeObserver.getClass().getName(), ex);
 					}
-					else {
-						ModelUtil.logException("Project Change Observer threw an exception again, but it will not be detached."
-							+ projectChangeObserver.getClass().getName(), ex);
-					}
-				}
-				else {
+				} else {
 					exceptionThrowingObservers.add(projectChangeObserver);
 					ModelUtil.logWarning("Project Change Observer threw an exception: "
-					+ projectChangeObserver.getClass().getName(), ex);
+						+ projectChangeObserver.getClass().getName(), ex);
 				}
 
 			}
 		}
 		isNotifiying = false;
-		for (ProjectChangeObserver observer: this.observersToRemove) {
+		for (ProjectChangeObserver observer : this.observersToRemove) {
 			removeProjectChangeObserver(observer);
 		}
 		this.observersToRemove.clear();
@@ -389,7 +408,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			throw exception;
 		}
 	}
-	
+
 	private void addModelElementAndChildrenToCache(ModelElement modelElement) {
 		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
 		for (ModelElement child : modelElement.getAllContainedModelElements()) {
@@ -403,14 +422,15 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			this.modelElementCache.remove(child.getModelElementId());
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
-	public void handleEMFNotification(final Notification notification, final Project project, final ModelElement modelElement) {
+	public void handleEMFNotification(final Notification notification, final Project project,
+		final ModelElement modelElement) {
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.notify(notification, project, modelElement);
@@ -485,14 +505,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (!this.contains(modelElement)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
-		final Project project = this;
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.modelElementDeleteStarted(project, modelElement);
-			}
-		};
-		notifyProjectChangeObservers(command);
-		
+
 		deleteOutgoingCrossReferences(modelElement);
 		deleteIncomingCrossReferences(modelElement);
 
@@ -514,16 +527,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				containerModelElement.eSet(containmentFeature, null);
 			}
 		}
-
-		handleModelElementDeleted(modelElement);
-
-		command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.modelElementDeleteCompleted(project, modelElement);
-			}
-		};
-		notifyProjectChangeObservers(command);
-	
 	}
 
 	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
@@ -533,8 +536,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
 				continue;
 			}
-				
-			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass)eType)) {
+
+			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass) eType)) {
 				modelElement.eUnset(reference);
 			}
 		}
@@ -572,9 +575,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return modelElement.equals(otherModelElement.eGet(reference));
 		}
 	}
-	
+
 	/**
 	 * Make a project change observer undetachable.
+	 * 
 	 * @param observer the observer
 	 */
 	public void setUndetachable(ProjectChangeObserver observer) {
@@ -583,6 +587,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.metamodel.Project#delete()
 	 */
 	public void delete() {
@@ -601,9 +606,15 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @param projectImpl the project
 	 * @param modelElement the model element
 	 */
-	public void handleEMFModelElementRemoved(ProjectImpl projectImpl, ModelElement modelElement) {
+	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final ModelElement modelElement) {
 		this.removeModelElementAndChildrenFromCache(modelElement);
-		//TODO: notify and observer here
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
+			}
+		};
+		notifyProjectChangeObservers(command);
+
 	}
 
 }

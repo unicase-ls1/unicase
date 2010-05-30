@@ -177,7 +177,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
 			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
@@ -185,14 +185,6 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 				treeViewer.refresh(backlog, true);
 			}
 		}
-	}
-
-	/**
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
-	 *      {@inheritDoc}
-	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		// nothing to do
 	}
 
 	/**
