@@ -812,4 +812,17 @@ public final class ModelUtil {
 				+ string);
 		}
 	}
+	
+	/**
+	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements that are contained in a project!.
+	 * 
+	 * @param modelElement the element
+	 */
+	public static void reassignModelElementIds(ModelElement modelElement) {
+		Set<ModelElement> copiedElements = modelElement.getAllContainedModelElements();
+		copiedElements.add(modelElement);
+		for (ModelElement element : copiedElements) {
+			element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
+		}
+	}
 }
