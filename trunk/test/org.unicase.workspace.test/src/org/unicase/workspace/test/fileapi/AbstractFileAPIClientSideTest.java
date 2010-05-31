@@ -88,7 +88,7 @@ public abstract class AbstractFileAPIClientSideTest {
 	 */
 	@After
 	public void cleanUp() {
-		setupHelper.cleanupWorkspace();
+		SetupHelper.cleanupWorkspace();
 
 		SetupHelper.cleanupServer();
 	}

@@ -12,6 +12,7 @@ Require-Bundle: org.apache.commons.logging;bundle-version="1.0.4",
  org.eclipse.swtbot.eclipse.spy,
  org.eclipse.swtbot.eclipse.ui,
  org.eclipse.swtbot.junit4_x,
- org.eclipse.swtbot.swt.finder
+ org.eclipse.swtbot.swt.finder,
+ org.unicase.projectgenerator;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

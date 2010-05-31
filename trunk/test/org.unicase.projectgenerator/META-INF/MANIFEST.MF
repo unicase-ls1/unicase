@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Projectgenerator
+Bundle-SymbolicName: org.unicase.projectgenerator
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.projectgenerator.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.workspace;visibility:=reexport,
+ org.unicase.model;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: unicase.org
+Export-Package: org.unicase.projectgenerator
