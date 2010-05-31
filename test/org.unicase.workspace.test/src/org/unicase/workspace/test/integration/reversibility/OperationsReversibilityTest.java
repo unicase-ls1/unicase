@@ -61,7 +61,7 @@ public abstract class OperationsReversibilityTest {
 	 */
 	@After
 	public void cleanUp() {
-		setupHelper.cleanupWorkspace();
+		SetupHelper.cleanupWorkspace();
 
 		SetupHelper.cleanupServer();
 	}

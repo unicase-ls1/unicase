@@ -4,11 +4,9 @@ Bundle-Name: Workspace Test
 Bundle-SymbolicName: org.unicase.workspace.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.workspace.test.Activator
-Require-Bundle: org.unicase.workspace;visibility:=reexport,
- org.junit4;visibility:=reexport,
- org.unicase.model;visibility:=reexport
+Require-Bundle: org.junit4;visibility:=reexport,
+ org.unicase.projectgenerator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.workspace.test,
- org.unicase.workspace.test.projectGenerator
+Export-Package: org.unicase.workspace.test
 Bundle-Vendor: unicase.org

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.test.projectGenerator;
+package org.unicase.projectgenerator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -374,11 +374,12 @@ public class TestProjectGenerator {
 		List<EObject> instancesOfRefType = new ArrayList<EObject>();
 		int numOfRefs;
 		if (me instanceof MEDiagram && ref.equals(DiagramPackage.eINSTANCE.getMEDiagram_Elements())) {
-			diagramElementsProvider = new MEDiagramElementsProvider(project);
-			MEDiagram diagram = (MEDiagram) me;
-			DiagramType diagramType = diagram.getType();
-			instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagramType));
-			numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagramType);
+//			diagramElementsProvider = new MEDiagramElementsProvider(project);
+//			MEDiagram diagram = (MEDiagram) me;
+//			DiagramType diagramType = diagram.getType();
+//			instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagramType));
+//			numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagramType);
+			numOfRefs = 0;
 		} else {
 			instancesOfRefType.addAll(getAllInstancesOf(ref.getEReferenceType()));
 			numOfRefs = getNumOfRefs(ref, lowerBound, upperBound);
@@ -756,11 +757,11 @@ public class TestProjectGenerator {
 				continue;
 			}
 			if (attribute.getEType() instanceof EEnum) {
-				if (attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_Type())) {
-					DiagramType diagramType = getRandomDiagramType();
-					instance.eSet(attribute, diagramType);
-					continue;
-				}
+//				if (attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_Type())) {
+//					DiagramType diagramType = getRandomDiagramType();
+//					instance.eSet(attribute, diagramType);
+//					continue;
+//				}
 				EEnum en = (EEnum) attribute.getEType();
 				int numOfLiterals = en.getELiterals().size();
 				int index = numOfLiterals == 1 ? 0 : random.nextInt(numOfLiterals - 1);

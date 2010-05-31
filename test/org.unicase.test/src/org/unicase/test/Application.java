@@ -5,12 +5,12 @@ import java.io.IOException;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.metamodel.Project;
+import org.unicase.projectgenerator.TestProjectGenerator;
+import org.unicase.projectgenerator.TestProjectParmeters;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.test.projectGenerator.TestProjectGenerator;
-import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
 
 /**
  * This class controls all aspects of the application's execution

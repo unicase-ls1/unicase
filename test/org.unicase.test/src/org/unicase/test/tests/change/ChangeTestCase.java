@@ -3,9 +3,9 @@ package org.unicase.test.tests.change;
 import java.util.Random;
 
 import org.unicase.metamodel.Project;
+import org.unicase.projectgenerator.TestProjectParmeters;
 import org.unicase.test.TestCase;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
 
 public abstract class ChangeTestCase extends TestCase {
 

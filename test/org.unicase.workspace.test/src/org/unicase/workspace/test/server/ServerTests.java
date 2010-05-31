@@ -33,14 +33,14 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
+import org.unicase.projectgenerator.TestProjectGenerator;
+import org.unicase.projectgenerator.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.test.SetupHelper;
-import org.unicase.workspace.test.projectGenerator.TestProjectGenerator;
-import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
 
 /**
  * Superclass for server tests.

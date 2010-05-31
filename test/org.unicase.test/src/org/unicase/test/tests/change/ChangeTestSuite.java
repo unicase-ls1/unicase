@@ -8,13 +8,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.Project;
+import org.unicase.projectgenerator.TestProjectGenerator;
+import org.unicase.projectgenerator.TestProjectParmeters;
 import org.unicase.test.TestSuite;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
-import org.unicase.workspace.test.projectGenerator.TestProjectGenerator;
-import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
 
 public abstract class ChangeTestSuite extends TestSuite {
 
