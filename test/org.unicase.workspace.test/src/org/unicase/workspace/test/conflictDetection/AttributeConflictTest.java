@@ -24,7 +24,7 @@ import org.unicase.model.requirement.RequirementFactory;
  * 
  * @author koegel
  */
-public class AttributeConflictTest {
+public class AttributeConflictTest extends ConflictDetectionTest {
 
 	/**
 	 * Test for conflicts on two attribute Operations.

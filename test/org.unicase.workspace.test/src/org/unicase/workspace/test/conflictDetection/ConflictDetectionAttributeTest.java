@@ -19,6 +19,7 @@ import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -33,22 +34,33 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 	@Test
 	public void conflictAttribute() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
 
-		getProjectSpace().getOperations().clear();
+				getProjectSpace().getOperations().clear();
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		actor1.setName("change 1");
-		actor2.setName("change 2");
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				actor1.setName("change 1");
+				actor2.setName("change 2");
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
