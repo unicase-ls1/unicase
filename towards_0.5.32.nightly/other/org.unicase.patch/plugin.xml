@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.patch.adapter" name="Create Patch Adapter" schema="schema/org.unicase.patch.adapter.exsd"/>
+   <extension
+         point="org.eclipse.ui.menus">
+     
+       <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            <command
+                  commandId="org.unicase.patch.commands.createPatch"
+                  label="Create UNICASE patch"
+                  id="org.unicase.patch.menus.createPatch">
+            </command>
+        
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.unicase.patch.commands.category"
+            description="Creates a patch file "
+            id="org.unicase.patch.commands.createPatch"
+            name="Create UNICASE patch">
+      </command>
+      <category
+            id="org.unicase.patch.commands.category"
+            name="Unicase Patch Category">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.unicase.patch.Activator"></startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.patch.handlers.CreateUnicasePatchHandler"
+            commandId="org.unicase.patch.commands.createPatch">
+      </handler>
+   </extension>
+</plugin>

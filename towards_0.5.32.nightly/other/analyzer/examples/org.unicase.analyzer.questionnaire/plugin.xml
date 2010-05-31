@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Sample Action Set"
+            visible="true"
+            id="org.unicase.analyzer.questionnaire.actionSet">
+         <menu
+               label="Questionnaire"
+               id="questionMenu">
+            <separator
+                  name="questionGroup">
+            </separator>
+         </menu>
+         <action
+               label="&amp;ME"
+               class="org.unicase.analyzer.questionnaire.actions.MEAction"
+               tooltip="Show the ME pages"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup"
+               id="org.unicase.analyzer.questionnaire.actions.MEAction">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.NextAction"
+               icon="icons/book_next.png"
+               id="org.unicase.analyzer.questionnaire.actions.NextAction"
+               label="&amp;Next"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.WizardAction"
+               icon="icons/book_open.png"
+               id="org.unicase.analyzer.questionnaire.actions.WizardAction"
+               label="&amp;SelectUser"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.GenerateAction"
+               icon="icons/book_edit.png"
+               id="org.unicase.analyzer.questionnaire.actions.GenerateAction"
+               label="&amp;Generate"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.StartAction"
+               icon="icons/control_play_blue.png"
+               id="org.unicase.analyzer.questionnaire.actions.StartAction"
+               label="&amp;Start"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.StopAction"
+               icon="icons/control_stop_blue.png"
+               id="org.unicase.analyzer.questionnaire.actions.StopAction"
+               label="&amp;Stop"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>
