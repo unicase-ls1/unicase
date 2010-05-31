@@ -25,6 +25,7 @@ import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -39,22 +40,36 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDelete() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		getProject().deleteModelElement(actor1);
-		actor2.setName("change to the deleted object on another working copy");
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(actor1);
+				actor2.setName("change to the deleted object on another working copy");
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -73,22 +88,34 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDeleteAttributeChangesInDeltree() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
+				getProjectSpace().getOperations().clear();
 
-		getProjectSpace().getOperations().clear();
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		new UnicaseCommand() {
 
-		getProject().deleteModelElement(section1);
-		actor2.setName("change to object inside deltree on another working copy");
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(section1);
+				actor2.setName("change to object inside deltree on another working copy");
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -107,19 +134,31 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDeleteAttributeChangesInDelObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProjectSpace().getOperations().clear();
 
-		getProjectSpace().getOperations().clear();
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		new UnicaseCommand() {
 
-		getProject().deleteModelElement(section1);
-		section2.setName("change to object inside deltree on another working copy");
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(section1);
+				section2.setName("change to object inside deltree on another working copy");
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -138,22 +177,34 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictDeleteUnrelated() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProjectSpace().getOperations().clear();
 
-		getProjectSpace().getOperations().clear();
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		new UnicaseCommand() {
 
-		actor1.setName("change to unrelated object on another working copy");
-		project2.deleteModelElement(section2);
+			@Override
+			protected void doRun() {
+				actor1.setName("change to unrelated object on another working copy");
+				project2.deleteModelElement(section2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -172,26 +223,36 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDeleteContainmentChangesInDeltree() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
-		BugReport br = BugFactory.eINSTANCE.createBugReport();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
+		final BugReport br = BugFactory.eINSTANCE.createBugReport();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(pack);
-		getProject().addModelElement(br);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(pack);
+				getProject().addModelElement(br);
+				section.getModelElements().add(pack);
+				getProjectSpace().getOperations().clear();
+			}
+		}.run();
 
-		section.getModelElements().add(pack);
-
-		getProjectSpace().getOperations().clear();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		BugReport br1 = (BugReport) getProject().getModelElement(br.getModelElementId());
-		WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final BugReport br1 = (BugReport) getProject().getModelElement(br.getModelElementId());
+		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		new UnicaseCommand() {
 
-		br1.setContainingWorkpackage(pack1);
-		project2.deleteModelElement(section2);
+			@Override
+			protected void doRun() {
+				br1.setContainingWorkpackage(pack1);
+				project2.deleteModelElement(section2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -210,26 +271,37 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDeleteNonContainmentChangesInDeltree() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		Milestone mileStone = TaskFactory.eINSTANCE.createMilestone();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Milestone mileStone = TaskFactory.eINSTANCE.createMilestone();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(mileStone);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(mileStone);
+				section.getModelElements().add(useCase);
+				getProjectSpace().getOperations().clear();
 
-		section.getModelElements().add(useCase);
+			}
+		}.run();
 
-		getProjectSpace().getOperations().clear();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Milestone mileStone1 = (Milestone) getProject().getModelElement(mileStone.getModelElementId());
-		UseCase useCase1 = (UseCase) getProject().getModelElement(useCase.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final Milestone mileStone1 = (Milestone) getProject().getModelElement(mileStone.getModelElementId());
+		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCase.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		new UnicaseCommand() {
 
-		useCase1.getAnnotations().add(mileStone1);
-		project2.deleteModelElement(section2);
+			@Override
+			protected void doRun() {
+				useCase1.getAnnotations().add(mileStone1);
+				project2.deleteModelElement(section2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -251,31 +323,52 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	@Test
 	public void conflictDeleteMoveChangesInDeltree() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
-		BugReport br1 = BugFactory.eINSTANCE.createBugReport();
-		BugReport br2 = BugFactory.eINSTANCE.createBugReport();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
+		final BugReport br1 = BugFactory.eINSTANCE.createBugReport();
+		final BugReport br2 = BugFactory.eINSTANCE.createBugReport();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(pack);
-		getProject().addModelElement(br1);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(pack);
+				getProject().addModelElement(br1);
 
-		br1.setContainingWorkpackage(pack);
-		br2.setContainingWorkpackage(pack);
+				br1.setContainingWorkpackage(pack);
+				br2.setContainingWorkpackage(pack);
+
+			}
+		}.run();
+
 		assertEquals(pack.getContainedWorkItems().get(0), br1);
 		assertEquals(pack.getContainedWorkItems().get(1), br2);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(pack);
+			@Override
+			protected void doRun() {
+				section.getModelElements().add(pack);
 
-		getProjectSpace().getOperations().clear();
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
 		WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
 		pack1.getContainedWorkItems().move(1, 0);
-		project2.deleteModelElement(section2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				project2.deleteModelElement(section2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();

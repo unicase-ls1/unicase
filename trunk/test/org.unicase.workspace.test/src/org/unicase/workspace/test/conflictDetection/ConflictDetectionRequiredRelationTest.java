@@ -24,6 +24,7 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -38,14 +39,19 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByAdd() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
 
-		section.getModelElements().add(actor);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -69,15 +75,20 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByRemove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().remove(actor);
 
-		section.getModelElements().add(actor);
-		section.getModelElements().remove(actor);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -107,18 +118,22 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByMove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(dummy);
+		new UnicaseCommand() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(dummy);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().move(0, actor);
 
-		getProjectSpace().getOperations().clear();
-
-		section.getModelElements().add(actor);
-		section.getModelElements().move(0, actor);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -150,16 +165,20 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByAttributeChange() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
+		new UnicaseCommand() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				actor.setName("this is a new name");
 
-		getProjectSpace().getOperations().clear();
-
-		section.getModelElements().add(actor);
-		actor.setName("this is a new name");
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -189,18 +208,22 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByReferenceChange() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		UserTask task = RequirementFactory.eINSTANCE.createUserTask();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(task);
+		new UnicaseCommand() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(task);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				actor.setInitiatedUserTask(task);
 
-		getProjectSpace().getOperations().clear();
-
-		section.getModelElements().add(actor);
-		actor.setInitiatedUserTask(task);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -230,18 +253,22 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByMultiChange() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(useCase);
+		new UnicaseCommand() {
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(useCase);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				actor.getInitiatedUseCases().add(useCase);
 
-		getProjectSpace().getOperations().clear();
-
-		section.getModelElements().add(actor);
-		actor.getInitiatedUseCases().add(useCase);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -271,19 +298,25 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByIndirectChange() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution2);
-		issue.setSolution(solution2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
-		getProject().addModelElement(solution1);
-		issue.setSolution(solution1);
-		issue.setSolution(solution2);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution2);
+				issue.setSolution(solution2);
 
+				getProjectSpace().getOperations().clear();
+				getProject().addModelElement(solution1);
+				issue.setSolution(solution1);
+				issue.setSolution(solution2);
+
+			}
+		}.run();
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops are [create solution1], [set solution 1], [set solution 2]
@@ -306,16 +339,21 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByDelete() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				actor.setName("name");
+				getProject().deleteModelElement(actor);
 
-		section.getModelElements().add(actor);
-		actor.setName("name");
-		getProject().deleteModelElement(actor);
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -349,15 +387,21 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCreateByChangeInDeletree() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProjectSpace().getOperations().clear();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
-		actor.setName("name");
-		getProject().deleteModelElement(section);
+			@Override
+			protected void doRun() {
+				getProjectSpace().getOperations().clear();
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
+				actor.setName("name");
+				getProject().deleteModelElement(section);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -395,18 +439,25 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireSingleRefByMove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		section.getModelElements().add(dummy);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				section.getModelElements().add(dummy);
 
-		actor.setLeafSection(section);
-		section.getModelElements().move(0, actor);
+				getProjectSpace().getOperations().clear();
+
+				actor.setLeafSection(section);
+				section.getModelElements().move(0, actor);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -432,16 +483,23 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireSingleRefByRemove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
 
-		actor.setLeafSection(section);
-		section.getModelElements().remove(actor);
+				getProjectSpace().getOperations().clear();
+
+				actor.setLeafSection(section);
+				section.getModelElements().remove(actor);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -466,18 +524,24 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireSingleRefByIndirectRemove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
 
-		getProjectSpace().getOperations().clear();
+				getProjectSpace().getOperations().clear();
 
-		actor.setLeafSection(section);
-		section2.getModelElements().add(actor);
+				actor.setLeafSection(section);
+				section2.getModelElements().add(actor);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -501,18 +565,25 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireMultiRefByIndirectRemove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
 
-		section.getModelElements().add(actor);
-		section2.getModelElements().add(actor);
+				getProjectSpace().getOperations().clear();
+
+				section.getModelElements().add(actor);
+				section2.getModelElements().add(actor);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -536,17 +607,23 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireMultiRefByRemove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
 
-		section.getModelElements().add(actor);
-		section.getModelElements().remove(actor);
+				getProjectSpace().getOperations().clear();
 
+				section.getModelElements().add(actor);
+				section.getModelElements().remove(actor);
+
+			}
+		}.run();
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops are [add actor to section], [remove actor]
@@ -569,18 +646,25 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireMultiRefByMove() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		section.getModelElements().add(dummy);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				section.getModelElements().add(dummy);
 
-		section.getModelElements().add(actor);
-		section.getModelElements().move(0, actor);
+				getProjectSpace().getOperations().clear();
+
+				section.getModelElements().add(actor);
+				section.getModelElements().move(0, actor);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -608,23 +692,37 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCompositeMultiRefByCompositeMove() throws InvalidHandleException {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				section.getModelElements().add(dummy);
 
-		getProjectSpace().getOperations().clear();
+				getProjectSpace().getOperations().clear();
 
-		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
-		section.getModelElements().add(actor);
-		handle1.end("", "", null);
+				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+				section.getModelElements().add(actor);
+				try {
+					handle1.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
 
-		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
-		section.getModelElements().move(0, actor);
-		handle2.end("", "", null);
+				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+				section.getModelElements().move(0, actor);
+				try {
+					handle2.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -652,23 +750,38 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireCompositeMultiRefByCompositeIndirectRemove() throws InvalidHandleException {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
 
-		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
-		section.getModelElements().add(actor);
-		handle1.end("", "", null);
+				getProjectSpace().getOperations().clear();
 
-		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
-		section2.getModelElements().add(actor);
-		handle2.end("", "", null);
+				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+				section.getModelElements().add(actor);
+				try {
+					handle1.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
+
+				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+				section2.getModelElements().add(actor);
+				try {
+					handle2.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -695,25 +808,40 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireUnrelatedCompositeOps() throws InvalidHandleException {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(actor2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(actor2);
 
-		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
-		section.getModelElements().add(actor);
-		handle1.end("", "", null);
+				getProjectSpace().getOperations().clear();
 
-		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
-		section2.getModelElements().add(actor2);
-		handle2.end("", "", null);
+				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+				section.getModelElements().add(actor);
+				try {
+					handle1.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
+
+				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+				section2.getModelElements().add(actor2);
+				try {
+					handle2.end("", "", null);
+				} catch (InvalidHandleException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -737,20 +865,27 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireUnrelatedOps() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(actor2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(actor2);
 
-		section.getModelElements().add(actor);
-		section2.getModelElements().add(actor2);
+				getProjectSpace().getOperations().clear();
+
+				section.getModelElements().add(actor);
+				section2.getModelElements().add(actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -774,34 +909,40 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 	@Test
 	public void requireComplexTest() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		UserTask task = RequirementFactory.eINSTANCE.createUserTask();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
 
-		getProjectSpace().getOperations().clear();
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(actor2);
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(task);
+			@Override
+			protected void doRun() {
+				getProjectSpace().getOperations().clear();
 
-		section.getModelElements().add(actor);
-		actor.setName("actor");
-		section.setName("section");
-		section2.setLeafSection(section);
-		section2.getModelElements().add(actor2);
-		section2.getModelElements().add(actor);
-		task.setInitiatingActor(actor);
-		useCase.getParticipatingActors().add(actor);
-		useCase.getParticipatingActors().add(actor2);
-		useCase.getParticipatingActors().move(1, actor);
-		getProject().deleteModelElement(section);
+				getProject().addModelElement(section);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(actor2);
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(task);
 
+				section.getModelElements().add(actor);
+				actor.setName("actor");
+				section.setName("section");
+				section2.setLeafSection(section);
+				section2.getModelElements().add(actor2);
+				section2.getModelElements().add(actor);
+				task.setInitiatingActor(actor);
+				useCase.getParticipatingActors().add(actor);
+				useCase.getParticipatingActors().add(actor2);
+				useCase.getParticipatingActors().move(1, actor);
+				getProject().deleteModelElement(section);
+
+			}
+		}.run();
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops lineup

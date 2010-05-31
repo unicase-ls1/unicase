@@ -23,7 +23,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 public abstract class ConflictDetectionTest extends WorkspaceTest {
 
 	/**
-	 * Clones a project pace including the project.
+	 * Clones a project space including the project.
 	 * 
 	 * @param ps the projectspace to clone
 	 * @return the new projectspace
