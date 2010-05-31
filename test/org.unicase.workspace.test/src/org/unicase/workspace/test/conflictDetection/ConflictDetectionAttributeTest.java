@@ -79,22 +79,32 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAttributeSameValue() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
+		new UnicaseCommand() {
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
+				getProjectSpace().getOperations().clear();
+			}
+		}.run();
 
-		getProjectSpace().getOperations().clear();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		new UnicaseCommand() {
 
-		actor1.setName("change 1");
-		actor2.setName("change 1");
+			@Override
+			protected void doRun() {
+				actor1.setName("change 1");
+				actor2.setName("change 1");
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -113,22 +123,36 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAttribute() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		getProject().addModelElement(section);
-		section.getModelElements().add(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				section.getModelElements().add(actor);
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		actor1.setName("change 1");
-		actor2.setDescription("unrelated change");
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setName("change 1");
+				actor2.setDescription("unrelated change");
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
