@@ -215,7 +215,7 @@ litigation.
    </license>
 
    <url>
-      <update label="UNICASE update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
+      <update label="UNICASE update site" url="http://unicase.googlecode.com/svn/updatesite/internal/"/>
    </url>
 
    <includes
