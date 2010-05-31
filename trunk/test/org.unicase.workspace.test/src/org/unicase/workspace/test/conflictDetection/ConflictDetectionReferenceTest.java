@@ -24,6 +24,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -38,23 +39,37 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictSingleReference() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		actor2.setLeafSection((LeafSection) project2.getModelElement(section2.getModelElementId()));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				actor2.setLeafSection((LeafSection) project2.getModelElement(section2.getModelElementId()));
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -73,24 +88,38 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceSameValue() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
 		// attention: same structure is being built here, should not conflict
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		actor2.setLeafSection((LeafSection) project2.getModelElement(section1.getModelElementId()));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				actor2.setLeafSection((LeafSection) project2.getModelElement(section1.getModelElementId()));
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -109,23 +138,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceUnrelated() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		UserTask task = RequirementFactory.eINSTANCE.createUserTask();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(task);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+
+				getProject().addModelElement(section1);
+				getProject().addModelElement(task);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		actor2.setInitiatedUserTask((UserTask) project2.getModelElement(task.getModelElementId()));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				actor2.setInitiatedUserTask((UserTask) project2.getModelElement(task.getModelElementId()));
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -144,25 +189,38 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictSingleReferenceOpposite() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution1);
-		getProject().addModelElement(solution2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution1);
+				getProject().addModelElement(solution2);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
-		Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
-		Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
+		final Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
+		final Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
+		final Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
 
-		issue1.setSolution((Solution) getProject().getModelElement(solution1.getModelElementId()));
-		solution22.setIssue(issue2);
+		new UnicaseCommand() {
 
+			@Override
+			protected void doRun() {
+				issue1.setSolution((Solution) getProject().getModelElement(solution1.getModelElementId()));
+				solution22.setIssue(issue2);
+
+			}
+		}.run();
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
@@ -180,23 +238,37 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceOppositeSameValue() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
-		Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
-		Solution solution2 = (Solution) project2.getModelElement(solution.getModelElementId());
-		Solution solution1 = (Solution) getProject().getModelElement(solution.getModelElementId());
+		final Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
+		final Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
+		final Solution solution2 = (Solution) project2.getModelElement(solution.getModelElementId());
+		final Solution solution1 = (Solution) getProject().getModelElement(solution.getModelElementId());
 
-		issue1.setSolution(solution1);
-		solution2.setIssue(issue2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				issue1.setSolution(solution1);
+				solution2.setIssue(issue2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -215,25 +287,38 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceOppositeUnrelated() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution = RationaleFactory.eINSTANCE.createSolution();
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution);
-		getProject().addModelElement(section);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution);
+				getProject().addModelElement(section);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
-		Solution solution1 = (Solution) getProject().getModelElement(solution.getModelElementId());
-		Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
+		final Solution solution1 = (Solution) getProject().getModelElement(solution.getModelElementId());
+		final Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		issue1.setSolution(solution1);
-		issue2.setLeafSection(section2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				issue1.setSolution(solution1);
+				issue2.setLeafSection(section2);
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -252,24 +337,38 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictSingleMultiReference() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		LeafSection section22 = (LeafSection) project2.getModelElement(section2.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section22 = (LeafSection) project2.getModelElement(section2.getModelElementId());
 
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		section22.getModelElements().add(actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				section22.getModelElements().add(actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -288,24 +387,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleMultiReferenceSameValue() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		LeafSection section12 = (LeafSection) project2.getModelElement(section1.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section12 = (LeafSection) project2.getModelElement(section1.getModelElementId());
 
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		section12.getModelElements().add(actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				section12.getModelElements().add(actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -324,23 +438,37 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleMultiReferenceUnrelated() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
-		actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCase.getModelElementId())));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1.getModelElementId()));
+				actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCase.getModelElementId())));
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -359,25 +487,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictSingleReferenceBothOpposite() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution1);
-		getProject().addModelElement(solution2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution1);
+				getProject().addModelElement(solution2);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
-		Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
-		Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
-		Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
+		final Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
+		final Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
+		final Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
+		final Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
 
-		solution11.setIssue(issue1);
-		solution22.setIssue(issue2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				solution11.setIssue(issue1);
+				solution22.setIssue(issue2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -396,25 +538,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceBothOppositeSameValue() {
 
-		Issue issue = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue);
-		getProject().addModelElement(solution1);
-		getProject().addModelElement(solution2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue);
+				getProject().addModelElement(solution1);
+				getProject().addModelElement(solution2);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
-		Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
-		Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
-		Solution solution12 = (Solution) project2.getModelElement(solution1.getModelElementId());
+		final Issue issue1 = (Issue) getProject().getModelElement(issue.getModelElementId());
+		final Issue issue2 = (Issue) project2.getModelElement(issue.getModelElementId());
+		final Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
+		final Solution solution12 = (Solution) project2.getModelElement(solution1.getModelElementId());
 
-		solution11.setIssue(issue1);
-		solution12.setIssue(issue2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				solution11.setIssue(issue1);
+				solution12.setIssue(issue2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -433,28 +589,41 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictSingleReferenceBothOppositeUnrelated() {
 
-		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
-		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
-		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+		final Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
+		final Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
+		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		getProject().addModelElement(issue1);
-		getProject().addModelElement(issue2);
-		getProject().addModelElement(solution1);
-		getProject().addModelElement(solution2);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(issue1);
+				getProject().addModelElement(issue2);
+				getProject().addModelElement(solution1);
+				getProject().addModelElement(solution2);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Issue issue11 = (Issue) getProject().getModelElement(issue1.getModelElementId());
-		Issue issue22 = (Issue) project2.getModelElement(issue2.getModelElementId());
-		Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
-		Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
+		final Issue issue11 = (Issue) getProject().getModelElement(issue1.getModelElementId());
+		final Issue issue22 = (Issue) project2.getModelElement(issue2.getModelElementId());
+		final Solution solution11 = (Solution) getProject().getModelElement(solution1.getModelElementId());
+		final Solution solution22 = (Solution) project2.getModelElement(solution2.getModelElementId());
 
-		solution11.setIssue(issue11);
-		solution22.setIssue(issue22);
+		new UnicaseCommand() {
 
+			@Override
+			protected void doRun() {
+				solution11.setIssue(issue11);
+				solution22.setIssue(issue22);
+
+			}
+		}.run();
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
@@ -472,25 +641,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictMultiMultiReferenceBothOpposite() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		LeafSection section11 = (LeafSection) getProject().getModelElement(section1.getModelElementId());
-		LeafSection section22 = (LeafSection) project2.getModelElement(section2.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section11 = (LeafSection) getProject().getModelElement(section1.getModelElementId());
+		final LeafSection section22 = (LeafSection) project2.getModelElement(section2.getModelElementId());
 
-		section11.getModelElements().add(actor1);
-		section22.getModelElements().add(actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section11.getModelElements().add(actor1);
+				section22.getModelElements().add(actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -509,25 +692,39 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictMultiMultiReferenceSameChange() {
 
-		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section1);
-		getProject().addModelElement(section2);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section1);
+				getProject().addModelElement(section2);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		LeafSection section11 = (LeafSection) getProject().getModelElement(section1.getModelElementId());
-		LeafSection section12 = (LeafSection) project2.getModelElement(section1.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section11 = (LeafSection) getProject().getModelElement(section1.getModelElementId());
+		final LeafSection section12 = (LeafSection) project2.getModelElement(section1.getModelElementId());
 
-		section11.getModelElements().add(actor1);
-		section12.getModelElements().add(actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section11.getModelElements().add(actor1);
+				section12.getModelElements().add(actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -546,24 +743,38 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictMultiMultiReferenceUnrelated() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(useCase);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(useCase);
+				getProject().addModelElement(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
-		Project project2 = ps2.getProject();
+		final Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(actor1);
-		actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCase.getModelElementId())));
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(actor1);
+				actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCase.getModelElementId())));
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
