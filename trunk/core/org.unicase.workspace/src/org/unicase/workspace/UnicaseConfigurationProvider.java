@@ -5,7 +5,6 @@
  */
 package org.unicase.workspace;
 
-import static org.unicase.workspace.Configuration.isDeveloperVersion;
 import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
 import static org.unicase.workspace.Configuration.isReleaseVersion;
 
@@ -41,10 +40,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		if (isInternalReleaseVersion()) {
 			serverInfos.add(getInternalServerInfo());
 		}
-		if (isDeveloperVersion()) {
-			serverInfos.add(getLocalhostServerInfo());
-		}
-		return serverInfos;
+		return (serverInfos.size() == 0) ? null : serverInfos;
 	}
 
 	private static ServerInfo getReleaseServerInfo() {
@@ -60,22 +56,6 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		serverInfo.setName("unicase Developer Server");
 		serverInfo.setPort(443);
 		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
-		return serverInfo;
-	}
-
-	private static ServerInfo getLocalhostServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("Localhost Server");
-		serverInfo.setPort(8080);
-		serverInfo.setUrl("localhost");
-
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
-		superUsersession.setServerInfo(serverInfo);
-		superUsersession.setPassword("super");
-		superUsersession.setSavePassword(true);
-		superUsersession.setUsername("super");
-		serverInfo.setLastUsersession(superUsersession);
-
 		return serverInfo;
 	}
 
