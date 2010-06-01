@@ -62,7 +62,7 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	 * @return the value of the '<em>Included Use Case</em>' reference.
 	 * @see #setIncludedUseCase(UseCase)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedUseCase()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	UseCase getIncludedUseCase();
@@ -88,7 +88,7 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	 * @return the value of the '<em>Included System Function</em>' reference.
 	 * @see #setIncludedSystemFunction(SystemFunction)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedSystemFunction()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	SystemFunction getIncludedSystemFunction();
@@ -116,7 +116,7 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	 * @see #setUseCase(UseCase)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_UseCase()
 	 * @see org.unicase.model.requirement.UseCase#getUseCaseSteps
-	 * @model opposite="useCaseSteps" keys="identifier" transient="false"
+	 * @model opposite="useCaseSteps" transient="false"
 	 * @generated
 	 */
 	UseCase getUseCase();

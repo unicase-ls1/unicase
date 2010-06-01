@@ -100,8 +100,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
-	 * @model opposite="useCases" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 * @model opposite="useCases" annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -120,8 +119,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
-	 * @model opposite="restrictedUseCases" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @model opposite="restrictedUseCases" annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -157,7 +155,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Included Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludedUseCases()
-	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	EList<UseCase> getIncludedUseCases();
@@ -173,7 +171,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Extended Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendedUseCases()
-	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	EList<UseCase> getExtendedUseCases();
@@ -191,8 +189,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>System Functions</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_SystemFunctions()
 	 * @see org.unicase.model.requirement.SystemFunction#getUsecases
-	 * @model opposite="usecases" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='15.0' position='right'"
+	 * @model opposite="usecases" annotation="org.unicase.ui.meeditor priority='15.0' position='right'"
 	 * @generated
 	 */
 	EList<SystemFunction> getSystemFunctions();
@@ -285,7 +282,7 @@ public interface UseCase extends UnicaseModelElement {
 	 * @return the value of the '<em>Use Case Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_UseCaseSteps()
 	 * @see org.unicase.model.requirement.Step#getUseCase
-	 * @model opposite="useCase" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="useCase" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor priority='10.1' position='bottom'"
 	 * @generated
 	 */

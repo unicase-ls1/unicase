@@ -16,15 +16,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
@@ -61,7 +60,7 @@ import org.unicase.model.task.util.MEStateImpl;
  * 
  * @generated
  */
-public abstract class UnicaseModelElementImpl extends IdentifiableElementImpl implements UnicaseModelElement {
+public abstract class UnicaseModelElementImpl extends EObjectImpl implements UnicaseModelElement {
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -449,12 +448,13 @@ public abstract class UnicaseModelElementImpl extends IdentifiableElementImpl im
 	 * @see org.unicase.model.UnicaseModelElement#getModelElementId()
 	 */
 	public ModelElementId getModelElementId() {
-		if (this.identifier == null) {
-			throw new IllegalStateException("Model element does not have an identifier");
-		}
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		modelElementId.setId(this.identifier);
-		return modelElementId;
+		return ModelUtil.getProject(this).getModelElementId(this);
+		// TODO : EMFPlainEObjectTransition
+		/*
+		 * if (this.identifier == null) { throw new IllegalStateException("Model element does not have an identifier");
+		 * } ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		 * modelElementId.setId(this.identifier); return modelElementId;
+		 */
 	}
 
 	/**

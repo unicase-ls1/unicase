@@ -6,7 +6,7 @@
 package org.unicase.model;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.metamodel.IdentifiableElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.rationale.Comment;
@@ -36,7 +36,7 @@ import org.unicase.model.task.util.MEState;
  * @model abstract="true"
  * @generated
  */
-public interface UnicaseModelElement extends IdentifiableElement {
+public interface UnicaseModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -137,8 +137,7 @@ public interface UnicaseModelElement extends IdentifiableElement {
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 * @model opposite="referencedModelElements" annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -157,7 +156,7 @@ public interface UnicaseModelElement extends IdentifiableElement {
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_LeafSection()
 	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" keys="identifier" transient="false"
+	 * @model opposite="modelElements" transient="false"
 	 * @generated
 	 */
 	LeafSection getLeafSection();
@@ -221,7 +220,7 @@ public interface UnicaseModelElement extends IdentifiableElement {
 	 * @return the value of the '<em>Comments</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
 	 * @generated
 	 */

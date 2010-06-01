@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateEnd;
@@ -90,8 +89,6 @@ public class StateSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(state);
 			if (result == null)
-				result = caseIdentifiableElement(state);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -101,8 +98,6 @@ public class StateSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(transition);
 			if (result == null)
-				result = caseIdentifiableElement(transition);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -111,8 +106,6 @@ public class StateSwitch<T> {
 			T result = caseStateNode(stateNode);
 			if (result == null)
 				result = caseUnicaseModelElement(stateNode);
-			if (result == null)
-				result = caseIdentifiableElement(stateNode);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -125,8 +118,6 @@ public class StateSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(stateInitial);
 			if (result == null)
-				result = caseIdentifiableElement(stateInitial);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -137,8 +128,6 @@ public class StateSwitch<T> {
 				result = caseStateNode(stateEnd);
 			if (result == null)
 				result = caseUnicaseModelElement(stateEnd);
-			if (result == null)
-				result = caseIdentifiableElement(stateEnd);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -210,20 +199,6 @@ public class StateSwitch<T> {
 	 * @generated
 	 */
 	public T caseStateEnd(StateEnd object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

@@ -34,7 +34,7 @@ public interface Milestone extends WorkItem {
 	 * 
 	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getMilestone_ContainedModelElements()
-	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='1' position='right'"
+	 * @model annotation="org.unicase.ui.meeditor priority='1' position='right'"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getContainedModelElements();

@@ -493,7 +493,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		unicaseModelElementEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 		annotationEClass.getESuperTypes().add(this.getUnicaseModelElement());
 		attachmentEClass.getESuperTypes().add(this.getUnicaseModelElement());
 		projectEClass.getESuperTypes().add(theMetamodelPackage.getProject());
@@ -511,23 +510,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, UnicaseModelElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getUnicaseModelElement_Annotations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUnicaseModelElement_Attachments(), this.getAttachment(), this
 			.getAttachment_ReferringModelElements(), "attachments", null, 0, -1, UnicaseModelElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getUnicaseModelElement_Attachments().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUnicaseModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(),
 			theDocumentPackage.getLeafSection_ReferencedModelElements(), "incomingDocumentReferences", null, 0, -1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUnicaseModelElement_IncomingDocumentReferences().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUnicaseModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage
 			.getLeafSection_ModelElements(), "leafSection", null, 0, 1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getUnicaseModelElement_LeafSection().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getUnicaseModelElement_State(), ecorePackage.getEString(), "state", "", 0, 1,
 			UnicaseModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			IS_DERIVED, IS_ORDERED);
@@ -535,13 +529,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			theProfilePackage.getStereotypeInstance_ModelElement(), "appliedStereotypeInstances", null, 0, -1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUnicaseModelElement_AppliedStereotypeInstances().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUnicaseModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
 			.getComment_CommentedElement(), "comments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getUnicaseModelElement_Comments().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(annotationEClass, Annotation.class, "Annotation", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -549,7 +540,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getUnicaseModelElement_Annotations(), "annotatedModelElements", null, 0, -1, Annotation.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getAnnotation_AnnotatedModelElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(attachmentEClass, Attachment.class, "Attachment", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -557,7 +547,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getUnicaseModelElement_Attachments(), "referringModelElements", null, 0, -1, Attachment.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getAttachment_ReferringModelElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

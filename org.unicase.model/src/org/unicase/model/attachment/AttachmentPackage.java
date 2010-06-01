@@ -65,14 +65,6 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int URL_ATTACHMENT__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -185,14 +177,6 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	int FILE_ATTACHMENT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

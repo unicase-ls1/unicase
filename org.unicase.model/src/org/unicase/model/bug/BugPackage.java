@@ -65,14 +65,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__IDENTIFIER = TaskPackage.WORK_ITEM__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
@@ -93,8 +92,6 @@ public class DiagramSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(meDiagram);
 			if (result == null)
-				result = caseIdentifiableElement(meDiagram);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -107,8 +104,6 @@ public class DiagramSwitch<T> {
 				result = caseAttachment(classDiagram);
 			if (result == null)
 				result = caseUnicaseModelElement(classDiagram);
-			if (result == null)
-				result = caseIdentifiableElement(classDiagram);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -123,8 +118,6 @@ public class DiagramSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(useCaseDiagram);
 			if (result == null)
-				result = caseIdentifiableElement(useCaseDiagram);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -137,8 +130,6 @@ public class DiagramSwitch<T> {
 				result = caseAttachment(componentDiagram);
 			if (result == null)
 				result = caseUnicaseModelElement(componentDiagram);
-			if (result == null)
-				result = caseIdentifiableElement(componentDiagram);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -153,8 +144,6 @@ public class DiagramSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(stateDiagram);
 			if (result == null)
-				result = caseIdentifiableElement(stateDiagram);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -168,8 +157,6 @@ public class DiagramSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(activityDiagram);
 			if (result == null)
-				result = caseIdentifiableElement(activityDiagram);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -182,8 +169,6 @@ public class DiagramSwitch<T> {
 				result = caseAttachment(workItemDiagram);
 			if (result == null)
 				result = caseUnicaseModelElement(workItemDiagram);
-			if (result == null)
-				result = caseIdentifiableElement(workItemDiagram);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -285,20 +270,6 @@ public class DiagramSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkItemDiagram(WorkItemDiagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 
