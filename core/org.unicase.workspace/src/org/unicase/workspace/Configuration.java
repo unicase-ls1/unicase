@@ -18,6 +18,7 @@ import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
@@ -160,7 +161,26 @@ public final class Configuration {
 			}
 		}
 
-		return new ArrayList<ServerInfo>();
+		ArrayList<ServerInfo> result = new ArrayList<ServerInfo>();
+		result.add(getLocalhostServerInfo());
+		return result;
+	}
+
+	private static ServerInfo getLocalhostServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("Localhost Server");
+		serverInfo.setPort(8080);
+		serverInfo.setUrl("localhost");
+		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_DEV_CERTIFICATE);
+
+		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		superUsersession.setServerInfo(serverInfo);
+		superUsersession.setPassword("super");
+		superUsersession.setSavePassword(true);
+		superUsersession.setUsername("super");
+		serverInfo.setLastUsersession(superUsersession);
+
+		return serverInfo;
 	}
 
 	/**
