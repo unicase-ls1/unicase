@@ -55,20 +55,20 @@ public class ImportModelHandler extends AbstractHandler {
 				protected void doRun() {
 					Library library = LibraryFactory.eINSTANCE.createLibrary();
 					library.setName("hans");
-					projectSpace.getProject().addModelElement(library);
+					// projectSpace.getProject().addModelElement(library);
 
 					Book book = LibraryFactory.eINSTANCE.createBook();
 					book.setTitle("mofut");
 					library.getBooks().add(book);
-					// book = LibraryFactory.eINSTANCE.createBook();
-					// book.setTitle("42");
-					// library.getBooks().add(book);
+					book = LibraryFactory.eINSTANCE.createBook();
+					book.setTitle("42");
+					library.getBooks().add(book);
 
 					Library newLib = LibraryFactory.eINSTANCE.createLibrary();
 					newLib.setName("newLib");
 
-					// projectSpace.getProject().addModelElement(library);
-					// projectSpace.getProject().addModelElement(newLib);
+					projectSpace.getProject().addModelElement(library);
+					projectSpace.getProject().addModelElement(newLib);
 
 				}
 			}.run();
