@@ -1749,30 +1749,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictRemoveIndirectlyMoveSameObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(actor);
+		new UnicaseCommand() {
 
-		getProjectSpace().getOperations().clear();
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
+
+		// start from here!
+
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		otherSection1.getModelElements().add(actor1);
-		section2.getModelElements().move(0, actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				otherSection1.getModelElements().add(actor1);
+				section2.getModelElements().move(0, actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1795,35 +1812,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictMoveMoveSameObjectDifferentIndex() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy1);
-		section.getModelElements().add(dummy2);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
 
-		section.getModelElements().add(actor);
-		assertEquals(section.getModelElements().get(2), actor);
+				section.getModelElements().add(dummy1);
+				section.getModelElements().add(dummy2);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				assertEquals(section.getModelElements().get(2), actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().move(1, actor1);
-		section2.getModelElements().move(0, actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().move(1, actor1);
+				section2.getModelElements().move(0, actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1845,35 +1876,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictMoveMoveSameObjectSameIndex() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy1);
-		section.getModelElements().add(dummy2);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
 
-		section.getModelElements().add(actor);
-		assertEquals(section.getModelElements().get(2), actor);
+				section.getModelElements().add(dummy1);
+				section.getModelElements().add(dummy2);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				assertEquals(section.getModelElements().get(2), actor);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().move(1, actor1);
-		section2.getModelElements().move(1, actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().move(1, actor1);
+				section2.getModelElements().move(1, actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1895,34 +1940,48 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictAddRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(anotherDummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(anotherDummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor otherDummy2 = (Actor) project2.getModelElement(otherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor otherDummy2 = (Actor) project2.getModelElement(otherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(2, actor1);
-		section2.getModelElements().remove(otherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(2, actor1);
+				section2.getModelElements().remove(otherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1943,31 +2002,45 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAddRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(0, actor1);
-		section2.getModelElements().remove(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(0, actor1);
+				section2.getModelElements().remove(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1987,33 +2060,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictAddParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		section1.getModelElements().add(1, actor1);
-		dummy2.setLeafSection(otherSection2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(1, actor1);
+				dummy2.setLeafSection(otherSection2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2032,34 +2119,48 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAddParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
+		new UnicaseCommand() {
 
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(1, actor1);
-		dummy2.setLeafSection(otherSection2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(1, actor1);
+				dummy2.setLeafSection(otherSection2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2079,28 +2180,42 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetAddRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(section1);
-		section2.getModelElements().remove(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(section1);
+				section2.getModelElements().remove(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2120,30 +2235,44 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetAddRemoveIndirectlyDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(section1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(section1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2163,30 +2292,44 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetAddParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(section1);
-		dummy2.setLeafSection(otherSection2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(section1);
+				dummy2.setLeafSection(otherSection2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2206,33 +2349,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void nnoConflictAddParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		section1.getModelElements().add(actor1);
-		dummy2.setLeafSection(otherSection2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(actor1);
+				dummy2.setLeafSection(otherSection2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2253,34 +2410,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAddRemoveIndirectlyDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		section1.getModelElements().add(actor1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(actor1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2301,35 +2471,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().remove(actor1);
-		section2.getModelElements().remove(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(actor1);
+				section2.getModelElements().remove(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2349,35 +2533,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		section1.getModelElements().remove(actor1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(actor1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2397,35 +2595,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveRemoveIndirectlyDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		section1.getModelElements().remove(actor1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(actor1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2445,37 +2657,52 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetRemoveRemoveIndirectlyDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(anotherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(anotherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSection.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(
+			anotherSection.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		actor1.setLeafSection(anotherSection1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(anotherSection1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2495,37 +2722,52 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetRemoveParentSetRemoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(anotherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(anotherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSection.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(
+			anotherSection.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		actor1.setLeafSection(anotherSection1);
-		dummy2.setLeafSection(otherSection2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(anotherSection1);
+				dummy2.setLeafSection(otherSection2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2545,37 +2787,53 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveIndirectlyRemoveIndirectlyDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(anotherSection);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(anotherSection);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
 
-		LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSection.getModelElementId());
-		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(
+			anotherSection.getModelElementId());
+		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
 
-		anotherSection1.getModelElements().add(actor1);
-		otherSection2.getModelElements().add(dummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+
+				anotherSection1.getModelElements().add(actor1);
+				otherSection2.getModelElements().add(dummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2595,35 +2853,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictAddMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(1, actor1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(1, actor1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2643,35 +2915,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictAddMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().add(0, actor1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().add(0, actor1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2691,35 +2977,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictParentSetAddMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(section1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(section1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2741,37 +3041,51 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictParentSetAddMoveDifferentObjectBoundary() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		// section.getModelElements().add(dummy);
-		section.getModelElements().add(actor);
-		section.getModelElements().add(otherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				// section.getModelElements().add(dummy);
+				section.getModelElements().add(actor);
+				section.getModelElements().add(otherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
-		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
+		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		dummy1.setLeafSection(section1);
-		anotherDummy2.setLeafSection(section2);
-		section2.getModelElements().move(section2.getModelElements().size() - 1, actor2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				dummy1.setLeafSection(section1);
+				anotherDummy2.setLeafSection(section2);
+				section2.getModelElements().move(section2.getModelElements().size() - 1, actor2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2790,36 +3104,50 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictRemoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().remove(actor1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(actor1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2839,36 +3167,49 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().remove(actor1);
-		section2.getModelElements().move(0, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(actor1);
+				section2.getModelElements().move(0, anotherDummy2);
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2888,36 +3229,50 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveMoveDifferentObjectSameIndex() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().remove(dummy1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().remove(dummy1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2937,37 +3292,51 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictParentSetRemoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		dummy1.setLeafSection(otherSection1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				dummy1.setLeafSection(otherSection1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2987,37 +3356,51 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictParentSetRemoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(otherSection1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				actor1.setLeafSection(otherSection1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3037,39 +3420,51 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictRemoveIndirectlyMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		otherSection1.getModelElements().add(dummy1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
 
+			@Override
+			protected void doRun() {
+				otherSection1.getModelElements().add(dummy1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
@@ -3088,38 +3483,51 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictRemoveIndirectlyMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		otherSection1.getModelElements().add(actor1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				otherSection1.getModelElements().add(actor1);
+				section2.getModelElements().move(1, anotherDummy2);
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3139,38 +3547,52 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictMoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().move(1, actor1);
-		section2.getModelElements().move(1, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().move(1, actor1);
+				section2.getModelElements().move(1, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3190,38 +3612,52 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void noConflictMoveMoveDifferentObject() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		Actor actor = RequirementFactory.eINSTANCE.createActor();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
-		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		getProject().addModelElement(section);
-		getProject().addModelElement(otherSection);
-		getProject().addModelElement(actor);
-		getProject().addModelElement(dummy);
-		getProject().addModelElement(otherDummy);
-		getProject().addModelElement(anotherDummy);
+		new UnicaseCommand() {
 
-		section.getModelElements().add(actor);
-		section.getModelElements().add(dummy);
-		section.getModelElements().add(otherDummy);
-		section.getModelElements().add(anotherDummy);
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(section);
+				getProject().addModelElement(otherSection);
+				getProject().addModelElement(actor);
+				getProject().addModelElement(dummy);
+				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(anotherDummy);
 
-		getProjectSpace().getOperations().clear();
+				section.getModelElements().add(actor);
+				section.getModelElements().add(dummy);
+				section.getModelElements().add(otherDummy);
+				section.getModelElements().add(anotherDummy);
+
+				getProjectSpace().getOperations().clear();
+
+			}
+		}.run();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
+		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		section1.getModelElements().move(2, actor1);
-		section2.getModelElements().move(0, anotherDummy2);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				section1.getModelElements().move(2, actor1);
+				section2.getModelElements().move(0, anotherDummy2);
+
+			}
+		}.run();
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
