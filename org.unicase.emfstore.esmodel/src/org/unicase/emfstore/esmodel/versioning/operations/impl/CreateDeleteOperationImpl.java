@@ -72,7 +72,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				return;
 			}
 			CreateDeleteOperationImpl clone = ModelUtil.clone(this);
-			project.addModelElement(clone.getModelElement(), clone.getEobjectsIdMap().map());
+			project.addModelElement(clone.getModelElement(), clone.getModelElementId());
 			for (ReferenceOperation operation : getSubOperations()) {
 				operation.apply(project);
 			}
@@ -85,8 +85,10 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		super.reverse(createDeleteOperation);
 		createDeleteOperation.setDelete(!this.isDelete());
 		createDeleteOperation.setModelElement(ModelUtil.clone(this.getModelElement()));
-		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
-			createDeleteOperation.getEobjectsIdMap().put(e.getKey(), e.getValue());
+		createDeleteOperation.setModelElementId(ModelUtil.clone(this.getModelElementId()));
+
+		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap().entrySet()) {
+			createDeleteOperation.getEobjectsIdMap().put(e.getKey(), ModelUtil.clone(e.getValue()));
 		}
 
 		EList<ReferenceOperation> clonedSubOperations = createDeleteOperation.getSubOperations();
@@ -296,20 +298,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * 
 	 * @generated
 	 */
-	// public EMap<ModelElementId, EObject> getModelElementIdToEObject() {
-	// if (modelElementIdToEObject == null) {
-	// modelElementIdToEObject = new EcoreEMap<ModelElementId, EObject>(
-	// MetamodelPackage.Literals.MODEL_ELEMENT_ID_TO_EOBJECT_MAP, ModelElementIdToEObjectMapImpl.class, this,
-	// OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT_ID_TO_EOBJECT);
-	// }
-	// return modelElementIdToEObject;
-	// }
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -481,12 +469,12 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	public Set<ModelElementId> getAllDeletedModelElements() {
 		Set<ModelElementId> result = new HashSet<ModelElementId>();
 		for (EObject modelElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
-			// if (modelElement instanceof ModelElement) {
+
 			Project p = ModelUtil.getProject(modelElement);
 			if (p != null) {
 				result.add(p.getModelElementId(modelElement));
 			}
-			// }
+
 		}
 		for (ModelElementId id : getEobjectsIdMap().values()) {
 			result.add(id);

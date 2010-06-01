@@ -1,18 +1,15 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.emfstore.esmodel.versioning.operations.provider;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -31,12 +28,9 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 
@@ -57,31 +51,6 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	public CreateDeleteOperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-	}
-
-	/**
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
-	 */
-	@Override
-	public Collection<?> getChildren(Object object) {
-		if (object instanceof CreateDeleteOperation) {
-			CreateDeleteOperation operation = (CreateDeleteOperation) object;
-			ArrayList<Object> ret = new ArrayList<Object>();
-			ret.add(operation.getModelElementId());
-			List<ReferenceOperation> subOps = operation.getSubOperations();
-			if (subOps.size() > 0) {
-				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
-				if (operation.isDelete()) {
-					operationGroup.setName("Deleted Cross-References");
-				} else {
-					operationGroup.setName("Created Cross-References");
-				}
-				operationGroup.getOperations().addAll(subOps);
-				ret.add(operationGroup);
-			}
-			return ret;
-		}
-		return super.getChildren(object);
 	}
 
 	/**
@@ -144,64 +113,26 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		return super.getChildFeature(object, child);
 	}
 
-	// begin of custom code
 	/**
-	 * @param object the object
-	 * @return This returns the image.
-	 * @generated NOT
+	 * This returns CreateDeleteOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		CreateDeleteOperation op = (CreateDeleteOperation) object;
-		Object image = null;
-		if (op.isDelete()) {
-			image = getResourceLocator().getImage("full/obj16/DeleteOperation.png");
-		} else {
-			image = getResourceLocator().getImage("full/obj16/CreateOperation.png");
-		}
-		return overlayImage(object, image);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CreateDeleteOperation"));
 	}
 
-	// end of custom code
-
 	/**
-	 * {@inheritDoc} This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof CreateDeleteOperation) {
-			CreateDeleteOperation op = (CreateDeleteOperation) object;
-			EObject modelElement = op.getModelElement();
-			int childrenCount = op.getAllDeletedModelElements().size() - 1;
-			String description;
-
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append(modelElement.eClass().getName());
-			stringBuilder.append(getModelElementName(op.getModelElementId()));
-			String elementClassAndName = stringBuilder.toString();
-			if (op.isDelete()) {
-				description = "Deleted " + elementClassAndName;
-			} else {
-				description = "Created " + elementClassAndName;
-			}
-			if (childrenCount > 0) {
-				description += " including " + childrenCount + " sibling(s)";
-			}
-
-			EList<ReferenceOperation> subOperations = op.getSubOperations();
-			int subOperationCount = subOperations.size();
-			if (op.isDelete() && subOperationCount > 0) {
-				ReferenceOperation referenceOperation = subOperations.get(subOperationCount - 1);
-				if (referenceOperation.getContainmentType().equals(ContainmentType.CONTAINMENT)) {
-					description += " from its parent "
-						+ getModelElementClassAndName(referenceOperation.getModelElementId());
-				}
-			}
-			return description;
-		}
-		return super.getText(object);
+		String label = ((CreateDeleteOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_CreateDeleteOperation_type")
+			: getString("_UI_CreateDeleteOperation_type") + " " + label;
 	}
 
 	/**
