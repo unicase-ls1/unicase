@@ -65,20 +65,12 @@ public interface ModelPackage extends EPackage {
 	int UNICASE_MODEL_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int UNICASE_MODEL_ELEMENT__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__NAME = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+	int UNICASE_MODEL_ELEMENT__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,7 +78,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__DESCRIPTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int UNICASE_MODEL_ELEMENT__DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -95,7 +87,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__ANNOTATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int UNICASE_MODEL_ELEMENT__ANNOTATIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -104,7 +96,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__ATTACHMENTS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int UNICASE_MODEL_ELEMENT__ATTACHMENTS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -113,7 +105,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -122,7 +114,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__LEAF_SECTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int UNICASE_MODEL_ELEMENT__LEAF_SECTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -130,7 +122,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__STATE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int UNICASE_MODEL_ELEMENT__STATE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -139,7 +131,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = 7;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -148,7 +140,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__COMMENTS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int UNICASE_MODEL_ELEMENT__COMMENTS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Unicase Model Element</em>' class. <!-- begin-user-doc --> <!--
@@ -157,7 +149,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class. <!--
@@ -168,14 +160,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	int ANNOTATION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__IDENTIFIER = UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -282,14 +266,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	int ATTACHMENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__IDENTIFIER = UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -421,6 +397,24 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROJECT__NEW_EOBJECTS_ID_MAP = MetamodelPackage.PROJECT__NEW_EOBJECTS_ID_MAP;
+
+	/**
+	 * The feature id for the '<em><b>Deleted EObject Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_EOBJECT_ID_MAP = MetamodelPackage.PROJECT__DELETED_EOBJECT_ID_MAP;
+
+	/**
+	 * The feature id for the '<em><b>Deleted Model Elements</b></em>' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_MODEL_ELEMENTS = MetamodelPackage.PROJECT__DELETED_MODEL_ELEMENTS;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->

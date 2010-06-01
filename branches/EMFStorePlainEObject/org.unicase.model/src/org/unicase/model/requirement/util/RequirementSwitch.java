@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
@@ -97,8 +96,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(nonFunctionalRequirement);
 			if (result == null)
-				result = caseIdentifiableElement(nonFunctionalRequirement);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -107,8 +104,6 @@ public class RequirementSwitch<T> {
 			T result = caseFunctionalRequirement(functionalRequirement);
 			if (result == null)
 				result = caseUnicaseModelElement(functionalRequirement);
-			if (result == null)
-				result = caseIdentifiableElement(functionalRequirement);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -119,8 +114,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(useCase);
 			if (result == null)
-				result = caseIdentifiableElement(useCase);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -129,8 +122,6 @@ public class RequirementSwitch<T> {
 			T result = caseScenario(scenario);
 			if (result == null)
 				result = caseUnicaseModelElement(scenario);
-			if (result == null)
-				result = caseIdentifiableElement(scenario);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -141,8 +132,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(actor);
 			if (result == null)
-				result = caseIdentifiableElement(actor);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -151,8 +140,6 @@ public class RequirementSwitch<T> {
 			T result = caseActorInstance(actorInstance);
 			if (result == null)
 				result = caseUnicaseModelElement(actorInstance);
-			if (result == null)
-				result = caseIdentifiableElement(actorInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -165,8 +152,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseNonDomainElement(step);
 			if (result == null)
-				result = caseIdentifiableElement(step);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -175,8 +160,6 @@ public class RequirementSwitch<T> {
 			T result = caseSystemFunction(systemFunction);
 			if (result == null)
 				result = caseUnicaseModelElement(systemFunction);
-			if (result == null)
-				result = caseIdentifiableElement(systemFunction);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -187,8 +170,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(userTask);
 			if (result == null)
-				result = caseIdentifiableElement(userTask);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -197,8 +178,6 @@ public class RequirementSwitch<T> {
 			T result = caseWorkspace(workspace);
 			if (result == null)
 				result = caseUnicaseModelElement(workspace);
-			if (result == null)
-				result = caseIdentifiableElement(workspace);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -339,20 +318,6 @@ public class RequirementSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkspace(Workspace object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 
