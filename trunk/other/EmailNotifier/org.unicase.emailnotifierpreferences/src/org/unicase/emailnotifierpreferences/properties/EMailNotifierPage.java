@@ -376,24 +376,10 @@ public class EMailNotifierPage extends PropertyPage {
 	}
 
 	private void loadProperties() {
-		// OrgUnitProperty loadedBundles = PreferenceManager.INSTANCE.getProperty(projectSpace,
-		// EMailNotifierKey.BUNDLES);
-		//
-		// if (loadedBundles != null) {
-		// loadedBundles.getEObjectListProperty(tempBundles);
-		// }
-		Bundle t1 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
-		Bundle t2 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
-		t1.setBundleName("Sofort");
-		t2.setBundleName("Warten");
-		t1.setCommentProvider(true);
-		t1.setTaskChangeProvider(true);
-		t1.setDaysCount(2);
-		t1.setImmediately(false);
-		t1.setAggregated(true);
-		t1.setDays(true);
-		tempBundles.add(t1);
-		tempBundles.add(t2);
+		OrgUnitProperty loadedBundles = PreferenceManager.INSTANCE.getProperty(projectSpace, EMailNotifierKey.BUNDLES);
+		if (loadedBundles != null) {
+			loadedBundles.getEObjectListProperty(tempBundles);
+		}
 
 		if (!tempBundles.isEmpty()) {
 			loadProviderProperties(tempBundles, 0);

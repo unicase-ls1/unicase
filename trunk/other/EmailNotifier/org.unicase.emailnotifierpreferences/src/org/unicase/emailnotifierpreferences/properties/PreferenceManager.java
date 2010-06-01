@@ -29,12 +29,22 @@ public final class PreferenceManager {
 	 */
 	public static final PreferenceManager INSTANCE = new PreferenceManager();
 
-	private static HashMap<PropertyKey, OrgUnitProperty> defaultsMap;
+	private static HashMap<PropertyKey, OrgUnitProperty> defaultsMap = new HashMap<PropertyKey, OrgUnitProperty>();
 
 	private PreferenceManager() {
 		Bundle test = EmailbundleFactoryImpl.eINSTANCE.createBundle();
+		Bundle t1 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
+		Bundle t2 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
 		test.setBundleName("pronto");
-		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}));
+		t1.setBundleName("Sofort");
+		t2.setBundleName("Warten");
+		t1.setCommentProvider(true);
+		t1.setTaskChangeProvider(true);
+		t1.setDaysCount(2);
+		t1.setImmediately(false);
+		t1.setAggregated(true);
+		t1.setDays(true);
+		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test, t1, t2}));
 	}
 
 	/**
