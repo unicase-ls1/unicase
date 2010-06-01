@@ -41,7 +41,8 @@ public class MultiReferenceOperationTest extends OperationTest {
 	@Test
 	public void changeMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase");
+		// TODO : EMFPlainEObjectTransition
+		// useCase.setIdentifier("usecase");
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
@@ -108,7 +109,8 @@ public class MultiReferenceOperationTest extends OperationTest {
 	@Test
 	public void reverseMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase.setIdentifier("usecase1");
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
@@ -175,15 +177,18 @@ public class MultiReferenceOperationTest extends OperationTest {
 	@Test
 	public void addManyMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase.setIdentifier("usecase1");
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
 		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
+		// TODO : EMFPlainEObjectTransition
+		// useCase2.setIdentifier("usecase2");
 		getProject().addModelElement(useCase2);
 		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
+		// TODO : EMFPlainEObjectTransition
+		// useCase3.setIdentifier("usecase3");
 		getProject().addModelElement(useCase3);
 
 		clearOperations();
@@ -267,15 +272,18 @@ public class MultiReferenceOperationTest extends OperationTest {
 	@Test
 	public void removeManyMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase.setIdentifier("usecase1");
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
 		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
+		// TODO : EMFPlainEObjectTransition
+		// useCase2.setIdentifier("usecase2");
 		getProject().addModelElement(useCase2);
 		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
+		// TODO : EMFPlainEObjectTransition
+		// useCase3.setIdentifier("usecase3");
 		getProject().addModelElement(useCase3);
 		List<UseCase> useCases = new ArrayList<UseCase>();
 		useCases.add(useCase);

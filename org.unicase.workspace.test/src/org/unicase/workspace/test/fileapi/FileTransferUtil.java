@@ -205,7 +205,8 @@ public final class FileTransferUtil {
 	 */
 	public static File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
 		FileInformation fileInformation = new FileInformation();
-		fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInformation.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment)
+			.getId());
 		if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")) {
 			throw new FileNotFoundException("File does not exist!");
 		}
@@ -235,7 +236,7 @@ public final class FileTransferUtil {
 		throws FileTransferException {
 		// set information needed for transfer
 		FileInformation fileInfo = new FileInformation();
-		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
 		// check if the file attachment attributes are set, otherwise return error dialog
 		if (fileAttachment.getFileID() == null) {
 			fileInfo.setFileVersion(-1);

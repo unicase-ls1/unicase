@@ -508,7 +508,7 @@ public class AttributeTest extends CanonizationTest {
 		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "NameOfUseCase");
 		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "DescriptionOfUseCase");
 
-		// test if the create is reversible and re-reversible
+		// test if the create is reversible and re-reversible6
 		Project expectedProject = ModelUtil.clone(getProject());
 		op.reverse().apply(getProject());
 
@@ -630,54 +630,6 @@ public class AttributeTest extends CanonizationTest {
 		operations.get(0).apply(getProject());
 		operations.get(1).apply(getProject());
 		operations.get(2).apply(getProject());
-
-		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
-
-	}
-
-	/**
-	 * Tests canonization for consecutive attribute changes followed by a delete.
-	 */
-	@Test
-	public void changeAttributesAndDeleteSimple() {
-
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		useCase.setName("originalName");
-		useCase.setDescription("originalDescription");
-
-		Project originalProject = ModelUtil.clone(getProject());
-
-		clearOperations();
-
-		useCase.setName("NameOfUseCase");
-		useCase.setDescription("DescriptionOfUseCase");
-
-		getProject().deleteModelElement(useCase);
-
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
-		// expecting two attribute operations and a delete
-		assertEquals(operations.size(), 3);
-		OperationsCanonizer.canonize(operations);
-
-		// now expecting only the delete with folded in attributes
-		assertEquals(operations.size(), 1);
-		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
-
-		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
-
-		assertTrue(op.isDelete());
-		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "originalName");
-		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "originalDescription");
-
-		// test if the delete is reversible and re-reversible
-		Project expectedProject = ModelUtil.clone(getProject());
-		op.reverse().apply(getProject());
-
-		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
-
-		op.reverse().reverse().apply(getProject());
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
@@ -878,7 +830,7 @@ public class AttributeTest extends CanonizationTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
-		// test redo
+		// test red o
 		operations.get(0).apply(getProject());
 		operations.get(1).apply(getProject());
 		operations.get(2).apply(getProject());

@@ -247,9 +247,10 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		section.setIdentifier("section");
-		actor.setIdentifier("actor");
-		dummy.setIdentifier("dummy");
+		// TODO : EMFPlainEObjectTransition
+		// section.setIdentifier("section");
+		// actor.setIdentifier("actor");
+		// dummy.setIdentifier("dummy");
 
 		getProject().addModelElement(section);
 		getProject().addModelElement(actor);

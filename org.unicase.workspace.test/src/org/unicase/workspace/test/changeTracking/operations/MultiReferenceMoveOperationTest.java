@@ -38,15 +38,18 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 	@Test
 	public void makeMultiReferenceMove() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase1.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase1.set("usecase1");
 		getProject().addModelElement(useCase1);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
 		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
+		// TODO : EMFPlainEObjectTransition
+		// useCase2.setIdentifier("usecase2");
 		getProject().addModelElement(useCase2);
 		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
+		// TODO : EMFPlainEObjectTransition
+		// useCase3.setIdentifier("usecase3");
 		getProject().addModelElement(useCase3);
 
 		actor.getInitiatedUseCases().add(useCase1);
@@ -100,15 +103,18 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 	@Test
 	public void reverseMultiReferenceMove() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase1.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase1.setIdentifier("usecase1");
 		getProject().addModelElement(useCase1);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
 		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
+		// TODO : EMFPlainEObjectTransition
+		// useCase2.setIdentifier("usecase2");
 		getProject().addModelElement(useCase2);
 		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
+		// TODO : EMFPlainEObjectTransition
+		// useCase3.setIdentifier("usecase3");
 		getProject().addModelElement(useCase3);
 
 		actor.getInitiatedUseCases().add(useCase1);
@@ -166,13 +172,16 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
 		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase1.setIdentifier("usecase1");
+		// TODO : EMFPlainEObjectTransition
+		// useCase1.setIdentifier("usecase1");
 		getProject().addModelElement(useCase1);
 		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase2.setIdentifier("usecase2");
+		// TODO : EMFPlainEObjectTransition
+		// useCase2.setIdentifier("usecase2");
 		getProject().addModelElement(useCase2);
 		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase3.setIdentifier("usecase3");
+		// TODO : EMFPlainEObjectTransition
+		// useCase3.setIdentifier("usecase3");
 		getProject().addModelElement(useCase3);
 
 		actor.getInitiatedUseCases().add(useCase1);
@@ -236,7 +245,8 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 		assertEquals(useCase3, initiatedUseCases.get(2));
 
 		UseCase useCase4 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase4.setIdentifier("usecase4");
+		// TODO : EMFPlainEObjectTransition
+		// useCase4.setIdentifier("usecase4");
 		getProject().addModelElement(useCase4);
 
 		clearOperations();
