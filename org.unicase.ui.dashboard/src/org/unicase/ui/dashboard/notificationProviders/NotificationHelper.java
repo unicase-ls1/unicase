@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 
@@ -146,7 +147,9 @@ public final class NotificationHelper {
 		}
 		ret.append(name);
 		ret.append("%");
-		ret.append(modelElement.getIdentifier());
+		// TODO : EMFPlainEObjectTransition
+		ret.append(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
+//		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
 		ret.append(label);
 		ret.append("</a>");
