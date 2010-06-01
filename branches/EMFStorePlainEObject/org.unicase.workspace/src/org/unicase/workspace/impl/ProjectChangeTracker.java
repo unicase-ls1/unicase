@@ -152,10 +152,17 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
 			}
 			deleteOperation.setDelete(true);
+
 			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
 			deleteOperation.setModelElementId(ModelUtil.clone(deletedElementId));
+
+			deleteOperation.getEobjectsIdMap().put(modelElement, deletedElementId);
+
+			for (EObject me : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+				deleteOperation.getEobjectsIdMap().put(me, project.getModelElementId(me));
+			}
+
 			deletedElementId = null;
-			// deleteOperation.setModelElementId(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(deleteOperation);
@@ -367,11 +374,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		createDeleteOperation.setDelete(delete);
 		EObject element = modelElement;
 
-		// if (modelElement instanceof ModelElementEObjectWrapper) {
-		// ModelElementEObjectWrapper wrapper = (ModelElementEObjectWrapper) modelElement;
-		// element = wrapper.getWrappedEObject();
-		// }
-
 		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
 		allContainedModelElements.add(element);
 		EObject copiedElement = EcoreUtil.copy(element);
@@ -383,8 +385,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			createDeleteOperation.getEobjectsIdMap().put(copiedChild, childId);// childId, copiedChild);
+			createDeleteOperation.getEobjectsIdMap().put(copiedChild, childId);
 		}
+
 		createDeleteOperation.setModelElement(copiedElement);
 		createDeleteOperation.setModelElementId(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 
