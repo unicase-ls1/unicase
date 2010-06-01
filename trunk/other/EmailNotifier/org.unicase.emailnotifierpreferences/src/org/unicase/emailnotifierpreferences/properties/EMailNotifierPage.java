@@ -380,7 +380,21 @@ public class EMailNotifierPage extends PropertyPage {
 		if (loadedBundles != null) {
 			loadedBundles.getEObjectListProperty(tempBundles);
 		}
-
+//		Bundle test = EmailbundleFactoryImpl.eINSTANCE.createBundle();
+//		Bundle t1 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
+//		Bundle t2 = EmailbundleFactoryImpl.eINSTANCE.createBundle();
+//		test.setBundleName("pronto");
+//		t1.setBundleName("Sofort");
+//		t2.setBundleName("Warten");
+//		t1.setCommentProvider(true);
+//		t1.setTaskChangeProvider(true);
+//		t1.setDaysCount(2);
+//		t1.setImmediately(false);
+//		t1.setAggregated(true);
+//		t1.setDays(true);
+//		tempBundles.add(t1);
+//		tempBundles.add(t2);
+//		tempBundles.add(test);
 		if (!tempBundles.isEmpty()) {
 			loadProviderProperties(tempBundles, 0);
 			loadSendProperties(tempBundles, 0);
@@ -399,7 +413,7 @@ public class EMailNotifierPage extends PropertyPage {
 
 	private void loadSendProperties(List<Bundle> l, int x) {
 		immediatelyRadio.setSelection(l.get(x).isImmediately());
-		aggregatedRadio.setSelection(l.get(x).isAggregated());
+//		aggregatedRadio.setSelection(l.get(x).isAggregated());
 		if (l.get(x).isAggregated()) {
 			aggregated.setVisible(true);
 		}
@@ -538,11 +552,6 @@ public class EMailNotifierPage extends PropertyPage {
 		DataBindingContext bindingContext = new DataBindingContext();
 		IObservableValue uiElement;
 		IObservableValue modelElement;
-		
-		// Initialize the model
-		EmailbundlePackage.eINSTANCE.eClass();
-		// Retrieve the default factory singleton
-		EmailbundleFactory factory = EmailbundleFactory.eINSTANCE;
 
 		// notifierTypesList.setChecked(EMailNotifierKey.COMMENTS_PROVIDER, false);
 		// notifierTypesList.setChecked(EMailNotifierKey.SUBSCRIPTION_PROVIDER, false);
