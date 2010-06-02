@@ -60,19 +60,37 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String currentUsername) {
-		// sanity checks
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		User user = null;
+
 		try {
-			user = OrgUnitHelper.getUser(projectSpace);
+			User currentUser = OrgUnitHelper.getUser(projectSpace);
+			return provideNotifications(projectSpace, changePackages, currentUser.getName());
 		} catch (NoCurrentUserException e) {
 			return result;
 		} catch (CannotMatchUserInProjectException e) {
 			return result;
 		}
-		if (projectSpace == null || user == null) {
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
+	 *      java.util.List, java.lang.String)
+	 */
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
+			List<ChangePackage> changePackages, String username) {
+		// sanity checks
+		List<ESNotification> result = new ArrayList<ESNotification>();
+		if (projectSpace == null || username == null) {
+			return result;
+		}
+		
+		User user;
+		try {
+			user = OrgUnitHelper.getUser(projectSpace, username);
+		} catch (CannotMatchUserInProjectException e) {
 			return result;
 		}
 

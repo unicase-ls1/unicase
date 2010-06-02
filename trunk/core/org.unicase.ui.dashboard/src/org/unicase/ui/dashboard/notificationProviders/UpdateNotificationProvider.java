@@ -16,9 +16,13 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.organization.User;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Provides notifications on updates of a project space.
@@ -41,6 +45,25 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	public String getName() {
 		return NAME;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
+	 *      java.util.List, java.lang.String)
+	 */
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
+		List<ESNotification> result = new ArrayList<ESNotification>();
+
+		try {
+			User currentUser = OrgUnitHelper.getUser(projectSpace);
+			return provideNotifications(projectSpace, changePackages, currentUser.getName());
+		} catch (NoCurrentUserException e) {
+			return result;
+		} catch (CannotMatchUserInProjectException e) {
+			return result;
+		}
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -49,7 +72,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 *      java.util.List, java.lang.String)
 	 */
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String currentUsername) {
+			List<ChangePackage> changePackages, String usersername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
 		List<ChangePackage> newChangePackages = new ArrayList<ChangePackage>();
@@ -68,7 +91,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		ESNotification notification = NotificationFactory.eINSTANCE
 				.createESNotification();
 		notification.setProject(ModelUtil.clone(projectSpace.getProjectId()));
-		notification.setRecipient(currentUsername);
+		notification.setRecipient(usersername);
 		notification.setProvider(getName());
 
 		if (newChangePackages.isEmpty()) {
