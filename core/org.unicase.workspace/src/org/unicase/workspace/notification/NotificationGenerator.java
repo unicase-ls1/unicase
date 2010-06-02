@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -139,6 +140,29 @@ public final class NotificationGenerator {
 		boolean createGenerationEvent) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
+		Map<NotificationProvider, List<ESNotification>> generateNotificationsByProvider = generateNotificationsByProvider(
+			changePackages, currentUsername, createGenerationEvent);
+
+		for (List<ESNotification> esNotifications : generateNotificationsByProvider.values()) {
+			result.addAll(esNotifications);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Generate notifications for a list of change packages, grouped by the notification provider.
+	 * 
+	 * @param changePackages a list of change packages
+	 * @param currentUsername the name of the current user
+	 * @param createGenerationEvent true if an event should be generated about the notifications
+	 * @return a list of notification
+	 */
+	public Map<NotificationProvider, List<ESNotification>> generateNotificationsByProvider(
+		List<ChangePackage> changePackages, String currentUsername, boolean createGenerationEvent) {
+
+		Map<NotificationProvider, List<ESNotification>> result = new HashMap<NotificationProvider, List<ESNotification>>();
+
 		if (changePackages == null || currentUsername == null) {
 			return result;
 		}
@@ -157,13 +181,18 @@ public final class NotificationGenerator {
 		NotificationProvider prev = null;
 		while (iterator.hasNext()) {
 			NotificationProvider current = iterator.next();
+			result.put(current, new ArrayList<ESNotification>());
+
 			current.getExcludedOperations().clear();
 			if (prev != null) {
 				current.getExcludedOperations().addAll(prev.getExcludedOperations());
 			}
 			try {
-				result.addAll(current.provideNotifications(projectSpace, changePackages, currentUsername));
+				List<ESNotification> provideNotifications = current.provideNotifications(projectSpace, changePackages,
+					currentUsername);
+				result.get(current).addAll(provideNotifications);
 				prev = current;
+
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
@@ -176,12 +205,15 @@ public final class NotificationGenerator {
 		if (createGenerationEvent) {
 			NotificationGenerationEvent generationEvent = EventsFactory.eINSTANCE.createNotificationGenerationEvent();
 			generationEvent.setTimestamp(new Date());
-			for (ESNotification notification : result) {
-				ESNotification clone = ModelUtil.clone(notification);
-				generationEvent.getNotifications().add(clone);
+			for (List<ESNotification> notificationList : result.values()) {
+				for (ESNotification notification : notificationList) {
+					ESNotification clone = ModelUtil.clone(notification);
+					generationEvent.getNotifications().add(clone);
+				}
 			}
 			projectSpace.addEvent(generationEvent);
 		}
 		return result;
+
 	}
 }
