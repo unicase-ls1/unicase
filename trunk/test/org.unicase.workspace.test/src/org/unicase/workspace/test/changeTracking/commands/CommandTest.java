@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.test.changeTracking.commands;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CopyCommand;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
+import org.eclipse.emf.edit.command.CutToClipboardCommand;
 import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
@@ -24,8 +26,13 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -191,6 +198,51 @@ public class CommandTest extends WorkspaceTest {
 
 		assertTrue(actor.getModelElementId().equals(actor.getModelElementId()));
 		assertTrue(!actor.getModelElementId().equals(copyOfActorRead.getModelElementId()));
+
+	}
+
+	@Test
+	public void cutAndPasteFromClipboardCommand() {
+
+		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage workPackage = TaskFactory.eINSTANCE.createWorkPackage();
+		User user = OrganizationFactory.eINSTANCE.createUser();
+
+		workPackage.setName("Sprint1");
+		workPackage.setAssignee(user);
+		final ActionItem ai1 = TaskFactory.eINSTANCE.createActionItem();
+		ai1.setName("AI1");
+		ai1.setContainingWorkpackage(workPackage);
+		final ActionItem ai2 = TaskFactory.eINSTANCE.createActionItem();
+		ai2.setName("AI2");
+		ai2.setContainingWorkpackage(workPackage);
+		leafSection.getModelElements().add(workPackage);
+		leafSection.getModelElements().add(user);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(leafSection);
+
+			}
+		}.run();
+
+		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+
+		// cut the element
+		Command command = CutToClipboardCommand.create(editingDomain, workPackage);
+		editingDomain.getCommandStack().execute(command);
+
+		assertTrue(Configuration.getEditingDomain().getClipboard().contains(workPackage));
+		assertEquals(1, leafSection.getAllContainedModelElements().size());
+		// This should fail in case if the workpackage is still in the project's list of element!
+		assertTrue(!getProject().getAllModelElements().contains(workPackage));
+
+		Command pasteCommand = PasteFromClipboardCommand.create(editingDomain, leafSection,
+			DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, CommandParameter.NO_INDEX);
+		editingDomain.getCommandStack().execute(pasteCommand);
+
+		assertEquals(4, leafSection.getAllContainedModelElements().size());
+		assertTrue(getProject().getAllModelElements().contains(workPackage));
 
 	}
 
