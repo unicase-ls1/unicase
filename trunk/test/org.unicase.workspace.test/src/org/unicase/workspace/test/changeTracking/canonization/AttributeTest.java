@@ -1082,6 +1082,12 @@ public class AttributeTest extends WorkspaceTest {
 				assertEquals("NameOfUseCase2", useCase2.getName());
 
 				getProject().deleteModelElement(useCase);
+			}
+		}.run();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
 				getProject().deleteModelElement(useCase2);
 			}
 		}.run();
@@ -1089,7 +1095,7 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		// expecting two attribute operations and a delete per usecase
-		assertEquals(operations.size(), 6);
+		assertEquals(6, operations.size());
 
 		new UnicaseCommand() {
 			@Override
