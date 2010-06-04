@@ -120,9 +120,10 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			Set<ModelElementId> allDeletedElementsA = getAllDeletedElements(opA);
 			Set<ModelElementId> allDeletedElementsB = getAllDeletedElements((CreateDeleteOperation) opB);
 			boolean intersecting = allDeletedElementsA.removeAll(allDeletedElementsB);
-			if (intersecting) {
+			if (intersecting && !allDeletedElementsA.isEmpty()) {
 				return true;
 			}
+			return false;
 		} else {
 			for (ModelElementId m : getAllDeletedElements(opA)) {
 				if (changesModelElement(opB, m)) {
