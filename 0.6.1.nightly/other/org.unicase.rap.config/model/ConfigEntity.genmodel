@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.rap.config/src"
+    modelPluginID="org.unicase.rap.config" modelName="ConfigEntity" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
+  <foreignModel>ConfigEntity.ecore</foreignModel>
+  <genPackages prefix="Config" disposableProviderFactory="true" ecorePackage="ConfigEntity.ecore#/">
+    <genClasses ecoreClass="ConfigEntity.ecore#//ConfigEntity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ConfigEntity.ecore#//ConfigEntity/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigEntity.ecore#//ConfigEntity/associatedProjectIdentifier"/>
+      <genOperations ecoreOperation="ConfigEntity.ecore#//ConfigEntity/getConfigFilename"/>
+    </genClasses>
+    <genClasses ecoreClass="ConfigEntity.ecore#//StringToObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigEntity.ecore#//StringToObject/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ConfigEntity.ecore#//StringToObject/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
