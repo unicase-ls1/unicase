@@ -14,7 +14,8 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
- * @author maximilian2
+ * Notifies the project about changes in its containment hierachy.
+ * @author koegel
  */
 public class ProjectChangeNotifier extends EContentAdapter {
 
@@ -80,7 +81,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			ModelElement modelElement = (ModelElement) notifier;
 			if (!isInProject(modelElement) && projectImpl.contains(modelElement)) {
 				removedModelElement = modelElement;
-				super.removeAdapter(modelElement);
+				//super.removeAdapter(modelElement);
 			}
 		}
 	}
@@ -132,7 +133,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		}
 		if (removedModelElement != null) {
 			projectImpl.handleEMFModelElementRemoved(projectImpl, removedModelElement);
-			super.removeAdapter(removedModelElement);
+			//asuper.removeAdapter(removedModelElement);
 			removedModelElement = null;
 		}
 	}
