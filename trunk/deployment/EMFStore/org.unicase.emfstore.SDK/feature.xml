@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.SDK"
       label="EMFStore SDK"
-      version="0.5.31.nightly"
+      version="0.6.1.nightly"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
