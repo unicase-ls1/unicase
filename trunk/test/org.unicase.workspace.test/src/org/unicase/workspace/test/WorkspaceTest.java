@@ -6,7 +6,12 @@
 
 package org.unicase.workspace.test;
 
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
+
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.Configuration;
@@ -49,6 +54,24 @@ public abstract class WorkspaceTest {
 	 */
 	@After
 	public void cleanProjectSpace() {
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				try {
+					WorkspaceManager.getInstance().getCurrentWorkspace().deleteProjectSpace(getProjectSpace());
+				} catch (IOException e) {
+					fail();
+				}
+			}
+		}.run();
+	}
+
+	/**
+	 * Delete all persisted data.
+	 */
+	@AfterClass
+	public static void deleteData() {
 		SetupHelper.cleanupWorkspace();
 	}
 
