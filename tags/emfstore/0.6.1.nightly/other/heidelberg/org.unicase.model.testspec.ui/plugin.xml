@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension
+         point="org.unicase.ui.meeditor.referencecontrols">
+      <widget
+            class="org.unicase.model.testspec.ui.editor.tablecontrol.TestStepTableControl"
+            name="org.unicase.model.testspec.ui.editor.tablecontrol.teststepstablecontrol"
+            showLabel="false"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
+      <widget
+            class="org.unicase.model.testspec.ui.editor.tablecontrol.TestStepParameterControl"
+            name="org.unicase.model.testspec.ui.editor.tablecontrol.teststepparametercontrol"
+            showLabel="false"
+            type="org.unicase.metamodel.ModelElement">
+      </widget>
+   </extension>
+
+</plugin>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+       point="org.unicase.ui.validation.refactoring.strategies">
+    <refactoring
+          applicableFor="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
+          id="org.unicase.ui.unicasecommon.validation.refactoring.strategies.ActionItemEmbodiesRequirementRefactoringStrategy"
+          strategy="org.unicase.ui.refactoring.strategies.AIEmbodiesFRRefactoringStrategy">
+    </refactoring>
+    <refactoring
+          applicableFor="org.unicase.model.task.validation.DiscussionInIssueConstraint"
+          id="org.unicase.ui.unicasecommon.refactoringstrategies.DiscussionIntoIssueRefactoringStrategy"
+          strategy="org.unicase.ui.refactoring.strategies.DiscussionIntoIssueRefactoringStrategy">
+    </refactoring>
+ </extension>
+</plugin>
