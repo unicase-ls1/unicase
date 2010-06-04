@@ -112,6 +112,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
+		// if element was just pasted from clipboard then do nothing
+		if (this.getModelElementsFromClipboard().contains(modelElement)) {
+			return;
+		}
+
 		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
@@ -561,8 +566,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	private Set<ModelElement> getModelElementsFromClipboard() {
-		Collection<Object> clipboard = editingDomain.getClipboard();
 		Set<ModelElement> result = new HashSet<ModelElement>();
+		if (editingDomain == null) {
+			return result;
+		}
+		Collection<Object> clipboard = editingDomain.getClipboard();
 		if (clipboard == null) {
 			return result;
 		}
