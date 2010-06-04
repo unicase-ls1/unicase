@@ -183,6 +183,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (notificationRecorder == null) {
 			notificationRecorder = new NotificationRecorder();
 		}
+		this.removedElements.clear();
 		// notificationRecorder;
 		isRecording = true;
 	}
@@ -411,6 +412,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			} else {
 				// element was deleted
 				handleElementDelete(deletedElement);
+				cleanResources(deletedElement);
 			}
 		}
 
@@ -423,6 +425,21 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 		dirtyResourceSet.save();
 
+	}
+
+	private void cleanResources(ModelElement deletedElement) {
+		Resource resource = deletedElement.eResource();
+		if (resource != null) {
+			resource.getContents().remove(deletedElement);
+			dirtyResourceSet.addDirtyResource(resource);
+		}
+		for (ModelElement child : deletedElement.getAllContainedModelElements()) {
+			Resource childResource = child.eResource();
+			if (childResource != null) {
+				childResource.getContents().remove(child);
+				dirtyResourceSet.addDirtyResource(childResource);
+			}
+		}
 	}
 
 	private void handleElementDelete(ModelElement deletedElement) {
@@ -453,19 +470,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			projectSpace.saveResource(compositeOperation.eResource());
 		} else {
 			projectSpace.addOperation(deleteOperation);
-		}
-
-		Resource resource = deletedElement.eResource();
-		if (resource != null) {
-			resource.getContents().remove(deletedElement);
-			dirtyResourceSet.addDirtyResource(resource);
-		}
-		for (ModelElement child : deletedElement.getAllContainedModelElements()) {
-			Resource childResource = child.eResource();
-			if (childResource != null) {
-				childResource.getContents().remove(child);
-				dirtyResourceSet.addDirtyResource(childResource);
-			}
 		}
 	}
 
