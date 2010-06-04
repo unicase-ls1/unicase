@@ -356,7 +356,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
-		checkForCrossReferences(modelElement);
+		//checkForCrossReferences(modelElement);
 		addModelElementAndChildrenToCache(modelElement);
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
