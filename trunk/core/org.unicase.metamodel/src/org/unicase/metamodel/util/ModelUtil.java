@@ -822,7 +822,13 @@ public final class ModelUtil {
 		Set<ModelElement> copiedElements = modelElement.getAllContainedModelElements();
 		copiedElements.add(modelElement);
 		for (ModelElement element : copiedElements) {
+			//turn off notification for id change			
+			boolean eDeliver = element.eDeliver();
+			element.eSetDeliver(false);
+			//change id
 			element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
+			//set edeliver to previous state
+			element.eSetDeliver(eDeliver);
 		}
 	}
 }
