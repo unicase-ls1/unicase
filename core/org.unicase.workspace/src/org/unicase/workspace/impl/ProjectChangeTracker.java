@@ -45,7 +45,6 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
 import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -135,12 +134,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (projectSpace.isTransient()) {
 			return;
 		}
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				addElementToResouce(modelElement);
-			}
-		}.run();
+		addElementToResouce(modelElement);
 	}
 
 	private void addElementToResouce(final ModelElement modelElement) {
@@ -389,6 +383,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
+		// means that we have not seen a command start yet
 		if (currentClipboard == null) {
 			return;
 		}
@@ -493,14 +488,18 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			}
 			if (operation instanceof CompositeOperation && ((CompositeOperation) operation).getMainOperation() != null) {
 				CompositeOperation compositeOperation = (CompositeOperation) operation;
+				boolean doesNotBelongToDelete = false;
 				for (AbstractOperation subOperation : compositeOperation.getSubOperations()) {
 					if (!belongsToDelete(subOperation, allDeletedElementsIds)) {
+						doesNotBelongToDelete = true;
 						break;
 					}
 				}
-				referenceOperationsForDelete.addAll(0, (Collection<? extends ReferenceOperation>) compositeOperation
-					.getSubOperations());
-				compositeOperationsToDelete.add(compositeOperation);
+				if (!doesNotBelongToDelete) {
+					referenceOperationsForDelete.addAll(0,
+						(Collection<? extends ReferenceOperation>) compositeOperation.getSubOperations());
+					compositeOperationsToDelete.add(compositeOperation);
+				}
 				continue;
 			}
 			break;
