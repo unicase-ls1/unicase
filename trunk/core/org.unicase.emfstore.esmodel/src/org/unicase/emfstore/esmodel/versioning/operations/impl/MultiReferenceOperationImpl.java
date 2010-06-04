@@ -340,7 +340,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				}
 			}
 			for (ModelElement currentElement : referencedModelElements) {
-				if (currentElement.getProject() == null) {
+				if (reference.isContainment()) {
 					project.addModelElement(currentElement);
 				}
 			}
