@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Command Stack with additional support for command listing.
@@ -64,19 +65,37 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 
 	private void notifiyListenersAboutStart(Command command) {
 		for (CommandObserver commandObservers : this.commandObservers) {
-			commandObservers.commandStarted(command);
+			try {
+				commandObservers.commandStarted(command);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				ModelUtil.logWarning("Command Observer threw exception", e);
+			}
 		}
 	}
 
 	private void notifiyListenersAboutCommandFailed(Command command, OperationCanceledException exception) {
 		for (CommandObserver commandObservers : this.commandObservers) {
-			commandObservers.commandFailed(command, exception);
+			try {
+				commandObservers.commandFailed(command, exception);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				ModelUtil.logWarning("Command Observer threw exception", e);
+			}
 		}
 	}
 
 	private void notifiyListenersAboutCommandCompleted(Command command) {
 		for (CommandObserver commandObservers : this.commandObservers) {
-			commandObservers.commandCompleted(command);
+			try {
+				commandObservers.commandCompleted(command);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				ModelUtil.logWarning("Command Observer threw exception", e);
+			}
 		}
 	}
 
