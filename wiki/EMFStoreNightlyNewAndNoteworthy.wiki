@@ -1,5 +1,19 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
+0.6.0.nightly: 
+  * Added Supports for EMF Edit Commands:
+    * Copy/Paste/Cut/Delete
+    * CopyToClipboard/PasteFromClipboard
+  * Changed definition of delete:
+     * Any element that is still disconnected from the containment tree at the end of a command is considered deleted, if it was not cut to the clipboard.
+     * Disconnecting elements with cross references is not allowed since the serialization will be broken otherwise.
+     * Deletes do not need to be triggered explicitly by project.deleteModelElement
+     * Disconnected Elements are no longer automatically "caught" and added to project root
+  * Fixed keystore initialization issue
+  * Added support for default configuration providers (extension point in workspace plugin):
+     * Provide default certificates
+     * Provide default server info and user credentials
+
 0.5.31.nightly:
   * EMFStore will ignore (and only log) Exceptions from the package registry when EPackages are loaded
   * New extension point for default server infos and certificates added to workspace plugin
