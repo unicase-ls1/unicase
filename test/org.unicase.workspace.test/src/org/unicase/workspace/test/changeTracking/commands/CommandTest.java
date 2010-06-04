@@ -776,7 +776,7 @@ public class CommandTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
-
+				clearOperations();
 			}
 		}.run();
 
@@ -788,8 +788,8 @@ public class CommandTest extends WorkspaceTest {
 
 		assertTrue(Configuration.getEditingDomain().getClipboard().contains(workPackage));
 		assertEquals(1, leafSection.getAllContainedModelElements().size());
-		// This should fail in case if the workpackage is still in the project's list of element!
-		assertTrue(!getProject().getAllModelElements().contains(workPackage));
+
+		assertTrue(getProject().getAllModelElements().contains(workPackage));
 
 		Command pasteCommand = PasteFromClipboardCommand.create(editingDomain, leafSection,
 			DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, CommandParameter.NO_INDEX);
@@ -797,6 +797,8 @@ public class CommandTest extends WorkspaceTest {
 
 		assertEquals(4, leafSection.getAllContainedModelElements().size());
 		assertTrue(getProject().getAllModelElements().contains(workPackage));
+
+		assertEquals(2, getProjectSpace().getOperations().size());
 
 	}
 
