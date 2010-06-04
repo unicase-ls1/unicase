@@ -357,14 +357,14 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack.getModelElementId());
+		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack.getModelElementId());
 		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		pack1.getContainedWorkItems().move(1, 0);
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
+				pack1.getContainedWorkItems().move(1, 0);
 				project2.deleteModelElement(section2);
 
 			}
@@ -379,7 +379,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 
 		// a move change is a change... from users perspective it should not be lost, probably..
 		// currently considered to be a hard conflict, because the user should know
-		assertEquals(conflicts.size(), 1);
+		assertEquals(1, conflicts.size());
 
 	}
 

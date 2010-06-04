@@ -7,6 +7,7 @@ package org.unicase.workspace.test.conflictDetection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -702,7 +703,6 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				getProject().addModelElement(section);
 				getProject().addModelElement(actor);
 				section.getModelElements().add(dummy);
-
 				getProjectSpace().getOperations().clear();
 
 				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
@@ -710,17 +710,15 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				try {
 					handle1.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
-
 				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
 				section.getModelElements().move(0, actor);
 				try {
 					handle2.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
-
 			}
 		}.run();
 
@@ -755,13 +753,11 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
 		new UnicaseCommand() {
-
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
 				getProject().addModelElement(section2);
 				getProject().addModelElement(actor);
-
 				getProjectSpace().getOperations().clear();
 
 				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
@@ -769,15 +765,14 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				try {
 					handle1.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
-
 				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
 				section2.getModelElements().add(actor);
 				try {
 					handle2.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
 
 			}
@@ -814,14 +809,12 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 
 		new UnicaseCommand() {
-
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
 				getProject().addModelElement(section2);
 				getProject().addModelElement(actor);
 				getProject().addModelElement(actor2);
-
 				getProjectSpace().getOperations().clear();
 
 				CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
@@ -829,17 +822,15 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				try {
 					handle1.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
-
 				CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
 				section2.getModelElements().add(actor2);
 				try {
 					handle2.end("", "", null);
 				} catch (InvalidHandleException e) {
-					e.printStackTrace();
+					fail();
 				}
-
 			}
 		}.run();
 
@@ -859,6 +850,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 	}
 
+	// BEGIN COMPLEX CODE
 	/**
 	 * Tests requires & requiring relation.
 	 */
@@ -917,7 +909,6 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
 
 		new UnicaseCommand() {
-
 			@Override
 			protected void doRun() {
 				getProjectSpace().getOperations().clear();
@@ -940,7 +931,6 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				useCase.getParticipatingActors().add(actor2);
 				useCase.getParticipatingActors().move(1, actor);
 				getProject().deleteModelElement(section);
-
 			}
 		}.run();
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
@@ -1061,7 +1051,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		assertEquals(1, cd.getRequired(ops, deleteSection).size());
 		assertSame(cd.getRequired(ops, deleteSection).get(0), createSection);
 		assertEquals(0, cd.getRequiring(ops, deleteSection).size());
-
 	}
+	// END COMPLEX CODE
 
 }
