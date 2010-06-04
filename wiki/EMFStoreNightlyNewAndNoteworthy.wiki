@@ -1,6 +1,6 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
-0.6.0.nightly: 
+0.6.1.nightly: 
   * Added Supports for EMF Edit Commands:
     * Copy/Paste/Cut/Delete
     * CopyToClipboard/PasteFromClipboard
@@ -13,6 +13,8 @@
   * Added support for default configuration providers (extension point in workspace plugin):
      * Provide default certificates
      * Provide default server info and user credentials
+
+(0.6.0.nightly: version was never available at update site, version number skipped)
 
 0.5.31.nightly:
   * EMFStore will ignore (and only log) Exceptions from the package registry when EPackages are loaded
