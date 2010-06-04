@@ -1210,12 +1210,12 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
 
-		assertEquals(indexConflicts.size(), 0);
+		assertEquals(0, indexConflicts.size());
 		// no hard conflict
 		Set<AbstractOperation> hardConflicts = cd.getConflicting(ops1, ops2);
 		assertEquals(cd.getConflicting(ops1, ops2).size(), cd.getConflicting(ops2, ops1).size());
 
-		assertEquals(hardConflicts.size(), 0);
+		assertEquals(0, hardConflicts.size());
 
 	}
 
@@ -1272,7 +1272,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
 
-		assertEquals(conflicts.size(), 0);
+		assertEquals(0, conflicts.size());
 
 	}
 
@@ -2400,7 +2400,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 			.size());
 		// potential index-integrity conflict: it is unknown where dummy was located, worst case (before actor1
 		// insertion point) anticipated
-		assertEquals(conflicts.size(), 1);
+		assertEquals(1, conflicts.size());
 
 	}
 
@@ -3157,7 +3157,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
 		// index-integrity conflict: result dependent on serialization
-		assertEquals(conflicts.size(), 1);
+		assertEquals(1, conflicts.size());
 
 	}
 
@@ -3410,7 +3410,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
 		// index-integrity conflict: result dependent of serialization (anotherDummy could end up on 1 or on 0)
-		assertEquals(conflicts.size(), 1);
+		assertEquals(1, conflicts.size());
 
 	}
 
