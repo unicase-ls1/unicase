@@ -8,20 +8,28 @@
   <foreignModel>emailbundle.ecore</foreignModel>
   <genPackages prefix="Emailbundle" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="emailbundle.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="emailbundle.ecore#//SendSettings">
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//SendSettings/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//SendSettings/IMMEDIATELY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//SendSettings/AGGREGATED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="emailbundle.ecore#//Weekdays">
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/MONDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/TUESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/WEDNESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/THURSDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/FRIDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/SATURDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/SUNDAY"/>
+    </genEnums>
     <genClasses ecoreClass="emailbundle.ecore#//Bundle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/BundleName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/CommentProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/SubscriptionsProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/TaskChangeProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/TaskProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/TaskReviewProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/TaskTraceProvider"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Immediately"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Aggregated"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/SendOption"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Days"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/DaysCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Weekday"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/WeekdayIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/WeekdayOption"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Providers"/>
     </genClasses>
   </genPackages>

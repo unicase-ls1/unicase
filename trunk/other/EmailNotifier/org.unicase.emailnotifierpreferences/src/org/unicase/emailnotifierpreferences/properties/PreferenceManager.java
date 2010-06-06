@@ -8,6 +8,7 @@ package org.unicase.emailnotifierpreferences.properties;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.model.emailbundle.Bundle;
@@ -37,7 +38,7 @@ public final class PreferenceManager {
 		test.setBundleName("pronto");
 		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
 		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}));
-		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, true));
+		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, true, null));
 	}
 
 	/**
@@ -58,10 +59,11 @@ public final class PreferenceManager {
 		throw new IllegalStateException("No default value for key " + key.toString());
 	}
 
-	private OrgUnitProperty createProperty(PropertyKey key, boolean value) {
+	private OrgUnitProperty createProperty(PropertyKey key, boolean value, ProjectId id) {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
+		property.setProject(id);
 		return property;
 	}
 
@@ -94,7 +96,7 @@ public final class PreferenceManager {
 	 * @param value the value
 	 */
 	public void setProperty(ProjectSpace projectSpace, PropertyKey key, boolean value) {
-		OrgUnitProperty property = createProperty(key, value);
+		OrgUnitProperty property = createProperty(key, value, projectSpace.getProjectId());
 		projectSpace.setProperty(property);
 	}
 
