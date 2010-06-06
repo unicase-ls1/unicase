@@ -38,7 +38,7 @@ public final class PreferenceManager {
 		test.setBundleName("pronto");
 		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
 		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}));
-		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, true, null));
+		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));
 	}
 
 	/**
