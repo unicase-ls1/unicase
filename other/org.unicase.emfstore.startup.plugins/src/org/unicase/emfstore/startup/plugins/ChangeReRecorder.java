@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -17,7 +18,9 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
@@ -76,15 +79,17 @@ public class ChangeReRecorder {
 		for (AbstractOperation operation : operations) {
 			Date clientDate = operation.getClientDate();
 			projectSpace.applyOperationsWithRecording(Arrays.asList(operation),
-					true);
+					true, true);
 			if (index >= projectSpace.getOperations().size()) {
 				continue;
 			}
 			ListIterator<AbstractOperation> listIterator = projectSpace
 					.getOperations().listIterator(index);
 
-//			listIterator = handleCompositeOperation(index, operation,
-//					listIterator);
+			if (operation instanceof CompositeOperation) {
+				listIterator = handleCompositeOperation(index,
+						(CompositeOperation) operation, listIterator);
+			}
 
 			while (listIterator.hasNext()) {
 				setDate(clientDate, listIterator.next());
@@ -95,36 +100,52 @@ public class ChangeReRecorder {
 
 	@SuppressWarnings("unused")
 	private ListIterator<AbstractOperation> handleCompositeOperation(int index,
-			AbstractOperation operation,
+			CompositeOperation oldComposite,
 			ListIterator<AbstractOperation> listIterator) {
 		
-		if (operation instanceof CompositeOperation
-				&& ((CompositeOperation) operation).getMainOperation() == null) {
-			CompositeOperation oldComp = (CompositeOperation) operation;
-
-			CompositeOperation composite = OperationsFactory.eINSTANCE
-					.createCompositeOperation();
-			composite.setAccepted(oldComp.isAccepted());
-			composite.setCompositeDescription(oldComp.getDescription());
-			composite.setCompositeName(oldComp.getName());
-			composite.setModelElementId(null);
-			
-			while (listIterator.hasNext()) {
-				AbstractOperation abstractOperation = listIterator.next();
-				composite.getSubOperations().add(abstractOperation);
-				listIterator.remove();
-			}
-			if (composite.getSubOperations().size() > 0) {
-				AbstractOperation mainOperation = composite.getSubOperations()
-						.get(composite.getSubOperations().size() - 1);
-				composite.setMainOperation(mainOperation);
-			} else {
-				//TODO
-			}
-
-			listIterator = projectSpace.getOperations().listIterator(index);
+		// auto generated composites don't have to be treated specially
+		if(oldComposite.getMainOperation() != null) {
+			return listIterator;
 		}
+
+		CompositeOperation newComposite = (CompositeOperation) EcoreUtil
+				.copy(oldComposite);
+		newComposite.setIdentifier(EcoreUtil.generateUUID());
+		newComposite.getSubOperations().clear();
+
+		while (listIterator.hasNext()) {
+			AbstractOperation abstractOperation = listIterator.next();
+			newComposite.getSubOperations().add((AbstractOperation) EcoreUtil.copy(abstractOperation));
+			listIterator.remove();
+		}
+
+		// if modelelement id not relevant anymore take id from last operation recorded.
+		if (isIDrelevant(newComposite, oldComposite.getModelElementId())) {
+			newComposite.setModelElementId(oldComposite.getModelElementId());
+		} else {
+			newComposite.setModelElementId(newComposite.getSubOperations().get(
+					newComposite.getSubOperations().size() - 1)
+					.getModelElementId());
+		}
+
+		// add operation and set index
+		projectSpace.getOperations().add(newComposite);
+		listIterator = projectSpace.getOperations().listIterator(
+				projectSpace.getOperations().size() - 1);
+
 		return listIterator;
+	}
+
+	private boolean isIDrelevant(CompositeOperation newComposite,
+			ModelElementId mid) {
+		for (AbstractOperation ao : newComposite.getSubOperations()) {
+			for (ModelElementId id : ao.getAllInvolvedModelElements()) {
+				if (mid.equals(id)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private void setDate(Date clientDate, AbstractOperation operation) {
