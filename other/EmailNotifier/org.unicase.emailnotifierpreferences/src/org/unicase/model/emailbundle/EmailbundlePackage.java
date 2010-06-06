@@ -10,6 +10,7 @@ package org.unicase.model.emailbundle;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.unicase.model.ModelPackage;
@@ -89,76 +90,13 @@ public interface EmailbundlePackage extends EPackage {
 	int BUNDLE__BUNDLE_NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Comment Provider</b></em>' attribute.
+	 * The feature id for the '<em><b>Send Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__COMMENT_PROVIDER = 1;
-
-	/**
-	 * The feature id for the '<em><b>Subscriptions Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__SUBSCRIPTIONS_PROVIDER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Task Change Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__TASK_CHANGE_PROVIDER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Task Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__TASK_PROVIDER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Task Review Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__TASK_REVIEW_PROVIDER = 5;
-
-	/**
-	 * The feature id for the '<em><b>Task Trace Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__TASK_TRACE_PROVIDER = 6;
-
-	/**
-	 * The feature id for the '<em><b>Immediately</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__IMMEDIATELY = 7;
-
-	/**
-	 * The feature id for the '<em><b>Aggregated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__AGGREGATED = 8;
+	int BUNDLE__SEND_OPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Days</b></em>' attribute.
@@ -167,7 +105,7 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__DAYS = 9;
+	int BUNDLE__DAYS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Days Count</b></em>' attribute.
@@ -176,7 +114,7 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__DAYS_COUNT = 10;
+	int BUNDLE__DAYS_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Weekday</b></em>' attribute.
@@ -185,16 +123,16 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__WEEKDAY = 11;
+	int BUNDLE__WEEKDAY = 4;
 
 	/**
-	 * The feature id for the '<em><b>Weekday Index</b></em>' attribute.
+	 * The feature id for the '<em><b>Weekday Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__WEEKDAY_INDEX = 12;
+	int BUNDLE__WEEKDAY_OPTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Providers</b></em>' attribute list.
@@ -203,7 +141,7 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__PROVIDERS = 13;
+	int BUNDLE__PROVIDERS = 6;
 
 	/**
 	 * The number of structural features of the '<em>Bundle</em>' class.
@@ -212,7 +150,28 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_FEATURE_COUNT = 14;
+	int BUNDLE_FEATURE_COUNT = 7;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.emailbundle.SendSettings <em>Send Settings</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.emailbundle.SendSettings
+	 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getSendSettings()
+	 * @generated
+	 */
+	int SEND_SETTINGS = 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.emailbundle.Weekdays <em>Weekdays</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.emailbundle.Weekdays
+	 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getWeekdays()
+	 * @generated
+	 */
+	int WEEKDAYS = 2;
 
 
 	/**
@@ -237,70 +196,15 @@ public interface EmailbundlePackage extends EPackage {
 	EAttribute getBundle_BundleName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isCommentProvider <em>Comment Provider</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getSendOption <em>Send Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comment Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isCommentProvider()
+	 * @return the meta object for the attribute '<em>Send Option</em>'.
+	 * @see org.unicase.model.emailbundle.Bundle#getSendOption()
 	 * @see #getBundle()
 	 * @generated
 	 */
-	EAttribute getBundle_CommentProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isSubscriptionsProvider <em>Subscriptions Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Subscriptions Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isSubscriptionsProvider()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_SubscriptionsProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isTaskChangeProvider <em>Task Change Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Task Change Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isTaskChangeProvider()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_TaskChangeProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isTaskProvider <em>Task Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Task Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isTaskProvider()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_TaskProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isTaskReviewProvider <em>Task Review Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Task Review Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isTaskReviewProvider()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_TaskReviewProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isTaskTraceProvider <em>Task Trace Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Task Trace Provider</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isTaskTraceProvider()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_TaskTraceProvider();
+	EAttribute getBundle_SendOption();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isDays <em>Days</em>}'.
@@ -336,15 +240,15 @@ public interface EmailbundlePackage extends EPackage {
 	EAttribute getBundle_Weekday();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getWeekdayIndex <em>Weekday Index</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getWeekdayOption <em>Weekday Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Weekday Index</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#getWeekdayIndex()
+	 * @return the meta object for the attribute '<em>Weekday Option</em>'.
+	 * @see org.unicase.model.emailbundle.Bundle#getWeekdayOption()
 	 * @see #getBundle()
 	 * @generated
 	 */
-	EAttribute getBundle_WeekdayIndex();
+	EAttribute getBundle_WeekdayOption();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link org.unicase.model.emailbundle.Bundle#getProviders <em>Providers</em>}'.
@@ -358,26 +262,24 @@ public interface EmailbundlePackage extends EPackage {
 	EAttribute getBundle_Providers();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isImmediately <em>Immediately</em>}'.
+	 * Returns the meta object for enum '{@link org.unicase.model.emailbundle.SendSettings <em>Send Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Immediately</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isImmediately()
-	 * @see #getBundle()
+	 * @return the meta object for enum '<em>Send Settings</em>'.
+	 * @see org.unicase.model.emailbundle.SendSettings
 	 * @generated
 	 */
-	EAttribute getBundle_Immediately();
+	EEnum getSendSettings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isAggregated <em>Aggregated</em>}'.
+	 * Returns the meta object for enum '{@link org.unicase.model.emailbundle.Weekdays <em>Weekdays</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Aggregated</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isAggregated()
-	 * @see #getBundle()
+	 * @return the meta object for enum '<em>Weekdays</em>'.
+	 * @see org.unicase.model.emailbundle.Weekdays
 	 * @generated
 	 */
-	EAttribute getBundle_Aggregated();
+	EEnum getWeekdays();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -420,52 +322,12 @@ public interface EmailbundlePackage extends EPackage {
 		EAttribute BUNDLE__BUNDLE_NAME = eINSTANCE.getBundle_BundleName();
 
 		/**
-		 * The meta object literal for the '<em><b>Comment Provider</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Send Option</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUNDLE__COMMENT_PROVIDER = eINSTANCE.getBundle_CommentProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Subscriptions Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__SUBSCRIPTIONS_PROVIDER = eINSTANCE.getBundle_SubscriptionsProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Task Change Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__TASK_CHANGE_PROVIDER = eINSTANCE.getBundle_TaskChangeProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Task Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__TASK_PROVIDER = eINSTANCE.getBundle_TaskProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Task Review Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__TASK_REVIEW_PROVIDER = eINSTANCE.getBundle_TaskReviewProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Task Trace Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__TASK_TRACE_PROVIDER = eINSTANCE.getBundle_TaskTraceProvider();
+		EAttribute BUNDLE__SEND_OPTION = eINSTANCE.getBundle_SendOption();
 
 		/**
 		 * The meta object literal for the '<em><b>Days</b></em>' attribute feature.
@@ -492,12 +354,12 @@ public interface EmailbundlePackage extends EPackage {
 		EAttribute BUNDLE__WEEKDAY = eINSTANCE.getBundle_Weekday();
 
 		/**
-		 * The meta object literal for the '<em><b>Weekday Index</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Weekday Option</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUNDLE__WEEKDAY_INDEX = eINSTANCE.getBundle_WeekdayIndex();
+		EAttribute BUNDLE__WEEKDAY_OPTION = eINSTANCE.getBundle_WeekdayOption();
 
 		/**
 		 * The meta object literal for the '<em><b>Providers</b></em>' attribute list feature.
@@ -508,20 +370,24 @@ public interface EmailbundlePackage extends EPackage {
 		EAttribute BUNDLE__PROVIDERS = eINSTANCE.getBundle_Providers();
 
 		/**
-		 * The meta object literal for the '<em><b>Immediately</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.unicase.model.emailbundle.SendSettings <em>Send Settings</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.emailbundle.SendSettings
+		 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getSendSettings()
 		 * @generated
 		 */
-		EAttribute BUNDLE__IMMEDIATELY = eINSTANCE.getBundle_Immediately();
+		EEnum SEND_SETTINGS = eINSTANCE.getSendSettings();
 
 		/**
-		 * The meta object literal for the '<em><b>Aggregated</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.unicase.model.emailbundle.Weekdays <em>Weekdays</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.emailbundle.Weekdays
+		 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getWeekdays()
 		 * @generated
 		 */
-		EAttribute BUNDLE__AGGREGATED = eINSTANCE.getBundle_Aggregated();
+		EEnum WEEKDAYS = eINSTANCE.getWeekdays();
 
 	}
 

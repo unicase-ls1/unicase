@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.unicase.model.emailbundle.Bundle;
 import org.unicase.model.emailbundle.EmailbundlePackage;
 
+import org.unicase.model.emailbundle.SendSettings;
+import org.unicase.model.emailbundle.Weekdays;
 import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
@@ -31,18 +33,11 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getBundleName <em>Bundle Name</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isCommentProvider <em>Comment Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isSubscriptionsProvider <em>Subscriptions Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isTaskChangeProvider <em>Task Change Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isTaskProvider <em>Task Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isTaskReviewProvider <em>Task Review Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isTaskTraceProvider <em>Task Trace Provider</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isImmediately <em>Immediately</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isAggregated <em>Aggregated</em>}</li>
+ *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getSendOption <em>Send Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isDays <em>Days</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getDaysCount <em>Days Count</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isWeekday <em>Weekday</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getWeekdayIndex <em>Weekday Index</em>}</li>
+ *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getWeekdayOption <em>Weekday Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getProviders <em>Providers</em>}</li>
  * </ul>
  * </p>
@@ -78,164 +73,24 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	protected String bundleName = BUNDLE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isCommentProvider() <em>Comment Provider</em>}' attribute.
+	 * The default value of the '{@link #getSendOption() <em>Send Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCommentProvider()
+	 * @see #getSendOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean COMMENT_PROVIDER_EDEFAULT = false;
+	protected static final SendSettings SEND_OPTION_EDEFAULT = SendSettings.NONE;
 
 	/**
-	 * The cached value of the '{@link #isCommentProvider() <em>Comment Provider</em>}' attribute.
+	 * The cached value of the '{@link #getSendOption() <em>Send Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCommentProvider()
+	 * @see #getSendOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean commentProvider = COMMENT_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isSubscriptionsProvider() <em>Subscriptions Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSubscriptionsProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean SUBSCRIPTIONS_PROVIDER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSubscriptionsProvider() <em>Subscriptions Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSubscriptionsProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean subscriptionsProvider = SUBSCRIPTIONS_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isTaskChangeProvider() <em>Task Change Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskChangeProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean TASK_CHANGE_PROVIDER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isTaskChangeProvider() <em>Task Change Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskChangeProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean taskChangeProvider = TASK_CHANGE_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isTaskProvider() <em>Task Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean TASK_PROVIDER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isTaskProvider() <em>Task Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean taskProvider = TASK_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isTaskReviewProvider() <em>Task Review Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskReviewProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean TASK_REVIEW_PROVIDER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isTaskReviewProvider() <em>Task Review Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskReviewProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean taskReviewProvider = TASK_REVIEW_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isTaskTraceProvider() <em>Task Trace Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskTraceProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean TASK_TRACE_PROVIDER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isTaskTraceProvider() <em>Task Trace Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTaskTraceProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean taskTraceProvider = TASK_TRACE_PROVIDER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isImmediately() <em>Immediately</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isImmediately()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IMMEDIATELY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isImmediately() <em>Immediately</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isImmediately()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean immediately = IMMEDIATELY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isAggregated() <em>Aggregated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAggregated()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean AGGREGATED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAggregated() <em>Aggregated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAggregated()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean aggregated = AGGREGATED_EDEFAULT;
+	protected SendSettings sendOption = SEND_OPTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isDays() <em>Days</em>}' attribute.
@@ -298,24 +153,24 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	protected boolean weekday = WEEKDAY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getWeekdayIndex() <em>Weekday Index</em>}' attribute.
+	 * The default value of the '{@link #getWeekdayOption() <em>Weekday Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWeekdayIndex()
+	 * @see #getWeekdayOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int WEEKDAY_INDEX_EDEFAULT = 0;
+	protected static final Weekdays WEEKDAY_OPTION_EDEFAULT = Weekdays.NONE;
 
 	/**
-	 * The cached value of the '{@link #getWeekdayIndex() <em>Weekday Index</em>}' attribute.
+	 * The cached value of the '{@link #getWeekdayOption() <em>Weekday Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWeekdayIndex()
+	 * @see #getWeekdayOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected int weekdayIndex = WEEKDAY_INDEX_EDEFAULT;
+	protected Weekdays weekdayOption = WEEKDAY_OPTION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProviders() <em>Providers</em>}' attribute list.
@@ -372,8 +227,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCommentProvider() {
-		return commentProvider;
+	public SendSettings getSendOption() {
+		return sendOption;
 	}
 
 	/**
@@ -381,158 +236,11 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCommentProvider(boolean newCommentProvider) {
-		boolean oldCommentProvider = commentProvider;
-		commentProvider = newCommentProvider;
+	public void setSendOption(SendSettings newSendOption) {
+		SendSettings oldSendOption = sendOption;
+		sendOption = newSendOption == null ? SEND_OPTION_EDEFAULT : newSendOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__COMMENT_PROVIDER, oldCommentProvider, commentProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSubscriptionsProvider() {
-		return subscriptionsProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSubscriptionsProvider(boolean newSubscriptionsProvider) {
-		boolean oldSubscriptionsProvider = subscriptionsProvider;
-		subscriptionsProvider = newSubscriptionsProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__SUBSCRIPTIONS_PROVIDER, oldSubscriptionsProvider, subscriptionsProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTaskChangeProvider() {
-		return taskChangeProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTaskChangeProvider(boolean newTaskChangeProvider) {
-		boolean oldTaskChangeProvider = taskChangeProvider;
-		taskChangeProvider = newTaskChangeProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__TASK_CHANGE_PROVIDER, oldTaskChangeProvider, taskChangeProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTaskProvider() {
-		return taskProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTaskProvider(boolean newTaskProvider) {
-		boolean oldTaskProvider = taskProvider;
-		taskProvider = newTaskProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__TASK_PROVIDER, oldTaskProvider, taskProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTaskReviewProvider() {
-		return taskReviewProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTaskReviewProvider(boolean newTaskReviewProvider) {
-		boolean oldTaskReviewProvider = taskReviewProvider;
-		taskReviewProvider = newTaskReviewProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__TASK_REVIEW_PROVIDER, oldTaskReviewProvider, taskReviewProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTaskTraceProvider() {
-		return taskTraceProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTaskTraceProvider(boolean newTaskTraceProvider) {
-		boolean oldTaskTraceProvider = taskTraceProvider;
-		taskTraceProvider = newTaskTraceProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__TASK_TRACE_PROVIDER, oldTaskTraceProvider, taskTraceProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isImmediately() {
-		return immediately;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImmediately(boolean newImmediately) {
-		boolean oldImmediately = immediately;
-		immediately = newImmediately;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__IMMEDIATELY, oldImmediately, immediately));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isAggregated() {
-		return aggregated;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAggregated(boolean newAggregated) {
-		boolean oldAggregated = aggregated;
-		aggregated = newAggregated;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__AGGREGATED, oldAggregated, aggregated));
+			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__SEND_OPTION, oldSendOption, sendOption));
 	}
 
 	/**
@@ -603,8 +311,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWeekdayIndex() {
-		return weekdayIndex;
+	public Weekdays getWeekdayOption() {
+		return weekdayOption;
 	}
 
 	/**
@@ -612,11 +320,11 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWeekdayIndex(int newWeekdayIndex) {
-		int oldWeekdayIndex = weekdayIndex;
-		weekdayIndex = newWeekdayIndex;
+	public void setWeekdayOption(Weekdays newWeekdayOption) {
+		Weekdays oldWeekdayOption = weekdayOption;
+		weekdayOption = newWeekdayOption == null ? WEEKDAY_OPTION_EDEFAULT : newWeekdayOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__WEEKDAY_INDEX, oldWeekdayIndex, weekdayIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__WEEKDAY_OPTION, oldWeekdayOption, weekdayOption));
 	}
 
 	/**
@@ -641,30 +349,16 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 		switch (featureID) {
 			case EmailbundlePackage.BUNDLE__BUNDLE_NAME:
 				return getBundleName();
-			case EmailbundlePackage.BUNDLE__COMMENT_PROVIDER:
-				return isCommentProvider();
-			case EmailbundlePackage.BUNDLE__SUBSCRIPTIONS_PROVIDER:
-				return isSubscriptionsProvider();
-			case EmailbundlePackage.BUNDLE__TASK_CHANGE_PROVIDER:
-				return isTaskChangeProvider();
-			case EmailbundlePackage.BUNDLE__TASK_PROVIDER:
-				return isTaskProvider();
-			case EmailbundlePackage.BUNDLE__TASK_REVIEW_PROVIDER:
-				return isTaskReviewProvider();
-			case EmailbundlePackage.BUNDLE__TASK_TRACE_PROVIDER:
-				return isTaskTraceProvider();
-			case EmailbundlePackage.BUNDLE__IMMEDIATELY:
-				return isImmediately();
-			case EmailbundlePackage.BUNDLE__AGGREGATED:
-				return isAggregated();
+			case EmailbundlePackage.BUNDLE__SEND_OPTION:
+				return getSendOption();
 			case EmailbundlePackage.BUNDLE__DAYS:
 				return isDays();
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				return getDaysCount();
 			case EmailbundlePackage.BUNDLE__WEEKDAY:
 				return isWeekday();
-			case EmailbundlePackage.BUNDLE__WEEKDAY_INDEX:
-				return getWeekdayIndex();
+			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
+				return getWeekdayOption();
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
 				return getProviders();
 		}
@@ -683,29 +377,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__BUNDLE_NAME:
 				setBundleName((String)newValue);
 				return;
-			case EmailbundlePackage.BUNDLE__COMMENT_PROVIDER:
-				setCommentProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__SUBSCRIPTIONS_PROVIDER:
-				setSubscriptionsProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_CHANGE_PROVIDER:
-				setTaskChangeProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_PROVIDER:
-				setTaskProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_REVIEW_PROVIDER:
-				setTaskReviewProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_TRACE_PROVIDER:
-				setTaskTraceProvider((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__IMMEDIATELY:
-				setImmediately((Boolean)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__AGGREGATED:
-				setAggregated((Boolean)newValue);
+			case EmailbundlePackage.BUNDLE__SEND_OPTION:
+				setSendOption((SendSettings)newValue);
 				return;
 			case EmailbundlePackage.BUNDLE__DAYS:
 				setDays((Boolean)newValue);
@@ -716,8 +389,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__WEEKDAY:
 				setWeekday((Boolean)newValue);
 				return;
-			case EmailbundlePackage.BUNDLE__WEEKDAY_INDEX:
-				setWeekdayIndex((Integer)newValue);
+			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
+				setWeekdayOption((Weekdays)newValue);
 				return;
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
 				getProviders().clear();
@@ -738,29 +411,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__BUNDLE_NAME:
 				setBundleName(BUNDLE_NAME_EDEFAULT);
 				return;
-			case EmailbundlePackage.BUNDLE__COMMENT_PROVIDER:
-				setCommentProvider(COMMENT_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__SUBSCRIPTIONS_PROVIDER:
-				setSubscriptionsProvider(SUBSCRIPTIONS_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_CHANGE_PROVIDER:
-				setTaskChangeProvider(TASK_CHANGE_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_PROVIDER:
-				setTaskProvider(TASK_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_REVIEW_PROVIDER:
-				setTaskReviewProvider(TASK_REVIEW_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__TASK_TRACE_PROVIDER:
-				setTaskTraceProvider(TASK_TRACE_PROVIDER_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__IMMEDIATELY:
-				setImmediately(IMMEDIATELY_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__AGGREGATED:
-				setAggregated(AGGREGATED_EDEFAULT);
+			case EmailbundlePackage.BUNDLE__SEND_OPTION:
+				setSendOption(SEND_OPTION_EDEFAULT);
 				return;
 			case EmailbundlePackage.BUNDLE__DAYS:
 				setDays(DAYS_EDEFAULT);
@@ -771,8 +423,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__WEEKDAY:
 				setWeekday(WEEKDAY_EDEFAULT);
 				return;
-			case EmailbundlePackage.BUNDLE__WEEKDAY_INDEX:
-				setWeekdayIndex(WEEKDAY_INDEX_EDEFAULT);
+			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
+				setWeekdayOption(WEEKDAY_OPTION_EDEFAULT);
 				return;
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
 				getProviders().clear();
@@ -791,30 +443,16 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 		switch (featureID) {
 			case EmailbundlePackage.BUNDLE__BUNDLE_NAME:
 				return BUNDLE_NAME_EDEFAULT == null ? bundleName != null : !BUNDLE_NAME_EDEFAULT.equals(bundleName);
-			case EmailbundlePackage.BUNDLE__COMMENT_PROVIDER:
-				return commentProvider != COMMENT_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__SUBSCRIPTIONS_PROVIDER:
-				return subscriptionsProvider != SUBSCRIPTIONS_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__TASK_CHANGE_PROVIDER:
-				return taskChangeProvider != TASK_CHANGE_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__TASK_PROVIDER:
-				return taskProvider != TASK_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__TASK_REVIEW_PROVIDER:
-				return taskReviewProvider != TASK_REVIEW_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__TASK_TRACE_PROVIDER:
-				return taskTraceProvider != TASK_TRACE_PROVIDER_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__IMMEDIATELY:
-				return immediately != IMMEDIATELY_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__AGGREGATED:
-				return aggregated != AGGREGATED_EDEFAULT;
+			case EmailbundlePackage.BUNDLE__SEND_OPTION:
+				return sendOption != SEND_OPTION_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__DAYS:
 				return days != DAYS_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				return daysCount != DAYS_COUNT_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__WEEKDAY:
 				return weekday != WEEKDAY_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__WEEKDAY_INDEX:
-				return weekdayIndex != WEEKDAY_INDEX_EDEFAULT;
+			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
+				return weekdayOption != WEEKDAY_OPTION_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
 				return providers != null && !providers.isEmpty();
 		}
@@ -833,30 +471,16 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (BundleName: ");
 		result.append(bundleName);
-		result.append(", CommentProvider: ");
-		result.append(commentProvider);
-		result.append(", SubscriptionsProvider: ");
-		result.append(subscriptionsProvider);
-		result.append(", TaskChangeProvider: ");
-		result.append(taskChangeProvider);
-		result.append(", TaskProvider: ");
-		result.append(taskProvider);
-		result.append(", TaskReviewProvider: ");
-		result.append(taskReviewProvider);
-		result.append(", TaskTraceProvider: ");
-		result.append(taskTraceProvider);
-		result.append(", Immediately: ");
-		result.append(immediately);
-		result.append(", Aggregated: ");
-		result.append(aggregated);
+		result.append(", SendOption: ");
+		result.append(sendOption);
 		result.append(", Days: ");
 		result.append(days);
 		result.append(", DaysCount: ");
 		result.append(daysCount);
 		result.append(", Weekday: ");
 		result.append(weekday);
-		result.append(", WeekdayIndex: ");
-		result.append(weekdayIndex);
+		result.append(", WeekdayOption: ");
+		result.append(weekdayOption);
 		result.append(", Providers: ");
 		result.append(providers);
 		result.append(')');

@@ -10,6 +10,7 @@ package org.unicase.model.emailbundle.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -19,6 +20,8 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.emailbundle.Bundle;
 import org.unicase.model.emailbundle.EmailbundleFactory;
 import org.unicase.model.emailbundle.EmailbundlePackage;
+import org.unicase.model.emailbundle.SendSettings;
+import org.unicase.model.emailbundle.Weekdays;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,6 +43,20 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * @generated
 	 */
 	private EClass bundleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum sendSettingsEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum weekdaysEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -125,7 +142,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_CommentProvider() {
+	public EAttribute getBundle_SendOption() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -134,7 +151,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_SubscriptionsProvider() {
+	public EAttribute getBundle_Days() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -143,7 +160,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_TaskChangeProvider() {
+	public EAttribute getBundle_DaysCount() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -152,7 +169,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_TaskProvider() {
+	public EAttribute getBundle_Weekday() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -161,7 +178,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_TaskReviewProvider() {
+	public EAttribute getBundle_WeekdayOption() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -170,7 +187,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_TaskTraceProvider() {
+	public EAttribute getBundle_Providers() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -179,8 +196,8 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_Days() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(9);
+	public EEnum getSendSettings() {
+		return sendSettingsEEnum;
 	}
 
 	/**
@@ -188,53 +205,8 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_DaysCount() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBundle_Weekday() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBundle_WeekdayIndex() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBundle_Providers() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBundle_Immediately() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBundle_Aggregated() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(8);
+	public EEnum getWeekdays() {
+		return weekdaysEEnum;
 	}
 
 	/**
@@ -267,19 +239,16 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 		// Create classes and their features
 		bundleEClass = createEClass(BUNDLE);
 		createEAttribute(bundleEClass, BUNDLE__BUNDLE_NAME);
-		createEAttribute(bundleEClass, BUNDLE__COMMENT_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__SUBSCRIPTIONS_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__TASK_CHANGE_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__TASK_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__TASK_REVIEW_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__TASK_TRACE_PROVIDER);
-		createEAttribute(bundleEClass, BUNDLE__IMMEDIATELY);
-		createEAttribute(bundleEClass, BUNDLE__AGGREGATED);
+		createEAttribute(bundleEClass, BUNDLE__SEND_OPTION);
 		createEAttribute(bundleEClass, BUNDLE__DAYS);
 		createEAttribute(bundleEClass, BUNDLE__DAYS_COUNT);
 		createEAttribute(bundleEClass, BUNDLE__WEEKDAY);
-		createEAttribute(bundleEClass, BUNDLE__WEEKDAY_INDEX);
+		createEAttribute(bundleEClass, BUNDLE__WEEKDAY_OPTION);
 		createEAttribute(bundleEClass, BUNDLE__PROVIDERS);
+
+		// Create enums
+		sendSettingsEEnum = createEEnum(SEND_SETTINGS);
+		weekdaysEEnum = createEEnum(WEEKDAYS);
 	}
 
 	/**
@@ -314,19 +283,28 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 		// Initialize classes and features; add operations and parameters
 		initEClass(bundleEClass, Bundle.class, "Bundle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBundle_BundleName(), ecorePackage.getEString(), "BundleName", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_CommentProvider(), ecorePackage.getEBoolean(), "CommentProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_SubscriptionsProvider(), ecorePackage.getEBoolean(), "SubscriptionsProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_TaskChangeProvider(), ecorePackage.getEBoolean(), "TaskChangeProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_TaskProvider(), ecorePackage.getEBoolean(), "TaskProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_TaskReviewProvider(), ecorePackage.getEBoolean(), "TaskReviewProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_TaskTraceProvider(), ecorePackage.getEBoolean(), "TaskTraceProvider", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_Immediately(), ecorePackage.getEBoolean(), "Immediately", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_Aggregated(), ecorePackage.getEBoolean(), "Aggregated", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBundle_SendOption(), this.getSendSettings(), "SendOption", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_Days(), ecorePackage.getEBoolean(), "Days", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_DaysCount(), ecorePackage.getEInt(), "DaysCount", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_Weekday(), ecorePackage.getEBoolean(), "Weekday", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_WeekdayIndex(), ecorePackage.getEInt(), "WeekdayIndex", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBundle_WeekdayOption(), this.getWeekdays(), "WeekdayOption", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_Providers(), ecorePackage.getEJavaObject(), "Providers", null, 0, -1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(sendSettingsEEnum, SendSettings.class, "SendSettings");
+		addEEnumLiteral(sendSettingsEEnum, SendSettings.NONE);
+		addEEnumLiteral(sendSettingsEEnum, SendSettings.IMMEDIATELY);
+		addEEnumLiteral(sendSettingsEEnum, SendSettings.AGGREGATED);
+
+		initEEnum(weekdaysEEnum, Weekdays.class, "Weekdays");
+		addEEnumLiteral(weekdaysEEnum, Weekdays.NONE);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.MONDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.TUESDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.WEDNESDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.THURSDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.FRIDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.SATURDAY);
+		addEEnumLiteral(weekdaysEEnum, Weekdays.SUNDAY);
 
 		// Create resource
 		createResource(eNS_URI);
