@@ -99,13 +99,13 @@ public interface EmailbundlePackage extends EPackage {
 	int BUNDLE__SEND_OPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Days</b></em>' attribute.
+	 * The feature id for the '<em><b>Aggregated Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__DAYS = 2;
+	int BUNDLE__AGGREGATED_OPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Days Count</b></em>' attribute.
@@ -117,22 +117,13 @@ public interface EmailbundlePackage extends EPackage {
 	int BUNDLE__DAYS_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Weekday</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUNDLE__WEEKDAY = 4;
-
-	/**
 	 * The feature id for the '<em><b>Weekday Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__WEEKDAY_OPTION = 5;
+	int BUNDLE__WEEKDAY_OPTION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Providers</b></em>' attribute list.
@@ -141,7 +132,7 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE__PROVIDERS = 6;
+	int BUNDLE__PROVIDERS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Bundle</em>' class.
@@ -150,7 +141,7 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_FEATURE_COUNT = 7;
+	int BUNDLE_FEATURE_COUNT = 6;
 
 
 	/**
@@ -172,6 +163,17 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 */
 	int WEEKDAYS = 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.emailbundle.AggregatedSettings <em>Aggregated Settings</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.emailbundle.AggregatedSettings
+	 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getAggregatedSettings()
+	 * @generated
+	 */
+	int AGGREGATED_SETTINGS = 3;
 
 
 	/**
@@ -207,15 +209,15 @@ public interface EmailbundlePackage extends EPackage {
 	EAttribute getBundle_SendOption();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isDays <em>Days</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getAggregatedOption <em>Aggregated Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Days</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isDays()
+	 * @return the meta object for the attribute '<em>Aggregated Option</em>'.
+	 * @see org.unicase.model.emailbundle.Bundle#getAggregatedOption()
 	 * @see #getBundle()
 	 * @generated
 	 */
-	EAttribute getBundle_Days();
+	EAttribute getBundle_AggregatedOption();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getDaysCount <em>Days Count</em>}'.
@@ -227,17 +229,6 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBundle_DaysCount();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#isWeekday <em>Weekday</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Weekday</em>'.
-	 * @see org.unicase.model.emailbundle.Bundle#isWeekday()
-	 * @see #getBundle()
-	 * @generated
-	 */
-	EAttribute getBundle_Weekday();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.emailbundle.Bundle#getWeekdayOption <em>Weekday Option</em>}'.
@@ -280,6 +271,16 @@ public interface EmailbundlePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getWeekdays();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.emailbundle.AggregatedSettings <em>Aggregated Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Aggregated Settings</em>'.
+	 * @see org.unicase.model.emailbundle.AggregatedSettings
+	 * @generated
+	 */
+	EEnum getAggregatedSettings();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -330,12 +331,12 @@ public interface EmailbundlePackage extends EPackage {
 		EAttribute BUNDLE__SEND_OPTION = eINSTANCE.getBundle_SendOption();
 
 		/**
-		 * The meta object literal for the '<em><b>Days</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Aggregated Option</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUNDLE__DAYS = eINSTANCE.getBundle_Days();
+		EAttribute BUNDLE__AGGREGATED_OPTION = eINSTANCE.getBundle_AggregatedOption();
 
 		/**
 		 * The meta object literal for the '<em><b>Days Count</b></em>' attribute feature.
@@ -344,14 +345,6 @@ public interface EmailbundlePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BUNDLE__DAYS_COUNT = eINSTANCE.getBundle_DaysCount();
-
-		/**
-		 * The meta object literal for the '<em><b>Weekday</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUNDLE__WEEKDAY = eINSTANCE.getBundle_Weekday();
 
 		/**
 		 * The meta object literal for the '<em><b>Weekday Option</b></em>' attribute feature.
@@ -388,6 +381,16 @@ public interface EmailbundlePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum WEEKDAYS = eINSTANCE.getWeekdays();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.emailbundle.AggregatedSettings <em>Aggregated Settings</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.emailbundle.AggregatedSettings
+		 * @see org.unicase.model.emailbundle.impl.EmailbundlePackageImpl#getAggregatedSettings()
+		 * @generated
+		 */
+		EEnum AGGREGATED_SETTINGS = eINSTANCE.getAggregatedSettings();
 
 	}
 

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.unicase.model.emailbundle.AggregatedSettings;
 import org.unicase.model.ModelPackage;
 
 import org.unicase.model.emailbundle.Bundle;
@@ -57,6 +58,13 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * @generated
 	 */
 	private EEnum weekdaysEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum aggregatedSettingsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -151,7 +159,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_Days() {
+	public EAttribute getBundle_AggregatedOption() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -169,7 +177,7 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_Weekday() {
+	public EAttribute getBundle_WeekdayOption() {
 		return (EAttribute)bundleEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -178,17 +186,8 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBundle_WeekdayOption() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBundle_Providers() {
-		return (EAttribute)bundleEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)bundleEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -207,6 +206,15 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 	 */
 	public EEnum getWeekdays() {
 		return weekdaysEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAggregatedSettings() {
+		return aggregatedSettingsEEnum;
 	}
 
 	/**
@@ -240,15 +248,15 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 		bundleEClass = createEClass(BUNDLE);
 		createEAttribute(bundleEClass, BUNDLE__BUNDLE_NAME);
 		createEAttribute(bundleEClass, BUNDLE__SEND_OPTION);
-		createEAttribute(bundleEClass, BUNDLE__DAYS);
+		createEAttribute(bundleEClass, BUNDLE__AGGREGATED_OPTION);
 		createEAttribute(bundleEClass, BUNDLE__DAYS_COUNT);
-		createEAttribute(bundleEClass, BUNDLE__WEEKDAY);
 		createEAttribute(bundleEClass, BUNDLE__WEEKDAY_OPTION);
 		createEAttribute(bundleEClass, BUNDLE__PROVIDERS);
 
 		// Create enums
 		sendSettingsEEnum = createEEnum(SEND_SETTINGS);
 		weekdaysEEnum = createEEnum(WEEKDAYS);
+		aggregatedSettingsEEnum = createEEnum(AGGREGATED_SETTINGS);
 	}
 
 	/**
@@ -284,9 +292,8 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 		initEClass(bundleEClass, Bundle.class, "Bundle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBundle_BundleName(), ecorePackage.getEString(), "BundleName", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_SendOption(), this.getSendSettings(), "SendOption", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_Days(), ecorePackage.getEBoolean(), "Days", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBundle_AggregatedOption(), this.getAggregatedSettings(), "AggregatedOption", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_DaysCount(), ecorePackage.getEInt(), "DaysCount", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBundle_Weekday(), ecorePackage.getEBoolean(), "Weekday", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_WeekdayOption(), this.getWeekdays(), "WeekdayOption", null, 0, 1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundle_Providers(), ecorePackage.getEJavaObject(), "Providers", null, 0, -1, Bundle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -305,6 +312,11 @@ public class EmailbundlePackageImpl extends EPackageImpl implements EmailbundleP
 		addEEnumLiteral(weekdaysEEnum, Weekdays.FRIDAY);
 		addEEnumLiteral(weekdaysEEnum, Weekdays.SATURDAY);
 		addEEnumLiteral(weekdaysEEnum, Weekdays.SUNDAY);
+
+		initEEnum(aggregatedSettingsEEnum, AggregatedSettings.class, "AggregatedSettings");
+		addEEnumLiteral(aggregatedSettingsEEnum, AggregatedSettings.NONE);
+		addEEnumLiteral(aggregatedSettingsEEnum, AggregatedSettings.DAYS);
+		addEEnumLiteral(aggregatedSettingsEEnum, AggregatedSettings.WEEKDAY);
 
 		// Create resource
 		createResource(eNS_URI);

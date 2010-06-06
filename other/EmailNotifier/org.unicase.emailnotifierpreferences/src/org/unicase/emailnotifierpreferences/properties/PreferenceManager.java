@@ -37,7 +37,7 @@ public final class PreferenceManager {
 		Bundle test = EmailbundleFactoryImpl.eINSTANCE.createBundle();
 		test.setBundleName("pronto");
 		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
-		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}));
+		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}, null));
 		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));
 	}
 
@@ -67,10 +67,11 @@ public final class PreferenceManager {
 		return property;
 	}
 
-	private OrgUnitProperty createProperty(PropertyKey key, EObject[] value) {
+	private OrgUnitProperty createProperty(PropertyKey key, EObject[] value, ProjectId id) {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
+		property.setProject(id);
 		return property;
 	}
 
@@ -83,7 +84,7 @@ public final class PreferenceManager {
 	 * @param value the value
 	 */
 	public void setProperty(ProjectSpace projectSpace, PropertyKey key, EObject[] value) {
-		OrgUnitProperty property = createProperty(key, value);
+		OrgUnitProperty property = createProperty(key, value, projectSpace.getProjectId());
 		projectSpace.setProperty(property);
 	}
 

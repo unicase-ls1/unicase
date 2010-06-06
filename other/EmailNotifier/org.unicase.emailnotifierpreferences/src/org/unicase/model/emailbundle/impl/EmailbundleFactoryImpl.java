@@ -88,6 +88,8 @@ public class EmailbundleFactoryImpl extends EFactoryImpl implements EmailbundleF
 				return createSendSettingsFromString(eDataType, initialValue);
 			case EmailbundlePackage.WEEKDAYS:
 				return createWeekdaysFromString(eDataType, initialValue);
+			case EmailbundlePackage.AGGREGATED_SETTINGS:
+				return createAggregatedSettingsFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -105,6 +107,8 @@ public class EmailbundleFactoryImpl extends EFactoryImpl implements EmailbundleF
 				return convertSendSettingsToString(eDataType, instanceValue);
 			case EmailbundlePackage.WEEKDAYS:
 				return convertWeekdaysToString(eDataType, instanceValue);
+			case EmailbundlePackage.AGGREGATED_SETTINGS:
+				return convertAggregatedSettingsToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -157,6 +161,26 @@ public class EmailbundleFactoryImpl extends EFactoryImpl implements EmailbundleF
 	 * @generated
 	 */
 	public String convertWeekdaysToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AggregatedSettings createAggregatedSettingsFromString(EDataType eDataType, String initialValue) {
+		AggregatedSettings result = AggregatedSettings.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAggregatedSettingsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
