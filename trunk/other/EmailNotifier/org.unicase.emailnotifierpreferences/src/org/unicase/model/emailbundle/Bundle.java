@@ -22,9 +22,8 @@ import org.unicase.model.UnicaseModelElement;
  * <ul>
  *   <li>{@link org.unicase.model.emailbundle.Bundle#getBundleName <em>Bundle Name</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.Bundle#getSendOption <em>Send Option</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.Bundle#isDays <em>Days</em>}</li>
+ *   <li>{@link org.unicase.model.emailbundle.Bundle#getAggregatedOption <em>Aggregated Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.Bundle#getDaysCount <em>Days Count</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.Bundle#isWeekday <em>Weekday</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.Bundle#getWeekdayOption <em>Weekday Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.Bundle#getProviders <em>Providers</em>}</li>
  * </ul>
@@ -98,30 +97,33 @@ public interface Bundle extends EObject {
 	void setSendOption(SendSettings value);
 
 	/**
-	 * Returns the value of the '<em><b>Days</b></em>' attribute.
+	 * Returns the value of the '<em><b>Aggregated Option</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.emailbundle.AggregatedSettings}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Days</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Aggregated Option</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Days</em>' attribute.
-	 * @see #setDays(boolean)
-	 * @see org.unicase.model.emailbundle.EmailbundlePackage#getBundle_Days()
+	 * @return the value of the '<em>Aggregated Option</em>' attribute.
+	 * @see org.unicase.model.emailbundle.AggregatedSettings
+	 * @see #setAggregatedOption(AggregatedSettings)
+	 * @see org.unicase.model.emailbundle.EmailbundlePackage#getBundle_AggregatedOption()
 	 * @model
 	 * @generated
 	 */
-	boolean isDays();
+	AggregatedSettings getAggregatedOption();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.emailbundle.Bundle#isDays <em>Days</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.emailbundle.Bundle#getAggregatedOption <em>Aggregated Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Days</em>' attribute.
-	 * @see #isDays()
+	 * @param value the new value of the '<em>Aggregated Option</em>' attribute.
+	 * @see org.unicase.model.emailbundle.AggregatedSettings
+	 * @see #getAggregatedOption()
 	 * @generated
 	 */
-	void setDays(boolean value);
+	void setAggregatedOption(AggregatedSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Days Count</b></em>' attribute.
@@ -148,32 +150,6 @@ public interface Bundle extends EObject {
 	 * @generated
 	 */
 	void setDaysCount(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Weekday</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Weekday</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Weekday</em>' attribute.
-	 * @see #setWeekday(boolean)
-	 * @see org.unicase.model.emailbundle.EmailbundlePackage#getBundle_Weekday()
-	 * @model
-	 * @generated
-	 */
-	boolean isWeekday();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.emailbundle.Bundle#isWeekday <em>Weekday</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Weekday</em>' attribute.
-	 * @see #isWeekday()
-	 * @generated
-	 */
-	void setWeekday(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Weekday Option</b></em>' attribute.

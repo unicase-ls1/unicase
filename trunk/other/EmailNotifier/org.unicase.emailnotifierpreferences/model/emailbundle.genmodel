@@ -23,12 +23,16 @@
       <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/SATURDAY"/>
       <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//Weekdays/SUNDAY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="emailbundle.ecore#//AggregatedSettings">
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//AggregatedSettings/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//AggregatedSettings/DAYS"/>
+      <genEnumLiterals ecoreEnumLiteral="emailbundle.ecore#//AggregatedSettings/WEEKDAY"/>
+    </genEnums>
     <genClasses ecoreClass="emailbundle.ecore#//Bundle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/BundleName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/SendOption"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Days"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/AggregatedOption"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/DaysCount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Weekday"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/WeekdayOption"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emailbundle.ecore#//Bundle/Providers"/>
     </genClasses>

@@ -10,9 +10,12 @@ import java.util.Vector;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFObservables;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -77,23 +80,21 @@ public class EMailNotifierPage extends PropertyPage {
 	private Button btnAdd;
 	private Button btnRemove;
 	private Button btnEdit;
+
 	private Composite secondGrid;
 	private Label selectNotifier;
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
-	private Label configLabel;
+
 	private Composite thirdgrid;
-	private Combo sendSettings;
-	private Button immediatelyRadio;
-	private Button aggregatedRadio;
-	private Spinner daysSpinner;
-	private Button notificationServiceCheck;
+	private Label configLabel;
+	private Combo sendOption;
 	private Composite aggregated;
-	private Button daysRadio;
-	private Button weekdayRadio;
-	private Combo weekdayCombo;
-	final private String[] weekdaysArray = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-		"Sunday" };
+	private Combo aggregatedOption;
+	private Combo weekdayOption;
+	private Spinner daysSpinner;
+
+	private Button notificationServiceCheck;
 
 	private Control createMainTab(TabFolder folder) {
 
@@ -262,62 +263,62 @@ public class EMailNotifierPage extends PropertyPage {
 				thirdgrid.setVisible(false);
 				GridLayoutFactory.fillDefaults().numColumns(1).applyTo(thirdgrid);
 				// thirdgrid.setLayoutData(layoutTop);
-
-				sendSettings = new Combo(thirdgrid, SWT.DROP_DOWN | SWT.READ_ONLY);
-//				EList<EEnumLiteral> list = (EList<EEnumLiteral>) EmailbundlePackage.Literals.SEND_SETTINGS;
-				EList<EEnumLiteral> list = ((EEnum)EmailbundlePackage.Literals.SEND_SETTINGS).getELiterals();
-				for (EEnumLiteral literal : list) {
-					sendSettings.add(literal.getLiteral());
-				}
+				
 				configLabel = new Label(thirdgrid, SWT.PUSH | SWT.TOP);
 				configLabel.setText("Configuration for Bundle");
-//				immediatelyRadio = new Button(thirdgrid, SWT.RADIO | SWT.LEFT);
-//				immediatelyRadio.setText("immediately");
-//				aggregatedRadio = new Button(thirdgrid, SWT.RADIO | SWT.LEFT);
-//				aggregatedRadio.setText("aggregated");
+				sendOption = new Combo(thirdgrid, SWT.DROP_DOWN | SWT.READ_ONLY);
+				EList<EEnumLiteral> sendlist = ((EEnum) EmailbundlePackage.Literals.SEND_SETTINGS).getELiterals();
+				for (EEnumLiteral literal : sendlist) {
+					sendOption.add(literal.getLiteral());
+				}
 				{
 					aggregated = new Composite(thirdgrid, SWT.NONE);
 					GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 0).applyTo(aggregated);
 					GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).applyTo(aggregated);
 					aggregated.setVisible(false);
-					daysRadio = new Button(aggregated, SWT.RADIO | SWT.LEFT);
-					daysRadio.setText("every");
+					aggregatedOption = new Combo(thirdgrid, SWT.DROP_DOWN | SWT.READ_ONLY);
+					EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailbundlePackage.Literals.AGGREGATED_SETTINGS)
+						.getELiterals();
+					for (EEnumLiteral literal : aggreegatedlist) {
+						aggregatedOption.add(literal.getLiteral());
+					}
+
+					Label every = new Label(aggregated, SWT.LEFT | SWT.BORDER);
+					every.setText("every");
 					daysSpinner = new Spinner(aggregated, SWT.WRAP | SWT.BORDER);
 					daysSpinner.setMinimum(1);
 					daysSpinner.setMaximum(30);
-					Label daysLabel = new Label(aggregated, SWT.LEFT | SWT.BORDER);
-					daysLabel.setText("days");
-					weekdayRadio = new Button(aggregated, SWT.RADIO | SWT.LEFT);
-					weekdayRadio.setText("every");
-					weekdayCombo = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
-					weekdayCombo.setItems(weekdaysArray);
+					Label days = new Label(aggregated, SWT.LEFT | SWT.BORDER);
+					days.setText("days");
+					
+					Label wevery = new Label(aggregated, SWT.LEFT | SWT.BORDER);
+					wevery.setText("every");
+					weekdayOption = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
+					EList<EEnumLiteral> weekdaylist = ((EEnum) EmailbundlePackage.Literals.WEEKDAYS).getELiterals();
+					for (EEnumLiteral literal : weekdaylist) {
+						weekdayOption.add(literal.getLiteral());
+					}
 
-					aggregatedRadio.addSelectionListener(new SelectionAdapter() {
+					// aggregatedRadio.addSelectionListener(new SelectionAdapter() {
+					// @Override
+					// public void widgetSelected(SelectionEvent e) {
+					// aggregated.setVisible(true);
+					// }
+					// });
+					// immediatelyRadio.addSelectionListener(new SelectionAdapter() {
+					// @Override
+					// public void widgetSelected(SelectionEvent e) {
+					// aggregated.setVisible(false);
+					// daysRadio.setSelection(false);
+					// daysSpinner.setSelection(1);
+					// weekdayRadio.setSelection(false);
+					// weekdayCombo.select(NONE);
+					// }
+					// });
+					aggregatedOption.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
-							aggregated.setVisible(true);
-						}
-					});
-					immediatelyRadio.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							aggregated.setVisible(false);
-							daysRadio.setSelection(false);
-							daysSpinner.setSelection(1);
-							weekdayRadio.setSelection(false);
-							weekdayCombo.select(NONE);
-						}
-					});
-					daysRadio.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							weekdayCombo.select(NONE);
-						}
-					});
-					weekdayRadio.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							daysSpinner.setSelection(1);
+							
 						}
 					});
 				}
@@ -377,13 +378,11 @@ public class EMailNotifierPage extends PropertyPage {
 
 		loadProperties();
 		bundleList.refresh();
-//		if (!tempBundles.isEmpty()) {
-//			bundleList.getList().setFocus();
-//			bundleList.getList().select(0);
-//			for (int i = 0; i < tempBundles.size(); i++) {
-//				bindValues(tempBundles, i);
-//			}
-//		}
+
+		for (int i = 0; i <= tempBundles.size(); i++) {
+			bindValues(tempBundles, i);
+		}
+
 		return folder;
 	}
 
@@ -404,31 +403,30 @@ public class EMailNotifierPage extends PropertyPage {
 
 	private void loadProviderProperties(List<Bundle> l, int x) {
 		notifierTypesList.setCheckedElements(l.get(x).getProviders().toArray());
+
 		secondGrid.setVisible(true);
 	}
 
 	private void loadSendProperties(List<Bundle> l, int x) {
-		sendSettings.select(l.get(x).getSendOption().getValue());
-//		aggregatedRadio.setSelection(l.get(x).isAggregated());
+		sendOption.select(l.get(x).getSendOption().getValue());
 		if (l.get(x).getSendOption().getName().equalsIgnoreCase("aggregated")) {
 			aggregated.setVisible(true);
 		}
-		daysRadio.setSelection(l.get(x).isDays());
+		aggregatedOption.select(l.get(x).getAggregatedOption().getValue());
 		daysSpinner.setSelection(l.get(x).getDaysCount());
-		weekdayRadio.setSelection(l.get(x).isWeekday());
-		weekdayCombo.select(l.get(x).getWeekdayOption().getValue());
+		weekdayOption.select(l.get(x).getWeekdayOption().getValue());
+
 		thirdgrid.setVisible(true);
 	}
 
 	private void refreshProperties() {
 		notifierTypesList.setAllChecked(false);
-		immediatelyRadio.setSelection(false);
-		aggregatedRadio.setSelection(false);
-		daysRadio.setSelection(false);
+
+		sendOption.select(0);
+		aggregatedOption.select(0);
 		aggregated.setVisible(false);
 		daysSpinner.setSelection(1);
-		weekdayRadio.setSelection(false);
-		weekdayCombo.select(NONE);
+		weekdayOption.select(0);
 	}
 
 	private boolean init() {
@@ -438,10 +436,9 @@ public class EMailNotifierPage extends PropertyPage {
 
 		tempBundles = new Vector<Bundle>();
 		project = (Project) getElement();
-		
 
 		projectSpace = WorkspaceManager.getProjectSpace(project);
-		
+
 		providerHints = new HashMap<PropertyKey, String[]>();
 
 		providerHints.put(EMailNotifierKey.TASK_PROVIDER, new String[] { "Task notifications",
@@ -456,7 +453,7 @@ public class EMailNotifierPage extends PropertyPage {
 			"Allows you to subscribe to arbitrary model elements and receive notifications upon their changes." });
 		providerHints.put(EMailNotifierKey.COMMENTS_PROVIDER, new String[] { "Comment notifications",
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
-		
+
 		return true;
 	}
 
@@ -478,7 +475,8 @@ public class EMailNotifierPage extends PropertyPage {
 				b[i] = (Bundle) tempBundles.get(i);
 			}
 			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.BUNDLES, b);
-			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.ACTIVATED, notificationServiceCheck.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.ACTIVATED, notificationServiceCheck
+				.getSelection());
 			return null;
 		}
 	}
@@ -499,7 +497,7 @@ public class EMailNotifierPage extends PropertyPage {
 			public void widgetSelected(SelectionEvent e) {
 				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "New bundle",
 					"Enter 1-14 characters", "dummy", new LengthValidator());
-				
+
 				if (dlg.open() == Window.OK) {
 					Bundle newbndl = EmailbundleFactoryImpl.eINSTANCE.createBundle();
 					newbndl.setBundleName(dlg.getValue());
@@ -508,7 +506,7 @@ public class EMailNotifierPage extends PropertyPage {
 					((org.eclipse.swt.widgets.List) bundleList.getControl()).select(tempBundles.indexOf(newbndl));
 				}
 				bundleList.refresh(true);
-				
+
 			}
 		});
 
@@ -551,29 +549,23 @@ public class EMailNotifierPage extends PropertyPage {
 		// Retrieve the default factory singleton
 		EmailbundleFactory factory = EmailbundleFactory.eINSTANCE;
 
-//		uiElement = SWTObservables.observeSelection(immediatelyRadio);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__IMMEDIATELY);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
-//
-//		uiElement = SWTObservables.observeSelection(aggregatedRadio);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__AGGREGATED);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
-//
-//		uiElement = SWTObservables.observeSelection(daysRadio);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__DAYS);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
-//
-//		uiElement = SWTObservables.observeSelection(daysSpinner);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__DAYS_COUNT);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
-//
-//		uiElement = SWTObservables.observeSelection(weekdayRadio);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__WEEKDAY);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
-//
-//		uiElement = SWTObservables.observeSelection(weekdayCombo);
-//		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__WEEKDAY_INDEX);
-//		bindingContext.bindValue(uiElement, modelElement, null, null);
+		uiElement = SWTObservables.observeSelection(sendOption);
+		modelElement = EMFObservables.observeValue(l.get(i),
+			(EStructuralFeature) EmailbundlePackage.Literals.SEND_SETTINGS);
+		bindingContext.bindValue(uiElement, modelElement, null, null);
+
+		uiElement = SWTObservables.observeSelection(aggregatedOption);
+		modelElement = EMFObservables.observeValue(l.get(i),
+			(EStructuralFeature) EmailbundlePackage.Literals.AGGREGATED_SETTINGS);
+		bindingContext.bindValue(uiElement, modelElement, null, null);
+
+		uiElement = SWTObservables.observeSelection(daysSpinner);
+		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__DAYS_COUNT);
+		bindingContext.bindValue(uiElement, modelElement, null, null);
+
+		uiElement = SWTObservables.observeSelection(weekdayOption);
+		modelElement = EMFObservables.observeValue(l.get(i), (EStructuralFeature) EmailbundlePackage.Literals.WEEKDAYS);
+		bindingContext.bindValue(uiElement, modelElement, null, null);
 	}
 
 	/**

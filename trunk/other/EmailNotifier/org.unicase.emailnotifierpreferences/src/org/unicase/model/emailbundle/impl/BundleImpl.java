@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.unicase.model.emailbundle.AggregatedSettings;
 import org.unicase.model.emailbundle.Bundle;
 import org.unicase.model.emailbundle.EmailbundlePackage;
 
@@ -34,9 +35,8 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <ul>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getBundleName <em>Bundle Name</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getSendOption <em>Send Option</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isDays <em>Days</em>}</li>
+ *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getAggregatedOption <em>Aggregated Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getDaysCount <em>Days Count</em>}</li>
- *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#isWeekday <em>Weekday</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getWeekdayOption <em>Weekday Option</em>}</li>
  *   <li>{@link org.unicase.model.emailbundle.impl.BundleImpl#getProviders <em>Providers</em>}</li>
  * </ul>
@@ -93,24 +93,24 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	protected SendSettings sendOption = SEND_OPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDays() <em>Days</em>}' attribute.
+	 * The default value of the '{@link #getAggregatedOption() <em>Aggregated Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDays()
+	 * @see #getAggregatedOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DAYS_EDEFAULT = false;
+	protected static final AggregatedSettings AGGREGATED_OPTION_EDEFAULT = AggregatedSettings.NONE;
 
 	/**
-	 * The cached value of the '{@link #isDays() <em>Days</em>}' attribute.
+	 * The cached value of the '{@link #getAggregatedOption() <em>Aggregated Option</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDays()
+	 * @see #getAggregatedOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean days = DAYS_EDEFAULT;
+	protected AggregatedSettings aggregatedOption = AGGREGATED_OPTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDaysCount() <em>Days Count</em>}' attribute.
@@ -131,26 +131,6 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * @ordered
 	 */
 	protected int daysCount = DAYS_COUNT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isWeekday() <em>Weekday</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isWeekday()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean WEEKDAY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isWeekday() <em>Weekday</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isWeekday()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean weekday = WEEKDAY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWeekdayOption() <em>Weekday Option</em>}' attribute.
@@ -248,8 +228,8 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDays() {
-		return days;
+	public AggregatedSettings getAggregatedOption() {
+		return aggregatedOption;
 	}
 
 	/**
@@ -257,11 +237,11 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDays(boolean newDays) {
-		boolean oldDays = days;
-		days = newDays;
+	public void setAggregatedOption(AggregatedSettings newAggregatedOption) {
+		AggregatedSettings oldAggregatedOption = aggregatedOption;
+		aggregatedOption = newAggregatedOption == null ? AGGREGATED_OPTION_EDEFAULT : newAggregatedOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__DAYS, oldDays, days));
+			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__AGGREGATED_OPTION, oldAggregatedOption, aggregatedOption));
 	}
 
 	/**
@@ -283,27 +263,6 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 		daysCount = newDaysCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__DAYS_COUNT, oldDaysCount, daysCount));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isWeekday() {
-		return weekday;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWeekday(boolean newWeekday) {
-		boolean oldWeekday = weekday;
-		weekday = newWeekday;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EmailbundlePackage.BUNDLE__WEEKDAY, oldWeekday, weekday));
 	}
 
 	/**
@@ -351,12 +310,10 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 				return getBundleName();
 			case EmailbundlePackage.BUNDLE__SEND_OPTION:
 				return getSendOption();
-			case EmailbundlePackage.BUNDLE__DAYS:
-				return isDays();
+			case EmailbundlePackage.BUNDLE__AGGREGATED_OPTION:
+				return getAggregatedOption();
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				return getDaysCount();
-			case EmailbundlePackage.BUNDLE__WEEKDAY:
-				return isWeekday();
 			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
 				return getWeekdayOption();
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
@@ -380,14 +337,11 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__SEND_OPTION:
 				setSendOption((SendSettings)newValue);
 				return;
-			case EmailbundlePackage.BUNDLE__DAYS:
-				setDays((Boolean)newValue);
+			case EmailbundlePackage.BUNDLE__AGGREGATED_OPTION:
+				setAggregatedOption((AggregatedSettings)newValue);
 				return;
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				setDaysCount((Integer)newValue);
-				return;
-			case EmailbundlePackage.BUNDLE__WEEKDAY:
-				setWeekday((Boolean)newValue);
 				return;
 			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
 				setWeekdayOption((Weekdays)newValue);
@@ -414,14 +368,11 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 			case EmailbundlePackage.BUNDLE__SEND_OPTION:
 				setSendOption(SEND_OPTION_EDEFAULT);
 				return;
-			case EmailbundlePackage.BUNDLE__DAYS:
-				setDays(DAYS_EDEFAULT);
+			case EmailbundlePackage.BUNDLE__AGGREGATED_OPTION:
+				setAggregatedOption(AGGREGATED_OPTION_EDEFAULT);
 				return;
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				setDaysCount(DAYS_COUNT_EDEFAULT);
-				return;
-			case EmailbundlePackage.BUNDLE__WEEKDAY:
-				setWeekday(WEEKDAY_EDEFAULT);
 				return;
 			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
 				setWeekdayOption(WEEKDAY_OPTION_EDEFAULT);
@@ -445,12 +396,10 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 				return BUNDLE_NAME_EDEFAULT == null ? bundleName != null : !BUNDLE_NAME_EDEFAULT.equals(bundleName);
 			case EmailbundlePackage.BUNDLE__SEND_OPTION:
 				return sendOption != SEND_OPTION_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__DAYS:
-				return days != DAYS_EDEFAULT;
+			case EmailbundlePackage.BUNDLE__AGGREGATED_OPTION:
+				return aggregatedOption != AGGREGATED_OPTION_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__DAYS_COUNT:
 				return daysCount != DAYS_COUNT_EDEFAULT;
-			case EmailbundlePackage.BUNDLE__WEEKDAY:
-				return weekday != WEEKDAY_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__WEEKDAY_OPTION:
 				return weekdayOption != WEEKDAY_OPTION_EDEFAULT;
 			case EmailbundlePackage.BUNDLE__PROVIDERS:
@@ -473,12 +422,10 @@ public class BundleImpl extends EObjectImpl implements Bundle {
 		result.append(bundleName);
 		result.append(", SendOption: ");
 		result.append(sendOption);
-		result.append(", Days: ");
-		result.append(days);
+		result.append(", AggregatedOption: ");
+		result.append(aggregatedOption);
 		result.append(", DaysCount: ");
 		result.append(daysCount);
-		result.append(", Weekday: ");
-		result.append(weekday);
 		result.append(", WeekdayOption: ");
 		result.append(weekdayOption);
 		result.append(", Providers: ");
