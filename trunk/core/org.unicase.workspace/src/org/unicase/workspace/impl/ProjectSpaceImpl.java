@@ -49,6 +49,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -2337,8 +2338,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Apply a list of operations to the project.
+	 * Applies a list of operations to the project. The change tracking is stopped and the operations are added to the
+	 * projectspace.
 	 * 
+	 * @see #applyOperationsWithRecording(List, boolean)
 	 * @param operations list of operations
 	 * @param addOperation true if operation should be saved in project space.
 	 */
@@ -2354,22 +2357,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Apply a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. It is
-	 * possible to force import operations.
+	 * Applies a list of operations to the project. It is possible to force import operations. Changetracking isn't
+	 * deactivated while applying changes.
 	 * 
 	 * @param operations list of operations
 	 * @param force if true, no exception is thrown if operation.apply failes
+	 * @param semanticApply when true, does a semanticApply if possible (see {@link SemanticCompositeOperation})
 	 */
-	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force, boolean semanticApply) {
 		for (AbstractOperation operation : operations) {
 			try {
-				operation.apply(getProject());
+				if (semanticApply && operation instanceof SemanticCompositeOperation) {
+					((SemanticCompositeOperation) operation).semanticApply(getProject());
+				} else {
+					operation.apply(getProject());
+				}
 			} catch (IllegalStateException e) {
 				if (!force) {
 					throw e;
 				}
 			}
 		}
+	}
+
+	/**
+	 * Applies a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. This
+	 * method redirects to {@link #applyOperationsWithRecording(List, boolean, boolean)}, using false for semantic
+	 * apply.
+	 * 
+	 * @param operations list of operations
+	 * @param force if true, no exception is thrown if operation.apply failes
+	 */
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+		applyOperationsWithRecording(operations, force, false);
 	}
 
 	/**
