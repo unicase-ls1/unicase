@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 
 /**
  * @author denglerm This class implements the Open ModelElement with MEEditor Action. The action is required in the
@@ -35,7 +35,7 @@ public class OpenMEEditorAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		if (this.selectedElement != null) {
 			ModelElement me = (ModelElement) ((View) selectedElement.getModel()).getElement();
-			ActionHelper.openModelElement(me, this.getClass().getName());
+			UnicaseActionHelper.openModelElement(me, this.getClass().getName());
 		}
 	}
 

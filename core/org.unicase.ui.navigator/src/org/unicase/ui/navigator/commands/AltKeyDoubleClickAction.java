@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.commands;
+package org.unicase.ui.navigator.commands;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -16,6 +16,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -87,7 +88,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	 * This opens the selected model element.
 	 * 
 	 * @see org.eclipse.jface.action.Action#run()
-	 * @see org.unicase.ui.common.commands.AltKeyDoubleClickAction#openSelectedModelelement()
+	 * @see org.unicase.ui.navigator.commands.AltKeyDoubleClickAction#openSelectedModelelement()
 	 */
 	@Override
 	public void run() {
@@ -115,7 +116,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 		if (classname == null || classname.equals("")) {
 			return;
 		}
-		ActionHelper.openModelElement(me, classname);
+		ActionHelper.openModelElement(me, classname, new EMFStoreModelelementContext(me));
 	}
 
 	/**

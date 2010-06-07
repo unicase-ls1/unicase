@@ -10,7 +10,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -25,7 +24,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
-import org.unicase.workspace.Configuration;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 
 /**
  * The editor page for the description feature.
@@ -132,7 +131,6 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(body);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		if (textControl == null) {
 			textControl = new MERichTextControl();
 		}
@@ -141,8 +139,8 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IItemPropertyDescriptor propertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(modelElement,
 			"description");
-		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement, domain, toolkit);
+		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement, UnicaseActionHelper
+			.getContext(modelElement), toolkit);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
-
 }

@@ -23,6 +23,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
@@ -43,7 +44,7 @@ public class MEEmailControl extends AbstractUnicaseMEControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 		meAreaControl = new METextControl();
 		final Text txtEmail = (Text) meAreaControl.createControl(composite, style, getItemPropertyDescriptor(),
-			getModelElement(), getEditingDomain(), getToolkit());
+			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(txtEmail);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 

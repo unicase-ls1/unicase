@@ -30,7 +30,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -148,7 +148,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 			table.addDoubleClickListener(new IDoubleClickListener() {
 				public void doubleClick(DoubleClickEvent event) {
 					IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), table.getClass()
+					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), table.getClass()
 						.getName());
 				}
 

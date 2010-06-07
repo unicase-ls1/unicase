@@ -6,13 +6,13 @@
 
 package org.unicase.codetrace.handlers;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
@@ -35,8 +35,8 @@ public class MEFindLocationControl  extends MELinkControl {
 	 * @return -1 if the link is not a code location 
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link,
-		ModelElement contextModelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link,
+		EObject contextModelElement) {
 		if (link instanceof CodeLocation) {
 			return PRIORITY;
 		} else {

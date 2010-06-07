@@ -13,8 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -30,7 +29,7 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
+		UnicaseModelElement me = org.unicase.ui.unicasecommon.UnicaseActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}
@@ -52,7 +51,7 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 			}
 		});
 
-		ActionHelper.openModelElement(createCompositeSection, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(createCompositeSection, this.getClass().getName());
 
 		return null;
 	}

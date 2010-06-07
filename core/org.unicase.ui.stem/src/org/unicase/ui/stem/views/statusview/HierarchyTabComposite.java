@@ -29,7 +29,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
@@ -39,6 +38,7 @@ import org.unicase.ui.stem.views.statusview.dnd.HierarchyTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -203,7 +203,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+				UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
 					.getName());
 			}
 

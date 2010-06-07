@@ -11,6 +11,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.ui.common.ModelElementContext;
 
 /**
  * Abstract class for the ME controls.
@@ -41,6 +42,8 @@ public abstract class AbstractMEControl {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
+	private ModelElementContext context;
+
 	/**
 	 * @return the toolkit
 	 */
@@ -48,6 +51,13 @@ public abstract class AbstractMEControl {
 		return toolkit;
 	}
 
+	/**
+	 * If a control can render a feature of a modelelement.
+	 * 
+	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
+	 * @param modelElement the modelelement
+	 * @return the priority
+	 */
 	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement);
 
 	/**
@@ -109,13 +119,18 @@ public abstract class AbstractMEControl {
 	/**
 	 * Creates the widget for this control.
 	 * 
-	 * @param attributeComposite the parent composite
+	 * @param parent the parent composite
+	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
+	 * @param modelElement the modelelement
+	 * @param context the context of the modelelement
+	 * @param toolkit the {@link FormToolkit}
 	 * @param style the style
 	 * @return the widget
 	 */
 	public Control createControl(Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		EObject modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
-		this.editingDomain = editingDomain;
+		EObject modelElement, ModelElementContext context, FormToolkit toolkit) {
+		this.setContext(context);
+		this.editingDomain = context.getEditingDomain();
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
 		this.setItemPropertyDescriptor(itemPropertyDescriptor);
@@ -123,6 +138,13 @@ public abstract class AbstractMEControl {
 
 	}
 
+	/**
+	 * Shall be overriden to create the control.
+	 * 
+	 * @param parent the paren composite
+	 * @param style the SWT style
+	 * @return the create Control
+	 */
 	protected abstract Control createControl(Composite parent, int style);
 
 	/**
@@ -134,17 +156,47 @@ public abstract class AbstractMEControl {
 
 	/**
 	 * Sets if the label should be shown.
+	 * 
+	 * @param show if the Label should be shown
 	 */
 	public void setShowLabel(boolean show) {
 		this.showLabel = show;
 	}
 
+	/**
+	 * Setter for the {@link IItemPropertyDescriptor}.
+	 * 
+	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
+	 */
 	public void setItemPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
 		this.itemPropertyDescriptor = itemPropertyDescriptor;
 	}
 
+	/**
+	 * Getter for the {@link IItemPropertyDescriptor}.
+	 * 
+	 * @return the {@link IItemPropertyDescriptor}
+	 */
 	public IItemPropertyDescriptor getItemPropertyDescriptor() {
 		return itemPropertyDescriptor;
+	}
+
+	/**
+	 * Setter for the {@link ModelElementContext}.
+	 * 
+	 * @param context the {@link ModelElementContext}
+	 */
+	public void setContext(ModelElementContext context) {
+		this.context = context;
+	}
+
+	/**
+	 * Getter for the {@link ModelElementContext}.
+	 * 
+	 * @return the {@link ModelElementContext}
+	 */
+	public ModelElementContext getContext() {
+		return context;
 	}
 
 }

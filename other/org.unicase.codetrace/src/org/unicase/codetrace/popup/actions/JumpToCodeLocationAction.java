@@ -7,7 +7,6 @@ package org.unicase.codetrace.popup.actions;
 
 import java.util.Iterator;
 
-
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.Action;
@@ -18,15 +17,13 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IVerticalRulerInfo;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.IUpdate;
 import org.eclipse.ui.texteditor.SimpleMarkerAnnotation;
 import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.model.trace.CodeLocation;
-import org.unicase.ui.meeditor.MEEditorInput;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 
 /**
  * Action executed when the user rightclicks on a code location marker and
@@ -128,12 +125,7 @@ public class JumpToCodeLocationAction extends Action implements IUpdate{
 			}
 			
 			//Jump to the location in ME-Editor
-			try {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new MEEditorInput(cl),
-					"org.unicase.ui.meeditor", true);
-			} catch (PartInitException e1) {
-				WorkspaceUtil.logException("Could not switch to MEeditor to show associated code location.", e1);
-			}
+			UnicaseActionHelper.openModelElement(cl, "org.unicase.codetrace");
 		}
 	}
 

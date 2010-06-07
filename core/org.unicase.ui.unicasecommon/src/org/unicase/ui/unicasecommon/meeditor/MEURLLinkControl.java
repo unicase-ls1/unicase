@@ -17,7 +17,6 @@ import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.workspace.WorkspaceManager;
@@ -48,7 +47,8 @@ public class MEURLLinkControl extends MELinkControl {
 	private ImageHyperlink urlHyperlink;
 
 	private static final int PRIORITY = 2;
-	private ModelElementChangeListener listener;
+
+	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener2;
 
 	/**
 	 * {@inheritDoc}
@@ -75,20 +75,14 @@ public class MEURLLinkControl extends MELinkControl {
 			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
 				.createImage();
 			urlHyperlink.setImage(launchImage);
-			listener = new ModelElementChangeListener() {
+			modelElementChangeListener2 = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
 
-				public void onRuntimeExceptionInListener(RuntimeException exception) {
-					link.removeModelElementChangeListener(listener);
-
-				}
-
+				@Override
 				public void onChange(Notification notification) {
 					updateAdditionalControlComponents();
 
 				}
 			};
-			link.addModelElementChangeListener(listener);
-
 			String url = ((UrlAttachment) link).getUrl();
 			if (url == null) {
 				url = "";
@@ -102,9 +96,9 @@ public class MEURLLinkControl extends MELinkControl {
 						return;
 					}
 					Program.launch(url);
-					ModelElement urlAttachement = link;
-					MEURLControl.logEvent((contextModelElement).getModelElementId(),
-						urlAttachement.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
+					ModelElement urlAttachement = (ModelElement) link;
+					MEURLControl.logEvent(((ModelElement) contextModelElement).getModelElementId(), urlAttachement
+						.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
 						"org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
@@ -132,8 +126,7 @@ public class MEURLLinkControl extends MELinkControl {
 	@Override
 	public void dispose() {
 		super.dispose();
-		link.removeModelElementChangeListener(listener);
-
+		modelElementChangeListener2.remove();
 	}
 
 }

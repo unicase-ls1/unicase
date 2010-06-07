@@ -50,6 +50,7 @@ import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.filter.TeamFilter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -364,7 +365,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);

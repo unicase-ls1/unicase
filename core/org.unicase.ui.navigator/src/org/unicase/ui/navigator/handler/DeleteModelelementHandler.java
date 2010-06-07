@@ -3,11 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.handler;
+package org.unicase.ui.navigator.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
@@ -28,14 +29,13 @@ public class DeleteModelelementHandler extends AbstractHandler {
 			return null;
 		}
 
-
 		deleteModelElement(me);
 
 		return null;
 	}
 
 	private void deleteModelElement(final ModelElement me) {
-		new DeleteModelElementCommand(me).run();
+		new DeleteModelElementCommand(me, new EMFStoreModelelementContext(me)).run();
 	}
 
 }

@@ -15,6 +15,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -53,7 +54,7 @@ public class NewLeafSection extends AbstractHandler {
 			}
 		});
 
-		ActionHelper.openModelElement(createLeafSection, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(createLeafSection, this.getClass().getName());
 
 		return null;
 	}

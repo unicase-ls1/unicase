@@ -35,14 +35,14 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -345,7 +345,7 @@ public class IterationPlanningView extends ViewPart {
 				TreeSelection selection = (TreeSelection) viewer.getSelection();
 				Object object = selection.getFirstElement();
 				if (object instanceof UnicaseModelElement) {
-					ActionHelper.openModelElement((UnicaseModelElement) object, viewId);
+					UnicaseActionHelper.openModelElement((UnicaseModelElement) object, viewId);
 				}
 			}
 
@@ -366,7 +366,8 @@ public class IterationPlanningView extends ViewPart {
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(), viewer));
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(),
+			viewer));
 
 	}
 

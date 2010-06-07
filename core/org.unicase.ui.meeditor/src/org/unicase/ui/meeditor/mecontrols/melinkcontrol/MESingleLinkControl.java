@@ -23,10 +23,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.ui.meeditor.ModelElementChangeListener;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * GUI Control for the ME reference single links.
@@ -80,19 +78,14 @@ public class MESingleLinkControl extends AbstractMEControl {
 			createButtonForAction(action);
 		}
 
-		modelElementChangeListener = new ModelElementChangeListener() {
+		modelElementChangeListener = new ModelElementChangeListener(getModelElement()) {
 
+			@Override
 			public void onChange(Notification notification) {
 				updateLink();
-			}
-
-			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				// Do nothing.
 
 			}
 		};
-
-		((ModelElement) getModelElement()).addModelElementChangeListener(modelElementChangeListener);
 
 		return composite;
 	}
@@ -104,11 +97,11 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	protected List<Action> initActions() {
 		List<Action> result = new ArrayList<Action>();
-		AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
-			getItemPropertyDescriptor());
+		AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
+			getItemPropertyDescriptor(), getContext());
 		result.add(addAction);
-		NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
-			getItemPropertyDescriptor());
+		NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
+			getItemPropertyDescriptor(), getContext());
 		result.add(newAction);
 		return result;
 	}
@@ -145,27 +138,27 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-		new UnicaseCommand() {
+		// new UnicaseCommand() {
+		//
+		// @Override
+		// protected void doRun() {
+		EObject opposite = (EObject) getModelElement().eGet(eReference);
+		if (opposite != null) {
+			MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
+			meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(), opposite,
+				getModelElement());
+			meControl.createControl(linkArea, style, getItemPropertyDescriptor(), opposite, getModelElement(),
+				getToolkit(), getContext());
+		} else {
+			labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
+			labelWidget.setBackground(parent.getBackground());
+			labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+		}
+		linkArea.layout(true);
+		composite.layout(true);
 
-			@Override
-			protected void doRun() {
-				EObject opposite = (EObject) getModelElement().eGet(eReference);
-				if (opposite != null && opposite instanceof ModelElement) {
-					MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
-					meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(), opposite,
-						getModelElement());
-					meControl.createControl(linkArea, style, getItemPropertyDescriptor(), (ModelElement) opposite,
-						(ModelElement) getModelElement(), getToolkit());
-				} else {
-					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
-					labelWidget.setBackground(parent.getBackground());
-					labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
-				}
-				linkArea.layout(true);
-				composite.layout(true);
-
-			}
-		}.run();
+		// }
+		// }.run();
 	}
 
 	/**
@@ -173,7 +166,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
+		modelElementChangeListener.remove();
 		if (meControl != null) {
 			meControl.dispose();
 		}
@@ -184,7 +177,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference && !((EReference) feature).isMany()
-			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())) {
+			&& EObject.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())) {
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;

@@ -29,9 +29,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.NonDomainElement;
-import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 
@@ -47,18 +45,20 @@ public class MELinkControl {
 	private EReference eReference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
-	private ModelElementChangeListener observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
-	protected ModelElement link;
-	protected ModelElement contextModelElement;
+	protected EObject link;
+	protected EObject contextModelElement;
 	protected FormToolkit toolkit;
+	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
+	private ModelElementContext context;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		final ModelElement link, ModelElement contextModelElement, FormToolkit toolkit) {
+		final EObject link, EObject contextModelElement, FormToolkit toolkit, ModelElementContext context) {
+		this.context = context;
 		Object feature = itemPropertyDescriptor.getFeature(link);
 		this.eReference = (EReference) feature;
 		this.link = link;
@@ -80,14 +80,14 @@ public class MELinkControl {
 	protected void createDeleteAction(int style) {
 		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
-		if (eReference.isContainment() && (link instanceof NonDomainElement)) {
+		if (eReference.isContainment() && (context.isNonDomainElement(link))) {
 			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
 		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
 		}
 		deleteLink.setImage(deleteImage);
 
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link, context));
 	}
 
 	protected void createHyperlink(final Composite parent, int style) {
@@ -102,10 +102,11 @@ public class MELinkControl {
 		};
 		labelProvider.addListener(labelProviderListener);
 
-		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
+		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(link);
-		observer = new ModelElementChangeListener() {
+		modelElementChangeListener = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
 
+			@Override
 			public void onChange(Notification notification) {
 				Display.getDefault().asyncExec(new Runnable() {
 
@@ -121,13 +122,9 @@ public class MELinkControl {
 					}
 
 				});
-			}
 
-			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				(link).removeModelElementChangeListener(observer);
 			}
 		};
-		(link).addModelElementChangeListener(observer);
 
 		Image image = labelProvider.getImage(link);
 		imageHyperlink = toolkit.createImageHyperlink(linkComposite, style);
@@ -137,7 +134,7 @@ public class MELinkControl {
 		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
 		hyperlink = toolkit.createHyperlink(linkComposite, (shortLabelProvider.getText(link)), style);
 		hyperlink.setToolTipText(shortLabelProvider.getText(link));
-		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
+		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName(), context);
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 	}
@@ -151,11 +148,13 @@ public class MELinkControl {
 	 */
 
 	public void dispose() {
-		if (link != null) {
-			link.removeModelElementChangeListener(observer);
+		if (modelElementChangeListener != null) {
+			modelElementChangeListener.remove();
 		}
-		labelProvider.removeListener(labelProviderListener);
-		labelProvider.dispose();
+		if (labelProvider != null) {
+			labelProvider.removeListener(labelProviderListener);
+			labelProvider.dispose();
+		}
 		if (linkComposite != null) {
 			linkComposite.dispose();
 		}

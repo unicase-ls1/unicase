@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.handler;
+package org.unicase.ui.navigator.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -13,10 +13,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.ui.common.dialogs.OpenMeShortcutDialog;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.navigator.dialogs.OpenMeShortcutDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -49,7 +50,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 		} else {
 
 			project = projectSpace.getProject();
-			
+
 			OpenMeShortcutDialog dialog = new OpenMeShortcutDialog(project);
 
 			if (dialog.open() == Window.OK) {
@@ -57,7 +58,8 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 				if (result.length == 1 && result[0] instanceof ModelElement) {
 					ModelElement modelElement = (ModelElement) result[0];
-					ActionHelper.openModelElement(modelElement, "org.unicase.ui.OpenMEShortcut");
+					ActionHelper.openModelElement(modelElement, "org.unicase.ui.OpenMEShortcut",
+						new EMFStoreModelelementContext(modelElement));
 				}
 			}
 		}

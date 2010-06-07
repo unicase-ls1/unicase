@@ -14,7 +14,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.SWTException;
@@ -25,11 +26,9 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeObserver;
+import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.ModelElementContextListener;
 import org.unicase.ui.common.util.ShortLabelProvider;
-import org.unicase.workspace.Configuration;
 
 /**
  * GUI view for editing MEs.
@@ -44,17 +43,19 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 
-	private ModelElement modelElement;
-	private TransactionalEditingDomain editingDomain;
+	private EObject modelElement;
+	private EditingDomain editingDomain;
 	private MEEditorPage mePage;
 
 	private ILabelProviderListener labelProviderListener;
 
-	private ModelElementChangeObserver modelelementChangeObserver;
-
-	private Project project;
-
 	private StatusMessageProvider statusMessageProvider;
+
+	private ModelElementChangeListener modelElementChangeListener;
+
+	private ModelElementContext modelElementContext;
+
+	private ModelElementContextListener modelElementContextListener;
 
 	/**
 	 * Default constructor.
@@ -69,10 +70,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	protected void addPages() {
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
 		if (editorInput.getProblemFeature() != null) {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement, editorInput
+			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement, editorInput
 				.getProblemFeature());
 		} else {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
+			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement);
 		}
 
 		try {
@@ -144,14 +145,28 @@ public class MEEditor extends SharedHeaderFormEditor {
 			modelElement = meInput.getModelElement();
 			setPartName((new ShortLabelProvider()).getText(modelElement));
 			setTitleImage(input.getImageDescriptor().createImage());
-
+			modelElementContext = meInput.getModelElementContext();
 			initializeEditingDomain();
-			project = modelElement.getProject();
-			modelelementChangeObserver = new ModelElementChangeObserver() {
+
+			modelElementContextListener = new ModelElementContextListener() {
 
 				@Override
-				protected void onNotify(Notification notification, ModelElement element) {
+				public void onModelElementDeleted() {
+					close(false);
 
+				}
+
+				@Override
+				public void onContextDeleted() {
+					onModelElementDeleted();
+
+				}
+			};
+			modelElementContext.addModelElementContextListener(modelElementContextListener);
+			modelElementChangeListener = new ModelElementChangeListener(modelElement) {
+
+				@Override
+				public void onChange(Notification notification) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
 							updateIcon(input);
@@ -164,18 +179,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 					});
 
 				}
-
-				@Override
-				protected void onElementDeleted(ModelElement element) {
-					if (element == modelElement) {
-						close(false);
-						project.removeProjectChangeObserver(modelelementChangeObserver);
-					}
-
-				}
 			};
-			modelelementChangeObserver.observeElement(modelElement);
-			this.modelElement.getProject().addProjectChangeObserver(modelelementChangeObserver);
+
 			initStatusProvider();
 			updateCreatorHint();
 
@@ -224,7 +229,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	protected void initializeEditingDomain() {
 
-		this.editingDomain = Configuration.getEditingDomain();
+		this.editingDomain = modelElementContext.getEditingDomain();
 
 	}
 
@@ -254,10 +259,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-		if (modelElement != null && modelElement.getProject() != null) {
-			modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
-		}
 
+		modelElementChangeListener.remove();
+		modelElementContext.removeModelElementContextListener(modelElementContextListener);
+		modelElementContext.dispose();
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		super.dispose();
 	}

@@ -9,9 +9,9 @@ package org.unicase.ui.meeditor;
 import java.text.NumberFormat;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Wraps the relevance around an element if present.
@@ -20,14 +20,14 @@ import org.unicase.metamodel.ModelElement;
  */
 public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 
-	private Map<ModelElement, Double> relevanceValues;
+	private Map<EObject, Double> relevanceValues;
 
 	/**
 	 * The constructor.
 	 * 
 	 * @param relevanceVals the relevance map: element->double value
 	 */
-	public RelevanceWrappedLabelProvider(Map<ModelElement, Double> relevanceVals) {
+	public RelevanceWrappedLabelProvider(Map<EObject, Double> relevanceVals) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.relevanceValues = relevanceVals;
 	}
@@ -42,7 +42,7 @@ public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 	@Override
 	public String getText(Object o) {
 		String text = super.getText(o);
-		if (o instanceof ModelElement) {
+		if (o instanceof EObject) {
 			Double sim = relevanceValues.get(o);
 			if (sim != null) {
 				return text + " (Relevance: " + formatDouble(sim) + ")";

@@ -32,13 +32,13 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -311,8 +311,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), tableViewer.getClass()
-					.getName());
+				UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), tableViewer
+					.getClass().getName());
 			}
 
 		});

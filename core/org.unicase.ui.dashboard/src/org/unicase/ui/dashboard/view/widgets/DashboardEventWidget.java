@@ -27,9 +27,9 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
-import org.unicase.ui.common.util.URLHelper;
-import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ui.util.URLHelper;
+import org.unicase.workspace.ui.util.URLSelectionListener;
 
 /**
  * A dashboard widget displaying the upcoming events.

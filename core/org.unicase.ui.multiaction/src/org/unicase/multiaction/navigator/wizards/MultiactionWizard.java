@@ -12,7 +12,7 @@ import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.multiaction.MultiActionGenerator;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

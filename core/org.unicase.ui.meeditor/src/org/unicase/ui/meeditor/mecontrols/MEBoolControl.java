@@ -46,6 +46,12 @@ public class MEBoolControl extends AbstractMEControl {
 		return check;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
+	 *      org.eclipse.emf.ecore.EObject)
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);

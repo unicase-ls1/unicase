@@ -5,9 +5,8 @@
  */
 package org.unicase.ui.classDiagram;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.ClassDiagram;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
@@ -23,7 +22,7 @@ public class ClassDiagramOpener extends DiagramOpener  implements ModelElementOp
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
-	public int canOpen(ModelElement me) {
+	public int canOpen(EObject me) {
 		if (me instanceof ClassDiagram){
 //			MEDiagram diagram = (MEDiagram) me;
 //			if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
@@ -37,7 +36,7 @@ public class ClassDiagramOpener extends DiagramOpener  implements ModelElementOp
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
-	public void openModelElement(ModelElement modelElement) {
+	public void openModelElement(EObject modelElement) {
 		if(modelElement instanceof MEDiagram){
 			MEDiagram diagram = (MEDiagram) modelElement;
 		super.openDiagram(diagram, "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID");

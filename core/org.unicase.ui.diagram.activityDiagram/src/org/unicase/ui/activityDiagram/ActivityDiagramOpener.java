@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.activityDiagram;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.ModelElementOpener;
@@ -23,7 +23,7 @@ public class ActivityDiagramOpener extends DiagramOpener implements ModelElement
 	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
-	public int canOpen(ModelElement me) {
+	public int canOpen(EObject me) {
 		if (me instanceof ActivityDiagram) {
 			// MEDiagram diagram = (MEDiagram) me;
 			// if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
@@ -38,7 +38,7 @@ public class ActivityDiagramOpener extends DiagramOpener implements ModelElement
 	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
-	public void openModelElement(ModelElement modelElement) {
+	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof MEDiagram) {
 			MEDiagram diagram = (MEDiagram) modelElement;
 			super.openDiagram(diagram, "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID");

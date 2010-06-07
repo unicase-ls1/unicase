@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 
 /**
  * Command to remove a diagram element from the project's model.
@@ -35,7 +36,8 @@ public class DeleteFromModelCommand extends DestroyElementCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		new DeleteModelElementCommand((ModelElement) getElementToDestroy()).run();
+		new DeleteModelElementCommand(getElementToDestroy(), UnicaseActionHelper
+			.getContext((ModelElement) getElementToDestroy())).run();
 		return CommandResult.newOKCommandResult();
 	}
 

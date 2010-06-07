@@ -99,6 +99,11 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private TextViewer viewer;
 
+	/**
+	 * Returns the viewer.
+	 * 
+	 * @return the {@link TextViewer}
+	 */
 	public TextViewer getViewer() {
 		return viewer;
 	}

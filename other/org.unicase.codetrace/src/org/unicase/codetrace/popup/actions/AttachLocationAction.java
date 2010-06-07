@@ -14,9 +14,9 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.source.IVerticalRulerInfo;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -25,7 +25,7 @@ import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.codetrace.tracer.LocationFinder;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
-import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -119,12 +119,8 @@ public class AttachLocationAction extends Action {
 		new AttachLocationCommand(m,tl).run();
 		
 		//Open meeditor
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new MEEditorInput(tl),
-				"org.unicase.ui.meeditor", true);
-		} catch (PartInitException e1) {
-			WorkspaceUtil.logException("Could not switch to MEeditor after creating a code location.", e1);
-		}
+			UnicaseActionHelper.openModelElement(tl, "org.unicase.codetrace");
+		
 		
 		//Create a marker
 		try {
