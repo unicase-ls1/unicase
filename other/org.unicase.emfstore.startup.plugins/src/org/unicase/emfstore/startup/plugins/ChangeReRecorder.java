@@ -10,17 +10,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
@@ -98,7 +95,6 @@ public class ChangeReRecorder {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private ListIterator<AbstractOperation> handleCompositeOperation(int index,
 			CompositeOperation oldComposite,
 			ListIterator<AbstractOperation> listIterator) {
