@@ -17,37 +17,35 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
-import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.common.util.UiUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author Hodaie
  */
 public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 
-	private List<ModelElement> source;
-	private ModelElement dropee;
-	private ModelElement target;
+	private List<EObject> source;
+	private EObject dropee;
+	private EObject target;
 	private EReference reference;
 	private EditingDomain editingDomain;
+	private final ModelElementContext modelElementContext;
 
 	/**
 	 * @param editingDomain editing domain
 	 * @param me MEEditor input
 	 * @param reference EReference being shown in the section
+	 * @param modelElementContext the {@link ModelElementContext}
 	 */
-	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference) {
+	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference,
+		ModelElementContext modelElementContext) {
 
 		this.reference = reference;
 		this.editingDomain = editingDomain;
-		if (me instanceof ModelElement) {
-			target = (ModelElement) me;
-		}
+
+		target = me;
+		this.modelElementContext = modelElementContext;
 
 	}
 
@@ -90,7 +88,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
 			// reference.
 			EReference oppositeRef = reference.getEOpposite();
-			for (ModelElement me : source) {
+			for (EObject me : source) {
 				Object object = me.eGet(oppositeRef);
 				if (oppositeRef.isMany()) {
 					EList<EObject> eList = (EList<EObject>) object;
@@ -188,11 +186,12 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		// only project admins are allowed to change document structure
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
-		Usersession userSession = projectSpace.getUsersession();
-		if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
-			return false;
-		}
+		// TODO: Check if we need this
+		// ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
+		// Usersession userSession = projectSpace.getUsersession();
+		// if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
+		// return false;
+		// }
 
 		// for the case of multi selection (not implemented yet) only allow drop, if all droppees come from the same
 		// container
@@ -214,9 +213,9 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @param source source
 	 * @return true or false
 	 */
-	protected boolean haveSameEContainer(List<ModelElement> source) {
-		ModelElement first = source.get(0);
-		for (ModelElement me : source) {
+	protected boolean haveSameEContainer(List<EObject> source) {
+		EObject first = source.get(0);
+		for (EObject me : source) {
 			if (!first.eContainer().equals(me.eContainer())) {
 				return false;
 			}
@@ -242,12 +241,12 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof ModelElement)) {
+			if (!(obj instanceof EObject)) {
 				result = false;
 			}
 		}
 
-		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
+		source = (List<EObject>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
@@ -255,7 +254,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			if (!target.getProject().equals(dropee.getProject())) {
+			if (modelElementContext.contains(dropee)) {
 				result = false;
 			}
 		}

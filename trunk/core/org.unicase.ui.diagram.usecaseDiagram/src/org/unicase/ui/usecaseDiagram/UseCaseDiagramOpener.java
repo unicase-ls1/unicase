@@ -5,8 +5,7 @@
  */
 package org.unicase.ui.usecaseDiagram;
 
-import org.unicase.metamodel.ModelElement;
-import org.unicase.model.diagram.DiagramType;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.ui.common.ModelElementOpener;
@@ -23,7 +22,7 @@ public class UseCaseDiagramOpener extends DiagramOpener  implements ModelElement
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
-	public int canOpen(ModelElement me) {
+	public int canOpen(EObject me) {
 		if (me instanceof UseCaseDiagram){
 //			MEDiagram diagram = (MEDiagram) me;
 //			if (diagram.getGmfdiagram().equals(DiagramType.USECASE_DIAGRAM)){
@@ -37,7 +36,7 @@ public class UseCaseDiagramOpener extends DiagramOpener  implements ModelElement
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
-	public void openModelElement(ModelElement modelElement) {
+	public void openModelElement(EObject modelElement) {
 		if(modelElement instanceof MEDiagram){
 			MEDiagram diagram = (MEDiagram) modelElement;
 		super.openDiagram(diagram, "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID");

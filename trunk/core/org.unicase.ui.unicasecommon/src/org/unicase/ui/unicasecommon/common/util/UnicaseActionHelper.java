@@ -20,7 +20,6 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
@@ -84,11 +83,14 @@ public final class UnicaseActionHelper {
 	}
 
 	/**
-	 * This extracts active model element. From MEEditor or from any view which is a selection provider.
+	 * This extracts active model element. From MEEditor or from any view which is a selection provider. Deprecated use
+	 * {@see UnicasActionHelper} in unicasecommon
 	 * 
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
+	 * @deprecated
 	 */
+	@Deprecated
 	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
 
 		// TODO: redundant, see ActionHelper
@@ -104,7 +106,7 @@ public final class UnicaseActionHelper {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
-			Object obj = editorInput.getAdapter(ModelElement.class);
+			Object obj = editorInput.getAdapter(EObject.class);
 
 			if (obj instanceof UnicaseModelElement) {
 				me = (UnicaseModelElement) obj;
@@ -122,19 +124,6 @@ public final class UnicaseActionHelper {
 		}
 
 		return me;
-	}
-
-	/**
-	 * This opens the model element.
-	 * 
-	 * @param me ModelElement to open
-	 * @param sourceView the view that requested the open model element
-	 * @deprecated
-	 */
-	@Deprecated
-	public static void openModelElement(final ModelElement me, final String sourceView) {
-		ActionHelper.openModelElement(me, sourceView);
-
 	}
 
 	/**

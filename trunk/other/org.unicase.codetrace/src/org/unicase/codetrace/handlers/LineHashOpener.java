@@ -6,7 +6,7 @@
 package org.unicase.codetrace.handlers;
  
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.trace.LineHash;
 import org.unicase.ui.common.ModelElementOpener;
 
@@ -20,7 +20,7 @@ public class LineHashOpener implements ModelElementOpener  {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int canOpen(ModelElement me) {
+	public int canOpen(EObject me) {
 		if (me instanceof LineHash){
 				return 1;
 			}
@@ -32,7 +32,7 @@ public class LineHashOpener implements ModelElementOpener  {
 	 * Opens a certain model element.
 	 * @param modelElement the model element who will be opened
 	 */
-	public void openModelElement(ModelElement modelElement) {
+	public void openModelElement(EObject modelElement) {
 		if(!(modelElement instanceof LineHash)){
 			
 			throw new IllegalArgumentException("Opener not available");

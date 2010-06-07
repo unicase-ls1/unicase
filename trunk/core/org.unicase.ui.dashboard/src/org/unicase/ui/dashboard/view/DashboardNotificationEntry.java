@@ -49,16 +49,17 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
-import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
+import org.unicase.workspace.ui.util.URLHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -145,7 +146,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 							modelElementUrlFragment);
 				} catch (MEUrlResolutionException e1) {
 				}
-				ActionHelper.openModelElement(modelElement, DashboardEditor.ID);
+				UnicaseActionHelper.openModelElement(modelElement, DashboardEditor.ID);
 				logEvent(modelElementUrlFragment.getModelElementId(), source);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);

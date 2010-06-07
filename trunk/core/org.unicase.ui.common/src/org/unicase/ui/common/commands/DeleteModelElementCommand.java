@@ -5,12 +5,14 @@
  */
 package org.unicase.ui.common.commands;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -20,15 +22,18 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author shterev
  */
 public final class DeleteModelElementCommand extends UnicaseCommand {
-	private final ModelElement me;
+	private final EObject me;
+	private final ModelElementContext context;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param me the {@link ModelElement} to be deleted.
+	 * @param opposite the model element to be deleted.
+	 * @param context the model element context
 	 */
-	public DeleteModelElementCommand(ModelElement me) {
-		this.me = me;
+	public DeleteModelElementCommand(EObject opposite, ModelElementContext context) {
+		this.me = opposite;
+		this.context = context;
 	}
 
 	/**
@@ -51,7 +56,8 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 				progressDialog.getProgressMonitor().worked(20);
 
 				try {
-					me.delete();
+					DeleteCommand.create(context.getEditingDomain(), me).execute();
+					
 				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();

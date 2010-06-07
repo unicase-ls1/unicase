@@ -48,8 +48,8 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -170,7 +170,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		createActions();
 
-		ActionHelper.createKeyHookDCAction(viewer, TreeView.class.getName());
+		new AltKeyDoubleClickAction(viewer, TreeView.class.getName());
 
 		addDragNDropSupport();
 		addSelectionListener();

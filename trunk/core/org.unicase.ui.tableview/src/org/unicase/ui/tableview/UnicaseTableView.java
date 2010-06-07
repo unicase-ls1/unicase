@@ -36,6 +36,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.TaskView;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -181,7 +182,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);

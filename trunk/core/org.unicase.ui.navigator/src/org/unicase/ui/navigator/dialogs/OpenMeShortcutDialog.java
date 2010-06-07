@@ -3,12 +3,14 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.dialogs;
+package org.unicase.ui.navigator.dialogs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
+import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 
 /**
  * Dialog to select model elements.
@@ -16,14 +18,14 @@ import org.unicase.metamodel.Project;
  * @author mkagel
  */
 public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
-		
+
 	/**
 	 * The constructor.
 	 * 
 	 * @param project The project, which contains the model elements for listing
 	 */
 	public OpenMeShortcutDialog(Project project) {
-		super(project);
+		super(new EMFStoreModelelementContext(project));
 	}
 
 	/**
@@ -38,7 +40,7 @@ public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
 		IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", getModelElements().size());
-		for (ModelElement modelElement : getModelElements()) {
+		for (EObject modelElement : getModelElements()) {
 			if (!(modelElement instanceof NonDomainElement)) {
 				contentProvider.add(modelElement, itemsFilter);
 				progressMonitor.worked(1);

@@ -23,7 +23,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;
 
 /**
@@ -41,7 +41,7 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
-		ActionHelper.openModelElement(target, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(target, this.getClass().getName());
 		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {

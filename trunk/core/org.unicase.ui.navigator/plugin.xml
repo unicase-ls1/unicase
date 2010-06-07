@@ -88,6 +88,18 @@
    </extension>
    <extension
          point="org.eclipse.ui.commands">
+              <command
+            categoryId="org.unicase.ui.navigator"
+            defaultHandler="org.unicase.ui.navigator.handler.OpenMEShortcutHandler"
+            id="org.unicase.ui.common.handlers.open_me_ID"
+            name="Search for Modelelement">
+      </command>
+           <command
+            categoryId="org.unicase.ui.navigator"
+            defaultHandler="org.unicase.ui.navigator.handler.DeleteModelelementHandler"
+            id="org.unicase.ui.common.deleteModelelement"
+            name="Delete Modelelement">
+      </command>
       <command
             categoryId="org.unicase.ui.navigator"
             defaultHandler="org.unicase.ui.navigator.handler.NewModelElementWizardHandler"

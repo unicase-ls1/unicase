@@ -5,15 +5,13 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.NotificationManager;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A {@link HyperlinkAdapter} to the model elements.
@@ -22,9 +20,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkListener {
 
-	private ModelElement target;
-	private final ModelElement source;
+	private EObject target;
+	private final EObject source;
 	private final String featureName;
+	private final ModelElementContext context;
 
 	/**
 	 * Default constructor.
@@ -32,12 +31,14 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 * @param source the source of the model link
 	 * @param target the target of the model link
 	 * @param featureName the feature of the model link
+	 * @param context the {@link ModelElementContext}
 	 */
-	public MEHyperLinkAdapter(ModelElement target, ModelElement source, String featureName) {
+	public MEHyperLinkAdapter(EObject target, EObject source, String featureName, ModelElementContext context) {
 		super();
 		this.target = target;
 		this.source = source;
 		this.featureName = featureName;
+		this.context = context;
 	}
 
 	/**
@@ -45,16 +46,9 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
-		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor");
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace();
-				WorkspaceUtil.logTraceEvent(activeProjectSpace, source.getModelElementId(), target.getModelElementId(),
-					featureName);
-			}
-		}.run();
+		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor", context);
+		NotificationManager.getInstance().onTrace(source, target, featureName, "org.unicase.ui.meeditor");
+
 		super.linkActivated(event);
 	}
 }

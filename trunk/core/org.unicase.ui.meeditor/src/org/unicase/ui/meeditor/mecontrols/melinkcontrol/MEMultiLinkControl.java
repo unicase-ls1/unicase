@@ -33,8 +33,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -88,15 +86,14 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				}
 
 				for (EObject object : eList) {
-					if (object instanceof ModelElement) {
-						ModelElement me = (ModelElement) object;
-						MELinkControlFactory controlFactory = new MELinkControlFactory();
-						MELinkControl meControl = controlFactory.createMELinkControl(getItemPropertyDescriptor(), me,
-							getModelElement());
-						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
-							getItemPropertyDescriptor(), me, (ModelElement) getModelElement(), getToolkit());
-						linkControls.add(meControl);
-					}
+
+					MELinkControlFactory controlFactory = new MELinkControlFactory();
+					MELinkControl meControl = controlFactory.createMELinkControl(getItemPropertyDescriptor(), object,
+						getModelElement());
+					meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style,
+						getItemPropertyDescriptor(), object, getModelElement(), getToolkit(), getContext());
+					linkControls.add(meControl);
+
 				}
 				if (scrollPane != null && !scrollPane.isDisposed()) {
 					scrollPane.setMinSize(scrollClient.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -135,9 +132,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	private static final int PRIORITY = 1;
 
-	private ModelElementChangeListener modelElementChangeListener;
-
 	private Object feature;
+
+	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
 
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
@@ -153,10 +150,10 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction((ModelElement) getModelElement(), eReference,
-			getItemPropertyDescriptor()));
-		toolBarManager.add(new NewReferenceAction((ModelElement) getModelElement(), eReference,
-			getItemPropertyDescriptor()));
+		toolBarManager.add(new AddReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor(),
+			getContext()));
+		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor(),
+			getContext()));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
@@ -169,13 +166,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		linkControls = new ArrayList<MELinkControl>();
 		feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.eReference = (EReference) feature;
-		modelElementChangeListener = new ModelElementChangeListener() {
+		modelElementChangeListener = new org.unicase.ui.meeditor.ModelElementChangeListener(getModelElement()) {
 
-			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
-
-			}
-
+			@Override
 			public void onChange(Notification notification) {
 				if ((notification.getEventType() != Notification.RESOLVE)
 					&& (notification.getFeature().equals(feature))) {
@@ -183,8 +176,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				}
 
 			}
+
 		};
-		((ModelElement) getModelElement()).addModelElementChangeListener(modelElementChangeListener);
 
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
@@ -206,7 +199,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 		sectionDropTarget.setTransfer(transfers);
 		sectionDropTarget.addDropListener(new MEMultiLinkControlDropAdapter(getEditingDomain(), getModelElement(),
-			eReference));
+			eReference, getContext()));
 
 	}
 
@@ -236,7 +229,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		((ModelElement) getModelElement()).removeModelElementChangeListener(modelElementChangeListener);
+		modelElementChangeListener.remove();
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
@@ -249,7 +242,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference
-			&& ModelElement.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())
+			&& EObject.class.isAssignableFrom(((EReference) feature).getEType().getInstanceClass())
 			&& ((EReference) feature).isMany()) {
 
 			return PRIORITY;

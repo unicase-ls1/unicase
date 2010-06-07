@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor;
 
 import java.util.LinkedHashMap;
@@ -8,6 +13,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
+/**
+ * Represents a page candidate to be showsn in meeditor.
+ * 
+ * @author helming
+ */
 public class PageCandidate {
 
 	// By which pages this page is about to be replaced
@@ -20,7 +30,7 @@ public class PageCandidate {
 	private IConfigurationElement page;
 
 	// If this page is already in the resulting list
-	private boolean enqueued = false;
+	private boolean enqueued;
 
 	// The mapping from name to page candidate to store all candidates
 	private static Map<String, PageCandidate> candidates = new LinkedHashMap<String, PageCandidate>();

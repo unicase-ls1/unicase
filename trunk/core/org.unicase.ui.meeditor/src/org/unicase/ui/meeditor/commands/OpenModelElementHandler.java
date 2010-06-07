@@ -8,11 +8,12 @@ package org.unicase.ui.meeditor.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
@@ -23,13 +24,12 @@ public class OpenModelElementHandler extends AbstractHandler {
 
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
+	private static final String MECONTEXT_EVALUATIONCONTEXT_VARIABLE = "meContext";
 
 	/**
 	 * . ({@inheritDoc}) We added this package and command to meeditor plug-in, we needed to open a model element from
 	 * model.edit plug-in and to avoid circular references we had to execute this command indirectly using
 	 * IHandlerServise.excuteCommand
-	 * 
-	 * @see //org.unicase.model.edit.commands.AnnotateActionItemHandler# openActionItem()
 	 */
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -39,7 +39,11 @@ public class OpenModelElementHandler extends AbstractHandler {
 		// This variable is already set, in the method which calls to execute
 		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
-		ModelElement me = (ModelElement) o;
+
+		EObject me = (EObject) o;
+
+		ModelElementContext context = (ModelElementContext) HandlerUtil.getVariableChecked(event,
+			MECONTEXT_EVALUATIONCONTEXT_VARIABLE);
 
 		EStructuralFeature problemFeature;
 
@@ -53,9 +57,9 @@ public class OpenModelElementHandler extends AbstractHandler {
 		if (o != null) {
 			MEEditorInput input;
 			if (problemFeature == null) {
-				input = new MEEditorInput(me);
+				input = new MEEditorInput(me, context);
 			} else {
-				input = new MEEditorInput(me, problemFeature);
+				input = new MEEditorInput(me, context, problemFeature);
 			}
 			try {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,

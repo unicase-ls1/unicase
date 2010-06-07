@@ -17,10 +17,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.util.URLHelper;
-import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.util.URLHelper;
+import org.unicase.workspace.ui.util.URLSelectionListener;
 
 /**
  * @author Shterev

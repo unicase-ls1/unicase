@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
@@ -65,7 +66,8 @@ public class CreateContainmentHandler extends AbstractHandler {
 						} else {
 							selectedME.eSet(eReference, newMEInstance);
 						}
-						ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+						ActionHelper.openModelElement(newMEInstance, this.getClass().getName(),
+							new EMFStoreModelelementContext(newMEInstance));
 					}
 				});
 			}

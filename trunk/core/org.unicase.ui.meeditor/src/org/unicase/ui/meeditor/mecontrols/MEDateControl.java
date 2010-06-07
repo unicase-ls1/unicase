@@ -167,6 +167,12 @@ public class MEDateControl extends AbstractMEControl {
 		}.run();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
+	 *      org.eclipse.emf.ecore.EObject)
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		return PRIORITY;
