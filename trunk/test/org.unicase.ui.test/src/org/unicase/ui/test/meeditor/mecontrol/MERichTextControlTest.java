@@ -104,6 +104,13 @@ public class MERichTextControlTest extends MEEditorTest {
 	
 	@Test
 	public void testDescriptionWithLineBreakOnly(){
+		/*
+		 * On windows system this test-case may behave differently and result in failure as 
+		 * the typed input is parsed as "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n" and not "\n\n\n\n\n\n\n\n".
+		 *It can be made to work properly just by substituting the expected value in the assert statement to 
+		 *-> "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+		 */
+		
 		openModelElement(actionItem);
 		SWTBotStyledText styledText = getBot().activeEditor().bot().styledTextWithLabel("Description");
 		final String newDescription = "\n\n\n\n\n\n\n\n";
@@ -113,7 +120,7 @@ public class MERichTextControlTest extends MEEditorTest {
 			
 			@Override
 			protected void doRun() {
-				assertEquals("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n", actionItem.getDescription());
+				assertEquals(newDescription, actionItem.getDescription());
 			}
 		}.run();
 	
