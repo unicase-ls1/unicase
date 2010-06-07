@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -44,6 +45,8 @@ public class ImportProjectHistoryAction extends Action {
 	 * These filter extensions are used to filter which files are displayed.
 	 */
 	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
+
+	private static final String IMPORT_PROJECT_HISTORY_PATH = "org.unicase.workspace.ui.importProjectHistoryPath";
 
 	private Usersession usersession;
 
@@ -116,11 +119,15 @@ public class ImportProjectHistoryAction extends Action {
 				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
+		String initialPath = PreferenceHelper.getPreference(
+				IMPORT_PROJECT_HISTORY_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
 		}
-
+		PreferenceHelper.setPreference(IMPORT_PROJECT_HISTORY_PATH, dialog
+				.getFilterPath());
 		String fileName = dialog.getFileName();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(dialog.getFilterPath());

@@ -73,7 +73,7 @@
          <command
                commandId="org.unicase.ui.navigator.exportModel"
                icon="icons/export.gif"
-               label="Export Model"
+               label="Export Model Element"
                style="push">
             <visibleWhen
                   checkEnabled="false">

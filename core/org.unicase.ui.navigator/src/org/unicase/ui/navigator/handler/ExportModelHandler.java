@@ -25,6 +25,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -43,6 +44,8 @@ public class ExportModelHandler extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
 
+	private static final String EXPORT_MODEL_PATH = "org.unicase.workspace.ui.exportModelPath";
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -59,6 +62,8 @@ public class ExportModelHandler extends AbstractHandler {
 			if (filePath == null) {
 				return null;
 			}
+
+			PreferenceHelper.setPreference(EXPORT_MODEL_PATH, new File(filePath).getParent());
 
 			runCommand(exportModelElements, filePath);
 
@@ -125,6 +130,8 @@ public class ExportModelHandler extends AbstractHandler {
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
+		String initialPath = PreferenceHelper.getPreference(EXPORT_MODEL_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 		dialog.setOverwrite(true);
 
 		try {

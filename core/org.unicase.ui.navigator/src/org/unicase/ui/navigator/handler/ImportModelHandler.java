@@ -27,6 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.ModelElementWrapperDescriptor;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -45,6 +46,8 @@ public class ImportModelHandler extends AbstractHandler {
 	 * These filter extensions are used to filter which files are displayed.
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
+
+	private static final String IMPORT_MODEL_PATH = "org.unicase.workspace.ui.importModelPath";
 
 	/**
 	 * {@inheritDoc}
@@ -152,6 +155,8 @@ public class ImportModelHandler extends AbstractHandler {
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
+		String initialPath = PreferenceHelper.getPreference(IMPORT_MODEL_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 
 		String fileName = dialog.open();
 
@@ -160,6 +165,8 @@ public class ImportModelHandler extends AbstractHandler {
 		}
 
 		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
+
+		PreferenceHelper.setPreference(IMPORT_MODEL_PATH, file.getParent());
 
 		return file.getAbsolutePath();
 	}

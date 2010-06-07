@@ -3,6 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.docExport.commands;
 
 import java.io.File;
@@ -44,6 +45,7 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -68,6 +70,9 @@ public class ExportDialog extends TitleAreaDialog {
 	private Combo recursionDepth;
 
 	private static Shell platformShell;
+
+	private static final String EXPORT_PATH_QUALIFIER = "org.unicase.docExport.exportPath";
+	private static final String DEFAULT_EXPORT_PATH = System.getProperty("user.home");
 
 	/**
 	 * the constructor.
@@ -131,7 +136,8 @@ public class ExportDialog extends TitleAreaDialog {
 		fileChooser.setLayout(gLayout);
 		fileChooser.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		fileLocation = new Text(fileChooser, SWT.BORDER);
-		fileLocation.setText(System.getProperty("user.home"));
+
+		fileLocation.setText(PreferenceHelper.getPreference(EXPORT_PATH_QUALIFIER, DEFAULT_EXPORT_PATH));
 		fileLocation.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		Button selectFileLocation = new Button(fileChooser, SWT.PUSH);
 		selectFileLocation.setText("choose...");
@@ -329,6 +335,7 @@ public class ExportDialog extends TitleAreaDialog {
 				DocumentExport docExport = createDocumentExport();
 				String fileUrl = getFileUrl();
 				if (checkFileName(fileUrl)) {
+					PreferenceHelper.setPreference(EXPORT_PATH_QUALIFIER, fileLocation.getText());
 					exportDocument(docExport, fileUrl);
 					close();
 				}
@@ -351,6 +358,7 @@ public class ExportDialog extends TitleAreaDialog {
 				DocumentExport docExport = createDocumentExport();
 				String fileUrl = getFileUrl();
 				if (checkFileName(fileUrl)) {
+					PreferenceHelper.setPreference(EXPORT_PATH_QUALIFIER, fileLocation.getText());
 					exportDocument(docExport, fileUrl);
 					WorkspaceUtil.openFile(fileUrl);
 					close();

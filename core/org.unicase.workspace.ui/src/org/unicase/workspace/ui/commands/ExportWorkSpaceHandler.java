@@ -17,6 +17,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -26,6 +27,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author helming
  */
 public class ExportWorkSpaceHandler extends AbstractHandler {
+
+	private static final String EXPORT_WORKSPACE_PATH = "org.unicase.workspace.ui.exportWorkSpacePath";
 
 	/**
 	 * {@inheritDoc}
@@ -37,6 +40,9 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
+		String initialPath = PreferenceHelper.getPreference(
+				EXPORT_WORKSPACE_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 		dialog.setOverwrite(true);
 		String fn = dialog.open();
 		if (fn == null) {
@@ -44,6 +50,7 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 		}
 
 		final File file = new File(fn);
+		PreferenceHelper.setPreference(EXPORT_WORKSPACE_PATH, file.getParent());
 
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
