@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.Configuration;
@@ -70,7 +71,7 @@ public class NavigatorControlTest {
 			Display.getDefault().asyncExec(new Runnable() {
 				
 				public void run() {
-					ActionHelper.openModelElement(element, "test");
+					ActionHelper.openModelElement(element, "test", new EMFStoreModelelementContext(element));
 				}
 			});
 			bot.sleep(4000);

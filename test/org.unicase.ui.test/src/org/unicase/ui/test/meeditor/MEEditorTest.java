@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.CompositeSection;
@@ -132,7 +133,7 @@ public class MEEditorTest {
 		Display.getDefault().asyncExec(new Runnable() {
 			
 			public void run() {
-				ActionHelper.openModelElement(element, "test");
+				ActionHelper.openModelElement(element, "test", new EMFStoreModelelementContext(element));
 			}
 		});
 		bot.sleep(4000);
