@@ -874,6 +874,9 @@
     <MEDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.MilestoneDropAdapter">
     </MEDropAdapter>
+    <MEDropAdapter
+          class="org.unicase.ui.unicasecommon.dnd.dropadapters.IssueMeetingDiscussionSectionDropAdapter">
+    </MEDropAdapter>
  </extension>
  <extension
        point="org.unicase.workspace.ui.merge.customoption">
