@@ -26,7 +26,8 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getSelectedModelElement();
 		if (me instanceof MEDiagram) {
-			UnicaseActionHelper.openModelElement(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor");
+			ActionHelper.openMEwithMEEditor(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
+				UnicaseActionHelper.getContext(me));
 		}
 
 		return null;
