@@ -34,6 +34,7 @@ import org.unicase.docExport.exceptions.TemplateImportException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -43,16 +44,21 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ImportTemplate extends AbstractHandler {
 
+	private static final String IMPORT_TEMPLATE_PATH = "org.unicase.docExport.importTemplatePath";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		FileDialog fd = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OPEN);
+		String initialPath = PreferenceHelper.getPreference(IMPORT_TEMPLATE_PATH, System.getProperty("user.home"));
+		fd.setFilterPath(initialPath);
 		fd.setText("Enter the filename, where you want to save the template");
 		String filePath = fd.open();
 
 		if (filePath != null) {
+			PreferenceHelper.setPreference(IMPORT_TEMPLATE_PATH, new File(filePath).getParent());
 			try {
 				importTemplate(filePath, false);
 			} catch (InvalidTemplateArchiveException e) {

@@ -42,6 +42,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
@@ -245,6 +246,9 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 * @author pfeifferc
 	 */
 	private final class SaveAsSelectionListener implements SelectionListener {
+
+		private static final String FILE_CHOOSER_PATH = "org.unicase.ui.unicasecommon.fileChooserPath";
+
 		public void widgetSelected(SelectionEvent e) {
 			try {
 				findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
@@ -259,12 +263,13 @@ public class MEFileChooserControl extends AbstractMEControl {
 				return;
 			}
 			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
+			String initialPath = PreferenceHelper.getPreference(FILE_CHOOSER_PATH, System.getProperty("user.home"));
+			fileDialog.setFilterPath(initialPath);
 			fileDialog.setOverwrite(true);
 			String fileDestinationPath = fileDialog.open();
 			fileDialog.setText("Save as...");
-			if (fileDestinationPath == null) {
-				return;
-			} else if (!fileDestinationPath.equals("")) {
+			if (fileDestinationPath != null && !fileDestinationPath.equals("")) {
+				PreferenceHelper.setPreference(FILE_CHOOSER_PATH, fileDialog.getFilterPath());
 				copyFile(fileDestinationPath);
 			}
 		}

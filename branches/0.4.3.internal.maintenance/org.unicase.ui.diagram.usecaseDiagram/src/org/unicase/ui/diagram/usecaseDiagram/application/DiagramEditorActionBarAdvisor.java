@@ -38,6 +38,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
+import org.unicase.ui.common.util.PreferenceHelper;
 
 /**
  * @generated
@@ -350,15 +351,20 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	 */
 	public static class OpenAction extends WorkbenchWindowActionDelegate {
 
+		private static final String DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH = "org.unicase.ui.diagram.usecasediagram.diagramEditorActionBarAdvisorPath";
+
 		/**
 		 * @generated
 		 */
 		public void run(IAction action) {
 			FileDialog fileDialog = new FileDialog(getWindow().getShell(),
 					SWT.OPEN);
+			String initialPath = PreferenceHelper.getPreference(DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH, System.getProperty("user.home"));
+			fileDialog.setFilterPath(initialPath);
 			fileDialog.open();
 			if (fileDialog.getFileName() != null
 					&& fileDialog.getFileName().length() > 0) {
+				PreferenceHelper.setPreference(DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH, new File(fileDialog.getFileName()).getParent());
 				openEditor(getWindow().getWorkbench(), URI
 						.createFileURI(fileDialog.getFilterPath()
 								+ File.separator + fileDialog.getFileName()));
