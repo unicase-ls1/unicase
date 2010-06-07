@@ -20,7 +20,6 @@ import org.eclipse.swt.graphics.Resource;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
@@ -156,12 +155,11 @@ public class MECommentWidget extends Composite {
 		userAvatar.setImage(getImage());
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
 
-		Text userComment = new Text(commentEntry, SWT.WRAP);
+		Label userComment = new Label(commentEntry, SWT.WRAP);
 		if (comment.getDescription() != null) {
 			userComment.setText(comment.getDescription());
 		}
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, false).applyTo(userComment);
-		userComment.setBackground(new Color(getDisplay(), 255, 245, 209));
 
 		if (comment.eContainer() != null && currentUser != null) {
 			// only if contained in a project - i.e. not for pushed comments
