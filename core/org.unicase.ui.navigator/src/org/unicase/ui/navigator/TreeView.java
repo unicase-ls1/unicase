@@ -235,8 +235,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		}
 
 		MEEditor meEditor = (MEEditor) editor;
-		ModelElement me = (ModelElement) meEditor.getEditorInput().getAdapter(ModelElement.class);
-		if (me != null) {
+		Object adapter = meEditor.getEditorInput().getAdapter(EObject.class);
+		if (adapter != null && adapter instanceof ModelElement) {
+			ModelElement me = (ModelElement) adapter;
 			revealME(me);
 		}
 
@@ -330,7 +331,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(EObject.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -352,7 +353,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(EObject.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
