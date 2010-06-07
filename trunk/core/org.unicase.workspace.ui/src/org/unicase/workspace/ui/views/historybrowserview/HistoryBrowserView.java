@@ -246,7 +246,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
 						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID,
-							new EMFStoreModelelementContext((ModelElement) node));
+							new EMFStoreModelelementContext((ModelElement) node.getValue()));
 					}
 				}
 
