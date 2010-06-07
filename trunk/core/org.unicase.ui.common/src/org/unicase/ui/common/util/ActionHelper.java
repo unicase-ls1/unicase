@@ -227,10 +227,10 @@ public final class ActionHelper {
 		}
 
 		NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
-		openAndMarkMEWithMEEditor(me, problemFeature);
+		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
-	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature) {
+	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature, ModelElementContext context2) {
 		// this method works as the one above but in addition marks a feature as having a problem
 
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
@@ -238,6 +238,7 @@ public final class ActionHelper {
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
 		context.addVariable(FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE, problemFeature);
+		context.addVariable(MECONTEXT_EVALUATIONCONTEXT_VARIABLE, context2);
 
 		try {
 			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
