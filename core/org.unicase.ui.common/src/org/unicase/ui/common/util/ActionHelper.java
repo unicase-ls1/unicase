@@ -49,7 +49,6 @@ public final class ActionHelper {
 	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
 	private static final String MECONTEXT_EVALUATIONCONTEXT_VARIABLE = "meContext";
 
-
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
 	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
 
@@ -75,8 +74,8 @@ public final class ActionHelper {
 		if (partId != null && partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-			.getActiveEditor().getEditorInput();
-			Object obj = editorInput.getAdapter(ModelElement.class);
+				.getActiveEditor().getEditorInput();
+			Object obj = editorInput.getAdapter(EObject.class);
 
 			if (obj instanceof ModelElement) {
 				me = (ModelElement) obj;
@@ -96,8 +95,6 @@ public final class ActionHelper {
 		return me;
 	}
 
-
-
 	/**
 	 * This opens the model element.
 	 * 
@@ -108,38 +105,37 @@ public final class ActionHelper {
 	public static void openModelElement(final EObject me, final String sourceView, ModelElementContext context) {
 		if (me == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
-			"The model element you are trying to open was deleted!");
+				"The model element you are trying to open was deleted!");
 			return;
 		}
 		IConfigurationElement[] modelelementopener = Platform.getExtensionRegistry().getConfigurationElementsFor(
-		"org.unicase.ui.common.modelelementopener");
-		ModelElementOpener bestCandidate=null;
-		int bestValue=0;
+			"org.unicase.ui.common.modelelementopener");
+		ModelElementOpener bestCandidate = null;
+		int bestValue = 0;
 		String name = "";
-		for(IConfigurationElement element:modelelementopener ){
+		for (IConfigurationElement element : modelelementopener) {
 			try {
 				ModelElementOpener modelelementOpener = (ModelElementOpener) element.createExecutableExtension("class");
-				int value=modelelementOpener.canOpen(me);
-				if(value>bestValue){
-					bestCandidate=modelelementOpener;
-					bestValue=value;
-					name=element.getAttribute("name");
+				int value = modelelementOpener.canOpen(me);
+				if (value > bestValue) {
+					bestCandidate = modelelementOpener;
+					bestValue = value;
+					name = element.getAttribute("name");
 				}
 			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);	
+				WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}
-		if(bestCandidate==null){
+		if (bestCandidate == null) {
 			NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
 			openMEwithMEEditor(me, context);
 			return;
 		}
 		NotificationManager.getInstance().onOpen(me, sourceView, name);
 		bestCandidate.openModelElement(me);
-		
+
 	}
 
-	
 	/**
 	 * Opens the dashboard for the currently selected projectspace.
 	 */
@@ -165,7 +161,7 @@ public final class ActionHelper {
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotDefinedException e) {
-			//DialogHandler.showExceptionDialog(e);
+			// DialogHandler.showExceptionDialog(e);
 		} catch (NotEnabledException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
@@ -230,7 +226,8 @@ public final class ActionHelper {
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
-	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature, ModelElementContext context2) {
+	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature,
+		ModelElementContext context2) {
 		// this method works as the one above but in addition marks a feature as having a problem
 
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
@@ -343,8 +340,6 @@ public final class ActionHelper {
 		}
 	}
 
-
-
 	/**
 	 * Get the project space from the event.
 	 * 
@@ -412,9 +407,7 @@ public final class ActionHelper {
 	public static void openMEwithMEEditor(ModelElement me, String sourceView, ModelElementContext context) {
 		NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
 		openMEwithMEEditor(me, context);
-		
-	}
 
-	
+	}
 
 }
