@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -199,10 +200,10 @@ public class ValidationView extends ViewPart {
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
 						ActionHelper.openModelElement((ModelElement) me,
-								errorLocation, viewId);
+								errorLocation, viewId, new EMFStoreModelelementContext((ModelElement)me));
 					} else {
 						ActionHelper
-						.openModelElement((ModelElement) me, viewId);
+						.openModelElement((ModelElement) me, viewId,new EMFStoreModelelementContext((ModelElement)me));
 					}
 				}
 			}
