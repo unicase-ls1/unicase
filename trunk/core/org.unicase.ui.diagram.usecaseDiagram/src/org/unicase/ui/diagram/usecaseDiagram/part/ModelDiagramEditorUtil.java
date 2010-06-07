@@ -55,11 +55,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.UseCaseDiagram;
+import org.unicase.ui.common.util.PreferenceHelper;
 
 /**
  * @generated
  */
 public class ModelDiagramEditorUtil {
+
+	private static final String OPEN_MODEL_PATH = "org.unicase.ui.diagram.usecasediagram.openModelPath";
 
 	/**
 	 * @generated
@@ -122,6 +125,8 @@ public class ModelDiagramEditorUtil {
 	public static Resource openModel(Shell shell, String description,
 			TransactionalEditingDomain editingDomain) {
 		FileDialog fileDialog = new FileDialog(shell, SWT.OPEN);
+		String initialPath = PreferenceHelper.getPreference(OPEN_MODEL_PATH, System.getProperty("user.home"));
+		fileDialog.setFilterPath(initialPath);
 		if (description != null) {
 			fileDialog.setText(description);
 		}
@@ -132,6 +137,7 @@ public class ModelDiagramEditorUtil {
 		}
 		if (fileDialog.getFilterPath() != null) {
 			fileName = fileDialog.getFilterPath() + File.separator + fileName;
+			PreferenceHelper.setPreference(OPEN_MODEL_PATH, fileDialog.getFilterPath());
 		}
 		URI uri = URI.createFileURI(fileName);
 		Resource resource = null;

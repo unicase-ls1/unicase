@@ -21,11 +21,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.ui.common.util.PreferenceHelper;
 
 /**
  * @generated
  */
 public class WizardNewFileCreationPage extends WizardPage {
+
+	protected static final String NEW_FILE_PATH = "org.unicase.ui.diagram.usecaseDiagram..newFilePath";
 
 	/**
 	 * @generated
@@ -191,8 +194,12 @@ public class WizardNewFileCreationPage extends WizardPage {
 				dialog
 						.setText(org.unicase.ui.diagram.usecaseDiagram.part.Messages.WizardNewFileCreationPage_SelectNewFileDialog);
 				dialog.setFileName(getFileName());
+				String initialPath = PreferenceHelper
+				.getPreference(NEW_FILE_PATH, System.getProperty("user.home"));
+			dialog.setFilterPath(initialPath);
 				String fileName = dialog.open();
 				if (fileName != null) {
+					PreferenceHelper.setPreference(NEW_FILE_PATH, dialog.getFilterPath());
 					fileNameEditor.setText(fileName);
 					setPageComplete(validatePage());
 				}

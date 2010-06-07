@@ -32,6 +32,7 @@ import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorTabItem;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -106,6 +107,7 @@ public class LayoutOptionsLogoTabItem extends TemplateEditorTabItem {
 	 */
 	class ImageSelectionListener implements SelectionListener {
 
+		private static final String SELECT_LOGO_IMAGE_PATH = "org.unicase.docExport.selectLogoImagePath";
 		private Template template;
 		private Browser browser;
 
@@ -135,8 +137,12 @@ public class LayoutOptionsLogoTabItem extends TemplateEditorTabItem {
 			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OPEN);
 			dialog.setText("select a logo image");
 			dialog.setFilterExtensions(new String[] { "*.*", "*.jpg", "*.gif", "*.png", "*.svg" });
+			String initialPath = PreferenceHelper
+				.getPreference(SELECT_LOGO_IMAGE_PATH, System.getProperty("user.home"));
+			dialog.setFilterPath(initialPath);
 			String image = dialog.open();
 			if (image != null) {
+				PreferenceHelper.setPreference(SELECT_LOGO_IMAGE_PATH, dialog.getFilterPath());
 				Path imagePath = new Path(image);
 				File imageFile = new File(image);
 				File targetFile = new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER + template.getName() + "."
