@@ -408,7 +408,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			text = "";
 		}
 		entryMessage.setText(text);
-		GridDataFactory.fillDefaults().hint(400, SWT.DEFAULT).grab(true, false)
+		int height = Activator.getDefault().fixHeightForCocoa(entryMessage.computeSize(400, SWT.DEFAULT).y);
+		GridDataFactory.fillDefaults().hint(400, height).grab(true, false)
 				.applyTo(entryMessage);
 		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
 
