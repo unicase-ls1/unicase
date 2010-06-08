@@ -13,7 +13,7 @@ public static String replaceModelwithClassID(String layoutString) {
 
 	 try{
 		println layoutString;
-		layoutString.replaceAll("type=&quot;Model&quot;" , "type=&quot;Class&quot;");
+		return layoutString.replaceAll("type=&quot;Model&quot;" , "type=&quot;Class&quot;");
 						
 		} catch (RuntimeException e) {
 			e.printStackTrace();
