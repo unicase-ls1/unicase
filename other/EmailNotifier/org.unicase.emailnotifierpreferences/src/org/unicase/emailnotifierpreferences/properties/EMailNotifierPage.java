@@ -7,20 +7,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.EMFObservables;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -53,6 +54,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.eclipse.ui.internal.RadioMenu;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.Project;
 import org.unicase.model.emailbundle.Bundle;
@@ -80,24 +82,27 @@ public class EMailNotifierPage extends PropertyPage {
 	private Button btnAdd;
 	private Button btnRemove;
 	private Button btnEdit;
+	
+	private Composite compositeBundletwo;
 
-	private Composite secondGrid;
+	private Composite secondColumn;
 	private Label selectNotifier;
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
 
-	private Composite thirdgrid;
+	private Composite thirdColumn;
 	private Label configLabel;
 	private Combo sendOption;
 	private Composite aggregated;
 	private Combo aggregatedOption;
+	private Composite weekdayOptionComp;
 	private Combo weekdayOption;
+	private Composite daysSpinnerComp;
 	private Spinner daysSpinner;
 
 	private Button notificationServiceCheck;
 
 	private Control createMainTab(TabFolder folder) {
-
 		final Composite root = new Composite(folder, SWT.NONE);
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 		GridLayout thisLayout = new GridLayout();
@@ -111,8 +116,8 @@ public class EMailNotifierPage extends PropertyPage {
 
 		// Composite TOP
 		{
-			Composite compositeTop = new Composite(root, SWT.NONE);
-			GridLayout topgrid = new GridLayout(3, false);
+			final Composite compositeTop = new Composite(root, SWT.NONE);
+			GridLayout topgrid = new GridLayout(2, false);
 			compositeTop.setLayout(topgrid);
 			compositeTop.setLayoutData(layoutBeginning);
 
@@ -133,18 +138,14 @@ public class EMailNotifierPage extends PropertyPage {
 						List<Bundle> l = (List<Bundle>) inputElement;
 						return l.toArray();
 					}
-
 					public void dispose() {
 					}
-
 					public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 						System.out.println("Input changed: old=" + oldInput + ", new=" + newInput);
 						bundleList.refresh();
 					}
 				});
-
 				bundleList.setInput(tempBundles);
-
 				bundleList.setLabelProvider(new LabelProvider() {
 					public Image getImage(Object element) {
 						return null;
@@ -154,175 +155,46 @@ public class EMailNotifierPage extends PropertyPage {
 						return ((Bundle) element).getBundleName();
 					}
 				});
-
 				bundleList.addSelectionChangedListener(new ISelectionChangedListener() {
 					public void selectionChanged(SelectionChangedEvent event) {
 						IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-						refreshProperties();
-						loadProviderProperties(tempBundles, tempBundles.indexOf(selection.getFirstElement()));
-						loadSendProperties(tempBundles, tempBundles.indexOf(selection.getFirstElement()));
 						Bundle bndl = (Bundle) selection.getFirstElement();
 						String bndlname = bndl.getBundleName();
-						selectNotifier.setText("Select notifier for Bundle " + bndlname);
-						configLabel.setText("Select notifier for Bundle " + bndlname);
+						disposeProperties();
+						createSecondColumn(compositeBundletwo, bndlname);
+						createThirdColumn(compositeBundletwo, bndlname);
+						loadProviderProperties(tempBundles, tempBundles.indexOf(selection.getFirstElement()));
+						loadSendProperties(tempBundles, tempBundles.indexOf(selection.getFirstElement()));
+						// bindValues(tempBundles, tempBundles.indexOf(selection.getFirstElement()));
 						// if(!tempBundles.get(tempBundles.indexOf(selection.getFirstElement())).isAggregated()){
 						// aggregated.setVisible(false);
 						// }
+						compositeBundletwo.layout();
 					}
 				});
-
 				bundleList.addFilter(new ViewerFilter() {
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						return true;
 					}
 				});
-
 				bundleList.setSorter(new ViewerSorter() {
-					public int compare(Viewer viewer, Object e1, Object e2) {
-						return ((Bundle) e1).getBundleName().compareTo(((Bundle) e2).getBundleName());
-					}
+					// public int compare(Viewer viewer, Object e1, Object e2) {
+					// return ((Bundle) e1).getBundleName().compareTo(((Bundle) e2).getBundleName());
+					// }
 				});
 			}
 
-			// second grid
-			{
-				secondGrid = new Composite(compositeTop, SWT.NONE);
-				secondGrid.setVisible(false);
-				GridLayout compositeBundleLayout = new GridLayout(1, false);
-				// compositeBundle.setLayoutData(layoutTop);
-				secondGrid.setLayout(compositeBundleLayout);
-
-				selectNotifier = new Label(secondGrid, SWT.PUSH | SWT.TOP);
-				selectNotifier.setText("Select notifier for Bundle ");
-				notifierTypesList = CheckboxTableViewer.newCheckList(secondGrid, SWT.SINGLE | SWT.V_SCROLL
-					| SWT.H_SCROLL | SWT.BORDER);
-				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(notifierTypesList.getControl());
-				notifierTypesList.setContentProvider(new ArrayContentProvider());
-				ArrayList<PropertyKey> providers = new ArrayList<PropertyKey>();
-				providers.addAll(providerHints.keySet());
-				Collections.sort(providers, new Comparator<PropertyKey>() {
-					public int compare(PropertyKey o1, PropertyKey o2) {
-						return o1.toString().compareTo(o2.toString());
-					}
-				});
-				notifierTypesList.setInput(providers);
-
-				final Label hint = new Label(secondGrid, SWT.WRAP);
-				// GridDataFactory.fillDefaults().grab(true, false).applyTo(hint);
-				GridData labelData = new GridData();
-
-				// labelData.horizontalSpan = 2;
-
-				labelData.horizontalAlignment = SWT.FILL;
-
-				Rectangle rect = secondGrid.getMonitor().getClientArea();
-
-				labelData.widthHint = rect.width / 4;
-
-				hint.setLayoutData(labelData);
-
-				hint.setText("Hint: Select an item to view its description");
-
-				notifierTypesList.addSelectionChangedListener(new ISelectionChangedListener() {
-
-					public void selectionChanged(SelectionChangedEvent event) {
-						Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
-						if (object instanceof EMailNotifierKey) {
-							hint.setText(providerHints.get(object)[1] + "");
-							// compositeBundle.getLayout();
-						}
-					}
-				});
-
-				notifierTypesList.setLabelProvider(new ColumnLabelProvider() {
-					@Override
-					public String getText(Object element) {
-						if (element instanceof EMailNotifierKey) {
-							return providerHints.get(element)[0];
-						}
-						return super.getText(element);
-					}
-				});
-
-				notifierTypesList.addCheckStateListener(new ICheckStateListener() {
-					public void checkStateChanged(CheckStateChangedEvent event) {
-						IStructuredSelection selection = (IStructuredSelection) bundleList.getSelection();
-						Bundle bndl = (Bundle) selection.getFirstElement();
-						if (event.getChecked()) {
-							tempBundles.get(tempBundles.indexOf(bndl)).getProviders().add(event.getElement());
-						} else {
-							tempBundles.get(tempBundles.indexOf(bndl)).getProviders().remove(event.getElement());
-						}
-					}
-				});
-			}
+//			 second grid
+			 {
+					compositeBundletwo = new Composite(compositeTop, SWT.NONE);
+					GridLayout compositeBundleLayout = new GridLayout(2, false);
+					compositeBundletwo.setLayout(compositeBundleLayout);
+			 }
 
 			// third grid
-			{
-				thirdgrid = new Composite(compositeTop, SWT.NONE);
-				thirdgrid.setVisible(false);
-				GridLayoutFactory.fillDefaults().numColumns(1).applyTo(thirdgrid);
-				// thirdgrid.setLayoutData(layoutTop);
-				
-				configLabel = new Label(thirdgrid, SWT.PUSH | SWT.TOP);
-				configLabel.setText("Configuration for Bundle");
-				sendOption = new Combo(thirdgrid, SWT.DROP_DOWN | SWT.READ_ONLY);
-				EList<EEnumLiteral> sendlist = ((EEnum) EmailbundlePackage.Literals.SEND_SETTINGS).getELiterals();
-				for (EEnumLiteral literal : sendlist) {
-					sendOption.add(literal.getLiteral());
-				}
-				{
-					aggregated = new Composite(thirdgrid, SWT.NONE);
-					GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 0).applyTo(aggregated);
-					GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).applyTo(aggregated);
-					aggregated.setVisible(false);
-					aggregatedOption = new Combo(thirdgrid, SWT.DROP_DOWN | SWT.READ_ONLY);
-					EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailbundlePackage.Literals.AGGREGATED_SETTINGS)
-						.getELiterals();
-					for (EEnumLiteral literal : aggreegatedlist) {
-						aggregatedOption.add(literal.getLiteral());
-					}
-
-					Label every = new Label(aggregated, SWT.LEFT | SWT.BORDER);
-					every.setText("every");
-					daysSpinner = new Spinner(aggregated, SWT.WRAP | SWT.BORDER);
-					daysSpinner.setMinimum(1);
-					daysSpinner.setMaximum(30);
-					Label days = new Label(aggregated, SWT.LEFT | SWT.BORDER);
-					days.setText("days");
-					
-					Label wevery = new Label(aggregated, SWT.LEFT | SWT.BORDER);
-					wevery.setText("every");
-					weekdayOption = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
-					EList<EEnumLiteral> weekdaylist = ((EEnum) EmailbundlePackage.Literals.WEEKDAYS).getELiterals();
-					for (EEnumLiteral literal : weekdaylist) {
-						weekdayOption.add(literal.getLiteral());
-					}
-
-					// aggregatedRadio.addSelectionListener(new SelectionAdapter() {
-					// @Override
-					// public void widgetSelected(SelectionEvent e) {
-					// aggregated.setVisible(true);
-					// }
-					// });
-					// immediatelyRadio.addSelectionListener(new SelectionAdapter() {
-					// @Override
-					// public void widgetSelected(SelectionEvent e) {
-					// aggregated.setVisible(false);
-					// daysRadio.setSelection(false);
-					// daysSpinner.setSelection(1);
-					// weekdayRadio.setSelection(false);
-					// weekdayCombo.select(NONE);
-					// }
-					// });
-					aggregatedOption.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							
-						}
-					});
-				}
-			}
+			// {
+			//				
+			// }
 		}
 
 		// Composite Bottom
@@ -339,7 +211,6 @@ public class EMailNotifierPage extends PropertyPage {
 				compositeBottom.setLayoutData(layout);
 				compositeBottom.setLayout(gridLayout);
 			}
-
 			// first grid
 			{
 				Composite compositeBundle = new Composite(compositeBottom, SWT.NONE);
@@ -351,6 +222,160 @@ public class EMailNotifierPage extends PropertyPage {
 			}
 		}
 		return root;
+	}
+
+	private Control createDaysSpinnerComp() {
+		if (weekdayOptionComp != null) {
+			weekdayOptionComp.dispose();
+		}
+		daysSpinnerComp = new Composite(aggregated, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 0).applyTo(daysSpinnerComp);
+		daysSpinner = new Spinner(daysSpinnerComp, SWT.WRAP | SWT.BORDER);
+		daysSpinner.setMinimum(1);
+		daysSpinner.setMaximum(30);
+		Label days = new Label(daysSpinnerComp, SWT.LEFT | SWT.BORDER);
+		days.setText("days");
+		return daysSpinnerComp;
+	}
+
+	private Control createWeekdayOptionComp() {
+		if (daysSpinnerComp != null) {
+			daysSpinnerComp.dispose();
+		}
+		weekdayOptionComp = new Composite(aggregated, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 0).applyTo(weekdayOptionComp);
+		weekdayOption = new Combo(weekdayOptionComp, SWT.DROP_DOWN | SWT.READ_ONLY);
+		EList<EEnumLiteral> weekdaylist = ((EEnum) EmailbundlePackage.Literals.WEEKDAYS).getELiterals();
+		for (EEnumLiteral literal : weekdaylist) {
+			weekdayOption.add(literal.getLiteral());
+		}
+		return weekdayOptionComp;
+	}
+
+	private Control createSecondColumn(Composite compositeTop, String bndlname) {
+		secondColumn = new Composite(compositeTop, SWT.NONE);
+		secondColumn.setVisible(false);
+		GridLayout compositeBundleLayout = new GridLayout(1, false);
+		// compositeBundle.setLayoutData(layoutTop);
+		secondColumn.setLayout(compositeBundleLayout);
+
+		selectNotifier = new Label(secondColumn, SWT.PUSH | SWT.TOP | SWT.WRAP);
+		selectNotifier.setText("Select notification types for group " + bndlname);
+		notifierTypesList = CheckboxTableViewer.newCheckList(secondColumn, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
+			| SWT.BORDER);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(notifierTypesList.getControl());
+		notifierTypesList.setContentProvider(new ArrayContentProvider());
+		ArrayList<PropertyKey> providers = new ArrayList<PropertyKey>();
+		providers.addAll(providerHints.keySet());
+		Collections.sort(providers, new Comparator<PropertyKey>() {
+			public int compare(PropertyKey o1, PropertyKey o2) {
+				return o1.toString().compareTo(o2.toString());
+			}
+		});
+		notifierTypesList.setInput(providers);
+
+		final Label hint = new Label(secondColumn, SWT.WRAP);
+		// GridDataFactory.fillDefaults().grab(true, false).applyTo(hint);
+		GridData labelData = new GridData();
+		// labelData.horizontalSpan = 2;
+		labelData.horizontalAlignment = SWT.FILL;
+		Rectangle rect = secondColumn.getMonitor().getClientArea();
+		labelData.widthHint = rect.width / 4;
+		hint.setLayoutData(labelData);
+		hint.setText("Hint: Select an item to view its description");
+		notifierTypesList.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
+				if (object instanceof EMailNotifierKey) {
+					hint.setText(providerHints.get(object)[1] + "");
+					// compositeBundle.getLayout();
+				}
+			}
+		});
+
+		notifierTypesList.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof EMailNotifierKey) {
+					return providerHints.get(element)[0];
+				}
+				return super.getText(element);
+			}
+		});
+
+		notifierTypesList.addCheckStateListener(new ICheckStateListener() {
+			public void checkStateChanged(CheckStateChangedEvent event) {
+				IStructuredSelection selection = (IStructuredSelection) bundleList.getSelection();
+				Bundle bndl = (Bundle) selection.getFirstElement();
+				if (event.getChecked()) {
+					tempBundles.get(tempBundles.indexOf(bndl)).getProviders().add(event.getElement());
+				} else {
+					tempBundles.get(tempBundles.indexOf(bndl)).getProviders().remove(event.getElement());
+				}
+			}
+		});
+		return secondColumn;
+	}
+
+	private Control createThirdColumn(Composite compositeTop, String bndlname) {
+		thirdColumn = new Composite(compositeTop, SWT.NONE);
+		thirdColumn.setVisible(false);
+		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(thirdColumn);
+		// thirdgrid.setLayoutData(layoutTop);
+
+		configLabel = new Label(thirdColumn, SWT.PUSH | SWT.TOP | SWT.WRAP);
+		configLabel.setText("Send options for group " + bndlname);
+		sendOption = new Combo(thirdColumn, SWT.DROP_DOWN | SWT.READ_ONLY);
+		EList<EEnumLiteral> sendlist = ((EEnum) EmailbundlePackage.Literals.SEND_SETTINGS).getELiterals();
+		for (EEnumLiteral literal : sendlist) {
+			sendOption.add(literal.getLiteral());
+		}
+		{
+			aggregated = new Composite(thirdColumn, SWT.NONE);
+			GridLayoutFactory.fillDefaults().numColumns(1).margins(10, 0).applyTo(aggregated);
+			// GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).applyTo(aggregated);
+			aggregated.setVisible(false);
+			aggregatedOption = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
+			EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailbundlePackage.Literals.AGGREGATED_SETTINGS)
+				.getELiterals();
+			for (EEnumLiteral literal : aggreegatedlist) {
+				aggregatedOption.add(literal.getLiteral());
+			}
+			Label every = new Label(aggregated, SWT.LEFT | SWT.BORDER);
+			every.setText("every");
+		}
+		sendOption.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (sendOption.getText().equalsIgnoreCase("aggregated")) {
+					aggregated.setVisible(true);
+				} else {
+					aggregated.setVisible(false);
+					daysSpinner.setSelection(1);
+					weekdayOption.select(0);
+				}
+			}
+		});
+		aggregatedOption.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (aggregatedOption.getText().equalsIgnoreCase("weekday")) {
+					createWeekdayOptionComp();
+					daysSpinner.setSelection(1);
+				} else if (aggregatedOption.getText().equalsIgnoreCase("days")) {
+					createDaysSpinnerComp();
+					weekdayOption.select(0);
+				} else {
+					weekdayOptionComp.setVisible(false);
+					daysSpinnerComp.setVisible(false);
+					weekdayOption.select(0);
+					daysSpinner.setSelection(1);
+				}
+			}
+		});
+
+		return thirdColumn;
 	}
 
 	/**
@@ -379,9 +404,9 @@ public class EMailNotifierPage extends PropertyPage {
 		loadProperties();
 		bundleList.refresh();
 
-		for (int i = 0; i <= tempBundles.size(); i++) {
-			bindValues(tempBundles, i);
-		}
+		// for (int i = 0; i < tempBundles.size(); i++) {
+		// bindValues(tempBundles, i);
+		// }
 
 		return folder;
 	}
@@ -404,7 +429,7 @@ public class EMailNotifierPage extends PropertyPage {
 	private void loadProviderProperties(List<Bundle> l, int x) {
 		notifierTypesList.setCheckedElements(l.get(x).getProviders().toArray());
 
-		secondGrid.setVisible(true);
+		// secondColumn.setVisible(true);
 	}
 
 	private void loadSendProperties(List<Bundle> l, int x) {
@@ -413,20 +438,26 @@ public class EMailNotifierPage extends PropertyPage {
 			aggregated.setVisible(true);
 		}
 		aggregatedOption.select(l.get(x).getAggregatedOption().getValue());
-		daysSpinner.setSelection(l.get(x).getDaysCount());
-		weekdayOption.select(l.get(x).getWeekdayOption().getValue());
+//		daysSpinner.setSelection(l.get(x).getDaysCount());
+//		weekdayOption.select(l.get(x).getWeekdayOption().getValue());
 
-		thirdgrid.setVisible(true);
+		// thirdColumn.setVisible(true);
 	}
 
-	private void refreshProperties() {
-		notifierTypesList.setAllChecked(false);
-
-		sendOption.select(0);
-		aggregatedOption.select(0);
-		aggregated.setVisible(false);
-		daysSpinner.setSelection(1);
-		weekdayOption.select(0);
+	private void disposeProperties() {
+		try {
+			secondColumn.dispose();
+			thirdColumn.dispose();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// notifierTypesList.setAllChecked(false);
+		//
+		// sendOption.select(0);
+		// aggregatedOption.select(0);
+		// aggregated.setVisible(false);
+		// daysSpinner.setSelection(1);
+		// weekdayOption.select(0);
 	}
 
 	private boolean init() {
@@ -502,7 +533,7 @@ public class EMailNotifierPage extends PropertyPage {
 					Bundle newbndl = EmailbundleFactoryImpl.eINSTANCE.createBundle();
 					newbndl.setBundleName(dlg.getValue());
 					tempBundles.add(newbndl);
-					refreshProperties();
+					disposeProperties();
 					((org.eclipse.swt.widgets.List) bundleList.getControl()).select(tempBundles.indexOf(newbndl));
 				}
 				bundleList.refresh(true);
@@ -540,31 +571,26 @@ public class EMailNotifierPage extends PropertyPage {
 	}
 
 	private void bindValues(List<Bundle> l, int i) {
-		DataBindingContext bindingContext = new DataBindingContext();
+		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
 		IObservableValue uiElement;
 		IObservableValue modelElement;
 
-		// Initialize the model
-		EmailbundlePackage.eINSTANCE.eClass();
-		// Retrieve the default factory singleton
-		EmailbundleFactory factory = EmailbundleFactory.eINSTANCE;
-
 		uiElement = SWTObservables.observeSelection(sendOption);
-		modelElement = EMFObservables.observeValue(l.get(i),
-			(EStructuralFeature) EmailbundlePackage.Literals.SEND_SETTINGS);
+		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__SEND_OPTION);
 		bindingContext.bindValue(uiElement, modelElement, null, null);
 
 		uiElement = SWTObservables.observeSelection(aggregatedOption);
-		modelElement = EMFObservables.observeValue(l.get(i),
-			(EStructuralFeature) EmailbundlePackage.Literals.AGGREGATED_SETTINGS);
+		modelElement = EMFEditObservables.observeValue(null, l.get(i),
+			EmailbundlePackage.Literals.BUNDLE__AGGREGATED_OPTION);
 		bindingContext.bindValue(uiElement, modelElement, null, null);
 
 		uiElement = SWTObservables.observeSelection(daysSpinner);
-		modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__DAYS_COUNT);
+		modelElement = EMFEditObservables.observeValue(null, l.get(i), EmailbundlePackage.Literals.BUNDLE__DAYS_COUNT);
 		bindingContext.bindValue(uiElement, modelElement, null, null);
 
 		uiElement = SWTObservables.observeSelection(weekdayOption);
-		modelElement = EMFObservables.observeValue(l.get(i), (EStructuralFeature) EmailbundlePackage.Literals.WEEKDAYS);
+		modelElement = EMFEditObservables.observeValue(null, l.get(i),
+			EmailbundlePackage.Literals.BUNDLE__WEEKDAY_OPTION);
 		bindingContext.bindValue(uiElement, modelElement, null, null);
 	}
 
