@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.unicase.workspace.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.workspace.test.Activator
 Require-Bundle: org.junit4;visibility:=reexport,
- org.unicase.projectgenerator
+ org.unicase.projectgenerator,
+ org.unicase.ecpemfstorebridge;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace.test
