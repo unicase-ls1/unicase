@@ -11,9 +11,9 @@ import org.unicase.workspace.preferences.PropertyKey;
 public enum EMailNotifierKey implements PropertyKey {
 
 	/**
-	 * The list of bundles created by the user.
+	 * The list of notification groups created by the user.
 	 */
-	BUNDLES,
+	NOTIFICATIONGROUPS,
 	
 	/**
 	 * Whether the EMail Notification is turned on or not.

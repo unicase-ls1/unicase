@@ -37,7 +37,7 @@ public final class PreferenceManager {
 		Bundle test = EmailbundleFactoryImpl.eINSTANCE.createBundle();
 		test.setBundleName("pronto");
 		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
-		defaultsMap.put(EMailNotifierKey.BUNDLES, createProperty(EMailNotifierKey.BUNDLES, new EObject[]{test}, null));
+		defaultsMap.put(EMailNotifierKey.NOTIFICATIONGROUPS, createProperty(EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[]{test}, null));
 		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));
 	}
 
