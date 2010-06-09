@@ -58,8 +58,11 @@ public class DeleteProjectUITest extends MEEditorTest {
 			@Override
 			protected void doRun() {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-				currentWorkspace.getActiveProjectSpace().getProject();
-				assertTrue(false);
+				if (currentWorkspace.getActiveProjectSpace() != null) {
+					assertTrue(false);
+				} else {
+					assertTrue(true);
+				}
 				// String projectName = getProjectSpace().getProjectName();
 				// assertTrue();
 			}
