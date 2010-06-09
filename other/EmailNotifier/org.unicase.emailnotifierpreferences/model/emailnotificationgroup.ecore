@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="emailbundle"
-    nsURI="http://unicase.org/model/emailbundle" nsPrefix="org.unicase.model.emailbundle">
-  <eClassifiers xsi:type="ecore:EClass" name="Bundle">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="BundleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="emailnotificationgroup"
+    nsURI="http://unicase.org/model/emailnotificationgroup" nsPrefix="org.unicase.model.emailnotificationgroup">
+  <eClassifiers xsi:type="ecore:EClass" name="NotificationGroup">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="NotificationGroupName"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="SendOption" eType="#//SendSettings"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="AggregatedOption" eType="#//AggregatedSettings"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="DaysCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
