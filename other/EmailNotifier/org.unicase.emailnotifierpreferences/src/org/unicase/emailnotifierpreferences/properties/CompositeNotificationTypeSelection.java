@@ -19,7 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.model.emailbundle.Bundle;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
 import org.unicase.workspace.preferences.PropertyKey;
 
 public class CompositeNotificationTypeSelection extends Composite {
@@ -27,7 +27,7 @@ public class CompositeNotificationTypeSelection extends Composite {
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
 
-	public CompositeNotificationTypeSelection(Composite c, String s, final List<Bundle> tempBundles, final Bundle bndl) {
+	public CompositeNotificationTypeSelection(Composite c, String s, final List<NotificationGroup> tempNotificationGroups, final NotificationGroup group) {
 		super(c, SWT.NONE);
 		init();
 		GridLayout compositeBundleLayout = new GridLayout(1, false);
@@ -78,9 +78,9 @@ public class CompositeNotificationTypeSelection extends Composite {
 		notifierTypesList.addCheckStateListener(new ICheckStateListener() {
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if (event.getChecked()) {
-					tempBundles.get(tempBundles.indexOf(bndl)).getProviders().add(event.getElement());
+					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().add(event.getElement());
 				} else {
-					tempBundles.get(tempBundles.indexOf(bndl)).getProviders().remove(event.getElement());
+					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().remove(event.getElement());
 				}
 			}
 		});
