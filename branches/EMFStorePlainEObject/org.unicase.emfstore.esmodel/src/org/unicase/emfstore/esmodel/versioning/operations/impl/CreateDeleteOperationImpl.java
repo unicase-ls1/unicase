@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -71,8 +72,23 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				// silently fail
 				return;
 			}
+
 			CreateDeleteOperationImpl clone = ModelUtil.clone(this);
-			project.addModelElement(clone.getModelElement(), clone.getModelElementId());
+
+			// after clone the model element is not the same anymore as
+			// in EObjectIdMap
+			clone.getEobjectsIdMap().clear();
+			clone.getEobjectsIdMap().addAll(getEobjectsIdMap());
+
+			for (Entry<EObject, ModelElementId> e : clone.getEobjectsIdMap()) {
+				if (e.getValue().equals(clone.getModelElementId())) {
+					clone.setModelElement(e.getKey());
+					break;
+				}
+			}
+
+			project.addModelElement(clone.getModelElement(), clone.getEobjectsIdMap().map());
+
 			for (ReferenceOperation operation : getSubOperations()) {
 				operation.apply(project);
 			}
