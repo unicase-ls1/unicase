@@ -71,20 +71,14 @@ public class CreateProjectUITest extends MEEditorTest {
 		if (allItems.length == 0) {
 			assert false;
 		}
-		allItems[0].select().contextMenu("Other...").contextMenu("New Project...").click();
+		allItems[0].select().contextMenu("Other...").getText();
 		getBot().sleep(4000);
-		getBot().textWithLabel("Name:").typeText("testproject");
-		getBot().button("OK").click();
-
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				String projectName = getProjectSpace().getProjectName();
-				assertTrue(projectName.startsWith("testproject"));
-
-			}
-		};
+		/*
+		 * getBot().textWithLabel("Name:").typeText("testproject"); getBot().button("OK").click(); new UnicaseCommand()
+		 * {
+		 * @Override protected void doRun() { String projectName = getProjectSpace().getProjectName();
+		 * assertTrue(projectName.startsWith("testproject")); } };
+		 */
 
 	}
 }
