@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
-import org.unicase.model.emailbundle.Bundle;
-import org.unicase.model.emailbundle.EmailbundlePackage;
+import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
 
 public class CompositeSendOptions extends Composite {
 
@@ -36,9 +36,9 @@ public class CompositeSendOptions extends Composite {
 	private Composite daysSpinnerComp;
 	private Spinner daysSpinner;
 
-	CompositeSendOptions(Composite c, String s, final List<Bundle> tempBundles, Bundle bndl) {
+	CompositeSendOptions(Composite c, String s, final List<NotificationGroup> tempNotificationGroups, NotificationGroup group) {
 		super(c, SWT.NONE);
-		final int indexofbundle = tempBundles.indexOf(bndl);
+		final int indexofbundle = tempNotificationGroups.indexOf(group);
 		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
 			this);
@@ -47,7 +47,7 @@ public class CompositeSendOptions extends Composite {
 		Label configLabel = new Label(this, SWT.PUSH | SWT.TOP | SWT.WRAP);
 		configLabel.setText("Send options for group " + s);
 		sendOption = new Combo(this, SWT.DROP_DOWN | SWT.READ_ONLY);
-		EList<EEnumLiteral> sendlist = ((EEnum) EmailbundlePackage.Literals.SEND_SETTINGS).getELiterals();
+		EList<EEnumLiteral> sendlist = ((EEnum) EmailnotificationgroupPackage.Literals.SEND_SETTINGS).getELiterals();
 		for (EEnumLiteral literal : sendlist) {
 			sendOption.add(literal.getLiteral());
 		}
@@ -60,7 +60,7 @@ public class CompositeSendOptions extends Composite {
 		this.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
 		aggregated.setVisible(false);
 		aggregatedOption = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
-		EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailbundlePackage.Literals.AGGREGATED_SETTINGS).getELiterals();
+		EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailnotificationgroupPackage.Literals.AGGREGATED_SETTINGS).getELiterals();
 		for (EEnumLiteral literal : aggreegatedlist) {
 			aggregatedOption.add(literal.getLiteral());
 		}
@@ -92,11 +92,11 @@ public class CompositeSendOptions extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (aggregatedOption.getText().equalsIgnoreCase("weekday")) {
-					createWeekdayOptionComp(indexofbundle, tempBundles);
+					createWeekdayOptionComp(indexofbundle, tempNotificationGroups);
 					extraControls.layout();
 					disposeDaysSpinnerComp();
 				} else if (aggregatedOption.getText().equalsIgnoreCase("days")) {
-					createDaysSpinnerComp(indexofbundle, tempBundles);
+					createDaysSpinnerComp(indexofbundle, tempNotificationGroups);
 					extraControls.layout();
 					disposeWeekdayOptionComp();
 				} else {
@@ -107,13 +107,13 @@ public class CompositeSendOptions extends Composite {
 		});
 
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
-		bindingContext.bindValue(SWTObservables.observeSelection(sendOption), EMFObservables.observeValue(tempBundles
-			.get(indexofbundle), EmailbundlePackage.Literals.BUNDLE__SEND_OPTION));
+		bindingContext.bindValue(SWTObservables.observeSelection(sendOption), EMFObservables.observeValue(tempNotificationGroups
+			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__SEND_OPTION));
 		bindingContext.bindValue(SWTObservables.observeSelection(aggregatedOption), EMFObservables.observeValue(
-			tempBundles.get(indexofbundle), EmailbundlePackage.Literals.BUNDLE__AGGREGATED_OPTION));
+			tempNotificationGroups.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__AGGREGATED_OPTION));
 	}
 
-	private Composite createDaysSpinnerComp(int indexofbundle, List<Bundle> tempBundles) {
+	private Composite createDaysSpinnerComp(int indexofbundle, List<NotificationGroup> tempBundles) {
 		disposeWeekdayOptionComp();
 		daysSpinnerComp = new Composite(extraControls, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 0).applyTo(daysSpinnerComp);
@@ -126,24 +126,24 @@ public class CompositeSendOptions extends Composite {
 		days.setText("days");
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
 		bindingContext.bindValue(SWTObservables.observeSelection(daysSpinner), EMFObservables.observeValue(tempBundles
-			.get(indexofbundle), EmailbundlePackage.Literals.BUNDLE__DAYS_COUNT));
+			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__DAYS_COUNT));
 		return daysSpinnerComp;
 	}
 
-	private Composite createWeekdayOptionComp(int indexofbundle, List<Bundle> tempBundles) {
+	private Composite createWeekdayOptionComp(int indexofbundle, List<NotificationGroup> tempBundles) {
 		disposeDaysSpinnerComp();
 		weekdayOptionComp = new Composite(extraControls, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).margins(10, 0).applyTo(weekdayOptionComp);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
 			weekdayOptionComp);
 		weekdayOption = new Combo(weekdayOptionComp, SWT.DROP_DOWN | SWT.READ_ONLY);
-		EList<EEnumLiteral> weekdaylist = ((EEnum) EmailbundlePackage.Literals.WEEKDAYS).getELiterals();
+		EList<EEnumLiteral> weekdaylist = ((EEnum) EmailnotificationgroupPackage.Literals.WEEKDAYS).getELiterals();
 		for (EEnumLiteral literal : weekdaylist) {
 			weekdayOption.add(literal.getLiteral());
 		}
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
 		bindingContext.bindValue(SWTObservables.observeSelection(weekdayOption), EMFObservables.observeValue(
-			tempBundles.get(indexofbundle), EmailbundlePackage.Literals.BUNDLE__WEEKDAY_OPTION));
+			tempBundles.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__WEEKDAY_OPTION));
 		return weekdayOptionComp;
 	}
 

@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.model.emailbundle.Bundle;
-import org.unicase.model.emailbundle.impl.EmailbundleFactoryImpl;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.model.emailnotificationgroup.impl.EmailnotificationgroupFactoryImpl;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.preferences.PropertyKey;
@@ -34,8 +34,8 @@ public final class PreferenceManager {
 
 	private PreferenceManager() {
 		defaultsMap = new HashMap<PropertyKey, OrgUnitProperty>();
-		Bundle test = EmailbundleFactoryImpl.eINSTANCE.createBundle();
-		test.setBundleName("pronto");
+		NotificationGroup test = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
+		test.setNotificationGroupName("pronto");
 		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
 		defaultsMap.put(EMailNotifierKey.NOTIFICATIONGROUPS, createProperty(EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[]{test}, null));
 		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));

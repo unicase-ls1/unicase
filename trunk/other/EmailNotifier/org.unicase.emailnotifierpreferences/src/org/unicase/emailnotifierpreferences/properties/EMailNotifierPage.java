@@ -35,8 +35,8 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.Project;
-import org.unicase.model.emailbundle.Bundle;
-import org.unicase.model.emailbundle.impl.EmailbundleFactoryImpl;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.model.emailnotificationgroup.impl.EmailnotificationgroupFactoryImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
@@ -59,7 +59,7 @@ public class EMailNotifierPage extends PropertyPage {
 
 	private Project project;
 	private ProjectSpace projectSpace;
-	private List<Bundle> tempNotificationGroups;
+	private List<NotificationGroup> tempNotificationGroups;
 	private Boolean existEmail = false;
 	private String mailLabel = "test";
 
@@ -98,7 +98,7 @@ public class EMailNotifierPage extends PropertyPage {
 				addButtons(compositeNotificationGroups);
 				notificationGroupList.setContentProvider(new IStructuredContentProvider() {
 					public Object[] getElements(Object inputElement) {
-						List<Bundle> l = (List<Bundle>) inputElement;
+						List<NotificationGroup> l = (List<NotificationGroup>) inputElement;
 						return l.toArray();
 					}
 
@@ -117,7 +117,7 @@ public class EMailNotifierPage extends PropertyPage {
 					}
 
 					public String getText(Object element) {
-						return ((Bundle) element).getBundleName();
+						return ((NotificationGroup) element).getNotificationGroupName();
 					}
 				});
 				notificationGroupList.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -125,8 +125,8 @@ public class EMailNotifierPage extends PropertyPage {
 						disposeProperties();
 						IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 						if (selection != null) {
-							Bundle bndl = (Bundle) selection.getFirstElement();
-							String bndlname = bndl.getBundleName();
+							NotificationGroup bndl = (NotificationGroup) selection.getFirstElement();
+							String bndlname = bndl.getNotificationGroupName();
 							compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
 								compositeNotificationGroupProperties, bndlname, tempNotificationGroups, bndl);
 							compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties, bndlname,
@@ -144,7 +144,7 @@ public class EMailNotifierPage extends PropertyPage {
 				});
 				notificationGroupList.setSorter(new ViewerSorter() {
 					// public int compare(Viewer viewer, Object e1, Object e2) {
-					// return ((Bundle) e1).getBundleName().compareTo(((Bundle) e2).getBundleName());
+					// return ((NotificationGroup) e1).getNotificationGroupName().compareTo(((NotificationGroup) e2).getNotificationGroupName());
 					// }
 				});
 			}
@@ -195,7 +195,7 @@ public class EMailNotifierPage extends PropertyPage {
 		}
 	}
 
-	private void loadProviderProperties(List<Bundle> l, int x) {
+	private void loadProviderProperties(List<NotificationGroup> l, int x) {
 		compositeNotificationTypeSelection.setCheckedElements(l.get(x).getProviders().toArray());
 	}
 
@@ -212,7 +212,7 @@ public class EMailNotifierPage extends PropertyPage {
 		if (!(getElement() instanceof Project)) {
 			return false;
 		}
-		tempNotificationGroups = new Vector<Bundle>();
+		tempNotificationGroups = new Vector<NotificationGroup>();
 		project = (Project) getElement();
 		projectSpace = WorkspaceManager.getProjectSpace(project);
 
@@ -253,7 +253,7 @@ public class EMailNotifierPage extends PropertyPage {
 		protected Object doRun() {
 			EObject[] b = new EObject[tempNotificationGroups.size()];
 			for (int i = 0; i < tempNotificationGroups.size(); i++) {
-				b[i] = (Bundle) tempNotificationGroups.get(i);
+				b[i] = (NotificationGroup) tempNotificationGroups.get(i);
 			}
 			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.NOTIFICATIONGROUPS, b);
 			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.ACTIVATED, compositeBottom
@@ -276,11 +276,11 @@ public class EMailNotifierPage extends PropertyPage {
 					"Enter 1-14 characters", "dummy", new LengthValidator());
 
 				if (dlg.open() == Window.OK) {
-					Bundle newbndl = EmailbundleFactoryImpl.eINSTANCE.createBundle();
-					newbndl.setBundleName(dlg.getValue());
-					tempNotificationGroups.add(newbndl);
+					NotificationGroup newgroup = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
+					newgroup.setNotificationGroupName(dlg.getValue());
+					tempNotificationGroups.add(newgroup);
 					disposeProperties();
-					((org.eclipse.swt.widgets.List) notificationGroupList.getControl()).select(tempNotificationGroups.indexOf(newbndl));
+					((org.eclipse.swt.widgets.List) notificationGroupList.getControl()).select(tempNotificationGroups.indexOf(newgroup));
 				}
 				notificationGroupList.refresh(true);
 
@@ -290,14 +290,14 @@ public class EMailNotifierPage extends PropertyPage {
 		btnEdit.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
-				Bundle bndl = (Bundle) selection.getFirstElement();
+				NotificationGroup bndl = (NotificationGroup) selection.getFirstElement();
 				if (bndl == null) {
 					return;
 				}
-				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "edit notification group: " + bndl.getBundleName(),
-					"Enter 1-14 characters", bndl.getBundleName(), new LengthValidator());
+				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "edit notification group: " + bndl.getNotificationGroupName(),
+					"Enter 1-14 characters", bndl.getNotificationGroupName(), new LengthValidator());
 				if (dlg.open() == Window.OK) {
-					bndl.setBundleName(dlg.getValue());
+					bndl.setNotificationGroupName(dlg.getValue());
 				}
 				notificationGroupList.update(bndl, null);
 			}
@@ -306,12 +306,12 @@ public class EMailNotifierPage extends PropertyPage {
 		btnRemove.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
-				Bundle bndl = (Bundle) selection.getFirstElement();
-				if (bndl == null) {
+				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
+				if (group == null) {
 					return;
 				}
 				disposeProperties();
-				tempNotificationGroups.remove(bndl);
+				tempNotificationGroups.remove(group);
 				notificationGroupList.refresh();
 			}
 		});
