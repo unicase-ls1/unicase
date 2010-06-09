@@ -6,6 +6,7 @@
 package org.unicase.metamodel.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -67,13 +68,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass eObjectToModelElementIdMapEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eObjectToModelElementIdContainmentMapEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -280,33 +274,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEObjectToModelElementIdContainmentMap() {
-		return eObjectToModelElementIdContainmentMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEObjectToModelElementIdContainmentMap_Key() {
-		return (EReference) eObjectToModelElementIdContainmentMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEObjectToModelElementIdContainmentMap_Value() {
-		return (EReference) eObjectToModelElementIdContainmentMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -355,11 +322,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		eObjectToModelElementIdMapEClass = createEClass(EOBJECT_TO_MODEL_ELEMENT_ID_MAP);
 		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY);
 		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE);
-
-		eObjectToModelElementIdContainmentMapEClass = createEClass(EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP);
-		createEReference(eObjectToModelElementIdContainmentMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__KEY);
-		createEReference(eObjectToModelElementIdContainmentMapEClass,
-			EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP__VALUE);
 	}
 
 	/**
@@ -400,13 +362,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_NewEObjectsIdMap(), this.getEObjectToModelElementIdMap(), null, "newEObjectsIdMap",
-			null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_DeletedEObjectIdMap(), this.getEObjectToModelElementIdMap(), null,
-			"deletedEObjectIdMap", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			"deletedEObjectIdMap", null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getProject_DeletedModelElements(), ecorePackage.getEObject(), null, "deletedModelElements",
-			null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
@@ -440,15 +402,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEObjectToModelElementIdMap_Value(), this.getModelElementId(), null, "value", null, 0, 1,
 			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eObjectToModelElementIdContainmentMapEClass, Map.Entry.class,
-			"EObjectToModelElementIdContainmentMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEObjectToModelElementIdContainmentMap_Key(), ecorePackage.getEObject(), null, "key", null, 0,
-			1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEObjectToModelElementIdContainmentMap_Value(), this.getModelElementId(), null, "value", null,
-			0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

@@ -6,8 +6,8 @@
 package org.unicase.metamodel.util;
 
 import java.util.List;
-
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.*;
@@ -131,14 +131,6 @@ public class MetamodelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case MetamodelPackage.EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP: {
-			@SuppressWarnings("unchecked")
-			Map.Entry<EObject, ModelElementId> eObjectToModelElementIdContainmentMap = (Map.Entry<EObject, ModelElementId>) theEObject;
-			T result = caseEObjectToModelElementIdContainmentMap(eObjectToModelElementIdContainmentMap);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -238,21 +230,6 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseEObjectToModelElementIdMap(Map.Entry<EObject, ModelElementId> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject To Model Element Id Containment Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject To Model Element Id Containment Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEObjectToModelElementIdContainmentMap(Map.Entry<EObject, ModelElementId> object) {
 		return null;
 	}
 

@@ -32,9 +32,5 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//EObjectToModelElementIdMap/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//EObjectToModelElementIdMap/value"/>
     </genClasses>
-    <genClasses ecoreClass="metamodel.ecore#//EObjectToModelElementIdContainmentMap">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//EObjectToModelElementIdContainmentMap/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//EObjectToModelElementIdContainmentMap/value"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

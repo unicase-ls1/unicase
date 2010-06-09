@@ -5,8 +5,8 @@
  */
 package org.unicase.metamodel;
 
-import java.util.Map;
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -82,7 +82,7 @@ public interface Project extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New EObjects Id Map</em>' map.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_NewEObjectsIdMap()
-	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
+	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>" transient="true"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getNewEObjectsIdMap();
@@ -99,7 +99,7 @@ public interface Project extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Deleted EObject Id Map</em>' map.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedEObjectIdMap()
-	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>" ordered="false"
+	 * @model mapType="org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>" transient="true" ordered="false"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getDeletedEObjectIdMap();
@@ -115,7 +115,7 @@ public interface Project extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Deleted Model Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedModelElements()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" resolveProxies="true" transient="true" ordered="false"
 	 * @generated
 	 */
 	EList<EObject> getDeletedModelElements();
@@ -209,6 +209,8 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	void addModelElement(EObject newModelElement);
 
+	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map);
+
 	/**
 	 * Returns whether the project contains a model element with the same id.
 	 * 
@@ -224,9 +226,6 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	EList<EObject> getAllModelElements();
 
-	// TODO: EMFPlainObjectTransition: NEW method, should be removed and replaced by getAllModelElementsyClass, if possible
-	EList<EObject> getAllModelElementsAsList();
-
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.
 	 */
@@ -239,12 +238,4 @@ public interface Project extends EObject, IAdaptable {
 	 * @return the wrapper
 	 */
 	ModelElementId getModelElementId(EObject eObject);
-
-	/**
-	 * Add a model element to the project including the existing wrappers of the model element and its siblings.
-	 * 
-	 * @param newModelElement the new model element
-	 * @param wrappers the wrappers
-	 */
-	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map); //(EObject newModelElement, Collection<ModelElementId> ids);
 } // Project

@@ -10,11 +10,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
@@ -45,7 +43,10 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 			if (!next.eContainingFeature().isTransient()) {
 				next.eAdapters().add(this);
 //				if (next instanceof ModelElement) {
-					idToElementMap.put(projectImpl.getModelElementId(next), next);
+				ModelElementId id = projectImpl.getModelElementId(next);
+				if (id != null) {
+					idToElementMap.put(id, next);
+				}
 //				}
 			}
 		}
@@ -139,7 +140,17 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 //		if (notifier instanceof ModelElement) {
 //			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
 		if (notifier instanceof Project) {
-			// do nothing
+//			if (!(notification.getNewValue() instanceof EObjectToModelElementIdMapImpl) 
+//				&& notification.getNewValue() instanceof EObject) {
+//				projectImpl.handleEMFNotification(notification, projectImpl, (EObject) notification.getNewValue());
+//			} else {
+				return;
+//			}
+		} else if (notifier instanceof EObjectToModelElementIdMapImpl) {
+			EObjectToModelElementIdMapImpl map = (EObjectToModelElementIdMapImpl) notifier;
+			EObject modelElement =  map.getKey();
+			ModelElementId id = map.getValue();
+			projectImpl.handleEMFNotification(notification, projectImpl, id);
 		} else if (notifier instanceof EObject) {
 			ModelElementId id = projectImpl.getModelElementId((EObject) notifier);
 			projectImpl.handleEMFNotification(notification, projectImpl, projectImpl.getModelElement(id));
@@ -178,10 +189,14 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 
 	private void handleSingleAdd(EObject newValue) {
 		// this works only because the contains cache is not yet updated
-		if (newValue instanceof EObjectToModelElementIdMapImpl || newValue == null) {
+		if (newValue == null) {
 			//do nothing
 			return;
+		} else if (newValue instanceof EObjectToModelElementIdMapImpl) {
+			return;
 		}
+		
+		
 		if (!projectImpl.contains(newValue)) {
 			newValue.eAdapters().add(this);
 			for (EObject child : ModelUtil.getAllContainedModelElements(newValue, false)) {
