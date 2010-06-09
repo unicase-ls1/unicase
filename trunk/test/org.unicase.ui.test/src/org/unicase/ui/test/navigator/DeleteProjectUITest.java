@@ -15,7 +15,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class DeleteProjectUITest extends MEEditorTest {
 	Project newproject = null;
-	boolean testcondition = true;
+	boolean testcondition;
 
 	/**
 	 * Setup the environment for testing.
@@ -50,19 +50,17 @@ public class DeleteProjectUITest extends MEEditorTest {
 	public void deleteProjectChange() {
 
 		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
-
-		getBot().sleep(4000);
-
 		SWTBotTreeItem[] treenode = getBot().activeView().bot().tree().getAllItems();
 		treenode[0].select().contextMenu("Delete Project").click();
-		getBot().sleep(4000);
 		getBot().button("Yes").click();
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
+				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+				newproject = currentWorkspace.getActiveProjectSpace().getProject();
+				testcondition = (newproject.equals(null));
 
-				testcondition = getProjectSpace().getProject().getAllModelElements().isEmpty();
 				// assertTrue(projectName.toLowerCase().startsWith("testproject"));
 			}
 		}.run();
