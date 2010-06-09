@@ -40,7 +40,6 @@ public class CreateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void createProjectUpdate() {
-		// Creating a project, but before lets see if there is already a project in the projectspace!
 
 		UITestCommon.openPerspective(getBot(), "Unicase");
 
@@ -71,14 +70,18 @@ public class CreateProjectUITest extends MEEditorTest {
 		if (allItems.length == 0) {
 			assert false;
 		}
-		allItems[0].select().contextMenu("Other...").getText();
+		allItems[0].select().contextMenu("Other...").menu("New Project...").click();
 		getBot().sleep(4000);
-		/*
-		 * getBot().textWithLabel("Name:").typeText("testproject"); getBot().button("OK").click(); new UnicaseCommand()
-		 * {
-		 * @Override protected void doRun() { String projectName = getProjectSpace().getProjectName();
-		 * assertTrue(projectName.startsWith("testproject")); } };
-		 */
+
+		getBot().textWithLabel("Name:").typeText("testproject");
+		getBot().button("OK").click();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				String projectName = getProjectSpace().getProjectName();
+				assertTrue(projectName.toLowerCase().startsWith("testproject"));
+			}
+		};
 
 	}
 }
