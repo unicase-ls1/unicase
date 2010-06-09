@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -828,5 +829,45 @@ public class CommandTest extends WorkspaceTest {
 		assertSame(editingDomain, domain1);
 		assertNotNull(domain1);
 		assertNotNull(editingDomain);
+	}
+
+	/**
+	 * Tests the delete from unicase delete command.
+	 */
+	@Test
+	public void deleteByUnicaseDeleteCommand() {
+		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		leafSection.getModelElements().add(actor);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(leafSection);
+				clearOperations();
+			}
+		}.run();
+
+		assertEquals(0, getProjectSpace().getOperations().size());
+		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		// delete
+		DeleteCommand.create((new EMFStoreModelelementContext(actor)).getEditingDomain(), actor).execute();
+
+		assertEquals(0, leafSection.getModelElements().size());
+		assertTrue(editingDomain.getCommandStack().canUndo());
+		assertEquals(1, getProjectSpace().getOperations().size());
+
+		// undo the command
+		// command.undo();
+		editingDomain.getCommandStack().undo();
+
+		assertEquals(1, leafSection.getModelElements().size());
+		// assertEquals(0, getProjectSpace().getOperations().size());
+		assertTrue(editingDomain.getCommandStack().canRedo());
+
+		// redo the command
+		editingDomain.getCommandStack().redo();
+		assertEquals(0, leafSection.getModelElements().size());
+		// assertEquals(1, getProjectSpace().getOperations().size());
 	}
 }
