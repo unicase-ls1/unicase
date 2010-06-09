@@ -57,12 +57,10 @@ public class DeleteProjectUITest extends MEEditorTest {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-				newproject = currentWorkspace.getActiveProjectSpace().getProject();
-				testcondition = (newproject.equals(null));
-
-				// assertTrue(projectName.toLowerCase().startsWith("testproject"));
+				String projectName = getProjectSpace().getProjectName();
+				// assertTrue();
 			}
+
 		}.run();
 
 	}
