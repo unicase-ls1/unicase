@@ -66,12 +66,10 @@ public class CreateProjectUITest extends MEEditorTest {
 	public void createProjectChange() {
 
 		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
-		SWTBotTreeItem[] allItems = getBot().activeView().bot().tree().getAllItems();
-		if (allItems.length == 0) {
-			assert false;
-		}
-		allItems[0].select().contextMenu("Other...").menu("New Project...").click();
+
 		getBot().sleep(4000);
+
+		getBot().activeView().bot().tree().contextMenu("Other...").menu("New Project...").click();
 
 		getBot().textWithLabel("Name:").typeText("testproject");
 		getBot().button("OK").click();
@@ -81,7 +79,7 @@ public class CreateProjectUITest extends MEEditorTest {
 				String projectName = getProjectSpace().getProjectName();
 				assertTrue(projectName.toLowerCase().startsWith("testproject"));
 			}
-		};
+		}.run();
 
 	}
 }
