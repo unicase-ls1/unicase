@@ -3,7 +3,8 @@
       id="org.unicase.emfstore.metamodel"
       label="EMFStore Metamodel"
       version="0.6.1.nightly"
-      provider-name="unicase.org">
+      provider-name="unicase.org"
+      plugin="org.unicase.emfstore.branding">
 
    <description url="http://emfstore.org">
       The EMFStore Metamodel feature includes all plugins to create
@@ -226,6 +227,13 @@ litigation.
          download-size="0"
          install-size="0"
          version="0.6.1.nightly"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

@@ -3,7 +3,8 @@
       id="org.unicase.emfstore.server"
       label="EMFStore Server Feature"
       version="0.6.1.nightly"
-      provider-name="unicase.org">
+      provider-name="unicase.org"
+      plugin="org.unicase.emfstore.branding">
 
    <description url="http://emfstore.org">
       This feature contains all plugins to run the EMFStore server.
@@ -242,6 +243,13 @@ litigation.
          download-size="0"
          install-size="0"
          version="0.6.1.nightly"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

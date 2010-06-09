@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.unicase.client"
-      label="Unicase Client"
+      label="UNICASE Client"
       version="0.3.24.internal"
-      provider-name="unicase.org">
+      provider-name="unicase.org"
+      plugin="org.unicase.client.branding">
 
    <description url="http://www.unicase.org">
-      This feature contains the unicase client.
+      This feature contains the UNICASE client.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -103,7 +104,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="Unicase update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
+      <update label="UNICASE update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
    </url>
 
    <includes
@@ -305,6 +306,13 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugin
          id="org.unicase.ui.multiaction"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.client.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
