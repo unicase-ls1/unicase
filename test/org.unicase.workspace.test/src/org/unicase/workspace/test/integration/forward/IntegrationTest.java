@@ -45,7 +45,7 @@ public abstract class IntegrationTest {
 	@Before
 	public void setup() {
 
-		setupHelper = new SetupHelper(TestProjectEnum.SUPERMARKET);
+		setupHelper = new SetupHelper(TestProjectEnum.RANDOM_3K);
 
 		setupHelper.setupWorkSpace();
 

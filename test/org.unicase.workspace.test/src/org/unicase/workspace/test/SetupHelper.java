@@ -282,7 +282,7 @@ public class SetupHelper {
 	 * Setups workspace.
 	 */
 	public void setupWorkSpace() {
-
+		LOGGER.log(Level.INFO, "setting up workspace...");
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
@@ -318,7 +318,7 @@ public class SetupHelper {
 	 * Setups a new test project space by importing one of template test projects.
 	 */
 	public void setupTestProjectSpace() {
-
+		LOGGER.log(Level.INFO, "setting up projectspace...");
 		if (projectTemplate != null) {
 			// we are using a project template
 			setupTestProjectSpace(projectTemplate);
@@ -326,7 +326,7 @@ public class SetupHelper {
 			// we are using the absolute path of an exported unicase project (.ucp file)
 			setupTestProjectSpace(projectPath);
 		}
-		LOGGER.log(Level.INFO, "project sapce initialized");
+		LOGGER.log(Level.INFO, "projectspace initialized");
 
 	}
 
@@ -344,6 +344,7 @@ public class SetupHelper {
 
 				} else {
 					uriString = uriString.replace("reference:file:/", "");
+					uriString = uriString.replace("/", File.separator);
 				}
 				try {
 					testProjectSpace = importProject(uriString);
@@ -469,12 +470,12 @@ public class SetupHelper {
 	/**
 	 * Imports a project space from an exported project file.
 	 * 
-	 * @param uri path to an exported project file
+	 * @param absolutePath path to an exported project file
 	 * @return project space
 	 * @throws IOException IOException
 	 */
-	public ProjectSpace importProject(String uri) throws IOException {
-		return workSpace.importProject(uri);
+	public ProjectSpace importProject(String absolutePath) throws IOException {
+		return workSpace.importProject(absolutePath);
 	}
 
 	/**
@@ -514,6 +515,7 @@ public class SetupHelper {
 	 * This shares test project with server.
 	 */
 	public void shareProject() {
+		LOGGER.log(Level.INFO, "sharing project...");
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
