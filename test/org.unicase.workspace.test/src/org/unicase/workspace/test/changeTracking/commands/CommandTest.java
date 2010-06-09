@@ -7,6 +7,8 @@
 package org.unicase.workspace.test.changeTracking.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -26,6 +28,8 @@ import org.eclipse.emf.edit.command.CutToClipboardCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -802,4 +806,27 @@ public class CommandTest extends WorkspaceTest {
 
 	}
 
+	@Test
+	public void testGetEditingDomain() {
+		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final Actor actor = RequirementFactory.eINSTANCE.createActor();
+		leafSection.getModelElements().add(actor);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(leafSection);
+				clearOperations();
+			}
+		}.run();
+
+		assertEquals(0, getProjectSpace().getOperations().size());
+
+		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+
+		EditingDomain domain1 = AdapterFactoryEditingDomain.getEditingDomainFor(actor);
+		assertSame(editingDomain, domain1);
+		assertNotNull(domain1);
+		assertNotNull(editingDomain);
+	}
 }
