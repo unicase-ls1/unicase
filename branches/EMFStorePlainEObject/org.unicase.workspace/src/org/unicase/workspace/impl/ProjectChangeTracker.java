@@ -49,8 +49,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	private CreateDeleteOperation deleteOperation;
 	private CompositeOperation compositeOperation;
 
-	private ModelElementId deletedElementId;
-
 	/**
 	 * Name of unknown creator.
 	 */
@@ -153,16 +151,35 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			}
 			deleteOperation.setDelete(true);
 
-			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
-			deleteOperation.setModelElementId(ModelUtil.clone(deletedElementId));
+			List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(modelElement, false);
+			allContainedModelElements.add(modelElement);
+			EObject copiedElement = EcoreUtil.copy(modelElement);
+			List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
+				false);
+			copiedAllContainedModelElements.add(copiedElement);
 
-			deleteOperation.getEobjectsIdMap().put(modelElement, deletedElementId);
-
-			for (EObject me : ModelUtil.getAllContainedModelElements(modelElement, false)) {
-				deleteOperation.getEobjectsIdMap().put(me, project.getModelElementId(me));
+			for (int i = 0; i < allContainedModelElements.size(); i++) {
+				EObject child = allContainedModelElements.get(i);
+				EObject copiedChild = copiedAllContainedModelElements.get(i);
+				ModelElementId childId = projectSpace.getProject().getModelElementId(child);
+				deleteOperation.getEobjectsIdMap().put(copiedChild, childId);
 			}
 
-			deletedElementId = null;
+			deleteOperation.setModelElement(copiedElement);
+			deleteOperation.setModelElementId(projectSpace.getProject().getModelElementId(modelElement));
+			//			
+			//			
+			// EObject clondedModelElement = ModelUtil.clone(modelElement);
+			// deleteOperation.setModelElement(clondedModelElement);
+			// deleteOperation.setModelElementId(project.getModelElementId(modelElement));
+			//
+			// deleteOperation.getEobjectsIdMap().put(clondedModelElement, project.getModelElementId(modelElement));
+			//
+			// ModelUtil.getAllContainedModelElementsAsList(modelElement, false)
+			//			
+			// for (EObject me : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+			// deleteOperation.getEobjectsIdMap().put(me, project.getModelElementId(me));
+			// }
 
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(deleteOperation);
@@ -202,7 +219,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 
-			deletedElementId = project.getModelElementId(modelElement);
 			deleteOperation.setClientDate(new Date());
 			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 		}
@@ -389,7 +405,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		}
 
 		createDeleteOperation.setModelElement(copiedElement);
-		createDeleteOperation.setModelElementId(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
+		createDeleteOperation.setModelElementId(projectSpace.getProject().getModelElementId(modelElement));
 
 		createDeleteOperation.setClientDate(new Date());
 		return createDeleteOperation;
