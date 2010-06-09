@@ -139,19 +139,25 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 		Object notifier = notification.getNotifier();
 //		if (notifier instanceof ModelElement) {
 //			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
-		if (notifier instanceof Project) {
+		if (notification.getNewValue() instanceof EObjectToModelElementIdMapImpl) {
+			EObjectToModelElementIdMapImpl map = (EObjectToModelElementIdMapImpl) notification.getNewValue();
+			EObject modelElement =  map.getKey();
+			ModelElementId id = map.getValue();
+			projectImpl.handleEMFNotification(notification, projectImpl, id);
+		} if (notifier instanceof EObjectToModelElementIdMapImpl) {
+			EObjectToModelElementIdMapImpl map = (EObjectToModelElementIdMapImpl) notifier;
+			EObject modelElement =  map.getKey();
+			ModelElementId id = map.getValue();
+			projectImpl.handleEMFNotification(notification, projectImpl, id);
+		} 
+		else if (notifier instanceof Project) {
 //			if (!(notification.getNewValue() instanceof EObjectToModelElementIdMapImpl) 
 //				&& notification.getNewValue() instanceof EObject) {
 //				projectImpl.handleEMFNotification(notification, projectImpl, (EObject) notification.getNewValue());
 //			} else {
 				return;
 //			}
-		} else if (notifier instanceof EObjectToModelElementIdMapImpl) {
-			EObjectToModelElementIdMapImpl map = (EObjectToModelElementIdMapImpl) notifier;
-			EObject modelElement =  map.getKey();
-			ModelElementId id = map.getValue();
-			projectImpl.handleEMFNotification(notification, projectImpl, id);
-		} else if (notifier instanceof EObject) {
+		}  else if (notifier instanceof EObject) {
 			ModelElementId id = projectImpl.getModelElementId((EObject) notifier);
 			projectImpl.handleEMFNotification(notification, projectImpl, projectImpl.getModelElement(id));
 		}

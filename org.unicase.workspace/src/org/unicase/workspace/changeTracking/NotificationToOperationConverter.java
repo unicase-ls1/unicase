@@ -46,6 +46,12 @@ public final class NotificationToOperationConverter {
 	 */
 	public static AbstractOperation convert(NotificationInfo n) {
 
+		// EMFPlainEObjectTransition: do not create any operatoins
+		// analogously
+		if (n.getNotifier() instanceof Project) {
+			return null;
+		}
+
 		if (n.isTouch() || n.isTransient() || !n.isValid()) {
 			return null;
 		}
