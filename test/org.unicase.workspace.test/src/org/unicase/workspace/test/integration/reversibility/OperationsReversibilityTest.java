@@ -14,7 +14,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.test.SetupHelper;
-import org.unicase.workspace.test.TestProjectEnum;
 
 /**
  * @author Hodaie
@@ -46,7 +45,8 @@ public abstract class OperationsReversibilityTest {
 	@Before
 	public void setup() {
 
-		setupHelper = new SetupHelper(TestProjectEnum.RANDOM_3K);
+		// setupHelper = new SetupHelper(TestProjectEnum.RANDOM_3K);
+		setupHelper = new SetupHelper("C:\\Dokumente und Einstellungen\\Hodaie\\Desktop\\testProj.ucp");
 
 		setupHelper.setupWorkSpace();
 

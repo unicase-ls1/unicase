@@ -52,11 +52,7 @@ public enum TestProjectEnum {
 	/**
 	 * file api.
 	 */
-	FILEAPI("TestProjects/FileAPI.ucp"),
-	/**
-	 * no test project.
-	 */
-	NONE("");
+	FILEAPI("TestProjects/FileAPI.ucp");
 
 	private String path;
 
