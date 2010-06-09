@@ -124,8 +124,8 @@ public class CompositeTest extends IntegrationTest {
 			switch (testToRun.intValue()) {
 			case 0:
 				// Delete
-				System.out.println("Delete");
-				testHelper.doDelete();
+				// System.out.println("Delete");
+				// testHelper.doDelete();
 				break;
 
 			case 1:
@@ -172,8 +172,8 @@ public class CompositeTest extends IntegrationTest {
 
 			case 8:
 				// DeleteAndRevertDelete
-				System.out.println("DeleteAndRevertDelete");
-				testHelper.doDeleteAndRevert();
+				// System.out.println("DeleteAndRevertDelete");
+				// testHelper.doDeleteAndRevert();
 				break;
 
 			case 9:
