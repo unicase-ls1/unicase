@@ -36,7 +36,6 @@ public final class PreferenceManager {
 		defaultsMap = new HashMap<PropertyKey, OrgUnitProperty>();
 		NotificationGroup test = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
 		test.setNotificationGroupName("pronto");
-		test.getProviders().add(EMailNotifierKey.COMMENTS_PROVIDER);
 		defaultsMap.put(EMailNotifierKey.NOTIFICATIONGROUPS, createProperty(EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[]{test}, null));
 		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));
 	}
