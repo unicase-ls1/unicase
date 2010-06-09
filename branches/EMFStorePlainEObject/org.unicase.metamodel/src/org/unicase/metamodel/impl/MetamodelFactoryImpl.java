@@ -6,6 +6,7 @@
 package org.unicase.metamodel.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -65,8 +66,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			return createModelVersion();
 		case MetamodelPackage.EOBJECT_TO_MODEL_ELEMENT_ID_MAP:
 			return (EObject) createEObjectToModelElementIdMap();
-		case MetamodelPackage.EOBJECT_TO_MODEL_ELEMENT_ID_CONTAINMENT_MAP:
-			return (EObject) createEObjectToModelElementIdContainmentMap();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,16 +106,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Map.Entry<EObject, ModelElementId> createEObjectToModelElementIdMap() {
 		EObjectToModelElementIdMapImpl eObjectToModelElementIdMap = new EObjectToModelElementIdMapImpl();
 		return eObjectToModelElementIdMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<EObject, ModelElementId> createEObjectToModelElementIdContainmentMap() {
-		EObjectToModelElementIdContainmentMapImpl eObjectToModelElementIdContainmentMap = new EObjectToModelElementIdContainmentMapImpl();
-		return eObjectToModelElementIdContainmentMap;
 	}
 
 	/**

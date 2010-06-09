@@ -7,10 +7,12 @@ package org.unicase.metamodel.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
@@ -26,9 +28,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -196,14 +196,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	// begin of custom code
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.Project#addModelElement(org.unicase.model.ModelElement)
-	 * @generated NOT
-	 */
-	public void addModelElement(EObject modelElement) {
-		getModelElements().add(modelElement);
+	public void addModelElement(EObject me) {
+		if (me instanceof EObjectToModelElementIdMapImpl) {
+			return;
+		} else {
+			getModelElements().add(me);
+		}
 	}
 
 	/**
@@ -214,14 +212,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EList<EObject> getAllModelElements() {
 		return getModelElements();
-		//		return this.getAllModelElementsbyClass(MetamodelPackage.eINSTANCE.eClass(), new BasicEList<EObject>());
-		//			EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), new BasicEList<EObject>());
-	}
-
-	// TODO: EMFPlainObjectTransition: new method, should be removed soon
-	public EList<EObject> getAllModelElementsAsList() {
-		return this.getAllModelElementsbyClass(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(),
-			new BasicEList<EObject>());
+		//		return this.getAllModelElementsbyClass(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), new BasicEList<EObject>());
 	}
 
 	/**
@@ -693,6 +684,19 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			eObject = element;
 		}
 
+		if (element instanceof ModelElementId) {
+			EObject o = getModelElement((ModelElementId) element);
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
+				ModelElementId id = getEobjectsIdMap().get(me);
+				getDeletedEObjectIdMap().put(me, id);
+			}
+		} else {
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(element, false)) {
+				ModelElementId id = getEobjectsIdMap().get(me);
+				getDeletedEObjectIdMap().put(me, id);
+			}
+		}
+
 		deleteOutgoingCrossReferences(eObject);
 		deleteIncomingCrossReferences(eObject);
 
@@ -717,17 +721,30 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		if (element instanceof ModelElementId) {
 			EObject o = getModelElement((ModelElementId) element);
-			
+
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
+				//	getDeletedModelElements().add(me);
+				eobjectsIdMap.values().remove(me);
+				//getModelElementsFromCache().values().remove(me);
+			}
+
 			getDeletedModelElements().add(o);
 			eobjectsIdMap.values().remove(element);
 			getModelElementsFromCache().keySet().remove(element);
 			getDeletedEObjectIdMap().put(o, (ModelElementId) element);
+
 			// TODO: EMFPlainEObjectTransition: NEW, zusammenfassen
 			//			getNewEObjectsIdMap().put(ModelUtil.clone(eObject), (ModelElementId) element);
 			//			getDeletedModelElements().add(eObject);
 		} else {
 			ModelElementId id = getModelElementId(eObject);
-				
+
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(eObject, false)) {
+				//getDeletedModelElements().add(me);
+				eobjectsIdMap.values().remove(me);
+				//getModelElementsFromCache().values().remove(me);
+			}
+
 			getDeletedModelElements().add(element);
 			eobjectsIdMap.values().remove(id);
 			getModelElementsFromCache().keySet().remove(id);
@@ -735,6 +752,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 			//			getNewEObjectsIdMap().put(ModelUtil.clone(eObject), id);
 			//			getDeletedModelElements().add(eObject);
+		}
+
+		// TODO: EMFPlainEObjectTransition : unset durch deleteIncomingcrossreferences
+		// sind nicht containted, element wird dadurch geloescht?
+		// delete all unsetted elements
+		List<ModelElementId> unsettedIds = new BasicEList<ModelElementId>();
+
+		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap().entrySet()) {
+			if (e.getKey() == null) {
+				unsettedIds.add(e.getValue());
+			}
+		}
+
+		for (ModelElementId key : unsettedIds) {
+			getEobjectsIdMap().values().remove(key);
+			getModelElementsFromCache().remove(key);
 		}
 
 		handleModelElementDeleted(element);
@@ -829,8 +862,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				if (entry.getValue().equals(eObject)) {
 					return ModelUtil.clone(entry.getKey());
 				}
-			} else {
-				System.out.println("foo");
 			}
 		}
 
@@ -849,24 +880,94 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.unicase.metamodel.Project#addModelElement(org.eclipse.emf.ecore.EObject, java.util.Collection)
 	 */
-	public void addModelElement(EObject newModelELement, Map<EObject, ModelElementId> map) {
+	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
-		for (Map.Entry<EObject, ModelElementId> entry : map.entrySet()) {
-			getNewEObjectsIdMap().put(entry.getKey(), entry.getValue());
+		if (newModelElement instanceof EObjectToModelElementIdMapImpl) {
+			// ignore
+			return;
 		}
 
-		getModelElements().add(newModelELement);
+		// since id is contained in map, all ids should be cloned
+		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
 
-		//		for (ModelElementId id : ids) {
-		//			getModelElementsFromCache().put(id, newModelELement);
-		//		}
+		// check whether the model element is already contained in the project
+		if (getModelElementsFromCache().containsKey(newModelElementId)) {
+			// update: first remove it and then add the updated model element again
+			getModelElementsFromCache().remove(newModelElementId);
+			// is EObjectsIdMap updated automatically?
 
-		//		getModelElements().add(newModelELement);
-		//		ModelUtil.getAllContainedModelElementsAsList(newModelELement, false);
-		//		for (ModelElementId id : new ArrayList<ModelElementId>(ids)) {
-		//			getEobjectsIdMap().put(newModelELement, id);
-		//		}
+		}
+		// check whether the model element previously has been deleted
+		else if (getDeletedEObjectIdMap().containsValue(newModelElementId)) {
+			// add possibly updated model element and removed it from the deleted map
+			getDeletedEObjectIdMap().values().remove(newModelElementId);
+			for (EObject child : ModelUtil.getAllContainedModelElements(newModelElement, false)) {
+				// id is contained
+				ModelElementId childId = ModelUtil.clone(map.get(child));
+				getDeletedEObjectIdMap().values().remove(childId);
+			}
+		}
+
+		getModelElements().add(newModelElement);
+		getModelElementsFromCache().put(newModelElementId, newModelElement);
+
+		// correct ids
+		getEobjectsIdMap().put(newModelElement, newModelElementId);
+		for (EObject child : ModelUtil.getAllContainedModelElements(newModelElement, false)) {
+			ModelElementId childId = ModelUtil.clone(map.get(child));
+			getEobjectsIdMap().put(child, childId);
+			getModelElementsFromCache().put(childId, child);
+		}
 
 	}
+
+	/*
+	// TODO: THIS IS ORDER-DEPENDANT! 
+	me = e.getKey();
+	Object[] arr = ModelUtil.getAllContainedModelElements(modelElement, false).toArray();
+	int i = 0;
+
+	for (EObject child : ModelUtil.getAllContainedModelElements(me, false)) {
+		ModelElementId id = getDeletedEObjectIdMap().get(child);
+		map.put((EObject) arr[i], id);
+		getModelElementsFromCache().put(id, (EObject) arr[i]);
+		removeList.add(child);
+		i++;
+	}
+
+	getModelElements().add(modelElement);
+	getModelElementsFromCache().put(modelElementId, modelElement);
+	getEobjectsIdMap().put(modelElement, e.getValue());
+	getDeletedModelElements().remove(modelElement);
+
+	for (Entry<EObject, ModelElementId> entry : map.entrySet()) {
+		getEobjectsIdMap().put(entry.getKey(), entry.getValue());
+	}
+	}
+	}
+
+	removeList.add(me);
+
+	for (EObject e : removeList) {
+	getDeletedEObjectIdMap().remove(e);
+	}
+	
+	if (!wasDeleted) {
+	getModelElements().add(modelElement);
+	
+	for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
+	if (map.containsKey(entry.getKey())) {
+		eobjectsIdMap.put(entry.getKey(), map.get(entry.getKey()));
+		getModelElementsFromCache().values().remove(entry.getKey());
+		getModelElementsFromCache().put(entry.getValue(), entry.getKey());
+	}
+	}
+	
+	if (getModelElementsFromCache().containsValue(modelElement)) {
+	getModelElementsFromCache().values().remove(modelElement);
+	getModelElementsFromCache().put(modelElementId, modelElement);
+	}			
+	}
+	}*/
 
 }

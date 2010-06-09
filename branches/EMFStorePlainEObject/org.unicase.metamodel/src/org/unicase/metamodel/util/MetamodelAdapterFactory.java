@@ -6,6 +6,7 @@
 package org.unicase.metamodel.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -102,11 +103,6 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseEObjectToModelElementIdMap(Map.Entry<EObject, ModelElementId> object) {
 			return createEObjectToModelElementIdMapAdapter();
-		}
-
-		@Override
-		public Adapter caseEObjectToModelElementIdContainmentMap(Map.Entry<EObject, ModelElementId> object) {
-			return createEObjectToModelElementIdContainmentMapAdapter();
 		}
 
 		@Override
@@ -215,20 +211,6 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEObjectToModelElementIdMapAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EObject To Model Element Id Containment Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEObjectToModelElementIdContainmentMapAdapter() {
 		return null;
 	}
 

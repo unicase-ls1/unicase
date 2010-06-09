@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
