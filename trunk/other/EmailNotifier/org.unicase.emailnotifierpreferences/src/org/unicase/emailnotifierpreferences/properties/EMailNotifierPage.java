@@ -125,15 +125,20 @@ public class EMailNotifierPage extends PropertyPage {
 						disposeProperties();
 						IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 						if (selection != null) {
-							NotificationGroup bndl = (NotificationGroup) selection.getFirstElement();
-							String bndlname = bndl.getNotificationGroupName();
-							compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
-								compositeNotificationGroupProperties, bndlname, tempNotificationGroups, bndl);
-							compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties, bndlname,
-								tempNotificationGroups, bndl);
-							loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(selection.getFirstElement()));
-							compositeNotificationGroupProperties.layout();
-							compositeNotificationGroupProperties.pack();
+							try{
+								NotificationGroup group = (NotificationGroup) selection.getFirstElement();
+								String groupname = group.getNotificationGroupName();
+								compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
+									compositeNotificationGroupProperties, groupname, tempNotificationGroups, group);
+								compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties, groupname,
+									tempNotificationGroups, group);
+								loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(selection.getFirstElement()));
+								compositeNotificationGroupProperties.layout();
+								compositeNotificationGroupProperties.pack();
+							}
+							catch (Exception e) {
+								// TODO: handle exception
+							}
 						}
 					}
 				});
@@ -290,16 +295,16 @@ public class EMailNotifierPage extends PropertyPage {
 		btnEdit.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
-				NotificationGroup bndl = (NotificationGroup) selection.getFirstElement();
-				if (bndl == null) {
+				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
+				if (group == null) {
 					return;
 				}
-				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "edit notification group: " + bndl.getNotificationGroupName(),
-					"Enter 1-14 characters", bndl.getNotificationGroupName(), new LengthValidator());
+				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "edit notification group: " + group.getNotificationGroupName(),
+					"Enter 1-14 characters", group.getNotificationGroupName(), new LengthValidator());
 				if (dlg.open() == Window.OK) {
-					bndl.setNotificationGroupName(dlg.getValue());
+					group.setNotificationGroupName(dlg.getValue());
 				}
-				notificationGroupList.update(bndl, null);
+				notificationGroupList.update(group, null);
 			}
 		});
 
