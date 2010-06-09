@@ -1,5 +1,8 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
+0.6.2.nightly:
+  * fixed issue with registration of editing domain 
+
 0.6.1.nightly: 
   * Added Supports for EMF Edit Commands:
     * Copy/Paste/Cut/Delete
