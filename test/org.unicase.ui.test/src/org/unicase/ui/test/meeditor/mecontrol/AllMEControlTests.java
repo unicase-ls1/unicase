@@ -11,8 +11,10 @@ import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEHyperlinkDeleteAd
 import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEMultiLinkControlTest;
 import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MESingleLinkControlTest;
 
-
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MeEnumControlTest.class,  MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class, METextControlTest.class, MEDateControlTest.class, MEDescriptionPageTest.class })
+@Suite.SuiteClasses( { MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class,
+	MeEnumControlTest.class, MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class,
+	METextControlTest.class, MEDateControlTest.class, MEDescriptionPageTest.class, MERichTextChangeRecordingTest.class,
+	MEEditorListenerDetachedTest.class })
 public class AllMEControlTests {
 }
