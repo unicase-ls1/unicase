@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -55,6 +57,9 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
  * @author Hodaie
  */
 public final class IntegrationTestHelper {
+
+	private static final Logger LOGGER = Logger
+		.getLogger("org.unicase.workspace.test.integration.forward.IntegrationTestHelper");
 
 	/**
 	 * Numbers of different integration tests. Each integration test case must have a corresponding method in this class
@@ -821,6 +826,7 @@ public final class IntegrationTestHelper {
 	 */
 	public static boolean areEqual(Project testProject, Project compareProject, String testName)
 		throws SerializationException {
+		LOGGER.log(Level.INFO, "examining the equlity of test project and the checked out compare project...");
 		String strTestProj = eObjectToString(testProject, testName + "-test", true);
 		String strCompareProj = eObjectToString(compareProject, testName + "-compare", true);
 		return strTestProj.equals(strCompareProj);

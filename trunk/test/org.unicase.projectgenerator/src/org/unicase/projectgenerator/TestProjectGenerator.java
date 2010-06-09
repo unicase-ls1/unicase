@@ -32,7 +32,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
@@ -52,11 +51,11 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class TestProjectGenerator {
 
-	private int numOfEachME;
-	private int projectWidth;
-	private int projectDepth;
-	private int maxNumOfManyRefs;
-	private int maxNumOfMEsInLeafSection;
+	private final int numOfEachME;
+	private final int projectWidth;
+	private final int projectDepth;
+	private final int maxNumOfManyRefs;
+	private final int maxNumOfMEsInLeafSection;
 
 	// the text attributes are created randomly from these words.
 	private static final String[] WORDS = { "hello", "cat", "mouse", "sun", "moon", "network", "watch", "rain", "kid",
@@ -66,7 +65,7 @@ public class TestProjectGenerator {
 
 	private Project project;
 
-	private Random random;
+	private final Random random;
 	// these two are just shortcuts in order to save typing
 	private static final EClass MODELELEMENT_ECLASS = MetamodelPackage.eINSTANCE.getModelElement();
 	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE.getSection();
@@ -74,11 +73,11 @@ public class TestProjectGenerator {
 	// maintain a list of instances of every class. This is to avoid
 	// the project.getAllModelElementsByClass() calls which take too long to
 	// return.
-	private HashMap<EClass, List<EObject>> meInstancesByClass = new HashMap<EClass, List<EObject>>();
-	private HashMap<EClass, List<EObject>> nonMEInstancesByClass = new HashMap<EClass, List<EObject>>();
+	private final HashMap<EClass, List<EObject>> meInstancesByClass = new HashMap<EClass, List<EObject>>();
+	private final HashMap<EClass, List<EObject>> nonMEInstancesByClass = new HashMap<EClass, List<EObject>>();
 	// keep a list of all classes that can be instantiated.
-	private List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
-	private List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
+	private final List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
+	private final List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
 	private MEDiagramElementsProvider diagramElementsProvider;
 
 	/**
@@ -374,12 +373,10 @@ public class TestProjectGenerator {
 		List<EObject> instancesOfRefType = new ArrayList<EObject>();
 		int numOfRefs;
 		if (me instanceof MEDiagram && ref.equals(DiagramPackage.eINSTANCE.getMEDiagram_Elements())) {
-//			diagramElementsProvider = new MEDiagramElementsProvider(project);
-//			MEDiagram diagram = (MEDiagram) me;
-//			DiagramType diagramType = diagram.getType();
-//			instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagramType));
-//			numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagramType);
-			numOfRefs = 0;
+			diagramElementsProvider = new MEDiagramElementsProvider(project);
+			MEDiagram diagram = (MEDiagram) me;
+			instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagram.eClass()));
+			numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagram.eClass());
 		} else {
 			instancesOfRefType.addAll(getAllInstancesOf(ref.getEReferenceType()));
 			numOfRefs = getNumOfRefs(ref, lowerBound, upperBound);
@@ -757,11 +754,6 @@ public class TestProjectGenerator {
 				continue;
 			}
 			if (attribute.getEType() instanceof EEnum) {
-//				if (attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_Type())) {
-//					DiagramType diagramType = getRandomDiagramType();
-//					instance.eSet(attribute, diagramType);
-//					continue;
-//				}
 				EEnum en = (EEnum) attribute.getEType();
 				int numOfLiterals = en.getELiterals().size();
 				int index = numOfLiterals == 1 ? 0 : random.nextInt(numOfLiterals - 1);
@@ -775,31 +767,6 @@ public class TestProjectGenerator {
 	}
 
 	// END COMPLEX CODE
-
-	/**
-	 * @return
-	 */
-	private DiagramType getRandomDiagramType() {
-		int value = random.nextInt(10);
-		switch (value) {
-		case 0:
-			return DiagramType.ACTIVITY_DIAGRAM;
-		case 1:
-			return DiagramType.STATE_DIAGRAM;
-		case 2:
-		case 3:
-		case 4:
-			return DiagramType.USECASE_DIAGRAM;
-		case 5:
-		case 6:
-		case 7:
-		case 8:
-		case 9:
-			return DiagramType.CLASS_DIAGRAM;
-		default:
-			return DiagramType.CLASS_DIAGRAM;
-		}
-	}
 
 	// returns non-abstract sub-Classes of an abstract super-class
 	private List<EClass> getNonAbstractSubClassesOf(EClass superClass) {

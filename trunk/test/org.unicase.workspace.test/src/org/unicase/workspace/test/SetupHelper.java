@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -57,6 +59,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class SetupHelper {
 
+	private static final Logger LOGGER = Logger.getLogger("org.unicase.workspace.test.SetupHelper");
+
 	private TransactionalEditingDomain domain;
 	private Workspace workSpace;
 	private ProjectSpace testProjectSpace;
@@ -66,6 +70,7 @@ public class SetupHelper {
 	private ProjectId projectId;
 	private Project compareProject;
 
+	private String projectPath;
 	private TestProjectEnum projectTemplate;
 
 	/**
@@ -74,6 +79,17 @@ public class SetupHelper {
 	public SetupHelper(TestProjectEnum projectTemplate) {
 
 		this.projectTemplate = projectTemplate;
+		LOGGER.log(Level.INFO, "SetupHelper instantiated with " + projectTemplate);
+	}
+
+	/**
+	 * @param absolutePath The absolute path of an exported project (.ucp file). This project will then be imported and
+	 *            used as test project.
+	 */
+	public SetupHelper(String absolutePath) {
+
+		projectPath = absolutePath;
+		LOGGER.log(Level.INFO, "SetupHelper instantiated with " + absolutePath);
 	}
 
 	/**
@@ -86,6 +102,7 @@ public class SetupHelper {
 			// little hack, there is a flaw in server configuration
 			// properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
 			EmfStoreController.runAsNewThread();
+			LOGGER.log(Level.INFO, "server started. ");
 		} catch (FatalEmfStoreException e) {
 			e.printStackTrace();
 		}
@@ -218,6 +235,7 @@ public class SetupHelper {
 		} catch (FatalEmfStoreException e) {
 			e.printStackTrace();
 		}
+		LOGGER.log(Level.INFO, "setup server space finished");
 
 	}
 
@@ -268,6 +286,7 @@ public class SetupHelper {
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		LOGGER.log(Level.INFO, "workspace initialized");
 
 	}
 
@@ -300,8 +319,20 @@ public class SetupHelper {
 	 */
 	public void setupTestProjectSpace() {
 
+		if (projectTemplate != null) {
+			// we are using a project template
+			setupTestProjectSpace(projectTemplate);
+		} else {
+			// we are using the absolute path of an exported unicase project (.ucp file)
+			setupTestProjectSpace(projectPath);
+		}
+		LOGGER.log(Level.INFO, "project sapce initialized");
+
+	}
+
+	private void setupTestProjectSpace(TestProjectEnum template) {
 		final String path;
-		path = projectTemplate.getPath();
+		path = template.getPath();
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -331,21 +362,14 @@ public class SetupHelper {
 	 * 
 	 * @param absolutePath absolutePath to a project to import.
 	 */
-	public void setupTestProjectSpace(final String absolutePath) {
+	private void setupTestProjectSpace(final String absolutePath) {
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				String uriString = Activator.getDefault().getBundle().getLocation() + absolutePath;
-				if (File.separator.equals("/")) {
-					uriString = uriString.replace("reference:file:", "");
-
-				} else {
-					uriString = uriString.replace("reference:file:/", "");
-				}
 				try {
-					testProjectSpace = importProject(uriString);
+					testProjectSpace = importProject(absolutePath);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -410,6 +434,7 @@ public class SetupHelper {
 		}
 
 		new File(serverPath + "storage.uss").delete();
+		LOGGER.log(Level.INFO, "serverspce cleaned.");
 
 	}
 
@@ -438,6 +463,7 @@ public class SetupHelper {
 		}
 
 		new File(workspacePath + "workspace.ucw").delete();
+		LOGGER.log(Level.INFO, "workspace cleaned.");
 	}
 
 	/**
@@ -505,6 +531,7 @@ public class SetupHelper {
 					}
 
 					getTestProjectSpace().shareProject(usersession);
+					LOGGER.log(Level.INFO, "project shared.");
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
 				}
@@ -562,7 +589,7 @@ public class SetupHelper {
 	 * @throws EmfStoreException EmfStoreException
 	 */
 	public Project getCompareProject() throws EmfStoreException {
-
+		LOGGER.log(Level.INFO, "retrieving compare project...");
 		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("CompareProject");
 		projectInfo.setDescription("compare project description");
@@ -574,6 +601,7 @@ public class SetupHelper {
 				try {
 					compareProject = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession,
 						projectInfo).getProject();
+					LOGGER.log(Level.INFO, "compare project checked out.");
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
 				}
