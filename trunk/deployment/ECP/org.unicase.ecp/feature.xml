@@ -3,7 +3,8 @@
       id="org.unicase.ecp"
       label="EMF Client Platform"
       version="0.5.9.nightly"
-      provider-name="unicase.org">
+      provider-name="unicase.org"
+      plugin="org.unicase.ecp.branding">
 
    <description url="http://emfstore.org">
       This feature contains all plugins to create an application based
@@ -245,6 +246,13 @@ litigation.
 
    <plugin
          id="org.unicase.ui.validation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ecp.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"

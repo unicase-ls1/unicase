@@ -3,7 +3,8 @@
       id="org.unicase.emfstore.backchannel"
       label="EMFStore Backchannel"
       version="0.6.1.nightly"
-      provider-name="unicase.org">
+      provider-name="unicase.org"
+      plugin="org.unicase.emfstore.branding">
 
    <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
       The EMFStore Backchannels feature includes all plugins to enable
@@ -233,5 +234,12 @@ litigation.
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
