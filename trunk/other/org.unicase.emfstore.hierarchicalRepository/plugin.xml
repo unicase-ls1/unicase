@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.ui.showHistory">
+         <command
+               commandId="org.unicase.emfstore.hierachicalRepository.transferChanges"
+               label="Transfer Changes"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                     </instanceof>
+                     <test
+                           forcePluginActivation="true"
+                           property="org.unicase.workspace.ui.commands.projectIsShared"
+                           value="true">
+                     </test>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.emfstore.hierarchicalrepository.TransferChangesHandler"
+            id="org.unicase.emfstore.hierachicalRepository.transferChanges"
+            name="TransferChanges">
+      </command>
+   </extension>
+
+</plugin>
