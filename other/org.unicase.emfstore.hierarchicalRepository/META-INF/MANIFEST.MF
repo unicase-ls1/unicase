@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: HierachicalRepository
+Bundle-SymbolicName: org.unicase.emfstore.hierarchicalRepository;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.emfstore.hierarchicalrepository.Activator
+Require-Bundle: org.unicase.workspace.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
