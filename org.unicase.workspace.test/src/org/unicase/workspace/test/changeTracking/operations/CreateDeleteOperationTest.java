@@ -49,6 +49,7 @@ public class CreateDeleteOperationTest extends OperationTest {
 	@Test
 	public void createElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
+		clearOperations();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 
