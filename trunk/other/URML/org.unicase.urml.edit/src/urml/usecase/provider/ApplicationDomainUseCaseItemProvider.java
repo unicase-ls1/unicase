@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.provider;
 
@@ -29,9 +26,8 @@ import urml.usecase.UsecasePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -65,18 +61,12 @@ public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider
 	 * @generated
 	 */
 	protected void addDetailedGoalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ApplicationDomainUseCase_detailedGoal_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ApplicationDomainUseCase_detailedGoal_feature",
-								"_UI_ApplicationDomainUseCase_type"),
-						UsecasePackage.Literals.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ApplicationDomainUseCase_detailedGoal_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ApplicationDomainUseCase_detailedGoal_feature",
+				"_UI_ApplicationDomainUseCase_type"),
+			UsecasePackage.Literals.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, true, false, true, null, null, null));
 	}
 
 	/**
@@ -87,8 +77,7 @@ public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ApplicationDomainUseCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ApplicationDomainUseCase"));
 	}
 
 	/**
@@ -101,7 +90,7 @@ public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider
 	public String getText(Object object) {
 		String label = ((ApplicationDomainUseCase) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ApplicationDomainUseCase_type")
-				: getString("_UI_ApplicationDomainUseCase_type") + " " + label;
+			: getString("_UI_ApplicationDomainUseCase_type") + " " + label;
 	}
 
 	/**
@@ -125,8 +114,7 @@ public class ApplicationDomainUseCaseItemProvider extends UseCaseItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.impl;
 
@@ -118,14 +115,12 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	 */
 	public static UsecasePackage init() {
 		if (isInited)
-			return (UsecasePackage) EPackage.Registry.INSTANCE
-					.getEPackage(UsecasePackage.eNS_URI);
+			return (UsecasePackage) EPackage.Registry.INSTANCE.getEPackage(UsecasePackage.eNS_URI);
 
 		// Obtain or create and register package
-		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new UsecasePackageImpl());
+		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
+			: new UsecasePackageImpl());
 
 		isInited = true;
 
@@ -133,26 +128,21 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI)
-				: UrmlPackage.eINSTANCE);
-		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI)
-				: GoalPackage.eINSTANCE);
+		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UrmlPackage.eNS_URI)
+			: UrmlPackage.eINSTANCE);
+		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(GoalPackage.eNS_URI)
+			: GoalPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI)
-				: ServicePackage.eINSTANCE);
+			.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServicePackage.eNS_URI) : ServicePackage.eINSTANCE);
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI)
-				: DangerPackage.eINSTANCE);
+			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUsecasePackage.createPackageContents();
@@ -174,8 +164,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		theUsecasePackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(UsecasePackage.eNS_URI,
-				theUsecasePackage);
+		EPackage.Registry.INSTANCE.put(UsecasePackage.eNS_URI, theUsecasePackage);
 		return theUsecasePackage;
 	}
 
@@ -221,8 +210,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	 * @generated
 	 */
 	public EReference getApplicationDomainUseCase_DetailedGoal() {
-		return (EReference) applicationDomainUseCaseEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) applicationDomainUseCaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -240,8 +228,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	 * @generated
 	 */
 	public EReference getSolutionDomainUseCase_DetailedFeature() {
-		return (EReference) solutionDomainUseCaseEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) solutionDomainUseCaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -305,12 +292,10 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		createEReference(useCaseEClass, USE_CASE__ACTORS);
 
 		applicationDomainUseCaseEClass = createEClass(APPLICATION_DOMAIN_USE_CASE);
-		createEReference(applicationDomainUseCaseEClass,
-				APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL);
+		createEReference(applicationDomainUseCaseEClass, APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL);
 
 		solutionDomainUseCaseEClass = createEClass(SOLUTION_DOMAIN_USE_CASE);
-		createEReference(solutionDomainUseCaseEClass,
-				SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
+		createEReference(solutionDomainUseCaseEClass, SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
 
 		actorEClass = createEClass(ACTOR);
 		createEReference(actorEClass, ACTOR__USE_CASES);
@@ -342,83 +327,61 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI);
+		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
 		org.unicase.model.requirement.RequirementPackage theRequirementPackage_1 = (org.unicase.model.requirement.RequirementPackage) EPackage.Registry.INSTANCE
-				.getEPackage(org.unicase.model.requirement.RequirementPackage.eNS_URI);
+			.getEPackage(org.unicase.model.requirement.RequirementPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MetamodelPackage.eNS_URI);
-		GoalPackage theGoalPackage = (GoalPackage) EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI);
-		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI);
+			.getEPackage(MetamodelPackage.eNS_URI);
+		GoalPackage theGoalPackage = (GoalPackage) EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI);
+		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		useCaseEClass.getESuperTypes()
-				.add(theUrmlPackage.getUrmlModelElement());
+		useCaseEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 		applicationDomainUseCaseEClass.getESuperTypes().add(this.getUseCase());
 		solutionDomainUseCaseEClass.getESuperTypes().add(this.getUseCase());
 		actorEClass.getESuperTypes().add(theDangerPackage.getAsset());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(useCaseEClass, UseCase.class, "UseCase", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUseCase_Steps(), theRequirementPackage_1.getStep(),
-				null, "steps", null, 0, -1, UseCase.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_Actors(), this.getActor(), this
-				.getActor_UseCases(), "actors", null, 0, -1, UseCase.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getUseCase_Actors().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(useCaseEClass, UseCase.class, "UseCase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUseCase_Steps(), theRequirementPackage_1.getStep(), null, "steps", null, 0, -1,
+			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_Actors(), this.getActor(), this.getActor_UseCases(), "actors", null, 0, -1,
+			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getUseCase_Actors().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(applicationDomainUseCaseEClass,
-				ApplicationDomainUseCase.class, "ApplicationDomainUseCase",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApplicationDomainUseCase_DetailedGoal(),
-				theGoalPackage.getGoal(), theGoalPackage
-						.getGoal_DetailingUseCases(), "detailedGoal", null, 0,
-				-1, ApplicationDomainUseCase.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(applicationDomainUseCaseEClass, ApplicationDomainUseCase.class, "ApplicationDomainUseCase",
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getApplicationDomainUseCase_DetailedGoal(), theGoalPackage.getGoal(), theGoalPackage
+			.getGoal_DetailingUseCases(), "detailedGoal", null, 0, -1, ApplicationDomainUseCase.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
 		getApplicationDomainUseCase_DetailedGoal().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(solutionDomainUseCaseEClass, SolutionDomainUseCase.class,
-				"SolutionDomainUseCase", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSolutionDomainUseCase_DetailedFeature(),
-				theUrmlPackage.getFeature(), theUrmlPackage
-						.getFeature_DetailingUseCases(), "detailedFeature",
-				null, 0, 1, SolutionDomainUseCase.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(solutionDomainUseCaseEClass, SolutionDomainUseCase.class, "SolutionDomainUseCase", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolutionDomainUseCase_DetailedFeature(), theUrmlPackage.getFeature(), theUrmlPackage
+			.getFeature_DetailingUseCases(), "detailedFeature", null, 0, 1, SolutionDomainUseCase.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
 		getSolutionDomainUseCase_DetailedFeature().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActor_UseCases(), this.getUseCase(), this
-				.getUseCase_Actors(), "useCases", null, 0, -1, Actor.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getActor_UseCases().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getActor_TriggeredDangers(), theDangerPackage
-				.getDanger(), theDangerPackage.getDanger_TriggeringActors(),
-				"triggeredDangers", null, 0, -1, Actor.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_TriggeredDangers().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActor_UseCases(), this.getUseCase(), this.getUseCase_Actors(), "useCases", null, 0, -1,
+			Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getActor_UseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getActor_TriggeredDangers(), theDangerPackage.getDanger(), theDangerPackage
+			.getDanger_TriggeringActors(), "triggeredDangers", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getActor_TriggeredDangers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } //UsecasePackageImpl

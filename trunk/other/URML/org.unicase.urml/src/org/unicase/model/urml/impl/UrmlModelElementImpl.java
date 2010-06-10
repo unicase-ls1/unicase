@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.impl;
 
@@ -22,8 +19,7 @@ import org.unicase.model.urml.UrmlPackage;
  *
  * @generated
  */
-public class UrmlModelElementImpl extends UnicaseModelElementImpl implements
-		UrmlModelElement {
+public abstract class UrmlModelElementImpl extends UnicaseModelElementImpl implements UrmlModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

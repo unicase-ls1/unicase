@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.impl;
 
@@ -16,8 +13,10 @@ import org.unicase.metamodel.MetamodelPackage;
 
 import org.unicase.model.ModelPackage;
 
+import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.Stakeholder;
+import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlFactory;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
@@ -71,6 +70,13 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	private EClass stakeholderEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass urmlDiagramEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -110,14 +116,12 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	 */
 	public static UrmlPackage init() {
 		if (isInited)
-			return (UrmlPackage) EPackage.Registry.INSTANCE
-					.getEPackage(UrmlPackage.eNS_URI);
+			return (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
 
 		// Obtain or create and register package
-		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new UrmlPackageImpl());
+		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
+			: new UrmlPackageImpl());
 
 		isInited = true;
 
@@ -125,26 +129,21 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI)
-				: GoalPackage.eINSTANCE);
+		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(GoalPackage.eNS_URI)
+			: GoalPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI)
-				: UsecasePackage.eINSTANCE);
+			.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UsecasePackage.eNS_URI) : UsecasePackage.eINSTANCE);
 		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI)
-				: ServicePackage.eINSTANCE);
+			.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServicePackage.eNS_URI) : ServicePackage.eINSTANCE);
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI)
-				: DangerPackage.eINSTANCE);
+			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUrmlPackage.createPackageContents();
@@ -265,6 +264,15 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getURMLDiagram() {
+		return urmlDiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UrmlFactory getUrmlFactory() {
 		return (UrmlFactory) getEFactoryInstance();
 	}
@@ -293,16 +301,16 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 
 		featureEClass = createEClass(FEATURE);
 		createEReference(featureEClass, FEATURE__GOALS);
-		createEReference(featureEClass,
-				FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS);
-		createEReference(featureEClass,
-				FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
+		createEReference(featureEClass, FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS);
+		createEReference(featureEClass, FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
 		createEReference(featureEClass, FEATURE__DETAILING_USE_CASES);
 		createEReference(featureEClass, FEATURE__PARENT_FEATURE);
 		createEReference(featureEClass, FEATURE__SUB_FEATURES);
 
 		stakeholderEClass = createEClass(STAKEHOLDER);
 		createEReference(stakeholderEClass, STAKEHOLDER__GOALS);
+
+		urmlDiagramEClass = createEClass(URML_DIAGRAM);
 	}
 
 	/**
@@ -330,20 +338,19 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		GoalPackage theGoalPackage = (GoalPackage) EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI);
+		GoalPackage theGoalPackage = (GoalPackage) EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI);
+			.getEPackage(RequirementPackage.eNS_URI);
 		UsecasePackage theUsecasePackage = (UsecasePackage) EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI);
+			.getEPackage(UsecasePackage.eNS_URI);
 		ServicePackage theServicePackage = (ServicePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI);
-		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+			.getEPackage(ServicePackage.eNS_URI);
+		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MetamodelPackage.eNS_URI);
+			.getEPackage(MetamodelPackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
+			.getEPackage(DiagramPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGoalPackage);
@@ -357,77 +364,55 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		urmlModelElementEClass.getESuperTypes().add(
-				theModelPackage.getUnicaseModelElement());
+		urmlModelElementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		featureEClass.getESuperTypes().add(this.getUrmlModelElement());
 		stakeholderEClass.getESuperTypes().add(this.getUrmlModelElement());
+		urmlDiagramEClass.getESuperTypes().add(theDiagramPackage.getMEDiagram());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(urmlModelElementEClass, UrmlModelElement.class,
-				"UrmlModelElement", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(urmlModelElementEClass, UrmlModelElement.class, "UrmlModelElement", IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Goals(), theGoalPackage.getGoal(),
-				theGoalPackage.getGoal_RealizedFeatures(), "goals", null, 0,
-				-1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getFeature_Goals().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_DetailingFunctionalRequirements(),
-				theRequirementPackage.getFunctionalRequirement(),
-				theRequirementPackage
-						.getFunctionalRequirement_DetailedFeatures(),
-				"detailingFunctionalRequirements", null, 0, -1, Feature.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeature_Goals(), theGoalPackage.getGoal(), theGoalPackage.getGoal_RealizedFeatures(),
+			"goals", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getFeature_Goals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFeature_DetailingFunctionalRequirements(), theRequirementPackage.getFunctionalRequirement(),
+			theRequirementPackage.getFunctionalRequirement_DetailedFeatures(), "detailingFunctionalRequirements", null,
+			0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFeature_DetailingFunctionalRequirements().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_ConstrainingNonFunctionalRequirements(),
-				theRequirementPackage.getNonFunctionalRequirement(),
-				theRequirementPackage
-						.getNonFunctionalRequirement_ConstrainedFeatures(),
-				"constrainingNonFunctionalRequirements", null, 0, -1,
-				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+			theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFeature_ConstrainingNonFunctionalRequirements(), theRequirementPackage
+			.getNonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement_ConstrainedFeatures(),
+			"constrainingNonFunctionalRequirements", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFeature_ConstrainingNonFunctionalRequirements().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_DetailingUseCases(), theUsecasePackage
-				.getSolutionDomainUseCase(), theUsecasePackage
-				.getSolutionDomainUseCase_DetailedFeature(),
-				"detailingUseCases", null, 0, -1, Feature.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_DetailingUseCases().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_ParentFeature(), this.getFeature(), this
-				.getFeature_SubFeatures(), "parentFeature", null, 0, 1,
-				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getFeature_ParentFeature().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_SubFeatures(), this.getFeature(), this
-				.getFeature_ParentFeature(), "subFeatures", null, 0, -1,
-				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getFeature_SubFeatures().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFeature_DetailingUseCases(), theUsecasePackage.getSolutionDomainUseCase(), theUsecasePackage
+			.getSolutionDomainUseCase_DetailedFeature(), "detailingUseCases", null, 0, -1, Feature.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getFeature_DetailingUseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFeature_ParentFeature(), this.getFeature(), this.getFeature_SubFeatures(), "parentFeature",
+			null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getFeature_ParentFeature().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFeature_SubFeatures(), this.getFeature(), this.getFeature_ParentFeature(), "subFeatures",
+			null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getFeature_SubFeatures().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(stakeholderEClass, Stakeholder.class, "Stakeholder",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStakeholder_Goals(), theGoalPackage.getGoal(),
-				theGoalPackage.getGoal_Stakeholders(), "goals", null, 0, 1,
-				Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getStakeholder_Goals().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(stakeholderEClass, Stakeholder.class, "Stakeholder", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStakeholder_Goals(), theGoalPackage.getGoal(), theGoalPackage.getGoal_Stakeholders(),
+			"goals", null, 0, 1, Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getStakeholder_Goals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(urmlDiagramEClass, URMLDiagram.class, "URMLDiagram", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

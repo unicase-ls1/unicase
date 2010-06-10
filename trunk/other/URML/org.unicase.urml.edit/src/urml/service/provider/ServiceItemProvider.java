@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.provider;
 
@@ -35,9 +32,8 @@ import urml.service.ServicePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ServiceItemProvider extends MitigationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ServiceItemProvider extends MitigationItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -71,15 +67,11 @@ public class ServiceItemProvider extends MitigationItemProvider implements
 	 * @generated
 	 */
 	protected void addSatisfiedRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Service_satisfiedRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Service_satisfiedRequirements_feature",
-						"_UI_Service_type"),
-				ServicePackage.Literals.SERVICE__SATISFIED_REQUIREMENTS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Service_satisfiedRequirements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Service_satisfiedRequirements_feature",
+				"_UI_Service_type"), ServicePackage.Literals.SERVICE__SATISFIED_REQUIREMENTS, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -90,8 +82,7 @@ public class ServiceItemProvider extends MitigationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Service"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Service"));
 	}
 
 	/**
@@ -103,8 +94,8 @@ public class ServiceItemProvider extends MitigationItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Service) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Service_type")
-				: getString("_UI_Service_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Service_type") : getString("_UI_Service_type")
+			+ " " + label;
 	}
 
 	/**
@@ -128,8 +119,7 @@ public class ServiceItemProvider extends MitigationItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

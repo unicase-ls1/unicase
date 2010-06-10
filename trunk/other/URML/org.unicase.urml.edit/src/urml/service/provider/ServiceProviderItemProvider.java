@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.provider;
 
@@ -38,9 +35,8 @@ import urml.service.ServiceProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ServiceProviderItemProvider extends AssetItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ServiceProviderItemProvider extends AssetItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -75,12 +71,10 @@ public class ServiceProviderItemProvider extends AssetItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ServicePackage.Literals.SERVICE_PROVIDER__PROVIDED_SERVICES);
+			childrenFeatures.add(ServicePackage.Literals.SERVICE_PROVIDER__PROVIDED_SERVICES);
 		}
 		return childrenFeatures;
 	}
@@ -106,8 +100,7 @@ public class ServiceProviderItemProvider extends AssetItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ServiceProvider"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServiceProvider"));
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class ServiceProviderItemProvider extends AssetItemProvider implements
 	public String getText(Object object) {
 		String label = ((ServiceProvider) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ServiceProvider_type")
-				: getString("_UI_ServiceProvider_type") + " " + label;
+			: getString("_UI_ServiceProvider_type") + " " + label;
 	}
 
 	/**
@@ -136,8 +129,7 @@ public class ServiceProviderItemProvider extends AssetItemProvider implements
 
 		switch (notification.getFeatureID(ServiceProvider.class)) {
 		case ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -151,13 +143,11 @@ public class ServiceProviderItemProvider extends AssetItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ServicePackage.Literals.SERVICE_PROVIDER__PROVIDED_SERVICES,
-				ServiceFactory.eINSTANCE.createService()));
+		newChildDescriptors.add(createChildParameter(ServicePackage.Literals.SERVICE_PROVIDER__PROVIDED_SERVICES,
+			ServiceFactory.eINSTANCE.createService()));
 	}
 
 	/**

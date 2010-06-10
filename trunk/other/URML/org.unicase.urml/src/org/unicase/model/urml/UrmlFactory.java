@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml;
 
@@ -26,15 +23,6 @@ public interface UrmlFactory extends EFactory {
 	UrmlFactory eINSTANCE = org.unicase.model.urml.impl.UrmlFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Model Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element</em>'.
-	 * @generated
-	 */
-	UrmlModelElement createUrmlModelElement();
-
-	/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51,6 +39,15 @@ public interface UrmlFactory extends EFactory {
 	 * @generated
 	 */
 	Stakeholder createStakeholder();
+
+	/**
+	 * Returns a new object of class '<em>URML Diagram</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>URML Diagram</em>'.
+	 * @generated
+	 */
+	URMLDiagram createURMLDiagram();
 
 	/**
 	 * Returns the package supported by this factory.

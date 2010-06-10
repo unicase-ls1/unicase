@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.provider;
 
@@ -35,9 +32,8 @@ import urml.usecase.UsecasePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActorItemProvider extends AssetItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActorItemProvider extends AssetItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,14 +68,10 @@ public class ActorItemProvider extends AssetItemProvider implements
 	 * @generated
 	 */
 	protected void addUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_useCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Actor_useCases_feature", "_UI_Actor_type"),
-				UsecasePackage.Literals.ACTOR__USE_CASES, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_useCases_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Actor_useCases_feature", "_UI_Actor_type"),
+			UsecasePackage.Literals.ACTOR__USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -89,16 +81,10 @@ public class ActorItemProvider extends AssetItemProvider implements
 	 * @generated
 	 */
 	protected void addTriggeredDangersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Actor_triggeredDangers_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Actor_triggeredDangers_feature",
-								"_UI_Actor_type"),
-						UsecasePackage.Literals.ACTOR__TRIGGERED_DANGERS, true,
-						false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_triggeredDangers_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Actor_triggeredDangers_feature", "_UI_Actor_type"),
+			UsecasePackage.Literals.ACTOR__TRIGGERED_DANGERS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -109,8 +95,7 @@ public class ActorItemProvider extends AssetItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Actor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Actor"));
 	}
 
 	/**
@@ -122,8 +107,8 @@ public class ActorItemProvider extends AssetItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Actor) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Actor_type")
-				: getString("_UI_Actor_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Actor_type") : getString("_UI_Actor_type") + " "
+			+ label;
 	}
 
 	/**
@@ -147,8 +132,7 @@ public class ActorItemProvider extends AssetItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

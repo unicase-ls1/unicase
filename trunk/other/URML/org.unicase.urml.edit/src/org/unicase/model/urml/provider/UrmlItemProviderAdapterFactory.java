@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.provider;
 
@@ -36,8 +33,8 @@ import org.unicase.model.urml.util.UrmlAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory implements ComposeableAdapterFactory,
+	IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -74,30 +71,6 @@ public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
 		supportedTypes.add(IItemPropertySource.class);
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.urml.UrmlModelElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UrmlModelElementItemProvider urmlModelElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.urml.UrmlModelElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUrmlModelElementAdapter() {
-		if (urmlModelElementItemProvider == null) {
-			urmlModelElementItemProvider = new UrmlModelElementItemProvider(
-					this);
-		}
-
-		return urmlModelElementItemProvider;
 	}
 
 	/**
@@ -147,14 +120,36 @@ public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.urml.URMLDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected URMLDiagramItemProvider urmlDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.urml.URMLDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createURMLDiagramAdapter() {
+		if (urmlDiagramItemProvider == null) {
+			urmlDiagramItemProvider = new URMLDiagramItemProvider(this);
+		}
+
+		return urmlDiagramItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -163,8 +158,7 @@ public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -198,8 +192,7 @@ public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -248,12 +241,12 @@ public class UrmlItemProviderAdapterFactory extends UrmlAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (urmlModelElementItemProvider != null)
-			urmlModelElementItemProvider.dispose();
 		if (featureItemProvider != null)
 			featureItemProvider.dispose();
 		if (stakeholderItemProvider != null)
 			stakeholderItemProvider.dispose();
+		if (urmlDiagramItemProvider != null)
+			urmlDiagramItemProvider.dispose();
 	}
 
 }

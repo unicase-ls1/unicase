@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.goal.impl;
 
@@ -33,7 +30,7 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	public static GoalFactory init() {
 		try {
 			GoalFactory theGoalFactory = (GoalFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml/goal");
+				.getEFactory("http://unicase.org/model/urml/goal");
 			if (theGoalFactory != null) {
 				return theGoalFactory;
 			}
@@ -64,8 +61,7 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 		case GoalPackage.GOAL:
 			return createGoal();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -80,8 +76,7 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 		case GoalPackage.GOAL_TYPE:
 			return createGoalTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -96,8 +91,7 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 		case GoalPackage.GOAL_TYPE:
 			return convertGoalTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -116,13 +110,11 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalType createGoalTypeFromString(EDataType eDataType,
-			String initialValue) {
+	public GoalType createGoalTypeFromString(EDataType eDataType, String initialValue) {
 		GoalType result = GoalType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
@@ -131,8 +123,7 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertGoalTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertGoalTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

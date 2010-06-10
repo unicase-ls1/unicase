@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.impl;
 
@@ -37,8 +34,7 @@ import urml.requirement.RequirementPackage;
  *
  * @generated
  */
-public class NonFunctionalRequirementImpl extends RequirementImpl implements
-		NonFunctionalRequirement {
+public class NonFunctionalRequirementImpl extends RequirementImpl implements NonFunctionalRequirement {
 	/**
 	 * The cached value of the '{@link #getConstrainedFeatures() <em>Constrained Features</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -75,11 +71,9 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements
 	 */
 	public EList<Feature> getConstrainedFeatures() {
 		if (constrainedFeatures == null) {
-			constrainedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(
-					Feature.class,
-					this,
-					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
-					UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
+			constrainedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
+				UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return constrainedFeatures;
 	}
@@ -91,12 +85,11 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainedFeatures())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainedFeatures()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -107,12 +100,10 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return ((InternalEList<?>) getConstrainedFeatures()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getConstrainedFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -142,8 +133,7 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
 			getConstrainedFeatures().clear();
-			getConstrainedFeatures().addAll(
-					(Collection<? extends Feature>) newValue);
+			getConstrainedFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,8 +163,7 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return constrainedFeatures != null
-					&& !constrainedFeatures.isEmpty();
+			return constrainedFeatures != null && !constrainedFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

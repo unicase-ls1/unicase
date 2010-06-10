@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.provider;
 
@@ -34,9 +31,8 @@ import urml.danger.Mitigation;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MitigationItemProvider extends UrmlModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MitigationItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,15 +66,11 @@ public class MitigationItemProvider extends UrmlModelElementItemProvider
 	 * @generated
 	 */
 	protected void addMitigatedDangersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Mitigation_mitigatedDangers_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Mitigation_mitigatedDangers_feature",
-						"_UI_Mitigation_type"),
-				DangerPackage.Literals.MITIGATION__MITIGATED_DANGERS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Mitigation_mitigatedDangers_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Mitigation_mitigatedDangers_feature",
+				"_UI_Mitigation_type"), DangerPackage.Literals.MITIGATION__MITIGATED_DANGERS, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -91,7 +83,7 @@ public class MitigationItemProvider extends UrmlModelElementItemProvider
 	public String getText(Object object) {
 		String label = ((Mitigation) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Mitigation_type")
-				: getString("_UI_Mitigation_type") + " " + label;
+			: getString("_UI_Mitigation_type") + " " + label;
 	}
 
 	/**
@@ -115,8 +107,7 @@ public class MitigationItemProvider extends UrmlModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.impl;
 
@@ -33,8 +30,7 @@ import urml.goal.GoalPackage;
  *
  * @generated
  */
-public class StakeholderImpl extends UrmlModelElementImpl implements
-		Stakeholder {
+public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder {
 	/**
 	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,8 +71,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements
 			goals = (Goal) eResolveProxy(oldGoals);
 			if (goals != oldGoals) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							UrmlPackage.STAKEHOLDER__GOALS, oldGoals, goals));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UrmlPackage.STAKEHOLDER__GOALS, oldGoals,
+						goals));
 			}
 		}
 		return goals;
@@ -100,9 +96,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements
 		Goal oldGoals = goals;
 		goals = newGoals;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, UrmlPackage.STAKEHOLDER__GOALS, oldGoals,
-					newGoals);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				UrmlPackage.STAKEHOLDER__GOALS, oldGoals, newGoals);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -120,17 +115,14 @@ public class StakeholderImpl extends UrmlModelElementImpl implements
 		if (newGoals != goals) {
 			NotificationChain msgs = null;
 			if (goals != null)
-				msgs = ((InternalEObject) goals).eInverseRemove(this,
-						GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
+				msgs = ((InternalEObject) goals).eInverseRemove(this, GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
 			if (newGoals != null)
-				msgs = ((InternalEObject) newGoals).eInverseAdd(this,
-						GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
+				msgs = ((InternalEObject) newGoals).eInverseAdd(this, GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
 			msgs = basicSetGoals(newGoals, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					UrmlPackage.STAKEHOLDER__GOALS, newGoals, newGoals));
+			eNotify(new ENotificationImpl(this, Notification.SET, UrmlPackage.STAKEHOLDER__GOALS, newGoals, newGoals));
 	}
 
 	/**
@@ -139,13 +131,11 @@ public class StakeholderImpl extends UrmlModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.STAKEHOLDER__GOALS:
 			if (goals != null)
-				msgs = ((InternalEObject) goals).eInverseRemove(this,
-						GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
+				msgs = ((InternalEObject) goals).eInverseRemove(this, GoalPackage.GOAL__STAKEHOLDERS, Goal.class, msgs);
 			return basicSetGoals((Goal) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -157,8 +147,7 @@ public class StakeholderImpl extends UrmlModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.STAKEHOLDER__GOALS:
 			return basicSetGoals(null, msgs);

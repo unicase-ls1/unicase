@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -28,8 +25,7 @@ import urml.danger.ProceduralMitigation;
  *
  * @generated
  */
-public class ProceduralMitigationImpl extends MitigationImpl implements
-		ProceduralMitigation {
+public class ProceduralMitigationImpl extends MitigationImpl implements ProceduralMitigation {
 	/**
 	 * The default value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,8 +84,7 @@ public class ProceduralMitigationImpl extends MitigationImpl implements
 		mitigationProcedure = newMitigationProcedure;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE,
-					oldMitigationProcedure, mitigationProcedure));
+				DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE, oldMitigationProcedure, mitigationProcedure));
 	}
 
 	/**
@@ -145,9 +140,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE:
-			return MITIGATION_PROCEDURE_EDEFAULT == null ? mitigationProcedure != null
-					: !MITIGATION_PROCEDURE_EDEFAULT
-							.equals(mitigationProcedure);
+			return MITIGATION_PROCEDURE_EDEFAULT == null ? mitigationProcedure != null : !MITIGATION_PROCEDURE_EDEFAULT
+				.equals(mitigationProcedure);
 		}
 		return super.eIsSet(featureID);
 	}

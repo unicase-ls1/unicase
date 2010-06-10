@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.util;
 
@@ -45,10 +42,8 @@ public class RequirementXMLProcessor extends XMLProcessor {
 	protected Map<String, Resource.Factory> getRegistrations() {
 		if (registrations == null) {
 			super.getRegistrations();
-			registrations.put(XML_EXTENSION,
-					new RequirementResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION,
-					new RequirementResourceFactoryImpl());
+			registrations.put(XML_EXTENSION, new RequirementResourceFactoryImpl());
+			registrations.put(STAR_EXTENSION, new RequirementResourceFactoryImpl());
 		}
 		return registrations;
 	}

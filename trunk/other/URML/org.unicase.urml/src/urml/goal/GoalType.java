@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.goal;
 
@@ -128,8 +125,8 @@ public enum GoalType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final GoalType[] VALUES_ARRAY = new GoalType[] {
-			BUSINESS_GOAL, PRODUCT_GOAL, CUSTOMER_GOAL, END_USER_GOAL, };
+	private static final GoalType[] VALUES_ARRAY = new GoalType[] { BUSINESS_GOAL, PRODUCT_GOAL, CUSTOMER_GOAL,
+		END_USER_GOAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -137,8 +134,7 @@ public enum GoalType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<GoalType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<GoalType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value.

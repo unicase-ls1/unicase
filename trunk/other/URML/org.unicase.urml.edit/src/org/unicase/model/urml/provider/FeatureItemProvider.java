@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.provider;
 
@@ -33,9 +30,8 @@ import org.unicase.model.urml.UrmlPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureItemProvider extends UrmlModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FeatureItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,14 +68,10 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addGoalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Feature_goals_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Feature_goals_feature", "_UI_Feature_type"),
-				UrmlPackage.Literals.FEATURE__GOALS, true, false, true, null,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Feature_goals_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Feature_goals_feature", "_UI_Feature_type"),
+			UrmlPackage.Literals.FEATURE__GOALS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -88,20 +80,13 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDetailingFunctionalRequirementsPropertyDescriptor(
-			Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Feature_detailingFunctionalRequirements_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_Feature_detailingFunctionalRequirements_feature",
-								"_UI_Feature_type"),
-						UrmlPackage.Literals.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
-						true, false, true, null, null, null));
+	protected void addDetailingFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Feature_detailingFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Feature_detailingFunctionalRequirements_feature",
+				"_UI_Feature_type"), UrmlPackage.Literals.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS, true, false,
+			true, null, null, null));
 	}
 
 	/**
@@ -110,20 +95,13 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConstrainingNonFunctionalRequirementsPropertyDescriptor(
-			Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Feature_constrainingNonFunctionalRequirements_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_Feature_constrainingNonFunctionalRequirements_feature",
-								"_UI_Feature_type"),
-						UrmlPackage.Literals.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
-						true, false, true, null, null, null));
+	protected void addConstrainingNonFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Feature_constrainingNonFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Feature_constrainingNonFunctionalRequirements_feature",
+				"_UI_Feature_type"), UrmlPackage.Literals.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS, true,
+			false, true, null, null, null));
 	}
 
 	/**
@@ -133,15 +111,11 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addDetailingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Feature_detailingUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Feature_detailingUseCases_feature",
-						"_UI_Feature_type"),
-				UrmlPackage.Literals.FEATURE__DETAILING_USE_CASES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Feature_detailingUseCases_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Feature_detailingUseCases_feature", "_UI_Feature_type"),
+				UrmlPackage.Literals.FEATURE__DETAILING_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -153,8 +127,7 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UrmlPackage.Literals.FEATURE__SUB_FEATURES);
@@ -183,8 +156,7 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Feature"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Feature"));
 	}
 
 	/**
@@ -196,8 +168,8 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Feature) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Feature_type")
-				: getString("_UI_Feature_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Feature_type") : getString("_UI_Feature_type")
+			+ " " + label;
 	}
 
 	/**
@@ -213,8 +185,7 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 
 		switch (notification.getFeatureID(Feature.class)) {
 		case UrmlPackage.FEATURE__SUB_FEATURES:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -228,13 +199,11 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				UrmlPackage.Literals.FEATURE__SUB_FEATURES,
-				UrmlFactory.eINSTANCE.createFeature()));
+		newChildDescriptors.add(createChildParameter(UrmlPackage.Literals.FEATURE__SUB_FEATURES, UrmlFactory.eINSTANCE
+			.createFeature()));
 	}
 
 }

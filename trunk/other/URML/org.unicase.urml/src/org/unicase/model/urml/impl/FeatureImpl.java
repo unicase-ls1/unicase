@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.impl;
 
@@ -131,9 +128,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 */
 	public EList<Goal> getGoals() {
 		if (goals == null) {
-			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(
-					Goal.class, this, UrmlPackage.FEATURE__GOALS,
-					GoalPackage.GOAL__REALIZED_FEATURES);
+			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(Goal.class, this,
+				UrmlPackage.FEATURE__GOALS, GoalPackage.GOAL__REALIZED_FEATURES);
 		}
 		return goals;
 	}
@@ -146,10 +142,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	public EList<FunctionalRequirement> getDetailingFunctionalRequirements() {
 		if (detailingFunctionalRequirements == null) {
 			detailingFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
-					FunctionalRequirement.class,
-					this,
-					UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
+				FunctionalRequirement.class, this, UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
 		}
 		return detailingFunctionalRequirements;
 	}
@@ -162,10 +156,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	public EList<NonFunctionalRequirement> getConstrainingNonFunctionalRequirements() {
 		if (constrainingNonFunctionalRequirements == null) {
 			constrainingNonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
-					NonFunctionalRequirement.class,
-					this,
-					UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
-					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
+				NonFunctionalRequirement.class, this, UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
 		}
 		return constrainingNonFunctionalRequirements;
 	}
@@ -178,9 +170,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	public EList<SolutionDomainUseCase> getDetailingUseCases() {
 		if (detailingUseCases == null) {
 			detailingUseCases = new EObjectWithInverseResolvingEList<SolutionDomainUseCase>(
-					SolutionDomainUseCase.class, this,
-					UrmlPackage.FEATURE__DETAILING_USE_CASES,
-					UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
+				SolutionDomainUseCase.class, this, UrmlPackage.FEATURE__DETAILING_USE_CASES,
+				UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
 		}
 		return detailingUseCases;
 	}
@@ -212,10 +203,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetParentFeature(Feature newParentFeature,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentFeature,
-				UrmlPackage.FEATURE__PARENT_FEATURE, msgs);
+	public NotificationChain basicSetParentFeature(Feature newParentFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParentFeature, UrmlPackage.FEATURE__PARENT_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -226,23 +215,21 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 */
 	public void setParentFeature(Feature newParentFeature) {
 		if (newParentFeature != eInternalContainer()
-				|| (eContainerFeatureID() != UrmlPackage.FEATURE__PARENT_FEATURE && newParentFeature != null)) {
+			|| (eContainerFeatureID() != UrmlPackage.FEATURE__PARENT_FEATURE && newParentFeature != null)) {
 			if (EcoreUtil.isAncestor(this, newParentFeature))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentFeature != null)
-				msgs = ((InternalEObject) newParentFeature).eInverseAdd(this,
-						UrmlPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
+				msgs = ((InternalEObject) newParentFeature).eInverseAdd(this, UrmlPackage.FEATURE__SUB_FEATURES,
+					Feature.class, msgs);
 			msgs = basicSetParentFeature(newParentFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					UrmlPackage.FEATURE__PARENT_FEATURE, newParentFeature,
-					newParentFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, UrmlPackage.FEATURE__PARENT_FEATURE,
+				newParentFeature, newParentFeature));
 	}
 
 	/**
@@ -252,9 +239,8 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 */
 	public EList<Feature> getSubFeatures() {
 		if (subFeatures == null) {
-			subFeatures = new EObjectContainmentWithInverseEList.Resolving<Feature>(
-					Feature.class, this, UrmlPackage.FEATURE__SUB_FEATURES,
-					UrmlPackage.FEATURE__PARENT_FEATURE);
+			subFeatures = new EObjectContainmentWithInverseEList.Resolving<Feature>(Feature.class, this,
+				UrmlPackage.FEATURE__SUB_FEATURES, UrmlPackage.FEATURE__PARENT_FEATURE);
 		}
 		return subFeatures;
 	}
@@ -266,28 +252,25 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.FEATURE__GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals()).basicAdd(otherEnd, msgs);
 		case UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingFunctionalRequirements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingFunctionalRequirements()).basicAdd(
+				otherEnd, msgs);
 		case UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainingNonFunctionalRequirements())
-					.basicAdd(otherEnd, msgs);
+				.basicAdd(otherEnd, msgs);
 		case UrmlPackage.FEATURE__DETAILING_USE_CASES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingUseCases())
-					.basicAdd(otherEnd, msgs);
+				.basicAdd(otherEnd, msgs);
 		case UrmlPackage.FEATURE__PARENT_FEATURE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParentFeature((Feature) otherEnd, msgs);
 		case UrmlPackage.FEATURE__SUB_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubFeatures())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubFeatures()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -298,25 +281,20 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.FEATURE__GOALS:
 			return ((InternalEList<?>) getGoals()).basicRemove(otherEnd, msgs);
 		case UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getDetailingFunctionalRequirements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getDetailingFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		case UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getConstrainingNonFunctionalRequirements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getConstrainingNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		case UrmlPackage.FEATURE__DETAILING_USE_CASES:
-			return ((InternalEList<?>) getDetailingUseCases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getDetailingUseCases()).basicRemove(otherEnd, msgs);
 		case UrmlPackage.FEATURE__PARENT_FEATURE:
 			return basicSetParentFeature(null, msgs);
 		case UrmlPackage.FEATURE__SUB_FEATURES:
-			return ((InternalEList<?>) getSubFeatures()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSubFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -327,12 +305,10 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case UrmlPackage.FEATURE__PARENT_FEATURE:
-			return eInternalContainer().eInverseRemove(this,
-					UrmlPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
+			return eInternalContainer().eInverseRemove(this, UrmlPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -378,18 +354,16 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 			return;
 		case UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
 			getDetailingFunctionalRequirements().clear();
-			getDetailingFunctionalRequirements().addAll(
-					(Collection<? extends FunctionalRequirement>) newValue);
+			getDetailingFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
 			getConstrainingNonFunctionalRequirements().clear();
-			getConstrainingNonFunctionalRequirements().addAll(
-					(Collection<? extends NonFunctionalRequirement>) newValue);
+			getConstrainingNonFunctionalRequirements()
+				.addAll((Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		case UrmlPackage.FEATURE__DETAILING_USE_CASES:
 			getDetailingUseCases().clear();
-			getDetailingUseCases().addAll(
-					(Collection<? extends SolutionDomainUseCase>) newValue);
+			getDetailingUseCases().addAll((Collection<? extends SolutionDomainUseCase>) newValue);
 			return;
 		case UrmlPackage.FEATURE__PARENT_FEATURE:
 			setParentFeature((Feature) newValue);
@@ -443,11 +417,9 @@ public class FeatureImpl extends UrmlModelElementImpl implements Feature {
 		case UrmlPackage.FEATURE__GOALS:
 			return goals != null && !goals.isEmpty();
 		case UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return detailingFunctionalRequirements != null
-					&& !detailingFunctionalRequirements.isEmpty();
+			return detailingFunctionalRequirements != null && !detailingFunctionalRequirements.isEmpty();
 		case UrmlPackage.FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
-			return constrainingNonFunctionalRequirements != null
-					&& !constrainingNonFunctionalRequirements.isEmpty();
+			return constrainingNonFunctionalRequirements != null && !constrainingNonFunctionalRequirements.isEmpty();
 		case UrmlPackage.FEATURE__DETAILING_USE_CASES:
 			return detailingUseCases != null && !detailingUseCases.isEmpty();
 		case UrmlPackage.FEATURE__PARENT_FEATURE:

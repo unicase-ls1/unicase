@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.provider;
 
@@ -34,9 +31,8 @@ import urml.danger.DangerPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AssetItemProvider extends UrmlModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AssetItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,14 +66,10 @@ public class AssetItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addEndangeredByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Asset_endangeredBy_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Asset_endangeredBy_feature", "_UI_Asset_type"),
-				DangerPackage.Literals.ASSET__ENDANGERED_BY, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Asset_endangeredBy_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Asset_endangeredBy_feature", "_UI_Asset_type"),
+			DangerPackage.Literals.ASSET__ENDANGERED_BY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -89,8 +81,8 @@ public class AssetItemProvider extends UrmlModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Asset) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Asset_type")
-				: getString("_UI_Asset_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Asset_type") : getString("_UI_Asset_type") + " "
+			+ label;
 	}
 
 	/**
@@ -114,8 +106,7 @@ public class AssetItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

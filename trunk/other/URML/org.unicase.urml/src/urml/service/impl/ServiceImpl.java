@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.impl;
 
@@ -102,10 +99,8 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetServiceProvider(
-			ServiceProvider newServiceProvider, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newServiceProvider,
-				ServicePackage.SERVICE__SERVICE_PROVIDER, msgs);
+	public NotificationChain basicSetServiceProvider(ServiceProvider newServiceProvider, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newServiceProvider, ServicePackage.SERVICE__SERVICE_PROVIDER, msgs);
 		return msgs;
 	}
 
@@ -116,24 +111,21 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 */
 	public void setServiceProvider(ServiceProvider newServiceProvider) {
 		if (newServiceProvider != eInternalContainer()
-				|| (eContainerFeatureID() != ServicePackage.SERVICE__SERVICE_PROVIDER && newServiceProvider != null)) {
+			|| (eContainerFeatureID() != ServicePackage.SERVICE__SERVICE_PROVIDER && newServiceProvider != null)) {
 			if (EcoreUtil.isAncestor(this, newServiceProvider))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newServiceProvider != null)
 				msgs = ((InternalEObject) newServiceProvider).eInverseAdd(this,
-						ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES,
-						ServiceProvider.class, msgs);
+					ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES, ServiceProvider.class, msgs);
 			msgs = basicSetServiceProvider(newServiceProvider, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ServicePackage.SERVICE__SERVICE_PROVIDER,
-					newServiceProvider, newServiceProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, ServicePackage.SERVICE__SERVICE_PROVIDER,
+				newServiceProvider, newServiceProvider));
 	}
 
 	/**
@@ -143,10 +135,9 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 */
 	public EList<Requirement> getSatisfiedRequirements() {
 		if (satisfiedRequirements == null) {
-			satisfiedRequirements = new EObjectWithInverseResolvingEList.ManyInverse<Requirement>(
-					Requirement.class, this,
-					ServicePackage.SERVICE__SATISFIED_REQUIREMENTS,
-					RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES);
+			satisfiedRequirements = new EObjectWithInverseResolvingEList.ManyInverse<Requirement>(Requirement.class,
+				this, ServicePackage.SERVICE__SATISFIED_REQUIREMENTS,
+				RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES);
 		}
 		return satisfiedRequirements;
 	}
@@ -158,16 +149,15 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SERVICE_PROVIDER:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetServiceProvider((ServiceProvider) otherEnd, msgs);
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSatisfiedRequirements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSatisfiedRequirements()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -178,14 +168,12 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SERVICE_PROVIDER:
 			return basicSetServiceProvider(null, msgs);
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return ((InternalEList<?>) getSatisfiedRequirements()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getSatisfiedRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -196,13 +184,11 @@ public class ServiceImpl extends MitigationImpl implements Service {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ServicePackage.SERVICE__SERVICE_PROVIDER:
-			return eInternalContainer().eInverseRemove(this,
-					ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES,
-					ServiceProvider.class, msgs);
+			return eInternalContainer().eInverseRemove(this, ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES,
+				ServiceProvider.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -239,8 +225,7 @@ public class ServiceImpl extends MitigationImpl implements Service {
 			return;
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
 			getSatisfiedRequirements().clear();
-			getSatisfiedRequirements().addAll(
-					(Collection<? extends Requirement>) newValue);
+			getSatisfiedRequirements().addAll((Collection<? extends Requirement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,8 +260,7 @@ public class ServiceImpl extends MitigationImpl implements Service {
 		case ServicePackage.SERVICE__SERVICE_PROVIDER:
 			return basicGetServiceProvider() != null;
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return satisfiedRequirements != null
-					&& !satisfiedRequirements.isEmpty();
+			return satisfiedRequirements != null && !satisfiedRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

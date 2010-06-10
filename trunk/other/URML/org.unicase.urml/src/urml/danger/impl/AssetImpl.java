@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -74,9 +71,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	 */
 	public EList<Danger> getEndangeredBy() {
 		if (endangeredBy == null) {
-			endangeredBy = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
-					Danger.class, this, DangerPackage.ASSET__ENDANGERED_BY,
-					DangerPackage.DANGER__HARMED_ASSETS);
+			endangeredBy = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
+				DangerPackage.ASSET__ENDANGERED_BY, DangerPackage.DANGER__HARMED_ASSETS);
 		}
 		return endangeredBy;
 	}
@@ -88,12 +84,10 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.ASSET__ENDANGERED_BY:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getEndangeredBy())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getEndangeredBy()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -104,12 +98,10 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.ASSET__ENDANGERED_BY:
-			return ((InternalEList<?>) getEndangeredBy()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getEndangeredBy()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

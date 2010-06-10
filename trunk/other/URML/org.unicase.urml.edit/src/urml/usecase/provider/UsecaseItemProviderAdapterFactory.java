@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.provider;
 
@@ -36,8 +33,8 @@ import urml.usecase.util.UsecaseAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory implements ComposeableAdapterFactory,
+	IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -93,8 +90,7 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
 	@Override
 	public Adapter createApplicationDomainUseCaseAdapter() {
 		if (applicationDomainUseCaseItemProvider == null) {
-			applicationDomainUseCaseItemProvider = new ApplicationDomainUseCaseItemProvider(
-					this);
+			applicationDomainUseCaseItemProvider = new ApplicationDomainUseCaseItemProvider(this);
 		}
 
 		return applicationDomainUseCaseItemProvider;
@@ -117,8 +113,7 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
 	@Override
 	public Adapter createSolutionDomainUseCaseAdapter() {
 		if (solutionDomainUseCaseItemProvider == null) {
-			solutionDomainUseCaseItemProvider = new SolutionDomainUseCaseItemProvider(
-					this);
+			solutionDomainUseCaseItemProvider = new SolutionDomainUseCaseItemProvider(this);
 		}
 
 		return solutionDomainUseCaseItemProvider;
@@ -154,8 +149,7 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -164,8 +158,7 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -199,8 +192,7 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

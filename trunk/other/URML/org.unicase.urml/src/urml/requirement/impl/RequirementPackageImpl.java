@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.impl;
 
@@ -48,8 +45,7 @@ import urml.usecase.impl.UsecasePackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementPackageImpl extends EPackageImpl implements
-		RequirementPackage {
+public class RequirementPackageImpl extends EPackageImpl implements RequirementPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,14 +107,12 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 */
 	public static RequirementPackage init() {
 		if (isInited)
-			return (RequirementPackage) EPackage.Registry.INSTANCE
-					.getEPackage(RequirementPackage.eNS_URI);
+			return (RequirementPackage) EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 
 		// Obtain or create and register package
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new RequirementPackageImpl());
+			.get(eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+			: new RequirementPackageImpl());
 
 		isInited = true;
 
@@ -126,26 +120,21 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI)
-				: UrmlPackage.eINSTANCE);
-		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI)
-				: GoalPackage.eINSTANCE);
+		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UrmlPackage.eNS_URI)
+			: UrmlPackage.eINSTANCE);
+		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(GoalPackage.eNS_URI)
+			: GoalPackage.eINSTANCE);
 		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI)
-				: UsecasePackage.eINSTANCE);
+			.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UsecasePackage.eNS_URI) : UsecasePackage.eINSTANCE);
 		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI)
-				: ServicePackage.eINSTANCE);
+			.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServicePackage.eNS_URI) : ServicePackage.eINSTANCE);
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI)
-				: DangerPackage.eINSTANCE);
+			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
@@ -167,8 +156,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		theRequirementPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(RequirementPackage.eNS_URI,
-				theRequirementPackage);
+		EPackage.Registry.INSTANCE.put(RequirementPackage.eNS_URI, theRequirementPackage);
 		return theRequirementPackage;
 	}
 
@@ -205,8 +193,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_DetailedFeatures() {
-		return (EReference) functionalRequirementEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) functionalRequirementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -215,8 +202,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_SubRequirements() {
-		return (EReference) functionalRequirementEClass
-				.getEStructuralFeatures().get(1);
+		return (EReference) functionalRequirementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -225,8 +211,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_ParentRequirement() {
-		return (EReference) functionalRequirementEClass
-				.getEStructuralFeatures().get(2);
+		return (EReference) functionalRequirementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -244,8 +229,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_ConstrainedFeatures() {
-		return (EReference) nonFunctionalRequirementEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) nonFunctionalRequirementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -281,16 +265,12 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		createEReference(requirementEClass, REQUIREMENT__IMPLEMENTING_SERVICES);
 
 		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
-		createEReference(functionalRequirementEClass,
-				FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
-		createEReference(functionalRequirementEClass,
-				FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS);
-		createEReference(functionalRequirementEClass,
-				FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT);
 
 		nonFunctionalRequirementEClass = createEClass(NON_FUNCTIONAL_REQUIREMENT);
-		createEReference(nonFunctionalRequirementEClass,
-				NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
+		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
 	}
 
 	/**
@@ -318,79 +298,58 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI);
+		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 		ServicePackage theServicePackage = (ServicePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI);
+			.getEPackage(ServicePackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MetamodelPackage.eNS_URI);
-		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI);
+			.getEPackage(MetamodelPackage.eNS_URI);
+		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		requirementEClass.getESuperTypes()
-				.add(theDangerPackage.getMitigation());
+		requirementEClass.getESuperTypes().add(theDangerPackage.getMitigation());
 		functionalRequirementEClass.getESuperTypes().add(this.getRequirement());
-		nonFunctionalRequirementEClass.getESuperTypes().add(
-				this.getRequirement());
+		nonFunctionalRequirementEClass.getESuperTypes().add(this.getRequirement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(requirementEClass, Requirement.class, "Requirement",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRequirement_ImplementingServices(), theServicePackage
-				.getService(), theServicePackage
-				.getService_SatisfiedRequirements(), "implementingServices",
-				null, 0, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getRequirement_ImplementingServices().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirement_ImplementingServices(), theServicePackage.getService(), theServicePackage
+			.getService_SatisfiedRequirements(), "implementingServices", null, 0, -1, Requirement.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getRequirement_ImplementingServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(functionalRequirementEClass, FunctionalRequirement.class,
-				"FunctionalRequirement", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionalRequirement_DetailedFeatures(),
-				theUrmlPackage.getFeature(), theUrmlPackage
-						.getFeature_DetailingFunctionalRequirements(),
-				"detailedFeatures", null, 0, -1, FunctionalRequirement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionalRequirement_DetailedFeatures(), theUrmlPackage.getFeature(), theUrmlPackage
+			.getFeature_DetailingFunctionalRequirements(), "detailedFeatures", null, 0, -1,
+			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_DetailedFeatures().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFunctionalRequirement_SubRequirements(), this
-				.getFunctionalRequirement(), this
-				.getFunctionalRequirement_ParentRequirement(),
-				"subRequirements", null, 0, -1, FunctionalRequirement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getFunctionalRequirement_ParentRequirement(), this
-				.getFunctionalRequirement(), this
-				.getFunctionalRequirement_SubRequirements(),
-				"parentRequirement", null, 0, 1, FunctionalRequirement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+			theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFunctionalRequirement_SubRequirements(), this.getFunctionalRequirement(), this
+			.getFunctionalRequirement_ParentRequirement(), "subRequirements", null, 0, -1, FunctionalRequirement.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionalRequirement_ParentRequirement(), this.getFunctionalRequirement(), this
+			.getFunctionalRequirement_SubRequirements(), "parentRequirement", null, 0, 1, FunctionalRequirement.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_ParentRequirement().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(nonFunctionalRequirementEClass,
-				NonFunctionalRequirement.class, "NonFunctionalRequirement",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNonFunctionalRequirement_ConstrainedFeatures(),
-				theUrmlPackage.getFeature(), theUrmlPackage
-						.getFeature_ConstrainingNonFunctionalRequirements(),
-				"constrainedFeatures", null, 0, -1,
-				NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNonFunctionalRequirement_ConstrainedFeatures(), theUrmlPackage.getFeature(), theUrmlPackage
+			.getFeature_ConstrainingNonFunctionalRequirements(), "constrainedFeatures", null, 0, -1,
+			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getNonFunctionalRequirement_ConstrainedFeatures().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } //RequirementPackageImpl
