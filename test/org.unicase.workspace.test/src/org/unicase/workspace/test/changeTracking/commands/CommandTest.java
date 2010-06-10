@@ -870,4 +870,42 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(0, leafSection.getModelElements().size());
 		// assertEquals(1, getProjectSpace().getOperations().size());
 	}
+
+	@Test
+	public void moveToWorkpackageCommand() {
+		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage sourceWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
+		final ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
+		actionItem.setName("Move me anywhere you want!");
+		actionItem.setContainingWorkpackage(sourceWorkPackage);
+		final WorkPackage targetWorkpackage = TaskFactory.eINSTANCE.createWorkPackage();
+		targetWorkpackage.setName("target workpackage");
+		leafSection.getModelElements().add(sourceWorkPackage);
+		leafSection.getModelElements().add(targetWorkpackage);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(leafSection);
+			}
+		}.run();
+		assertEquals(2, leafSection.getContainedElements().size());
+		assertEquals(1, sourceWorkPackage.getContainedElements().size());
+		assertEquals(0, targetWorkpackage.getContainedElements().size());
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				clearOperations();
+				org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
+					.getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
+			}
+		}.run();
+
+		assertEquals(2, leafSection.getContainedElements().size());
+		assertEquals(0, sourceWorkPackage.getContainedElements().size());
+		assertEquals(1, targetWorkpackage.getContainedElements().size());
+		assertEquals(1, getProjectSpace().getOperations().size());
+	}
 }
