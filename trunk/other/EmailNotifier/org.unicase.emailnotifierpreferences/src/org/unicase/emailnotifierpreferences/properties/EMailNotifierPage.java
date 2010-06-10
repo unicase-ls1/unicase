@@ -6,7 +6,6 @@ import java.util.Vector;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -22,10 +21,9 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -33,6 +31,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.emailnotifierpreferences.Activator;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.Project;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
@@ -50,33 +51,23 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  */
 public class EMailNotifierPage extends PropertyPage {
 
-	/**
-	 * Constructor for EMailNotifierPage.
-	 */
-	public EMailNotifierPage() {
-		super();
-	}
-
 	private Project project;
 	private ProjectSpace projectSpace;
 	private List<NotificationGroup> tempNotificationGroups;
 	private User currentUser;
-	private Boolean existEmail = false;
-	private String mailLabel = "test";
+	private Boolean existUser;
+	private Boolean existEmail;
+	private String mailLabel;
 
 	private ListViewer notificationGroupList;
-	private Button btnAdd;
-	private Button btnRemove;
-	private Button btnEdit;
 
 	private Composite compositeNotificationGroupProperties;
 	private CompositeNotificationTypeSelection compositeNotificationTypeSelection;
 	private CompositeSendOptions compositeSendOptions;
 	private CompositeBottom compositeBottom;
-	
-	
+
 	/**
-	 * This Method builds the main part of the UI for EmailNotifier Service Properties. 
+	 * This Method builds the main part of the UI for EmailNotifier Service Properties.
 	 * 
 	 * @author fuesescc
 	 */
@@ -84,93 +75,88 @@ public class EMailNotifierPage extends PropertyPage {
 		final Composite root = new Composite(folder, SWT.NONE);
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 		GridDataFactory.fillDefaults().applyTo(root);
-		root.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
 
-		{
-			final Composite compositeTop = new Composite(root, SWT.NONE);
-			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(compositeTop);
-			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).span(1, 1).applyTo(
-				compositeTop);
-			compositeTop.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_GREEN));
-			{
-				Composite compositeNotificationGroups = new Composite(compositeTop, SWT.NONE);
-				GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(compositeNotificationGroups);
+		final Composite compositeTop = new Composite(root, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(compositeTop);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).hint(510, SWT.DEFAULT).applyTo(
+			compositeTop);
 
-				Label groupListLabel = new Label(compositeNotificationGroups, SWT.PUSH | SWT.TOP);
-				groupListLabel.setText("notification groups");
-				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).hint(150, SWT.DEFAULT).grab(true, false)
-					.applyTo(groupListLabel);
-				notificationGroupList = new ListViewer(compositeNotificationGroups, SWT.SINGLE | SWT.V_SCROLL
-					| SWT.H_SCROLL | SWT.BORDER);
-				GridDataFactory.fillDefaults().grab(true, true).hint(150, 150).applyTo(
-					notificationGroupList.getControl());
-				addButtons(compositeNotificationGroups);
-				notificationGroupList.setContentProvider(new IStructuredContentProvider() {
-					public Object[] getElements(Object inputElement) {
-						List<NotificationGroup> l = (List<NotificationGroup>) inputElement;
-						return l.toArray();
-					}
+		Composite compositeNotificationGroups = new Composite(compositeTop, SWT.NONE);
+		GridLayoutFactory.fillDefaults().applyTo(compositeNotificationGroups);
 
-					public void dispose() {
-					}
+		Label groupListLabel = new Label(compositeNotificationGroups, SWT.PUSH | SWT.TOP);
+		groupListLabel.setText("Notification Groups");
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).hint(110, SWT.DEFAULT).applyTo(groupListLabel);
+		notificationGroupList = new ListViewer(compositeNotificationGroups, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
+			| SWT.BORDER);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.FILL).grab(false, true).hint(80, 150).applyTo(
+			notificationGroupList.getControl());
 
-					public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-						// System.out.println("Input changed: old=" + oldInput + ", new=" + newInput);
-						notificationGroupList.refresh();
-					}
-				});
-				notificationGroupList.setInput(tempNotificationGroups);
-				notificationGroupList.setLabelProvider(new LabelProvider() {
-					public Image getImage(Object element) {
-						return null;
-					}
+		Composite btntoolbar = new Composite(compositeNotificationGroups, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).margins(0, 5).spacing(11, 0).applyTo(btntoolbar);
+		addButtons(btntoolbar);
 
-					public String getText(Object element) {
-						return ((NotificationGroup) element).getNotificationGroupName();
-					}
-				});
-				notificationGroupList.addSelectionChangedListener(new ISelectionChangedListener() {
-					public void selectionChanged(SelectionChangedEvent event) {
-						disposeProperties();
-						IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-						if (selection != null) {
-							try {
-								NotificationGroup group = (NotificationGroup) selection.getFirstElement();
-								String groupname = group.getNotificationGroupName();
-								compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
-									compositeNotificationGroupProperties, groupname, tempNotificationGroups, group);
-								compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties,
-									groupname, tempNotificationGroups, group);
-								loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(selection
-									.getFirstElement()));
-								compositeNotificationGroupProperties.layout();
-								compositeNotificationGroupProperties.pack();
-							} catch (Exception e) {
-								// TODO: handle exception
-							}
-						}
-					}
-				});
-				notificationGroupList.addFilter(new ViewerFilter() {
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return true;
-					}
-				});
-				notificationGroupList.setSorter(new ViewerSorter() {
-					// public int compare(Viewer viewer, Object e1, Object e2) {
-					// return ((NotificationGroup) e1).getNotificationGroupName().compareTo(((NotificationGroup)
-					// e2).getNotificationGroupName());
-					// }
-				});
+		compositeNotificationGroupProperties = new Composite(compositeTop, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(compositeNotificationGroupProperties);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(compositeNotificationGroupProperties);
+
+		compositeBottom = new CompositeBottom(root, mailLabel, existEmail, existUser);
+
+		notificationGroupList.setContentProvider(new IStructuredContentProvider() {
+			public Object[] getElements(Object inputElement) {
+				List<NotificationGroup> l = (List<NotificationGroup>) inputElement;
+				return l.toArray();
 			}
-			compositeNotificationGroupProperties = new Composite(compositeTop, SWT.NONE);
-			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(
-				compositeNotificationGroupProperties);
-			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(1, 1).applyTo(
-				compositeNotificationGroupProperties);
-			compositeNotificationGroupProperties.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
-		}
-		compositeBottom = new CompositeBottom(root, mailLabel, existEmail);
+
+			public void dispose() {
+			}
+
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+				notificationGroupList.refresh();
+			}
+		});
+		notificationGroupList.setInput(tempNotificationGroups);
+		notificationGroupList.setLabelProvider(new LabelProvider() {
+			public Image getImage(Object element) {
+				return null;
+			}
+
+			public String getText(Object element) {
+				return ((NotificationGroup) element).getNotificationGroupName();
+			}
+		});
+		notificationGroupList.addSelectionChangedListener(new ISelectionChangedListener() {
+			public void selectionChanged(SelectionChangedEvent event) {
+				disposeProperties();
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				if (selection != null) {
+					NotificationGroup group = (NotificationGroup) selection.getFirstElement();
+					if (group != null) {
+						String groupname = group.getNotificationGroupName();
+						compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
+							compositeNotificationGroupProperties, groupname, tempNotificationGroups, group);
+						compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties,
+							groupname, tempNotificationGroups, group);
+						loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(selection
+							.getFirstElement()));
+						compositeNotificationGroupProperties.layout();
+						compositeNotificationGroupProperties.pack();
+					}
+				}
+			}
+		});
+		notificationGroupList.addFilter(new ViewerFilter() {
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return true;
+			}
+		});
+		notificationGroupList.setSorter(new ViewerSorter() {
+			// public int compare(Viewer viewer, Object e1, Object e2) {
+			// return ((NotificationGroup) e1).getNotificationGroupName().compareTo(((NotificationGroup)
+			// e2).getNotificationGroupName());
+			// }
+		});
+
 		return root;
 	}
 
@@ -197,22 +183,18 @@ public class EMailNotifierPage extends PropertyPage {
 	}
 
 	/**
-	 * This Method loads the Properties for the user's EmailNotifier Service for the selected project. 
+	 * This Method loads the Properties for the user's EmailNotifier Service for the selected project.
 	 * 
 	 * @author fuesescc
 	 */
 	private void loadProperties() {
-		try {
-			OrgUnitProperty loadedNotificationGroups = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				EMailNotifierKey.NOTIFICATIONGROUPS);
-			OrgUnitProperty loadedActivation = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				EMailNotifierKey.ACTIVATED);
-			compositeBottom.activate(loadedActivation.getBooleanProperty());
-			if (loadedNotificationGroups != null) {
-				loadedNotificationGroups.getEObjectListProperty(tempNotificationGroups);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		OrgUnitProperty loadedNotificationGroups = PreferenceManager.INSTANCE.getProperty(projectSpace,
+			EMailNotifierKey.NOTIFICATIONGROUPS);
+		OrgUnitProperty loadedActivation = PreferenceManager.INSTANCE.getProperty(projectSpace,
+			EMailNotifierKey.ACTIVATED);
+		compositeBottom.activate(loadedActivation.getBooleanProperty());
+		if (loadedNotificationGroups != null) {
+			loadedNotificationGroups.getEObjectListProperty(tempNotificationGroups);
 		}
 	}
 
@@ -221,7 +203,7 @@ public class EMailNotifierPage extends PropertyPage {
 	}
 
 	/**
-	 * This Method disposes the UI of the Properties associated with the currently selected NotificationGroup. 
+	 * This Method disposes the UI of the Properties associated with the currently selected NotificationGroup.
 	 * 
 	 * @author fuesescc
 	 */
@@ -233,9 +215,9 @@ public class EMailNotifierPage extends PropertyPage {
 			compositeSendOptions.dispose();
 		}
 	}
-	
+
 	/**
-	 * Init method that is called before the UI is built. 
+	 * Init method that is called before the UI is built.
 	 * 
 	 * @author fuesescc
 	 */
@@ -247,17 +229,18 @@ public class EMailNotifierPage extends PropertyPage {
 		project = (Project) getElement();
 		projectSpace = WorkspaceManager.getProjectSpace(project);
 
-		//check the current user's email address
-		String userName = projectSpace.getUsersession().getACUser().getName();
+		// check the current user's email address
+		ACOrgUnitId userid = projectSpace.getUsersession().getACUser().getId();
 		EList<User> listOfUsers = project.getModelElementsByClass(OrganizationPackage.eINSTANCE.getUser(),
 			new BasicEList<User>());
 		currentUser = null;
 		for (User u : listOfUsers) {
-			if (u.getName().equals(userName)) {
+			if (u.getAcOrgId().equals(userid.getId())) {
 				currentUser = u;
 			}
 		}
 		if (currentUser != null) {
+			existUser = true;
 			if (currentUser.getEmail().equals("")) {
 				existEmail = false;
 				mailLabel = "Please fill in your e-mail address";
@@ -265,6 +248,10 @@ public class EMailNotifierPage extends PropertyPage {
 				existEmail = true;
 				mailLabel = "The notifications will be send to the following e-mail address" + currentUser.getEmail();
 			}
+		} else {
+			existUser = false;
+			mailLabel = "<User does not exist in the currently selected project!>";
+			existEmail = false;
 		}
 		return true;
 	}
@@ -310,17 +297,23 @@ public class EMailNotifierPage extends PropertyPage {
 	 * @author fuesescc
 	 */
 	private void addButtons(Composite composite) {
-		btnAdd = new Button(composite, SWT.PUSH);
-		btnAdd.setText("Add");
-		btnEdit = new Button(composite, SWT.PUSH);
-		btnEdit.setText("Modify");
-		btnRemove = new Button(composite, SWT.PUSH);
-		btnRemove.setText("Remove");
+		ImageHyperlink addButton = new ImageHyperlink(composite, SWT.TOP);
+		addButton.setImage(Activator.getImageDescriptor("icons/add.png").createImage());
+		addButton.setToolTipText("Add a Notification Group");
 
-		btnAdd.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "new notification group",
-					"Enter 1-14 characters", "dummy", new LengthValidator());
+		ImageHyperlink removeButton = new ImageHyperlink(composite, SWT.TOP);
+		removeButton.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
+		removeButton.setToolTipText("Remove the selected Notification Group");
+
+		ImageHyperlink editButton = new ImageHyperlink(composite, SWT.TOP);
+		editButton.setImage(Activator.getImageDescriptor("icons/edit.png").createImage());
+		editButton.setToolTipText("Edit the selected Notification Group");
+
+		addButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Create a notification group",
+					"Enter 1-14 characters", "", new InputValidator(tempNotificationGroups));
 
 				if (dlg.open() == Window.OK) {
 					NotificationGroup newgroup = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
@@ -331,29 +324,12 @@ public class EMailNotifierPage extends PropertyPage {
 						.indexOf(newgroup));
 				}
 				notificationGroupList.refresh(true);
-
 			}
 		});
 
-		btnEdit.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
-				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
-				if (group == null) {
-					return;
-				}
-				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "edit notification group: "
-					+ group.getNotificationGroupName(), "Enter 1-14 characters", group.getNotificationGroupName(),
-					new LengthValidator());
-				if (dlg.open() == Window.OK) {
-					group.setNotificationGroupName(dlg.getValue());
-				}
-				notificationGroupList.update(group, null);
-			}
-		});
-
-		btnRemove.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
+		removeButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
 				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
 				if (group == null) {
@@ -364,36 +340,34 @@ public class EMailNotifierPage extends PropertyPage {
 				notificationGroupList.refresh();
 			}
 		});
-	}
 
-	/**
-	 * This class validates a String. It is used to validate the input when a NotificationGroup is added or edited.
-	 * The string that is validated is the name of the NotificationGroup.The string has to be between 1 and 14 characters
-	 * long and it may not be identical to any NotificationGroup names that already exist for the current users's project.
-	 * 
-	 * @author fuesescc
-	 */
-	class LengthValidator implements IInputValidator {
-		/**
-		 * Validates the String. Returns null for no error, or an error message
-		 * 
-		 * @param newText the String to validate
-		 * @return String
-		 * 
-		 * @author fuesescc
-		 */
-		public String isValid(String s) {
-			int len = s.length();
-			if (len < 1)
-				return "notification group name is too short";
-			if (len > 14)
-				return "notification group is too long";
-			for (int i = 0; i < tempNotificationGroups.size(); i++) {
-				if (s.equals(tempNotificationGroups.get(i).getNotificationGroupName())) {
-					return "a notification group with this name already exists";
+		editButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
+				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
+				if (group == null) {
+					return;
 				}
+				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),
+					"Edit the name of the notification group \"" + group.getNotificationGroupName() + "\"",
+					"Enter 1-14 characters", group.getNotificationGroupName(), new InputValidator(
+						tempNotificationGroups));
+				if (dlg.open() == Window.OK) {
+					group.setNotificationGroupName(dlg.getValue());
+					disposeProperties();
+					compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(
+						compositeNotificationGroupProperties, dlg.getValue(), tempNotificationGroups, group);
+					compositeSendOptions = new CompositeSendOptions(compositeNotificationGroupProperties, dlg
+						.getValue(), tempNotificationGroups, group);
+					loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(selection
+						.getFirstElement()));
+					compositeNotificationGroupProperties.layout();
+					compositeNotificationGroupProperties.pack();
+				}
+				notificationGroupList.update(group, null);
 			}
-			return null;
-		}
+		});
+
 	}
 }
