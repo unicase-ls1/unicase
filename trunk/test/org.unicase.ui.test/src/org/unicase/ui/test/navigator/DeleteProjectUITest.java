@@ -63,8 +63,10 @@ public class DeleteProjectUITest extends MEEditorTest {
 				} else {
 					assertTrue(true);
 				}
-				// String projectName = getProjectSpace().getProjectName();
-				// assertTrue();
+				// if(getProjectSpace().getProject()==null){ this dosen't work for some reason :(
+				// assertTrue(true);}
+				// else{assertTrue(false);}
+
 			}
 
 		}.run();
