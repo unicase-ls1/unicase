@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.impl;
 
@@ -41,8 +38,7 @@ import urml.usecase.UsecasePackage;
  *
  * @generated
  */
-public abstract class UseCaseImpl extends UrmlModelElementImpl implements
-		UseCase {
+public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCase {
 	/**
 	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -89,8 +85,7 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements
 	 */
 	public EList<Step> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentEList.Resolving<Step>(Step.class,
-					this, UsecasePackage.USE_CASE__STEPS);
+			steps = new EObjectContainmentEList.Resolving<Step>(Step.class, this, UsecasePackage.USE_CASE__STEPS);
 		}
 		return steps;
 	}
@@ -102,9 +97,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements
 	 */
 	public EList<Actor> getActors() {
 		if (actors == null) {
-			actors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(
-					Actor.class, this, UsecasePackage.USE_CASE__ACTORS,
-					UsecasePackage.ACTOR__USE_CASES);
+			actors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
+				UsecasePackage.USE_CASE__ACTORS, UsecasePackage.ACTOR__USE_CASES);
 		}
 		return actors;
 	}
@@ -116,12 +110,10 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.USE_CASE__ACTORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getActors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getActors()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -132,8 +124,7 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.USE_CASE__STEPS:
 			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);

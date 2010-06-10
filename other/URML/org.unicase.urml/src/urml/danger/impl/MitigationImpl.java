@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -37,8 +34,7 @@ import urml.danger.Mitigation;
  *
  * @generated
  */
-public abstract class MitigationImpl extends UrmlModelElementImpl implements
-		Mitigation {
+public abstract class MitigationImpl extends UrmlModelElementImpl implements Mitigation {
 	/**
 	 * The cached value of the '{@link #getMitigatedDangers() <em>Mitigated Dangers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -75,10 +71,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements
 	 */
 	public EList<Danger> getMitigatedDangers() {
 		if (mitigatedDangers == null) {
-			mitigatedDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
-					Danger.class, this,
-					DangerPackage.MITIGATION__MITIGATED_DANGERS,
-					DangerPackage.DANGER__MITIGATIONS);
+			mitigatedDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
+				DangerPackage.MITIGATION__MITIGATED_DANGERS, DangerPackage.DANGER__MITIGATIONS);
 		}
 		return mitigatedDangers;
 	}
@@ -90,12 +84,10 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigatedDangers())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigatedDangers()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -106,12 +98,10 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
-			return ((InternalEList<?>) getMitigatedDangers()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getMitigatedDangers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -141,8 +131,7 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
 			getMitigatedDangers().clear();
-			getMitigatedDangers().addAll(
-					(Collection<? extends Danger>) newValue);
+			getMitigatedDangers().addAll((Collection<? extends Danger>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

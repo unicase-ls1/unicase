@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase;
 
@@ -831,8 +828,7 @@ public interface UsecasePackage extends EPackage {
 		 * @see urml.usecase.impl.UsecasePackageImpl#getApplicationDomainUseCase()
 		 * @generated
 		 */
-		EClass APPLICATION_DOMAIN_USE_CASE = eINSTANCE
-				.getApplicationDomainUseCase();
+		EClass APPLICATION_DOMAIN_USE_CASE = eINSTANCE.getApplicationDomainUseCase();
 
 		/**
 		 * The meta object literal for the '<em><b>Detailed Goal</b></em>' reference list feature.
@@ -840,8 +836,7 @@ public interface UsecasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL = eINSTANCE
-				.getApplicationDomainUseCase_DetailedGoal();
+		EReference APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL = eINSTANCE.getApplicationDomainUseCase_DetailedGoal();
 
 		/**
 		 * The meta object literal for the '{@link urml.usecase.impl.SolutionDomainUseCaseImpl <em>Solution Domain Use Case</em>}' class.
@@ -859,8 +854,7 @@ public interface UsecasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE = eINSTANCE
-				.getSolutionDomainUseCase_DetailedFeature();
+		EReference SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE = eINSTANCE.getSolutionDomainUseCase_DetailedFeature();
 
 		/**
 		 * The meta object literal for the '{@link urml.usecase.impl.ActorImpl <em>Actor</em>}' class.
@@ -886,8 +880,7 @@ public interface UsecasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR__TRIGGERED_DANGERS = eINSTANCE
-				.getActor_TriggeredDangers();
+		EReference ACTOR__TRIGGERED_DANGERS = eINSTANCE.getActor_TriggeredDangers();
 
 	}
 

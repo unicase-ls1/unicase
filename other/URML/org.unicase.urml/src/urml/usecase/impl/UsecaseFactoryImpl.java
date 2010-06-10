@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.impl;
 
@@ -32,7 +29,7 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	public static UsecaseFactory init() {
 		try {
 			UsecaseFactory theUsecaseFactory = (UsecaseFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml/usecase");
+				.getEFactory("http://unicase.org/model/urml/usecase");
 			if (theUsecaseFactory != null) {
 				return theUsecaseFactory;
 			}
@@ -67,8 +64,7 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 		case UsecasePackage.ACTOR:
 			return createActor();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

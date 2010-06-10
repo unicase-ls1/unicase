@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service;
 
@@ -450,8 +447,7 @@ public interface ServicePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERVICE__SERVICE_PROVIDER = eINSTANCE
-				.getService_ServiceProvider();
+		EReference SERVICE__SERVICE_PROVIDER = eINSTANCE.getService_ServiceProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Satisfied Requirements</b></em>' reference list feature.
@@ -459,8 +455,7 @@ public interface ServicePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERVICE__SATISFIED_REQUIREMENTS = eINSTANCE
-				.getService_SatisfiedRequirements();
+		EReference SERVICE__SATISFIED_REQUIREMENTS = eINSTANCE.getService_SatisfiedRequirements();
 
 		/**
 		 * The meta object literal for the '{@link urml.service.impl.ServiceProviderImpl <em>Provider</em>}' class.
@@ -478,8 +473,7 @@ public interface ServicePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERVICE_PROVIDER__PROVIDED_SERVICES = eINSTANCE
-				.getServiceProvider_ProvidedServices();
+		EReference SERVICE_PROVIDER__PROVIDED_SERVICES = eINSTANCE.getServiceProvider_ProvidedServices();
 
 	}
 

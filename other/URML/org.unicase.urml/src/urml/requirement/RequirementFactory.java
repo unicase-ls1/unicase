@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement;
 
@@ -23,8 +20,7 @@ public interface RequirementFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RequirementFactory eINSTANCE = urml.requirement.impl.RequirementFactoryImpl
-			.init();
+	RequirementFactory eINSTANCE = urml.requirement.impl.RequirementFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Functional Requirement</em>'.

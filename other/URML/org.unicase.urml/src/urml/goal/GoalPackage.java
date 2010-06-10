@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.goal;
 
@@ -421,8 +418,7 @@ public interface GoalPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GOAL__REALIZED_FEATURES = eINSTANCE
-				.getGoal_RealizedFeatures();
+		EReference GOAL__REALIZED_FEATURES = eINSTANCE.getGoal_RealizedFeatures();
 
 		/**
 		 * The meta object literal for the '<em><b>Detailing Use Cases</b></em>' reference feature.
@@ -430,8 +426,7 @@ public interface GoalPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GOAL__DETAILING_USE_CASES = eINSTANCE
-				.getGoal_DetailingUseCases();
+		EReference GOAL__DETAILING_USE_CASES = eINSTANCE.getGoal_DetailingUseCases();
 
 		/**
 		 * The meta object literal for the '<em><b>Sub Goals</b></em>' containment reference list feature.

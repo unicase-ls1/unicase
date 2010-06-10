@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.provider;
 
@@ -35,9 +32,8 @@ import urml.requirement.RequirementPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementItemProvider extends MitigationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class RequirementItemProvider extends MitigationItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -71,15 +67,11 @@ public class RequirementItemProvider extends MitigationItemProvider implements
 	 * @generated
 	 */
 	protected void addImplementingServicesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Requirement_implementingServices_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Requirement_implementingServices_feature",
-						"_UI_Requirement_type"),
-				RequirementPackage.Literals.REQUIREMENT__IMPLEMENTING_SERVICES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_implementingServices_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Requirement_implementingServices_feature",
+				"_UI_Requirement_type"), RequirementPackage.Literals.REQUIREMENT__IMPLEMENTING_SERVICES, true, false,
+			true, null, null, null));
 	}
 
 	/**
@@ -92,7 +84,7 @@ public class RequirementItemProvider extends MitigationItemProvider implements
 	public String getText(Object object) {
 		String label = ((Requirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Requirement_type")
-				: getString("_UI_Requirement_type") + " " + label;
+			: getString("_UI_Requirement_type") + " " + label;
 	}
 
 	/**
@@ -116,8 +108,7 @@ public class RequirementItemProvider extends MitigationItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

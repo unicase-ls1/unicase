@@ -19,6 +19,7 @@
     <genClasses ecoreClass="urml.ecore#//Stakeholder">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Stakeholder/goals"/>
     </genClasses>
+    <genClasses ecoreClass="urml.ecore#//URMLDiagram"/>
     <nestedGenPackages prefix="Goal" basePackage="urml" resource="XML" disposableProviderFactory="true"
         ecorePackage="urml.ecore#//goal">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="urml.ecore#//goal/GoalType">

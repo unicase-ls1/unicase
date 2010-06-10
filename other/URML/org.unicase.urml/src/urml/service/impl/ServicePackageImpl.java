@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.impl;
 
@@ -102,14 +99,12 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	 */
 	public static ServicePackage init() {
 		if (isInited)
-			return (ServicePackage) EPackage.Registry.INSTANCE
-					.getEPackage(ServicePackage.eNS_URI);
+			return (ServicePackage) EPackage.Registry.INSTANCE.getEPackage(ServicePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new ServicePackageImpl());
+		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
+			: new ServicePackageImpl());
 
 		isInited = true;
 
@@ -117,26 +112,21 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI)
-				: UrmlPackage.eINSTANCE);
-		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI)
-				: GoalPackage.eINSTANCE);
+		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UrmlPackage.eNS_URI)
+			: UrmlPackage.eINSTANCE);
+		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(GoalPackage.eNS_URI)
+			: GoalPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI)
-				: UsecasePackage.eINSTANCE);
+			.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UsecasePackage.eNS_URI) : UsecasePackage.eINSTANCE);
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI)
-				: DangerPackage.eINSTANCE);
+			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theServicePackage.createPackageContents();
@@ -158,8 +148,7 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		theServicePackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ServicePackage.eNS_URI,
-				theServicePackage);
+		EPackage.Registry.INSTANCE.put(ServicePackage.eNS_URI, theServicePackage);
 		return theServicePackage;
 	}
 
@@ -205,8 +194,7 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	 * @generated
 	 */
 	public EReference getServiceProvider_ProvidedServices() {
-		return (EReference) serviceProviderEClass.getEStructuralFeatures().get(
-				0);
+		return (EReference) serviceProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -243,8 +231,7 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		createEReference(serviceEClass, SERVICE__SATISFIED_REQUIREMENTS);
 
 		serviceProviderEClass = createEClass(SERVICE_PROVIDER);
-		createEReference(serviceProviderEClass,
-				SERVICE_PROVIDER__PROVIDED_SERVICES);
+		createEReference(serviceProviderEClass, SERVICE_PROVIDER__PROVIDED_SERVICES);
 	}
 
 	/**
@@ -272,12 +259,11 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DangerPackage.eNS_URI);
+		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MetamodelPackage.eNS_URI);
+			.getEPackage(MetamodelPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI);
+			.getEPackage(RequirementPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -288,36 +274,24 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		serviceProviderEClass.getESuperTypes().add(theDangerPackage.getAsset());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getService_ServiceProvider(), this.getServiceProvider(),
-				this.getServiceProvider_ProvidedServices(), "serviceProvider",
-				null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getService_ServiceProvider().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getService_SatisfiedRequirements(),
-				theRequirementPackage.getRequirement(), theRequirementPackage
-						.getRequirement_ImplementingServices(),
-				"satisfiedRequirements", null, 0, -1, Service.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getService_SatisfiedRequirements().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getService_ServiceProvider(), this.getServiceProvider(), this
+			.getServiceProvider_ProvidedServices(), "serviceProvider", null, 0, 1, Service.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getService_ServiceProvider().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getService_SatisfiedRequirements(), theRequirementPackage.getRequirement(),
+			theRequirementPackage.getRequirement_ImplementingServices(), "satisfiedRequirements", null, 0, -1,
+			Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getService_SatisfiedRequirements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(serviceProviderEClass, ServiceProvider.class,
-				"ServiceProvider", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getServiceProvider_ProvidedServices(),
-				this.getService(), this.getService_ServiceProvider(),
-				"providedServices", null, 0, -1, ServiceProvider.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getServiceProvider_ProvidedServices().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(serviceProviderEClass, ServiceProvider.class, "ServiceProvider", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServiceProvider_ProvidedServices(), this.getService(), this.getService_ServiceProvider(),
+			"providedServices", null, 0, -1, ServiceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getServiceProvider_ProvidedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } //ServicePackageImpl

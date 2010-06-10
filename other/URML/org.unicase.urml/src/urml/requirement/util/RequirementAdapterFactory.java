@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.util;
 
@@ -90,8 +87,7 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNonFunctionalRequirement(
-				NonFunctionalRequirement object) {
+		public Adapter caseNonFunctionalRequirement(NonFunctionalRequirement object) {
 			return createNonFunctionalRequirementAdapter();
 		}
 

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.provider;
 
@@ -33,9 +30,8 @@ import urml.requirement.RequirementPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FunctionalRequirementItemProvider extends RequirementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FunctionalRequirementItemProvider extends RequirementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,17 +66,12 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 	 */
 	protected void addDetailedFeaturesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_FunctionalRequirement_detailedFeatures_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_FunctionalRequirement_detailedFeatures_feature",
-								"_UI_FunctionalRequirement_type"),
-						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES,
-						true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_FunctionalRequirement_detailedFeatures_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_detailedFeatures_feature",
+					"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -92,12 +83,10 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS);
+			childrenFeatures.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -123,8 +112,7 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/FunctionalRequirement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FunctionalRequirement"));
 	}
 
 	/**
@@ -137,7 +125,7 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 	public String getText(Object object) {
 		String label = ((FunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_FunctionalRequirement_type")
-				: getString("_UI_FunctionalRequirement_type") + " " + label;
+			: getString("_UI_FunctionalRequirement_type") + " " + label;
 	}
 
 	/**
@@ -153,8 +141,7 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -168,15 +155,12 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(
-						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS,
-						RequirementFactory.eINSTANCE
-								.createFunctionalRequirement()));
+		newChildDescriptors.add(createChildParameter(
+			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS, RequirementFactory.eINSTANCE
+				.createFunctionalRequirement()));
 	}
 
 }

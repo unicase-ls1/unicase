@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.impl;
 
@@ -32,7 +29,7 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	public static ServiceFactory init() {
 		try {
 			ServiceFactory theServiceFactory = (ServiceFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml/service");
+				.getEFactory("http://unicase.org/model/urml/service");
 			if (theServiceFactory != null) {
 				return theServiceFactory;
 			}
@@ -65,8 +62,7 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 		case ServicePackage.SERVICE_PROVIDER:
 			return createServiceProvider();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

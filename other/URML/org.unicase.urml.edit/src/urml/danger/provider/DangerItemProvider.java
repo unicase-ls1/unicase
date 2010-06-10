@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.provider;
 
@@ -34,9 +31,8 @@ import urml.danger.DangerPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DangerItemProvider extends UrmlModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class DangerItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -72,15 +68,10 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addTriggeringActorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Danger_triggeringActors_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Danger_triggeringActors_feature",
-						"_UI_Danger_type"),
-				DangerPackage.Literals.DANGER__TRIGGERING_ACTORS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_triggeringActors_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Danger_triggeringActors_feature", "_UI_Danger_type"),
+			DangerPackage.Literals.DANGER__TRIGGERING_ACTORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -90,14 +81,10 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addHarmedAssetsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Danger_harmedAssets_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Danger_harmedAssets_feature", "_UI_Danger_type"),
-				DangerPackage.Literals.DANGER__HARMED_ASSETS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_harmedAssets_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Danger_harmedAssets_feature", "_UI_Danger_type"),
+			DangerPackage.Literals.DANGER__HARMED_ASSETS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -107,14 +94,10 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addMitigationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Danger_mitigations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Danger_mitigations_feature", "_UI_Danger_type"),
-				DangerPackage.Literals.DANGER__MITIGATIONS, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_mitigations_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Danger_mitigations_feature", "_UI_Danger_type"),
+			DangerPackage.Literals.DANGER__MITIGATIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -125,8 +108,7 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Danger"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Danger"));
 	}
 
 	/**
@@ -138,8 +120,8 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Danger) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Danger_type")
-				: getString("_UI_Danger_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Danger_type") : getString("_UI_Danger_type") + " "
+			+ label;
 	}
 
 	/**
@@ -163,8 +145,7 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

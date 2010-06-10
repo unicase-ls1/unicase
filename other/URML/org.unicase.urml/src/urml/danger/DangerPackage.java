@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger;
 
@@ -794,8 +791,7 @@ public interface DangerPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DANGER__TRIGGERING_ACTORS = eINSTANCE
-				.getDanger_TriggeringActors();
+		EReference DANGER__TRIGGERING_ACTORS = eINSTANCE.getDanger_TriggeringActors();
 
 		/**
 		 * The meta object literal for the '<em><b>Harmed Assets</b></em>' reference list feature.
@@ -829,8 +825,7 @@ public interface DangerPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MITIGATION__MITIGATED_DANGERS = eINSTANCE
-				.getMitigation_MitigatedDangers();
+		EReference MITIGATION__MITIGATED_DANGERS = eINSTANCE.getMitigation_MitigatedDangers();
 
 		/**
 		 * The meta object literal for the '{@link urml.danger.impl.ProceduralMitigationImpl <em>Procedural Mitigation</em>}' class.
@@ -849,7 +844,7 @@ public interface DangerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE = eINSTANCE
-				.getProceduralMitigation_MitigationProcedure();
+			.getProceduralMitigation_MitigationProcedure();
 
 	}
 

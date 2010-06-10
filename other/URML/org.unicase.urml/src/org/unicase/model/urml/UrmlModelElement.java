@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml;
 
@@ -15,7 +12,7 @@ import org.unicase.model.UnicaseModelElement;
  *
  *
  * @see org.unicase.model.urml.UrmlPackage#getUrmlModelElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface UrmlModelElement extends UnicaseModelElement {

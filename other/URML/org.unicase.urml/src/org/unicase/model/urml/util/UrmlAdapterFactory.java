@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.util;
 
@@ -16,8 +13,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 
+import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.*;
 
 /**
@@ -91,6 +90,11 @@ public class UrmlAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseURMLDiagram(URMLDiagram object) {
+			return createURMLDiagramAdapter();
+		}
+
+		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -103,6 +107,16 @@ public class UrmlAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAttachment(Attachment object) {
+			return createAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseMEDiagram(MEDiagram object) {
+			return createMEDiagramAdapter();
 		}
 
 		@Override
@@ -167,6 +181,20 @@ public class UrmlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.urml.URMLDiagram <em>URML Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.urml.URMLDiagram
+	 * @generated
+	 */
+	public Adapter createURMLDiagramAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -205,6 +233,34 @@ public class UrmlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnicaseModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.Attachment <em>Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.Attachment
+	 * @generated
+	 */
+	public Adapter createAttachmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.MEDiagram <em>ME Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.MEDiagram
+	 * @generated
+	 */
+	public Adapter createMEDiagramAdapter() {
 		return null;
 	}
 

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.impl;
 
@@ -39,8 +36,7 @@ import urml.service.ServicePackage;
  *
  * @generated
  */
-public abstract class RequirementImpl extends MitigationImpl implements
-		Requirement {
+public abstract class RequirementImpl extends MitigationImpl implements Requirement {
 	/**
 	 * The cached value of the '{@link #getImplementingServices() <em>Implementing Services</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -77,10 +73,8 @@ public abstract class RequirementImpl extends MitigationImpl implements
 	 */
 	public EList<Service> getImplementingServices() {
 		if (implementingServices == null) {
-			implementingServices = new EObjectWithInverseResolvingEList.ManyInverse<Service>(
-					Service.class, this,
-					RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES,
-					ServicePackage.SERVICE__SATISFIED_REQUIREMENTS);
+			implementingServices = new EObjectWithInverseResolvingEList.ManyInverse<Service>(Service.class, this,
+				RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES, ServicePackage.SERVICE__SATISFIED_REQUIREMENTS);
 		}
 		return implementingServices;
 	}
@@ -92,12 +86,11 @@ public abstract class RequirementImpl extends MitigationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementingServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementingServices()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -108,12 +101,10 @@ public abstract class RequirementImpl extends MitigationImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return ((InternalEList<?>) getImplementingServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getImplementingServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -143,8 +134,7 @@ public abstract class RequirementImpl extends MitigationImpl implements
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
 			getImplementingServices().clear();
-			getImplementingServices().addAll(
-					(Collection<? extends Service>) newValue);
+			getImplementingServices().addAll((Collection<? extends Service>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,8 +164,7 @@ public abstract class RequirementImpl extends MitigationImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return implementingServices != null
-					&& !implementingServices.isEmpty();
+			return implementingServices != null && !implementingServices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

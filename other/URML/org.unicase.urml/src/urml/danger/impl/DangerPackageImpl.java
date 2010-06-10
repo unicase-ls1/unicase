@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -119,14 +116,12 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 	 */
 	public static DangerPackage init() {
 		if (isInited)
-			return (DangerPackage) EPackage.Registry.INSTANCE
-					.getEPackage(DangerPackage.eNS_URI);
+			return (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new DangerPackageImpl());
+		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
+			: new DangerPackageImpl());
 
 		isInited = true;
 
@@ -134,26 +129,21 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI)
-				: UrmlPackage.eINSTANCE);
-		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GoalPackage.eNS_URI)
-				: GoalPackage.eINSTANCE);
+		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UrmlPackage.eNS_URI)
+			: UrmlPackage.eINSTANCE);
+		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(GoalPackage.eNS_URI)
+			: GoalPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		UsecasePackageImpl theUsecasePackage = (UsecasePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI)
-				: UsecasePackage.eINSTANCE);
+			.getEPackage(UsecasePackage.eNS_URI) instanceof UsecasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UsecasePackage.eNS_URI) : UsecasePackage.eINSTANCE);
 		ServicePackageImpl theServicePackage = (ServicePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ServicePackage.eNS_URI)
-				: ServicePackage.eINSTANCE);
+			.getEPackage(ServicePackage.eNS_URI) instanceof ServicePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ServicePackage.eNS_URI) : ServicePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDangerPackage.createPackageContents();
@@ -266,8 +256,7 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 	 * @generated
 	 */
 	public EAttribute getProceduralMitigation_MitigationProcedure() {
-		return (EAttribute) proceduralMitigationEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) proceduralMitigationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -311,8 +300,7 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 		createEReference(mitigationEClass, MITIGATION__MITIGATED_DANGERS);
 
 		proceduralMitigationEClass = createEClass(PROCEDURAL_MITIGATION);
-		createEAttribute(proceduralMitigationEClass,
-				PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE);
+		createEAttribute(proceduralMitigationEClass, PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE);
 	}
 
 	/**
@@ -340,12 +328,11 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE
-				.getEPackage(UrmlPackage.eNS_URI);
+		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MetamodelPackage.eNS_URI);
+			.getEPackage(MetamodelPackage.eNS_URI);
 		UsecasePackage theUsecasePackage = (UsecasePackage) EPackage.Registry.INSTANCE
-				.getEPackage(UsecasePackage.eNS_URI);
+			.getEPackage(UsecasePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -354,63 +341,42 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 		// Add supertypes to classes
 		assetEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 		dangerEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
-		mitigationEClass.getESuperTypes().add(
-				theUrmlPackage.getUrmlModelElement());
+		mitigationEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 		proceduralMitigationEClass.getESuperTypes().add(this.getMitigation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(assetEClass, Asset.class, "Asset", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAsset_EndangeredBy(), this.getDanger(), this
-				.getDanger_HarmedAssets(), "endangeredBy", null, 0, -1,
-				Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getAsset_EndangeredBy().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(assetEClass, Asset.class, "Asset", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAsset_EndangeredBy(), this.getDanger(), this.getDanger_HarmedAssets(), "endangeredBy", null,
+			0, -1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAsset_EndangeredBy().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(dangerEClass, Danger.class, "Danger", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDanger_TriggeringActors(), theUsecasePackage
-				.getActor(), theUsecasePackage.getActor_TriggeredDangers(),
-				"triggeringActors", null, 0, -1, Danger.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDanger_TriggeringActors().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getDanger_HarmedAssets(), this.getAsset(), this
-				.getAsset_EndangeredBy(), "harmedAssets", null, 0, -1,
-				Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getDanger_HarmedAssets().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getDanger_Mitigations(), this.getMitigation(), this
-				.getMitigation_MitigatedDangers(), "mitigations", null, 0, -1,
-				Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getDanger_Mitigations().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(dangerEClass, Danger.class, "Danger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDanger_TriggeringActors(), theUsecasePackage.getActor(), theUsecasePackage
+			.getActor_TriggeredDangers(), "triggeringActors", null, 0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDanger_TriggeringActors().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getDanger_HarmedAssets(), this.getAsset(), this.getAsset_EndangeredBy(), "harmedAssets", null,
+			0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDanger_HarmedAssets().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getDanger_Mitigations(), this.getMitigation(), this.getMitigation_MitigatedDangers(),
+			"mitigations", null, 0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDanger_Mitigations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(mitigationEClass, Mitigation.class, "Mitigation",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMitigation_MitigatedDangers(), this.getDanger(), this
-				.getDanger_Mitigations(), "mitigatedDangers", null, 0, -1,
-				Mitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getMitigation_MitigatedDangers().getEKeys().add(
-				theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEClass(mitigationEClass, Mitigation.class, "Mitigation", IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMitigation_MitigatedDangers(), this.getDanger(), this.getDanger_Mitigations(),
+			"mitigatedDangers", null, 0, -1, Mitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMitigation_MitigatedDangers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(proceduralMitigationEClass, ProceduralMitigation.class,
-				"ProceduralMitigation", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProceduralMitigation_MitigationProcedure(),
-				ecorePackage.getEString(), "mitigationProcedure", null, 0, 1,
-				ProceduralMitigation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(proceduralMitigationEClass, ProceduralMitigation.class, "ProceduralMitigation", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProceduralMitigation_MitigationProcedure(), ecorePackage.getEString(), "mitigationProcedure",
+			null, 0, 1, ProceduralMitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //DangerPackageImpl

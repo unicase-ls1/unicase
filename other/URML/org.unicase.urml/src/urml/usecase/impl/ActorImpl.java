@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.impl;
 
@@ -88,9 +85,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	 */
 	public EList<UseCase> getUseCases() {
 		if (useCases == null) {
-			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this, UsecasePackage.ACTOR__USE_CASES,
-					UsecasePackage.USE_CASE__ACTORS);
+			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+				UsecasePackage.ACTOR__USE_CASES, UsecasePackage.USE_CASE__ACTORS);
 		}
 		return useCases;
 	}
@@ -102,10 +98,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	 */
 	public EList<Danger> getTriggeredDangers() {
 		if (triggeredDangers == null) {
-			triggeredDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
-					Danger.class, this,
-					UsecasePackage.ACTOR__TRIGGERED_DANGERS,
-					DangerPackage.DANGER__TRIGGERING_ACTORS);
+			triggeredDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
+				UsecasePackage.ACTOR__TRIGGERED_DANGERS, DangerPackage.DANGER__TRIGGERING_ACTORS);
 		}
 		return triggeredDangers;
 	}
@@ -117,15 +111,12 @@ public class ActorImpl extends AssetImpl implements Actor {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.ACTOR__USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases()).basicAdd(otherEnd, msgs);
 		case UsecasePackage.ACTOR__TRIGGERED_DANGERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeredDangers())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeredDangers()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -136,15 +127,12 @@ public class ActorImpl extends AssetImpl implements Actor {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.ACTOR__USE_CASES:
-			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd, msgs);
 		case UsecasePackage.ACTOR__TRIGGERED_DANGERS:
-			return ((InternalEList<?>) getTriggeredDangers()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getTriggeredDangers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -180,8 +168,7 @@ public class ActorImpl extends AssetImpl implements Actor {
 			return;
 		case UsecasePackage.ACTOR__TRIGGERED_DANGERS:
 			getTriggeredDangers().clear();
-			getTriggeredDangers().addAll(
-					(Collection<? extends Danger>) newValue);
+			getTriggeredDangers().addAll((Collection<? extends Danger>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

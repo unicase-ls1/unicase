@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -32,7 +29,7 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	public static DangerFactory init() {
 		try {
 			DangerFactory theDangerFactory = (DangerFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml/danger");
+				.getEFactory("http://unicase.org/model/urml/danger");
 			if (theDangerFactory != null) {
 				return theDangerFactory;
 			}
@@ -65,8 +62,7 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 		case DangerPackage.PROCEDURAL_MITIGATION:
 			return createProceduralMitigation();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

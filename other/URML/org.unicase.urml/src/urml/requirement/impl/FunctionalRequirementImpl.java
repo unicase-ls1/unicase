@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.impl;
 
@@ -44,8 +41,7 @@ import urml.requirement.RequirementPackage;
  *
  * @generated
  */
-public class FunctionalRequirementImpl extends RequirementImpl implements
-		FunctionalRequirement {
+public class FunctionalRequirementImpl extends RequirementImpl implements FunctionalRequirement {
 	/**
 	 * The cached value of the '{@link #getDetailedFeatures() <em>Detailed Features</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -92,11 +88,9 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 */
 	public EList<Feature> getDetailedFeatures() {
 		if (detailedFeatures == null) {
-			detailedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(
-					Feature.class,
-					this,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES,
-					UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS);
+			detailedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES,
+				UrmlPackage.FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS);
 		}
 		return detailedFeatures;
 	}
@@ -109,10 +103,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	public EList<FunctionalRequirement> getSubRequirements() {
 		if (subRequirements == null) {
 			subRequirements = new EObjectContainmentWithInverseEList.Resolving<FunctionalRequirement>(
-					FunctionalRequirement.class,
-					this,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT);
+				FunctionalRequirement.class, this, RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT);
 		}
 		return subRequirements;
 	}
@@ -144,11 +136,10 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetParentRequirement(
-			FunctionalRequirement newParentRequirement, NotificationChain msgs) {
+	public NotificationChain basicSetParentRequirement(FunctionalRequirement newParentRequirement,
+		NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newParentRequirement,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT,
-				msgs);
+			RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT, msgs);
 		return msgs;
 	}
 
@@ -159,28 +150,22 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 */
 	public void setParentRequirement(FunctionalRequirement newParentRequirement) {
 		if (newParentRequirement != eInternalContainer()
-				|| (eContainerFeatureID() != RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT && newParentRequirement != null)) {
+			|| (eContainerFeatureID() != RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT && newParentRequirement != null)) {
 			if (EcoreUtil.isAncestor(this, newParentRequirement))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentRequirement != null)
-				msgs = ((InternalEObject) newParentRequirement)
-						.eInverseAdd(
-								this,
-								RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS,
-								FunctionalRequirement.class, msgs);
+				msgs = ((InternalEObject) newParentRequirement).eInverseAdd(this,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS, FunctionalRequirement.class, msgs);
 			msgs = basicSetParentRequirement(newParentRequirement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT,
-					newParentRequirement, newParentRequirement));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT, newParentRequirement,
+				newParentRequirement));
 	}
 
 	/**
@@ -190,20 +175,16 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedFeatures())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedFeatures()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubRequirements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubRequirements()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetParentRequirement((FunctionalRequirement) otherEnd,
-					msgs);
+			return basicSetParentRequirement((FunctionalRequirement) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -214,15 +195,12 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
-			return ((InternalEList<?>) getDetailedFeatures()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getDetailedFeatures()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS:
-			return ((InternalEList<?>) getSubRequirements()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getSubRequirements()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT:
 			return basicSetParentRequirement(null, msgs);
 		}
@@ -235,15 +213,11 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT:
-			return eInternalContainer()
-					.eInverseRemove(
-							this,
-							RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS,
-							FunctionalRequirement.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS, FunctionalRequirement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -279,13 +253,11 @@ public class FunctionalRequirementImpl extends RequirementImpl implements
 		switch (featureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			getDetailedFeatures().clear();
-			getDetailedFeatures().addAll(
-					(Collection<? extends Feature>) newValue);
+			getDetailedFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS:
 			getSubRequirements().clear();
-			getSubRequirements().addAll(
-					(Collection<? extends FunctionalRequirement>) newValue);
+			getSubRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT:
 			setParentRequirement((FunctionalRequirement) newValue);

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.impl;
 
@@ -22,8 +19,7 @@ import urml.requirement.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl implements
-		RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl implements RequirementFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -33,7 +29,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 	public static RequirementFactory init() {
 		try {
 			RequirementFactory theRequirementFactory = (RequirementFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml/requirement");
+				.getEFactory("http://unicase.org/model/urml/requirement");
 			if (theRequirementFactory != null) {
 				return theRequirementFactory;
 			}
@@ -66,8 +62,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT:
 			return createNonFunctionalRequirement();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

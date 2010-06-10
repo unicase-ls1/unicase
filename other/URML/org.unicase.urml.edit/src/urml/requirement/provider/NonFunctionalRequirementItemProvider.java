@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement.provider;
 
@@ -29,10 +26,9 @@ import urml.requirement.RequirementPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NonFunctionalRequirementItemProvider extends
-		RequirementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class NonFunctionalRequirementItemProvider extends RequirementItemProvider implements
+	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
+	IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -66,18 +62,13 @@ public class NonFunctionalRequirementItemProvider extends
 	 * @generated
 	 */
 	protected void addConstrainedFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_NonFunctionalRequirement_constrainedFeatures_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_NonFunctionalRequirement_constrainedFeatures_feature",
-								"_UI_NonFunctionalRequirement_type"),
-						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_constrainedFeatures_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_constrainedFeatures_feature",
+				"_UI_NonFunctionalRequirement_type"),
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -88,8 +79,7 @@ public class NonFunctionalRequirementItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/NonFunctionalRequirement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonFunctionalRequirement"));
 	}
 
 	/**
@@ -102,7 +92,7 @@ public class NonFunctionalRequirementItemProvider extends
 	public String getText(Object object) {
 		String label = ((NonFunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_NonFunctionalRequirement_type")
-				: getString("_UI_NonFunctionalRequirement_type") + " " + label;
+			: getString("_UI_NonFunctionalRequirement_type") + " " + label;
 	}
 
 	/**
@@ -126,8 +116,7 @@ public class NonFunctionalRequirementItemProvider extends
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

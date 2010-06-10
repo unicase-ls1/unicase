@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.service.impl;
 
@@ -74,10 +71,8 @@ public class ServiceProviderImpl extends AssetImpl implements ServiceProvider {
 	 */
 	public EList<Service> getProvidedServices() {
 		if (providedServices == null) {
-			providedServices = new EObjectContainmentWithInverseEList.Resolving<Service>(
-					Service.class, this,
-					ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES,
-					ServicePackage.SERVICE__SERVICE_PROVIDER);
+			providedServices = new EObjectContainmentWithInverseEList.Resolving<Service>(Service.class, this,
+				ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES, ServicePackage.SERVICE__SERVICE_PROVIDER);
 		}
 		return providedServices;
 	}
@@ -89,12 +84,10 @@ public class ServiceProviderImpl extends AssetImpl implements ServiceProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProvidedServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProvidedServices()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -105,12 +98,10 @@ public class ServiceProviderImpl extends AssetImpl implements ServiceProvider {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES:
-			return ((InternalEList<?>) getProvidedServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getProvidedServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -140,8 +131,7 @@ public class ServiceProviderImpl extends AssetImpl implements ServiceProvider {
 		switch (featureID) {
 		case ServicePackage.SERVICE_PROVIDER__PROVIDED_SERVICES:
 			getProvidedServices().clear();
-			getProvidedServices().addAll(
-					(Collection<? extends Service>) newValue);
+			getProvidedServices().addAll((Collection<? extends Service>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

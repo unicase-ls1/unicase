@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.provider;
 
@@ -50,9 +47,8 @@ public final class UrmlEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public UrmlEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
+			MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
 	}
 
 	/**

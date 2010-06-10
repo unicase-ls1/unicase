@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.impl;
 
@@ -100,9 +97,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	 */
 	public EList<Actor> getTriggeringActors() {
 		if (triggeringActors == null) {
-			triggeringActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(
-					Actor.class, this, DangerPackage.DANGER__TRIGGERING_ACTORS,
-					UsecasePackage.ACTOR__TRIGGERED_DANGERS);
+			triggeringActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
+				DangerPackage.DANGER__TRIGGERING_ACTORS, UsecasePackage.ACTOR__TRIGGERED_DANGERS);
 		}
 		return triggeringActors;
 	}
@@ -114,9 +110,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	 */
 	public EList<Asset> getHarmedAssets() {
 		if (harmedAssets == null) {
-			harmedAssets = new EObjectWithInverseResolvingEList.ManyInverse<Asset>(
-					Asset.class, this, DangerPackage.DANGER__HARMED_ASSETS,
-					DangerPackage.ASSET__ENDANGERED_BY);
+			harmedAssets = new EObjectWithInverseResolvingEList.ManyInverse<Asset>(Asset.class, this,
+				DangerPackage.DANGER__HARMED_ASSETS, DangerPackage.ASSET__ENDANGERED_BY);
 		}
 		return harmedAssets;
 	}
@@ -128,9 +123,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	 */
 	public EList<Mitigation> getMitigations() {
 		if (mitigations == null) {
-			mitigations = new EObjectWithInverseResolvingEList.ManyInverse<Mitigation>(
-					Mitigation.class, this, DangerPackage.DANGER__MITIGATIONS,
-					DangerPackage.MITIGATION__MITIGATED_DANGERS);
+			mitigations = new EObjectWithInverseResolvingEList.ManyInverse<Mitigation>(Mitigation.class, this,
+				DangerPackage.DANGER__MITIGATIONS, DangerPackage.MITIGATION__MITIGATED_DANGERS);
 		}
 		return mitigations;
 	}
@@ -142,18 +136,14 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.DANGER__TRIGGERING_ACTORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeringActors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeringActors()).basicAdd(otherEnd, msgs);
 		case DangerPackage.DANGER__HARMED_ASSETS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHarmedAssets())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHarmedAssets()).basicAdd(otherEnd, msgs);
 		case DangerPackage.DANGER__MITIGATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigations())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -164,18 +154,14 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.DANGER__TRIGGERING_ACTORS:
-			return ((InternalEList<?>) getTriggeringActors()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getTriggeringActors()).basicRemove(otherEnd, msgs);
 		case DangerPackage.DANGER__HARMED_ASSETS:
-			return ((InternalEList<?>) getHarmedAssets()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getHarmedAssets()).basicRemove(otherEnd, msgs);
 		case DangerPackage.DANGER__MITIGATIONS:
-			return ((InternalEList<?>) getMitigations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getMitigations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,8 +195,7 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 		switch (featureID) {
 		case DangerPackage.DANGER__TRIGGERING_ACTORS:
 			getTriggeringActors().clear();
-			getTriggeringActors()
-					.addAll((Collection<? extends Actor>) newValue);
+			getTriggeringActors().addAll((Collection<? extends Actor>) newValue);
 			return;
 		case DangerPackage.DANGER__HARMED_ASSETS:
 			getHarmedAssets().clear();
@@ -218,8 +203,7 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 			return;
 		case DangerPackage.DANGER__MITIGATIONS:
 			getMitigations().clear();
-			getMitigations()
-					.addAll((Collection<? extends Mitigation>) newValue);
+			getMitigations().addAll((Collection<? extends Mitigation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

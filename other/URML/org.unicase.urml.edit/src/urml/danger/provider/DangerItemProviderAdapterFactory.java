@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.danger.provider;
 
@@ -36,8 +33,8 @@ import urml.danger.util.DangerAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DangerItemProviderAdapterFactory extends DangerAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class DangerItemProviderAdapterFactory extends DangerAdapterFactory implements ComposeableAdapterFactory,
+	IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -116,8 +113,7 @@ public class DangerItemProviderAdapterFactory extends DangerAdapterFactory
 	@Override
 	public Adapter createProceduralMitigationAdapter() {
 		if (proceduralMitigationItemProvider == null) {
-			proceduralMitigationItemProvider = new ProceduralMitigationItemProvider(
-					this);
+			proceduralMitigationItemProvider = new ProceduralMitigationItemProvider(this);
 		}
 
 		return proceduralMitigationItemProvider;
@@ -130,8 +126,7 @@ public class DangerItemProviderAdapterFactory extends DangerAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -140,8 +135,7 @@ public class DangerItemProviderAdapterFactory extends DangerAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -175,8 +169,7 @@ public class DangerItemProviderAdapterFactory extends DangerAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.impl;
 
@@ -32,7 +29,7 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	public static UrmlFactory init() {
 		try {
 			UrmlFactory theUrmlFactory = (UrmlFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/urml");
+				.getEFactory("http://unicase.org/model/urml");
 			if (theUrmlFactory != null) {
 				return theUrmlFactory;
 			}
@@ -60,26 +57,15 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case UrmlPackage.URML_MODEL_ELEMENT:
-			return createUrmlModelElement();
 		case UrmlPackage.FEATURE:
 			return createFeature();
 		case UrmlPackage.STAKEHOLDER:
 			return createStakeholder();
+		case UrmlPackage.URML_DIAGRAM:
+			return createURMLDiagram();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UrmlModelElement createUrmlModelElement() {
-		UrmlModelElementImpl urmlModelElement = new UrmlModelElementImpl();
-		return urmlModelElement;
 	}
 
 	/**
@@ -100,6 +86,16 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	public Stakeholder createStakeholder() {
 		StakeholderImpl stakeholder = new StakeholderImpl();
 		return stakeholder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public URMLDiagram createURMLDiagram() {
+		URMLDiagramImpl urmlDiagram = new URMLDiagramImpl();
+		return urmlDiagram;
 	}
 
 	/**

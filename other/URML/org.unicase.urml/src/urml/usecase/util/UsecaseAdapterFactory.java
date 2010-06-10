@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.util;
 
@@ -85,8 +82,7 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseApplicationDomainUseCase(
-				ApplicationDomainUseCase object) {
+		public Adapter caseApplicationDomainUseCase(ApplicationDomainUseCase object) {
 			return createApplicationDomainUseCaseAdapter();
 		}
 

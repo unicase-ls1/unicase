@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.impl;
 
@@ -37,8 +34,7 @@ import urml.usecase.UsecasePackage;
  *
  * @generated
  */
-public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements
-		ApplicationDomainUseCase {
+public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements ApplicationDomainUseCase {
 	/**
 	 * The cached value of the '{@link #getDetailedGoal() <em>Detailed Goal</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -75,10 +71,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements
 	 */
 	public EList<Goal> getDetailedGoal() {
 		if (detailedGoal == null) {
-			detailedGoal = new EObjectWithInverseResolvingEList<Goal>(
-					Goal.class, this,
-					UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
-					GoalPackage.GOAL__DETAILING_USE_CASES);
+			detailedGoal = new EObjectWithInverseResolvingEList<Goal>(Goal.class, this,
+				UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, GoalPackage.GOAL__DETAILING_USE_CASES);
 		}
 		return detailedGoal;
 	}
@@ -90,12 +84,10 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedGoal())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedGoal()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -106,12 +98,10 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL:
-			return ((InternalEList<?>) getDetailedGoal()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getDetailedGoal()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

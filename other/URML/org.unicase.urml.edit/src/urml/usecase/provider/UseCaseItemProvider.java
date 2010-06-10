@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.usecase.provider;
 
@@ -39,9 +36,8 @@ import urml.usecase.UsecasePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UseCaseItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -75,14 +71,10 @@ public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addActorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_actors_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_actors_feature", "_UI_UseCase_type"),
-				UsecasePackage.Literals.USE_CASE__ACTORS, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_actors_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_UseCase_actors_feature", "_UI_UseCase_type"),
+			UsecasePackage.Literals.USE_CASE__ACTORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -94,8 +86,7 @@ public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UsecasePackage.Literals.USE_CASE__STEPS);
@@ -125,8 +116,8 @@ public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((UseCase) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UseCase_type")
-				: getString("_UI_UseCase_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UseCase_type") : getString("_UI_UseCase_type")
+			+ " " + label;
 	}
 
 	/**
@@ -142,8 +133,7 @@ public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
 
 		switch (notification.getFeatureID(UseCase.class)) {
 		case UsecasePackage.USE_CASE__STEPS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -157,13 +147,11 @@ public class UseCaseItemProvider extends UrmlModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				UsecasePackage.Literals.USE_CASE__STEPS,
-				RequirementFactory.eINSTANCE.createStep()));
+		newChildDescriptors.add(createChildParameter(UsecasePackage.Literals.USE_CASE__STEPS,
+			RequirementFactory.eINSTANCE.createStep()));
 	}
 
 	/**

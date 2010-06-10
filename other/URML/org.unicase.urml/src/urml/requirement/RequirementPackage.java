@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package urml.requirement;
 
@@ -58,8 +55,7 @@ public interface RequirementPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RequirementPackage eINSTANCE = urml.requirement.impl.RequirementPackageImpl
-			.init();
+	RequirementPackage eINSTANCE = urml.requirement.impl.RequirementPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link urml.requirement.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -655,8 +651,7 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__IMPLEMENTING_SERVICES = eINSTANCE
-				.getRequirement_ImplementingServices();
+		EReference REQUIREMENT__IMPLEMENTING_SERVICES = eINSTANCE.getRequirement_ImplementingServices();
 
 		/**
 		 * The meta object literal for the '{@link urml.requirement.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
@@ -674,8 +669,7 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES = eINSTANCE
-				.getFunctionalRequirement_DetailedFeatures();
+		EReference FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES = eINSTANCE.getFunctionalRequirement_DetailedFeatures();
 
 		/**
 		 * The meta object literal for the '<em><b>Sub Requirements</b></em>' containment reference list feature.
@@ -683,8 +677,7 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS = eINSTANCE
-				.getFunctionalRequirement_SubRequirements();
+		EReference FUNCTIONAL_REQUIREMENT__SUB_REQUIREMENTS = eINSTANCE.getFunctionalRequirement_SubRequirements();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent Requirement</b></em>' container reference feature.
@@ -692,8 +685,7 @@ public interface RequirementPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT = eINSTANCE
-				.getFunctionalRequirement_ParentRequirement();
+		EReference FUNCTIONAL_REQUIREMENT__PARENT_REQUIREMENT = eINSTANCE.getFunctionalRequirement_ParentRequirement();
 
 		/**
 		 * The meta object literal for the '{@link urml.requirement.impl.NonFunctionalRequirementImpl <em>Non Functional Requirement</em>}' class.
@@ -703,8 +695,7 @@ public interface RequirementPackage extends EPackage {
 		 * @see urml.requirement.impl.RequirementPackageImpl#getNonFunctionalRequirement()
 		 * @generated
 		 */
-		EClass NON_FUNCTIONAL_REQUIREMENT = eINSTANCE
-				.getNonFunctionalRequirement();
+		EClass NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getNonFunctionalRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Constrained Features</b></em>' reference list feature.
@@ -713,7 +704,7 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES = eINSTANCE
-				.getNonFunctionalRequirement_ConstrainedFeatures();
+			.getNonFunctionalRequirement_ConstrainedFeatures();
 
 	}
 

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.model.urml.util;
 
@@ -14,8 +11,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
 
+import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.*;
 
 /**
@@ -75,8 +74,7 @@ public class UrmlSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
-					eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -132,6 +130,23 @@ public class UrmlSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case UrmlPackage.URML_DIAGRAM: {
+			URMLDiagram urmlDiagram = (URMLDiagram) theEObject;
+			T result = caseURMLDiagram(urmlDiagram);
+			if (result == null)
+				result = caseMEDiagram(urmlDiagram);
+			if (result == null)
+				result = caseAttachment(urmlDiagram);
+			if (result == null)
+				result = caseUnicaseModelElement(urmlDiagram);
+			if (result == null)
+				result = caseModelElement(urmlDiagram);
+			if (result == null)
+				result = caseIdentifiableElement(urmlDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -183,6 +198,21 @@ public class UrmlSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>URML Diagram</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>URML Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseURMLDiagram(URMLDiagram object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -224,6 +254,36 @@ public class UrmlSwitch<T> {
 	 * @generated
 	 */
 	public T caseUnicaseModelElement(UnicaseModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttachment(Attachment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ME Diagram</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ME Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMEDiagram(MEDiagram object) {
 		return null;
 	}
 
