@@ -356,7 +356,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
-		//checkForCrossReferences(modelElement);
+		// checkForCrossReferences(modelElement);
 		addModelElementAndChildrenToCache(modelElement);
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
@@ -398,15 +398,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			removeProjectChangeObserver(observer);
 		}
 		this.observersToRemove.clear();
-	}
-
-	private void checkForCrossReferences(ModelElement modelElement) {
-		if (!ModelUtil.isSelfContained(modelElement, true)) {
-			String message = "ModelElements may not contain cross references to other model elements when added to project!";
-			IllegalStateException exception = new IllegalStateException(message);
-			ModelUtil.logException(message, exception);
-			throw exception;
-		}
 	}
 
 	private void addModelElementAndChildrenToCache(ModelElement modelElement) {
