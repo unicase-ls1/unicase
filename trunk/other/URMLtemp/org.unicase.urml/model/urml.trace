@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trace:TraceModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
+  <nodeTraces
+      visualID="2001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/goal' and _eClass_.name = 'Goal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/diagram' and _eClass_.name = 'MEDiagram') and _containmentMF_.name = 'newElements') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/diagram' and _eClass_.name = 'MEDiagram') and _childMF_.name = 'elements')"/>
+  <nodeTraces
+      visualID="2002"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Stakeholder') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/diagram' and _eClass_.name = 'MEDiagram') and _containmentMF_.name = 'newElements')"/>
+  <linkTraces
+      visualID="4001"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Stakeholder')"/>
+  <linkTraces
+      visualID="4002"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Feature') and _feature_.name = 'parentFeature')"/>
+  <linkTraces
+      visualID="4003"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Stakeholder') and _feature_.name = 'goals')"/>
+</trace:TraceModel>
