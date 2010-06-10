@@ -148,5 +148,11 @@
            uri="http://unicase.org/model/activity">
      </factory>
   </extension>
+  <extension
+        point="org.unicase.emfstore.esmodel.edit.customOperationLabelProvider">
+     <provider
+           class="org.unicase.model.task.provider.ActionItemResolvedOperationProvider">
+     </provider>
+  </extension>
 </plugin>
 
