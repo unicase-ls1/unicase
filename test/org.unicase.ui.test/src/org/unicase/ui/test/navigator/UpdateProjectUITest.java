@@ -1,7 +1,7 @@
 package org.unicase.ui.test.navigator;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.DocumentFactory;
@@ -18,8 +18,9 @@ public class UpdateProjectUITest extends MEEditorTest {
 	/**
 	 * Setup the environment for testing.
 	 */
-	@Before
-	public void beforeTest() throws Exception {
+
+	@BeforeClass
+	public static void beforeClass() throws Exception {
 
 		SetupHelper.startSever();
 	}
@@ -46,8 +47,8 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	}
 
-	@After
-	public void afterTest() {
+	@AfterClass
+	public static void afterClass() {
 		SetupHelper.stopServer();
 
 	}
