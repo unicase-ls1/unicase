@@ -30,6 +30,26 @@
                </and>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.unicase.emfstore.hierachicalRepository.generateProject"
+               label="Generate Project"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -39,6 +59,18 @@
             id="org.unicase.emfstore.hierachicalRepository.transferChanges"
             name="TransferChanges">
       </command>
+      <command
+            defaultHandler="org.unicase.emfstore.hierarchicalrepository.GenerateProjectHandler"
+            id="org.unicase.emfstore.hierachicalRepository.generateProject"
+            name="GenerateProject">
+      </command>
+   </extension>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.emfstore.hierarchicalrepository.ModelElementOpener1"
+            name="org.unicase.emfstore.hierarchicalRepository.ModelElementOpener1">
+      </ModelElementOpener>
    </extension>
 
 </plugin>
