@@ -28,6 +28,7 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls.MERichTextControlWithoutToolbar;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -202,7 +203,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		String feature) {
 		Control modelElementControl = control.createControl(parent, SWT.FILL, new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getPropertyDescriptor(
-			modelElement, feature), modelElement, getEditingDomain(), new FormToolkit(Display.getCurrent()));
+			modelElement, feature), modelElement, UnicaseActionHelper.getContext(modelElement), new FormToolkit(Display.getCurrent()));
 		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		if (control instanceof MERichTextControlWithoutToolbar) {
 			gridData.heightHint = 120;
