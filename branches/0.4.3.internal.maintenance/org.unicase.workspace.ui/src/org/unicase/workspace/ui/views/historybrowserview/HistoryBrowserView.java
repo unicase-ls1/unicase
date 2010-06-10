@@ -102,21 +102,22 @@ public class HistoryBrowserView extends ViewPart implements
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo
-						&& ((HistoryInfo) node.getValue()).getChangePackage() != null
-						&& ((HistoryInfo) node.getValue()).getChangePackage()
-								.getLogMessage() != null) {
-					AccessControlHelper helper = new AccessControlHelper(
-							projectSpace.getUsersession());
-					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil
-								.copy(projectSpace.getProjectId()));
-						manager.add(addTagAction);
-						manager.add(removeTagAction);
-						manager.add(new Separator());
-					} catch (AccessControlException e) {
-						// do nothing
-						System.out.println("");
+				if (node.getValue() instanceof HistoryInfo){
+					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
+					if(historyInfo.getChangePackage() != null &&
+					   (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)
+					   ){
+						AccessControlHelper helper = new AccessControlHelper(
+								projectSpace.getUsersession());
+						try {
+							helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+									.copy(projectSpace.getProjectId()));
+							manager.add(addTagAction);
+							manager.add(removeTagAction);
+							manager.add(new Separator());
+						} catch (AccessControlException e) {
+							// do nothing
+						}
 					}
 
 				}
@@ -130,7 +131,6 @@ public class HistoryBrowserView extends ViewPart implements
 					manager.add(forceRevertAction);
 				} catch (AccessControlException e) {
 					// do nothing
-					System.out.println("");
 				}
 			}
 		}
