@@ -16,7 +16,7 @@ public class ModelElementOpener1 implements ModelElementOpener {
 	public int canOpen(ModelElement modelElement) {
 		if (modelElement instanceof Writer) {
 			Writer writer = (Writer) modelElement;
-			if (writer.getName().equals("Test")) {
+			if (writer.getName()!=null && writer.getName().equals("Test")) {
 				return 1;
 			}
 		}

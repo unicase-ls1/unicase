@@ -10,11 +10,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
+import org.unicase.workspace.util.UnicaseCommand;
 
 public class GenerateProjectHandler extends  AbstractHandler {
 
@@ -23,8 +22,8 @@ public class GenerateProjectHandler extends  AbstractHandler {
 		ProjectSpace projSpace = WorkspaceManager.getInstance()
 		.getCurrentWorkspace().getActiveProjectSpace();
 
-		Project project = projSpace.getProject();
-		Library library = LibraryFactory.eINSTANCE.createLibrary();
+		final Project project = projSpace.getProject();
+		final Library library = LibraryFactory.eINSTANCE.createLibrary();
 		
 		
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -45,8 +44,13 @@ public class GenerateProjectHandler extends  AbstractHandler {
 		for (int i = 0; i < size; i++) {
 			library.getBooks().add((LibraryFactory.eINSTANCE.createBook()));
 		}
-		
-		project.addModelElement(library);
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				project.addModelElement(library);
+			}
+		};
 		
 		return null;
 	}
