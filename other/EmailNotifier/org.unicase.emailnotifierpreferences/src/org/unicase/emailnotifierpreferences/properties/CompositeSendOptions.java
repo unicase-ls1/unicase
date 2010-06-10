@@ -15,7 +15,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
@@ -29,22 +28,23 @@ public class CompositeSendOptions extends Composite {
 	private Combo aggregatedOption;
 
 	private Composite extraControls;
-	
+
 	private Composite weekdayOptionComp;
 	private Combo weekdayOption;
 
 	private Composite daysSpinnerComp;
 	private Spinner daysSpinner;
 
-	CompositeSendOptions(Composite c, String s, final List<NotificationGroup> tempNotificationGroups, NotificationGroup group) {
+	CompositeSendOptions(Composite c, String s, final List<NotificationGroup> tempNotificationGroups,
+		NotificationGroup group) {
 		super(c, SWT.NONE);
 		final int indexofbundle = tempNotificationGroups.indexOf(group);
-		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(this);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
-			this);
-		this.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_MAGENTA));
+		GridLayoutFactory.fillDefaults().applyTo(this);
+		GridDataFactory.fillDefaults().grab(false, true).hint(210, SWT.DEFAULT).applyTo(this);
 
 		Label configLabel = new Label(this, SWT.PUSH | SWT.TOP | SWT.WRAP);
+		GridDataFactory.fillDefaults().hint(150, SWT.DEFAULT).grab(true, false).applyTo(
+			configLabel);
 		configLabel.setText("Send options for group " + s);
 		sendOption = new Combo(this, SWT.DROP_DOWN | SWT.READ_ONLY);
 		EList<EEnumLiteral> sendlist = ((EEnum) EmailnotificationgroupPackage.Literals.SEND_SETTINGS).getELiterals();
@@ -53,37 +53,35 @@ public class CompositeSendOptions extends Composite {
 		}
 
 		aggregated = new Composite(this, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).margins(10, 0).applyTo(aggregated);
-		// GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).applyTo(aggregated);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
-			aggregated);
-		this.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
+		GridLayoutFactory.fillDefaults().margins(10, 0).applyTo(aggregated);
+		GridDataFactory.fillDefaults().grab(false, true).applyTo(aggregated);
+
 		aggregated.setVisible(false);
+		if (group.getSendOption().getValue() == 2) {
+			aggregated.setVisible(true);
+		}
+
 		aggregatedOption = new Combo(aggregated, SWT.DROP_DOWN | SWT.READ_ONLY);
-		EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailnotificationgroupPackage.Literals.AGGREGATED_SETTINGS).getELiterals();
+		EList<EEnumLiteral> aggreegatedlist = ((EEnum) EmailnotificationgroupPackage.Literals.AGGREGATED_SETTINGS)
+			.getELiterals();
 		for (EEnumLiteral literal : aggreegatedlist) {
 			aggregatedOption.add(literal.getLiteral());
 		}
-		Label every = new Label(aggregated, SWT.LEFT | SWT.BORDER);
-		every.setText("every");
 		extraControls = new Composite(aggregated, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(extraControls);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(1, 1).applyTo(
-			extraControls);
-		extraControls.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		
+		GridLayoutFactory.fillDefaults().applyTo(extraControls);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(extraControls);
+
 		sendOption.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (sendOption.getText().equalsIgnoreCase("aggregated")) {
 					aggregated.setVisible(true);
+					aggregatedOption.select(0);
+					disposeWeekdayOptionComp();
+					disposeDaysSpinnerComp();
 				} else {
-					if (weekdayOptionComp != null) {
-						weekdayOptionComp.dispose();
-					}
-					if (daysSpinnerComp != null) {
-						daysSpinnerComp.dispose();
-					}
+					disposeWeekdayOptionComp();
+					disposeDaysSpinnerComp();
 					aggregated.setVisible(false);
 				}
 			}
@@ -94,11 +92,9 @@ public class CompositeSendOptions extends Composite {
 				if (aggregatedOption.getText().equalsIgnoreCase("weekday")) {
 					createWeekdayOptionComp(indexofbundle, tempNotificationGroups);
 					extraControls.layout();
-					disposeDaysSpinnerComp();
 				} else if (aggregatedOption.getText().equalsIgnoreCase("days")) {
 					createDaysSpinnerComp(indexofbundle, tempNotificationGroups);
 					extraControls.layout();
-					disposeWeekdayOptionComp();
 				} else {
 					disposeWeekdayOptionComp();
 					disposeDaysSpinnerComp();
@@ -107,18 +103,30 @@ public class CompositeSendOptions extends Composite {
 		});
 
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
-		bindingContext.bindValue(SWTObservables.observeSelection(sendOption), EMFObservables.observeValue(tempNotificationGroups
-			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__SEND_OPTION));
+		bindingContext.bindValue(SWTObservables.observeSelection(sendOption), EMFObservables.observeValue(
+			tempNotificationGroups.get(indexofbundle),
+			EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__SEND_OPTION));
 		bindingContext.bindValue(SWTObservables.observeSelection(aggregatedOption), EMFObservables.observeValue(
-			tempNotificationGroups.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__AGGREGATED_OPTION));
+			tempNotificationGroups.get(indexofbundle),
+			EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__AGGREGATED_OPTION));
+
+		if (group.getAggregatedOption().getValue() == 1) {
+			createDaysSpinnerComp(indexofbundle, tempNotificationGroups);
+			extraControls.layout();
+		} else if (group.getAggregatedOption().getValue() == 2) {
+			createWeekdayOptionComp(indexofbundle, tempNotificationGroups);
+			extraControls.layout();
+		}
 	}
 
 	private Composite createDaysSpinnerComp(int indexofbundle, List<NotificationGroup> tempBundles) {
 		disposeWeekdayOptionComp();
+		disposeDaysSpinnerComp();
 		daysSpinnerComp = new Composite(extraControls, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 0).applyTo(daysSpinnerComp);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
-			daysSpinnerComp);
+		GridLayoutFactory.fillDefaults().numColumns(3).applyTo(daysSpinnerComp);
+		GridDataFactory.fillDefaults().grab(false, true).applyTo(daysSpinnerComp);
+		Label every = new Label(daysSpinnerComp, SWT.LEFT | SWT.BORDER);
+		every.setText("every");
 		daysSpinner = new Spinner(daysSpinnerComp, SWT.WRAP | SWT.BORDER | SWT.TOP);
 		daysSpinner.setMinimum(1);
 		daysSpinner.setMaximum(30);
@@ -132,10 +140,12 @@ public class CompositeSendOptions extends Composite {
 
 	private Composite createWeekdayOptionComp(int indexofbundle, List<NotificationGroup> tempBundles) {
 		disposeDaysSpinnerComp();
+		disposeWeekdayOptionComp();
 		weekdayOptionComp = new Composite(extraControls, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).margins(10, 0).applyTo(weekdayOptionComp);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, true).applyTo(
-			weekdayOptionComp);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(weekdayOptionComp);
+		GridDataFactory.fillDefaults().grab(false, true).applyTo(weekdayOptionComp);
+		Label every = new Label(weekdayOptionComp, SWT.LEFT | SWT.BORDER);
+		every.setText("every");
 		weekdayOption = new Combo(weekdayOptionComp, SWT.DROP_DOWN | SWT.READ_ONLY);
 		EList<EEnumLiteral> weekdaylist = ((EEnum) EmailnotificationgroupPackage.Literals.WEEKDAYS).getELiterals();
 		for (EEnumLiteral literal : weekdaylist) {
@@ -147,24 +157,15 @@ public class CompositeSendOptions extends Composite {
 		return weekdayOptionComp;
 	}
 
-	private void disposeWeekdayOptionComp(){
+	private void disposeWeekdayOptionComp() {
 		if (weekdayOptionComp != null) {
 			weekdayOptionComp.dispose();
 		}
 	}
-	
-	private void disposeDaysSpinnerComp(){
+
+	private void disposeDaysSpinnerComp() {
 		if (daysSpinnerComp != null) {
 			daysSpinnerComp.dispose();
 		}
 	}
-	// private void bindValues(List<Bundle> l, int i, Control c) {
-	// EMFDataBindingContext bindingContext = new EMFDataBindingContext();
-	// IObservableValue uiElement;
-	// IObservableValue modelElement;
-	//
-	// uiElement = SWTObservables.observeSelection(c);
-	// modelElement = EMFObservables.observeValue(l.get(i), EmailbundlePackage.Literals.BUNDLE__SEND_OPTION);
-	// bindingContext.bindValue(uiElement, modelElement, null, null);
-	// }
 }

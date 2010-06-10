@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -16,28 +17,27 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
 import org.unicase.workspace.preferences.PropertyKey;
 
 public class CompositeNotificationTypeSelection extends Composite {
-	
+
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
 
-	public CompositeNotificationTypeSelection(Composite c, String s, final List<NotificationGroup> tempNotificationGroups, final NotificationGroup group) {
+	public CompositeNotificationTypeSelection(Composite c, String s,
+		final List<NotificationGroup> tempNotificationGroups, final NotificationGroup group) {
 		super(c, SWT.NONE);
 		init();
-		GridLayout compositeBundleLayout = new GridLayout(1, false);
-		// compositeBundle.setLayoutData(layoutTop);
-		this.setLayout(compositeBundleLayout);
+		GridLayoutFactory.fillDefaults().applyTo(this);
+		GridDataFactory.fillDefaults().applyTo(this);
 
 		Label selectNotifier = new Label(this, SWT.PUSH | SWT.TOP | SWT.WRAP);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).hint(150, SWT.DEFAULT).grab(true, false).applyTo(
 			selectNotifier);
-		selectNotifier.setText("Select notification types for group: " + s);
+		selectNotifier.setText("Select notification types for group " + s);
 		notifierTypesList = CheckboxTableViewer.newCheckList(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 			| SWT.BORDER);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(notifierTypesList.getControl());
@@ -60,7 +60,8 @@ public class CompositeNotificationTypeSelection extends Composite {
 				Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (object instanceof EMailNotifierKey) {
 					hint.setText(providerHints.get(object)[1] + "");
-					// compositeBundle.getLayout();
+				} else {
+					hint.setText("Hint: Select an item to view its description");
 				}
 			}
 		});
@@ -78,9 +79,11 @@ public class CompositeNotificationTypeSelection extends Composite {
 		notifierTypesList.addCheckStateListener(new ICheckStateListener() {
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if (event.getChecked()) {
-					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().add(event.getElement());
+					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().add(
+						event.getElement());
 				} else {
-					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().remove(event.getElement());
+					tempNotificationGroups.get(tempNotificationGroups.indexOf(group)).getProviders().remove(
+						event.getElement());
 				}
 			}
 		});
@@ -100,13 +103,11 @@ public class CompositeNotificationTypeSelection extends Composite {
 		providerHints.put(EMailNotifierKey.SUBSCRIPTION_PROVIDER, new String[] { "Subscriptions",
 			"Allows you to subscribe to arbitrary model elements and receive notifications upon their changes." });
 		providerHints.put(EMailNotifierKey.COMMENTS_PROVIDER, new String[] { "Comment notifications",
-			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });		
+			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
 	}
 
 	public void setCheckedElements(Object[] array) {
 		notifierTypesList.setCheckedElements(array);
 	}
-
-
 
 }
