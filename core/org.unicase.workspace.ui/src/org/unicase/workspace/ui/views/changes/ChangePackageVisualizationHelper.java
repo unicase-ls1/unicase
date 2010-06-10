@@ -161,30 +161,7 @@ public class ChangePackageVisualizationHelper {
 			return image;
 		}
 
-		if (operation instanceof CreateDeleteOperation) {
-			CreateDeleteOperation op = (CreateDeleteOperation) operation;
-			image = emfProvider.getImage(op.getModelElement());
-		} else if (operation instanceof AttributeOperation) {
-			image = emfProvider.getImage(operation);
-		} else if (operation instanceof SingleReferenceOperation) {
-			SingleReferenceOperation op = (SingleReferenceOperation) operation;
-			if (op.getNewValue() == null) {
-				image = emfProvider.getImage(op.getOldValue());
-			} else if (op.getOldValue() == null) {
-				image = emfProvider.getImage(op.getNewValue());
-			} else {
-				image = emfProvider.getImage(op.getNewValue());
-			}
-		} else if (operation instanceof MultiReferenceOperation) {
-			MultiReferenceOperation op = (MultiReferenceOperation) operation;
-			if (op.getReferencedModelElements().size() > 0) {
-				image = emfProvider.getImage(op.getReferencedModelElements().get(0));
-			}
-		} else if (operation instanceof MultiReferenceMoveOperation) {
-			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) operation;
-			image = emfProvider.getImage(op.getReferencedModelElementId());
-		}
-		return image;
+		return emfProvider.getImage(operation);
 	}
 
 	private Image getCustomOperationProviderLabel(AbstractOperation operation) {
