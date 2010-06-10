@@ -19,14 +19,14 @@ import org.unicase.metamodel.util.ModelUtil;
  * 
  * @author Michael Kagel
  */
-public class CustomLabelProviderManager {
+public class CustomOperationLabelProviderManager {
 
 	private static List<AbstractOperationCustomLabelProvider> list;
 
 	/**
 	 * Constructor.
 	 */
-	public CustomLabelProviderManager() {
+	public CustomOperationLabelProviderManager() {
 		if (list == null) {
 			initExtensions();
 		}
