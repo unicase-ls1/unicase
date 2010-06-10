@@ -13,7 +13,6 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class UpdateProjectUITest extends MEEditorTest {
 	Project newproject = null;
-	final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
 
 	/**
 	 * Setup the environment for testing.
@@ -33,12 +32,14 @@ public class UpdateProjectUITest extends MEEditorTest {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
+				final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
 				leafSection.setName("TestLeafSection");
 				getProjectSpace().getProject().addModelElement(leafSection);
 			}
 		}.run();
 
 		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		getBot().sleep(10000);
 
 	}
 
