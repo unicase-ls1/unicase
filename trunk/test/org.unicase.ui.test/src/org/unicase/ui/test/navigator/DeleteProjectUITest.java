@@ -1,5 +1,6 @@
 package org.unicase.ui.test.navigator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -61,8 +62,10 @@ public class DeleteProjectUITest extends MEEditorTest {
 				if (currentWorkspace.getActiveProjectSpace() != null) {
 					assertTrue(false);
 				} else {
-					assertTrue(true);
+					assertEquals(WorkspaceManager.getInstance().getProjectSpace(getProjectSpace().getProject()), null);
+
 				}
+
 				// if(getProjectSpace().getProject()==null){ this dosen't work for some reason :(
 				// assertTrue(true);}
 				// else{assertTrue(false);}
