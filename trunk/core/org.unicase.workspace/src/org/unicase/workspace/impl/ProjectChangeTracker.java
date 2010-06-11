@@ -58,6 +58,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private boolean isRecording;
 	private NotificationRecorder notificationRecorder;
 	private CompositeOperation compositeOperation;
+	private boolean autoSave;
 
 	/**
 	 * Name of unknown creator.
@@ -86,6 +87,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public ProjectChangeTracker(ProjectSpaceImpl projectSpace) {
 		this.projectSpace = projectSpace;
 		this.isRecording = false;
+		this.autoSave = true;
 		dirtyResourceSet = new DirtyResourceSet();
 
 		if (!projectSpace.isTransient()) {
@@ -194,6 +196,15 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	/**
+	 * Save all dirty resources to disk now if autosave is active.
+	 */
+	public void saveDirtyResources() {
+		if (autoSave) {
+			dirtyResourceSet.save();
+		}
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
@@ -205,7 +216,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			if (isRecording) {
 				recordingFinished();
 			}
-			dirtyResourceSet.save();
+			saveDirtyResources();
 
 		}
 		save(modelElement);
@@ -277,7 +288,12 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		return notificationRecorder;
 	}
 
-	private void save(ModelElement modelElement) {
+	/**
+	 * Save the given model elements resource.
+	 * 
+	 * @param modelElement the model elements
+	 */
+	public void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 
 		if (projectSpace.isTransient()) {
@@ -428,8 +444,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		for (ModelElement copiedElement : newElementsOnClipboardAfterCommand) {
 			reassignModelElementIds(copiedElement);
 		}
-		dirtyResourceSet.save();
-
+		saveDirtyResources();
 	}
 
 	private void cleanResources(ModelElement deletedElement) {
@@ -580,6 +595,15 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Enable or disable save. I save is disabled, dirty resources will not bes saved.
+	 * 
+	 * @param newValue true if auto save should be enabled
+	 */
+	public void setAutoSave(boolean newValue) {
+		autoSave = newValue;
 	}
 
 }
