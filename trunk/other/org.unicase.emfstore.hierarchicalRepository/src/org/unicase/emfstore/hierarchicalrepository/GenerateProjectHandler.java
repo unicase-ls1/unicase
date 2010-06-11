@@ -50,7 +50,7 @@ public class GenerateProjectHandler extends  AbstractHandler {
 			protected void doRun() {
 				project.addModelElement(library);
 			}
-		};
+		}.run();
 		
 		return null;
 	}
