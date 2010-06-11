@@ -11,6 +11,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
+import urml.goal.Goal;
 
 /**
  * @generated
@@ -65,10 +66,7 @@ public class StakeholderReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof MEDiagram && newEnd instanceof MEDiagram)) {
 			return false;
 		}
-		if (getLink().getAnnotations().size() != 1) {
-			return false;
-		}
-		Annotation target = (Annotation) getLink().getAnnotations().get(0);
+		Goal target = getLink().getGoals();
 		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholder_4001(getNewSource(), target);
 	}
 
@@ -76,7 +74,7 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Annotation && newEnd instanceof Annotation)) {
+		if (!(oldEnd instanceof Goal && newEnd instanceof Goal)) {
 			return false;
 		}
 		if (!(getLink().eContainer() instanceof MEDiagram)) {
@@ -115,8 +113,7 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getAnnotations().remove(getOldTarget());
-		getLink().getAnnotations().add(getNewTarget());
+		getLink().setGoals(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -144,14 +141,14 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Annotation getOldTarget() {
-		return (Annotation) oldEnd;
+	protected Goal getOldTarget() {
+		return (Goal) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Annotation getNewTarget() {
-		return (Annotation) newEnd;
+	protected Goal getNewTarget() {
+		return (Goal) newEnd;
 	}
 }

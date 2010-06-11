@@ -7,12 +7,24 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 
+import urml.danger.DangerPackage;
 import urml.goal.GoalPackage;
+import urml.requirement.RequirementPackage;
+import urml.service.ServicePackage;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -122,6 +134,21 @@ public class UrmlVisualIDRegistry {
 			if (GoalPackage.eINSTANCE.getGoal().isSuperTypeOf(domainElement.eClass())) {
 				return GoalEditPart.VISUAL_ID;
 			}
+			if (RequirementPackage.eINSTANCE.getFunctionalRequirement().isSuperTypeOf(domainElement.eClass())) {
+				return FunctionalRequirementEditPart.VISUAL_ID;
+			}
+			if (UrmlPackage.eINSTANCE.getFeature().isSuperTypeOf(domainElement.eClass())) {
+				return FeatureEditPart.VISUAL_ID;
+			}
+			if (ServicePackage.eINSTANCE.getService().isSuperTypeOf(domainElement.eClass())) {
+				return ServiceEditPart.VISUAL_ID;
+			}
+			if (RequirementPackage.eINSTANCE.getNonFunctionalRequirement().isSuperTypeOf(domainElement.eClass())) {
+				return NonFunctionalRequirementEditPart.VISUAL_ID;
+			}
+			if (DangerPackage.eINSTANCE.getDanger().isSuperTypeOf(domainElement.eClass())) {
+				return DangerEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -146,11 +173,46 @@ public class UrmlVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case FeatureEditPart.VISUAL_ID:
+			if (FeatureNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ServiceEditPart.VISUAL_ID:
+			if (ServiceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NonFunctionalRequirementEditPart.VISUAL_ID:
+			if (NonFunctionalRequirementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DangerEditPart.VISUAL_ID:
+			if (DangerNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case URMLDiagramEditPart.VISUAL_ID:
 			if (StakeholderEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (GoalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (FunctionalRequirementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (FeatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ServiceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NonFunctionalRequirementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DangerEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

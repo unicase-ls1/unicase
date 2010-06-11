@@ -37,6 +37,33 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case GoalEditPart.VISUAL_ID:
 				return new GoalEditPart(view);
 
+			case FunctionalRequirementEditPart.VISUAL_ID:
+				return new FunctionalRequirementEditPart(view);
+
+			case FeatureEditPart.VISUAL_ID:
+				return new FeatureEditPart(view);
+
+			case FeatureNameEditPart.VISUAL_ID:
+				return new FeatureNameEditPart(view);
+
+			case ServiceEditPart.VISUAL_ID:
+				return new ServiceEditPart(view);
+
+			case ServiceNameEditPart.VISUAL_ID:
+				return new ServiceNameEditPart(view);
+
+			case NonFunctionalRequirementEditPart.VISUAL_ID:
+				return new NonFunctionalRequirementEditPart(view);
+
+			case NonFunctionalRequirementNameEditPart.VISUAL_ID:
+				return new NonFunctionalRequirementNameEditPart(view);
+
+			case DangerEditPart.VISUAL_ID:
+				return new DangerEditPart(view);
+
+			case DangerNameEditPart.VISUAL_ID:
+				return new DangerNameEditPart(view);
+
 			case Stakeholder2EditPart.VISUAL_ID:
 				return new Stakeholder2EditPart(view);
 
@@ -45,6 +72,12 @@ public class UrmlEditPartFactory implements EditPartFactory {
 
 			case StakeholderGoalsEditPart.VISUAL_ID:
 				return new StakeholderGoalsEditPart(view);
+
+			case GoalRealizedFeaturesEditPart.VISUAL_ID:
+				return new GoalRealizedFeaturesEditPart(view);
+
+			case RequirementImplementingServicesEditPart.VISUAL_ID:
+				return new RequirementImplementingServicesEditPart(view);
 
 			}
 		}

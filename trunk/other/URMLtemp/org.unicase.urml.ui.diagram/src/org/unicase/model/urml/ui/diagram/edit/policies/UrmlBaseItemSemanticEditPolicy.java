@@ -39,6 +39,8 @@ import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
 import urml.goal.Goal;
+import urml.requirement.Requirement;
+import urml.service.Service;
 
 /**
  * @generated
@@ -290,7 +292,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateStakeholder_4001(MEDiagram source, Annotation target) {
+		public static boolean canCreateStakeholder_4001(MEDiagram source, Goal target) {
 			return canExistStakeholder_4001(source, target);
 		}
 
@@ -329,7 +331,39 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistStakeholder_4001(MEDiagram source, Annotation target) {
+		public static boolean canCreateGoalRealizedFeatures_4004(Goal source, Feature target) {
+			if (source != null) {
+				if (source.getRealizedFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getGoals().contains(target))) {
+				return false;
+			}
+
+			return canExistGoalRealizedFeatures_4004(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateRequirementImplementingServices_4005(Requirement source, Service target) {
+			if (source != null) {
+				if (source.getImplementingServices().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSatisfiedRequirements().contains(target))) {
+				return false;
+			}
+
+			return canExistRequirementImplementingServices_4005(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistStakeholder_4001(MEDiagram source, Goal target) {
 			return true;
 		}
 
@@ -344,6 +378,20 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistStakeholderGoals_4003(Stakeholder source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalRealizedFeatures_4004(Goal source, Feature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistRequirementImplementingServices_4005(Requirement source, Service target) {
 			return true;
 		}
 	}

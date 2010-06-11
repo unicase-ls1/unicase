@@ -62,6 +62,27 @@
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="FunctionalRequirement"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Feature"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="realizes"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Service"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="satisfies"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="NonFunctionalRequirement"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Danger"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

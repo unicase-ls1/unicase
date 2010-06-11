@@ -20,7 +20,11 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.Messages;
@@ -37,9 +41,14 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof URMLDiagramEditPart) {
-			ArrayList types = new ArrayList(2);
+			ArrayList types = new ArrayList(7);
 			types.add(UrmlElementTypes.Stakeholder_2002);
 			types.add(UrmlElementTypes.Goal_2001);
+			types.add(UrmlElementTypes.FunctionalRequirement_2006);
+			types.add(UrmlElementTypes.Feature_2005);
+			types.add(UrmlElementTypes.Service_2007);
+			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
+			types.add(UrmlElementTypes.Danger_2009);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -53,6 +62,18 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof StakeholderEditPart) {
 			return ((StakeholderEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof GoalEditPart) {
+			return ((GoalEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof FunctionalRequirementEditPart) {
+			return ((FunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
+			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -63,6 +84,12 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof GoalEditPart) {
 			return ((GoalEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ServiceEditPart) {
+			return ((ServiceEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -76,6 +103,18 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof StakeholderEditPart) {
 			return ((StakeholderEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof GoalEditPart) {
+			return ((GoalEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof FunctionalRequirementEditPart) {
+			return ((FunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
+			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -87,6 +126,12 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof GoalEditPart) {
 			return ((GoalEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ServiceEditPart) {
+			return ((ServiceEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -97,6 +142,18 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof StakeholderEditPart) {
 			return ((StakeholderEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof GoalEditPart) {
+			return ((GoalEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof FunctionalRequirementEditPart) {
+			return ((FunctionalRequirementEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
+			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

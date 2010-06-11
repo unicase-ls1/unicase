@@ -8,6 +8,8 @@
   <nodes>
     <containmentFeature
         href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//Stakeholder"/>
@@ -15,7 +17,7 @@
           xsi:type="gmftool:CreationTool"
           href="urml.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
-          href="urml1.gmfgraph#Stakeholder"/>
+          href="urml.gmfgraph#Stakeholder"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -30,7 +32,111 @@
           xsi:type="gmftool:CreationTool"
           href="urml.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
-          href="urml1.gmfgraph#Goal"/>
+          href="urml.gmfgraph#Goal"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//requirement/FunctionalRequirement"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.6"/>
+      <diagramNode
+          href="urml.gmfgraph#FunctionalRequirementNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//Feature"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="urml.gmfgraph#FeatureNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.7"/>
+      <diagramNode
+          href="urml.gmfgraph#FeatureNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//service/Service"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="urml.gmfgraph#ServiceNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.9"/>
+      <diagramNode
+          href="urml.gmfgraph#ServiceNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//requirement/NonFunctionalRequirement"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="urml.gmfgraph#NonFunctionalRequirementNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.11"/>
+      <diagramNode
+          href="urml.gmfgraph#NonFunctionalRequirementNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//danger/Danger"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="urml.gmfgraph#DangerNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.12"/>
+      <diagramNode
+          href="urml.gmfgraph#DangerNode"/>
     </ownedChild>
   </nodes>
   <links>
@@ -42,17 +148,17 @@
         xsi:type="gmftool:CreationTool"
         href="urml.gmftool#//@palette/@tools.0/@tools.4"/>
     <diagramLink
-        href="urml1.gmfgraph#StakeholderGoals"/>
+        href="urml.gmfgraph#StakeholderGoals"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/annotations"/>
+        href="urml.ecore#//Stakeholder/goals"/>
   </links>
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
         href="urml.gmftool#//@palette/@tools.0/@tools.0"/>
     <diagramLink
-        href="urml1.gmfgraph#StakeholderGoals"/>
+        href="urml.gmfgraph#StakeholderGoals"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//Feature/parentFeature"/>
@@ -62,14 +168,34 @@
         xsi:type="gmftool:CreationTool"
         href="urml.gmftool#//@palette/@tools.0/@tools.5"/>
     <diagramLink
-        href="urml1.gmfgraph#StakeholderGoals"/>
+        href="urml.gmfgraph#StakeholderGoals"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//Stakeholder/goals"/>
   </links>
+  <links>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urml.gmftool#//@palette/@tools.0/@tools.8"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/Goal/realizedFeatures"/>
+  </links>
+  <links>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urml.gmftool#//@palette/@tools.0/@tools.10"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//requirement/Requirement/implementingServices"/>
+  </links>
   <diagram>
     <diagramCanvas
-        href="urml1.gmfgraph#URMLDiagram"/>
+        href="urml.gmfgraph#URMLDiagram"/>
     <domainModel
         href="urml.ecore#/"/>
     <domainMetaElement

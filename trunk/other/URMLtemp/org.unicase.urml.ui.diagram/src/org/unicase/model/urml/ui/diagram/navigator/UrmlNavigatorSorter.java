@@ -11,7 +11,7 @@ public class UrmlNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 4005;
+	private static final int GROUP_CATEGORY = 4007;
 
 	/**
 	 * @generated

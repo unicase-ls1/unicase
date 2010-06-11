@@ -12,10 +12,17 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.Stakeholder2CreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderGoalsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderGoalsReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -41,11 +48,27 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == Stakeholder2EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == StakeholderGoalsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
+		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == GoalRealizedFeaturesEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 		}
@@ -74,8 +97,14 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (UrmlElementTypes.Stakeholder_4001 == req.getElementType()) {
+			return null;
+		}
 		if (UrmlElementTypes.StakeholderGoals_4003 == req.getElementType()) {
 			return null;
+		}
+		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
+			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -84,10 +113,30 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (UrmlElementTypes.Stakeholder_4001 == req.getElementType()) {
+			return getGEFWrapper(new Stakeholder2CreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UrmlElementTypes.StakeholderGoals_4003 == req.getElementType()) {
 			return getGEFWrapper(new StakeholderGoalsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
+			return null;
+		}
 		return null;
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case Stakeholder2EditPart.VISUAL_ID:
+			return getGEFWrapper(new StakeholderReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
 	}
 
 	/**
@@ -100,6 +149,8 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 		switch (getVisualID(req)) {
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return getGEFWrapper(new StakeholderGoalsReorientCommand(req));
+		case GoalRealizedFeaturesEditPart.VISUAL_ID:
+			return getGEFWrapper(new GoalRealizedFeaturesReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

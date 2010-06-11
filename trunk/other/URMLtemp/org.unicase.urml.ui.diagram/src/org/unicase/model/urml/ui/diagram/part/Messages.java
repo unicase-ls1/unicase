@@ -308,6 +308,41 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String FunctionalRequirement7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Feature8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Realizes9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Service10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Satisfies11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NonFunctionalRequirement12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Danger13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
@@ -328,6 +363,51 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Goal_2001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Feature_2005_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Feature_2005_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Service_2007_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_NonFunctionalRequirement_2008_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Stakeholder_4001_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureParentFeature_4002_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureParentFeature_4002_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_StakeholderGoals_4003_target;
 
 	/**
@@ -338,7 +418,47 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_GoalRealizedFeatures_4004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalRealizedFeatures_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementImplementingServices_4005_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementImplementingServices_4005_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorActionProvider_OpenDiagramActionName;
+
+	/**
+	 * @generated
+	 */
+	public static String AbstractParser_UnexpectedValueType;
+
+	/**
+	 * @generated
+	 */
+	public static String AbstractParser_WrongStringConversion;
+
+	/**
+	 * @generated
+	 */
+	public static String AbstractParser_UnknownLiteral;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageFormatParser_InvalidInputError;
 
 	/**
 	 * @generated

@@ -16,6 +16,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.UrmlFactory;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
+import urml.goal.Goal;
 
 /**
  * @generated
@@ -51,7 +52,7 @@ public class Stakeholder2CreateCommand extends EditElementCommand {
 		if (source != null && false == source instanceof MEDiagram) {
 			return false;
 		}
-		if (target != null && false == target instanceof Annotation) {
+		if (target != null && false == target instanceof Goal) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -71,7 +72,7 @@ public class Stakeholder2CreateCommand extends EditElementCommand {
 
 		Stakeholder newElement = UrmlFactory.eINSTANCE.createStakeholder();
 		getSource().getNewElements().add(newElement);
-		newElement.getAnnotations().add(getTarget());
+		newElement.setGoals(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
@@ -112,8 +113,8 @@ public class Stakeholder2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Annotation getTarget() {
-		return (Annotation) target;
+	protected Goal getTarget() {
+		return (Goal) target;
 	}
 
 }

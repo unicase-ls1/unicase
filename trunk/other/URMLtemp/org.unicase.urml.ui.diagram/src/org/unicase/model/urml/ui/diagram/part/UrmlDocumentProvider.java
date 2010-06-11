@@ -657,16 +657,16 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it.hasNext();) {
-				Resource resource = (Resource) it.next();
-				resource.unload();
-			}
-			getEditingDomain().dispose();
+			//			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it.hasNext();) {
+			//				Resource resource = (Resource) it.next();
+			//				resource.unload();
+			//			}
+			//			getEditingDomain().dispose();
 		}
 
 		/**
