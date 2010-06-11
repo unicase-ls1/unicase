@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client"
       label="EMFStore Client Feature"
-      version="0.6.1.nightly"
+      version="0.6.2.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -229,7 +229,7 @@ litigation.
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-         version="0.6.1.nightly"
+         version="0.6.2.nightly"
          unpack="false"/>
 
    <plugin
