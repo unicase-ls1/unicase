@@ -1898,13 +1898,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setMessage("Initial commit");
 		ProjectInfo createdProject;
 
+		stopChangeRecording();
+		changeTracker.setAutoSave(false);
+
 		// Set user as creator when sharing a project
 		for (ModelElement me : this.getProject().getAllModelElements()) {
 			if (me.getCreator() == null || me.getCreator().equals("")
 				|| me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
 				me.setCreator(usersession.getUsername());
+				changeTracker.save(me);
 			}
 		}
+		changeTracker.setAutoSave(true);
+		changeTracker.saveDirtyResources();
+		startChangeRecording();
 
 		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
 			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
