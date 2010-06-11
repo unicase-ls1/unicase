@@ -44,7 +44,7 @@
         <containmentMetaFeature
             href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
     </topLevelNodes>
     <topLevelNodes
@@ -72,6 +72,220 @@
             href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
     </topLevelNodes>
+    <topLevelNodes
+        visualID="2006"
+        editPartClassName="FunctionalRequirementEditPart"
+        itemSemanticEditPolicyClassName="FunctionalRequirementItemSemanticEditPolicy"
+        notationViewFactoryClassName="FunctionalRequirementViewFactory"
+        canonicalEditPolicyClassName="FunctionalRequirementCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="FunctionalRequirementGraphicalNodeEditPolicy"
+        createCommandClassName="FunctionalRequirementCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="FunctionalRequirementEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.unicase.ui.diagrams.urml.icons.FunctionalRequirementIcon"/>
+      <modelFacet>
+        <metaClass
+            href="urml.genmodel#//urml/requirement/FunctionalRequirement"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2005"
+        editPartClassName="FeatureEditPart"
+        itemSemanticEditPolicyClassName="FeatureItemSemanticEditPolicy"
+        notationViewFactoryClassName="FeatureViewFactory"
+        canonicalEditPolicyClassName="FeatureCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="FeatureGraphicalNodeEditPolicy"
+        createCommandClassName="FeatureCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="FeatureEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="FeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FeatureFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureFeatureFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FeatureFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(0);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.diagrams.urml.icons.FeatureIcon featureFigure0 = new org.unicase.ui.diagrams.urml.icons.FeatureIcon();&#xA;&#xA;&#xA;&#xA;this.add(featureFigure0);&#xA;&#xA;&#xA;&#xA;fFigureFeatureFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureFeatureFigure_name.setFont(FFIGUREFEATUREFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureFeatureFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureFeatureFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureFeatureFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureFeatureFigure_name.horizontalIndent = 0;&#xA;constraintFFigureFeatureFigure_name.horizontalSpan = 1;&#xA;constraintFFigureFeatureFigure_name.verticalSpan = 1;&#xA;constraintFFigureFeatureFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureFeatureFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureFeatureFigure_name, constraintFFigureFeatureFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureFeatureFigure_name() {&#xA;&#x9;&#x9;return fFigureFeatureFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREFEATUREFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass
+            href="urml.genmodel#//urml/Feature"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5001"
+          editPartClassName="FeatureNameEditPart"
+          itemSemanticEditPolicyClassName="FeatureNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureFeatureFigure_name"
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2007"
+        editPartClassName="ServiceEditPart"
+        itemSemanticEditPolicyClassName="ServiceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ServiceViewFactory"
+        canonicalEditPolicyClassName="ServiceCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ServiceGraphicalNodeEditPolicy"
+        createCommandClassName="ServiceCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="ServiceEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ServiceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ServiceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureServiceFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ServiceFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(0);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.diagrams.urml.icons.ServiceIcon serviceFigure0 = new org.unicase.ui.diagrams.urml.icons.ServiceIcon();&#xA;&#xA;&#xA;&#xA;this.add(serviceFigure0);&#xA;&#xA;&#xA;&#xA;fFigureServiceFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureServiceFigure_name.setFont(FFIGURESERVICEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureServiceFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureServiceFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureServiceFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureServiceFigure_name.horizontalIndent = 0;&#xA;constraintFFigureServiceFigure_name.horizontalSpan = 1;&#xA;constraintFFigureServiceFigure_name.verticalSpan = 1;&#xA;constraintFFigureServiceFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureServiceFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureServiceFigure_name, constraintFFigureServiceFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureServiceFigure_name() {&#xA;&#x9;&#x9;return fFigureServiceFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESERVICEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass
+            href="urml.genmodel#//urml/service/Service"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5002"
+          editPartClassName="ServiceNameEditPart"
+          itemSemanticEditPolicyClassName="ServiceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ServiceNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureServiceFigure_name"
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2008"
+        editPartClassName="NonFunctionalRequirementEditPart"
+        itemSemanticEditPolicyClassName="NonFunctionalRequirementItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="NonFunctionalRequirementCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="NonFunctionalRequirementGraphicalNodeEditPolicy"
+        createCommandClassName="NonFunctionalRequirementCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="NonFunctionalRequirementEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="NonFunctionalRequirementFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NonFunctionalRequirementFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureNonFunctionalRequirementFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NonFunctionalRequirementFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(0);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.diagrams.urml.icons.NonFunctionalRequirementIcon nonFunctionalRequirementFigure0 = new org.unicase.ui.diagrams.urml.icons.NonFunctionalRequirementIcon();&#xA;&#xA;&#xA;&#xA;this.add(nonFunctionalRequirementFigure0);&#xA;&#xA;&#xA;&#xA;fFigureNonFunctionalRequirementFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureNonFunctionalRequirementFigure_name.setFont(FFIGURENONFUNCTIONALREQUIREMENTFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureNonFunctionalRequirementFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureNonFunctionalRequirementFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.horizontalIndent = 0;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.horizontalSpan = 1;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.verticalSpan = 1;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureNonFunctionalRequirementFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureNonFunctionalRequirementFigure_name, constraintFFigureNonFunctionalRequirementFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureNonFunctionalRequirementFigure_name() {&#xA;&#x9;&#x9;return fFigureNonFunctionalRequirementFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURENONFUNCTIONALREQUIREMENTFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass
+            href="urml.genmodel#//urml/requirement/NonFunctionalRequirement"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5003"
+          editPartClassName="NonFunctionalRequirementNameEditPart"
+          itemSemanticEditPolicyClassName="NonFunctionalRequirementNameItemSemanticEditPolicy">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureNonFunctionalRequirementFigure_name"
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            editorPattern="">
+          <metaFeatures
+              href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2009"
+        editPartClassName="DangerEditPart"
+        itemSemanticEditPolicyClassName="DangerItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="DangerCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="DangerGraphicalNodeEditPolicy"
+        createCommandClassName="DangerCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="DangerEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="DangerFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DangerFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureDangerFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DangerFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(0);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.diagrams.urml.icons.DangerIcon dangerFigure0 = new org.unicase.ui.diagrams.urml.icons.DangerIcon();&#xA;&#xA;&#xA;&#xA;this.add(dangerFigure0);&#xA;&#xA;&#xA;&#xA;fFigureDangerFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureDangerFigure_name.setFont(FFIGUREDANGERFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureDangerFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureDangerFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureDangerFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureDangerFigure_name.horizontalIndent = 0;&#xA;constraintFFigureDangerFigure_name.horizontalSpan = 1;&#xA;constraintFFigureDangerFigure_name.verticalSpan = 1;&#xA;constraintFFigureDangerFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureDangerFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureDangerFigure_name, constraintFFigureDangerFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureDangerFigure_name() {&#xA;&#x9;&#x9;return fFigureDangerFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREDANGERFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass
+            href="urml.genmodel#//urml/danger/Danger"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5004"
+          editPartClassName="DangerNameEditPart"
+          itemSemanticEditPolicyClassName="DangerNameItemSemanticEditPolicy">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureDangerFigure_name"
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
     <links
         visualID="4001"
         editPartClassName="Stakeholder2EditPart"
@@ -97,7 +311,7 @@
         <childMetaFeature
             href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
         <targetMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/annotations"/>
+            href="urml.genmodel#//urml/Stakeholder/goals"/>
       </modelFacet>
     </links>
     <links
@@ -142,6 +356,48 @@
             href="urml.genmodel#//urml/Stakeholder/goals"/>
       </modelFacet>
     </links>
+    <links
+        visualID="4004"
+        editPartClassName="GoalRealizedFeaturesEditPart"
+        itemSemanticEditPolicyClassName="GoalRealizedFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="GoalRealizedFeaturesViewFactory"
+        createCommandClassName="GoalRealizedFeaturesCreateCommand"
+        reorientCommandClassName="GoalRealizedFeaturesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/goal/Goal/realizedFeatures"/>
+      </modelFacet>
+    </links>
+    <links
+        visualID="4005"
+        editPartClassName="RequirementImplementingServicesEditPart"
+        itemSemanticEditPolicyClassName="RequirementImplementingServicesItemSemanticEditPolicy"
+        notationViewFactoryClassName="RequirementImplementingServicesViewFactory"
+        createCommandClassName="RequirementImplementingServicesCreateCommand"
+        reorientCommandClassName="RequirementImplementingServicesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/requirement/Requirement/implementingServices"/>
+      </modelFacet>
+    </links>
     <palette>
       <groups
           title="urml">
@@ -174,6 +430,34 @@
             title="GoalParentGoal"
             description="Create new GoalParentGoal"
             genLinks="//@diagram/@links.2"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="FunctionalRequirement"
+            genNodes="//@diagram/@topLevelNodes.2"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Feature"
+            genNodes="//@diagram/@topLevelNodes.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="realizes"
+            genLinks="//@diagram/@links.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Service"
+            genNodes="//@diagram/@topLevelNodes.4"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="satisfies"
+            genLinks="//@diagram/@links.4"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="NonFunctionalRequirement"
+            genNodes="//@diagram/@topLevelNodes.5"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Danger"
+            genNodes="//@diagram/@topLevelNodes.6"/>
       </groups>
     </palette>
     <preferencePages
@@ -219,14 +503,65 @@
         child="//@diagram/@topLevelNodes.1"/>
     <childReferences
         parent="//@diagram"
+        child="//@diagram/@topLevelNodes.2"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.3"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.4"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.5"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.6"/>
+    <childReferences
+        parent="//@diagram"
         child="//@diagram/@links.0"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram"
         child="//@diagram/@links.1"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.1"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram"
         child="//@diagram/@links.2"
@@ -256,6 +591,76 @@
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.3"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.3"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.3"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.3"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.3"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.4"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.4"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.4"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.5"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@links.4"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>
@@ -279,6 +684,12 @@
   </propertySheet>
   <domainGenModel
       href="urml.genmodel#/"/>
+  <labelParsers
+      extensibleViaService="true">
+    <implementations
+        xsi:type="gmfgen:PredefinedParser"
+        uses="//@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet"/>
+  </labelParsers>
   <contextMenus
       context="//@diagram">
     <items

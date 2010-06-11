@@ -152,11 +152,11 @@ public class FeatureItemProvider extends UrmlModelElementItemProvider implements
 	 * This returns Feature.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Feature"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/feature.png"));
 	}
 
 	/**

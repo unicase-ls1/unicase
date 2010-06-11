@@ -6,7 +6,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
+import org.unicase.model.urml.ui.diagram.edit.commands.ActionItemCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.DangerCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FunctionalRequirementCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.NonFunctionalRequirementCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.ServiceCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderCreateCommand;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
@@ -31,6 +37,21 @@ public class URMLDiagramItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 		}
 		if (UrmlElementTypes.Goal_2001 == req.getElementType()) {
 			return getGEFWrapper(new GoalCreateCommand(req));
+		}
+		if (UrmlElementTypes.FunctionalRequirement_2006 == req.getElementType()) {
+			return getGEFWrapper(new FunctionalRequirementCreateCommand(req));
+		}
+		if (UrmlElementTypes.Feature_2005 == req.getElementType()) {
+			return getGEFWrapper(new FeatureCreateCommand(req));
+		}
+		if (UrmlElementTypes.Service_2007 == req.getElementType()) {
+			return getGEFWrapper(new ServiceCreateCommand(req));
+		}
+		if (UrmlElementTypes.NonFunctionalRequirement_2008 == req.getElementType()) {
+			return getGEFWrapper(new NonFunctionalRequirementCreateCommand(req));
+		}
+		if (UrmlElementTypes.Danger_2009 == req.getElementType()) {
+			return getGEFWrapper(new DangerCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -16,15 +16,25 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 
+import urml.danger.DangerPackage;
 import urml.goal.GoalPackage;
+import urml.requirement.RequirementPackage;
+import urml.service.ServicePackage;
 
 /**
  * @generated
@@ -67,6 +77,31 @@ public class UrmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType FunctionalRequirement_2006 = getElementType("org.unicase.urml.ui.diagram.FunctionalRequirement_2006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Feature_2005 = getElementType("org.unicase.urml.ui.diagram.Feature_2005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Service_2007 = getElementType("org.unicase.urml.ui.diagram.Service_2007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NonFunctionalRequirement_2008 = getElementType("org.unicase.urml.ui.diagram.NonFunctionalRequirement_2008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Danger_2009 = getElementType("org.unicase.urml.ui.diagram.Danger_2009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Stakeholder_4001 = getElementType("org.unicase.urml.ui.diagram.Stakeholder_4001"); //$NON-NLS-1$
 	/**
 	 * @generated
@@ -76,6 +111,16 @@ public class UrmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType StakeholderGoals_4003 = getElementType("org.unicase.urml.ui.diagram.StakeholderGoals_4003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType GoalRealizedFeatures_4004 = getElementType("org.unicase.urml.ui.diagram.GoalRealizedFeatures_4004"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType RequirementImplementingServices_4005 = getElementType("org.unicase.urml.ui.diagram.RequirementImplementingServices_4005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -190,11 +235,26 @@ public class UrmlElementTypes extends ElementInitializers {
 
 			elements.put(Goal_2001, GoalPackage.eINSTANCE.getGoal());
 
+			elements.put(FunctionalRequirement_2006, RequirementPackage.eINSTANCE.getFunctionalRequirement());
+
+			elements.put(Feature_2005, UrmlPackage.eINSTANCE.getFeature());
+
+			elements.put(Service_2007, ServicePackage.eINSTANCE.getService());
+
+			elements.put(NonFunctionalRequirement_2008, RequirementPackage.eINSTANCE.getNonFunctionalRequirement());
+
+			elements.put(Danger_2009, DangerPackage.eINSTANCE.getDanger());
+
 			elements.put(Stakeholder_4001, UrmlPackage.eINSTANCE.getStakeholder());
 
 			elements.put(FeatureParentFeature_4002, UrmlPackage.eINSTANCE.getFeature_ParentFeature());
 
 			elements.put(StakeholderGoals_4003, UrmlPackage.eINSTANCE.getStakeholder_Goals());
+
+			elements.put(GoalRealizedFeatures_4004, GoalPackage.eINSTANCE.getGoal_RealizedFeatures());
+
+			elements.put(RequirementImplementingServices_4005, RequirementPackage.eINSTANCE
+				.getRequirement_ImplementingServices());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -215,9 +275,16 @@ public class UrmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(URMLDiagram_1000);
 			KNOWN_ELEMENT_TYPES.add(Stakeholder_2002);
 			KNOWN_ELEMENT_TYPES.add(Goal_2001);
+			KNOWN_ELEMENT_TYPES.add(FunctionalRequirement_2006);
+			KNOWN_ELEMENT_TYPES.add(Feature_2005);
+			KNOWN_ELEMENT_TYPES.add(Service_2007);
+			KNOWN_ELEMENT_TYPES.add(NonFunctionalRequirement_2008);
+			KNOWN_ELEMENT_TYPES.add(Danger_2009);
 			KNOWN_ELEMENT_TYPES.add(Stakeholder_4001);
 			KNOWN_ELEMENT_TYPES.add(FeatureParentFeature_4002);
 			KNOWN_ELEMENT_TYPES.add(StakeholderGoals_4003);
+			KNOWN_ELEMENT_TYPES.add(GoalRealizedFeatures_4004);
+			KNOWN_ELEMENT_TYPES.add(RequirementImplementingServices_4005);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -233,12 +300,26 @@ public class UrmlElementTypes extends ElementInitializers {
 			return Stakeholder_2002;
 		case GoalEditPart.VISUAL_ID:
 			return Goal_2001;
+		case FunctionalRequirementEditPart.VISUAL_ID:
+			return FunctionalRequirement_2006;
+		case FeatureEditPart.VISUAL_ID:
+			return Feature_2005;
+		case ServiceEditPart.VISUAL_ID:
+			return Service_2007;
+		case NonFunctionalRequirementEditPart.VISUAL_ID:
+			return NonFunctionalRequirement_2008;
+		case DangerEditPart.VISUAL_ID:
+			return Danger_2009;
 		case Stakeholder2EditPart.VISUAL_ID:
 			return Stakeholder_4001;
 		case FeatureParentFeatureEditPart.VISUAL_ID:
 			return FeatureParentFeature_4002;
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return StakeholderGoals_4003;
+		case GoalRealizedFeaturesEditPart.VISUAL_ID:
+			return GoalRealizedFeatures_4004;
+		case RequirementImplementingServicesEditPart.VISUAL_ID:
+			return RequirementImplementingServices_4005;
 		}
 		return null;
 	}

@@ -55,6 +55,8 @@ public class StakeholderCreateCommand extends EditElementCommand {
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
+		MEDiagram childHolder = (MEDiagram) getElementToEdit();
+		childHolder.getElements().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
