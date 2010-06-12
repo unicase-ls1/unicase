@@ -799,7 +799,7 @@ public final class ModelUtil {
 		if (rawExtensions.length != 1) {
 			String message = "There is " + rawExtensions.length
 				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
-			logWarning(message, new MalformedModelVersionException(message));
+			logWarning(message);
 			return 0;
 		}
 		IConfigurationElement extension = rawExtensions[0];
