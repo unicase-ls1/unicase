@@ -583,7 +583,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 * @param exception the exception
@@ -593,7 +593,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 */
