@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -126,7 +128,7 @@ public class ExportDialog extends TitleAreaDialog {
 		fileName = new Text(container, SWT.BORDER);
 		GridData gData2 = new GridData(GridData.FILL_HORIZONTAL);
 		fileName.setLayoutData(gData2);
-		fileName.setText(modelElement.getName().replace(" ", "_"));
+		fileName.setText(modelElement.getName().replaceAll("\\W+", ""));
 
 		Label label2 = new Label(container, SWT.READ_ONLY);
 		label2.setText("File location");
@@ -266,6 +268,17 @@ public class ExportDialog extends TitleAreaDialog {
 	 */
 	private boolean checkFileName(String fileUrl) {
 		File f = new File(fileUrl);
+
+		try {
+			if (f.createNewFile()) {
+				f.delete();
+			}
+		} catch (IOException e1) {
+			String err = "The file name '" + fileUrl + "' you entered is invalid.\n";
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid file name", err);
+			return false;
+		}
+
 		Boolean doIt = true;
 
 		if (f.exists()) {
