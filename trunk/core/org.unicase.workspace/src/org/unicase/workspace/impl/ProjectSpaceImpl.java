@@ -2566,4 +2566,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setMessage("");
 		return commit(logMessage);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#removeCommitObserver(org.unicase.workspace.observers.CommitObserver)
+	 */
+	public void removeCommitObserver(CommitObserver observer) {
+		this.commitObservers.remove(observer);
+	}
 } // ProjectContainerImpl
