@@ -14,7 +14,7 @@ public class StakeholderGoalsItemSemanticEditPolicy extends UrmlBaseItemSemantic
 	 * @generated
 	 */
 	public StakeholderGoalsItemSemanticEditPolicy() {
-		super(UrmlElementTypes.StakeholderGoals_4003);
+		super(UrmlElementTypes.StakeholderGoals_4008);
 	}
 
 	/**

@@ -213,8 +213,8 @@
       <viewProvider class="org.unicase.model.urml.ui.diagram.providers.UrmlViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Urml"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,2001,2006,2005,2007,2008,2009,2010"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,2001,2006,2005,2007,2008,2009,2010,2011,2012"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4002,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
       </viewProvider>
    </extension>
 
@@ -226,13 +226,13 @@
             <method name="getType()" value="Urml"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2002,2001,2006,2005,2007,2008,2009,2010"/>
+            <method name="getType()" value="2002,2001,2006,2005,2007,2008,2009,2010,2011,2012"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
+            <method name="getType()" value="4008,4002,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003,5004,5005"/>
+            <method name="getType()" value="5008,5009,5010,5001,5002,5003,5004,5005,5006,5007"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -254,7 +254,9 @@
          <object class="org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart" id="NonFunctionalRequirement_2008"/>
          <object class="org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart" id="Danger_2009"/>
          <object class="org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart" id="Actor_2010"/>
-         <context elements="URMLDiagram_1000,Stakeholder_2002,Goal_2001,FunctionalRequirement_2006,Feature_2005,Service_2007,NonFunctionalRequirement_2008,Danger_2009,Actor_2010"/>
+         <object class="org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart" id="ProceduralMitigation_2011"/>
+         <object class="org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart" id="ServiceProvider_2012"/>
+         <context elements="URMLDiagram_1000,Stakeholder_2002,Goal_2001,FunctionalRequirement_2006,Feature_2005,Service_2007,NonFunctionalRequirement_2008,Danger_2009,Actor_2010,ProceduralMitigation_2011,ServiceProvider_2012"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -357,13 +359,33 @@
             <param name="semanticHint" value="2010"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/danger">
+         <metamodelType
+               id="org.unicase.urml.ui.diagram.ProceduralMitigation_2011"
+               name="%metatype.name.ProceduralMitigation_2011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ProceduralMitigation"
+               edithelper="org.unicase.model.urml.ui.diagram.edit.helpers.ProceduralMitigationEditHelper">
+            <param name="semanticHint" value="2011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/service">
+         <metamodelType
+               id="org.unicase.urml.ui.diagram.ServiceProvider_2012"
+               name="%metatype.name.ServiceProvider_2012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ServiceProvider"
+               edithelper="org.unicase.model.urml.ui.diagram.edit.helpers.ServiceProviderEditHelper">
+            <param name="semanticHint" value="2012"/>
+         </metamodelType>
+      </metamodel>
       <metamodel nsURI="http://unicase.org/model/urml">
          <specializationType
-               id="org.unicase.urml.ui.diagram.Stakeholder_4001"
-               name="%metatype.name.Stakeholder_4001"
+               id="org.unicase.urml.ui.diagram.StakeholderGoals_4008"
+               name="%metatype.name.StakeholderGoals_4008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.unicase.urml.ui.diagram.Stakeholder_2002"/>
-            <param name="semanticHint" value="4001"/>
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4008"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/urml">
@@ -373,15 +395,6 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="4002"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://unicase.org/model/urml">
-         <specializationType
-               id="org.unicase.urml.ui.diagram.StakeholderGoals_4003"
-               name="%metatype.name.StakeholderGoals_4003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/urml/goal">
@@ -411,6 +424,60 @@
             <param name="semanticHint" value="4006"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/goal">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.GoalSubGoals_4009"
+               name="%metatype.name.GoalSubGoals_4009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4009"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.FeatureConstrainingNonFunctionalRequirements_4010"
+               name="%metatype.name.FeatureConstrainingNonFunctionalRequirements_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4010"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/service">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.ServiceServiceProvider_4011"
+               name="%metatype.name.ServiceServiceProvider_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/danger">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.MitigationMitigatedDangers_4012"
+               name="%metatype.name.MitigationMitigatedDangers_4012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/danger">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.DangerHarmedAssets_4013"
+               name="%metatype.name.DangerHarmedAssets_4013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/urml/usecase">
+         <specializationType
+               id="org.unicase.urml.ui.diagram.ActorTriggeredDangers_4014"
+               name="%metatype.name.ActorTriggeredDangers_4014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4014"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -432,12 +499,19 @@
          <elementType ref="org.unicase.urml.ui.diagram.NonFunctionalRequirement_2008"/>
          <elementType ref="org.unicase.urml.ui.diagram.Danger_2009"/>
          <elementType ref="org.unicase.urml.ui.diagram.Actor_2010"/>
-         <elementType ref="org.unicase.urml.ui.diagram.Stakeholder_4001"/>
+         <elementType ref="org.unicase.urml.ui.diagram.ProceduralMitigation_2011"/>
+         <elementType ref="org.unicase.urml.ui.diagram.ServiceProvider_2012"/>
+         <elementType ref="org.unicase.urml.ui.diagram.StakeholderGoals_4008"/>
          <elementType ref="org.unicase.urml.ui.diagram.FeatureParentFeature_4002"/>
-         <elementType ref="org.unicase.urml.ui.diagram.StakeholderGoals_4003"/>
          <elementType ref="org.unicase.urml.ui.diagram.GoalRealizedFeatures_4004"/>
          <elementType ref="org.unicase.urml.ui.diagram.RequirementImplementingServices_4005"/>
          <elementType ref="org.unicase.urml.ui.diagram.FeatureDetailingFunctionalRequirements_4006"/>
+         <elementType ref="org.unicase.urml.ui.diagram.GoalSubGoals_4009"/>
+         <elementType ref="org.unicase.urml.ui.diagram.FeatureConstrainingNonFunctionalRequirements_4010"/>
+         <elementType ref="org.unicase.urml.ui.diagram.ServiceServiceProvider_4011"/>
+         <elementType ref="org.unicase.urml.ui.diagram.MitigationMitigatedDangers_4012"/>
+         <elementType ref="org.unicase.urml.ui.diagram.DangerHarmedAssets_4013"/>
+         <elementType ref="org.unicase.urml.ui.diagram.ActorTriggeredDangers_4014"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

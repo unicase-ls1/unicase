@@ -1,5 +1,7 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -17,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -26,6 +29,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.ActorItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
+import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 import org.unicase.ui.unicasecommon.diagram.shapes.StickMan;
 
@@ -251,6 +255,60 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.ActorTriggeredDangers_4014);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+		IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof DangerEditPart) {
+			types.add(UrmlElementTypes.ActorTriggeredDangers_4014);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.ActorTriggeredDangers_4014) {
+			types.add(UrmlElementTypes.Danger_2009);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
+			types.add(UrmlElementTypes.Danger_2009);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
 	public class ActorFigure extends RectangleFigure {
 
 		/**
@@ -283,7 +341,15 @@ public class ActorEditPart extends ShapeNodeEditPart {
 
 			StickMan actorFigure0 = new StickMan();
 
-			this.add(actorFigure0);
+			GridData constraintActorFigure0 = new GridData();
+			constraintActorFigure0.verticalAlignment = GridData.FILL;
+			constraintActorFigure0.horizontalAlignment = GridData.FILL;
+			constraintActorFigure0.horizontalIndent = 0;
+			constraintActorFigure0.horizontalSpan = 1;
+			constraintActorFigure0.verticalSpan = 1;
+			constraintActorFigure0.grabExcessHorizontalSpace = true;
+			constraintActorFigure0.grabExcessVerticalSpace = true;
+			this.add(actorFigure0, constraintActorFigure0);
 
 			fFigureActorFigure_name = new Label();
 

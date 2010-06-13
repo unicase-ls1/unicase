@@ -72,7 +72,7 @@ public class StakeholderGoalsReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Goal && newEnd instanceof Stakeholder)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholderGoals_4003(getNewSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholderGoals_4008(getNewSource(),
 			getOldTarget());
 	}
 
@@ -83,7 +83,7 @@ public class StakeholderGoalsReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Goal && newEnd instanceof Goal)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholderGoals_4003(getOldSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholderGoals_4008(getOldSource(),
 			getNewTarget());
 	}
 

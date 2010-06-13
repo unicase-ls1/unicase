@@ -14,12 +14,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureConstrainingNonFunctionalRequirementsCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureConstrainingNonFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureParentFeatureCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureParentFeatureReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -78,6 +81,13 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -114,6 +124,10 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsCreateCommand(req, req.getSource(), req
 				.getTarget()));
 		}
+		if (UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010 == req.getElementType()) {
+			return getGEFWrapper(new FeatureConstrainingNonFunctionalRequirementsCreateCommand(req, req.getSource(),
+				req.getTarget()));
+		}
 		return null;
 	}
 
@@ -128,6 +142,9 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006 == req.getElementType()) {
+			return null;
+		}
+		if (UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -147,6 +164,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 			return getGEFWrapper(new GoalRealizedFeaturesReorientCommand(req));
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsReorientCommand(req));
+		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new FeatureConstrainingNonFunctionalRequirementsReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

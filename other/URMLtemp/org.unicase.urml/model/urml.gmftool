@@ -19,15 +19,6 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="StakeholderGoals"
-          description="Create new StakeholderGoals">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="Goal"
           description="Create new Goal">
         <smallIcon
@@ -37,8 +28,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="GoalStakeholders"
-          description="Create new GoalStakeholders">
+          title="expresses"
+          description="">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -46,17 +37,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="GoalSubGoals"
-          description="Create new GoalSubGoals">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="GoalParentGoal"
-          description="Create new GoalParentGoal">
+          title="sub Goal"
+          description="">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -83,6 +65,33 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Danger"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="details"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Actor"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ProceduralMitigation"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ServiceProvider"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="provides"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="mitigates"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="harms"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="triggers"/>
     </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="constrains"/>
   </palette>
 </gmftool:ToolRegistry>

@@ -34,11 +34,20 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case StakeholderEditPart.VISUAL_ID:
 				return new StakeholderEditPart(view);
 
+			case StakeholderNameEditPart.VISUAL_ID:
+				return new StakeholderNameEditPart(view);
+
 			case GoalEditPart.VISUAL_ID:
 				return new GoalEditPart(view);
 
+			case GoalNameEditPart.VISUAL_ID:
+				return new GoalNameEditPart(view);
+
 			case FunctionalRequirementEditPart.VISUAL_ID:
 				return new FunctionalRequirementEditPart(view);
+
+			case FunctionalRequirementNameEditPart.VISUAL_ID:
+				return new FunctionalRequirementNameEditPart(view);
 
 			case FeatureEditPart.VISUAL_ID:
 				return new FeatureEditPart(view);
@@ -70,14 +79,26 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case ActorNameEditPart.VISUAL_ID:
 				return new ActorNameEditPart(view);
 
-			case Stakeholder2EditPart.VISUAL_ID:
-				return new Stakeholder2EditPart(view);
+			case ProceduralMitigationEditPart.VISUAL_ID:
+				return new ProceduralMitigationEditPart(view);
 
-			case FeatureParentFeatureEditPart.VISUAL_ID:
-				return new FeatureParentFeatureEditPart(view);
+			case ProceduralMitigationNameEditPart.VISUAL_ID:
+				return new ProceduralMitigationNameEditPart(view);
+
+			case ServiceProviderEditPart.VISUAL_ID:
+				return new ServiceProviderEditPart(view);
+
+			case ServiceProviderNameEditPart.VISUAL_ID:
+				return new ServiceProviderNameEditPart(view);
 
 			case StakeholderGoalsEditPart.VISUAL_ID:
 				return new StakeholderGoalsEditPart(view);
+
+			case ExpressesLabelEditPart.VISUAL_ID:
+				return new ExpressesLabelEditPart(view);
+
+			case FeatureParentFeatureEditPart.VISUAL_ID:
+				return new FeatureParentFeatureEditPart(view);
 
 			case GoalRealizedFeaturesEditPart.VISUAL_ID:
 				return new GoalRealizedFeaturesEditPart(view);
@@ -87,6 +108,24 @@ public class UrmlEditPartFactory implements EditPartFactory {
 
 			case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 				return new FeatureDetailingFunctionalRequirementsEditPart(view);
+
+			case GoalSubGoalsEditPart.VISUAL_ID:
+				return new GoalSubGoalsEditPart(view);
+
+			case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+				return new FeatureConstrainingNonFunctionalRequirementsEditPart(view);
+
+			case ServiceServiceProviderEditPart.VISUAL_ID:
+				return new ServiceServiceProviderEditPart(view);
+
+			case MitigationMitigatedDangersEditPart.VISUAL_ID:
+				return new MitigationMitigatedDangersEditPart(view);
+
+			case DangerHarmedAssetsEditPart.VISUAL_ID:
+				return new DangerHarmedAssetsEditPart(view);
+
+			case ActorTriggeredDangersEditPart.VISUAL_ID:
+				return new ActorTriggeredDangersEditPart(view);
 
 			}
 		}

@@ -17,17 +17,24 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorTriggeredDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
@@ -110,16 +117,22 @@ public class UrmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Stakeholder_4001 = getElementType("org.unicase.urml.ui.diagram.Stakeholder_4001"); //$NON-NLS-1$
+	public static final IElementType ProceduralMitigation_2011 = getElementType("org.unicase.urml.ui.diagram.ProceduralMitigation_2011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ServiceProvider_2012 = getElementType("org.unicase.urml.ui.diagram.ServiceProvider_2012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType StakeholderGoals_4008 = getElementType("org.unicase.urml.ui.diagram.StakeholderGoals_4008"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType FeatureParentFeature_4002 = getElementType("org.unicase.urml.ui.diagram.FeatureParentFeature_4002"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType StakeholderGoals_4003 = getElementType("org.unicase.urml.ui.diagram.StakeholderGoals_4003"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -134,6 +147,36 @@ public class UrmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType FeatureDetailingFunctionalRequirements_4006 = getElementType("org.unicase.urml.ui.diagram.FeatureDetailingFunctionalRequirements_4006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType GoalSubGoals_4009 = getElementType("org.unicase.urml.ui.diagram.GoalSubGoals_4009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType FeatureConstrainingNonFunctionalRequirements_4010 = getElementType("org.unicase.urml.ui.diagram.FeatureConstrainingNonFunctionalRequirements_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ServiceServiceProvider_4011 = getElementType("org.unicase.urml.ui.diagram.ServiceServiceProvider_4011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType MitigationMitigatedDangers_4012 = getElementType("org.unicase.urml.ui.diagram.MitigationMitigatedDangers_4012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DangerHarmedAssets_4013 = getElementType("org.unicase.urml.ui.diagram.DangerHarmedAssets_4013"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActorTriggeredDangers_4014 = getElementType("org.unicase.urml.ui.diagram.ActorTriggeredDangers_4014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -260,11 +303,13 @@ public class UrmlElementTypes extends ElementInitializers {
 
 			elements.put(Actor_2010, UsecasePackage.eINSTANCE.getActor());
 
-			elements.put(Stakeholder_4001, UrmlPackage.eINSTANCE.getStakeholder());
+			elements.put(ProceduralMitigation_2011, DangerPackage.eINSTANCE.getProceduralMitigation());
+
+			elements.put(ServiceProvider_2012, ServicePackage.eINSTANCE.getServiceProvider());
+
+			elements.put(StakeholderGoals_4008, UrmlPackage.eINSTANCE.getStakeholder_Goals());
 
 			elements.put(FeatureParentFeature_4002, UrmlPackage.eINSTANCE.getFeature_ParentFeature());
-
-			elements.put(StakeholderGoals_4003, UrmlPackage.eINSTANCE.getStakeholder_Goals());
 
 			elements.put(GoalRealizedFeatures_4004, GoalPackage.eINSTANCE.getGoal_RealizedFeatures());
 
@@ -273,6 +318,19 @@ public class UrmlElementTypes extends ElementInitializers {
 
 			elements.put(FeatureDetailingFunctionalRequirements_4006, UrmlPackage.eINSTANCE
 				.getFeature_DetailingFunctionalRequirements());
+
+			elements.put(GoalSubGoals_4009, GoalPackage.eINSTANCE.getGoal_SubGoals());
+
+			elements.put(FeatureConstrainingNonFunctionalRequirements_4010, UrmlPackage.eINSTANCE
+				.getFeature_ConstrainingNonFunctionalRequirements());
+
+			elements.put(ServiceServiceProvider_4011, ServicePackage.eINSTANCE.getService_ServiceProvider());
+
+			elements.put(MitigationMitigatedDangers_4012, DangerPackage.eINSTANCE.getMitigation_MitigatedDangers());
+
+			elements.put(DangerHarmedAssets_4013, DangerPackage.eINSTANCE.getDanger_HarmedAssets());
+
+			elements.put(ActorTriggeredDangers_4014, UsecasePackage.eINSTANCE.getActor_TriggeredDangers());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -299,12 +357,19 @@ public class UrmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(NonFunctionalRequirement_2008);
 			KNOWN_ELEMENT_TYPES.add(Danger_2009);
 			KNOWN_ELEMENT_TYPES.add(Actor_2010);
-			KNOWN_ELEMENT_TYPES.add(Stakeholder_4001);
+			KNOWN_ELEMENT_TYPES.add(ProceduralMitigation_2011);
+			KNOWN_ELEMENT_TYPES.add(ServiceProvider_2012);
+			KNOWN_ELEMENT_TYPES.add(StakeholderGoals_4008);
 			KNOWN_ELEMENT_TYPES.add(FeatureParentFeature_4002);
-			KNOWN_ELEMENT_TYPES.add(StakeholderGoals_4003);
 			KNOWN_ELEMENT_TYPES.add(GoalRealizedFeatures_4004);
 			KNOWN_ELEMENT_TYPES.add(RequirementImplementingServices_4005);
 			KNOWN_ELEMENT_TYPES.add(FeatureDetailingFunctionalRequirements_4006);
+			KNOWN_ELEMENT_TYPES.add(GoalSubGoals_4009);
+			KNOWN_ELEMENT_TYPES.add(FeatureConstrainingNonFunctionalRequirements_4010);
+			KNOWN_ELEMENT_TYPES.add(ServiceServiceProvider_4011);
+			KNOWN_ELEMENT_TYPES.add(MitigationMitigatedDangers_4012);
+			KNOWN_ELEMENT_TYPES.add(DangerHarmedAssets_4013);
+			KNOWN_ELEMENT_TYPES.add(ActorTriggeredDangers_4014);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -332,18 +397,32 @@ public class UrmlElementTypes extends ElementInitializers {
 			return Danger_2009;
 		case ActorEditPart.VISUAL_ID:
 			return Actor_2010;
-		case Stakeholder2EditPart.VISUAL_ID:
-			return Stakeholder_4001;
+		case ProceduralMitigationEditPart.VISUAL_ID:
+			return ProceduralMitigation_2011;
+		case ServiceProviderEditPart.VISUAL_ID:
+			return ServiceProvider_2012;
+		case StakeholderGoalsEditPart.VISUAL_ID:
+			return StakeholderGoals_4008;
 		case FeatureParentFeatureEditPart.VISUAL_ID:
 			return FeatureParentFeature_4002;
-		case StakeholderGoalsEditPart.VISUAL_ID:
-			return StakeholderGoals_4003;
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return GoalRealizedFeatures_4004;
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return RequirementImplementingServices_4005;
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 			return FeatureDetailingFunctionalRequirements_4006;
+		case GoalSubGoalsEditPart.VISUAL_ID:
+			return GoalSubGoals_4009;
+		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return FeatureConstrainingNonFunctionalRequirements_4010;
+		case ServiceServiceProviderEditPart.VISUAL_ID:
+			return ServiceServiceProvider_4011;
+		case MitigationMitigatedDangersEditPart.VISUAL_ID:
+			return MitigationMitigatedDangers_4012;
+		case DangerHarmedAssetsEditPart.VISUAL_ID:
+			return DangerHarmedAssets_4013;
+		case ActorTriggeredDangersEditPart.VISUAL_ID:
+			return ActorTriggeredDangers_4014;
 		}
 		return null;
 	}

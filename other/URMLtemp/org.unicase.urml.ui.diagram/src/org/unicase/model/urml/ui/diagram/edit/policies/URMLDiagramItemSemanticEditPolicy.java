@@ -6,14 +6,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
-import org.unicase.model.urml.ui.diagram.edit.commands.ActionItemCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.ActorCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.DangerCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FunctionalRequirementCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.NonFunctionalRequirementCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.ProceduralMitigationCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.ServiceCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.ServiceProviderCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderCreateCommand;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
@@ -56,6 +57,12 @@ public class URMLDiagramItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 		}
 		if (UrmlElementTypes.Actor_2010 == req.getElementType()) {
 			return getGEFWrapper(new ActorCreateCommand(req));
+		}
+		if (UrmlElementTypes.ProceduralMitigation_2011 == req.getElementType()) {
+			return getGEFWrapper(new ProceduralMitigationCreateCommand(req));
+		}
+		if (UrmlElementTypes.ServiceProvider_2012 == req.getElementType()) {
+			return getGEFWrapper(new ServiceProviderCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

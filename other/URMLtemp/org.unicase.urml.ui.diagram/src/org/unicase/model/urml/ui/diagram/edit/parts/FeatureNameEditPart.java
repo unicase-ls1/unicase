@@ -48,7 +48,6 @@ import org.unicase.model.urml.ui.diagram.edit.policies.UrmlTextSelectionEditPoli
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.model.urml.ui.diagram.providers.UrmlParserProvider;
-import org.unicase.ui.diagrams.urml.icons.FeatureIcon;
 
 /**
  * @generated

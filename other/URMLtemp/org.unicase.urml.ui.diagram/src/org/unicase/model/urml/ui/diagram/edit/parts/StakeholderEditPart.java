@@ -3,7 +3,10 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gef.EditPart;
@@ -16,14 +19,20 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.StakeholderItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
-import org.unicase.ui.unicasecommon.diagram.shapes.StickMan;
+import org.unicase.ui.diagrams.urml.icons.StakeholderIcon;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -92,14 +101,63 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new StickMan();
+		StakeholderFigure figure = new StakeholderFigure();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public StickMan getPrimaryShape() {
-		return (StickMan) primaryShape;
+	public StakeholderFigure getPrimaryShape() {
+		return (StakeholderFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof StakeholderNameEditPart) {
+			((StakeholderNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureStakeholderFigure_name());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof StakeholderNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
 	}
 
 	/**
@@ -134,6 +192,11 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -186,9 +249,16 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(StakeholderNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.StakeholderGoals_4003);
+		types.add(UrmlElementTypes.StakeholderGoals_4008);
 		return types;
 	}
 
@@ -199,7 +269,7 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 		IGraphicalEditPart targetEditPart) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof GoalEditPart) {
-			types.add(UrmlElementTypes.StakeholderGoals_4003);
+			types.add(UrmlElementTypes.StakeholderGoals_4008);
 		}
 		return types;
 	}
@@ -210,10 +280,96 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.StakeholderGoals_4003) {
+		if (relationshipType == UrmlElementTypes.StakeholderGoals_4008) {
 			types.add(UrmlElementTypes.Goal_2001);
 		}
 		return types;
 	}
+
+	/**
+	 * @generated
+	 */
+	public class StakeholderFigure extends RectangleFigure {
+
+		/**
+		 * @generated
+		 */
+		private Label fFigureStakeholderFigure_name;
+
+		/**
+		 * @generated
+		 */
+		public StakeholderFigure() {
+
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			layoutThis.horizontalSpacing = 0;
+			layoutThis.verticalSpacing = 0;
+			layoutThis.marginWidth = 0;
+			layoutThis.marginHeight = 0;
+			this.setLayoutManager(layoutThis);
+
+			this.setLineWidth(0);
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			StakeholderIcon stakeholderFigure0 = new StakeholderIcon();
+
+			this.add(stakeholderFigure0);
+
+			fFigureStakeholderFigure_name = new Label();
+
+			fFigureStakeholderFigure_name.setFont(FFIGURESTAKEHOLDERFIGURE_NAME_FONT);
+
+			GridData constraintFFigureStakeholderFigure_name = new GridData();
+			constraintFFigureStakeholderFigure_name.verticalAlignment = GridData.CENTER;
+			constraintFFigureStakeholderFigure_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureStakeholderFigure_name.horizontalIndent = 0;
+			constraintFFigureStakeholderFigure_name.horizontalSpan = 1;
+			constraintFFigureStakeholderFigure_name.verticalSpan = 1;
+			constraintFFigureStakeholderFigure_name.grabExcessHorizontalSpace = false;
+			constraintFFigureStakeholderFigure_name.grabExcessVerticalSpace = false;
+			this.add(fFigureStakeholderFigure_name, constraintFFigureStakeholderFigure_name);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Label getFigureStakeholderFigure_name() {
+			return fFigureStakeholderFigure_name;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGURESTAKEHOLDERFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 }

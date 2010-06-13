@@ -1,6 +1,7 @@
 package org.unicase.model.urml.ui.diagram.edit.policies;
 
 import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -15,9 +16,12 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.MitigationMitigatedDangersCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.MitigationMitigatedDangersReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -60,6 +64,13 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == MitigationMitigatedDangersEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -92,6 +103,9 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 		if (UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006 == req.getElementType()) {
 			return null;
 		}
+		if (UrmlElementTypes.MitigationMitigatedDangers_4012 == req.getElementType()) {
+			return getGEFWrapper(new MitigationMitigatedDangersCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -105,6 +119,9 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 		if (UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006 == req.getElementType()) {
 			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsCreateCommand(req, req.getSource(), req
 				.getTarget()));
+		}
+		if (UrmlElementTypes.MitigationMitigatedDangers_4012 == req.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -121,6 +138,8 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 			return getGEFWrapper(new RequirementImplementingServicesReorientCommand(req));
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsReorientCommand(req));
+		case MitigationMitigatedDangersEditPart.VISUAL_ID:
+			return getGEFWrapper(new MitigationMitigatedDangersReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

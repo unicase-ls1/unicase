@@ -8,22 +8,22 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.urml.ui.diagram.edit.policies.Stakeholder2ItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.edit.policies.DangerHarmedAssetsItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class Stakeholder2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class DangerHarmedAssetsEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final int VISUAL_ID = 4013;
 
 	/**
 	 * @generated
 	 */
-	public Stakeholder2EditPart(View view) {
+	public DangerHarmedAssetsEditPart(View view) {
 		super(view);
 	}
 
@@ -32,7 +32,7 @@ public class Stakeholder2EditPart extends ConnectionNodeEditPart implements ITre
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Stakeholder2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DangerHarmedAssetsItemSemanticEditPolicy());
 	}
 
 	/**
@@ -45,25 +45,25 @@ public class Stakeholder2EditPart extends ConnectionNodeEditPart implements ITre
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new StakeholderGoalsFigure();
+		return new DangerAssetFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public StakeholderGoalsFigure getPrimaryShape() {
-		return (StakeholderGoalsFigure) getFigure();
+	public DangerAssetFigure getPrimaryShape() {
+		return (DangerAssetFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class StakeholderGoalsFigure extends PolylineConnectionEx {
+	public class DangerAssetFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		public StakeholderGoalsFigure() {
+		public DangerAssetFigure() {
 			this.setLineWidth(1);
 
 			setTargetDecoration(createTargetDecoration());

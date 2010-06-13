@@ -20,11 +20,15 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.Messages;
@@ -41,7 +45,7 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof URMLDiagramEditPart) {
-			ArrayList types = new ArrayList(8);
+			ArrayList types = new ArrayList(10);
 			types.add(UrmlElementTypes.Stakeholder_2002);
 			types.add(UrmlElementTypes.Goal_2001);
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
@@ -50,6 +54,8 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 			types.add(UrmlElementTypes.Danger_2009);
 			types.add(UrmlElementTypes.Actor_2010);
+			types.add(UrmlElementTypes.ProceduralMitigation_2011);
+			types.add(UrmlElementTypes.ServiceProvider_2012);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -72,8 +78,20 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof ServiceEditPart) {
+			return ((ServiceEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
 			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof DangerEditPart) {
+			return ((DangerEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
+			return ((ProceduralMitigationEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -94,6 +112,18 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof ServiceEditPart) {
 			return ((ServiceEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof NonFunctionalRequirementEditPart) {
+			return ((NonFunctionalRequirementEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof DangerEditPart) {
+			return ((DangerEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ServiceProviderEditPart) {
+			return ((ServiceProviderEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -116,8 +146,20 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof ServiceEditPart) {
+			return ((ServiceEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
 			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof DangerEditPart) {
+			return ((DangerEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
+			return ((ProceduralMitigationEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -139,6 +181,18 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof ServiceEditPart) {
 			return ((ServiceEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof NonFunctionalRequirementEditPart) {
+			return ((NonFunctionalRequirementEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof DangerEditPart) {
+			return ((DangerEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ServiceProviderEditPart) {
+			return ((ServiceProviderEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -159,8 +213,20 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
+		if (sourceEditPart instanceof ServiceEditPart) {
+			return ((ServiceEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if (sourceEditPart instanceof NonFunctionalRequirementEditPart) {
 			return ((NonFunctionalRequirementEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof DangerEditPart) {
+			return ((DangerEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
+			return ((ProceduralMitigationEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
