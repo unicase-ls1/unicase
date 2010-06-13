@@ -63,11 +63,11 @@ public class GenerateProjectHandler extends  AbstractHandler {
 		int remainder = size;
 		while (remainder>factor) {
 			remainder = remainder / factor;
-			//increase existing instance by factor "factor"
+			//increase existing instances by factor "factor"
 			Library newRoot = LibraryFactory.eINSTANCE.createLibrary();
 			
 			for (int i=0; i<factor-1; i++) {
-				newRoot.getIncludedLibraries().add(ModelUtil.clone(rootlibrary));
+				newRoot.getIncludedLibraries().add(ModelUtil.copy(rootlibrary));
 			}
 			newRoot.getIncludedLibraries().add(rootlibrary);
 			rootlibrary = newRoot;
@@ -77,7 +77,7 @@ public class GenerateProjectHandler extends  AbstractHandler {
 		Library newRoot = LibraryFactory.eINSTANCE.createLibrary();
 		
 		for (int i=0; i<remainder-1; i++) {
-			newRoot.getIncludedLibraries().add(ModelUtil.clone(rootlibrary));
+			newRoot.getIncludedLibraries().add(ModelUtil.copy(rootlibrary));
 		}
 		newRoot.getIncludedLibraries().add(rootlibrary);
 		rootlibrary = newRoot;
