@@ -69,19 +69,13 @@ public final class ModelUtil {
 	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
 	 * Cross-referenced elements will not be copied.
 	 * 
+	 * @param <T> the type of the model element, must be a subtype of model element
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
-	public static ModelElement copy(ModelElement modelElement) {
-		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
-		// reset id
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		copy.setIdentifier(modelElementId.getId());
-		// reset ids of containment children
-		for (ModelElement child : copy.getAllContainedModelElements()) {
-			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			child.setIdentifier(childId.getId());
-		}
+	public static <T extends ModelElement> T copy(T modelElement) {
+		T copy = clone(modelElement);
+		reassignModelElementIds(copy);
 		return copy;
 	}
 
@@ -440,7 +434,8 @@ public final class ModelUtil {
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
 			try {
 				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				result.addAll(getAllModelElementEClasses(ePackage));			}
+				result.addAll(getAllModelElementEClasses(ePackage));
+			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 			catch (RuntimeException exception) {
 				// END SUPRESS CATCH EXCEPTION
@@ -812,9 +807,10 @@ public final class ModelUtil {
 				+ string);
 		}
 	}
-	
+
 	/**
-	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements that are contained in a project!.
+	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements
+	 * that are contained in a project!.
 	 * 
 	 * @param modelElement the element
 	 */
@@ -822,12 +818,12 @@ public final class ModelUtil {
 		Set<ModelElement> copiedElements = modelElement.getAllContainedModelElements();
 		copiedElements.add(modelElement);
 		for (ModelElement element : copiedElements) {
-			//turn off notification for id change			
+			// turn off notification for id change
 			boolean eDeliver = element.eDeliver();
 			element.eSetDeliver(false);
-			//change id
+			// change id
 			element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
-			//set edeliver to previous state
+			// set edeliver to previous state
 			element.eSetDeliver(eDeliver);
 		}
 	}
