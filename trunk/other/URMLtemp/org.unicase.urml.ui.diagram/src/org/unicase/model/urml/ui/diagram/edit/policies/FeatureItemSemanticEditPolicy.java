@@ -2,8 +2,14 @@ package org.unicase.model.urml.ui.diagram.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -18,13 +24,13 @@ import org.unicase.model.urml.ui.diagram.edit.commands.FeatureConstrainingNonFun
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureConstrainingNonFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsReorientCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.FeatureParentFeatureCreateCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.FeatureParentFeatureReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureSubFeaturesCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureSubFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -50,10 +56,21 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == FeatureParentFeatureEditPart.VISUAL_ID) {
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == FeatureSubFeaturesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 					incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -67,10 +84,21 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 		}
 		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == FeatureParentFeatureEditPart.VISUAL_ID) {
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == FeatureSubFeaturesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
 					outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -114,8 +142,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UrmlElementTypes.FeatureParentFeature_4002 == req.getElementType()) {
-			return getGEFWrapper(new FeatureParentFeatureCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UrmlElementTypes.FeatureSubFeatures_4015 == req.getElementType()) {
+			return getGEFWrapper(new FeatureSubFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return null;
@@ -135,8 +163,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UrmlElementTypes.FeatureParentFeature_4002 == req.getElementType()) {
-			return getGEFWrapper(new FeatureParentFeatureCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UrmlElementTypes.FeatureSubFeatures_4015 == req.getElementType()) {
+			return getGEFWrapper(new FeatureSubFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
@@ -158,8 +186,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case FeatureParentFeatureEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureParentFeatureReorientCommand(req));
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
+			return getGEFWrapper(new FeatureSubFeaturesReorientCommand(req));
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new GoalRealizedFeaturesReorientCommand(req));
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:

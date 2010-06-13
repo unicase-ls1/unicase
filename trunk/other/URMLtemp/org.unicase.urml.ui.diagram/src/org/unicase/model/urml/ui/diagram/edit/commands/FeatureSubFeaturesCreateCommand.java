@@ -13,7 +13,7 @@ import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditP
 /**
  * @generated
  */
-public class FeatureParentFeatureCreateCommand extends EditElementCommand {
+public class FeatureSubFeaturesCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -28,7 +28,7 @@ public class FeatureParentFeatureCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public FeatureParentFeatureCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public FeatureSubFeaturesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -51,8 +51,8 @@ public class FeatureParentFeatureCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateFeatureParentFeature_4002(getSource(),
-			getTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints
+			.canCreateFeatureSubFeatures_4015(getSource(), getTarget());
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class FeatureParentFeatureCreateCommand extends EditElementCommand {
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setParentFeature(getTarget());
+			getSource().getSubFeatures().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 

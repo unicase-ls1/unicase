@@ -91,7 +91,7 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	public String getText(Object object) {
 		String label = ((URMLDiagram) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_URMLDiagram_type")
-			: getString("_UI_URMLDiagram_type") + " " + label;
+			:  label;
 	}
 
 	/**

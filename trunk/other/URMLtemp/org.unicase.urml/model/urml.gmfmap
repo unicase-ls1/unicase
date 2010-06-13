@@ -68,7 +68,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.4"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="urml.gmfgraph#FunctionalRequirementNode"/>
     </ownedChild>
@@ -90,7 +90,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.5"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.3"/>
       <diagramNode
           href="urml.gmfgraph#FeatureNode"/>
     </ownedChild>
@@ -112,7 +112,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.7"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
           href="urml.gmfgraph#ServiceNode"/>
     </ownedChild>
@@ -135,7 +135,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.9"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.5"/>
       <diagramNode
           href="urml.gmfgraph#NonFunctionalRequirementNode"/>
     </ownedChild>
@@ -157,7 +157,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.10"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.6"/>
       <diagramNode
           href="urml.gmfgraph#DangerNode"/>
     </ownedChild>
@@ -179,7 +179,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.12"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.7"/>
       <diagramNode
           href="urml.gmfgraph#ActorNode"/>
     </ownedChild>
@@ -201,7 +201,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.13"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.8"/>
       <diagramNode
           href="urml.gmfgraph#ProceduralMitigationNode"/>
     </ownedChild>
@@ -223,7 +223,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.14"/>
+          href="urml.gmftool#//@palette/@tools.0/@tools.9"/>
       <diagramNode
           href="urml.gmfgraph#ServiceProviderNode"/>
     </ownedChild>
@@ -234,9 +234,6 @@
       <diagramLabel
           href="urml.gmfgraph#ExpressesLabel"/>
     </labelMappings>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.3"/>
     <diagramLink
         href="urml.gmfgraph#StakeholderGoals"/>
     <linkMetaFeature
@@ -244,19 +241,23 @@
         href="urml.ecore#//Stakeholder/goals"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.0"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsRefined"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#StakeholderGoals"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/parentFeature"/>
+        href="urml.ecore#//Feature/subFeatures"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.8"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Motivates"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#GoalFeature"/>
     <linkMetaFeature
@@ -264,9 +265,11 @@
         href="urml.ecore#//goal/Goal/realizedFeatures"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.10"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsImplemented"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#GoalFeature"/>
     <linkMetaFeature
@@ -274,9 +277,11 @@
         href="urml.ecore#//requirement/Requirement/implementingServices"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.13"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsDetailed"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#FeatureFunctionalRequirement"/>
     <linkMetaFeature
@@ -284,9 +289,10 @@
         href="urml.ecore#//Feature/detailingFunctionalRequirements"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.3"/>
+    <labelMappings>
+      <diagramLabel
+          href="urml.gmfgraph#IsRefined"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#GoalSubGoals"/>
     <linkMetaFeature
@@ -294,9 +300,11 @@
         href="urml.ecore#//goal/Goal/subGoals"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.1"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsConstrained"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#FeatureNonFunctionalRequirement"/>
     <linkMetaFeature
@@ -304,9 +312,11 @@
         href="urml.ecore#//Feature/constrainingNonFunctionalRequirements"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.15"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsProvided"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#ServiceServiceProvider"/>
     <linkMetaFeature
@@ -314,9 +324,11 @@
         href="urml.ecore#//service/Service/serviceProvider"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.16"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Mitigates"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#MitigationDanger"/>
     <linkMetaFeature
@@ -324,9 +336,11 @@
         href="urml.ecore#//danger/Mitigation/mitigatedDangers"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.17"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Harms"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#DangerAsset"/>
     <linkMetaFeature
@@ -334,9 +348,11 @@
         href="urml.ecore#//danger/Danger/harmedAssets"/>
   </links>
   <links>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.0/@tools.18"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Triggers"/>
+    </labelMappings>
     <diagramLink
         href="urml.gmfgraph#ActorDanger"/>
     <linkMetaFeature

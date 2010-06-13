@@ -88,7 +88,7 @@ public class StakeholderItemProvider extends UrmlModelElementItemProvider implem
 	public String getText(Object object) {
 		String label = ((Stakeholder) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Stakeholder_type")
-			: getString("_UI_Stakeholder_type") + " " + label;
+			:  label;
 	}
 
 	/**

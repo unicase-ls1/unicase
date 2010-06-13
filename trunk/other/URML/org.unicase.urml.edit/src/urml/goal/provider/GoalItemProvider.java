@@ -175,7 +175,7 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/goal.jpg"));
 	}
 
 	/**
@@ -187,8 +187,7 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	@Override
 	public String getText(Object object) {
 		String label = ((Goal) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Goal_type") : getString("_UI_Goal_type") + " "
-			+ label;
+		return label == null || label.length() == 0 ? getString("_UI_Goal_type") :  label;
 	}
 
 	/**

@@ -79,7 +79,7 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProceduralMitigation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/proceduralmitigation.jpg"));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	public String getText(Object object) {
 		String label = ((ProceduralMitigation) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ProceduralMitigation_type")
-			: getString("_UI_ProceduralMitigation_type") + " " + label;
+			:  label;
 	}
 
 	/**

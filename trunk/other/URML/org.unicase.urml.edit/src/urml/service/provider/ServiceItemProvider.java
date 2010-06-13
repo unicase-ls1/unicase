@@ -82,7 +82,7 @@ public class ServiceItemProvider extends MitigationItemProvider implements IEdit
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Service"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/service.jpg"));
 	}
 
 	/**
@@ -94,8 +94,7 @@ public class ServiceItemProvider extends MitigationItemProvider implements IEdit
 	@Override
 	public String getText(Object object) {
 		String label = ((Service) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Service_type") : getString("_UI_Service_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Service_type") : label;
 	}
 
 	/**

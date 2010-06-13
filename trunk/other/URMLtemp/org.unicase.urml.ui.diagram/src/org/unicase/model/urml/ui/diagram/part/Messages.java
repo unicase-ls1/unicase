@@ -243,22 +243,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Default1Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Urml2Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Constrains1CreationTool_title;
+	public static String Urml1Group_title;
 
 	/**
 	 * @generated
@@ -283,97 +268,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Expresses3CreationTool_title;
+	public static String FunctionalRequirement3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Expresses3CreationTool_desc;
+	public static String Feature4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String SubGoal4CreationTool_title;
+	public static String Service5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String SubGoal4CreationTool_desc;
+	public static String NonFunctionalRequirement6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement5CreationTool_title;
+	public static String Danger7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Feature6CreationTool_title;
+	public static String Actor8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Realizes7CreationTool_title;
+	public static String ProceduralMitigation9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Service8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Satisfies9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String NonFunctionalRequirement10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Danger11CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Details12CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Actor13CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ProceduralMitigation14CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ServiceProvider15CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Provides16CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Mitigates17CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Harms18CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Triggers19CreationTool_title;
+	public static String ServiceProvider10CreationTool_title;
 
 	/**
 	 * @generated
@@ -483,12 +413,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureParentFeature_4002_target;
+	public static String NavigatorGroupName_FeatureSubFeatures_4015_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureParentFeature_4002_source;
+	public static String NavigatorGroupName_FeatureSubFeatures_4015_source;
 
 	/**
 	 * @generated

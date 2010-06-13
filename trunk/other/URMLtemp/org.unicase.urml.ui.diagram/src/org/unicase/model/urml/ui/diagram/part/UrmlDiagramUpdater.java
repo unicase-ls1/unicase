@@ -22,7 +22,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -262,7 +262,7 @@ public class UrmlDiagramUpdater {
 	public static List getFeature_2005ContainedLinks(View view) {
 		Feature modelElement = (Feature) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ParentFeature_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_SubFeatures_4015(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailingFunctionalRequirements_4006(modelElement));
 		result
 			.addAll(getOutgoingFeatureModelFacetLinks_Feature_ConstrainingNonFunctionalRequirements_4010(modelElement));
@@ -366,7 +366,7 @@ public class UrmlDiagramUpdater {
 		Feature modelElement = (Feature) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_ParentFeature_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_SubFeatures_4015(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Goal_RealizedFeatures_4004(modelElement, crossReferences));
 		return result;
 	}
@@ -476,7 +476,7 @@ public class UrmlDiagramUpdater {
 	public static List getFeature_2005OutgoingLinks(View view) {
 		Feature modelElement = (Feature) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ParentFeature_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_SubFeatures_4015(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailingFunctionalRequirements_4006(modelElement));
 		result
 			.addAll(getOutgoingFeatureModelFacetLinks_Feature_ConstrainingNonFunctionalRequirements_4010(modelElement));
@@ -561,15 +561,15 @@ public class UrmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_ParentFeature_4002(Feature target,
+	private static Collection getIncomingFeatureModelFacetLinks_Feature_SubFeatures_4015(Feature target,
 		Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
-			if (setting.getEStructuralFeature() == UrmlPackage.eINSTANCE.getFeature_ParentFeature()) {
+			if (setting.getEStructuralFeature() == UrmlPackage.eINSTANCE.getFeature_SubFeatures()) {
 				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
-					UrmlElementTypes.FeatureParentFeature_4002, FeatureParentFeatureEditPart.VISUAL_ID));
+					UrmlElementTypes.FeatureSubFeatures_4015, FeatureSubFeaturesEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -748,14 +748,13 @@ public class UrmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_ParentFeature_4002(Feature source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Feature_SubFeatures_4015(Feature source) {
 		Collection result = new LinkedList();
-		Feature destination = source.getParentFeature();
-		if (destination == null) {
-			return result;
+		for (Iterator destinations = source.getSubFeatures().iterator(); destinations.hasNext();) {
+			Feature destination = (Feature) destinations.next();
+			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.FeatureSubFeatures_4015,
+				FeatureSubFeaturesEditPart.VISUAL_ID));
 		}
-		result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.FeatureParentFeature_4002,
-			FeatureParentFeatureEditPart.VISUAL_ID));
 		return result;
 	}
 

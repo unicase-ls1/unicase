@@ -28,46 +28,19 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="expresses"
-          description="">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="sub Goal"
-          description="">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="FunctionalRequirement"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Feature"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="realizes"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="Service"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="satisfies"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="NonFunctionalRequirement"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Danger"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="details"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Actor"/>
@@ -77,21 +50,6 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="ServiceProvider"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="provides"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="mitigates"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="harms"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="triggers"/>
     </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="constrains"/>
   </palette>
 </gmftool:ToolRegistry>
