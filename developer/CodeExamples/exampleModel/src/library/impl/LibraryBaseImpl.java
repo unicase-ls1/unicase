@@ -10,22 +10,21 @@ import library.LibraryBase;
 import library.LibraryPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.metamodel.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Base</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Base</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class LibraryBaseImpl extends ModelElementImpl implements LibraryBase {
+public abstract class LibraryBaseImpl extends ModelElementImpl implements
+		LibraryBase {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LibraryBaseImpl() {
@@ -33,8 +32,8 @@ public abstract class LibraryBaseImpl extends ModelElementImpl implements Librar
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -42,4 +41,4 @@ public abstract class LibraryBaseImpl extends ModelElementImpl implements Librar
 		return LibraryPackage.Literals.LIBRARY_BASE;
 	}
 
-} //LibraryBaseImpl
+} // LibraryBaseImpl
