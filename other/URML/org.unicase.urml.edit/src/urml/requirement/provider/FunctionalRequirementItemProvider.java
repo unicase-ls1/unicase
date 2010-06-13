@@ -125,7 +125,7 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 	public String getText(Object object) {
 		String label = ((FunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_FunctionalRequirement_type")
-			: getString("_UI_FunctionalRequirement_type") + " " + label;
+			:  label;
 	}
 
 	/**

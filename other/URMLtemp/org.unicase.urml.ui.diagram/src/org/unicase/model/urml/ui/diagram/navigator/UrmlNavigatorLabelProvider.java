@@ -27,14 +27,23 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFuncti
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.HarmsLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsConstraintLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsProvidedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
@@ -48,14 +57,12 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPa
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.model.urml.ui.diagram.providers.UrmlParserProvider;
-
-import urml.goal.Goal;
-import urml.requirement.FunctionalRequirement;
 
 /**
  * @generated
@@ -145,9 +152,9 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml?Stakeholder?goals", UrmlElementTypes.StakeholderGoals_4008); //$NON-NLS-1$
-		case FeatureParentFeatureEditPart.VISUAL_ID:
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
 			return getImage(
-				"Navigator?Link?http://unicase.org/model/urml?Feature?parentFeature", UrmlElementTypes.FeatureParentFeature_4002); //$NON-NLS-1$
+				"Navigator?Link?http://unicase.org/model/urml?Feature?subFeatures", UrmlElementTypes.FeatureSubFeatures_4015); //$NON-NLS-1$
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/goal?Goal?realizedFeatures", UrmlElementTypes.GoalRealizedFeatures_4004); //$NON-NLS-1$
@@ -249,8 +256,8 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getServiceProvider_2012Text(view);
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return getStakeholderGoals_4008Text(view);
-		case FeatureParentFeatureEditPart.VISUAL_ID:
-			return getFeatureParentFeature_4002Text(view);
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
+			return getFeatureSubFeatures_4015Text(view);
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getGoalRealizedFeatures_4004Text(view);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
@@ -460,71 +467,161 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	/**
 	 * @generated
 	 */
-	private String getFeatureParentFeature_4002Text(View view) {
-		return ""; //$NON-NLS-1$
+	private String getFeatureSubFeatures_4015Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.FeatureSubFeatures_4015,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(IsRefinedLabel2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getGoalRealizedFeatures_4004Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.GoalRealizedFeatures_4004,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(MotivatesLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6004); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getRequirementImplementingServices_4005Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.RequirementImplementingServices_4005, view
+			.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+			.getType(IsImplementedLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6007); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getFeatureDetailingFunctionalRequirements_4006Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(IsDetailedLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getGoalSubGoals_4009Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.GoalSubGoals_4009,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(IsRefinedLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getFeatureConstrainingNonFunctionalRequirements_4010Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(
+			UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010, view.getElement() != null ? view
+				.getElement() : view, UrmlVisualIDRegistry.getType(IsConstraintLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6006); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getServiceServiceProvider_4011Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.ServiceServiceProvider_4011,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(IsProvidedLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6008); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getMitigationMitigatedDangers_4012Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.MitigationMitigatedDangers_4012, view
+			.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+			.getType(MitigatesLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6009); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getDangerHarmedAssets_4013Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.DangerHarmedAssets_4013,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(HarmsLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6010); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getActorTriggeredDangers_4014Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.ActorTriggeredDangers_4014,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(TriggersLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6011); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**

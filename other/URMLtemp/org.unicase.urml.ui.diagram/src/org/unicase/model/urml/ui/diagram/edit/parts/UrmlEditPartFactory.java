@@ -97,35 +97,65 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case ExpressesLabelEditPart.VISUAL_ID:
 				return new ExpressesLabelEditPart(view);
 
-			case FeatureParentFeatureEditPart.VISUAL_ID:
-				return new FeatureParentFeatureEditPart(view);
+			case FeatureSubFeaturesEditPart.VISUAL_ID:
+				return new FeatureSubFeaturesEditPart(view);
+
+			case IsRefinedLabel2EditPart.VISUAL_ID:
+				return new IsRefinedLabel2EditPart(view);
 
 			case GoalRealizedFeaturesEditPart.VISUAL_ID:
 				return new GoalRealizedFeaturesEditPart(view);
 
+			case MotivatesLabelEditPart.VISUAL_ID:
+				return new MotivatesLabelEditPart(view);
+
 			case RequirementImplementingServicesEditPart.VISUAL_ID:
 				return new RequirementImplementingServicesEditPart(view);
+
+			case IsImplementedLabelEditPart.VISUAL_ID:
+				return new IsImplementedLabelEditPart(view);
 
 			case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 				return new FeatureDetailingFunctionalRequirementsEditPart(view);
 
+			case IsDetailedLabelEditPart.VISUAL_ID:
+				return new IsDetailedLabelEditPart(view);
+
 			case GoalSubGoalsEditPart.VISUAL_ID:
 				return new GoalSubGoalsEditPart(view);
+
+			case IsRefinedLabelEditPart.VISUAL_ID:
+				return new IsRefinedLabelEditPart(view);
 
 			case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
 				return new FeatureConstrainingNonFunctionalRequirementsEditPart(view);
 
+			case IsConstraintLabelEditPart.VISUAL_ID:
+				return new IsConstraintLabelEditPart(view);
+
 			case ServiceServiceProviderEditPart.VISUAL_ID:
 				return new ServiceServiceProviderEditPart(view);
+
+			case IsProvidedLabelEditPart.VISUAL_ID:
+				return new IsProvidedLabelEditPart(view);
 
 			case MitigationMitigatedDangersEditPart.VISUAL_ID:
 				return new MitigationMitigatedDangersEditPart(view);
 
+			case MitigatesLabelEditPart.VISUAL_ID:
+				return new MitigatesLabelEditPart(view);
+
 			case DangerHarmedAssetsEditPart.VISUAL_ID:
 				return new DangerHarmedAssetsEditPart(view);
 
+			case HarmsLabelEditPart.VISUAL_ID:
+				return new HarmsLabelEditPart(view);
+
 			case ActorTriggeredDangersEditPart.VISUAL_ID:
 				return new ActorTriggeredDangersEditPart(view);
+
+			case TriggersLabelEditPart.VISUAL_ID:
+				return new TriggersLabelEditPart(view);
 
 			}
 		}

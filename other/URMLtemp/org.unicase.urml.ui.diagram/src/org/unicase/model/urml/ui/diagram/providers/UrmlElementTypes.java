@@ -23,7 +23,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -132,7 +132,8 @@ public class UrmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType FeatureParentFeature_4002 = getElementType("org.unicase.urml.ui.diagram.FeatureParentFeature_4002"); //$NON-NLS-1$
+	public static final IElementType FeatureSubFeatures_4015 = getElementType("org.unicase.urml.ui.diagram.FeatureSubFeatures_4015"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -309,7 +310,7 @@ public class UrmlElementTypes extends ElementInitializers {
 
 			elements.put(StakeholderGoals_4008, UrmlPackage.eINSTANCE.getStakeholder_Goals());
 
-			elements.put(FeatureParentFeature_4002, UrmlPackage.eINSTANCE.getFeature_ParentFeature());
+			elements.put(FeatureSubFeatures_4015, UrmlPackage.eINSTANCE.getFeature_SubFeatures());
 
 			elements.put(GoalRealizedFeatures_4004, GoalPackage.eINSTANCE.getGoal_RealizedFeatures());
 
@@ -360,7 +361,7 @@ public class UrmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ProceduralMitigation_2011);
 			KNOWN_ELEMENT_TYPES.add(ServiceProvider_2012);
 			KNOWN_ELEMENT_TYPES.add(StakeholderGoals_4008);
-			KNOWN_ELEMENT_TYPES.add(FeatureParentFeature_4002);
+			KNOWN_ELEMENT_TYPES.add(FeatureSubFeatures_4015);
 			KNOWN_ELEMENT_TYPES.add(GoalRealizedFeatures_4004);
 			KNOWN_ELEMENT_TYPES.add(RequirementImplementingServices_4005);
 			KNOWN_ELEMENT_TYPES.add(FeatureDetailingFunctionalRequirements_4006);
@@ -403,8 +404,8 @@ public class UrmlElementTypes extends ElementInitializers {
 			return ServiceProvider_2012;
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return StakeholderGoals_4008;
-		case FeatureParentFeatureEditPart.VISUAL_ID:
-			return FeatureParentFeature_4002;
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
+			return FeatureSubFeatures_4015;
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return GoalRealizedFeatures_4004;
 		case RequirementImplementingServicesEditPart.VISUAL_ID:

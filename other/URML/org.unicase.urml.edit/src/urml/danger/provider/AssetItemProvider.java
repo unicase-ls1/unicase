@@ -81,8 +81,8 @@ public class AssetItemProvider extends UrmlModelElementItemProvider implements I
 	@Override
 	public String getText(Object object) {
 		String label = ((Asset) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Asset_type") : getString("_UI_Asset_type") + " "
-			+ label;
+		return label == null || label.length() == 0 ? getString("_UI_Asset_type") : 
+			label;
 	}
 
 	/**

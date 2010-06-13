@@ -529,6 +529,7 @@
           visualID="6001"
           editPartClassName="ExpressesLabelEditPart"
           itemSemanticEditPolicyClassName="ExpressesLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="StakeholderGoalsLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -545,12 +546,12 @@
       </labels>
     </links>
     <links
-        visualID="4002"
-        editPartClassName="FeatureParentFeatureEditPart"
-        itemSemanticEditPolicyClassName="FeatureParentFeatureItemSemanticEditPolicy"
-        notationViewFactoryClassName="FeatureParentFeatureViewFactory"
-        createCommandClassName="FeatureParentFeatureCreateCommand"
-        reorientCommandClassName="FeatureParentFeatureReorientCommand">
+        visualID="4015"
+        editPartClassName="FeatureSubFeaturesEditPart"
+        itemSemanticEditPolicyClassName="FeatureSubFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="FeatureSubFeaturesViewFactory"
+        createCommandClassName="FeatureSubFeaturesCreateCommand"
+        reorientCommandClassName="FeatureSubFeaturesReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
@@ -562,8 +563,27 @@
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="urml.genmodel#//urml/Feature/parentFeature"/>
+            href="urml.genmodel#//urml/Feature/subFeatures"/>
       </modelFacet>
+      <labels
+          visualID="6003"
+          editPartClassName="IsRefinedLabel2EditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabel2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureSubFeaturesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsRefinedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4004"
@@ -585,6 +605,25 @@
         <metaFeature
             href="urml.genmodel#//urml/goal/Goal/realizedFeatures"/>
       </modelFacet>
+      <labels
+          visualID="6004"
+          editPartClassName="MotivatesLabelEditPart"
+          itemSemanticEditPolicyClassName="MotivatesLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="GoalRealizedFeaturesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MotivatesLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MotivatesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MotivatesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;motivates&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4005"
@@ -606,6 +645,24 @@
         <metaFeature
             href="urml.genmodel#//urml/requirement/Requirement/implementingServices"/>
       </modelFacet>
+      <labels
+          visualID="6007"
+          editPartClassName="IsImplementedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsImplementedLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsImplementedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsImplementedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsImplementedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is implemented by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4006"
@@ -627,6 +684,25 @@
         <metaFeature
             href="urml.genmodel#//urml/Feature/detailingFunctionalRequirements"/>
       </modelFacet>
+      <labels
+          visualID="6005"
+          editPartClassName="IsDetailedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsDetailedLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureDetailingFunctionalRequirementsLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsDetailedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsDetailedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsDetailedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is detailed&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4009"
@@ -648,6 +724,24 @@
         <metaFeature
             href="urml.genmodel#//urml/goal/Goal/subGoals"/>
       </modelFacet>
+      <labels
+          visualID="6002"
+          editPartClassName="IsRefinedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="GoalSubGoalsLabelViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsRefinedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4010"
@@ -669,6 +763,25 @@
         <metaFeature
             href="urml.genmodel#//urml/Feature/constrainingNonFunctionalRequirements"/>
       </modelFacet>
+      <labels
+          visualID="6006"
+          editPartClassName="IsConstraintLabelEditPart"
+          itemSemanticEditPolicyClassName="IsConstraintLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureConstrainingNonFunctionalRequirementsLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsConstraintLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsConstraintLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsConstraintLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is constrained by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4011"
@@ -690,6 +803,24 @@
         <metaFeature
             href="urml.genmodel#//urml/service/Service/serviceProvider"/>
       </modelFacet>
+      <labels
+          visualID="6008"
+          editPartClassName="IsProvidedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsProvidedLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsProvidedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsProvidedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsProvidedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is provided by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4012"
@@ -711,6 +842,24 @@
         <metaFeature
             href="urml.genmodel#//urml/danger/Mitigation/mitigatedDangers"/>
       </modelFacet>
+      <labels
+          visualID="6009"
+          editPartClassName="MitigatesLabelEditPart"
+          itemSemanticEditPolicyClassName="MitigatesLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MitigatesLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigatesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigatesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;mitigates&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4013"
@@ -732,6 +881,24 @@
         <metaFeature
             href="urml.genmodel#//urml/danger/Danger/harmedAssets"/>
       </modelFacet>
+      <labels
+          visualID="6010"
+          editPartClassName="HarmsLabelEditPart"
+          itemSemanticEditPolicyClassName="HarmsLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="HarmsLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class HarmsLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public HarmsLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;harms&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <links
         visualID="4014"
@@ -753,38 +920,38 @@
         <metaFeature
             href="urml.genmodel#//urml/usecase/Actor/triggeredDangers"/>
       </modelFacet>
+      <labels
+          visualID="6011"
+          editPartClassName="TriggersLabelEditPart"
+          itemSemanticEditPolicyClassName="TriggersLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="TriggersLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TriggersLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TriggersLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;triggers&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
     </links>
     <palette>
-      <groups
-          title="Default"
-          description="Holds top-level non-container tools">
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="constrains"
-            genLinks="//@diagram/@links.6"/>
-      </groups>
       <groups
           title="urml">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Stakeholder"
             description="Create new Stakeholder"
-            genNodes="//@diagram/@topLevelNodes.0"
-            genLinks="//@diagram/@links.1"/>
+            genNodes="//@diagram/@topLevelNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Goal"
             description="Create new Goal"
             genNodes="//@diagram/@topLevelNodes.1"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="expresses"
-            description=""/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="sub Goal"
-            description=""
-            genLinks="//@diagram/@links.0 //@diagram/@links.5"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="FunctionalRequirement"
@@ -795,15 +962,8 @@
             genNodes="//@diagram/@topLevelNodes.3"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="realizes"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="Service"
             genNodes="//@diagram/@topLevelNodes.4"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="satisfies"
-            genLinks="//@diagram/@links.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="NonFunctionalRequirement"
@@ -811,11 +971,7 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Danger"
-            genNodes="//@diagram/@topLevelNodes.6"
-            genLinks="//@diagram/@links.3"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="details"/>
+            genNodes="//@diagram/@topLevelNodes.6"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Actor"
@@ -823,28 +979,11 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="ProceduralMitigation"
-            genNodes="//@diagram/@topLevelNodes.8"
-            genLinks="//@diagram/@links.4"/>
+            genNodes="//@diagram/@topLevelNodes.8"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="ServiceProvider"
             genNodes="//@diagram/@topLevelNodes.9"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="provides"
-            genLinks="//@diagram/@links.7"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="mitigates"
-            genLinks="//@diagram/@links.8"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="harms"
-            genLinks="//@diagram/@links.9"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="triggers"
-            genLinks="//@diagram/@links.10"/>
       </groups>
     </palette>
     <preferencePages
@@ -1321,7 +1460,7 @@
         uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet //@diagram/@topLevelNodes.8/@labels.0/@modelFacet //@diagram/@topLevelNodes.9/@labels.0/@modelFacet"/>
     <implementations
         xsi:type="gmfgen:ExternalParser"
-        uses="//@diagram/@links.0/@labels.0/@modelFacet"/>
+        uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet //@diagram/@links.5/@labels.0/@modelFacet //@diagram/@links.6/@labels.0/@modelFacet //@diagram/@links.7/@labels.0/@modelFacet //@diagram/@links.8/@labels.0/@modelFacet //@diagram/@links.9/@labels.0/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

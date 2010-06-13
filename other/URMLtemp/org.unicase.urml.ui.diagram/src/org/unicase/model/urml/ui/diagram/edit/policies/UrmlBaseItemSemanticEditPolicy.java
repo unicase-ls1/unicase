@@ -313,17 +313,20 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateFeatureParentFeature_4002(Feature source, Feature target) {
+		public static boolean canCreateFeatureSubFeatures_4015(Feature source, Feature target) {
 			if (source != null) {
-				if (source.getParentFeature() != null) {
+				if (source.getSubFeatures().contains(target)) {
+					return false;
+				}
+				if (source == target) {
 					return false;
 				}
 			}
-			if (target != null && (target.getSubFeatures().contains(target))) {
+			if (target != null && (target.getParentFeature() != null)) {
 				return false;
 			}
 
-			return canExistFeatureParentFeature_4002(source, target);
+			return canExistFeatureSubFeatures_4015(source, target);
 		}
 
 		/**
@@ -485,7 +488,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistFeatureParentFeature_4002(Feature source, Feature target) {
+		public static boolean canExistFeatureSubFeatures_4015(Feature source, Feature target) {
 			return true;
 		}
 

@@ -14,7 +14,7 @@ import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditP
 /**
  * @generated
  */
-public class FeatureParentFeatureReorientCommand extends EditElementCommand {
+public class FeatureSubFeaturesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -39,7 +39,7 @@ public class FeatureParentFeatureReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public FeatureParentFeatureReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public FeatureSubFeaturesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -70,7 +70,7 @@ public class FeatureParentFeatureReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureParentFeature_4002(getNewSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureSubFeatures_4015(getNewSource(),
 			getOldTarget());
 	}
 
@@ -81,7 +81,7 @@ public class FeatureParentFeatureReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureParentFeature_4002(getOldSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureSubFeatures_4015(getOldSource(),
 			getNewTarget());
 	}
 
@@ -105,8 +105,8 @@ public class FeatureParentFeatureReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setParentFeature(null);
-		getNewSource().setParentFeature(getOldTarget());
+		getOldSource().getSubFeatures().remove(getOldTarget());
+		getNewSource().getSubFeatures().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -114,7 +114,8 @@ public class FeatureParentFeatureReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setParentFeature(getNewTarget());
+		getOldSource().getSubFeatures().remove(getOldTarget());
+		getOldSource().getSubFeatures().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

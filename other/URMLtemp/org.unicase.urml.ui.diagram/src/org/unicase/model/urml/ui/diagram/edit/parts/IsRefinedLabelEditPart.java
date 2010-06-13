@@ -1,9 +1,9 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -14,20 +14,18 @@ import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -52,12 +50,12 @@ import org.unicase.model.urml.ui.diagram.providers.UrmlParserProvider;
 /**
  * @generated
  */
-public class FunctionalRequirementNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class IsRefinedLabelEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5010;
+	public static final int VISUAL_ID = 6002;
 
 	/**
 	 * @generated
@@ -82,7 +80,15 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementNameEditPart(View view) {
+	static {
+		registerSnapBackPosition(UrmlVisualIDRegistry
+			.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart.VISUAL_ID), new Point(0, 20));
+	}
+
+	/**
+	 * @generated
+	 */
+	public IsRefinedLabelEditPart(View view) {
 		super(view);
 	}
 
@@ -91,25 +97,23 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UrmlTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UrmlTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableLabelEditPolicy() {
 
 			protected List createSelectionHandles() {
-				List handles = new ArrayList();
-				NonResizableHandleKit.addMoveHandle((GraphicalEditPart) getHost(), handles);
-				((MoveHandle) handles.get(0)).setBorder(null);
-				return handles;
-			}
-
-			public Command getCommand(Request request) {
-				return null;
-			}
-
-			public boolean understandsRequest(Request request) {
-				return false;
+				MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+				mh.setBorder(null);
+				return Collections.singletonList(mh);
 			}
 		});
+	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.MIDDLE;
 	}
 
 	/**
@@ -159,7 +163,7 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	public void setLabel(org.unicase.ui.unicasecommon.diagram.figures.Label figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -294,9 +298,9 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.FunctionalRequirement_2006, getParserElement(),
+			parser = UrmlParserProvider.getParser(UrmlElementTypes.GoalSubGoals_4009, getParserElement(),
 				UrmlVisualIDRegistry
-					.getType(org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart.VISUAL_ID));
+					.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -489,23 +493,7 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View) getModel();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+		return getPrimaryView();
 	}
 
 	/**
@@ -547,8 +535,30 @@ public class FunctionalRequirementNameEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		// Parent should assign one using setLabel() method
-		return null;
+		IFigure label = createFigurePrim();
+		defaultText = getLabelTextHelper(label);
+		return label;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure createFigurePrim() {
+		return new IsRefinedLabelFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class IsRefinedLabelFigure extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		public IsRefinedLabelFigure() {
+			this.setText("is refined by");
+		}
+
 	}
 
 }

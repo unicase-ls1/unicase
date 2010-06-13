@@ -92,7 +92,7 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 	public String getText(Object object) {
 		String label = ((NonFunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_NonFunctionalRequirement_type")
-			: getString("_UI_NonFunctionalRequirement_type") + " " + label;
+			: label;
 	}
 
 	/**

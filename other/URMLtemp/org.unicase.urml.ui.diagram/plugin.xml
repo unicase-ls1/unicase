@@ -214,7 +214,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Urml"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,2001,2006,2005,2007,2008,2009,2010,2011,2012"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4002,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4015,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
       </viewProvider>
    </extension>
 
@@ -229,7 +229,7 @@
             <method name="getType()" value="2002,2001,2006,2005,2007,2008,2009,2010,2011,2012"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4008,4002,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
+            <method name="getType()" value="4008,4015,4004,4005,4006,4009,4010,4011,4012,4013,4014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5008,5009,5010,5001,5002,5003,5004,5005,5006,5007"/>
@@ -390,11 +390,11 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/urml">
          <specializationType
-               id="org.unicase.urml.ui.diagram.FeatureParentFeature_4002"
-               name="%metatype.name.FeatureParentFeature_4002"
+               id="org.unicase.urml.ui.diagram.FeatureSubFeatures_4015"
+               name="%metatype.name.FeatureSubFeatures_4015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4015"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/urml/goal">
@@ -502,7 +502,7 @@
          <elementType ref="org.unicase.urml.ui.diagram.ProceduralMitigation_2011"/>
          <elementType ref="org.unicase.urml.ui.diagram.ServiceProvider_2012"/>
          <elementType ref="org.unicase.urml.ui.diagram.StakeholderGoals_4008"/>
-         <elementType ref="org.unicase.urml.ui.diagram.FeatureParentFeature_4002"/>
+         <elementType ref="org.unicase.urml.ui.diagram.FeatureSubFeatures_4015"/>
          <elementType ref="org.unicase.urml.ui.diagram.GoalRealizedFeatures_4004"/>
          <elementType ref="org.unicase.urml.ui.diagram.RequirementImplementingServices_4005"/>
          <elementType ref="org.unicase.urml.ui.diagram.FeatureDetailingFunctionalRequirements_4006"/>

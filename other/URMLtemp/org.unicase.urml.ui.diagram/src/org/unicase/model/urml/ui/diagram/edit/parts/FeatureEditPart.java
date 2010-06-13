@@ -258,7 +258,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.FeatureParentFeature_4002);
+		types.add(UrmlElementTypes.FeatureSubFeatures_4015);
 		types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
 		types.add(UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010);
 		return types;
@@ -271,7 +271,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		IGraphicalEditPart targetEditPart) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart) {
-			types.add(UrmlElementTypes.FeatureParentFeature_4002);
+			types.add(UrmlElementTypes.FeatureSubFeatures_4015);
 		}
 		if (targetEditPart instanceof FunctionalRequirementEditPart) {
 			types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
@@ -288,7 +288,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.FeatureParentFeature_4002) {
+		if (relationshipType == UrmlElementTypes.FeatureSubFeatures_4015) {
 			types.add(UrmlElementTypes.Feature_2005);
 		}
 		if (relationshipType == UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006) {
@@ -305,7 +305,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.FeatureParentFeature_4002);
+		types.add(UrmlElementTypes.FeatureSubFeatures_4015);
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
 		return types;
 	}
@@ -316,7 +316,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.FeatureParentFeature_4002) {
+		if (relationshipType == UrmlElementTypes.FeatureSubFeatures_4015) {
 			types.add(UrmlElementTypes.Feature_2005);
 		}
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {

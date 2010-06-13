@@ -9,26 +9,46 @@ import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorTriggeredDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ExpressesLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.HarmsLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsConstraintLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsProvidedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 
 import urml.danger.DangerPackage;
@@ -277,6 +297,56 @@ public class UrmlVisualIDRegistry {
 			break;
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			if (ExpressesLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
+			if (IsRefinedLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case GoalRealizedFeaturesEditPart.VISUAL_ID:
+			if (MotivatesLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementImplementingServicesEditPart.VISUAL_ID:
+			if (IsImplementedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsDetailedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case GoalSubGoalsEditPart.VISUAL_ID:
+			if (IsRefinedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ServiceServiceProviderEditPart.VISUAL_ID:
+			if (IsProvidedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case MitigationMitigatedDangersEditPart.VISUAL_ID:
+			if (MitigatesLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DangerHarmedAssetsEditPart.VISUAL_ID:
+			if (HarmsLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActorTriggeredDangersEditPart.VISUAL_ID:
+			if (TriggersLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -52,14 +52,23 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFuncti
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.HarmsLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsConstraintLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsProvidedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
@@ -73,6 +82,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPa
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 
@@ -264,8 +274,8 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		switch (UrmlVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case StakeholderGoalsEditPart.VISUAL_ID:
 			return createStakeholderGoals_4008(containerView, index, persisted, preferencesHint);
-		case FeatureParentFeatureEditPart.VISUAL_ID:
-			return createFeatureParentFeature_4002(containerView, index, persisted, preferencesHint);
+		case FeatureSubFeaturesEditPart.VISUAL_ID:
+			return createFeatureSubFeatures_4015(containerView, index, persisted, preferencesHint);
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return createGoalRealizedFeatures_4004(containerView, index, persisted, preferencesHint);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
@@ -709,7 +719,7 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createFeatureParentFeature_4002(View containerView, int index, boolean persisted,
+	public Edge createFeatureSubFeatures_4015(View containerView, int index, boolean persisted,
 		PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -720,7 +730,7 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UrmlVisualIDRegistry.getType(FeatureParentFeatureEditPart.VISUAL_ID));
+		edge.setType(UrmlVisualIDRegistry.getType(FeatureSubFeaturesEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
@@ -744,6 +754,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6003 = createLabel(edge, UrmlVisualIDRegistry.getType(IsRefinedLabel2EditPart.VISUAL_ID));
+		label6003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6003 = (Location) label6003.getLayoutConstraint();
+		location6003.setX(0);
+		location6003.setY(20);
 		return edge;
 	}
 
@@ -785,6 +800,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6004 = createLabel(edge, UrmlVisualIDRegistry.getType(MotivatesLabelEditPart.VISUAL_ID));
+		label6004.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6004 = (Location) label6004.getLayoutConstraint();
+		location6004.setX(0);
+		location6004.setY(20);
 		return edge;
 	}
 
@@ -826,6 +846,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6007 = createLabel(edge, UrmlVisualIDRegistry.getType(IsImplementedLabelEditPart.VISUAL_ID));
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6007 = (Location) label6007.getLayoutConstraint();
+		location6007.setX(0);
+		location6007.setY(20);
 		return edge;
 	}
 
@@ -867,6 +892,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6005 = createLabel(edge, UrmlVisualIDRegistry.getType(IsDetailedLabelEditPart.VISUAL_ID));
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6005 = (Location) label6005.getLayoutConstraint();
+		location6005.setX(0);
+		location6005.setY(20);
 		return edge;
 	}
 
@@ -908,6 +938,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6002 = createLabel(edge, UrmlVisualIDRegistry.getType(IsRefinedLabelEditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(20);
 		return edge;
 	}
 
@@ -949,6 +984,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6006 = createLabel(edge, UrmlVisualIDRegistry.getType(IsConstraintLabelEditPart.VISUAL_ID));
+		label6006.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6006 = (Location) label6006.getLayoutConstraint();
+		location6006.setX(0);
+		location6006.setY(20);
 		return edge;
 	}
 
@@ -990,6 +1030,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6008 = createLabel(edge, UrmlVisualIDRegistry.getType(IsProvidedLabelEditPart.VISUAL_ID));
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6008 = (Location) label6008.getLayoutConstraint();
+		location6008.setX(0);
+		location6008.setY(20);
 		return edge;
 	}
 
@@ -1031,6 +1076,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6009 = createLabel(edge, UrmlVisualIDRegistry.getType(MitigatesLabelEditPart.VISUAL_ID));
+		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6009 = (Location) label6009.getLayoutConstraint();
+		location6009.setX(0);
+		location6009.setY(20);
 		return edge;
 	}
 
@@ -1072,6 +1122,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6010 = createLabel(edge, UrmlVisualIDRegistry.getType(HarmsLabelEditPart.VISUAL_ID));
+		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6010 = (Location) label6010.getLayoutConstraint();
+		location6010.setX(0);
+		location6010.setY(20);
 		return edge;
 	}
 
@@ -1113,6 +1168,11 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
+		Node label6011 = createLabel(edge, UrmlVisualIDRegistry.getType(TriggersLabelEditPart.VISUAL_ID));
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6011 = (Location) label6011.getLayoutConstraint();
+		location6011.setX(0);
+		location6011.setY(20);
 		return edge;
 	}
 

@@ -107,8 +107,7 @@ public class ActorItemProvider extends AssetItemProvider implements IEditingDoma
 	@Override
 	public String getText(Object object) {
 		String label = ((Actor) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Actor_type") : getString("_UI_Actor_type") + " "
-			+ label;
+		return label == null || label.length() == 0 ? getString("_UI_Actor_type") : label;
 	}
 
 	/**

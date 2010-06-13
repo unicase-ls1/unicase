@@ -425,6 +425,69 @@
           name="ExpressesLabelFigure"
           text="expresses"/>
     </descriptors>
+    <descriptors
+        name="IsRefinedLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IsRefinedLabelFigure"
+          text="is refined by"/>
+    </descriptors>
+    <descriptors
+        name="MotivatesLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="MotivatesLabelFigure"
+          text="motivates"/>
+    </descriptors>
+    <descriptors
+        name="IsDetailedLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IsDetailedLabelFigure"
+          text="is detailed"/>
+    </descriptors>
+    <descriptors
+        name="IsConstraintLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IsConstraintLabelFigure"
+          text="is constrained by"/>
+    </descriptors>
+    <descriptors
+        name="IsImplementedLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IsImplementedLabelFigure"
+          text="is implemented by"/>
+    </descriptors>
+    <descriptors
+        name="IsProvidedLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="IsProvidedLabelFigure"
+          text="is provided by"/>
+    </descriptors>
+    <descriptors
+        name="MitigatesLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="MitigatesLabelFigure"
+          text="mitigates"/>
+    </descriptors>
+    <descriptors
+        name="HarmsLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="HarmsLabelFigure"
+          text="harms"/>
+    </descriptors>
+    <descriptors
+        name="TriggersLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="TriggersLabelFigure"
+          text="triggers"/>
+    </descriptors>
   </figures>
   <nodes
       name="Stakeholder"
@@ -542,6 +605,105 @@
   <labels
       name="ExpressesLabel"
       figure="ExpressesLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IsRefined"
+      figure="IsRefinedLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Motivates"
+      figure="MotivatesLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IsDetailed"
+      figure="IsDetailedLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IsConstrained"
+      figure="IsConstraintLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IsImplemented"
+      figure="IsImplementedLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="IsProvided"
+      figure="IsProvidedLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Mitigates"
+      figure="MitigatesLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Harms"
+      figure="HarmsLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Triggers"
+      figure="TriggersLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
