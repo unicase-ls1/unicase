@@ -44,7 +44,7 @@ public class DangerMitigationConstraint extends AbstractModelConstraint {
 							(UnicaseModelElement) eObj, "mitigations");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-							+ ((ActionItem) eObj).getName() + "'" });
+							+ ((Danger) eObj).getName() + "'" });
 				}
 			
 			}
