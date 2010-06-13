@@ -57,6 +57,9 @@ public class LibraryItemProvider extends LibraryBaseItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addWritersPropertyDescriptor(object);
+			addBooksPropertyDescriptor(object);
+			addIncludedLibrariesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +79,58 @@ public class LibraryItemProvider extends LibraryBaseItemProvider implements
 						"_UI_Library_name_feature", "_UI_Library_type"),
 				LibraryPackage.Literals.LIBRARY__NAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Writers feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addWritersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Library_writers_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Library_writers_feature", "_UI_Library_type"),
+				LibraryPackage.Literals.LIBRARY__WRITERS, true, false, false,
+				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Books feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBooksPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Library_books_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Library_books_feature", "_UI_Library_type"),
+				LibraryPackage.Literals.LIBRARY__BOOKS, true, false, false,
+				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Included Libraries feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addIncludedLibrariesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Library_includedLibraries_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Library_includedLibraries_feature",
+						"_UI_Library_type"),
+				LibraryPackage.Literals.LIBRARY__INCLUDED_LIBRARIES, true,
+				false, false, null, null, null));
 	}
 
 	/**
