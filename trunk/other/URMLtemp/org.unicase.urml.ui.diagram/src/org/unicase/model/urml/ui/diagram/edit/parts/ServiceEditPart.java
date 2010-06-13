@@ -2,6 +2,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -250,6 +251,46 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(ServiceNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.ServiceServiceProvider_4011);
+		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+		IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof ServiceProviderEditPart) {
+			types.add(UrmlElementTypes.ServiceServiceProvider_4011);
+		}
+		if (targetEditPart instanceof DangerEditPart) {
+			types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.ServiceServiceProvider_4011) {
+			types.add(UrmlElementTypes.ServiceProvider_2012);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.Danger_2009);
+		}
+		return types;
 	}
 
 	/**

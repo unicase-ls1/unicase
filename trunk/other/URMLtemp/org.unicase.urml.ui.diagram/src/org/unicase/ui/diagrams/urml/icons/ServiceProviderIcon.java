@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class ServiceProviderIcon extends ImageFigure {
 
 	public ServiceProviderIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/stakeholder.jpg").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/serviceprovider.jpg").createImage());
 	}
 
 	// @Override

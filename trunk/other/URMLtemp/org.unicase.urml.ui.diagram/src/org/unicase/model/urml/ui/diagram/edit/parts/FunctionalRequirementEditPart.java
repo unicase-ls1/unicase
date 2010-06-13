@@ -1,28 +1,47 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.FunctionalRequirementItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.ui.diagrams.urml.icons.FunctionalRequirementIcon;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -91,14 +110,64 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new FunctionalRequirementIcon();
+		FunctionalRequirement figure = new FunctionalRequirement();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementIcon getPrimaryShape() {
-		return (FunctionalRequirementIcon) primaryShape;
+	public FunctionalRequirement getPrimaryShape() {
+		return (FunctionalRequirement) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof FunctionalRequirementNameEditPart) {
+			((FunctionalRequirementNameEditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureFunctionalRequirementFigure_name());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof FunctionalRequirementNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
 	}
 
 	/**
@@ -133,6 +202,11 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -185,9 +259,17 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(FunctionalRequirementNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.RequirementImplementingServices_4005);
+		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
 		return types;
 	}
 
@@ -200,6 +282,9 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof ServiceEditPart) {
 			types.add(UrmlElementTypes.RequirementImplementingServices_4005);
 		}
+		if (targetEditPart instanceof DangerEditPart) {
+			types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+		}
 		return types;
 	}
 
@@ -211,6 +296,9 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.Service_2007);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.Danger_2009);
 		}
 		return types;
 	}
@@ -235,5 +323,92 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 		}
 		return types;
 	}
+
+	/**
+	 * @generated
+	 */
+	public class FunctionalRequirement extends RectangleFigure {
+
+		/**
+		 * @generated
+		 */
+		private Label fFigureFunctionalRequirementFigure_name;
+
+		/**
+		 * @generated
+		 */
+		public FunctionalRequirement() {
+
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			layoutThis.horizontalSpacing = 0;
+			layoutThis.verticalSpacing = 0;
+			layoutThis.marginWidth = 0;
+			layoutThis.marginHeight = 0;
+			this.setLayoutManager(layoutThis);
+
+			this.setLineWidth(0);
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			FunctionalRequirementIcon functionalRequirementFigure0 = new FunctionalRequirementIcon();
+
+			this.add(functionalRequirementFigure0);
+
+			fFigureFunctionalRequirementFigure_name = new Label();
+
+			fFigureFunctionalRequirementFigure_name.setFont(FFIGUREFUNCTIONALREQUIREMENTFIGURE_NAME_FONT);
+
+			GridData constraintFFigureFunctionalRequirementFigure_name = new GridData();
+			constraintFFigureFunctionalRequirementFigure_name.verticalAlignment = GridData.CENTER;
+			constraintFFigureFunctionalRequirementFigure_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureFunctionalRequirementFigure_name.horizontalIndent = 0;
+			constraintFFigureFunctionalRequirementFigure_name.horizontalSpan = 1;
+			constraintFFigureFunctionalRequirementFigure_name.verticalSpan = 1;
+			constraintFFigureFunctionalRequirementFigure_name.grabExcessHorizontalSpace = false;
+			constraintFFigureFunctionalRequirementFigure_name.grabExcessVerticalSpace = false;
+			this.add(fFigureFunctionalRequirementFigure_name, constraintFFigureFunctionalRequirementFigure_name);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Label getFigureFunctionalRequirementFigure_name() {
+			return fFigureFunctionalRequirementFigure_name;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGUREFUNCTIONALREQUIREMENTFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10,
+		SWT.BOLD);
 
 }

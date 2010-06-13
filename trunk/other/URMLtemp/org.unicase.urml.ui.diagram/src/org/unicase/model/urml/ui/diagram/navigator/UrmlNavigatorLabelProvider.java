@@ -15,27 +15,39 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
-import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorTriggeredDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ExpressesLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
@@ -124,15 +136,18 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case ActorEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/urml/usecase?Actor", UrmlElementTypes.Actor_2010); //$NON-NLS-1$
-		case Stakeholder2EditPart.VISUAL_ID:
+		case ProceduralMitigationEditPart.VISUAL_ID:
 			return getImage(
-				"Navigator?Link?http://unicase.org/model/urml?Stakeholder", UrmlElementTypes.Stakeholder_4001); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/urml/danger?ProceduralMitigation", UrmlElementTypes.ProceduralMitigation_2011); //$NON-NLS-1$
+		case ServiceProviderEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/urml/service?ServiceProvider", UrmlElementTypes.ServiceProvider_2012); //$NON-NLS-1$
+		case StakeholderGoalsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml?Stakeholder?goals", UrmlElementTypes.StakeholderGoals_4008); //$NON-NLS-1$
 		case FeatureParentFeatureEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml?Feature?parentFeature", UrmlElementTypes.FeatureParentFeature_4002); //$NON-NLS-1$
-		case StakeholderGoalsEditPart.VISUAL_ID:
-			return getImage(
-				"Navigator?Link?http://unicase.org/model/urml?Stakeholder?goals", UrmlElementTypes.StakeholderGoals_4003); //$NON-NLS-1$
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/goal?Goal?realizedFeatures", UrmlElementTypes.GoalRealizedFeatures_4004); //$NON-NLS-1$
@@ -142,6 +157,24 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml?Feature?detailingFunctionalRequirements", UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006); //$NON-NLS-1$
+		case GoalSubGoalsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/goal?Goal?subGoals", UrmlElementTypes.GoalSubGoals_4009); //$NON-NLS-1$
+		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml?Feature?constrainingNonFunctionalRequirements", UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010); //$NON-NLS-1$
+		case ServiceServiceProviderEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/service?Service?serviceProvider", UrmlElementTypes.ServiceServiceProvider_4011); //$NON-NLS-1$
+		case MitigationMitigatedDangersEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/danger?Mitigation?mitigatedDangers", UrmlElementTypes.MitigationMitigatedDangers_4012); //$NON-NLS-1$
+		case DangerHarmedAssetsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/danger?Danger?harmedAssets", UrmlElementTypes.DangerHarmedAssets_4013); //$NON-NLS-1$
+		case ActorTriggeredDangersEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/usecase?Actor?triggeredDangers", UrmlElementTypes.ActorTriggeredDangers_4014); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -210,18 +243,32 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getDanger_2009Text(view);
 		case ActorEditPart.VISUAL_ID:
 			return getActor_2010Text(view);
-		case Stakeholder2EditPart.VISUAL_ID:
-			return getStakeholder_4001Text(view);
+		case ProceduralMitigationEditPart.VISUAL_ID:
+			return getProceduralMitigation_2011Text(view);
+		case ServiceProviderEditPart.VISUAL_ID:
+			return getServiceProvider_2012Text(view);
+		case StakeholderGoalsEditPart.VISUAL_ID:
+			return getStakeholderGoals_4008Text(view);
 		case FeatureParentFeatureEditPart.VISUAL_ID:
 			return getFeatureParentFeature_4002Text(view);
-		case StakeholderGoalsEditPart.VISUAL_ID:
-			return getStakeholderGoals_4003Text(view);
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getGoalRealizedFeatures_4004Text(view);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getRequirementImplementingServices_4005Text(view);
 		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
 			return getFeatureDetailingFunctionalRequirements_4006Text(view);
+		case GoalSubGoalsEditPart.VISUAL_ID:
+			return getGoalSubGoals_4009Text(view);
+		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return getFeatureConstrainingNonFunctionalRequirements_4010Text(view);
+		case ServiceServiceProviderEditPart.VISUAL_ID:
+			return getServiceServiceProvider_4011Text(view);
+		case MitigationMitigatedDangersEditPart.VISUAL_ID:
+			return getMitigationMitigatedDangers_4012Text(view);
+		case DangerHarmedAssetsEditPart.VISUAL_ID:
+			return getDangerHarmedAssets_4013Text(view);
+		case ActorTriggeredDangersEditPart.VISUAL_ID:
+			return getActorTriggeredDangers_4014Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -243,11 +290,14 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getStakeholder_2002Text(View view) {
-		Stakeholder domainModelElement = (Stakeholder) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.Stakeholder_2002,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(StakeholderNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2002); //$NON-NLS-1$
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -256,11 +306,13 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getGoal_2001Text(View view) {
-		Goal domainModelElement = (Goal) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.Goal_2001, view.getElement() != null ? view
+			.getElement() : view, UrmlVisualIDRegistry.getType(GoalNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2001); //$NON-NLS-1$
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5009); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -269,11 +321,14 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getFunctionalRequirement_2006Text(View view) {
-		FunctionalRequirement domainModelElement = (FunctionalRequirement) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.FunctionalRequirement_2006,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(FunctionalRequirementNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2006); //$NON-NLS-1$
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5010); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -357,12 +412,47 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	/**
 	 * @generated
 	 */
-	private String getStakeholder_4001Text(View view) {
-		Stakeholder domainModelElement = (Stakeholder) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+	private String getProceduralMitigation_2011Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.ProceduralMitigation_2011,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(ProceduralMitigationNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 4001); //$NON-NLS-1$
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5006); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getServiceProvider_2012Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.ServiceProvider_2012,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(ServiceProviderNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5007); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getStakeholderGoals_4008Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.StakeholderGoals_4008,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(ExpressesLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -371,13 +461,6 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getFeatureParentFeature_4002Text(View view) {
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getStakeholderGoals_4003Text(View view) {
 		return ""; //$NON-NLS-1$
 	}
 
@@ -399,6 +482,48 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getFeatureDetailingFunctionalRequirements_4006Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getGoalSubGoals_4009Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFeatureConstrainingNonFunctionalRequirements_4010Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getServiceServiceProvider_4011Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getMitigationMitigatedDangers_4012Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDangerHarmedAssets_4013Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getActorTriggeredDangers_4014Text(View view) {
 		return ""; //$NON-NLS-1$
 	}
 

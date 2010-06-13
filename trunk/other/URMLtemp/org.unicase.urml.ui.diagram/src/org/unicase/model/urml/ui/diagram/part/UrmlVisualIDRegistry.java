@@ -11,16 +11,24 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ExpressesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 
 import urml.danger.DangerPackage;
@@ -155,6 +163,12 @@ public class UrmlVisualIDRegistry {
 			if (UsecasePackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPart.VISUAL_ID;
 			}
+			if (DangerPackage.eINSTANCE.getProceduralMitigation().isSuperTypeOf(domainElement.eClass())) {
+				return ProceduralMitigationEditPart.VISUAL_ID;
+			}
+			if (ServicePackage.eINSTANCE.getServiceProvider().isSuperTypeOf(domainElement.eClass())) {
+				return ServiceProviderEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -179,6 +193,21 @@ public class UrmlVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case StakeholderEditPart.VISUAL_ID:
+			if (StakeholderNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case GoalEditPart.VISUAL_ID:
+			if (GoalNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FunctionalRequirementEditPart.VISUAL_ID:
+			if (FunctionalRequirementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case FeatureEditPart.VISUAL_ID:
 			if (FeatureNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -201,6 +230,16 @@ public class UrmlVisualIDRegistry {
 			break;
 		case ActorEditPart.VISUAL_ID:
 			if (ActorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ProceduralMitigationEditPart.VISUAL_ID:
+			if (ProceduralMitigationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ServiceProviderEditPart.VISUAL_ID:
+			if (ServiceProviderNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -229,6 +268,17 @@ public class UrmlVisualIDRegistry {
 			if (ActorEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ProceduralMitigationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ServiceProviderEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StakeholderGoalsEditPart.VISUAL_ID:
+			if (ExpressesLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		}
 		return false;
@@ -240,9 +290,6 @@ public class UrmlVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
-		}
-		if (UrmlPackage.eINSTANCE.getStakeholder().isSuperTypeOf(domainElement.eClass())) {
-			return Stakeholder2EditPart.VISUAL_ID;
 		}
 		return -1;
 	}

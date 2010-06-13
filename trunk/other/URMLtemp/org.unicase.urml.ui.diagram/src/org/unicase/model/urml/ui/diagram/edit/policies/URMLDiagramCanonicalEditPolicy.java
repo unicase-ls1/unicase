@@ -31,8 +31,9 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.Stakeholder2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramUpdater;
@@ -83,6 +84,8 @@ public class URMLDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 		case NonFunctionalRequirementEditPart.VISUAL_ID:
 		case DangerEditPart.VISUAL_ID:
 		case ActorEditPart.VISUAL_ID:
+		case ProceduralMitigationEditPart.VISUAL_ID:
+		case ServiceProviderEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -288,9 +291,18 @@ public class URMLDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 			}
 			break;
 		}
-		case Stakeholder2EditPart.VISUAL_ID: {
+		case ProceduralMitigationEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UrmlDiagramUpdater.getStakeholder_4001ContainedLinks(view));
+				result.addAll(UrmlDiagramUpdater.getProceduralMitigation_2011ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ServiceProviderEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getServiceProvider_2012ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

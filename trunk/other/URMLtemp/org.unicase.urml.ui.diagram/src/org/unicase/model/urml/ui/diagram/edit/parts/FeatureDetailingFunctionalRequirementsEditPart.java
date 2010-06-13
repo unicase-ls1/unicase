@@ -9,7 +9,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.policies.FeatureDetailingFunctionalRequirementsItemSemanticEditPolicy;
-import org.unicase.ui.unicasecommon.diagram.shapes.StickMan;
 
 /**
  * @generated

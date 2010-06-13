@@ -16,8 +16,13 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.parsers.MessageFormatParser;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 
@@ -25,6 +30,57 @@ import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
  * @generated
  */
 public class UrmlParserProvider extends AbstractProvider implements IParserProvider {
+
+	/**
+	 * @generated
+	 */
+	private IParser stakeholderName_5008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStakeholderName_5008Parser() {
+		if (stakeholderName_5008Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			stakeholderName_5008Parser = parser;
+		}
+		return stakeholderName_5008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser goalName_5009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGoalName_5009Parser() {
+		if (goalName_5009Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			goalName_5009Parser = parser;
+		}
+		return goalName_5009Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser functionalRequirementName_5010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getFunctionalRequirementName_5010Parser() {
+		if (functionalRequirementName_5010Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			functionalRequirementName_5010Parser = parser;
+		}
+		return functionalRequirementName_5010Parser;
+	}
 
 	/**
 	 * @generated
@@ -114,8 +170,48 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 	/**
 	 * @generated
 	 */
+	private IParser proceduralMitigationName_5006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProceduralMitigationName_5006Parser() {
+		if (proceduralMitigationName_5006Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			proceduralMitigationName_5006Parser = parser;
+		}
+		return proceduralMitigationName_5006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser serviceProviderName_5007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getServiceProviderName_5007Parser() {
+		if (serviceProviderName_5007Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			serviceProviderName_5007Parser = parser;
+		}
+		return serviceProviderName_5007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case StakeholderNameEditPart.VISUAL_ID:
+			return getStakeholderName_5008Parser();
+		case GoalNameEditPart.VISUAL_ID:
+			return getGoalName_5009Parser();
+		case FunctionalRequirementNameEditPart.VISUAL_ID:
+			return getFunctionalRequirementName_5010Parser();
 		case FeatureNameEditPart.VISUAL_ID:
 			return getFeatureName_5001Parser();
 		case ServiceNameEditPart.VISUAL_ID:
@@ -126,6 +222,10 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 			return getDangerName_5004Parser();
 		case ActorNameEditPart.VISUAL_ID:
 			return getActorName_5005Parser();
+		case ProceduralMitigationNameEditPart.VISUAL_ID:
+			return getProceduralMitigationName_5006Parser();
+		case ServiceProviderNameEditPart.VISUAL_ID:
+			return getServiceProviderName_5007Parser();
 		}
 		return null;
 	}

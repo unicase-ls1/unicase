@@ -53,7 +53,7 @@ public class StakeholderGoalsCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateStakeholderGoals_4003(getSource(), getTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateStakeholderGoals_4008(getSource(), getTarget());
 	}
 
 	/**

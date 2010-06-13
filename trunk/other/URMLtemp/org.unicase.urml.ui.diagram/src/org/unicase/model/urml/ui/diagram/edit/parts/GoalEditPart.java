@@ -3,7 +3,10 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gef.EditPart;
@@ -16,14 +19,20 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.GoalItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.ui.diagrams.urml.icons.GoalIcon;
+import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
  * @generated
@@ -92,14 +101,63 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new GoalIcon();
+		GoalFigure figure = new GoalFigure();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public GoalIcon getPrimaryShape() {
-		return (GoalIcon) primaryShape;
+	public GoalFigure getPrimaryShape() {
+		return (GoalFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof GoalNameEditPart) {
+			((GoalNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureGoalFigure_name());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof GoalNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
 	}
 
 	/**
@@ -134,6 +192,11 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -186,9 +249,17 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(GoalNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
+		types.add(UrmlElementTypes.GoalSubGoals_4009);
 		return types;
 	}
 
@@ -200,6 +271,9 @@ public class GoalEditPart extends ShapeNodeEditPart {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
+		}
+		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart) {
+			types.add(UrmlElementTypes.GoalSubGoals_4009);
 		}
 		return types;
 	}
@@ -213,6 +287,9 @@ public class GoalEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
 			types.add(UrmlElementTypes.Feature_2005);
 		}
+		if (relationshipType == UrmlElementTypes.GoalSubGoals_4009) {
+			types.add(UrmlElementTypes.Goal_2001);
+		}
 		return types;
 	}
 
@@ -221,7 +298,8 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.StakeholderGoals_4003);
+		types.add(UrmlElementTypes.StakeholderGoals_4008);
+		types.add(UrmlElementTypes.GoalSubGoals_4009);
 		return types;
 	}
 
@@ -231,10 +309,99 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.StakeholderGoals_4003) {
+		if (relationshipType == UrmlElementTypes.StakeholderGoals_4008) {
 			types.add(UrmlElementTypes.Stakeholder_2002);
+		}
+		if (relationshipType == UrmlElementTypes.GoalSubGoals_4009) {
+			types.add(UrmlElementTypes.Goal_2001);
 		}
 		return types;
 	}
+
+	/**
+	 * @generated
+	 */
+	public class GoalFigure extends RectangleFigure {
+
+		/**
+		 * @generated
+		 */
+		private Label fFigureGoalFigure_name;
+
+		/**
+		 * @generated
+		 */
+		public GoalFigure() {
+
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			layoutThis.horizontalSpacing = 0;
+			layoutThis.verticalSpacing = 0;
+			layoutThis.marginWidth = 0;
+			layoutThis.marginHeight = 0;
+			this.setLayoutManager(layoutThis);
+
+			this.setLineWidth(0);
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			GoalIcon goalFigure0 = new GoalIcon();
+
+			this.add(goalFigure0);
+
+			fFigureGoalFigure_name = new Label();
+
+			fFigureGoalFigure_name.setFont(FFIGUREGOALFIGURE_NAME_FONT);
+
+			GridData constraintFFigureGoalFigure_name = new GridData();
+			constraintFFigureGoalFigure_name.verticalAlignment = GridData.CENTER;
+			constraintFFigureGoalFigure_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureGoalFigure_name.horizontalIndent = 0;
+			constraintFFigureGoalFigure_name.horizontalSpan = 1;
+			constraintFFigureGoalFigure_name.verticalSpan = 1;
+			constraintFFigureGoalFigure_name.grabExcessHorizontalSpace = false;
+			constraintFFigureGoalFigure_name.grabExcessVerticalSpace = false;
+			this.add(fFigureGoalFigure_name, constraintFFigureGoalFigure_name);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Label getFigureGoalFigure_name() {
+			return fFigureGoalFigure_name;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGUREGOALFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 }

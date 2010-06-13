@@ -243,7 +243,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Urml1Group_title;
+	public static String Default1Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Default1Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Urml2Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constrains1CreationTool_title;
 
 	/**
 	 * @generated
@@ -258,97 +273,107 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String StakeholderGoals2CreationTool_title;
+	public static String Goal2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StakeholderGoals2CreationTool_desc;
+	public static String Goal2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Goal3CreationTool_title;
+	public static String Expresses3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Goal3CreationTool_desc;
+	public static String Expresses3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalStakeholders4CreationTool_title;
+	public static String SubGoal4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalStakeholders4CreationTool_desc;
+	public static String SubGoal4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalSubGoals5CreationTool_title;
+	public static String FunctionalRequirement5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalSubGoals5CreationTool_desc;
+	public static String Feature6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalParentGoal6CreationTool_title;
+	public static String Realizes7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String GoalParentGoal6CreationTool_desc;
+	public static String Service8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement7CreationTool_title;
+	public static String Satisfies9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Feature8CreationTool_title;
+	public static String NonFunctionalRequirement10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Realizes9CreationTool_title;
+	public static String Danger11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Service10CreationTool_title;
+	public static String Details12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Satisfies11CreationTool_title;
+	public static String Actor13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NonFunctionalRequirement12CreationTool_title;
+	public static String ProceduralMitigation14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Danger13CreationTool_title;
+	public static String ServiceProvider15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Details14CreationTool_title;
+	public static String Provides16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Actor15CreationTool_title;
+	public static String Mitigates17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Harms18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Triggers19CreationTool_title;
 
 	/**
 	 * @generated
@@ -403,12 +428,57 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Service_2007_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_NonFunctionalRequirement_2008_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Stakeholder_4001_target;
+	public static String NavigatorGroupName_NonFunctionalRequirement_2008_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Danger_2009_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Danger_2009_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Actor_2010_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Actor_2010_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ProceduralMitigation_2011_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ServiceProvider_2012_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StakeholderGoals_4008_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StakeholderGoals_4008_source;
 
 	/**
 	 * @generated
@@ -419,16 +489,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_FeatureParentFeature_4002_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StakeholderGoals_4003_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StakeholderGoals_4003_source;
 
 	/**
 	 * @generated
@@ -459,6 +519,66 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalSubGoals_4009_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalSubGoals_4009_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureConstrainingNonFunctionalRequirements_4010_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureConstrainingNonFunctionalRequirements_4010_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ServiceServiceProvider_4011_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ServiceServiceProvider_4011_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MitigationMitigatedDangers_4012_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MitigationMitigatedDangers_4012_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DangerHarmedAssets_4013_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DangerHarmedAssets_4013_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorTriggeredDangers_4014_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorTriggeredDangers_4014_source;
 
 	/**
 	 * @generated

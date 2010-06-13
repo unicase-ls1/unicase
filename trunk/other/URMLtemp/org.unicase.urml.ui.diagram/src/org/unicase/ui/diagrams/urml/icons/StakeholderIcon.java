@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class StakeholderIcon extends ImageFigure {
 
 	public StakeholderIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/serviceprovider.jpg").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/stakeholder.jpg").createImage());
 	}
 
 	// @Override

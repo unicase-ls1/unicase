@@ -260,6 +260,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.FeatureParentFeature_4002);
 		types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
+		types.add(UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010);
 		return types;
 	}
 
@@ -275,6 +276,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof FunctionalRequirementEditPart) {
 			types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
 		}
+		if (targetEditPart instanceof NonFunctionalRequirementEditPart) {
+			types.add(UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010);
+		}
 		return types;
 	}
 
@@ -289,6 +293,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006) {
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
+		}
+		if (relationshipType == UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010) {
+			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 		}
 		return types;
 	}

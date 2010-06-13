@@ -74,7 +74,7 @@ public class StakeholderItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UrmlElementTypes.StakeholderGoals_4003 == req.getElementType()) {
+		if (UrmlElementTypes.StakeholderGoals_4008 == req.getElementType()) {
 			return getGEFWrapper(new StakeholderGoalsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -84,7 +84,7 @@ public class StakeholderItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UrmlElementTypes.StakeholderGoals_4003 == req.getElementType()) {
+		if (UrmlElementTypes.StakeholderGoals_4008 == req.getElementType()) {
 			return null;
 		}
 		return null;

@@ -108,7 +108,7 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Danger"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/danger.png"));
 	}
 
 	/**
@@ -120,8 +120,8 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	@Override
 	public String getText(Object object) {
 		String label = ((Danger) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Danger_type") : getString("_UI_Danger_type") + " "
-			+ label;
+		return label == null || label.length() == 0 ? getString("_UI_Danger_type") : 
+		label;
 	}
 
 	/**

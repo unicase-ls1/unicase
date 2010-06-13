@@ -12,8 +12,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.RequirementFactory;
+import urml.requirement.FunctionalRequirement;
+import urml.requirement.RequirementFactory;
 
 /**
  * @generated
@@ -51,8 +51,7 @@ public class FunctionalRequirementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		urml.requirement.FunctionalRequirement newElement = urml.requirement.RequirementFactory.eINSTANCE
-			.createFunctionalRequirement();
+		FunctionalRequirement newElement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
@@ -68,8 +67,8 @@ public class FunctionalRequirementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(urml.requirement.FunctionalRequirement newElement, IProgressMonitor monitor,
-		IAdaptable info) throws ExecutionException {
+	protected void doConfigure(FunctionalRequirement newElement, IProgressMonitor monitor, IAdaptable info)
+		throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());

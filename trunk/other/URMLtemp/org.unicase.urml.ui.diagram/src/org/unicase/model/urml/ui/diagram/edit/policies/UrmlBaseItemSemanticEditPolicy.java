@@ -30,18 +30,22 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.Annotation;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.ui.diagram.edit.helpers.UrmlBaseEditHelper;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
+import urml.danger.Asset;
+import urml.danger.Danger;
+import urml.danger.Mitigation;
 import urml.goal.Goal;
 import urml.requirement.FunctionalRequirement;
+import urml.requirement.NonFunctionalRequirement;
 import urml.requirement.Requirement;
 import urml.service.Service;
+import urml.service.ServiceProvider;
+import urml.usecase.Actor;
 
 /**
  * @generated
@@ -293,8 +297,17 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateStakeholder_4001(MEDiagram source, Goal target) {
-			return canExistStakeholder_4001(source, target);
+		public static boolean canCreateStakeholderGoals_4008(Stakeholder source, Goal target) {
+			if (source != null) {
+				if (source.getGoals() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getStakeholders().contains(target))) {
+				return false;
+			}
+
+			return canExistStakeholderGoals_4008(source, target);
 		}
 
 		/**
@@ -311,22 +324,6 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistFeatureParentFeature_4002(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateStakeholderGoals_4003(Stakeholder source, Goal target) {
-			if (source != null) {
-				if (source.getGoals() != null) {
-					return false;
-				}
-			}
-			if (target != null && (target.getStakeholders().contains(target))) {
-				return false;
-			}
-
-			return canExistStakeholderGoals_4003(source, target);
 		}
 
 		/**
@@ -381,7 +378,107 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistStakeholder_4001(MEDiagram source, Goal target) {
+		public static boolean canCreateGoalSubGoals_4009(Goal source, Goal target) {
+			if (source != null) {
+				if (source.getSubGoals().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getParentGoal() != null)) {
+				return false;
+			}
+
+			return canExistGoalSubGoals_4009(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureConstrainingNonFunctionalRequirements_4010(Feature source,
+			NonFunctionalRequirement target) {
+			if (source != null) {
+				if (source.getConstrainingNonFunctionalRequirements().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getConstrainedFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureConstrainingNonFunctionalRequirements_4010(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateServiceServiceProvider_4011(Service source, ServiceProvider target) {
+			if (source != null) {
+				if (source.getServiceProvider() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getProvidedServices().contains(target))) {
+				return false;
+			}
+
+			return canExistServiceServiceProvider_4011(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateMitigationMitigatedDangers_4012(Mitigation source, Danger target) {
+			if (source != null) {
+				if (source.getMitigatedDangers().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getMitigations().contains(target))) {
+				return false;
+			}
+
+			return canExistMitigationMitigatedDangers_4012(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateDangerHarmedAssets_4013(Danger source, Asset target) {
+			if (source != null) {
+				if (source.getHarmedAssets().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getEndangeredBy().contains(target))) {
+				return false;
+			}
+
+			return canExistDangerHarmedAssets_4013(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActorTriggeredDangers_4014(Actor source, Danger target) {
+			if (source != null) {
+				if (source.getTriggeredDangers().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getTriggeringActors().contains(target))) {
+				return false;
+			}
+
+			return canExistActorTriggeredDangers_4014(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistStakeholderGoals_4008(Stakeholder source, Goal target) {
 			return true;
 		}
 
@@ -389,13 +486,6 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistFeatureParentFeature_4002(Feature source, Feature target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistStakeholderGoals_4003(Stakeholder source, Goal target) {
 			return true;
 		}
 
@@ -418,6 +508,49 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistFeatureDetailingFunctionalRequirements_4006(Feature source,
 			FunctionalRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalSubGoals_4009(Goal source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureConstrainingNonFunctionalRequirements_4010(Feature source,
+			NonFunctionalRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistServiceServiceProvider_4011(Service source, ServiceProvider target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMitigationMitigatedDangers_4012(Mitigation source, Danger target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistDangerHarmedAssets_4013(Danger source, Asset target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActorTriggeredDangers_4014(Actor source, Danger target) {
 			return true;
 		}
 	}

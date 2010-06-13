@@ -1,5 +1,7 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -17,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -26,6 +29,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.DangerItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
+import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import org.unicase.ui.diagrams.urml.icons.DangerIcon;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
@@ -246,6 +250,79 @@ public class DangerEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(DangerNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+		IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof ActorEditPart) {
+			types.add(UrmlElementTypes.DangerHarmedAssets_4013);
+		}
+		if (targetEditPart instanceof ServiceProviderEditPart) {
+			types.add(UrmlElementTypes.DangerHarmedAssets_4013);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
+			types.add(UrmlElementTypes.Actor_2010);
+		}
+		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
+			types.add(UrmlElementTypes.ServiceProvider_2012);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+		types.add(UrmlElementTypes.ActorTriggeredDangers_4014);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.FunctionalRequirement_2006);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.Service_2007);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.ProceduralMitigation_2011);
+		}
+		if (relationshipType == UrmlElementTypes.ActorTriggeredDangers_4014) {
+			types.add(UrmlElementTypes.Actor_2010);
+		}
+		return types;
 	}
 
 	/**

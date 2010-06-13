@@ -6,22 +6,27 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.unicase.model.Annotation;
-import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
-import urml.goal.Goal;
+
+import urml.danger.Asset;
+import urml.danger.Danger;
 
 /**
  * @generated
  */
-public class StakeholderReorientCommand extends EditElementCommand {
+public class DangerHarmedAssetsReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
+
+	/**
+	 * @generated
+	 */
+	private final EObject referenceOwner;
 
 	/**
 	 * @generated
@@ -36,9 +41,10 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public StakeholderReorientCommand(ReorientRelationshipRequest request) {
-		super(request.getLabel(), request.getRelationship(), request);
+	public DangerHarmedAssetsReorientCommand(ReorientReferenceRelationshipRequest request) {
+		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
+		referenceOwner = request.getReferenceOwner();
 		oldEnd = request.getOldRelationshipEnd();
 		newEnd = request.getNewRelationshipEnd();
 	}
@@ -47,7 +53,7 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Stakeholder) {
+		if (false == referenceOwner instanceof Danger) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -63,25 +69,22 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof MEDiagram && newEnd instanceof MEDiagram)) {
+		if (!(oldEnd instanceof Asset && newEnd instanceof Danger)) {
 			return false;
 		}
-		Goal target = getLink().getGoals();
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholder_4001(getNewSource(), target);
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistDangerHarmedAssets_4013(getNewSource(),
+			getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Goal && newEnd instanceof Goal)) {
+		if (!(oldEnd instanceof Asset && newEnd instanceof Asset)) {
 			return false;
 		}
-		if (!(getLink().eContainer() instanceof MEDiagram)) {
-			return false;
-		}
-		MEDiagram source = (MEDiagram) getLink().eContainer();
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistStakeholder_4001(source, getNewTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistDangerHarmedAssets_4013(getOldSource(),
+			getNewTarget());
 	}
 
 	/**
@@ -104,51 +107,45 @@ public class StakeholderReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getNewElements().remove(getLink());
-		getNewSource().getNewElements().add(getLink());
-		return CommandResult.newOKCommandResult(getLink());
+		getOldSource().getHarmedAssets().remove(getOldTarget());
+		getNewSource().getHarmedAssets().add(getOldTarget());
+		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().setGoals(getNewTarget());
-		return CommandResult.newOKCommandResult(getLink());
+		getOldSource().getHarmedAssets().remove(getOldTarget());
+		getOldSource().getHarmedAssets().add(getNewTarget());
+		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Stakeholder getLink() {
-		return (Stakeholder) getElementToEdit();
+	protected Danger getOldSource() {
+		return (Danger) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected MEDiagram getOldSource() {
-		return (MEDiagram) oldEnd;
+	protected Danger getNewSource() {
+		return (Danger) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected MEDiagram getNewSource() {
-		return (MEDiagram) newEnd;
+	protected Asset getOldTarget() {
+		return (Asset) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Goal getOldTarget() {
-		return (Goal) oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Goal getNewTarget() {
-		return (Goal) newEnd;
+	protected Asset getNewTarget() {
+		return (Asset) newEnd;
 	}
 }

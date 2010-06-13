@@ -260,6 +260,7 @@ public class NonFunctionalRequirementEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.RequirementImplementingServices_4005);
+		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
 		return types;
 	}
 
@@ -272,6 +273,9 @@ public class NonFunctionalRequirementEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof ServiceEditPart) {
 			types.add(UrmlElementTypes.RequirementImplementingServices_4005);
 		}
+		if (targetEditPart instanceof DangerEditPart) {
+			types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+		}
 		return types;
 	}
 
@@ -283,6 +287,30 @@ public class NonFunctionalRequirementEditPart extends ShapeNodeEditPart {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.Service_2007);
+		}
+		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+			types.add(UrmlElementTypes.Danger_2009);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010) {
+			types.add(UrmlElementTypes.Feature_2005);
 		}
 		return types;
 	}
