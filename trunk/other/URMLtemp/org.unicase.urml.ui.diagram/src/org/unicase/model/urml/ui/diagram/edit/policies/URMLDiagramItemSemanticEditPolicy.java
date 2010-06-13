@@ -7,6 +7,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.unicase.model.urml.ui.diagram.edit.commands.ActionItemCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.ActorCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.DangerCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FeatureCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.FunctionalRequirementCreateCommand;
@@ -52,6 +53,9 @@ public class URMLDiagramItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 		}
 		if (UrmlElementTypes.Danger_2009 == req.getElementType()) {
 			return getGEFWrapper(new DangerCreateCommand(req));
+		}
+		if (UrmlElementTypes.Actor_2010 == req.getElementType()) {
+			return getGEFWrapper(new ActorCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

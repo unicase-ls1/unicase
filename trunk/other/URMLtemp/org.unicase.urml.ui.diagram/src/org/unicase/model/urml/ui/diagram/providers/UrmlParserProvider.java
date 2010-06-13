@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
@@ -96,6 +97,23 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 	/**
 	 * @generated
 	 */
+	private IParser actorName_5005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActorName_5005Parser() {
+		if (actorName_5005Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			actorName_5005Parser = parser;
+		}
+		return actorName_5005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case FeatureNameEditPart.VISUAL_ID:
@@ -106,6 +124,8 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 			return getNonFunctionalRequirementName_5003Parser();
 		case DangerNameEditPart.VISUAL_ID:
 			return getDangerName_5004Parser();
+		case ActorNameEditPart.VISUAL_ID:
+			return getActorName_5005Parser();
 		}
 		return null;
 	}

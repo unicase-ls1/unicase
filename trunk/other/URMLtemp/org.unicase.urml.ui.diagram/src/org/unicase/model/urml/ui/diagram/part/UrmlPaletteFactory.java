@@ -44,6 +44,8 @@ public class UrmlPaletteFactory {
 		paletteContainer.add(createSatisfies11CreationTool());
 		paletteContainer.add(createNonFunctionalRequirement12CreationTool());
 		paletteContainer.add(createDanger13CreationTool());
+		paletteContainer.add(createDetails14CreationTool());
+		paletteContainer.add(createActor15CreationTool());
 		return paletteContainer;
 	}
 
@@ -212,6 +214,33 @@ public class UrmlPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(Messages.Danger13CreationTool_title, null, types);
 		entry.setId("createDanger13CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UrmlElementTypes.getImageDescriptor(UrmlElementTypes.Danger_2009));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createDetails14CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
+		LinkToolEntry entry = new LinkToolEntry(Messages.Details14CreationTool_title, null, types);
+		entry.setId("createDetails14CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(UrmlElementTypes
+			.getImageDescriptor(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createActor15CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UrmlElementTypes.Actor_2010);
+		NodeToolEntry entry = new NodeToolEntry(Messages.Actor15CreationTool_title, null, types);
+		entry.setId("createActor15CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(UrmlElementTypes.getImageDescriptor(UrmlElementTypes.Actor_2010));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

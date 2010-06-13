@@ -259,6 +259,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.FeatureParentFeature_4002);
+		types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
 		return types;
 	}
 
@@ -271,6 +272,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart) {
 			types.add(UrmlElementTypes.FeatureParentFeature_4002);
 		}
+		if (targetEditPart instanceof FunctionalRequirementEditPart) {
+			types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
+		}
 		return types;
 	}
 
@@ -282,6 +286,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.FeatureParentFeature_4002) {
 			types.add(UrmlElementTypes.Feature_2005);
+		}
+		if (relationshipType == UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006) {
+			types.add(UrmlElementTypes.FunctionalRequirement_2006);
 		}
 		return types;
 	}

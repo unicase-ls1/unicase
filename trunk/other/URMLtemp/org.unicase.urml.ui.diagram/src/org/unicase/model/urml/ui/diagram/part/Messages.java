@@ -343,6 +343,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Details14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Actor15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
@@ -369,6 +379,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirement_2006_incominglinks;
 
 	/**
 	 * @generated
@@ -434,6 +449,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_RequirementImplementingServices_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_source;
 
 	/**
 	 * @generated
