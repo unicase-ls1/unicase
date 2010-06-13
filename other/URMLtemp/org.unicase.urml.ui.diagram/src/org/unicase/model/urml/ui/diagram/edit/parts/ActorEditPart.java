@@ -1,8 +1,5 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -20,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -28,21 +24,20 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.model.urml.ui.diagram.edit.policies.FeatureItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.edit.policies.ActorItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
-import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
-import org.unicase.ui.diagrams.urml.icons.FeatureIcon;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
+import org.unicase.ui.unicasecommon.diagram.shapes.StickMan;
 
 /**
  * @generated
  */
-public class FeatureEditPart extends ShapeNodeEditPart {
+public class ActorEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2005;
+	public static final int VISUAL_ID = 2010;
 
 	/**
 	 * @generated
@@ -57,7 +52,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public FeatureEditPart(View view) {
+	public ActorEditPart(View view) {
 		super(view);
 	}
 
@@ -66,7 +61,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FeatureItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -101,23 +96,23 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		FeatureFigure figure = new FeatureFigure();
+		ActorFigure figure = new ActorFigure();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public FeatureFigure getPrimaryShape() {
-		return (FeatureFigure) primaryShape;
+	public ActorFigure getPrimaryShape() {
+		return (ActorFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof FeatureNameEditPart) {
-			((FeatureNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureFeatureFigure_name());
+		if (childEditPart instanceof ActorNameEditPart) {
+			((ActorNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureActorFigure_name());
 			return true;
 		}
 		return false;
@@ -127,7 +122,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof FeatureNameEditPart) {
+		if (childEditPart instanceof ActorNameEditPart) {
 			return true;
 		}
 		return false;
@@ -250,88 +245,23 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(FeatureNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UrmlVisualIDRegistry.getType(ActorNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.FeatureParentFeature_4002);
-		types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
-		IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart) {
-			types.add(UrmlElementTypes.FeatureParentFeature_4002);
-		}
-		if (targetEditPart instanceof FunctionalRequirementEditPart) {
-			types.add(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.FeatureParentFeature_4002) {
-			types.add(UrmlElementTypes.Feature_2005);
-		}
-		if (relationshipType == UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006) {
-			types.add(UrmlElementTypes.FunctionalRequirement_2006);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.FeatureParentFeature_4002);
-		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.FeatureParentFeature_4002) {
-			types.add(UrmlElementTypes.Feature_2005);
-		}
-		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
-			types.add(UrmlElementTypes.Goal_2001);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class FeatureFigure extends RectangleFigure {
+	public class ActorFigure extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
-		private Label fFigureFeatureFigure_name;
+		private Label fFigureActorFigure_name;
 
 		/**
 		 * @generated
 		 */
-		public FeatureFigure() {
+		public ActorFigure() {
 
 			GridLayout layoutThis = new GridLayout();
 			layoutThis.numColumns = 1;
@@ -351,23 +281,23 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			FeatureIcon featureFigure0 = new FeatureIcon();
+			StickMan actorFigure0 = new StickMan();
 
-			this.add(featureFigure0);
+			this.add(actorFigure0);
 
-			fFigureFeatureFigure_name = new Label();
+			fFigureActorFigure_name = new Label();
 
-			fFigureFeatureFigure_name.setFont(FFIGUREFEATUREFIGURE_NAME_FONT);
+			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
 
-			GridData constraintFFigureFeatureFigure_name = new GridData();
-			constraintFFigureFeatureFigure_name.verticalAlignment = GridData.CENTER;
-			constraintFFigureFeatureFigure_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureFeatureFigure_name.horizontalIndent = 0;
-			constraintFFigureFeatureFigure_name.horizontalSpan = 1;
-			constraintFFigureFeatureFigure_name.verticalSpan = 1;
-			constraintFFigureFeatureFigure_name.grabExcessHorizontalSpace = false;
-			constraintFFigureFeatureFigure_name.grabExcessVerticalSpace = false;
-			this.add(fFigureFeatureFigure_name, constraintFFigureFeatureFigure_name);
+			GridData constraintFFigureActorFigure_name = new GridData();
+			constraintFFigureActorFigure_name.verticalAlignment = GridData.CENTER;
+			constraintFFigureActorFigure_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureActorFigure_name.horizontalIndent = 0;
+			constraintFFigureActorFigure_name.horizontalSpan = 1;
+			constraintFFigureActorFigure_name.verticalSpan = 1;
+			constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;
+			constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;
+			this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);
 
 		}
 
@@ -393,8 +323,8 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public Label getFigureFeatureFigure_name() {
-			return fFigureFeatureFigure_name;
+		public Label getFigureActorFigure_name() {
+			return fFigureActorFigure_name;
 		}
 
 	}
@@ -402,6 +332,6 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREFEATUREFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
+	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 }

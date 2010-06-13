@@ -7,6 +7,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
@@ -25,6 +27,7 @@ import urml.danger.DangerPackage;
 import urml.goal.GoalPackage;
 import urml.requirement.RequirementPackage;
 import urml.service.ServicePackage;
+import urml.usecase.UsecasePackage;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -149,6 +152,9 @@ public class UrmlVisualIDRegistry {
 			if (DangerPackage.eINSTANCE.getDanger().isSuperTypeOf(domainElement.eClass())) {
 				return DangerEditPart.VISUAL_ID;
 			}
+			if (UsecasePackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
+				return ActorEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -193,6 +199,11 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ActorEditPart.VISUAL_ID:
+			if (ActorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case URMLDiagramEditPart.VISUAL_ID:
 			if (StakeholderEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -213,6 +224,9 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			if (DangerEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActorEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

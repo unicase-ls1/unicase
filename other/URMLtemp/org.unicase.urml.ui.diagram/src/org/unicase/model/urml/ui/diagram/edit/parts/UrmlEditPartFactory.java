@@ -64,6 +64,12 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case DangerNameEditPart.VISUAL_ID:
 				return new DangerNameEditPart(view);
 
+			case ActorEditPart.VISUAL_ID:
+				return new ActorEditPart(view);
+
+			case ActorNameEditPart.VISUAL_ID:
+				return new ActorNameEditPart(view);
+
 			case Stakeholder2EditPart.VISUAL_ID:
 				return new Stakeholder2EditPart(view);
 
@@ -78,6 +84,9 @@ public class UrmlEditPartFactory implements EditPartFactory {
 
 			case RequirementImplementingServicesEditPart.VISUAL_ID:
 				return new RequirementImplementingServicesEditPart(view);
+
+			case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+				return new FeatureDetailingFunctionalRequirementsEditPart(view);
 
 			}
 		}

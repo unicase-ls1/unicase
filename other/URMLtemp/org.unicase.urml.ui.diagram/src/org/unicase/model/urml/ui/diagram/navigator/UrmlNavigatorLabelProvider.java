@@ -17,8 +17,11 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.URMLDiagram;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
@@ -118,6 +121,9 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case DangerEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/urml/danger?Danger", UrmlElementTypes.Danger_2009); //$NON-NLS-1$
+		case ActorEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/urml/usecase?Actor", UrmlElementTypes.Actor_2010); //$NON-NLS-1$
 		case Stakeholder2EditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml?Stakeholder", UrmlElementTypes.Stakeholder_4001); //$NON-NLS-1$
@@ -133,6 +139,9 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/requirement?Requirement?implementingServices", UrmlElementTypes.RequirementImplementingServices_4005); //$NON-NLS-1$
+		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml?Feature?detailingFunctionalRequirements", UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -199,6 +208,8 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getNonFunctionalRequirement_2008Text(view);
 		case DangerEditPart.VISUAL_ID:
 			return getDanger_2009Text(view);
+		case ActorEditPart.VISUAL_ID:
+			return getActor_2010Text(view);
 		case Stakeholder2EditPart.VISUAL_ID:
 			return getStakeholder_4001Text(view);
 		case FeatureParentFeatureEditPart.VISUAL_ID:
@@ -209,6 +220,8 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getGoalRealizedFeatures_4004Text(view);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getRequirementImplementingServices_4005Text(view);
+		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+			return getFeatureDetailingFunctionalRequirements_4006Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -329,6 +342,21 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	/**
 	 * @generated
 	 */
+	private String getActor_2010Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.Actor_2010, view.getElement() != null ? view
+			.getElement() : view, UrmlVisualIDRegistry.getType(ActorNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getStakeholder_4001Text(View view) {
 		Stakeholder domainModelElement = (Stakeholder) view.getElement();
 		if (domainModelElement != null) {
@@ -364,6 +392,13 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	 * @generated
 	 */
 	private String getRequirementImplementingServices_4005Text(View view) {
+		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFeatureDetailingFunctionalRequirements_4006Text(View view) {
 		return ""; //$NON-NLS-1$
 	}
 

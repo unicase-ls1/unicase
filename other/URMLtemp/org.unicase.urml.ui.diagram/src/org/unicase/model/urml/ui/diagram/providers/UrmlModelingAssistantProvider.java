@@ -41,7 +41,7 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof URMLDiagramEditPart) {
-			ArrayList types = new ArrayList(7);
+			ArrayList types = new ArrayList(8);
 			types.add(UrmlElementTypes.Stakeholder_2002);
 			types.add(UrmlElementTypes.Goal_2001);
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
@@ -49,6 +49,7 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UrmlElementTypes.Service_2007);
 			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 			types.add(UrmlElementTypes.Danger_2009);
+			types.add(UrmlElementTypes.Actor_2010);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -84,6 +85,9 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof GoalEditPart) {
 			return ((GoalEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof FunctionalRequirementEditPart) {
+			return ((FunctionalRequirementEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) targetEditPart).getMARelTypesOnTarget();
@@ -125,6 +129,9 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof GoalEditPart) {
 			return ((GoalEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof FunctionalRequirementEditPart) {
+			return ((FunctionalRequirementEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) targetEditPart).getMATypesForSource(relationshipType);

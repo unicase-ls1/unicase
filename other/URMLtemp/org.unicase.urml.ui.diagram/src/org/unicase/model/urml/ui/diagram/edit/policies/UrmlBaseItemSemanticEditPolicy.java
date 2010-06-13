@@ -39,6 +39,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
 import urml.goal.Goal;
+import urml.requirement.FunctionalRequirement;
 import urml.requirement.Requirement;
 import urml.service.Service;
 
@@ -363,6 +364,23 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateFeatureDetailingFunctionalRequirements_4006(Feature source,
+			FunctionalRequirement target) {
+			if (source != null) {
+				if (source.getDetailingFunctionalRequirements().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDetailedFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureDetailingFunctionalRequirements_4006(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistStakeholder_4001(MEDiagram source, Goal target) {
 			return true;
 		}
@@ -392,6 +410,14 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistRequirementImplementingServices_4005(Requirement source, Service target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureDetailingFunctionalRequirements_4006(Feature source,
+			FunctionalRequirement target) {
 			return true;
 		}
 	}

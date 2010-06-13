@@ -13,8 +13,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.FeatureDetailingFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -38,6 +41,16 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
+		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
 		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == RequirementImplementingServicesEditPart.VISUAL_ID) {
@@ -76,6 +89,9 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 		if (UrmlElementTypes.RequirementImplementingServices_4005 == req.getElementType()) {
 			return getGEFWrapper(new RequirementImplementingServicesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -85,6 +101,10 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UrmlElementTypes.RequirementImplementingServices_4005 == req.getElementType()) {
 			return null;
+		}
+		if (UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006 == req.getElementType()) {
+			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsCreateCommand(req, req.getSource(), req
+				.getTarget()));
 		}
 		return null;
 	}
@@ -99,6 +119,8 @@ public class FunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItemSem
 		switch (getVisualID(req)) {
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementImplementingServicesReorientCommand(req));
+		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new FeatureDetailingFunctionalRequirementsReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

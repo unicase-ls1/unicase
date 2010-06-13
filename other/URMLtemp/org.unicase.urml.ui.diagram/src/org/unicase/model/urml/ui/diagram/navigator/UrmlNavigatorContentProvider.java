@@ -20,7 +20,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
+import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureParentFeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
@@ -234,6 +236,9 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getChildrenByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(DangerEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(ActorEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(Stakeholder2EditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
@@ -248,6 +253,9 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(RequirementImplementingServicesEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			if (!links.isEmpty()) {
 				result.add(links);
@@ -300,11 +308,20 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			UrmlNavigatorGroup outgoinglinks = new UrmlNavigatorGroup(
 				Messages.NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks,
 				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			UrmlNavigatorGroup incominglinks = new UrmlNavigatorGroup(
+				Messages.NavigatorGroupName_FunctionalRequirement_2006_incominglinks,
+				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getOutgoingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(RequirementImplementingServicesEditPart.VISUAL_ID));
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
+			}
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
@@ -326,6 +343,9 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(GoalRealizedFeaturesEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
@@ -461,6 +481,29 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			source.addChildren(createNavigatorItems(connectedViews, source, true));
 			connectedViews = getLinksSourceByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(NonFunctionalRequirementEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source, true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			UrmlNavigatorGroup target = new UrmlNavigatorGroup(
+				Messages.NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_target,
+				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			UrmlNavigatorGroup source = new UrmlNavigatorGroup(
+				Messages.NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_source,
+				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(FunctionalRequirementEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target, true));
+			connectedViews = getLinksSourceByType(Collections.singleton(view), UrmlVisualIDRegistry
+				.getType(FeatureEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source, true));
 			if (!target.isEmpty()) {
 				result.add(target);
