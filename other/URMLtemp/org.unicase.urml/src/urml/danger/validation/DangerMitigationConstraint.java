@@ -14,8 +14,6 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.ActivityType;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 import urml.danger.Danger;
@@ -44,7 +42,7 @@ public class DangerMitigationConstraint extends AbstractModelConstraint {
 							(UnicaseModelElement) eObj, "mitigations");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-							+ ((ActionItem) eObj).getName() + "'" });
+							+ ((Danger) eObj).getName() + "'" });
 				}
 			
 			}
