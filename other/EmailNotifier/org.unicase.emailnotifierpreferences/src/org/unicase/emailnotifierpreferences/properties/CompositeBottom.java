@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emailnotifierpreferences.Activator;
 import org.unicase.model.organization.User;
+import org.unicase.workspace.util.UnicaseCommand;
 
 public class CompositeBottom extends Composite {
 
@@ -33,6 +34,7 @@ public class CompositeBottom extends Composite {
 		
 		main = new Composite(this, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(main);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 		compositeActivation();
 		compositeEmail();
 	}
@@ -67,10 +69,10 @@ public class CompositeBottom extends Composite {
 	private Composite compositeEmail() {
 		compositeEmail = new Composite(main, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(compositeEmail);
-		GridDataFactory.fillDefaults().grab(false, true).applyTo(compositeEmail);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(compositeEmail);
 		if (existEmail) {
 			Label email = new Label(compositeEmail, SWT.PUSH);
-			email.setText("Notifications will be send to the following email address \"" + user.getEmail() + "\"");
+			email.setText("Notifications will be send to \"" + user.getEmail() + "\"");
 			ImageHyperlink editButton = new ImageHyperlink(compositeEmail, SWT.TOP);
 			editButton.setImage(Activator.getImageDescriptor("icons/email_edit.png").createImage());
 			editButton.setToolTipText("Edit email address");
@@ -78,14 +80,15 @@ public class CompositeBottom extends Composite {
 			editButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent e) {
-					InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Edit email address",
+					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Edit email address",
 						"Edit email address", user.getEmail(), null);
 					if (dlg.open() == Window.OK) {
-						try {
-							user.setEmail(dlg.getValue());
-						} catch (Exception ex) {
-							ex.printStackTrace();
-						}
+						new UnicaseCommand() {
+							@Override
+							protected void doRun() {
+								user.setEmail(dlg.getValue());
+							}
+						}.run();
 						compositeEmail.dispose();
 						compositeEmail();
 						main.layout();
@@ -102,14 +105,15 @@ public class CompositeBottom extends Composite {
 			addButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent e) {
-					InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Add email address",
+					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Add email address",
 						"Add email address", "", null);
 					if (dlg.open() == Window.OK) {
-						try {
-							user.setEmail(dlg.getValue());
-						} catch (Exception ex) {
-							ex.printStackTrace();
-						}
+						new UnicaseCommand() {
+							@Override
+							protected void doRun() {
+								user.setEmail(dlg.getValue());
+							}
+						}.run();
 						setExistEmail(true);
 						compositeActivation.dispose();
 						compositeEmail.dispose();
