@@ -12,6 +12,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.task.ActionItem;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
@@ -25,6 +26,8 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
 public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 
 	private FunctionalRequirement functionalRequirement;
+	
+	private ActionItem actionItem;
 
 	/**
 	 * The default constructor.
@@ -34,6 +37,7 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 	 */
 	public AIEmbodiesFRPage2(String pageName, AbstractRefactoringWizard wizard) {
 		super(pageName, wizard);
+		actionItem = (ActionItem) wizard.getInvalidModelElement();
 		functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		getRefactoringWizard().addModelElement(functionalRequirement);
 		getRefactoringWizard().getParentModelElements().add(functionalRequirement);
@@ -58,32 +62,64 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 		// create instruction text composite
 		createExplanatoryTextComposite(body, TextSnippets.AIEMBODIESFRPAGE2INSTRUCTION, "exclamation.png");
 		// create the composite to put the widgets on
-		composite = createComposite(body, SWT.NONE, new GridLayout(3, false), new GridData(SWT.FILL, SWT.FILL, true,
+		composite = createComposite(body, SWT.NONE, new GridLayout(2, true), new GridData(SWT.FILL, SWT.FILL, true,
+				true));
+		Composite compositeLeft = createComposite(composite, SWT.NONE, new GridLayout(2, false), new GridData(SWT.FILL, SWT.FILL, true,
 			true));
+		Composite compositeRight = createComposite(composite, SWT.NONE, new GridLayout(2, false), new GridData(SWT.FILL, SWT.FILL, true,
+				true));
+		
 		// create pencil icon
-		createIconLabel(composite, "pencil.png");
+		createIconLabel(compositeLeft, "pencil.png");
 		// create text for new requirement name
-		createText(composite, "Name:");
+		createText(compositeLeft, "Name:");
 		// create input field for new requirement name
-		createMEControl(new METextControl(), composite, functionalRequirement, "name");
+		createIconLabel(compositeLeft);
+		createMEControl(new METextControl(), compositeLeft, functionalRequirement, "name");
 		// create pencil icon
-		createIconLabel(composite, "pencil.png");
+		createIconLabel(compositeLeft, "pencil.png");
 		// create text for new requirement description
-		createText(composite, "Description:");
+		createText(compositeLeft, "Description:");
 		// create input field for new requirement description
-		createMEControl(new MERichTextControlWithoutToolbar(), composite, functionalRequirement, "description");
+		createIconLabel(compositeLeft);
+		createMEControl(new MERichTextControlWithoutToolbar(), compositeLeft, functionalRequirement, "description");
 		// create link icon
-		createIconLabel(composite, "link.png");
+		createIconLabel(compositeLeft, "link.png");
 		// create text for refined requirement
-		createText(composite, "Refined Requirement:");
+		createText(compositeLeft, "Refined Requirement:");
 		// create link for refined requirement
-		createMEControl(new MESingleLinkControl(), composite, functionalRequirement, "refinedRequirement");
+		createIconLabel(compositeLeft);
+		createMEControl(new MESingleLinkControl(), compositeLeft, functionalRequirement, "refinedRequirement");
 		// create user icon
-		createIconLabel(composite, "filtertouser.png");
+		createIconLabel(compositeLeft, "filtertouser.png");
 		// create text for add stakeholder
-		createText(composite, "Stakeholder:");
+		createText(compositeLeft, "Stakeholder:");
 		// create link for stakeholder
-		createMEControl(new MESingleLinkControl(), composite, functionalRequirement, "stakeholder");
+		createIconLabel(compositeLeft);
+		createMEControl(new MESingleLinkControl(), compositeLeft, functionalRequirement, "stakeholder");
+		
+		// create pencil icon
+		createIconLabel(compositeRight, "pencil.png");
+		// create text for new requirement name
+		createText(compositeRight, "Name:");
+		// create input field for new requirement name
+		createIconLabel(compositeRight);
+		createMEControl(new METextControl(), compositeRight, actionItem, "name");
+		// create pencil icon
+		createIconLabel(compositeRight, "pencil.png");
+		// create text for new requirement description
+		createText(compositeRight, "Description:");
+		// create input field for new requirement description
+		createIconLabel(compositeRight);
+		createMEControl(new MERichTextControlWithoutToolbar(), compositeRight, actionItem, "description");
+		// create user icon
+		createIconLabel(compositeRight, "filtertouser.png");
+		// create text for add stakeholder
+		createText(compositeRight, "Assignee:");
+		// create link for stakeholder
+		createIconLabel(compositeRight);
+		createMEControl(new MESingleLinkControl(), compositeRight, actionItem, "assignee");
+		
 		// set body as control
 		setControl(body);
 	}

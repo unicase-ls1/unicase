@@ -6,7 +6,7 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
@@ -22,7 +22,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
@@ -40,9 +39,9 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class AIEmbodiesFRPage3 extends AbstractRefactoringWizardPage {
 
-	private List listActionItems;
+	private org.eclipse.swt.widgets.List listActionItems;
 
-	private ArrayList<ModelElement> actionItems;
+	private List<ModelElement> actionItems;
 
 	// reusable variables
 	private Composite composite;
@@ -84,7 +83,7 @@ public class AIEmbodiesFRPage3 extends AbstractRefactoringWizardPage {
 		composite = createComposite(composite, SWT.NONE, new GridLayout(2, false), new GridData(SWT.FILL, SWT.FILL,
 			true, true));
 		// create list widget
-		listActionItems = new List(composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		listActionItems = new org.eclipse.swt.widgets.List(composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		listActionItems.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		// create the composite to put the widgets on
 		composite = createComposite(composite, SWT.NONE, new GridLayout(1, false), new GridData(SWT.FILL, SWT.TOP,
