@@ -10,6 +10,7 @@ import org.unicase.workspace.preferences.PropertyKey;
 
 public enum EMailNotifierKey implements PropertyKey {
 
+	
 	/**
 	 * The list of notification groups created by the user.
 	 */

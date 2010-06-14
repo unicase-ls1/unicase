@@ -135,6 +135,7 @@ public class CompositeSendOptions extends Composite {
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
 		bindingContext.bindValue(SWTObservables.observeSelection(daysSpinner), EMFObservables.observeValue(tempBundles
 			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__DAYS_COUNT));
+		daysSpinner.setSelection(1);
 		return daysSpinnerComp;
 	}
 
@@ -154,6 +155,7 @@ public class CompositeSendOptions extends Composite {
 		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
 		bindingContext.bindValue(SWTObservables.observeSelection(weekdayOption), EMFObservables.observeValue(
 			tempBundles.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__WEEKDAY_OPTION));
+		weekdayOption.select(0);
 		return weekdayOptionComp;
 	}
 
