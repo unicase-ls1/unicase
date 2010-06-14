@@ -18,14 +18,14 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author wesendon
  */
-public class ValidationLableProvider extends ColumnLabelProvider {
+public class ValidationLabelProvider extends ColumnLabelProvider {
 
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
 	/**
 	 * Default constructor.
 	 */
-	public ValidationLableProvider() {
+	public ValidationLabelProvider() {
 		super();
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(

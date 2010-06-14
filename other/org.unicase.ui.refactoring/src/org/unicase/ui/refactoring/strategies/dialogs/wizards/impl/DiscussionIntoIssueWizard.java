@@ -6,13 +6,13 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.impl;
 
-import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage1;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage2;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage3;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage4;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage5;
+import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -20,10 +20,10 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussi
 public class DiscussionIntoIssueWizard extends AbstractRefactoringWizard {
 
 	/**
-	 * @param status the
+	 * @param abstractRefactoringStrategy the
 	 */
-	public DiscussionIntoIssueWizard(IConstraintStatus status) {
-		super(status);
+	public DiscussionIntoIssueWizard(AbstractRefactoringStrategy abstractRefactoringStrategy) {
+		super(abstractRefactoringStrategy);
 	}
 
 	/**

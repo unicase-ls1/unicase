@@ -6,7 +6,6 @@
 
 package org.unicase.ui.refactoring.strategies;
 
-import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.impl.AIEmbodiesFRDialog;
@@ -26,9 +25,8 @@ public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean performRefactoring(Shell parentShell) {
-		AbstractRefactoringDialog refactoringDialog = new AIEmbodiesFRDialog(parentShell, new AIEmbodiesFrWizard(
-			getConstraintStatus()));
+	public boolean performRefactoring() {
+		AbstractRefactoringDialog refactoringDialog = new AIEmbodiesFRDialog(getShell(), new AIEmbodiesFrWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
 		return refactoringDialog.getResult();

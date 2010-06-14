@@ -55,7 +55,7 @@ import org.unicase.ui.validation.providers.DescriptionLabelProvider;
 import org.unicase.ui.validation.providers.SeverityLabelProvider;
 import org.unicase.ui.validation.providers.ValidationContentProvider;
 import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
-import org.unicase.ui.validation.providers.ValidationLableProvider;
+import org.unicase.ui.validation.providers.ValidationLabelProvider;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -165,7 +165,7 @@ public class ValidationView extends ViewPart {
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 3);
 		column.getColumn().setText("Affected ModelElement");
 		column.getColumn().setWidth(200);
-		setLabelProviderAndComparator(column, new ValidationLableProvider());
+		setLabelProviderAndComparator(column, new ValidationLabelProvider());
 
 		// creator column
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 4);
@@ -226,18 +226,16 @@ public class ValidationView extends ViewPart {
 				refactorMenuItem.setText("Refactor the violation");
 				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell_go.png").createImage());
 				refactorMenuItem.addListener(SWT.Selection, new Listener() {
-
 					public void handleEvent(Event event) {
 						for(AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
-							refactoringStrategy.startRefactoring(shell);
+							refactoringStrategy.setShell(shell);
+							refactoringStrategy.startRefactoring();
 							break;
 						}
 					}
-
 				});
 				leftClickMenu.setVisible(true);
 			}
-			
 		});
 	}
 
@@ -345,7 +343,8 @@ public class ValidationView extends ViewPart {
 				removeAllFilters();
 				for(Object object : validationFilterList.getResult()) {
 					if(object instanceof ValidationFilter) {
-						applyFilter((ValidationFilter) object);
+						ValidationFilter validationFilter = (ValidationFilter) object;
+						applyFilter(validationFilter);
 					}
 				}
 			}

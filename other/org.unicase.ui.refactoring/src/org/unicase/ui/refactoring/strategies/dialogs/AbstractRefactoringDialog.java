@@ -38,6 +38,15 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 
 	/**
 	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleShellCloseEvent() {
+		cancelPressed = true;
+		super.handleShellCloseEvent();
+	}
+	
+	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.jface.wizard.WizardDialog#cancelPressed()
 	 */
@@ -59,7 +68,7 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	}
 
 	/**
-	 * @return true if not cancelled, false otherwise
+	 * @return true if not canceled or closed, false otherwise
 	 */
 	public boolean getResult() {
 		return !cancelPressed;
