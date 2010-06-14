@@ -6,7 +6,6 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.impl;
 
-import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage1;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage2;
@@ -14,6 +13,7 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodi
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage4;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage5;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage6;
+import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -21,10 +21,10 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodi
 public class AIEmbodiesFrWizard extends AbstractRefactoringWizard {
 
 	/**
-	 * @param status the
+	 * @param abstractRefactoringStrategy the
 	 */
-	public AIEmbodiesFrWizard(IConstraintStatus status) {
-		super(status);
+	public AIEmbodiesFrWizard(AbstractRefactoringStrategy abstractRefactoringStrategy) {
+		super(abstractRefactoringStrategy);
 	}
 
 	/**

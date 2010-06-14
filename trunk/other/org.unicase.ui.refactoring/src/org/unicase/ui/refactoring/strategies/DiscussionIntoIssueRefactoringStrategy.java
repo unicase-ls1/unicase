@@ -6,7 +6,6 @@
 
 package org.unicase.ui.refactoring.strategies;
 
-import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.impl.DiscussionIntoIssueDialog;
@@ -26,9 +25,9 @@ public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringS
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean performRefactoring(Shell parentShell) {
-		AbstractRefactoringDialog refactoringDialog = new DiscussionIntoIssueDialog(parentShell,
-			new DiscussionIntoIssueWizard(getConstraintStatus()));
+	public boolean performRefactoring() {
+		AbstractRefactoringDialog refactoringDialog = new DiscussionIntoIssueDialog(getShell(),
+			new DiscussionIntoIssueWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
 		return true;

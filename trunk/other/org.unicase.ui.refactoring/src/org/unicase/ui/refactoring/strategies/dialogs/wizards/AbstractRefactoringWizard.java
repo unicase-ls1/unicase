@@ -16,6 +16,7 @@ import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
+import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -27,54 +28,27 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public abstract class AbstractRefactoringWizard extends Wizard implements IPageChangedListener {
 
-	/**
-	 * The validation constraint status.
-	 */
-	private IConstraintStatus status;
+	private AbstractRefactoringStrategy abstractRefactoringStrategy;
 
 	/**
-	 * Child model elements to be created.
+	 * @param abstractRefactoringStrategy the
 	 */
-	private ArrayList<ModelElement> childModelElementsCreated;
-
-	/**
-	 * Child model elements to be referenced.
-	 */
-	private ArrayList<ModelElement> childModelElementsReferenced;
-
-	/**
-	 * Parent model elements to be created.
-	 */
-	private ArrayList<ModelElement> parentModelElementsCreated;
-
-	/**
-	 * Parent model elements to be referenced.
-	 */
-	private ArrayList<ModelElement> parentModelElementsReferenced;
-
-	/**
-	 * @param status the
-	 */
-	public AbstractRefactoringWizard(IConstraintStatus status) {
-		this.status = status;
-		childModelElementsCreated = new ArrayList<ModelElement>();
-		childModelElementsReferenced = new ArrayList<ModelElement>();
-		parentModelElementsCreated = new ArrayList<ModelElement>();
-		parentModelElementsReferenced = new ArrayList<ModelElement>();
+	public AbstractRefactoringWizard(AbstractRefactoringStrategy abstractRefactoringStrategy) {
+		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 	}
 
 	/**
 	 * @return the constraint status
 	 */
 	public IConstraintStatus getConstraintStatus() {
-		return status;
+		return abstractRefactoringStrategy.getConstraintStatus();
 	}
 
 	/**
 	 * @return the invalid model element
 	 */
 	public ModelElement getInvalidModelElement() {
-		return (ModelElement) status.getTarget();
+		return (ModelElement) getConstraintStatus().getTarget();
 	}
 
 	/**
@@ -108,35 +82,35 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	 * @return the child model elements that were referenced
 	 */
 	public ArrayList<ModelElement> getChildModelElements() {
-		return childModelElementsReferenced;
+		return abstractRefactoringStrategy.getChildModelElements();
 	}
 
 	/**
 	 * @return the parent model elements that were referenced
 	 */
 	public ArrayList<ModelElement> getParentModelElements() {
-		return parentModelElementsReferenced;
+		return abstractRefactoringStrategy.getParentModelElements();
 	}
 
 	/**
 	 * @return the child model elements that were created
 	 */
 	public ArrayList<ModelElement> getChildModelElementsCreated() {
-		return childModelElementsCreated;
+		return abstractRefactoringStrategy.getChildModelElementsCreated();
 	}
 
 	/**
 	 * @return the parent model elements that were created
 	 */
 	public ArrayList<ModelElement> getParentModelElementsCreated() {
-		return parentModelElementsCreated;
+		return abstractRefactoringStrategy.getParentModelElementsCreated();
 	}
 
 	/**
 	 * @return the total size
 	 */
 	public int getTotalNumberOfElements() {
-		return childModelElementsReferenced.size() + parentModelElementsReferenced.size();
+		return getChildModelElements().size() + getParentModelElements().size();
 	}
 
 	/**

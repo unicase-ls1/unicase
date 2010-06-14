@@ -23,6 +23,13 @@
        </clientContext>
     </listener>
  </extension>
+ <extension
+       point="org.unicase.ui.validation.filters">
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.ACUserFilter"
+          name="ACUserFilter">
+    </filter>
+ </extension>
 </plugin>
 
 
