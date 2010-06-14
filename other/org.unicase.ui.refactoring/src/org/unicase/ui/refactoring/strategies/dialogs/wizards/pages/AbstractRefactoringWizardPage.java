@@ -62,7 +62,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-		parent.getShell().setSize(600, 650);
+		parent.getShell().setSize(600, 750);
 		parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
 
@@ -81,8 +81,13 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(1, false));
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		controls.add(composite);
+		addControl(composite);
 		return composite;
+	}
+
+	private void addControl(Control control) {
+		setDebugColor(control);
+		controls.add(control);
 	}
 
 	/**
@@ -120,8 +125,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		Composite composite = new Composite(parent, swt);
 		composite.setLayout(layout);
 		composite.setLayoutData(layoutData);
-		controls.add(composite);
-		setDebugColor(composite);
+		addControl(composite);
 		return composite;
 	}
 
@@ -139,7 +143,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		text.setText(information);
 		text.setLayoutData(new GridData(SWT.NONE, SWT.TOP, true, true));
 		text.setEditable(false);
-		controls.add(text);
+		addControl(text);
 		return composite;
 	}
 
@@ -163,7 +167,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		text.setText(name);
 		text.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, grabHorizontal, false));
 		text.setEditable(false);
-		controls.add(text);
+		addControl(text);
 		return text;
 	}
 
@@ -184,11 +188,8 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	protected Label createIconLabel(Composite parent, Image image) {
 		Label label = new Label(parent, SWT.NONE);
 		label.setImage(image);
-		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
-		gridData.widthHint = 20;
-		gridData.heightHint = 16;
-		label.setLayoutData(gridData);
-		controls.add(label);
+		setIconLabelData(label);
+		addControl(label);
 		return label;
 	}
 
@@ -212,6 +213,24 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		abstractControls.add(control);
 		controls.add(modelElementControl);
 		return modelElementControl;
+	}
+	
+	/**
+	 * @param parent the
+	 * @return the label
+	 */
+	protected Label createIconLabel(Composite parent) {
+		Label label = new Label(parent, SWT.NONE);
+		setIconLabelData(label);
+		addControl(label);
+		return label;
+	}
+
+	private void setIconLabelData(Label label) {
+		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
+		gridData.widthHint = 20;
+		gridData.heightHint = 16;
+		label.setLayoutData(gridData);
 	}
 
 	/**
@@ -242,7 +261,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 * @param control the
 	 */
 	protected void setDebugColor(Control control) {
-		control.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 	}
 
 	/**
