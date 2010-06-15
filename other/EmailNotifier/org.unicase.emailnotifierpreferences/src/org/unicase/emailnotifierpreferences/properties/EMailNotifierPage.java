@@ -42,6 +42,7 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
@@ -190,15 +191,25 @@ public class EMailNotifierPage extends PropertyPage {
 	 * @author fuesescc
 	 */
 	private void loadProperties() {
-		OrgUnitProperty loadedNotificationGroups = PreferenceManager.INSTANCE.getProperty(projectSpace,
+		final OrgUnitProperty loadedNotificationGroups = PreferenceManager.INSTANCE.getProperty(projectSpace,
 			EMailNotifierKey.NOTIFICATIONGROUPS);
 		if (existEmail) {
-			OrgUnitProperty loadedActivation = PreferenceManager.INSTANCE.getProperty(projectSpace,
+			final OrgUnitProperty loadedActivation = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				EMailNotifierKey.ACTIVATED);
-			compositeBottom.activate(loadedActivation.getBooleanProperty());
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					compositeBottom.activate(loadedActivation.getBooleanProperty());
+				}
+			}.run();
 		}
 		if (loadedNotificationGroups != null) {
-			loadedNotificationGroups.getEObjectListProperty(tempNotificationGroups);
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					loadedNotificationGroups.getEObjectListProperty(tempNotificationGroups);
+				}
+			}.run();
 		}
 	}
 
@@ -287,7 +298,7 @@ public class EMailNotifierPage extends PropertyPage {
 			for (int i = 0; i < tempNotificationGroups.size(); i++) {
 				b[i] = (NotificationGroup) tempNotificationGroups.get(i);
 			}
-			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.NOTIFICATIONGROUPS, b);
+ 			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.NOTIFICATIONGROUPS, b);
 			PreferenceManager.INSTANCE.setProperty(projectSpace, EMailNotifierKey.ACTIVATED, compositeBottom
 				.getActivation());
 			return null;

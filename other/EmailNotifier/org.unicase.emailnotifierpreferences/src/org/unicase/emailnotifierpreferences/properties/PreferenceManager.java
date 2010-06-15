@@ -8,11 +8,11 @@ package org.unicase.emailnotifierpreferences.properties;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.model.emailnotificationgroup.NotificationGroup;
-import org.unicase.model.emailnotificationgroup.impl.EmailnotificationgroupFactoryImpl;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.preferences.PropertyKey;
@@ -34,9 +34,7 @@ public final class PreferenceManager {
 
 	private PreferenceManager() {
 		defaultsMap = new HashMap<PropertyKey, OrgUnitProperty>();
-		NotificationGroup test = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
-		test.setNotificationGroupName("pronto");
-		defaultsMap.put(EMailNotifierKey.NOTIFICATIONGROUPS, createProperty(EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[]{test}, null));
+		defaultsMap.put(EMailNotifierKey.NOTIFICATIONGROUPS, createProperty(EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[]{}, null));
 		defaultsMap.put(EMailNotifierKey.ACTIVATED, createProperty(EMailNotifierKey.ACTIVATED, false, null));
 	}
 
@@ -47,7 +45,7 @@ public final class PreferenceManager {
 	 */
 	public OrgUnitProperty getProperty(ProjectSpace projectSpace, PropertyKey key) {
 		try {
-			OrgUnitProperty property = projectSpace.getProperty((org.unicase.workspace.preferences.PropertyKey) key);
+			OrgUnitProperty property = projectSpace.getProperty((PropertyKey) key);
 			return property;
 		} catch (PropertyNotFoundException e) {
 			OrgUnitProperty property = defaultsMap.get(key);
@@ -62,7 +60,7 @@ public final class PreferenceManager {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
-		property.setProject(id);
+		property.setProject((ProjectId) EcoreUtil.copy(id));
 		return property;
 	}
 
@@ -70,7 +68,7 @@ public final class PreferenceManager {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
-		property.setProject(id);
+		property.setProject((ProjectId) EcoreUtil.copy(id));
 		return property;
 	}
 
