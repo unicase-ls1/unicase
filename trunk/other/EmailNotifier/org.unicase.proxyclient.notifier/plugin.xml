@@ -20,17 +20,9 @@
       </perspective>
    </extension>
    <extension
-         id="org.unicase.proxyclient.notfier.workspaceLocationProviderID"
-         name="ProxyNotifier"
-         point="org.unicase.workspace.workspaceLocationProvider">
-      <LocationProvider
-            providerClass="org.unicase.proxyclient.notifier.location.WorkspaceLocationProvider">
-      </LocationProvider>
-   </extension>
-   <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.unicase.proxyclient.notifier.client.View"
+            class="org.unicase.proxyclient.notifier.View"
             id="org.unicase.proxyclient.notifier.client.view"
             name="View">
       </view>

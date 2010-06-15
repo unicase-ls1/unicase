@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.proxyclient.notifier.store.model.impl;
 
@@ -34,6 +33,7 @@ import org.unicase.proxyclient.notifier.store.model.NotificationProject;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationProjectImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationProjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationProjectImpl#getUserName <em>User Name</em>}</li>
  *   <li>{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationProjectImpl#getLastSeenEMail <em>Last Seen EMail</em>}</li>
  *   <li>{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationProjectImpl#getGroups <em>Groups</em>}</li>
@@ -41,6 +41,8 @@ import org.unicase.proxyclient.notifier.store.model.NotificationProject;
  * </p>
  *
  * @generated
+ * 
+ * @author staudta
  */
 public class NotificationProjectImpl extends EObjectImpl implements NotificationProject {
 	/**
@@ -62,6 +64,26 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUserName() <em>User Name</em>}' attribute.
@@ -158,6 +180,27 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NPCPackage.NOTIFICATION_PROJECT__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUserName() {
 		return userName;
 	}
@@ -231,6 +274,8 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 		switch (featureID) {
 			case NPCPackage.NOTIFICATION_PROJECT__ID:
 				return getId();
+			case NPCPackage.NOTIFICATION_PROJECT__NAME:
+				return getName();
 			case NPCPackage.NOTIFICATION_PROJECT__USER_NAME:
 				return getUserName();
 			case NPCPackage.NOTIFICATION_PROJECT__LAST_SEEN_EMAIL:
@@ -252,6 +297,9 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 		switch (featureID) {
 			case NPCPackage.NOTIFICATION_PROJECT__ID:
 				setId((String)newValue);
+				return;
+			case NPCPackage.NOTIFICATION_PROJECT__NAME:
+				setName((String)newValue);
 				return;
 			case NPCPackage.NOTIFICATION_PROJECT__USER_NAME:
 				setUserName((String)newValue);
@@ -278,6 +326,9 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 			case NPCPackage.NOTIFICATION_PROJECT__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case NPCPackage.NOTIFICATION_PROJECT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case NPCPackage.NOTIFICATION_PROJECT__USER_NAME:
 				setUserName(USER_NAME_EDEFAULT);
 				return;
@@ -301,6 +352,8 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 		switch (featureID) {
 			case NPCPackage.NOTIFICATION_PROJECT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case NPCPackage.NOTIFICATION_PROJECT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NPCPackage.NOTIFICATION_PROJECT__USER_NAME:
 				return USER_NAME_EDEFAULT == null ? userName != null : !USER_NAME_EDEFAULT.equals(userName);
 			case NPCPackage.NOTIFICATION_PROJECT__LAST_SEEN_EMAIL:
@@ -323,6 +376,8 @@ public class NotificationProjectImpl extends EObjectImpl implements Notification
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", name: ");
+		result.append(name);
 		result.append(", userName: ");
 		result.append(userName);
 		result.append(", lastSeenEMail: ");
