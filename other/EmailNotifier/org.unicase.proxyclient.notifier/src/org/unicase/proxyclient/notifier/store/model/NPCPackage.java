@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.proxyclient.notifier.store.model;
 
@@ -25,6 +24,8 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.unicase.proxyclient.notifier.store.model.NPCFactory
  * @model kind="package"
  * @generated
+ * 
+ * @author staudta
  */
 public interface NPCPackage extends EPackage {
 	/**
@@ -107,13 +108,22 @@ public interface NPCPackage extends EPackage {
 	int NOTIFICATION_PROJECT__ID = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_PROJECT__NAME = 1;
+
+	/**
 	 * The feature id for the '<em><b>User Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOTIFICATION_PROJECT__USER_NAME = 1;
+	int NOTIFICATION_PROJECT__USER_NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Last Seen EMail</b></em>' attribute.
@@ -122,7 +132,7 @@ public interface NPCPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOTIFICATION_PROJECT__LAST_SEEN_EMAIL = 2;
+	int NOTIFICATION_PROJECT__LAST_SEEN_EMAIL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
@@ -131,7 +141,7 @@ public interface NPCPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOTIFICATION_PROJECT__GROUPS = 3;
+	int NOTIFICATION_PROJECT__GROUPS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Notification Project</em>' class.
@@ -140,7 +150,7 @@ public interface NPCPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOTIFICATION_PROJECT_FEATURE_COUNT = 4;
+	int NOTIFICATION_PROJECT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.proxyclient.notifier.store.model.impl.NotificationGroupImpl <em>Notification Group</em>}' class.
@@ -258,6 +268,17 @@ public interface NPCPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNotificationProject_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.proxyclient.notifier.store.model.NotificationProject#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.unicase.proxyclient.notifier.store.model.NotificationProject#getName()
+	 * @see #getNotificationProject()
+	 * @generated
+	 */
+	EAttribute getNotificationProject_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.proxyclient.notifier.store.model.NotificationProject#getUserName <em>User Name</em>}'.
@@ -413,6 +434,14 @@ public interface NPCPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NOTIFICATION_PROJECT__ID = eINSTANCE.getNotificationProject_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTIFICATION_PROJECT__NAME = eINSTANCE.getNotificationProject_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>User Name</b></em>' attribute feature.

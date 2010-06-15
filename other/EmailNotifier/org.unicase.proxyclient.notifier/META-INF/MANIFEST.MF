@@ -11,12 +11,14 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.proxyclient;bundle-version="1.0.0",
  org.unicase.backchannel.client;bundle-version="1.0.0",
  org.unicase.ui.dashboard;bundle-version="1.0.0",
- org.junit4,
- javax.activation;bundle-version="1.1.0"
+ javax.activation;bundle-version="1.1.0",
+ org.unicase.emailnotifierpreferences;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/ini4j-0.5.2-SNAPSHOT.jar,
  lib/mail.jar,
  .
-Export-Package: org.unicase.proxyclient.notifier.store.model,
+Export-Package: org.unicase.proxyclient.notifier.client.util,
+ org.unicase.proxyclient.notifier.email,
+ org.unicase.proxyclient.notifier.store.model,
  org.unicase.proxyclient.notifier.store.model.util

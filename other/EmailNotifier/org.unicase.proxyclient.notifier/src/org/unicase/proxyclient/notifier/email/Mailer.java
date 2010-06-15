@@ -14,12 +14,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.security.auth.login.Configuration;
 
 /**
  * Mail Service.
  * 
  * @author fuesescc
- * @author Adrian Staudt <staudta@in.tum.de>
  */
 public class Mailer extends Authenticator {
 	
@@ -33,8 +33,6 @@ public class Mailer extends Authenticator {
 		int port = mailerInfo.getPort();
 		boolean useSSL = mailerInfo.useSSL();
 		
-		System.setProperty("javax.net.debug", "ssl,handshake");
-
 		Properties props = new Properties();
 
 		props.put("mail.transport.protocol", "smtp");
@@ -72,6 +70,7 @@ public class Mailer extends Authenticator {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(subject);
 			// set message content, type, and encoding, and send the message
+			//message.setContent(msg, "text/plain; charset=UTF-8");
 			message.setContent(msg, "text/html; charset=UTF-8");
 			Transport.send(message);
 			return true;

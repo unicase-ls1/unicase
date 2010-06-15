@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.proxyclient.notifier;
 
 import org.eclipse.swt.graphics.Point;
@@ -7,7 +12,7 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
 /**
- * @author Adrian Staudt <staudta@in.tum.de>
+ * @author staudta
  */
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
@@ -21,10 +26,10 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
 	public void preWindowOpen() {
 		IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-		configurer.setInitialSize(new Point(200, 200));
+		configurer.setInitialSize(new Point(400, 200));
 		configurer.setShowCoolBar(false);
 		configurer.setShowStatusLine(false);
-		configurer.setTitle("Notifier Proxy");
+		configurer.setTitle("NotifierProxyClient");
 	}
 
 }

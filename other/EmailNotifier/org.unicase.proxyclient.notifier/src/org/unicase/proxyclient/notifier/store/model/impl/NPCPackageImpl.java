@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.proxyclient.notifier.store.model.impl;
 
@@ -25,6 +24,8 @@ import org.unicase.proxyclient.notifier.store.model.NotifierProxyClientStore;
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
  * @generated
+ * 
+ * @author staudta
  */
 public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 	/**
@@ -157,7 +158,7 @@ public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNotificationProject_UserName() {
+	public EAttribute getNotificationProject_Name() {
 		return (EAttribute)notificationProjectEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -166,7 +167,7 @@ public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNotificationProject_LastSeenEMail() {
+	public EAttribute getNotificationProject_UserName() {
 		return (EAttribute)notificationProjectEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -175,8 +176,17 @@ public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNotificationProject_LastSeenEMail() {
+		return (EAttribute)notificationProjectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNotificationProject_Groups() {
-		return (EReference)notificationProjectEClass.getEStructuralFeatures().get(3);
+		return (EReference)notificationProjectEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -266,6 +276,7 @@ public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 
 		notificationProjectEClass = createEClass(NOTIFICATION_PROJECT);
 		createEAttribute(notificationProjectEClass, NOTIFICATION_PROJECT__ID);
+		createEAttribute(notificationProjectEClass, NOTIFICATION_PROJECT__NAME);
 		createEAttribute(notificationProjectEClass, NOTIFICATION_PROJECT__USER_NAME);
 		createEAttribute(notificationProjectEClass, NOTIFICATION_PROJECT__LAST_SEEN_EMAIL);
 		createEReference(notificationProjectEClass, NOTIFICATION_PROJECT__GROUPS);
@@ -314,6 +325,7 @@ public class NPCPackageImpl extends EPackageImpl implements NPCPackage {
 
 		initEClass(notificationProjectEClass, NotificationProject.class, "NotificationProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNotificationProject_Id(), ecorePackage.getEString(), "id", null, 1, 1, NotificationProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNotificationProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NotificationProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNotificationProject_UserName(), ecorePackage.getEString(), "userName", null, 1, 1, NotificationProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNotificationProject_LastSeenEMail(), ecorePackage.getEString(), "lastSeenEMail", null, 1, 1, NotificationProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNotificationProject_Groups(), this.getNotificationGroup(), null, "groups", null, 0, -1, NotificationProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
