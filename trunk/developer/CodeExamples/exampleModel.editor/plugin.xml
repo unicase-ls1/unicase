@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="library.presentation.LibraryModelWizardID"
+            name="%_UI_LibraryModelWizard_label"
+            class="library.presentation.LibraryModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LibraryModelFile.gif">
+         <description>%_UI_LibraryModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="library.presentation.LibraryEditorID"
+            name="%_UI_LibraryEditor_label"
+            icon="icons/full/obj16/LibraryModelFile.gif"
+            extensions="library"
+            class="library.presentation.LibraryEditor"
+            contributorClass="library.presentation.LibraryActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="examplemodel.editor.ModelElementOpener"
+            name="exampleModel.editor.ModelElementOpener">
+      </ModelElementOpener>
+   </extension>
+
+</plugin>
