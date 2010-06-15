@@ -156,12 +156,14 @@ import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import library.provider.LibraryItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import org.unicase.metamodel.provider.MetamodelItemProviderAdapterFactory;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
 import examplemodel.editor.ExampleInput;
@@ -704,12 +706,13 @@ public class LibraryEditor
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
-		//
-		BasicCommandStack commandStack = new BasicCommandStack();
-
+		//TODO: Use EMFStore editing domain instead
+		//BasicCommandStack commandStack = new BasicCommandStack();
+		TransactionalEditingDomain transactionalEditingDomain = Configuration.getEditingDomain();
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
-		commandStack.addCommandStackListener
+		//TODO: use EMFStore editing domain
+		transactionalEditingDomain.getCommandStack().addCommandStackListener
 			(new CommandStackListener() {
 				 public void commandStackChanged(final EventObject event) {
 					 getContainer().getDisplay().asyncExec
@@ -733,7 +736,8 @@ public class LibraryEditor
 
 		// Create the editing domain with a special command stack.
 		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		//TODO:Use EMFStore editing domain
+		editingDomain = (AdapterFactoryEditingDomain) transactionalEditingDomain;
 	}
 
 	/**
@@ -1033,6 +1037,7 @@ public class LibraryEditor
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				//TODO: Change root:
 				if(getEditorInput()instanceof ExampleInput){
 					selectionViewer.setInput(WorkspaceManager.getProjectSpace(((ExampleInput)getEditorInput()).getModelelement()));
 				}
