@@ -16,7 +16,7 @@ import org.unicase.workspace.ProjectSpace;
  */
 public interface ProjectSpaceContentProvider {
 	/**
-	 * if the project spac has children.
+	 * if the project space has children.
 	 * 
 	 * @param projectSpace the project space
 	 * @return i it has children
