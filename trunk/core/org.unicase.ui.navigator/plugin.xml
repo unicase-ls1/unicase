@@ -3,7 +3,7 @@
 <plugin>
    
    <extension-point id="menuconfiguration" name="Menu Configuration" schema="schema/menuconfiguration.exsd"/>
-   <extension-point id="org.unicase.ui.navigator.replaceProjectSpaceContentProvider" name="Replace Project Space Provider" schema="schema/org.unicase.ui.navigator.replaceProjectSpaceContentProvider.exsd"/>
+   <extension-point id="org.unicase.ui.navigator.replaceRootObjectContentProvider" name="Replace Root Object Provider" schema="schema/org.unicase.ui.navigator.replaceRootObjectContentProvider.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view

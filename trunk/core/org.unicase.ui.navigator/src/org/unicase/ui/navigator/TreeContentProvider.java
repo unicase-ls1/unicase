@@ -21,7 +21,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class TreeContentProvider extends TransactionalAdapterFactoryContentProvider {
 
-	private ProjectSpaceContentProvider contentProvider;
+	private RootObjectContentProvider contentProvider;
 
 	/**
 	 * Directly Transfer to project. {@inheritDoc}
@@ -43,13 +43,13 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.replaceProjectSpaceContentProvider");
+			"org.unicase.ui.navigator.replaceRootObjectContentProvider");
 		if (confs.length > 1) {
-			WorkspaceUtil.logWarning("Duplicate ProjectSpaceContent Provider registered", new IllegalStateException());
+			WorkspaceUtil.logWarning("Duplicate RootObjectContent Provider registered", new IllegalStateException());
 		}
 		if (confs.length == 1) {
 			try {
-				contentProvider = (ProjectSpaceContentProvider) confs[0].createExecutableExtension("class");
+				contentProvider = (RootObjectContentProvider) confs[0].createExecutableExtension("class");
 
 			} catch (CoreException e) {
 				WorkspaceUtil.logException(e.getMessage(), e);
