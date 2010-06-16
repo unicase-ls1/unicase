@@ -20,6 +20,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PropertyKey;
 
 public class CompositeNotificationTypeSelection extends Composite {
@@ -58,7 +59,7 @@ public class CompositeNotificationTypeSelection extends Composite {
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
-				if (object instanceof EMailNotifierKey) {
+				if (object instanceof DashboardKey) {
 					hint.setText(providerHints.get(object)[1] + "");
 				} else {
 					hint.setText("Hint: Select an item to view its description");
@@ -69,7 +70,7 @@ public class CompositeNotificationTypeSelection extends Composite {
 		notifierTypesList.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				if (element instanceof EMailNotifierKey) {
+				if (element instanceof DashboardKey) {
 					return providerHints.get(element)[0];
 				}
 				return super.getText(element);
@@ -92,17 +93,17 @@ public class CompositeNotificationTypeSelection extends Composite {
 	private void init() {
 		providerHints = new HashMap<PropertyKey, String[]>();
 
-		providerHints.put(EMailNotifierKey.TASK_PROVIDER, new String[] { "Task notifications",
+		providerHints.put(DashboardKey.TASK_PROVIDER, new String[] { "Task notifications",
 			"Show notifications for tasks that have been assigned to you." });
-		providerHints.put(EMailNotifierKey.TASK_CHANGE_PROVIDER, new String[] { "Task changes notifications",
+		providerHints.put(DashboardKey.TASK_CHANGE_PROVIDER, new String[] { "Task changes notifications",
 			"Show notifications for changes on tasks you have been assigned to." });
-		providerHints.put(EMailNotifierKey.TASK_TRACE_PROVIDER, new String[] { "Task trace notifications",
+		providerHints.put(DashboardKey.TASK_TRACE_PROVIDER, new String[] { "Task trace notifications",
 			"Shows notifications for elements that are related to your tasks." });
-		providerHints.put(EMailNotifierKey.TASK_REVIEW_PROVIDER, new String[] { "Reviewer task notifications",
+		providerHints.put(DashboardKey.TASK_REVIEW_PROVIDER, new String[] { "Reviewer task notifications",
 			"Shows notifications for tasks that you have to review." });
-		providerHints.put(EMailNotifierKey.SUBSCRIPTION_PROVIDER, new String[] { "Subscriptions",
+		providerHints.put(DashboardKey.SUBSCRIPTION_PROVIDER, new String[] { "Subscriptions",
 			"Allows you to subscribe to arbitrary model elements and receive notifications upon their changes." });
-		providerHints.put(EMailNotifierKey.COMMENTS_PROVIDER, new String[] { "Comment notifications",
+		providerHints.put(DashboardKey.COMMENTS_PROVIDER, new String[] { "Comment notifications",
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
 	}
 
