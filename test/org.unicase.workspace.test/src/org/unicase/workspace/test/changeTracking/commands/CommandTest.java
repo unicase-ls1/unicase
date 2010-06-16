@@ -132,8 +132,10 @@ public class CommandTest extends WorkspaceTest {
 
 			}
 		}.run();
+
 		Command delete = DeleteCommand.create(Configuration.getEditingDomain(), createWorkPackage);
 		Configuration.getEditingDomain().getCommandStack().execute(delete);
+
 		assertEquals(0, createComment.getRecipients().size());
 
 	}
@@ -887,7 +889,8 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(0, getProjectSpace().getOperations().size());
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 		// delete
-		DeleteCommand.create((new EMFStoreModelelementContext(actor)).getEditingDomain(), actor).execute();
+		editingDomain.getCommandStack().execute(
+			DeleteCommand.create((new EMFStoreModelelementContext(actor)).getEditingDomain(), actor));
 
 		assertEquals(0, leafSection.getModelElements().size());
 		assertTrue(editingDomain.getCommandStack().canUndo());
