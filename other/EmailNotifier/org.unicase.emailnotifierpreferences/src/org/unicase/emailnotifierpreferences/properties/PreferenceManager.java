@@ -8,7 +8,6 @@ package org.unicase.emailnotifierpreferences.properties;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
