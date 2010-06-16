@@ -886,12 +886,6 @@
     </customoption>
  </extension>
  <extension
-       point="org.unicase.ui.navigator.replaceProjectSpaceContentProvider">
-    <ProjectSpaceContentProvider
-          class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider">
-    </ProjectSpaceContentProvider>
- </extension>
- <extension
        point="org.unicase.ui.navigator.menuconfiguration">
     <ContainmentCreationActions
           enabled="false">
@@ -909,5 +903,11 @@
      <provider
            class="org.unicase.ui.unicasecommon.meeditor.CreationStatusProvider">
      </provider>
+  </extension>
+  <extension
+        point="org.unicase.ui.navigator.replaceRootObjectContentProvider">
+     <RootObjectContentProvider
+           class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider">
+     </RootObjectContentProvider>
   </extension>
 </plugin>
