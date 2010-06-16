@@ -5,6 +5,10 @@
  */
 package org.unicase.ui.navigator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -12,7 +16,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Transactional and composed content provider with all registered label providers.
@@ -21,7 +24,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class TreeContentProvider extends TransactionalAdapterFactoryContentProvider {
 
-	private RootObjectContentProvider contentProvider;
+	private HashMap<String, ContentProvider> contentProviders = new HashMap<String, ContentProvider>();
 
 	/**
 	 * Directly Transfer to project. {@inheritDoc}
@@ -30,8 +33,10 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof ProjectSpace && contentProvider != null) {
-			return contentProvider.getChildren((ProjectSpace) object).toArray();
+		String className = object.getClass().getCanonicalName();
+		ContentProvider replaceContentProvider = contentProviders.get(className);
+		if (replaceContentProvider != null) {
+			return replaceContentProvider.getChildren((ProjectSpace) object).toArray();
 		}
 		return super.getChildren(object);
 	}
@@ -43,17 +48,23 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.replaceRootObjectContentProvider");
-		if (confs.length > 1) {
-			WorkspaceUtil.logWarning("Duplicate RootObjectContent Provider registered", new IllegalStateException());
-		}
-		if (confs.length == 1) {
+			"org.unicase.ui.navigator.replaceContentProvider");
+		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();
+		list.addAll(Arrays.asList(confs));
+		for (IConfigurationElement element : list) {
+			String attribute = element.getAttribute("type");
+			if (contentProviders.get(attribute) != null) {
+				Activator.logException(new IllegalStateException("Duplicate RootObjectContent Provider registered"));
+				continue;
+			}
 			try {
-				contentProvider = (RootObjectContentProvider) confs[0].createExecutableExtension("class");
+				ContentProvider contentProvider = (ContentProvider) confs[0].createExecutableExtension("class");
+				contentProviders.put(attribute, contentProvider);
 
 			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);
+				Activator.logException(e);
 			}
+
 		}
 
 	}
