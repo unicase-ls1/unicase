@@ -19,6 +19,9 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,6 +33,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -462,7 +466,30 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 	}
 
+	private void deleteOutgoingCrossReferencesOfContainmentTree(ModelElement modelElement) {
+		deleteOutgoingCrossReferences(modelElement);
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			deleteOutgoingCrossReferences(child);
+		}
+	}
+
+	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
+		// delete all non containment cross references to other elments
+		for (EReference reference : modelElement.eClass().getEAllReferences()) {
+			EClassifier eType = reference.getEType();
+			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
+				continue;
+			}
+
+			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass) eType)) {
+				modelElement.eUnset(reference);
+			}
+		}
+	}
+
 	private void handleElementDelete(ModelElement deletedElement) {
+		deleteOutgoingCrossReferencesOfContainmentTree(deletedElement);
+
 		if (!ModelUtil.isSelfContained(deletedElement, true)) {
 			throw new IllegalStateException(
 				"Element was removed from containment of project but still has cross references!: "
