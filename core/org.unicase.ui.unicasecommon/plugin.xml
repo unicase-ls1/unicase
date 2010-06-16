@@ -7,6 +7,17 @@
             listener="org.unicase.ui.unicasecommon.meeditor.commands.FileAttachmentUpdaterImpl">
       </updatefileattachments>
    </extension>
+   
+    <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.ui.unicasecommon.common.commands.SubscriptionTester"
+              id="org.unicase.ui.common.commands.subscriptionTester"
+              namespace="org.unicase.ui.common.commands"
+              properties="isSubscribed,isNotSubscribed"
+              type="org.unicase.metamodel.ModelElement">
+        </propertyTester>
+ </extension>
 <extension
          point="org.eclipse.ui.views">
       <category
@@ -535,7 +546,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.common.commands.isNotSubscribed"
+                          property="org.unicase.ui.unicasecommon.common.commands.isNotSubscribed"
                           value="true">
                     </test>
                  </iterate>
@@ -561,7 +572,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.common.commands.isSubscribed"
+                          property="org.unicase.ui.unicasecommon.common.commands.isSubscribed"
                           value="true">
                     </test>
                  </iterate>
@@ -748,16 +759,7 @@
 			</popupContribution>
 		</contributionItemProvider>
 </extension>
- <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-        <propertyTester
-              class="org.unicase.ui.common.commands.SubscriptionTester"
-              id="org.unicase.ui.common.commands.subscriptionTester"
-              namespace="org.unicase.ui.common.commands"
-              properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.metamodel.ModelElement">
-        </propertyTester>
- </extension>
+
  <extension
        point="org.eclipse.ui.preferencePages">
     <page
