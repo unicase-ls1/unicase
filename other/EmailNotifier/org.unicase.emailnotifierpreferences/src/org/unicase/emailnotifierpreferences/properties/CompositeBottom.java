@@ -37,24 +37,12 @@ public class CompositeBottom extends Composite {
 		setExistEmail(existEmail);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
-		
+
 		main = new Composite(this, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(main);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 		compositeActivation();
 		compositeEmail();
-	}
-
-	public void activate(Boolean b) {
-		notificationServiceCheck.setSelection(b);
-	}
-
-	public Boolean getActivation() {
-		return notificationServiceCheck.getSelection();
-	}
-
-	public void setExistEmail(Boolean b) {
-		this.existEmail = b;
 	}
 
 	private Composite compositeActivation() {
@@ -79,6 +67,7 @@ public class CompositeBottom extends Composite {
 		if (existEmail) {
 			Label email = new Label(compositeEmail, SWT.PUSH);
 			email.setText("Notifications will be send to \"" + user.getEmail() + "\"");
+
 			ImageHyperlink editButton = new ImageHyperlink(compositeEmail, SWT.TOP);
 			editButton.setImage(Activator.getImageDescriptor("icons/email_edit.png").createImage());
 			editButton.setToolTipText("Edit email address");
@@ -92,8 +81,8 @@ public class CompositeBottom extends Composite {
 							return user.getEmail();
 						}
 					}.run();
-					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Edit email address",
-						"Edit email address", userEmail, new EmailInputValidator());
+					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),
+						"Edit email address", "Edit email address", userEmail, new EmailInputValidator());
 					if (dlg.open() == Window.OK) {
 						new UnicaseCommand() {
 							@Override
@@ -101,7 +90,7 @@ public class CompositeBottom extends Composite {
 								user.setEmail(dlg.getValue());
 							}
 						}.run();
-						compositeEmail.dispose();
+						disposeCompositeEmail();
 						compositeEmail();
 						main.layout();
 					}
@@ -127,8 +116,8 @@ public class CompositeBottom extends Composite {
 							}
 						}.run();
 						setExistEmail(true);
-						compositeActivation.dispose();
-						compositeEmail.dispose();
+						disposeCompositeActivation();
+						disposeCompositeEmail();
 						compositeActivation();
 						compositeEmail();
 						main.layout();
@@ -137,5 +126,29 @@ public class CompositeBottom extends Composite {
 			});
 		}
 		return compositeEmail;
+	}
+
+	private void disposeCompositeActivation() {
+		if (compositeActivation != null) {
+			compositeActivation.dispose();
+		}
+	}
+
+	private void disposeCompositeEmail() {
+		if (compositeEmail != null) {
+			compositeEmail.dispose();
+		}
+	}
+
+	public void activate(Boolean b) {
+		notificationServiceCheck.setSelection(b);
+	}
+
+	public Boolean getActivation() {
+		return notificationServiceCheck.getSelection();
+	}
+
+	private void setExistEmail(Boolean b) {
+		this.existEmail = b;
 	}
 }
