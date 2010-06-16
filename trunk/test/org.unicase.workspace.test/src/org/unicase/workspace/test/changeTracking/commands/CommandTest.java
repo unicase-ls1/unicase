@@ -40,11 +40,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -100,6 +103,39 @@ public class CommandTest extends WorkspaceTest {
 
 		assertTrue(actor.getModelElementId().equals(actor.getModelElementId()));
 		assertTrue(!copyOfActor.getModelElementId().equals(actor.getModelElementId()));
+	}
+
+	/**
+	 * Tests to delete a workpackage with a containec command with a recipient. This test also the removal o
+	 * unicdirectional cross references
+	 */
+	@Test
+	public void testDeleteWithUnidirectionalCrossReference() {
+		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+		final LeafSection createLeafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage createWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
+		final ActionItem createActionItem = TaskFactory.eINSTANCE.createActionItem();
+		final Comment createComment = RationaleFactory.eINSTANCE.createComment();
+		final User createUser = OrganizationFactory.eINSTANCE.createUser();
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(createCompositeSection);
+				createCompositeSection.getSubsections().add(createLeafSection);
+				createLeafSection.getModelElements().add(createWorkPackage);
+				createLeafSection.getModelElements().add(createUser);
+				createWorkPackage.getContainedWorkItems().add(createActionItem);
+				createActionItem.getComments().add(createComment);
+				createComment.getRecipients().add(createUser);
+
+			}
+		}.run();
+		Command delete = DeleteCommand.create(Configuration.getEditingDomain(), createWorkPackage);
+		Configuration.getEditingDomain().getCommandStack().execute(delete);
+		assertEquals(0, createComment.getRecipients().size());
+
 	}
 
 	/**
