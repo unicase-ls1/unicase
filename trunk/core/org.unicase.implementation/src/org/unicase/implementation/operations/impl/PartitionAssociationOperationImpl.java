@@ -130,8 +130,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -146,8 +145,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -159,8 +157,9 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 		return targetMultiplicity.getMaximumMultiplicity() == -1;
 	}
+
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -240,7 +239,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 		for (Class subClass : target.getSubClasses()) {
 			String name = OperationHelper.firstLower(subClass.getName());
-			Association subAssociation = (Association) ModelUtil.copy(association);
+			Association subAssociation = ModelUtil.copy(association);
 			((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 
 			subAssociation.setSource(association.getSource());
