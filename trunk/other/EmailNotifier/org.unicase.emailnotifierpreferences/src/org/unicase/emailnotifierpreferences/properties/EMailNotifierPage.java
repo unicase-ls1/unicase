@@ -163,16 +163,19 @@ public class EMailNotifierPage extends PropertyPage {
 	 */
 	protected Control createContents(Composite parent) {
 		GridLayoutFactory.fillDefaults().applyTo(parent);
+		noDefaultAndApplyButton();
+		
 		if (!init()) {
 			Label label = new Label(parent, SWT.WRAP);
-			if (existUser) {
-				label.setText("Could not determine the current project!");
+			if (!existUser) {
+				label.setText("User does not exist in the current project!");
 				return label;
 			} else {
-				label.setText("User does not exist in the current project!");
+				label.setText("Could not determine the current project!");
 				return label;
 			}
 		}
+		
 		TabFolder folder = new TabFolder(parent, SWT.TOP);
 
 		TabItem mainTab = new TabItem(folder, SWT.NONE);
@@ -273,12 +276,6 @@ public class EMailNotifierPage extends PropertyPage {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected void performDefaults() {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean performOk() {
 		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
 		command.run();
@@ -327,7 +324,7 @@ public class EMailNotifierPage extends PropertyPage {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Create a Notification Group",
-					"Enter 1-14 characters", "", new InputValidator(tempNotificationGroups));
+					"Enter 1-14 characters", "", new GroupInputValidator(tempNotificationGroups));
 				if (dlg.open() == Window.OK) {
 					NotificationGroup newgroup = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
 					newgroup.setNotificationGroupName(dlg.getValue());
@@ -361,7 +358,7 @@ public class EMailNotifierPage extends PropertyPage {
 				}
 				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),
 					"Edit the name of the selected Notification Group \"" + group.getNotificationGroupName() + "\"",
-					"Enter 1-14 characters", group.getNotificationGroupName(), new InputValidator(
+					"Enter 1-14 characters", group.getNotificationGroupName(), new GroupInputValidator(
 						tempNotificationGroups));
 				if (dlg.open() == Window.OK) {
 					group.setNotificationGroupName(dlg.getValue());

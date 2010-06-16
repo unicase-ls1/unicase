@@ -60,7 +60,7 @@ public final class PreferenceManager {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
-		property.setProject((ProjectId) EcoreUtil.copy(id));
+		property.setProject(ModelUtil.clone(id));
 		return property;
 	}
 
@@ -68,7 +68,7 @@ public final class PreferenceManager {
 		OrgUnitProperty property = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		property.setName(key.toString());
 		property.setValue(value);
-		property.setProject((ProjectId) EcoreUtil.copy(id));
+		property.setProject(ModelUtil.clone(id));
 		return property;
 	}
 

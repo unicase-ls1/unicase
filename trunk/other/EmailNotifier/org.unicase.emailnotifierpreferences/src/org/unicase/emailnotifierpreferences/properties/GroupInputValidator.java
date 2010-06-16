@@ -12,7 +12,7 @@ import org.unicase.model.emailnotificationgroup.NotificationGroup;
  * 
  * @author fuesescc
  */
-class InputValidator implements IInputValidator {
+class GroupInputValidator implements IInputValidator {
 	
 	private List<NotificationGroup> tempNotificationGroups;
 	/**
@@ -23,7 +23,7 @@ class InputValidator implements IInputValidator {
 	 * @author fuesescc
 	 * @param tempNotificationGroups 
 	 */
-	public InputValidator(List<NotificationGroup> tempNotificationGroups) {
+	public GroupInputValidator(List<NotificationGroup> tempNotificationGroups) {
 		this.tempNotificationGroups = tempNotificationGroups;
 	}
 	public String isValid(String s) {

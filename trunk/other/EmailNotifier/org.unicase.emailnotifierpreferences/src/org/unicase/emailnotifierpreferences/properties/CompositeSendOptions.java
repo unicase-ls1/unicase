@@ -34,6 +34,8 @@ public class CompositeSendOptions extends Composite {
 
 	private Composite daysSpinnerComp;
 	private Spinner daysSpinner;
+	
+	private EMFDataBindingContext bindingContext;
 
 	CompositeSendOptions(Composite c, String s, final List<NotificationGroup> tempNotificationGroups,
 		NotificationGroup group) {
@@ -102,7 +104,7 @@ public class CompositeSendOptions extends Composite {
 			}
 		});
 
-		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
+		bindingContext = new EMFDataBindingContext();
 		bindingContext.bindValue(SWTObservables.observeSelection(sendOption), EMFObservables.observeValue(
 			tempNotificationGroups.get(indexofbundle),
 			EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__SEND_OPTION));
@@ -132,10 +134,9 @@ public class CompositeSendOptions extends Composite {
 		daysSpinner.setMaximum(30);
 		Label days = new Label(daysSpinnerComp, SWT.LEFT | SWT.BORDER);
 		days.setText("days");
-		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
+		daysSpinner.setSelection(1);
 		bindingContext.bindValue(SWTObservables.observeSelection(daysSpinner), EMFObservables.observeValue(tempBundles
 			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__DAYS_COUNT));
-		daysSpinner.setSelection(1);
 		return daysSpinnerComp;
 	}
 
@@ -152,10 +153,9 @@ public class CompositeSendOptions extends Composite {
 		for (EEnumLiteral literal : weekdaylist) {
 			weekdayOption.add(literal.getLiteral());
 		}
-		EMFDataBindingContext bindingContext = new EMFDataBindingContext();
+		weekdayOption.select(0);
 		bindingContext.bindValue(SWTObservables.observeSelection(weekdayOption), EMFObservables.observeValue(
 			tempBundles.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__WEEKDAY_OPTION));
-		weekdayOption.select(0);
 		return weekdayOptionComp;
 	}
 

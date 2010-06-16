@@ -24,5 +24,13 @@
          </enabledWhen>
       </page>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage"
+            genModel="model/model.genmodel"
+            uri="http://unicase.org/model/emailnotificationgroup">
+      </package>
+   </extension>
 
 </plugin>
