@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emailnotifierpreferences.properties;
 
 import org.eclipse.jface.dialogs.InputDialog;
@@ -15,6 +20,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emailnotifierpreferences.Activator;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 public class CompositeBottom extends Composite {
 
@@ -28,7 +34,7 @@ public class CompositeBottom extends Composite {
 	CompositeBottom(Composite c, boolean existEmail, User user) {
 		super(c, SWT.NONE);
 		this.user = user;
-		this.existEmail = existEmail;
+		setExistEmail(existEmail);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		
@@ -61,7 +67,7 @@ public class CompositeBottom extends Composite {
 			notificationServiceCheck = new Button(compositeActivation, SWT.CHECK | SWT.LEFT);
 		} else {
 			Label emailnotset = new Label(compositeActivation, SWT.PUSH);
-			emailnotset.setText("Service cannto be activated. Please set an Email address first!");
+			emailnotset.setText("Service cannot be activated. Please set an Email address first!");
 		}
 		return compositeActivation;
 	}
@@ -80,8 +86,14 @@ public class CompositeBottom extends Composite {
 			editButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent e) {
+					String userEmail = new UnicaseCommandWithResult<String>() {
+						@Override
+						protected String doRun() {
+							return user.getEmail();
+						}
+					}.run();
 					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Edit email address",
-						"Edit email address", user.getEmail(), null);
+						"Edit email address", userEmail, new EmailInputValidator());
 					if (dlg.open() == Window.OK) {
 						new UnicaseCommand() {
 							@Override
@@ -106,7 +118,7 @@ public class CompositeBottom extends Composite {
 				@Override
 				public void mouseUp(MouseEvent e) {
 					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Add email address",
-						"Add email address", "", null);
+						"Add email address", "", new EmailInputValidator());
 					if (dlg.open() == Window.OK) {
 						new UnicaseCommand() {
 							@Override

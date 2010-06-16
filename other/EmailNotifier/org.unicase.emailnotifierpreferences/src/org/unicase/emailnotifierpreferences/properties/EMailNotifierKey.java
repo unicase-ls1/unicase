@@ -9,7 +9,6 @@ package org.unicase.emailnotifierpreferences.properties;
 import org.unicase.workspace.preferences.PropertyKey;
 
 public enum EMailNotifierKey implements PropertyKey {
-
 	
 	/**
 	 * The list of notification groups created by the user.
@@ -20,36 +19,5 @@ public enum EMailNotifierKey implements PropertyKey {
 	 * Whether the EMail Notification is turned on or not.
 	 */
 	ACTIVATED,
-
-	/**
-	 * the task provider.
-	 */
-	TASK_PROVIDER,
-
-	/**
-	 * the task change provider.
-	 */
-	TASK_CHANGE_PROVIDER,
-
-	/**
-	 * the task trace provider.
-	 */
-	TASK_TRACE_PROVIDER,
-
-	/**
-	 * the task review provider.
-	 */
-	TASK_REVIEW_PROVIDER,
-
-	/**
-	 * the subscription provider.
-	 */
-	SUBSCRIPTION_PROVIDER,
-
-	/**
-	 * the comments provider.
-	 */
-	COMMENTS_PROVIDER,
-
 
 }
