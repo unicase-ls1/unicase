@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  * @author helming
  */
-public interface RootObjectContentProvider {
+public interface ContentProvider {
 	/**
 	 * if the root object has children.
 	 * 

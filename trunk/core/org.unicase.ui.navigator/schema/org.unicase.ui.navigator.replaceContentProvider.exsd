@@ -3,10 +3,10 @@
 <schema targetNamespace="org.unicase.ui.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.navigator" id="org.unicase.ui.navigator.replaceRootObjectContentProvider" name="Replace Root Object Content Provider"/>
+         <meta.schema plugin="org.unicase.ui.navigator" id="org.unicase.ui.navigator.replaceContentProvider" name="Replace Content Provider"/>
       </appinfo>
       <documentation>
-         Replaces the root provider for the navigator
+         Replaces a content provider for the navigator
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="RootObjectContentProvider"/>
+            <element ref="ContentProvider"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,7 +47,7 @@
       </complexType>
    </element>
 
-   <element name="RootObjectContentProvider">
+   <element name="ContentProvider">
       <complexType>
          <attribute name="class" type="string">
             <annotation>
@@ -56,6 +56,16 @@
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.unicase.ui.navigator.RootObjectContentProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The type for which the conten provider is replaced
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
                </appinfo>
             </annotation>
          </attribute>
