@@ -13,7 +13,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.ModelElementContext;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Command to delete a modelelement.
@@ -21,7 +20,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author helming
  * @author shterev
  */
-public final class DeleteModelElementCommand extends UnicaseCommand {
+public final class DeleteModelElementCommand {
 	private final EObject me;
 	private final ModelElementContext context;
 
@@ -39,8 +38,7 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	protected void doRun() {
+	public void run() {
 
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
