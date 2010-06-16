@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.common.commands;
+package org.unicase.ui.unicasecommon.common.commands;
 
 import java.util.ArrayList;
 import java.util.List;
