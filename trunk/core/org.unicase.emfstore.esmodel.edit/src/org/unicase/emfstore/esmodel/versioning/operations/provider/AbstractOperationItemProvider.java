@@ -230,11 +230,11 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 		return EsmodelEditPlugin.INSTANCE;
 	}
 
-	public String getModelElementName(ModelElementId modelElementId) {
+	public static String getModelElementName(ModelElementId modelElementId) {
 		return NAME_TAG__SEPARATOR + modelElementId.getId() + NAME_TAG__SEPARATOR;
 	}
 
-	protected String getModelElementNames(List<ModelElementId> modelElementIds) {
+	public static String getModelElementNames(List<ModelElementId> modelElementIds) {
 		StringBuilder builder = new StringBuilder();
 		for (ModelElementId modelElementId : modelElementIds) {
 			builder.append(NAME_TAG__SEPARATOR);
@@ -252,7 +252,7 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 		return builder.toString();
 	}
 
-	protected String getModelElementClassAndName(ModelElementId modelElementId) {
+	public static String getModelElementClassAndName(ModelElementId modelElementId) {
 		if (modelElementId == null) {
 			return "(Unkown Element)";
 		}
@@ -266,7 +266,7 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	 * @param idList the list of model element IDs to return the names for
 	 * @return
 	 */
-	protected String getModelElementClassesAndNames(EList<ModelElementId> idList, String typeName) {
+	public static String getModelElementClassesAndNames(EList<ModelElementId> idList, String typeName) {
 
 		StringBuilder sb = new StringBuilder();
 

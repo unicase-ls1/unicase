@@ -59,7 +59,7 @@ public class CustomOperationLabelProviderManager {
 
 	private void initExtensions() {
 		IConfigurationElement[] attributecontrols = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.esmodel.edit.customLabelProvider");
+			"org.unicase.emfstore.esmodel.edit.customOperationLabelProvider");
 		list = new ArrayList<AbstractOperationCustomLabelProvider>();
 		for (IConfigurationElement extension : attributecontrols) {
 			try {
