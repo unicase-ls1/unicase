@@ -153,7 +153,8 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 			.getLabelDecorator()));
-		viewer.setContentProvider(new TreeContentProvider());
+		viewer.setContentProvider(new TreeContentProvider(WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getEditingDomain()));
 		viewer.setInput(currentWorkspace);
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
@@ -236,14 +237,14 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		MEEditor meEditor = (MEEditor) editor;
 		Object adapter = meEditor.getEditorInput().getAdapter(EObject.class);
-		if (adapter != null && adapter instanceof ModelElement) {
-			ModelElement me = (ModelElement) adapter;
+		if (adapter != null && adapter instanceof EObject) {
+			EObject me = (EObject) adapter;
 			revealME(me);
 		}
 
 	}
 
-	private void revealME(ModelElement me) {
+	private void revealME(EObject me) {
 
 		if (me == null) {
 			return;
@@ -289,10 +290,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 						linkWithEditor(obj);
 					}
 
-					if (obj instanceof ModelElement) {
-						getViewSite().getActionBars().getStatusLineManager().setMessage(
-							((ModelElement) obj).getIdentifier());
-					}
 				}
 			}
 
@@ -309,11 +306,11 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		if (selectedME == null) {
 			return;
 		}
-		if (!(selectedME instanceof ModelElement)) {
+		if (!(selectedME instanceof EObject)) {
 			return;
 		}
 
-		ModelElement me = (ModelElement) selectedME;
+		EObject me = (EObject) selectedME;
 		if (!isEditorOpen(me)) {
 			return;
 		} else {
@@ -326,7 +323,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * 
 	 * @param selectedME
 	 */
-	private void activateEditor(ModelElement selectedME) {
+	private void activateEditor(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
@@ -348,7 +345,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * @param selectedME
 	 * @return
 	 */
-	private boolean isEditorOpen(ModelElement selectedME) {
+	private boolean isEditorOpen(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
