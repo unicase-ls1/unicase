@@ -69,7 +69,7 @@
          </dynamic>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
          <command
                commandId="org.unicase.ui.navigator.exportModel"
                icon="icons/export.gif"
@@ -84,6 +84,24 @@
                </iterate>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.unicase.ui.navigator.importModel"
+               icon="icons/import.gif"
+               label="Import Model Element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.metamodel.ModelElement">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.unicase.ui.navigator.exportImportSeperator"
+               visible="true">
+         </separator>
       </menuContribution>
    </extension>
    <extension
