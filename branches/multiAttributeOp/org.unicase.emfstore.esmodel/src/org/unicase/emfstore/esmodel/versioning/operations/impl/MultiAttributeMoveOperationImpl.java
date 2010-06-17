@@ -276,7 +276,11 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 		return result.toString();
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
+	 */
 	public void apply(Project project) {
 		// TODO Auto-generated method stub
 
