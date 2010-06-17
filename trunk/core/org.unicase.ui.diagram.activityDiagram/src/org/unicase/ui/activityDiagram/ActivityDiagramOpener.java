@@ -30,7 +30,7 @@ public class ActivityDiagramOpener extends DiagramOpener implements ModelElement
 			return 1;
 			// }
 		}
-		return 0;
+		return DONOTOPEN;
 	}
 
 	/**

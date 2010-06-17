@@ -25,12 +25,12 @@ public class ComponentDiagramOpener extends DiagramOpener implements ModelElemen
 	 */
 	public int canOpen(EObject me) {
 		if (me instanceof ComponentDiagram) {
-//			MEDiagram diagram = (MEDiagram) me;
-//			if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-				return 1;
-//			}
+			// MEDiagram diagram = (MEDiagram) me;
+			// if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+			return 1;
+			// }
 		}
-		return 0;
+		return DONOTOPEN;
 	}
 
 	/**

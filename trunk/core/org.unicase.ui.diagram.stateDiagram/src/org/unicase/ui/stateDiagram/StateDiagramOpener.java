@@ -25,12 +25,12 @@ public class StateDiagramOpener extends DiagramOpener implements ModelElementOpe
 	 */
 	public int canOpen(EObject me) {
 		if (me instanceof StateDiagram) {
-//			MEDiagram diagram = (MEDiagram) me;
-//			if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-				return 1;
-//			}
+			// MEDiagram diagram = (MEDiagram) me;
+			// if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+			return 1;
+			// }
 		}
-		return 0;
+		return DONOTOPEN;
 	}
 
 	/**
