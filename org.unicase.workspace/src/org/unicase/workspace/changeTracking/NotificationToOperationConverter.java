@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -47,8 +48,6 @@ public final class NotificationToOperationConverter {
 		if (n.isTouch() || n.isTransient() || !n.isValid()) {
 			return null;
 		}
-
-		System.out.println(n);
 
 		switch (n.getEventType()) {
 
@@ -96,8 +95,41 @@ public final class NotificationToOperationConverter {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private static AbstractOperation handleMultiAttribute(NotificationInfo n) {
-		return null;
+		MultiAttributeOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeOperation();
+		setCommonValues(operation, n.getNotifierModelElement());
+		operation.setFeatureName(n.getAttribute().getName());
+		operation.setAdd(n.isAddEvent() || n.isAddManyEvent());
+		operation.setIndex(n.getPosition());
+
+		List<Object> list = null;
+
+		switch (n.getEventType()) {
+
+		case Notification.ADD:
+			list = new ArrayList<Object>();
+			list.add(n.getNewValue());
+			break;
+		case Notification.ADD_MANY:
+			list = (List<Object>) n.getNewValue();
+			break;
+		case Notification.REMOVE:
+			list = new ArrayList<Object>();
+			list.add(n.getOldValue());
+			break;
+		case Notification.REMOVE_MANY:
+			list = (List<Object>) n.getOldValue();
+			break;
+		default:
+			break;
+		}
+
+		for (Object valueElement : list) {
+			operation.getReferencedValues().add(valueElement);
+		}
+
+		return operation;
 	}
 
 	@SuppressWarnings("unchecked")

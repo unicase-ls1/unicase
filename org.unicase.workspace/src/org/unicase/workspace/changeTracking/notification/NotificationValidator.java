@@ -176,12 +176,13 @@ final class NotificationValidator {
 
 	private void handleAddManyNotification(NotificationInfo n) {
 
-		// attributes not allowed for ADD_MANY (yet)
-		if (n.isAttributeNotification()) {
-			n.setValid(false);
-			n.setValidationMessage("ADD_MANY on attribute feature with multiplicity greater than 1 not yet supported.");
-			return;
-		}
+		// TODO add validation
+		// // attributes not allowed for ADD_MANY (yet)
+		// if (n.isAttributeNotification()) {
+		// n.setValid(false);
+		// n.setValidationMessage("ADD_MANY on attribute feature with multiplicity greater than 1 not yet supported.");
+		// return;
+		// }
 
 		// reference validation
 		if (n.isReferenceNotification()) {
