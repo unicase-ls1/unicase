@@ -25,7 +25,7 @@ public class LineHashOpener implements ModelElementOpener  {
 				return 1;
 			}
 		
-		return 0;
+		return DONOTOPEN;
 	}
 	
 	/**
