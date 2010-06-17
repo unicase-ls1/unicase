@@ -102,16 +102,17 @@ public class HistoryBrowserView extends ViewPart implements
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo){
+				if (node.getValue() instanceof HistoryInfo) {
 					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
-					if(historyInfo.getChangePackage() != null &&
-					   (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)
-					   ){
+					if (historyInfo.getChangePackage() != null
+							&& (historyInfo.getLogMessage() != null || historyInfo
+									.getChangePackage().getLogMessage() != null)) {
 						AccessControlHelper helper = new AccessControlHelper(
 								projectSpace.getUsersession());
 						try {
-							helper.checkProjectAdminAccess((ProjectId) EcoreUtil
-									.copy(projectSpace.getProjectId()));
+							helper
+									.checkProjectAdminAccess((ProjectId) EcoreUtil
+											.copy(projectSpace.getProjectId()));
 							manager.add(addTagAction);
 							manager.add(removeTagAction);
 							manager.add(new Separator());
@@ -121,16 +122,18 @@ public class HistoryBrowserView extends ViewPart implements
 					}
 
 				}
-				manager.add(checkoutAction);
-				AccessControlHelper helper = new AccessControlHelper(
-						projectSpace.getUsersession());
-				try {
-					helper.checkProjectAdminAccess((ProjectId) EcoreUtil
-							.copy(projectSpace.getProjectId()));
-					manager.add(revertAction);
-					manager.add(forceRevertAction);
-				} catch (AccessControlException e) {
-					// do nothing
+				if (node.getValue() instanceof HistoryInfo) {
+					manager.add(checkoutAction);
+					AccessControlHelper helper = new AccessControlHelper(
+							projectSpace.getUsersession());
+					try {
+						helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+								.copy(projectSpace.getProjectId()));
+						manager.add(revertAction);
+						manager.add(forceRevertAction);
+					} catch (AccessControlException e) {
+						// do nothing
+					}
 				}
 			}
 		}
