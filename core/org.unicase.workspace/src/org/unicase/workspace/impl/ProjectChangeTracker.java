@@ -215,6 +215,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		save(modelElement);
 		notificationRecorder.record(notification);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
@@ -223,7 +224,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			saveDirtyResources();
 
 		}
-		save(modelElement);
 	}
 
 	private void recordingFinished() {
