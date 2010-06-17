@@ -17,6 +17,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -29,6 +30,8 @@ import org.unicase.workspace.util.UnicaseCommand;
 public abstract class AbstractRefactoringWizard extends Wizard implements IPageChangedListener {
 
 	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	
+	private RefactoringResult refactoringResult;
 
 	/**
 	 * @param abstractRefactoringStrategy the
@@ -65,7 +68,7 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	 */
 	@Override
 	public boolean canFinish() {
-		return getPages()[getPageCount() - 1] == getContainer().getCurrentPage();
+		return ((AbstractRefactoringWizardPage) getContainer().getCurrentPage()).canFinish();
 	}
 
 	/**
@@ -142,6 +145,20 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
+	}
+
+	/**
+	 * @return result
+	 */
+	public RefactoringResult getRefactoringResult() {
+		return refactoringResult;
+	}
+
+	/**
+	 * @param refactoringResult the
+	 */
+	public void setRefactoringResult(RefactoringResult refactoringResult) {
+		this.refactoringResult = refactoringResult;
 	}
 
 }

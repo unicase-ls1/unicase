@@ -15,12 +15,18 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * @author pfeifferc
  */
 public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
+
+	private static final String GUIDE = "The action item above might contain a functional requirement. " +
+			"A functional requirement describes a certain function, the action item its implementation details. " +
+			"In case you think the action item really is a functional requirement, the following pages will guide " +
+			"you through a refactoring.";
+	private Button checkBox;
 
 	/**
 	 * The default constructor.
@@ -43,9 +49,11 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 		// create body composite as base for the other composites
 		Composite body = createBodyComposite(parent);
 		// create affected model element composite
-		createModelElementInformationComposite(body);
+		createModelElementInformationCompositeWithDescription(body);
+		// separator line
+		createSeparator(body);
 		// create information text composite
-		createExplanatoryTextComposite(body, TextSnippets.AIEMBODIESFRPAGE1INFORMATION, "information.png");
+		createExplanatoryTextComposite(body, GUIDE, "exclamation.png");
 		// create the composite to put the widgets on
 		composite = createComposite(body, SWT.TOP, new GridLayout(3, false), new GridData(SWT.FILL, SWT.TOP, true,
 			false));
@@ -62,11 +70,17 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 		button.setSelection(true);
 		button.addSelectionListener(new ContinueButtonSelectionListener());
 		// create go on texts
-		createText(composite, "The action item is in fact a functional requirement");
-		// create go on button
+		createText(composite, "The action item is a functional requirement");
+		// create is not button
 		new Button(composite, SWT.RADIO);
-		// create go on text
-		createText(composite, "The action item is fine as is, please let me add a functional requirement");
+		// create is not text
+		createText(composite, "The action item is not a functional requirement");
+		// create remember check button
+		checkBox = new Button(composite, SWT.CHECK);
+		checkBox.setSelection(false);
+		checkBox.setEnabled(false);
+		// create remember text
+		createText(composite, "Remember this setting");
 		// set this as control for the page
 		setControl(body);
 	}
@@ -76,12 +90,29 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 	 */
 	private final class ContinueButtonSelectionListener implements SelectionListener {
 		public void widgetSelected(SelectionEvent e) {
-			setPageComplete(((Button) e.getSource()).getSelection());
+			boolean selection = ((Button) e.getSource()).getSelection();
+			setPageComplete(selection);
+			checkBox.setEnabled(!selection);
+			if(!selection) {
+				if(checkBox.getSelection()) {
+					getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
+				} else {
+					getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_UNDO);
+				}
+				
+			}
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// nothing to do
 		}
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canFinish() {
+		return !isPageComplete();
+	}
 }

@@ -18,9 +18,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
  * @author pfeifferc
- *
  */
 public abstract class AbstractRefactoringStrategy {
 
@@ -48,10 +46,7 @@ public abstract class AbstractRefactoringStrategy {
 	 * Parent model elements to be referenced.
 	 */
 	private ArrayList<ModelElement> parentModelElementsReferenced;
-	
-	
-	
-	
+
 	private String id;
 	/**
 	 * The shell.
@@ -73,16 +68,19 @@ public abstract class AbstractRefactoringStrategy {
 		parentModelElementsCreated = new ArrayList<ModelElement>();
 		parentModelElementsReferenced = new ArrayList<ModelElement>();
 		// key, value storage
-		boolean success = false;
+		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		// start the operations
 		startOperations();
 		try {
-			success = performRefactoring();
+			refactoringResult = performRefactoring();
 		} catch (Exception e) {
 			WorkspaceUtil.logException("There was an exception", e);
 		} finally {
-			if(success) {
+			if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
 				endOperations();
+			} else if (refactoringResult == RefactoringResult.SUCCESS_NOVIOLATION) {
+				// TODO: implement preference save
+				abortOperations();
 			} else {
 				abortOperations();
 			}
@@ -96,8 +94,8 @@ public abstract class AbstractRefactoringStrategy {
 	 * 
 	 * @return true if successful
 	 */
-	public abstract boolean performRefactoring();
-	
+	public abstract RefactoringResult performRefactoring();
+
 	/**
 	 * @return the constraint status
 	 */
@@ -139,7 +137,8 @@ public abstract class AbstractRefactoringStrategy {
 
 			@Override
 			protected void doRun() {
-				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) status.getTarget()).beginCompositeOperation();
+				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) status.getTarget())
+					.beginCompositeOperation();
 			}
 
 		}.run();
@@ -172,8 +171,8 @@ public abstract class AbstractRefactoringStrategy {
 			@Override
 			protected void doRun() {
 				try {
-					operationHandle.end(getId(), getDescription(),
-							((ModelElement) getConstraintStatus().getTarget()).getModelElementId());
+					operationHandle.end(getId(), getDescription(), ((ModelElement) getConstraintStatus().getTarget())
+						.getModelElementId());
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
 				}
@@ -181,7 +180,7 @@ public abstract class AbstractRefactoringStrategy {
 
 		}.run();
 	}
-	
+
 	/**
 	 * @return the child model elements that were referenced
 	 */

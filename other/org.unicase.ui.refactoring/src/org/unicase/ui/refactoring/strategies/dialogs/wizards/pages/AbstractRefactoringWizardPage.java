@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
@@ -92,8 +93,9 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 
 	/**
 	 * @param parent the
+	 * @return composite
 	 */
-	protected void createModelElementInformationComposite(Composite parent) {
+	protected Composite createModelElementInformationComposite(Composite parent) {
 		// create composite to put other widgets on
 		Composite composite = createComposite(parent, SWT.TOP, new GridLayout(2, false), new GridData(SWT.FILL,
 			SWT.TOP, true, false));
@@ -105,13 +107,27 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 			true);
 		// create creator icon
 		createIconLabel(composite, "filtertouser.png");
-		// create affected model element text text
+		// create affected model element creator text
 		createText(composite, "Creator: " + getRefactoringWizard().getInvalidModelElement().getCreator(), true);
 		// create date icon
 		createIconLabel(composite, "date.png");
-		// create affected model element text
+		// create affected model element created text
 		createText(composite, "Created: "
 			+ getRefactoringWizard().getInvalidModelElement().getCreationDate().toString(), true);
+		return composite;
+	}
+	
+	/**
+	 * @param parent the
+	 */
+	protected void createModelElementInformationCompositeWithDescription(Composite parent) {
+		// create model element information composite without description
+		Composite composite = createModelElementInformationComposite(parent);
+		// create date icon
+		createIconLabel(composite, "pencil.png");
+		// create affected model element description
+		createText(composite, "Description: "
+			+ ((UnicaseModelElement) getRefactoringWizard().getInvalidModelElement()).getDescriptionPlainText(), true);
 	}
 
 	/**
@@ -154,6 +170,17 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 */
 	protected Text createText(Composite composite, String name) {
 		return createText(composite, name, false);
+	}
+	
+	/**
+	 * 
+	 * @param parent the
+	 * @return label
+	 */
+	protected Label createSeparator(Composite parent) {
+		Label label = new Label(parent, SWT.SEPARATOR | SWT.HORIZONTAL);
+		label.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+		return label;
 	}
 
 	/**
@@ -251,7 +278,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	/**
 	 * @return can finish
 	 */
-	protected boolean canFinish() {
+	public boolean canFinish() {
 		return false;
 	}
 
@@ -262,6 +289,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 */
 	protected void setDebugColor(Control control) {
 		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
+//		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
 	}
 
 	/**

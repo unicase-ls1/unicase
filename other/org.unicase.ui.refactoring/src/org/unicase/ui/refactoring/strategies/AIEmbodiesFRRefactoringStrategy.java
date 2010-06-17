@@ -11,6 +11,7 @@ import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.impl.AIEmbodiesFRDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.AIEmbodiesFrWizard;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * The circular dependency refactoring strategy.
@@ -25,11 +26,11 @@ public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean performRefactoring() {
+	public RefactoringResult performRefactoring() {
 		AbstractRefactoringDialog refactoringDialog = new AIEmbodiesFRDialog(getShell(), new AIEmbodiesFrWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
-		return refactoringDialog.getResult();
+		return refactoringDialog.getRefactoringResult();
 	}
 
 	/**

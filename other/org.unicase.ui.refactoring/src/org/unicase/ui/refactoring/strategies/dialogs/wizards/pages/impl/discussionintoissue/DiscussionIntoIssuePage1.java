@@ -18,7 +18,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 
 /**
@@ -47,11 +46,9 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 		// create body composite as base for the other composites
 		Composite body = createBodyComposite(parent);
 		// create affected model element composite
-		createModelElementInformationComposite(body);
-		// create information text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE1INFORMATION, "information.png");
+		createModelElementInformationCompositeWithDescription(body);
 		// create instruction text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE1INSTRUCTION, "exclamation.png");
+		createExplanatoryTextComposite(body, "Please review the discussion thread before continuing.", "exclamation.png");
 		// create scrolled composite to put the widgets on
 		ScrolledComposite scrolledComposite = new ScrolledComposite(body, SWT.BORDER | SWT.V_SCROLL);
 		scrolledComposite.setLayout(new GridLayout(1, true));
