@@ -7,51 +7,45 @@
 package testModel.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
 
 /**
- * This is the central singleton for the My edit plugin.
- * <!-- begin-user-doc -->
+ * This is the central singleton for the My edit plugin. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class MyEditPlugin extends EMFPlugin {
 	/**
-	 * Keep track of the singleton.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public static final MyEditPlugin INSTANCE = new MyEditPlugin();
 
 	/**
-	 * Keep track of the singleton.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MyEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		     MetamodelEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] { MetamodelEditPlugin.INSTANCE, });
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -61,9 +55,9 @@ public final class MyEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -72,16 +66,15 @@ public final class MyEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static class Implementation extends EclipsePlugin {
 		/**
-		 * Creates an instance.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		public Implementation() {

@@ -9,43 +9,44 @@ package testModel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import testModel.*;
+import testModel.TestElement;
+import testModel.TestModelFactory;
+import testModel.TestModelPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class TestModelFactoryImpl extends EFactoryImpl implements TestModelFactory {
+public class TestModelFactoryImpl extends EFactoryImpl implements
+		TestModelFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static TestModelFactory init() {
 		try {
-			TestModelFactory theTestModelFactory = (TestModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://test.model/"); 
+			TestModelFactory theTestModelFactory = (TestModelFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://test.model/");
 			if (theTestModelFactory != null) {
 				return theTestModelFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new TestModelFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TestModelFactoryImpl() {
@@ -53,41 +54,43 @@ public class TestModelFactoryImpl extends EFactoryImpl implements TestModelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case TestModelPackage.TEST_PROJECT: return createTestProject();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case TestModelPackage.TEST_ELEMENT:
+			return createTestElement();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public TestProject createTestProject() {
-		TestProjectImpl testProject = new TestProjectImpl();
-		return testProject;
+	public TestElement createTestElement() {
+		TestElementImpl testElement = new TestElementImpl();
+		return testElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TestModelPackage getTestModelPackage() {
-		return (TestModelPackage)getEPackage();
+		return (TestModelPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -96,4 +99,4 @@ public class TestModelFactoryImpl extends EFactoryImpl implements TestModelFacto
 		return TestModelPackage.eINSTANCE;
 	}
 
-} //TestModelFactoryImpl
+} // TestModelFactoryImpl
