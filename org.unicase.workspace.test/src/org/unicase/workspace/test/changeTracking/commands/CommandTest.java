@@ -937,8 +937,8 @@ public class CommandTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				clearOperations();
-				org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
-					.getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
+				// org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
+				// .getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
 			}
 		}.run();
 
