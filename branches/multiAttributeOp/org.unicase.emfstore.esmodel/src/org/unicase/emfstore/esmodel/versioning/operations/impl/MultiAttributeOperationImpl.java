@@ -9,11 +9,14 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -264,8 +267,31 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
+		ModelElement modelElement = project.getModelElement(getModelElementId());
+		if (modelElement == null) {
+			return;
+		}
 
+		try {
+			EAttribute feature = (EAttribute) getFeature(modelElement);
+			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
+
+			int i = getIndex();
+			if (isAdd()) {
+				for (Object value : getReferencedValues()) {
+					if (i >= 0 && list.size() > i) {
+						list.add(value);
+					} else {
+						list.add(value);
+					}
+					i++;
+				}
+			} else {
+				// Todo
+			}
+
+		} catch (UnkownFeatureException e) {
+			return;
+		}
 	}
-
 } // MultiAttributeOperationImpl
