@@ -7,9 +7,13 @@
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.task.ActionItem;
@@ -18,16 +22,25 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls.MERichTextControlWithoutToolbar;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
 
 /**
  * @author pfeifferc
  */
 public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 
+	private static final String GUIDE = "The action item contains information that should be contained in a " +
+			"functional requirement. Therefore, you can now choose an existing, one that is already annotating " +
+			"the action item or create a new functional " +
+			"requirement to store this information in. You will then be able to edit both the action item and " +
+			"the functional requirement at the same time.";
+
 	private FunctionalRequirement functionalRequirement;
 	
 	private ActionItem actionItem;
+
+	private Composite body;
+
+	private Composite composite;
 
 	/**
 	 * The default constructor.
@@ -38,9 +51,6 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 	public AIEmbodiesFRPage2(String pageName, AbstractRefactoringWizard wizard) {
 		super(pageName, wizard);
 		actionItem = (ActionItem) wizard.getInvalidModelElement();
-		functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
-		getRefactoringWizard().addModelElement(functionalRequirement);
-		getRefactoringWizard().getParentModelElements().add(functionalRequirement);
 	}
 
 	/**
@@ -53,14 +63,51 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 		super.createControl(parent);
 		// reusable variables
 		Composite composite;
-		// create body composite as base for the other composites
-		Composite body = createBodyComposite(parent);
+		Button button;
+		body = createBodyComposite(parent);
 		// create affected model element composite
 		createModelElementInformationComposite(body);
+		// create separator
+		createSeparator(body);
 		// create information text composite
-		createExplanatoryTextComposite(body, TextSnippets.AIEMBODIESFRPAGE2INFORMATION, "information.png");
-		// create instruction text composite
-		createExplanatoryTextComposite(body, TextSnippets.AIEMBODIESFRPAGE2INSTRUCTION, "exclamation.png");
+		createExplanatoryTextComposite(body, GUIDE, "exclamation.png");
+		// create the composite to put the widgets on
+		composite = createComposite(body, SWT.NONE, new GridLayout(2, false), new GridData(SWT.BEGINNING, SWT.TOP, true,
+			false));
+		// create icon label
+		Label label = createIconLabel(composite, "arrow_divide.png");
+		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		// create the composite to put the widgets on
+		composite = createComposite(composite, SWT.NONE, new GridLayout(3, true), new GridData(SWT.BEGINNING, SWT.TOP, true,
+				false));
+		// button layout data
+		GridData gridData = new GridData();
+		gridData.grabExcessHorizontalSpace = true;
+		// create button create new
+		button = new Button(composite, SWT.PUSH);
+		button.setLayoutData(gridData);
+		button.setText("Create new");
+		button.addSelectionListener(new NewSelectionListener());
+		// create button choose existing
+		button = new Button(composite, SWT.PUSH);
+		button.setLayoutData(gridData);
+		button.setText("Choose existing");
+		button.addSelectionListener(new ChooseSelectionListener());
+		// create button choose among annotated
+		button = new Button(composite, SWT.PUSH);
+		button.setLayoutData(gridData);
+		button.setText("Choose already annotated");
+		button.addSelectionListener(new AnnotatedSelectionListener());
+		// set body as control
+		setControl(body);
+	}
+	
+	private void updateInputWidgets() {
+		// dispose composite
+		if (composite != null) {
+			super.disposeMEControls();
+			composite.dispose();
+		}
 		// create the composite to put the widgets on
 		composite = createComposite(body, SWT.NONE, new GridLayout(2, true), new GridData(SWT.FILL, SWT.FILL, true,
 				true));
@@ -68,7 +115,7 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 			true));
 		Composite compositeRight = createComposite(composite, SWT.NONE, new GridLayout(2, false), new GridData(SWT.FILL, SWT.FILL, true,
 				true));
-		
+		// == left composite ==
 		// create pencil icon
 		createIconLabel(compositeLeft, "pencil.png");
 		// create text for new requirement name
@@ -90,14 +137,7 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 		// create link for refined requirement
 		createIconLabel(compositeLeft);
 		createMEControl(new MESingleLinkControl(), compositeLeft, functionalRequirement, "refinedRequirement");
-		// create user icon
-		createIconLabel(compositeLeft, "filtertouser.png");
-		// create text for add stakeholder
-		createText(compositeLeft, "Stakeholder:");
-		// create link for stakeholder
-		createIconLabel(compositeLeft);
-		createMEControl(new MESingleLinkControl(), compositeLeft, functionalRequirement, "stakeholder");
-		
+		// == right composite ==
 		// create pencil icon
 		createIconLabel(compositeRight, "pencil.png");
 		// create text for new requirement name
@@ -119,8 +159,52 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage {
 		// create link for stakeholder
 		createIconLabel(compositeRight);
 		createMEControl(new MESingleLinkControl(), compositeRight, actionItem, "assignee");
-		
-		// set body as control
-		setControl(body);
+		// update layout
+		composite.layout(true);
+		composite.getParent().layout(true);
+	}
+	
+	/**
+	 * @author pfeifferc
+	 */
+	private class NewSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do here
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+			getRefactoringWizard().addModelElement(functionalRequirement);
+			updateInputWidgets();
+		}
+	}
+	
+	/**
+	 * @author pfeifferc
+	 */
+	private class ChooseSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * @author pfeifferc
+	 */
+	private class AnnotatedSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			// TODO Auto-generated method stub
+		}
 	}
 }

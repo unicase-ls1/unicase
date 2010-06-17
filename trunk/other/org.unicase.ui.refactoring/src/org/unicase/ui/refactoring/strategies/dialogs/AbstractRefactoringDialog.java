@@ -9,6 +9,7 @@ package org.unicase.ui.refactoring.strategies.dialogs;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * @author pfeifferc
@@ -18,7 +19,7 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	/**
 	 * Has the cancel button been pressed.
 	 */
-	private boolean cancelPressed;
+	private RefactoringResult refactoringResult;
 
 	/**
 	 * The refactoring wizard.
@@ -41,8 +42,15 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 */
 	@Override
 	protected void handleShellCloseEvent() {
-		cancelPressed = true;
-		super.handleShellCloseEvent();
+		cancelPressed();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void finishPressed() {
+		setRefactoringResult(wizard.getRefactoringResult());
 	}
 	
 	/**
@@ -52,7 +60,7 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		cancelPressed = true;
+		setRefactoringResult(RefactoringResult.ABORT);
 		super.cancelPressed();
 	}
 
@@ -68,16 +76,23 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	}
 
 	/**
-	 * @return true if not canceled or closed, false otherwise
-	 */
-	public boolean getResult() {
-		return !cancelPressed;
-	}
-
-	/**
 	 * To be called when disposed.
 	 */
 	public void dispose() {
 		wizard.dispose();
+	}
+	
+	/**
+	 * @return true if not canceled or closed, false otherwise
+	 */
+	public RefactoringResult getRefactoringResult() {
+		return refactoringResult;
+	}
+
+	/**
+	 * @param refactoringResult the
+	 */
+	public void setRefactoringResult(RefactoringResult refactoringResult) {
+		this.refactoringResult = refactoringResult;
 	}
 }

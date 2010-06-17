@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.old;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;

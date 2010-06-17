@@ -63,7 +63,7 @@ public class ActionItemEmbodiesRequirementConstraint extends AbstractModelConstr
 		if (actionItem.getName().contains("new ActionItem")) {
 			return false;
 		}
-		String[] keywords = { "should ", "must ", "has to", "add ", "new ", "require", "miss", "implement" };
+		String[] keywords = { "should ", "must ", "require" };
 		for (String keyword : keywords) {
 			if (actionItem.getName().contains(keyword)) {
 				return true;

@@ -11,6 +11,7 @@ import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.impl.DiscussionIntoIssueDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.DiscussionIntoIssueWizard;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * The circular dependency refactoring strategy.
@@ -25,12 +26,12 @@ public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringS
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean performRefactoring() {
+	public RefactoringResult performRefactoring() {
 		AbstractRefactoringDialog refactoringDialog = new DiscussionIntoIssueDialog(getShell(),
 			new DiscussionIntoIssueWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
-		return true;
+		return refactoringDialog.getRefactoringResult();
 	}
 
 	/**
