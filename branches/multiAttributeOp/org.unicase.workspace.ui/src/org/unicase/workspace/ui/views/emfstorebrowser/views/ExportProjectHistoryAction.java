@@ -22,6 +22,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.commands.ExportProjectHandler;
@@ -44,6 +45,8 @@ public class ExportProjectHistoryAction extends Action {
 	 * These filter extensions are used to filter which files are displayed.
 	 */
 	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
+
+	private static final String EXPORT_PROJECT_HISTORY_PATH = "org.unicase.workspace.ui.exportProjectHistoryPath";
 
 	private Usersession usersession;
 	private ProjectInfo projectInfo;
@@ -111,6 +114,9 @@ public class ExportProjectHistoryAction extends Action {
 		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
+		String initialPath = PreferenceHelper.getPreference(
+				EXPORT_PROJECT_HISTORY_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 		String initialFileName = projectInfo.getName() + ".uph";
 		dialog.setFileName(initialFileName);
 
@@ -121,6 +127,8 @@ public class ExportProjectHistoryAction extends Action {
 		}
 
 		final File file = new File(fn);
+		PreferenceHelper.setPreference(EXPORT_PROJECT_HISTORY_PATH, dialog
+				.getFilterPath());
 
 		return file.getAbsolutePath();
 	}

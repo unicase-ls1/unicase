@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.util;
+package org.unicase.workspace.ui.util;
 
 import java.net.MalformedURLException;
 import java.util.Date;
@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
@@ -18,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -64,7 +66,8 @@ public final class URLSelectionListener implements SelectionListener {
 				modelElement = projectSpace.resolve(modelElementUrlFragment);
 			} catch (MEUrlResolutionException e1) {
 			}
-			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName());
+			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName(),
+				new EMFStoreModelelementContext(modelElement));
 			logEvent(modelElementUrlFragment.getModelElementId(), e.getSource().getClass().getName());
 		} catch (MalformedURLException ex) {
 			WorkspaceUtil.logException("Invalid unicase URL pattern", ex);

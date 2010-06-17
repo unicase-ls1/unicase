@@ -60,7 +60,7 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 		activity = TaskValidationHelper.getActivity(annotation);
 		dueDate = TaskValidationHelper.getDueDate(annotation);
 
-		if (!activity.equals(ActivityType.IMPLEMENTATION)) {
+		if (dueDate == null || !activity.equals(ActivityType.IMPLEMENTATION)) {
 			return ctx.createSuccessStatus();
 		}
 		EList<UnicaseModelElement> annotatedModelElements = annotation.getAnnotatedModelElements();
@@ -70,6 +70,11 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 				otherAnnotations.addAll(getRefiningAnnoations((FunctionalRequirement) me));
 			}
 		}
+		return toAvoidCyclomaticComplexity(ctx, eObj, dueDate, otherAnnotations);
+	}
+
+	private IStatus toAvoidCyclomaticComplexity(IValidationContext ctx, EObject eObj, Date dueDate,
+		List<Annotation> otherAnnotations) {
 		for (Annotation otherAnnotation : otherAnnotations) {
 			if ((!(otherAnnotation instanceof ActionItem) && !(otherAnnotation instanceof Issue))) {
 				continue;
@@ -78,7 +83,8 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 			if (otherActivity.equals(ActivityType.ANALYSIS) || otherActivity.equals(ActivityType.SYSTEM_DESIGN)
 				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)
 				|| otherActivity.equals(ActivityType.IMPLEMENTATION)) {
-				if (TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
+				if (TaskValidationHelper.getDueDate(otherAnnotation) != null
+					&& TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(UnicaseModelElement) eObj, "dueDate");
 					ctx.addResult(errorFeature);
@@ -87,7 +93,6 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 				}
 			}
 		}
-
 		return ctx.createSuccessStatus();
 	}
 

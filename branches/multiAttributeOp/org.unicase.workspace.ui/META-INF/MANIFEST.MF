@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.unicase.workspace.ui; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.workspace.ui.Activator
 Require-Bundle: org.unicase.workspace.edit;visibility:=reexport,
- org.unicase.ui.common;visibility:=reexport
+ org.unicase.ui.common;visibility:=reexport,
+ org.unicase.ecpemfstorebridge;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: diff.match.patch,
@@ -20,6 +21,7 @@ Export-Package: diff.match.patch,
  org.unicase.workspace.ui.dialogs.merge.ui.components,
  org.unicase.workspace.ui.dialogs.merge.ui.widgets,
  org.unicase.workspace.ui.dialogs.merge.util,
+ org.unicase.workspace.ui.util,
  org.unicase.workspace.ui.views.changes,
  org.unicase.workspace.ui.views.emfstorebrowser.acimport,
  org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin,

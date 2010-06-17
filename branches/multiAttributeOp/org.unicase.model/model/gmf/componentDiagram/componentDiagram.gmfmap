@@ -19,7 +19,7 @@
         <diagramLabel
             href="../model.gmfgraph#Interface_name"/>
         <features
-            href="../../model.ecore#//ModelElement/name"/>
+            href="../../model.ecore#//UnicaseModelElement/name"/>
       </labelMappings>
       <diagramNode
           href="../model.gmfgraph#ProvidedInterfaceCircleNode"/>
@@ -39,7 +39,7 @@
         <diagramLabel
             href="../model.gmfgraph#ComponentNode_name"/>
         <features
-            href="../../model.ecore#//ModelElement/name"/>
+            href="../../model.ecore#//UnicaseModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -74,7 +74,7 @@
     <domainModel
         href="../../model.ecore#//diagram"/>
     <domainMetaElement
-        href="../../model.ecore#//diagram/MEDiagram"/>
+        href="../../model.ecore#//diagram/ComponentDiagram"/>
     <palette
         href="componentDiagram.gmftool#//@palette"/>
   </diagram>

@@ -8,7 +8,6 @@ package org.unicase.ui.common.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -19,8 +18,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public final class DeleteReferenceCommand extends UnicaseCommand {
 	private EReference reference;
-	private ModelElement modelElement;
-	private ModelElement opposite;
+	private EObject modelElement;
+	private EObject opposite;
 
 	/**
 	 * Default constructor.
@@ -29,7 +28,7 @@ public final class DeleteReferenceCommand extends UnicaseCommand {
 	 * @param reference the reference
 	 * @param opposite the element on the other side - the element to be removed.
 	 */
-	public DeleteReferenceCommand(ModelElement modelElement, EReference reference, ModelElement opposite) {
+	public DeleteReferenceCommand(EObject modelElement, EReference reference, EObject opposite) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
@@ -42,14 +41,15 @@ public final class DeleteReferenceCommand extends UnicaseCommand {
 	protected void doRun() {
 		Object object = modelElement.eGet(reference);
 
-		if (reference.isContainer()) {
-			opposite.getProject().addModelElement(modelElement);
-			return;
-		}
-		if (reference.isContainment()) {
-			modelElement.getProject().addModelElement(opposite);
-			return;
-		}
+		//TODO: Ask user in the following two cases if he really wants to delete the model element
+//		if (reference.isContainer()) {
+//			opposite.getProject().addModelElement(modelElement);
+//			return;
+//		}
+//		if (reference.isContainment()) {
+//			modelElement.getProject().addModelElement(opposite);
+//			return;
+//		}
 
 		if (object instanceof EList<?>) {
 			@SuppressWarnings("unchecked")

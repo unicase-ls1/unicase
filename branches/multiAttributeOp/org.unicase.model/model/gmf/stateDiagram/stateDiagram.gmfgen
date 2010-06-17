@@ -2,20 +2,18 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.diagram.stateDiagram"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.unicase.ui.diagram.stateDiagram"
     modelID="State"
-    sameFileForDiagramAndModel="true"
-    diagramFileExtension="state_diagram"
+    diagramFileExtension="State_diagram"
     dynamicTemplates="true"
-    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen/"
+    copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the&#xA;  accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this&#xA;  distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>">
   <diagram
-      visualID="55"
+      visualID="1000"
       editPartClassName="MEDiagramEditPart"
       itemSemanticEditPolicyClassName="MEDiagramItemSemanticEditPolicy"
-      notationViewFactoryClassName="MEDiagramViewFactory"
       canonicalEditPolicyClassName="MEDiagramCanonicalEditPolicy"
       iconProviderPriority="Low"
-      editingDomainID="org.unicase.EditingDomain"
       validationProviderPriority="Low">
     <diagramRunTimeClass
         href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -26,7 +24,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="../../model.genmodel#//model/diagram/MEDiagram"/>
+        href="../../model.genmodel#//model/diagram/StateDiagram"/>
     <topLevelNodes
         visualID="2001"
         editPartClassName="StateEditPart"
@@ -44,9 +42,7 @@
           xsi:type="gmfgen:InnerClassViewmap"
           layoutType="TOOLBAR_LAYOUT"
           className="StateFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_name; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_entryConditions; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_activities; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_exitConditions; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutThis = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(true);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_CENTER&#xA;);&#xA;&#xA;&#x9;layoutThis.setSpacing(0);&#xA;&#x9;layoutThis.setVertical(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.common.diagram.ConfigurableRectangleFigure stateFigure_name0 = new org.unicase.ui.common.diagram.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_name0.setBorders(&#xA;&quot;SEW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_name0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_name0);&#xA;&#xA;&#x9;org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_name0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_name0.setLayoutManager(layoutStateFigure_name0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_name.setText(&quot;unnamed&quot;);&#xA;&#xA;fFigureStateFigure_name.setFont(FFIGURESTATEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_name.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_name0.add(fFigureStateFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.common.diagram.ConfigurableRectangleFigure stateFigure_entryConditions0 = new org.unicase.ui.common.diagram.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_entryConditions0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_entryConditions0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_entryConditions0);&#xA;&#xA;&#x9;org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_entryConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_entryConditions0.setLayoutManager(layoutStateFigure_entryConditions0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_entryConditions = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_entryConditions.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_entryConditions.setFont(FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_entryConditions.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_entryConditions0.add(fFigureStateFigure_entryConditions);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.common.diagram.ConfigurableRectangleFigure stateFigure_activities0 = new org.unicase.ui.common.diagram.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_activities0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_activities0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_activities0);&#xA;&#xA;&#x9;org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_activities0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_activities0.setLayoutManager(layoutStateFigure_activities0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_activities = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_activities.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_activities.setFont(FFIGURESTATEFIGURE_ACTIVITIES_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_activities.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_activities0.add(fFigureStateFigure_activities);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.common.diagram.ConfigurableRectangleFigure stateFigure_exitConditions0 = new org.unicase.ui.common.diagram.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_exitConditions0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_exitConditions0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_exitConditions0);&#xA;&#xA;&#x9;org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_exitConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_exitConditions0.setLayoutManager(layoutStateFigure_exitConditions0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_exitConditions = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_exitConditions.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_exitConditions.setFont(FFIGURESTATEFIGURE_EXITCONDITIONS_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_exitConditions.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_exitConditions0.add(fFigureStateFigure_exitConditions);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_name() {&#xA;&#x9;&#x9;return fFigureStateFigure_name;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_entryConditions() {&#xA;&#x9;&#x9;return fFigureStateFigure_entryConditions;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_activities() {&#xA;&#x9;&#x9;return fFigureStateFigure_activities;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_exitConditions() {&#xA;&#x9;&#x9;return fFigureStateFigure_exitConditions;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_ACTIVITIES_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_EXITCONDITIONS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_name; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_entryConditions; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_activities; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateFigure_exitConditions; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutThis = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(true);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_CENTER&#xA;);&#xA;&#xA;&#x9;layoutThis.setSpacing(0);&#xA;&#x9;layoutThis.setVertical(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure stateFigure_name0 = new org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_name0.setBorders(&#xA;&quot;SEW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_name0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_name0);&#xA;&#xA;&#x9;org.unicase.ui.unicasecommon.diagram.figures.CenterLayout layoutStateFigure_name0 = new org.unicase.ui.unicasecommon.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_name0.setLayoutManager(layoutStateFigure_name0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_name.setText(&quot;unnamed&quot;);&#xA;&#xA;fFigureStateFigure_name.setFont(FFIGURESTATEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_name.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_name0.add(fFigureStateFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure stateFigure_entryConditions0 = new org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_entryConditions0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_entryConditions0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_entryConditions0);&#xA;&#xA;&#x9;org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout layoutStateFigure_entryConditions0 = new org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_entryConditions0.setLayoutManager(layoutStateFigure_entryConditions0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_entryConditions = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_entryConditions.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_entryConditions.setFont(FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_entryConditions.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_entryConditions0.add(fFigureStateFigure_entryConditions);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure stateFigure_activities0 = new org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_activities0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_activities0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_activities0);&#xA;&#xA;&#x9;org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout layoutStateFigure_activities0 = new org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_activities0.setLayoutManager(layoutStateFigure_activities0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_activities = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_activities.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_activities.setFont(FFIGURESTATEFIGURE_ACTIVITIES_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_activities.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_activities0.add(fFigureStateFigure_activities);&#xA;&#xA;&#xA;&#xA;&#xA;org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure stateFigure_exitConditions0 = new org.unicase.ui.unicasecommon.diagram.figures.ConfigurableRectangleFigure();&#xA;&#xA;&#xA;&#xA;&#xA;stateFigure_exitConditions0.setBorders(&#xA;&quot;EW&quot;);&#xA;&#xA;&#xA;&#xA;stateFigure_exitConditions0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;this.add(stateFigure_exitConditions0);&#xA;&#xA;&#x9;org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout layoutStateFigure_exitConditions0 = new org.unicase.ui.diagram.stateDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;stateFigure_exitConditions0.setLayoutManager(layoutStateFigure_exitConditions0);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_exitConditions = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateFigure_exitConditions.setText(&quot;&quot;);&#xA;&#xA;fFigureStateFigure_exitConditions.setFont(FFIGURESTATEFIGURE_EXITCONDITIONS_FONT);&#xA;&#xA;&#xA;&#xA;fFigureStateFigure_exitConditions.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;stateFigure_exitConditions0.add(fFigureStateFigure_exitConditions);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_name() {&#xA;&#x9;&#x9;return fFigureStateFigure_name;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_entryConditions() {&#xA;&#x9;&#x9;return fFigureStateFigure_entryConditions;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_activities() {&#xA;&#x9;&#x9;return fFigureStateFigure_activities;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateFigure_exitConditions() {&#xA;&#x9;&#x9;return fFigureStateFigure_exitConditions;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_ACTIVITIES_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATEFIGURE_EXITCONDITIONS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;"/>
       <modelFacet>
         <metaClass
             href="../../model.genmodel#//model/state/State"/>
@@ -73,9 +69,10 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             viewPattern="">
           <metaFeatures
-              href="../../model.genmodel#//model/ModelElement/name"/>
+              href="../../model.genmodel#//model/UnicaseModelElement/name"/>
         </modelFacet>
       </labels>
       <labels
@@ -95,6 +92,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             viewPattern="ENTRY/{0}"
             editorPattern="{0}"
             editPattern="{0}">
@@ -119,6 +117,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             viewPattern="DO/{0}"
             editorPattern="{0}"
             editPattern="{0}">
@@ -143,6 +142,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             viewPattern="EXIT/{0}"
             editorPattern="{0}"
             editPattern="{0}">
@@ -167,7 +167,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="StateInitialFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateInitialFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateInitialFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateInitialFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateInitialFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedBackground="true"/>
@@ -175,7 +175,6 @@
             xsi:type="gmfgen:DefaultSizeAttributes"
             width="15"
             height="15"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet>
         <metaClass
@@ -202,7 +201,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="StateFinalFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateFinalFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateFinalFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.common.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.common.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.Ellipse stateFinalFigure_inner0 = new org.eclipse.draw2d.Ellipse();&#xA;&#x9;stateFinalFigure_inner0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;stateFinalFigure_inner0.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;stateFinalFigure_inner0.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;stateFinalFigure_inner0.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;&#xA;this.add(stateFinalFigure_inner0);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateFinalFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateFinalFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.unicasecommon.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.unicasecommon.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(23)&#xA;, getMapMode().DPtoLP(23)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.Ellipse stateFinalFigure_inner0 = new org.eclipse.draw2d.Ellipse();&#xA;stateFinalFigure_inner0.setLineWidth(1);&#xA;&#x9;stateFinalFigure_inner0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;stateFinalFigure_inner0.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;stateFinalFigure_inner0.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;stateFinalFigure_inner0.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(15)&#xA;, getMapMode().DPtoLP(15)&#xA;));&#xA;&#xA;this.add(stateFinalFigure_inner0);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
@@ -210,7 +209,6 @@
             xsi:type="gmfgen:DefaultSizeAttributes"
             width="23"
             height="23"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet>
         <metaClass
@@ -236,9 +234,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="TransitionFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TransitionFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureTransitionFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TransitionFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureTransitionFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureTransitionFigure_name.setText(&quot;unnamed&quot;);&#xA;&#xA;this.add(fFigureTransitionFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureTransitionFigure_name() {&#xA;&#x9;&#x9;return fFigureTransitionFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TransitionFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureTransitionFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TransitionFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureTransitionFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureTransitionFigure_name.setText(&quot;unnamed&quot;);&#xA;&#xA;this.add(fFigureTransitionFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureTransitionFigure_name() {&#xA;&#x9;&#x9;return fFigureTransitionFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
@@ -254,9 +250,9 @@
       </modelFacet>
       <labels
           visualID="6001"
-          editPartClassName="TransitionNameEditPart"
-          itemSemanticEditPolicyClassName="TransitionNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="TransitionNameViewFactory">
+          editPartClassName="TransitionConditionNameEditPart"
+          itemSemanticEditPolicyClassName="TransitionConditionNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="TransitionConditionNameViewFactory">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -269,10 +265,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             viewPattern=""
             editPattern="">
           <metaFeatures
-              href="../../model.genmodel#//model/ModelElement/name"/>
+              href="../../model.genmodel#//model/state/Transition/condition"/>
+          <metaFeatures
+              href="../../model.genmodel#//model/UnicaseModelElement/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -322,15 +321,15 @@
           iD="org.unicase.diagram.rulersAndGrid"
           name="Rulers And Grid"
           kind="RulersAndGrid"/>
-      <children
-          xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.diagram.pathmaps"
-          name="Pathmaps"
-          kind="Pathmaps"/>
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.ui.diagram.stateDiagram"/>
+      iD="org.unicase.ui.diagram.stateDiagram"
+      provider="unicase.org">
+    <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
+    <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
+    <requiredPlugins>org.unicase.ui.unicasecommon</requiredPlugins>
+  </plugin>
   <editor/>
   <navigator>
     <childReferences
@@ -425,12 +424,6 @@
   <diagramUpdater/>
   <propertySheet>
     <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="appearance"/>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="diagram"/>
-    <tabs
         xsi:type="gmfgen:GenCustomPropertyTab"
         iD="domain"
         label="Core">
@@ -444,4 +437,15 @@
   </propertySheet>
   <domainGenModel
       href="../../model.genmodel#/"/>
+  <labelParsers
+      extensibleViaService="true">
+    <implementations
+        xsi:type="gmfgen:PredefinedParser"
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.2/@modelFacet //@diagram/@topLevelNodes.0/@labels.3/@modelFacet //@diagram/@links.0/@labels.0/@modelFacet"/>
+  </labelParsers>
+  <contextMenus
+      context="//@diagram">
+    <items
+        xsi:type="gmfgen:LoadResourceAction"/>
+  </contextMenus>
 </gmfgen:GenEditorGenerator>

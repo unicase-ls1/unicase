@@ -19,7 +19,7 @@
         <diagramLabel
             href="../model.gmfgraph#ActorNode_name"/>
         <features
-            href="../../model.ecore#//ModelElement/name"/>
+            href="../../model.ecore#//UnicaseModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -41,7 +41,7 @@
         <diagramLabel
             href="../model.gmfgraph#UseCaseNode_name"/>
         <features
-            href="../../model.ecore#//ModelElement/name"/>
+            href="../../model.ecore#//UnicaseModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -128,7 +128,7 @@
     <domainModel
         href="../../model.ecore#//diagram"/>
     <domainMetaElement
-        href="../../model.ecore#//diagram/MEDiagram"/>
+        href="../../model.ecore#//diagram/UseCaseDiagram"/>
     <palette
         href="useCaseDiagram.gmftool#//@palette"/>
   </diagram>

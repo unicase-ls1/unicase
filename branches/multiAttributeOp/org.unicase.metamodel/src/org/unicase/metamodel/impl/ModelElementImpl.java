@@ -65,12 +65,12 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @see org.unicase.model.UnicaseModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
 	 */
 	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
-		//if we are notifying listeners at the moment than just add listener for later removal
+		// if we are notifying listeners at the moment than just add listener for later removal
 		if (isNotifying) {
 			listenersToBeRemoved.add(listener);
 			return;
 		}
-		
+
 		this.changeListeners.remove(listener);
 		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
 			this.eAdapters().remove(internalChangeListener);
@@ -99,7 +99,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			}
 			// END SUPRESS CATCH EXCEPTION
 		}
-		isNotifying=false;
+		isNotifying = false;
 		for (ModelElementChangeListener listener : listenersToBeRemoved) {
 			removeModelElementChangeListener(listener);
 		}
@@ -246,7 +246,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected ModelElementImpl() {
 		super();
 		changeListeners = new ArrayList<ModelElementChangeListener>();
-		isNotifying=false;
+		isNotifying = false;
 		listenersToBeRemoved = new HashSet<ModelElementChangeListener>();
 	}
 

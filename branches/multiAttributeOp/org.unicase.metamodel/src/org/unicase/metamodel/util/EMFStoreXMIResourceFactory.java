@@ -11,13 +11,14 @@ import org.eclipse.emf.ecore.resource.Resource.Factory;
 
 /**
  * Factory for {@link EMFStoreXMIResourceImpl}.
+ * 
  * @author koegel
- *
  */
 public class EMFStoreXMIResourceFactory implements Factory {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.ecore.resource.Resource.Factory#createResource(org.eclipse.emf.common.util.URI)
 	 */
 	public Resource createResource(URI uri) {

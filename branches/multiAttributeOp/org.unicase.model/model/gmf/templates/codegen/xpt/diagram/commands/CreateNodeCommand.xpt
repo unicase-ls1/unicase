@@ -10,31 +10,31 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
-«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
-«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
-«EXTENSION xpt::GenModelUtils»
-«EXTENSION xpt::diagram::Utils»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+Â«IMPORT "http://www.eclipse.org/emf/2002/Ecore"Â»
+Â«IMPORT "http://www.eclipse.org/emf/2002/GenModel"Â»
+Â«EXTENSION xpt::GenModelUtilsÂ»
+Â«EXTENSION xpt::diagram::UtilsÂ»
 
-«DEFINE doDefaultElementCreation_Normal(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-»
-	«IF modelElementInitializer != null || hasExplicitChildFeature(this)-»
+Â«DEFINE doDefaultElementCreation_Normal(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-Â»
+	Â«IF modelElementInitializer <> null or hasExplicitChildFeature(self.repr())-Â»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 protected org.eclipse.emf.ecore.EObject doDefaultElementCreation() {
-	«EXPAND MetaModel::NewInstance("newElement") FOR metaClass»
-	«REM»added«ENDREM»
+	Â«EXPAND MetaModel::NewInstance("newElement") FOR metaClassÂ»
+	Â«REMÂ»addedÂ«ENDREMÂ»
 	newElement.setName("new " + newElement.eClass().getName());
-	«REM»END added«ENDREM»
-«IF containmentMetaFeature != null-»
-	«EXPAND MetaModel::DeclareAndAssign("owner", "getElementToEdit()") FOR containmentMetaFeature.genClass»
-	«EXPAND CreateLinkUtils::addValue("owner", containmentMetaFeature.genClass, "newElement") FOR containmentMetaFeature-»
-«ENDIF»
-«IF hasExplicitChildFeature(this)-»
-	«EXPAND MetaModel::DeclareAndAssign("childHolder", "getElementToEdit()") FOR childMetaFeature.genClass»
-	«EXPAND CreateLinkUtils::addValue("childHolder", childMetaFeature.genClass, "newElement") FOR childMetaFeature»
-«ENDIF-»
-	«EXPAND initialize(node, "newElement")-»
-	return «EXPAND MetaModel::DowncastToEObject("newElement") FOR metaClass»;
+	Â«REMÂ»END addedÂ«ENDREMÂ»
+Â«IF containmentMetaFeature <> null-Â»
+	Â«EXPAND MetaModel::DeclareAndAssign("owner", "getElementToEdit()") FOR containmentMetaFeature.genClassÂ»
+	Â«EXPAND CreateLinkUtils::addValue("owner", containmentMetaFeature.genClass, "newElement") FOR containmentMetaFeature-Â»
+Â«ENDIFÂ»
+Â«IF hasExplicitChildFeature(self.repr())-Â»
+	Â«EXPAND MetaModel::DeclareAndAssign("childHolder", "getElementToEdit()") FOR childMetaFeature.genClassÂ»
+	Â«EXPAND CreateLinkUtils::addValue("childHolder", childMetaFeature.genClass, "newElement") FOR childMetaFeatureÂ»
+Â«ENDIF-Â»
+	Â«EXPAND initialize(node, "newElement")-Â»
+	return Â«EXPAND MetaModel::DowncastToEObject("newElement") FOR metaClassÂ»;
 }
-	«ENDIF-»
-«ENDDEFINE»
+	Â«ENDIF-Â»
+Â«ENDDEFINEÂ»
