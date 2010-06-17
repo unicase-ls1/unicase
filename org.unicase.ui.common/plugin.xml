@@ -3,21 +3,13 @@
 <plugin>
    <extension-point id="org.unicase.ui.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.common.ui.modelelementopener.exsd"/>
    <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
+   <extension-point id="org.unicase.ui.common.tracelistener" name="Trace Listener" schema="schema/org.unicase.ui.common.tracelistener.exsd"/>
+   <extension-point id="org.unicase.ui.common.modelelementopenlistener" name="Modelelement Open Listener" schema="schema/org.unicase.ui.common.modelelementopenlistener.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
      
-        <command
-            categoryId="org.unicase.ui.common"
-            defaultHandler="org.unicase.ui.common.handler.DeleteModelelementHandler"
-            id="org.unicase.ui.common.deleteModelelement"
-            name="Delete Modelelement">
-      </command>
-        <command
-            categoryId="org.unicase.ui.common"
-            defaultHandler="org.unicase.ui.common.handler.OpenMEShortcutHandler"
-            id="org.unicase.ui.common.handlers.open_me_ID"
-            name="Search for Modelelement">
-      </command>
+   
+   
         <category
               id="org.unicase.ui.common"
               name="org.unicase.ui.common">
@@ -31,15 +23,6 @@
         <separator
               name="org.unicase.ui.common.commands.modifyCommands">
         </separator>
-     </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
-        <command
-              commandId="org.unicase.ui.common.deleteModelelement"
-              icon="icons/delete.gif"
-              label="Delete"
-              style="push">
-        </command>
      </menuContribution>
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
@@ -129,17 +112,6 @@
         </instanceof>
      </definition>
   </extension>
-   
- <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-        <propertyTester
-              class="org.unicase.ui.common.commands.SubscriptionTester"
-              id="org.unicase.ui.common.commands.subscriptionTester"
-              namespace="org.unicase.ui.common.commands"
-              properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.metamodel.ModelElement">
-        </propertyTester>
- </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
     <page

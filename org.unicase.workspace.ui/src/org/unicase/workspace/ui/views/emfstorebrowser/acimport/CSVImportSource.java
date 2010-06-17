@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -30,6 +31,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 
 public class CSVImportSource extends ImportSource {
+
+	private static final String CSV_IMPORT_SOURCE_PATH = "org.unicase.workspace.ui.CSVImportSourcePath";
 
 	private HashMap<String, ImportItemWrapper> groupMap = new HashMap<String, ImportItemWrapper>();
 
@@ -94,6 +97,9 @@ public class CSVImportSource extends ImportSource {
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setText("Choose import file");
+		String initialPath = PreferenceHelper.getPreference(
+				CSV_IMPORT_SOURCE_PATH, System.getProperty("user.home"));
+		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
 			return false;
@@ -107,6 +113,7 @@ public class CSVImportSource extends ImportSource {
 
 		this.absFileName = filterPath + File.separatorChar + fileName;
 		final File file = new File(absFileName);
+		PreferenceHelper.setPreference(CSV_IMPORT_SOURCE_PATH, filterPath);
 		BufferedReader bufferedReader = null;
 		InputStreamReader isr = null;
 

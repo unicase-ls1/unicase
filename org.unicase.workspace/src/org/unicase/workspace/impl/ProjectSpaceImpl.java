@@ -49,6 +49,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -1159,6 +1160,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			throw new NoLocalChangesException();
 		}
 
+		cleanCutElements();
+
 		// check if we need to update first
 		PrimaryVersionSpec resolvedVersion;
 		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
@@ -1488,6 +1491,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		startChangeRecording();
+		cleanCutElements();
+
+	}
+
+	private void cleanCutElements() {
+		for (ModelElement cutElement : getProject().getCutElements()) {
+			project.deleteModelElement(cutElement);
+		}
 
 	}
 
@@ -1887,13 +1898,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setMessage("Initial commit");
 		ProjectInfo createdProject;
 
+		stopChangeRecording();
+		changeTracker.setAutoSave(false);
+
 		// Set user as creator when sharing a project
 		for (ModelElement me : this.getProject().getAllModelElements()) {
 			if (me.getCreator() == null || me.getCreator().equals("")
 				|| me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
 				me.setCreator(usersession.getUsername());
+				changeTracker.save(me);
 			}
 		}
+		changeTracker.setAutoSave(true);
+		changeTracker.saveDirtyResources();
+		startChangeRecording();
 
 		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
 			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
@@ -2327,8 +2345,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Apply a list of operations to the project.
+	 * Applies a list of operations to the project. The change tracking is stopped and the operations are added to the
+	 * projectspace.
 	 * 
+	 * @see #applyOperationsWithRecording(List, boolean)
 	 * @param operations list of operations
 	 * @param addOperation true if operation should be saved in project space.
 	 */
@@ -2344,22 +2364,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Apply a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. It is
-	 * possible to force import operations.
+	 * Applies a list of operations to the project. It is possible to force import operations. Changetracking isn't
+	 * deactivated while applying changes.
 	 * 
 	 * @param operations list of operations
 	 * @param force if true, no exception is thrown if operation.apply failes
+	 * @param semanticApply when true, does a semanticApply if possible (see {@link SemanticCompositeOperation})
 	 */
-	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force, boolean semanticApply) {
 		for (AbstractOperation operation : operations) {
 			try {
-				operation.apply(getProject());
+				if (semanticApply && operation instanceof SemanticCompositeOperation) {
+					((SemanticCompositeOperation) operation).semanticApply(getProject());
+				} else {
+					operation.apply(getProject());
+				}
 			} catch (IllegalStateException e) {
 				if (!force) {
 					throw e;
 				}
 			}
 		}
+	}
+
+	/**
+	 * Applies a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. This
+	 * method redirects to {@link #applyOperationsWithRecording(List, boolean, boolean)}, using false for semantic
+	 * apply.
+	 * 
+	 * @param operations list of operations
+	 * @param force if true, no exception is thrown if operation.apply failes
+	 */
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+		applyOperationsWithRecording(operations, force, false);
 	}
 
 	/**
@@ -2528,5 +2565,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setClientDate(new Date());
 		logMessage.setMessage("");
 		return commit(logMessage);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#removeCommitObserver(org.unicase.workspace.observers.CommitObserver)
+	 */
+	public void removeCommitObserver(CommitObserver observer) {
+		this.commitObservers.remove(observer);
 	}
 } // ProjectContainerImpl

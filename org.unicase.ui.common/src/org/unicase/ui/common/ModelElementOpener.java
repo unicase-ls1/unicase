@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.common;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Modelelement opener offer the functionality to open a specific model element. Standard opener is the model element
@@ -21,12 +21,12 @@ public interface ModelElementOpener {
 	 * @param modelElement the model element to check
 	 * @return a priority indicating how well the opener can open the element
 	 */
-	int canOpen(ModelElement modelElement);
+	int canOpen(EObject modelElement);
 
 	/**
 	 * The action to open the model element.
 	 * 
 	 * @param modelElement the model element to open
 	 */
-	void openModelElement(ModelElement modelElement);
+	void openModelElement(EObject modelElement);
 }

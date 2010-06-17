@@ -20,7 +20,8 @@ public interface ConfigurationProvider {
 	/**
 	 * Returns a list of default {@link ServerInfo}.
 	 * 
-	 * @return serverInfo list of server infos.
+	 * @return serverInfo list of server infos. if list is null, default serverInfos will be added automaticcaly. If
+	 *         they shouldn't be added a empty list should be returned.
 	 */
 	List<ServerInfo> getDefaultServerInfos();
 

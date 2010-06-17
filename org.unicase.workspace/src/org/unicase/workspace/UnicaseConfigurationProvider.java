@@ -5,7 +5,6 @@
  */
 package org.unicase.workspace;
 
-import static org.unicase.workspace.Configuration.isDeveloperVersion;
 import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
 import static org.unicase.workspace.Configuration.isReleaseVersion;
 
@@ -41,10 +40,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		if (isInternalReleaseVersion()) {
 			serverInfos.add(getInternalServerInfo());
 		}
-		if (isDeveloperVersion()) {
-			serverInfos.add(getLocalhostServerInfo());
-		}
-		return serverInfos;
+		return (serverInfos.size() == 0) ? null : serverInfos;
 	}
 
 	private static ServerInfo getReleaseServerInfo() {
@@ -63,22 +59,6 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		return serverInfo;
 	}
 
-	private static ServerInfo getLocalhostServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("Localhost Server");
-		serverInfo.setPort(8080);
-		serverInfo.setUrl("localhost");
-
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
-		superUsersession.setServerInfo(serverInfo);
-		superUsersession.setPassword("super");
-		superUsersession.setSavePassword(true);
-		superUsersession.setUsername("super");
-		serverInfo.setLastUsersession(superUsersession);
-
-		return serverInfo;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -90,7 +70,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 			// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
 			// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
 			// be nicer to add the default certificate to the given keystore.
-			if (keyStoreManager.getCertificate(keyStoreManager.getDefaultCertificate()) == null) {
+			if (!keyStoreManager.certificateExists(keyStoreManager.getDefaultCertificate())) {
 				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());
 				clientKeyTarget.delete();
 				InputStream inputStream = getClass().getResourceAsStream(KeyStoreManager.KEYSTORENAME);
@@ -101,5 +81,4 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		} catch (IOException e) {
 		}
 	}
-
 }

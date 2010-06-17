@@ -10,82 +10,86 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
-«EXTENSION xpt::editor::Utils»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+Â«EXTENSION xpt::editor::UtilsÂ»
 
-«DEFINE DocumentProvider FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::copyright FOR editorGen-»
-package «editorGen.editor.packageName»;
+Â«DEFINE DocumentProvider FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-Â»
+package Â«editorGen.editor.packageNameÂ»;
 
-«EXPAND xpt::Common::generatedClassComment»
-«REM»modified extends«ENDREM»
-public class «documentProviderClassName» extends org.unicase.ui.common.diagram.part.ModelDocumentProvider implements org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider {
-«REM»END modified«ENDREM»	
-	«EXPAND createElementInfo-»
+Â«EXPAND xpt::Common::generatedClassCommentÂ»
+Â«REMÂ»modified extendsÂ«ENDREMÂ»
+public class Â«documentProviderClassNameÂ» extends org.unicase.ui.unicasecommon.diagram.part.ModelDocumentProvider implements org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider {
+Â«REMÂ»END modifiedÂ«ENDREMÂ»	
+	Â«EXPAND createElementInfo-Â»
 	
-	«EXPAND createDocument-»
+	Â«EXPAND createDocument-Â»
 	
-	«EXPAND setupDocument-»
+	Â«EXPAND setupDocument-Â»
 	
-	«EXPAND computeModificationStamp-»
-	«REM»Removed method createEditingDomain «ENDREM»
-	«REM»Removed method createEmptyDocument «ENDREM»
-	«REM»Removed method setupDocumentContent «ENDREM»	
-	«EXPAND getModificationStamp-»
+	Â«EXPAND computeModificationStamp-Â»
+	Â«REMÂ»Removed method createEditingDomain Â«ENDREMÂ»
+	Â«REMÂ»Removed method createEmptyDocument Â«ENDREMÂ»
+	Â«REMÂ»Removed method setupDocumentContent Â«ENDREMÂ»	
+	Â«EXPAND getModificationStamp-Â»
 	
-	«EXPAND isDeleted-»
+	Â«EXPAND isDeleted-Â»
 	
-	«EXPAND getResourceSetInfo-»
-	«REM»Removed method disposeElementInfo «ENDREM»
-	«IF null == editorGen.application-»
+	Â«EXPAND getResourceSetInfo-Â»
+	Â«REMÂ»Removed method disposeElementInfo Â«ENDREMÂ»
+	Â«IF null = editorGen.application-Â»
 
-		«EXPAND doValidateState-»
-	«ENDIF-»
+		Â«EXPAND doValidateState-Â»
+	Â«ENDIF-Â»
 	
-	«EXPAND isReadOnly-»
+	Â«EXPAND isReadOnly-Â»
 	
-	«EXPAND isModifiable-»
+	Â«EXPAND isModifiable-Â»
 	
-	«EXPAND updateCache-»
+	Â«EXPAND updateCache-Â»
 	
-	«EXPAND doUpdateStateCache-»
+	Â«EXPAND doUpdateStateCache-Â»
 	
-	«EXPAND isSynchronized-»
-	«IF null == editorGen.application-»
+	Â«EXPAND isSynchronized-Â»
+	Â«IF null = editorGen.application-Â»
 		
-		«EXPAND getResetRule-»
+		Â«EXPAND getResetRule-Â»
 	
-		«EXPAND getSaveRule-»
+		Â«EXPAND getSaveRule-Â»
 	
-		«EXPAND getSynchronizeRule-»
+		Â«EXPAND getSynchronizeRule-Â»
 	
-		«EXPAND getValidateStateRule-»
+		Â«EXPAND getValidateStateRule-Â»
 	
-		«EXPAND computeSchedulingRule-»
-	«ENDIF-»
+		Â«EXPAND computeSchedulingRule-Â»
+	Â«ENDIF-Â»
 	
-	«EXPAND doSynchronize-»
+	Â«EXPAND doSynchronize-Â»
 	
-	«EXPAND doSaveDocument-»
+	Â«EXPAND doSaveDocument-Â»
 	
-	«EXPAND handleElementChanged-»
+	Â«EXPAND handleElementChanged-Â»
 
-	«EXPAND handleElementMoved-»
-
-	«EXPAND createInputWithEditingDomain-»
-
-	«EXPAND getDiagramDocument-»
+	Â«EXPAND handleElementMoved-Â»
 	
-	«EXPAND getOperationRunner-»
-	«IF null != editorGen.application-»
-
-		«EXPAND getFile-»
-	«ENDIF-»
 	
-	«EXPAND xpt::editor::ResourceSetInfo::ResourceSetInfo-»
+	Â«EXPAND disposeElementInfo-Â»
 	
-	«EXPAND xpt::editor::ResourceSetModificationListener::ResourceSetModificationListener-»
 
-	«EXPAND additions-»
+	Â«EXPAND createInputWithEditingDomain-Â»
+
+	Â«EXPAND getDiagramDocument-Â»
+	
+	Â«EXPAND getOperationRunner-Â»
+	Â«IF null <> editorGen.application-Â»
+
+		Â«EXPAND getFile-Â»
+	Â«ENDIF-Â»
+	
+	Â«EXPAND xpt::editor::ResourceSetInfo::ResourceSetInfo-Â»
+	
+	Â«EXPAND xpt::editor::ResourceSetModificationListener::ResourceSetModificationListener-Â»
+
+	Â«EXPAND additions-Â»
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»

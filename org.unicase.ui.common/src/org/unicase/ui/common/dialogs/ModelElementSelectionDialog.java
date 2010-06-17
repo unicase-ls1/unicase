@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -21,9 +22,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.ModelElementContext;
 
 /**
  * Abstract Dialog as pattern for all dialogs which show ModelElements for selection.
@@ -39,7 +39,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	private static final String DIALOG_INITIAL_PATTERN = "**";
 
 	private ILabelProvider labelProvider;
-	private Collection<ModelElement> modelElements;
+	private Collection<EObject> modelElements;
 		
 	/**
 	 * Constructor which calls another constructor with parameter false for multiple selection of elements.
@@ -51,10 +51,10 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	/**
 	 * Contructor which calls another constructor with project parameter and false for multiple selection of elements.
 	 * 
-	 * @param project Project from where the modelelements come from
+	 * @param context the context
 	 */
-	public ModelElementSelectionDialog(Project project) {
-		this(project, false);
+	public ModelElementSelectionDialog(ModelElementContext context) {
+		this(context, false);
 	}
 	
 	/**
@@ -70,14 +70,14 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	/**
 	 * Main-Constructor, here will be done the main work. 
 	 *  
-	 * @param project The project from where the modelelements come from, is null if no project is set an the modelelements come from outside the dialog
+	 * @param context The context from where the modelelements come from, is null if no context is set an the modelelements come from outside the dialog
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
-	public ModelElementSelectionDialog(Project project, boolean multiSelection) {
+	public ModelElementSelectionDialog(ModelElementContext context, boolean multiSelection) {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), multiSelection);
 	
-		if(project != null) {
-			modelElements = project.getAllModelElements();
+		if(context != null) {
+			modelElements = context.getAllModelElements();
 		}
 		
 		setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -95,23 +95,23 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	/**
 	 * Constructor which calls another constructor and sets the modelElements-Collection of the dialog only to a specified class type.
 	 * 
-	 * @param project from where the modelelements come from
+	 * @param context from where the modelelements come from
 	 * @param classType which should be shown in the dialog
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
-	public ModelElementSelectionDialog(Project project, EClass classType, boolean multiSelection) {
+	public ModelElementSelectionDialog(ModelElementContext context, EClass classType, boolean multiSelection) {
 		this(multiSelection);
-		modelElements = project.getAllModelElementsbyClass(classType, new BasicEList<ModelElement>());
+		modelElements = context.getAllModelElementsbyClass(classType, new BasicEList<EObject>());
 	}
 	
 	/**
 	 * Constructor which calls another constructor.
 	 * 
-	 * @param project from where the modelelements come from
+	 * @param context from where the modelelements come from
 	 * @param classType of the modelelements which should be shown in the dialog
 	 */
-	public ModelElementSelectionDialog(Project project, EClass classType) {
-		this(project, classType, false);
+	public ModelElementSelectionDialog(ModelElementContext context, EClass classType) {
+		this(context, classType, false);
 	}
 	
 	
@@ -138,7 +138,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 * 
 	 * @return Collection of modelelements for the dialog
 	 */
-	public Collection<ModelElement> getModelElements() {
+	public Collection<EObject> getModelElements() {
 		return modelElements;
 	}
 	
@@ -147,7 +147,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 * 
 	 * @param modelElements Collection which modelelements which will be shown in the dialog
 	 */
-	public void setModelElements(Collection<ModelElement> modelElements) {
+	public void setModelElements(Collection<EObject> modelElements) {
 		this.modelElements = modelElements;
 	}
 	
@@ -184,7 +184,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 		IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", modelElements.size());
-		for (ModelElement modelElement : modelElements) {
+		for (EObject modelElement : modelElements) {
 			contentProvider.add(modelElement, itemsFilter);
 			progressMonitor.worked(1);			
 		}
@@ -213,7 +213,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 */
 	@Override
 	public String getElementName(Object item) {
-		if (item instanceof ModelElement) {
+		if (item instanceof EObject) {
 			return getLabelProvider().getText(item);
 		} else {
 			return item.toString();
@@ -226,9 +226,9 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 * @return an alphabetical comparator
 	 */
 	@Override
-	protected Comparator<ModelElement> getItemsComparator() {
-		return new Comparator<ModelElement>() {
-			public int compare(ModelElement arg0, ModelElement arg1) {
+	protected Comparator<EObject> getItemsComparator() {
+		return new Comparator<EObject>() {
+			public int compare(EObject arg0, EObject arg1) {
 				return arg0.toString().compareTo(arg1.toString());
 			}
 		};

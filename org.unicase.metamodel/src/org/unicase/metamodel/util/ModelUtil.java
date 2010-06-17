@@ -69,19 +69,13 @@ public final class ModelUtil {
 	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
 	 * Cross-referenced elements will not be copied.
 	 * 
+	 * @param <T> the type of the model element, must be a subtype of model element
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
-	public static ModelElement copy(ModelElement modelElement) {
-		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
-		// reset id
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		copy.setIdentifier(modelElementId.getId());
-		// reset ids of containment children
-		for (ModelElement child : copy.getAllContainedModelElements()) {
-			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			child.setIdentifier(childId.getId());
-		}
+	public static <T extends ModelElement> T copy(T modelElement) {
+		T copy = clone(modelElement);
+		reassignModelElementIds(copy);
 		return copy;
 	}
 
@@ -265,6 +259,7 @@ public final class ModelUtil {
 	public static boolean isSelfContained(EObject object) {
 		return isSelfContained(object, false);
 	}
+
 	/**
 	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
 	 * does not have references to eobjects outside the tree.
@@ -279,13 +274,13 @@ public final class ModelUtil {
 		allEObjects.add(object);
 
 		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
-		if (ignoreContainer && object.eContainer()!=null) {
+		if (ignoreContainer && object.eContainer() != null) {
 			nonTransientCrossReferences.remove(object.eContainer());
 		}
 		if (!allEObjects.containsAll(nonTransientCrossReferences)) {
 			return false;
 		}
-		
+
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
@@ -396,7 +391,7 @@ public final class ModelUtil {
 				}
 				// BEGIN SUPRESS CATCH EXCEPTION
 				catch (RuntimeException exception) {
-				// END SUPRESS CATCH EXCEPTION
+					// END SUPRESS CATCH EXCEPTION
 					logException("Failed to load model package " + entry.getKey(), exception);
 				}
 			}
@@ -437,8 +432,16 @@ public final class ModelUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
-			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			result.addAll(getAllModelElementEClasses(ePackage));
+			try {
+				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				result.addAll(getAllModelElementEClasses(ePackage));
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				// END SUPRESS CATCH EXCEPTION
+				logException("Failed to load model package " + entry.getKey(), exception);
+			}
+
 		}
 		modelElementEClasses = result;
 		return result;
@@ -564,7 +567,7 @@ public final class ModelUtil {
 	public static void logException(String message, Throwable exception) {
 		log(message, exception, IStatus.ERROR);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -574,9 +577,8 @@ public final class ModelUtil {
 		logException(exception.getMessage(), exception);
 	}
 
-
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 * @param exception the exception
@@ -584,16 +586,16 @@ public final class ModelUtil {
 	public static void logWarning(String message, Throwable exception) {
 		log(message, exception, IStatus.WARNING);
 	}
-	
+
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 */
 	public static void logWarning(String message) {
 		log(message, null, IStatus.WARNING);
 	}
-	
+
 	/**
 	 * Log an exception to the platform log. This will create a popup in the ui.
 	 * 
@@ -755,7 +757,6 @@ public final class ModelUtil {
 	}
 
 	/**
-	 *
 	 * @param eObjects fjd
 	 * @param resourceURI dj
 	 * @throws IOException dj
@@ -767,7 +768,7 @@ public final class ModelUtil {
 		contents.addAll(eObjects);
 		resource.save(null);
 	}
-	
+
 	/**
 	 * Save an Eobject to a resource.
 	 * 
@@ -793,7 +794,7 @@ public final class ModelUtil {
 		if (rawExtensions.length != 1) {
 			String message = "There is " + rawExtensions.length
 				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
-			logWarning(message, new MalformedModelVersionException(message));
+			logWarning(message);
 			return 0;
 		}
 		IConfigurationElement extension = rawExtensions[0];
@@ -804,6 +805,26 @@ public final class ModelUtil {
 		} catch (NumberFormatException e) {
 			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: "
 				+ string);
+		}
+	}
+
+	/**
+	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements
+	 * that are contained in a project!.
+	 * 
+	 * @param modelElement the element
+	 */
+	public static void reassignModelElementIds(ModelElement modelElement) {
+		Set<ModelElement> copiedElements = modelElement.getAllContainedModelElements();
+		copiedElements.add(modelElement);
+		for (ModelElement element : copiedElements) {
+			// turn off notification for id change
+			boolean eDeliver = element.eDeliver();
+			element.eSetDeliver(false);
+			// change id
+			element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
+			// set edeliver to previous state
+			element.eSetDeliver(eDeliver);
 		}
 	}
 }

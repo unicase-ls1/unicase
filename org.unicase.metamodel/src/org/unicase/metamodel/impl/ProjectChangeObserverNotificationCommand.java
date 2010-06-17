@@ -9,13 +9,14 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 
 /**
  * Command for notifying PRojectChangeObservers of changes in a project.
+ * 
  * @author koegel
- *
  */
 public interface ProjectChangeObserverNotificationCommand {
 
 	/**
 	 * Run the command on a project change observer.
+	 * 
 	 * @param projectChangeObserver the observer
 	 */
 	void run(ProjectChangeObserver projectChangeObserver);

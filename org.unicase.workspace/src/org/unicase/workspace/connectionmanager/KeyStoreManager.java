@@ -485,4 +485,22 @@ public final class KeyStoreManager {
 			throw new CertificateStoreException("Loading certificate failed!");
 		}
 	}
+
+	/**
+	 * Checks whether a certificate for a given alias exists.
+	 * 
+	 * @param alias to check
+	 * @return true if exists
+	 * @throws CertificateStoreException in case of failure
+	 */
+	public boolean certificateExists(String alias) throws CertificateStoreException {
+		try {
+			return getCertificate(alias) != null;
+		} catch (CertificateStoreException e) {
+			if (!(e.getCause() instanceof FileNotFoundException)) {
+				throw e;
+			}
+		}
+		return false;
+	}
 }
