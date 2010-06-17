@@ -221,14 +221,13 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		notificationRecorder.record(notification);
+		save(modelElement);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
 			}
 			dirtyResourceSet.save();
-
 		}
-		save(modelElement);
 	}
 
 	private void recordingFinished() {
