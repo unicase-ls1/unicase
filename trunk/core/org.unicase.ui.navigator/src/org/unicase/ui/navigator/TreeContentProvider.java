@@ -12,10 +12,10 @@ import java.util.HashMap;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Transactional and composed content provider with all registered label providers.
@@ -36,17 +36,18 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		String className = object.getClass().getCanonicalName();
 		ContentProvider replaceContentProvider = contentProviders.get(className);
 		if (replaceContentProvider != null) {
-			return replaceContentProvider.getChildren((ProjectSpace) object).toArray();
+			return replaceContentProvider.getChildren((EObject) object).toArray();
 		}
 		return super.getChildren(object);
 	}
 
 	/**
 	 * default constructor.
+	 * 
+	 * @param editingDomain the transactional editing domain
 	 */
-	public TreeContentProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	public TreeContentProvider(TransactionalEditingDomain editingDomain) {
+		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.navigator.replaceContentProvider");
 		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();
