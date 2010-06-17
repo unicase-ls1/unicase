@@ -59,7 +59,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 				continue;
 			}
 			try {
-				ContentProvider contentProvider = (ContentProvider) confs[0].createExecutableExtension("class");
+				ContentProvider contentProvider = (ContentProvider) element.createExecutableExtension("class");
 				contentProviders.put(attribute, contentProvider);
 
 			} catch (CoreException e) {
