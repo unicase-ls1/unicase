@@ -14,7 +14,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
@@ -89,8 +88,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				}
 			}
 			// 3.open the newly created ME
-			ActionHelper.openModelElement(newMEInstance, this.getClass().getName(), new EMFStoreModelelementContext(
-				newMEInstance));
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 		return true;

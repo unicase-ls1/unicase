@@ -13,5 +13,11 @@
             class="org.unicase.ecpemfstorebridge.ModelelementOpenListener">
       </modelelementopenlistener>
    </extension>
+   <extension
+         point="org.unicase.ui.navigator.ecpworkspace">
+      <Workspace
+            class="org.unicase.ecpemfstorebridge.ECPWorkspace">
+      </Workspace>
+   </extension>
 
 </plugin>
