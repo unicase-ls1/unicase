@@ -12,7 +12,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.ECPModelelementContext;
 
 /**
  * Command to delete a modelelement.
@@ -22,7 +22,7 @@ import org.unicase.ui.common.ModelElementContext;
  */
 public final class DeleteModelElementCommand {
 	private final EObject me;
-	private final ModelElementContext context;
+	private final ECPModelelementContext context;
 
 	/**
 	 * Default constructor.
@@ -30,7 +30,7 @@ public final class DeleteModelElementCommand {
 	 * @param opposite the model element to be deleted.
 	 * @param context the model element context
 	 */
-	public DeleteModelElementCommand(EObject opposite, ModelElementContext context) {
+	public DeleteModelElementCommand(EObject opposite, ECPModelelementContext context) {
 		this.me = opposite;
 		this.context = context;
 	}

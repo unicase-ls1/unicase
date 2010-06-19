@@ -50,14 +50,13 @@ import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.observers.SimpleOperationListener;
 import org.unicase.workspace.util.ProjectSpaceContainer;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The standard navigator tree view.
@@ -83,7 +82,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 */
 	public TreeView() {
 		createOperationListener();
-		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		currentWorkspace = org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace();
 		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
 			projectSpace.addOperationListener(simpleOperationListener);
 		}
@@ -153,9 +152,14 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 			.getLabelDecorator()));
-		viewer.setContentProvider(new TreeContentProvider(WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getEditingDomain()));
-		viewer.setInput(currentWorkspace);
+		try {
+			ECPWorkspace workSpace = WorkspaceManager.getInstance().getWorkSpace();
+			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
+			viewer.setInput(currentWorkspace);
+		} catch (NoWorkspaceException e) {
+			// Do not show any content
+		}
+
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
 		// this is for workaround for update problem in navigator
@@ -177,7 +181,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		addSelectionListener();
 
 		if (viewer.getTree().getItems().length > 0) {
-			setActiveProjectSpace(viewer.getTree().getItem(0).getData());
+			setActiveECPProject(viewer.getTree().getItem(0).getData());
 			viewer.getTree().select(viewer.getTree().getItem(0));
 
 		}
@@ -283,7 +287,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 				if (event.getSelection() instanceof IStructuredSelection) {
 					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 					Object obj = selection.getFirstElement();
-					setActiveProjectSpace(obj);
+					setActiveECPProject(obj);
 
 					// activate MEEditor if this obj is already open.
 					if (isLinkedWithEditor && !internalSelectionEvent) {
@@ -362,38 +366,14 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 	}
 
-	private void setActiveProjectSpace(Object obj) {
-
-		if (obj == null) {
-			return;
-		}
-		final ProjectSpace projectSpace;
-		if (obj instanceof ModelElement) {
-			ModelElement me = (ModelElement) obj;
-			projectSpace = WorkspaceManager.getProjectSpace(me);
-		} else if (obj instanceof ProjectSpace) {
-			projectSpace = (ProjectSpace) obj;
-		} else {
-			projectSpace = null;
-		}
-
-		if (projectSpace == null) {
-			// the active project space should NEVER be null
-			return;
-		}
-
-		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null) {
-			if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().equals(projectSpace)) {
-				return;
+	private void setActiveECPProject(Object obj) {
+		if (obj instanceof EObject) {
+			try {
+				WorkspaceManager.getInstance().getWorkSpace().setActiveModelelement((EObject) obj);
+			} catch (NoWorkspaceException e) {
+				Activator.logException(e);
 			}
 		}
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
-			}
-		}.run();
 
 	}
 
