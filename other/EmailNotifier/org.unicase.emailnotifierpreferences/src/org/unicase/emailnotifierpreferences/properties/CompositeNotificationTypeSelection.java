@@ -28,8 +28,8 @@ public class CompositeNotificationTypeSelection extends Composite {
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
 
-	public CompositeNotificationTypeSelection(Composite c, String s,
-		final List<NotificationGroup> tempNotificationGroups, final NotificationGroup group) {
+	public CompositeNotificationTypeSelection(Composite c, final List<NotificationGroup> tempNotificationGroups,
+		final NotificationGroup group) {
 		super(c, SWT.NONE);
 		init();
 		GridLayoutFactory.fillDefaults().applyTo(this);
@@ -38,7 +38,7 @@ public class CompositeNotificationTypeSelection extends Composite {
 		Label selectNotifier = new Label(this, SWT.PUSH | SWT.TOP | SWT.WRAP);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).hint(150, SWT.DEFAULT).grab(true, false).applyTo(
 			selectNotifier);
-		selectNotifier.setText("Select notification types for group " + s);
+		selectNotifier.setText("Select notification types:");
 		notifierTypesList = CheckboxTableViewer.newCheckList(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 			| SWT.BORDER);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(notifierTypesList.getControl());

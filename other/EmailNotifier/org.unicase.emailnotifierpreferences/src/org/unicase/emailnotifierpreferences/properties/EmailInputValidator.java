@@ -15,18 +15,18 @@ import org.eclipse.jface.dialogs.IInputValidator;
  * 
  * @author fuesescc
  */
-class EmailInputValidator implements IInputValidator {
+public class EmailInputValidator implements IInputValidator {
+
+	public EmailInputValidator() {
+	}
 
 	/**
 	 * Validates the String. Returns null for no error, or an error message
 	 * 
 	 * @param s the String to validate
-	 * @return String
+	 * @return String The error message
 	 * @author fuesescc
 	 */
-	public EmailInputValidator() {
-	}
-
 	public String isValid(String s) {
 		int len = s.length();
 		int posat = s.lastIndexOf("@");
@@ -40,15 +40,15 @@ class EmailInputValidator implements IInputValidator {
 		}
 
 		try {
-			InternetAddress emailaddress = new InternetAddress(s, true);
+			new InternetAddress(s, true);
 
 			// Assumption: Domain part of the email address should contain a dot
-			if (emailaddress.toString().indexOf(".", (posat + 1)) == -1) {
+			if (s.toString().indexOf(".", (posat + 1)) == -1) {
 				return "Domain part of email address does not contain a dot";
 			}
 
 			return null;
-			
+
 		} catch (AddressException e) {
 			return e.getMessage();
 		}

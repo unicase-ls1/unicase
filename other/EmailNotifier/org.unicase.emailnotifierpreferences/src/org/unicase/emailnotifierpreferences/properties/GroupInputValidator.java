@@ -17,26 +17,36 @@ import org.unicase.model.emailnotificationgroup.NotificationGroup;
  * 
  * @author fuesescc
  */
-class GroupInputValidator implements IInputValidator {
+public class GroupInputValidator implements IInputValidator {
 	
 	private List<NotificationGroup> tempNotificationGroups;
+	private Integer max;
+	
+	/**
+	 * GroupInputValidator Constructor
+	 * 
+	 * @param max The maximum length that a Notification Group can have
+	 * @param tempNotificationGroups A List of Notification Groups
+	 * @author fuesescc
+	 */
+	public GroupInputValidator(List<NotificationGroup> tempNotificationGroups, Integer max) {
+		this.tempNotificationGroups = tempNotificationGroups;
+		this.max = max;
+	}
+	
 	/**
 	 * Validates the String. Returns null for no error, or an error message
 	 * 
-	 * @param newText the String to validate
-	 * @return String
+	 * @param s the String to validate
+	 * @return String The error message
 	 * @author fuesescc
-	 * @param tempNotificationGroups 
 	 */
-	public GroupInputValidator(List<NotificationGroup> tempNotificationGroups) {
-		this.tempNotificationGroups = tempNotificationGroups;
-	}
 	public String isValid(String s) {
 		int len = s.length();
 		if (len < 1) {
 			return "Notification Group name is too short";
 		}
-		if (len > 14) {
+		if (len > max) {
 			return "Notification Group name is too long";
 		}
 		for (int i = 0; i < tempNotificationGroups.size(); i++) {
