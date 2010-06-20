@@ -11,7 +11,6 @@ import java.util.HashMap;
 
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
@@ -66,8 +65,7 @@ public final class URLSelectionListener implements SelectionListener {
 				modelElement = projectSpace.resolve(modelElementUrlFragment);
 			} catch (MEUrlResolutionException e1) {
 			}
-			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName(),
-				new EMFStoreModelelementContext(modelElement));
+			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName());
 			logEvent(modelElementUrlFragment.getModelElementId(), e.getSource().getClass().getName());
 		} catch (MalformedURLException ex) {
 			WorkspaceUtil.logException("Invalid unicase URL pattern", ex);

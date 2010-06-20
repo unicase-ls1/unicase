@@ -35,9 +35,6 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param view
-	 *            callback to the repository view
 	 */
 	public NewRepositoryWizard() {
 		super();
@@ -55,10 +52,8 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @param workbench
-	 *            the workbench
-	 * @param selection
-	 *            the selection
+	 * @param workbench the workbench
+	 * @param selection the selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -69,15 +64,11 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 *{@inheritDoc}
 	 * 
-	 * @param workbench
-	 *            the workbench
-	 * @param selection
-	 *            the selection
-	 * @param serverInfo
-	 *            the serverInfo that would be modified
+	 * @param workbench the workbench
+	 * @param selection the selection
+	 * @param serverInfo the serverInfo that would be modified
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection,
-			ServerInfo serverInfo) {
+	public void init(IWorkbench workbench, IStructuredSelection selection, ServerInfo serverInfo) {
 		init(workbench, selection);
 		this.serverInfo = serverInfo;
 		this.edit = true;
@@ -101,19 +92,17 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 				@Override
 				protected void doRun() {
 					// save serverInfo to workspace
-					Workspace workspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
+					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 					if (!NewRepositoryWizard.this.edit) {
-						workspace.getServerInfos().add(
-								NewRepositoryWizard.this.serverInfo);
+						workspace.getServerInfos().add(NewRepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
 				}
 			}.run();
 			dispose();
 		} else {
-			MessageDialog.openError(workbench.getActiveWorkbenchWindow()
-					.getShell(), "Error", "Field(s) were left blank!");
+			MessageDialog.openError(workbench.getActiveWorkbenchWindow().getShell(), "Error",
+				"Field(s) were left blank!");
 			return false;
 		}
 		return true;
