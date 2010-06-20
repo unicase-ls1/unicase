@@ -78,7 +78,8 @@ public class CompositeBottom extends Composite {
 					String userEmail = new UnicaseCommandWithResult<String>() {
 						@Override
 						protected String doRun() {
-							return user.getEmail();
+							String s = user.getEmail();
+							return s;
 						}
 					}.run();
 					final InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),

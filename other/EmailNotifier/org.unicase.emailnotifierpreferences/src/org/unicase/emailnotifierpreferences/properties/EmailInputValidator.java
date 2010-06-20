@@ -5,37 +5,52 @@
  */
 package org.unicase.emailnotifierpreferences.properties;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import org.eclipse.jface.dialogs.IInputValidator;
 
 /**
- * This class validates a String. It is used to validate the input when a NotificationGroup is added or edited. The
- * string that is validated is the name of the NotificationGroup.The string has to be between 1 and 14 characters long
- * and it may not be identical to any NotificationGroup names that already exist for the current users's project.
+ * This class validates a String. It is used to validate an email address.
  * 
  * @author fuesescc
  */
 class EmailInputValidator implements IInputValidator {
-	
+
 	/**
 	 * Validates the String. Returns null for no error, or an error message
 	 * 
-	 * @param newText the String to validate
+	 * @param s the String to validate
 	 * @return String
-	 * 
 	 * @author fuesescc
 	 */
 	public EmailInputValidator() {
 	}
-	
+
 	public String isValid(String s) {
 		int len = s.length();
-		if (len < 1) {
-			return "Notification Group name is too short";
+		int posat = s.lastIndexOf("@");
+
+		if (len > 254) {
+			return "Email address is too long";
 		}
-		if (len > 14) {
-			return "Notification Group name is too long";
+
+		if (s.indexOf(" ") == 0) {
+			return "No leading whitespaces allowed!";
 		}
-		
-		return null;
+
+		try {
+			InternetAddress emailaddress = new InternetAddress(s, true);
+
+			// Assumption: Domain part of the email address should contain a dot
+			if (emailaddress.toString().indexOf(".", (posat + 1)) == -1) {
+				return "Domain part of email address does not contain a dot";
+			}
+
+			return null;
+			
+		} catch (AddressException e) {
+			return e.getMessage();
+		}
 	}
 }

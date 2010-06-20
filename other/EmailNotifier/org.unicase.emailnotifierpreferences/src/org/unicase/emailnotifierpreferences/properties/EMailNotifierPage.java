@@ -93,7 +93,7 @@ public class EMailNotifierPage extends PropertyPage {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).hint(110, SWT.DEFAULT).applyTo(groupListLabel);
 		notificationGroupList = new TableViewer(compositeNotificationGroups, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 			| SWT.BORDER);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.FILL).grab(false, true).hint(80, 150).applyTo(
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.FILL).grab(false, true).hint(100, 150).applyTo(
 			notificationGroupList.getControl());
 
 		Composite btntoolbar = new Composite(compositeNotificationGroups, SWT.NONE);
