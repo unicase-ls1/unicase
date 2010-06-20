@@ -32,7 +32,6 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
@@ -889,8 +888,7 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(0, getProjectSpace().getOperations().size());
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 		// delete
-		editingDomain.getCommandStack().execute(
-			DeleteCommand.create((new EMFStoreModelelementContext(actor)).getEditingDomain(), actor));
+		editingDomain.getCommandStack().execute(DeleteCommand.create(editingDomain, actor));
 
 		assertEquals(0, leafSection.getModelElements().size());
 		assertTrue(editingDomain.getCommandStack().canUndo());
@@ -910,41 +908,42 @@ public class CommandTest extends WorkspaceTest {
 		// assertEquals(1, getProjectSpace().getOperations().size());
 	}
 
-	@Test
-	public void moveToWorkpackageCommand() {
-		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
-		final WorkPackage sourceWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
-		final ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
-		actionItem.setName("Move me anywhere you want!");
-		actionItem.setContainingWorkpackage(sourceWorkPackage);
-		final WorkPackage targetWorkpackage = TaskFactory.eINSTANCE.createWorkPackage();
-		targetWorkpackage.setName("target workpackage");
-		leafSection.getModelElements().add(sourceWorkPackage);
-		leafSection.getModelElements().add(targetWorkpackage);
-
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				getProject().addModelElement(leafSection);
-			}
-		}.run();
-		assertEquals(2, leafSection.getContainedElements().size());
-		assertEquals(1, sourceWorkPackage.getContainedElements().size());
-		assertEquals(0, targetWorkpackage.getContainedElements().size());
-
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				clearOperations();
-				org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
-					.getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
-			}
-		}.run();
-
-		assertEquals(2, leafSection.getContainedElements().size());
-		assertEquals(0, sourceWorkPackage.getContainedElements().size());
-		assertEquals(1, targetWorkpackage.getContainedElements().size());
-		assertEquals(1, getProjectSpace().getOperations().size());
-	}
+	// commented out because requires dependency to ui
+	// @Test
+	// public void moveToWorkpackageCommand() {
+	// final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+	// final WorkPackage sourceWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
+	// final ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
+	// actionItem.setName("Move me anywhere you want!");
+	// actionItem.setContainingWorkpackage(sourceWorkPackage);
+	// final WorkPackage targetWorkpackage = TaskFactory.eINSTANCE.createWorkPackage();
+	// targetWorkpackage.setName("target workpackage");
+	// leafSection.getModelElements().add(sourceWorkPackage);
+	// leafSection.getModelElements().add(targetWorkpackage);
+	//
+	// new UnicaseCommand() {
+	// @Override
+	// protected void doRun() {
+	// getProject().addModelElement(leafSection);
+	// }
+	// }.run();
+	// assertEquals(2, leafSection.getContainedElements().size());
+	// assertEquals(1, sourceWorkPackage.getContainedElements().size());
+	// assertEquals(0, targetWorkpackage.getContainedElements().size());
+	//
+	// new UnicaseCommand() {
+	//
+	// @Override
+	// protected void doRun() {
+	// clearOperations();
+	// org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
+	// .getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
+	// }
+	// }.run();
+	//
+	// assertEquals(2, leafSection.getContainedElements().size());
+	// assertEquals(0, sourceWorkPackage.getContainedElements().size());
+	// assertEquals(1, targetWorkpackage.getContainedElements().size());
+	// assertEquals(1, getProjectSpace().getOperations().size());
+	// }
 }
