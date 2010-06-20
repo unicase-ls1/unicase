@@ -47,7 +47,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
@@ -102,16 +101,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo){
+				if (node.getValue() instanceof HistoryInfo) {
 					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
-					if(historyInfo.getChangePackage() != null &&
-					   (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)
-					   ){
-						AccessControlHelper helper = new AccessControlHelper(
-								projectSpace.getUsersession());
+					if (historyInfo.getChangePackage() != null
+						&& (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)) {
+						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
 						try {
-							helper.checkProjectAdminAccess((ProjectId) EcoreUtil
-									.copy(projectSpace.getProjectId()));
+							helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
 							manager.add(addTagAction);
 							manager.add(removeTagAction);
 							manager.add(new Separator());
@@ -251,8 +247,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				if (event.getSelection() instanceof IStructuredSelection) {
 					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID,
-							new EMFStoreModelelementContext((ModelElement) node.getValue()));
+						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -585,13 +580,11 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			currentEnd = -1;
 		} else {
 			currentEnd = end;
-			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE
-					.createPrimaryVersionSpec();
+			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 			tempVersionSpec.setIdentifier(end);
-			end = projectSpace.resolveVersionSpec(tempVersionSpec)
-					.getIdentifier();
+			end = projectSpace.resolveVersionSpec(tempVersionSpec).getIdentifier();
 		}
-		
+
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 
