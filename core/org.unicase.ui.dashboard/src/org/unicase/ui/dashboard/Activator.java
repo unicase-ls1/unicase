@@ -6,8 +6,10 @@
 
 package org.unicase.ui.dashboard;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -23,10 +25,38 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
+	private boolean shouldFixHeightForCocoa;
+
 	/**
 	 * The constructor.
 	 */
 	public Activator() {
+		Bundle bundle = Platform.getBundle("org.eclipse.swt.cocoa.macosx");
+		if(bundle!=null &&
+			bundle.getVersion().getMajor() == 3 &&
+			bundle.getVersion().getMinor() == 5){
+				shouldFixHeightForCocoa = true;
+		}
+	}
+	
+	/**
+	 * Fixes a bug in the Cocoa implementation of the SWT Link control (version 3.5). 
+	 * Note that this is a rather <b>quick</b> workaround since this issue is supposed to be fixed in 3.6.
+	 * It may not apply for all use cases of the Link control!
+	 * @param height
+	 * @return
+	 */
+	public int fixHeightForCocoa(int height){
+		if(!shouldFixHeightForCocoa){
+			return height;
+		}
+		double fix = 1.5;
+		if(height<=15){
+			// two liners need a different fix 
+			fix = 2.0;
+		}
+		int ret = (int) (fix*height);
+		return ret;
 	}
 
 	// BEGIN SUPRESS CATCH EXCEPTION
