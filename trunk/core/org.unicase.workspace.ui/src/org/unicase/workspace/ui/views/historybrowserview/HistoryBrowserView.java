@@ -102,18 +102,22 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo
-					&& ((HistoryInfo) node.getValue()).getChangePackage() != null
-					&& ((HistoryInfo) node.getValue()).getChangePackage().getLogMessage() != null) {
-					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
-					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-						manager.add(addTagAction);
-						manager.add(removeTagAction);
-						manager.add(new Separator());
-					} catch (AccessControlException e) {
-						// do nothing
-						System.out.println("");
+				if (node.getValue() instanceof HistoryInfo){
+					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
+					if(historyInfo.getChangePackage() != null &&
+					   (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)
+					   ){
+						AccessControlHelper helper = new AccessControlHelper(
+								projectSpace.getUsersession());
+						try {
+							helper.checkProjectAdminAccess((ProjectId) EcoreUtil
+									.copy(projectSpace.getProjectId()));
+							manager.add(addTagAction);
+							manager.add(removeTagAction);
+							manager.add(new Separator());
+						} catch (AccessControlException e) {
+							// do nothing
+						}
 					}
 
 				}
@@ -126,7 +130,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 						manager.add(forceRevertAction);
 					} catch (AccessControlException e) {
 						// do nothing
-						System.out.println("");
 					}
 				}
 			}
@@ -176,6 +179,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 	private int startOffset = 24;
 
+	/**
+	 * this should be the UNRESOLVED VersionSpec ID (-1 for HeadVersionSpec).
+	 */
 	private int currentEnd;
 
 	private int headVersion;
@@ -576,8 +582,16 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		getHeadVersionIdentifier();
 		if (end == -1) {
 			end = headVersion;
-			currentEnd = headVersion;
+			currentEnd = -1;
+		} else {
+			currentEnd = end;
+			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
+			tempVersionSpec.setIdentifier(end);
+			end = projectSpace.resolveVersionSpec(tempVersionSpec)
+					.getIdentifier();
 		}
+		
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 

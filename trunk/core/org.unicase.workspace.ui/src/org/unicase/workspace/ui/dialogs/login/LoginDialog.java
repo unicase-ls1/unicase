@@ -18,8 +18,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Rectangle;
@@ -64,6 +64,7 @@ public class LoginDialog extends TitleAreaDialog {
 	private Button savePassButton;
 	protected boolean backspace;
 	private boolean isPasswordModified = false;
+	private String exception;
 
 	private LoginDialog(Shell parent) {
 		super(parent);
@@ -151,6 +152,9 @@ public class LoginDialog extends TitleAreaDialog {
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 10).applyTo(
 				contents);
+		if (exception != null) {
+			setErrorMessage(exception);
+		}
 
 		getShell().setText("Authentication required");
 		setTitle("Log in");
@@ -186,20 +190,12 @@ public class LoginDialog extends TitleAreaDialog {
 		Label passLabel = new Label(parent, SWT.WRAP);
 		passLabel.setText("Password");
 
-		passText = new Text(parent, SWT.SINGLE | SWT.BORDER);
+		passText = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.PASSWORD);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(passText);
-		passText.setEchoChar('\u2022');
-		passText.addKeyListener(new KeyListener() {
-			public void keyReleased(KeyEvent e) {
-				if (!(e.character == '	') || e.character == '\0') {
-					isPasswordModified = true;
-				}
-			}
+		passText.addModifyListener(new ModifyListener() {
 
-			public void keyPressed(KeyEvent e) {
-				if (!(e.character == '	') || e.character == '\0') {
-					isPasswordModified = true;
-				}
+			public void modifyText(ModifyEvent e) {
+				isPasswordModified = true;
 			}
 		});
 
@@ -208,6 +204,8 @@ public class LoginDialog extends TitleAreaDialog {
 
 		savePassButton = new Button(parent, SWT.CHECK);
 		loadSession(usersession);
+
+		userText.setFocus();
 
 	}
 
@@ -376,6 +374,31 @@ public class LoginDialog extends TitleAreaDialog {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int open() {
+		if (usersession != null && usersession.getUsername() != null
+				&& usersession.getPassword() != null) {
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					try {
+						usersession.logIn();
+					} catch (EmfStoreException e) {
+						exception = e.getMessage();
+					}
+				}
+			}.run();
+			close();
+			setReturnCode(OK);
+			return OK;
+		}
+		int ret = super.open();
+		return ret;
 	}
 
 }
