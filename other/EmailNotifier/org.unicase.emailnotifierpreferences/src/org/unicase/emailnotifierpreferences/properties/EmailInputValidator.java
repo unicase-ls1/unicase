@@ -28,10 +28,10 @@ public class EmailInputValidator implements IInputValidator {
 	 * @author fuesescc
 	 */
 	public String isValid(String s) {
-		int len = s.length();
+		int length = s.length();
 		int posat = s.lastIndexOf("@");
 
-		if (len > 254) {
+		if (length > 254) {
 			return "Email address is too long";
 		}
 
