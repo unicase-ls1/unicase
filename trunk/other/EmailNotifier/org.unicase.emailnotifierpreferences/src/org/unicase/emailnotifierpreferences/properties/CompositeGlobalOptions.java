@@ -15,6 +15,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emailnotifierpreferences.Activator;
@@ -22,32 +23,33 @@ import org.unicase.model.organization.User;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
-public class CompositeBottom extends Composite {
+public class CompositeGlobalOptions extends Composite {
 
 	private Button notificationServiceCheck;
 	private User user;
 	private boolean existEmail;
-	private Composite main;
+	private Group main;
 	private Composite compositeActivation;
 	private Composite compositeEmail;
 
-	CompositeBottom(Composite c, boolean existEmail, User user) {
+	CompositeGlobalOptions(Composite c, boolean existEmail, User user) {
 		super(c, SWT.NONE);
 		this.user = user;
 		setExistEmail(existEmail);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(this);
-		GridDataFactory.fillDefaults().applyTo(this);
+		GridLayoutFactory.fillDefaults().applyTo(this);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(this);
 
-		main = new Composite(this, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(main);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
+		main = new Group(this, SWT.NONE);
+		GridLayoutFactory.fillDefaults().extendedMargins(0, 0, 5, 5).applyTo(main);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(main);
+		main.setText("Global options for EMail Notifier");
 		compositeActivation();
 		compositeEmail();
 	}
 
 	private Composite compositeActivation() {
 		compositeActivation = new Composite(main, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(compositeActivation);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(compositeActivation);
 		GridDataFactory.fillDefaults().grab(false, true).applyTo(compositeActivation);
 		Label notiService = new Label(compositeActivation, SWT.PUSH);
 		notiService.setText("Activate Email Notification:");
@@ -62,8 +64,8 @@ public class CompositeBottom extends Composite {
 
 	private Composite compositeEmail() {
 		compositeEmail = new Composite(main, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(compositeEmail);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(compositeEmail);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(compositeEmail);
+		GridDataFactory.fillDefaults().grab(true, true).hint(SWT.DEFAULT, 20).applyTo(compositeEmail);
 		if (existEmail) {
 			Label email = new Label(compositeEmail, SWT.PUSH);
 			email.setText("Notifications will be send to \"" + user.getEmail() + "\"");

@@ -34,20 +34,18 @@ public class CompositeSendOptions extends Composite {
 
 	private Composite daysSpinnerComp;
 	private Spinner daysSpinner;
-	
+
 	private EMFDataBindingContext bindingContext;
 
-	CompositeSendOptions(Composite c, String s, final List<NotificationGroup> tempNotificationGroups,
-		NotificationGroup group) {
+	CompositeSendOptions(Composite c, final List<NotificationGroup> tempNotificationGroups, NotificationGroup group) {
 		super(c, SWT.NONE);
 		final int indexofbundle = tempNotificationGroups.indexOf(group);
 		GridLayoutFactory.fillDefaults().applyTo(this);
 		GridDataFactory.fillDefaults().grab(false, true).hint(210, SWT.DEFAULT).applyTo(this);
 
 		Label configLabel = new Label(this, SWT.PUSH | SWT.TOP | SWT.WRAP);
-		GridDataFactory.fillDefaults().hint(150, SWT.DEFAULT).grab(true, false).applyTo(
-			configLabel);
-		configLabel.setText("Send options for group " + s);
+		GridDataFactory.fillDefaults().hint(150, SWT.DEFAULT).grab(true, false).applyTo(configLabel);
+		configLabel.setText("Set send options:");
 		sendOption = new Combo(this, SWT.DROP_DOWN | SWT.READ_ONLY);
 		EList<EEnumLiteral> sendlist = ((EEnum) EmailnotificationgroupPackage.Literals.SEND_SETTINGS).getELiterals();
 		for (EEnumLiteral literal : sendlist) {
