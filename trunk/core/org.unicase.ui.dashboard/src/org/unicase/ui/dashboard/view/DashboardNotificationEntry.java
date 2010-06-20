@@ -79,9 +79,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		@Override
 		public void mouseUp(MouseEvent e) {
 			toggleDrawer(e, showDrawer);
-			showDrawer = !showDrawer;
-			getPage().getForm().reflow(true);
-			notificationComposite.setFocus();
 		}
 	}
 
@@ -133,6 +130,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		public void widgetSelected(SelectionEvent e) {
 			String text = e.text;
 			if (text.equals("more")) {
+				toggleDrawer(e, showDrawer);
 				return;
 			}
 			try {
@@ -411,7 +409,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			text = "";
 		}
 		entryMessage.setText(text);
-		GridDataFactory.fillDefaults().hint(400, SWT.DEFAULT).grab(true, false)
+		int height = Activator.getDefault().fixHeightForCocoa(entryMessage.computeSize(400, SWT.DEFAULT).y);
+		GridDataFactory.fillDefaults().hint(400, height).grab(true, false)
 				.applyTo(entryMessage);
 		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
 
@@ -445,8 +444,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			toogleDrawer.setToolTipText("Toggle details");
 			ToggleDrawerAdapter toggleDrawerAdapter = new ToggleDrawerAdapter();
 			toogleDrawer.addMouseListener(toggleDrawerAdapter);
-			entryMessage.addMouseListener(toggleDrawerAdapter);
-//			notificationComposite.addMouseListener(toggleDrawerAdapter);
 		}
 		if (comments.size() > 0 && comments.get(0).eContainer() != null) {
 			DashboardToolbarAction openThread = new DashboardToolbarAction(
@@ -516,6 +513,9 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 					(GridData) drawerComposite.getLayoutData()).hint(380, 0)
 					.applyTo(drawerComposite);
 		}
+		showDrawer = !open;
+		getPage().getForm().reflow(true);
+		notificationComposite.setFocus();
 		getParent().layout();
 	}
 

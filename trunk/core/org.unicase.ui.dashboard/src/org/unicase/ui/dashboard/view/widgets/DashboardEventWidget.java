@@ -28,6 +28,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.ui.dashboard.Activator;
 import org.unicase.workspace.ui.util.URLHelper;
 import org.unicase.workspace.ui.util.URLSelectionListener;
 
@@ -92,9 +93,11 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				link.setText(stringBuilder.toString());
 				link.addSelectionListener(URLSelectionListener
 						.getInstance(getDashboard().getProjectSpace()));
+				int height = Activator.getDefault().fixHeightForCocoa(link.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 				GridDataFactory.fillDefaults().hint(
 						getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x,
-						SWT.DEFAULT).grab(true, false).applyTo(link);
+						height).
+						grab(true, false).applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);
