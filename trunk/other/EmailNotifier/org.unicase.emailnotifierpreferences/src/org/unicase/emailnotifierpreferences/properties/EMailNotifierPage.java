@@ -60,7 +60,7 @@ public class EMailNotifierPage extends PropertyPage {
 
 	// maximum length for the name of a Notification Group
 	final private Integer MAX = 15;
-	
+
 	private Project project;
 	private ProjectSpace projectSpace;
 	private List<NotificationGroup> tempNotificationGroups;
@@ -73,6 +73,45 @@ public class EMailNotifierPage extends PropertyPage {
 	private Group groupNotificationGroupProperties;
 	private CompositeNotificationTypeSelection compositeNotificationTypeSelection;
 	private CompositeGlobalOptions compositeGlobalOptions;
+
+	/**
+	 * Init method that is called before the UI is built.
+	 * 
+	 * @author fuesescc
+	 */
+	private boolean init() {
+		existUser = true;
+		if (!(getElement() instanceof Project)) {
+			return false;
+		}
+		tempNotificationGroups = new Vector<NotificationGroup>();
+		project = (Project) getElement();
+		projectSpace = WorkspaceManager.getProjectSpace(project);
+
+		// check the current user
+		ACOrgUnitId userid = projectSpace.getUsersession().getACUser().getId();
+		EList<User> listOfUsers = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+			new BasicEList<User>());
+		currentUser = null;
+		for (User u : listOfUsers) {
+			if (u.getAcOrgId().equals(userid.getId())) {
+				currentUser = u;
+			}
+		}
+		if (currentUser == null) {
+			existUser = false;
+			return false;
+		} else {
+			if (currentUser.getEmail() == null) {
+				existEmail = false;
+			} else if (currentUser.getEmail().equals("")) {
+				existEmail = false;
+			} else {
+				existEmail = true;
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * This Method builds the main part of the UI for EmailNotifier Service Properties.
@@ -240,45 +279,6 @@ public class EMailNotifierPage extends PropertyPage {
 	}
 
 	/**
-	 * Init method that is called before the UI is built.
-	 * 
-	 * @author fuesescc
-	 */
-	private boolean init() {
-		existUser = true;
-		if (!(getElement() instanceof Project)) {
-			return false;
-		}
-		tempNotificationGroups = new Vector<NotificationGroup>();
-		project = (Project) getElement();
-		projectSpace = WorkspaceManager.getProjectSpace(project);
-
-		// check the current user
-		ACOrgUnitId userid = projectSpace.getUsersession().getACUser().getId();
-		EList<User> listOfUsers = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-			new BasicEList<User>());
-		currentUser = null;
-		for (User u : listOfUsers) {
-			if (u.getAcOrgId().equals(userid.getId())) {
-				currentUser = u;
-			}
-		}
-		if (currentUser == null) {
-			existUser = false;
-			return false;
-		} else {
-			if (currentUser.getEmail() == null) {
-				existEmail = false;
-			} else if (currentUser.getEmail().equals("")) {
-				existEmail = false;
-			} else {
-				existEmail = true;
-			}
-		}
-		return true;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public boolean performOk() {
@@ -329,7 +329,8 @@ public class EMailNotifierPage extends PropertyPage {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Create a Notification Group",
-					"Enter 1-" + MAX.toString() + "characters", "", new GroupInputValidator(tempNotificationGroups, MAX));
+					"Enter 1-" + MAX.toString() + " characters", "", new GroupInputValidator(tempNotificationGroups,
+						MAX));
 				if (dlg.open() == Window.OK) {
 					NotificationGroup newgroup = EmailnotificationgroupFactoryImpl.eINSTANCE.createNotificationGroup();
 					newgroup.setNotificationGroupName(dlg.getValue());
@@ -363,8 +364,8 @@ public class EMailNotifierPage extends PropertyPage {
 				}
 				InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),
 					"Edit the name of the selected Notification Group \"" + group.getNotificationGroupName() + "\"",
-					"Enter 1-" + MAX.toString() + "characters", group.getNotificationGroupName(), new GroupInputValidator(
-						tempNotificationGroups, MAX));
+					"Enter 1-" + MAX.toString() + " characters", group.getNotificationGroupName(),
+					new GroupInputValidator(tempNotificationGroups, MAX));
 				if (dlg.open() == Window.OK) {
 					group.setNotificationGroupName(dlg.getValue());
 					disposeProperties();
@@ -388,8 +389,7 @@ public class EMailNotifierPage extends PropertyPage {
 		groupNotificationGroupProperties.setText("Options for group \"" + name + "\"");
 		compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(groupNotificationGroupProperties,
 			tempNotificationGroups, group);
-		new CompositeSendOptions(groupNotificationGroupProperties,
-			tempNotificationGroups, group);
+		new CompositeSendOptions(groupNotificationGroupProperties, tempNotificationGroups, group);
 		loadProviderProperties(tempNotificationGroups, tempNotificationGroups.indexOf(group));
 		compositeNotificationGroupProperties.layout();
 	}
