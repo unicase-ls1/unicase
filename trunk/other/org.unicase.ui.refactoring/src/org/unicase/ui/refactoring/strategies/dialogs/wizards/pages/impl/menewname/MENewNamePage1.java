@@ -78,6 +78,7 @@ public class MENewNamePage1 extends AbstractRefactoringWizardPage {
 	 */
 	@Override
 	public boolean performFinish() {
+		getControl().setFocus();
 		getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_CREATE);
 		return true;
 	}
