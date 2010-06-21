@@ -7,6 +7,7 @@ package org.unicase.ui.navigator.workSpaceModel.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
@@ -108,8 +109,35 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 	 * 
 	 * @generated
 	 */
+	public EReference getECPWorkspace_Projects() {
+		return (EReference) ecpWorkspaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getECPWorkspace_ActiveProject() {
+		return (EReference) ecpWorkspaceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getECPProject() {
 		return ecpProjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getECPProject_Workspace() {
+		return (EReference) ecpProjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -141,8 +169,11 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 		// Create classes and their features
 		ecpWorkspaceEClass = createEClass(ECP_WORKSPACE);
+		createEReference(ecpWorkspaceEClass, ECP_WORKSPACE__PROJECTS);
+		createEReference(ecpWorkspaceEClass, ECP_WORKSPACE__ACTIVE_PROJECT);
 
 		ecpProjectEClass = createEClass(ECP_PROJECT);
+		createEReference(ecpProjectEClass, ECP_PROJECT__WORKSPACE);
 	}
 
 	/**
@@ -175,11 +206,20 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(ecpWorkspaceEClass, ECPWorkspace.class, "ECPWorkspace", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(ecpWorkspaceEClass, ECPWorkspace.class, "ECPWorkspace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getECPWorkspace_Projects(), this.getECPProject(), this.getECPProject_Workspace(), "projects",
+			null, 0, -1, ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getECPWorkspace_ActiveProject(), this.getECPProject(), null, "activeProject", null, 0, 1,
+			ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ecpProjectEClass, ECPProject.class, "ECPProject", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getECPProject_Workspace(), this.getECPWorkspace(), this.getECPWorkspace_Projects(), "workspace",
+			null, 0, 1, ECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

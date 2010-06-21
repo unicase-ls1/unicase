@@ -50,12 +50,12 @@ import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.observers.SimpleOperationListener;
 import org.unicase.workspace.util.ProjectSpaceContainer;
 
 /**
@@ -72,9 +72,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	private boolean isLinkedWithEditor;
 	private Action linkWithEditor;
 	private PartListener partListener;
-	private Workspace currentWorkspace;
+	private ECPWorkspace currentWorkspace;
 	private AdapterImpl workspaceListenerAdapter;
-	private SimpleOperationListener simpleOperationListener;
+	private ECPProjectListener simpleOperationListener;
 	private boolean internalSelectionEvent;
 
 	/**
@@ -82,23 +82,28 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 */
 	public TreeView() {
 		createOperationListener();
-		currentWorkspace = org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace();
-		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
-			projectSpace.addOperationListener(simpleOperationListener);
+		try {
+			currentWorkspace = WorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			return;
+		}
+		for (ECPProject project : currentWorkspace.getProjects()) {
+			project.addECPProjectListener(simpleOperationListener);
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+				if ((msg.getFeatureID(ECPWorkspace.class)) == WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS) {
 					if (msg.getEventType() == Notification.ADD
-						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
-						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
-						projectSpace.addOperationListener(simpleOperationListener);
+						&& WorkSpaceModelPackage.eINSTANCE.getECPProject().isInstance(msg.getNewValue())) {
+						ECPProject projectSpace = (ECPProject) msg.getNewValue();
+						projectSpace.addECPProjectListener(simpleOperationListener);
 					} else if (msg.getEventType() == Notification.REMOVE
-						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
-						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
-						projectSpace.removeOperationListener(simpleOperationListener);
+						&& WorkSpaceModelPackage.eINSTANCE.getECPProject().isInstance(msg.getOldValue())) {
+						ECPProject projectSpace = (ECPProject) msg.getOldValue();
+						projectSpace.removeECPProjectListener(simpleOperationListener);
 					}
 				}
 				super.notifyChanged(msg);
@@ -113,10 +118,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * updated. The refresh happens asynchronously and currently is no performance problem.
 	 */
 	private void createOperationListener() {
-		simpleOperationListener = new SimpleOperationListener() {
+		simpleOperationListener = new ECPProjectListener() {
 
-			@Override
-			public void operationPerformed(AbstractOperation operation) {
+			public void projectChanged() {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
@@ -125,8 +129,8 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 					}
 
 				});
-			}
 
+			}
 		};
 	}
 
@@ -155,7 +159,8 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		try {
 			ECPWorkspace workSpace = WorkspaceManager.getInstance().getWorkSpace();
 			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
-			viewer.setInput(currentWorkspace);
+			viewer.setInput(workSpace);
+			// viewer.setInput(currentWorkspace);
 		} catch (NoWorkspaceException e) {
 			// Do not show any content
 		}

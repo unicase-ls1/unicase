@@ -165,5 +165,21 @@
             </command>
 
    </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.ui.navigator.workSpaceModel.provider.WorkSpaceModelItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/workspaceModel">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage"
+            genModel="model/workspaceModel.gemodel"
+            uri="http://unicase.org/workspaceModel">
+      </package>
+   </extension>
 
 </plugin>
