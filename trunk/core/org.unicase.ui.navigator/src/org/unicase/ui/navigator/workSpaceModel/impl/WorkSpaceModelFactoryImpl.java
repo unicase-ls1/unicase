@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 
@@ -54,9 +55,21 @@ public class WorkSpaceModelFactoryImpl extends EFactoryImpl implements WorkSpace
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case WorkSpaceModelPackage.ECP_WORKSPACE:
+			return createECPWorkspace();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ECPWorkspace createECPWorkspace() {
+		ECPWorkspaceImpl ecpWorkspace = new ECPWorkspaceImpl();
+		return ecpWorkspace;
 	}
 
 	/**

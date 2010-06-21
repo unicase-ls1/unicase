@@ -12,6 +12,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.swt.widgets.Display;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.ui.common.MetaModelElementContext;
@@ -19,6 +21,7 @@ import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.observers.SimpleOperationListener;
 
 /**
  * ECPproject for the EMFStore.
@@ -28,6 +31,7 @@ import org.unicase.workspace.ProjectSpace;
 public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
 
 	private final ProjectSpace projectSpace;
+	private SimpleOperationListener simpleOperationListener;
 
 	/**
 	 * Default constructor.
@@ -36,7 +40,21 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
 	 */
 	public EMFStoreECPProject(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
-		// TODO Auto-generated constructor stub
+		simpleOperationListener = new SimpleOperationListener() {
+
+			@Override
+			public void operationPerformed(AbstractOperation operation) {
+				Display.getDefault().asyncExec(new Runnable() {
+
+					public void run() {
+						projectChanged();
+					}
+
+				});
+			}
+
+		};
+		projectSpace.addOperationListener(simpleOperationListener);
 	}
 
 	/**
@@ -107,6 +125,25 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
 	 */
 	public boolean isNonDomainElement(EObject eObject) {
 		return (eObject instanceof NonDomainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject()
+	 */
+	public EObject getRootObject() {
+		return projectSpace;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#dispose()
+	 */
+	public void dispose() {
+		projectSpace.removeOperationListener(simpleOperationListener);
+
 	}
 
 }

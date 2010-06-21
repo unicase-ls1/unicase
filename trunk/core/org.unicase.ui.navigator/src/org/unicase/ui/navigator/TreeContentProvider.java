@@ -70,4 +70,23 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 
 	}
 
+	// /**
+	// * {@inheritDoc}
+	// *
+	// * @see
+	// org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#getElements(java.lang.Object)
+	// */
+	// @Override
+	// public Object[] getElements(Object object) {
+	// ArrayList<EObject> ret = new ArrayList<EObject>();
+	// if (object instanceof ECPWorkspace) {
+	// ECPWorkspace ecpWorkspace = (ECPWorkspace) object;
+	// EList<ECPProject> projects = ecpWorkspace.getProjects();
+	// for (ECPProject project : projects) {
+	// ret.add(project.getRootObject());
+	// }
+	// }
+	// return ret.toArray();
+	// }
+
 }

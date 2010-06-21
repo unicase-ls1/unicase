@@ -13,5 +13,7 @@ Export-Package: org.unicase.ui.navigator,
  org.unicase.ui.navigator.handler,
  org.unicase.ui.navigator.wizards,
  org.unicase.ui.navigator.workSpaceModel,
- org.unicase.ui.navigator.workSpaceModel.impl
+ org.unicase.ui.navigator.workSpaceModel.impl,
+ org.unicase.ui.navigator.workSpaceModel.provider,
+ org.unicase.ui.navigator.workSpaceModel.util
 

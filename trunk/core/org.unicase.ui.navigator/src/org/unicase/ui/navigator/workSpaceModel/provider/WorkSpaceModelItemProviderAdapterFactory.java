@@ -72,6 +72,29 @@ public class WorkSpaceModelItemProviderAdapterFactory extends WorkSpaceModelAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.ui.navigator.workSpaceModel.ECPWorkspace}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ECPWorkspaceItemProvider ecpWorkspaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.ui.navigator.workSpaceModel.ECPWorkspace}. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createECPWorkspaceAdapter() {
+		if (ecpWorkspaceItemProvider == null) {
+			ecpWorkspaceItemProvider = new ECPWorkspaceItemProvider(this);
+		}
+
+		return ecpWorkspaceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -165,6 +188,8 @@ public class WorkSpaceModelItemProviderAdapterFactory extends WorkSpaceModelAdap
 	 * @generated
 	 */
 	public void dispose() {
+		if (ecpWorkspaceItemProvider != null)
+			ecpWorkspaceItemProvider.dispose();
 	}
 
 }

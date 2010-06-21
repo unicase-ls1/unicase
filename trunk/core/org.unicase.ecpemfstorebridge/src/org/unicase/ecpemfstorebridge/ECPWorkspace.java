@@ -7,6 +7,8 @@ package org.unicase.ecpemfstorebridge;
 
 import java.util.HashMap;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -15,7 +17,9 @@ import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -26,6 +30,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.navigator.workSpaceModel.ECPWorkspace {
 
 	private HashMap<ProjectSpace, EMFStoreECPProject> mapping = new HashMap<ProjectSpace, EMFStoreECPProject>();
+	private AdapterImpl workspaceListenerAdapter;
 
 	/**
 	 * default constructor.
@@ -33,8 +38,34 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	public ECPWorkspace() {
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 		for (ProjectSpace projectSpace : projectSpaces) {
-			mapping.put(projectSpace, new EMFStoreECPProject(projectSpace));
+			EMFStoreECPProject emfStoreECPProject = new EMFStoreECPProject(projectSpace);
+			getProjects().add(emfStoreECPProject);
+			mapping.put(projectSpace, emfStoreECPProject);
 		}
+		workspaceListenerAdapter = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+					if (msg.getEventType() == Notification.ADD
+						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
+						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
+						EMFStoreECPProject emfStoreECPProject = new EMFStoreECPProject(projectSpace);
+						getProjects().add(emfStoreECPProject);
+						mapping.put(projectSpace, emfStoreECPProject);
+					} else if (msg.getEventType() == Notification.REMOVE
+						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
+						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
+						ECPProject project = getProject(projectSpace);
+						project.dispose();
+						project.setWorkspace(null);
+						mapping.remove(projectSpace);
+					}
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(workspaceListenerAdapter);
 	}
 
 	/**
@@ -42,6 +73,7 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	 * 
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getEditingDomain()
 	 */
+	@Override
 	public TransactionalEditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
 	}
@@ -51,10 +83,14 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	 * 
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getProject(org.unicase.metamodel.ModelElement)
 	 */
+	@Override
 	public ECPProject getProject(EObject me) {
 		if (me instanceof ModelElement) {
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace((ModelElement) me);
 			return mapping.get(projectSpace);
+		}
+		if (me instanceof ProjectSpace) {
+			return mapping.get(me);
 		}
 		return null;
 
@@ -65,6 +101,7 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	 * 
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getActiveProject()
 	 */
+	@Override
 	public ECPProject getActiveProject() {
 		return mapping.get(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace());
 	}
@@ -74,6 +111,7 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	 * 
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#setActiveModelelement(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public void setActiveModelelement(EObject modelelement) {
 		if (modelelement == null) {
 			return;
