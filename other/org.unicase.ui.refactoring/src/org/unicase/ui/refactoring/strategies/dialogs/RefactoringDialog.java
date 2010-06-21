@@ -14,10 +14,10 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 /**
  * @author pfeifferc
  */
-public abstract class AbstractRefactoringDialog extends WizardDialog {
+public class RefactoringDialog extends WizardDialog {
 
 	/**
-	 * Has the cancel button been pressed.
+	 * The result of the refactoring process.
 	 */
 	private RefactoringResult refactoringResult;
 
@@ -30,7 +30,7 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 * @param parentShell the
 	 * @param newWizard the
 	 */
-	public AbstractRefactoringDialog(Shell parentShell, AbstractRefactoringWizard newWizard) {
+	public RefactoringDialog(Shell parentShell, AbstractRefactoringWizard newWizard) {
 		super(parentShell, newWizard);
 		addPageChangedListener(newWizard);
 		this.wizard = newWizard;
@@ -50,7 +50,9 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 */
 	@Override
 	protected void finishPressed() {
-		setRefactoringResult(wizard.getRefactoringResult());
+		getWizard().performFinish();
+		refactoringResult = wizard.getRefactoringResult();
+		close();
 	}
 	
 	/**
@@ -60,7 +62,7 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		setRefactoringResult(RefactoringResult.ABORT);
+		refactoringResult = RefactoringResult.ABORT;
 		super.cancelPressed();
 	}
 
@@ -87,12 +89,5 @@ public abstract class AbstractRefactoringDialog extends WizardDialog {
 	 */
 	public RefactoringResult getRefactoringResult() {
 		return refactoringResult;
-	}
-
-	/**
-	 * @param refactoringResult the
-	 */
-	public void setRefactoringResult(RefactoringResult refactoringResult) {
-		this.refactoringResult = refactoringResult;
 	}
 }

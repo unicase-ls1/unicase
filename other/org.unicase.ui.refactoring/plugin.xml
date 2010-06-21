@@ -13,5 +13,10 @@
           id="org.unicase.ui.unicasecommon.refactoringstrategies.DiscussionIntoIssueRefactoringStrategy"
           strategy="org.unicase.ui.refactoring.strategies.DiscussionIntoIssueRefactoringStrategy">
     </refactoring>
+    <refactoring
+          applicableFor="org.unicase.model.ModelElementNewName"
+          id="org.unicase.ui.unicasecommon.refactoringstrategies.ModelElementNewNameRefactoringStrategy"
+          strategy="org.unicase.ui.refactoring.strategies.MENewNameRefactoringStrategy">
+    </refactoring>
  </extension>
 </plugin>

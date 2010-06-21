@@ -10,19 +10,17 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoring
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage1;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage2;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage3;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage4;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage5;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 
 /**
  * @author pfeifferc
  */
-public class DiscussionIntoIssueWizard extends AbstractRefactoringWizard {
+public class DiscussionIntoIssueRefactoringWizard extends AbstractRefactoringWizard {
 
 	/**
 	 * @param abstractRefactoringStrategy the
 	 */
-	public DiscussionIntoIssueWizard(AbstractRefactoringStrategy abstractRefactoringStrategy) {
+	public DiscussionIntoIssueRefactoringWizard(AbstractRefactoringStrategy abstractRefactoringStrategy) {
 		super(abstractRefactoringStrategy);
 	}
 
@@ -34,15 +32,5 @@ public class DiscussionIntoIssueWizard extends AbstractRefactoringWizard {
 		addPage(new DiscussionIntoIssuePage1("page_1", this));
 		addPage(new DiscussionIntoIssuePage2("page_2", this));
 		addPage(new DiscussionIntoIssuePage3("page_3", this));
-		addPage(new DiscussionIntoIssuePage4("page_4", this));
-		addPage(new DiscussionIntoIssuePage5("page_5", this));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean performFinish() {
-		return true;
 	}
 }

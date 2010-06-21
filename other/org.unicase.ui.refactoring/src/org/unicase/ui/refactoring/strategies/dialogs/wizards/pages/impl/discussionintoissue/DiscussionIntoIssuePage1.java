@@ -11,19 +11,27 @@ import java.util.List;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * @author pfeifferc
  */
 public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
+
+	private static final String GUIDE = "The model element present above has a greater amount of comments. It might therefore " +
+	"actually be an issue, in which case the comments should be contained in a new issue. As a first step, " +
+	"please review the discussion thread.";
 
 	/**
 	 * The default constructor.
@@ -33,6 +41,7 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 	 */
 	public DiscussionIntoIssuePage1(String pageName, AbstractRefactoringWizard wizard) {
 		super(pageName, wizard);
+		setPageComplete(true);
 	}
 
 	/**
@@ -47,8 +56,10 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 		Composite body = createBodyComposite(parent);
 		// create affected model element composite
 		createModelElementInformationCompositeWithDescription(body);
+		// create separator
+		createSeparator(body);
 		// create instruction text composite
-		createExplanatoryTextComposite(body, "Please review the discussion thread before continuing.", "exclamation.png");
+		createExplanatoryTextComposite(body, GUIDE, "validation.png");
 		// create scrolled composite to put the widgets on
 		ScrolledComposite scrolledComposite = new ScrolledComposite(body, SWT.BORDER | SWT.V_SCROLL);
 		scrolledComposite.setLayout(new GridLayout(1, true));
@@ -69,7 +80,62 @@ public class DiscussionIntoIssuePage1 extends AbstractRefactoringWizardPage {
 		scrolledComposite.setAlwaysShowScrollBars(true);
 		// set scrolled composite content
 		scrolledComposite.setContent(composite);
+		// create the composite to put the widgets on
+		composite = createComposite(body, SWT.TOP, new GridLayout(3, false), new GridData(SWT.FILL, SWT.TOP, true,
+				false));
+		// create arrow icon
+		createIconLabel(composite, "arrow_divide.png");
+		// create choose text
+		createText(composite, "Please choose:");
+		// create the composite to put the widgets on
+		GridLayout gridLayout = new GridLayout(2, false);
+		gridLayout.marginLeft = 25;
+		composite = createComposite(composite, SWT.TOP, gridLayout, new GridData(SWT.FILL, SWT.FILL, true, true));
+		// create go on button
+		Button button = new Button(composite, SWT.RADIO);
+		button.setSelection(true);
+		button.addSelectionListener(new ContinueButtonSelectionListener());
+		// create go on texts
+		createText(composite, "The comment thread is an issue");
+		// create is not button
+		new Button(composite, SWT.RADIO);
+		// create is not text
+		createText(composite, "The comment thread is not an issue (remember this)");
 		// set this as control for the page
 		setControl(body);
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class ContinueButtonSelectionListener implements SelectionListener {
+		public void widgetSelected(SelectionEvent e) {
+			boolean selection = ((Button) e.getSource()).getSelection();
+			setPageComplete(selection);
+			if(!selection) {
+				getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
+			}
+		}
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canFinish() {
+		return !isPageComplete();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean performFinish() {
+		getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
+		return super.performFinish();
 	}
 }

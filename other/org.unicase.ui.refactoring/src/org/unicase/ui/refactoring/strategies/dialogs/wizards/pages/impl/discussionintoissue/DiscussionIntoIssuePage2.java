@@ -9,6 +9,8 @@ package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discuss
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -18,7 +20,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
 
 /**
  * @author pfeifferc
@@ -49,10 +50,12 @@ public class DiscussionIntoIssuePage2 extends AbstractRefactoringWizardPage {
 		Composite body = createBodyComposite(parent);
 		// create affected model element composite
 		createModelElementInformationComposite(body);
-		// create information text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE2INFORMATION, "information.png");
+		// create separator
+		createSeparator(body);
 		// create instruction text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE2INSTRUCTION, "exclamation.png");
+		createExplanatoryTextComposite(body, "Please choose the comments that will be the parent elements in the new issue. " +
+				"If you choose multiple parent elements, be careful not to cut the discussion of in unexpected ways.",
+		"exclamation.png");
 		// create scrolled composite to put the widgets on
 		ScrolledComposite scrolledComposite = new ScrolledComposite(body, SWT.BORDER | SWT.V_SCROLL);
 		scrolledComposite.setLayout(new GridLayout(1, true));
@@ -61,8 +64,9 @@ public class DiscussionIntoIssuePage2 extends AbstractRefactoringWizardPage {
 		composite.setLayout(new GridLayout(1, true));
 		tree = new Tree(composite, SWT.MULTI | SWT.BORDER);
 		tree.setLayoutData(new GridData(GridData.FILL_BOTH));
+		tree.addSelectionListener(new TreeItemSelectionListener());
 		// populate the tree
-		populateTree(tree, (UnicaseModelElement)getRefactoringWizard().getInvalidModelElement());
+		populateTree(tree, (UnicaseModelElement) getRefactoringWizard().getInvalidModelElement());
 		// set scrolled composite properties
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolledComposite.setContent(composite);
@@ -81,6 +85,7 @@ public class DiscussionIntoIssuePage2 extends AbstractRefactoringWizardPage {
 			} else {
 				treeItem = new TreeItem((TreeItem) tree, SWT.NONE);
 			}
+			// add empty string for comments with null description
 			treeItem.setText("" + comment.getDescription());
 			treeItem.setImage(getRefactoringWizard().getLabelProvider().getImage(comment));
 			treeItem.setData(comment);
@@ -100,5 +105,19 @@ public class DiscussionIntoIssuePage2 extends AbstractRefactoringWizardPage {
 			getRefactoringWizard().getChildModelElements().add((Comment) treeItem.getData());
 		}
 		return super.getNextPage();
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class TreeItemSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do here
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			setPageComplete(tree.getSelection() != null && tree.getSelection().length != 0);
+		}
 	}
 }

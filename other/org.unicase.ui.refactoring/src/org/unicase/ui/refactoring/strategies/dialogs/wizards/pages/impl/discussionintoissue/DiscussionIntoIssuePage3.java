@@ -6,23 +6,30 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls.MERichTextControlWithoutToolbar;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.text.TextSnippets;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls.MESingeLinkControlWithoutNewReferenceAction;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author pfeifferc
  */
-public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage {
+public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage implements ModelElementChangeListener {
 
 	private Issue issue;
 
@@ -36,6 +43,8 @@ public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage {
 		super(pageName, wizard);
 		issue = RationaleFactory.eINSTANCE.createIssue();
 		getRefactoringWizard().addModelElement(issue);
+		issue.addModelElementChangeListener(this);
+		addModelElementChangeListener(issue, this);
 		getRefactoringWizard().getParentModelElements().add(issue);
 	}
 
@@ -53,13 +62,14 @@ public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage {
 		Composite body = createBodyComposite(parent);
 		// create affected model element composite
 		createModelElementInformationComposite(body);
-		// create information text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE3INFORMATION, "information.png");
+		// create separator
+		createSeparator(body);
 		// create instruction text composite
-		createExplanatoryTextComposite(body, TextSnippets.DISCUSSIONINTOISSUE3INSTRUCTION, "exclamation.png");
+		createExplanatoryTextComposite(body, "Please specify the details needed for the new issue. In order to finish " +
+				"the wizard, you need to set a parent element for the issue.", "exclamation.png");
 		// create the composite to put the widgets on
 		composite = createComposite(body, SWT.NONE, new GridLayout(3, false), new GridData(SWT.FILL, SWT.FILL, true,
-			true));
+				true));
 		// create pencil icon
 		createIconLabel(composite, "pencil.png");
 		// create text for new issue name
@@ -77,20 +87,65 @@ public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage {
 		// create text for work package
 		createText(composite, "Workpackage:");
 		// create link for work package
-		createMEControl(new MESingleLinkControl(), composite, issue, "containingWorkpackage");
+		createMEControl(new MESingeLinkControlWithoutNewReferenceAction(), composite, issue, "containingWorkpackage");
 		// create user icon
 		createIconLabel(composite, "filtertouser.png");
 		// create add assignee text
 		createText(composite, "Assignee:");
 		// create assignee link
-		createMEControl(new MESingleLinkControl(), composite, issue, "assignee");
+		createMEControl(new MESingeLinkControlWithoutNewReferenceAction(), composite, issue, "assignee");
 		// create user icon
 		createIconLabel(composite, "filtertouser.png");
 		// create reviewer text
 		createText(composite, "Reviewer:");
 		// create reviewer link
-		createMEControl(new MESingleLinkControl(), composite, issue, "reviewer");
+		createMEControl(new MESingeLinkControlWithoutNewReferenceAction(), composite, issue, "reviewer");
 		// set body as control
 		setControl(body);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void onChange(Notification notification) {
+		Issue issue = (Issue) notification.getNotifier();
+		setPageComplete(issue.getLeafSection() != null || issue.getContainingWorkpackage() != null || issue.getProject() != null);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void onRuntimeExceptionInListener(RuntimeException exception) {
+		// nothing to do here
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean performFinish() {
+		getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_CREATE);
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				// add the chosen comments to be the parent comments of the new issue
+				for(ModelElement modelElement: getRefactoringWizard().getChildModelElements()) {
+					Comment comment = (Comment) modelElement;
+					((UnicaseModelElement) getRefactoringWizard().getParentModelElements().get(0)).getComments().add(comment);
+				}
+				getRefactoringWizard().getInvalidModelElement().getAnnotations().add(issue);
+			}
+		}.run();
+		ActionHelper.openModelElement(issue, "org.unicase.ui.refactoring");
+		return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canFinish() {
+		return isPageComplete();
 	}
 }

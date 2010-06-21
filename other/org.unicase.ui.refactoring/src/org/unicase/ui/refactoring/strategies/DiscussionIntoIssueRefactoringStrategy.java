@@ -7,28 +7,27 @@
 package org.unicase.ui.refactoring.strategies;
 
 import org.unicase.ui.refactoring.Activator;
-import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.impl.DiscussionIntoIssueDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.DiscussionIntoIssueWizard;
+import org.unicase.ui.refactoring.strategies.dialogs.RefactoringDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.DiscussionIntoIssueRefactoringWizard;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
- * The circular dependency refactoring strategy.
+ * The discussion into issue refactoring strategy.
  * 
  * @author pfeifferc
  */
 public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringStrategy {
 
-	private static final String DESCRIPTION = "org.unicase.validation";
+	private static final String ID = "org.unicase.validation.DiscussionIntoIssueRefactoringStrategy";
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public RefactoringResult performRefactoring() {
-		AbstractRefactoringDialog refactoringDialog = new DiscussionIntoIssueDialog(getShell(),
-			new DiscussionIntoIssueWizard(this));
+		RefactoringDialog refactoringDialog = new RefactoringDialog(getShell(),
+			new DiscussionIntoIssueRefactoringWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
 		return refactoringDialog.getRefactoringResult();
@@ -39,6 +38,14 @@ public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringS
 	 */
 	@Override
 	public String getDescription() {
-		return DESCRIPTION;
+		return "Create a new issue and put the comments there";
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getId() {
+		return ID;
 	}
 }

@@ -15,6 +15,7 @@ import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
@@ -50,8 +51,8 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	/**
 	 * @return the invalid model element
 	 */
-	public ModelElement getInvalidModelElement() {
-		return (ModelElement) getConstraintStatus().getTarget();
+	public UnicaseModelElement getInvalidModelElement() {
+		return (UnicaseModelElement) getConstraintStatus().getTarget();
 	}
 
 	/**
@@ -78,7 +79,7 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	 */
 	@Override
 	public boolean performFinish() {
-		return true;
+		return ((AbstractRefactoringWizardPage) getContainer().getCurrentPage()).performFinish();
 	}
 
 	/**

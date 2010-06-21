@@ -7,27 +7,26 @@
 package org.unicase.ui.refactoring.strategies;
 
 import org.unicase.ui.refactoring.Activator;
-import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.impl.AIEmbodiesFRDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.AIEmbodiesFrWizard;
+import org.unicase.ui.refactoring.strategies.dialogs.RefactoringDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.AIEmbodiesFrRefactoringWizard;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
- * The circular dependency refactoring strategy.
+ * The action item embodies functional requirement refactoring strategy.
  * 
  * @author pfeifferc
  */
 public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy {
 
-	private static final String DESCRIPTION = "org.unicase.validation";
+	private static final String ID = "org.unicase.validation.AIEmbodiesFRRefactoringStrategy";
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public RefactoringResult performRefactoring() {
-		AbstractRefactoringDialog refactoringDialog = new AIEmbodiesFRDialog(getShell(), new AIEmbodiesFrWizard(this));
+		RefactoringDialog refactoringDialog = new RefactoringDialog(getShell(), new AIEmbodiesFrRefactoringWizard(this));
 		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
 		refactoringDialog.open();
 		return refactoringDialog.getRefactoringResult();
@@ -38,6 +37,14 @@ public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy
 	 */
 	@Override
 	public String getDescription() {
-		return DESCRIPTION;
+		return "Extract functional requirement information into action item";
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getId() {
+		return ID;
 	}
 }
