@@ -26,22 +26,27 @@ import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
@@ -61,6 +66,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Validation view.
@@ -71,11 +77,17 @@ import org.unicase.workspace.WorkspacePackage;
 public class ValidationView extends ViewPart {
 
 	private TableViewer tableViewer;
+
 	private DialogSettings settings;
+
 	private String filename;
+
 	private final String viewId = getClass().getName();
+
 	private Workspace workspace;
+
 	private AdapterImpl workspaceListenerAdapter;
+
 	private Shell shell;
 
 	/**
@@ -124,7 +136,7 @@ public class ValidationView extends ViewPart {
 		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
 		menuManager.add(openFilterDialogAction);
 		hookDoubleClickAction();
-		hookLeftClickAction();
+		tableViewer.getTable().addMenuDetectListener(new MenuDetectListenerImplementation());
 	}
 
 	private void createTable() {
@@ -192,7 +204,7 @@ public class ValidationView extends ViewPart {
 						ActionHelper.openModelElement((ModelElement) me, errorLocation, viewId,
 							new EMFStoreModelelementContext((ModelElement) me));
 					} else {
-						ActionHelper.openModelElement(me, viewId, new EMFStoreModelelementContext((ModelElement) me));
+						ActionHelper.openModelElement(me, viewId);
 					}
 				}
 			}
@@ -200,55 +212,23 @@ public class ValidationView extends ViewPart {
 		});
 	}
 
-	private void hookLeftClickAction() {
-		tableViewer.getTable().addMenuDetectListener(new MenuDetectListener() {
-
-			public void menuDetected(MenuDetectEvent e) {
-				Table table = (Table) e.getSource();
-				TableItem[] tableItems = table.getSelection();
-				final ArrayList<IConstraintStatus> stati = new ArrayList<IConstraintStatus>();
-				for (TableItem tableItem : tableItems) {
-					stati.add((IConstraintStatus) (tableItem.getData()));
-				}
-				Menu leftClickMenu = new Menu(shell, SWT.POP_UP);
-				MenuItem refactorMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
-				refactorMenuItem.setText("Refactor the violation");
-				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell_go.png").createImage());
-				refactorMenuItem.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event event) {
-						for (AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
-							refactoringStrategy.setShell(shell);
-							refactoringStrategy.startRefactoring();
-							break;
-						}
-					}
-				});
-				leftClickMenu.setVisible(true);
-			}
-		});
-	}
-
-	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(
-		ArrayList<IConstraintStatus> stati) {
+	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(IConstraintStatus status) {
 		ArrayList<AbstractRefactoringStrategy> refactoringStrategies = new ArrayList<AbstractRefactoringStrategy>();
-		for (IConstraintStatus status : stati) {
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.validation.refactoring.strategies");
-			for (IConfigurationElement element : config) {
-				try {
-					if (element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())) {
-						final Object object = element.createExecutableExtension("strategy");
-						AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
-						strategy.setConstraintStatus(status);
-						strategy.setId(element.getAttribute("id"));
-						refactoringStrategies.add(strategy);
-					}
-				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.validation.refactoring.strategies");
+		for (IConfigurationElement element : config) {
+			try {
+				if (element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())) {
+					final Object object = element.createExecutableExtension("strategy");
+					AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
+					strategy.setConstraintStatus(status);
+					strategy.setId(element.getAttribute("id"));
+					refactoringStrategies.add(strategy);
 				}
-
+			} catch (CoreException e) {
+				WorkspaceUtil.logWarning("Exception loading refactoring strategies from the extension point", e);
 			}
+
 		}
 		return refactoringStrategies;
 	}
@@ -312,6 +292,82 @@ public class ValidationView extends ViewPart {
 	}
 
 	/**
+	 * @author pfeifferc
+	 */
+	private final class MenuDetectListenerImplementation implements MenuDetectListener {
+
+		public void menuDetected(MenuDetectEvent e) {
+			// get the table
+			Table table = (Table) e.getSource();
+			if (table.getSelection() == null || table.getSelection().length == 0) {
+				return;
+			}
+			// get the first table item that was selected (no multiple select)
+			TableItem tableItem = table.getSelection()[0];
+			// extract the violation status
+			final IConstraintStatus status = (IConstraintStatus) tableItem.getData();
+			// create the menu
+			Menu leftClickMenu = new Menu(shell, SWT.POP_UP);
+			// add refactoring menu item if refactoring strategies are available
+			List<AbstractRefactoringStrategy> refactoringStrategies = getRefactoringStrategiesFromExtensionPoint(status);
+			if (refactoringStrategies.size() != 0) {
+				final MenuItem refactorMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+				// add the menu item
+				refactorMenuItem.setData(refactoringStrategies);
+				refactorMenuItem.setText("Perform refactoring");
+				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell.png").createImage());
+				// refactorMenuItem.setData(data)
+				refactorMenuItem.addSelectionListener(new RefactoringSelectionListener());
+			}
+			// ignore constraint menu item
+			// MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+			// ignoreMenuItem.setData(refactoringStrategies);
+			// ignoreMenuItem.setText("Ignore violation");
+			// ignoreMenuItem.setImage(Activator.getImageDescriptor("icons/bell_delete.png").createImage());
+			// refactorMenuItem.setData(data)
+
+			// set menu to visible
+			leftClickMenu.setVisible(true);
+		}
+
+		/**
+		 * @author pfeifferc
+		 */
+		private final class RefactoringSelectionListener implements SelectionListener {
+			public void widgetSelected(SelectionEvent e) {
+				// get the source data
+				MenuItem menuItem = (MenuItem) e.getSource();
+				List<?> abstractRefactoringStrategies = (List<?>) menuItem.getData();
+				// only show selection dialog if there is more than one refactoring
+				if (abstractRefactoringStrategies.size() == 1) {
+					AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) abstractRefactoringStrategies
+						.get(0);
+					abstractRefactoringStrategy.setShell(shell);
+					abstractRefactoringStrategy.startRefactoring();
+				} else {
+					// otherwise show list dialog
+					ListDialog listDialog = new ListDialog(shell);
+					listDialog.setInput(abstractRefactoringStrategies.toArray());
+					listDialog.setLabelProvider(new RefactoringStrategyLabelProvider());
+					listDialog.setContentProvider(new RefactoringStrategyContentProvider());
+					listDialog.setTitle("Choose a refactoring strategy");
+					listDialog.open();
+					Object[] result = listDialog.getResult();
+					if (result != null && result.length > 0) {
+						AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) result[0];
+						abstractRefactoringStrategy.setShell(shell);
+						abstractRefactoringStrategy.startRefactoring();
+					}
+				}
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+		}
+	}
+
+	/**
 	 * The filter dialog action.
 	 * 
 	 * @author pfeifferc
@@ -345,6 +401,40 @@ public class ValidationView extends ViewPart {
 
 		private void removeAllFilters() {
 			tableViewer.resetFilters();
+		}
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class RefactoringStrategyLabelProvider extends LabelProvider {
+
+		@Override
+		public Image getImage(Object element) {
+			return Activator.getImageDescriptor("icons/bell.png").createImage();
+		}
+
+		@Override
+		public String getText(Object element) {
+			return ((AbstractRefactoringStrategy) ((Object[]) element)[0]).getDescription();
+		}
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class RefactoringStrategyContentProvider implements IStructuredContentProvider {
+
+		public Object[] getElements(Object inputElement) {
+			return new Object[] { inputElement };
+		}
+
+		public void dispose() {
+			// TODO Auto-generated method stub
+		}
+
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			// TODO Auto-generated method stub
 		}
 	}
 }

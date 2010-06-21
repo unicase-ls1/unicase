@@ -26,7 +26,6 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 			"A functional requirement describes a certain function, the action item its implementation details. " +
 			"In case you think the action item really is a functional requirement, the following pages will guide " +
 			"you through a refactoring.";
-	private Button checkBox;
 
 	/**
 	 * The default constructor.
@@ -36,6 +35,7 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 	 */
 	public AIEmbodiesFRPage1(String pageName, AbstractRefactoringWizard wizard) {
 		super(pageName, wizard);
+		setPageComplete(true);
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 		// separator line
 		createSeparator(body);
 		// create information text composite
-		createExplanatoryTextComposite(body, GUIDE, "exclamation.png");
+		createExplanatoryTextComposite(body, GUIDE, "validation.png");
 		// create the composite to put the widgets on
 		composite = createComposite(body, SWT.TOP, new GridLayout(3, false), new GridData(SWT.FILL, SWT.TOP, true,
 			false));
@@ -74,13 +74,7 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 		// create is not button
 		new Button(composite, SWT.RADIO);
 		// create is not text
-		createText(composite, "The action item is not a functional requirement");
-		// create remember check button
-		checkBox = new Button(composite, SWT.CHECK);
-		checkBox.setSelection(false);
-		checkBox.setEnabled(false);
-		// create remember text
-		createText(composite, "Remember this setting");
+		createText(composite, "The action item is not a functional requirement (remember this)");
 		// set this as control for the page
 		setControl(body);
 	}
@@ -92,15 +86,6 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 		public void widgetSelected(SelectionEvent e) {
 			boolean selection = ((Button) e.getSource()).getSelection();
 			setPageComplete(selection);
-			checkBox.setEnabled(!selection);
-			if(!selection) {
-				if(checkBox.getSelection()) {
-					getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
-				} else {
-					getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_UNDO);
-				}
-				
-			}
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -114,5 +99,14 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 	@Override
 	public boolean canFinish() {
 		return !isPageComplete();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean performFinish() {
+		getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
+		return super.performFinish();
 	}
 }

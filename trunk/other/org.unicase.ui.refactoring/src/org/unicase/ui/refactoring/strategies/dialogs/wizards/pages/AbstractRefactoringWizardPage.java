@@ -7,6 +7,9 @@
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -24,6 +27,7 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.refactoring.Activator;
@@ -39,9 +43,11 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 
 	private AbstractRefactoringWizard wizard;
 
-	private ArrayList<Control> controls;
+	private List<Control> controls;
 
-	private ArrayList<AbstractMEControl> abstractControls;
+	private List<AbstractMEControl> abstractControls;
+
+	private Map<ModelElement, ModelElementChangeListener> modelElementChangeListeners;
 
 	/**
 	 * The constructor.
@@ -54,8 +60,10 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		this.wizard = wizard;
 		controls = new ArrayList<Control>();
 		abstractControls = new ArrayList<AbstractMEControl>();
+		modelElementChangeListeners = new HashMap<ModelElement, ModelElementChangeListener>();
 		setTitle("Violation of constraint rule " + pageName.replace("_", " "));
 		setDescription("Please choose how to proceed with the refactoring");
+		setPageComplete(false);
 	}
 
 	/**
@@ -322,5 +330,25 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		for (AbstractMEControl control : abstractControls) {
 			control.dispose();
 		}
+		for(ModelElement modelElement : modelElementChangeListeners.keySet()) {
+			modelElement.removeModelElementChangeListener(modelElementChangeListeners.get(modelElement));
+		}
+	}
+
+	/**
+	 * Override for more functionality.
+	 * 
+	 * @return true
+	 */
+	public boolean performFinish() {
+		return true;
+	}
+
+	/**
+	 * @param modelElement the
+	 * @param modelElementChangeListener the
+	 */
+	public void addModelElementChangeListener(ModelElement modelElement, ModelElementChangeListener modelElementChangeListener) {
+		modelElementChangeListeners.put(modelElement, modelElementChangeListener);
 	}
 }

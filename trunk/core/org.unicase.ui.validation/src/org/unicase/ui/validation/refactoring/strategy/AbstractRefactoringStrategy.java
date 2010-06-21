@@ -47,11 +47,19 @@ public abstract class AbstractRefactoringStrategy {
 	 */
 	private ArrayList<ModelElement> parentModelElementsReferenced;
 
+	/**
+	 * The identifier.
+	 */
 	private String id;
+
 	/**
 	 * The shell.
 	 */
 	private Shell shell;
+
+	/**
+	 * The composite operation handle.
+	 */
 	private static CompositeOperationHandle operationHandle;
 
 	// BEGIN SUPRESS CATCH EXCEPTION
@@ -77,11 +85,13 @@ public abstract class AbstractRefactoringStrategy {
 			WorkspaceUtil.logException("There was an exception", e);
 		} finally {
 			if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
+				// end operations composite
 				endOperations();
 			} else if (refactoringResult == RefactoringResult.SUCCESS_NOVIOLATION) {
 				// TODO: implement preference save
 				abortOperations();
 			} else {
+				// abort operations composite
 				abortOperations();
 			}
 		}
@@ -94,7 +104,7 @@ public abstract class AbstractRefactoringStrategy {
 	 * 
 	 * @return true if successful
 	 */
-	public abstract RefactoringResult performRefactoring();
+	protected abstract RefactoringResult performRefactoring();
 
 	/**
 	 * @return the constraint status
@@ -132,7 +142,7 @@ public abstract class AbstractRefactoringStrategy {
 	/**
 	 * Start the operations composite.
 	 */
-	public void startOperations() {
+	private void startOperations() {
 		new UnicaseCommand() {
 
 			@Override
@@ -147,7 +157,7 @@ public abstract class AbstractRefactoringStrategy {
 	/**
 	 * Aborts the refactoring operation.
 	 */
-	public void abortOperations() {
+	private void abortOperations() {
 		new UnicaseCommand() {
 
 			@Override
@@ -165,7 +175,7 @@ public abstract class AbstractRefactoringStrategy {
 	/**
 	 * Ends the refactoring operation.
 	 */
-	public void endOperations() {
+	private void endOperations() {
 		new UnicaseCommand() {
 
 			@Override
