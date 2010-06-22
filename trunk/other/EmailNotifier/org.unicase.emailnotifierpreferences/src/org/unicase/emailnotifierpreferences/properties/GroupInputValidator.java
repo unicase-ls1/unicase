@@ -18,12 +18,12 @@ import org.unicase.model.emailnotificationgroup.NotificationGroup;
  * @author fuesescc
  */
 public class GroupInputValidator implements IInputValidator {
-	
+
 	private List<NotificationGroup> tempNotificationGroups;
 	private Integer max;
-	
+
 	/**
-	 * GroupInputValidator Constructor
+	 * GroupInputValidator Constructor.
 	 * 
 	 * @param max The maximum length that a Notification Group can have
 	 * @param tempNotificationGroups A List of Notification Groups
@@ -33,7 +33,7 @@ public class GroupInputValidator implements IInputValidator {
 		this.tempNotificationGroups = tempNotificationGroups;
 		this.max = max;
 	}
-	
+
 	/**
 	 * Validates the String. Returns null for no error, or an error message
 	 * 

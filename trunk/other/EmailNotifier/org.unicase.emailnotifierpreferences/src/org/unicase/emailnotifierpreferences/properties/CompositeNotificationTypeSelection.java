@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emailnotifierpreferences.properties;
 
 import java.util.ArrayList;
@@ -23,11 +28,25 @@ import org.unicase.model.emailnotificationgroup.NotificationGroup;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PropertyKey;
 
+/**
+ * A Class for the EMail Notifier Service. The Constructor creates a Composite holding the notification providers for a
+ * certain Notification Group.
+ * 
+ * @author MastaFue
+ */
 public class CompositeNotificationTypeSelection extends Composite {
 
 	private CheckboxTableViewer notifierTypesList;
 	private HashMap<PropertyKey, String[]> providerHints;
 
+	/**
+	 * Constructor creates a Composite holding the notification providers that can be selected for a certain
+	 * Notification Group.
+	 * 
+	 * @param c The parent Composite.
+	 * @param tempNotificationGroups List holding all the Notification Groups.
+	 * @param group The currently selected Notification Group.
+	 */
 	public CompositeNotificationTypeSelection(Composite c, final List<NotificationGroup> tempNotificationGroups,
 		final NotificationGroup group) {
 		super(c, SWT.NONE);
@@ -107,6 +126,11 @@ public class CompositeNotificationTypeSelection extends Composite {
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
 	}
 
+	/**
+	 * Checks all the notification providers that are given as a parameter to this method.
+	 * 
+	 * @param array An array holding notification providers that have to be checked.
+	 */
 	public void setCheckedElements(Object[] array) {
 		notifierTypesList.setCheckedElements(array);
 	}

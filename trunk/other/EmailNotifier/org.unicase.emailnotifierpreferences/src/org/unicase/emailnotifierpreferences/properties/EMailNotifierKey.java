@@ -8,6 +8,12 @@ package org.unicase.emailnotifierpreferences.properties;
 
 import org.unicase.workspace.preferences.PropertyKey;
 
+/**
+ * The keys for the EMail Notifier preferences.
+ * 
+ * @author fuesescc
+ *
+ */
 public enum EMailNotifierKey implements PropertyKey {
 	
 	/**
