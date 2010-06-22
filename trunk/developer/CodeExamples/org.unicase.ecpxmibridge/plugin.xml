@@ -7,5 +7,19 @@
             class="org.unicase.ecpxmibridge.XmiEcpWorkspaceProvider">
       </WorkspaceProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.ecpxmibridge.xmiAdd"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.unicase.ecpxmibridge.AddXMIAction"
+               id="org.unicase.ecpxmibridge.addXMI"
+               label="Add to EMF Client Platform">
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>
