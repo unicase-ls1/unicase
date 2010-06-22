@@ -4,7 +4,7 @@
    
    <extension-point id="menuconfiguration" name="Menu Configuration" schema="schema/menuconfiguration.exsd"/>
    <extension-point id="org.unicase.ui.navigator.replaceContentProvider" name="Replace Content Provider" schema="schema/org.unicase.ui.navigator.replaceContentProvider.exsd"/>
-   <extension-point id="ecpworkspace" name="ECP Workspace" schema="schema/ecpworkspace.exsd"/>
+   <extension-point id="ecpWorkspaceProvider" name="ECP Workspace" schema="schema/ecpWorkspaceProvider.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view

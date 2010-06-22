@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider;
 
 /**
  * Class to provide access to a registered Workspace.
@@ -35,7 +36,7 @@ public final class WorkspaceManager {
 
 	private WorkspaceManager() {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.ecpworkspace");
+			"org.unicase.ui.navigator.ecpWorkspaceProvider");
 		if (confs.length > 1) {
 			Activator.logException(new IllegalStateException("Duplicate Workspace registered"));
 		}
@@ -43,7 +44,7 @@ public final class WorkspaceManager {
 			Activator.logException(new IllegalStateException("No Workspace registered"));
 		}
 		try {
-			workspace = (ECPWorkspace) confs[0].createExecutableExtension("class");
+			workspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class")).getECPWorkspace();
 		} catch (CoreException e) {
 			Activator.logException(e);
 		}

@@ -14,10 +14,10 @@
       </modelelementopenlistener>
    </extension>
    <extension
-         point="org.unicase.ui.navigator.ecpworkspace">
-      <Workspace
-            class="org.unicase.ecpemfstorebridge.ECPWorkspace">
-      </Workspace>
+         point="org.unicase.ui.navigator.ecpWorkspaceProvider">
+      <WorkspaceProvider
+            class="org.unicase.ecpemfstorebridge.EMFStoreECPWorkspaceProvider">
+      </WorkspaceProvider>
    </extension>
 
 </plugin>

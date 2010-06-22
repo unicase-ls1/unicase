@@ -27,7 +27,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author helming
  */
-public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.navigator.workSpaceModel.ECPWorkspace {
+public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.navigator.workSpaceModel.ECPWorkspace {
 
 	private HashMap<ProjectSpace, EMFStoreECPProject> mapping = new HashMap<ProjectSpace, EMFStoreECPProject>();
 	private AdapterImpl workspaceListenerAdapter;
@@ -35,7 +35,7 @@ public class ECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.nav
 	/**
 	 * default constructor.
 	 */
-	public ECPWorkspace() {
+	public EMFECPWorkspace() {
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 		for (ProjectSpace projectSpace : projectSpaces) {
 			EMFStoreECPProject emfStoreECPProject = new EMFStoreECPProject(projectSpace);

@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.ui.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.navigator" id="ecpworkspace" name="ECP Workspace"/>
+         <meta.schema plugin="org.unicase.ui.navigator" id="ecpWorkspaceProvider" name="ECP Workspace Provider"/>
       </appinfo>
       <documentation>
          Provides a workspace for the ECP navigator
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="Workspace"/>
+            <element ref="WorkspaceProvider"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,7 +47,7 @@
       </complexType>
    </element>
 
-   <element name="Workspace">
+   <element name="WorkspaceProvider">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.ui.navigator.workSpaceModel.ECPWorkspace"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider"/>
                </appinfo>
             </annotation>
          </attribute>
