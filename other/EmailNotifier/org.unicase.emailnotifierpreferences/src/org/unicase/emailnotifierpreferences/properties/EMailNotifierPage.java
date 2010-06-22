@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -59,7 +58,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 public class EMailNotifierPage extends PropertyPage {
 
 	// maximum length for the name of a Notification Group
-	final private Integer MAX = 15;
+	private static final Integer MAX = 15;
 
 	private Project project;
 	private ProjectSpace projectSpace;
@@ -111,6 +110,36 @@ public class EMailNotifierPage extends PropertyPage {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected Control createContents(Composite parent) {
+		GridLayoutFactory.fillDefaults().applyTo(parent);
+		noDefaultAndApplyButton();
+
+		if (!init()) {
+			Label label = new Label(parent, SWT.WRAP);
+			if (!existUser) {
+				label.setText("User does not exist in the current project!");
+				return label;
+			} else {
+				label.setText("Could not determine the current project!");
+				return label;
+			}
+		}
+
+		TabFolder folder = new TabFolder(parent, SWT.TOP);
+
+		TabItem mainTab = new TabItem(folder, SWT.NONE);
+		mainTab.setControl(createMainTab(folder));
+		mainTab.setText("EMail Notifier Properties");
+
+		loadProperties();
+		notificationGroupList.refresh();
+
+		return folder;
 	}
 
 	/**
@@ -198,36 +227,6 @@ public class EMailNotifierPage extends PropertyPage {
 		});
 
 		return root;
-	}
-
-	/**
-	 * @see PreferencePage#createContents(Composite)
-	 */
-	protected Control createContents(Composite parent) {
-		GridLayoutFactory.fillDefaults().applyTo(parent);
-		noDefaultAndApplyButton();
-
-		if (!init()) {
-			Label label = new Label(parent, SWT.WRAP);
-			if (!existUser) {
-				label.setText("User does not exist in the current project!");
-				return label;
-			} else {
-				label.setText("Could not determine the current project!");
-				return label;
-			}
-		}
-
-		TabFolder folder = new TabFolder(parent, SWT.TOP);
-
-		TabItem mainTab = new TabItem(folder, SWT.NONE);
-		mainTab.setControl(createMainTab(folder));
-		mainTab.setText("EMail Notifier Properties");
-
-		loadProperties();
-		notificationGroupList.refresh();
-
-		return folder;
 	}
 
 	/**

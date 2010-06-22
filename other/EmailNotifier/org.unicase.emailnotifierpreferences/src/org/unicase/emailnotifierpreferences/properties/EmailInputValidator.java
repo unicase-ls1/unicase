@@ -17,6 +17,9 @@ import org.eclipse.jface.dialogs.IInputValidator;
  */
 public class EmailInputValidator implements IInputValidator {
 
+	/**
+	 * Empty EmailInputValidator Constructor.
+	 */
 	public EmailInputValidator() {
 	}
 

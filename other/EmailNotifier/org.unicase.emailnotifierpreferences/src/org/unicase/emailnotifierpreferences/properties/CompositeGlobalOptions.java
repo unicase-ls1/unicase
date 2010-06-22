@@ -23,6 +23,12 @@ import org.unicase.model.organization.User;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
+/**
+ * A Class for the EMail Notifier Service. The Constructor creates a Composite holding the options for the email address
+ * and the activation of the service.
+ * 
+ * @author fuesescc
+ */
 public class CompositeGlobalOptions extends Composite {
 
 	private Button notificationServiceCheck;
@@ -32,7 +38,14 @@ public class CompositeGlobalOptions extends Composite {
 	private Composite compositeActivation;
 	private Composite compositeEmail;
 
-	CompositeGlobalOptions(Composite c, boolean existEmail, User user) {
+	/**
+	 * The Constructor creates a Composite holding the options for the email address and the activation of the service.
+	 * 
+	 * @param c The parent composite.
+	 * @param existEmail Boolean value that indicates whether the user has an email address set or not.
+	 * @param user The user that is currently logged in and associated with the currently selected project.
+	 */
+	public CompositeGlobalOptions(Composite c, boolean existEmail, User user) {
 		super(c, SWT.NONE);
 		this.user = user;
 		setExistEmail(existEmail);
@@ -143,10 +156,20 @@ public class CompositeGlobalOptions extends Composite {
 		}
 	}
 
+	/**
+	 * Check the Activation checkbox.
+	 * 
+	 * @param b Boolean value that represents the status of the activation of the service.
+	 */
 	public void activate(Boolean b) {
 		notificationServiceCheck.setSelection(b);
 	}
 
+	/**
+	 * Get the selection of the Activation checkbox.
+	 * 
+	 * @return A boolean value that represents the status of the activation of the service.
+	 */
 	public Boolean getActivation() {
 		return notificationServiceCheck.getSelection();
 	}

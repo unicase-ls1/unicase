@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emailnotifierpreferences.properties;
 
 import java.util.List;
@@ -20,6 +25,12 @@ import org.eclipse.swt.widgets.Spinner;
 import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
 
+/**
+ * A Class for the EMail Notifier Service. The Constructor creates a Composite holding the send options for a certain
+ * Notification Group.
+ * 
+ * @author fuesescc
+ */
 public class CompositeSendOptions extends Composite {
 
 	private Combo sendOption;
@@ -37,7 +48,15 @@ public class CompositeSendOptions extends Composite {
 
 	private EMFDataBindingContext bindingContext;
 
-	CompositeSendOptions(Composite c, final List<NotificationGroup> tempNotificationGroups, NotificationGroup group) {
+	/**
+	 * Constructor creates a Composite for the send options for a certain Notification Group.
+	 * 
+	 * @param c The parent Composite.
+	 * @param tempNotificationGroups List holding all the Notification Groups.
+	 * @param group The currently selected Notification Group.
+	 */
+	public CompositeSendOptions(Composite c, final List<NotificationGroup> tempNotificationGroups,
+		NotificationGroup group) {
 		super(c, SWT.NONE);
 		final int indexofbundle = tempNotificationGroups.indexOf(group);
 		GridLayoutFactory.fillDefaults().applyTo(this);
