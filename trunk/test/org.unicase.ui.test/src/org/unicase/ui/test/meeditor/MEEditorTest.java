@@ -30,8 +30,19 @@ import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
+/**
+ * Parent class for all the UI Test cases involving MEEDitor. Contains all the helper and setup method. This class
+ * creates an environment before test cases run and finally tear it down.
+ * 
+ * @author Nitesh
+ */
 public class MEEditorTest {
-
+	/**
+	 * Run command in UI Thread.
+	 * 
+	 * @author Nitesh
+	 * @param <T>
+	 */
 	private final class RunnableWithType<T> implements Runnable {
 		private final UnicaseCommandWithResult<T> command;
 		private T result;
@@ -54,6 +65,7 @@ public class MEEditorTest {
 
 	private ProjectSpace projectSpace;
 	private LeafSection leafSection;
+
 	/**
 	 * @return the projectSpace
 	 */
@@ -76,17 +88,25 @@ public class MEEditorTest {
 	}
 
 	private static SWTWorkbenchBot bot;
-	private static boolean runcount ;
+	private static boolean runcount;
 
+	/**
+	 * Public constructor.
+	 */
 	public MEEditorTest() {
 		super();
 	}
-	
+
+	/**
+	 * Closes the welcome screen and initializes the environment. Deletes the existing test workspace, if any.
+	 * 
+	 * @throws IOException deleting existing test workspace failed
+	 */
 	@BeforeClass
 	public static void setupClass() throws IOException {
 		bot = new SWTWorkbenchBot();
-		
-		if(!runcount){
+
+		if (!runcount) {
 			getBot().viewByTitle("Welcome").close();
 			runcount = true;
 		}
@@ -94,11 +114,14 @@ public class MEEditorTest {
 		Configuration.setTesting(true);
 		WorkspaceManager.getInstance();
 	}
-	
+
+	/**
+	 * Create a project "TestProject" in the workspace and add a composite and a leaf section.
+	 */
 	@Before
 	public void setup() {
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -113,7 +136,10 @@ public class MEEditorTest {
 			}
 		}.run();
 	}
-	
+
+	/**
+	 * Tear down the whole test environment by deleting the projectspace.
+	 */
 	@After
 	public void tearDown() {
 		new UnicaseCommand() {
@@ -128,40 +154,63 @@ public class MEEditorTest {
 			}
 		}.run();
 	}
-	
+
+	/**
+	 * Open the model element available in project.
+	 * 
+	 * @param element modelelement to be opened.
+	 */
 	protected void openModelElement(final ModelElement element) {
 		Display.getDefault().asyncExec(new Runnable() {
-			
+
+			@SuppressWarnings("deprecation")
 			public void run() {
 				ActionHelper.openModelElement(element, "test", new EMFStoreModelelementContext(element));
 			}
 		});
 		bot.sleep(4000);
 	}
-	
+
+	/**
+	 * Run the command in UI thread without result.
+	 * 
+	 * @param command command to be executed
+	 */
 	protected void runAsnc(final UnicaseCommand command) {
 		Display.getDefault().asyncExec(new Runnable() {
-			
+
 			public void run() {
 				command.run();
 			}
 		});
-		
+
 		bot.sleep(4000);
 	}
-	
+
+	/**
+	 * Run the command in UI thread with result.
+	 * 
+	 * @param <T> type
+	 * @param command command to be executed
+	 * @return result
+	 */
 	protected <T> T runAsnc(final UnicaseCommandWithResult<T> command) {
 		RunnableWithType<T> runnable = new RunnableWithType<T>(command);
 		Display.getDefault().asyncExec(runnable);
-				
+
 		bot.sleep(4000);
 		return runnable.getResult();
 	}
 
+	/**
+	 * Delete test workspace completely.
+	 * 
+	 * @throws IOException exception while deleting workspace
+	 */
 	@AfterClass
 	public static void tearDownClass() throws IOException {
 		bot = null;
 		WorkspaceUtil.deleteTestWorkspace();
 	}
-	
+
 }

@@ -5,13 +5,16 @@
  */
 package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-
+/**
+ * Test suite base for all the test cases involving linkcontrols in MEEditor.
+ * 
+ * @author Nitesh
+ */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MEHyperlinkDeleteAdapterTest.class})
+@Suite.SuiteClasses( { MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MEHyperlinkDeleteAdapterTest.class })
 public class AllMELinkControlTests {
 }

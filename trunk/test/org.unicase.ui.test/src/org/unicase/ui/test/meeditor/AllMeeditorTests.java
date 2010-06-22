@@ -12,8 +12,13 @@ import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.AllMELinkControlTes
 import org.unicase.ui.test.model.attachment.AllMEAttachmentsTests;
 import org.unicase.ui.test.unicasecommon.meeditor.mecontrols.uccontrol.AllUseCaseStepsTests;
 
-
+/**
+ * Suite class for all the test cases for MEEditor.
+ * 
+ * @author Nitesh
+ */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllMEControlTests.class, AllMELinkControlTests.class, AllMEAttachmentsTests.class, AllUseCaseStepsTests.class })
+@Suite.SuiteClasses( { AllMEControlTests.class, AllMELinkControlTests.class, AllMEAttachmentsTests.class,
+	AllUseCaseStepsTests.class })
 public class AllMeeditorTests {
 }

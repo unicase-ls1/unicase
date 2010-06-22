@@ -8,8 +8,13 @@ package org.unicase.ui.test.unicasecommon.meeditor.mecontrols.uccontrol;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+/**
+ * Suite to test use-case step control.
+ * 
+ * @author Nitesh
+ */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {UseCaseStepsControlTest.class})
+@Suite.SuiteClasses( { UseCaseStepsControlTest.class })
 public class AllUseCaseStepsTests {
 
 }

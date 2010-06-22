@@ -1,5 +1,11 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.test.emfStoreBrowser;
 
+import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -14,17 +20,25 @@ import org.junit.runner.RunWith;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
-@SuppressWarnings( { "unused" })
+/**
+ * Test calss to validate peroper functioning of checkout functionality.
+ * 
+ * @author Nitesh
+ */
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class CheckoutProjectTest {
 
+	@SuppressWarnings("unused")
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 	private static final String UNICASE_NODE = "Unicase";
 	private static final String BROWSER = "EmfStore Browser";
 
+	/**
+	 * Helper Method to start the server before the test cases run.
+	 */
 	@BeforeClass
-	public static void beforeClass() throws Exception {
+	public static void beforeClass() {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
 
@@ -33,16 +47,27 @@ public class CheckoutProjectTest {
 
 	}
 
+	/**
+	 * Checkout the project from EMFStore Browser view.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void checkoutProject() throws Exception {
-		
-		
+	public void checkoutProject() {
+		// TODO This test case need to be fiexed or re-implementd!
+
 		Logger logger = Logger.getLogger("LoggerTest");
-		logger.addHandler(new FileHandler("checkoutlog.txt"));
-		
+		try {
+			logger.addHandler(new FileHandler("checkoutlog.txt"));
+		} catch (SecurityException e) {
+			// ModelUtil.logException(e);
+		} catch (IOException e) {
+			// ModelUtil.logException(e);
+		}
+
 		UITestCommon.openPerspective(bot, UNICASE_NODE);
 		UITestCommon.openView(bot, UNICASE_NODE, BROWSER);
-		
+
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].doubleClick();
@@ -59,15 +84,12 @@ public class CheckoutProjectTest {
 			logger.info("the project list is not empty");
 			SWTBotTreeItem[] subitem = items[0].getItems();
 			subitem[0].select().contextMenu("Checkout").click();
-			try {
-				// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
 
-				UITestCommon.openPerspective(bot, UNICASE_NODE);
+			// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
 
-				// TBotPrespective= bot.perspectives();
-			} catch (Exception e) {
-				logger.info("Output" + e);
-			}
+			UITestCommon.openPerspective(bot, UNICASE_NODE);
+
+			// TBotPrespective= bot.perspectives();
 
 			// SWTBotView[] Allviews= bot.
 			// logger.info(bot.viewById("org.unicase.ui.navigator").getTitle());
@@ -76,6 +98,9 @@ public class CheckoutProjectTest {
 
 	}
 
+	/**
+	 * After class method to stop the server once the test case has run.
+	 */
 	@AfterClass
 	public static void sleep() {
 		bot.sleep(5000);

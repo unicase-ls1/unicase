@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.test.navigator;
 
 import java.util.logging.FileHandler;
@@ -15,25 +20,17 @@ import org.junit.runner.RunWith;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.test.SetupHelper;
 
-
-
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class ImportProjectTest {
-	
-	
-	
+
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 	private static Logger logger;
 	private static final String UNICASE_NODE = "Unicase";
 	private static final String BROWSER = "EmfStore Browser";
 	private static SWTBotShell openPerspectiveShell;
-	
-	
-	
-	
-	
+
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
@@ -43,8 +40,6 @@ public class ImportProjectTest {
 		logger.addHandler(new FileHandler("importproject.txt"));
 
 	}
-	
-	
 
 	@Test
 	public void importproject() throws Exception {

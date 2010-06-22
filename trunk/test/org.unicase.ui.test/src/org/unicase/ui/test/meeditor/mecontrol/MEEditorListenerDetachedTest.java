@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.test.meeditor.mecontrol;
 
 import java.util.Date;
@@ -12,10 +17,18 @@ import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Test if the listeners attached to all the controls gets detached once the MEEditor is closed.
+ * 
+ * @author Nitesh
+ */
 public class MEEditorListenerDetachedTest extends MEEditorTest {
 	private ActionItem actionItem;
 	private User user;
 
+	/**
+	 * Helper method to setup the enviroment.
+	 */
 	@Before
 	public void setupActionItem() {
 
@@ -33,6 +46,11 @@ public class MEEditorListenerDetachedTest extends MEEditorTest {
 		}.run();
 	}
 
+	/**
+	 * This method tests if the listeners are getting removed once the editor is closed. It does so by opening a ME in
+	 * the editor and then closing it and modifying the values programatically. If no exception is thrown saying widget
+	 * disposed, everything is going as expected.
+	 */
 	@Test
 	public void listenersDetachedTest() {
 		UITestCommon.openPerspective(getBot(), "Unicase");

@@ -4,12 +4,16 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.test.model.attachment;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-
-
+/**
+ * Test cases to validate the functionality of ME attachments.
+ * 
+ * @author Nitesh
+ */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( {MEURLAttachmentsTest.class})
+@Suite.SuiteClasses( { MEURLAttachmentsTest.class })
 public class AllMEAttachmentsTests {
 }

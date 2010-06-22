@@ -11,6 +11,11 @@ import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEHyperlinkDeleteAd
 import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MEMultiLinkControlTest;
 import org.unicase.ui.test.meeditor.mecontrols.melinkcontrol.MESingleLinkControlTest;
 
+/**
+ * Suite base class for all the test cases involving MEControl.
+ * 
+ * @author Nitesh
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { MEHyperlinkDeleteAdapterTest.class, MEMultiLinkControlTest.class, MESingleLinkControlTest.class,
 	MeEnumControlTest.class, MEBoolControlTest.class, MEIntControlTest.class, MERichTextControlTest.class,
