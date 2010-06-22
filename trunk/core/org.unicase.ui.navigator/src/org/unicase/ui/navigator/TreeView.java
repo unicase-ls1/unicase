@@ -48,13 +48,11 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.ProjectSpaceContainer;
 
@@ -240,12 +238,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * @param editor editor
 	 */
 	public void editorActivated(IEditorPart editor) {
-		if (!(editor instanceof MEEditor)) {
-			return;
-		}
-
-		MEEditor meEditor = (MEEditor) editor;
-		Object adapter = meEditor.getEditorInput().getAdapter(EObject.class);
+		Object adapter = editor.getEditorInput().getAdapter(EObject.class);
 		if (adapter != null && adapter instanceof EObject) {
 			EObject me = (EObject) adapter;
 			revealME(me);
@@ -388,7 +381,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(),
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(currentWorkspace.getEditingDomain(),
 			viewer));
 
 	}
@@ -550,16 +543,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
-	 */
-	public void projectDeleted(Project project) {
-		viewer.refresh();
-
 	}
 
 }
