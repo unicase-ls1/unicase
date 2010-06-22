@@ -249,4 +249,13 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	}
 
+	public boolean isRootObject(EObject eObject) {
+		for (ECPProject ecpProject : getProjects()) {
+			if (ecpProject.getRootObject().equals(eObject)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 } // ECPWorkspaceImpl

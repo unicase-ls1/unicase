@@ -19,7 +19,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * . This is the generic handler for commands to create containments of a model element
@@ -49,8 +51,13 @@ public class CreateContainmentHandler extends AbstractHandler {
 			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
 			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
 			if ((selectedME != null) && (!eReference.isContainer())) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
+				TransactionalEditingDomain domain;
+				try {
+					domain = WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
+				} catch (NoWorkspaceException e) {
+					Activator.logException(e);
+					return null;
+				}
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					@SuppressWarnings("unchecked")
