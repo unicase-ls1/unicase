@@ -161,11 +161,12 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
-			.getLabelDecorator()));
+
 		try {
 			ECPWorkspace workSpace = WorkspaceManager.getInstance().getWorkSpace();
+			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(workSpace.getEditingDomain()),
+				decoratorManager.getLabelDecorator()));
 			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
 			viewer.setInput(workSpace);
 			// viewer.setInput(currentWorkspace);
