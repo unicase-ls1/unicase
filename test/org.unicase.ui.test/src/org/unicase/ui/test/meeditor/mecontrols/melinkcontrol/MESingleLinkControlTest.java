@@ -1,4 +1,4 @@
- /**
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.AssertionFailedException;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.Hyperlink;
@@ -30,13 +29,21 @@ import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
+/**
+ * Single link control test cases.
+ * 
+ * @author Nitesh
+ */
 public class MESingleLinkControlTest extends MEEditorTest {
-private ActionItem actionItem;
-private User user;
-	
+	private ActionItem actionItem;
+	private User user;
+
+	/**
+	 * Helper method to setup environment for the test cases to execute.
+	 */
 	@Before
 	public void setupActionItem() {
-			
+
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -49,122 +56,134 @@ private User user;
 				project.addModelElement(user);
 			}
 		}.run();
-	} 
-	
+	}
+
+	/**
+	 * Reassigning an action item to a user from UI and track the change propagation.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testReassigning()  {
-		
+	public void testReassigning() {
+
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				OrgUnit user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("UNICASE user");
 				actionItem.setAssignee(user);
-				}
+			}
 		}.run();
 		openModelElement(actionItem);
 
-		getBot().activeEditor().bot().buttonWithLabel("Assignee",0).click(); 
+		getBot().activeEditor().bot().buttonWithLabel("Assignee", 0).click();
 		getBot().text().setText("Joker");
 		getBot().button("OK").click();
-		
+
 		UnicaseCommand userfinder = new UnicaseCommand() {
-			
-			
+
 			@Override
 			protected void doRun() {
 				Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Joker"));
 				final List label = getBot().getFinder().findControls(match);
-				String text = ((Hyperlink)label.get(0)).getText();
+				String text = ((Hyperlink) label.get(0)).getText();
 				assertEquals("Joker", text);
 				assertEquals("Joker", actionItem.getAssignee());
 			}
-		}; runAsnc(userfinder);
-		
-			
+		};
+		runAsnc(userfinder);
+
 	}
-	
+
+	/**
+	 * Reassigning a workpackage from UI and then confirming the change propagation in ME.
+	 */
 	@Test
 	public void testActionItemWorkPackageSet() {
-		
+
 		openModelElement(actionItem);
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
-				 workpackage.setName("Sprint1");
-				 project.addModelElement(workpackage);
-				
+				WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
+				workpackage.setName("Sprint1");
+				project.addModelElement(workpackage);
+
 			}
 		}.run();
-		
+
 		getBot().activeEditor().bot().buttonWithLabel("Containing Workpackage", 0).click();
 		getBot().text().setText("Sprint1");
 		getBot().button("OK").click();
 		getBot().sleep(5000);
-		
+
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				assertEquals("Sprint1", actionItem.getContainingWorkpackage().getName());
-				
+
 			}
 		}.run();
-		
+
 	}
 
+	/**
+	 * Unsetting a workpackage for an AI (from UI) then validating the changes in UI and finally in the underlying ME.
+	 */
 	@Test
 	public void testActionItemWorkPackageUnSet() {
-			new UnicaseCommand() {
+		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
-				 workpackage.setName("Sprint1");
-				 project.addModelElement(workpackage);
-				 actionItem.setContainingWorkpackage(workpackage);
+				WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
+				workpackage.setName("Sprint1");
+				project.addModelElement(workpackage);
+				actionItem.setContainingWorkpackage(workpackage);
 			}
 		}.run();
 		openModelElement(actionItem);
 		UnicaseCommand packageLinkFinder = new UnicaseCommand() {
-			
+
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doRun() {
-			Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Sprint1"));
-			final List packageLink = getBot().getFinder().findControls(match);
-			String link = ((Hyperlink)packageLink.get(0)).getText();
-			assertEquals("Sprint1", link);
-			getBot().sleep(2000);
-			actionItem.setContainingWorkpackage(null);
+				Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Sprint1"));
+				final List packageLink = getBot().getFinder().findControls(match);
+				String link = ((Hyperlink) packageLink.get(0)).getText();
+				assertEquals("Sprint1", link);
+				getBot().sleep(2000);
+				actionItem.setContainingWorkpackage(null);
 			}
-		}; runAsnc(packageLinkFinder);
- 		
+		};
+		runAsnc(packageLinkFinder);
+
 		UnicaseCommand workpackageNullCommand = new UnicaseCommand() {
-			
+
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doRun() {
-				Matcher match  = allOf(widgetOfType(Label.class), withRegex("(Not Set)"));
+				Matcher match = allOf(widgetOfType(Label.class), withRegex("(Not Set)"));
 				List list = getBot().getFinder().findControls(match);
-			assertEquals(4, list.size());
-				
+				assertEquals(4, list.size());
+
 			}
-		}; runAsnc(workpackageNullCommand);
+		};
+		runAsnc(workpackageNullCommand);
 	}
-	
-	
+
+	/**
+	 * Checking the default value of assignee for an AI, in UI and in the underlying ME.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAssigneeDefault()  {
-		
+	public void testAssigneeDefault() {
+
 		openModelElement(actionItem);
-		
+
 		UnicaseCommandWithResult<Matcher> labelFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -172,38 +191,38 @@ private User user;
 				return matchlabel;
 			}
 		};
-		
+
 		Matcher labelmatcher = runAsnc(labelFinderCommand);
 		final List labelcontrols = getBot().getFinder().findControls(labelmatcher);
-		
-	
-	new UnicaseCommand() {
-			
+
+		new UnicaseCommand() {
+
 			@Override
 			protected void doRun() {
-				final Label label = ((Label)labelcontrols.get(1));
+				final Label label = ((Label) labelcontrols.get(1));
 				Display display = label.getDisplay();
-			
-				display.syncExec(
-					  new Runnable() {
-					    public void run(){
-					    String text = label.getText();
-					    assertEquals("(Not Set)",text);
-					    OrgUnit user = actionItem.getAssignee();
+
+				display.syncExec(new Runnable() {
+					public void run() {
+						String text = label.getText();
+						assertEquals("(Not Set)", text);
+						OrgUnit user = actionItem.getAssignee();
 						assertEquals(null, user);
-					    }
-					  });
-			
 					}
+				});
+
+			}
 		}.run();
 	}
 
-	
+	/**
+	 * Change the assignee from UI and validates it programattically.
+	 */
 	@Test
 	public void testAssigneeChange() {
-		
+
 		openModelElement(actionItem);
-		getBot().activeEditor().bot().buttonWithLabel("Assignee",0).click(); 
+		getBot().activeEditor().bot().buttonWithLabel("Assignee", 0).click();
 		getBot().text().setText("Joker");
 		getBot().button("OK").click();
 		getBot().sleep(2000);
@@ -216,38 +235,33 @@ private User user;
 		}.run();
 	}
 
-
-	
+	/**
+	 * Change the assignee programattically and validate the change propagation in UI.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAssigneeUpdate()  {
-		
+	public void testAssigneeUpdate() {
+
 		openModelElement(actionItem);
 		final String name = "Batman";
 		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
-			
+
 			@Override
 			protected Matcher doRun() {
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName(name);
 				actionItem.setAssignee(user);
-				
+
 				Matcher match = allOf(widgetOfType(Hyperlink.class), withRegex("Batman"));
 				return match;
 			}
 		};
-		Matcher matcher = runAsnc(unicaseCommand);	
-	
-			
+		Matcher matcher = runAsnc(unicaseCommand);
+
 		List controls = getBot().getFinder().findControls(matcher);
-		String text = ((Hyperlink)controls.get(0)).getText();
+		String text = ((Hyperlink) controls.get(0)).getText();
 		assertEquals(name, text);
-		
+
 	}
-	
-	
-	
-	
-	
 
 }

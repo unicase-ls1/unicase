@@ -10,8 +10,12 @@ import org.junit.runners.Suite;
 import org.unicase.ui.test.meeditor.AllMeeditorTests;
 import org.unicase.ui.test.navigator.AllNavigatorTests;
 
-
+/**
+ * Suite class for all MEEditor UI Test and all Navigator Test.
+ * 
+ * @author Nitesh
+ */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllMeeditorTests.class , AllNavigatorTests.class})
+@Suite.SuiteClasses( { AllMeeditorTests.class, AllNavigatorTests.class })
 public class AllUiTests {
 }

@@ -5,36 +5,24 @@
  */
 package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 
-
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.allOf;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.widgetOfType;
-import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withRegex;
 import static org.eclipse.swtbot.swt.finder.matchers.WidgetMatcherFactory.withTooltip;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.eclipse.ui.forms.widgets.Section;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
@@ -47,14 +35,20 @@ import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
+/**
+ * Test the multilink control for MEEditor.
+ * 
+ * @author Nitesh
+ */
 public class MEMultiLinkControlTest extends MEEditorTest {
 	private ActionItem actionItem;
-	
-	
-	
+
+	/**
+	 * Setup helper method for setting environment.
+	 */
 	@Before
 	public void setupActionItem() {
-			
+
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -70,11 +64,11 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				project.addModelElement(user2);
 			}
 		}.run();
-	} 
-	
-	
-	
-	
+	}
+
+	/**
+	 * Add one cross-reference in empty multi-link widget from UI and verifies the changes in underlying ME.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testChangeAddOneInEmpty() {
@@ -88,21 +82,19 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsWidgetFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		
-		
-		
+
 		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+				ToolItem toolItem = ((ToolItem) widgetcontrol.get(0));
 				Event event = new Event();
-				event.widget = ((ToolItem)widgetcontrol.get(0));
-				toolItem.notifyListeners(SWT.Selection, event);		
+				event.widget = ((ToolItem) widgetcontrol.get(0));
+				toolItem.notifyListeners(SWT.Selection, event);
 			}
-		}; runAsnc(widgetActivateCommand);
-		
-		
+		};
+		runAsnc(widgetActivateCommand);
+
 		final String participant = "Joker";
 		getBot().text().setText(participant);
 		getBot().button("OK").click();
@@ -110,17 +102,19 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 			@Override
 			protected void doRun() {
 				EList<OrgUnit> list = actionItem.getParticipants();
-				if(! list.isEmpty()){
-				final String getparticipant1 = list.get(0).getName();
-				assertEquals(participant, getparticipant1);
-				
+				if (!list.isEmpty()) {
+					final String getparticipant1 = list.get(0).getName();
+					assertEquals(participant, getparticipant1);
+
 				}
-				
+
 			}
 		}.run();
 	}
-	
 
+	/**
+	 * Add one cross-reference in an empty multi-link widget programattically and verify the changes in UI.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testUpdateAddOneInEmpty() {
@@ -133,10 +127,10 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				user.setName("BOND");
 				project.addModelElement(user);
 				actionItem.getParticipants().add(user);
-				}
+			}
 		};
 		runAsnc(unicaseCommand);
-		
+
 		UnicaseCommandWithResult<Matcher> participantsFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -146,36 +140,39 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		String finalUser = ((Hyperlink)widgetcontrol.get(0)).getText();
+		String finalUser = ((Hyperlink) widgetcontrol.get(0)).getText();
 		assertEquals("BOND", finalUser);
-}
-	
-	
-	
+	}
+
+	/**
+	 * Add multiple cross-references in a multi-link widget(from UI) which is already having existing cross-references.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testChangeAddMultipleInExisting() {
 		openModelElement(actionItem);
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				if(users != null){
-				 actionItem.getParticipants().addAll(users);
-				 User user1 = OrganizationFactoryImpl.eINSTANCE.createUser();
-				 user1.setName("Tobias");
-				 project.addModelElement(user1);
-				 User user2 = OrganizationFactoryImpl.eINSTANCE.createUser();
-				 user2.setName("Henry");
-				 project.addModelElement(user2);
-				 
+				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+					new BasicEList<User>());
+				if (users != null) {
+					actionItem.getParticipants().addAll(users);
+					User user1 = OrganizationFactoryImpl.eINSTANCE.createUser();
+					user1.setName("Tobias");
+					project.addModelElement(user1);
+					User user2 = OrganizationFactoryImpl.eINSTANCE.createUser();
+					user2.setName("Henry");
+					project.addModelElement(user2);
+
 				}
-				
+
 			}
-		}; runAsnc(unicaseCommand);
-		
+		};
+		runAsnc(unicaseCommand);
+
 		UnicaseCommandWithResult<Matcher> participantsWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -185,21 +182,19 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsWidgetFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		
-		
-		
+
 		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+				ToolItem toolItem = ((ToolItem) widgetcontrol.get(0));
 				Event event = new Event();
-				event.widget = ((ToolItem)widgetcontrol.get(0));
-				toolItem.notifyListeners(SWT.Selection, event);		
+				event.widget = ((ToolItem) widgetcontrol.get(0));
+				toolItem.notifyListeners(SWT.Selection, event);
 			}
-		}; runAsnc(widgetActivateCommand);
-		
-		
+		};
+		runAsnc(widgetActivateCommand);
+
 		final String participant1 = "Tobias";
 		getBot().text().setText(participant1);
 		getBot().button("OK").click();
@@ -211,39 +206,45 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 			@Override
 			protected void doRun() {
 				EList<OrgUnit> list = actionItem.getParticipants();
-				if(! list.isEmpty()){
-				for( OrgUnit l : list){
-					if(l.getName().equals(participant1)){
-						assertEquals(participant1, l.getName());
-					}else if(l.getName().equals(participant2)){
-						assertEquals(participant2, l.getName());
+				if (!list.isEmpty()) {
+					for (OrgUnit l : list) {
+						if (l.getName().equals(participant1)) {
+							assertEquals(participant1, l.getName());
+						} else if (l.getName().equals(participant2)) {
+							assertEquals(participant2, l.getName());
+						}
 					}
 				}
-			}
-				
+
 			}
 		}.run();
 	}
 
+	/**
+	 * Add multiple cross-references in a multi-link widget( programattically ) which is already having existing
+	 * cross-references.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testUpdateAddMultipleInExisting() {
 		openModelElement(actionItem);
 		UnicaseCommand addParticipantCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				if(users != null){
-				 actionItem.getParticipants().addAll(users);
-				 }
-				
+				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+					new BasicEList<User>());
+				if (users != null) {
+					actionItem.getParticipants().addAll(users);
+				}
+
 			}
-		}; runAsnc(addParticipantCommand);
-		
+		};
+		runAsnc(addParticipantCommand);
+
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
@@ -255,11 +256,11 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				user2.setName("James");
 				project.addModelElement(user2);
 				actionItem.getParticipants().add(user2);
-							
+
 			}
 		};
 		runAsnc(unicaseCommand);
-		
+
 		UnicaseCommandWithResult<Matcher> participant1FinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -269,9 +270,9 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participant1FinderCommand);
 		final List widgetcontrol1 = getBot().getFinder().findControls(widgetmatcher);
-		String finalUser1 = ((Hyperlink)widgetcontrol1.get(0)).getText();
+		String finalUser1 = ((Hyperlink) widgetcontrol1.get(0)).getText();
 		assertEquals("BOND", finalUser1);
-		
+
 		UnicaseCommandWithResult<Matcher> participant2FinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -281,34 +282,37 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		widgetmatcher = runAsnc(participant2FinderCommand);
 		final List widgetcontrol2 = getBot().getFinder().findControls(widgetmatcher);
-		String finalUser2 = ((Hyperlink)widgetcontrol2.get(0)).getText();
+		String finalUser2 = ((Hyperlink) widgetcontrol2.get(0)).getText();
 		assertEquals("James", finalUser2);
-				
-}
-	
-	
-	
+
+	}
+
+	/**
+	 * Add one cross-reference in a multi-link widget(from UI) which already have multiple existing cross-references.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testChangeAddOneInExisting() {
 		openModelElement(actionItem);
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				if(users != null){
-				 actionItem.getParticipants().addAll(users);
-				 User user = OrganizationFactoryImpl.eINSTANCE.createUser();
-				 user.setName("Tobias");
-				 project.addModelElement(user);
-				 
+				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+					new BasicEList<User>());
+				if (users != null) {
+					actionItem.getParticipants().addAll(users);
+					User user = OrganizationFactoryImpl.eINSTANCE.createUser();
+					user.setName("Tobias");
+					project.addModelElement(user);
+
 				}
-				
+
 			}
-		}; runAsnc(unicaseCommand);
-		
+		};
+		runAsnc(unicaseCommand);
+
 		UnicaseCommandWithResult<Matcher> participantsWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -318,21 +322,19 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsWidgetFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		
-		
-		
+
 		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+				ToolItem toolItem = ((ToolItem) widgetcontrol.get(0));
 				Event event = new Event();
-				event.widget = ((ToolItem)widgetcontrol.get(0));
-				toolItem.notifyListeners(SWT.Selection, event);		
+				event.widget = ((ToolItem) widgetcontrol.get(0));
+				toolItem.notifyListeners(SWT.Selection, event);
 			}
-		}; runAsnc(widgetActivateCommand);
-		
-		
+		};
+		runAsnc(widgetActivateCommand);
+
 		final String participant = "Tobias";
 		getBot().text().setText(participant);
 		getBot().button("OK").click();
@@ -340,38 +342,42 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 			@Override
 			protected void doRun() {
 				EList<OrgUnit> list = actionItem.getParticipants();
-				if(! list.isEmpty()){
-				for( OrgUnit l : list){
-					if(l.getName().equals(participant)){
-						assertEquals(participant, l.getName());
-						break;
+				if (!list.isEmpty()) {
+					for (OrgUnit l : list) {
+						if (l.getName().equals(participant)) {
+							assertEquals(participant, l.getName());
+							break;
+						}
 					}
 				}
-			}
-				
+
 			}
 		}.run();
 	}
-	
-	
 
+	/**
+	 * Add one cross-reference in a multi-link widget(programattically) which already have multiple existing
+	 * cross-references.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testUpdateAddOneInExisting() {
 		openModelElement(actionItem);
 		UnicaseCommand addParticipantCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				Project project = actionItem.getProject();
-				 EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				if(users != null){
-				 actionItem.getParticipants().addAll(users);
-				 }
-				
+				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+					new BasicEList<User>());
+				if (users != null) {
+					actionItem.getParticipants().addAll(users);
+				}
+
 			}
-		}; runAsnc(addParticipantCommand);
-		
+		};
+		runAsnc(addParticipantCommand);
+
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -380,11 +386,11 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				user.setName("BOND");
 				project.addModelElement(user);
 				actionItem.getParticipants().add(user);
-							
+
 			}
 		};
 		runAsnc(unicaseCommand);
-		
+
 		UnicaseCommandWithResult<Matcher> participantsFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -394,16 +400,18 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		String finalUser1 = ((Hyperlink)widgetcontrol.get(0)).getText();
+		String finalUser1 = ((Hyperlink) widgetcontrol.get(0)).getText();
 		assertEquals("BOND", finalUser1);
-				
+
 	}
-	
-	
+
+	/**
+	 * Add 2 participants in an ActioItem from UI and see if its the same programattically.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testParticipantsChange() {
-		
+
 		openModelElement(actionItem);
 		UnicaseCommandWithResult<Matcher> participantsWidgetFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
@@ -414,21 +422,19 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsWidgetFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		
-		
-		
+
 		UnicaseCommand widgetActivateCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				ToolItem toolItem = ((ToolItem)widgetcontrol.get(0));
+				ToolItem toolItem = ((ToolItem) widgetcontrol.get(0));
 				Event event = new Event();
-				event.widget = ((ToolItem)widgetcontrol.get(0));
-				toolItem.notifyListeners(SWT.Selection, event);		
+				event.widget = ((ToolItem) widgetcontrol.get(0));
+				toolItem.notifyListeners(SWT.Selection, event);
 			}
-		}; runAsnc(widgetActivateCommand);
-		
-		
+		};
+		runAsnc(widgetActivateCommand);
+
 		final String participant1 = "Joker";
 		final String participant2 = "Batman";
 		getBot().text().setText(participant1);
@@ -436,30 +442,30 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		runAsnc(widgetActivateCommand);
 		getBot().text().setText(participant2);
 		getBot().button("OK").click();
-		
-		
+
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				EList<OrgUnit> list = actionItem.getParticipants();
-				if(! list.isEmpty()){
-				final String getparticipant1 = list.get(0).getName();
-				final String getparticipant2 = list.get(1).getName();
-				assertEquals(participant1, getparticipant1);
-				assertEquals(participant2, getparticipant2);
+				if (!list.isEmpty()) {
+					final String getparticipant1 = list.get(0).getName();
+					final String getparticipant2 = list.get(1).getName();
+					assertEquals(participant1, getparticipant1);
+					assertEquals(participant2, getparticipant2);
 				}
-				
+
 			}
 		}.run();
-		
-}
-	
 
+	}
 
+	/**
+	 * Add 2 participants in an ActioItem programattically and see if its the same in UI.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testParticipantsUpdate() {
-		
+
 		openModelElement(actionItem);
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			@Override
@@ -473,11 +479,11 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				user2.setName("James");
 				project.addModelElement(user2);
 				actionItem.getParticipants().add(user2);
-				
+
 			}
 		};
 		runAsnc(unicaseCommand);
-		
+
 		UnicaseCommandWithResult<Matcher> participantsFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -487,10 +493,9 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher widgetmatcher = runAsnc(participantsFinderCommand);
 		final List widgetcontrol = getBot().getFinder().findControls(widgetmatcher);
-		String finalUser1 = ((Hyperlink)widgetcontrol.get(0)).getText();
+		String finalUser1 = ((Hyperlink) widgetcontrol.get(0)).getText();
 		assertEquals("BOND", finalUser1);
-		
-		
+
 		UnicaseCommandWithResult<Matcher> participantFinderCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -500,12 +505,14 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		};
 		Matcher matcher = runAsnc(participantFinderCommand);
 		final List control = getBot().getFinder().findControls(matcher);
-		String finalUser2 = ((Hyperlink)control.get(0)).getText();
+		String finalUser2 = ((Hyperlink) control.get(0)).getText();
 		assertEquals("James", finalUser2);
-				
+
 	}
-	
-	
+
+	/**
+	 * Remove a cross-reference programattically and see if the UI gets updated.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testRemoveOneUpdate() {
@@ -516,12 +523,13 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				Project project = actionItem.getProject();
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("James");
-					project.addModelElement(user);
-					actionItem.getParticipants().add(user);
-					
-				}
-			}; runAsnc(someCommand);
-			
+				project.addModelElement(user);
+				actionItem.getParticipants().add(user);
+
+			}
+		};
+		runAsnc(someCommand);
+
 		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -532,32 +540,35 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		Matcher hyperLinkMatcher = runAsnc(unicaseCommand);
 		List linksList = getBot().getFinder().findControls(hyperLinkMatcher);
 		int previousListLength = linksList.size();
-		 
+
 		UnicaseCommand removeCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				EList<User> user = actionItem.getProject().getModelElementsByClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				for(User u: user){
-					if(u.getName().equals("James")){
+				EList<User> user = actionItem.getProject().getModelElementsByClass(
+					OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
+				for (User u : user) {
+					if (u.getName().equals("James")) {
 						actionItem.getParticipants().remove(u);
 					}
 				}
-				
-			}
-		}; runAsnc(removeCommand);
-			
-				getBot().activeEditor().bot().text().setFocus();
-				Matcher noOfHyperlinks = runAsnc(unicaseCommand);
-				List secondList = getBot().getFinder().findControls(noOfHyperlinks);
-				//Size of secondList is supposed to be 2 less than the initial value as every user added as participants
-				// increases the no. of ImageHyperlink widget to 2!
-				assertEquals(previousListLength, secondList.size() + 2);
-		
-	}
-	
-	
 
+			}
+		};
+		runAsnc(removeCommand);
+
+		getBot().activeEditor().bot().text().setFocus();
+		Matcher noOfHyperlinks = runAsnc(unicaseCommand);
+		List secondList = getBot().getFinder().findControls(noOfHyperlinks);
+		// Size of secondList is supposed to be 2 less than the initial value as every user added as participants
+		// increases the no. of ImageHyperlink widget to 2!
+		assertEquals(previousListLength, secondList.size() + 2);
+
+	}
+
+	/**
+	 * Remove multiple cross-reference programatically and see if the UI reflects them all properly.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testRemoveMultipleUpdate() {
@@ -565,19 +576,21 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand someCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-					Project project = actionItem.getProject();
-					EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-					if(users != null){
-					 actionItem.getParticipants().addAll(users);
-					 }
-					User user = OrganizationFactory.eINSTANCE.createUser();
-					user.setName("James");
-					project.addModelElement(user);
-					actionItem.getParticipants().add(user);
-					
+				Project project = actionItem.getProject();
+				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+					new BasicEList<User>());
+				if (users != null) {
+					actionItem.getParticipants().addAll(users);
 				}
-			}; runAsnc(someCommand);
-			
+				User user = OrganizationFactory.eINSTANCE.createUser();
+				user.setName("James");
+				project.addModelElement(user);
+				actionItem.getParticipants().add(user);
+
+			}
+		};
+		runAsnc(someCommand);
+
 		UnicaseCommandWithResult<Matcher> unicaseCommand = new UnicaseCommandWithResult<Matcher>() {
 			@Override
 			protected Matcher doRun() {
@@ -588,31 +601,32 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		Matcher hyperLinkMatcher = runAsnc(unicaseCommand);
 		List linksList = getBot().getFinder().findControls(hyperLinkMatcher);
 		int previousListLength = linksList.size();
-		 
+
 		UnicaseCommand removeCommand = new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				EList<User> user = actionItem.getProject().getModelElementsByClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-				for(User u: user){
-					if(u.getName().equals("James")){
+				EList<User> user = actionItem.getProject().getModelElementsByClass(
+					OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
+				for (User u : user) {
+					if (u.getName().equals("James")) {
 						actionItem.getParticipants().remove(u);
-					}else if(u.getName().equals("Batman")){
+					} else if (u.getName().equals("Batman")) {
 						actionItem.getParticipants().remove(u);
 					}
 				}
-				
+
 			}
-		}; runAsnc(removeCommand);
-			
-				getBot().activeEditor().bot().text().setFocus();
-				Matcher noOfHyperlinks = runAsnc(unicaseCommand);
-				List secondList = getBot().getFinder().findControls(noOfHyperlinks);
-				//Size of secondList is supposed to be 4 less than the initial value as every user added as participants
-				// increases the no. of ImageHyperlink widget to 2 and if removed decreases the no. of ImageHyperLink to 2!
-				assertEquals(previousListLength, secondList.size() + 4);
-		
+		};
+		runAsnc(removeCommand);
+
+		getBot().activeEditor().bot().text().setFocus();
+		Matcher noOfHyperlinks = runAsnc(unicaseCommand);
+		List secondList = getBot().getFinder().findControls(noOfHyperlinks);
+		// Size of secondList is supposed to be 4 less than the initial value as every user added as participants
+		// increases the no. of ImageHyperlink widget to 2 and if removed decreases the no. of ImageHyperLink to 2!
+		assertEquals(previousListLength, secondList.size() + 4);
+
 	}
-	
-	
+
 }

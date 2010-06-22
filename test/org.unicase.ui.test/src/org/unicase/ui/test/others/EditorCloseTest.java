@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.test.others;
 
 import static org.junit.Assert.assertTrue;
@@ -18,6 +23,11 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Test the response of the editor itself if the ME or the project is deleted.
+ * 
+ * @author Nitesh
+ */
 public class EditorCloseTest extends MEEditorTest {
 
 	private ActionItem actionItem;
@@ -45,6 +55,9 @@ public class EditorCloseTest extends MEEditorTest {
 		}.run();
 	}
 
+	/**
+	 * Test if the editor gets closed in a case if the ME is deleted.
+	 */
 	@Test
 	public void singleEditorCloseTestByDeletingME() {
 		UITestCommon.openPerspective(getBot(), "Unicase");
@@ -75,6 +88,9 @@ public class EditorCloseTest extends MEEditorTest {
 
 	}
 
+	/**
+	 * Test if the multiple editors are closed if there corresponding ME's are deleted.
+	 */
 	@Test
 	public void multipleEditorCloseTestByDeletingME() {
 		UITestCommon.openPerspective(getBot(), "Unicase");
@@ -108,6 +124,9 @@ public class EditorCloseTest extends MEEditorTest {
 
 	}
 
+	/**
+	 * Test if the editor is closed if the project itself is deleted.
+	 */
 	@Test
 	public void singleEditorCloseTestByDeletingProject() {
 		UITestCommon.openPerspective(getBot(), "Unicase");
@@ -142,6 +161,9 @@ public class EditorCloseTest extends MEEditorTest {
 
 	}
 
+	/**
+	 * Test if the multiple editors are closed if the project itself is deleted.
+	 */
 	@Test
 	public void multipleEditorCloseTestByDeletingProject() {
 		UITestCommon.openPerspective(getBot(), "Unicase");
