@@ -28,6 +28,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
@@ -152,7 +153,13 @@ public final class ActionHelper {
 			}
 		}
 		NotificationManager.getInstance().onOpen(me, sourceView, name);
-		bestCandidate.openModelElement(me);
+		// BEGIN SUPRESS CATCH EXCEPTION
+		try {
+			bestCandidate.openModelElement(me);
+		} catch (RuntimeException e) {
+			Activator.getDefault().logException(e);
+		}
+		// END SUPRESS CATCH EXCEPTION
 
 	}
 
