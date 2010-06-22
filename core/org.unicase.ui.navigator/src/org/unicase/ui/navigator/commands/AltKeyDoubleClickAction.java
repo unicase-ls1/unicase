@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.navigator.commands;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -16,9 +17,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * listener ActionClass for the DoublclickAction and the ALT Key.
@@ -101,14 +100,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	private void openSelectedModelelement() {
 		// the selected Object or null if selection is not an IStructuredSelection
 
-		Object obj = ActionHelper.getSelection();
-		if (obj instanceof ProjectSpace) {
-			ProjectSpace projectSpace = (ProjectSpace) obj;
-			ActionHelper.openDashboard(projectSpace);
-			return;
-		}
-
-		ModelElement me = ActionHelper.getSelectedModelElement();
+		EObject me = ActionHelper.getSelectedModelelement();
 		if (me == null) {
 			return;
 		}
