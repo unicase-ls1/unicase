@@ -5,11 +5,12 @@
  */
 package org.unicase.ui.navigator.wizards;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -17,6 +18,10 @@ import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -75,16 +80,16 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				final EReference possibleContainingReference = ModelUtil.getPossibleContainingReference(newMEInstance,
 					selectedEObject);
 				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
-					new UnicaseCommand() {
-						@SuppressWarnings("unchecked")
-						@Override
-						protected void doRun() {
-							Object object = selectedEObject.eGet(possibleContainingReference);
-							EList<EObject> eList = (EList<EObject>) object;
-							eList.add(newMEInstance);
+					ECPWorkspace workSpace;
+					try {
+						workSpace = WorkspaceManager.getInstance().getWorkSpace();
+						Command create = AddCommand.create(workSpace.getProject(selectedEObject).getEditingDomain(),
+							selectedEObject, possibleContainingReference, newMEInstance);
+						workSpace.getProject(selectedEObject).getEditingDomain().getCommandStack().execute(create);
+					} catch (NoWorkspaceException e) {
+						Activator.logException(e);
+					}
 
-						}
-					}.run();
 				}
 			}
 			// 3.open the newly created ME
