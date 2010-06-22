@@ -73,4 +73,13 @@ public interface ECPWorkspace extends EObject {
 	 */
 	public void setEditingDomain(TransactionalEditingDomain editingDomain);
 
+	/**
+	 * Checks if the eobject is a root object in this workspace. Root objects are not the ECPProjects, but the wrapper
+	 * objects, returned by ecpproject.getRootObject.
+	 * 
+	 * @param eObject the object to check if it is a root object
+	 * @return if the object is a root object;
+	 */
+	public boolean isRootObject(EObject eObject);
+
 } // ECPWorkspace
