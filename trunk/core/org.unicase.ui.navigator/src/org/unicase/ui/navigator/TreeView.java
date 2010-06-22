@@ -129,6 +129,16 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 				});
 
 			}
+
+			public void modelelementDeleted(EObject eobject) {
+				// Do nothing
+
+			}
+
+			public void projectDeleted() {
+				// Do nothing
+
+			}
 		};
 	}
 

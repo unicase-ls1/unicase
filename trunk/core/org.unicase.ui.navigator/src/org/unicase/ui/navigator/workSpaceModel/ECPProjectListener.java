@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.navigator.workSpaceModel;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * Listens to any change in a project.
  * 
@@ -15,5 +17,17 @@ public interface ECPProjectListener {
 	 * called if a project changes.
 	 */
 	void projectChanged();
+
+	/**
+	 * Called if a modelelement gets deleted.
+	 * 
+	 * @param eobject the deleted eobject
+	 */
+	void modelelementDeleted(EObject eobject);
+
+	/**
+	 * called if the project gets deleted.
+	 */
+	void projectDeleted();
 
 }

@@ -75,6 +75,10 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 
 	void projectChanged();
 
+	void projectDeleted();
+
+	void modelelementDeleted(EObject eobject);
+
 	EObject getRootObject();
 
 } // ECPProject
