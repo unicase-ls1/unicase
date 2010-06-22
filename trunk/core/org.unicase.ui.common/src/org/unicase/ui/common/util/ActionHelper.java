@@ -311,7 +311,9 @@ public final class ActionHelper {
 	 * registered its SelectionProvider.
 	 * 
 	 * @return the selected Object or null if selection is not an IStructuredSelection
+	 * @deprecated use unicase action helper or getSelectedModelelement instead
 	 */
+	@Deprecated
 	public static ModelElement getSelectedModelElement() {
 		Object obj = getSelection();
 		if (obj instanceof ModelElement) {
@@ -319,6 +321,29 @@ public final class ActionHelper {
 		} else if (obj instanceof DelegatingWrapperItemProvider) {
 			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof ModelElement) {
 				return (ModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
+			} else {
+				return null;
+			}
+
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
+	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
+	 * registered its SelectionProvider.
+	 * 
+	 * @return the selected Object or null if selection is not an IStructuredSelection
+	 */
+	public static EObject getSelectedModelelement() {
+		Object obj = getSelection();
+		if (obj instanceof EObject) {
+			return (EObject) obj;
+		} else if (obj instanceof DelegatingWrapperItemProvider) {
+			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof EObject) {
+				return (EObject) ((DelegatingWrapperItemProvider) obj).getValue();
 			} else {
 				return null;
 			}
