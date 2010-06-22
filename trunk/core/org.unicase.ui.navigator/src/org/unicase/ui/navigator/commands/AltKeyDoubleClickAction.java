@@ -22,7 +22,7 @@ import org.unicase.ui.common.util.ActionHelper;
 /**
  * listener ActionClass for the DoublclickAction and the ALT Key.
  * 
- * @author abdelhamidbarzali .
+ * @author helming .
  */
 public class AltKeyDoubleClickAction extends Action implements IDoubleClickListener, Listener {
 
