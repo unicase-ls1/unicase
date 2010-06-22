@@ -17,14 +17,16 @@ import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 
 /**
  * Context for the meeditor derived from the ECPProject of the navigator.
  * 
  * @author helming
  */
-public class NavigatorModelelementContex extends ModelElementContext {
+public class NavigatorModelelementContex extends ModelElementContext implements ECPProjectListener {
 	private ECPProject project;
+	private final EObject modelElement;
 
 	/**
 	 * default constructor.
@@ -32,8 +34,10 @@ public class NavigatorModelelementContex extends ModelElementContext {
 	 * @param modelElement the modelelement
 	 */
 	public NavigatorModelelementContex(EObject modelElement) {
+		this.modelElement = modelElement;
 		try {
 			project = WorkspaceManager.getInstance().getWorkSpace().getProject(modelElement);
+			project.addECPProjectListener(this);
 		} catch (NoWorkspaceException e) {
 			// TODO Add second exception for no project
 			Activator.logException(e);
@@ -53,7 +57,7 @@ public class NavigatorModelelementContex extends ModelElementContext {
 	 */
 	@Override
 	public void dispose() {
-		// TODO: remove listeners.
+		project.removeECPProjectListener(this);
 
 	}
 
@@ -102,6 +106,31 @@ public class NavigatorModelelementContex extends ModelElementContext {
 	@Override
 	public boolean isNonDomainElement(EObject eObject) {
 		return project.isNonDomainElement(eObject);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void projectChanged() {
+		// Do nothing
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelelementDeleted(EObject eobject) {
+		if (eobject.equals(modelElement)) {
+			super.modelElementDeleted();
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void projectDeleted() {
+		super.contextDeleted();
 	}
 
 }

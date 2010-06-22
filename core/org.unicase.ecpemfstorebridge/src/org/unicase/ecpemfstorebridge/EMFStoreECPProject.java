@@ -8,6 +8,7 @@ package org.unicase.ecpemfstorebridge;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -16,6 +17,8 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
@@ -28,7 +31,7 @@ import org.unicase.workspace.observers.SimpleOperationListener;
  * 
  * @author helming
  */
-public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
+public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, ProjectChangeObserver {
 
 	private final ProjectSpace projectSpace;
 	private SimpleOperationListener simpleOperationListener;
@@ -55,6 +58,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
 
 		};
 		projectSpace.addOperationListener(simpleOperationListener);
+		projectSpace.getProject().addProjectChangeObserver(this);
 	}
 
 	/**
@@ -143,7 +147,50 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject {
 	 */
 	public void dispose() {
 		projectSpace.removeOperationListener(simpleOperationListener);
+		projectSpace.getProject().removeProjectChangeObserver(this);
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		// Do nothing
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		super.modelelementDeleted(modelElement);
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		// Do nothing
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 */
+	public void projectDeleted(Project project) {
+		super.projectDeleted();
+
+	}
 }
