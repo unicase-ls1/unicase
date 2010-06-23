@@ -8,12 +8,18 @@ package org.unicase.proxyclient.notifier.email;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
+import javax.mail.IllegalWriteException;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
+import javax.mail.SendFailedException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.unicase.proxyclient.notifier.client.NotificationProxyClientException;
 
 /**
  * Mail Service.
@@ -82,9 +88,12 @@ public class Mailer extends Authenticator {
 			Transport.send(message);
 			return true;
 
-		} catch (Exception e) {
+		} catch (IllegalWriteException e) {
+			return false;
+		} catch (IllegalStateException e) {
+			return false;
+		} catch (MessagingException e) {
 			return false;
 		}
-
 	}
 }
