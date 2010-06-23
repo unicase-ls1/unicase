@@ -14,14 +14,16 @@ import org.unicase.ui.common.ECPModelelementContext;
 import org.unicase.ui.common.MetaModelElementContext;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>ECP Project</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.ui.navigator.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}</li>
- * </ul>
- * </p>
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ECP Project</b></em>'.
  * 
+ * @implements ECPModelelementContext <!-- end-user-doc -->
+ *             <p>
+ *             The following features are supported:
+ *             <ul>
+ *             <li>{@link org.unicase.ui.navigator.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}</li>
+ *             <li>{@link org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}</li>
+ *             </ul>
+ *             </p>
  * @see org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage#getECPProject()
  * @model abstract="true"
  * @generated
@@ -80,5 +82,15 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	void modelelementDeleted(EObject eobject);
 
 	EObject getRootObject();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject
+	 * <em>Root Object</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Root Object</em>' reference.
+	 * @see #getRootObject()
+	 * @generated
+	 */
+	void setRootObject(EObject value);
 
 } // ECPProject

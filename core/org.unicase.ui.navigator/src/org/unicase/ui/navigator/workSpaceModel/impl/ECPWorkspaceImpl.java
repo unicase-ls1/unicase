@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -235,8 +236,25 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	}
 
 	public ECPProject getProject(EObject me) {
-		// TODO Auto-generated method stub
-		return null;
+		EObject root = getParent(me);
+		for (ECPProject project : getProjects()) {
+			if (project.getRootObject() == root) {
+				return project;
+			}
+		}
+		throw new IllegalStateException("Project for element not found!");
+	}
+
+	private EObject getParent(EObject eObject) {
+		EObject parent = eObject.eContainer();
+		if (parent == null) {
+			return eObject;
+		} else if (parent instanceof Resource) {
+			return eObject;
+		} else {
+			return getParent(parent);
+		}
+
 	}
 
 	public void setActiveModelelement(EObject eobject) {

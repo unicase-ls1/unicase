@@ -16,20 +16,17 @@ import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpaceModelPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ecpWorkspaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ecpProjectEClass = null;
@@ -53,7 +50,6 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -71,13 +67,10 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 	 * @generated
 	 */
 	public static WorkSpaceModelPackage init() {
-		if (isInited)
-			return (WorkSpaceModelPackage) EPackage.Registry.INSTANCE.getEPackage(WorkSpaceModelPackage.eNS_URI);
+		if (isInited) return (WorkSpaceModelPackage)EPackage.Registry.INSTANCE.getEPackage(WorkSpaceModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		WorkSpaceModelPackageImpl theWorkSpaceModelPackage = (WorkSpaceModelPackageImpl) (EPackage.Registry.INSTANCE
-			.get(eNS_URI) instanceof WorkSpaceModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-			: new WorkSpaceModelPackageImpl());
+		WorkSpaceModelPackageImpl theWorkSpaceModelPackage = (WorkSpaceModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof WorkSpaceModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new WorkSpaceModelPackageImpl());
 
 		isInited = true;
 
@@ -90,6 +83,7 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 		// Mark meta-data to indicate it can't be changed
 		theWorkSpaceModelPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(WorkSpaceModelPackage.eNS_URI, theWorkSpaceModelPackage);
 		return theWorkSpaceModelPackage;
@@ -97,7 +91,6 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getECPWorkspace() {
@@ -106,25 +99,22 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getECPWorkspace_Projects() {
-		return (EReference) ecpWorkspaceEClass.getEStructuralFeatures().get(0);
+		return (EReference)ecpWorkspaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getECPWorkspace_ActiveProject() {
-		return (EReference) ecpWorkspaceEClass.getEStructuralFeatures().get(1);
+		return (EReference)ecpWorkspaceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getECPProject() {
@@ -133,38 +123,43 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getECPProject_Workspace() {
-		return (EReference) ecpProjectEClass.getEStructuralFeatures().get(0);
+		return (EReference)ecpProjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getECPProject_RootObject() {
+		return (EReference)ecpProjectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkSpaceModelFactory getWorkSpaceModelFactory() {
-		return (WorkSpaceModelFactory) getEFactoryInstance();
+		return (WorkSpaceModelFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -174,24 +169,23 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 
 		ecpProjectEClass = createEClass(ECP_PROJECT);
 		createEReference(ecpProjectEClass, ECP_PROJECT__WORKSPACE);
+		createEReference(ecpProjectEClass, ECP_PROJECT__ROOT_OBJECT);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -206,20 +200,13 @@ public class WorkSpaceModelPackageImpl extends EPackageImpl implements WorkSpace
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(ecpWorkspaceEClass, ECPWorkspace.class, "ECPWorkspace", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getECPWorkspace_Projects(), this.getECPProject(), this.getECPProject_Workspace(), "projects",
-			null, 0, -1, ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getECPWorkspace_ActiveProject(), this.getECPProject(), null, "activeProject", null, 0, 1,
-			ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ecpWorkspaceEClass, ECPWorkspace.class, "ECPWorkspace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getECPWorkspace_Projects(), this.getECPProject(), this.getECPProject_Workspace(), "projects", null, 0, -1, ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getECPWorkspace_ActiveProject(), this.getECPProject(), null, "activeProject", null, 0, 1, ECPWorkspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(ecpProjectEClass, ECPProject.class, "ECPProject", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getECPProject_Workspace(), this.getECPWorkspace(), this.getECPWorkspace_Projects(), "workspace",
-			null, 0, 1, ECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ecpProjectEClass, ECPProject.class, "ECPProject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getECPProject_Workspace(), this.getECPWorkspace(), this.getECPWorkspace_Projects(), "workspace", null, 0, 1, ECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getECPProject_RootObject(), ecorePackage.getEObject(), null, "rootObject", null, 0, 1, ECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
