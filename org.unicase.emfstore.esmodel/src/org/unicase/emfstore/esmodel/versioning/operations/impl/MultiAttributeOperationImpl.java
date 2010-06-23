@@ -266,6 +266,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
+	@SuppressWarnings("unchecked")
 	public void apply(Project project) {
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
@@ -280,14 +281,19 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 			if (isAdd()) {
 				for (Object value : getReferencedValues()) {
 					if (i >= 0 && list.size() > i) {
-						list.add(value);
+						list.add(i, value);
 					} else {
 						list.add(value);
 					}
 					i++;
 				}
 			} else {
-				// Todo
+				for (Object value : getReferencedValues()) {
+					if (i >= 0 && list.size() > i) {
+						list.remove(i);
+					}
+					i++;
+				}
 			}
 
 		} catch (UnkownFeatureException e) {
