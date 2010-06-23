@@ -6,7 +6,7 @@
     editorDirectory="/org.unicase.emailnotifierpreferences/src" modelPluginID="org.unicase.emailnotifierpreferences"
     templateDirectory="" modelName="Emailnotificationgroup" codeFormatting="true"
     importerID="org.eclipse.emf.importer.ecore" containmentProxies="true" complianceLevel="5.0"
-    language="">
+    copyrightFields="false" language="">
   <foreignModel>emailnotificationgroup.ecore</foreignModel>
   <genPackages prefix="Emailnotificationgroup" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="emailnotificationgroup.ecore#/">
