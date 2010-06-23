@@ -411,9 +411,13 @@ public final class ModelUtil {
 	 */
 	public static Set<EClass> getAllSubEClasses(EClass eClass) {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
+		if (EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
+			return allEClasses;
+		}
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass);
+			if (isSuperTypeOf && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
@@ -782,11 +786,11 @@ public final class ModelUtil {
 		list.add(eObject);
 		saveObjectToResource(list, resourceURI);
 	}
-	
+
 	/**
-	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a
-	 * error string which will be added to the errorStrings list. After the return from the method to
-	 * the caller the return value contains the loaded EObjects.
+	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a error string which will
+	 * be added to the errorStrings list. After the return from the method to the caller the return value contains the
+	 * loaded EObjects.
 	 * 
 	 * @param resource contains the items which should be loaded.
 	 * @param errorStrings contains all messages about items which couldn't be loaded by the method.
@@ -794,12 +798,12 @@ public final class ModelUtil {
 	 */
 	public static Set<EObject> loadFromResource(Resource resource, List<String> errorStrings) {
 		Set<EObject> result = new HashSet<EObject>();
-		
+
 		result = validation(resource, errorStrings);
-		
+
 		return result;
 	}
-	
+
 	// Validates if the EObjects can be imported
 	private static Set<EObject> validation(Resource resource, List<String> errorStrings) {
 		Set<EObject> childrenSet = new HashSet<EObject>();
@@ -812,7 +816,7 @@ public final class ModelUtil {
 			EObject content = contents.next();
 
 			if (!(content instanceof ModelElement)) {
-				errorStrings.add(content+" is not a org.unicase.metamodel.ModelElement\n");
+				errorStrings.add(content + " is not a org.unicase.metamodel.ModelElement\n");
 				continue;
 			}
 
