@@ -106,13 +106,22 @@ public interface WorkSpaceModelPackage extends EPackage {
 	int ECP_PROJECT__WORKSPACE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Root Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECP_PROJECT__ROOT_OBJECT = 1;
+
+	/**
 	 * The number of structural features of the '<em>ECP Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ECP_PROJECT_FEATURE_COUNT = 1;
+	int ECP_PROJECT_FEATURE_COUNT = 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.ui.navigator.workSpaceModel.ECPWorkspace <em>ECP Workspace</em>}'.
@@ -164,6 +173,17 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getECPProject_Workspace();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Root Object</em>'.
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject()
+	 * @see #getECPProject()
+	 * @generated
+	 */
+	EReference getECPProject_RootObject();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -226,6 +246,14 @@ public interface WorkSpaceModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ECP_PROJECT__WORKSPACE = eINSTANCE.getECPProject_Workspace();
+
+		/**
+		 * The meta object literal for the '<em><b>Root Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ECP_PROJECT__ROOT_OBJECT = eINSTANCE.getECPProject_RootObject();
 
 	}
 

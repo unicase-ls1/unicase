@@ -43,6 +43,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 */
 	public EMFStoreECPProject(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
+		setRootObject(projectSpace);
 		simpleOperationListener = new SimpleOperationListener() {
 
 			@Override
@@ -129,15 +130,6 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 */
 	public boolean isNonDomainElement(EObject eObject) {
 		return (eObject instanceof NonDomainElement);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject()
-	 */
-	public EObject getRootObject() {
-		return projectSpace;
 	}
 
 	/**

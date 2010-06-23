@@ -7,9 +7,11 @@ package org.unicase.ecpxmibridge;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.EventObject;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecpxmibridge.containerModel.ContainerModelFactory;
 import org.unicase.ecpxmibridge.containerModel.XMIRootContainer;
@@ -55,13 +58,27 @@ public class XmiEcpWorkspaceProvider implements ECPWorkspaceProvider {
 		if (workspace != null) {
 			return workspace;
 		}
-		
-		//load workspace
-		ResourceSet resourceSet = new ResourceSetImpl();
+		final ResourceSet resourceSet = new ResourceSetImpl();
 		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
 			.createEditingDomain(resourceSet);
 		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
 		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		
+		
+		RecordingCommand command = new RecordingCommand(domain) {
+			
+			@Override
+			protected void doExecute() {
+				workspace = initWorkspace(resourceSet, domain);
+			}
+		};
+		domain.getCommandStack().execute(command);
+		return workspace;
+		
+	}
+	
+	private ECPWorkspace initWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+		//load workspace
 	
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
@@ -88,29 +105,51 @@ public class XmiEcpWorkspaceProvider implements ECPWorkspaceProvider {
 			workspace = (ECPWorkspace) directContents.get(0);
 		}
 		
-		//enable auto saving
-		workspace.eAdapters().add(new EContentAdapter() {
-
-			/** 
-			 * {@inheritDoc}
-			 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
-			 */
-			@Override
-			public void notifyChanged(Notification notification) {
-				super.notifyChanged(notification);
-				Object notifier = notification.getNotifier();
-				if (notifier instanceof EObject && ((EObject)notifier).eResource()!=null) {
-					dirtyResources.add(((EObject)notifier).eResource());
-				}
-			}
-		});
+//		//enable auto saving
+//		workspace.eAdapters().add(new EContentAdapter() {
+//
+//			/** 
+//			 * {@inheritDoc}
+//			 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
+//			 */
+//			@Override
+//			public void notifyChanged(Notification notification) {
+//				super.notifyChanged(notification);
+//				Object notifier = notification.getNotifier();
+//				if (notifier instanceof EObject && ((EObject)notifier).eResource()!=null) {
+//					dirtyResources.add(((EObject)notifier).eResource());
+//				}
+//			}
+//		});
+//		
+//		domain.getCommandStack().addCommandStackListener(new CommandStackListener() {
+//			
+//			public void commandStackChanged(EventObject event) {
+//				for (Resource resource: dirtyResources) {
+//					try {
+//						resource.save(null);
+//					} catch (IOException e) {
+//
+//					}
+//				}
+//				dirtyResources.clear();
+//			}
+//		});
 		
+		workspace.setEditingDomain(domain);
 		
 		XMIRootContainer xmiRootContainer = ContainerModelFactory.eINSTANCE.createXMIRootContainer();
 		
 		ECPXMIProject ecpxmiProject = new ECPXMIProject(domain, xmiRootContainer);
 		
 		workspace.getProjects().add(ecpxmiProject);
+		
+//		try {
+//			resource.save(null);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return workspace;
 	}

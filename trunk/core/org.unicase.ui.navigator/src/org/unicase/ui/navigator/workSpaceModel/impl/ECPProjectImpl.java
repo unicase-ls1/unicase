@@ -25,13 +25,23 @@ import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl#getWorkspace <em>Workspace</em>}</li>
+ *   <li>{@link org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl#getWorkspace <em>Workspace</em>}</li>
+ *   <li>{@link org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl#getRootObject <em>Root Object</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
+	/**
+	 * The cached value of the '{@link #getRootObject() <em>Root Object</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getRootObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject rootObject;
 	private ArrayList<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
 
 	public void addECPProjectListener(ECPProjectListener listener) {
@@ -66,7 +76,6 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ECPProjectImpl() {
@@ -75,7 +84,6 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,148 +93,179 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ECPWorkspace getWorkspace() {
-		if (eContainerFeatureID() != WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE)
-			return null;
-		return (ECPWorkspace) eContainer();
+		if (eContainerFeatureID() != WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE) return null;
+		return (ECPWorkspace)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetWorkspace(ECPWorkspace newWorkspace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newWorkspace, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newWorkspace, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWorkspace(ECPWorkspace newWorkspace) {
-		if (newWorkspace != eInternalContainer()
-			|| (eContainerFeatureID() != WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE && newWorkspace != null)) {
+		if (newWorkspace != eInternalContainer() || (eContainerFeatureID() != WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE && newWorkspace != null)) {
 			if (EcoreUtil.isAncestor(this, newWorkspace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newWorkspace != null)
-				msgs = ((InternalEObject) newWorkspace).eInverseAdd(this,
-					WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, ECPWorkspace.class, msgs);
+				msgs = ((InternalEObject)newWorkspace).eInverseAdd(this, WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, ECPWorkspace.class, msgs);
 			msgs = basicSetWorkspace(newWorkspace, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE,
-				newWorkspace, newWorkspace));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE, newWorkspace, newWorkspace));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EObject getRootObject() {
+		if (rootObject != null && rootObject.eIsProxy()) {
+			InternalEObject oldRootObject = (InternalEObject)rootObject;
+			rootObject = eResolveProxy(oldRootObject);
+			if (rootObject != oldRootObject) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT, oldRootObject, rootObject));
+			}
+		}
+		return rootObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetRootObject() {
+		return rootObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRootObject(EObject newRootObject) {
+		EObject oldRootObject = rootObject;
+		rootObject = newRootObject;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT, oldRootObject, rootObject));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetWorkspace((ECPWorkspace) otherEnd, msgs);
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetWorkspace((ECPWorkspace)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			return basicSetWorkspace(null, msgs);
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				return basicSetWorkspace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			return eInternalContainer().eInverseRemove(this, WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS,
-				ECPWorkspace.class, msgs);
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				return eInternalContainer().eInverseRemove(this, WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, ECPWorkspace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			return getWorkspace();
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				return getWorkspace();
+			case WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT:
+				if (resolve) return getRootObject();
+				return basicGetRootObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			setWorkspace((ECPWorkspace) newValue);
-			return;
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				setWorkspace((ECPWorkspace)newValue);
+				return;
+			case WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT:
+				setRootObject((EObject)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			setWorkspace((ECPWorkspace) null);
-			return;
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				setWorkspace((ECPWorkspace)null);
+				return;
+			case WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT:
+				setRootObject((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
-			return getWorkspace() != null;
+			case WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE:
+				return getWorkspace() != null;
+			case WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT:
+				return rootObject != null;
 		}
 		return super.eIsSet(featureID);
 	}

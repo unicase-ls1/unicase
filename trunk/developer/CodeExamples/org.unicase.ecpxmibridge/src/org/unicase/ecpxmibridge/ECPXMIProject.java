@@ -37,7 +37,7 @@ public class ECPXMIProject extends ECPProjectImpl {
 	public ECPXMIProject(EditingDomain domain, EObject root) {
 		this.domain = domain;
 		this.root = root;
-		
+		setRootObject(root);		
 	}
 	
 	/** 
@@ -90,14 +90,6 @@ public class ECPXMIProject extends ECPProjectImpl {
 				return ModelUtil.getAllModelElementEClasses();
 			}
 		};
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getRootObject()
-	 */
-	public EObject getRootObject() {
-		return root;
 	}
 
 	/** 
