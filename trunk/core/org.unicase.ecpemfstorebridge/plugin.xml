@@ -19,5 +19,19 @@
             class="org.unicase.ecpemfstorebridge.EMFStoreECPWorkspaceProvider">
       </WorkspaceProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.ecpemfstorebridge.xmiAdd"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.unicase.ecpemfstorebridge.AddXMIAction"
+               id="org.unicase.ecpemfstorebridge.addXMI"
+               label="Add to EMF Client Platform">
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>
