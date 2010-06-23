@@ -23,9 +23,38 @@
       </ModelVersion>
    </extension>
    <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http:///org/eclipse/example/library.ecore">
+         </package>
+         <constraints
+               categories="exampleModel.category">
+            <constraint
+                  class="library.util.BookValidation"
+                  id="exampleModel.constraint1"
+                  lang="Java"
+                  mode="Batch"
+                  name="My constraint"
+                  severity="ERROR"
+                  statusCode="exampleModel.constraint1">
+               <message>
+                  This Book has no title
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <category
+            id="exampleModel.category"
+            name="name">
+      </category>
+   </extension>
+   <extension
          point="org.eclipse.emf.validation.constraintBindings">
       <binding
-            category="library"
+            category="exampleModel.category"
             context="context">
       </binding>
    </extension>
