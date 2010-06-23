@@ -51,8 +51,9 @@ public class Mailer extends Authenticator {
 	}
 
 	/**
+	 * Method returns a new PasswordAuthentication object with the username and the password of the MailerInfo object.
 	 * 
-	 * @return 
+	 * @return Returns a new PasswordAuthentication object with the username and the password of the MailerInfo object.
 	 */
 	protected PasswordAuthentication getPasswordAuthentication() {
 		String user = mailerInfo.getUsername();
