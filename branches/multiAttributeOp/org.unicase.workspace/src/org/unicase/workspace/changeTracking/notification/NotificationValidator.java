@@ -136,13 +136,13 @@ final class NotificationValidator {
 
 	private void handleRemoveManyNotification(NotificationInfo n) {
 
-		// attributes not allowed for REMOVE_MANY (yet)
-		if (n.isAttributeNotification()) {
-			n.setValid(false);
-			n.setValidationMessage("REMOVE_MANY on attribute feature with multiplicity greater"
-				+ "than 1 not yet supported.");
-			return;
-		}
+		// // attributes not allowed for REMOVE_MANY (yet)
+		// if (n.isAttributeNotification()) {
+		// n.setValid(false);
+		// n.setValidationMessage("REMOVE_MANY on attribute feature with multiplicity greater"
+		// + "than 1 not yet supported.");
+		// return;
+		// }
 
 		// reference validation
 		if (n.isReferenceNotification()) {
