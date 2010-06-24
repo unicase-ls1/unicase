@@ -8,13 +8,15 @@ package org.unicase.ui.refactoring.strategies.dialogs;
 
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
+import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
  * @author pfeifferc
  */
-public class RefactoringDialog extends WizardDialog {
+public abstract class AbstractRefactoringWizardDialog extends WizardDialog implements AbstractRefactoringDialog {
 
 	/**
 	 * The result of the refactoring process.
@@ -27,11 +29,23 @@ public class RefactoringDialog extends WizardDialog {
 	private AbstractRefactoringWizard wizard;
 
 	/**
+	 * The abstract refactoring strategy.
+	 */
+	private final AbstractRefactoringStrategy abstractRefactoringStrategy;
+
+	/**
+	 * The model element the refactoring is about.
+	 */
+	private UnicaseModelElement unicaseModelElement;
+
+	/**
 	 * @param parentShell the
+	 * @param abstractRefactoringStrategy the
 	 * @param newWizard the
 	 */
-	public RefactoringDialog(Shell parentShell, AbstractRefactoringWizard newWizard) {
+	public AbstractRefactoringWizardDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy, AbstractRefactoringWizard newWizard) {
 		super(parentShell, newWizard);
+		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		addPageChangedListener(newWizard);
 		this.wizard = newWizard;
 		setTitle("");
@@ -51,7 +65,7 @@ public class RefactoringDialog extends WizardDialog {
 	@Override
 	protected void finishPressed() {
 		getWizard().performFinish();
-		refactoringResult = wizard.getRefactoringResult();
+		setRefactoringResult(wizard.getRefactoringResult());
 		close();
 	}
 	
@@ -62,7 +76,7 @@ public class RefactoringDialog extends WizardDialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		refactoringResult = RefactoringResult.ABORT;
+		setRefactoringResult(RefactoringResult.ABORT);
 		super.cancelPressed();
 	}
 
@@ -89,5 +103,35 @@ public class RefactoringDialog extends WizardDialog {
 	 */
 	public RefactoringResult getRefactoringResult() {
 		return refactoringResult;
+	}
+
+	/**
+	 * Set the refactoring result.
+	 * 
+	 * @param refactoringResult the
+	 */
+	public void setRefactoringResult(RefactoringResult refactoringResult) {
+		this.refactoringResult = refactoringResult;
+	}
+
+	/**
+	 * @return the abstract refactoring strategy
+	 */
+	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+		return abstractRefactoringStrategy;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public UnicaseModelElement getInvalidModelElement() {
+		return unicaseModelElement;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setInvalidModelElement(UnicaseModelElement unicaseModelElement) {
+		this.unicaseModelElement = unicaseModelElement;
 	}
 }

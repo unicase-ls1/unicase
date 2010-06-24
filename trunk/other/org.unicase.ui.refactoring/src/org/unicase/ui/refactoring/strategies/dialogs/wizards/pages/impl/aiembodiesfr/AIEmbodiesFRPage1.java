@@ -106,7 +106,7 @@ public class AIEmbodiesFRPage1 extends AbstractRefactoringWizardPage {
 	 */
 	@Override
 	public boolean performFinish() {
-		getRefactoringWizard().setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
+		getRefactoringWizard()	.setRefactoringResult(RefactoringResult.SUCCESS_NOVIOLATION);
 		return super.performFinish();
 	}
 }

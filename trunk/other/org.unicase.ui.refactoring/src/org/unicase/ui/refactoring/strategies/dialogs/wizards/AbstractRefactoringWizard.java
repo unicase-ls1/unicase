@@ -161,5 +161,4 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	public void setRefactoringResult(RefactoringResult refactoringResult) {
 		this.refactoringResult = refactoringResult;
 	}
-
 }
