@@ -8,8 +8,7 @@
             class="org.unicase.emailnotifierpreferences.properties.EMailNotifierPage"
             id="org.unicase.emailnotifierpreferences.properties.samplePropertyPage"
             name="EMailNotifier"
-            nameFilter="*.*"
-            objectClass="org.unicase.metamodel.Project">
+            nameFilter="*.*">
          <enabledWhen>
             <iterate
                   ifEmpty="false"
