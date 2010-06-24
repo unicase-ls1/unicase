@@ -1490,6 +1490,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				}
 			}
 		}
+		modifiedModelElementsCache.initializeCache();
 		startChangeRecording();
 		cleanCutElements();
 
