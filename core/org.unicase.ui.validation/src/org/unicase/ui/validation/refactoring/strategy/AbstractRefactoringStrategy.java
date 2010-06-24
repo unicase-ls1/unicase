@@ -28,7 +28,7 @@ public abstract class AbstractRefactoringStrategy {
 	private IConstraintStatus status;
 
 	/**
-	 * Child model elements to be created.
+	 * Child model elements created.
 	 */
 	private ArrayList<ModelElement> childModelElementsCreated;
 
@@ -38,7 +38,7 @@ public abstract class AbstractRefactoringStrategy {
 	private ArrayList<ModelElement> childModelElementsReferenced;
 
 	/**
-	 * Parent model elements to be created.
+	 * Parent model elements created.
 	 */
 	private ArrayList<ModelElement> parentModelElementsCreated;
 
@@ -231,5 +231,12 @@ public abstract class AbstractRefactoringStrategy {
 	 */
 	public Shell getShell() {
 		return shell;
+	}
+
+	/**
+	 * @return the invalid model element
+	 */
+	public ModelElement getInvalidModelElement() {
+		return (ModelElement) getConstraintStatus().getTarget();
 	}
 }

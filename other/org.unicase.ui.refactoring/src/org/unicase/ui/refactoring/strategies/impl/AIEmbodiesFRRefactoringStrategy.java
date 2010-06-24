@@ -4,10 +4,10 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies;
+package org.unicase.ui.refactoring.strategies.impl;
 
-import org.unicase.ui.refactoring.Activator;
-import org.unicase.ui.refactoring.strategies.dialogs.RefactoringDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringWizardDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.impl.AIEmbodiesFrRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.AIEmbodiesFrRefactoringWizard;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
@@ -26,8 +26,7 @@ public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy
 	 */
 	@Override
 	public RefactoringResult performRefactoring() {
-		RefactoringDialog refactoringDialog = new RefactoringDialog(getShell(), new AIEmbodiesFrRefactoringWizard(this));
-		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
+		AbstractRefactoringWizardDialog refactoringDialog = new AIEmbodiesFrRefactoringDialog(getShell(), this, new AIEmbodiesFrRefactoringWizard(this));
 		refactoringDialog.open();
 		return refactoringDialog.getRefactoringResult();
 	}

@@ -4,11 +4,10 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies;
+package org.unicase.ui.refactoring.strategies.impl;
 
-import org.unicase.ui.refactoring.Activator;
-import org.unicase.ui.refactoring.strategies.dialogs.RefactoringDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.MENewNameRefactoringWizard;
+import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.impl.ModelElementNewNameRefactoringDialog;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
@@ -26,9 +25,7 @@ public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
 	 */
 	@Override
 	public RefactoringResult performRefactoring() {
-		RefactoringDialog refactoringDialog = new RefactoringDialog(getShell(),
-			new MENewNameRefactoringWizard(this));
-		refactoringDialog.setTitleImage(Activator.getImageDescriptor("icons/validation.png").createImage());
+		AbstractRefactoringDialog refactoringDialog = new ModelElementNewNameRefactoringDialog(getShell(), this, "Please choose a name", null, null, null);
 		refactoringDialog.open();
 		return refactoringDialog.getRefactoringResult();
 	}
@@ -40,7 +37,7 @@ public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
 	public String getDescription() {
 		return "Rename the model element";
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
