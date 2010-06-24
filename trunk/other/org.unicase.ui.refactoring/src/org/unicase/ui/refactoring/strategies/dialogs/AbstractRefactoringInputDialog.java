@@ -40,7 +40,7 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	public AbstractRefactoringInputDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy, String dialogTitle,
 			String dialogMessage, String initialValue, IInputValidator validator) {
 		super(parentShell, dialogTitle, dialogMessage, initialValue, validator);
-		this.setRefactoringDialogHelper(new RefactoringDialogHelper());
+		this.refactoringDialogHelper = new RefactoringDialogHelper();
 		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		this.refactoringResult = RefactoringResult.ABORT;
 	}
@@ -108,13 +108,6 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	 */
 	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setRefactoringDialogHelper(RefactoringDialogHelper refactoringDialogHelper) {
-		this.refactoringDialogHelper = refactoringDialogHelper;
 	}
 
 	/**

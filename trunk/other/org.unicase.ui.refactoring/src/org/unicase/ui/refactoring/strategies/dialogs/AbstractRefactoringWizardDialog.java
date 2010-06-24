@@ -48,6 +48,7 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		addPageChangedListener(newWizard);
 		this.wizard = newWizard;
+		this.unicaseModelElement = (UnicaseModelElement) abstractRefactoringStrategy.getInvalidModelElement();
 		setTitle("");
 	}
 
@@ -126,12 +127,5 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	 */
 	public UnicaseModelElement getInvalidModelElement() {
 		return unicaseModelElement;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setInvalidModelElement(UnicaseModelElement unicaseModelElement) {
-		this.unicaseModelElement = unicaseModelElement;
 	}
 }
