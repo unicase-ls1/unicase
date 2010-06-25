@@ -7,6 +7,12 @@
 package org.unicase.ui.refactoring.strategies.dialogs.impl;
 
 import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -25,6 +31,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class ModelElementNewNameRefactoringDialog extends AbstractRefactoringInputDialog implements AbstractRefactoringDialog {
 
 	private UnicaseModelElement unicaseModelElement;
+	private Button button;
 
 	/**
 	 * @param parentShell the
@@ -49,6 +56,7 @@ public class ModelElementNewNameRefactoringDialog extends AbstractRefactoringInp
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		// reusable variables
+		Composite composite;
 		// create body composite as base for the other composites
 		Composite body = getRefactoringDialogHelper().createBodyComposite(parent);
 		// refactoringDialogHelper.create affected model element composite
@@ -57,18 +65,17 @@ public class ModelElementNewNameRefactoringDialog extends AbstractRefactoringInp
 		getRefactoringDialogHelper().createSeparator(body);
 		// refactoringDialogHelper.create instruction text composite
 		getRefactoringDialogHelper().createExplanatoryTextComposite(body, "Please specify the new name.", "exclamation.png");
+		// create the composite to put the widgets on
+		composite = getRefactoringDialogHelper().createComposite(body, SWT.NONE, new GridLayout(1, false), new GridData(SWT.FILL, SWT.FILL, true,
+				true));
+		button = new Button(composite, SWT.CHECK);
+		button.setSelection(false);
+		button.setText("Delete the model element instead.");
+		button.addSelectionListener(new DeleteButtonSelectionListener());
+		// create the remaining dialog area
 		return super.createDialogArea(parent);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void okPressed() {
-		performFinish();
-		super.okPressed();
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -78,16 +85,28 @@ public class ModelElementNewNameRefactoringDialog extends AbstractRefactoringInp
 			
 			@Override
 			protected void doRun() {
-				unicaseModelElement.setName(getValue());
+				if(button.getSelection()) {
+					getInvalidModelElement().delete();
+				} else {
+					getInvalidModelElement().setName(getValue());
+				}
 			}
 		}.run();
 		setRefactoringResult(RefactoringResult.SUCCESS_CREATE);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @author pfeifferc
 	 */
-	public UnicaseModelElement getInvalidModelElement() {
-		return unicaseModelElement;
+	private final class DeleteButtonSelectionListener implements
+			SelectionListener {
+		
+		public void widgetSelected(SelectionEvent e) {
+			getText().setEnabled(!button.getSelection());
+		}
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do here
+		}
 	}
 }

@@ -18,7 +18,7 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
  */
 public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
 
-	private static final String ID = "org.unicase.validation.MENewNameRefactoringStrategy";
+	private static final String ID = "org.unicase.ui.refactoring.MENewNameRefactoringStrategy";
 
 	/**
 	 * {@inheritDoc}

@@ -9,6 +9,7 @@ package org.unicase.ui.refactoring.strategies.dialogs;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
@@ -26,6 +27,11 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	private RefactoringDialogHelper refactoringDialogHelper;
 	
 	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	
+	/**
+	 * The model element the refactoring is about.
+	 */
+	private UnicaseModelElement unicaseModelElement;
 
 	/**
 	 * Constructor.
@@ -43,6 +49,7 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 		this.refactoringDialogHelper = new RefactoringDialogHelper();
 		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		this.refactoringResult = RefactoringResult.ABORT;
+		unicaseModelElement = (UnicaseModelElement) getAbstractRefactoringStrategy().getInvalidModelElement();
 	}
 
 	/**
@@ -73,6 +80,15 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	public boolean close() {
 		dispose();
 		return super.close();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void okPressed() {
+		performFinish();
+		super.okPressed();
 	}
 	
 	/**
@@ -115,5 +131,12 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	 */
 	public RefactoringDialogHelper getRefactoringDialogHelper() {
 		return refactoringDialogHelper;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public UnicaseModelElement getInvalidModelElement() {
+		return unicaseModelElement;
 	}
 }

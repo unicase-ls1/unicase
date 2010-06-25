@@ -4,19 +4,28 @@
  <extension
        point="org.unicase.ui.validation.refactoring.strategies">
     <refactoringStrategy
+          applicableFor="org.unicase.model.task.ActionItemActivity"
+          strategy="org.unicase.ui.refactoring.strategies.impl.ActivityNotSetRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.task.ActionItemAssignee"
+          strategy="org.unicase.ui.refactoring.strategies.impl.AssigneMissingRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
-          id="org.unicase.ui.unicasecommon.validation.refactoring.strategies.ActionItemEmbodiesRequirementRefactoringStrategy"
           strategy="org.unicase.ui.refactoring.strategies.impl.AIEmbodiesFRRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.DiscussionInIssueConstraint"
-          id="org.unicase.ui.unicasecommon.refactoringstrategies.DiscussionIntoIssueRefactoringStrategy"
           strategy="org.unicase.ui.refactoring.strategies.impl.DiscussionIntoIssueRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.ModelElementNewName"
-          id="org.unicase.ui.unicasecommon.refactoringstrategies.ModelElementNewNameRefactoringStrategy"
           strategy="org.unicase.ui.refactoring.strategies.impl.MENewNameRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.task.ActionItemAnnotated"
+          strategy="org.unicase.ui.refactoring.strategies.impl.ActionItemNotAnnotatedRefactoringStrategy">
     </refactoringStrategy>
  </extension>
 </plugin>

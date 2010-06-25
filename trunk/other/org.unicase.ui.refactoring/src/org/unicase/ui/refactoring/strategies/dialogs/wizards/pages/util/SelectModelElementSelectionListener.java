@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.dialogs;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;

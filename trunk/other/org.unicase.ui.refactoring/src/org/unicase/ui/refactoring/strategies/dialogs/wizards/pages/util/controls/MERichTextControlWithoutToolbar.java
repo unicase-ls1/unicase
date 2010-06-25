@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -63,8 +63,8 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * @param t textViewer
 	 * @return the control
 	 */
-	protected Control createControl(Composite parent, int style, Composite c, TextViewer t) {
-		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
+	protected Control createControl(final Composite parent, final int style, final Composite c, final TextViewer t) {
+		final Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
 		if (c == null) {
 			composite = getToolkit().createComposite(parent, style);
@@ -79,7 +79,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 		createStyledText(t);
 		eAdapter = new AdapterImpl() {
 			@Override
-			public void notifyChanged(Notification msg) {
+			public void notifyChanged(final Notification msg) {
 				if (msg.getFeature() != null && msg.getFeature().equals(MERichTextControlWithoutToolbar.this.attribute)) {
 					load();
 				}
@@ -98,7 +98,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Control createControl(Composite parent, int style) {
+	public Control createControl(final Composite parent, final int style) {
 		return createControl(parent, style, null, null);
 	}
 
@@ -120,7 +120,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 
 	private boolean shouldShowExpand;
 
-	private void createStyledText(TextViewer t) {
+	private void createStyledText(final TextViewer t) {
 
 		if (t == null) {
 			viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
@@ -135,13 +135,13 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 		text.addFocusListener(new FocusAdapter() {
 
 			@Override
-			public void focusLost(FocusEvent e) {
+			public void focusLost(final FocusEvent e) {
 				save();
 				super.focusLost(e);
 			}
 
 		});
-		GridData spec = new GridData();
+		final GridData spec = new GridData();
 		spec.horizontalAlignment = GridData.FILL;
 		spec.grabExcessHorizontalSpace = true;
 		spec.verticalAlignment = GridData.FILL;
@@ -165,13 +165,13 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 		// });
 
 		if (shouldShowExpand) {
-			ToolItem textItem = new ToolItem(toolBar, SWT.PUSH);
-			ImageDescriptor textImageDescriptor = Activator.getImageDescriptor("icons/text.png");
+			final ToolItem textItem = new ToolItem(toolBar, SWT.PUSH);
+			final ImageDescriptor textImageDescriptor = Activator.getImageDescriptor("icons/text.png");
 			textItem.setImage(textImageDescriptor.createImage());
 			textItem.setToolTipText("Go to the description tab");
 			textItem.addSelectionListener(new SelectionAdapter() {
 				@Override
-				public void widgetSelected(SelectionEvent event) {
+				public void widgetSelected(final SelectionEvent event) {
 					final IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 						.getActivePage().getActiveEditor();
 					if (activeEditor instanceof MEEditor) {
@@ -184,19 +184,19 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 
 	@SuppressWarnings("unused")
 	private void toggleBullet() {
-		int size = text.getText().length();
-		StringBuilder newText = new StringBuilder();
+		final int size = text.getText().length();
+		final StringBuilder newText = new StringBuilder();
 		int newOffset = 0;
 		if (!text.getSelectionText().equals("")) {
-			Point selectionRange = text.getSelectionRange();
-			int start = selectionRange.x;
-			int length = selectionRange.y;
+			final Point selectionRange = text.getSelectionRange();
+			final int start = selectionRange.x;
+			final int length = selectionRange.y;
 
 			String before = "";
 			if (start > 0) {
 				before = text.getText(0, start - 1);
 			}
-			String target = text.getSelectionText();
+			final String target = text.getSelectionText();
 
 			String after = "";
 			if (start + length < size) {
@@ -215,9 +215,9 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 			}
 			newText.append(after);
 		} else {
-			int pos = text.getCaretOffset();
-			int line = text.getLineAtOffset(pos);
-			String target = text.getLine(line);
+			final int pos = text.getCaretOffset();
+			final int line = text.getLineAtOffset(pos);
+			final String target = text.getLine(line);
 			String before = "";
 			int start = text.getOffsetAtLine(line);
 			if (start > 0) {
@@ -226,7 +226,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 			String after = "";
 			if (line + 1 < text.getLineCount()) {
 				start = text.getOffsetAtLine(line + 1);
-				int end = size - 1;
+				final int end = size - 1;
 				if (start < end) {
 					after = text.getText(start, end);
 				}
@@ -247,7 +247,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * 
 	 * @param show if shown.
 	 */
-	public void setShowExpand(boolean show) {
+	public void setShowExpand(final boolean show) {
 		shouldShowExpand = show;
 	}
 
@@ -264,7 +264,7 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * @param line The startline
 	 * @param count The number of lines
 	 */
-	protected void unbullet(int line, int count) {
+	protected void unbullet(final int line, final int count) {
 		text.setLineBullet(line + count - 1, 1, null);
 
 	}
@@ -302,11 +302,11 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * @param line The start line
 	 * @param count The number of lines
 	 */
-	protected void bullet(int line, int count) {
+	protected void bullet(final int line, final int count) {
 
-		StyleRange style0 = new StyleRange();
+		final StyleRange style0 = new StyleRange();
 		style0.metrics = new GlyphMetrics(0, 0, 40);
-		Bullet bullet0 = new Bullet(style0);
+		final Bullet bullet0 = new Bullet(style0);
 		for (int i = 0; i < count; i++) {
 
 			text.setLineBullet(line + count - 1, 1, bullet0);
@@ -339,8 +339,8 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 	 * @return status
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
+	public int canRender(final IItemPropertyDescriptor itemPropertyDescriptor, final EObject modelElement) {
+		final Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(String.class)) {
 
 			if (itemPropertyDescriptor.isMultiLine(feature)) {

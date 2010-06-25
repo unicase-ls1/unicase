@@ -19,7 +19,7 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
  */
 public class AIEmbodiesFRRefactoringStrategy extends AbstractRefactoringStrategy {
 
-	private static final String ID = "org.unicase.validation.AIEmbodiesFRRefactoringStrategy";
+	private static final String ID = "org.unicase.ui.refactoring.AIEmbodiesFRRefactoringStrategy";
 
 	/**
 	 * {@inheritDoc}

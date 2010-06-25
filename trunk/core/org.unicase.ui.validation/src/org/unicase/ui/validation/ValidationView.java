@@ -33,6 +33,9 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.TableCursor;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -90,6 +93,8 @@ public class ValidationView extends ViewPart {
 
 	private Shell shell;
 
+	private Table table;
+
 	/**
 	 * Default constructor.
 	 */
@@ -141,7 +146,7 @@ public class ValidationView extends ViewPart {
 
 	private void createTable() {
 		// CREATE TABLE
-		Table table = tableViewer.getTable();
+		table = tableViewer.getTable();
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 5;
 		table.setLayoutData(gridData);
@@ -181,6 +186,21 @@ public class ValidationView extends ViewPart {
 
 		// content provider
 		tableViewer.setContentProvider(new ValidationContentProvider());
+		TableCursor tableCursor = new TableCursor(table, SWT.NONE);
+		tableCursor.setVisible(false);
+		table.addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				if (e.stateMask == SWT.ALT && e.keyCode == 'r') {
+					TableItem tableItem = ((Table) e.getSource()).getSelection()[0];
+					startRefactoring(getRefactoringStrategiesFromExtensionPoint((IConstraintStatus) tableItem.getData()));
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				// nothing to do here
+			}
+		});
 	}
 
 	private void setLabelProviderAndComparator(TableViewerColumn column, ColumnLabelProvider labelProvider) {
@@ -222,7 +242,6 @@ public class ValidationView extends ViewPart {
 					final Object object = element.createExecutableExtension("strategy");
 					AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
 					strategy.setConstraintStatus(status);
-					strategy.setId(element.getAttribute("id"));
 					refactoringStrategies.add(strategy);
 				}
 			} catch (CoreException e) {
@@ -291,6 +310,32 @@ public class ValidationView extends ViewPart {
 		super.dispose();
 	}
 
+	private void startRefactoring(List<?> abstractRefactoringStrategies) {
+		if (abstractRefactoringStrategies.isEmpty()) {
+			return;
+		}
+		if (abstractRefactoringStrategies.size() == 1) {
+			AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) abstractRefactoringStrategies
+				.get(0);
+			abstractRefactoringStrategy.setShell(shell);
+			abstractRefactoringStrategy.startRefactoring();
+		} else {
+			// otherwise show list dialog
+			ListDialog listDialog = new ListDialog(shell);
+			listDialog.setInput(abstractRefactoringStrategies.toArray());
+			listDialog.setLabelProvider(new RefactoringStrategyLabelProvider());
+			listDialog.setContentProvider(new RefactoringStrategyContentProvider());
+			listDialog.setTitle("Choose a refactoring strategy");
+			listDialog.open();
+			Object[] result = listDialog.getResult();
+			if (result != null && result.length > 0) {
+				AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) result[0];
+				abstractRefactoringStrategy.setShell(shell);
+				abstractRefactoringStrategy.startRefactoring();
+			}
+		}
+	}
+
 	/**
 	 * @author pfeifferc
 	 */
@@ -339,26 +384,7 @@ public class ValidationView extends ViewPart {
 				MenuItem menuItem = (MenuItem) e.getSource();
 				List<?> abstractRefactoringStrategies = (List<?>) menuItem.getData();
 				// only show selection dialog if there is more than one refactoring
-				if (abstractRefactoringStrategies.size() == 1) {
-					AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) abstractRefactoringStrategies
-						.get(0);
-					abstractRefactoringStrategy.setShell(shell);
-					abstractRefactoringStrategy.startRefactoring();
-				} else {
-					// otherwise show list dialog
-					ListDialog listDialog = new ListDialog(shell);
-					listDialog.setInput(abstractRefactoringStrategies.toArray());
-					listDialog.setLabelProvider(new RefactoringStrategyLabelProvider());
-					listDialog.setContentProvider(new RefactoringStrategyContentProvider());
-					listDialog.setTitle("Choose a refactoring strategy");
-					listDialog.open();
-					Object[] result = listDialog.getResult();
-					if (result != null && result.length > 0) {
-						AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) result[0];
-						abstractRefactoringStrategy.setShell(shell);
-						abstractRefactoringStrategy.startRefactoring();
-					}
-				}
+				startRefactoring(abstractRefactoringStrategies);
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {

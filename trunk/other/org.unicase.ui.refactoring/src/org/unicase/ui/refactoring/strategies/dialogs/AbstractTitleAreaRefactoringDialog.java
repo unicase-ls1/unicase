@@ -16,7 +16,7 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 /**
  * @author pfeifferc
  */
-public class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implements AbstractRefactoringDialog {
+public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implements AbstractRefactoringDialog {
 
 	private RefactoringResult refactoringResult;
 	
@@ -26,7 +26,12 @@ public class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implemen
 	 * The model element the refactoring is about.
 	 */
 	private UnicaseModelElement unicaseModelElement;
-	
+
+	/**
+	 * The abstract refactoring strategy.
+	 */
+	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+
 	/**
 	 * The constructor.
 	 * 
@@ -36,8 +41,81 @@ public class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implemen
 	public AbstractTitleAreaRefactoringDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy) {
 		super(parentShell);
 		this.refactoringDialogHelper = new RefactoringDialogHelper();
+		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		this.refactoringResult = RefactoringResult.ABORT;
 		this.unicaseModelElement = (UnicaseModelElement) abstractRefactoringStrategy.getInvalidModelElement();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleShellCloseEvent() {
+		cancelPressed();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardDialog#cancelPressed()
+	 */
+	@Override
+	protected void cancelPressed() {
+		setRefactoringResult(RefactoringResult.ABORT);
+		super.cancelPressed();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardDialog#close()
+	 */
+	@Override
+	public boolean close() {
+		dispose();
+		return super.close();
+	}
+	
+	/**
+	 * Perform the finish.
+	 */
+	public abstract void performFinish();
+
+	/**
+	 * To be called when disposed.
+	 */
+	public void dispose() {
+		refactoringDialogHelper.dispose();
+	}
+	
+	/**
+	 * @return true if not canceled or closed, false otherwise
+	 */
+	public RefactoringResult getRefactoringResult() {
+		return refactoringResult;
+	}
+
+	/**
+	 * Set the refactoring result.
+	 * 
+	 * @param refactoringResult the
+	 */
+	public void setRefactoringResult(RefactoringResult refactoringResult) {
+		this.refactoringResult = refactoringResult;
+	}
+
+	/**
+	 * @return the abstract refactoring strategy
+	 */
+	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+		return abstractRefactoringStrategy;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public RefactoringDialogHelper getRefactoringDialogHelper() {
+		return refactoringDialogHelper;
 	}
 
 	/**
@@ -46,18 +124,13 @@ public class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implemen
 	public UnicaseModelElement getInvalidModelElement() {
 		return unicaseModelElement;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
-	public RefactoringResult getRefactoringResult() {
-		return refactoringResult;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setRefactoringResult(RefactoringResult refactoringResult) {
-		this.refactoringResult = refactoringResult;
+	@Override
+	protected void okPressed() {
+		performFinish();
+		super.okPressed();
 	}
 }
