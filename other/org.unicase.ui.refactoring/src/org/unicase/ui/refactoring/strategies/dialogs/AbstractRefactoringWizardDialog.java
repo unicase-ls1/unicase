@@ -86,7 +86,6 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	 * 
 	 * @see org.eclipse.jface.wizard.WizardDialog#close()
 	 */
-	@Override
 	public boolean close() {
 		dispose();
 		return super.close();

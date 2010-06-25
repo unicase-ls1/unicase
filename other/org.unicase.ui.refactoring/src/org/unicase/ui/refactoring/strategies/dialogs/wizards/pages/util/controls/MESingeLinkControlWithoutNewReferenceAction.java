@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls;
 
 import java.util.ArrayList;
 import java.util.List;

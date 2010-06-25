@@ -48,11 +48,6 @@ public abstract class AbstractRefactoringStrategy {
 	private ArrayList<ModelElement> parentModelElementsReferenced;
 
 	/**
-	 * The identifier.
-	 */
-	private String id;
-
-	/**
 	 * The shell.
 	 */
 	private Shell shell;
@@ -126,18 +121,9 @@ public abstract class AbstractRefactoringStrategy {
 	public abstract String getDescription();
 
 	/**
-	 * @param id he
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	/**
 	 * @return the id
 	 */
-	public String getId() {
-		return id;
-	}
+	public abstract String getId();
 
 	/**
 	 * Start the operations composite.

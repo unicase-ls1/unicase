@@ -27,7 +27,5 @@ public class AIEmbodiesFrRefactoringDialog extends
 			AbstractRefactoringStrategy abstractRefactoringStrategy,
 			AbstractRefactoringWizard newWizard) {
 		super(parentShell, abstractRefactoringStrategy, newWizard);
-		// TODO Auto-generated constructor stub
 	}
-
 }

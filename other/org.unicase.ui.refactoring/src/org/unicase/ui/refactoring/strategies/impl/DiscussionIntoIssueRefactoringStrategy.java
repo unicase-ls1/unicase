@@ -19,7 +19,7 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
  */
 public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringStrategy {
 
-	private static final String ID = "org.unicase.validation.DiscussionIntoIssueRefactoringStrategy";
+	private static final String ID = "org.unicase.ui.refactoring.DiscussionIntoIssueRefactoringStrategy";
 
 	/**
 	 * {@inheritDoc}

@@ -6,52 +6,54 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs;
 
-import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
+ * Refactoring input dialog.
+ * 
  * @author pfeifferc
  */
-public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog implements AbstractRefactoringDialog {
+public abstract class AbstractElementListSelectionRefactoringDialog extends ElementListSelectionDialog implements
+		AbstractRefactoringDialog {
 
 	private RefactoringResult refactoringResult;
 	
 	private RefactoringDialogHelper refactoringDialogHelper;
 	
+	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	
+	/**
+	 * @param parent the
+	 * @param abstractRefactoringStrategy the
+	 * @param renderer the
+	 */
+	public AbstractElementListSelectionRefactoringDialog(Shell parent, AbstractRefactoringStrategy abstractRefactoringStrategy,
+			ILabelProvider renderer) {
+		super(parent, renderer);
+		this.refactoringDialogHelper = new RefactoringDialogHelper();
+		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
+		this.refactoringResult = RefactoringResult.ABORT;
+		unicaseModelElement = (UnicaseModelElement) getAbstractRefactoringStrategy().getInvalidModelElement();
+	}
+
 	/**
 	 * The model element the refactoring is about.
 	 */
 	private UnicaseModelElement unicaseModelElement;
 
-	/**
-	 * The abstract refactoring strategy.
-	 */
-	private AbstractRefactoringStrategy abstractRefactoringStrategy;
-
-	/**
-	 * The constructor.
-	 * 
-	 * @param parentShell the
-	 * @param abstractRefactoringStrategy the
-	 */
-	public AbstractTitleAreaRefactoringDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy) {
-		super(parentShell);
-		this.refactoringDialogHelper = new RefactoringDialogHelper();
-		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
-		this.refactoringResult = RefactoringResult.ABORT;
-		this.unicaseModelElement = (UnicaseModelElement) abstractRefactoringStrategy.getInvalidModelElement();
-	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void handleShellCloseEvent() {
-		cancelPressed();
+//		cancelPressed();
 	}
 	
 	/**
@@ -72,8 +74,17 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	 */
 	@Override
 	public boolean close() {
-		dispose();
+//		dispose();
 		return super.close();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void okPressed() {
+		performFinish();
+		super.okPressed();
 	}
 	
 	/**
@@ -117,20 +128,11 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	public RefactoringDialogHelper getRefactoringDialogHelper() {
 		return refactoringDialogHelper;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	public UnicaseModelElement getInvalidModelElement() {
 		return unicaseModelElement;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void okPressed() {
-		performFinish();
-		super.okPressed();
 	}
 }

@@ -28,7 +28,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.refactoring.Activator;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.controls.MERichTextControlWithoutToolbar;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls.MERichTextControlWithoutToolbar;
 import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -296,7 +296,7 @@ public class RefactoringDialogHelper {
 	/**
 	 * @return the provider
 	 */
-	public AdapterFactoryLabelProvider getLabelProvider() {
+	public static AdapterFactoryLabelProvider getLabelProvider() {
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;

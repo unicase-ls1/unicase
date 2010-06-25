@@ -7,27 +7,26 @@
 package org.unicase.ui.refactoring.strategies.impl;
 
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
-import org.unicase.ui.refactoring.strategies.dialogs.impl.ModelElementNewNameRefactoringDialog;
+import org.unicase.ui.refactoring.strategies.dialogs.impl.AssigneeMissingRefactoringDialog;
 import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**
- * The model element new name refactoring strategy.
- * 
  * @author pfeifferc
  */
-public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
+public class AssigneMissingRefactoringStrategy extends
+		AbstractRefactoringStrategy {
 
-	private static final String ID = "org.unicase.ui.refactoring.MENewNameRefactoringStrategy";
-
+	private static final String ID = "org.unicase.ui.refactoring.AssigneMissingRefactoringStrategy";
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RefactoringResult performRefactoring() {
-		AbstractRefactoringDialog refactoringDialog = new ModelElementNewNameRefactoringDialog(getShell(), this, "Please choose a name", null, null, null);
-		refactoringDialog.open();
-		return refactoringDialog.getRefactoringResult();
+	protected RefactoringResult performRefactoring() {
+		AbstractRefactoringDialog abstractRefactoringDialog = new AssigneeMissingRefactoringDialog(getShell(), this);
+		abstractRefactoringDialog.open();
+		return abstractRefactoringDialog.getRefactoringResult();
 	}
 
 	/**
@@ -35,9 +34,9 @@ public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
 	 */
 	@Override
 	public String getDescription() {
-		return "Rename the model element";
+		return "Assign an assignee";
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -45,4 +44,5 @@ public class MENewNameRefactoringStrategy extends AbstractRefactoringStrategy {
 	public String getId() {
 		return ID;
 	}
+
 }
