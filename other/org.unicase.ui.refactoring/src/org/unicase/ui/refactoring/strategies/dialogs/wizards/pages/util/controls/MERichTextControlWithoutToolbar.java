@@ -293,7 +293,9 @@ public class MERichTextControlWithoutToolbar extends AbstractMEControl {
 			}
 		}.run();
 		txt = value.toString();
-		viewer.getDocument().set(txt);
+		if(viewer.getDocument() != null) {
+			viewer.getDocument().set(txt);
+		}
 	}
 
 	/**

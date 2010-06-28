@@ -49,6 +49,8 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 
 	private Map<ModelElement, ModelElementChangeListener> modelElementChangeListeners;
 
+	private Composite parent;
+
 	/**
 	 * The constructor.
 	 * 
@@ -71,6 +73,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
+		this.parent = parent;
 		parent.getShell().setSize(600, 750);
 		parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
@@ -280,7 +283,7 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 	 * To be called when the page is selected.
 	 */
 	public void pageSelected() {
-		// nothing to do here
+		parent.layout(true);
 	}
 
 	/**
