@@ -25,8 +25,8 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractElementListSelectionRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls.MERichTextControlWithoutToolbar;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -35,20 +35,20 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class ActionItemNotInWorkPackageRefactoringDialog extends AbstractElementListSelectionRefactoringDialog {
 
+	private Composite body;
+	
 	private Composite right;
 
 	private WorkPackage workPackage;
 
 	private Composite compositeRight;
 
-	private Composite body;
-
 	/**
 	 * @param parent the
 	 * @param abstractRefactoringStrategy the
 	 */
 	public ActionItemNotInWorkPackageRefactoringDialog(Shell parent,
-			AbstractRefactoringStrategy abstractRefactoringStrategy) {
+			RefactoringStrategy abstractRefactoringStrategy) {
 		super(parent, abstractRefactoringStrategy, RefactoringDialogHelper.getLabelProvider());
 		// set functional requirements as dialog elements
 		EList<WorkPackage> workPackages = new BasicEList<WorkPackage>();

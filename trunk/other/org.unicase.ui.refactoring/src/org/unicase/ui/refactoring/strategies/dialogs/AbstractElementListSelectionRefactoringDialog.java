@@ -11,8 +11,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * Refactoring input dialog.
@@ -26,14 +26,14 @@ public abstract class AbstractElementListSelectionRefactoringDialog extends Elem
 	
 	private RefactoringDialogHelper refactoringDialogHelper;
 	
-	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	private RefactoringStrategy abstractRefactoringStrategy;
 	
 	/**
 	 * @param parent the
 	 * @param abstractRefactoringStrategy the
 	 * @param renderer the
 	 */
-	public AbstractElementListSelectionRefactoringDialog(Shell parent, AbstractRefactoringStrategy abstractRefactoringStrategy,
+	public AbstractElementListSelectionRefactoringDialog(Shell parent, RefactoringStrategy abstractRefactoringStrategy,
 			ILabelProvider renderer) {
 		super(parent, renderer);
 		this.refactoringDialogHelper = new RefactoringDialogHelper();
@@ -74,7 +74,7 @@ public abstract class AbstractElementListSelectionRefactoringDialog extends Elem
 	 */
 	@Override
 	public boolean close() {
-//		dispose();
+		dispose();
 		return super.close();
 	}
 	
@@ -118,7 +118,7 @@ public abstract class AbstractElementListSelectionRefactoringDialog extends Elem
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+	public RefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 

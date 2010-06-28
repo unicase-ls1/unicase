@@ -6,10 +6,10 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.impl;
 
+import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage1;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.aiembodiesfr.AIEmbodiesFRPage2;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.AIEmbodiesFRPage1;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.AIEmbodiesFRPage2;
 
 /**
  * @author pfeifferc

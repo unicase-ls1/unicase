@@ -267,7 +267,6 @@ public class RefactoringDialogHelper {
 	 */
 	private void setDebugColor(Control control) {
 		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
-		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
 	}
 
 	/**

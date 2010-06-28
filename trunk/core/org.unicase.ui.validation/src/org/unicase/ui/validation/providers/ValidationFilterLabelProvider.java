@@ -42,7 +42,7 @@ public class ValidationFilterLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 		if (element instanceof ValidationFilter) {
 			ValidationFilter validationFilter = (ValidationFilter) element;
-			String description = validationFilter.getDescription();
+			String description = validationFilter.getName();
 			if (description != null && !description.equals("")) {
 				return description;
 			}

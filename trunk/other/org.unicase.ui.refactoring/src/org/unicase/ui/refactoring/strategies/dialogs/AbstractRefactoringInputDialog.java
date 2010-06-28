@@ -11,8 +11,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * Refactoring input dialog.
@@ -26,7 +26,7 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	
 	private RefactoringDialogHelper refactoringDialogHelper;
 	
-	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	private RefactoringStrategy abstractRefactoringStrategy;
 	
 	/**
 	 * The model element the refactoring is about.
@@ -43,7 +43,7 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	 * @param initialValue the
 	 * @param validator the
 	 */
-	public AbstractRefactoringInputDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy, String dialogTitle,
+	public AbstractRefactoringInputDialog(Shell parentShell, RefactoringStrategy abstractRefactoringStrategy, String dialogTitle,
 			String dialogMessage, String initialValue, IInputValidator validator) {
 		super(parentShell, dialogTitle, dialogMessage, initialValue, validator);
 		this.refactoringDialogHelper = new RefactoringDialogHelper();
@@ -122,7 +122,7 @@ public abstract class AbstractRefactoringInputDialog extends InputDialog impleme
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+	public RefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 

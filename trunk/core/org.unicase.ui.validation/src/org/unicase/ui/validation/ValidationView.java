@@ -23,6 +23,7 @@ import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -38,6 +39,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -56,6 +58,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.validation.filter.FilterTableViewer;
 import org.unicase.ui.validation.filter.ValidationFilter;
 import org.unicase.ui.validation.providers.ConstraintLabelProvider;
 import org.unicase.ui.validation.providers.CreatorLabelProvider;
@@ -64,11 +67,13 @@ import org.unicase.ui.validation.providers.SeverityLabelProvider;
 import org.unicase.ui.validation.providers.ValidationContentProvider;
 import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
 import org.unicase.ui.validation.providers.ValidationLabelProvider;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -94,6 +99,10 @@ public class ValidationView extends ViewPart {
 	private Shell shell;
 
 	private Table table;
+
+	private ArrayList<ValidationFilter> validationFilters;
+
+	private TableItem tableItem;
 
 	/**
 	 * Default constructor.
@@ -130,7 +139,7 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
+		tableViewer = new FilterTableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
 			| SWT.FULL_SELECTION);
 		createTable();
 		this.shell = parent.getShell();
@@ -192,8 +201,8 @@ public class ValidationView extends ViewPart {
 
 			public void keyReleased(KeyEvent e) {
 				if (e.stateMask == SWT.ALT && e.keyCode == 'r') {
-					TableItem tableItem = ((Table) e.getSource()).getSelection()[0];
-					startRefactoring(getRefactoringStrategiesFromExtensionPoint((IConstraintStatus) tableItem.getData()));
+					tableItem = ((Table) e.getSource()).getSelection()[0];
+					startRefactoring();
 				}
 			}
 
@@ -232,15 +241,15 @@ public class ValidationView extends ViewPart {
 		});
 	}
 
-	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(IConstraintStatus status) {
-		ArrayList<AbstractRefactoringStrategy> refactoringStrategies = new ArrayList<AbstractRefactoringStrategy>();
+	private ArrayList<RefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(IConstraintStatus status) {
+		ArrayList<RefactoringStrategy> refactoringStrategies = new ArrayList<RefactoringStrategy>();
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.validation.refactoring.strategies");
 		for (IConfigurationElement element : config) {
 			try {
 				if (element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())) {
 					final Object object = element.createExecutableExtension("strategy");
-					AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
+					RefactoringStrategy strategy = (RefactoringStrategy) object;
 					strategy.setConstraintStatus(status);
 					refactoringStrategies.add(strategy);
 				}
@@ -284,18 +293,22 @@ public class ValidationView extends ViewPart {
 	}
 
 	private ArrayList<ValidationFilter> getFiltersFromExtensionPoint() {
-		final ArrayList<ValidationFilter> validationFilters = new ArrayList<ValidationFilter>();
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.validation.filters");
-		for (IConfigurationElement element : config) {
-			try {
-				Object object = element.createExecutableExtension("filter");
-				if (object instanceof ValidationFilter) {
-					ValidationFilter validationFilter = (ValidationFilter) object;
-					validationFilters.add(validationFilter);
+		if (validationFilters == null) {
+			validationFilters = new ArrayList<ValidationFilter>();
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.ui.validation.filters");
+			for (IConfigurationElement element : config) {
+				try {
+					Object object = element.createExecutableExtension("filter");
+					if (object instanceof ValidationFilter) {
+						ValidationFilter validationFilter = (ValidationFilter) object;
+						if (validationFilter.init()) {
+							validationFilters.add(validationFilter);
+						}
+					}
+				} catch (CoreException e) {
+					e.printStackTrace();
 				}
-			} catch (CoreException e) {
-				e.printStackTrace();
 			}
 		}
 		return validationFilters;
@@ -310,28 +323,45 @@ public class ValidationView extends ViewPart {
 		super.dispose();
 	}
 
-	private void startRefactoring(List<?> abstractRefactoringStrategies) {
+	private void startRefactoring() {
+		IConstraintStatus constraintStatus = (IConstraintStatus) tableItem.getData();
+		List<?> abstractRefactoringStrategies = getRefactoringStrategiesFromExtensionPoint(constraintStatus);
 		if (abstractRefactoringStrategies.isEmpty()) {
 			return;
 		}
+		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		if (abstractRefactoringStrategies.size() == 1) {
-			AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) abstractRefactoringStrategies
-				.get(0);
-			abstractRefactoringStrategy.setShell(shell);
-			abstractRefactoringStrategy.startRefactoring();
+			RefactoringStrategy refactoringStrategy = (RefactoringStrategy) abstractRefactoringStrategies.get(0);
+			refactoringStrategy.setShell(shell);
+			refactoringResult = refactoringStrategy.startRefactoring();
 		} else {
 			// otherwise show list dialog
 			ListDialog listDialog = new ListDialog(shell);
-			listDialog.setInput(abstractRefactoringStrategies.toArray());
+			listDialog.setInput(abstractRefactoringStrategies);
 			listDialog.setLabelProvider(new RefactoringStrategyLabelProvider());
-			listDialog.setContentProvider(new RefactoringStrategyContentProvider());
+			listDialog.setContentProvider(new SimpleContentProvider());
 			listDialog.setTitle("Choose a refactoring strategy");
 			listDialog.open();
 			Object[] result = listDialog.getResult();
 			if (result != null && result.length > 0) {
-				AbstractRefactoringStrategy abstractRefactoringStrategy = (AbstractRefactoringStrategy) result[0];
-				abstractRefactoringStrategy.setShell(shell);
-				abstractRefactoringStrategy.startRefactoring();
+				RefactoringStrategy refactoringStrategy = (RefactoringStrategy) result[0];
+				refactoringStrategy.setShell(shell);
+				refactoringResult = refactoringStrategy.startRefactoring();
+			}
+		}
+		if (refactoringResult == RefactoringResult.NO_VIOLATION
+			|| refactoringResult == RefactoringResult.SUCCESS_CREATE) {
+			tableItem.dispose();
+		}
+	}
+
+	private void removeAllTableItemsForEObject(final IConstraintStatus status) {
+		ModelElement deletee = (ModelElement) status.getTarget();
+		for (TableItem tableItem : tableViewer.getTable().getItems()) {
+			IConstraintStatus constraintStatus = (IConstraintStatus) tableItem.getData();
+			ModelElement modelElement = (ModelElement) constraintStatus.getTarget();
+			if (deletee == modelElement) {
+				tableItem.dispose();
 			}
 		}
 	}
@@ -348,29 +378,49 @@ public class ValidationView extends ViewPart {
 				return;
 			}
 			// get the first table item that was selected (no multiple select)
-			TableItem tableItem = table.getSelection()[0];
+			tableItem = table.getSelection()[0];
 			// extract the violation status
 			final IConstraintStatus status = (IConstraintStatus) tableItem.getData();
 			// create the menu
 			Menu leftClickMenu = new Menu(shell, SWT.POP_UP);
 			// add refactoring menu item if refactoring strategies are available
-			List<AbstractRefactoringStrategy> refactoringStrategies = getRefactoringStrategiesFromExtensionPoint(status);
+			List<RefactoringStrategy> refactoringStrategies = getRefactoringStrategiesFromExtensionPoint(status);
 			if (refactoringStrategies.size() != 0) {
 				final MenuItem refactorMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
 				// add the menu item
-				refactorMenuItem.setData(refactoringStrategies);
+				refactorMenuItem.setData(tableItem);
 				refactorMenuItem.setText("Perform refactoring");
 				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell.png").createImage());
 				// refactorMenuItem.setData(data)
 				refactorMenuItem.addSelectionListener(new RefactoringSelectionListener());
 			}
 			// ignore constraint menu item
-			// MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
-			// ignoreMenuItem.setData(refactoringStrategies);
-			// ignoreMenuItem.setText("Ignore violation");
-			// ignoreMenuItem.setImage(Activator.getImageDescriptor("icons/bell_delete.png").createImage());
-			// refactorMenuItem.setData(data)
+			MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+			ignoreMenuItem.setData(refactoringStrategies);
+			ignoreMenuItem.setText("Ignore violation");
+			ignoreMenuItem.setImage(Activator.getImageDescriptor("icons/bell_delete.png").createImage());
+			// delete model element menu item
+			MenuItem deleteMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+			deleteMenuItem.setData(refactoringStrategies);
+			deleteMenuItem.setText("Delete underlying element");
+			deleteMenuItem.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
+			deleteMenuItem.addSelectionListener(new SelectionAdapter() {
 
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if (MessageDialog.openQuestion(shell, "Confirm deletion", "Do you really wish to delete "
+						+ status.getTarget().getClass().getSimpleName() + "?")) {
+						new UnicaseCommand() {
+
+							@Override
+							protected void doRun() {
+								((ModelElement) status.getTarget()).delete();
+							}
+						}.run();
+					}
+					removeAllTableItemsForEObject(status);
+				}
+			});
 			// set menu to visible
 			leftClickMenu.setVisible(true);
 		}
@@ -380,11 +430,8 @@ public class ValidationView extends ViewPart {
 		 */
 		private final class RefactoringSelectionListener implements SelectionListener {
 			public void widgetSelected(SelectionEvent e) {
-				// get the source data
-				MenuItem menuItem = (MenuItem) e.getSource();
-				List<?> abstractRefactoringStrategies = (List<?>) menuItem.getData();
 				// only show selection dialog if there is more than one refactoring
-				startRefactoring(abstractRefactoringStrategies);
+				startRefactoring();
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -402,13 +449,10 @@ public class ValidationView extends ViewPart {
 
 		@Override
 		public void run() {
-			ValidationFilterList validationFilterList = new ValidationFilterList(shell,
-				new ValidationFilterLabelProvider());
-			validationFilterList.setElements(getFiltersFromExtensionPoint().toArray());
-			validationFilterList.setEmptySelectionMessage("No filter selected");
-			validationFilterList.setMultipleSelection(true);
+			ValidationFilterList validationFilterList = new ValidationFilterList(shell, getFiltersFromExtensionPoint(),
+				new SimpleContentProvider(), new ValidationFilterLabelProvider(), "Test");
 			validationFilterList.setTitle("Choose one or more filters");
-			validationFilterList.setImage(Activator.getImageDescriptor("icons/openfilterlist.png").createImage());
+			validationFilterList.setInitialSelections(tableViewer.getFilters());
 			validationFilterList.open();
 			if (validationFilterList.getReturnCode() == Status.OK) {
 				removeAllFilters();
@@ -442,17 +486,21 @@ public class ValidationView extends ViewPart {
 
 		@Override
 		public String getText(Object element) {
-			return ((AbstractRefactoringStrategy) ((Object[]) element)[0]).getDescription();
+			return ((RefactoringStrategy) ((Object[]) element)[0]).getDescription();
 		}
 	}
 
 	/**
 	 * @author pfeifferc
 	 */
-	private final class RefactoringStrategyContentProvider implements IStructuredContentProvider {
+	private final class SimpleContentProvider implements IStructuredContentProvider {
 
 		public Object[] getElements(Object inputElement) {
-			return new Object[] { inputElement };
+			List<?> list = (List<?>) inputElement;
+			if (list.isEmpty()) {
+				return new Object[0];
+			}
+			return list.toArray();
 		}
 
 		public void dispose() {

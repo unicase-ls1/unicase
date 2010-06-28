@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue;
+package org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.swt.SWT;

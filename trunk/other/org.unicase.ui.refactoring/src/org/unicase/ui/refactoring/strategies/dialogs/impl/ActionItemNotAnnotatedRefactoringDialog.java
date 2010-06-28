@@ -20,8 +20,8 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.task.ActionItem;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractElementListSelectionRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -35,7 +35,7 @@ public class ActionItemNotAnnotatedRefactoringDialog extends AbstractElementList
 	 * @param abstractRefactoringStrategy the
 	 */
 	public ActionItemNotAnnotatedRefactoringDialog(Shell parent,
-			AbstractRefactoringStrategy abstractRefactoringStrategy) {
+			RefactoringStrategy abstractRefactoringStrategy) {
 		super(parent, abstractRefactoringStrategy, RefactoringDialogHelper.getLabelProvider());
 		// set functional requirements as dialog elements
 		EList<FunctionalRequirement> functionalRequirements = new BasicEList<FunctionalRequirement>();

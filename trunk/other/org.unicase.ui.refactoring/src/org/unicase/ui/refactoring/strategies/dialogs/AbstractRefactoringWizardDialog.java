@@ -10,8 +10,8 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -31,7 +31,7 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	/**
 	 * The abstract refactoring strategy.
 	 */
-	private final AbstractRefactoringStrategy abstractRefactoringStrategy;
+	private final RefactoringStrategy abstractRefactoringStrategy;
 
 	/**
 	 * The model element the refactoring is about.
@@ -43,7 +43,7 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	 * @param abstractRefactoringStrategy the
 	 * @param newWizard the
 	 */
-	public AbstractRefactoringWizardDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy, AbstractRefactoringWizard newWizard) {
+	public AbstractRefactoringWizardDialog(Shell parentShell, RefactoringStrategy abstractRefactoringStrategy, AbstractRefactoringWizard newWizard) {
 		super(parentShell, newWizard);
 		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
 		addPageChangedListener(newWizard);
@@ -117,7 +117,7 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+	public RefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 

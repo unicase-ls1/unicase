@@ -10,8 +10,8 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -30,7 +30,7 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	/**
 	 * The abstract refactoring strategy.
 	 */
-	private AbstractRefactoringStrategy abstractRefactoringStrategy;
+	private RefactoringStrategy abstractRefactoringStrategy;
 
 	/**
 	 * The constructor.
@@ -38,7 +38,7 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	 * @param parentShell the
 	 * @param abstractRefactoringStrategy the
 	 */
-	public AbstractTitleAreaRefactoringDialog(Shell parentShell, AbstractRefactoringStrategy abstractRefactoringStrategy) {
+	public AbstractTitleAreaRefactoringDialog(Shell parentShell, RefactoringStrategy abstractRefactoringStrategy) {
 		super(parentShell);
 		this.refactoringDialogHelper = new RefactoringDialogHelper();
 		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
@@ -107,7 +107,7 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
+	public RefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 

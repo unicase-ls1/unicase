@@ -4,23 +4,26 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.validation.refactoring.strategy;
+package org.unicase.ui.refactoring.strategies;
 
 import java.util.ArrayList;
 
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author pfeifferc
  */
-public abstract class AbstractRefactoringStrategy {
+public abstract class AbstractRefactoringStrategy implements RefactoringStrategy {
 
 	/**
 	 * The validation constraint status.
@@ -60,11 +63,16 @@ public abstract class AbstractRefactoringStrategy {
 	// BEGIN SUPRESS CATCH EXCEPTION
 
 	/**
-	 * This will start the refactoring.
+	 * {@inheritDoc}
 	 * 
-	 * @param shell the
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#startRefactoring()
 	 */
-	public void startRefactoring() {
+	public RefactoringResult startRefactoring() {
+		if(getInvalidModelElement().getProject() == null) {
+			WorkspaceUtil.logException("Exception occured while refactoring the project: " +
+					"invalid model element has no project", new UnkownProjectException());
+			return RefactoringResult.ABORT;
+		}
 		// storage
 		childModelElementsCreated = new ArrayList<ModelElement>();
 		childModelElementsReferenced = new ArrayList<ModelElement>();
@@ -77,12 +85,12 @@ public abstract class AbstractRefactoringStrategy {
 		try {
 			refactoringResult = performRefactoring();
 		} catch (Exception e) {
-			WorkspaceUtil.logException("There was an exception", e);
+			WorkspaceUtil.logException("Exception occured while refactoring the project", e);
 		} finally {
 			if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
 				// end operations composite
 				endOperations();
-			} else if (refactoringResult == RefactoringResult.SUCCESS_NOVIOLATION) {
+			} else if (refactoringResult == RefactoringResult.NO_VIOLATION) {
 				// TODO: implement preference save
 				abortOperations();
 			} else {
@@ -90,6 +98,7 @@ public abstract class AbstractRefactoringStrategy {
 				abortOperations();
 			}
 		}
+		return refactoringResult;
 	}
 
 	// END SUPRESS CATCH EXCEPTION
@@ -102,26 +111,34 @@ public abstract class AbstractRefactoringStrategy {
 	protected abstract RefactoringResult performRefactoring();
 
 	/**
-	 * @return the constraint status
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getConstraintStatus()
 	 */
 	public IConstraintStatus getConstraintStatus() {
 		return status;
 	}
 
 	/**
-	 * @param status the
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#setConstraintStatus(org.eclipse.emf.validation.model.IConstraintStatus)
 	 */
 	public void setConstraintStatus(IConstraintStatus status) {
 		this.status = status;
 	}
 
 	/**
-	 * @return the description
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getDescription()
 	 */
 	public abstract String getDescription();
 
 	/**
-	 * @return the id
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getId()
 	 */
 	public abstract String getId();
 
@@ -167,7 +184,7 @@ public abstract class AbstractRefactoringStrategy {
 			@Override
 			protected void doRun() {
 				try {
-					operationHandle.end(getId(), getDescription(), ((ModelElement) getConstraintStatus().getTarget())
+					operationHandle.end(getId(), "Refactored the project: "+ AbstractRefactoringStrategy.this.getDescription(), ((ModelElement) getConstraintStatus().getTarget())
 						.getModelElementId());
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
@@ -206,7 +223,9 @@ public abstract class AbstractRefactoringStrategy {
 	}
 
 	/**
-	 * @param shell the
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#setShell(org.eclipse.swt.widgets.Shell)
 	 */
 	public void setShell(Shell shell) {
 		this.shell = shell;
@@ -220,7 +239,9 @@ public abstract class AbstractRefactoringStrategy {
 	}
 
 	/**
-	 * @return the invalid model element
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getInvalidModelElement()
 	 */
 	public ModelElement getInvalidModelElement() {
 		return (ModelElement) getConstraintStatus().getTarget();

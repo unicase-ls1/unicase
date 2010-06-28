@@ -15,8 +15,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractTitleAreaRefactoringDialog;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -29,7 +29,7 @@ public class ActivityNotSetRefactoringDialog extends
 	 * @param abstractRefactoringStrategy the
 	 */
 	public ActivityNotSetRefactoringDialog(Shell parentShell,
-			AbstractRefactoringStrategy abstractRefactoringStrategy) {
+			RefactoringStrategy abstractRefactoringStrategy) {
 		super(parentShell, abstractRefactoringStrategy);
 	}
 

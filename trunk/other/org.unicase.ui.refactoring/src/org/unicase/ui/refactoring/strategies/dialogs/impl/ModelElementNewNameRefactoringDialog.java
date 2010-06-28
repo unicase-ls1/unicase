@@ -19,8 +19,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringInputDialog;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -42,7 +42,7 @@ public class ModelElementNewNameRefactoringDialog extends AbstractRefactoringInp
 	 * @param validator the
 	 */
 	public ModelElementNewNameRefactoringDialog(Shell parentShell,
-			AbstractRefactoringStrategy abstractRefactoringStrategy,
+			RefactoringStrategy abstractRefactoringStrategy,
 			String dialogTitle, String dialogMessage, String initialValue,
 			IInputValidator validator) {
 		super(parentShell, abstractRefactoringStrategy, dialogTitle, dialogMessage,
