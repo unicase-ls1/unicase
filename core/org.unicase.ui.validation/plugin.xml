@@ -26,8 +26,16 @@
  <extension
        point="org.unicase.ui.validation.filters">
     <filter
-          filter="org.unicase.ui.validation.filter.impl.ACUserFilter"
-          name="ACUserFilter">
+          filter="org.unicase.ui.validation.filter.impl.Severity1ValidationFilter"
+          name="Severity1ValidationFilter">
+    </filter>
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.Severity2ValidationFilter"
+          name="Severity2ValidationFilter">
+    </filter>
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.Severity4ValidationFilter"
+          name="Severity4ValidationFilter">
     </filter>
  </extension>
 </plugin>

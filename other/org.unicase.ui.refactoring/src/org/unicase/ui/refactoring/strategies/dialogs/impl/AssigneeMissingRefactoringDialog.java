@@ -12,9 +12,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractTitleAreaRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls.MESingeLinkControlWithoutNewReferenceAction;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**

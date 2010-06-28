@@ -7,8 +7,9 @@
 package org.unicase.ui.refactoring.strategies.dialogs;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.dialogs.util.RefactoringDialogHelper;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
@@ -19,7 +20,7 @@ import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
  * 
  * @author pfeifferc
  */
-public abstract class AbstractElementListSelectionRefactoringDialog extends ElementListSelectionDialog implements
+public abstract class AbstractListSelectionRefactoringDialog extends ListSelectionDialog implements
 		AbstractRefactoringDialog {
 
 	private RefactoringResult refactoringResult;
@@ -29,17 +30,17 @@ public abstract class AbstractElementListSelectionRefactoringDialog extends Elem
 	private RefactoringStrategy abstractRefactoringStrategy;
 	
 	/**
-	 * @param parent the
-	 * @param abstractRefactoringStrategy the
-	 * @param renderer the
+	 * @param parentShell the
+	 * @param input the
+	 * @param contentProvider the
+	 * @param labelProvider the
+	 * @param message the
 	 */
-	public AbstractElementListSelectionRefactoringDialog(Shell parent, RefactoringStrategy abstractRefactoringStrategy,
-			ILabelProvider renderer) {
-		super(parent, renderer);
-		this.refactoringDialogHelper = new RefactoringDialogHelper();
-		this.abstractRefactoringStrategy = abstractRefactoringStrategy;
-		this.refactoringResult = RefactoringResult.ABORT;
-		unicaseModelElement = (UnicaseModelElement) getAbstractRefactoringStrategy().getInvalidModelElement();
+	public AbstractListSelectionRefactoringDialog(Shell parentShell,
+			Object input, IStructuredContentProvider contentProvider,
+			ILabelProvider labelProvider, String message) {
+		super(parentShell, input, contentProvider, labelProvider, message);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

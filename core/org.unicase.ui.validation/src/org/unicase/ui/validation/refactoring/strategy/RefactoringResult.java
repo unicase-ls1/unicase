@@ -21,7 +21,7 @@ public enum RefactoringResult {
 	/**
 	 * The possible violation was not a violation after all.
 	 */
-	SUCCESS_NOVIOLATION,
+	NO_VIOLATION,
 
 	/**
 	 * The refactoring was successful, but do not create any model elements.

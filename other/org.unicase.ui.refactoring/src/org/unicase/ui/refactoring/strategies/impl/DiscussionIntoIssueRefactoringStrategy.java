@@ -6,10 +6,10 @@
 
 package org.unicase.ui.refactoring.strategies.impl;
 
+import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringWizardDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.impl.DiscussionIntoIssueRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.impl.DiscussionIntoIssueRefactoringWizard;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 
 /**

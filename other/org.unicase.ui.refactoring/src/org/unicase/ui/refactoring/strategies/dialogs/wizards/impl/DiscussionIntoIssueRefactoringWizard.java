@@ -6,11 +6,11 @@
 
 package org.unicase.ui.refactoring.strategies.dialogs.wizards.impl;
 
+import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage1;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage2;
-import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.discussionintoissue.DiscussionIntoIssuePage3;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.DiscussionIntoIssuePage1;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.DiscussionIntoIssuePage2;
+import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.impl.DiscussionIntoIssuePage3;
 
 /**
  * @author pfeifferc

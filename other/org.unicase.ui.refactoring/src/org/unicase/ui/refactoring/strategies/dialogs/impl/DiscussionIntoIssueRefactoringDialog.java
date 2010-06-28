@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.AbstractRefactoringWizardDialog;
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.validation.refactoring.strategy.AbstractRefactoringStrategy;
+import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -24,7 +24,7 @@ public class DiscussionIntoIssueRefactoringDialog extends
 	 * @param newWizard the
 	 */
 	public DiscussionIntoIssueRefactoringDialog(Shell parentShell,
-			AbstractRefactoringStrategy abstractRefactoringStrategy,
+			RefactoringStrategy abstractRefactoringStrategy,
 			AbstractRefactoringWizard newWizard) {
 		super(parentShell, abstractRefactoringStrategy, newWizard);
 	}
