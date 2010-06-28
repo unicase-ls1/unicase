@@ -27,5 +27,9 @@
           applicableFor="org.unicase.model.task.ActionItemAnnotated"
           strategy="org.unicase.ui.refactoring.strategies.impl.ActionItemNotAnnotatedRefactoringStrategy">
     </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.task.ActionItemWorkpackage"
+          strategy="org.unicase.ui.refactoring.strategies.impl.ActionItemNotInWorkPackageRefactoringStrategy">
+    </refactoringStrategy>
  </extension>
 </plugin>

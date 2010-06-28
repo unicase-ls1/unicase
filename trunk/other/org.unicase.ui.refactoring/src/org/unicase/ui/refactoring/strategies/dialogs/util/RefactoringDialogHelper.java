@@ -267,7 +267,7 @@ public class RefactoringDialogHelper {
 	 */
 	private void setDebugColor(Control control) {
 		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
-		//		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
+		control.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
 	}
 
 	/**
@@ -287,7 +287,10 @@ public class RefactoringDialogHelper {
 		disposeControls();
 	}
 
-	private void disposeMEControls() {
+	/**
+	 * Dispose the ME controls.
+	 */
+	public void disposeMEControls() {
 		for(AbstractMEControl abstractMEControl : abstractMEControls) {
 			abstractMEControl.dispose();
 		}

@@ -37,6 +37,7 @@ import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls
 import org.unicase.ui.refactoring.strategies.dialogs.wizards.pages.util.controls.MESingeLinkControlWithoutNewReferenceAction;
 import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -138,7 +139,7 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage implements 
 			super.disposeMEControls();
 			composite.dispose();
 		}
-		// create the composite to put the widgets on
+		// create the composites to put the widgets on
 		composite = createComposite(body, SWT.NONE, new GridLayout(2, true), new GridData(SWT.FILL, SWT.FILL, true,
 				true));
 		Composite compositeLeft = createComposite(composite, SWT.NONE, new GridLayout(2, false), new GridData(SWT.FILL, SWT.FILL, true,
@@ -320,7 +321,8 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage implements 
 	 */
 	public void onChange(Notification notification) {
 		// check if functional requirement has a parent model element, if true allow wizard to go on
-		if(((EObject) notification.getNotifier()).eContainer() != null) {
+		EObject eContainer = ((EObject) notification.getNotifier()).eContainer();
+		if(eContainer != null && eContainer != WorkspaceManager.getProjectSpace(functionalRequirement).getProject()) {
 			advisoryText.setText("You may finish the dialog when you are done with the editing.");
 			setPageComplete(true);
 		}
@@ -332,5 +334,4 @@ public class AIEmbodiesFRPage2 extends AbstractRefactoringWizardPage implements 
 	public void onRuntimeExceptionInListener(RuntimeException exception) {
 		// nothing to do here
 	}
-	
 }

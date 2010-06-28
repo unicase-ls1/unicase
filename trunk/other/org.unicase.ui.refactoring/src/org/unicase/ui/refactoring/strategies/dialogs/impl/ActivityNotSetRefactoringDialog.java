@@ -40,7 +40,7 @@ public class ActivityNotSetRefactoringDialog extends
 	protected Control createDialogArea(Composite parent) {
 		// set message here, since otherwise it is either disposed or null
 		setTitle("Please assign an activity to the action item");
-		setMessage("An activity has not been set yet. Please do so now.");
+		setMessage("An activity has not been set yet. Please assign an activity now.");
 		// reusable variables
 		Composite composite;
 		// create body composite as base for the other composites
