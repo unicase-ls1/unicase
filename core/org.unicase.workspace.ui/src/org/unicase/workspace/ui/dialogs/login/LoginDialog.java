@@ -50,80 +50,6 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class LoginDialog extends TitleAreaDialog {
 
-	/**
-	 * A Mouse Adapter for deleting serverinfos.
-	 * 
-	 * @author shterev
-	 */
-	private final class RemoveServerInfoMouseAdapter extends MouseAdapter {
-		private final TableViewer tableViewer;
-
-		private RemoveServerInfoMouseAdapter(TableViewer tableViewer) {
-			this.tableViewer = tableViewer;
-		}
-
-		@Override
-		public void mouseUp(MouseEvent e) {
-			IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
-			if (!selection.isEmpty()) {
-				Object firstElement = selection.getFirstElement();
-				final Usersession session = (Usersession) firstElement;
-				for (ServerInfo info : currentWorkspace.getServerInfos()) {
-					if (info.getLastUsersession() != null && info.getLastUsersession().equals(session)) {
-						MessageDialog.openError(getShell(), "Cannot remove the usersession",
-							"The session is acssociated with one or more servers and cannot be deleted!");
-						return;
-					}
-				}
-				Boolean confirm = MessageDialog.openConfirm(getShell(), "Confirm deletion",
-					"Are you sure you want to remove this session?");
-				if (confirm) {
-					new UnicaseCommand() {
-						@Override
-						protected void doRun() {
-							currentWorkspace.getUsersessions().remove(session);
-							currentWorkspace.save();
-							tableViewer.setInput(currentWorkspace);
-						}
-					}.run();
-				}
-			}
-		}
-	}
-
-	/**
-	 * A UnicaseCommand for loggin in.
-	 * 
-	 * @author shterev
-	 */
-	private final class LoginCommand extends UnicaseCommand {
-		@SuppressWarnings("deprecation")
-		@Override
-		protected void doRun() {
-			if (usersession == null) {
-				setErrorMessage("Please select a usersession");
-				return;
-			}
-			usersession.setSavePassword(savePassButton.getSelection());
-			if (userText.isEnabled()) {
-				usersession.setUsername(userText.getText());
-			}
-			if (isPasswordModified) {
-				usersession.setPassword(passText.getText());
-			}
-			currentWorkspace.save();
-			try {
-				usersession.logIn();
-				usersession.getServerInfo().setLastUsersession(usersession);
-				setReturnCode(OK);
-				close();
-			} catch (EmfStoreException e) {
-				new SATRunner().shake(getShell(), 300, new SinusVariation(10, 1), null, null);
-				setErrorMessage(e.getMessage());
-			}
-		}
-	}
-
 	private static final String NEW_SESSION_NAME = "new session";
 	private static final String FIXE_PW_TEXT = "sysiphus";
 	private ServerInfo serverInfo;
@@ -131,10 +57,12 @@ public class LoginDialog extends TitleAreaDialog {
 	private Composite contents;
 	private boolean singleSession;
 	private Workspace currentWorkspace;
+	protected boolean internalUpdate;
 	private Text passText;
 	private Text userText;
 	private Button savePassButton;
-	private boolean isPasswordModified;
+	protected boolean backspace;
+	private boolean isPasswordModified = false;
 	private String exception;
 
 	private LoginDialog(Shell parent) {
@@ -143,9 +71,6 @@ public class LoginDialog extends TitleAreaDialog {
 		this.currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
@@ -159,7 +84,6 @@ public class LoginDialog extends TitleAreaDialog {
 	 * specified usersession. Adding or choosing a new session is not permitted.
 	 * 
 	 * @param parentShell the parent shell.
-	 * @param usersession if initializing against a specific usersession
 	 */
 	public LoginDialog(Shell parentShell, Usersession usersession) {
 		this(parentShell);
@@ -172,7 +96,6 @@ public class LoginDialog extends TitleAreaDialog {
 	 * This dialog will show all saved usersessions for this ServerInfo. Creating or deleting usersessions is allowed.
 	 * 
 	 * @param parentShell the parent shell.
-	 * @param pServerInfo if initializing against a specific server info
 	 */
 	public LoginDialog(Shell parentShell, ServerInfo pServerInfo) {
 		this(parentShell);
@@ -256,18 +179,18 @@ public class LoginDialog extends TitleAreaDialog {
 
 		passText = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.PASSWORD);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(passText);
-		passText.addModifyListener(new ModifyListener() {
-
-			public void modifyText(ModifyEvent e) {
-				isPasswordModified = true;
-			}
-		});
 
 		Label savePassLabel = new Label(parent, SWT.WRAP);
 		savePassLabel.setText("Save password");
 
 		savePassButton = new Button(parent, SWT.CHECK);
 		loadSession(usersession);
+		passText.addModifyListener(new ModifyListener() {
+
+			public void modifyText(ModifyEvent e) {
+				isPasswordModified = true;
+			}
+		});
 
 		userText.setFocus();
 
@@ -320,7 +243,35 @@ public class LoginDialog extends TitleAreaDialog {
 
 		ImageHyperlink removeButton = new ImageHyperlink(toolbar, SWT.TOP);
 		removeButton.setImage(Activator.getImageDescriptor("icons/remove.png").createImage());
-		removeButton.addMouseListener(new RemoveServerInfoMouseAdapter(tableViewer));
+		removeButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
+				if (!selection.isEmpty()) {
+					Object firstElement = selection.getFirstElement();
+					final Usersession session = (Usersession) firstElement;
+					for (ServerInfo info : currentWorkspace.getServerInfos()) {
+						if (info.getLastUsersession() != null && info.getLastUsersession().equals(session)) {
+							MessageDialog.openError(getShell(), "Cannot remove the usersession",
+								"The session is acssociated with one or more servers and cannot be deleted!");
+							return;
+						}
+					}
+					Boolean confirm = MessageDialog.openConfirm(getShell(), "Confirm deletion",
+						"Are you sure you want to remove this session?");
+					if (confirm) {
+						new UnicaseCommand() {
+							@Override
+							protected void doRun() {
+								currentWorkspace.getUsersessions().remove(session);
+								currentWorkspace.save();
+								tableViewer.setInput(currentWorkspace);
+							}
+						}.run();
+					}
+				}
+			}
+		});
 	}
 
 	/**
@@ -329,6 +280,7 @@ public class LoginDialog extends TitleAreaDialog {
 	 * @param session the usersession
 	 */
 	private void loadSession(Usersession session) {
+		internalUpdate = true;
 		usersession = session;
 		if (session == null || session.getUsername().equals(NEW_SESSION_NAME)) {
 			userText.setText(NEW_SESSION_NAME);
@@ -345,14 +297,42 @@ public class LoginDialog extends TitleAreaDialog {
 			passText.setText(pass);
 			savePassButton.setSelection(session.isSavePassword());
 		}
+		internalUpdate = false;
 	}
 
 	/**
 	 * Commences the login.
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void okPressed() {
-		new LoginCommand().run();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				if (usersession == null) {
+					setErrorMessage("Please select a usersession");
+					return;
+				}
+				usersession.setSavePassword(savePassButton.getSelection());
+				if (userText.isEnabled()) {
+					usersession.setUsername(userText.getText());
+				}
+				if (isPasswordModified) {
+					usersession.setPassword(passText.getText());
+				}
+				currentWorkspace.save();
+				try {
+					usersession.logIn();
+					usersession.getServerInfo().setLastUsersession(usersession);
+					setReturnCode(OK);
+					close();
+				} catch (EmfStoreException e) {
+					new SATRunner().shake(getShell(), 300, new SinusVariation(10, 1), null, null);
+
+					setErrorMessage(e.getMessage());
+				}
+			}
+		}.run();
 	}
 
 	private boolean loadSessionFromSelection(ISelection selection) {
@@ -373,7 +353,11 @@ public class LoginDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public int open() {
-		if (usersession != null && usersession.getUsername() != null && usersession.getPassword() != null) {
+		return open(true);
+	}
+
+	public int open(boolean autologin) {
+		if (usersession != null && usersession.getUsername() != null && usersession.getPassword() != null && autologin) {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
@@ -390,6 +374,7 @@ public class LoginDialog extends TitleAreaDialog {
 		}
 		int ret = super.open();
 		return ret;
+
 	}
 
 }
