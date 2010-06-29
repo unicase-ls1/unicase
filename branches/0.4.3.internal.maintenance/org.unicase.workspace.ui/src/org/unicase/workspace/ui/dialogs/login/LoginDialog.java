@@ -192,18 +192,18 @@ public class LoginDialog extends TitleAreaDialog {
 
 		passText = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.PASSWORD);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(passText);
-		passText.addModifyListener(new ModifyListener() {
-
-			public void modifyText(ModifyEvent e) {
-				isPasswordModified = true;
-			}
-		});
 
 		Label savePassLabel = new Label(parent, SWT.WRAP);
 		savePassLabel.setText("Save password");
 
 		savePassButton = new Button(parent, SWT.CHECK);
 		loadSession(usersession);
+		passText.addModifyListener(new ModifyListener() {
+
+			public void modifyText(ModifyEvent e) {
+				isPasswordModified = true;
+			}
+		});
 
 		userText.setFocus();
 
@@ -381,8 +381,12 @@ public class LoginDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public int open() {
+		return open(true);
+	}
+
+	public int open(boolean autologin) {
 		if (usersession != null && usersession.getUsername() != null
-				&& usersession.getPassword() != null) {
+				&& usersession.getPassword() != null && autologin) {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
@@ -399,6 +403,7 @@ public class LoginDialog extends TitleAreaDialog {
 		}
 		int ret = super.open();
 		return ret;
+
 	}
 
 }

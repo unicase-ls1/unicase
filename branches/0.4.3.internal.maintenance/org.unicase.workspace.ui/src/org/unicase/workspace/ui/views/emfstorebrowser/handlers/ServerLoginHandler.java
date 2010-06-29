@@ -45,7 +45,7 @@ public class ServerLoginHandler extends AbstractHandler {
 			Shell shell = new Shell(parentShell, parentShell.getStyle()
 					| SWT.RESIZE);
 			LoginDialog loginDialog = new LoginDialog(shell, serverInfo);
-			loginDialog.open();
+			loginDialog.open(false);
 		}
 		return null;
 	}
