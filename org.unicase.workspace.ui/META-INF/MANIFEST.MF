@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Unicase Workspace UI Plug-in
 Bundle-SymbolicName: org.unicase.workspace.ui; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.5.internal
 Bundle-Activator: org.unicase.workspace.ui.Activator
 Require-Bundle: org.unicase.workspace.edit;visibility:=reexport,
  org.unicase.ui.common;visibility:=reexport
