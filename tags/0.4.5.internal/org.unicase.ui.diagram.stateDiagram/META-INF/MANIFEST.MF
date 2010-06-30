@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.ui.diagram.stateDiagram; singleton:=true
 Bundle-Version: 0.4.5.internal
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Export-Package: org.unicase.ui.diagram.stateDiagram.edit.parts, 
  org.unicase.ui.diagram.stateDiagram.part,

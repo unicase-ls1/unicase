@@ -13,3 +13,4 @@ Export-Package: org.unicase.ui.dashboard,
  org.unicase.ui.dashboard.notificationProviders,
  org.unicase.ui.dashboard.view,
  org.unicase.ui.dashboard.view.widgets
+Bundle-Vendor: unicase.org

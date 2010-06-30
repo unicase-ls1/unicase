@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.ui.diagram.classDiagram;singleton:=true
 Bundle-Version: 0.4.5.internal
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Export-Package: org.unicase.ui.diagram.classDiagram.edit.parts, 
  org.unicase.ui.diagram.classDiagram.part,
