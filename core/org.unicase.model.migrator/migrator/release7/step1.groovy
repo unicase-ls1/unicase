@@ -43,7 +43,7 @@ isFeatureChange = { operation, EStructuralFeature feature ->
 }
 
 for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {
-	if(isFeatureChange(operation, model.MEDiagram.diagramLayout)) {
+	if(isFeatureChange(operation, model.diagram.MEDiagram.diagramLayout)) {
 		if(operation.oldValue != null) {
 			operation.oldValue = replaceModelwithClassID(operation.oldValue)
 		}
