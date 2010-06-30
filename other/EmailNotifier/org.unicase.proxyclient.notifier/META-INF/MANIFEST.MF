@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Notifier
-Bundle-SymbolicName: org.unicase.proxyclient.notifier; singleton:=true
+Bundle-SymbolicName: org.unicase.emfstore.emailnotifier;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.proxyclient.notifier.Activator
+Bundle-Activator: org.unicase.emfstore.emailnotifier.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.workspace,
@@ -18,7 +18,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/ini4j-0.5.2-SNAPSHOT.jar,
  lib/mail.jar,
  .
-Export-Package: org.unicase.proxyclient.notifier.client.util,
- org.unicase.proxyclient.notifier.email,
- org.unicase.proxyclient.notifier.store.model,
- org.unicase.proxyclient.notifier.store.model.util
+Export-Package: org.unicase.emfstore.emailnotifier.client,
+ org.unicase.emfstore.emailnotifier.client.util,
+ org.unicase.emfstore.emailnotifier.email
