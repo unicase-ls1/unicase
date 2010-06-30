@@ -52,13 +52,6 @@ public enum SendSettings implements Enumerator {
 	AGGREGATED(2, "AGGREGATED", "aggregated");
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>";
-
-	/**
 	 * The '<em><b>NONE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>

@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -33,6 +34,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -47,6 +49,8 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
+import org.unicase.workspace.ui.dialogs.LoginDialog;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -283,6 +287,30 @@ public class EMailNotifierPage extends PropertyPage {
 	public boolean performOk() {
 		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
 		command.run();
+		if (projectSpace.getUsersession().isLoggedIn()) {
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					projectSpace.transmitProperties();
+				}
+			}.run();
+		} else {
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					boolean yes = MessageDialog.openQuestion(getShell(), "Transmit properties",
+						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
+					if (yes) {
+						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(), projectSpace
+							.getUsersession(), projectSpace.getUsersession().getServerInfo());
+						loginDialog.open();
+					}
+				}
+			}.run();
+
+		}
 		return true;
 	}
 
