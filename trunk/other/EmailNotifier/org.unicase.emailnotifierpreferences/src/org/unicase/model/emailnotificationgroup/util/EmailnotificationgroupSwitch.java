@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.model.emailnotificationgroup.*;
+import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
 
 /**
  * <!-- begin-user-doc -->
