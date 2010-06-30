@@ -8,16 +8,11 @@ package org.unicase.model.emailnotificationgroup.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.unicase.model.emailnotificationgroup.AggregatedSettings;
 import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;

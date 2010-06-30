@@ -9,12 +9,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.emailnotificationgroup.*;
+import org.unicase.model.emailnotificationgroup.AggregatedSettings;
+import org.unicase.model.emailnotificationgroup.EmailnotificationgroupFactory;
+import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
+import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.model.emailnotificationgroup.SendSettings;
+import org.unicase.model.emailnotificationgroup.Weekdays;
 
 /**
  * <!-- begin-user-doc -->
