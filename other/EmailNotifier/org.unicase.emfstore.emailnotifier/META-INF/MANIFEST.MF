@@ -8,11 +8,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.workspace,
  org.unicase.model,
- org.unicase.proxyclient;bundle-version="1.0.0",
- org.unicase.backchannel.client;bundle-version="1.0.0",
- org.unicase.ui.dashboard;bundle-version="1.0.0",
+ org.unicase.backchannel.client,
+ org.unicase.ui.dashboard,
  javax.activation;bundle-version="1.1.0",
- org.unicase.emailnotifierpreferences;bundle-version="1.0.0"
+ org.unicase.emailnotifierpreferences
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/ini4j-0.5.2-SNAPSHOT.jar,
