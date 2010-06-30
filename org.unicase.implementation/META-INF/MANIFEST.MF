@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.implementation;singleton:=true
 Bundle-Version: 0.4.5.internal
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.implementation.operations,
