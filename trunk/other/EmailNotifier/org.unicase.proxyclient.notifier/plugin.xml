@@ -3,35 +3,39 @@
 <plugin>
 
    <extension
-         id="application"
+         id="EMailNotifier"
+         name="E-Mail Notifier"
          point="org.eclipse.core.runtime.applications">
-      <application>
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
          <run
-               class="org.unicase.proxyclient.notifier.Application">
+               class="org.unicase.emfstore.emailnotifier.client.EMailNotifier">
          </run>
       </application>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            name="RCP Perspective"
-            class="org.unicase.proxyclient.notifier.Perspective"
-            id="org.unicase.proxyclient.notifier.perspective">
-      </perspective>
+         id="EMailNotifier"
+         name="E-Mail Notifier"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.unicase.emfstore.emailnotifier.EMailNotifier"
+            description="E-Mail Notifier for the EMF Store"
+            name="E-Mail Notifier">
+         <property
+               name="appName"
+               value="E-Mail Notifier">
+         </property>
+      </product>
    </extension>
    <extension
-         point="org.eclipse.ui.views">
-      <view
-            class="org.unicase.proxyclient.notifier.View"
-            id="org.unicase.proxyclient.notifier.client.view"
-            name="View">
-      </view>
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.emfstore.emailnotifier.store.ENSPackage"
+            genModel="model/EMailNotifierModel.genmodel"
+            uri="platform:/plugin/org.unicase.emfstore.emailnotifier/model/EMailNotifierModel.ecore">
+      </package>
    </extension>
    
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="platform:/plugin/org.unicase.proxyclient.notifier/model/ProxyClientModel.ecore"
-            class="org.unicase.proxyclient.notifier.store.model.NPCPackage"
-            genModel="model/ProxyClientModel.genmodel"/>
-   </extension>
 </plugin>

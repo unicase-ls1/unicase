@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.unicase.proxyclient.notifier</name>
+	<name>org.unicase.emfstore.emailnotifier</name>
 	<comment></comment>
 	<projects>
 	</projects>
