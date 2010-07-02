@@ -11,13 +11,14 @@ import java.util.List;
 import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This cache maps modelelements on verions, where these modelelements where changed. This is needed for the getHistory
@@ -97,11 +98,11 @@ public class HistoryCache {
 	}
 
 	private HashMap<ModelElementId, TreeSet<Version>> buildInitialHashMap(Version version) {
-		EList<ModelElement> allModelElements = version.getProjectState().getAllModelElements();
+		EList<EObject> allModelElements = version.getProjectState().getAllModelElements();
 		HashMap<ModelElementId, TreeSet<Version>> hashMap = new HashMap<ModelElementId, TreeSet<Version>>(
 			(int) (allModelElements.size() * 1.15) + 1);
-		for (ModelElement element : allModelElements) {
-			hashMap.put(element.getModelElementId(), initVersionSet(version));
+		for (EObject element : allModelElements) {
+			hashMap.put(ModelUtil.getProject(element).getModelElementId(element), initVersionSet(version));
 		}
 		return hashMap;
 	}
