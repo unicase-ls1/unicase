@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
@@ -63,7 +64,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
 	}
 
 	/**
@@ -113,7 +117,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("otherName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
 	}
 
 	/**
@@ -151,7 +158,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("oldName", attributeOperation.getOldValue());
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
 
 		new UnicaseCommand() {
 
@@ -164,7 +174,8 @@ public class AttributeOperationTest extends WorkspaceTest {
 				assertEquals("newName", reversedAttributeOperation.getOldValue());
 				assertEquals("oldName", reversedAttributeOperation.getNewValue());
 				assertEquals("name", reversedAttributeOperation.getFeatureName());
-				assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
+				ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+				assertEquals(useCaseId, reversedAttributeOperation.getModelElementId());
 			}
 		}.run();
 
