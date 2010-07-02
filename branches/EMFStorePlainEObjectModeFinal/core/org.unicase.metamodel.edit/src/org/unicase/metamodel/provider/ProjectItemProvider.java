@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,8 +23,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -53,8 +54,51 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addEobjectsIdMapPropertyDescriptor(object);
+			addDeletedEObjectsIdMapPropertyDescriptor(object);
+			addNewEObjectsIdMapPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Eobjects Id Map feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addEobjectsIdMapPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Project_eobjectsIdMap_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Project_eobjectsIdMap_feature", "_UI_Project_type"),
+			MetamodelPackage.Literals.PROJECT__EOBJECTS_ID_MAP, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Deleted EObjects Id Map feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDeletedEObjectsIdMapPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Project_deletedEObjectsIdMap_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Project_deletedEObjectsIdMap_feature",
+				"_UI_Project_type"), MetamodelPackage.Literals.PROJECT__DELETED_EOBJECTS_ID_MAP, true, false, true,
+			null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the New EObjects Id Map feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addNewEObjectsIdMapPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Project_newEObjectsIdMap_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Project_newEObjectsIdMap_feature", "_UI_Project_type"),
+				MetamodelPackage.Literals.PROJECT__NEW_EOBJECTS_ID_MAP, true, false, true, null, null, null));
 	}
 
 	/**
@@ -71,6 +115,7 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS);
+			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -102,6 +147,7 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		switch (notification.getFeatureID(Project.class)) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case MetamodelPackage.PROJECT__DELETED_MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -117,6 +163,64 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__DELETED_MODEL_ELEMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
@@ -166,14 +270,14 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			final Project project = (Project) object;
-			final Collection<ModelElement> ret = new ArrayList<ModelElement>();
+			final Collection<EObject> ret = new ArrayList<EObject>();
 			EObject econtainer = null;
-			EList<ModelElement> allmes = project.getAllModelElements();
+			EList<EObject> allmes = project.getAllModelElements();
 			// FIXME: ugly hack to avoid dependency to workspace
 			boolean isInProjectSpace = project.eContainer() != null
 				&& project.eContainer().eClass().getName().equals("ProjectSpace");
 			// FIXME: ugly hack to avoid dependency to model
-			for (ModelElement temp : allmes) {
+			for (EObject temp : allmes) {
 				econtainer = temp.eContainer();
 				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp.eClass().getName()
 					.equals("CompositeSection")))
