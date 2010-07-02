@@ -7,7 +7,7 @@ package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -22,7 +22,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 
-	private ModelElement modelElement;
+	private EObject modelElement;
 	private ProjectSpace projectSpace;
 
 	/**
@@ -71,7 +71,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 	 *         execution event. It's a cached value in case the event gets
 	 *         modified.
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		return modelElement;
 	}
 
@@ -81,7 +81,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 	 * @param modelElement
 	 *            the modelElement.
 	 */
-	private void setModelElement(ModelElement modelElement) {
+	private void setModelElement(EObject modelElement) {
 		this.modelElement = modelElement;
 	}
 }

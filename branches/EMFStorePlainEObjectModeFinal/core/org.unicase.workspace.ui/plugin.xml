@@ -703,6 +703,90 @@
                     </and>
                  </visibleWhen>
               </command>
+              <command
+                    commandId="org.unicase.ui.navigator.changeAttribute"
+                    icon="icons/import.gif"
+                    label="Change Attribute"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <iterate
+                             ifEmpty="false"
+                             operator="and">
+                          <instanceof
+                                value="org.unicase.workspace.ProjectSpace">
+                          </instanceof>
+                       </iterate>
+                       <count
+                             value="1">
+                       </count>
+                    </and>
+                 </visibleWhen>
+              </command>
+              <command
+                    commandId="org.unicase.ui.navigator.changeReference"
+                    icon="icons/import.gif"
+                    label="Change Reference"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <iterate
+                             ifEmpty="false"
+                             operator="and">
+                          <instanceof
+                                value="org.unicase.workspace.ProjectSpace">
+                          </instanceof>
+                       </iterate>
+                       <count
+                             value="1">
+                       </count>
+                    </and>
+                 </visibleWhen>
+              </command>
+              <command
+                    commandId="org.unicase.ui.navigator.delete"
+                    icon="icons/import.gif"
+                    label="Delete"
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <iterate
+                             ifEmpty="false"
+                             operator="and">
+                          <instanceof
+                                value="org.unicase.workspace.ProjectSpace">
+                          </instanceof>
+                       </iterate>
+                       <count
+                             value="1">
+                       </count>
+                    </and>
+                 </visibleWhen>
+              </command>
+              <command
+                    commandId="org.unicase.ui.navigator.deleteBook"
+                    icon="icons/import.gif"
+                    label="Delete 1st Book "
+                    style="push">
+                 <visibleWhen
+                       checkEnabled="false">
+                    <and>
+                       <iterate
+                             ifEmpty="false"
+                             operator="and">
+                          <instanceof
+                                value="org.unicase.workspace.ProjectSpace">
+                          </instanceof>
+                       </iterate>
+                       <count
+                             value="1">
+                       </count>
+                    </and>
+                 </visibleWhen>
+              </command>
            </menu>
            
            <command

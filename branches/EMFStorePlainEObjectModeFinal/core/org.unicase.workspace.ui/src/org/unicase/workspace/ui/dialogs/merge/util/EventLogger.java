@@ -8,6 +8,7 @@ package org.unicase.workspace.ui.dialogs.merge.util;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
@@ -18,7 +19,6 @@ import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -84,11 +84,10 @@ public class EventLogger {
 		String attribute = conflict.getConflictContext().getAttribute();
 		choiceEvent.setContextFeature(attribute);
 
-		ModelElement modelElement = conflict.getConflictContext()
-				.getModelElement();
+		EObject modelElement = conflict.getConflictContext().getModelElement();
 		if (modelElement != null) {
-			choiceEvent
-					.setContextModelElement(modelElement.getModelElementId());
+			choiceEvent.setContextModelElement(projectSpace.getProject()
+					.getModelElementId(modelElement));
 		}
 
 		if (OptionType.MyOperation.equals(conflict.getSolution().getType())) {

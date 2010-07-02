@@ -7,11 +7,11 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
@@ -73,11 +73,11 @@ public class SingleReferenceConflict extends Conflict {
 		conflictDescription.add("reference", getMyOperation().getFeatureName());
 		conflictDescription.add("modelelement", getDecisionManager()
 				.getModelElement(getMyOperation().getModelElementId()));
-		ModelElement myNewValue = getDecisionManager().getModelElement(
+		EObject myNewValue = getDecisionManager().getModelElement(
 				getMyOperation().getNewValue());
 		conflictDescription.add("myvalue", (myNewValue == null) ? "(unset)"
 				: myNewValue);
-		ModelElement theirNewValue = getDecisionManager().getModelElement(
+		EObject theirNewValue = getDecisionManager().getModelElement(
 				getTheirOperation().getNewValue());
 		conflictDescription.add("theirvalue",
 				(theirNewValue == null) ? "(unset)" : theirNewValue);
@@ -88,7 +88,7 @@ public class SingleReferenceConflict extends Conflict {
 	}
 
 	private boolean isContainmentFeature() {
-		ModelElement modelElement = getDecisionManager().getModelElement(
+		EObject modelElement = getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId());
 		if (modelElement == null) {
 			return false;
