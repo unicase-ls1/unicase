@@ -7,7 +7,6 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -24,9 +23,9 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	 * @return the model element
 	 */
 	@Override
-	public ModelElement getModelElement() {
-		if (super.getModelElement() instanceof ModelElement) {
-			return (ModelElement) super.getModelElement();
+	public EObject getModelElement() {
+		if (super.getModelElement() != null) {
+			return super.getModelElement();
 		}
 		throw new IllegalArgumentException();
 	}
@@ -39,7 +38,7 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	 */
 	@Override
 	public void setModelElement(EObject modelElement) {
-		if (modelElement instanceof ModelElement) {
+		if (modelElement != null) {
 			super.setModelElement(modelElement);
 		} else {
 			throw new IllegalArgumentException("Unicase Controls are only usable with ModelElement, not with EObjects");
@@ -54,17 +53,9 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		if (modelElement instanceof ModelElement) {
-			return canRender(itemPropertyDescriptor, (ModelElement) modelElement);
+		if (modelElement != null) {
+			return canRender(itemPropertyDescriptor, modelElement);
 		}
 		return DO_NOT_RENDER;
 	}
-
-	/**
-	 * @param itemPropertyDescriptor the property descriptor
-	 * @param modelElement the model element
-	 * @return if the control can render a certain attribute.
-	 */
-	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement);
-
 }

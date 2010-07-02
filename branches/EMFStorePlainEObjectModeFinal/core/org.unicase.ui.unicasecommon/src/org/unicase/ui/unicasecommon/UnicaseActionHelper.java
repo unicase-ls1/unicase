@@ -11,7 +11,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.util.ActionHelper;
@@ -32,7 +31,7 @@ public final class UnicaseActionHelper {
 	 * @param me modelelement to open.
 	 * @param sourceView the source view
 	 */
-	public static void openModelElement(ModelElement me, String sourceView) {
+	public static void openModelElement(EObject me, String sourceView) {
 		ActionHelper.openModelElement(me, sourceView, getContext(me));
 
 	}
@@ -43,7 +42,7 @@ public final class UnicaseActionHelper {
 	 * @param me the model lement
 	 * @return the context
 	 */
-	public static ModelElementContext getContext(ModelElement me) {
+	public static ModelElementContext getContext(EObject me) {
 		return new EMFStoreModelelementContext(me);
 	}
 

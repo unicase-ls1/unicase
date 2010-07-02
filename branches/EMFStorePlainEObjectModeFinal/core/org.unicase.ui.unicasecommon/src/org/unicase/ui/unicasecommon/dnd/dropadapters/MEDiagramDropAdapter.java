@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
@@ -40,7 +39,7 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
 		UnicaseActionHelper.openModelElement(target, this.getClass().getName());
 		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -76,7 +75,9 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 		} else if (type == DiagramType.WORKITEM_DIAGRAM.getName()) {
 			clientContextID = "WorkItemClientContext";
 		}
+
 		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
+
 		if (cc == null) {
 			return false;
 		}
@@ -86,6 +87,7 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 		for (int i = 0; i < containedTypes.length; i++) {
 			contains |= containedTypes[i].equals(dropeeType);
 		}
+
 		return contains;
 	}
 
@@ -96,8 +98,8 @@ public class MEDiagramDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-		ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<EObject> source, EObject target,
+		EObject dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (!isElementOfDiagram((MEDiagram) target, dropee) || ((MEDiagram) target).getElements().contains(dropee)) {

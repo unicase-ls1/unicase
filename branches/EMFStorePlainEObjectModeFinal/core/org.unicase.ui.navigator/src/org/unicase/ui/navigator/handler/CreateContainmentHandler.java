@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -43,11 +43,11 @@ public class CreateContainmentHandler extends AbstractHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			final EClass newMEType = (EClass) o;
-			final ModelElement newMEInstance;
+			final EObject newMEInstance;
 
-			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
+			final EObject selectedME = ActionHelper.getSelectedModelElement();
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
+			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
 			if ((selectedME != null) && (!eReference.isContainer())) {
 				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
@@ -57,7 +57,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 					@SuppressWarnings("unchecked")
 					protected void doExecute() {
 						if (newMEInstance.eContainer() == null) {
-							selectedME.getProject().addModelElement(newMEInstance);
+							ModelUtil.getProject(selectedME).addModelElement(newMEInstance);
 						}
 						Object object = selectedME.eGet(eReference);
 						if ((eReference.getUpperBound() == -1)) {
@@ -75,7 +75,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 		return null;
 	}
 
-	private EReference getStructuralFeature(final ModelElement newMEInstance, EObject parent) {
+	private EReference getStructuralFeature(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
 		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 		EReference reference = null;

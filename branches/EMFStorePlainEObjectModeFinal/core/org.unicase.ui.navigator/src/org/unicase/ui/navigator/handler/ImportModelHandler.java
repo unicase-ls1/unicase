@@ -29,7 +29,6 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.ModelElementWrapperDescriptor;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -182,18 +181,19 @@ public class ImportModelHandler extends AbstractHandler {
 	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
 		final ModelElement element, final int resourceIndex) {
 
+		// TODO
 		// try to find a wrapper for the element which will be added to the project
-		ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
-			element, uri, resourceIndex);
+		// ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
+		// element, uri, resourceIndex);
 
 		// if no wrapper could be created, use the element itself to add it to the project
-		if (wrapper == null) {
-			wrapper = element;
-		}
+		// if (wrapper == null) {
+		// wrapper = element;
+		// }
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		projectSpace.getProject().addModelElement(ModelUtil.copy(wrapper));
+		projectSpace.getProject().addModelElement(ModelUtil.copy(element));
 	}
 
 	// /**

@@ -19,7 +19,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
@@ -107,9 +107,9 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			}.run();
 		}
 
-		private void check(ModelElement element) {
+		private void check(EObject element) {
 			if (element.eContainer() == null) {
-				mergingIssue.getProject().getModelElements().add(element);
+				ModelUtil.getProject(mergingIssue).getModelElements().add(element);
 			}
 		}
 
@@ -155,7 +155,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 					CompositeOperationHandle compositeOperation = projectSpace.beginCompositeOperation();
 					MergingProposal proposal = (MergingProposal) result;
 					MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
-					proposal.getProject().addModelElement(solution);
+					ModelUtil.getProject(proposal).addModelElement(solution);
 					mergingIssue.setSolution(solution);
 					solution.getUnderlyingProposals().add(proposal);
 					solution.setDescription(proposal.getDescription());
@@ -164,7 +164,8 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 						true);
 					try {
 						compositeOperation.end("Created Solution for MergeIssue", "A Solution for the MergingIssue \""
-							+ mergingIssue.getName() + "\" was created.", mergingIssue.getModelElementId());
+							+ mergingIssue.getName() + "\" was created.", ModelUtil.getProject(mergingIssue)
+							.getModelElementId(mergingIssue));
 					} catch (InvalidHandleException e) {
 						WorkspaceUtil.log("Couldn't create MergingSolution", e, IStatus.ERROR);
 					}

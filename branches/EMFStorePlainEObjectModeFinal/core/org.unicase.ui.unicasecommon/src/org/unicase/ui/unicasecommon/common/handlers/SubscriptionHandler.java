@@ -17,6 +17,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.UnicaseActionHelper;
@@ -72,7 +73,7 @@ public class SubscriptionHandler extends AbstractHandler {
 		final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
 
 		String feedback;
-		ModelElementId modelElementId = modelElement.getModelElementId();
+		ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
 		if (properties.contains(modelElementId)) {
 			properties.remove(modelElementId);
 			feedback = " removed from ";

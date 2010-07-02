@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.document.DocumentPackage;
 
 /**
@@ -40,7 +39,7 @@ public class ProjectDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
 		// do nothing
 	}
 
@@ -51,7 +50,7 @@ public class ProjectDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List, boolean)
 	 */
 	@Override
-	public void dropMove(EObject targetContainer, ModelElement target, List<ModelElement> source, boolean after) {
+	public void dropMove(EObject targetContainer, EObject target, List<EObject> source, boolean after) {
 		super.dropMove(targetContainer, target, source, after);
 		getViewer().refresh();
 

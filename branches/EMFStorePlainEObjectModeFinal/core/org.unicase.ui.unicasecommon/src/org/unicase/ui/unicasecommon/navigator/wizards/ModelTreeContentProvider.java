@@ -121,8 +121,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// if argument is instance of EClass and
 		// it inherits ModelElement and it is not abstract
 		// return true
+		// TODO: any additional criteria?
 		return object instanceof EClass
-			&& ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
+		// && ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
 			&& !((EClass) object).isAbstract();
 	}
 

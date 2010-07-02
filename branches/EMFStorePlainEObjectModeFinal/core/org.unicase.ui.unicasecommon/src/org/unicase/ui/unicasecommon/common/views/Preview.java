@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.unicasecommon.common.views;
 
-import java.util.Date;
-
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -248,18 +246,13 @@ public class Preview extends ViewPart implements ISelectionListener {
 		if (namelabel != null) {
 			namelabel.setText(labelprovider.getText(me));
 		}
-		if (creatorAndDatelabel != null) {
-			String creator = me.getCreator();
-			Date creationdate = me.getCreationDate();
-			String creationdateStr = "";
-			if (creator == null || creator.equals("")) {
-				creator = "";
-			}
-			if (creationdate != null) {
-				creationdateStr = creationdate.toString();
-			}
-			creatorAndDatelabel.setText(" " + creator + " " + creationdateStr);
-		}
+		// TODO : EMFPlainEObjectTransition: creator and creationdate
+		/*
+		 * if (creatorAndDatelabel != null) { String creator = me.getCreator(); Date creationdate =
+		 * me.getCreationDate(); String creationdateStr = ""; if (creator == null || creator.equals("")) { creator = "";
+		 * } if (creationdate != null) { creationdateStr = creationdate.toString(); } creatorAndDatelabel.setText(" " +
+		 * creator + " " + creationdateStr); }
+		 */
 		if (textwidget != null) {
 			String name = me.getDescriptionPlainText();
 			if (name == null) {

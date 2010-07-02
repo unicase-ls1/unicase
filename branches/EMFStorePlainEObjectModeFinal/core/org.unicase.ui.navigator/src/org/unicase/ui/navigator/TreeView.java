@@ -43,9 +43,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.meeditor.MEEditor;
@@ -235,15 +235,14 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		}
 
 		MEEditor meEditor = (MEEditor) editor;
-		Object adapter = meEditor.getEditorInput().getAdapter(EObject.class);
-		if (adapter != null && adapter instanceof ModelElement) {
-			ModelElement me = (ModelElement) adapter;
+		EObject me = (EObject) meEditor.getEditorInput().getAdapter(EObject.class);
+		if (me != null) {
 			revealME(me);
 		}
 
 	}
 
-	private void revealME(ModelElement me) {
+	private void revealME(EObject me) {
 
 		if (me == null) {
 			return;
@@ -289,9 +288,10 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 						linkWithEditor(obj);
 					}
 
-					if (obj instanceof ModelElement) {
-						getViewSite().getActionBars().getStatusLineManager().setMessage(
-							((ModelElement) obj).getIdentifier());
+					if (obj instanceof EObject) {
+						// / TODO:EMFPlainEObjectTransition
+						// getViewSite().getActionBars().getStatusLineManager().setMessage(
+						// ModelUtil.getProject((EObject) obj).getModelElementId(((EObject) obj)).getId());
 					}
 				}
 			}
@@ -309,11 +309,8 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		if (selectedME == null) {
 			return;
 		}
-		if (!(selectedME instanceof ModelElement)) {
-			return;
-		}
 
-		ModelElement me = (ModelElement) selectedME;
+		EObject me = (EObject) selectedME;
 		if (!isEditorOpen(me)) {
 			return;
 		} else {
@@ -326,7 +323,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * 
 	 * @param selectedME
 	 */
-	private void activateEditor(ModelElement selectedME) {
+	private void activateEditor(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
@@ -348,7 +345,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * @param selectedME
 	 * @return
 	 */
-	private boolean isEditorOpen(ModelElement selectedME) {
+	private boolean isEditorOpen(EObject selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
@@ -371,11 +368,12 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			return;
 		}
 		final ProjectSpace projectSpace;
-		if (obj instanceof ModelElement) {
-			ModelElement me = (ModelElement) obj;
-			projectSpace = WorkspaceManager.getProjectSpace(me);
-		} else if (obj instanceof ProjectSpace) {
+
+		if (obj instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) obj;
+		} else if (obj instanceof EObject) {
+			EObject me = (EObject) obj;
+			projectSpace = WorkspaceManager.getProjectSpace(me);
 		} else {
 			projectSpace = null;
 		}
@@ -511,6 +509,27 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	}
 
 	/**
+	 * {@inheritDoc} 
+	 */
+	public void modelElementAdded(Project project, EObject modelElement) {
+		if (modelElement.eContainer().equals(project)) {
+			Runnable runnable = new Runnable() {
+				public void run() {
+					viewer.refresh();
+				}
+			};
+
+			Display.getDefault().asyncExec(runnable);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void notify(Notification notification, Project project, EObject modelElement) {
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart,
@@ -539,10 +558,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		if (element == null) {
 			return;
 		}
-		if (element instanceof ModelElement) {
-			ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
-			revealME(project.getModelElement(modelElementId));
-		} else if (element instanceof CompositeOperation) {
+		if (element instanceof CompositeOperation) {
 			CompositeOperation comop = (CompositeOperation) element;
 			AbstractOperation mainOperation = comop.getMainOperation();
 			if (mainOperation != null) {
@@ -551,6 +567,10 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			}
 		} else if (element instanceof AbstractOperation) {
 			ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
+			revealME(project.getModelElement(modelElementId));
+		} else if (element instanceof EObject) {
+			ModelElementId modelElementId = ModelUtil.getProject(((EObject) element)).getModelElementId(
+				((EObject) element));
 			revealME(project.getModelElement(modelElementId));
 		}
 

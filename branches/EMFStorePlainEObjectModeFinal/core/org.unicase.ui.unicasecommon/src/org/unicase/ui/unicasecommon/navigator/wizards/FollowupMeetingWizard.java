@@ -11,6 +11,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -119,7 +120,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
 	private void createFollowupMeeting() {
 		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(leafSection.getProject());
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(leafSection));
 
 		new UnicaseCommand() {
 			@Override
@@ -138,8 +139,8 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				addMeetingStatusItems(followupMeeting, statusItems);
 				try {
 					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
-						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", followupMeeting
-						.getModelElementId());
+						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", ModelUtil.getProject(
+						followupMeeting).getModelElementId(followupMeeting));
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Composite Operation failed!", e);
 				}
