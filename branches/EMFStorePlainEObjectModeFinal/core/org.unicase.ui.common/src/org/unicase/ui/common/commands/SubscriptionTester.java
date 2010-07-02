@@ -11,8 +11,9 @@ import java.util.List;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -35,16 +36,16 @@ public class SubscriptionTester extends PropertyTester {
 	 *      java.lang.Object)
 	 */
 	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
-		if (receiver instanceof ModelElement) {
-			ModelElement modelElement = (ModelElement) receiver;
-			if (modelElement.getProject() == null) {
+		if (receiver instanceof EObject) {
+			EObject modelElement = (EObject) receiver;
+			if (ModelUtil.getProject(modelElement) == null) {
 				return false;
 			}
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				DashboardKey.SUBSCRIPTIONS);
 			List<EObject> propertyList = orgUnitProperty.getEObjectListProperty(new ArrayList<EObject>());
-			boolean contains = propertyList.contains(modelElement.getModelElementId());
+			boolean contains = propertyList.contains(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 			if (property.equals(DOES_CONTAIN)) {
 				return contains;
 			} else if (property.equals(DOES_NOT_CONTAIN)) {

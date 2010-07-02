@@ -16,7 +16,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * This is the super class for all model element specific drop adapters. We can consider this class as if ModelElement
@@ -24,21 +23,21 @@ import org.unicase.metamodel.ModelElement;
  * 
  * @author Hodaie
  */
-public abstract class  MEDropAdapter {
+public abstract class MEDropAdapter {
 
 	private TransactionalEditingDomain domain;
 	private StructuredViewer viewer;
 
 	/**
 	 * Constructor.
-	 * 
 	 */
-	public MEDropAdapter(){
-		
+	public MEDropAdapter() {
+
 	}
 
 	/**
 	 * Init the adapter.
+	 * 
 	 * @param domain the editing domain
 	 * @param viewer the viewer
 	 */
@@ -46,6 +45,7 @@ public abstract class  MEDropAdapter {
 		this.domain = domain;
 		this.viewer = viewer;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -53,20 +53,18 @@ public abstract class  MEDropAdapter {
 	 * @param target
 	 */
 
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
 
-		
-			dropContainment(target, source);
-	
+		dropContainment(target, source);
 
 	}
-	
+
 	/**
 	 * Determine the class the Drop adapter is for.
+	 * 
 	 * @return the EClass
 	 */
 	public abstract EClass isDropAdapterfor();
-
 
 	/**
 	 * @param targetContainer target's container
@@ -74,7 +72,7 @@ public abstract class  MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropAfter(EObject targetContainer, ModelElement target, List<ModelElement> source) {
+	protected void dropAfter(EObject targetContainer, EObject target, List<EObject> source) {
 
 		int targetIndex;
 		EReference theRef = getTargetRef(targetContainer, source.get(0));
@@ -119,7 +117,7 @@ public abstract class  MEDropAdapter {
 	 * @return the reference within container of target, which matches source. (Have in mind that we are moving elements
 	 *         within container of target.)
 	 */
-	protected EReference getTargetRef(EObject targetContainer, ModelElement dropee) {
+	protected EReference getTargetRef(EObject targetContainer, EObject dropee) {
 
 		List<EReference> refs = targetContainer.eClass().getEAllContainments();
 		for (EReference ref : refs) {
@@ -146,7 +144,7 @@ public abstract class  MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropBefore(EObject targetContainer, ModelElement target, List<ModelElement> source) {
+	protected void dropBefore(EObject targetContainer, EObject target, List<EObject> source) {
 
 		int targetIndex;
 
@@ -190,7 +188,7 @@ public abstract class  MEDropAdapter {
 	 * @param dropee dropee
 	 * @return boolean
 	 */
-	protected boolean haveSameEContainer(ModelElement target, ModelElement dropee) {
+	protected boolean haveSameEContainer(EObject target, EObject dropee) {
 
 		return target.eContainer().equals(dropee.eContainer());
 	}
@@ -203,7 +201,7 @@ public abstract class  MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropContainment(final ModelElement target, final List<ModelElement> source) {
+	protected void dropContainment(final EObject target, final List<EObject> source) {
 
 		EReference theRef = getTargetRef(target, source.get(0));
 		if (theRef == null) {
@@ -214,7 +212,7 @@ public abstract class  MEDropAdapter {
 			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
 			// reference.
 			EReference oppositeRef = theRef.getEOpposite();
-			for (ModelElement me : source) {
+			for (EObject me : source) {
 				Object object = me.eGet(oppositeRef);
 				if (oppositeRef.isMany()) {
 					EList<EObject> eList = (EList<EObject>) object;
@@ -251,8 +249,9 @@ public abstract class  MEDropAdapter {
 	 * @param eventFeedback @see UCDropAdapter.eventFeedback
 	 * @return if this source can be dropped on target
 	 */
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source,
-		ModelElement target, ModelElement dropee) {
+
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<EObject> source, EObject target,
+		EObject dropee) {
 
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
@@ -279,9 +278,6 @@ public abstract class  MEDropAdapter {
 			return false;
 		}
 
-	
-		
-
 		if (!haveSameEContainer(source)) {
 			return false;
 		}
@@ -291,7 +287,7 @@ public abstract class  MEDropAdapter {
 			if (!hasThisContainmentReference(target.eContainer(), dropee.eClass())) {
 				return false;
 			}
-		} 
+		}
 
 		return true;
 	}
@@ -302,9 +298,9 @@ public abstract class  MEDropAdapter {
 	 * @param source source
 	 * @return true or false
 	 */
-	protected boolean haveSameEContainer(List<ModelElement> source) {
-		ModelElement first = source.get(0);
-		for (ModelElement me : source) {
+	protected boolean haveSameEContainer(List<EObject> source) {
+		EObject first = source.get(0);
+		for (EObject me : source) {
 			if (!first.eContainer().equals(me.eContainer())) {
 				return false;
 			}
@@ -353,8 +349,9 @@ public abstract class  MEDropAdapter {
 	 * @param source source
 	 * @param after drop after or drop before
 	 */
-	public void dropMove(final EObject targetContainer, final ModelElement target,
-		final List<ModelElement> source, final boolean after) {
+
+	public void dropMove(final EObject targetContainer, final EObject target, final List<EObject> source,
+		final boolean after) {
 
 		// target is the model element after/before which we drop.
 		if (!getTargetRef(targetContainer, target).equals(getTargetRef(targetContainer, source.get(0)))) {

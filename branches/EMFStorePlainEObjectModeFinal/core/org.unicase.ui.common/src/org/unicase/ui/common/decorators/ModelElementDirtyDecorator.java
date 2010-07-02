@@ -10,11 +10,13 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.ui.internal.keys.model.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -44,10 +46,10 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 
 		URL url = null;
 		boolean dirty = false;
-		if (element instanceof ModelElement) {
+		if (element instanceof EObject) {
 
-			ModelElement modelElement = (ModelElement) element;
-			if(modelElement.getProject() == null) {
+			EObject modelElement = (EObject) element;
+			if(ModelUtil.getProject(modelElement) == null) {
 				return;
 			}
 
@@ -57,7 +59,8 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 			}
 
 			// if ME is dirty show decoration
-			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(modelElement.getModelElementId())) {
+			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(
+				ModelUtil.getProject(modelElement).getModelElementId(modelElement))) {
 				dirty = true;
 			}
 		}

@@ -6,12 +6,13 @@
 package org.unicase.ui.common;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
+
 
 /**
  * @author Hodaie LabelProvider for TreeViewer that is shown on ModelTreePage
@@ -36,12 +37,13 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		// it inherits ModelElement then return its name.
 		if (object instanceof EClass) {
 			EClass eclass = (EClass) object;
-			if (eclass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
+			// TODO: EMFPlainObjectTransition, ModelElement class check
+//			if (eclass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
 				text = eclass.getName();
-			}
-			if (eclass.getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())) {
-				text = eclass.getName();
-			}
+//			}
+//			if (eclass.getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())) {
+////				text = eclass.getName();
+//			}
 
 		} else {
 			// argument is an EPackage
@@ -60,7 +62,7 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 			EClass eClass = (EClass) object;
 			EPackage ePackage = eClass.getEPackage();
 			if (!eClass.isAbstract() && !eClass.isInterface()) {
-				ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
+				EObject newMEInstance = (EObject) ePackage.getEFactoryInstance().create(eClass);
 				return super.getImage(newMEInstance);
 			} else {
 				return super.getImage(object);

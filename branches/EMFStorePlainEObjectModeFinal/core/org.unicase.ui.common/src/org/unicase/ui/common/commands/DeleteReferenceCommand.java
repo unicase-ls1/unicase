@@ -41,15 +41,15 @@ public final class DeleteReferenceCommand extends UnicaseCommand {
 	protected void doRun() {
 		Object object = modelElement.eGet(reference);
 
-		//TODO: Ask user in the following two cases if he really wants to delete the model element
-//		if (reference.isContainer()) {
-//			opposite.getProject().addModelElement(modelElement);
-//			return;
-//		}
-//		if (reference.isContainment()) {
-//			modelElement.getProject().addModelElement(opposite);
-//			return;
-//		}
+		// TODO: Ask user in the following two cases if he really wants to delete the model element
+		// if (reference.isContainer()) {
+		// opposite.getProject().addModelElement(modelElement);
+		// return;
+		// }
+		// if (reference.isContainment()) {
+		// modelElement.getProject().addModelElement(opposite);
+		// return;
+		// }
 
 		if (object instanceof EList<?>) {
 			@SuppressWarnings("unchecked")
