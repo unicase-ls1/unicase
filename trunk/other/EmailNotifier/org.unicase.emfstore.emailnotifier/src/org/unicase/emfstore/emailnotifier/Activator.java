@@ -5,6 +5,9 @@
  */
 package org.unicase.emfstore.emailnotifier;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
@@ -41,8 +44,10 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) {
 		try {
 			super.start(context);
-		
+			
+		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
+		// END SUPRESS CATCH EXCEPTION
 			logException(e);
 		}
 		plugin = this;
@@ -59,7 +64,9 @@ public class Activator extends Plugin {
 		try {
 			super.stop(context);
 
-		} catch(Exception e) {
+		// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
+		// END SUPRESS CATCH EXCEPTION
 			logException(e);
 		}
 	}
@@ -82,28 +89,41 @@ public class Activator extends Plugin {
 		getDefault().getLog().log(new Status(Status.ERROR, Activator.getDefault().getBundle().getSymbolicName(), e.getMessage(), e));
 		
 		// print error also to output
+		System.err.println( getCurrentDate() );
 		e.printStackTrace(System.err);
 	}
 	
 	/**
 	 * Logs information.
 	 * 
-	 * @param status The status value should be a constant of e.g Status.INFO, Status.ERROR ... Don't pass the int value by itself.
+	 * @param status The status value should be a constant of e.g IStatus.INFO, IStatus.ERROR ... Don't pass the int value by itself.
 	 * @param message info message to log
 	 */
 	public static void log(int status, String message) {
 		getDefault().getLog().log(new Status(status, Activator.getDefault().getBundle().getSymbolicName(), message));
 		
+		String currentDate = getCurrentDate();
+		
 		if( status == Status.INFO ) {
-			System.out.println( "Info: "+ message );
+			System.out.println( currentDate +" Info: "+ message );
 		} else if( status == Status.WARNING ) {
-			System.out.println( "Warning: "+ message );
+			System.out.println( currentDate +" Warning: "+ message );
 		} else if( status == Status.ERROR ) {
-			System.out.println( "Error: "+ message );
+			System.err.println( currentDate +" Error: "+ message );
 		} else if( status == Status.CANCEL ) {
-			System.out.println( "Cancel: "+ message );
+			System.err.println( currentDate +" Cancel: "+ message );
 		} else if( status == Status.OK ) {
-			System.out.println( "OK: "+ message );
+			System.err.println( currentDate +" OK: "+ message );
 		}
+	}
+	
+	/**
+	 * Returns a string representation of the current date.
+	 * 
+	 * @return a formated date string
+	 */
+	private static String getCurrentDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		return sdf.format(Calendar.getInstance().getTime());
 	}
 }

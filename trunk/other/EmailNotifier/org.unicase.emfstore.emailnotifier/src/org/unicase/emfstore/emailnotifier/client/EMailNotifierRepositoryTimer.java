@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.Status;
 import org.unicase.emfstore.emailnotifier.Activator;
 import org.unicase.emfstore.emailnotifier.client.util.Helper;
 import org.unicase.emfstore.emailnotifier.email.MailerInfo;
+import org.unicase.emfstore.emailnotifier.exception.EMailNotifierException;
 import org.unicase.emfstore.emailnotifier.exception.NoNextSendingException;
 import org.unicase.emfstore.emailnotifier.exception.NotificationGroupNotFoundException;
 import org.unicase.emfstore.emailnotifier.exception.ProjectNotFoundException;
@@ -29,6 +30,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -69,11 +71,18 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 	 * The NPC storage will be locked while it is inspected. This is only done periodically and not the whole execution time.
 	 */
 	public void run() {
+		try {
+			// I don't know really why this is necessary, but without the session is initialized.
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			Activator.logException(e);
+		}
+		
 		while (true) {
 			try {
 				long maxWaitTime = 0;
 				synchronized (emailNotifierStore) {
-					reRun();
+					checkEmailNotifierStore();
 					
 					// create new NotificationGroups if necessary - synchronization will do this if necessary
 					List<ACUser> acUsers = usersession.getAdminBroker().getUsers();
@@ -82,15 +91,20 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 						try {
 							Helper.getLocalProject(remoteProjectInfo.getProjectId());
 						} catch(ProjectNotFoundException e) {
-							// checkout
-							Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-							ProjectInfo remoteProject = Helper.getRemoteProject(usersession, remoteProjectInfo.getProjectId());
-							Helper.checkout(workspace, usersession, remoteProject);
+							try {
+								// checkout
+								Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+								ProjectInfo remoteProject = Helper.getRemoteProject(usersession, remoteProjectInfo.getProjectId());
+								Helper.checkout(workspace, usersession, remoteProject);
+							} catch(ProjectNotFoundException ex) {
+								// can only happen if the project has been created and than immediately deleted
+								Activator.logException(ex);
+							}
 						}
 							
 						for(ACUser acUser: acUsers) {
 							ProjectId projectId = remoteProjectInfo.getProjectId();
-							new SynchronizeEMailNotifierStore(emailNotifierStore, acUser, projectId).synchronize();
+							PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId);
 						}
 					}
 					
@@ -99,10 +113,10 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 					try {
 						Date overallNextSending = getOverallNextSending();
 						
+						// Thread.currentThread().wait(0) -> will wait till notify
+						// Thread.currentThread().wait(1) -> will wait 1ms and will then continue processing
+						// Thread.sleep(0) -> will continue processing immediately
 						maxWaitTime = overallNextSending.getTime() - now.getTime();
-						if( maxWaitTime < 0 ) {
-							maxWaitTime = 1;
-						}
 						
 					} catch(NoNextSendingException e) {
 						maxWaitTime = -1;
@@ -113,11 +127,16 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 				synchronized(Thread.currentThread()) {
 					
 					try {
+						// Thread.currentThread().wait(0) -> will wait till notify
+						// Thread.currentThread().wait(1) -> will wait 1ms and will then continue processing
+						// Thread.sleep(0) -> will continue processing immediately
 						if( maxWaitTime == -1 ) { // nothing to send yet
 							Thread.currentThread().wait();
 							
+						} else if(maxWaitTime == 0) {
+							Thread.currentThread().wait(1);
 						} else {
-							Thread.currentThread().wait(maxWaitTime + 1000); // 1 second for assured time overflow
+							Thread.currentThread().wait(maxWaitTime);
 						}
 						
 					} catch (InterruptedException e) {
@@ -125,10 +144,17 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 					}
 				}
 
-			} catch (Exception e) {
-				// Try to keep running. Throwing here an exception will terminate this thread.
-				// Write this error to the log.
+			} catch (EMailNotifierException e) {
 				Activator.logException(e);
+				Thread.currentThread().interrupt();
+			
+			} catch (AccessControlException e) {
+				Activator.logException(e);
+				Thread.currentThread().interrupt();
+			
+			} catch (EmfStoreException e) {
+				Activator.logException(e);
+				Thread.currentThread().interrupt();
 			}
 		}
 
@@ -143,34 +169,134 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 	 * @throws ProjectNotFoundException 
 	 * @throws NotificationGroupNotFoundException 
 	 */
-	private void reRun() throws EmfStoreException {
+	private void checkEmailNotifierStore() throws EmfStoreException {
+		// check if all projects are also locally available
 		List<ENSNotificationProject> ensNotificationProjectToBeDeleted = new ArrayList<ENSNotificationProject>();
-		
 		for (ENSNotificationProject ensNotificationProject: emailNotifierStore.getProjects()) {
 			final ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 			projectId.setId(ensNotificationProject.getId());
-			ProjectSpace projectSpace = null;
 			try {
-				projectSpace = Helper.getLocalProject(projectId);
+				Helper.getLocalProject(projectId);
 			
 			} catch (ProjectNotFoundException e) {
 				// project is in email notifier store still existent, but the project has been deleted on the server.
 				// delete all ensNotificationProject, no more notifications
 				ensNotificationProjectToBeDeleted.add( ensNotificationProject );
 			}
-			
-			List<ENSUser> ensUserToBeDeleted = new ArrayList<ENSUser>();
-			for(ENSUser ensUser: ensNotificationProject.getUsers()) {
-				if( ensUser.getGroups().isEmpty() ) {
-					ensUserToBeDeleted.add( ensUser );
+		}
+		
+		List<ENSNotificationGroup> sendNotificationGroup = sendNotificationGroup();
+		cleanEmailNotifierStore(ensNotificationProjectToBeDeleted, sendNotificationGroup);
+	}
+	
+	/**
+	 * Will check whole ENS, if there are some aggregated ENSNotificationGroups that must be sent now.
+	 * 
+	 * @return This list returns all ENSNotificationGroups that have been sent
+	 * @throws EmfStoreException can happen while generation notifications
+	 */
+	private List<ENSNotificationGroup> sendNotificationGroup() throws EmfStoreException {
+		final Date now = new Date();
+		List<ENSNotificationGroup> sentENSNotificationGroups = new ArrayList<ENSNotificationGroup>();
+		
+		for(ENSNotificationProject ensNotificationProject: emailNotifierStore.getProjects()) {
+			final ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
+			projectId.setId(ensNotificationProject.getId());
+			try {
+				ProjectSpace projectSpace = Helper.getLocalProject(projectId);
+				
+				for(ENSUser ensUser: ensNotificationProject.getUsers()) {
+					for(ENSNotificationGroup ensNotificationGroup: ensUser.getGroups()) {
+						// handle only aggregated NGs
+						if( !ensNotificationGroup.getSendOption().equals(SendOption.AGGREGATED) ) {
+							continue;
+						}
+						
+						Date nextSending = ensNotificationGroup.getNextSendingDate();
+						if(nextSending.after(now)) {
+							// no time overflow yet
+							continue;
+						}
+						
+						try {
+							EMailNotifierMailHelper mailHelper = new EMailNotifierMailHelper(projectSpace, ensUser, mailerInfo);
+							Map<NotificationProvider, List<ESNotification>> generateNotifications = mailHelper.generateNotifications(ensNotificationGroup.getBaseVersion(), ensNotificationProject.getLatestVersion());
+							List<ESNotification> relevantNotifications = mailHelper.getRelevantNotifications(usersession, ensNotificationGroup, generateNotifications);
+							
+							if( relevantNotifications.isEmpty() ) {
+								// nothing was gathered for this period
+								sentENSNotificationGroups.add( ensNotificationGroup );
+								continue;
+							}
+							
+							// there are notifications, send an email
+							boolean sent = mailHelper.sendEMail(ensNotificationGroup, relevantNotifications);
+							if( sent ) {
+								// remove from store
+								sentENSNotificationGroups.add( ensNotificationGroup );
+								
+							} else {
+								// else, don't remove sending was unsuccessful
+								Activator.log(Status.ERROR, "E-Mail sending error with notification group "+ ensNotificationGroup.getName() +".");
+							}
+							
+						} catch(NotificationGroupNotFoundException e) {
+							// A User has changed some properties, but no ProjectUpdate occurred yet.
+							// TODO: This issue should be solved with an PropertyChangedServerEvent for the backchannel
+							sentENSNotificationGroups.add( ensNotificationGroup );
+						}
+					}
 				}
 				
-				handleENSUser(projectSpace, projectId, ensNotificationProject, ensUser);
+			} catch (ProjectNotFoundException e) {
+				// project must be at this point available.
+				// If it is not, the project has been deleted from the EMFStore, therefore no notification must be send.
+				// can be ignored
 			}
-			
-			if( !ensUserToBeDeleted.isEmpty() ) {
-				ensNotificationProject.getUsers().removeAll( ensUserToBeDeleted );
-				isENSDirty = true;
+		}
+		
+		return sentENSNotificationGroups;
+	}
+	
+	/**
+	 * Will clean the ENS. ENSUser without NotificationGroups will be deleted, and ENSProjects without ENSUsers will be also deleted.
+	 * Running only once, this method will probably not clean everything. But this behavior is okay and expected.
+	 * It is not necessary enforce to delete all ENSProjects, since the PropertySynchronizer will recreate these projects with a high probability. Same for ENSUser
+	 * If they weren't recreated by the PropertySynchronizer, they will be deleted in the next or two executions next to this execution.
+	 * 
+	 * @param ensNotificationProjectToBeDeleted projects that exist in the ENS but no longer on the EMFStore
+	 * @param sendNotificationGroup groups that have been sucessfully sent
+	 */
+	private void cleanEmailNotifierStore(List<ENSNotificationProject> ensNotificationProjectToBeDeleted, List<ENSNotificationGroup> sendNotificationGroup) {
+		for(ENSNotificationProject ensNotificationProject: emailNotifierStore.getProjects()) {
+			if( ensNotificationProject.getUsers().isEmpty() ) {
+				if( !ensNotificationProjectToBeDeleted.contains(ensNotificationProject) ) {
+					ensNotificationProjectToBeDeleted.add(ensNotificationProject);
+				}
+			} else {
+				List<ENSUser> ensUserToBeDeleted = new ArrayList<ENSUser>();
+				for(ENSUser ensUser: ensNotificationProject.getUsers()) {
+					if( ensUser.getGroups().isEmpty() ) {
+						ensUserToBeDeleted.add(ensUser);
+					} else {
+						List<ENSNotificationGroup> ensNotificationGroupToBeDeleted = new ArrayList<ENSNotificationGroup>();
+						for(ENSNotificationGroup ensNotificationGroup: ensUser.getGroups()) {
+							if( sendNotificationGroup.contains(ensNotificationGroup) ) {
+								ensNotificationGroupToBeDeleted.add(ensNotificationGroup);
+							}
+						}
+						
+						if( !ensNotificationGroupToBeDeleted.isEmpty() ) {
+							ensUser.getGroups().removeAll( ensNotificationGroupToBeDeleted );
+							isENSDirty = true;
+						}
+					}
+				}
+				
+				if( !ensUserToBeDeleted.isEmpty() ) {
+					ensNotificationProject.getUsers().removeAll( ensUserToBeDeleted );
+					isENSDirty = true;
+				}
 			}
 		}
 		
@@ -187,66 +313,6 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 			
 		} catch(IOException e) {
 			Activator.logException(e);
-		}
-	}
-	
-	/**
-	 * Identifies for a ensUser if notification emails must be send. Only aggregated ENSNotificationGroups will be considered.
-	 * 
-	 * @param projectSpace the projectSpace for the current inspected ENSNotificationProject
-	 * @param projectId the corresponding projectId
-	 * @param ensNotificationProject the corresponding ensNotificationProject
-	 * @param ensUser a ensUser for that the ENSNotificationGroups will be inspected.
-	 * @throws EmfStoreException can be thrown if the generation of notifications fails
-	 */
-	private void handleENSUser(ProjectSpace projectSpace, ProjectId projectId, ENSNotificationProject ensNotificationProject, ENSUser ensUser) throws EmfStoreException {
-		final Date now = new Date();
-		
-		List<ENSNotificationGroup> ensNotificationGroupToBeDeleted = new ArrayList<ENSNotificationGroup>();
-		for(ENSNotificationGroup ensNotificationGroup: ensUser.getGroups()) {
-			// handle only aggregated NGs
-			if( !ensNotificationGroup.getSendOption().equals(SendOption.AGGREGATED) ) {
-				continue;
-			}
-			
-			Date nextSending = ensNotificationGroup.getNextSendingDate();
-			if(nextSending.after(now)) {
-				// no time overflow yet
-				continue;
-			}
-			
-			try {
-				EMailNotifierMailerPreparer mailerPreparer = new EMailNotifierMailerPreparer(projectSpace, ensUser, mailerInfo);
-				Map<NotificationProvider, List<ESNotification>> generateNotifications = mailerPreparer.generateNotifications(ensNotificationGroup.getBaseVersion(), ensNotificationProject.getLatestVersion());
-				List<ESNotification> relevantNotifications = mailerPreparer.getRelevantNotifications(usersession, ensNotificationGroup, generateNotifications);
-				
-				if( relevantNotifications.isEmpty() ) {
-					// nothing was gathered for this periode
-					ensNotificationGroupToBeDeleted.add( ensNotificationGroup );
-					continue;
-				}
-				
-				// there are notifications, send an email
-				boolean sended = mailerPreparer.sendEMail(ensNotificationGroup, relevantNotifications);
-				if( sended ) {
-					// remove from store
-					ensNotificationGroupToBeDeleted.add( ensNotificationGroup );
-					
-				} else {
-					// else, don't remove sending was unsuccessful
-					Activator.log(Status.ERROR, "E-Mail sending error with notification group "+ ensNotificationGroup.getName() +".");
-				}
-				
-			} catch(NotificationGroupNotFoundException e) {
-				// A User has changed some properties, but no ProjectUpdate occurred yet.
-				// TODO: This issue should be solved with an PropertyChangedServerEvent for the backchannel
-				ensNotificationGroupToBeDeleted.add( ensNotificationGroup );
-			}
-		}
-		
-		if( !ensNotificationGroupToBeDeleted.isEmpty() ) {
-			ensUser.getGroups().removeAll( ensNotificationGroupToBeDeleted );
-			isENSDirty = true;
 		}
 	}
 	

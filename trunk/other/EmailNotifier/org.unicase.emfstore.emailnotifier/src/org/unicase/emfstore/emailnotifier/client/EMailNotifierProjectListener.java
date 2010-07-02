@@ -109,7 +109,7 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 				List<ACUser> acUsers = projectSpace.getUsersession().getAdminBroker().getUsers();
 				for(ACUser acUser: acUsers) {
 					// synchronize acUser properties with the ENS state.
-					new SynchronizeEMailNotifierStore(emailNotifierStore, acUser, projectId).synchronize();
+					PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId);
 					
 					ENSUser ensUser;
 					try {
@@ -122,7 +122,7 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 					}
 					
 					// send emails for immediately configured notification groups
-					EMailNotifierMailerPreparer mailerPreparer = new EMailNotifierMailerPreparer(projectSpace, ensUser, mailerInfo);
+					EMailNotifierMailHelper mailerPreparer = new EMailNotifierMailHelper(projectSpace, ensUser, mailerInfo);
 					List<ENSNotificationGroup> ensNotificationGroupsImmediately = getENSNotificationGroupsMarkedAsImmediately(ensUser);
 					for(ENSNotificationGroup ensNotificationGroupImmediately: ensNotificationGroupsImmediately) {
 						Map<NotificationProvider, List<ESNotification>> generateNotifications = mailerPreparer.generateNotifications(ensNotificationGroupImmediately.getBaseVersion(), ensNotificationProject.getLatestVersion());
@@ -137,8 +137,8 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 						}
 						
 						// there are notifications, send an email
-						boolean sended = mailerPreparer.sendEMail(ensNotificationGroupImmediately, relevantNotifications);
-						if( sended ) {
+						boolean sent = mailerPreparer.sendEMail(ensNotificationGroupImmediately, relevantNotifications);
+						if( sent ) {
 							// recycle notification group. reset base version to latest project version
 							ensNotificationGroupImmediately.setBaseVersion( ensNotificationProject.getLatestVersion() );
 							

@@ -45,38 +45,23 @@ import org.unicase.workspace.ProjectSpace;
  * @author staudta
  *
  */
-public class SynchronizeEMailNotifierStore {
+final class PropertySychronizer {
 	
-	private final List<OrgUnitProperty> projectProperties;
-	private final ProjectId projectId;
-	private final ACUser acUser;
-	private final EMailNotifierStore emailNotifierStore;
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param emailNotifierStore email notifier store
-	 * @param acUser the ac user for that the properties will be gathered
-	 * @param projectId the project id that will be updated. Should match the project if of the ensNotificationProject
-	 */
-	public SynchronizeEMailNotifierStore(EMailNotifierStore emailNotifierStore, ACUser acUser, ProjectId projectId) {
-		this.emailNotifierStore = emailNotifierStore;
-		this.acUser = acUser;
-		this.projectId = projectId;
-		
-		// get current properties
-		projectProperties = Helper.getProjectProperties(acUser, projectId);
-	}
+	private PropertySychronizer() {}
 	
 	/**
 	 * Method will synchronize ENS with ACUser properties.
 	 
+	 * @param emailNotifierStore email notifier store
+	 * @param acUser the ac user for that the properties will be gathered
+	 * @param projectId the project id that will be updated. Should match the project if of the ensNotificationProject
 	 * @return true if ENS is dirty, false otherwise
 	 */
-	public boolean synchronize() {
+	public static boolean synchronize(final EMailNotifierStore emailNotifierStore, final ACUser acUser, final ProjectId projectId) {
 		boolean isENSDirty = false;
+		final List<OrgUnitProperty> projectProperties = Helper.getProjectProperties(acUser, projectId);
 		
-		boolean shouldMarkForInstantlySending = shouldMarkForInstantlySending();
+		boolean shouldMarkForInstantlySending = shouldMarkForInstantlySending(emailNotifierStore, acUser, projectId, projectProperties);
 		Boolean wasCreatedENSNP = new Boolean(false);
 		ENSNotificationProject ensNotificationProject = Helper.obtainENSNotificationProject(emailNotifierStore, projectId, wasCreatedENSNP);
 		if( wasCreatedENSNP ) {
@@ -141,7 +126,7 @@ public class SynchronizeEMailNotifierStore {
 		return isENSDirty;
 	}
 	
-	private boolean shouldMarkForInstantlySending() {
+	private static boolean shouldMarkForInstantlySending(EMailNotifierStore emailNotifierStore, ACUser acUser, ProjectId projectId, List<OrgUnitProperty> projectProperties) {
 		boolean sendAllNGNow = false;
 		boolean userIsAllowedToAccessProject = isUserAllowedToAccessProject(acUser, projectId);
 		if( !userIsAllowedToAccessProject ) {
@@ -203,7 +188,7 @@ public class SynchronizeEMailNotifierStore {
 	 * @param ensNotificationProject
 	 * @param ensUser
 	 */
-	private boolean synchronizeNewNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
+	private static boolean synchronizeNewNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
 		boolean isENSDirty = false;
 		
 		List<NotificationGroup> newNotificationGroups = getNewNotificationGroups(notificationGroups, ensUser);
@@ -238,7 +223,7 @@ public class SynchronizeEMailNotifierStore {
 	 * @param ensNotificationProject
 	 * @param ensUser
 	 */
-	private boolean synchronizeDeletedNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
+	private static boolean synchronizeDeletedNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
 		boolean isENSDirty = false;
 		final Date now = new Date();
 		
@@ -249,7 +234,7 @@ public class SynchronizeEMailNotifierStore {
 		
 		List<ENSNotificationGroup> ensNotificationGroupsToRemove = new ArrayList<ENSNotificationGroup>();
 		for(ENSNotificationGroup ensNotificationGroup: deletedENSNotificationGroups) {
-			// set them to be sended now
+			// set them to be sent now
 			if( ensNotificationGroup.getSendOption().equals( SendOption.AGGREGATED ) ) {
 				// if sending setting == aggregated
 				ensNotificationGroup.setNextSendingDate( now );
@@ -264,7 +249,7 @@ public class SynchronizeEMailNotifierStore {
 		return isENSDirty;
 	}
 	
-	private boolean synchronizeModifiedNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
+	private static boolean synchronizeModifiedNotificationGroups(List<NotificationGroup> notificationGroups, ENSNotificationProject ensNotificationProject, ENSUser ensUser) {
 		boolean isENSDirty = false;
 		
 		// check if the user has modified notification properties for notification groups
@@ -358,7 +343,7 @@ public class SynchronizeEMailNotifierStore {
 		return deletedENSNotificationGroups;
 	}
 	
-	private Date calcNextSending(NotificationGroup notificationGroup) {
+	private static Date calcNextSending(NotificationGroup notificationGroup) {
 		// calc next Sending
 		Date nextSending = null;
 		if( notificationGroup.getSendOption() == org.unicase.model.emailnotificationgroup.SendSettings.IMMEDIATELY ) {

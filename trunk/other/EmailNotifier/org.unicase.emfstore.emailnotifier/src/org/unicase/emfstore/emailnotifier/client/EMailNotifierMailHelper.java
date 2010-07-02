@@ -47,7 +47,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * @author staudta
  *
  */
-public class EMailNotifierMailerPreparer {
+public class EMailNotifierMailHelper {
 	
 	private final String username;
 	private final String useremail;
@@ -61,7 +61,7 @@ public class EMailNotifierMailerPreparer {
 	 * @param ensUser to get the user name and the user email
 	 * @param mailerInfo information for actually sending an email
 	 */
-	public EMailNotifierMailerPreparer(ProjectSpace projectSpace, ENSUser ensUser, MailerInfo mailerInfo) {
+	public EMailNotifierMailHelper(ProjectSpace projectSpace, ENSUser ensUser, MailerInfo mailerInfo) {
 		this.projectSpace = projectSpace;
 		this.username = ensUser.getUserName();
 		this.useremail = ensUser.getUserEMail();
@@ -128,9 +128,9 @@ public class EMailNotifierMailerPreparer {
 	/**
 	 * Will create an email for a ENSNotificationGroup and a list of notifications. These notifications should be only a set of relevant notifications for this ensNotificationGroup 
 	 * 
-	 * @param ensNotificationGroup the notification group that will be sended
+	 * @param ensNotificationGroup the notification group that will be sent
 	 * @param notifications these notifications will be the content
-	 * @return true if the email can be sended
+	 * @return true if the email can be sent
 	 */
 	public boolean sendEMail(ENSNotificationGroup ensNotificationGroup, List<ESNotification> notifications) {
 		String eMailBody = getEMailBody(notifications);
