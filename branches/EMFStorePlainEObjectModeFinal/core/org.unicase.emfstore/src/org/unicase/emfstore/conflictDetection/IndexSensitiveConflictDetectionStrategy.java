@@ -8,6 +8,7 @@ package org.unicase.emfstore.conflictDetection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -16,8 +17,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.
@@ -143,11 +144,12 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private Set<ModelElementId> getAllDeletedElements(CreateDeleteOperation op) {
-		Set<ModelElement> allDeleteTreeElements = op.getModelElement().getAllContainedModelElements();
+		EObject element = op.getModelElement();
+		Set<EObject> allDeleteTreeElements = ModelUtil.getAllContainedModelElements(element, false);
 		allDeleteTreeElements.add(op.getModelElement());
 		Set<ModelElementId> result = new HashSet<ModelElementId>(allDeleteTreeElements.size());
-		for (ModelElement modelElement : allDeleteTreeElements) {
-			result.add(modelElement.getModelElementId());
+		for (EObject modelElement : allDeleteTreeElements) {
+			result.add(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 		}
 		return result;
 	}
