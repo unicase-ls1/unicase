@@ -12,6 +12,8 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.RequirementFactory;
@@ -64,13 +66,15 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.getModelElements().add(useCase);
 
 				assertEquals(true, getProject().contains(useCase));
-				assertEquals(getProject(), useCase.getProject());
+				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				assertEquals(useCase, section.getModelElements().iterator().next());
 				assertEquals("newName", section.getName());
 				assertEquals("newDescription", section.getDescription());
 
+				ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
+
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", sectionId);
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -78,7 +82,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 		}.run();
 
 		assertEquals(true, getProject().contains(useCase));
-		assertEquals(getProject(), useCase.getProject());
+		assertEquals(getProject(), ModelUtil.getProject(useCase));
 		assertEquals(useCase, section.getModelElements().iterator().next());
 		assertEquals("newName", section.getName());
 		assertEquals("newDescription", section.getDescription());
@@ -129,7 +133,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.getModelElements().add(useCase);
 
 				assertEquals(true, getProject().contains(useCase));
-				assertEquals(getProject(), useCase.getProject());
+				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				assertEquals(useCase, section.getModelElements().iterator().next());
 				assertEquals("newName", section.getName());
 				assertEquals("newDescription", section.getDescription());

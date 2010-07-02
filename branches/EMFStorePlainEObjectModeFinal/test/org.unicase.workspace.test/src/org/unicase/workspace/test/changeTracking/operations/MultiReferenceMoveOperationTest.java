@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
@@ -46,12 +48,12 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 
 			@Override
 			protected void doRun() {
-				useCase1.setIdentifier("usecase1");
+				// useCase1.setIdentifier("usecase1");
 				getProject().addModelElement(useCase1);
 				getProject().addModelElement(actor);
-				useCase2.setIdentifier("usecase2");
+				// useCase2.setIdentifier("usecase2");
 				getProject().addModelElement(useCase2);
-				useCase3.setIdentifier("usecase3");
+				// useCase3.setIdentifier("usecase3");
 				getProject().addModelElement(useCase3);
 
 				actor.getInitiatedUseCases().add(useCase1);
@@ -87,11 +89,14 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof MultiReferenceMoveOperation);
 		MultiReferenceMoveOperation multiReferenceMoveOperation = (MultiReferenceMoveOperation) operation;
 
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
+		ModelElementId useCase2Id = ModelUtil.getProject(useCase2).getModelElementId(useCase2);
+
 		assertEquals("initiatedUseCases", multiReferenceMoveOperation.getFeatureName());
-		assertEquals(actor.getModelElementId(), multiReferenceMoveOperation.getModelElementId());
+		assertEquals(actorId, multiReferenceMoveOperation.getModelElementId());
 		assertEquals(2, multiReferenceMoveOperation.getNewIndex());
 		assertEquals(1, multiReferenceMoveOperation.getOldIndex());
-		assertEquals(useCase2.getModelElementId(), multiReferenceMoveOperation.getReferencedModelElementId());
+		assertEquals(useCase2Id, multiReferenceMoveOperation.getReferencedModelElementId());
 
 		assertEquals(actor, useCase1.getInitiatingActor());
 		assertEquals(actor, useCase2.getInitiatingActor());
@@ -119,12 +124,12 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				useCase1.setIdentifier("usecase1");
+				// useCase1.setIdentifier("usecase1");
 				getProject().addModelElement(useCase1);
 				getProject().addModelElement(actor);
-				useCase2.setIdentifier("usecase2");
+				// useCase2.setIdentifier("usecase2");
 				getProject().addModelElement(useCase2);
-				useCase3.setIdentifier("usecase3");
+				// useCase3.setIdentifier("usecase3");
 				getProject().addModelElement(useCase3);
 
 				actor.getInitiatedUseCases().add(useCase1);
@@ -160,11 +165,14 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(true, reverse instanceof MultiReferenceMoveOperation);
 		MultiReferenceMoveOperation multiReferenceMoveOperation = (MultiReferenceMoveOperation) reverse;
 
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
+		ModelElementId useCase2Id = ModelUtil.getProject(useCase2).getModelElementId(useCase2);
+
 		assertEquals("initiatedUseCases", multiReferenceMoveOperation.getFeatureName());
-		assertEquals(actor.getModelElementId(), multiReferenceMoveOperation.getModelElementId());
+		assertEquals(actorId, multiReferenceMoveOperation.getModelElementId());
 		assertEquals(1, multiReferenceMoveOperation.getNewIndex());
 		assertEquals(2, multiReferenceMoveOperation.getOldIndex());
-		assertEquals(useCase2.getModelElementId(), multiReferenceMoveOperation.getReferencedModelElementId());
+		assertEquals(useCase2Id, multiReferenceMoveOperation.getReferencedModelElementId());
 
 		new UnicaseCommand() {
 			@Override
@@ -198,11 +206,11 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(actor);
-				useCase1.setIdentifier("usecase1");
+				// useCase1.setIdentifier("usecase1");
 				getProject().addModelElement(useCase1);
-				useCase2.setIdentifier("usecase2");
+				// useCase2.setIdentifier("usecase2");
 				getProject().addModelElement(useCase2);
-				useCase3.setIdentifier("usecase3");
+				// useCase3.setIdentifier("usecase3");
 				getProject().addModelElement(useCase3);
 
 				actor.getInitiatedUseCases().add(useCase1);
@@ -230,9 +238,13 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 
 		final MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
 			.createMultiReferenceMoveOperation();
-		multiReferenceMoveOperation.setModelElementId(actor.getModelElementId());
+
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
+		ModelElementId useCase1Id = ModelUtil.getProject(useCase1).getModelElementId(useCase1);
+
+		multiReferenceMoveOperation.setModelElementId(actorId);
 		multiReferenceMoveOperation.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
-		multiReferenceMoveOperation.setReferencedModelElementId(useCase1.getModelElementId());
+		multiReferenceMoveOperation.setReferencedModelElementId(useCase1Id);
 		multiReferenceMoveOperation.setOldIndex(0);
 		multiReferenceMoveOperation.setNewIndex(3);
 
@@ -256,10 +268,10 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 
 		final MultiReferenceMoveOperation multiReferenceMoveOperation2 = OperationsFactory.eINSTANCE
 			.createMultiReferenceMoveOperation();
-		multiReferenceMoveOperation2.setModelElementId(actor.getModelElementId());
+		multiReferenceMoveOperation2.setModelElementId(actorId);
 		multiReferenceMoveOperation2
 			.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
-		multiReferenceMoveOperation2.setReferencedModelElementId(useCase1.getModelElementId());
+		multiReferenceMoveOperation2.setReferencedModelElementId(useCase1Id);
 		multiReferenceMoveOperation2.setOldIndex(0);
 		multiReferenceMoveOperation2.setNewIndex(-1);
 
@@ -280,7 +292,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(useCase3, initiatedUseCases3.get(2));
 
 		final UseCase useCase4 = RequirementFactory.eINSTANCE.createUseCase();
-		useCase4.setIdentifier("usecase4");
+		// useCase4.setIdentifier("usecase4");
 		new UnicaseCommand() {
 
 			@Override
@@ -288,14 +300,17 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 				getProject().addModelElement(useCase4);
 				clearOperations();
 			}
-		};
+		}.run();
 
 		final MultiReferenceMoveOperation multiReferenceMoveOperation3 = OperationsFactory.eINSTANCE
 			.createMultiReferenceMoveOperation();
-		multiReferenceMoveOperation3.setModelElementId(actor.getModelElementId());
+		multiReferenceMoveOperation3.setModelElementId(actorId);
 		multiReferenceMoveOperation3
 			.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
-		multiReferenceMoveOperation3.setReferencedModelElementId(useCase4.getModelElementId());
+
+		ModelElementId useCase4Id = ModelUtil.getProject(useCase4).getModelElementId(useCase4);
+
+		multiReferenceMoveOperation3.setReferencedModelElementId(useCase4Id);
 		multiReferenceMoveOperation3.setOldIndex(0);
 		multiReferenceMoveOperation3.setNewIndex(2);
 

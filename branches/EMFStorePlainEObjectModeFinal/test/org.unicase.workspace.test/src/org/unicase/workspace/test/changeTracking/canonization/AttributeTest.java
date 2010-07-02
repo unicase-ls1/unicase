@@ -589,7 +589,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -655,7 +656,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -718,7 +720,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -905,7 +908,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -1229,7 +1233,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
