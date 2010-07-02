@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.ui.dialogs.merge.conflict;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Holding the data for the context of an conflict.
@@ -14,7 +14,7 @@ import org.unicase.metamodel.ModelElement;
  */
 public class ConflictContext {
 
-	private final ModelElement modelElement;
+	private final EObject modelElement;
 	private final String attribute;
 	private final String opponent;
 
@@ -28,7 +28,7 @@ public class ConflictContext {
 	 * @param opponent
 	 *            opponent
 	 */
-	public ConflictContext(ModelElement modelElement, String attribute,
+	public ConflictContext(EObject modelElement, String attribute,
 			String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = attribute;
@@ -43,7 +43,7 @@ public class ConflictContext {
 	 * @param opponent
 	 *            opponent
 	 */
-	public ConflictContext(ModelElement modelElement, String opponent) {
+	public ConflictContext(EObject modelElement, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = null;
 		this.opponent = opponent;
@@ -54,7 +54,7 @@ public class ConflictContext {
 	 * 
 	 * @return element
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		return modelElement;
 	}
 

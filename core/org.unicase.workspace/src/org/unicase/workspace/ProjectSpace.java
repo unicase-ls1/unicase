@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -29,7 +30,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
@@ -625,7 +625,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return the model element
 	 * @throws MEUrlResolutionException if model element does not exist in project.
 	 */
-	ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException;
+	EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException;
 
 	/**
 	 * Get a project info for the project space.

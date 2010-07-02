@@ -181,6 +181,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		operationsMap = new HashMap<AbstractOperation, ArrayList<ESNotification>>();
 		for (AbstractOperation op : changes.getOperations()) {
 			operationsMap.put(op, new ArrayList<ESNotification>());
+			List l = new ArrayList(operationsMap.values());
 		}
 		return contents;
 

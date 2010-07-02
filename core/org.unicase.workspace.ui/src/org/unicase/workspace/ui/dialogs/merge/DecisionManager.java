@@ -20,6 +20,7 @@ import java.util.ListIterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -29,7 +30,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
@@ -428,7 +428,7 @@ public class DecisionManager {
 	 *            element
 	 * @return name as string
 	 */
-	public String getModelElementName(ModelElement modelElement) {
+	public String getModelElementName(EObject modelElement) {
 		AdapterFactoryLabelProvider adapterFactory = DecisionUtil
 				.getAdapterFactory();
 		return adapterFactory.getText(modelElement);
@@ -442,8 +442,8 @@ public class DecisionManager {
 	 *            id of element.
 	 * @return modelelement
 	 */
-	public ModelElement getModelElement(ModelElementId modelElementId) {
-		ModelElement modelElement = project.getModelElement(modelElementId);
+	public EObject getModelElement(ModelElementId modelElementId) {
+		EObject modelElement = project.getModelElement(modelElementId);
 		if (modelElement == null) {
 			modelElement = searchForCreatedME(modelElementId, myChangePackage
 					.getOperations());
@@ -460,10 +460,10 @@ public class DecisionManager {
 		return modelElement;
 	}
 
-	private ModelElement searchForCreatedME(ModelElementId modelElementId,
+	private EObject searchForCreatedME(ModelElementId modelElementId,
 			List<AbstractOperation> operations) {
 		for (AbstractOperation operation : operations) {
-			ModelElement result = null;
+			EObject result = null;
 			if (operation instanceof CreateDeleteOperation) {
 				result = searchCreateAndDelete(
 						(CreateDeleteOperation) operation, modelElementId);
@@ -482,20 +482,15 @@ public class DecisionManager {
 		return null;
 	}
 
-	private ModelElement searchCreateAndDelete(CreateDeleteOperation cdo,
+	private EObject searchCreateAndDelete(CreateDeleteOperation cdo,
 			ModelElementId modelElementId) {
-		ModelElement modelElement = cdo.getModelElement();
-		if (modelElement == null) {
-			return null;
-		}
-		Set<ModelElement> containedModelElements = modelElement
-				.getAllContainedModelElements();
-		containedModelElements.add(modelElement);
 
-		for (ModelElement child : containedModelElements) {
-			if (child != null
-					&& child.getModelElementId().equals(modelElementId)) {
-				return child;
+		Set<ModelElementId> containedModelElements = cdo
+				.getAllDeletedModelElements();
+
+		for (ModelElementId child : containedModelElements) {
+			if (child.equals(modelElementId)) {
+				return cdo.getModelElement(child);
 			}
 		}
 		return null;

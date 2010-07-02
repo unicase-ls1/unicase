@@ -7,13 +7,14 @@ package org.unicase.workspace.ui.views.changes;
 
 import java.text.SimpleDateFormat;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.ui.common.util.UiUtil;
 
@@ -72,7 +73,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 		}
 		if (element instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) element;
-			ModelElement me = visualizationHelper.getModelElement(operation
+			EObject me = visualizationHelper.getModelElement(operation
 					.getModelElementId());
 			// hack for missing model elements
 			if (me != null) {

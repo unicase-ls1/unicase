@@ -9,7 +9,7 @@ package org.unicase.workspace.changeTracking.notification;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Validates an EMF notification. Optionally generates a status message, describing potential problems.
@@ -110,11 +110,11 @@ final class NotificationValidator {
 				return;
 			}
 
-			if (!(n.getNewValue() instanceof ModelElement)) {
+			if (!(n.getNewValue() instanceof EObject)) {
 				// non model element references must be marked transient
 
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
+				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 			}
@@ -220,9 +220,9 @@ final class NotificationValidator {
 		if (n.isReferenceNotification()) {
 
 			// non model element references must be marked transient
-			if (!(n.getOldValue() instanceof ModelElement)) {
+			if (!(n.getOldValue() instanceof EObject)) {
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
+				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 
@@ -247,9 +247,9 @@ final class NotificationValidator {
 		if (n.isReferenceNotification()) {
 
 			// non model element references must be marked transient
-			if (!(n.getNewValue() instanceof ModelElement)) {
+			if (!(n.getNewValue() instanceof EObject)) {
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
+				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 
@@ -278,12 +278,12 @@ final class NotificationValidator {
 			Object newValueObject = n.getNewValue();
 			Object oldValueObject = n.getOldValue();
 
-			boolean newValIsNoME = newValueObject != null && !(newValueObject instanceof ModelElement);
-			boolean oldValIsNoME = oldValueObject != null && !(oldValueObject instanceof ModelElement);
+			boolean newValIsNoME = newValueObject != null && !(newValueObject instanceof EObject);
+			boolean oldValIsNoME = oldValueObject != null && !(oldValueObject instanceof EObject);
 			if (newValIsNoME || oldValIsNoME) {
 				// non model element references must be marked transient
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
+				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 			}
@@ -297,9 +297,10 @@ final class NotificationValidator {
 	private boolean checkModelElementList(List<?> aList) {
 
 		for (Object value : aList) {
-			if (!(value instanceof ModelElement)) {
-				return false;
-			}
+			// TODO: EMFPlainEObjectTransition, ModelElement class check
+			// if (!(value instanceof ModelElement)) {
+			// return false;
+			// }
 		}
 
 		return true;
