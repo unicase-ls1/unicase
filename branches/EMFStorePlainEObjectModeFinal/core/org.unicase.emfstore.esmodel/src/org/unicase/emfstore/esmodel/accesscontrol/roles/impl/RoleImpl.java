@@ -10,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -17,7 +18,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc -->
@@ -104,7 +104,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
-	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
+	public boolean canCreate(ProjectId projectId, EObject modelElement) {
 		return false;
 	}
 
@@ -115,7 +115,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
-	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
+	public boolean canDelete(ProjectId projectId, EObject modelElement) {
 		return false;
 	}
 
@@ -126,7 +126,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
-	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
+	public boolean canModify(ProjectId projectId, EObject modelElement) {
 		return false;
 	}
 
@@ -137,7 +137,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
-	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
+	public boolean canRead(ProjectId projectId, EObject modelElement) {
 		return false;
 	}
 

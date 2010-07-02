@@ -8,7 +8,6 @@ package org.unicase.emfstore.esmodel.accesscontrol.roles;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc -->
@@ -54,7 +53,7 @@ public interface Role extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean canCreate(ProjectId projectId, ModelElement modelElement);
+	boolean canCreate(ProjectId projectId, EObject modelElement);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,7 +61,7 @@ public interface Role extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean canDelete(ProjectId projectId, ModelElement modelElement);
+	boolean canDelete(ProjectId projectId, EObject modelElement);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -70,7 +69,7 @@ public interface Role extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean canModify(ProjectId projectId, ModelElement modelElement);
+	boolean canModify(ProjectId projectId, EObject modelElement);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -78,6 +77,6 @@ public interface Role extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean canRead(ProjectId projectId, ModelElement modelElement);
+	boolean canRead(ProjectId projectId, EObject modelElement);
 
 } // Role
