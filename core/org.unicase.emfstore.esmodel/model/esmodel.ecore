@@ -151,10 +151,13 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CreateDeleteOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="delete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
             eType="#//versioning/operations/ReferenceOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="eobjectsIdMap" upperBound="-1"
+            eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//EObjectToModelElementIdMap"
+            transient="true" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
@@ -423,19 +426,19 @@
         </eOperations>
         <eOperations name="canCreate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="projectId" eType="#//ProjectId"/>
-          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+          <eParameters name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         </eOperations>
         <eOperations name="canDelete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="projectId" eType="#//ProjectId"/>
-          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+          <eParameters name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         </eOperations>
         <eOperations name="canModify" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="projectId" eType="#//ProjectId"/>
-          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+          <eParameters name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         </eOperations>
         <eOperations name="canRead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="projectId" eType="#//ProjectId"/>
-          <eParameters name="modelElement" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+          <eParameters name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
             eType="#//ProjectId" containment="true" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"/>

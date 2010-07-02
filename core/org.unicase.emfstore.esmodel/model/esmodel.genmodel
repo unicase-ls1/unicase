@@ -123,6 +123,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CreateDeleteOperation/delete"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CreateDeleteOperation/modelElement"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CreateDeleteOperation/subOperations"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CreateDeleteOperation/eobjectsIdMap"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/AttributeOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AttributeOperation/oldValue"/>
@@ -299,6 +300,16 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/MergeGlobalChoiceEvent">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeGlobalChoiceEvent/selection"/>
         </genClasses>
+        <nestedGenPackages prefix="Server" basePackage="org.unicase.emfstore.esmodel.versioning.events"
+            disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/events/server">
+          <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/events/server/ServerEvent"/>
+          <genClasses image="false" ecoreClass="esmodel.ecore#//versioning/events/server/ServerProjectEvent">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/server/ServerProjectEvent/projectId"/>
+          </genClasses>
+          <genClasses ecoreClass="esmodel.ecore#//versioning/events/server/ProjectUpdatedEvent">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/server/ProjectUpdatedEvent/newVersion"/>
+          </genClasses>
+        </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"
