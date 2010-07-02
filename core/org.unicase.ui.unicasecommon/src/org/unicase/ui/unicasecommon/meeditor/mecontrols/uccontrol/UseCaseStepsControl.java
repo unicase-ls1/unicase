@@ -22,7 +22,7 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -57,7 +57,7 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 					RequirementFactory rFactory = RequirementFactoryImpl.init();
 					Step p = rFactory.createStep();
 					UseCase uc = (UseCase) getModelElement();
-					uc.getProject().addModelElement(p);
+					ModelUtil.getProject(uc).addModelElement(p);
 					p.setName("New System Step");
 					p.setUserStep(false);
 					EList<Step> allSteps = uc.getUseCaseSteps();
@@ -99,7 +99,7 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 					p.setUserStep(true);
 					UseCase uc = (UseCase) getModelElement();
 					EList<Step> allSteps = uc.getUseCaseSteps();
-					uc.getProject().addModelElement(p);
+					ModelUtil.getProject(uc).addModelElement(p);
 					if (position == -1) {
 						allSteps.add(p);
 					} else {
@@ -302,7 +302,7 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference && !((EReference) feature).getName().equals("useCaseSteps")) {
 			return DO_NOT_RENDER;

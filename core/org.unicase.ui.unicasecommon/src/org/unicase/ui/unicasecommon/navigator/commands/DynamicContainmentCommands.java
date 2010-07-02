@@ -12,7 +12,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
@@ -23,7 +25,6 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
@@ -42,7 +43,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
-	private ModelElement selectedME;
+	private EObject selectedME;
 
 	/**
 	 * . {@inheritDoc}
@@ -138,7 +139,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	private void addCommandsForSubTypes(EClass refClass, List<IContributionItem> commands) {
 
 		// do not create commands for subclasses of ModelElement
-		if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
+		if (refClass.equals(EcoreFactory.eINSTANCE.createEObject())) {
 			return;
 		}
 

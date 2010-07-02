@@ -5,17 +5,14 @@
  */
 package org.unicase.ui.unicasecommon.diagram.commands;
 
-import java.util.Set;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
@@ -49,9 +46,10 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelElement destructee = null;
-		if (this.getElementToDestroy() instanceof ModelElement) {
-			destructee = (ModelElement) this.getElementToDestroy();
+		EObject destructee = null;
+		// TODO: EMFPlainObjectTransition: instanceof ModelElement has been replaced with null check, ok?
+		if (this.getElementToDestroy() != null) {
+			destructee = this.getElementToDestroy();
 		} else {
 			return CommandResult.newErrorCommandResult("Element to delete is no ModelElement");
 		}
@@ -70,13 +68,12 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	 * @param destructee the object being destroyed
 	 * @param diag the MEDiagram
 	 */
-	protected void tearDownReferences(ModelElement destructee, MEDiagram diag) {
-		Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements();
-		for (ModelElement object : diagramNodeReferences) {
-			if (object instanceof Association || object instanceof org.unicase.model.state.Transition
-				|| object instanceof org.unicase.model.activity.Transition) {
-				diag.getElements().remove(object);
-			}
-		}
+	protected void tearDownReferences(EObject destructee, MEDiagram diag) {
+		/*
+		 * Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements(); for (ModelElement
+		 * object : diagramNodeReferences) { if (object instanceof Association || object instanceof
+		 * org.unicase.model.state.Transition || object instanceof org.unicase.model.activity.Transition) {
+		 * diag.getElements().remove(object); } }
+		 */
 	}
 }

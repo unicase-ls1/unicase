@@ -29,8 +29,8 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
@@ -333,7 +333,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 				RequirementFactory rFactory = RequirementFactoryImpl.init();
 				Step p = rFactory.createStep();
 				UseCase uc = (UseCase) contextModelElement;
-				Project project = uc.getProject();
+				Project project = ModelUtil.getProject(uc);
 				project.addModelElement(p);
 				if (isActorStep) {
 					p.setName("New Actor Step");
@@ -406,7 +406,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

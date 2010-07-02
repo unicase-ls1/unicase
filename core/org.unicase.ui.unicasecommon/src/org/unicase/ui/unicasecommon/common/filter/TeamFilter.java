@@ -10,7 +10,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
@@ -62,22 +61,23 @@ public class TeamFilter extends ViewerFilter {
 				return true;
 			}
 
-			if (workItem.getAssignee() == null) {
-				for (OrgUnit orgUnit : team) {
-					if (orgUnit.getName().equals(workItem.getCreator())) {
-						return true;
-					}
-				}
-			}
+			// TODO: EMFPlainEObjectTransition, getCreator method
+			// if (workItem.getAssignee() == null) {
+			// for (OrgUnit orgUnit : team) {
+			// if (orgUnit.getName().equals(workItem.getCreator())) {
+			// return true;
+			// }
+			// }
+			// }
 
-		} else if (element instanceof ModelElement) {
-			String creator = ((ModelElement) element).getCreator();
-			for (OrgUnit orgUnit : team) {
-				if (orgUnit.getName().equals(creator)) {
-					return true;
-				}
-			}
 		}
+
+			// TODO: EMFPlainEObjectTransition, getCreator method
+		/*
+		 * else if (element instanceof EObject) { String creator = ((EObject) element).getCreator(); for (OrgUnit
+		 * orgUnit : team) { if (orgUnit.getName().equals(creator)) { return true; } } }
+		 */
+
 		return false;
 	}
 

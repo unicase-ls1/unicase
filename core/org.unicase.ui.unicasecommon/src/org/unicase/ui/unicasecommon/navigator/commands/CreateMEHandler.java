@@ -58,6 +58,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// if model element if MEDiagram, set the diagram type
+
 			// if (newMEInstance instanceof MEDiagram) {
 			// Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
 			// Diagram newDiagramType = (Diagram) p;

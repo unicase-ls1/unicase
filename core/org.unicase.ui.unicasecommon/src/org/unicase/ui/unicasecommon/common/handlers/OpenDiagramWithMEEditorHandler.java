@@ -8,7 +8,7 @@ package org.unicase.ui.unicasecommon.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.UnicaseActionHelper;
@@ -24,7 +24,7 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ModelElement me = ActionHelper.getSelectedModelElement();
+		EObject me = ActionHelper.getSelectedModelElement();
 		if (me instanceof MEDiagram) {
 			ActionHelper.openMEwithMEEditor(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
 				UnicaseActionHelper.getContext(me));

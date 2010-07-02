@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
@@ -97,17 +97,16 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		assessmentListener = new AssessmentListener();
 		proposalListener = new ProposalListener();
 
-		// add listeners
-
-		issue.addModelElementChangeListener(issueListener);
+		// TODO: EMFPlainEObjectTransition: handle ModelElementChangeListeners
+		// issue.addModelElementChangeListener(issueListener);
 		for (Criterion criterion : issue.getCriteria()) {
-			criterion.addModelElementChangeListener(criterionListener);
+			// criterion.addModelElementChangeListener(criterionListener);
 		}
 		for (Proposal proposal : issue.getProposals()) {
-			proposal.addModelElementChangeListener(proposalListener);
+			// proposal.addModelElementChangeListener(proposalListener);
 			for (Assessment assessment : proposal.getAssessments()) {
 				if (issue.getCriteria().contains(assessment.getCriterion())) {
-					assessment.addModelElementChangeListener(assessmentListener);
+					// assessment.addModelElementChangeListener(assessmentListener);
 				}
 			}
 		}
@@ -151,24 +150,24 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 
 		disposeControls();
 
-		// dispose listeners
+		// TODO: EMFPlainEObjectTransition: dispose listeners
 
 		if (issue != null) {
 			for (Proposal proposal : issue.getProposals()) {
-				proposal.removeModelElementChangeListener(proposalListener);
+				// proposal.removeModelElementChangeListener(proposalListener);
 			}
 			for (Criterion criterion : issue.getCriteria()) {
-				criterion.removeModelElementChangeListener(criterionListener);
+				// criterion.removeModelElementChangeListener(criterionListener);
 			}
 			for (Proposal proposal : issue.getProposals()) {
 				for (Assessment assessment : proposal.getAssessments()) {
 					if (issue.getCriteria().contains(assessment.getCriterion())) {
-						assessment.removeModelElementChangeListener(assessmentListener);
+						// assessment.removeModelElementChangeListener(assessmentListener);
 					}
 				}
 			}
 		}
-		issue.removeModelElementChangeListener(issueListener);
+		// issue.removeModelElementChangeListener(issueListener);
 	}
 
 	/**
@@ -298,7 +297,8 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 				assessment.setName("new Assessment");
 				assessment.setProposal(p);
 				assessment.setCriterion(c);
-				assessment.addModelElementChangeListener(assessmentListener);
+				// TODO : EMFPlainEObjectTransition: listeners
+				// assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}.run();
 
@@ -338,38 +338,42 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		c.layout();
 	}
 
+	// TODO: EMFPlainEObjectTransition: listeners
 	private void removeAssessmentListener(Proposal proposal) {
-		proposal.removeModelElementChangeListener(proposalListener);
+		// proposal.removeModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
 			if (issue.getCriteria().contains(assessment.getCriterion())) {
-				assessment.removeModelElementChangeListener(assessmentListener);
+				// assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
+	// TODO: EMFPlainEObjectTransition: listeners
 	private void removeAssessmentListener(Criterion criterion) {
-		criterion.removeModelElementChangeListener(criterionListener);
+		// criterion.removeModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {
 			if (issue.getProposals().contains(assessment.getProposal())) {
-				assessment.removeModelElementChangeListener(assessmentListener);
+				// assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
+	// TODO: EMFPlainEObjectTransition: ModelElementChangeListener
 	private void addAssessmentListener(Proposal proposal) {
-		proposal.addModelElementChangeListener(proposalListener);
+		// proposal.addModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
 			if (issue.getCriteria().contains(assessment.getCriterion())) {
-				assessment.addModelElementChangeListener(assessmentListener);
+				// assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
+	// TODO: EMFPlainEObjectTransition: ModelElementChangeListener
 	private void addAssessmentListener(Criterion criterion) {
-		criterion.addModelElementChangeListener(criterionListener);
+		// criterion.addModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {
 			if (issue.getProposals().contains(assessment.getProposal())) {
-				assessment.addModelElementChangeListener(assessmentListener);
+				// assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
@@ -378,7 +382,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		if (!(modelElement instanceof Issue)) {
 			return DO_NOT_RENDER;
 		}

@@ -40,7 +40,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
@@ -165,7 +164,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				List selection = (List) transferedObject;
 				for (Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof ModelElement) {
+					if (nextSelectedObject instanceof EObject) {
 						result.add((EObject) nextSelectedObject);
 					}
 				}

@@ -24,189 +24,189 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.workpackagetransfer.TreeHandler;
 
 /**
- * @author mkagel 
- * 
- * Wizard page of the WorkpackageTransferWizard. Contains a checkboxlist of WorkItems to move.
+ * @author mkagel Wizard page of the WorkpackageTransferWizard. Contains a checkboxlist of WorkItems to move.
  */
 public class ChooseWorkItemPage extends WizardPage {
-	
-	//Title and description
+
+	// Title and description
 	private static final String PAGE_TITLE = "Move WorkItems";
 	private static final String PAGE_DESCRIPTION = "Select WorkItems for moving in new Workpackage";
 	private static final String BROWSE_BUTTON_TEXT = "Browse Workpackages";
 	private static final String CLABEL_INIT_TEXT = ">> Select target Workpackage <<";
-	
+
 	private AdapterFactoryLabelProvider labelProvider;
-	
+
 	private WorkPackage targetWorkPackage;
-	
+
 	private WorkpackageTransferWizard parentWizard;
-		
-	//Tree contains WorkItems
+
+	// Tree contains WorkItems
 	private Tree tree;
-	
-	//Button for browsing the WorkPackages
+
+	// Button for browsing the WorkPackages
 	private Button browseButton;
 	private CLabel workPackageLabel;
-	
+
 	private ChooseWorkItemPageListener listener;
 	private TreeHandler treeHandler;
-	
-	
+
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param pageName page name, handled by the the super constructor	
-	 * @param parentWizard  the wizard which contains this page
+	 * @param pageName page name, handled by the the super constructor
+	 * @param parentWizard the wizard which contains this page
 	 */
 	protected ChooseWorkItemPage(String pageName, WorkpackageTransferWizard parentWizard) {
 		super(pageName);
-		
+
 		this.parentWizard = parentWizard;
-		
+
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-			
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		listener = new ChooseWorkItemPageListener();
 		treeHandler = new TreeHandler(labelProvider, parentWizard.getSelectedWorkPackage());
 	}
 
-	
 	/**
-	 * . ({@inheritDoc})	  
+	 * . ({@inheritDoc})
 	 */
 	public void createControl(Composite parent) {
 
-		//Composite (Container)
+		// Composite (Container)
 		Composite composite = new Composite(parent, SWT.NULL);
-	
-		//Layout managing
+
+		// Layout managing
 		GridLayout gridLayout = new GridLayout(4, false);
-		composite.setLayout(gridLayout);		
-		
+		composite.setLayout(gridLayout);
+
 		workPackageLabel = new CLabel(composite, SWT.BORDER);
-		workPackageLabel.setLayoutData(new GridData(SWT.FILL,SWT.CENTER,true,false,2,1));
+		workPackageLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		workPackageLabel.setAlignment(SWT.CENTER);
-		workPackageLabel.setText(CLABEL_INIT_TEXT);				
-		
+		workPackageLabel.setText(CLABEL_INIT_TEXT);
+
 		browseButton = new Button(composite, SWT.PUSH);
 		browseButton.setText(BROWSE_BUTTON_TEXT);
-		browseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP,false,false,2,1));
+		browseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false, 2, 1));
 		browseButton.addListener(SWT.Selection, listener);
-					
+
 		tree = new Tree(composite, SWT.CHECK | SWT.BORDER);
-		tree.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,4,1));
+		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 4, 1));
 		tree.addListener(SWT.Selection, listener);
-		
-		//Fill Tree with data
+
+		// Fill Tree with data
 		fillTree(tree);
-				
-		setControl(composite);	
+
+		setControl(composite);
 	}
-	
+
 	/**
 	 * Returns the selected WorkItems which should be moved.
+	 * 
 	 * @return List of WorkItems
 	 */
 	public List<WorkItem> getSelectedWorkItems() {
 		return treeHandler.getCheckedWorkItems(tree);
 	}
-	
+
 	/**
 	 * Returns the target WorkPackage, where the WorkItems should be moved.
+	 * 
 	 * @return WorkPackage
 	 */
 	public WorkPackage getTargetWorkPackage() {
 		return targetWorkPackage;
 	}
-	
 
 	/**
 	 * Fills the Tree with Data.
+	 * 
 	 * @param tree tree Object to fill with data
 	 */
 	private void fillTree(Tree tree) {
 		tree.setRedraw(false);
-				
+
 		treeHandler.createTreeStructure(tree);
-		
+
 		tree.setRedraw(true);
 	}
-	
-	
-	
+
 	/**
-	 * Listener handling button pressed events and
-	 * selection events in the table.
+	 * Listener handling button pressed events and selection events in the table.
+	 * 
 	 * @author mkagel
-	 *
 	 */
 	private class ChooseWorkItemPageListener implements Listener, SelectionListener {
 
 		public void handleEvent(Event event) {
 			Widget widget = event.widget;
-			
-			if(widget == browseButton) {
+
+			if (widget == browseButton) {
 				showChooseWorkPackageDialog();
 			}
-			
-			else if(widget == tree && event.detail == SWT.CHECK) {
-				
-				TreeItem treeItem = (TreeItem)event.item;
-				
+
+			else if (widget == tree && event.detail == SWT.CHECK) {
+
+				TreeItem treeItem = (TreeItem) event.item;
+
 				manageSelection(treeItem);
-			}			
-			
+			}
+
 		}
-		
+
 		/**
 		 * shows the dialog for choosing the target workPackage of the move-operation.
 		 */
 		private void showChooseWorkPackageDialog() {
-			ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(parentWizard.getSelectedWorkPackage().getProject(), parentWizard.getSelectedWorkPackage());
-			
-			if(dialog.open() == Window.OK) {
+			ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(ModelUtil.getProject(parentWizard
+				.getSelectedWorkPackage()), parentWizard.getSelectedWorkPackage());
+
+			if (dialog.open() == Window.OK) {
 				Object[] result = dialog.getResult();
-				
-				if(result.length == 1) {
-					if(result[0] instanceof WorkPackage){
+
+				if (result.length == 1) {
+					if (result[0] instanceof WorkPackage) {
 						targetWorkPackage = (WorkPackage) result[0];
-						
+
 						workPackageLabel.setImage(labelProvider.getImage(targetWorkPackage));
 						workPackageLabel.setText(labelProvider.getText(targetWorkPackage));
-						
+
 						parentWizard.setCanFinish(true);
 						setPageComplete(true);
 					}
 				}
-				
+
 			}
 		}
-		
+
 		/**
-		 * Managing the Selection-Event, new checked treeItems have to check their children treeItems
-		 * and newly unchecked treeItems have to uncheck their parent and children treeItems.
+		 * Managing the Selection-Event, new checked treeItems have to check their children treeItems and newly
+		 * unchecked treeItems have to uncheck their parent and children treeItems.
+		 * 
 		 * @param treeItem whose checking has been changed
 		 */
 		private void manageSelection(TreeItem treeItem) {
-			
-			if(treeItem.getChecked()) {
+
+			if (treeItem.getChecked()) {
 				treeHandler.checkTreeItem(treeItem, true);
-			} else {					
+			} else {
 				treeHandler.uncheckTreeItem(treeItem, true, true);
 			}
 		}
 
-		
-		public void widgetDefaultSelected(SelectionEvent e) {}
+		public void widgetDefaultSelected(SelectionEvent e) {
+		}
 
-		public void widgetSelected(SelectionEvent e) {}
-		
+		public void widgetSelected(SelectionEvent e) {
+		}
+
 	}
 }
