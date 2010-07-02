@@ -6,6 +6,7 @@
 package org.unicase.metamodel.util;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -135,6 +136,14 @@ public class MetamodelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case MetamodelPackage.EOBJECT_TO_MODEL_ELEMENT_ID_MAP: {
+			@SuppressWarnings("unchecked")
+			Map.Entry<EObject, ModelElementId> eObjectToModelElementIdMap = (Map.Entry<EObject, ModelElementId>) theEObject;
+			T result = caseEObjectToModelElementIdMap(eObjectToModelElementIdMap);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -234,6 +243,34 @@ public class MetamodelSwitch<T> {
 	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject To Model Element Id Map</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject To Model Element Id Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEObjectToModelElementIdMap(Map.Entry<EObject, ModelElementId> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element EObject Wrapper</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element EObject Wrapper</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	// public T caseModelElementEObjectWrapper(ModelElementEObjectWrapper object) {
+	// return null;
+	// }
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This

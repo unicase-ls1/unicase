@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
@@ -30,19 +31,19 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 */
 	public final void projectDeleted(Project project) {
 
-		List<ModelElement> elements = new ArrayList<ModelElement>(observedElements);
-		for (ModelElement modelElement : elements) {
+		List<EObject> elements = new ArrayList<EObject>(observedElements);
+		for (EObject modelElement : elements) {
 			this.modelElementRemoved(project, modelElement);
 		}
 
 	}
 
-	private List<ModelElement> observedElements;
+	private List<EObject> observedElements;
 
 	/**
 	 * @param observedElements the set of elements that will be observed
 	 */
-	public ModelElementChangeObserver(List<ModelElement> observedElements) {
+	public ModelElementChangeObserver(List<EObject> observedElements) {
 		this();
 		this.observedElements.addAll(observedElements);
 	}
@@ -51,7 +52,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * Empty constructor. You can add elements to observe with {@link #observeElement(ModelElement)}
 	 */
 	public ModelElementChangeObserver() {
-		this.observedElements = new ArrayList<ModelElement>();
+		this.observedElements = new ArrayList<EObject>();
 	}
 
 	/**
@@ -59,7 +60,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * 
 	 * @param newElement the new element to be observed
 	 */
-	public void observeElement(ModelElement newElement) {
+	public void observeElement(EObject newElement) {
 		this.observedElements.add(newElement);
 	}
 
@@ -69,7 +70,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public final void modelElementAdded(Project project, ModelElement modelElement) {
+	public final void modelElementAdded(Project project, EObject modelElement) {
 		// reacting to new elements would be a contradiction to the idea of this class.
 	}
 
@@ -79,10 +80,10 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public final void modelElementRemoved(Project project, ModelElement modelElement) {
-		Set<ModelElement> deletedElements = modelElement.getAllContainedModelElements();
+	public final void modelElementRemoved(Project project, EObject modelElement) {
+		Set<EObject> deletedElements = ModelUtil.getAllContainedModelElements(modelElement, false);
 		deletedElements.add(modelElement);
-		for (ModelElement deletedElement : deletedElements) {
+		for (EObject deletedElement : deletedElements) {
 			if (isObservedElement(deletedElement)) {
 				observedElements.remove(deletedElement);
 				this.onElementDeleted(deletedElement);
@@ -95,7 +96,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * 
 	 * @param element the element that was deleted
 	 */
-	protected abstract void onElementDeleted(ModelElement element);
+	protected abstract void onElementDeleted(EObject element);
 
 	/**
 	 * {@inheritDoc}
@@ -103,7 +104,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public final void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+	public final void modelElementDeleteStarted(Project project, EObject modelElement) {
 		// uninteresting, do nothing
 	}
 
@@ -113,7 +114,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public final void notify(Notification notification, Project project, ModelElement modelElement) {
+	public final void notify(Notification notification, Project project, EObject modelElement) {
 		if (this.isObservedElement(modelElement)) {
 			this.onNotify(notification, modelElement);
 		}
@@ -125,7 +126,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @param notification the notification sent
 	 * @param element the notifying element
 	 */
-	protected abstract void onNotify(Notification notification, ModelElement element);
+	protected abstract void onNotify(Notification notification, EObject element);
 
 	/**
 	 * Checks if the observer wants to know about changes of the element.
@@ -133,7 +134,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * @param element to be checked
 	 * @return forward change event?
 	 */
-	private boolean isObservedElement(ModelElement element) {
+	private boolean isObservedElement(EObject element) {
 		return this.observedElements.contains(element);
 	}
 

@@ -72,16 +72,22 @@ public final class ModelUtil {
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
-	public static ModelElement copy(ModelElement modelElement) {
-		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
-		// reset id
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		copy.setIdentifier(modelElementId.getId());
-		// reset ids of containment children
-		for (ModelElement child : copy.getAllContainedModelElements()) {
-			ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			child.setIdentifier(childId.getId());
-		}
+	public static EObject copy(EObject modelElement) {
+		EObject copy = EcoreUtil.copy(modelElement);
+
+		// TODO: not IDs left to clone, copy now seems to be obsolete?
+		// // reset ids
+		// ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		// copy.setIdentifier(modelElementId.getId());
+
+		// // reset ids of containment children
+		// for (EObject child : ModelUtil.getAllContainedModelElements(copy, false)) {
+		// ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
+		// // TODO: EMFPlainEObjectTransition, ModelElement class check
+		// // if (child instanceof ModelElement) {
+		// // ((IdentifiableElement) child).setIdentifier(childId.getId());
+		// // }
+		// }
 		return copy;
 	}
 
@@ -118,7 +124,7 @@ public final class ModelUtil {
 	 * @return EReference the Container
 	 * @param parent The EObject to get conatinment references from
 	 */
-	public static EReference getPossibleContainingReference(final ModelElement newMEInstance, EObject parent) {
+	public static EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
 		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 		EReference reference = null;
@@ -344,13 +350,6 @@ public final class ModelUtil {
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
-		// sanity checks
-		EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
-		if (!modelELementEClass.isSuperTypeOf(clazz)) {
-			throw new IllegalStateException("Given EClass \"" + clazz.getName()
-				+ "\" is not a subtype of EClass ModelElement");
-		}
-
 		Set<EClass> ret = new HashSet<EClass>();
 		for (EPackage ePackage : getAllModelPackages()) {
 			getSubclasses(clazz, ret, ePackage, includeAbstractClassesAndInterfaces);
@@ -440,7 +439,8 @@ public final class ModelUtil {
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
 			try {
 				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				result.addAll(getAllModelElementEClasses(ePackage));			}
+				result.addAll(getAllModelElementEClasses(ePackage));
+			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 			catch (RuntimeException exception) {
 				// END SUPRESS CATCH EXCEPTION
@@ -466,9 +466,7 @@ public final class ModelUtil {
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				EClass subEClass = (EClass) classifier;
-				if (MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(subEClass)) {
-					result.add(subEClass);
-				}
+				result.add(subEClass);
 			}
 		}
 		return result;
@@ -516,15 +514,12 @@ public final class ModelUtil {
 	 *         package and all its sub-packages.
 	 */
 	public static Set<EClass> getAllMETypes(EPackage ePackage) {
-		EClass modelElementEClass = MetamodelPackage.eINSTANCE.getModelElement();
 		Set<EClass> meTypes = new HashSet<EClass>();
 
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
-				if (modelElementEClass.isSuperTypeOf(eClass)) {
-					meTypes.add(eClass);
-				}
+				meTypes.add(eClass);
 			} else if (eObject instanceof EPackage) {
 				EPackage eSubPackage = (EPackage) eObject;
 				meTypes.addAll(getAllMETypes(eSubPackage));
@@ -541,12 +536,17 @@ public final class ModelUtil {
 	 * @param modelElement fu!
 	 * @return fu!
 	 */
-	public static boolean listContains(Collection<? extends ModelElement> collection, ModelElement modelElement) {
-		for (ModelElement me : collection) {
-			if (me.getIdentifier().equals(modelElement.getIdentifier()) || me == modelElement) {
-				return true;
+	public static boolean listContains(Collection<? extends EObject> collection, EObject modelElement) {
+		for (EObject me : collection) {
+
+			Project p1 = getProject(me);
+			Project p2 = getProject(modelElement);
+
+			if (p1 != null && p1 == p2) {
+				return p1.getModelElementId(me).equals(p2.getModelElementId(modelElement));
 			}
 		}
+
 		return false;
 	}
 
@@ -812,23 +812,125 @@ public final class ModelUtil {
 				+ string);
 		}
 	}
-	
+
 	/**
-	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements that are contained in a project!.
+	 * Reassign the IDs of the given element an its children. This is a dangerous operation, do NOT apply on elements
+	 * that are contained in a project!.
 	 * 
 	 * @param modelElement the element
 	 */
-	public static void reassignModelElementIds(ModelElement modelElement) {
-		Set<ModelElement> copiedElements = modelElement.getAllContainedModelElements();
+	public static void reassignModelElementIds(EObject modelElement) {
+		Set<EObject> copiedElements = getAllContainedModelElements(modelElement, false);
 		copiedElements.add(modelElement);
-		for (ModelElement element : copiedElements) {
-			//turn off notification for id change			
+		for (EObject element : copiedElements) {
+			// turn off notification for id change
 			boolean eDeliver = element.eDeliver();
 			element.eSetDeliver(false);
-			//change id
-			element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
-			//set edeliver to previous state
 			element.eSetDeliver(eDeliver);
 		}
+	}
+
+	/**
+	 * Get Project that contains a model element.
+	 * 
+	 * @param modelElement the model element
+	 * @return the project or null if the element is not contained in a project.
+	 */
+	public static Project getProject(EObject modelElement) {
+		if (modelElement instanceof ModelElementId) {
+			// TODO : EMFPlainEObjectTransition: id is contained in map
+			return (Project) modelElement.eContainer().eContainer();
+		} else {
+			Set<EObject> seenModelElements = new HashSet<EObject>();
+			seenModelElements.add(modelElement);
+			return getProject(modelElement, seenModelElements);
+		}
+	}
+
+	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
+
+		EObject container = eObject.eContainer();
+
+		if (container == null) {
+			return null;
+		}
+
+		// in case this is a project space
+		for (EObject o : container.eContents()) {
+			if (o instanceof Project) {
+				return (Project) o;
+			}
+		}
+
+		if (seenModelElements.contains(container)) {
+			throw new IllegalStateException("ModelElement is in a containment cycle");
+		}
+		// check if my container is a project
+		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
+			return (Project) container;
+		}
+		// check if my container is a model element
+		else {
+			seenModelElements.add(container);
+			return getProject(container, seenModelElements);
+		}
+	}
+
+	/**
+	 * Get all contained elements of a given element.
+	 * 
+	 * @param modelElement the model element
+	 * @param includeTransientContainments true if transient containments should be included in the result
+	 * @return a set of contained model elements
+	 */
+	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments) {
+		Set<EObject> result = new HashSet<EObject>();
+		for (EObject containee : modelElement.eContents()) {
+			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
+				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+				result.add(containee);
+				result.addAll(elements);
+			}
+		}
+		return result;
+	}
+
+	public static Set<EObject> getCrossReferencedModelElements(EObject modelElement) {
+		Set<EObject> result = new HashSet<EObject>();
+		for (EObject crossReference : modelElement.eCrossReferences()) {
+			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(crossReference)) {
+				result.add(crossReference);
+			}
+		}
+		return result;
+	}
+
+	public static Set<EObject> getContainedElements(EObject modelElement) {
+
+		Set<EObject> result = new HashSet<EObject>();
+		for (EObject containee : modelElement.eContents()) {
+			result.add(containee);
+		}
+		return result;
+	}
+
+	/**
+	 * Get all contained elements of a given element as a list.
+	 * 
+	 * @param modelElement the model element
+	 * @param includeTransientContainments true if transient containments should be included in the result
+	 * @return a list of contained model elements
+	 */
+	public static List<EObject> getAllContainedModelElementsAsList(EObject modelElement,
+		boolean includeTransientContainments) {
+		List<EObject> result = new ArrayList<EObject>();
+		for (EObject containee : modelElement.eContents()) {
+			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
+				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+				result.add(containee);
+				result.addAll(elements);
+			}
+		}
+		return result;
 	}
 }
