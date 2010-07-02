@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -75,7 +76,7 @@ public class EMailNotifier implements IApplication {
 	/**
 	 * The file name of the configuration file for the notifier proxy client.
 	 */
-	private static final String NOTIFIER_CONFIG_FILE = "notifierProxyClient.ini";
+	private static final String NOTIFIER_CONFIG_FILE = "emailNotifierConfig.ini";
 	
 	/**
 	 * The path where the configuration file for the notification proxy client will be found.
@@ -85,99 +86,109 @@ public class EMailNotifier implements IApplication {
 	/**
 	 * A list of all available configuration sections from the ini file.
 	 */
-	private List<EMailNotifierConfigSectionInfo> configSectionInfos = new ArrayList<EMailNotifierConfigSectionInfo>();
+	private List<EMFStoreInfo> emfStoreInfos = new ArrayList<EMFStoreInfo>();
 	
 	/**
 	 * The path to the sample ini file. This file will be created if no ini is found.
 	 */
-	private static final String SAMPLE_CONFIG_FILE_PATH = "notifierProxyClient.example.ini";
+	private static final String SAMPLE_CONFIG_FILE_PATH = "emailNotifierConfig.example.ini";
 	
 	/**
 	 * Constructor.
-	 * 
-	 * @throws EMailNotifierException will be thrown on configuration error. Review your ini file.
 	 */
-	public EMailNotifier() throws EMailNotifierException {
-		// does file exist?
-		File configFile = new File( NOTIFIER_CONFIG_PATH );
-		if( !configFile.exists() ) {
-			// ini file doesnt exist. Create a dummy file.
-			try {
-				boolean created = configFile.createNewFile();
-				if( !created ) {
-					throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
-				}
-				
-				// copy notifierProxyClient.example.ini to destination
-				Bundle bundle = Activator.getDefault().getBundle();
-				URL url = bundle.getEntry( SAMPLE_CONFIG_FILE_PATH );
-				InputStream sampleFileInputStream = url.openStream();
-				
-				String content = "";
-				String line = null;
-				BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(sampleFileInputStream) );
-				while( (line = bufferedReader.readLine()) != null ) {
-					content += line + "\r\n";
-				}
-				bufferedReader.close();
-				sampleFileInputStream.close();
-				
-				BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter(configFile) );
-				bufferedWriter.write(content);
-				bufferedWriter.flush();
-				bufferedWriter.close();
-				
-			} catch (IOException e) {
-				Activator.logException(e);
-			}
-			
-			
-		}
-		
-		// are all mandatory iniPreferences set?
+	public EMailNotifier() {
 		try {
-			Ini ini = new Ini( configFile );
-			IniPreferences iniPreferences = new IniPreferences(ini);
-			for (String section : iniPreferences.childrenNames()) {
-				// EMF store server properties
-				final String url = iniPreferences.node(section).get("url", null);
-				final int port = iniPreferences.node(section).getInt("port", 0);
-				final String certificate = iniPreferences.node(section).get("certificate", null);
-				final String username = iniPreferences.node(section).get("username", null);
-				final String password = iniPreferences.node(section).get("password", null);
-				final int backchannelPort = iniPreferences.node(section).getInt("backchannelPort", 0);
-				
-				// mailer properties
-	    		final String smtpHost = iniPreferences.node( section ).get("SMTPhost", null);
-	    		final int smtpPort = iniPreferences.node( section ).getInt("SMTPport", 0);
-	    		final String smtpUser = iniPreferences.node( section ).get("SMTPuser", null);
-	    		final String smtpPassword = iniPreferences.node( section ).get("SMTPpassword", null);
-	    		final boolean smtpUseSSL = iniPreferences.node( section ).getBoolean("SMTPuseSSL", false);
-	    		final String smtpSender = iniPreferences.node( section ).get("SMTPsender", null);
-				
-	    		// server info
-	    		final ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-				serverInfo.setUrl( url );
-				serverInfo.setPort( port );
-				serverInfo.setCertificateAlias( certificate );
-				
-				// mailer info
-				final MailerInfo mailerInfo = new MailerInfo(smtpHost, smtpPort, smtpUser, smtpPassword, smtpUseSSL, smtpSender);
-				
-				// validation of this section
-				EMailNotifierConfigSectionInfo configSectionInfo = new EMailNotifierConfigSectionInfo(section, serverInfo, username, password, backchannelPort, mailerInfo);
-				
-				configSectionInfos.add(configSectionInfo);
+			// does config file exist?
+			File configFile = new File( NOTIFIER_CONFIG_PATH );
+			if( !configFile.exists() ) {
+				createConfigFile(configFile);
 			}
-			 
-		} catch (InvalidFileFormatException e) {
-			throw new EMailNotifierException( "Ini file is not well formatted.", e );
-		} catch (IOException e) {
-			throw new EMailNotifierException( "IOException, something is wrong with the ini file.", e );
-		} catch (BackingStoreException e) {
-			throw new EMailNotifierException( "Problem with the EMF store.", e );
+			
+			// are all mandatory iniPreferences set?
+			try {
+				Ini ini = new Ini( configFile );
+				IniPreferences iniPreferences = new IniPreferences(ini);
+				for (String section : iniPreferences.childrenNames()) {
+					// EMF store server properties
+					final String url = iniPreferences.node(section).get("url", null);
+					final int port = iniPreferences.node(section).getInt("port", 0);
+					final String certificate = iniPreferences.node(section).get("certificate", null);
+					final String username = iniPreferences.node(section).get("username", null);
+					final String password = iniPreferences.node(section).get("password", null);
+					final int backchannelPort = iniPreferences.node(section).getInt("backchannelPort", 0);
+					
+					// mailer properties
+		    		final String smtpHost = iniPreferences.node( section ).get("SMTPhost", null);
+		    		final int smtpPort = iniPreferences.node( section ).getInt("SMTPport", 0);
+		    		final String smtpUser = iniPreferences.node( section ).get("SMTPuser", null);
+		    		final String smtpPassword = iniPreferences.node( section ).get("SMTPpassword", null);
+		    		final boolean smtpUseSSL = iniPreferences.node( section ).getBoolean("SMTPuseSSL", false);
+		    		final String smtpSender = iniPreferences.node( section ).get("SMTPsender", null);
+					
+		    		// server info
+		    		final ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+					serverInfo.setUrl( url );
+					serverInfo.setPort( port );
+					serverInfo.setCertificateAlias( certificate );
+					
+					// mailer info
+					final MailerInfo mailerInfo = new MailerInfo(smtpHost, smtpPort, smtpUser, smtpPassword, smtpUseSSL, smtpSender);
+					
+					// validation of this section
+					EMFStoreInfo emfStoreInfo = new EMFStoreInfo(section, serverInfo, username, password, backchannelPort, mailerInfo);
+					
+					emfStoreInfos.add(emfStoreInfo);
+				}
+				 
+			} catch (InvalidFileFormatException e) {
+				throw new EMailNotifierException( "INI file is not well formatted.", e );
+			} catch (BackingStoreException e) {
+				throw new EMailNotifierException( "Problem with the ini file. Please check if it is well formatted.", e );
+			} catch (IOException e) {
+				throw new EMailNotifierException( "IOException, couldn't read ini file.", e );
+			}
+			
+		} catch(EMailNotifierException e) {
+			// log exception and terminate - serious error occurred
+			Activator.logException(e);
+			Thread.currentThread().interrupt();
 		}
 		
+	}
+	
+	private void createConfigFile(File configFile) throws EMailNotifierException {
+		// ini file doesn't exist. Create a dummy file.
+		try {
+			if( !configFile.getParentFile().mkdirs() ) {
+				throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
+			}
+			
+			if( !configFile.createNewFile() ) {
+				throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
+			}
+			
+			// copy notifierProxyClient.example.ini to destination
+			Bundle bundle = Activator.getDefault().getBundle();
+			URL url = bundle.getEntry( SAMPLE_CONFIG_FILE_PATH );
+			InputStream sampleFileInputStream = url.openStream();
+			
+			String content = "";
+			String line = null;
+			BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(sampleFileInputStream) );
+			while( (line = bufferedReader.readLine()) != null ) {
+				content += line + "\r\n";
+			}
+			bufferedReader.close();
+			sampleFileInputStream.close();
+			
+			BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter(configFile) );
+			bufferedWriter.write(content);
+			bufferedWriter.flush();
+			bufferedWriter.close();
+			
+		} catch (IOException e) {
+			Activator.logException(e);
+		}
 	}
 	
 	/**
@@ -185,8 +196,13 @@ public class EMailNotifier implements IApplication {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws EMailNotifierException {
-		entryPoint();
+	public Object start(IApplicationContext context) {
+		try {
+			entryPoint();
+		
+		} catch (EMailNotifierException e) {
+			Activator.logException(e);
+		}
 		return IApplication.EXIT_OK;
 	}
 
@@ -202,11 +218,11 @@ public class EMailNotifier implements IApplication {
 	/**
 	 * For each configuration section will be a connection to this emf store established.
 	 * For each project inside of this emf store is a backchannel initialized (for new notifications) and 
-	 * an additional thread, that will check if notifications should be sended.
+	 * an additional thread, that will check if notifications should be sent.
 	 * @throws EMailNotifierException a wrapper for email notifier related exceptions
 	 */
 	public void entryPoint() throws EMailNotifierException {
-		for(EMailNotifierConfigSectionInfo configSection: configSectionInfos) {
+		for(EMFStoreInfo configSection: emfStoreInfos) {
 			final Usersession usersession = configSection.getUsersession();
     		final ServerInfo backchannelServerInfo = configSection.getBackchannelServerInfo();
 			
@@ -214,7 +230,7 @@ public class EMailNotifier implements IApplication {
 			String npcRepositoryLocation = NOTIFIER_FOLDER_PATH + configSection.getSectionName() + "." + EXTENSION;
 			EMailNotifierStore emailNotifierStore = createNPCStore(npcRepositoryLocation);
     		
-    		// create repository specific ProxyClient time supervisor
+			// create repository specific ProxyClient time supervisor
     		EMailNotifierRepositoryTimer notifierProxyClientRepositoryTimer = new EMailNotifierRepositoryTimer(emailNotifierStore, usersession, configSection.getMailerInfo());
     		Thread notifierProxyClientRepositoryTimerThread = new Thread(notifierProxyClientRepositoryTimer, "notifierProxyClientRepositoryTimerThread");
     		notifierProxyClientRepositoryTimerThread.start();
@@ -224,7 +240,7 @@ public class EMailNotifier implements IApplication {
     		notifierProxyClientRepositoryListener.createBackchannels();
 		}
 		
-		System.out.println("E-Mail Notifier is running...");
+		Activator.log(IStatus.INFO, "E-Mail Notifier is running...");
 		
 		
 		// Main Application must not terminate

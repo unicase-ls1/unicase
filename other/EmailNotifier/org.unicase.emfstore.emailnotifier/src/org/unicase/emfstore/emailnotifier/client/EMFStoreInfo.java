@@ -20,7 +20,7 @@ import org.unicase.workspace.WorkspaceFactory;
  * 
  * @author staudta
  */
-public class EMailNotifierConfigSectionInfo {
+public class EMFStoreInfo {
 
 	private final String sectionName;
 	private final int backchannelPort;
@@ -41,7 +41,7 @@ public class EMailNotifierConfigSectionInfo {
 	 * @param mailerInfo mailer info
 	 * @throws EMailNotifierException will be thrown on misconfigured ini section
 	 */
-	public EMailNotifierConfigSectionInfo(String sectionName, ServerInfo serverInfo, String username, String password, int backchannelPort, MailerInfo mailerInfo) throws EMailNotifierException {
+	public EMFStoreInfo(String sectionName, ServerInfo serverInfo, String username, String password, int backchannelPort, MailerInfo mailerInfo) throws EMailNotifierException {
 		this.sectionName = sectionName;
 		this.serverInfo = serverInfo;
 		this.backchannelPort = backchannelPort;

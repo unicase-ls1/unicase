@@ -4,11 +4,7 @@ Bundle-Name: Notifier
 Bundle-SymbolicName: org.unicase.emfstore.emailnotifier;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.emailnotifier.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.unicase.workspace,
- org.unicase.model,
- org.unicase.backchannel.client,
+Require-Bundle: org.unicase.backchannel.client,
  org.unicase.ui.dashboard,
  javax.activation;bundle-version="1.1.0",
  org.unicase.emailnotifierpreferences
