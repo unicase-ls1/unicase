@@ -34,7 +34,7 @@ public interface Profile extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Affected Containers</em>' reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getProfile_AffectedContainers()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getAffectedContainers();
@@ -52,7 +52,7 @@ public interface Profile extends UnicaseModelElement {
 	 * @return the value of the '<em>Stereotypes</em>' containment reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getProfile_Stereotypes()
 	 * @see org.unicase.model.profile.Stereotype#getProfile
-	 * @model opposite="profile" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="profile" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Stereotype> getStereotypes();

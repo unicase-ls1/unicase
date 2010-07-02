@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
@@ -91,10 +89,6 @@ public class ActivitySwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(activityObject);
 			if (result == null)
-				result = caseModelElement(activityObject);
-			if (result == null)
-				result = caseIdentifiableElement(activityObject);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -103,10 +97,6 @@ public class ActivitySwitch<T> {
 			T result = caseTransition(transition);
 			if (result == null)
 				result = caseUnicaseModelElement(transition);
-			if (result == null)
-				result = caseModelElement(transition);
-			if (result == null)
-				result = caseIdentifiableElement(transition);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -119,10 +109,6 @@ public class ActivitySwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(activity);
 			if (result == null)
-				result = caseModelElement(activity);
-			if (result == null)
-				result = caseIdentifiableElement(activity);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -133,10 +119,6 @@ public class ActivitySwitch<T> {
 				result = caseActivityObject(fork);
 			if (result == null)
 				result = caseUnicaseModelElement(fork);
-			if (result == null)
-				result = caseModelElement(fork);
-			if (result == null)
-				result = caseIdentifiableElement(fork);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -149,10 +131,6 @@ public class ActivitySwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(branch);
 			if (result == null)
-				result = caseModelElement(branch);
-			if (result == null)
-				result = caseIdentifiableElement(branch);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -164,10 +142,6 @@ public class ActivitySwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(activityInitial);
 			if (result == null)
-				result = caseModelElement(activityInitial);
-			if (result == null)
-				result = caseIdentifiableElement(activityInitial);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -178,10 +152,6 @@ public class ActivitySwitch<T> {
 				result = caseActivityObject(activityEnd);
 			if (result == null)
 				result = caseUnicaseModelElement(activityEnd);
-			if (result == null)
-				result = caseModelElement(activityEnd);
-			if (result == null)
-				result = caseIdentifiableElement(activityEnd);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -279,33 +249,6 @@ public class ActivitySwitch<T> {
 	 * @generated
 	 */
 	public T caseActivityEnd(ActivityEnd object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

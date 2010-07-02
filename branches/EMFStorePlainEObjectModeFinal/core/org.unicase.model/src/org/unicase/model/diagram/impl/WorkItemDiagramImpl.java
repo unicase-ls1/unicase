@@ -37,7 +37,6 @@ public class WorkItemDiagramImpl extends MEDiagramImpl implements WorkItemDiagra
 		return DiagramPackage.Literals.WORK_ITEM_DIAGRAM;
 	}
 
-	@Override
 	public String getType() {
 		return "WorkItem";
 	}

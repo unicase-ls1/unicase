@@ -12,6 +12,7 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Issue;
@@ -41,9 +42,9 @@ public class DiscussionShouldBeIssueConstraint extends AbstractModelConstraint {
 		}
 		ModelElement modelElement = (ModelElement) eObject;
 		int count = 0;
-		for (ModelElement element : modelElement.getContainedElements()) {
+		for (EObject element : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			if (element instanceof Comment) {
-				count += element.getAllContainedModelElements().size();
+				count += ModelUtil.getAllContainedModelElements(element, false).size();
 				count++;
 			}
 		}

@@ -33,7 +33,7 @@ public interface AudioComment extends EObject {
 	 * @return the value of the '<em>Audio File</em>' containment reference.
 	 * @see #setAudioFile(FileAttachment)
 	 * @see org.unicase.model.rationale.RationalePackage#getAudioComment_AudioFile()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	FileAttachment getAudioFile();

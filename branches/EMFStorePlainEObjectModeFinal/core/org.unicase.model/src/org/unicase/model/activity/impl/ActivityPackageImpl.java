@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
@@ -438,8 +437,6 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -460,22 +457,18 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		initEReference(getActivityObject_IncomingTransitions(), this.getTransition(), this.getTransition_Target(),
 			"incomingTransitions", null, 0, -1, ActivityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActivityObject_IncomingTransitions().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActivityObject_OutgoingTransitions(), this.getTransition(), this.getTransition_Source(),
 			"outgoingTransitions", null, 0, -1, ActivityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActivityObject_OutgoingTransitions().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_Source(), this.getActivityObject(), this.getActivityObject_OutgoingTransitions(),
 			"source", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getTransition_Target(), this.getActivityObject(), this.getActivityObject_IncomingTransitions(),
 			"target", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getTransition_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Transition.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

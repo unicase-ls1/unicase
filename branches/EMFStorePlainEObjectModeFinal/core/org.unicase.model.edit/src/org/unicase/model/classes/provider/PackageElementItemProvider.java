@@ -19,20 +19,21 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.PackageElement;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PackageElementItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PackageElementItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,8 +58,8 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Parent Package feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Parent Package feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParentPackagePropertyDescriptor(Object object) {
@@ -123,9 +124,9 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -134,8 +135,8 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

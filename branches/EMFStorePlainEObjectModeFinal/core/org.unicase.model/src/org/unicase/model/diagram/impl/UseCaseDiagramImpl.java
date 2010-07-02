@@ -37,7 +37,6 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 		return DiagramPackage.Literals.USE_CASE_DIAGRAM;
 	}
 
-	@Override
 	public String getType() {
 		return "UseCase";
 	}

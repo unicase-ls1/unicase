@@ -45,7 +45,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @see #setDefiningClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getAttributes
-	 * @model opposite="attributes" keys="identifier" transient="false"
+	 * @model opposite="attributes" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */

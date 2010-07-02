@@ -36,8 +36,7 @@ public interface Criterion extends UnicaseModelElement {
 	 * @return the value of the '<em>Assessments</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getCriterion_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getCriterion
-	 * @model opposite="criterion" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="criterion" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();

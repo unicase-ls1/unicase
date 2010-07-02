@@ -26,7 +26,6 @@ public class ClassDiagramImpl extends MEDiagramImpl implements ClassDiagram {
 		super();
 	}
 
-	@Override
 	public String getType() {
 		return "Class";
 	}

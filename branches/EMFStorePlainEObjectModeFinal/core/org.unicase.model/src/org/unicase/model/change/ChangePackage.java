@@ -64,30 +64,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__IDENTIFIER = RationalePackage.ISSUE__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__CREATOR = RationalePackage.ISSUE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__CREATION_DATE = RationalePackage.ISSUE__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -354,30 +330,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__IDENTIFIER = RationalePackage.PROPOSAL__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__CREATOR = RationalePackage.PROPOSAL__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__CREATION_DATE = RationalePackage.PROPOSAL__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -499,30 +451,6 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 */
 	int MERGING_SOLUTION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__IDENTIFIER = RationalePackage.SOLUTION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__CREATOR = RationalePackage.SOLUTION__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__CREATION_DATE = RationalePackage.SOLUTION__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

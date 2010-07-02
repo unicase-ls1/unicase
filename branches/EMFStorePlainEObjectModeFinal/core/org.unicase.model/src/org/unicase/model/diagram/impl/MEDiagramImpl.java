@@ -252,17 +252,6 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	 * 
 	 * @generated
 	 */
-	public String getType() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public String getDiagramLayout() {
 		return diagramLayout;
 	}

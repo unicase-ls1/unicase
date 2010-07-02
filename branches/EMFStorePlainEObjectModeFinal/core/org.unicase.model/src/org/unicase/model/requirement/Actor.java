@@ -88,8 +88,7 @@ public interface Actor extends UnicaseModelElement {
 	 * @return the value of the '<em>Initiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor
-	 * @model opposite="initiatingActor" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="initiatingActor" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInitiatedUseCases();

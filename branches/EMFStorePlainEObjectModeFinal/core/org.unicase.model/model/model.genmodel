@@ -106,7 +106,6 @@
             ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/gmfdiagram"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference model.ecore#//diagram/MEDiagram/newElements"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//diagram/MEDiagram/diagramLayout"/>
-        <genOperations ecoreOperation="model.ecore#//diagram/MEDiagram/getType"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//diagram/ClassDiagram"/>
       <genClasses ecoreClass="model.ecore#//diagram/UseCaseDiagram"/>

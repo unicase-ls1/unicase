@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -549,8 +548,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
@@ -581,7 +578,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			.getWorkItem_ContainingWorkpackage(), "containedWorkItems", null, 0, -1, WorkPackage.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getWorkPackage_ContainedWorkItems().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getWorkPackage_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, WorkPackage.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkPackage_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, WorkPackage.class,
@@ -592,27 +588,21 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			.getWorkPackage_ContainedWorkItems(), "containingWorkpackage", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getWorkItem_ContainingWorkpackage().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this.getWorkItem_Successors(), "predecessors",
 			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Predecessors().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Successors(), this.getWorkItem(), this.getWorkItem_Predecessors(), "successors",
 			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Successors().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Assignee(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
 			.getOrgUnit_Assignments(), "assignee", null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Assignee().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Reviewer(), theOrganizationPackage.getUser(), theOrganizationPackage
 			.getUser_WorkItemsToReview(), "reviewer", null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Reviewer().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Participants(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
 			.getOrgUnit_Participations(), "participants", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Participants().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getWorkItem_DueDate(), ecorePackage.getEDate(), "dueDate", null, 0, 1, WorkItem.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkItem_Estimate(), ecorePackage.getEInt(), "estimate", null, 0, 1, WorkItem.class,
@@ -629,7 +619,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		initEReference(getMilestone_ContainedModelElements(), theModelPackage.getUnicaseModelElement(), null,
 			"containedModelElements", null, 0, -1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMilestone_ContainedModelElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

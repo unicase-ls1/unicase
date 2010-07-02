@@ -27,7 +27,6 @@ public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagra
 		super();
 	}
 
-	@Override
 	public String getType() {
 		return "Activity";
 	}
