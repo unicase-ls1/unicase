@@ -7,6 +7,8 @@ package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.ModelElementOpenListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -34,8 +36,9 @@ public class ModelelementOpenListener implements ModelElementOpenListener {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
-
-					WorkspaceUtil.logReadEvent(projectSpace, me.getModelElementId(), source, readView);
+					Project p = ModelUtil.getProject(me);
+					WorkspaceUtil.logReadEvent(projectSpace, (p == null ? null : p.getModelElementId(me)), source,
+						readView);
 				}
 			}.run();
 		}
