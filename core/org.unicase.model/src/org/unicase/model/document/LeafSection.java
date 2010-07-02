@@ -36,7 +36,7 @@ public interface LeafSection extends Section {
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getLeafSection
-	 * @model opposite="leafSection" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="leafSection" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */
@@ -56,7 +56,7 @@ public interface LeafSection extends Section {
 	 * @return the value of the '<em>Referenced Model Elements</em>' reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences
-	 * @model opposite="incomingDocumentReferences" keys="identifier"
+	 * @model opposite="incomingDocumentReferences"
 	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
 	 * @generated
 	 */

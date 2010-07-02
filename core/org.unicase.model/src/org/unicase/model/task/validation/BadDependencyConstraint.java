@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -30,37 +32,67 @@ public class BadDependencyConstraint extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext validationContext) {
 		EObject eObject = validationContext.getTarget();
 		EMFEventType eType = validationContext.getEventType();
-		if (eType == EMFEventType.NULL) {
-			if (eObject instanceof WorkPackage) {
-				WorkPackage workPackage = (WorkPackage) eObject;
-				for (WorkItem workItem : workPackage.getAllContainedWorkItems()) {
-					for (WorkItem successor : workItem.getSuccessors()) {
-						if (successor.getContainingWorkpackage() == null
-							|| !successor.getContainingWorkpackage().getModelElementId().getId().equals(
-								workPackage.getModelElementId().getId())) {
-							EStructuralFeature errorFeature = ValidationConstraintHelper
-								.getErrorFeatureForModelElement(workPackage, "name");
-							validationContext.addResult(errorFeature);
-							return validationContext.createFailureStatus(new Object[] { eObject.eClass().getName()
-								+ ": '" + workPackage.getName() + "'" });
 
+		if (eType == EMFEventType.NULL && eObject instanceof WorkPackage) {
+
+			WorkPackage workPackage = (WorkPackage) eObject;
+
+			for (WorkItem workItem : workPackage.getAllContainedWorkItems()) {
+
+				for (WorkItem successor : workItem.getSuccessors()) {
+
+					if (successor.getContainingWorkpackage() != null) {
+
+						ModelElementId containingWorkpackageId = ModelUtil.getProject(
+							successor.getContainingWorkpackage()).getModelElementId(
+							successor.getContainingWorkpackage());
+						ModelElementId workPackageId = ModelUtil.getProject(workPackage).getModelElementId(workPackage);
+
+						if (!containingWorkpackageId.getId().equals(workPackageId.getId())) {
+							helper(validationContext, workPackage, workPackage);
 						}
+
+					} else {
+						helper(validationContext, workPackage, workPackage);
 					}
-					for (WorkItem predecessor : workItem.getPredecessors()) {
-						if (predecessor.getContainingWorkpackage() == null
-							|| !predecessor.getContainingWorkpackage().getModelElementId().getId().equals(
-								workPackage.getModelElementId().getId())) {
-							EStructuralFeature errorFeature = ValidationConstraintHelper
-								.getErrorFeatureForModelElement((UnicaseModelElement) eObject, "name");
-							validationContext.addResult(errorFeature);
-							return validationContext.createFailureStatus(new Object[] { eObject.eClass().getName()
-								+ ": '" + ((WorkPackage) eObject).getName() + "'" });
+				}
+
+				for (WorkItem predecessor : workItem.getPredecessors()) {
+
+					if (predecessor.getContainingWorkpackage() != null) {
+
+						ModelElementId containingWorkpackageId = ModelUtil.getProject(
+							predecessor.getContainingWorkpackage()).getModelElementId(
+							predecessor.getContainingWorkpackage());
+						ModelElementId workPackageId = ModelUtil.getProject(workPackage).getModelElementId(workPackage);
+
+						if (!containingWorkpackageId.getId().equals(workPackageId.getId())) {
+							helper(validationContext, (UnicaseModelElement) eObject, (WorkPackage) eObject);
 						}
+
+					} else {
+						helper(validationContext, (UnicaseModelElement) eObject, (WorkPackage) eObject);
 					}
 				}
 			}
 		}
+
 		return validationContext.createSuccessStatus();
 
+	}
+
+	private IStatus helper(IValidationContext validationContext, UnicaseModelElement modelElement,
+		WorkPackage workPackage) {
+
+		EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(modelElement,
+			"name");
+
+		validationContext.addResult(errorFeature);
+
+		return validationContext.createFailureStatus(new Object[] { modelElement.eClass().getName() + ": '"
+			+ workPackage.getName() + "'" });
+
+		// return validationContext.createFailureStatus(new Object[] { eObject.eClass().getName() + ": '"
+		// + ((WorkPackage) eObject).getName() + "'" });
 	}
 }

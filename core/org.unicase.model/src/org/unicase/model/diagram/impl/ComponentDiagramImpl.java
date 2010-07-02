@@ -37,7 +37,6 @@ public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiag
 		return DiagramPackage.Literals.COMPONENT_DIAGRAM;
 	}
 
-	@Override
 	public String getType() {
 		return "Component";
 	}

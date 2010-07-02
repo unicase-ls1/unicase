@@ -36,7 +36,6 @@ public class StateDiagramImpl extends MEDiagramImpl implements StateDiagram {
 		return DiagramPackage.Literals.STATE_DIAGRAM;
 	}
 
-	@Override
 	public String getType() {
 		return "State";
 	}

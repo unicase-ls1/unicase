@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
@@ -101,10 +99,6 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(issue);
 			if (result == null)
-				result = caseModelElement(issue);
-			if (result == null)
-				result = caseIdentifiableElement(issue);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -115,10 +109,6 @@ public class RationaleSwitch<T> {
 				result = caseUnicaseModelElement(proposal);
 			if (result == null)
 				result = caseNonDomainElement(proposal);
-			if (result == null)
-				result = caseModelElement(proposal);
-			if (result == null)
-				result = caseIdentifiableElement(proposal);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -131,10 +121,6 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseNonDomainElement(solution);
 			if (result == null)
-				result = caseModelElement(solution);
-			if (result == null)
-				result = caseIdentifiableElement(solution);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -143,10 +129,6 @@ public class RationaleSwitch<T> {
 			T result = caseCriterion(criterion);
 			if (result == null)
 				result = caseUnicaseModelElement(criterion);
-			if (result == null)
-				result = caseModelElement(criterion);
-			if (result == null)
-				result = caseIdentifiableElement(criterion);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -159,10 +141,6 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseNonDomainElement(assessment);
 			if (result == null)
-				result = caseModelElement(assessment);
-			if (result == null)
-				result = caseIdentifiableElement(assessment);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -173,10 +151,6 @@ public class RationaleSwitch<T> {
 				result = caseUnicaseModelElement(comment);
 			if (result == null)
 				result = caseNonDomainElement(comment);
-			if (result == null)
-				result = caseModelElement(comment);
-			if (result == null)
-				result = caseIdentifiableElement(comment);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -281,33 +255,6 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseAudioComment(AudioComment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 
