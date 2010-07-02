@@ -152,12 +152,46 @@ public interface MetamodelPackage extends EPackage {
 	int PROJECT__CUT_ELEMENTS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Eobjects Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__EOBJECTS_ID_MAP = 2;
+
+	/**
+	 * The feature id for the '<em><b>Deleted EObjects Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_EOBJECTS_ID_MAP = 3;
+
+	/**
+	 * The feature id for the '<em><b>New EObjects Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__NEW_EOBJECTS_ID_MAP = 4;
+
+	/**
+	 * The feature id for the '<em><b>Deleted Model Elements</b></em>' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DELETED_MODEL_ELEMENTS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 2;
+	int PROJECT_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.metamodel.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}'
@@ -259,6 +293,42 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl
+	 * <em>EObject To Model Element Id Map</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl
+	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getEObjectToModelElementIdMap()
+	 * @generated
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_MAP = 7;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EObject To Model Element Id Map</em>' class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_TO_MODEL_ELEMENT_ID_MAP_FEATURE_COUNT = 2;
+
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
 
 	/**
@@ -325,6 +395,51 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_CutElements();
+
+	/**
+	 * Returns the meta object for the map '{@link org.unicase.metamodel.Project#getEobjectsIdMap
+	 * <em>Eobjects Id Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>Eobjects Id Map</em>'.
+	 * @see org.unicase.metamodel.Project#getEobjectsIdMap()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_EobjectsIdMap();
+
+	/**
+	 * Returns the meta object for the map '{@link org.unicase.metamodel.Project#getDeletedEObjectsIdMap
+	 * <em>Deleted EObjects Id Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>Deleted EObjects Id Map</em>'.
+	 * @see org.unicase.metamodel.Project#getDeletedEObjectsIdMap()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_DeletedEObjectsIdMap();
+
+	/**
+	 * Returns the meta object for the map '{@link org.unicase.metamodel.Project#getNewEObjectsIdMap
+	 * <em>New EObjects Id Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>New EObjects Id Map</em>'.
+	 * @see org.unicase.metamodel.Project#getNewEObjectsIdMap()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_NewEObjectsIdMap();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.metamodel.Project#getDeletedModelElements <em>Deleted Model Elements</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Deleted Model Elements</em>'.
+	 * @see org.unicase.metamodel.Project#getDeletedModelElements()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_DeletedModelElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.UniqueIdentifier <em>Unique Identifier</em>}'.
@@ -410,6 +525,40 @@ public interface MetamodelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EObject To Model Element Id Map</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>EObject To Model Element Id Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="org.eclipse.emf.ecore.EObject" valueType="org.unicase.metamodel.ModelElementId"
+	 *        valueContainment="true" valueResolveProxies="true"
+	 * @generated
+	 */
+	EClass getEObjectToModelElementIdMap();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEObjectToModelElementIdMap()
+	 * @generated
+	 */
+	EReference getEObjectToModelElementIdMap_Key();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEObjectToModelElementIdMap()
+	 * @generated
+	 */
+	EReference getEObjectToModelElementIdMap_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -481,6 +630,38 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__CUT_ELEMENTS = eINSTANCE.getProject_CutElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Eobjects Id Map</b></em>' map feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__EOBJECTS_ID_MAP = eINSTANCE.getProject_EobjectsIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Deleted EObjects Id Map</b></em>' map feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__DELETED_EOBJECTS_ID_MAP = eINSTANCE.getProject_DeletedEObjectsIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>New EObjects Id Map</b></em>' map feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__NEW_EOBJECTS_ID_MAP = eINSTANCE.getProject_NewEObjectsIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Deleted Model Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT__DELETED_MODEL_ELEMENTS = eINSTANCE.getProject_DeletedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.metamodel.impl.UniqueIdentifierImpl
@@ -555,6 +736,32 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl
+		 * <em>EObject To Model Element Id Map</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl
+		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getEObjectToModelElementIdMap()
+		 * @generated
+		 */
+		EClass EOBJECT_TO_MODEL_ELEMENT_ID_MAP = eINSTANCE.getEObjectToModelElementIdMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY = eINSTANCE.getEObjectToModelElementIdMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE = eINSTANCE.getEObjectToModelElementIdMap_Value();
 
 	}
 

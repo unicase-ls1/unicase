@@ -10,18 +10,21 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
  * Notifies the project about changes in its containment hierachy.
+ * 
  * @author koegel
  */
 public class ProjectChangeNotifier extends EContentAdapter {
 
 	private final ProjectImpl projectImpl;
 	private boolean isInitializing;
-	private ModelElement removedModelElement;
+	private EObject removedModelElement;
 	private Notification currentNotification;
 
 	/**
@@ -44,13 +47,16 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void addAdapter(Notifier notifier) {
-		if (!isInitializing && notifier instanceof ModelElement) {
-			ModelElement modelElement = (ModelElement) notifier;
-			//handle same id but different instance, probably copied element
-			if (projectImpl.contains(modelElement) && projectImpl.getModelElement(modelElement.getModelElementId())!=modelElement) {
+		if (!isInitializing && notifier instanceof EObjectToModelElementIdMapImpl) {
+			return;
+		} else if (!isInitializing && notifier instanceof EObject) {
+			EObject modelElement = (EObject) notifier;
+			ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+			// handle same id but different instance, probably copied element
+			if (projectImpl.contains(modelElement) && projectImpl.getModelElement(modelElementId) != modelElement) {
 				ModelUtil.reassignModelElementIds(modelElement);
 			}
-			
+
 			if (!projectImpl.contains(modelElement) && isInProject(modelElement)) {
 				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
 			}
@@ -77,16 +83,16 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			}
 		}
 
-		if (notifier instanceof ModelElement) {
-			ModelElement modelElement = (ModelElement) notifier;
+		if (notifier instanceof EObject) {
+			EObject modelElement = (EObject) notifier;
 			if (!isInProject(modelElement) && projectImpl.contains(modelElement)) {
 				removedModelElement = modelElement;
-				//super.removeAdapter(modelElement);
+				// super.removeAdapter(modelElement);
 			}
 		}
 	}
 
-	private boolean isInProject(ModelElement modelElement) {
+	private boolean isInProject(EObject modelElement) {
 		EObject parent = modelElement.eContainer();
 		if (parent == null) {
 			return false;
@@ -96,11 +102,11 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			return true;
 		}
 
-		if (!(parent instanceof ModelElement)) {
+		if (parent == null) {
 			return false;
 		}
 
-		ModelElement parentModelElement = (ModelElement) parent;
+		EObject parentModelElement = parent;
 
 		if (projectImpl.contains(parentModelElement)) {
 			return true;
@@ -118,8 +124,15 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	public void notifyChanged(Notification notification) {
 		currentNotification = notification;
 		Object feature = notification.getFeature();
+
 		if (feature instanceof EReference) {
 			EReference eReference = (EReference) feature;
+
+			// Do not create notifications for transient features
+			if (eReference.isTransient()) {
+				return;
+			}
+
 			if (eReference.isContainer()) {
 				handleContainer(notification, eReference);
 			}
@@ -128,12 +141,24 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		super.notifyChanged(notification);
 
 		Object notifier = notification.getNotifier();
-		if (!notification.isTouch() && notifier instanceof ModelElement) {
-			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
+
+		// project is not a valid model element
+		if (!notification.isTouch() && notifier instanceof EObject && !(notifier instanceof Project)) {
+
+			if (notification.getNewValue() instanceof EObjectToModelElementIdMapImpl) {
+				return;
+			}
+			if (notifier instanceof EObjectToModelElementIdMapImpl) {
+				EObjectToModelElementIdMapImpl map = (EObjectToModelElementIdMapImpl) notifier;
+				ModelElementId id = map.getValue();
+				projectImpl.handleEMFNotification(notification, projectImpl, id);
+			} else {
+				projectImpl.handleEMFNotification(notification, projectImpl, (EObject) notifier);
+			}
 		}
 		if (removedModelElement != null) {
 			projectImpl.handleEMFModelElementRemoved(projectImpl, removedModelElement);
-			//asuper.removeAdapter(removedModelElement);
+			// asuper.removeAdapter(removedModelElement);
 			removedModelElement = null;
 		}
 	}
