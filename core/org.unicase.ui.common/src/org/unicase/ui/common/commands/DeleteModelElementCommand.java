@@ -41,31 +41,29 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	 */
 	@Override
 	protected void doRun() {
-		
-			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			String modelElementName = adapterFactoryLabelProvider.getText(me);
-			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
-				+ modelElementName + "?", MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-			int result = dialog.open();
-			if (result == MessageDialog.OK) {
-				ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell());
-				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask("Deleting " + modelElementName + "...", 100);
-				progressDialog.getProgressMonitor().worked(20);
 
-				try {
-					DeleteCommand.create(context.getEditingDomain(), me).execute();
-					
-				} finally {
-					progressDialog.getProgressMonitor().done();
-					progressDialog.close();
-				}
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		String modelElementName = adapterFactoryLabelProvider.getText(me);
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
+			+ modelElementName + "?", MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+		int result = dialog.open();
+		if (result == MessageDialog.OK) {
+			ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell());
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Deleting " + modelElementName + "...", 100);
+			progressDialog.getProgressMonitor().worked(20);
 
+			try {
+				DeleteCommand.create(context.getEditingDomain(), me).execute();
+			} finally {
+				progressDialog.getProgressMonitor().done();
+				progressDialog.close();
 			}
-		
+
+		}
+
 	}
 
-	
 }

@@ -27,7 +27,6 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
@@ -62,9 +61,9 @@ public final class ActionHelper {
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
 	 */
-	public static ModelElement getModelElement(ExecutionEvent event) {
+	public static EObject getModelElement(ExecutionEvent event) {
 
-		ModelElement me = null;
+		EObject me = null;
 
 		// ZH: determine the place from which
 		// the command is run (UC Navigator context menu or MEEeditor)
@@ -76,20 +75,10 @@ public final class ActionHelper {
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(EObject.class);
-
-			if (obj instanceof ModelElement) {
-				me = (ModelElement) obj;
-			}
-
 		} else {
 			// extract model element from current selection in navigator
-
 			EObject eObject = getSelection(event);
-			if (!(eObject instanceof ModelElement)) {
-				return null;
-			}
-
-			me = (ModelElement) eObject;
+			me = eObject;
 		}
 
 		return me;
@@ -102,7 +91,9 @@ public final class ActionHelper {
 	 * @param sourceView the view that requested the open model element
 	 * @param context the context of the model element
 	 */
+
 	public static void openModelElement(final EObject me, final String sourceView, ModelElementContext context) {
+
 		if (me == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
 				"The model element you are trying to open was deleted!");
@@ -133,7 +124,6 @@ public final class ActionHelper {
 		}
 		NotificationManager.getInstance().onOpen(me, sourceView, name);
 		bestCandidate.openModelElement(me);
-
 	}
 
 	/**
@@ -213,8 +203,8 @@ public final class ActionHelper {
 	 * @param sourceView the view that requested the open model element
 	 * @param context the context of the model element
 	 */
-	public static void openModelElement(final ModelElement me, EStructuralFeature problemFeature,
-		final String sourceView, ModelElementContext context) {
+	public static void openModelElement(final EObject me, EStructuralFeature problemFeature, final String sourceView,
+		ModelElementContext context) {
 		if (me == null) {
 			return;
 		}
@@ -226,8 +216,9 @@ public final class ActionHelper {
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
-	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature,
+	private static void openAndMarkMEWithMEEditor(EObject me, EStructuralFeature problemFeature,
 		ModelElementContext context2) {
+
 		// this method works as the one above but in addition marks a feature as having a problem
 
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
@@ -324,17 +315,16 @@ public final class ActionHelper {
 	 * 
 	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
-	public static ModelElement getSelectedModelElement() {
+	public static EObject getSelectedModelElement() {
 		Object obj = getSelection();
-		if (obj instanceof ModelElement) {
-			return (ModelElement) obj;
-		} else if (obj instanceof DelegatingWrapperItemProvider) {
-			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof ModelElement) {
-				return (ModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
+		if (obj instanceof DelegatingWrapperItemProvider) {
+			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof EObject) {
+				return (EObject) ((DelegatingWrapperItemProvider) obj).getValue();
 			} else {
 				return null;
 			}
-
+		} else if (obj instanceof EObject) {
+			return (EObject) obj;
 		} else {
 			return null;
 		}
@@ -374,7 +364,7 @@ public final class ActionHelper {
 	 * @param me the modelElement
 	 * @param toggleReply if a reply widget should be automatically shown.
 	 */
-	public static void openDiscussion(ModelElement me, boolean toggleReply) {
+	public static void openDiscussion(EObject me, boolean toggleReply) {
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
@@ -404,10 +394,10 @@ public final class ActionHelper {
 	 * @param sourceView the view that send the open request (use a unique id here).
 	 * @param context context of the model element
 	 */
-	public static void openMEwithMEEditor(ModelElement me, String sourceView, ModelElementContext context) {
+
+	public static void openMEwithMEEditor(EObject me, String sourceView, ModelElementContext context) {
 		NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
 		openMEwithMEEditor(me, context);
-
 	}
 
 }

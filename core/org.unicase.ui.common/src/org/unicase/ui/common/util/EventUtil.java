@@ -7,11 +7,12 @@ package org.unicase.ui.common.util;
 
 import java.util.Calendar;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -81,10 +82,10 @@ public abstract class EventUtil {
 	 * @param source the source view.
 	 * @param tab the tab
 	 */
-	public static void logStatusViewDropEvent(ModelElement open, ModelElement dragged, String source, String tab) {
+	public static void logStatusViewDropEvent(EObject open, EObject dragged, String source, String tab) {
 		final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
-		dndEvent.setDropTargetElement(open.getModelElementId());
-		dndEvent.setDragSourceElement(dragged.getModelElementId());
+		dndEvent.setDropTargetElement(ModelUtil.getProject(open).getModelElementId(open));
+		dndEvent.setDragSourceElement(ModelUtil.getProject(dragged).getModelElementId(dragged));
 		dndEvent.setTimestamp(Calendar.getInstance().getTime());
 		dndEvent.setTargetView("org.unicase.StatusView." + tab);
 		dndEvent.setSourceView(source);
