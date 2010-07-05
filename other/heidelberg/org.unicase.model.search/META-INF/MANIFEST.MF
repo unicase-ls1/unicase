@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Search
+Bundle-SymbolicName: org.unicase.model.search; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.model.search.Activator
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.unicase.workspace;bundle-version="1.0.0",
+ org.unicase.model;bundle-version="1.0.0",
+ org.unicase.ui.common;bundle-version="1.0.0",
+ org.unicase.ui.navigator;bundle-version="1.0.0",
+ org.eclipse.emf.query;bundle-version="1.2.100",
+ org.unicase.ui.unicasecommon;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
