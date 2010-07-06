@@ -1483,7 +1483,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			ACUser acUser = getUsersession().getACUser();
 			if (acUser != null) {
 				for (OrgUnitProperty p : acUser.getProperties()) {
-					if (p.getProject().equals(getProjectId())) {
+					if (p.getProject() != null && p.getProject().equals(getProjectId())) {
 						propertyMap.put(p.getName(), p);
 					}
 				}
