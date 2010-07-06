@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
@@ -17,7 +18,6 @@ import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -60,7 +60,7 @@ public final class URLSelectionListener implements SelectionListener {
 		String text = e.text;
 		try {
 			ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
-			ModelElement modelElement = null;
+			EObject modelElement = null;
 			ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
 			try {
 				modelElement = projectSpace.resolve(modelElementUrlFragment);

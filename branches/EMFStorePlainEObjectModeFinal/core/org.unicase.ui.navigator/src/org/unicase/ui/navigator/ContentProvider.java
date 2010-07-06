@@ -7,27 +7,27 @@ package org.unicase.ui.navigator;
 
 import java.util.Collection;
 
-import org.unicase.workspace.ProjectSpace;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Replacement for the project space provider. Influences the root level of the navigator.
  * 
  * @author helming
  */
-public interface ProjectSpaceContentProvider {
+public interface ContentProvider {
 	/**
-	 * if the project spac has children.
+	 * if the root object has children.
 	 * 
-	 * @param projectSpace the project space
+	 * @param rootObject the project space
 	 * @return i it has children
 	 */
-	boolean hasChildren(ProjectSpace projectSpace);
+	boolean hasChildren(EObject rootObject);
 
 	/**
-	 * Returns the children of a project space.
+	 * Returns the children of a root object.
 	 * 
-	 * @param projectSpace The project space
+	 * @param rootObject The root object
 	 * @return the children
 	 */
-	Collection<?> getChildren(ProjectSpace projectSpace);
+	Collection<?> getChildren(EObject rootObject);
 }

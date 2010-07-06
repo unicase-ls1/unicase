@@ -6,9 +6,9 @@
 package org.unicase.ui.navigator;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Transactional and composed Label provider with all registered label providers.
@@ -19,11 +19,12 @@ public class TreeLabelProvider extends TransactionalAdapterFactoryLabelProvider 
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param editingDomain the transactional editing domain
 	 */
-	public TreeLabelProvider() {
+	public TreeLabelProvider(TransactionalEditingDomain editingDomain) {
 
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 

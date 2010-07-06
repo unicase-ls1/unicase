@@ -49,7 +49,7 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 		if (reference.isContainment() && context.isNonDomainElement(opposite)) {
 			new DeleteModelElementCommand(opposite, context).run();
 		} else {
-			new DeleteReferenceCommand(modelElement, reference, opposite).run();
+			new DeleteReferenceCommand(modelElement, reference, opposite, context.getEditingDomain()).run();
 		}
 	}
 }

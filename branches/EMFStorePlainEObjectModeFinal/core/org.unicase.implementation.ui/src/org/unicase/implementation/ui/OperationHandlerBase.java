@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -20,9 +21,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.util.SemanticCommand;
 
 /**
@@ -84,8 +85,8 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	private Project getProject(IStructuredSelection structuredSelection) {
 		List<Object> elements = SelectionHelper.getSelectedElements(structuredSelection);
 		for (Object element : elements) {
-			if (element instanceof ModelElement) {
-				return ((ModelElement) element).getProject();
+			if (element instanceof EObject) {
+				return ModelUtil.getProject((EObject) element);
 			}
 		}
 		return null;

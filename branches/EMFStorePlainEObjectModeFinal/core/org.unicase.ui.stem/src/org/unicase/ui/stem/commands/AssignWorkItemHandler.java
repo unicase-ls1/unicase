@@ -10,6 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
@@ -41,7 +42,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 			.getActivePart();
 		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
-		final Project project = currentOpenME.getProject();
+		final Project project = ModelUtil.getProject(currentOpenME);
 
 		new UnicaseCommand() {
 			@Override

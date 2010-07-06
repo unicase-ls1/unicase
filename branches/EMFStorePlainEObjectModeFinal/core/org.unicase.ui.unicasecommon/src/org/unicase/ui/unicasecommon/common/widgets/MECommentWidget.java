@@ -227,7 +227,8 @@ public class MECommentWidget extends Composite {
 		// author
 		final OrgUnit sender = comment.getSender();
 		if (sender == null) {
-			builder.append(comment.getCreator());
+			// TODO: EM creator
+			// builder.append(comment.getCreator());
 		} else {
 			builder.append(sender.getName() + "");
 		}

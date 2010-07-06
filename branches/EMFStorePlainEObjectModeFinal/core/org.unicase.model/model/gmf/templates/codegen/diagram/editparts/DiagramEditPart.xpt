@@ -11,55 +11,58 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
 
-«DEFINE Main FOR gmfgen::GenDiagram-»
-«EXPAND xpt::Common::copyright FOR editorGen-»
-package «editPartsPackageName»;
+Â«DEFINE Main FOR gmfgen::GenDiagram-Â»
+Â«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-Â»
+package Â«editPartsPackageNameÂ»;
 
-«EXPAND xpt::Common::generatedClassComment»
-public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsList» {
+Â«EXPAND xpt::Common::generatedClassCommentÂ»
+public class Â«editPartClassNameÂ» Â«EXPAND extendsListÂ» Â«EXPAND implementsListÂ» {
 
-	«EXPAND attributes-»
-	
-	«EXPAND impl::diagram::editparts::DiagramEditPart::constructor-»
-	
-	«EXPAND createDefaultEditPolicies-»
-	
-	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»
-
-	«EXPAND additions-»
-}
-«ENDDEFINE»
-
-«DEFINE extendsList FOR gmfgen::GenDiagram»extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart«ENDDEFINE»
-
-«DEFINE implementsList FOR gmfgen::GenDiagram»«ENDDEFINE»
-
-«DEFINE attributes FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	public final static String MODEL_ID = "«editorGen.modelID»"; «EXPAND xpt::Common::nonNLS»
-	
-	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR this-»
-«ENDDEFINE»
-
-«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	protected void createDefaultEditPolicies() {
-		«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-»
+	Â«EXPAND attributes-Â»
+Â«EXPAND xpt::Common::generatedClassCommentÂ»
+	public Â«editPartClassNameÂ»(org.eclipse.gmf.runtime.notation.View view) {
+		super(view);
 	}
-«ENDDEFINE»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+	
+	Â«EXPAND createDefaultEditPolicies-Â»
+	
+	Â«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-Â»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+	Â«EXPAND additions-Â»
+}
+Â«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE extendsList FOR gmfgen::GenDiagramÂ»extends org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPartÂ«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE implementsList FOR gmfgen::GenDiagramÂ»Â«ENDDEFINEÂ»
 
-«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»
+Â«DEFINE attributes FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	public final static String MODEL_ID = "Â«editorGen.modelIDÂ»"; Â«EXPAND xpt::Common::nonNLSÂ»
+	
+	Â«EXPAND xpt::diagram::editparts::Common::visualIDConstant-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	protected void createDefaultEditPolicies() {
+		Â«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-Â»
+	}
+Â«ENDDEFINEÂ»
+
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE additions FOR gmfgen::GenDiagramÂ»Â«ENDDEFINEÂ»

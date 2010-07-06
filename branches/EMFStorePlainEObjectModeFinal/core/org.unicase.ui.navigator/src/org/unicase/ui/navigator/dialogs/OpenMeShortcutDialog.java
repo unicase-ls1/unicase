@@ -7,10 +7,9 @@ package org.unicase.ui.navigator.dialogs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.NonDomainElement;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 
 /**
  * Dialog to select model elements.
@@ -24,8 +23,8 @@ public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
 	 * 
 	 * @param project The project, which contains the model elements for listing
 	 */
-	public OpenMeShortcutDialog(Project project) {
-		super(new EMFStoreModelelementContext(project));
+	public OpenMeShortcutDialog(ECPProject project) {
+		super(project);
 	}
 
 	/**

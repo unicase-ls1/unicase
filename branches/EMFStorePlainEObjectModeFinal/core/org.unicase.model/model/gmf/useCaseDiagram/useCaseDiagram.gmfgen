@@ -2,20 +2,18 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.diagram.usecaseDiagram"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.unicase.ui.diagram.usecaseDiagram"
     modelID="UseCase"
-    sameFileForDiagramAndModel="true"
-    diagramFileExtension="useCase_diagram"
+    diagramFileExtension="Usecase_diagram"
     dynamicTemplates="true"
-    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen/"
+    copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the&#xA;  accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this&#xA;  distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>">
   <diagram
-      visualID="77"
+      visualID="1000"
       editPartClassName="MEDiagramEditPart"
       itemSemanticEditPolicyClassName="MEDiagramItemSemanticEditPolicy"
-      notationViewFactoryClassName="MEDiagramViewFactory"
       canonicalEditPolicyClassName="MEDiagramCanonicalEditPolicy"
       iconProviderPriority="Low"
-      editingDomainID="org.unicase.EditingDomain"
       validationProviderPriority="Low">
     <diagramRunTimeClass
         href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -26,7 +24,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="../../model.genmodel#//model/diagram/MEDiagram"/>
+        href="../../model.genmodel#//model/diagram/UseCaseDiagram"/>
     <topLevelNodes
         visualID="2001"
         editPartClassName="ActorEditPart"
@@ -43,9 +41,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="ActorFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.unicasecommon.diagram.shapes.StickMan actorFigure0 = new org.unicase.ui.unicasecommon.diagram.shapes.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
       <modelFacet>
         <metaClass
             href="../../model.genmodel#//model/requirement/Actor"/>
@@ -64,16 +60,17 @@
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureActorFigure_name"
-            figureQualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedFont="true"/>
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
             editPattern="">
           <metaFeatures
-              href="../../model.genmodel#//model/ModelElement/name"/>
+              href="../../model.genmodel#//model/UnicaseModelElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -93,7 +90,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="UseCaseFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fUseCaseFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.common.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.common.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fUseCaseFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fUseCaseFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getUseCaseFigure_name() {&#xA;&#x9;&#x9;return fUseCaseFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fUseCaseFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.unicasecommon.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.unicasecommon.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fUseCaseFigure_name = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fUseCaseFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getUseCaseFigure_name() {&#xA;&#x9;&#x9;return fUseCaseFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
@@ -101,7 +98,6 @@
             xsi:type="gmfgen:DefaultSizeAttributes"
             width="140"
             height="60"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet>
         <metaClass
@@ -121,15 +117,16 @@
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseFigure_name"
-            figureQualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedFont="true"/>
         </viewmap>
         <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
           <metaFeatures
-              href="../../model.genmodel#//model/ModelElement/name"/>
+              href="../../model.genmodel#//model/UnicaseModelElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -143,15 +140,15 @@
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
-          xsi:type="gmfgen:SpecializationType"/>
+          xsi:type="gmfgen:SpecializationType"
+          displayName="Participate"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="ParticipateFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ParticipateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ParticipateFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ParticipateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ParticipateFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
@@ -162,7 +159,7 @@
           visualID="6001"
           editPartClassName="ParticipateLabelEditPart"
           itemSemanticEditPolicyClassName="ParticipateLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="ParticipateLabelViewFactory"
+          notationViewFactoryClassName="ActorParticipatedUseCasesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -173,8 +170,9 @@
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
       </labels>
     </links>
     <links
@@ -187,15 +185,15 @@
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
-          xsi:type="gmfgen:SpecializationType"/>
+          xsi:type="gmfgen:SpecializationType"
+          displayName="Initiate"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="InitiateFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InitiateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InitiateFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InitiateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InitiateFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
@@ -206,7 +204,7 @@
           visualID="6002"
           editPartClassName="InitiateLabelEditPart"
           itemSemanticEditPolicyClassName="InitiateLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="InitiateLabelViewFactory"
+          notationViewFactoryClassName="ActorInitiatedUseCasesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -217,8 +215,9 @@
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
       </labels>
       <creationConstraints
           targetEnd="//@expressionProviders/@providers.0/@expressions.0"/>
@@ -233,15 +232,15 @@
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
-          xsi:type="gmfgen:SpecializationType"/>
+          xsi:type="gmfgen:SpecializationType"
+          displayName="Include"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="DashedLineOpenArrow"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DashedLineOpenArrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DashedLineOpenArrow() {&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DashedLineOpenArrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DashedLineOpenArrow() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
@@ -252,7 +251,7 @@
           visualID="6003"
           editPartClassName="IncludeLabelEditPart"
           itemSemanticEditPolicyClassName="IncludeLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="IncludeLabelViewFactory"
+          notationViewFactoryClassName="UseCaseIncludedUseCasesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -263,8 +262,9 @@
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
       </labels>
       <creationConstraints
           targetEnd="//@expressionProviders/@providers.0/@expressions.1"/>
@@ -279,15 +279,15 @@
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
-          xsi:type="gmfgen:SpecializationType"/>
+          xsi:type="gmfgen:SpecializationType"
+          displayName="Extend"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="DashedLineOpenArrow"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DashedLineOpenArrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DashedLineOpenArrow() {&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DashedLineOpenArrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DashedLineOpenArrow() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
@@ -298,7 +298,7 @@
           visualID="6004"
           editPartClassName="ExtendLabelEditPart"
           itemSemanticEditPolicyClassName="ExtendLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="ExtendLabelViewFactory"
+          notationViewFactoryClassName="UseCaseExtendedUseCasesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -309,8 +309,9 @@
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
       </labels>
       <creationConstraints
           sourceEnd="//@expressionProviders/@providers.0/@expressions.2"/>
@@ -374,151 +375,18 @@
           iD="org.unicase.diagram.rulersAndGrid"
           name="Rulers And Grid"
           kind="RulersAndGrid"/>
-      <children
-          xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.diagram.pathmaps"
-          name="Pathmaps"
-          kind="Pathmaps"/>
     </preferencePages>
   </diagram>
   <plugin
       iD="org.unicase.ui.diagram.usecaseDiagram"
-      name="UseCase Diagram Plugin"/>
+      provider="unicase.org">
+    <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
+    <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
+    <requiredPlugins>org.unicase.ui.unicasecommon</requiredPlugins>
+  </plugin>
   <editor/>
-  <navigator>
-    <childReferences
-        child="//@diagram"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@topLevelNodes.0"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@topLevelNodes.1"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@links.0"
-        groupName="links"
-        groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.0"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="out_target"
-        groupName="target"
-        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.0"
-        referenceType="in_source"
-        groupName="incoming links"
-        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.0"
-        child="//@diagram/@topLevelNodes.0"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.0"
-        child="//@diagram/@links.0"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@links.1"
-        groupName="links"
-        groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.1"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="out_target"
-        groupName="target"
-        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.1"
-        referenceType="in_source"
-        groupName="incoming links"
-        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.1"
-        child="//@diagram/@topLevelNodes.0"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.0"
-        child="//@diagram/@links.1"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@links.2"
-        groupName="links"
-        groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.2"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="out_target"
-        groupName="target"
-        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.2"
-        referenceType="in_source"
-        groupName="incoming links"
-        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.2"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.2"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram"
-        child="//@diagram/@links.3"
-        groupName="links"
-        groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.3"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="out_target"
-        groupName="target"
-        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.3"
-        referenceType="in_source"
-        groupName="incoming links"
-        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.3"
-        child="//@diagram/@topLevelNodes.1"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.1"
-        child="//@diagram/@links.3"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-  </navigator>
   <diagramUpdater/>
   <propertySheet>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="appearance"/>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="diagram"/>
     <tabs
         xsi:type="gmfgen:GenCustomPropertyTab"
         iD="domain"
@@ -527,10 +395,239 @@
           xsi:type="gmfgen:TypeTabFilter">
         <types>org.eclipse.gmf.runtime.notation.View</types>
         <types>org.eclipse.gef.EditPart</types>
-        <generatedTypes>abstractNavigatorItem</generatedTypes>
       </filter>
     </tabs>
   </propertySheet>
+  <application>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="CLOSE"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="CLOSE_ALL"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="SAVE"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="SAVE_AS"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="SAVE_ALL"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="QUIT"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="UNDO"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="REDO"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="CUT"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="COPY"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="PASTE"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="DELETE"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="SELECT_ALL"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="OPEN_NEW_WINDOW"/>
+    <sharedContributionItems
+        xsi:type="gmfgen:GenActionFactoryContributionItem"
+        name="PRINT"/>
+    <mainMenu>
+      <items
+          xsi:type="gmfgen:GenMenuManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.M_FILE"
+          name="&amp;File">
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.FILE_START"/>
+        <items
+            xsi:type="gmfgen:GenMenuManager"
+            iD="&quot;new&quot;"
+            name="&amp;New">
+          <items
+              xsi:type="gmfgen:GenGroupMarker"
+              groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+        </items>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.0"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.1"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.2"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.3"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.4"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.5"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.FILE_END"/>
+      </items>
+      <items
+          xsi:type="gmfgen:GenMenuManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.M_EDIT"
+          name="&amp;Edit">
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.EDIT_START"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.6"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.7"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.UNDO_EXT"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.8"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.9"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.10"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.CUT_EXT"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.11"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.12"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.ADD_EXT"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.EDIT_END"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      </items>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      <items
+          xsi:type="gmfgen:GenMenuManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.M_WINDOW"
+          name="&amp;Window">
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.13"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      </items>
+      <items
+          xsi:type="gmfgen:GenMenuManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.M_HELP"
+          name="&amp;Help">
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.HELP_START"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.HELP_END"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      </items>
+    </mainMenu>
+    <mainToolBar>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="&quot;group.file&quot;"/>
+      <items
+          xsi:type="gmfgen:GenToolBarManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.TOOLBAR_FILE">
+        <items
+            xsi:type="gmfgen:GenSeparator"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.NEW_GROUP"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.NEW_EXT"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.SAVE_GROUP"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.2"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.SAVE_EXT"/>
+        <items
+            xsi:type="gmfgen:GenSharedContributionItem"
+            actualItem="//@application/@sharedContributionItems.14"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.PRINT_EXT"/>
+        <items
+            xsi:type="gmfgen:GenSeparator"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      </items>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="org.eclipse.ui.IWorkbenchActionConstants.MB_ADDITIONS"/>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="&quot;group.nav&quot;"/>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="org.eclipse.ui.IWorkbenchActionConstants.GROUP_EDITOR"/>
+      <items
+          xsi:type="gmfgen:GenGroupMarker"
+          groupName="org.eclipse.ui.IWorkbenchActionConstants.GROUP_HELP"/>
+      <items
+          xsi:type="gmfgen:GenToolBarManager"
+          iD="org.eclipse.ui.IWorkbenchActionConstants.TOOLBAR_HELP">
+        <items
+            xsi:type="gmfgen:GenSeparator"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.GROUP_HELP"/>
+        <items
+            xsi:type="gmfgen:GenGroupMarker"
+            groupName="org.eclipse.ui.IWorkbenchActionConstants.GROUP_APP"/>
+      </items>
+    </mainToolBar>
+  </application>
   <domainGenModel
       href="../../model.genmodel#/"/>
   <expressionProviders>
@@ -547,4 +644,18 @@
           body="self &lt;> oppositeEnd"/>
     </providers>
   </expressionProviders>
+  <labelParsers
+      extensibleViaService="true">
+    <implementations
+        xsi:type="gmfgen:PredefinedParser"
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet"/>
+    <implementations
+        xsi:type="gmfgen:ExternalParser"
+        uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet"/>
+  </labelParsers>
+  <contextMenus
+      context="//@diagram">
+    <items
+        xsi:type="gmfgen:LoadResourceAction"/>
+  </contextMenus>
 </gmfgen:GenEditorGenerator>

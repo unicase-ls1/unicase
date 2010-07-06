@@ -674,6 +674,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	void addCommitObserver(CommitObserver observer);
 
 	/**
+	 * Remove a commit observer from the project space.
+	 * 
+	 * @param observer a project commit observer
+	 */
+	void removeCommitObserver(CommitObserver observer);
+
+	/**
 	 * Gathers all local operations and canonizes them.
 	 * 
 	 * @param canonized true if the operations should be canonized
@@ -737,6 +744,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param fileAttachmentId file attachment id
 	 */
 	void removePendingFileUpload(String fileAttachmentId);
+
+	/**
+	 * Transmit the OrgUnitproperties to the server.
+	 * 
+	 * @generated NOT
+	 */
+	void transmitProperties();
 
 	/**
 	 * Merge the changes from current base version to given target version with the local operations.

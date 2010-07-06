@@ -367,7 +367,7 @@
               categories="org.unicase.model">
            <constraint
                  class="org.unicase.model.validation.ModelElementNewNameConstraint"
-                 id="org.unicase.model.MENewName"
+                 id="org.unicase.model.ModelElementNewName"
                  lang="Java"
                  mode="Batch"
                  name="ModelElement new Name Constraint"

@@ -9,9 +9,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * . This is the Handler to delete a ModelElement
@@ -35,7 +37,11 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	}
 
 	private void deleteModelElement(final EObject me) {
-		new DeleteModelElementCommand(me, new EMFStoreModelelementContext(me)).run();
+		try {
+			new DeleteModelElementCommand(me, WorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+		}
 	}
 
 }

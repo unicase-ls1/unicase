@@ -10,40 +10,40 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
-«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
-«EXTENSION xpt::diagram::Utils»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+Â«IMPORT "http://www.eclipse.org/emf/2002/Ecore"Â»
+Â«EXTENSION xpt::diagram::UtilsÂ»
 
-«DEFINE manifest FOR gmfgen::GenPlugin-»
+Â«DEFINE manifest FOR gmfgen::GenPlugin-Â»
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: «iD»; singleton:=true
-Bundle-Version: «version»
+Bundle-SymbolicName: Â«iDÂ»; singleton:=true
+Bundle-Version: Â«versionÂ»
 Bundle-ClassPath: .
-Bundle-Activator: «getActivatorQualifiedClassName()»
+Bundle-Activator: Â«getActivatorQualifiedClassName()Â»
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: «editorGen.diagram.editPartsPackageName», 
- «editorGen.editor.packageName»,
- «editorGen.diagram.providersPackageName»
+Export-Package: Â«editorGen.diagram.editPartsPackageNameÂ», 
+ Â«editorGen.editor.packageNameÂ»,
+ Â«editorGen.diagram.providersPackageNameÂ»
 Require-Bundle: org.eclipse.core.runtime,
-«IF editorGen.application == null-»
+Â«IF editorGen.application = null-Â»
  org.eclipse.core.resources,
-«ENDIF-»
-«IF editorGen.diagram.generateShortcutIcon() ||
-		(editorGen.navigator != null && editorGen.navigator.generateDomainModelNavigator)-»
+Â«ENDIF-Â»
+Â«IF editorGen.diagram.generateShortcutIcon() or
+		(editorGen.navigator <> null and editorGen.navigator.generateDomainModelNavigator)-Â»
  org.eclipse.core.expressions,
-«ENDIF-»
+Â«ENDIF-Â»
  org.eclipse.jface,
-«IF editorGen.application == null-»
+Â«IF editorGen.application = null-Â»
  org.eclipse.ui.ide,
-«ENDIF-»
+Â«ENDIF-Â»
  org.eclipse.ui.views,
-«IF editorGen.navigator != null-»
+Â«IF editorGen.navigator <> null-Â»
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
-«ENDIF-»
+Â«ENDIF-Â»
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
@@ -51,29 +51,29 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.gmf.runtime.emf.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui,
-«IF printingEnabled-»
+Â«IF printingEnabled-Â»
  org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.printing.render,
-«ENDIF-»
-«IF editorGen.propertySheet != null-»
+Â«ENDIF-Â»
+Â«IF editorGen.propertySheet <> null-Â»
  org.eclipse.gmf.runtime.diagram.ui.properties,
-«ENDIF-»
+Â«ENDIF-Â»
  org.eclipse.gmf.runtime.diagram.ui.providers,
-«IF editorGen.application == null-»
+Â«IF editorGen.application = null-Â»
  org.eclipse.gmf.runtime.diagram.ui.providers.ide,
-«ENDIF-»
+Â«ENDIF-Â»
  org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
-«IF editorGen.application == null-»
+Â«IF editorGen.application = null-Â»
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
-«ENDIF-»
-«FOREACH getAllRequiredPlugins() AS id-»
- «id»;visibility:=reexport,
-«ENDFOREACH-»
+Â«ENDIF-Â»
+Â«FOREACH getAllRequiredPlugins() AS id-Â»
+ Â«idÂ»;visibility:=reexport,
+Â«ENDFOREACH-Â»
  org.eclipse.gef;visibility:=reexport,
  org.unicase.ui.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-LazyStart: true
-Import-Package: org.unicase.ui.common.diagram.figures
-«ENDDEFINE»
+Import-Package: org.unicase.ui.unicasecommon.diagram.figures
+Â«ENDDEFINEÂ»

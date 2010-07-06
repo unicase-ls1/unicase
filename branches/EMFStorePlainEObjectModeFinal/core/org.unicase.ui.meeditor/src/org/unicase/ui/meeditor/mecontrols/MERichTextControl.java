@@ -33,9 +33,9 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The standard widget for multi line text fields.
@@ -259,7 +259,7 @@ public class MERichTextControl extends AbstractMEControl {
 	}
 
 	private void save() {
-		new UnicaseCommand() {
+		new ECPCommand(getModelElement()) {
 			@Override
 			protected void doRun() {
 				getModelElement().eSet(attribute, text.getText());
@@ -271,7 +271,7 @@ public class MERichTextControl extends AbstractMEControl {
 
 		String txt = "";
 		final StringBuffer value = new StringBuffer();
-		new UnicaseCommand() {
+		new ECPCommand(getModelElement()) {
 			@Override
 			protected void doRun() {
 				if (getModelElement().eGet(attribute) == null) {

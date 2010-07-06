@@ -10,20 +10,20 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
  
-«REM»
+Â«REMÂ»
 	This template should be called only for non-design nodes (modelFacet != null) 
 	because *ItemSemanticEditPolicy responsible for dealing with semantic model 
 	elements and meaningless (should not be generated) for pure design nodes.   
-«ENDREM»
+Â«ENDREMÂ»
  
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
-«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+Â«IMPORT "http://www.eclipse.org/emf/2002/Ecore"Â»
 
-«EXTENSION xpt::diagram::editpolicies::Utils»
+Â«EXTENSION xpt::diagram::editpolicies::UtilsÂ»
 
-«REM»modified«ENDREM»
-«DEFINE destroySemanticElement FOR gmfgen::GenNode-»
-	«EXPAND fixElementToDeleteIfShortcut-»
-cc.add(getGEFWrapper(new org.unicase.ui.common.diagram.commands.DeleteFromModelCommand(req)));
-«ENDDEFINE»
-«REM»END modified«ENDREM»
+Â«REMÂ»modifiedÂ«ENDREMÂ»
+Â«DEFINE destroySemanticElement FOR gmfgen::GenNode-Â»
+	Â«EXPAND fixElementToDeleteIfShortcut-Â»
+cc.add(getGEFWrapper(new org.unicase.ui.unicasecommon.diagram.commands.DeleteFromModelCommand(req)));
+Â«ENDDEFINEÂ»
+Â«REMÂ»END modifiedÂ«ENDREMÂ»

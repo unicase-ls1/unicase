@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007 Borland Software Corporation
+ * Copyright (c) 2007, 2009 Borland Software Corporation
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,80 +8,104 @@
  *
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Michael Golubev (Borland) - #244970 (GenChildLabelNode can't be link's source/target)
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+Â«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'Â»
 
-«EXTENSION xpt::diagram::Utils»
-«EXTENSION xpt::providers::i18n»
+Â«EXTENSION xpt::diagram::editparts::UtilsÂ»
+Â«EXTENSION xpt::providers::i18nÂ»
 
-«DEFINE ModelingAssistantProvider FOR gmfgen::GenDiagram-»
-«EXPAND xpt::Common::copyright FOR editorGen-»
-package «providersPackageName»;
+Â«DEFINE ModelingAssistantProvider FOR gmfgen::GenDiagram-Â»
+Â«EXPAND xpt::Common::copyright FOR editorGen-Â»
+package Â«providersPackageNameÂ»;
 
-«EXPAND xpt::Common::generatedClassComment»
-«REM»modified extends«ENDREM»
-public class «modelingAssistantProviderClassName»
-		extends org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
-«REM»END modified extends«ENDREM»
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«EXPAND xpt::Common::generatedClassCommentÂ»
+public class Â«modelingAssistantProviderClassNameÂ»
+		extends org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider {
+
+	Â«EXPAND getTypesForPopupBar-Â»
+
+	Â«EXPAND getRelTypesOnSource-Â»
+
+	Â«EXPAND getRelTypesOnTarget-Â»
+
+	Â«EXPAND getRelTypesOnSourceAndTarget-Â»
+
+	Â«EXPAND getTypesForSource-Â»
+
+	Â«EXPAND getTypesForTarget-Â»
+
+	Â«EXPAND selectExistingElementForSource-Â»
+
+	Â«EXPAND selectExistingElementForTarget-Â»
+
+	Â«EXPAND selectExistingElement-Â»
+
+	Â«EXPAND isApplicableElement-Â»
+
+	Â«EXPAND selectElement-Â»
+	Â«EXPAND additions-Â»
+}
+Â«ENDDEFINEÂ»
+
+Â«DEFINE getTypesForPopupBar FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getTypesForPopupBar(org.eclipse.core.runtime.IAdaptable host) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart editPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) host.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getAllContainers() AS container-»
-			«IF container.getAssistantNodes().size() > 0-»
-		if (editPart instanceof «container.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH container.getAssistantNodes() AS node-»
-			types.add(«getElementTypesQualifiedClassName()».«node.getUniqueIdentifier()»);
-				«ENDFOREACH-»
+		Â«FOREACH getAllContainers()->asSequence() AS container-Â»
+			Â«IF container.getAssistantNodes()->size() > 0-Â»
+		if (editPart instanceof Â«container.getEditPartQualifiedClassName()Â») {
+			java.util.ArrayList types = new java.util.ArrayList(Â«container.getAssistantNodes()->size()Â»);
+				Â«FOREACH container.getAssistantNodes()->asSequence() AS node-Â»
+			types.add(Â«EXPAND xpt::providers::ElementTypes::accessElementType FOR nodeÂ»);
+				Â«ENDFOREACH-Â»
 			return types;
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getRelTypesOnSource FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getRelTypesOnSource(org.eclipse.core.runtime.IAdaptable source) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart sourceEditPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) source.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getNodes() AS source-»
-			«IF getOutgoingLinks(source).size() > 0-»
-		if (sourceEditPart instanceof «source.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH getOutgoingLinks(source) AS link-»
-			types.add(«getElementTypesQualifiedClassName()».«link.getUniqueIdentifier()»);
-				«ENDFOREACH-»
-			return types;
+		Â«FOREACH getAllNodes() AS source-Â»
+			Â«IF getAssistantOutgoingLinks(source)->size() > 0-Â»
+		if (sourceEditPart instanceof Â«source.getEditPartQualifiedClassName()Â») {
+			return ((Â«source.getEditPartQualifiedClassName()Â») sourceEditPart).getMARelTypesOnSource();
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getRelTypesOnTarget FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getRelTypesOnTarget(org.eclipse.core.runtime.IAdaptable target) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart targetEditPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) target.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getNodes() AS target-»
-			«IF getIncomingLinks(target).size() > 0-»
-		if (targetEditPart instanceof «target.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH getIncomingLinks(target) AS link-»
-			types.add(«getElementTypesQualifiedClassName()».«link.getUniqueIdentifier()»);
-				«ENDFOREACH-»
-			return types;
+		Â«FOREACH getAllNodes() AS target-Â»
+			Â«IF getAssistantIncomingLinks(target)->size() > 0-Â»
+		if (targetEditPart instanceof Â«target.getEditPartQualifiedClassName()Â») {
+			return ((Â«target.getEditPartQualifiedClassName()Â») targetEditPart).getMARelTypesOnTarget();
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getRelTypesOnSourceAndTarget FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getRelTypesOnSourceAndTarget(
 			org.eclipse.core.runtime.IAdaptable source, org.eclipse.core.runtime.IAdaptable target) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart sourceEditPart =
@@ -90,103 +114,121 @@ public class «modelingAssistantProviderClassName»
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart targetEditPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) target.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getNodes() AS source-»
-			«IF getOutgoingLinks(source).size() > 0-»
-		if (sourceEditPart instanceof «source.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH getOutgoingLinks(source) AS link-»
-					«FOREACH link.getAssistantTargets() AS target-»
-			if (targetEditPart instanceof «target.getEditPartQualifiedClassName()») {
-				types.add(«getElementTypesQualifiedClassName()».«link.getUniqueIdentifier()»);
-			}
-					«ENDFOREACH-»
-				«ENDFOREACH-»
-			return types;
+		Â«FOREACH getAllNodes() AS source-Â»
+			Â«IF getAssistantOutgoingLinks(source)->size() > 0-Â»
+		if (sourceEditPart instanceof Â«source.getEditPartQualifiedClassName()Â») {
+			return ((Â«source.getEditPartQualifiedClassName()Â») sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getTypesForSource FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getTypesForSource(org.eclipse.core.runtime.IAdaptable target,
 			org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart targetEditPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) target.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getNodes() AS target-»
-			«IF getIncomingLinks(target).size() > 0-»
-		if (targetEditPart instanceof «target.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH getIncomingLinks(target) AS link-»
-					«FOREACH link.getAssistantSources() AS source-»
-			if (relationshipType == «getElementTypesQualifiedClassName()».«link.getUniqueIdentifier()») {
-				types.add(«getElementTypesQualifiedClassName()».«source.getUniqueIdentifier()»);
-			}
-					«ENDFOREACH-»
-				«ENDFOREACH-»
-			return types;
+		Â«FOREACH getAllNodes() AS target-Â»
+			Â«IF getAssistantIncomingLinks(target)->size() > 0-Â»
+		if (targetEditPart instanceof Â«target.getEditPartQualifiedClassName()Â») {
+			return ((Â«target.getEditPartQualifiedClassName()Â») targetEditPart).getMATypesForSource(relationshipType);
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getTypesForTarget FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public java.util.List getTypesForTarget(org.eclipse.core.runtime.IAdaptable source,
 			org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart sourceEditPart =
 				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) source.getAdapter(
 						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
-		«FOREACH getNodes() AS source-»
-			«IF getOutgoingLinks(source).size() > 0-»
-		if (sourceEditPart instanceof «source.getEditPartQualifiedClassName()») {
-			java.util.List types = new java.util.ArrayList();
-				«FOREACH getOutgoingLinks(source) AS link-»
-					«FOREACH link.getAssistantTargets() AS target-»
-			if (relationshipType == «getElementTypesQualifiedClassName()».«link.getUniqueIdentifier()») {
-				types.add(«getElementTypesQualifiedClassName()».«target.getUniqueIdentifier()»);
-			}
-					«ENDFOREACH-»
-				«ENDFOREACH-»
-			return types;
+		Â«FOREACH getAllNodes() AS source-Â»
+			Â«IF getAssistantOutgoingLinks(source)->size() > 0-Â»
+		if (sourceEditPart instanceof Â«source.getEditPartQualifiedClassName()Â») {
+			return ((Â«source.getEditPartQualifiedClassName()Â») sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-			«ENDIF-»
-		«ENDFOREACH-»
+			Â«ENDIF-Â»
+		Â«ENDFOREACH-Â»
 		return java.util.Collections.EMPTY_LIST;
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE selectExistingElementForSource FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public org.eclipse.emf.ecore.EObject selectExistingElementForSource(
 			org.eclipse.core.runtime.IAdaptable target,
 			org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE selectExistingElementForTarget FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public org.eclipse.emf.ecore.EObject selectExistingElementForTarget(
 			org.eclipse.core.runtime.IAdaptable source,
 			org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE selectExistingElement FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	protected org.eclipse.emf.ecore.EObject selectExistingElement(
+			org.eclipse.core.runtime.IAdaptable host, java.util.Collection types) {
+		if (types.isEmpty()) {
+			return null;
+		}
+		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart editPart =
+				(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) host.getAdapter(
+						org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
+		if (editPart == null) {
+			return null;
+		}
+		org.eclipse.gmf.runtime.notation.Diagram diagram =
+				(org.eclipse.gmf.runtime.notation.Diagram) editPart.getRoot().getContents().getModel();
+		java.util.Collection elements = new java.util.HashSet();
+		for (java.util.Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
+			org.eclipse.emf.ecore.EObject element = (org.eclipse.emf.ecore.EObject) it.next();
+			if (isApplicableElement(element, types)) {
+				elements.add(element);
+			}
+		}
+		if (elements.isEmpty()) {
+			return null;
+		}
+		return selectElement((org.eclipse.emf.ecore.EObject[]) elements.toArray(
+				new org.eclipse.emf.ecore.EObject[elements.size()]));
+	}
+Â«ENDDEFINEÂ»
+
+Â«DEFINE isApplicableElement FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	protected boolean isApplicableElement(org.eclipse.emf.ecore.EObject element, java.util.Collection types) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType type =
 				org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry.getInstance().getElementType(element);
 		return types.contains(type);
 	}
+Â«ENDDEFINEÂ»
 
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE selectElement FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	protected org.eclipse.emf.ecore.EObject selectElement(org.eclipse.emf.ecore.EObject[] elements) {
 		org.eclipse.swt.widgets.Shell shell = org.eclipse.swt.widgets.Display.getCurrent().getActiveShell();
 		org.eclipse.jface.viewers.ILabelProvider labelProvider =
 			new org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider(
-				«editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getItemProvidersAdapterFactory());
+				Â«editorGen.plugin.getActivatorQualifiedClassName()Â».getInstance().getItemProvidersAdapterFactory());
 		org.eclipse.ui.dialogs.ElementListSelectionDialog dialog =
 				new org.eclipse.ui.dialogs.ElementListSelectionDialog(shell, labelProvider);
-		dialog.setMessage(«EXPAND xpt::Externalizer::accessorCall(i18nKeyForModelingAssistantProvider().messageKey()) FOR editorGen»);
-		dialog.setTitle(«EXPAND xpt::Externalizer::accessorCall(i18nKeyForModelingAssistantProvider().titleKey()) FOR editorGen»);
+		dialog.setMessage(Â«EXPAND xpt::Externalizer::accessorCall(messageKey(i18nKeyForModelingAssistantProvider(self))) FOR editorGenÂ»);
+		dialog.setTitle(Â«EXPAND xpt::Externalizer::accessorCall(titleKey(i18nKeyForModelingAssistantProvider(self))) FOR editorGenÂ»);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		org.eclipse.emf.ecore.EObject selected = null;
@@ -195,6 +237,16 @@ public class «modelingAssistantProviderClassName»
 		}
 		return selected;
 	}
-	«EXPAND additions-»
-}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE additions FOR gmfgen::GenDiagram-Â»Â«ENDDEFINEÂ»
+
+Â«DEFINE i18nValues FOR gmfgen::GenDiagram-Â»
+Â«EXPAND xpt::Externalizer::messageEntry(titleKey(i18nKeyForModelingAssistantProvider(self)), 'Select domain model element')-Â»
+Â«EXPAND xpt::Externalizer::messageEntry(messageKey(i18nKeyForModelingAssistantProvider(self)), 'Available domain model elements:')-Â»
+Â«ENDDEFINEÂ»
+
+Â«DEFINE i18nAccessors FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Externalizer::accessorField(titleKey(i18nKeyForModelingAssistantProvider(self)))-Â»
+	Â«EXPAND xpt::Externalizer::accessorField(messageKey(i18nKeyForModelingAssistantProvider(self)))-Â»
+Â«ENDDEFINEÂ»

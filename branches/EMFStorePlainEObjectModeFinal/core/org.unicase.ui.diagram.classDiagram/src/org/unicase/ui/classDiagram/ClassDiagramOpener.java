@@ -13,33 +13,35 @@ import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
 
 /**
  * Opener for class diagrams.
+ * 
  * @author koegel
- *
  */
-public class ClassDiagramOpener extends DiagramOpener  implements ModelElementOpener  {
+public class ClassDiagramOpener extends DiagramOpener implements ModelElementOpener {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
 	public int canOpen(EObject me) {
-		if (me instanceof ClassDiagram){
-//			MEDiagram diagram = (MEDiagram) me;
-//			if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
-				return 1;
-//			}
+		if (me instanceof ClassDiagram) {
+			// MEDiagram diagram = (MEDiagram) me;
+			// if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)){
+			return 1;
+			// }
 		}
-		return 0;
+		return DONOTOPEN;
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
 	public void openModelElement(EObject modelElement) {
-		if(modelElement instanceof MEDiagram){
+		if (modelElement instanceof MEDiagram) {
 			MEDiagram diagram = (MEDiagram) modelElement;
-		super.openDiagram(diagram, "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID");
+			super.openDiagram(diagram, "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID");
 		} else {
 			throw new IllegalArgumentException("Opener only applicable for MEDiagrams");
 		}

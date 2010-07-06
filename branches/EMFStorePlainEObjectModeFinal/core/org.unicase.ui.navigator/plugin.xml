@@ -3,7 +3,8 @@
 <plugin>
    
    <extension-point id="menuconfiguration" name="Menu Configuration" schema="schema/menuconfiguration.exsd"/>
-   <extension-point id="org.unicase.ui.navigator.replaceProjectSpaceContentProvider" name="Replace Project Space Provider" schema="schema/org.unicase.ui.navigator.replaceProjectSpaceContentProvider.exsd"/>
+   <extension-point id="org.unicase.ui.navigator.replaceContentProvider" name="Replace Content Provider" schema="schema/org.unicase.ui.navigator.replaceContentProvider.exsd"/>
+   <extension-point id="org.unicase.ui.navigator.ecpWorkspaceProvider" name="ECP Workspace" schema="schema/ecpWorkspaceProvider.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -51,7 +52,7 @@
                               value="org.unicase.workspace.ProjectSpace">
                         </instanceof>
                         <instanceof
-                              value="org.unicase.metamodel.ModelElement">
+                              value="org.eclipse.emf.ecore.EObject">
                         </instanceof>
                      </or>
                      <test
@@ -69,7 +70,7 @@
          </dynamic>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
          <command
                commandId="org.unicase.ui.navigator.exportModel"
                icon="icons/export.gif"
@@ -84,6 +85,24 @@
                </iterate>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.unicase.ui.navigator.importModel"
+               icon="icons/import.gif"
+               label="Import Model Element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.metamodel.ModelElement">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.unicase.ui.navigator.exportImportSeperator"
+               visible="true">
+         </separator>
       </menuContribution>
    </extension>
    <extension
@@ -145,6 +164,22 @@
                   name="Export model">
             </command>
 
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.ui.navigator.workSpaceModel.provider.WorkSpaceModelItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/workspaceModel">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage"
+            genModel="model/workspaceModel.gemodel"
+            uri="http://unicase.org/workspaceModel">
+      </package>
    </extension>
 
 </plugin>

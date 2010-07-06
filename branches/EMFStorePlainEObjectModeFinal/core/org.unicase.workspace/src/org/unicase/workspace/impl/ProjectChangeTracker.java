@@ -19,7 +19,10 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -31,6 +34,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -57,6 +61,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private boolean isRecording;
 	private NotificationRecorder notificationRecorder;
 	private CompositeOperation compositeOperation;
+	private boolean autoSave;
 
 	/**
 	 * Name of unknown creator.
@@ -85,6 +90,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public ProjectChangeTracker(ProjectSpaceImpl projectSpace) {
 		this.projectSpace = projectSpace;
 		this.isRecording = false;
+		this.autoSave = true;
 		dirtyResourceSet = new DirtyResourceSet();
 
 		if (!projectSpace.isTransient()) {
@@ -194,21 +200,30 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	/**
+	 * Save all dirty resources to disk now if autosave is active.
+	 */
+	public void saveDirtyResources() {
+		if (autoSave) {
+			dirtyResourceSet.save();
+		}
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
+		save(modelElement);
 		notificationRecorder.record(notification, modelElement);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
 			}
-			dirtyResourceSet.save();
+			saveDirtyResources();
 
 		}
-		save(modelElement);
 	}
 
 	private void recordingFinished() {
@@ -277,6 +292,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		return notificationRecorder;
 	}
 
+	/**
+	 * Save the given model elements resource.
+	 * 
+	 * @param modelElement the model elements
+	 */
 	private void save(EObject modelElement) {
 		Resource resource = modelElement.eResource();
 
@@ -373,6 +393,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
+		this.recordingFinished();
+		notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
 		}
@@ -446,8 +468,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		for (EObject copiedElement : newElementsOnClipboardAfterCommand) {
 			reassignModelElementIds(copiedElement);
 		}
-		dirtyResourceSet.save();
-
+		saveDirtyResources();
 	}
 
 	private void cleanResources(EObject deletedElement) {
@@ -465,7 +486,30 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 	}
 
+	private void deleteOutgoingCrossReferencesOfContainmentTree(EObject modelElement) {
+		deleteOutgoingCrossReferences(modelElement);
+		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+			deleteOutgoingCrossReferences(child);
+		}
+	}
+
+	private void deleteOutgoingCrossReferences(EObject modelElement) {
+		// delete all non containment cross references to other elments
+		for (EReference reference : modelElement.eClass().getEAllReferences()) {
+			EClassifier eType = reference.getEType();
+			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
+				continue;
+			}
+
+			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass) eType)) {
+				modelElement.eUnset(reference);
+			}
+		}
+	}
+
 	private void handleElementDelete(EObject deletedElement) {
+		deleteOutgoingCrossReferencesOfContainmentTree(deletedElement);
+
 		if (!ModelUtil.isSelfContained(deletedElement, true)) {
 			throw new IllegalStateException(
 				"Element was removed from containment of project but still has cross references!: "
@@ -613,6 +657,15 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Enable or disable save. I save is disabled, dirty resources will not bes saved.
+	 * 
+	 * @param newValue true if auto save should be enabled
+	 */
+	public void setAutoSave(boolean newValue) {
+		autoSave = newValue;
 	}
 
 }
