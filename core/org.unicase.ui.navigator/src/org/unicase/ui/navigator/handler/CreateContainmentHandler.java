@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * . This is the generic handler for commands to create containments of a model element
@@ -45,20 +45,22 @@ public class CreateContainmentHandler extends AbstractHandler {
 			final EClass newMEType = (EClass) o;
 			final EObject newMEInstance;
 
-			final EObject selectedME = ActionHelper.getSelectedModelElement();
+			final EObject selectedME = ActionHelper.getSelectedModelelement();
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
 			if ((selectedME != null) && (!eReference.isContainer())) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
+				TransactionalEditingDomain domain;
+				try {
+					domain = WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
+				} catch (NoWorkspaceException e) {
+					Activator.logException(e);
+					return null;
+				}
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					@SuppressWarnings("unchecked")
 					protected void doExecute() {
-						if (newMEInstance.eContainer() == null) {
-							ModelUtil.getProject(selectedME).addModelElement(newMEInstance);
-						}
 						Object object = selectedME.eGet(eReference);
 						if ((eReference.getUpperBound() == -1)) {
 							EList<EObject> eList = (EList<EObject>) object;
@@ -66,8 +68,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 						} else {
 							selectedME.eSet(eReference, newMEInstance);
 						}
-						ActionHelper.openModelElement(newMEInstance, this.getClass().getName(),
-							new EMFStoreModelelementContext(newMEInstance));
+						ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 					}
 				});
 			}

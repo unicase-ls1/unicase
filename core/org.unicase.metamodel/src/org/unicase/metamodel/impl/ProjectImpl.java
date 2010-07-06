@@ -524,7 +524,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (project != null) {
 			// TODO: EMFStore: is project alone not already sufficient to check for?
 			ModelElementId id = project.getModelElementId(eObject);
-			if (modelElementIdToEObjectsCache.containsKey(id)) {
+			if (modelElementIdToEObjectsCache.containsKey(id) && id != null) {
 				throw new IllegalStateException("ModelElement is already in the project!");
 			}
 		} else if (eObject instanceof EObjectToModelElementIdMapImpl) {

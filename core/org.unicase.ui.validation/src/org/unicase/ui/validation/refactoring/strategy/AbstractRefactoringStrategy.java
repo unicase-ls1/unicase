@@ -1,8 +1,10 @@
 package org.unicase.ui.validation.refactoring.strategy;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
@@ -23,10 +25,10 @@ public abstract class AbstractRefactoringStrategy {
 		startOperations();
 		try {
 			success = performRefactoring(shell);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			WorkspaceUtil.logException("There was an exception", e);
 		} finally {
-			if(success) {
+			if (success) {
 				endOperations();
 			} else {
 				abortOperations();
@@ -61,7 +63,7 @@ public abstract class AbstractRefactoringStrategy {
 
 			@Override
 			protected void doRun() {
-				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) status.getTarget()).beginCompositeOperation();
+				operationHandle = WorkspaceManager.getProjectSpace(status.getTarget()).beginCompositeOperation();
 			}
 
 		}.run();
@@ -88,8 +90,9 @@ public abstract class AbstractRefactoringStrategy {
 			@Override
 			protected void doRun() {
 				try {
-					operationHandle.end(getId(), getDescription(),
-							((ModelElement) getConstraintStatus().getTarget()).getModelElementId());
+					EObject target = (getConstraintStatus().getTarget());
+					ModelElementId targetId = ModelUtil.getProject(target).getModelElementId(target);
+					operationHandle.end(getId(), getDescription(), targetId);
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
 				}

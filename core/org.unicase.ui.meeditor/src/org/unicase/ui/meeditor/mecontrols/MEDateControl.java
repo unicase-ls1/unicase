@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.common.commands.ECPCommand;
 
 /**
  * Standard widgets to edit a date attribute.
@@ -79,12 +79,12 @@ public class MEDateControl extends AbstractMEControl {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
-				new UnicaseCommand() {
+
+				new ECPCommand(getModelElement()) {
 
 					@Override
 					protected void doRun() {
 						getModelElement().eSet(attribute, new Date());
-
 					}
 				}.run();
 			}
@@ -104,7 +104,7 @@ public class MEDateControl extends AbstractMEControl {
 			}
 
 			public void focusLost(FocusEvent e) {
-				new UnicaseCommand() {
+				new ECPCommand(getModelElement()) {
 
 					@Override
 					protected void doRun() {
@@ -119,7 +119,7 @@ public class MEDateControl extends AbstractMEControl {
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				new UnicaseCommand() {
+				new ECPCommand(getModelElement()) {
 
 					@Override
 					protected void doRun() {
@@ -142,7 +142,7 @@ public class MEDateControl extends AbstractMEControl {
 
 	private void update() {
 
-		new UnicaseCommand() {
+		new ECPCommand(getModelElement()) {
 
 			@Override
 			protected void doRun() {

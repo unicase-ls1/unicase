@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
@@ -54,8 +55,8 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 			if (modelElement instanceof Comment) {
 				Comment newComment = (Comment) modelElement;
 				UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
-				if (currentModelElement.getAllContainedModelElements().contains(newComment)) { 
-					update(); 
+				if (ModelUtil.getAllContainedModelElements(currentModelElement, false).contains(newComment)) {
+					update();
 				}
 			}
 		}

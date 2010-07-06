@@ -17,14 +17,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * listener ActionClass for the DoublclickAction and the ALT Key.
  * 
- * @author abdelhamidbarzali .
+ * @author helming .
  */
 public class AltKeyDoubleClickAction extends Action implements IDoubleClickListener, Listener {
 
@@ -102,21 +100,14 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	private void openSelectedModelelement() {
 		// the selected Object or null if selection is not an IStructuredSelection
 
-		Object obj = ActionHelper.getSelection();
-		if (obj instanceof ProjectSpace) {
-			ProjectSpace projectSpace = (ProjectSpace) obj;
-			ActionHelper.openDashboard(projectSpace);
-			return;
-		}
-
-		EObject me = ActionHelper.getSelectedModelElement();
+		EObject me = ActionHelper.getSelectedModelelement();
 		if (me == null) {
 			return;
 		}
 		if (classname == null || classname.equals("")) {
 			return;
 		}
-		ActionHelper.openModelElement(me, classname, new EMFStoreModelelementContext(me));
+		ActionHelper.openModelElement(me, classname);
 	}
 
 	/**

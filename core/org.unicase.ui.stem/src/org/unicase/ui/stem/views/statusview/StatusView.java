@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -45,8 +46,8 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
@@ -616,11 +617,11 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		if (input == null) {
 			return;
 		}
-		if (project != input.getProject()) {
+		if (project != ModelUtil.getProject(input)) {
 			return;
 		}
 		refreshView();
@@ -632,7 +633,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		if (modelElement.equals(input)) {
 			setInput(null);
 			return;
@@ -640,7 +641,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		if (input == null) {
 			return;
 		}
-		if (project != input.getProject()) {
+		if (project != ModelUtil.getProject(input)) {
 			return;
 		}
 		refreshView();
@@ -652,11 +653,11 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		if (input == null) {
 			return;
 		}
-		if (project != input.getProject()) {
+		if (project != ModelUtil.getProject(input)) {
 			return;
 		}
 		refreshView();

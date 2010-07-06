@@ -10,58 +10,56 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
-«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
-«EXTENSION xpt::editor::Utils»
+Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+Â«IMPORT "http://www.eclipse.org/emf/2002/Ecore"Â»
+Â«EXTENSION xpt::editor::UtilsÂ»
 
-«DEFINE Editor FOR gmfgen::GenEditorView-»
-	«EXPAND xpt::Common::copyright FOR editorGen-»
-package «packageName»;
+Â«DEFINE Editor FOR gmfgen::GenEditorView-Â»
+	Â«EXPAND xpt::Common::copyright FOR editorGen-Â»
+package Â«packageNameÂ»;
 
-	«EXPAND xpt::Common::generatedClassComment»
-	«REM»modified extends«ENDREM»
-public class «className»  extends org.unicase.ui.common.diagram.part.ModelDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(this)» {
-	«REM»END modified extends«ENDREM»
-	«EXPAND attributes-»
+	Â«EXPAND xpt::Common::generatedClassCommentÂ»
+	Â«REMÂ»modified extendsÂ«ENDREMÂ»
+public class Â«classNameÂ»  extends org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditorÂ«EXPAND implementsList FOR getEditorImplementsList(self)Â» {
+	Â«REMÂ»END modified extendsÂ«ENDREMÂ»
+	Â«EXPAND attributes-Â»
 	
-	«EXPAND constructor-»
+	Â«EXPAND getContextID-Â»
+	Â«EXPAND createPaletteRoot FOR editorGen.diagram.palette-Â»
 	
-	«EXPAND getContextID-»
-	«EXPAND createPaletteRoot FOR editorGen.diagram.palette-»
+	Â«EXPAND getPreferencesHint-Â»
 	
-	«EXPAND getPreferencesHint-»
+	Â«EXPAND getContributorId-Â»
+	Â«EXPAND getAdapter-Â»
 	
-	«EXPAND getContributorId-»
-	«EXPAND getAdapter-»
+	Â«EXPAND getDocumentProvider-Â»
 	
-	«EXPAND getDocumentProvider-»
+	Â«EXPAND getEditingDomain-Â»
 	
-	«EXPAND getEditingDomain-»
+	Â«EXPAND setDocumentProvider-Â»
+	Â«IF isIDEMode(self)-Â»
 	
-	«EXPAND setDocumentProvider-»
-	«IF isIDEMode(this)-»
-	
-		«EXPAND gotoMarker-»
+		Â«EXPAND gotoMarker-Â»
 		
-		«EXPAND isSaveAsAllowed-»
+		Â«EXPAND isSaveAsAllowed-Â»
 		
-		«EXPAND doSaveAs-»
+		Â«EXPAND doSaveAs-Â»
 		
-		«EXPAND performSaveAs-»
+		Â«EXPAND performSaveAs-Â»
 		
-		«EXPAND getShowInContext-»
-		«EXPAND getNavigatorSelection FOR editorGen.navigator-»
-	«ENDIF-»
+		Â«EXPAND getShowInContext-Â»
+		Â«EXPAND getNavigatorSelection FOR editorGen.navigator-Â»
+	Â«ENDIF-Â»
 
-	«EXPAND configureGraphicalViewer-»
+	Â«EXPAND configureGraphicalViewer-Â»
 
-	«IF editorGen.diagram.generateCreateShortcutAction()-»
+	Â«IF editorGen.diagram.generateCreateShortcutAction()-Â»
 	
-		«EXPAND initializeGraphicalViewer-»
+		Â«EXPAND initializeGraphicalViewer-Â»
 		
-		«EXPAND DropTargetListener-»
-	«ENDIF-»
+		Â«EXPAND DropTargetListener-Â»
+	Â«ENDIF-Â»
 
-	«EXPAND additions-»
+	Â«EXPAND additions-Â»
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»

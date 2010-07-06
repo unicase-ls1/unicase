@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.navigator.Activator;

@@ -295,10 +295,10 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/participatingActors"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/realizedUserTask"/>
-        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/precondition"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/precondition"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/useCaseSteps"/>
-        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/postcondition"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/postcondition"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/rules"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/exception"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

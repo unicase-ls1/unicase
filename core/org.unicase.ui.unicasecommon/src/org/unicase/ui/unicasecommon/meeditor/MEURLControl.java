@@ -244,8 +244,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	private class URLValidator implements IInputValidator {
 
 		public String isValid(String newText) {
-
-			if (newText.matches("(((https?|ftp)://)?(www\\.)?(\\w+\\.)?\\w+){1}(/.*)*")) {
+			if (newText.matches("(((https?|ftp)://)?(www\\.)?(\\w+\\.){1,}+\\w+){1}(/.*)*")) {
 				return null;
 			} else {
 				return "Invalid URL!";

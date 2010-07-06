@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -189,7 +190,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		// check if source and target are in the same project
 		if (result) {
 			dragSource = (UnicaseModelElement) tmpSource.get(0);
-			if (!currentOpenME.getProject().equals(dragSource.getProject())) {
+			if (!ModelUtil.getProject(currentOpenME).equals(ModelUtil.getProject(dragSource))) {
 				result = false;
 			}
 		}

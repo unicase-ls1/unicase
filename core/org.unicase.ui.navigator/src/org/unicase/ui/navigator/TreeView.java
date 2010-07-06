@@ -41,23 +41,13 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.observers.SimpleOperationListener;
-import org.unicase.workspace.util.ProjectSpaceContainer;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * The standard navigator tree view.
@@ -73,9 +63,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	private boolean isLinkedWithEditor;
 	private Action linkWithEditor;
 	private PartListener partListener;
-	private Workspace currentWorkspace;
+	private ECPWorkspace currentWorkspace;
 	private AdapterImpl workspaceListenerAdapter;
-	private SimpleOperationListener simpleOperationListener;
+	private ECPProjectListener simpleOperationListener;
 	private boolean internalSelectionEvent;
 
 	/**
@@ -83,23 +73,28 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 */
 	public TreeView() {
 		createOperationListener();
-		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
-			projectSpace.addOperationListener(simpleOperationListener);
+		try {
+			currentWorkspace = WorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			return;
+		}
+		for (ECPProject project : currentWorkspace.getProjects()) {
+			project.addECPProjectListener(simpleOperationListener);
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+				if ((msg.getFeatureID(ECPWorkspace.class)) == WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS) {
 					if (msg.getEventType() == Notification.ADD
-						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
-						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
-						projectSpace.addOperationListener(simpleOperationListener);
+						&& WorkSpaceModelPackage.eINSTANCE.getECPProject().isInstance(msg.getNewValue())) {
+						ECPProject projectSpace = (ECPProject) msg.getNewValue();
+						projectSpace.addECPProjectListener(simpleOperationListener);
 					} else if (msg.getEventType() == Notification.REMOVE
-						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
-						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
-						projectSpace.removeOperationListener(simpleOperationListener);
+						&& WorkSpaceModelPackage.eINSTANCE.getECPProject().isInstance(msg.getOldValue())) {
+						ECPProject projectSpace = (ECPProject) msg.getOldValue();
+						projectSpace.removeECPProjectListener(simpleOperationListener);
 					}
 				}
 				super.notifyChanged(msg);
@@ -114,10 +109,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * updated. The refresh happens asynchronously and currently is no performance problem.
 	 */
 	private void createOperationListener() {
-		simpleOperationListener = new SimpleOperationListener() {
+		simpleOperationListener = new ECPProjectListener() {
 
-			@Override
-			public void operationPerformed(AbstractOperation operation) {
+			public void projectChanged() {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
@@ -126,8 +120,18 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 					}
 
 				});
+
 			}
 
+			public void modelelementDeleted(EObject eobject) {
+				// Do nothing
+
+			}
+
+			public void projectDeleted() {
+				// Do nothing
+
+			}
 		};
 	}
 
@@ -150,11 +154,19 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	@Override
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
-			.getLabelDecorator()));
-		viewer.setContentProvider(new TreeContentProvider());
-		viewer.setInput(currentWorkspace);
+
+		try {
+			ECPWorkspace workSpace = WorkspaceManager.getInstance().getWorkSpace();
+			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(workSpace.getEditingDomain()),
+				decoratorManager.getLabelDecorator()));
+			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
+			viewer.setInput(workSpace);
+			// viewer.setInput(currentWorkspace);
+		} catch (NoWorkspaceException e) {
+			// Do not show any content
+		}
+
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
 		// this is for workaround for update problem in navigator
@@ -176,7 +188,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		addSelectionListener();
 
 		if (viewer.getTree().getItems().length > 0) {
-			setActiveProjectSpace(viewer.getTree().getItem(0).getData());
+			setActiveECPProject(viewer.getTree().getItem(0).getData());
 			viewer.getTree().select(viewer.getTree().getItem(0));
 
 		}
@@ -230,13 +242,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * @param editor editor
 	 */
 	public void editorActivated(IEditorPart editor) {
-		if (!(editor instanceof MEEditor)) {
-			return;
-		}
-
-		MEEditor meEditor = (MEEditor) editor;
-		EObject me = (EObject) meEditor.getEditorInput().getAdapter(EObject.class);
-		if (me != null) {
+		Object adapter = editor.getEditorInput().getAdapter(EObject.class);
+		if (adapter != null && adapter instanceof EObject) {
+			EObject me = (EObject) adapter;
 			revealME(me);
 		}
 
@@ -281,18 +289,13 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 				if (event.getSelection() instanceof IStructuredSelection) {
 					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 					Object obj = selection.getFirstElement();
-					setActiveProjectSpace(obj);
+					setActiveECPProject(obj);
 
 					// activate MEEditor if this obj is already open.
 					if (isLinkedWithEditor && !internalSelectionEvent) {
 						linkWithEditor(obj);
 					}
 
-					if (obj instanceof EObject) {
-						// / TODO:EMFPlainEObjectTransition
-						// getViewSite().getActionBars().getStatusLineManager().setMessage(
-						// ModelUtil.getProject((EObject) obj).getModelElementId(((EObject) obj)).getId());
-					}
 				}
 			}
 
@@ -307,6 +310,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 */
 	private void linkWithEditor(Object selectedME) {
 		if (selectedME == null) {
+			return;
+		}
+		if (!(selectedME instanceof EObject)) {
 			return;
 		}
 
@@ -362,39 +368,14 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 	}
 
-	private void setActiveProjectSpace(Object obj) {
-
-		if (obj == null) {
-			return;
-		}
-		final ProjectSpace projectSpace;
-
-		if (obj instanceof ProjectSpace) {
-			projectSpace = (ProjectSpace) obj;
-		} else if (obj instanceof EObject) {
-			EObject me = (EObject) obj;
-			projectSpace = WorkspaceManager.getProjectSpace(me);
-		} else {
-			projectSpace = null;
-		}
-
-		if (projectSpace == null) {
-			// the active project space should NEVER be null
-			return;
-		}
-
-		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null) {
-			if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().equals(projectSpace)) {
-				return;
+	private void setActiveECPProject(Object obj) {
+		if (obj instanceof EObject) {
+			try {
+				WorkspaceManager.getInstance().getWorkSpace().setActiveModelelement((EObject) obj);
+			} catch (NoWorkspaceException e) {
+				Activator.logException(e);
 			}
 		}
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
-			}
-		}.run();
 
 	}
 
@@ -404,7 +385,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(),
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(currentWorkspace.getEditingDomain(),
 			viewer));
 
 	}
@@ -509,27 +490,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	}
 
 	/**
-	 * {@inheritDoc} 
-	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
-		if (modelElement.eContainer().equals(project)) {
-			Runnable runnable = new Runnable() {
-				public void run() {
-					viewer.refresh();
-				}
-			};
-
-			Display.getDefault().asyncExec(runnable);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart,
@@ -539,65 +499,32 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		if (part == this) {
 			return;
 		}
-		if (part instanceof ProjectSpaceContainer) {
-			updateSelectionfromProjectSpaceContainer(selection, (ProjectSpaceContainer) part);
-		}
-	}
-
-	private void updateSelectionfromProjectSpaceContainer(ISelection selection,
-		ProjectSpaceContainer projectSpaceContainer) {
-		ProjectSpace projectSpace = projectSpaceContainer.getProjectSpace();
-		if (projectSpace == null) {
-			return;
-		}
-		Project project = projectSpace.getProject();
-		if (project == null) {
-			return;
-		}
-		Object element = extractObjectFromSelection(selection);
+		EObject element = extractObjectFromSelection(selection);
 		if (element == null) {
 			return;
 		}
-		if (element instanceof CompositeOperation) {
-			CompositeOperation comop = (CompositeOperation) element;
-			AbstractOperation mainOperation = comop.getMainOperation();
-			if (mainOperation != null) {
-				ModelElementId modelElementId = mainOperation.getModelElementId();
-				revealME(project.getModelElement(modelElementId));
-			}
-		} else if (element instanceof AbstractOperation) {
-			ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
-			revealME(project.getModelElement(modelElementId));
-		} else if (element instanceof EObject) {
-			ModelElementId modelElementId = ModelUtil.getProject(((EObject) element)).getModelElementId(
-				((EObject) element));
-			revealME(project.getModelElement(modelElementId));
-		}
-
+		revealME(element);
 	}
 
-	private Object extractObjectFromSelection(ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() == 1) {
-				Object node = structuredSelection.getFirstElement();
-				if (node instanceof TreeNode) {
-					Object element = ((TreeNode) node).getValue();
-					return element;
+	private EObject extractObjectFromSelection(ISelection selection) {
+		if (!(selection instanceof IStructuredSelection)) {
+			return null;
+		}
+
+		IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+		if (structuredSelection.size() == 1) {
+			Object node = structuredSelection.getFirstElement();
+			if (node instanceof TreeNode) {
+				Object element = ((TreeNode) node).getValue();
+				if (element instanceof EObject) {
+					return (EObject) element;
 				}
+			} else if (node instanceof EObject) {
+				return (EObject) node;
 			}
 		}
+
 		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
-	 */
-	public void projectDeleted(Project project) {
-		viewer.refresh();
-
 	}
 
 }

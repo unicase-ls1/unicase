@@ -26,9 +26,11 @@ import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
 import org.unicase.ui.navigator.handler.NewModelElementWizardHandler;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
@@ -54,8 +56,12 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		if (selectedME == null) {
 			return new IContributionItem[0];
 		}
-		if (selectedME instanceof ProjectSpace) {
-			return createNewWizard(selectedME.eClass());
+		try {
+			if (WorkspaceManager.getInstance().getWorkSpace().isRootObject(selectedME)) {
+				return createNewWizard(selectedME.eClass());
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
 		}
 
 		// 2. get its containments

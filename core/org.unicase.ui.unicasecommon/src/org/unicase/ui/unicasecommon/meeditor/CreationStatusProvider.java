@@ -6,7 +6,6 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.UnicaseModelElement;
@@ -45,18 +44,19 @@ public class CreationStatusProvider implements StatusMessageProvider {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		StringBuffer stringBuffer = new StringBuffer();
-		Date creationDate = unicaseModelElement.getCreationDate();
+		// TODO: EM: creation date
+		// Date creationDate = unicaseModelElement.getCreationDate();
 		String creatorHint = "";
-		if (creationDate != null) {
-			creationDate = unicaseModelElement.getCreationDate();
-			stringBuffer.append("Created on ");
-			stringBuffer.append(dateFormat.format(creationDate));
-			stringBuffer.append(" at ");
-			stringBuffer.append(timeFormat.format(creationDate));
-			stringBuffer.append(" by ");
-			stringBuffer.append(unicaseModelElement.getCreator());
-			creatorHint = stringBuffer.toString();
-		}
+		// if (creationDate != null) {
+		// creationDate = unicaseModelElement.getCreationDate();
+		// stringBuffer.append("Created on ");
+		// stringBuffer.append(dateFormat.format(creationDate));
+		// stringBuffer.append(" at ");
+		// stringBuffer.append(timeFormat.format(creationDate));
+		// stringBuffer.append(" by ");
+		// stringBuffer.append(unicaseModelElement.getCreator());
+		// creatorHint = stringBuffer.toString();
+		// }
 		return creatorHint;
 	}
 

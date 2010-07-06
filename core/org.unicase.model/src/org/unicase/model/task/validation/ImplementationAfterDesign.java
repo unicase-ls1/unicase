@@ -58,15 +58,14 @@ public class ImplementationAfterDesign extends AbstractModelConstraint {
 			otherAnnotations.addAll(me.getAnnotations());
 		}
 		for (Annotation otherAnnotation : otherAnnotations) {
-
 			if ((!(otherAnnotation instanceof ActionItem) && !(otherAnnotation instanceof Issue))) {
 				continue;
 			}
 			ActivityType otherActivity = TaskValidationHelper.getActivity(otherAnnotation);
-
 			if (otherActivity.equals(ActivityType.ANALYSIS) || otherActivity.equals(ActivityType.SYSTEM_DESIGN)
 				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)) {
-				if (TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
+				if (dueDate != null && TaskValidationHelper.getDueDate(otherAnnotation) != null
+					&& TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(UnicaseModelElement) eObj, "dueDate");
 					ctx.addResult(errorFeature);

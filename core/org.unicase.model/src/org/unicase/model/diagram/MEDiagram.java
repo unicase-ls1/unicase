@@ -117,4 +117,6 @@ public interface MEDiagram extends Attachment {
 
 	void loadDiagramLayout() throws DiagramLoadException;
 
+	String getType();
+
 } // MEDiagram
