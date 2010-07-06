@@ -10,6 +10,7 @@ How Tos:
  * [Editor_hints_guidelines How to change the attribute layout in MEEditor - a.k.a Editor Hints]
  * [Design_Model_Element How to change the icon and label of a model element]
  * [Validation_rule_implementation How to implement a validation rule]
+ * [Copyright_text How to get rid of the $Id$ in generated copyright text]
 
 Additional information
  * [UNICASE_MODEL_DOCUMENTATION Overview of Models of UNICASE]
