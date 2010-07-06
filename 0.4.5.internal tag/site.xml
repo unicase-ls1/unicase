@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.client_0.4.5.internal.jar" id="org.unicase.client" version="0.4.5.internal">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="unicase">
+      <description>
+         This feature contains UNICASE client
+      </description>
+   </category-def>
+</site>
