@@ -746,6 +746,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	void removePendingFileUpload(String fileAttachmentId);
 
 	/**
+	 * Transmit the OrgUnitproperties to the server.
+	 * 
+	 * @generated NOT
+	 */
+	void transmitProperties();
+
+	/**
 	 * Merge the changes from current base version to given target version with the local operations.
 	 * 
 	 * @param target target version
