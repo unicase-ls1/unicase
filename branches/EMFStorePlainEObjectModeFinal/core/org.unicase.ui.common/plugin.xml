@@ -112,17 +112,6 @@
         </instanceof>
      </definition>
   </extension>
-   
- <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-        <propertyTester
-              class="org.unicase.ui.common.commands.SubscriptionTester"
-              id="org.unicase.ui.common.commands.subscriptionTester"
-              namespace="org.unicase.ui.common.commands"
-              properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.metamodel.ModelElement">
-        </propertyTester>
- </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
     <page

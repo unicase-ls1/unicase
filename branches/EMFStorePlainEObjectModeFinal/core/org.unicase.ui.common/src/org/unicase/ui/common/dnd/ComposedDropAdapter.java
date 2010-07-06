@@ -26,7 +26,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.ui.internal.keys.model.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -73,47 +73,46 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-		"org.unicase.ui.common.medropadapter");
-		for(IConfigurationElement element:confs ){
+			"org.unicase.ui.common.medropadapter");
+		for (IConfigurationElement element : confs) {
 			try {
 				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");
 				dropAdapter.init(editingDomain, viewer);
-				dropAdapters.put( dropAdapter.isDropAdapterfor(), dropAdapter);
-				
+				dropAdapters.put(dropAdapter.isDropAdapterfor(), dropAdapter);
+
 			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);	
+				WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}
-	
 
-//		// MEDropAdapter
-//		dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
-//
-//		// LeafSectionDropAdapter
-//		dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
-//
-//		// CompositeSectionDropAdapter
-//		dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
-//			viewer));
-//
-//		// WorkPackageDropAdapter
-//		dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
-//
-//		// MeetingDropAdpater
-//		dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
-//
-//		// WorkItemMeetingSectionDropAdapter
-//		dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
-//			domain, viewer));
-//
-//		// MEDiagramDropAdapter
-//		dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
-//
-//		// AnnotationDropAdapter
-//		dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
-//
-//		// ProjectDropAdapter
-//		dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
+		// // MEDropAdapter
+		// dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
+		//
+		// // LeafSectionDropAdapter
+		// dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
+		//
+		// // CompositeSectionDropAdapter
+		// dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
+		// viewer));
+		//
+		// // WorkPackageDropAdapter
+		// dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
+		//
+		// // MeetingDropAdpater
+		// dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
+		//
+		// // WorkItemMeetingSectionDropAdapter
+		// dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
+		// domain, viewer));
+		//
+		// // MEDiagramDropAdapter
+		// dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
+		//
+		// // AnnotationDropAdapter
+		// dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
+		//
+		// // ProjectDropAdapter
+		// dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
 
 	}
 
@@ -170,8 +169,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getData() == null
-			|| !(event.item.getData() instanceof EObject)) {
+		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof EObject)) {
 			result = false;
 		}
 
@@ -179,7 +177,9 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		if (result) {
 			dropee = source.get(0);
 			target = (EObject) event.item.getData();
-			if (!ModelUtil.getProject(target).equals(ModelUtil.getProject(dropee))) {
+			Project targetProject = ModelUtil.getProject(target);
+			Project dropeeProject = ModelUtil.getProject(dropee);
+			if (!targetProject.equals(dropeeProject)) {
 				result = false;
 			}
 		}
@@ -220,12 +220,12 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		} else {
 			targetDropAdapter = getTargetDropAdapter(target.eClass());
 		}
-		if(targetDropAdapter==null){
+		if (targetDropAdapter == null) {
 			event.detail = DND.DROP_NONE;
-		}
-		else
-		if (!targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
-			event.detail = DND.DROP_NONE;
+		} else if (!targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
+			event.detail = DND.Drop;
+		} else if (targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
+			event.detail = DND.DROP_COPY;
 		}
 
 	}
@@ -242,8 +242,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		MEDropAdapter ret = dropAdapters.get(targetEClass);
 		if (ret == null) {
 			EClass superTypeHavingADropAdapter = getSuperTypeHavingADropAdapter(targetEClass.getESuperTypes());
-			if(superTypeHavingADropAdapter!=null){
-			ret = getTargetDropAdapter(superTypeHavingADropAdapter);
+			if (superTypeHavingADropAdapter != null) {
+				ret = getTargetDropAdapter(superTypeHavingADropAdapter);
 			}
 		}
 
