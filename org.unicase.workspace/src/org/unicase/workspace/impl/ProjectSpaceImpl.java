@@ -1483,7 +1483,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			ACUser acUser = getUsersession().getACUser();
 			if (acUser != null) {
 				for (OrgUnitProperty p : acUser.getProperties()) {
-					propertyMap.put(p.getName(), p);
+					if (p.getProject().equals(getProjectId())) {
+						propertyMap.put(p.getName(), p);
+					}
 				}
 			}
 		}
@@ -2391,6 +2393,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// sanity checks
 		if (getUsersession() != null && getUsersession().getACUser() != null) {
 			try {
+				if (property.getProject() == null) {
+					property.setProject(ModelUtil.clone(getProjectId()));
+				} else if (!property.getProject().equals(getProjectId())) {
+					return;
+				}
 				OrgUnitProperty prop = getProperty(property.getName());
 				prop.setValue(property.getValue());
 			} catch (PropertyNotFoundException e) {
@@ -2399,7 +2406,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			// the properties that have been altered are retained in a separate list
 			for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
-				if (changedProperty.getName().equals(property.getName())) {
+				if (changedProperty.getName().equals(property.getName())
+					&& changedProperty.getProject().equals(getProjectId())) {
 					changedProperty.setValue(property.getValue());
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					return;
@@ -2417,8 +2425,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return propertyMap.containsKey(key.toString());
 	}
 
-	private void transmitProperties() {
-		ListIterator<OrgUnitProperty> iterator = getUsersession().getChangedProperties().listIterator();
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitProperties() {
+		List<OrgUnitProperty> temp = new ArrayList<OrgUnitProperty>();
+		for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
+			if (changedProperty.getProject() != null && changedProperty.getProject().equals(getProjectId())) {
+				temp.add(changedProperty);
+			}
+		}
+		ListIterator<OrgUnitProperty> iterator = temp.listIterator();
 		while (iterator.hasNext()) {
 			try {
 				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
