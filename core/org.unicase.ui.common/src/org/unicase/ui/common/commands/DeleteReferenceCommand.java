@@ -8,7 +8,9 @@ package org.unicase.ui.common.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * Command to delete a reference.
@@ -16,29 +18,32 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author helming
  * @author shterev
  */
-public final class DeleteReferenceCommand extends UnicaseCommand {
+public final class DeleteReferenceCommand {
 	private EReference reference;
 	private EObject modelElement;
 	private EObject opposite;
+	private final EditingDomain editingDomain;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement the initiating {@link ModelElement}
+	 * @param modelElement the initiating modelelement
 	 * @param reference the reference
 	 * @param opposite the element on the other side - the element to be removed.
+	 * @param editingDomain the editing domain to execute the command.
 	 */
-	public DeleteReferenceCommand(EObject modelElement, EReference reference, EObject opposite) {
+	public DeleteReferenceCommand(EObject modelElement, EReference reference, EObject opposite,
+		EditingDomain editingDomain) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
+		this.editingDomain = editingDomain;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	protected void doRun() {
+	public void run() {
 		Object object = modelElement.eGet(reference);
 
 		// TODO: Ask user in the following two cases if he really wants to delete the model element
@@ -50,14 +55,15 @@ public final class DeleteReferenceCommand extends UnicaseCommand {
 		// modelElement.getProject().addModelElement(opposite);
 		// return;
 		// }
-
 		if (object instanceof EList<?>) {
 			@SuppressWarnings("unchecked")
 			EList<EObject> list = (EList<EObject>) object;
-			list.remove(opposite);
+			RemoveCommand removeCommand = new RemoveCommand(editingDomain, list, opposite);
+			editingDomain.getCommandStack().execute(removeCommand);
 			return;
 		} else {
-			modelElement.eSet(reference, null);
+			SetCommand setCommand = new SetCommand(editingDomain, modelElement, reference, null);
+			editingDomain.getCommandStack().execute(setCommand);
 			return;
 		}
 
