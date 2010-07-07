@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import java.math.BigInteger;
-
 import org.unicase.metamodel.ModelElementId;
 
 /**
@@ -37,12 +35,12 @@ public interface MultiReferenceSetOperation extends ReferenceOperation {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Index</em>' attribute.
-	 * @see #setIndex(BigInteger)
+	 * @see #setIndex(int)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiReferenceSetOperation_Index()
 	 * @model
 	 * @generated
 	 */
-	BigInteger getIndex();
+	int getIndex();
 
 	/**
 	 * Sets the value of the '
@@ -53,7 +51,7 @@ public interface MultiReferenceSetOperation extends ReferenceOperation {
 	 * @see #getIndex()
 	 * @generated
 	 */
-	void setIndex(BigInteger value);
+	void setIndex(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Old Value</b></em>' containment reference. <!-- begin-user-doc -->

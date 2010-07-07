@@ -1128,7 +1128,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		initEClass(multiReferenceSetOperationEClass, MultiReferenceSetOperation.class, "MultiReferenceSetOperation",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultiReferenceSetOperation_Index(), ecorePackage.getEBigInteger(), "index", null, 0, 1,
+		initEAttribute(getMultiReferenceSetOperation_Index(), ecorePackage.getEInt(), "index", null, 0, 1,
 			MultiReferenceSetOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiReferenceSetOperation_OldValue(), theMetamodelPackage.getModelElementId(), null,
