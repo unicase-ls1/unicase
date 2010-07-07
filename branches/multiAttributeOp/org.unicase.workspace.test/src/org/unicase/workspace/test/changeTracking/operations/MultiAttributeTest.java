@@ -10,12 +10,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.test.testmodel.TestmodelFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -127,6 +125,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run();
 	}
 
+	// TODO
 	@Test
 	public void test() {
 		new UnicaseCommand() {
@@ -149,17 +148,4 @@ public class MultiAttributeTest extends WorkspaceTest {
 			}
 		}.run();
 	}
-
-	private void plotOperations() {
-		for (AbstractOperation op : getProjectSpace().getOperations()) {
-			System.out.println(op);
-		}
-	}
-
-	private TestElement getTestElement() {
-		TestElement element = TestmodelFactory.eINSTANCE.createTestElement();
-		getProject().getModelElements().add(element);
-		return element;
-	}
-
 }

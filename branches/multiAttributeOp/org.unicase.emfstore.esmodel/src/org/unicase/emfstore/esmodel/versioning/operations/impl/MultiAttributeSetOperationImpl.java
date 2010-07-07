@@ -6,10 +6,14 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -279,9 +283,28 @@ public class MultiAttributeSetOperationImpl extends FeatureOperationImpl impleme
 	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
+	@SuppressWarnings("unchecked")
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
+		ModelElement modelElement = project.getModelElement(getModelElementId());
+		if (modelElement == null) {
+			return;
+		}
 
+		EAttribute feature;
+		try {
+			feature = (EAttribute) getFeature(modelElement);
+			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
+
+			int i = getIndex();
+			if (i >= 0 && i < list.size()) {
+				list.set(i, getNewValue());
+			} else {
+				// TODO or should it be ignored instead of beeing added?
+				list.add(getNewValue());
+			}
+
+		} catch (UnkownFeatureException e) {
+		}
 	}
 
 } // MultiAttributeSetOperationImpl

@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +41,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger INDEX_EDEFAULT = null;
+	protected static final int INDEX_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -53,7 +51,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger index = INDEX_EDEFAULT;
+	protected int index = INDEX_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference. <!-- begin-user-doc
@@ -99,7 +97,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * 
 	 * @generated
 	 */
-	public BigInteger getIndex() {
+	public int getIndex() {
 		return index;
 	}
 
@@ -108,8 +106,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * 
 	 * @generated
 	 */
-	public void setIndex(BigInteger newIndex) {
-		BigInteger oldIndex = index;
+	public void setIndex(int newIndex) {
+		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -317,7 +315,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			setIndex((BigInteger) newValue);
+			setIndex((Integer) newValue);
 			return;
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
 			setOldValue((ModelElementId) newValue);
@@ -359,7 +357,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			return INDEX_EDEFAULT == null ? index != null : !INDEX_EDEFAULT.equals(index);
+			return index != INDEX_EDEFAULT;
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
 			return oldValue != null;
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:

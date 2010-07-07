@@ -69,7 +69,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceSetOperation_index_feature",
 				"_UI_MultiReferenceSetOperation_type"),
 			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__INDEX, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**

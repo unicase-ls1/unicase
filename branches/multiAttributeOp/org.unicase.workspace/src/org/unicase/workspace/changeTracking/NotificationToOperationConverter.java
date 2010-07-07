@@ -16,8 +16,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
@@ -186,39 +188,68 @@ public final class NotificationToOperationConverter {
 
 	private static AbstractOperation handleSetAttribute(NotificationInfo n) {
 
-		AttributeOperation op = null;
+		if (!n.getAttribute().isMany()) {
+			AttributeOperation op = null;
+			// special handling for diagram layout changes
+			if (isDiagramLayoutAttribute(n.getAttribute(), n.getNotifierModelElement())) {
+				op = OperationsFactory.eINSTANCE.createDiagramLayoutOperation();
+			} else {
+				op = OperationsFactory.eINSTANCE.createAttributeOperation();
+			}
 
-		// special handling for diagram layout changes
-		if (isDiagramLayoutAttribute(n.getAttribute(), n.getNotifierModelElement())) {
-			op = OperationsFactory.eINSTANCE.createDiagramLayoutOperation();
+			setCommonValues(op, n.getNotifierModelElement());
+			op.setFeatureName(n.getAttribute().getName());
+			op.setNewValue(n.getNewValue());
+			op.setOldValue(n.getOldValue());
+			return op;
 		} else {
-			op = OperationsFactory.eINSTANCE.createAttributeOperation();
+
+			MultiAttributeSetOperation setOperation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
+			setCommonValues(setOperation, n.getNotifierModelElement());
+
+			setOperation.setNewValue(n.getNewValue());
+			setOperation.setOldValue(n.getOldValue());
+			setOperation.setIndex(n.getPosition());
+
+			return setOperation;
 		}
-
-		setCommonValues(op, n.getNotifierModelElement());
-		op.setFeatureName(n.getAttribute().getName());
-		op.setNewValue(n.getNewValue());
-		op.setOldValue(n.getOldValue());
-		return op;
-
 	}
 
 	private static AbstractOperation handleSetReference(NotificationInfo n) {
 
-		SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
-		setCommonValues(op, (ModelElement) n.getNotifier());
-		op.setFeatureName(n.getReference().getName());
-		setBidirectionalAndContainmentInfo(op, n.getReference());
+		if (!n.getReference().isMany()) {
+			SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
+			setCommonValues(op, (ModelElement) n.getNotifier());
+			op.setFeatureName(n.getReference().getName());
+			setBidirectionalAndContainmentInfo(op, n.getReference());
 
-		if (n.getOldValue() != null) {
-			op.setOldValue(n.getOldModelElementValue().getModelElementId());
+			if (n.getOldValue() != null) {
+				op.setOldValue(n.getOldModelElementValue().getModelElementId());
+			}
+
+			if (n.getNewValue() != null) {
+				op.setNewValue(n.getNewModelElementValue().getModelElementId());
+			}
+			return op;
+
+		} else {
+			MultiReferenceSetOperation setOperation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
+			setCommonValues(setOperation, (ModelElement) n.getNotifier());
+			setOperation.setFeatureName(n.getReference().getName());
+			setBidirectionalAndContainmentInfo(setOperation, n.getReference());
+
+			setOperation.setIndex(n.getPosition());
+
+			if (n.getOldValue() != null) {
+				setOperation.setOldValue(n.getOldModelElementValue().getModelElementId());
+			}
+
+			if (n.getNewValue() != null) {
+				setOperation.setNewValue(n.getNewModelElementValue().getModelElementId());
+			}
+
+			return setOperation;
 		}
-
-		if (n.getNewValue() != null) {
-			op.setNewValue(n.getNewModelElementValue().getModelElementId());
-		}
-		return op;
-
 	}
 
 	// utility methods
