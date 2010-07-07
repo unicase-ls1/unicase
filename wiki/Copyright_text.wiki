@@ -4,6 +4,8 @@
 
 If code is generated from an EMF Model and a copyright text is set in the genmodel then the code generator inserts a `$Id$` at the end of the copyright text.
 
+*NOTE:* This Problem should be fixed in future releases of EMF.
+
 
 = Solution =
 
