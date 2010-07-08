@@ -18,6 +18,7 @@ import org.unicase.metamodel.ModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.workspace.test.testmodel.TestElement#getStrings <em>Strings</em>}</li>
+ *   <li>{@link org.unicase.workspace.test.testmodel.TestElement#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,5 +42,21 @@ public interface TestElement extends ModelElement {
 	 * @generated
 	 */
 	EList<String> getStrings();
+
+	/**
+	 * Returns the value of the '<em><b>References</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.workspace.test.testmodel.TestElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>References</em>' reference list.
+	 * @see org.unicase.workspace.test.testmodel.TestmodelPackage#getTestElement_References()
+	 * @model
+	 * @generated
+	 */
+	EList<TestElement> getReferences();
 
 } // TestElement

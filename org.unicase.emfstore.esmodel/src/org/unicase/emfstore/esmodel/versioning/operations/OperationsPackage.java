@@ -575,12 +575,12 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_ATTRIBUTE_OPERATION__ADD = FEATURE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Indexes</b></em>' attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_ATTRIBUTE_OPERATION__INDEX = FEATURE_OPERATION_FEATURE_COUNT + 1;
+	int MULTI_ATTRIBUTE_OPERATION__INDEXES = FEATURE_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Values</b></em>' attribute list. <!-- begin-user-doc --> <!--
@@ -1854,16 +1854,16 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getMultiAttributeOperation_Add();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex <em>Index</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute list '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndexes <em>Indexes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the attribute '<em>Index</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex()
+	 * @return the meta object for the attribute list '<em>Indexes</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndexes()
 	 * @see #getMultiAttributeOperation()
 	 * @generated
 	 */
-	EAttribute getMultiAttributeOperation_Index();
+	EAttribute getMultiAttributeOperation_Indexes();
 
 	/**
 	 * Returns the meta object for the attribute list '
@@ -2516,12 +2516,12 @@ public interface OperationsPackage extends EPackage {
 		EAttribute MULTI_ATTRIBUTE_OPERATION__ADD = eINSTANCE.getMultiAttributeOperation_Add();
 
 		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Indexes</b></em>' attribute list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EAttribute MULTI_ATTRIBUTE_OPERATION__INDEX = eINSTANCE.getMultiAttributeOperation_Index();
+		EAttribute MULTI_ATTRIBUTE_OPERATION__INDEXES = eINSTANCE.getMultiAttributeOperation_Indexes();
 
 		/**
 		 * The meta object literal for the '<em><b>Referenced Values</b></em>' attribute list feature. <!--

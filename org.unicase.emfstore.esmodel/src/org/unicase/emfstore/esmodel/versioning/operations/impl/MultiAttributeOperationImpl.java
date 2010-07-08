@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
@@ -26,7 +28,7 @@ import org.unicase.metamodel.Project;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndex <em>Index
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndexes <em>Indexes
  * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getReferencedValues
  * <em>Referenced Values</em>}</li>
@@ -55,24 +57,14 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' attribute list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see #getIndex()
+	 * @see #getIndexes()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int INDEX_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @see #getIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected int index = INDEX_EDEFAULT;
+	protected EList<Integer> indexes;
 
 	/**
 	 * The cached value of the '{@link #getReferencedValues() <em>Referenced Values</em>}' attribute list. <!--
@@ -130,21 +122,12 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 * 
 	 * @generated
 	 */
-	public int getIndex() {
-		return index;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setIndex(int newIndex) {
-		int oldIndex = index;
-		index = newIndex;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX,
-				oldIndex, index));
+	public EList<Integer> getIndexes() {
+		if (indexes == null) {
+			indexes = new EDataTypeUniqueEList<Integer>(Integer.class, this,
+				OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES);
+		}
+		return indexes;
 	}
 
 	/**
@@ -170,8 +153,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		switch (featureID) {
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
 			return isAdd();
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			return getIndex();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES:
+			return getIndexes();
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES:
 			return getReferencedValues();
 		}
@@ -190,8 +173,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
 			setAdd((Boolean) newValue);
 			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			setIndex((Integer) newValue);
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES:
+			getIndexes().clear();
+			getIndexes().addAll((Collection<? extends Integer>) newValue);
 			return;
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES:
 			getReferencedValues().clear();
@@ -212,8 +196,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
 			setAdd(ADD_EDEFAULT);
 			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			setIndex(INDEX_EDEFAULT);
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES:
+			getIndexes().clear();
 			return;
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES:
 			getReferencedValues().clear();
@@ -232,8 +216,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		switch (featureID) {
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
 			return add != ADD_EDEFAULT;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			return index != INDEX_EDEFAULT;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES:
+			return indexes != null && !indexes.isEmpty();
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES:
 			return referencedValues != null && !referencedValues.isEmpty();
 		}
@@ -253,8 +237,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (add: ");
 		result.append(add);
-		result.append(", index: ");
-		result.append(index);
+		result.append(", indexes: ");
+		result.append(indexes);
 		result.append(", referencedValues: ");
 		result.append(referencedValues);
 		result.append(')');
@@ -273,26 +257,32 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 			return;
 		}
 
+		if (getReferencedValues().size() != getIndexes().size()) {
+			// fail silently, invalid operation
+			return;
+		}
+
 		try {
 			EAttribute feature = (EAttribute) getFeature(modelElement);
 			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
 
-			int i = getIndex();
 			if (isAdd()) {
-				for (Object value : getReferencedValues()) {
-					if (i >= 0 && list.size() > i) {
-						list.add(i, value);
+
+				for (int i = 0; i < getReferencedValues().size(); i++) {
+					Object value = getReferencedValues().get(i);
+					int index = getIndexes().get(i);
+					if (index >= 0 && list.size() > index) {
+						list.add(index, value);
 					} else {
 						list.add(value);
 					}
-					i++;
 				}
 			} else {
-				for (Object value : getReferencedValues()) {
-					if (i >= 0 && list.size() > i) {
-						list.remove(i);
+				for (int i = getIndexes().size() - 1; i <= 0; i--) {
+					int index = getIndexes().get(i);
+					if (index >= 0 && list.size() > index) {
+						list.remove(index);
 					}
-					i++;
 				}
 			}
 
@@ -300,4 +290,16 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 			return;
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#reverse()
+	 */
+	@Override
+	public AbstractOperation reverse() {
+		// TODO Auto-generated method stub
+		return super.reverse();
+	}
+
 } // MultiAttributeOperationImpl

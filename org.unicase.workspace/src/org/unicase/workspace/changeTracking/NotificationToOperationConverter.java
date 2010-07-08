@@ -6,6 +6,7 @@
 package org.unicase.workspace.changeTracking;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
@@ -89,7 +91,11 @@ public final class NotificationToOperationConverter {
 			}
 
 		case Notification.MOVE:
-			return handleMove(n);
+			if (n.isAttributeNotification()) {
+				return handleAttributeMove(n);
+			} else {
+				return handleReferenceMove(n);
+			}
 
 		default:
 			return null;
@@ -103,7 +109,7 @@ public final class NotificationToOperationConverter {
 		setCommonValues(operation, n.getNotifierModelElement());
 		operation.setFeatureName(n.getAttribute().getName());
 		operation.setAdd(n.isAddEvent() || n.isAddManyEvent());
-		operation.setIndex(n.getPosition());
+		// operation.setIndex(n.getPosition());
 
 		List<Object> list = null;
 
@@ -111,17 +117,23 @@ public final class NotificationToOperationConverter {
 
 		case Notification.ADD:
 			list = new ArrayList<Object>();
+			operation.getIndexes().add(n.getPosition());
 			list.add(n.getNewValue());
 			break;
 		case Notification.ADD_MANY:
 			list = (List<Object>) n.getNewValue();
+			for (int i = 0; i < list.size(); i++) {
+				operation.getIndexes().add(n.getPosition() + i);
+			}
 			break;
 		case Notification.REMOVE:
 			list = new ArrayList<Object>();
+			operation.getIndexes().add(n.getPosition());
 			list.add(n.getOldValue());
 			break;
 		case Notification.REMOVE_MANY:
 			list = (List<Object>) n.getOldValue();
+			operation.getIndexes().addAll((Collection<? extends Integer>) n.getNewValue());
 			break;
 		default:
 			break;
@@ -174,7 +186,7 @@ public final class NotificationToOperationConverter {
 
 	}
 
-	private static AbstractOperation handleMove(NotificationInfo n) {
+	private static AbstractOperation handleReferenceMove(NotificationInfo n) {
 
 		MultiReferenceMoveOperation op = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
 		setCommonValues(op, n.getNotifierModelElement());
@@ -184,6 +196,16 @@ public final class NotificationToOperationConverter {
 		op.setOldIndex((Integer) n.getOldValue());
 
 		return op;
+	}
+
+	private static AbstractOperation handleAttributeMove(NotificationInfo n) {
+		MultiAttributeMoveOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation();
+		setCommonValues(operation, n.getNotifierModelElement());
+		operation.setFeatureName(n.getAttribute().getName());
+		operation.setNewIndex(n.getPosition());
+		operation.setOldIndex(n.getOldIntValue());
+		operation.setReferencedValue(n.getNewValue());
+		return operation;
 	}
 
 	private static AbstractOperation handleSetAttribute(NotificationInfo n) {

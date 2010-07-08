@@ -52,7 +52,7 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 			super.getPropertyDescriptors(object);
 
 			addAddPropertyDescriptor(object);
-			addIndexPropertyDescriptor(object);
+			addIndexesPropertyDescriptor(object);
 			addReferencedValuesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -72,16 +72,16 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Index feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Indexes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addIndexPropertyDescriptor(Object object) {
+	protected void addIndexesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiAttributeOperation_index_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeOperation_index_feature",
-				"_UI_MultiAttributeOperation_type"), OperationsPackage.Literals.MULTI_ATTRIBUTE_OPERATION__INDEX, true,
-			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiAttributeOperation_indexes_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeOperation_indexes_feature",
+				"_UI_MultiAttributeOperation_type"), OperationsPackage.Literals.MULTI_ATTRIBUTE_OPERATION__INDEXES,
+			true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 
 		switch (notification.getFeatureID(MultiAttributeOperation.class)) {
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEXES:
 		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

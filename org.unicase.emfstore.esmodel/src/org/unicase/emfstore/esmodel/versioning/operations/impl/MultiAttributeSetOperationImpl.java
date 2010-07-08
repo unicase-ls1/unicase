@@ -10,7 +10,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
@@ -296,15 +298,22 @@ public class MultiAttributeSetOperationImpl extends FeatureOperationImpl impleme
 			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
 
 			int i = getIndex();
-			if (i >= 0 && i < list.size()) {
+			if ((i >= 0 && i < list.size()) || (list.size() == 0 && i == 0)) {
 				list.set(i, getNewValue());
-			} else {
-				// TODO or should it be ignored instead of beeing added?
-				list.add(getNewValue());
 			}
 
 		} catch (UnkownFeatureException e) {
 		}
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		MultiAttributeSetOperation attributeOperation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
+		super.reverse(attributeOperation);
+		// swap old and new value
+		attributeOperation.setNewValue(getOldValue());
+		attributeOperation.setOldValue(getNewValue());
+		return attributeOperation;
 	}
 
 } // MultiAttributeSetOperationImpl

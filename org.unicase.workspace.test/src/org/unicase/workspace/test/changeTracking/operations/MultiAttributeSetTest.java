@@ -64,6 +64,29 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 	}
 
 	@Test
+	public void applyValueToEmptyWrongIndexTest() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+
+				assertTrue(testElement.getStrings().size() == 0);
+
+				MultiAttributeSetOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
+				operation.setFeatureName("strings");
+				operation.setIndex(42);
+				operation.setNewValue("inserted");
+				operation.setOldValue(null);
+				operation.setModelElementId(testElement.getModelElementId());
+
+				operation.apply(getProject());
+
+				assertTrue(testElement.getStrings().size() == 0);
+			}
+		}.run();
+	}
+
+	@Test
 	public void applyValueToFilledTest() {
 		new UnicaseCommand() {
 			@Override

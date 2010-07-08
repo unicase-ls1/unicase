@@ -7,11 +7,17 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -389,8 +395,37 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
+		ModelElement modelElement = project.getModelElement(getModelElementId());
+		if (modelElement == null) {
+			// fail silently
+			return;
+		}
+		EReference reference;
+		try {
+			reference = (EReference) this.getFeature(modelElement);
+		} catch (UnkownFeatureException e) {
+			// fail silently
+			return;
+		}
+		Object object = modelElement.eGet(reference);
+		@SuppressWarnings("unchecked")
+		EList<Object> list = (EList<Object>) object;
 
+		int i = getIndex();
+		if (i >= 0 && i < list.size() && !list.contains(getNewValue())) {
+			list.set(i, getNewValue());
+		}
+
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		MultiReferenceSetOperation attributeOperation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
+		super.reverse(attributeOperation);
+		// swap old and new value
+		attributeOperation.setNewValue(getOldValue());
+		attributeOperation.setOldValue(getNewValue());
+		return attributeOperation;
 	}
 
 } // MultiReferenceSetOperationImpl
