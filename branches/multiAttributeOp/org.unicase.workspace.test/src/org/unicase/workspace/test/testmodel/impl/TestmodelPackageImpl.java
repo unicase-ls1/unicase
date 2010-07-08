@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.metamodel.MetamodelPackage;
@@ -119,6 +120,15 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestElement_References() {
+		return (EReference)testElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestmodelFactory getTestmodelFactory() {
 		return (TestmodelFactory)getEFactoryInstance();
 	}
@@ -144,6 +154,7 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 		// Create classes and their features
 		testElementEClass = createEClass(TEST_ELEMENT);
 		createEAttribute(testElementEClass, TEST_ELEMENT__STRINGS);
+		createEReference(testElementEClass, TEST_ELEMENT__REFERENCES);
 	}
 
 	/**
@@ -182,6 +193,7 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 		// Initialize classes and features; add operations and parameters
 		initEClass(testElementEClass, TestElement.class, "TestElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestElement_Strings(), ecorePackage.getEString(), "strings", null, 0, -1, TestElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestElement_References(), this.getTestElement(), null, "references", null, 0, -1, TestElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

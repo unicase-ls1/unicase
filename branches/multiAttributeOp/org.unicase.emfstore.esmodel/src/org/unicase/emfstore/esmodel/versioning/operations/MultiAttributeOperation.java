@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex <em>Index</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndexes <em>Indexes</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getReferencedValues <em>
  * Referenced Values</em>}</li>
  * </ul>
@@ -51,31 +51,20 @@ public interface MultiAttributeOperation extends FeatureOperation {
 	void setAdd(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Index</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Indexes</b></em>' attribute list. The list contents are of type
+	 * {@link java.lang.Integer}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Index</em>' attribute isn't clear, there really should be more of a description
+	 * If the meaning of the '<em>Indexes</em>' attribute list isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Index</em>' attribute.
-	 * @see #setIndex(int)
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeOperation_Index()
+	 * @return the value of the '<em>Indexes</em>' attribute list.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeOperation_Indexes()
 	 * @model
 	 * @generated
 	 */
-	int getIndex();
-
-	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation#getIndex <em>Index</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Index</em>' attribute.
-	 * @see #getIndex()
-	 * @generated
-	 */
-	void setIndex(int value);
+	EList<Integer> getIndexes();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced Values</b></em>' attribute list. The list contents are of type

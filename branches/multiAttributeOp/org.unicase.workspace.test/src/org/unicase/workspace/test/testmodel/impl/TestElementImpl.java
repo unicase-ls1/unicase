@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.unicase.metamodel.impl.ModelElementImpl;
@@ -28,6 +29,7 @@ import org.unicase.workspace.test.testmodel.TestmodelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.workspace.test.testmodel.impl.TestElementImpl#getStrings <em>Strings</em>}</li>
+ *   <li>{@link org.unicase.workspace.test.testmodel.impl.TestElementImpl#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +45,16 @@ public class TestElementImpl extends ModelElementImpl implements TestElement {
 	 * @ordered
 	 */
 	protected EList<String> strings;
+
+	/**
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestElement> references;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,11 +92,25 @@ public class TestElementImpl extends ModelElementImpl implements TestElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TestElement> getReferences() {
+		if (references == null) {
+			references = new EObjectResolvingEList<TestElement>(TestElement.class, this, TestmodelPackage.TEST_ELEMENT__REFERENCES);
+		}
+		return references;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TestmodelPackage.TEST_ELEMENT__STRINGS:
 				return getStrings();
+			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+				return getReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,6 +128,10 @@ public class TestElementImpl extends ModelElementImpl implements TestElement {
 				getStrings().clear();
 				getStrings().addAll((Collection<? extends String>)newValue);
 				return;
+			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+				getReferences().clear();
+				getReferences().addAll((Collection<? extends TestElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -117,6 +147,9 @@ public class TestElementImpl extends ModelElementImpl implements TestElement {
 			case TestmodelPackage.TEST_ELEMENT__STRINGS:
 				getStrings().clear();
 				return;
+			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+				getReferences().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -131,6 +164,8 @@ public class TestElementImpl extends ModelElementImpl implements TestElement {
 		switch (featureID) {
 			case TestmodelPackage.TEST_ELEMENT__STRINGS:
 				return strings != null && !strings.isEmpty();
+			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+				return references != null && !references.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

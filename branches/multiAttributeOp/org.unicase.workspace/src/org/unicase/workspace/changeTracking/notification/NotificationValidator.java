@@ -94,12 +94,12 @@ final class NotificationValidator {
 
 	private void handleMoveNotification(NotificationInfo n) {
 
-		if (n.isAttributeNotification()) {
-			n.setValid(false);
-			n.setValidationMessage("MOVE notification on attribute feature with multiplicty"
-				+ "greater 1 not supported yet!");
-			return;
-		}
+		// if (n.isAttributeNotification()) {
+		// n.setValid(false);
+		// n.setValidationMessage("MOVE notification on attribute feature with multiplicty"
+		// + "greater 1 not supported yet!");
+		// return;
+		// }
 
 		if (n.isReferenceNotification()) {
 			// sanity checks

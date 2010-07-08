@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.metamodel.MetamodelPackage;
 
 /**
@@ -107,13 +108,22 @@ public interface TestmodelPackage extends EPackage {
 	int TEST_ELEMENT__STRINGS = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_ELEMENT__REFERENCES = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Test Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_ELEMENT_FEATURE_COUNT = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_ELEMENT_FEATURE_COUNT = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 
 	/**
@@ -136,6 +146,17 @@ public interface TestmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTestElement_Strings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.workspace.test.testmodel.TestElement#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @see org.unicase.workspace.test.testmodel.TestElement#getReferences()
+	 * @see #getTestElement()
+	 * @generated
+	 */
+	EReference getTestElement_References();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -176,6 +197,14 @@ public interface TestmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEST_ELEMENT__STRINGS = eINSTANCE.getTestElement_Strings();
+
+		/**
+		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_ELEMENT__REFERENCES = eINSTANCE.getTestElement_References();
 
 	}
 

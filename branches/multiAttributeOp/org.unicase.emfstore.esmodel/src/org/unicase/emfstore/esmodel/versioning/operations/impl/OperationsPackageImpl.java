@@ -506,7 +506,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
-	public EAttribute getMultiAttributeOperation_Index() {
+	public EAttribute getMultiAttributeOperation_Indexes() {
 		return (EAttribute) multiAttributeOperationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -899,7 +899,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		multiAttributeOperationEClass = createEClass(MULTI_ATTRIBUTE_OPERATION);
 		createEAttribute(multiAttributeOperationEClass, MULTI_ATTRIBUTE_OPERATION__ADD);
-		createEAttribute(multiAttributeOperationEClass, MULTI_ATTRIBUTE_OPERATION__INDEX);
+		createEAttribute(multiAttributeOperationEClass, MULTI_ATTRIBUTE_OPERATION__INDEXES);
 		createEAttribute(multiAttributeOperationEClass, MULTI_ATTRIBUTE_OPERATION__REFERENCED_VALUES);
 
 		multiAttributeSetOperationEClass = createEClass(MULTI_ATTRIBUTE_SET_OPERATION);
@@ -1074,7 +1074,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getMultiAttributeOperation_Add(), ecorePackage.getEBoolean(), "add", null, 0, 1,
 			MultiAttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiAttributeOperation_Index(), ecorePackage.getEInt(), "index", null, 0, 1,
+		initEAttribute(getMultiAttributeOperation_Indexes(), ecorePackage.getEInt(), "indexes", null, 0, -1,
 			MultiAttributeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMultiAttributeOperation_ReferencedValues(), ecorePackage.getEJavaObject(),
