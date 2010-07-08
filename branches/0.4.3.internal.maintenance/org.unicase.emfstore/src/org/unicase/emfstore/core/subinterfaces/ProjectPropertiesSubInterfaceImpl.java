@@ -68,6 +68,12 @@ public class ProjectPropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterf
 		if ((property.getProject() == null) && (changedProperty.getProject() == null)) {
 			return true;
 		}
+		if (property.getProject() == null) {
+			return false;
+		}
+		if (changedProperty.getProject() == null) {
+			return false;
+		}
 		return (property.getProject().equals(changedProperty.getProject()));
 	}
 
