@@ -15,6 +15,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MEHyperlinkDeleteAdapterTest.class })
+@Suite.SuiteClasses( { MEMultiLinkControlTest.class, MESingleLinkControlTest.class, MEHyperlinkDeleteAdapterTest.class,
+	MEEditorOpenFromDifferentViewsTest.class })
 public class AllMELinkControlTests {
 }
