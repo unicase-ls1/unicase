@@ -264,7 +264,7 @@ public class EMailNotifier implements IApplication {
 	 * @throws EMailNotifierException 
 	 */
 	private static EMailNotifierStore createNPCStore(String npcRepositoryHomeLocation) throws EMailNotifierException {
-		IPath path = Path.fromOSString("file://" + npcRepositoryHomeLocation);
+		IPath path = Path.fromOSString(npcRepositoryHomeLocation);
 		IWorkspaceRoot rootWorkspace = ResourcesPlugin.getWorkspace().getRoot();
 		IFile newFile = rootWorkspace.getFile(path);
 
