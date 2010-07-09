@@ -157,6 +157,8 @@ public class EMailNotifier implements IApplication {
 	}
 	
 	private void createConfigFile(File configFile) throws EMailNotifierException {
+		Activator.log(IStatus.INFO, "Used config file: "+ configFile.toString());
+		
 		// ini file doesn't exist. Create a dummy file.
 		try {
 			if( !configFile.getParentFile().mkdirs() ) {
