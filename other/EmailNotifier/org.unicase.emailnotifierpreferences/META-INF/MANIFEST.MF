@@ -7,9 +7,9 @@ Bundle-Activator: org.unicase.emailnotifierpreferences.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.unicase.ui.common;bundle-version="1.0.0",
- org.unicase.model;bundle-version="1.0.0",
- org.unicase.workspace.ui;bundle-version="1.0.0"
+ org.unicase.ui.common,
+ org.unicase.model,
+ org.unicase.workspace.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.core.databinding.beans
