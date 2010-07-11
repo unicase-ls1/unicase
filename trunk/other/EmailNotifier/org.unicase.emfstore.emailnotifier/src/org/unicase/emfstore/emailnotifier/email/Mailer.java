@@ -5,10 +5,8 @@
  */
 package org.unicase.emfstore.emailnotifier.email;
 
-import java.io.IOException;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
 import javax.mail.Authenticator;
 import javax.mail.IllegalWriteException;
 import javax.mail.Message;
@@ -18,7 +16,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.util.ByteArrayDataSource;
 
 /**
  * Mail Service.
@@ -73,9 +70,9 @@ public class Mailer extends Authenticator {
 	 * @param to email address of the receiver.
 	 * @param subject Subject of message.
 	 * @param msg Message body.
-	 * @return boolean value that indicates whether the email has been sent or not.
+	 * @throws MailNotSendException Mail could not be send.
 	 */
-	public boolean send(String to, String subject, String msg) {
+	public void send(String to, String subject, String msg) throws MailNotSendException {
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setHeader("Content-Type", "UTF-8");
@@ -83,18 +80,15 @@ public class Mailer extends Authenticator {
 			message.setFrom(new InternetAddress(mailerInfo.getSender(), true));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(subject);
-			message.setDataHandler(new DataHandler(new ByteArrayDataSource(msg, "text/html")));
+			message.setContent(msg, "text/html; charset=UTF-8");
 			Transport.send(message);
-			return true;
 
 		} catch (IllegalWriteException e) {
-			return false;
+			throw new MailNotSendException(e.getMessage(), e);
 		} catch (IllegalStateException e) {
-			return false;
+			throw new MailNotSendException(e.getMessage(), e);
 		} catch (MessagingException e) {
-			return false;
-		} catch (IOException e) {
-			return false;
+			throw new MailNotSendException(e.getMessage(), e);
 		}
 	}
 }
