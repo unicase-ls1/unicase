@@ -420,12 +420,13 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	@Override
 	public AbstractOperation reverse() {
-		MultiReferenceSetOperation attributeOperation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
-		super.reverse(attributeOperation);
+		MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
+		super.reverse(operation);
+		operation.setIndex(getIndex());
 		// swap old and new value
-		attributeOperation.setNewValue(getOldValue());
-		attributeOperation.setOldValue(getNewValue());
-		return attributeOperation;
+		operation.setNewValue(getOldValue());
+		operation.setOldValue(getNewValue());
+		return operation;
 	}
 
 } // MultiReferenceSetOperationImpl

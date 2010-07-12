@@ -298,8 +298,12 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	public AbstractOperation reverse() {
-		// TODO Auto-generated method stub
-		return super.reverse();
+		MultiAttributeOperation operation = OperationsFactoryImpl.eINSTANCE.createMultiAttributeOperation();
+		super.reverse(operation);
+		operation.setAdd(!isAdd());
+		operation.getReferencedValues().addAll(getReferencedValues());
+		operation.getIndexes().addAll(getIndexes());
+		return operation;
 	}
 
 } // MultiAttributeOperationImpl
