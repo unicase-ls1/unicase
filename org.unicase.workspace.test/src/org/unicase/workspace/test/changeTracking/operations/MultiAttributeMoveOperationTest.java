@@ -64,4 +64,35 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 			}
 		}.run();
 	}
+
+	@Test
+	public void moveAndReverseTest() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+				testElement.getStrings().add("first");
+				testElement.getStrings().add("second");
+
+				getProjectSpace().getOperations().clear();
+
+				assertTrue(testElement.getStrings().size() == 2);
+				assertTrue(testElement.getStrings().get(0).equals("first"));
+				assertTrue(testElement.getStrings().get(1).equals("second"));
+
+				testElement.getStrings().move(0, 1);
+
+				assertTrue(testElement.getStrings().size() == 2);
+				assertTrue(testElement.getStrings().get(0).equals("second"));
+				assertTrue(testElement.getStrings().get(1).equals("first"));
+
+				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
+				operation.apply(getProject());
+
+				assertTrue(testElement.getStrings().size() == 2);
+				assertTrue(testElement.getStrings().get(0).equals("first"));
+				assertTrue(testElement.getStrings().get(1).equals("second"));
+			}
+		}.run();
+	}
 }

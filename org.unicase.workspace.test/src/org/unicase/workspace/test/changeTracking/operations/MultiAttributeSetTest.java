@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.junit.Test;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.workspace.test.WorkspaceTest;
@@ -24,9 +25,10 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				TestElement element = getTestElement();
+				element.getStrings().add("oldValue");
 				clearOperations();
 
-				assertTrue(element.getStrings().size() == 0);
+				assertTrue(element.getStrings().size() == 1);
 
 				element.getStrings().set(0, "settedValue");
 
@@ -45,14 +47,14 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
-
-				assertTrue(testElement.getStrings().size() == 0);
+				testElement.getStrings().add("oldValue");
+				assertTrue(testElement.getStrings().size() == 1);
 
 				MultiAttributeSetOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
 				operation.setFeatureName("strings");
 				operation.setIndex(0);
 				operation.setNewValue("inserted");
-				operation.setOldValue(null);
+				operation.setOldValue("oldValue");
 				operation.setModelElementId(testElement.getModelElementId());
 
 				operation.apply(getProject());
@@ -69,19 +71,20 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
-
-				assertTrue(testElement.getStrings().size() == 0);
+				testElement.getStrings().add("oldValue");
+				assertTrue(testElement.getStrings().size() == 1);
 
 				MultiAttributeSetOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
 				operation.setFeatureName("strings");
 				operation.setIndex(42);
 				operation.setNewValue("inserted");
-				operation.setOldValue(null);
+				operation.setOldValue("oldValue");
 				operation.setModelElementId(testElement.getModelElementId());
 
 				operation.apply(getProject());
 
-				assertTrue(testElement.getStrings().size() == 0);
+				assertTrue(testElement.getStrings().size() == 1);
+				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
 			}
 		}.run();
 	}
@@ -108,6 +111,32 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(0).equals("first"));
 				assertTrue(testElement.getStrings().get(1).equals("inserted"));
 				assertTrue(testElement.getStrings().get(2).equals("third"));
+			}
+		}.run();
+	}
+
+	@Test
+	public void setAndReverseTest() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+				testElement.getStrings().add("oldValue");
+
+				getProjectSpace().getOperations().clear();
+				assertTrue(testElement.getStrings().size() == 1);
+				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
+
+				testElement.getStrings().set(0, "newValue");
+
+				assertTrue(testElement.getStrings().size() == 1);
+				assertTrue(testElement.getStrings().get(0).equals("newValue"));
+
+				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
+				operation.apply(getProject());
+
+				assertTrue(testElement.getStrings().size() == 1);
+				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
 			}
 		}.run();
 	}

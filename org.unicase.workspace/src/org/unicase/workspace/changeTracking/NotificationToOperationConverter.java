@@ -228,7 +228,7 @@ public final class NotificationToOperationConverter {
 
 			MultiAttributeSetOperation setOperation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
 			setCommonValues(setOperation, n.getNotifierModelElement());
-
+			setOperation.setFeatureName(n.getAttribute().getName());
 			setOperation.setNewValue(n.getNewValue());
 			setOperation.setOldValue(n.getOldValue());
 			setOperation.setIndex(n.getPosition());

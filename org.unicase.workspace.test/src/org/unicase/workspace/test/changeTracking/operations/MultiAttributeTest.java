@@ -185,27 +185,30 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run();
 	}
 
-	// TODO
 	@Test
-	public void test() {
+	public void removeAndReverseTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
 				testElement.getStrings().add("first");
 				testElement.getStrings().add("second");
-				testElement.getStrings().add("third");
 
-				System.out.println(testElement.getStrings());
-
+				assertTrue(testElement.getStrings().size() == 2);
+				assertTrue(testElement.getStrings().get(0).equals("first"));
+				assertTrue(testElement.getStrings().get(1).equals("second"));
 				getProjectSpace().getOperations().clear();
 
-				// testElement.getStrings().removeAll(Arrays.asList("first", "third"));
-				testElement.getStrings().move(0, 2);
+				testElement.getStrings().remove("second");
+				assertTrue(testElement.getStrings().size() == 1);
+				assertTrue(testElement.getStrings().get(0).equals("first"));
 
-				System.out.println(testElement.getStrings());
-				plotOperations();
+				AbstractOperation ao = getProjectSpace().getOperations().get(0).reverse();
+				ao.apply(getProject());
 
+				assertTrue(testElement.getStrings().size() == 2);
+				assertTrue(testElement.getStrings().get(0).equals("first"));
+				assertTrue(testElement.getStrings().get(1).equals("second"));
 			}
 		}.run();
 	}
