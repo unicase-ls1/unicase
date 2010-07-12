@@ -84,7 +84,7 @@ public class UseCaseStepsControlTest extends MEEditorTest {
 		};
 		runAsnc(widgetActivateCommand);
 
-		String check = getBot().activeEditor().bot().text(1).getText();
+		String check = getBot().activeEditor().bot().text(3).getText();
 		getBot().activeEditor().bot().styledText(1).typeText("Hello actor step");
 		assertEquals("new Step", check);
 		new UnicaseCommand() {
@@ -125,7 +125,7 @@ public class UseCaseStepsControlTest extends MEEditorTest {
 			}
 		};
 		runAsnc(somecommand);
-		String check = getBot().activeEditor().bot().text(1).getText();
+		String check = getBot().activeEditor().bot().text(3).getText();
 		String check2 = getBot().activeEditor().bot().styledText(1).getText();
 		assertEquals("Not new", check);
 		assertEquals("working in description part!", check2);
@@ -157,7 +157,7 @@ public class UseCaseStepsControlTest extends MEEditorTest {
 			}
 		};
 		runAsnc(somecommand);
-		String check = getBot().activeEditor().bot().text(1).getText();
+		String check = getBot().activeEditor().bot().text(3).getText();
 		String check2 = getBot().activeEditor().bot().styledText(1).getText();
 		assertEquals("System step", check);
 		assertEquals("System steps description", check2);
@@ -198,7 +198,7 @@ public class UseCaseStepsControlTest extends MEEditorTest {
 		};
 		runAsnc(widgetActivateCommand);
 
-		String check = getBot().activeEditor().bot().text(1).getText();
+		String check = getBot().activeEditor().bot().text(3).getText();
 		getBot().activeEditor().bot().styledText(1).typeText("Hello system step");
 		assertEquals("new Step", check);
 		getBot().activeEditor().bot().text(1).setText("changed the name of system step");
