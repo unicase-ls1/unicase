@@ -6,7 +6,7 @@ This site contains releases and nightly builds of the ECP. Currently there are o
 
 The ECP features can be installed from this update site:
 
-*bold* Please note, the the ECP installation is not compatible with the latest nightly EMFStore Release. *bold*
+*Please note, the the ECP installation is not compatible with the latest nightly EMFStore Release.*
 
 [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
 
