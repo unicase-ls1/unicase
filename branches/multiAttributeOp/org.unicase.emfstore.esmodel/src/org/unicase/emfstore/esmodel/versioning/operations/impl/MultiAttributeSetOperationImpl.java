@@ -298,10 +298,9 @@ public class MultiAttributeSetOperationImpl extends FeatureOperationImpl impleme
 			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
 
 			int i = getIndex();
-			if ((i >= 0 && i < list.size()) || (list.size() == 0 && i == 0)) {
+			if ((i >= 0 && i < list.size())) {
 				list.set(i, getNewValue());
 			}
-
 		} catch (UnkownFeatureException e) {
 		}
 	}
