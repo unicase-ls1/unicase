@@ -10,7 +10,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.metamodel.ModelElement;
@@ -291,12 +293,30 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 			return;
 		}
 
+		if (getNewIndex() < 0 || getOldIndex() < 0) {
+			return;
+		}
+
 		EAttribute feature;
 		try {
 			feature = (EAttribute) getFeature(modelElement);
 			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
+			if (list.size() > getOldIndex() && list.size() > getNewIndex()) {
+				list.move(getNewIndex(), getOldIndex());
+			}
+
 		} catch (UnkownFeatureException e) {
 		}
+	}
+
+	@Override
+	public AbstractOperation reverse() {
+		MultiAttributeMoveOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation();
+		super.reverse(operation);
+		operation.setNewIndex(getOldIndex());
+		operation.setOldIndex(getNewIndex());
+		operation.setReferencedValue(getReferencedValue());
+		return operation;
 	}
 
 } // MultiAttributeMoveOperationImpl

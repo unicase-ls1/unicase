@@ -203,7 +203,7 @@ public final class NotificationToOperationConverter {
 		setCommonValues(operation, n.getNotifierModelElement());
 		operation.setFeatureName(n.getAttribute().getName());
 		operation.setNewIndex(n.getPosition());
-		operation.setOldIndex(n.getOldIntValue());
+		operation.setOldIndex((Integer) n.getOldValue());
 		operation.setReferencedValue(n.getNewValue());
 		return operation;
 	}

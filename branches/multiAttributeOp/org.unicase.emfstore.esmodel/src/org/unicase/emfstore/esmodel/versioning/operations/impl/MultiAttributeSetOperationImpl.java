@@ -310,6 +310,7 @@ public class MultiAttributeSetOperationImpl extends FeatureOperationImpl impleme
 	public AbstractOperation reverse() {
 		MultiAttributeSetOperation attributeOperation = OperationsFactory.eINSTANCE.createMultiAttributeSetOperation();
 		super.reverse(attributeOperation);
+		attributeOperation.setIndex(getIndex());
 		// swap old and new value
 		attributeOperation.setNewValue(getOldValue());
 		attributeOperation.setOldValue(getNewValue());
