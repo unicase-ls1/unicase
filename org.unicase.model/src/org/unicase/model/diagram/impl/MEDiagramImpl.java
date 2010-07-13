@@ -250,7 +250,8 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
+	 * @return the type
 	 */
 	public String getType() {
 		// TODO: implement this method

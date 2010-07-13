@@ -60,6 +60,17 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	}
 
 	/**
+	 * Initialize the cache after restart.
+	 */
+	public void initializeCache() {
+		if (projectSpace != null && projectSpace.getOperations() != null) {
+			for (AbstractOperation abstractOperation : projectSpace.getOperations()) {
+				operationExecuted(abstractOperation);
+			}
+		}
+	}
+
+	/**
 	 * If this model element has been modified.
 	 * 
 	 * @param modelElementId model element id

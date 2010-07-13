@@ -36,18 +36,20 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
@@ -59,6 +61,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -92,6 +95,66 @@ import org.unicase.workspace.util.ProjectSpaceContainer;
 public class HistoryBrowserView extends ViewPart implements ProjectSpaceContainer {
 
 	/**
+	 * Treeviewer that provides a model element selection for selected operations and mode element ids.
+	 * 
+	 * @author koegel
+	 */
+	private final class TreeViewerWithModelElementSelectionProvider extends TreeViewer {
+		private TreeViewerWithModelElementSelectionProvider(Composite parent, int style) {
+			super(parent, style);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.viewers.AbstractTreeViewer#getSelection()
+		 */
+		@Override
+		public ISelection getSelection() {
+			Control control = getControl();
+			if (control == null || control.isDisposed()) {
+				return super.getSelection();
+			}
+			Widget[] items = getSelection(getControl());
+
+			if (items.length != 1) {
+				return super.getSelection();
+			}
+			Widget item = items[0];
+			Object data = item.getData();
+			if (data == null || !(data instanceof TreeNode)) {
+				return super.getSelection();
+			}
+			TreeNode node = (TreeNode) data;
+			if (node.getValue() == null) {
+				return super.getSelection();
+			}
+			// now we know that one tree node is selected with a non null value
+			Object element = node.getValue();
+			ModelElement selectedModelElement = null;
+			if (element instanceof ModelElement) {
+				ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
+				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
+				return new StructuredSelection(selectedModelElement);
+			} else if (element instanceof CompositeOperation) {
+				CompositeOperation comop = (CompositeOperation) element;
+				AbstractOperation mainOperation = comop.getMainOperation();
+				if (mainOperation != null) {
+					ModelElementId modelElementId = mainOperation.getModelElementId();
+					selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
+					return new StructuredSelection(selectedModelElement);
+				}
+			} else if (element instanceof AbstractOperation) {
+				ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
+				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
+				return new StructuredSelection(selectedModelElement);
+			}
+			return super.getSelection();
+
+		}
+	}
+
+	/**
 	 * Provides popup menu for versions.
 	 * 
 	 * @author shterevg
@@ -102,18 +165,19 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo
-					&& ((HistoryInfo) node.getValue()).getChangePackage() != null
-					&& ((HistoryInfo) node.getValue()).getChangePackage().getLogMessage() != null) {
-					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
-					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-						manager.add(addTagAction);
-						manager.add(removeTagAction);
-						manager.add(new Separator());
-					} catch (AccessControlException e) {
-						// do nothing
-						System.out.println("");
+				if (node.getValue() instanceof HistoryInfo) {
+					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
+					if (historyInfo.getChangePackage() != null
+						&& (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)) {
+						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
+						try {
+							helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
+							manager.add(addTagAction);
+							manager.add(removeTagAction);
+							manager.add(new Separator());
+						} catch (AccessControlException e) {
+							// do nothing
+						}
 					}
 
 				}
@@ -126,7 +190,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 						manager.add(forceRevertAction);
 					} catch (AccessControlException e) {
 						// do nothing
-						System.out.println("");
 					}
 				}
 			}
@@ -176,6 +239,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 	private int startOffset = 24;
 
+	/**
+	 * this should be the UNRESOLVED VersionSpec ID (-1 for HeadVersionSpec).
+	 */
 	private int currentEnd;
 
 	private int headVersion;
@@ -231,9 +297,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, true).applyTo(noProjectHint);
 		noProjectHint.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
-		viewer = new TreeViewer(parent, SWT.NONE) {
-
-		};
+		viewer = new TreeViewerWithModelElementSelectionProvider(parent, SWT.NONE);
 
 		getSite().setSelectionProvider(viewer);
 
@@ -245,8 +309,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				if (event.getSelection() instanceof IStructuredSelection) {
 					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID,
-							new EMFStoreModelelementContext((ModelElement) node.getValue()));
+						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -576,8 +639,14 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		getHeadVersionIdentifier();
 		if (end == -1) {
 			end = headVersion;
-			currentEnd = headVersion;
+			currentEnd = -1;
+		} else {
+			currentEnd = end;
+			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			tempVersionSpec.setIdentifier(end);
+			end = projectSpace.resolveVersionSpec(tempVersionSpec).getIdentifier();
 		}
+
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 

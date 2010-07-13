@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * 
  * @author helming
  */
-public abstract class ModelElementContext {
+public abstract class ModelElementContext implements ECPModelelementContext {
 
 	private Set<ModelElementContextListener> modelElementContextListeners = new HashSet<ModelElementContextListener>();
 
@@ -109,7 +109,7 @@ public abstract class ModelElementContext {
 	 * @return if the {@link EObject} is contained in the context
 	 */
 	public abstract boolean contains(EObject eObject);
-	
+
 	/**
 	 * Called if the context is not used anymore. Use for cleanup.
 	 */
