@@ -16,8 +16,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -145,6 +149,45 @@ public class OperationsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: {
+			MultiAttributeOperation multiAttributeOperation = (MultiAttributeOperation) theEObject;
+			T result = caseMultiAttributeOperation(multiAttributeOperation);
+			if (result == null)
+				result = caseFeatureOperation(multiAttributeOperation);
+			if (result == null)
+				result = caseAbstractOperation(multiAttributeOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiAttributeOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION: {
+			MultiAttributeSetOperation multiAttributeSetOperation = (MultiAttributeSetOperation) theEObject;
+			T result = caseMultiAttributeSetOperation(multiAttributeSetOperation);
+			if (result == null)
+				result = caseFeatureOperation(multiAttributeSetOperation);
+			if (result == null)
+				result = caseAbstractOperation(multiAttributeSetOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiAttributeSetOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: {
+			MultiAttributeMoveOperation multiAttributeMoveOperation = (MultiAttributeMoveOperation) theEObject;
+			T result = caseMultiAttributeMoveOperation(multiAttributeMoveOperation);
+			if (result == null)
+				result = caseFeatureOperation(multiAttributeMoveOperation);
+			if (result == null)
+				result = caseAbstractOperation(multiAttributeMoveOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiAttributeMoveOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case OperationsPackage.SINGLE_REFERENCE_OPERATION: {
 			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) theEObject;
 			T result = caseSingleReferenceOperation(singleReferenceOperation);
@@ -171,6 +214,21 @@ public class OperationsSwitch<T> {
 				result = caseAbstractOperation(multiReferenceOperation);
 			if (result == null)
 				result = caseIdentifiableElement(multiReferenceOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION: {
+			MultiReferenceSetOperation multiReferenceSetOperation = (MultiReferenceSetOperation) theEObject;
+			T result = caseMultiReferenceSetOperation(multiReferenceSetOperation);
+			if (result == null)
+				result = caseReferenceOperation(multiReferenceSetOperation);
+			if (result == null)
+				result = caseFeatureOperation(multiReferenceSetOperation);
+			if (result == null)
+				result = caseAbstractOperation(multiReferenceSetOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiReferenceSetOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -315,6 +373,48 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiAttributeOperation(MultiAttributeOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Set Operation</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Set Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiAttributeSetOperation(MultiAttributeSetOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Move Operation</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Move Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Operation</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -339,6 +439,20 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseMultiReferenceOperation(MultiReferenceOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Reference Set Operation</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Reference Set Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiReferenceSetOperation(MultiReferenceSetOperation object) {
 		return null;
 	}
 
