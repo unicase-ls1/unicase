@@ -47,6 +47,32 @@ public interface OperationsFactory extends EFactory {
 	AttributeOperation createAttributeOperation();
 
 	/**
+	 * Returns a new object of class '<em>Multi Attribute Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Multi Attribute Operation</em>'.
+	 * @generated
+	 */
+	MultiAttributeOperation createMultiAttributeOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Attribute Set Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return a new object of class '<em>Multi Attribute Set Operation</em>'.
+	 * @generated
+	 */
+	MultiAttributeSetOperation createMultiAttributeSetOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Multi Attribute Move Operation</em>'.
+	 * @generated
+	 */
+	MultiAttributeMoveOperation createMultiAttributeMoveOperation();
+
+	/**
 	 * Returns a new object of class '<em>Single Reference Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -62,6 +88,15 @@ public interface OperationsFactory extends EFactory {
 	 * @generated
 	 */
 	MultiReferenceOperation createMultiReferenceOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Reference Set Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return a new object of class '<em>Multi Reference Set Operation</em>'.
+	 * @generated
+	 */
+	MultiReferenceSetOperation createMultiReferenceSetOperation();
 
 	/**
 	 * Returns a new object of class '<em>Multi Reference Move Operation</em>'. <!-- begin-user-doc --> <!--
