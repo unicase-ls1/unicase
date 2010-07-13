@@ -95,7 +95,7 @@ public class EMailNotifierPage extends PropertyPage {
 			new BasicEList<User>());
 		currentUser = null;
 		for (User u : listOfUsers) {
-			if (u.getAcOrgId().equals(userid.getId())) {
+			if (u.getAcOrgId() != null && u.getAcOrgId().equals(userid.getId())) {
 				currentUser = u;
 			}
 		}
