@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -410,9 +411,13 @@ public final class ModelUtil {
 	 */
 	public static Set<EClass> getAllSubEClasses(EClass eClass) {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
+		if (EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
+			return allEClasses;
+		}
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass);
+			if (isSuperTypeOf && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
@@ -780,6 +785,73 @@ public final class ModelUtil {
 		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(eObject);
 		saveObjectToResource(list, resourceURI);
+	}
+
+	/**
+	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a error string which will
+	 * be added to the errorStrings list. After the return from the method to the caller the return value contains the
+	 * loaded EObjects.
+	 * 
+	 * @param resource contains the items which should be loaded.
+	 * @param errorStrings contains all messages about items which couldn't be loaded by the method.
+	 * @return Set with the loaded an valid EObjects
+	 */
+	public static Set<EObject> loadFromResource(Resource resource, List<String> errorStrings) {
+		Set<EObject> result = new HashSet<EObject>();
+
+		result = validation(resource, errorStrings);
+
+		return result;
+	}
+
+	// Validates if the EObjects can be imported
+	private static Set<EObject> validation(Resource resource, List<String> errorStrings) {
+		Set<EObject> childrenSet = new HashSet<EObject>();
+		Set<EObject> rootNodes = new HashSet<EObject>();
+
+		TreeIterator<EObject> contents = resource.getAllContents();
+
+		// 1. Run: Put all children in set
+		while (contents.hasNext()) {
+			EObject content = contents.next();
+
+			if (!(content instanceof ModelElement)) {
+				errorStrings.add(content + " is not a org.unicase.metamodel.ModelElement\n");
+				continue;
+			}
+
+			childrenSet.addAll(content.eContents());
+
+		}
+
+		contents = resource.getAllContents();
+
+		// 2. Run: Check if RootNodes are children -> set.contains(RootNode) -- no: RootNode in rootNode-Set -- yes:
+		// Drop RootNode, will be imported as a child
+		while (contents.hasNext()) {
+			EObject content = contents.next();
+
+			if (!(content instanceof ModelElement)) {
+				// No report to errorStrings, because Run 1 will do this
+				continue;
+			}
+
+			if (!childrenSet.contains(content)) {
+				rootNodes.add(content);
+			}
+		}
+
+		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
+		Set<EObject> notSelfContained = new HashSet<EObject>();
+		for (EObject rootNode : rootNodes) {
+			if (!ModelUtil.isSelfContained(rootNode)) {
+				errorStrings.add(rootNode + " is not self contained\n");
+				notSelfContained.add(rootNode);
+			}
+		}
+		rootNodes.removeAll(notSelfContained);
+
+		return rootNodes;
 	}
 
 	/**

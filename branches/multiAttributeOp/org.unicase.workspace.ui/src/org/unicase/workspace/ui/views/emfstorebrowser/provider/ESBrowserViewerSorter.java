@@ -12,13 +12,15 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.workspace.ServerInfo;
 
 /**
- * Sort alphabetically the repository browser viewer
+ * Sort alphabetically the repository browser viewer.
  * 
  * @author shterev
- * 
  */
 public class ESBrowserViewerSorter extends ViewerSorter {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int compare(Viewer viewer, Object o1, Object o2) {
 		if (o1 instanceof TreeNode && o2 instanceof TreeNode) {
@@ -26,11 +28,10 @@ public class ESBrowserViewerSorter extends ViewerSorter {
 			Object node2 = ((TreeNode) o2).getValue();
 			if (node1 instanceof ServerInfo && node2 instanceof ServerInfo) {
 				return ((ServerInfo) node1).getName().toLowerCase().compareTo(
-						((ServerInfo) node2).getName().toLowerCase());
-			} else if (node1 instanceof ProjectInfo
-					&& node2 instanceof ProjectInfo) {
+					((ServerInfo) node2).getName().toLowerCase());
+			} else if (node1 instanceof ProjectInfo && node2 instanceof ProjectInfo) {
 				return ((ProjectInfo) node1).getName().toLowerCase().compareTo(
-						((ProjectInfo) node2).getName().toLowerCase());
+					((ProjectInfo) node2).getName().toLowerCase());
 			}
 		}
 

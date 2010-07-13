@@ -42,31 +42,25 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 	 * Command for checkout.
 	 * 
 	 * @author koegel
-	 * 
 	 */
 	private final class CheckoutCommand extends UnicaseCommand {
 
 		@Override
 		protected void doRun() {
-			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getShell());
+			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell());
 			try {
 				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask(
-						"Checkout project...", IProgressMonitor.UNKNOWN);
-				ProjectSpace projectSpace = serverInfo.getLastUsersession()
-						.checkout(projectInfo);
-				WorkspaceUtil.logCheckout(projectSpace, projectSpace
-						.getBaseVersion());
+				progressDialog.getProgressMonitor().beginTask("Checkout project...", IProgressMonitor.UNKNOWN);
+				ProjectSpace projectSpace = serverInfo.getLastUsersession().checkout(projectInfo);
+				WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
 				ActionHelper.openDashboard(projectSpace);
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				DialogHandler.showExceptionDialog(e);
-				WorkspaceUtil.logWarning("RuntimeException in "
-						+ ESBrowserView.class.getName(), e);
+				WorkspaceUtil.logWarning("RuntimeException in " + ESBrowserView.class.getName(), e);
 				// END SUPRESS CATCH EXCEPTION
 			} finally {
 				progressDialog.getProgressMonitor().done();
@@ -75,11 +69,12 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		TreeNode node = (TreeNode) obj;
 		projectInfo = (ProjectInfo) node.getValue();
@@ -88,8 +83,7 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 		new CheckoutCommand().run();
 
 		// open the navigator if closed
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		String viewId = "org.unicase.ui.navigator.viewer";
 		try {
 			page.showView(viewId);

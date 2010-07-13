@@ -23,13 +23,13 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.ECPModelelementContext;
 import org.unicase.ui.common.ModelElementContext;
 
 /**
  * Abstract Dialog as pattern for all dialogs which show ModelElements for selection.
  * 
  * @author mkagel
- *
  */
 public abstract class ModelElementSelectionDialog extends FilteredItemsSelectionDialog {
 
@@ -40,46 +40,47 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 
 	private ILabelProvider labelProvider;
 	private Collection<EObject> modelElements;
-		
+
 	/**
 	 * Constructor which calls another constructor with parameter false for multiple selection of elements.
 	 */
 	public ModelElementSelectionDialog() {
 		this(false);
 	}
-	
+
 	/**
 	 * Contructor which calls another constructor with project parameter and false for multiple selection of elements.
 	 * 
 	 * @param context the context
 	 */
-	public ModelElementSelectionDialog(ModelElementContext context) {
+	public ModelElementSelectionDialog(ECPModelelementContext context) {
 		this(context, false);
 	}
-	
+
 	/**
-	 * Constructor which calls another constructor with null for project paramter (modelelemnts will be set from outside)
-	 * and the given multiSelection behaviour.
+	 * Constructor which calls another constructor with null for project paramter (modelelemnts will be set from
+	 * outside) and the given multiSelection behaviour.
 	 * 
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
 	public ModelElementSelectionDialog(boolean multiSelection) {
-		this(null, multiSelection);	
+		this(null, multiSelection);
 	}
-	
+
 	/**
-	 * Main-Constructor, here will be done the main work. 
-	 *  
-	 * @param context The context from where the modelelements come from, is null if no context is set an the modelelements come from outside the dialog
+	 * Main-Constructor, here will be done the main work.
+	 * 
+	 * @param context The context from where the modelelements come from, is null if no context is set an the
+	 *            modelelements come from outside the dialog
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
-	public ModelElementSelectionDialog(ModelElementContext context, boolean multiSelection) {
+	public ModelElementSelectionDialog(ECPModelelementContext context, boolean multiSelection) {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), multiSelection);
-	
-		if(context != null) {
+
+		if (context != null) {
 			modelElements = context.getAllModelElements();
 		}
-		
+
 		setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		this.setListLabelProvider(getLabelProvider());
@@ -88,12 +89,12 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 		this.setBlockOnOpen(true);
 		this.setTitle(DIALOG_TITLE);
 		this.setMessage(DIALOG_MESSAGE);
-		this.setInitialPattern(DIALOG_INITIAL_PATTERN);	
+		this.setInitialPattern(DIALOG_INITIAL_PATTERN);
 	}
-	
-	
+
 	/**
-	 * Constructor which calls another constructor and sets the modelElements-Collection of the dialog only to a specified class type.
+	 * Constructor which calls another constructor and sets the modelElements-Collection of the dialog only to a
+	 * specified class type.
 	 * 
 	 * @param context from where the modelelements come from
 	 * @param classType which should be shown in the dialog
@@ -103,7 +104,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 		this(multiSelection);
 		modelElements = context.getAllModelElementsbyClass(classType, new BasicEList<EObject>());
 	}
-	
+
 	/**
 	 * Constructor which calls another constructor.
 	 * 
@@ -113,8 +114,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	public ModelElementSelectionDialog(ModelElementContext context, EClass classType) {
 		this(context, classType, false);
 	}
-	
-	
+
 	/**
 	 * Sets the labelProvider.
 	 * 
@@ -123,7 +123,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
 	}
-	
+
 	/**
 	 * Returns the LabelProvider for this class.
 	 * 
@@ -132,7 +132,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	public ILabelProvider getLabelProvider() {
 		return labelProvider;
 	}
-	
+
 	/**
 	 * Returns the ModelElement-Collection which contains the modelelements shown in the dialog.
 	 * 
@@ -141,16 +141,17 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	public Collection<EObject> getModelElements() {
 		return modelElements;
 	}
-	
+
 	/**
-	 * Set the ModelElement-Collection from outside. Necessary if the collection is not set by the dialog but coms from the caller.
+	 * Set the ModelElement-Collection from outside. Necessary if the collection is not set by the dialog but coms from
+	 * the caller.
 	 * 
 	 * @param modelElements Collection which modelelements which will be shown in the dialog
 	 */
 	public void setModelElements(Collection<EObject> modelElements) {
 		this.modelElements = modelElements;
 	}
-	
+
 	/**
 	 * Does nothing.
 	 * 
@@ -186,7 +187,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 		progressMonitor.beginTask("Searching", modelElements.size());
 		for (EObject modelElement : modelElements) {
 			contentProvider.add(modelElement, itemsFilter);
-			progressMonitor.worked(1);			
+			progressMonitor.worked(1);
 		}
 		progressMonitor.done();
 	}
@@ -244,8 +245,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	protected IStatus validateItem(Object item) {
 		return Status.OK_STATUS;
 	}
-	
-	
+
 	/**
 	 * A filter class for model elements.
 	 * 
@@ -282,6 +282,5 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 		}
 
 	}
-
 
 }

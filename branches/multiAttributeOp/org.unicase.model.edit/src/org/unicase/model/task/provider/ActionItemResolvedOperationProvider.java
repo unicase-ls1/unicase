@@ -5,8 +5,8 @@
  */
 package org.unicase.model.task.provider;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider;
+import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
@@ -16,17 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOpera
  * 
  * @author Michael Kagel
  */
-public class ActionItemResolvedOperationProvider extends AbstractOperationItemProvider implements
-	AbstractOperationCustomLabelProvider {
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param adapterFactory for necessary methods for getting modelElement names
-	 */
-	public ActionItemResolvedOperationProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+public class ActionItemResolvedOperationProvider implements AbstractOperationCustomLabelProvider {
 
 	/**
 	 * Checks if the attributeOperation is a resolved or unresolved operation, if this is true the method returns 1
@@ -55,9 +45,10 @@ public class ActionItemResolvedOperationProvider extends AbstractOperationItemPr
 		AttributeOperation attOp = (AttributeOperation) operation;
 
 		if ((Boolean) attOp.getNewValue()) {
-			return "Resolved " + getModelElementClassAndName((attOp.getModelElementId()));
+			return "Resolved " + AbstractOperationItemProvider.getModelElementClassAndName((attOp.getModelElementId()));
 		} else {
-			return "Unresolved " + getModelElementClassAndName((attOp.getModelElementId()));
+			return "Unresolved "
+				+ AbstractOperationItemProvider.getModelElementClassAndName((attOp.getModelElementId()));
 		}
 	}
 
@@ -67,7 +58,7 @@ public class ActionItemResolvedOperationProvider extends AbstractOperationItemPr
 	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#getImage(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
 	public Object getImage(AbstractOperation operation) {
-		return getResourceLocator().getImage("full/obj16/AttributeOperation.png");
+		return EsmodelEditPlugin.INSTANCE.getImage("full/obj16/AttributeOperation.png");
 	}
 
 }

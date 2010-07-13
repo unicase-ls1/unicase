@@ -18,8 +18,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Rectangle;
@@ -47,7 +47,6 @@ import org.unicase.workspace.util.UnicaseCommand;
  * Creates a new login dialog.
  * 
  * @author shterev
- * 
  */
 public class LoginDialog extends TitleAreaDialog {
 
@@ -64,12 +63,12 @@ public class LoginDialog extends TitleAreaDialog {
 	private Button savePassButton;
 	protected boolean backspace;
 	private boolean isPasswordModified = false;
+	private String exception;
 
 	private LoginDialog(Shell parent) {
 		super(parent);
 		setBlockOnOpen(true);
-		this.currentWorkspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		this.currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 	}
 
 	@Override
@@ -77,17 +76,14 @@ public class LoginDialog extends TitleAreaDialog {
 		super.configureShell(newShell);
 		newShell.setSize(500, 350);
 		Rectangle clientArea = Display.getCurrent().getClientArea();
-		newShell.setLocation(clientArea.width / 2 - 250,
-				clientArea.height / 2 - 200);
+		newShell.setLocation(clientArea.width / 2 - 250, clientArea.height / 2 - 200);
 	}
 
 	/**
-	 * Default constructor - initialized with a usersession. This dialog will
-	 * try to log on the server using the specified usersession. Adding or
-	 * choosing a new session is not permitted.
+	 * Default constructor - initialized with a usersession. This dialog will try to log on the server using the
+	 * specified usersession. Adding or choosing a new session is not permitted.
 	 * 
-	 * @param parentShell
-	 *            the parent shell.
+	 * @param parentShell the parent shell.
 	 */
 	public LoginDialog(Shell parentShell, Usersession usersession) {
 		this(parentShell);
@@ -97,11 +93,9 @@ public class LoginDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * This dialog will show all saved usersessions for this ServerInfo.
-	 * Creating or deleting usersessions is allowed.
+	 * This dialog will show all saved usersessions for this ServerInfo. Creating or deleting usersessions is allowed.
 	 * 
-	 * @param parentShell
-	 *            the parent shell.
+	 * @param parentShell the parent shell.
 	 */
 	public LoginDialog(Shell parentShell, ServerInfo pServerInfo) {
 		this(parentShell);
@@ -127,8 +121,7 @@ public class LoginDialog extends TitleAreaDialog {
 	}
 
 	private Usersession createNewSession() {
-		final Usersession session = WorkspaceFactory.eINSTANCE
-				.createUsersession();
+		final Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
 		session.setUsername(NEW_SESSION_NAME);
 		new UnicaseCommand() {
 			@Override
@@ -149,21 +142,20 @@ public class LoginDialog extends TitleAreaDialog {
 
 		contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 10).applyTo(
-				contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(10, 10).applyTo(contents);
+		if (exception != null) {
+			setErrorMessage(exception);
+		}
 
 		getShell().setText("Authentication required");
 		setTitle("Log in");
 		setMessage("Please enter your username and password");
-		setTitleImage(Activator.getImageDescriptor("icons/login_icon.png")
-				.createImage());
+		setTitleImage(Activator.getImageDescriptor("icons/login_icon.png").createImage());
 
 		if (!singleSession) {
 			Composite sessionsComposite = new Composite(contents, SWT.NONE);
-			GridLayoutFactory.fillDefaults().margins(0, 0).spacing(0, 0)
-					.applyTo(sessionsComposite);
-			GridDataFactory.fillDefaults().grab(false, true).applyTo(
-					sessionsComposite);
+			GridLayoutFactory.fillDefaults().margins(0, 0).spacing(0, 0).applyTo(sessionsComposite);
+			GridDataFactory.fillDefaults().grab(false, true).applyTo(sessionsComposite);
 			createSessionsList(sessionsComposite);
 		}
 		createInputFields(contents);
@@ -174,8 +166,7 @@ public class LoginDialog extends TitleAreaDialog {
 	private void createInputFields(Composite root) {
 		Composite parent = new Composite(root, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(parent);
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(5, 5).applyTo(
-				parent);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(5, 5).applyTo(parent);
 
 		Label userLabel = new Label(parent, SWT.WRAP);
 		userLabel.setText("Username");
@@ -186,38 +177,29 @@ public class LoginDialog extends TitleAreaDialog {
 		Label passLabel = new Label(parent, SWT.WRAP);
 		passLabel.setText("Password");
 
-		passText = new Text(parent, SWT.SINGLE | SWT.BORDER);
+		passText = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.PASSWORD);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(passText);
-		passText.setEchoChar('\u2022');
-		passText.addKeyListener(new KeyListener() {
-			public void keyReleased(KeyEvent e) {
-				if (!(e.character == '	') || e.character == '\0') {
-					isPasswordModified = true;
-				}
-			}
-
-			public void keyPressed(KeyEvent e) {
-				if (!(e.character == '	') || e.character == '\0') {
-					isPasswordModified = true;
-				}
-			}
-		});
 
 		Label savePassLabel = new Label(parent, SWT.WRAP);
 		savePassLabel.setText("Save password");
 
 		savePassButton = new Button(parent, SWT.CHECK);
 		loadSession(usersession);
+		passText.addModifyListener(new ModifyListener() {
+
+			public void modifyText(ModifyEvent e) {
+				isPasswordModified = true;
+			}
+		});
+
+		userText.setFocus();
 
 	}
 
 	private void createSessionsList(Composite parent) {
-		final TableViewer tableViewer = new TableViewer(parent, SWT.SINGLE
-				| SWT.BORDER | SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().hint(100, -1).grab(false, true).applyTo(
-				tableViewer.getControl());
-		tableViewer.setContentProvider(new UsersessionsContentProvider(
-				serverInfo));
+		final TableViewer tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL);
+		GridDataFactory.fillDefaults().hint(100, -1).grab(false, true).applyTo(tableViewer.getControl());
+		tableViewer.setContentProvider(new UsersessionsContentProvider(serverInfo));
 		tableViewer.setLabelProvider(new UsersessionsLabelProvider());
 		tableViewer.setInput(currentWorkspace);
 		tableViewer.setSelection(new StructuredSelection(usersession));
@@ -234,25 +216,22 @@ public class LoginDialog extends TitleAreaDialog {
 			}
 		});
 
-		tableViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					/**
-					 * {@inheritDoc}
-					 */
-					public void selectionChanged(SelectionChangedEvent event) {
-						ISelection selection = tableViewer.getSelection();
-						loadSessionFromSelection(selection);
-					}
-				});
+			/**
+			 * {@inheritDoc}
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				ISelection selection = tableViewer.getSelection();
+				loadSessionFromSelection(selection);
+			}
+		});
 
 		Composite toolbar = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(0, 0).spacing(0,
-				0).applyTo(toolbar);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(0, 0).spacing(0, 0).applyTo(toolbar);
 
 		ImageHyperlink addButton = new ImageHyperlink(toolbar, SWT.TOP);
-		addButton.setImage(Activator.getImageDescriptor("icons/add.png")
-				.createImage());
+		addButton.setImage(Activator.getImageDescriptor("icons/add.png").createImage());
 		addButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
@@ -263,35 +242,28 @@ public class LoginDialog extends TitleAreaDialog {
 		});
 
 		ImageHyperlink removeButton = new ImageHyperlink(toolbar, SWT.TOP);
-		removeButton.setImage(Activator.getImageDescriptor("icons/remove.png")
-				.createImage());
+		removeButton.setImage(Activator.getImageDescriptor("icons/remove.png").createImage());
 		removeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				IStructuredSelection selection = (IStructuredSelection) tableViewer
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
 				if (!selection.isEmpty()) {
 					Object firstElement = selection.getFirstElement();
 					final Usersession session = (Usersession) firstElement;
 					for (ServerInfo info : currentWorkspace.getServerInfos()) {
-						if (info.getLastUsersession() != null
-								&& info.getLastUsersession().equals(session)) {
-							MessageDialog
-									.openError(getShell(),
-											"Cannot remove the usersession",
-											"The session is acssociated with one or more servers and cannot be deleted!");
+						if (info.getLastUsersession() != null && info.getLastUsersession().equals(session)) {
+							MessageDialog.openError(getShell(), "Cannot remove the usersession",
+								"The session is acssociated with one or more servers and cannot be deleted!");
 							return;
 						}
 					}
-					Boolean confirm = MessageDialog.openConfirm(getShell(),
-							"Confirm deletion",
-							"Are you sure you want to remove this session?");
+					Boolean confirm = MessageDialog.openConfirm(getShell(), "Confirm deletion",
+						"Are you sure you want to remove this session?");
 					if (confirm) {
 						new UnicaseCommand() {
 							@Override
 							protected void doRun() {
-								currentWorkspace.getUsersessions().remove(
-										session);
+								currentWorkspace.getUsersessions().remove(session);
 								currentWorkspace.save();
 								tableViewer.setInput(currentWorkspace);
 							}
@@ -305,8 +277,7 @@ public class LoginDialog extends TitleAreaDialog {
 	/**
 	 * Selects the given session in the list.
 	 * 
-	 * @param session
-	 *            the usersession
+	 * @param session the usersession
 	 */
 	private void loadSession(Usersession session) {
 		internalUpdate = true;
@@ -356,8 +327,7 @@ public class LoginDialog extends TitleAreaDialog {
 					setReturnCode(OK);
 					close();
 				} catch (EmfStoreException e) {
-					new SATRunner().shake(getShell(), 300, new SinusVariation(
-							10, 1), null, null);
+					new SATRunner().shake(getShell(), 300, new SinusVariation(10, 1), null, null);
 
 					setErrorMessage(e.getMessage());
 				}
@@ -376,6 +346,35 @@ public class LoginDialog extends TitleAreaDialog {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int open() {
+		return open(true);
+	}
+
+	public int open(boolean autologin) {
+		if (usersession != null && usersession.getUsername() != null && usersession.getPassword() != null && autologin) {
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					try {
+						usersession.logIn();
+					} catch (EmfStoreException e) {
+						exception = e.getMessage();
+					}
+				}
+			}.run();
+			close();
+			setReturnCode(OK);
+			return OK;
+		}
+		int ret = super.open();
+		return ret;
+
 	}
 
 }

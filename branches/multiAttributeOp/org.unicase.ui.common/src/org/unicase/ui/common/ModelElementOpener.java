@@ -15,6 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ModelElementOpener {
 	/**
+	 * Constant to return if the opener should not open the modelelement.
+	 */
+	int DONOTOPEN = -1;
+
+	/**
 	 * Checks whether the model element should be opened by this opener, depending on the priority. The model element
 	 * will be opened with the registered opener with the highest priority.
 	 * 
