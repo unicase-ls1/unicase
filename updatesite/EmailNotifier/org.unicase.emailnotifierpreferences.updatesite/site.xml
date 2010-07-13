@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.emailnotifierpreferences.feature_0.4.5.jar" id="org.unicase.emailnotifierpreferences.feature" version="0.4.5">
+      <category name="EmailNotifier"/>
+   </feature>
+   <category-def name="EmailNotifier" label="EmailNotifier"/>
+</site>
