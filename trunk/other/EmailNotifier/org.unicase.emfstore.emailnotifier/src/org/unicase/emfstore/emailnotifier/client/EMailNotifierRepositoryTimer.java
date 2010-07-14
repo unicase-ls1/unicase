@@ -15,6 +15,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.Status;
 import org.unicase.emfstore.emailnotifier.Activator;
 import org.unicase.emfstore.emailnotifier.client.util.Helper;
+import org.unicase.emfstore.emailnotifier.email.MailNotSendException;
 import org.unicase.emfstore.emailnotifier.email.MailerInfo;
 import org.unicase.emfstore.emailnotifier.exception.EMailNotifierException;
 import org.unicase.emfstore.emailnotifier.exception.NoNextSendingException;
@@ -229,15 +230,17 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 								continue;
 							}
 							
+							
 							// there are notifications, send an email
-							boolean sent = mailHelper.sendEMail(ensNotificationGroup, relevantNotifications);
-							if( sent ) {
+							try {
+								mailHelper.sendEMail(ensNotificationGroup, relevantNotifications);
 								// remove from store
 								sentENSNotificationGroups.add( ensNotificationGroup );
 								
-							} else {
+							} catch (MailNotSendException e) {
 								// else, don't remove sending was unsuccessful
 								Activator.log(Status.ERROR, "E-Mail sending error with notification group "+ ensNotificationGroup.getName() +".");
+								Activator.logException(e);
 							}
 							
 						} catch(NotificationGroupNotFoundException e) {

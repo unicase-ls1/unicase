@@ -14,6 +14,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.Status;
 import org.unicase.emfstore.emailnotifier.Activator;
 import org.unicase.emfstore.emailnotifier.client.util.Helper;
+import org.unicase.emfstore.emailnotifier.email.MailNotSendException;
 import org.unicase.emfstore.emailnotifier.email.MailerInfo;
 import org.unicase.emfstore.emailnotifier.exception.EMailNotifierException;
 import org.unicase.emfstore.emailnotifier.exception.ENSUserNotFoundException;
@@ -122,12 +123,12 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 					}
 					
 					// send emails for immediately configured notification groups
-					EMailNotifierMailHelper mailerPreparer = new EMailNotifierMailHelper(projectSpace, ensUser, mailerInfo);
+					EMailNotifierMailHelper mailHelper = new EMailNotifierMailHelper(projectSpace, ensUser, mailerInfo);
 					List<ENSNotificationGroup> ensNotificationGroupsImmediately = getENSNotificationGroupsMarkedAsImmediately(ensUser);
 					for(ENSNotificationGroup ensNotificationGroupImmediately: ensNotificationGroupsImmediately) {
-						Map<NotificationProvider, List<ESNotification>> generateNotifications = mailerPreparer.generateNotifications(ensNotificationGroupImmediately.getBaseVersion(), ensNotificationProject.getLatestVersion());
+						Map<NotificationProvider, List<ESNotification>> generateNotifications = mailHelper.generateNotifications(ensNotificationGroupImmediately.getBaseVersion(), ensNotificationProject.getLatestVersion());
 						
-						List<ESNotification> relevantNotifications = mailerPreparer.getRelevantNotifications(usersession, ensNotificationGroupImmediately, generateNotifications);
+						List<ESNotification> relevantNotifications = mailHelper.getRelevantNotifications(usersession, ensNotificationGroupImmediately, generateNotifications);
 						
 						if( relevantNotifications.isEmpty() ) {
 							// nothing was gathered for this period
@@ -137,14 +138,15 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 						}
 						
 						// there are notifications, send an email
-						boolean sent = mailerPreparer.sendEMail(ensNotificationGroupImmediately, relevantNotifications);
-						if( sent ) {
+						try {
+							mailHelper.sendEMail(ensNotificationGroupImmediately, relevantNotifications);
 							// recycle notification group. reset base version to latest project version
 							ensNotificationGroupImmediately.setBaseVersion( ensNotificationProject.getLatestVersion() );
 							
-						} else {
+						} catch (MailNotSendException e) {
 							// else, don't remove sending was unsuccessful
 							Activator.log(Status.ERROR, "E-Mail sending error with notification group "+ ensNotificationGroupImmediately.getName() +".");
+							Activator.logException(e);
 						}
 					}
 				}
