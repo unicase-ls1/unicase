@@ -14,6 +14,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emailnotifierpreferences.properties.EMailNotifierKey;
 import org.unicase.emfstore.emailnotifier.Activator;
+import org.unicase.emfstore.emailnotifier.client.util.Flag;
 import org.unicase.emfstore.emailnotifier.client.util.Helper;
 import org.unicase.emfstore.emailnotifier.exception.ENSNotificationGroupNotFoundException;
 import org.unicase.emfstore.emailnotifier.exception.ENSNotificationProjectNotFoundException;
@@ -31,6 +32,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.model.emailnotificationgroup.AggregatedSettings;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
 import org.unicase.model.emailnotificationgroup.Weekdays;
@@ -51,24 +53,31 @@ final class PropertySychronizer {
 	
 	/**
 	 * Method will synchronize ENS with ACUser properties.
-	 
+	 * 
 	 * @param emailNotifierStore email notifier store
 	 * @param acUser the ac user for that the properties will be gathered
 	 * @param projectId the project id that will be updated. Should match the project if of the ensNotificationProject
+	 * @param remoteProjectVersion current project version on the emf store
 	 * @return true if ENS is dirty, false otherwise
 	 */
-	public static boolean synchronize(final EMailNotifierStore emailNotifierStore, final ACUser acUser, final ProjectId projectId) {
+	public static boolean synchronize(final EMailNotifierStore emailNotifierStore, final ACUser acUser, final ProjectId projectId, PrimaryVersionSpec remoteProjectVersion) {
 		boolean isENSDirty = false;
 		final List<OrgUnitProperty> projectProperties = Helper.getProjectProperties(acUser, projectId);
 		
-		boolean shouldMarkForInstantlySending = shouldMarkForInstantlySending(emailNotifierStore, acUser, projectId, projectProperties);
-		Boolean wasCreatedENSNP = new Boolean(false);
+		boolean shouldMarkAllENSNGForInstantlySending = shouldMarkAllENSNGForInstantlySending(emailNotifierStore, acUser, projectId, projectProperties);
+		Flag wasCreatedENSNP = new Flag(false);
 		ENSNotificationProject ensNotificationProject = Helper.obtainENSNotificationProject(emailNotifierStore, projectId, wasCreatedENSNP);
-		if( wasCreatedENSNP ) {
+		if( wasCreatedENSNP.getFlag() ) {
+			// if it was made dirty, the ENS project has been just created. The current version of the project must be retrieved.
+			// if the parameter remoteProjectVersion is set, the version will be written to the ENS Project. Only the EMailNotifierRepositoryTimer will give an remoteProjectVersion
+			if( remoteProjectVersion != null ) {
+				ensNotificationProject.setLatestVersion( remoteProjectVersion.getIdentifier() );
+			}
+			
 			isENSDirty = true;
 		}
 		
-		if( shouldMarkForInstantlySending ) {
+		if( shouldMarkAllENSNGForInstantlySending ) {
 			try {
 				ENSUser ensUser = Helper.getENSUser(ensNotificationProject, acUser.getName());
 				boolean wasMadeDirty = Helper.markUserNotificationGroupsForInstantlySending(ensUser);
@@ -90,9 +99,9 @@ final class PropertySychronizer {
 				
 				ProjectSpace projectSpace = Helper.getLocalProject(projectId);
 				User user = OrgUnitHelper.getUser(projectSpace, acUser.getName());
-				Boolean wasCreatedENSUser = new Boolean(false);
+				Flag wasCreatedENSUser = new Flag(false);
 				ENSUser ensUser = Helper.obtainENSUser(ensNotificationProject, acUser, user, wasCreatedENSUser);
-				if( wasCreatedENSUser ) {
+				if( wasCreatedENSUser.getFlag() ) {
 					isENSDirty = true;
 				}
 				
@@ -126,7 +135,17 @@ final class PropertySychronizer {
 		return isENSDirty;
 	}
 	
-	private static boolean shouldMarkForInstantlySending(EMailNotifierStore emailNotifierStore, ACUser acUser, ProjectId projectId, List<OrgUnitProperty> projectProperties) {
+	/**
+	 * Identifies if for this user all stored ENS NotificationGroups should be marked for instantly sending.
+	 * Instantly sending != immediately sending.
+	 * 
+	 * @param emailNotifierStore
+	 * @param acUser
+	 * @param projectId
+	 * @param projectProperties
+	 * @return
+	 */
+	private static boolean shouldMarkAllENSNGForInstantlySending(EMailNotifierStore emailNotifierStore, ACUser acUser, ProjectId projectId, List<OrgUnitProperty> projectProperties) {
 		boolean sendAllNGNow = false;
 		boolean userIsAllowedToAccessProject = isUserAllowedToAccessProject(acUser, projectId);
 		if( !userIsAllowedToAccessProject ) {

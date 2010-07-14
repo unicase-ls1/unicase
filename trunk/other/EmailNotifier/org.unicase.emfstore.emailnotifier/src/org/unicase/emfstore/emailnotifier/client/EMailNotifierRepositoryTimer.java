@@ -31,6 +31,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
@@ -105,7 +106,8 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 							
 						for(ACUser acUser: acUsers) {
 							ProjectId projectId = remoteProjectInfo.getProjectId();
-							PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId);
+							PrimaryVersionSpec version = remoteProjectInfo.getVersion();
+							PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId, version);
 						}
 					}
 					
@@ -134,7 +136,7 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 						if( maxWaitTime == -1 ) { // nothing to send yet
 							Thread.currentThread().wait();
 							
-						} else if(maxWaitTime == 0) {
+						} else if(maxWaitTime <= 0) {
 							Thread.currentThread().wait(1);
 						} else {
 							Thread.currentThread().wait(maxWaitTime);
