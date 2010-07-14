@@ -13,6 +13,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emailnotifierpreferences.properties.EMailNotifierKey;
 import org.unicase.emfstore.emailnotifier.client.util.Helper;
+import org.unicase.emfstore.emailnotifier.email.MailNotSendException;
 import org.unicase.emfstore.emailnotifier.email.Mailer;
 import org.unicase.emfstore.emailnotifier.email.MailerInfo;
 import org.unicase.emfstore.emailnotifier.exception.ACUserNotFoundException;
@@ -130,15 +131,15 @@ public class EMailNotifierMailHelper {
 	 * 
 	 * @param ensNotificationGroup the notification group that will be sent
 	 * @param notifications these notifications will be the content
-	 * @return true if the email can be sent
+	 * @throws MailNotSendException will be thrown if the email can not be sent
 	 */
-	public boolean sendEMail(ENSNotificationGroup ensNotificationGroup, List<ESNotification> notifications) {
+	public void sendEMail(ENSNotificationGroup ensNotificationGroup, List<ESNotification> notifications) throws MailNotSendException {
 		String eMailBody = getEMailBody(notifications);
 		String subject = "Notifications for "+ projectSpace.getProjectName() +" project. (NotificationGroup "+ ensNotificationGroup.getName() +")";
 		
 		Mailer mailer = new Mailer(mailerInfo);
 		
-		return mailer.send(username + " <" + useremail + ">", subject, eMailBody);
+		mailer.send(username + " <" + useremail + ">", subject, eMailBody);
 	}
 	
 	/**
