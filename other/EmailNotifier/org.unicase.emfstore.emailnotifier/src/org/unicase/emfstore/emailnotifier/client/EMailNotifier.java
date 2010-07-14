@@ -18,12 +18,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.prefs.BackingStoreException;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -264,10 +259,6 @@ public class EMailNotifier implements IApplication {
 	 * @throws EMailNotifierException 
 	 */
 	private static EMailNotifierStore createNPCStore(String npcRepositoryHomeLocation) throws EMailNotifierException {
-		IPath path = Path.fromOSString(npcRepositoryHomeLocation);
-		IWorkspaceRoot rootWorkspace = ResourcesPlugin.getWorkspace().getRoot();
-		IFile newFile = rootWorkspace.getFile(path);
-
 		// Create a resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -276,11 +267,11 @@ public class EMailNotifier implements IApplication {
 			EMailNotifier.EXTENSION, new XMIResourceFactoryImpl());
 
 		// Get the URI of the model file.
-		URI fileURI = URI.createFileURI(newFile.getFullPath().toOSString());
+		URI fileURI = URI.createFileURI(npcRepositoryHomeLocation);
 
 		// Create a resource for this file.
 		Resource resource = resourceSet.createResource(fileURI);
-
+		
 		// try to load from file if content exists
 		EMailNotifierStore notifierProxyClientStore = null;
 		try {

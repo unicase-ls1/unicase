@@ -283,9 +283,9 @@ public final class Helper {
 	 * @param madeDirty will be handled as an additional return value. If it will be set to true, if the obtain method has created an ENSNotificationProject. This means that the ENS is dirty.
 	 * @return an ENSNotificationProject
 	 */
-	public static ENSNotificationProject obtainENSNotificationProject(EMailNotifierStore emailNotifierStore, ProjectId projectId, Boolean madeDirty) {
+	public static ENSNotificationProject obtainENSNotificationProject(EMailNotifierStore emailNotifierStore, ProjectId projectId, Flag madeDirty) {
 		if( madeDirty != null ) {
-			madeDirty = false;
+			madeDirty.setFlag(false);
 		}
 		
 		ENSNotificationProject ensNotificationProject = null;
@@ -299,7 +299,7 @@ public final class Helper {
 			
 			emailNotifierStore.getProjects().add( ensNotificationProject );
 			if( madeDirty != null ) {
-				madeDirty = true;
+				madeDirty.setFlag(true);
 			}
 		}
 		
@@ -334,9 +334,9 @@ public final class Helper {
 	 * @return an ENSNotificationProject
 	 * @throws UserEMailNotSetException if the user object hasn't set an email address
 	 */
-	public static ENSUser obtainENSUser(ENSNotificationProject ensNotificationProject, ACUser acUser, User user, Boolean madeDirty) throws UserEMailNotSetException {
+	public static ENSUser obtainENSUser(ENSNotificationProject ensNotificationProject, ACUser acUser, User user, Flag madeDirty) throws UserEMailNotSetException {
 		if( madeDirty != null ) {
-			madeDirty = false;
+			madeDirty.setFlag(false);
 		}
 		
 		ENSUser ensUser = null;
@@ -346,7 +346,7 @@ public final class Helper {
 			if( user != null && user.getEmail() != null && !user.getEmail().trim().equals("") ) {
 				ensUser.setUserEMail( user.getEmail() );
 				if( madeDirty != null ) {
-					madeDirty = true;
+					madeDirty.setFlag(true);
 				}
 			}
 			
@@ -362,7 +362,7 @@ public final class Helper {
 			
 			ensNotificationProject.getUsers().add( ensUser );
 			if( madeDirty != null ) {
-				madeDirty = true;
+				madeDirty.setFlag(true);
 			}
 		}
 		

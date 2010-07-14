@@ -110,7 +110,9 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 				List<ACUser> acUsers = projectSpace.getUsersession().getAdminBroker().getUsers();
 				for(ACUser acUser: acUsers) {
 					// synchronize acUser properties with the ENS state.
-					PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId);
+					// the ENS Project must exist at this point, so the synchronize method will not create a new ENS Project.
+					// The parameter remoteProjectVersion is in this case unneeded.
+					PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId, null);
 					
 					ENSUser ensUser;
 					try {
