@@ -397,6 +397,9 @@ public final class WorkspaceManager {
 	public static ProjectSpace getProjectSpace(EObject eObject) {
 		if (eObject == null) {
 			throw new IllegalArgumentException("The model element is null");
+		} else if (eObject instanceof ProjectSpace) {
+			// TODO: if object is projectSpace, return itself
+			return (ProjectSpace) eObject;
 		}
 
 		Project project = ModelUtil.getProject(eObject);
