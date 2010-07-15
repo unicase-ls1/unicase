@@ -5,14 +5,6 @@
  */
 package org.unicase.workspace.ui.dialogs.merge;
 
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isAttribute;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isComposite;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isCompositeRef;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isDelete;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isDiagramLayout;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isMultiRef;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.isSingleRef;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -152,36 +145,38 @@ public class DecisionManager {
 			AbstractOperation my = conf.getMyOperation();
 			AbstractOperation their = conf.getTheirOperation();
 
-			if (isDiagramLayout(my) && isDiagramLayout(their)) {
+			if (OperationUtil.isDiagramLayout(my) && OperationUtil.isDiagramLayout(their)) {
 
 				addConflict(createDiagramLayoutDecision(conf));
 
-			} else if (isAttribute(my) && isAttribute(their)) {
+			} else if (OperationUtil.isAttribute(my) && OperationUtil.isAttribute(their)) {
 
 				addConflict(createAttributeAttributeDecision(conf));
 
-			} else if (isSingleRef(my) && isSingleRef(their)) {
+			} else if (OperationUtil.isSingleRef(my) && OperationUtil.isSingleRef(their)) {
 
 				addConflict(createSingleSingleConflict(conf));
 
-			} else if (isMultiRef(my) && isMultiRef(their)) {
+			} else if (OperationUtil.isMultiRef(my) && OperationUtil.isMultiRef(their)) {
 
 				addConflict(createMultiMultiConflict(conf));
 
-			} else if (isCompositeRef(my) && isCompositeRef(their)) {
+			} else if (OperationUtil.isCompositeRef(my) && OperationUtil.isCompositeRef(their)) {
 
 				addConflict(createReferenceConflict(conf));
 
-			} else if ((isCompositeRef(my) && (isMultiRef(their) || isSingleRef(their)))
-				|| ((isMultiRef(my) || isSingleRef(my)) && isCompositeRef(their))) {
+			} else if ((OperationUtil.isCompositeRef(my) && (OperationUtil.isMultiRef(their) || OperationUtil
+				.isSingleRef(their)))
+				|| ((OperationUtil.isMultiRef(my) || OperationUtil.isSingleRef(my)) && OperationUtil
+					.isCompositeRef(their))) {
 
 				addConflict(createReferenceCompVSSingleMulti(conf));
 
-			} else if (isComposite(my) || isComposite(their)) {
+			} else if (OperationUtil.isComposite(my) || OperationUtil.isComposite(their)) {
 
 				addConflict(createCompositeConflict(conf));
 
-			} else if (isDelete(my) || isDelete(their)) {
+			} else if (OperationUtil.isDelete(my) || OperationUtil.isDelete(their)) {
 
 				addConflict(createDeleteOtherConflict(conf));
 
@@ -192,7 +187,7 @@ public class DecisionManager {
 	// END COMPLEX CODE
 
 	private Conflict createReferenceCompVSSingleMulti(Conflicting conf) {
-		if (isCompositeRef(conf.getMyOperation())) {
+		if (OperationUtil.isCompositeRef(conf.getMyOperation())) {
 			return createRefFromSub(conf, ((CompositeOperation) conf.getMyOperation()).getSubOperations(), Arrays
 				.asList(conf.getTheirOperation()));
 		} else {
@@ -214,12 +209,12 @@ public class DecisionManager {
 		for (AbstractOperation myOp : myOperations) {
 			for (AbstractOperation theirOp : theirOperations) {
 				if (conflictDetector.doConflict(myOp, theirOp)) {
-					if (isSingleRef(myOp)) {
+					if (OperationUtil.isSingleRef(myOp)) {
 
 						return new ReferenceConflict(createSingleSingleConflict(myOp, theirOp), conf.getMyOperations(),
 							conf.getTheirOperations());
 
-					} else if (isMultiRef(myOp)) {
+					} else if (OperationUtil.isMultiRef(myOp)) {
 
 						return new ReferenceConflict(createMultiMultiConflict(myOp, theirOp), conf.getMyOperations(),
 							conf.getTheirOperations());
@@ -273,7 +268,7 @@ public class DecisionManager {
 	}
 
 	private Conflict createDeleteOtherConflict(Conflicting conf) {
-		if (isDelete(conf.getMyOperation())) {
+		if (OperationUtil.isDelete(conf.getMyOperation())) {
 			return new DeletionConflict(conf.getMyOperations(), conf.getTheirOperations(), true, this);
 		} else {
 			return new DeletionConflict(conf.getTheirOperations(), conf.getMyOperations(), false, this);
@@ -281,7 +276,7 @@ public class DecisionManager {
 	}
 
 	private Conflict createCompositeConflict(Conflicting conf) {
-		if (isComposite(conf.getMyOperation())) {
+		if (OperationUtil.isComposite(conf.getMyOperation())) {
 			return new CompositeConflict(conf.getMyOperations(), conf.getTheirOperations(), this, true);
 		} else {
 			return new CompositeConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
