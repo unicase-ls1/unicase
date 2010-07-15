@@ -54,7 +54,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -78,7 +78,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), useCase.getProject());
@@ -119,7 +119,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -143,7 +143,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());
@@ -177,14 +177,14 @@ public class CompositeOperationTest extends WorkspaceTest {
 				CompositeOperationHandle compositeOperationHandle = getProjectSpace().beginCompositeOperation();
 				try {
 					compositeOperationHandle.abort();
-					if (actionItem.getContainingWorkpackage() != workPackage) {
-						fail();
-					}
 				} catch (InvalidHandleException e) {
-					fail();
+					throw new IllegalStateException(e);
 				}
+
+				assertEquals(workPackage, actionItem.getContainingWorkpackage());
+
 			}
-		}.run();
+		}.run(false);
 	}
 
 	/**
@@ -209,6 +209,6 @@ public class CompositeOperationTest extends WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 	}
 }

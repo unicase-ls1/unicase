@@ -35,7 +35,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(1).equals("first"));
 				assertTrue(testElement.getStrings().get(2).equals("second"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	// TODO
@@ -62,7 +62,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				assertTrue(operation.getOldIndex() == 1);
 				assertTrue(operation.getReferencedValue().equals("second"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -93,6 +93,6 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(0).equals("first"));
 				assertTrue(testElement.getStrings().get(1).equals("second"));
 			}
-		}.run();
+		}.run(false);
 	}
 }

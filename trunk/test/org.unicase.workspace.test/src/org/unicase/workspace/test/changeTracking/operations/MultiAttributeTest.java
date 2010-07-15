@@ -45,7 +45,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().size() == 1);
 				assertTrue(testElement.getStrings().get(0).equals("inserted"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(0).equals("inserted"));
 				assertTrue(testElement.getStrings().get(1).equals("first"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(1).equals("first"));
 				assertTrue(testElement.getStrings().get(2).equals("inserted2"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 
 				assertTrue(testElement.getStrings().size() == 0);
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(ao.isAdd());
 
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -182,7 +182,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(ao.getReferencedValues().get(1).equals("third"));
 				assertTrue(!ao.isAdd());
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -210,6 +210,6 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(0).equals("first"));
 				assertTrue(testElement.getStrings().get(1).equals("second"));
 			}
-		}.run();
+		}.run(false);
 	}
 }
