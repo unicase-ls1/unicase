@@ -42,7 +42,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				assertTrue(getProjectSpace().getOperations().size() == 1);
 				assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiReferenceSetOperation);
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getReferences().size() == 1);
 				assertTrue(testElement.getReferences().get(0).equals(newValue));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getReferences().size() == 1);
 				assertTrue(testElement.getReferences().get(0).equals(oldValue));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -128,7 +128,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getReferences().get(1).equals(newValue));
 				assertTrue(testElement.getReferences().get(2).equals(third));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -156,6 +156,6 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getReferences().size() == 1);
 				assertTrue(testElement.getReferences().get(0).equals(oldValue));
 			}
-		}.run();
+		}.run(false);
 	}
 }

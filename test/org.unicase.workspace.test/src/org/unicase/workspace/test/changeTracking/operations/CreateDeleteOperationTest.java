@@ -56,7 +56,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(useCase);
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -87,14 +87,14 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 				getProject().addModelElement(useCase);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -140,14 +140,14 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 				assertEquals(getProject(), useCase.getProject());
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(false, getProject().contains(useCase));
 		assertEquals(null, useCase.eContainer());
@@ -293,14 +293,14 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(false, getProject().contains(useCase));
 		assertEquals(0, oldActor.getInitiatedUseCases().size());
@@ -415,7 +415,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				reverse.apply(getProject());
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(true, getProject().contains(oldActor));
@@ -454,7 +454,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 						createLeafSection.getModelElements().add(createActionItem);
 					}
 				}
-			}.run();
+			}.run(false);
 		}
 		assertEquals(230, getProjectSpace().getOperations().size());
 	}
@@ -480,14 +480,14 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(solution);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(issue));
 		assertEquals(false, getProject().contains(solution));
@@ -546,7 +546,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 				section.getModelElements().add(useCase);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(true, getProject().contains(section));

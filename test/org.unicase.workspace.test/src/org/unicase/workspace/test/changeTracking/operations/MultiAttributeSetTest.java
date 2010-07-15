@@ -38,7 +38,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(getProjectSpace().getOperations().size() == 1);
 				assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiAttributeSetOperation);
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().size() == 1);
 				assertTrue(testElement.getStrings().get(0).equals("inserted"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().size() == 1);
 				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(1).equals("inserted"));
 				assertTrue(testElement.getStrings().get(2).equals("third"));
 			}
-		}.run();
+		}.run(false);
 	}
 
 	@Test
@@ -138,6 +138,6 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().size() == 1);
 				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
 			}
-		}.run();
+		}.run(false);
 	}
 }

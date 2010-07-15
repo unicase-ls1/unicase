@@ -51,7 +51,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				useCase.setName("newName");
 				assertEquals("newName", useCase.getName());
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -86,7 +86,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 				useCase.setName("newName");
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
@@ -94,7 +94,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				useCase.setName("otherName");
 				assertEquals("otherName", useCase.getName());
 			}
-		}.run();
+		}.run(false);
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -103,7 +103,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
@@ -139,7 +139,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				useCase.setName("newName");
 				assertEquals("newName", useCase.getName());
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -166,7 +166,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				assertEquals("name", reversedAttributeOperation.getFeatureName());
 				assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals("oldName", useCase.getName());
 	}
@@ -194,7 +194,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				useCase.setName("newName");
 				assertEquals("newName", useCase.getName());
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -225,7 +225,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				r.apply(getProject());
 				rr.apply(getProject());
 			}
-		}.run();
+		}.run(false);
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
@@ -236,7 +236,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 				attributeOperation.reverse().apply(getProject());
 				attributeOperation.reverse().reverse().apply(getProject());
 			}
-		}.run();
+		}.run(false);
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
