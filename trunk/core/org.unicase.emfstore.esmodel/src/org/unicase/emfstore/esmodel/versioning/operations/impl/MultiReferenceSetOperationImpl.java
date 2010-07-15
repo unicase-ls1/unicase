@@ -5,6 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -427,6 +430,14 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		operation.setNewValue(getOldValue());
 		operation.setOldValue(getNewValue());
 		return operation;
+	}
+
+	@Override
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		HashSet<ModelElementId> result = new HashSet<ModelElementId>();
+		result.add(getNewValue());
+		result.add(getOldValue());
+		return result;
 	}
 
 } // MultiReferenceSetOperationImpl

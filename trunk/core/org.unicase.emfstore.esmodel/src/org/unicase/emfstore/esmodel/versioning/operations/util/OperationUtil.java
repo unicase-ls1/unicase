@@ -10,8 +10,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
 /**
@@ -28,7 +32,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a composite op.
+	 * Checks whether given operation is a composite operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -38,7 +42,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a reference op.
+	 * Checks whether given operation is a reference operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -58,7 +62,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is singleref op .
+	 * Checks whether given operation is singleref operation .
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -68,7 +72,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a multiref op .
+	 * Checks whether given operation is a multiref operation .
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -78,7 +82,17 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is multimove op.
+	 * Checks whether given operation is a multiref set operation .
+	 * 
+	 * @param operation operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiRefSet(AbstractOperation operation) {
+		return operation instanceof MultiReferenceSetOperation;
+	}
+
+	/**
+	 * Checks whether given operation is multimove operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -88,7 +102,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is attribute op.
+	 * Checks whether given operation is attribute operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -98,7 +112,37 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is diagram op.
+	 * Checks whether given operation is multi attribute operation.
+	 * 
+	 * @param operation operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiAtt(AbstractOperation operation) {
+		return operation instanceof MultiAttributeOperation;
+	}
+
+	/**
+	 * Checks whether given operation is multi attribute set operation.
+	 * 
+	 * @param operation operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiAttSet(AbstractOperation operation) {
+		return operation instanceof MultiAttributeSetOperation;
+	}
+
+	/**
+	 * Checks whether given operation is multi attribute move operation.
+	 * 
+	 * @param operation operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiAttMove(AbstractOperation operation) {
+		return operation instanceof MultiAttributeMoveOperation;
+	}
+
+	/**
+	 * Checks whether given operation is diagram operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -108,7 +152,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a creating op.
+	 * Checks whether given operation is a creating operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -118,7 +162,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a deleting op.
+	 * Checks whether given operation is a deleting operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
@@ -128,7 +172,7 @@ public final class OperationUtil {
 	}
 
 	/**
-	 * Checks whether given operation is a createDelete op.
+	 * Checks whether given operation is a createDelete operation.
 	 * 
 	 * @param operation operation
 	 * @return true if correct
