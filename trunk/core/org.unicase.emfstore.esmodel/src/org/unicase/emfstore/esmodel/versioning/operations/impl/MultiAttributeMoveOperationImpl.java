@@ -300,12 +300,14 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 		EAttribute feature;
 		try {
 			feature = (EAttribute) getFeature(modelElement);
+			@SuppressWarnings("unchecked")
 			EList<Object> list = (EList<Object>) modelElement.eGet(feature);
 			if (list.size() > getOldIndex() && list.size() > getNewIndex()) {
 				list.move(getNewIndex(), getOldIndex());
 			}
 
 		} catch (UnkownFeatureException e) {
+			// we ignore any non applicable o
 		}
 	}
 
