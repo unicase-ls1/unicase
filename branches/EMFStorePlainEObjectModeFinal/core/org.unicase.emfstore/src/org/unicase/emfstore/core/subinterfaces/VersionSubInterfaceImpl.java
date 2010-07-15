@@ -197,6 +197,80 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		}
 	}
 
+	public PrimaryVersionSpec createVersionForProject(ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
+		ChangePackage changePackage, LogMessage logMessage) throws EmfStoreException {
+		synchronized (getMonitor()) {
+
+			long currentTimeMillis = System.currentTimeMillis();
+
+			ProjectHistory projectHistory = getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId);
+			List<Version> versions = projectHistory.getVersions();
+
+			// OW: check here if base version is valid at all
+
+			if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
+				throw new BaseVersionOutdatedException();
+			}
+
+			PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			newVersionSpec.setIdentifier(baseVersionSpec.getIdentifier() + 1);
+
+			Version newVersion = VersioningFactory.eINSTANCE.createVersion();
+
+			Version previousHeadVersion = versions.get(versions.size() - 1);
+
+			Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
+
+			changePackage.apply(newProjectState);
+
+			newVersion.setProjectState(newProjectState);
+			newVersion.setChanges(changePackage);
+			logMessage.setDate(new Date());
+			newVersion.setLogMessage(logMessage);
+			newVersion.setPrimarySpec(newVersionSpec);
+			newVersion.setNextVersion(null);
+			newVersion.setPreviousVersion(previousHeadVersion);
+
+			versions.add(newVersion);
+
+			// try to save
+			try {
+				try {
+					getResourceHelper().createResourceForProject(newProjectState, newVersion.getPrimarySpec(),
+						projectHistory.getProjectId());
+					getResourceHelper().createResourceForChangePackage(changePackage, newVersion.getPrimarySpec(),
+						projectId);
+					getResourceHelper().createResourceForVersion(newVersion, projectHistory.getProjectId());
+				} catch (FatalEmfStoreException e) {
+					// try to roll back
+					previousHeadVersion.setNextVersion(null);
+					versions.remove(newVersion);
+					// OW: why do we need to save here, can we remove? do test!!
+					save(previousHeadVersion);
+					save(projectHistory);
+					throw new StorageException(StorageException.NOSAVE);
+				}
+
+				// delete projectstate from last revision depending on persistence
+				// policy
+				handleOldProjectState(projectId, previousHeadVersion);
+
+				save(previousHeadVersion);
+				save(projectHistory);
+
+				// update history cache
+				historyCache.addVersionToCache(projectId, newVersion);
+			} catch (FatalEmfStoreException e) {
+				// roll back failed
+				EmfStoreController.getInstance().shutdown(e);
+				throw new EmfStoreException("Shutting down server.");
+			}
+
+			ModelUtil.logInfo("Total time for commit: " + (System.currentTimeMillis() - currentTimeMillis));
+			return newVersionSpec;
+		}
+	}
+
 	/**
 	 * Deletes projectstate from last revision depending on persistence policy.
 	 * 
