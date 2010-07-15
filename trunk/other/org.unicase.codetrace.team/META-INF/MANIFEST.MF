@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Masterarbeit
+Bundle-SymbolicName: org.unicase.codetrace.team;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.codetrace.team.Activator
+Require-Bundle: org.unicase.ui.common,
+ org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.compare,
+ org.eclipse.core.filesystem,
+ org.unicase.workspace,
+ org.eclipse.team.core,
+ org.unicase.ui.unicasecommon
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.team.core,
+ org.eclipse.team.internal.ui,
+ org.eclipse.team.internal.ui.actions,
+ org.unicase.model.task,
+ org.unicase.ui.common.dialogs,
+ org.unicase.workspace.util
+Export-Package: 
+ org.unicase.codetrace.team.exported
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
