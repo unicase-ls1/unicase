@@ -101,11 +101,26 @@
           targetDecoration="//@figures.0/@figures.2"/>
     </descriptors>
     <descriptors
+        name="GoalInfluenceGoalsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="GoalInfluenceGoalsFigure"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
         name="GoalParentGoalFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="GoalParentGoalFigure"
           targetDecoration="//@figures.0/@figures.3"/>
+    </descriptors>
+    <descriptors
+        name="GoalFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="GoalFeatureFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
     <descriptors
         name="FunctionalRequirement">
@@ -136,7 +151,52 @@
       </actualFigure>
       <accessors
           accessor="getFigureFunctionalRequirementFigure_name"
-          figure="//@figures.0/@descriptors.6/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.8/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="NonFunctionalRequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          lineWidth="0">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="NonFunctionalRequirementFigure"
+            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.NonFunctionalRequirementIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="NonFunctionalRequirementFigure_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureNonFunctionalRequirementFigure_name"
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="RequirementServiceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="RequirementServiceFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="RequirementSubRequirementsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="RequirementSubRequirementsFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
     <descriptors
         name="FeatureFigure">
@@ -167,13 +227,41 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeatureFigure_name"
-          figure="//@figures.0/@descriptors.7/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.12/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
-        name="GoalFeatureFigure">
+        name="FeatureSubFeaturesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="GoalFeatureFigure"
+          name="FeatureSubFeaturesFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
+        name="FeatureExcludeFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="FeatureExcludeFeatureFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
+        name="FeatureRequiereFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="FeatureRequiereFeatureFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
+        name="FeatureFunctionalRequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="FeatureFunctionalRequirementFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="FeatureNonFunctionalRequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="FeatureNonFunctionalRequirementFigure"
           targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
     <descriptors
@@ -205,14 +293,14 @@
       </actualFigure>
       <accessors
           accessor="getFigureServiceFigure_name"
-          figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.18/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
-        name="RequirementServiceFigure">
+        name="ServiceSubServicesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="RequirementServiceFigure"
-          targetDecoration="//@figures.0/@figures.1"/>
+          name="ServiceSubServicesFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
     <descriptors
         name="DangerFigure">
@@ -243,44 +331,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureDangerFigure_name"
-          figure="//@figures.0/@descriptors.11/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.20/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
-        name="NonFunctionalRequirementFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="NonFunctionalRequirementFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.NonFunctionalRequirementIcon"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="NonFunctionalRequirementFigure_name"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureNonFunctionalRequirementFigure_name"
-          figure="//@figures.0/@descriptors.12/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="FeatureFunctionalRequirementFigure">
+        name="DangerAssetFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="FeatureFunctionalRequirementFigure"
+          name="DangerAssetFigure"
           targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
     <descriptors
@@ -319,7 +376,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureActorFigure_name"
-          figure="//@figures.0/@descriptors.14/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.22/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ProceduralMitigationFigure">
@@ -350,52 +407,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureProceduralMitigationFigure_name"
-          figure="//@figures.0/@descriptors.15/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="ServiceProviderFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ServiceProviderFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ServiceProviderIcon"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ServiceProviderFigure_name"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureServiceProviderFigure"
-          figure="//@figures.0/@descriptors.16/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="FeatureNonFunctionalRequirementFigure">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection"
-          name="FeatureNonFunctionalRequirementFigure"
-          targetDecoration="//@figures.0/@figures.1"/>
-    </descriptors>
-    <descriptors
-        name="ServiceServiceProviderFigure">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection"
-          name="ServiceServiceProviderFigure"
-          targetDecoration="//@figures.0/@figures.1"/>
+          figure="//@figures.0/@descriptors.23/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="MitigationDangerFigure">
@@ -405,17 +417,10 @@
           targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
     <descriptors
-        name="DangerAssetFigure">
+        name="AssetDangerFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="DangerAssetFigure"
-          targetDecoration="//@figures.0/@figures.1"/>
-    </descriptors>
-    <descriptors
-        name="ActorDangerFigure">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection"
-          name="ActorDangerFigure"
+          name="AssetDangerFigure"
           targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
     <descriptors
@@ -488,6 +493,27 @@
           name="TriggersLabelFigure"
           text="triggers"/>
     </descriptors>
+    <descriptors
+        name="InfluencesLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InfluencesLabelFigure"
+          text="influence"/>
+    </descriptors>
+    <descriptors
+        name="ExcludesLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ExcludesLabelFigure"
+          text="exclude"/>
+    </descriptors>
+    <descriptors
+        name="RequieresLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="RequieresLabelFigure"
+          text="requiere"/>
+    </descriptors>
   </figures>
   <nodes
       name="Stakeholder"
@@ -516,9 +542,6 @@
   <nodes
       name="ProceduralMitigationNode"
       figure="ProceduralMitigationFigure"/>
-  <nodes
-      name="ServiceProviderNode"
-      figure="ServiceProviderFigure"/>
   <connections
       name="StakeholderGoals"
       figure="StakeholderGoalsFigure"/>
@@ -529,11 +552,26 @@
       name="GoalSubGoals"
       figure="GoalSubGoalsFigure"/>
   <connections
+      name="GoalInfluenceGoals"
+      figure="GoalInfluenceGoalsFigure"/>
+  <connections
       name="GoalFeature"
       figure="GoalFeatureFigure"/>
   <connections
       name="RequirementService"
       figure="RequirementServiceFigure"/>
+  <connections
+      name="RequierementSubRequierements"
+      figure="RequirementSubRequirementsFigure"/>
+  <connections
+      name="FeatureSubFeatures"
+      figure="FeatureSubFeaturesFigure"/>
+  <connections
+      name="FeatureExcludeFeatures"
+      figure="FeatureExcludeFeatureFigure"/>
+  <connections
+      name="FeatureRequiereFeatures"
+      figure="FeatureRequiereFeatureFigure"/>
   <connections
       name="FeatureFunctionalRequirement"
       figure="FeatureFunctionalRequirementFigure"/>
@@ -541,8 +579,8 @@
       name="FeatureNonFunctionalRequirement"
       figure="FeatureNonFunctionalRequirementFigure"/>
   <connections
-      name="ServiceServiceProvider"
-      figure="ServiceServiceProviderFigure"/>
+      name="ServiceSubServices"
+      figure="ServiceSubServicesFigure"/>
   <connections
       name="DangerAsset"
       figure="DangerAssetFigure"/>
@@ -550,43 +588,38 @@
       name="MitigationDanger"
       figure="MitigationDangerFigure"/>
   <connections
-      name="ActorDanger"
-      figure="ActorDangerFigure"/>
+      name="AssetDanger"
+      figure="AssetDangerFigure"/>
   <labels
       name="FeatureNode_name"
       figure="FeatureFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.12/@accessors.0"/>
   <labels
       name="ServiceNode_name"
       figure="ServiceFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.18/@accessors.0"/>
   <labels
       name="DangerNode_name"
       figure="DangerFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.11/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.20/@accessors.0"/>
   <labels
       name="NonFunctionalRequirementNode_name"
       figure="NonFunctionalRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.12/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.9/@accessors.0"/>
   <labels
       name="ActorNode_Name"
       figure="ActorFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.14/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.22/@accessors.0"/>
   <labels
       name="ProceduralMitigationNode_name"
       figure="ProceduralMitigationFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.15/@accessors.0"/>
-  <labels
-      name="ServiceProviderNode_name"
-      figure="ServiceProviderFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.16/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.23/@accessors.0"/>
   <labels
       name="StakeholderNode_name"
       figure="StakeholderFigure"
@@ -601,7 +634,7 @@
       name="FunctionalRequirementNode_name"
       figure="FunctionalRequirement"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.8/@accessors.0"/>
   <labels
       name="ExpressesLabel"
       figure="ExpressesLabelFigure"
@@ -704,6 +737,39 @@
   <labels
       name="Triggers"
       figure="TriggersLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Influences"
+      figure="InfluencesLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Excludes"
+      figure="ExcludesLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Requieres"
+      figure="RequieresLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"

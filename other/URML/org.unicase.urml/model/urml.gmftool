@@ -47,9 +47,6 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="ProceduralMitigation"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="ServiceProvider"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>
