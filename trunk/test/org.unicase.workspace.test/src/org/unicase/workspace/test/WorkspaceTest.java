@@ -48,7 +48,7 @@ public abstract class WorkspaceTest {
 				setProjectSpace(localProject);
 				setProject(getProjectSpace().getProject());
 			}
-		}.run();
+		}.run(false);
 
 	}
 
@@ -67,7 +67,7 @@ public abstract class WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 	}
 
 	/**

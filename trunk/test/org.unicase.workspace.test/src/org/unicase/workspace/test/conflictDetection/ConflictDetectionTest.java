@@ -37,7 +37,7 @@ public abstract class ConflictDetectionTest extends WorkspaceTest {
 				Project clonedProject = ModelUtil.clone(ps.getProject());
 				return workspace.importProject(clonedProject, "clonedProject", "cloned Project");
 			}
-		}.run();
+		}.run(false);
 		return result;
 	}
 
