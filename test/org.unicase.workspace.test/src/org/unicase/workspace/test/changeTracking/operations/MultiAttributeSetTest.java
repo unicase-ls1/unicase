@@ -20,7 +20,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class MultiAttributeSetTest extends WorkspaceTest {
 
 	@Test
-	public void setValueToEmptyTest() {
+	public void setValueToFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -42,7 +42,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToEmptyTest() {
+	public void applyValueToFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -66,7 +66,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToEmptyWrongIndexTest() {
+	public void applyValueToFilledWrongIndexTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -90,7 +90,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToFilledTest() {
+	public void applyValueToMultiFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {

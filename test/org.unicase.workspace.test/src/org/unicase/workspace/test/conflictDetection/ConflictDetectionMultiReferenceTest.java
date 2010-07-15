@@ -47,7 +47,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -65,7 +65,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -100,7 +100,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -118,7 +118,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -152,7 +152,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -171,7 +171,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 				section2.getModelElements().add(actor2);
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -201,7 +201,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -219,7 +219,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -251,7 +251,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -269,7 +269,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -307,7 +307,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -327,7 +327,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		EList<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		EList<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -361,7 +361,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -383,7 +383,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -418,7 +418,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -437,7 +437,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -475,7 +475,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -495,7 +495,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -530,7 +530,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -548,7 +548,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -581,7 +581,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -602,7 +602,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -635,7 +635,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -654,7 +654,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -688,7 +688,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -708,7 +708,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -739,7 +739,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -759,7 +759,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -794,7 +794,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -815,7 +815,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -849,7 +849,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -870,7 +870,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -905,7 +905,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -925,7 +925,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -960,7 +960,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -980,7 +980,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1013,7 +1013,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -1032,7 +1032,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(actor2);
 
 			}
-		}.run();
+		}.run(false);
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
@@ -1065,7 +1065,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1086,7 +1086,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1121,7 +1121,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1142,7 +1142,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1179,7 +1179,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1198,7 +1198,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1242,7 +1242,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1261,7 +1261,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1299,7 +1299,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1318,7 +1318,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1357,7 +1357,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1376,7 +1376,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				actor2.setLeafSection(anotherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1420,7 +1420,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1439,7 +1439,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1477,7 +1477,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1496,7 +1496,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().remove(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1532,7 +1532,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1552,7 +1552,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1589,7 +1589,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1609,7 +1609,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1648,7 +1648,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1667,7 +1667,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1707,7 +1707,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -1726,7 +1726,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1768,7 +1768,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		// start from here!
 
@@ -1789,7 +1789,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1836,7 +1836,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -1854,7 +1854,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1900,7 +1900,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -1918,7 +1918,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1963,7 +1963,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -1981,7 +1981,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(otherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2022,7 +2022,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2040,7 +2040,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2082,7 +2082,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2100,7 +2100,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2142,7 +2142,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2160,7 +2160,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2197,7 +2197,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2215,7 +2215,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2254,7 +2254,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2272,7 +2272,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2311,7 +2311,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2329,7 +2329,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2371,7 +2371,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2389,7 +2389,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2432,7 +2432,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2450,7 +2450,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2495,7 +2495,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2513,7 +2513,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().remove(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2557,7 +2557,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2575,7 +2575,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2619,7 +2619,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2637,7 +2637,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2683,7 +2683,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2702,7 +2702,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2748,7 +2748,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2767,7 +2767,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				dummy2.setLeafSection(otherSection2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2813,7 +2813,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2833,7 +2833,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection2.getModelElements().add(dummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2877,7 +2877,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2895,7 +2895,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -2939,7 +2939,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -2957,7 +2957,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3001,7 +3001,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3019,7 +3019,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3065,7 +3065,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3085,7 +3085,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(section2.getModelElements().size() - 1, actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3129,7 +3129,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3147,7 +3147,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3192,7 +3192,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3209,7 +3209,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section1.getModelElements().remove(actor1);
 				section2.getModelElements().move(0, anotherDummy2);
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3254,7 +3254,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3272,7 +3272,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3318,7 +3318,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3336,7 +3336,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3382,7 +3382,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3400,7 +3400,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3446,7 +3446,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3464,7 +3464,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
@@ -3510,7 +3510,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3527,7 +3527,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				otherSection1.getModelElements().add(actor1);
 				section2.getModelElements().move(1, anotherDummy2);
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3574,7 +3574,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3592,7 +3592,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(1, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -3639,7 +3639,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
@@ -3657,7 +3657,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				section2.getModelElements().move(0, anotherDummy2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();

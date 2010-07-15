@@ -55,7 +55,7 @@ public class MoveNotificationTest extends NotificationTest {
 				// now move actor 2 to top of the list
 				useCase.getParticipatingActors().move(0, actor2);
 			}
-		}.run();
+		}.run(false);
 
 		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();

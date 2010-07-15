@@ -53,7 +53,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -69,7 +69,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				actor2.setName("change to the deleted object on another working copy");
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -100,7 +100,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -115,7 +115,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				actor2.setName("change to object inside deltree on another working copy");
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -143,7 +143,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -158,7 +158,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				section2.setName("change to object inside deltree on another working copy");
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -189,7 +189,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
@@ -204,7 +204,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				project2.deleteModelElement(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -236,7 +236,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				section.getModelElements().add(pack);
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
@@ -252,7 +252,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				project2.deleteModelElement(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -285,7 +285,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
@@ -301,7 +301,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				project2.deleteModelElement(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -339,7 +339,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				br2.setContainingWorkpackage(pack);
 
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(pack.getContainedWorkItems().get(0), br1);
 		assertEquals(pack.getContainedWorkItems().get(1), br2);
@@ -352,7 +352,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
@@ -368,7 +368,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 				project2.deleteModelElement(section2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();

@@ -53,7 +53,7 @@ public class ContainmentNotificationTest extends NotificationTest {
 				// section2.getModelElements().add(useCase);
 				useCase.setLeafSection(section2);
 			}
-		}.run();
+		}.run(false);
 
 		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
@@ -108,7 +108,7 @@ public class ContainmentNotificationTest extends NotificationTest {
 				// req.getRefiningRequirements().add(child);
 				child.setRefinedRequirement(req);
 			}
-		}.run();
+		}.run(false);
 
 		NotificationRecording recording = getProjectSpaceImpl().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();

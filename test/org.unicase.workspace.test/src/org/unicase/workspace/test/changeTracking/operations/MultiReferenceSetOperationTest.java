@@ -20,7 +20,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class MultiReferenceSetOperationTest extends WorkspaceTest {
 
 	@Test
-	public void setValueToEmptyTest() {
+	public void setValueToFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -46,7 +46,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToEmptyTest() {
+	public void applyValueToFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -73,7 +73,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToEmptyWrongIndexTest() {
+	public void applyValueToFilledWrongIndexTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -101,7 +101,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	}
 
 	@Test
-	public void applyValueToFilledTest() {
+	public void applyValueToMultiFilledTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
