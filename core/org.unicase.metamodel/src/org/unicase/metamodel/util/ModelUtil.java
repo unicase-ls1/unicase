@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
@@ -75,7 +76,7 @@ public final class ModelUtil {
 	public static EObject copy(EObject modelElement) {
 		EObject copy = EcoreUtil.copy(modelElement);
 
-		// TODO: not IDs left to clone, copy now seems to be obsolete?
+		// TODO: no IDs left to clone, copy now seems to be obsolete?
 		// // reset ids
 		// ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		// copy.setIdentifier(modelElementId.getId());
@@ -771,6 +772,29 @@ public final class ModelUtil {
 		Resource resource = resourceSet.createResource(resourceURI);
 		EList<EObject> contents = resource.getContents();
 		contents.addAll(eObjects);
+		resource.save(null);
+	}
+
+	/**
+	 * @param eObjects fjd
+	 * @param resourceURI dj
+	 * @throws IOException dj
+	 */
+	public static void saveObjectToResourceWithProject(List<? extends EObject> eObjects, URI resourceURI,
+		Project project) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(resourceURI);
+		EList<EObject> contents = resource.getContents();
+		contents.addAll(eObjects);
+
+		// add Ids to resource
+		if (resource instanceof XMIResource) {
+			XMIResource xmiResouce = (XMIResource) resource;
+			for (EObject obj : eObjects) {
+				xmiResouce.setID(obj, project.getEobjectsIdMap().get(obj).getId());
+			}
+		}
+
 		resource.save(null);
 	}
 
