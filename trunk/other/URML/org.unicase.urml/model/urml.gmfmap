@@ -206,28 +206,6 @@
           href="urml.gmfgraph#ProceduralMitigationNode"/>
     </ownedChild>
   </nodes>
-  <nodes>
-    <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
-    <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
-    <ownedChild>
-      <domainMetaElement
-          href="urml.ecore#//service/ServiceProvider"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
-        <diagramLabel
-            href="urml.gmfgraph#ServiceProviderNode_name"/>
-        <features
-            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0/@tools.9"/>
-      <diagramNode
-          href="urml.gmfgraph#ServiceProviderNode"/>
-    </ownedChild>
-  </nodes>
   <links>
     <labelMappings
         readOnly="true">
@@ -247,34 +225,10 @@
           href="urml.gmfgraph#IsRefined"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#StakeholderGoals"/>
+        href="urml.gmfgraph#FeatureSubFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//Feature/subFeatures"/>
-  </links>
-  <links>
-    <labelMappings
-        readOnly="true">
-      <diagramLabel
-          href="urml.gmfgraph#Motivates"/>
-    </labelMappings>
-    <diagramLink
-        href="urml.gmfgraph#GoalFeature"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="urml.ecore#//goal/Goal/realizedFeatures"/>
-  </links>
-  <links>
-    <labelMappings
-        readOnly="true">
-      <diagramLabel
-          href="urml.gmfgraph#IsImplemented"/>
-    </labelMappings>
-    <diagramLink
-        href="urml.gmfgraph#GoalFeature"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="urml.ecore#//requirement/Requirement/implementingServices"/>
   </links>
   <links>
     <labelMappings
@@ -287,17 +241,6 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//Feature/detailingFunctionalRequirements"/>
-  </links>
-  <links>
-    <labelMappings>
-      <diagramLabel
-          href="urml.gmfgraph#IsRefined"/>
-    </labelMappings>
-    <diagramLink
-        href="urml.gmfgraph#GoalSubGoals"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="urml.ecore#//goal/Goal/subGoals"/>
   </links>
   <links>
     <labelMappings
@@ -315,13 +258,92 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsProvided"/>
+          href="urml.gmfgraph#Requieres"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#ServiceServiceProvider"/>
+        href="urml.gmfgraph#FeatureRequiereFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//service/Service/serviceProvider"/>
+        href="urml.ecore#//Feature/requieredFeatures"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Excludes"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#FeatureExcludeFeatures"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//Feature/excludedFeatures"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Motivates"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#GoalFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/Goal/realizedFeatures"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsRefined"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#GoalSubGoals"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/Goal/subGoals"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="urml.ecore#//goal/GoalReference"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Influences"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalInfluenceGoals"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/target"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsImplemented"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#GoalFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//requirement/Requirement/implementingServices"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsRefined"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#RequierementSubRequierements"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//requirement/Requirement/subRequirements"/>
   </links>
   <links>
     <labelMappings
@@ -354,10 +376,22 @@
           href="urml.gmfgraph#Triggers"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#ActorDanger"/>
+        href="urml.gmfgraph#AssetDanger"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//usecase/Actor/triggeredDangers"/>
+        href="urml.ecore#//danger/Asset/triggeredDangers"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsRefined"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#ServiceSubServices"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//service/Service/subServices"/>
   </links>
   <diagram>
     <diagramCanvas

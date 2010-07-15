@@ -65,13 +65,6 @@
         visualID="5006"
         queryText="true"/>
   </nodeTraces>
-  <nodeTraces
-      visualID="2012"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/service' and _eClass_.name = 'ServiceProvider') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/diagram' and _eClass_.name = 'MEDiagram') and _containmentMF_.name = 'newElements') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/diagram' and _eClass_.name = 'MEDiagram') and _childMF_.name = 'elements')">
-    <nodeLabelTraces
-        visualID="5007"
-        queryText="true"/>
-  </nodeTraces>
   <linkTraces
       visualID="4004"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/goal' and _eClass_.name = 'Goal') and _feature_.name = 'realizedFeatures')">
@@ -101,24 +94,10 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4009"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/goal' and _eClass_.name = 'Goal') and _feature_.name = 'subGoals')">
-    <linkLabelTraces
-        visualID="6002"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4010"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Feature') and _feature_.name = 'constrainingNonFunctionalRequirements')">
     <linkLabelTraces
         visualID="6006"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
-      visualID="4011"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/service' and _eClass_.name = 'Service') and _feature_.name = 'serviceProvider')">
-    <linkLabelTraces
-        visualID="6008"
         queryText="true"/>
   </linkTraces>
   <linkTraces
@@ -136,17 +115,59 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4014"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/usecase' and _eClass_.name = 'Actor') and _feature_.name = 'triggeredDangers')">
-    <linkLabelTraces
-        visualID="6011"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4015"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Feature') and _feature_.name = 'subFeatures')">
     <linkLabelTraces
         visualID="6003"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4016"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/goal' and _eClass_.name = 'GoalReference')">
+    <linkLabelTraces
+        visualID="6013"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4017"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/danger' and _eClass_.name = 'Asset') and _feature_.name = 'triggeredDangers')">
+    <linkLabelTraces
+        visualID="6012"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4018"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/goal' and _eClass_.name = 'Goal') and _feature_.name = 'subGoals')">
+    <linkLabelTraces
+        visualID="6014"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4019"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Feature') and _feature_.name = 'requieredFeatures')">
+    <linkLabelTraces
+        visualID="6015"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4020"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml' and _eClass_.name = 'Feature') and _feature_.name = 'excludedFeatures')">
+    <linkLabelTraces
+        visualID="6016"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4021"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/requirement' and _eClass_.name = 'Requirement') and _feature_.name = 'subRequirements')">
+    <linkLabelTraces
+        visualID="6017"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4022"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/service' and _eClass_.name = 'Service') and _feature_.name = 'subServices')">
+    <linkLabelTraces
+        visualID="6018"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>

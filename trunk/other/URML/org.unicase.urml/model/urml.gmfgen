@@ -457,54 +457,6 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes
-        visualID="2012"
-        editPartClassName="ServiceProviderEditPart"
-        itemSemanticEditPolicyClassName="ServiceProviderItemSemanticEditPolicy"
-        notationViewFactoryClassName="ServiceProviderViewFactory"
-        canonicalEditPolicyClassName="ServiceProviderCanonicalEditPolicy"
-        graphicalNodeEditPolicyClassName="ServiceProviderGraphicalNodeEditPolicy"
-        createCommandClassName="ServiceProviderCreateCommand">
-      <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType
-          xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="ServiceProviderEditHelper"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="ServiceProviderFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ServiceProviderFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.unicasecommon.diagram.figures.Label fFigureServiceProviderFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ServiceProviderFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(0);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.diagrams.urml.icons.ServiceProviderIcon serviceProviderFigure0 = new org.unicase.ui.diagrams.urml.icons.ServiceProviderIcon();&#xA;&#xA;&#xA;&#xA;this.add(serviceProviderFigure0);&#xA;&#xA;&#xA;&#xA;fFigureServiceProviderFigure = new org.unicase.ui.unicasecommon.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureServiceProviderFigure.setFont(FFIGURESERVICEPROVIDERFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureServiceProviderFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureServiceProviderFigure.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureServiceProviderFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureServiceProviderFigure.horizontalIndent = 0;&#xA;constraintFFigureServiceProviderFigure.horizontalSpan = 1;&#xA;constraintFFigureServiceProviderFigure.verticalSpan = 1;&#xA;constraintFFigureServiceProviderFigure.grabExcessHorizontalSpace = false;&#xA;constraintFFigureServiceProviderFigure.grabExcessVerticalSpace = false;&#xA;this.add(fFigureServiceProviderFigure, constraintFFigureServiceProviderFigure);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.unicasecommon.diagram.figures.Label getFigureServiceProviderFigure() {&#xA;&#x9;&#x9;return fFigureServiceProviderFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESERVICEPROVIDERFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
-      <modelFacet>
-        <metaClass
-            href="urml.genmodel#//urml/service/ServiceProvider"/>
-        <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
-        <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
-      </modelFacet>
-      <labels
-          visualID="5007"
-          editPartClassName="ServiceProviderNameEditPart"
-          itemSemanticEditPolicyClassName="ServiceProviderNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ServiceProviderNameViewFactory">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureServiceProviderFigure"
-            figureQualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedFont="true"/>
-        </viewmap>
-        <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
-          <metaFeatures
-              href="../../../plugin/org.unicase.model/model/model.genmodel#//model/UnicaseModelElement/name"/>
-        </modelFacet>
-      </labels>
-    </topLevelNodes>
     <links
         visualID="4008"
         editPartClassName="StakeholderGoalsEditPart"
@@ -558,8 +510,8 @@
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="StakeholderGoalsFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StakeholderGoalsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StakeholderGoalsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="FeatureSubFeaturesFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FeatureSubFeaturesFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FeatureSubFeaturesFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
@@ -577,85 +529,6 @@
             xsi:type="gmfgen:InnerClassViewmap"
             className="IsRefinedLabelFigure"
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="20"/>
-        </viewmap>
-        <modelFacet
-            parser="//@labelParsers/@implementations.1"/>
-      </labels>
-    </links>
-    <links
-        visualID="4004"
-        editPartClassName="GoalRealizedFeaturesEditPart"
-        itemSemanticEditPolicyClassName="GoalRealizedFeaturesItemSemanticEditPolicy"
-        notationViewFactoryClassName="GoalRealizedFeaturesViewFactory"
-        createCommandClassName="GoalRealizedFeaturesCreateCommand"
-        reorientCommandClassName="GoalRealizedFeaturesReorientCommand">
-      <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType
-          xsi:type="gmfgen:SpecializationType"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="GoalFeatureFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet
-          xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature
-            href="urml.genmodel#//urml/goal/Goal/realizedFeatures"/>
-      </modelFacet>
-      <labels
-          visualID="6004"
-          editPartClassName="MotivatesLabelEditPart"
-          itemSemanticEditPolicyClassName="MotivatesLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="GoalRealizedFeaturesLabelViewFactory"
-          readOnly="true">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="MotivatesLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MotivatesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MotivatesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;motivates&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="20"/>
-        </viewmap>
-        <modelFacet
-            parser="//@labelParsers/@implementations.1"/>
-      </labels>
-    </links>
-    <links
-        visualID="4005"
-        editPartClassName="RequirementImplementingServicesEditPart"
-        itemSemanticEditPolicyClassName="RequirementImplementingServicesItemSemanticEditPolicy"
-        notationViewFactoryClassName="RequirementImplementingServicesViewFactory"
-        createCommandClassName="RequirementImplementingServicesCreateCommand"
-        reorientCommandClassName="RequirementImplementingServicesReorientCommand">
-      <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType
-          xsi:type="gmfgen:SpecializationType"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="GoalFeatureFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet
-          xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature
-            href="urml.genmodel#//urml/requirement/Requirement/implementingServices"/>
-      </modelFacet>
-      <labels
-          visualID="6007"
-          editPartClassName="IsImplementedLabelEditPart"
-          itemSemanticEditPolicyClassName="IsImplementedLabelItemSemanticEditPolicy"
-          readOnly="true">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="IsImplementedLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsImplementedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsImplementedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is implemented by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
@@ -705,45 +578,6 @@
       </labels>
     </links>
     <links
-        visualID="4009"
-        editPartClassName="GoalSubGoalsEditPart"
-        itemSemanticEditPolicyClassName="GoalSubGoalsItemSemanticEditPolicy"
-        notationViewFactoryClassName="GoalSubGoalsViewFactory"
-        createCommandClassName="GoalSubGoalsCreateCommand"
-        reorientCommandClassName="GoalSubGoalsReorientCommand">
-      <diagramRunTimeClass
-          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType
-          xsi:type="gmfgen:SpecializationType"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="GoalSubGoalsFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalSubGoalsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalSubGoalsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet
-          xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature
-            href="urml.genmodel#//urml/goal/Goal/subGoals"/>
-      </modelFacet>
-      <labels
-          visualID="6002"
-          editPartClassName="IsRefinedLabelEditPart"
-          itemSemanticEditPolicyClassName="IsRefinedLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="GoalSubGoalsLabelViewFactory">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="IsRefinedLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              y="20"/>
-        </viewmap>
-        <modelFacet
-            parser="//@labelParsers/@implementations.1"/>
-      </labels>
-    </links>
-    <links
         visualID="4010"
         editPartClassName="FeatureConstrainingNonFunctionalRequirementsEditPart"
         itemSemanticEditPolicyClassName="FeatureConstrainingNonFunctionalRequirementsItemSemanticEditPolicy"
@@ -784,36 +618,286 @@
       </labels>
     </links>
     <links
-        visualID="4011"
-        editPartClassName="ServiceServiceProviderEditPart"
-        itemSemanticEditPolicyClassName="ServiceServiceProviderItemSemanticEditPolicy"
-        notationViewFactoryClassName="ServiceServiceProviderViewFactory"
-        createCommandClassName="ServiceServiceProviderCreateCommand"
-        reorientCommandClassName="ServiceServiceProviderReorientCommand">
+        visualID="4019"
+        editPartClassName="FeatureRequieredFeaturesEditPart"
+        itemSemanticEditPolicyClassName="FeatureRequieredFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="FeatureRequieredFeaturesViewFactory"
+        createCommandClassName="FeatureRequieredFeaturesCreateCommand"
+        reorientCommandClassName="FeatureRequieredFeaturesReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="ServiceServiceProviderFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ServiceServiceProviderFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ServiceServiceProviderFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="FeatureRequiereFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FeatureRequiereFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FeatureRequiereFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="urml.genmodel#//urml/service/Service/serviceProvider"/>
+            href="urml.genmodel#//urml/Feature/requieredFeatures"/>
       </modelFacet>
       <labels
-          visualID="6008"
-          editPartClassName="IsProvidedLabelEditPart"
-          itemSemanticEditPolicyClassName="IsProvidedLabelItemSemanticEditPolicy"
+          visualID="6015"
+          editPartClassName="IsRefinedLabel3EditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabel3ItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureRequieredFeaturesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="IsProvidedLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsProvidedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsProvidedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is provided by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            className="RequieresLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class RequieresLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public RequieresLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;requiere&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4020"
+        editPartClassName="FeatureExcludedFeaturesEditPart"
+        itemSemanticEditPolicyClassName="FeatureExcludedFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="FeatureExcludedFeaturesViewFactory"
+        createCommandClassName="FeatureExcludedFeaturesCreateCommand"
+        reorientCommandClassName="FeatureExcludedFeaturesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="FeatureExcludeFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FeatureExcludeFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FeatureExcludeFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/Feature/excludedFeatures"/>
+      </modelFacet>
+      <labels
+          visualID="6016"
+          editPartClassName="IsRefinedLabel4EditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabel4ItemSemanticEditPolicy"
+          notationViewFactoryClassName="FeatureExcludedFeaturesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="ExcludesLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ExcludesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ExcludesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;exclude&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4004"
+        editPartClassName="GoalRealizedFeaturesEditPart"
+        itemSemanticEditPolicyClassName="GoalRealizedFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="GoalRealizedFeaturesViewFactory"
+        createCommandClassName="GoalRealizedFeaturesCreateCommand"
+        reorientCommandClassName="GoalRealizedFeaturesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/goal/Goal/realizedFeatures"/>
+      </modelFacet>
+      <labels
+          visualID="6004"
+          editPartClassName="MotivatesLabelEditPart"
+          itemSemanticEditPolicyClassName="MotivatesLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="GoalRealizedFeaturesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MotivatesLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MotivatesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MotivatesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;motivates&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4018"
+        editPartClassName="GoalSubGoalsEditPart"
+        itemSemanticEditPolicyClassName="GoalSubGoalsItemSemanticEditPolicy"
+        notationViewFactoryClassName="GoalSubGoalsViewFactory"
+        createCommandClassName="GoalSubGoalsCreateCommand"
+        reorientCommandClassName="GoalSubGoalsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalSubGoalsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalSubGoalsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalSubGoalsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/goal/Goal/subGoals"/>
+      </modelFacet>
+      <labels
+          visualID="6014"
+          editPartClassName="IsRefinedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="GoalSubGoalsLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsRefinedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4016"
+        editPartClassName="GoalReferenceEditPart"
+        itemSemanticEditPolicyClassName="GoalReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="GoalReferenceViewFactory"
+        createCommandClassName="GoalReferenceCreateCommand"
+        reorientCommandClassName="GoalReferenceReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="GoalReferenceEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalInfluenceGoalsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalInfluenceGoalsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalInfluenceGoalsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:TypeLinkModelFacet">
+        <metaClass
+            href="urml.genmodel#//urml/goal/GoalReference"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <sourceMetaFeature
+            href="urml.genmodel#//urml/goal/GoalReference/source"/>
+        <targetMetaFeature
+            href="urml.genmodel#//urml/goal/GoalReference/target"/>
+      </modelFacet>
+      <labels
+          visualID="6013"
+          editPartClassName="IsDetailedLabel2EditPart"
+          itemSemanticEditPolicyClassName="IsDetailedLabel2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="GoalReferenceLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="InfluencesLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InfluencesLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InfluencesLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;influence&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4005"
+        editPartClassName="RequirementImplementingServicesEditPart"
+        itemSemanticEditPolicyClassName="RequirementImplementingServicesItemSemanticEditPolicy"
+        notationViewFactoryClassName="RequirementImplementingServicesViewFactory"
+        createCommandClassName="RequirementImplementingServicesCreateCommand"
+        reorientCommandClassName="RequirementImplementingServicesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GoalFeatureFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GoalFeatureFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GoalFeatureFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/requirement/Requirement/implementingServices"/>
+      </modelFacet>
+      <labels
+          visualID="6007"
+          editPartClassName="IsImplementedLabelEditPart"
+          itemSemanticEditPolicyClassName="IsImplementedLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="RequirementImplementingServicesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsImplementedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsImplementedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsImplementedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is implemented by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4021"
+        editPartClassName="RequirementSubRequirementsEditPart"
+        itemSemanticEditPolicyClassName="RequirementSubRequirementsItemSemanticEditPolicy"
+        notationViewFactoryClassName="RequirementSubRequirementsViewFactory"
+        createCommandClassName="RequirementSubRequirementsCreateCommand"
+        reorientCommandClassName="RequirementSubRequirementsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="RequirementSubRequirementsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class RequirementSubRequirementsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public RequirementSubRequirementsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/requirement/Requirement/subRequirements"/>
+      </modelFacet>
+      <labels
+          visualID="6017"
+          editPartClassName="IsRefinedLabel5EditPart"
+          itemSemanticEditPolicyClassName="IsRefinedLabel5ItemSemanticEditPolicy"
+          notationViewFactoryClassName="RequirementSubRequirementsLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsRefinedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
@@ -846,6 +930,7 @@
           visualID="6009"
           editPartClassName="MitigatesLabelEditPart"
           itemSemanticEditPolicyClassName="MitigatesLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigationMitigatedDangersLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -885,6 +970,7 @@
           visualID="6010"
           editPartClassName="HarmsLabelEditPart"
           itemSemanticEditPolicyClassName="HarmsLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="DangerHarmedAssetsLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -901,29 +987,30 @@
       </labels>
     </links>
     <links
-        visualID="4014"
-        editPartClassName="ActorTriggeredDangersEditPart"
-        itemSemanticEditPolicyClassName="ActorTriggeredDangersItemSemanticEditPolicy"
-        notationViewFactoryClassName="ActorTriggeredDangersViewFactory"
-        createCommandClassName="ActorTriggeredDangersCreateCommand"
-        reorientCommandClassName="ActorTriggeredDangersReorientCommand">
+        visualID="4017"
+        editPartClassName="AssetTriggeredDangersEditPart"
+        itemSemanticEditPolicyClassName="AssetTriggeredDangersItemSemanticEditPolicy"
+        notationViewFactoryClassName="AssetTriggeredDangersViewFactory"
+        createCommandClassName="AssetTriggeredDangersCreateCommand"
+        reorientCommandClassName="AssetTriggeredDangersReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="ActorDangerFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorDangerFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorDangerFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="AssetDangerFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class AssetDangerFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public AssetDangerFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="urml.genmodel#//urml/usecase/Actor/triggeredDangers"/>
+            href="urml.genmodel#//urml/danger/Asset/triggeredDangers"/>
       </modelFacet>
       <labels
-          visualID="6011"
+          visualID="6012"
           editPartClassName="TriggersLabelEditPart"
           itemSemanticEditPolicyClassName="TriggersLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="AssetTriggeredDangersLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -931,6 +1018,46 @@
             xsi:type="gmfgen:InnerClassViewmap"
             className="TriggersLabelFigure"
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TriggersLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TriggersLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;triggers&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
+    <links
+        visualID="4022"
+        editPartClassName="ServiceSubServicesEditPart"
+        itemSemanticEditPolicyClassName="ServiceSubServicesItemSemanticEditPolicy"
+        notationViewFactoryClassName="ServiceSubServicesViewFactory"
+        createCommandClassName="ServiceSubServicesCreateCommand"
+        reorientCommandClassName="ServiceSubServicesReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ServiceSubServicesFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ServiceSubServicesFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ServiceSubServicesFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="urml.genmodel#//urml/service/Service/subServices"/>
+      </modelFacet>
+      <labels
+          visualID="6018"
+          editPartClassName="MotivatesLabel2EditPart"
+          itemSemanticEditPolicyClassName="MotivatesLabel2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="ServiceSubServicesLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="IsRefinedLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class IsRefinedLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public IsRefinedLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;is refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
@@ -980,10 +1107,6 @@
             xsi:type="gmfgen:ToolEntry"
             title="ProceduralMitigation"
             genNodes="//@diagram/@topLevelNodes.8"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="ServiceProvider"
-            genNodes="//@diagram/@topLevelNodes.9"/>
       </groups>
     </palette>
     <preferencePages
@@ -1050,9 +1173,6 @@
         child="//@diagram/@topLevelNodes.8"/>
     <childReferences
         parent="//@diagram"
-        child="//@diagram/@topLevelNodes.9"/>
-    <childReferences
-        parent="//@diagram"
         child="//@diagram/@links.0"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
@@ -1116,24 +1236,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.2"
-        child="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@topLevelNodes.2"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.3"
+        parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.2"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.2"
-        child="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.1"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.2"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1145,36 +1265,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.3"
-        child="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@topLevelNodes.5"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.4"
+        parent="//@diagram/@topLevelNodes.5"
         child="//@diagram/@links.3"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.3"
-        child="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.2"
-        child="//@diagram/@links.3"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.3"
-        child="//@diagram/@topLevelNodes.5"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.5"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.3"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1186,12 +1294,12 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.4"
-        child="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.2"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.4"
         referenceType="in_source"
         groupName="incoming links"
@@ -1215,24 +1323,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.5"
-        child="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.1"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.5"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.5"
-        child="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.1"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.5"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1244,24 +1352,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.6"
-        child="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@topLevelNodes.3"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.5"
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.6"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.6"
-        child="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@topLevelNodes.1"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.3"
+        parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.6"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1273,24 +1381,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.7"
-        child="//@diagram/@topLevelNodes.9"
+        child="//@diagram/@topLevelNodes.1"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.9"
+        parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.7"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.7"
-        child="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@topLevelNodes.1"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.4"
+        parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.7"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1302,131 +1410,283 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.8"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.8"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.8"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.8"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.9"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.9"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.9"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.9"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.9"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.9"
+        child="//@diagram/@topLevelNodes.5"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@links.9"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.10"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.10"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.10"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.10"
+        child="//@diagram/@topLevelNodes.5"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@links.10"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.10"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.10"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.10"
+        child="//@diagram/@topLevelNodes.5"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@links.10"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.11"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.11"
         child="//@diagram/@topLevelNodes.6"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.6"
-        child="//@diagram/@links.8"
+        child="//@diagram/@links.11"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.8"
+        parent="//@diagram/@links.11"
         child="//@diagram/@topLevelNodes.2"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.2"
-        child="//@diagram/@links.8"
+        child="//@diagram/@links.11"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.8"
-        child="//@diagram/@topLevelNodes.4"
-        referenceType="in_source"
-        groupName="source"
-        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.4"
-        child="//@diagram/@links.8"
-        referenceType="out_target"
-        groupName="outgoing links"
-        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.8"
+        parent="//@diagram/@links.11"
         child="//@diagram/@topLevelNodes.5"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.5"
-        child="//@diagram/@links.8"
+        child="//@diagram/@links.11"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.8"
+        parent="//@diagram/@links.11"
         child="//@diagram/@topLevelNodes.8"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.8"
-        child="//@diagram/@links.8"
+        child="//@diagram/@links.11"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram"
-        child="//@diagram/@links.9"
+        child="//@diagram/@links.12"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.9"
+        parent="//@diagram/@links.12"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.12"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.12"
         child="//@diagram/@topLevelNodes.7"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.7"
-        child="//@diagram/@links.9"
+        child="//@diagram/@links.12"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.9"
-        child="//@diagram/@topLevelNodes.9"
-        referenceType="out_target"
-        groupName="target"
-        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@topLevelNodes.9"
-        child="//@diagram/@links.9"
-        referenceType="in_source"
-        groupName="incoming links"
-        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences
-        parent="//@diagram/@links.9"
+        parent="//@diagram/@links.12"
         child="//@diagram/@topLevelNodes.6"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.6"
-        child="//@diagram/@links.9"
+        child="//@diagram/@links.12"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram"
-        child="//@diagram/@links.10"
+        child="//@diagram/@links.13"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.10"
+        parent="//@diagram/@links.13"
         child="//@diagram/@topLevelNodes.6"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.6"
-        child="//@diagram/@links.10"
+        child="//@diagram/@links.13"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@links.10"
+        parent="//@diagram/@links.13"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.13"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.13"
         child="//@diagram/@topLevelNodes.7"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.7"
-        child="//@diagram/@links.10"
+        child="//@diagram/@links.13"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.14"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.14"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.14"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.14"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.14"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
@@ -1457,10 +1717,10 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet //@diagram/@topLevelNodes.8/@labels.0/@modelFacet //@diagram/@topLevelNodes.9/@labels.0/@modelFacet"/>
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet //@diagram/@topLevelNodes.8/@labels.0/@modelFacet"/>
     <implementations
         xsi:type="gmfgen:ExternalParser"
-        uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet //@diagram/@links.5/@labels.0/@modelFacet //@diagram/@links.6/@labels.0/@modelFacet //@diagram/@links.7/@labels.0/@modelFacet //@diagram/@links.8/@labels.0/@modelFacet //@diagram/@links.9/@labels.0/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet"/>
+        uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet //@diagram/@links.5/@labels.0/@modelFacet //@diagram/@links.6/@labels.0/@modelFacet //@diagram/@links.7/@labels.0/@modelFacet //@diagram/@links.8/@labels.0/@modelFacet //@diagram/@links.9/@labels.0/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet //@diagram/@links.11/@labels.0/@modelFacet //@diagram/@links.12/@labels.0/@modelFacet //@diagram/@links.13/@labels.0/@modelFacet //@diagram/@links.14/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">
