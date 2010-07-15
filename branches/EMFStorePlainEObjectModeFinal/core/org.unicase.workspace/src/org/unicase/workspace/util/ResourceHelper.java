@@ -6,12 +6,16 @@
 package org.unicase.workspace.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * Helper for resource operations.
@@ -65,6 +69,32 @@ public final class ResourceHelper {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		resource.getContents().add(element);
+		resource.save(null);
+	}
+
+	/**
+	 * Puts an element into a new resource.
+	 * 
+	 * @param <T> element type
+	 * @param element The element to be put
+	 * @param absoluteFileName filepath of resource
+	 * @throws IOException in case of failure
+	 */
+	public static <T extends EObject> void putElementIntoNewResourceWithProject(String absoluteFileName, T element,
+		Project project) throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		resource.getContents().add(element);
+
+		if (resource instanceof XMIResource) {
+			XMIResource xmiResource = (XMIResource) resource;
+			for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap()) {
+				EObject eObject = e.getKey();
+				String id = e.getValue().getId();
+				xmiResource.setID(eObject, id);
+			}
+		}
+
 		resource.save(null);
 	}
 }

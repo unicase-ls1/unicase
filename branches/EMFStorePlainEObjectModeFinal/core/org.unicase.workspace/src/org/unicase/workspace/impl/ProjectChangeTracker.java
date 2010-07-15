@@ -121,6 +121,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (this.getModelElementsFromClipboard().contains(modelElement)) {
 			return;
 		}
+		// TODO:
+		save(modelElement);
 
 		addToResource(modelElement);
 		if (isRecording) {
@@ -176,8 +178,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	/**
-	 * >>>>>>> .merge-right.r8718 Stops current recording of changes and adds recorded changes to this project spaces
-	 * changes.
+	 * Stops current recording of changes and adds recorded changes to this project spaces changes.
 	 * 
 	 * @generated NOT
 	 */
@@ -208,6 +209,12 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 	}
 
+	public void saveDirtyResourcesWithProject(Project project) {
+		if (autoSave) {
+			dirtyResourceSet.saveWithProject(project);
+		}
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -221,8 +228,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			if (isRecording) {
 				recordingFinished();
 			}
-			saveDirtyResources();
-
+			// saveDirtyResources();
+			saveDirtyResourcesWithProject(project);
 		}
 	}
 
@@ -468,7 +475,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		for (EObject copiedElement : newElementsOnClipboardAfterCommand) {
 			reassignModelElementIds(copiedElement);
 		}
-		saveDirtyResources();
+		// saveDirtyResources();
+		saveDirtyResourcesWithProject(projectSpace.getProject());
 	}
 
 	private void cleanResources(EObject deletedElement) {

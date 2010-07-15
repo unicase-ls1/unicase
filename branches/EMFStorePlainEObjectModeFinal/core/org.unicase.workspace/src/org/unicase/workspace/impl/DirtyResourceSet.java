@@ -7,9 +7,14 @@ package org.unicase.workspace.impl;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -44,6 +49,29 @@ public class DirtyResourceSet {
 	public void save() {
 		for (Resource resource : resources) {
 			try {
+				resource.save(Configuration.getResourceSaveOptions());
+			} catch (IOException e) {
+				String message = "Save failed on a resource of the workspace failed!";
+				WorkspaceUtil.logWarning(message, e);
+			}
+		}
+		resources.clear();
+	}
+
+	public void saveWithProject(Project project) {
+		for (Resource resource : resources) {
+			try {
+				if (resource instanceof XMIResource) {
+					XMIResource xmiResource = (XMIResource) resource;
+					for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap()) {
+						xmiResource.setID(e.getKey(), e.getValue().getId());
+					}
+					// TreeIterator<EObject> it = resource.getAllContents();
+					// while (it.hasNext()) {
+					// EObject o = it.next();
+
+					// }
+				}
 				resource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {
 				String message = "Save failed on a resource of the workspace failed!";

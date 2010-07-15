@@ -1913,7 +1913,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			// }
 		}
 		changeTracker.setAutoSave(true);
-		changeTracker.saveDirtyResources();
+		// changeTracker.saveDirtyResources();
+		changeTracker.saveDirtyResourcesWithProject(getProject());
 		startChangeRecording();
 
 		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
@@ -1988,7 +1989,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
 
-		ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
+		// ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
+		ResourceHelper.putElementIntoNewResourceWithProject(fileName, getLocalChangePackage(false), this.project);
 	}
 
 	/**
