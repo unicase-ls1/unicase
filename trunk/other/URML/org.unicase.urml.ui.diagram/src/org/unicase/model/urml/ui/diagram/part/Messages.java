@@ -303,7 +303,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ServiceProvider10CreationTool_title;
+	public static String VariationPoint10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String VariationPointInstance11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Product12CreationTool_title;
 
 	/**
 	 * @generated
@@ -333,22 +343,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_FunctionalRequirement_2006_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_2005_incominglinks;
+	public static String NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_2005_outgoinglinks;
+	public static String NavigatorGroupName_Feature_2012_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Feature_2012_outgoinglinks;
 
 	/**
 	 * @generated
@@ -363,12 +373,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_NonFunctionalRequirement_2008_outgoinglinks;
+	public static String NavigatorGroupName_NonFunctionalRequirement_2008_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_NonFunctionalRequirement_2008_incominglinks;
+	public static String NavigatorGroupName_NonFunctionalRequirement_2008_outgoinglinks;
 
 	/**
 	 * @generated
@@ -398,7 +408,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ServiceProvider_2012_incominglinks;
+	public static String NavigatorGroupName_VariationPoint_2013_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPoint_2013_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstance_2014_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstance_2014_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Product_2015_outgoinglinks;
 
 	/**
 	 * @generated
@@ -413,12 +443,52 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureSubFeatures_4015_target;
+	public static String NavigatorGroupName_AbstractFeatureSubFeatures_4034_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureSubFeatures_4015_source;
+	public static String NavigatorGroupName_AbstractFeatureSubFeatures_4034_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureDetailingFunctionalRequirements_4035_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureDetailingFunctionalRequirements_4035_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureConstrainingNonFunctionalRequirements_4036_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureConstrainingNonFunctionalRequirements_4036_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureRequieredFeatures_4037_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureRequieredFeatures_4037_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureExcludedFeatures_4038_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AbstractFeatureExcludedFeatures_4038_source;
 
 	/**
 	 * @generated
@@ -433,6 +503,56 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_GoalSubGoals_4018_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalSubGoals_4018_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4016_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4016_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4023_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4023_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4024_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4024_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4025_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_GoalReference_4025_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_RequirementImplementingServices_4005_target;
 
 	/**
@@ -443,42 +563,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_target;
+	public static String NavigatorGroupName_RequirementSubRequirements_4021_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureDetailingFunctionalRequirements_4006_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_GoalSubGoals_4009_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_GoalSubGoals_4009_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FeatureConstrainingNonFunctionalRequirements_4010_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FeatureConstrainingNonFunctionalRequirements_4010_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ServiceServiceProvider_4011_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ServiceServiceProvider_4011_source;
+	public static String NavigatorGroupName_RequirementSubRequirements_4021_source;
 
 	/**
 	 * @generated
@@ -503,12 +593,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorTriggeredDangers_4014_target;
+	public static String NavigatorGroupName_AssetTriggeredDangers_4017_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorTriggeredDangers_4014_source;
+	public static String NavigatorGroupName_AssetTriggeredDangers_4017_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ServiceSubServices_4022_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ServiceSubServices_4022_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointFeatures_4039_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointFeatures_4039_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstanceVariationPoint_4033_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstanceVariationPoint_4033_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstanceSelectedFeatures_4040_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointInstanceSelectedFeatures_4040_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ProductVariationPointInstances_4032_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ProductVariationPointInstances_4032_source;
 
 	/**
 	 * @generated
@@ -545,5 +685,5 @@ public class Messages extends NLS {
 	 */
 	public static String UrmlModelingAssistantProviderMessage;
 
-	//TODO: put accessor fields manually	
+	// TODO: put accessor fields manually
 }

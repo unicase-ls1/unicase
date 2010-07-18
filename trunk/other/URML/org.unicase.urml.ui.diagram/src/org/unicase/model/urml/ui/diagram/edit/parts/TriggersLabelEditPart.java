@@ -55,7 +55,7 @@ public class TriggersLabelEditPart extends LabelEditPart implements ITextAwareEd
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6011;
+	public static final int VISUAL_ID = 6012;
 
 	/**
 	 * @generated
@@ -298,7 +298,7 @@ public class TriggersLabelEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.ActorTriggeredDangers_4014, getParserElement(),
+			parser = UrmlParserProvider.getParser(UrmlElementTypes.AssetTriggeredDangers_4017, getParserElement(),
 				UrmlVisualIDRegistry
 					.getType(org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart.VISUAL_ID));
 		}

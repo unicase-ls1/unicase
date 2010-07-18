@@ -6,15 +6,10 @@ package org.unicase.model.urml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlFactory;
@@ -22,70 +17,53 @@ import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 
 import urml.danger.DangerPackage;
-
 import urml.danger.impl.DangerPackageImpl;
-
+import urml.feature.FeaturePackage;
+import urml.feature.impl.FeaturePackageImpl;
 import urml.goal.GoalPackage;
-
 import urml.goal.impl.GoalPackageImpl;
-
 import urml.requirement.RequirementPackage;
-
 import urml.requirement.impl.RequirementPackageImpl;
-
 import urml.service.ServicePackage;
-
 import urml.service.impl.ServicePackageImpl;
-
 import urml.usecase.UsecasePackage;
-
 import urml.usecase.impl.UsecasePackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass urmlModelElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass stakeholderEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass urmlDiagramEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.unicase.model.urml.UrmlPackage#eNS_URI
 	 * @see #init()
@@ -96,19 +74,19 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link UrmlPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link UrmlPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -144,6 +122,9 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
+		FeaturePackageImpl theFeaturePackage = (FeaturePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) instanceof FeaturePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) : FeaturePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUrmlPackage.createPackageContents();
@@ -152,6 +133,7 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		theUsecasePackage.createPackageContents();
 		theServicePackage.createPackageContents();
 		theDangerPackage.createPackageContents();
+		theFeaturePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theUrmlPackage.initializePackageContents();
@@ -160,6 +142,7 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		theUsecasePackage.initializePackageContents();
 		theServicePackage.initializePackageContents();
 		theDangerPackage.initializePackageContents();
+		theFeaturePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theUrmlPackage.freeze();
@@ -170,8 +153,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUrmlModelElement() {
@@ -179,71 +162,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFeature() {
-		return featureEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_Goals() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_DetailingFunctionalRequirements() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_ConstrainingNonFunctionalRequirements() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_DetailingUseCases() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_ParentFeature() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_SubFeatures() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getStakeholder() {
@@ -251,8 +171,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getStakeholder_Goals() {
@@ -260,8 +180,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getURMLDiagram() {
@@ -269,8 +189,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UrmlFactory getUrmlFactory() {
@@ -278,17 +198,16 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -299,14 +218,6 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		// Create classes and their features
 		urmlModelElementEClass = createEClass(URML_MODEL_ELEMENT);
 
-		featureEClass = createEClass(FEATURE);
-		createEReference(featureEClass, FEATURE__GOALS);
-		createEReference(featureEClass, FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS);
-		createEReference(featureEClass, FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
-		createEReference(featureEClass, FEATURE__DETAILING_USE_CASES);
-		createEReference(featureEClass, FEATURE__PARENT_FEATURE);
-		createEReference(featureEClass, FEATURE__SUB_FEATURES);
-
 		stakeholderEClass = createEClass(STAKEHOLDER);
 		createEReference(stakeholderEClass, STAKEHOLDER__GOALS);
 
@@ -314,17 +225,16 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -346,6 +256,8 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		ServicePackage theServicePackage = (ServicePackage) EPackage.Registry.INSTANCE
 			.getEPackage(ServicePackage.eNS_URI);
 		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
+		FeaturePackage theFeaturePackage = (FeaturePackage) EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
@@ -358,6 +270,7 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		getESubpackages().add(theUsecasePackage);
 		getESubpackages().add(theServicePackage);
 		getESubpackages().add(theDangerPackage);
+		getESubpackages().add(theFeaturePackage);
 
 		// Create type parameters
 
@@ -365,7 +278,6 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 
 		// Add supertypes to classes
 		urmlModelElementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		featureEClass.getESuperTypes().add(this.getUrmlModelElement());
 		stakeholderEClass.getESuperTypes().add(this.getUrmlModelElement());
 		urmlDiagramEClass.getESuperTypes().add(theDiagramPackage.getMEDiagram());
 
@@ -373,41 +285,10 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		initEClass(urmlModelElementEClass, UrmlModelElement.class, "UrmlModelElement", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Goals(), theGoalPackage.getGoal(), theGoalPackage.getGoal_RealizedFeatures(),
-			"goals", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_Goals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_DetailingFunctionalRequirements(), theRequirementPackage.getFunctionalRequirement(),
-			theRequirementPackage.getFunctionalRequirement_DetailedFeatures(), "detailingFunctionalRequirements", null,
-			0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_DetailingFunctionalRequirements().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_ConstrainingNonFunctionalRequirements(), theRequirementPackage
-			.getNonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement_ConstrainedFeatures(),
-			"constrainingNonFunctionalRequirements", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_ConstrainingNonFunctionalRequirements().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_DetailingUseCases(), theUsecasePackage.getSolutionDomainUseCase(), theUsecasePackage
-			.getSolutionDomainUseCase_DetailedFeature(), "detailingUseCases", null, 0, -1, Feature.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		getFeature_DetailingUseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_ParentFeature(), this.getFeature(), this.getFeature_SubFeatures(), "parentFeature",
-			null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_ParentFeature().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getFeature_SubFeatures(), this.getFeature(), this.getFeature_ParentFeature(), "subFeatures",
-			null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFeature_SubFeatures().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-
 		initEClass(stakeholderEClass, Stakeholder.class, "Stakeholder", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStakeholder_Goals(), theGoalPackage.getGoal(), theGoalPackage.getGoal_Stakeholders(),
-			"goals", null, 0, 1, Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			"goals", null, 0, -1, Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getStakeholder_Goals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
@@ -418,4 +299,4 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		createResource(eNS_URI);
 	}
 
-} //UrmlPackageImpl
+} // UrmlPackageImpl

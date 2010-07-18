@@ -71,7 +71,7 @@ public class GoalSubGoalsReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Goal && newEnd instanceof Goal)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalSubGoals_4009(getNewSource(), getOldTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalSubGoals_4018(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class GoalSubGoalsReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Goal && newEnd instanceof Goal)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalSubGoals_4009(getOldSource(), getNewTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalSubGoals_4018(getOldSource(), getNewTarget());
 	}
 
 	/**

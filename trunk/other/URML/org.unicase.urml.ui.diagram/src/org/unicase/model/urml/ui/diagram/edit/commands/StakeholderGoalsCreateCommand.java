@@ -65,7 +65,7 @@ public class StakeholderGoalsCreateCommand extends EditElementCommand {
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setGoals(getTarget());
+			getSource().getGoals().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 

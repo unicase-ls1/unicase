@@ -24,7 +24,7 @@ public class URMLDiagramOpener extends DiagramOpener implements ModelElementOpen
 		} else {
 			throw new IllegalArgumentException("Opener only applicable for URMLDiagrams");
 		}
-		
+
 	}
 
 }

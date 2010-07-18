@@ -107,8 +107,8 @@ public class StakeholderGoalsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setGoals(null);
-		getNewSource().setGoals(getOldTarget());
+		getOldSource().getGoals().remove(getOldTarget());
+		getNewSource().getGoals().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -116,7 +116,8 @@ public class StakeholderGoalsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setGoals(getNewTarget());
+		getOldSource().getGoals().remove(getOldTarget());
+		getOldSource().getGoals().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

@@ -47,6 +47,15 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="ProceduralMitigation"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="VariationPoint"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="VariationPointInstance"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Product"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

@@ -7,60 +7,93 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureConstrainingNonFunctionalRequirementsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureDetailingFunctionalRequirementsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureExcludedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureRequieredFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ActorTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ExcludesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ExpressesLabelEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureConstrainingNonFunctionalRequirementsEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.FeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference4EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeight2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeight3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeightEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.HarmsLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.InfluencesLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.InfluencesLabel3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.InfluencesLabel4EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.InfluencesLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.InstantiateLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsConstraintLabelEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.IsProvidedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.RequieresLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.SelectLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceServiceProviderEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ServiceSubServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointNameEditPart;
+import org.unicase.model.urml.ui.diagram.expressions.UrmlAbstractExpression;
+import org.unicase.model.urml.ui.diagram.expressions.UrmlOCLFactory;
 
 import urml.danger.DangerPackage;
+import urml.feature.FeaturePackage;
 import urml.goal.GoalPackage;
+import urml.goal.GoalReference;
 import urml.requirement.RequirementPackage;
 import urml.service.ServicePackage;
 import urml.usecase.UsecasePackage;
 
 /**
- * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * This registry is used to determine which type of visual object should be created for the corresponding Diagram, Node,
+ * ChildNode or Link represented by a domain model object.
  * 
  * @generated
  */
@@ -70,6 +103,26 @@ public class UrmlVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.unicase.urml.ui.diagram/debug/visualID"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private static UrmlAbstractExpression GoalReference_4016_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UrmlAbstractExpression GoalReference_4023_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UrmlAbstractExpression GoalReference_4024_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UrmlAbstractExpression GoalReference_4025_Constraint;
 
 	/**
 	 * @generated
@@ -168,7 +221,7 @@ public class UrmlVisualIDRegistry {
 			if (RequirementPackage.eINSTANCE.getFunctionalRequirement().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionalRequirementEditPart.VISUAL_ID;
 			}
-			if (UrmlPackage.eINSTANCE.getFeature().isSuperTypeOf(domainElement.eClass())) {
+			if (FeaturePackage.eINSTANCE.getFeature().isSuperTypeOf(domainElement.eClass())) {
 				return FeatureEditPart.VISUAL_ID;
 			}
 			if (ServicePackage.eINSTANCE.getService().isSuperTypeOf(domainElement.eClass())) {
@@ -186,8 +239,14 @@ public class UrmlVisualIDRegistry {
 			if (DangerPackage.eINSTANCE.getProceduralMitigation().isSuperTypeOf(domainElement.eClass())) {
 				return ProceduralMitigationEditPart.VISUAL_ID;
 			}
-			if (ServicePackage.eINSTANCE.getServiceProvider().isSuperTypeOf(domainElement.eClass())) {
-				return ServiceProviderEditPart.VISUAL_ID;
+			if (FeaturePackage.eINSTANCE.getVariationPoint().isSuperTypeOf(domainElement.eClass())) {
+				return VariationPointEditPart.VISUAL_ID;
+			}
+			if (FeaturePackage.eINSTANCE.getVariationPointInstance().isSuperTypeOf(domainElement.eClass())) {
+				return VariationPointInstanceEditPart.VISUAL_ID;
+			}
+			if (FeaturePackage.eINSTANCE.getProduct().isSuperTypeOf(domainElement.eClass())) {
+				return ProductEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -258,8 +317,18 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ServiceProviderEditPart.VISUAL_ID:
-			if (ServiceProviderNameEditPart.VISUAL_ID == nodeVisualID) {
+		case VariationPointEditPart.VISUAL_ID:
+			if (VariationPointNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case VariationPointInstanceEditPart.VISUAL_ID:
+			if (VariationPointInstanceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ProductEditPart.VISUAL_ID:
+			if (ProductNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -291,7 +360,13 @@ public class UrmlVisualIDRegistry {
 			if (ProceduralMitigationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (ServiceProviderEditPart.VISUAL_ID == nodeVisualID) {
+			if (VariationPointEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (VariationPointInstanceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ProductEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -300,8 +375,28 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case FeatureSubFeaturesEditPart.VISUAL_ID:
+		case AbstractFeatureSubFeaturesEditPart.VISUAL_ID:
 			if (IsRefinedLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AbstractFeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsDetailedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AbstractFeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AbstractFeatureRequieredFeaturesEditPart.VISUAL_ID:
+			if (RequieresLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AbstractFeatureExcludedFeaturesEditPart.VISUAL_ID:
+			if (ExcludesLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -310,28 +405,50 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case RequirementImplementingServicesEditPart.VISUAL_ID:
-			if (IsImplementedLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
-			if (IsDetailedLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case GoalSubGoalsEditPart.VISUAL_ID:
 			if (IsRefinedLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
-			if (IsConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+		case GoalReferenceEditPart.VISUAL_ID:
+			if (IsDetailedLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InfluencesLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ServiceServiceProviderEditPart.VISUAL_ID:
-			if (IsProvidedLabelEditPart.VISUAL_ID == nodeVisualID) {
+		case GoalReference2EditPart.VISUAL_ID:
+			if (GoalReferenceWeightEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InfluencesLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case GoalReference3EditPart.VISUAL_ID:
+			if (GoalReferenceWeight2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InfluencesLabel3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case GoalReference4EditPart.VISUAL_ID:
+			if (GoalReferenceWeight3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InfluencesLabel4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementImplementingServicesEditPart.VISUAL_ID:
+			if (IsImplementedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementSubRequirementsEditPart.VISUAL_ID:
+			if (IsRefinedLabel5EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -345,8 +462,33 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ActorTriggeredDangersEditPart.VISUAL_ID:
+		case AssetTriggeredDangersEditPart.VISUAL_ID:
 			if (TriggersLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ServiceSubServicesEditPart.VISUAL_ID:
+			if (MotivatesLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case VariationPointFeaturesEditPart.VISUAL_ID:
+			if (CombineLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
+			if (InstantiateLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
+			if (SelectLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ProductVariationPointInstancesEditPart.VISUAL_ID:
+			if (CombineLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -361,17 +503,80 @@ public class UrmlVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
+		if (GoalPackage.eINSTANCE.getGoalReference().isSuperTypeOf(domainElement.eClass())
+			&& isGoalReference_4016((GoalReference) domainElement)) {
+			return GoalReferenceEditPart.VISUAL_ID;
+		}
+		if (GoalPackage.eINSTANCE.getGoalReference().isSuperTypeOf(domainElement.eClass())
+			&& isGoalReference_4023((GoalReference) domainElement)) {
+			return GoalReference2EditPart.VISUAL_ID;
+		}
+		if (GoalPackage.eINSTANCE.getGoalReference().isSuperTypeOf(domainElement.eClass())
+			&& isGoalReference_4024((GoalReference) domainElement)) {
+			return GoalReference3EditPart.VISUAL_ID;
+		}
+		if (GoalPackage.eINSTANCE.getGoalReference().isSuperTypeOf(domainElement.eClass())
+			&& isGoalReference_4025((GoalReference) domainElement)) {
+			return GoalReference4EditPart.VISUAL_ID;
+		}
 		return -1;
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
+	 * User can change implementation of this method to handle some specific situations not covered by default logic.
 	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(URMLDiagram element) {
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isGoalReference_4016(GoalReference domainElement) {
+		if (GoalReference_4016_Constraint == null) { // lazy initialization
+			GoalReference_4016_Constraint = UrmlOCLFactory.getExpression(
+				"self.weight = GoalReferenceType::PLUS_PLUS", GoalPackage.eINSTANCE.getGoalReference()); //$NON-NLS-1$
+		}
+		Object result = GoalReference_4016_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isGoalReference_4023(GoalReference domainElement) {
+		if (GoalReference_4023_Constraint == null) { // lazy initialization
+			GoalReference_4023_Constraint = UrmlOCLFactory.getExpression(
+				"self.weight = GoalReferenceType::PLUS", GoalPackage.eINSTANCE.getGoalReference()); //$NON-NLS-1$
+		}
+		Object result = GoalReference_4023_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isGoalReference_4024(GoalReference domainElement) {
+		if (GoalReference_4024_Constraint == null) { // lazy initialization
+			GoalReference_4024_Constraint = UrmlOCLFactory.getExpression(
+				"self.weight = GoalReferenceType::MINUS", GoalPackage.eINSTANCE.getGoalReference()); //$NON-NLS-1$
+		}
+		Object result = GoalReference_4024_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isGoalReference_4025(GoalReference domainElement) {
+		if (GoalReference_4025_Constraint == null) { // lazy initialization
+			GoalReference_4025_Constraint = UrmlOCLFactory.getExpression(
+				"self.weight = GoalReferenceType::MINUS_MINUS", GoalPackage.eINSTANCE.getGoalReference()); //$NON-NLS-1$
+		}
+		Object result = GoalReference_4025_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 }

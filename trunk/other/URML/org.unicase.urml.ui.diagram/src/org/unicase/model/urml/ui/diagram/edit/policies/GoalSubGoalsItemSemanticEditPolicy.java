@@ -20,7 +20,7 @@ public class GoalSubGoalsItemSemanticEditPolicy extends UrmlBaseItemSemanticEdit
 	 * @generated
 	 */
 	public GoalSubGoalsItemSemanticEditPolicy() {
-		super(UrmlElementTypes.GoalSubGoals_4009);
+		super(UrmlElementTypes.GoalSubGoals_4018);
 	}
 
 	/**

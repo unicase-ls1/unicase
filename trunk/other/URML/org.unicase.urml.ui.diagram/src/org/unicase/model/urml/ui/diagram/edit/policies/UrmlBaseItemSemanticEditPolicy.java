@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.urml.Feature;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.ui.diagram.edit.helpers.UrmlBaseEditHelper;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
@@ -39,13 +39,15 @@ import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 import urml.danger.Asset;
 import urml.danger.Danger;
 import urml.danger.Mitigation;
+import urml.feature.AbstractFeature;
+import urml.feature.Product;
+import urml.feature.VariationPoint;
+import urml.feature.VariationPointInstance;
 import urml.goal.Goal;
 import urml.requirement.FunctionalRequirement;
 import urml.requirement.NonFunctionalRequirement;
 import urml.requirement.Requirement;
 import urml.service.Service;
-import urml.service.ServiceProvider;
-import urml.usecase.Actor;
 
 /**
  * @generated
@@ -54,6 +56,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
+	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
@@ -71,11 +74,9 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to extended data of the
+	 * request so command switch can decide what kind of diagram element is being edited. It is done in those cases when
+	 * it's not possible to deduce diagram element kind from domain element.
 	 * 
 	 * @generated
 	 */
@@ -92,6 +93,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
+	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -268,6 +270,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
+	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -276,6 +279,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
+	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -297,9 +301,14 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateStakeholderGoals_4008(Stakeholder source, Goal target) {
 			if (source != null) {
-				if (source.getGoals() != null) {
+				if (source.getGoals().contains(target)) {
 					return false;
 				}
 			}
@@ -313,7 +322,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateFeatureSubFeatures_4015(Feature source, Feature target) {
+		public static boolean canCreateAbstractFeatureSubFeatures_4034(AbstractFeature source, AbstractFeature target) {
 			if (source != null) {
 				if (source.getSubFeatures().contains(target)) {
 					return false;
@@ -326,13 +335,81 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				return false;
 			}
 
-			return canExistFeatureSubFeatures_4015(source, target);
+			return canExistAbstractFeatureSubFeatures_4034(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGoalRealizedFeatures_4004(Goal source, Feature target) {
+		public static boolean canCreateAbstractFeatureDetailingFunctionalRequirements_4035(AbstractFeature source,
+			FunctionalRequirement target) {
+			if (source != null) {
+				if (source.getDetailingFunctionalRequirements().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDetailedFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistAbstractFeatureDetailingFunctionalRequirements_4035(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateAbstractFeatureConstrainingNonFunctionalRequirements_4036(
+			AbstractFeature source, NonFunctionalRequirement target) {
+			if (source != null) {
+				if (source.getConstrainingNonFunctionalRequirements().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getConstrainedFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistAbstractFeatureConstrainingNonFunctionalRequirements_4036(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateAbstractFeatureRequieredFeatures_4037(AbstractFeature source,
+			AbstractFeature target) {
+			if (source != null) {
+				if (source.getRequieredFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRequieringFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistAbstractFeatureRequieredFeatures_4037(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateAbstractFeatureExcludedFeatures_4038(AbstractFeature source,
+			AbstractFeature target) {
+			if (source != null) {
+				if (source.getExcludedFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getExcludingFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistAbstractFeatureExcludedFeatures_4038(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalRealizedFeatures_4004(Goal source, AbstractFeature target) {
 			if (source != null) {
 				if (source.getRealizedFeatures().contains(target)) {
 					return false;
@@ -343,6 +420,53 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistGoalRealizedFeatures_4004(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalSubGoals_4018(Goal source, Goal target) {
+			if (source != null) {
+				if (source.getSubGoals().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getParentGoal() != null)) {
+				return false;
+			}
+
+			return canExistGoalSubGoals_4018(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalReference_4016(MEDiagram container, Goal source, Goal target) {
+			return canExistGoalReference_4016(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalReference_4023(MEDiagram container, Goal source, Goal target) {
+			return canExistGoalReference_4023(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalReference_4024(MEDiagram container, Goal source, Goal target) {
+			return canExistGoalReference_4024(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateGoalReference_4025(MEDiagram container, Goal source, Goal target) {
+			return canExistGoalReference_4025(container, source, target);
 		}
 
 		/**
@@ -364,70 +488,20 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateFeatureDetailingFunctionalRequirements_4006(Feature source,
-			FunctionalRequirement target) {
+		public static boolean canCreateRequirementSubRequirements_4021(Requirement source, Requirement target) {
 			if (source != null) {
-				if (source.getDetailingFunctionalRequirements().contains(target)) {
-					return false;
-				}
-			}
-			if (target != null && (target.getDetailedFeatures().contains(target))) {
-				return false;
-			}
-
-			return canExistFeatureDetailingFunctionalRequirements_4006(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateGoalSubGoals_4009(Goal source, Goal target) {
-			if (source != null) {
-				if (source.getSubGoals().contains(target)) {
+				if (source.getSubRequirements().contains(target)) {
 					return false;
 				}
 				if (source == target) {
 					return false;
 				}
 			}
-			if (target != null && (target.getParentGoal() != null)) {
+			if (target != null && (target.getParentRequirement() != null)) {
 				return false;
 			}
 
-			return canExistGoalSubGoals_4009(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateFeatureConstrainingNonFunctionalRequirements_4010(Feature source,
-			NonFunctionalRequirement target) {
-			if (source != null) {
-				if (source.getConstrainingNonFunctionalRequirements().contains(target)) {
-					return false;
-				}
-			}
-			if (target != null && (target.getConstrainedFeatures().contains(target))) {
-				return false;
-			}
-
-			return canExistFeatureConstrainingNonFunctionalRequirements_4010(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateServiceServiceProvider_4011(Service source, ServiceProvider target) {
-			if (source != null) {
-				if (source.getServiceProvider() != null) {
-					return false;
-				}
-			}
-			if (target != null && (target.getProvidedServices().contains(target))) {
-				return false;
-			}
-
-			return canExistServiceServiceProvider_4011(source, target);
+			return canExistRequirementSubRequirements_4021(source, target);
 		}
 
 		/**
@@ -455,7 +529,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-			if (target != null && (target.getEndangeredBy().contains(target))) {
+			if (target != null && (target.getHarmingDangers().contains(target))) {
 				return false;
 			}
 
@@ -465,17 +539,102 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateActorTriggeredDangers_4014(Actor source, Danger target) {
+		public static boolean canCreateAssetTriggeredDangers_4017(Asset source, Danger target) {
 			if (source != null) {
 				if (source.getTriggeredDangers().contains(target)) {
 					return false;
 				}
 			}
-			if (target != null && (target.getTriggeringActors().contains(target))) {
+			if (target != null && (target.getTriggeringAssets().contains(target))) {
 				return false;
 			}
 
-			return canExistActorTriggeredDangers_4014(source, target);
+			return canExistAssetTriggeredDangers_4017(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateServiceSubServices_4022(Service source, Service target) {
+			if (source != null) {
+				if (source.getSubServices().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getParentService() != null)) {
+				return false;
+			}
+
+			return canExistServiceSubServices_4022(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateVariationPointFeatures_4039(VariationPoint source, AbstractFeature target) {
+			if (source != null) {
+				if (source.getFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getVariationPoints().contains(target))) {
+				return false;
+			}
+
+			return canExistVariationPointFeatures_4039(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateVariationPointInstanceVariationPoint_4033(VariationPointInstance source,
+			VariationPoint target) {
+			if (source != null) {
+				if (source.getVariationPoint() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getInstances().contains(target))) {
+				return false;
+			}
+
+			return canExistVariationPointInstanceVariationPoint_4033(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateVariationPointInstanceSelectedFeatures_4040(VariationPointInstance source,
+			AbstractFeature target) {
+			if (source != null) {
+				if (source.getSelectedFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getVariationPointInstances().contains(target))) {
+				return false;
+			}
+
+			return canExistVariationPointInstanceSelectedFeatures_4040(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateProductVariationPointInstances_4032(Product source, VariationPointInstance target) {
+			if (source != null) {
+				if (source.getVariationPointInstances().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getProduct() != null)) {
+				return false;
+			}
+
+			return canExistProductVariationPointInstances_4032(source, target);
 		}
 
 		/**
@@ -488,14 +647,81 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistFeatureSubFeatures_4015(Feature source, Feature target) {
+		public static boolean canExistAbstractFeatureSubFeatures_4034(AbstractFeature source, AbstractFeature target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGoalRealizedFeatures_4004(Goal source, Feature target) {
+		public static boolean canExistAbstractFeatureDetailingFunctionalRequirements_4035(AbstractFeature source,
+			FunctionalRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistAbstractFeatureConstrainingNonFunctionalRequirements_4036(AbstractFeature source,
+			NonFunctionalRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistAbstractFeatureRequieredFeatures_4037(AbstractFeature source,
+			AbstractFeature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistAbstractFeatureExcludedFeatures_4038(AbstractFeature source,
+			AbstractFeature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalRealizedFeatures_4004(Goal source, AbstractFeature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalSubGoals_4018(Goal source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalReference_4016(MEDiagram container, Goal source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalReference_4023(MEDiagram container, Goal source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalReference_4024(MEDiagram container, Goal source, Goal target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistGoalReference_4025(MEDiagram container, Goal source, Goal target) {
 			return true;
 		}
 
@@ -509,30 +735,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistFeatureDetailingFunctionalRequirements_4006(Feature source,
-			FunctionalRequirement target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistGoalSubGoals_4009(Goal source, Goal target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistFeatureConstrainingNonFunctionalRequirements_4010(Feature source,
-			NonFunctionalRequirement target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistServiceServiceProvider_4011(Service source, ServiceProvider target) {
+		public static boolean canExistRequirementSubRequirements_4021(Requirement source, Requirement target) {
 			return true;
 		}
 
@@ -553,7 +756,44 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistActorTriggeredDangers_4014(Actor source, Danger target) {
+		public static boolean canExistAssetTriggeredDangers_4017(Asset source, Danger target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistServiceSubServices_4022(Service source, Service target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistVariationPointFeatures_4039(VariationPoint source, AbstractFeature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistVariationPointInstanceVariationPoint_4033(VariationPointInstance source,
+			VariationPoint target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistVariationPointInstanceSelectedFeatures_4040(VariationPointInstance source,
+			AbstractFeature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistProductVariationPointInstances_4032(Product source, VariationPointInstance target) {
 			return true;
 		}
 	}

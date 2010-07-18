@@ -68,7 +68,8 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ServiceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -169,10 +170,8 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -186,8 +185,9 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated
+	 * figure.
+	 * 
 	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
@@ -256,24 +256,30 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UrmlElementTypes.ServiceServiceProvider_4011);
-		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
+		types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
+		types.add(UrmlElementTypes.ServiceSubServices_4022);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (targetEditPart instanceof ServiceProviderEditPart) {
-			types.add(UrmlElementTypes.ServiceServiceProvider_4011);
-		}
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (targetEditPart instanceof DangerEditPart) {
-			types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
+			types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
+		}
+		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart) {
+			types.add(UrmlElementTypes.ServiceSubServices_4022);
 		}
 		return types;
 	}
@@ -281,38 +287,55 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UrmlElementTypes.ServiceServiceProvider_4011) {
-			types.add(UrmlElementTypes.ServiceProvider_2012);
-		}
-		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
+		if (relationshipType == UrmlElementTypes.AssetTriggeredDangers_4017) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}
+		if (relationshipType == UrmlElementTypes.ServiceSubServices_4022) {
+			types.add(UrmlElementTypes.Service_2007);
+		}
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.RequirementImplementingServices_4005);
+		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
+		types.add(UrmlElementTypes.ServiceSubServices_4022);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
 		}
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
+		}
+		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
+			types.add(UrmlElementTypes.Danger_2009);
+		}
+		if (relationshipType == UrmlElementTypes.ServiceSubServices_4022) {
+			types.add(UrmlElementTypes.Service_2007);
 		}
 		return types;
 	}

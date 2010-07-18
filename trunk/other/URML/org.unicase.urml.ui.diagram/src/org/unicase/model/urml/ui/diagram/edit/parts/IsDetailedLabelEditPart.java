@@ -55,7 +55,7 @@ public class IsDetailedLabelEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6005;
+	public static final int VISUAL_ID = 6035;
 
 	/**
 	 * @generated
@@ -298,7 +298,7 @@ public class IsDetailedLabelEditPart extends LabelEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.FeatureDetailingFunctionalRequirements_4006,
+			parser = UrmlParserProvider.getParser(UrmlElementTypes.AbstractFeatureDetailingFunctionalRequirements_4035,
 				getParserElement(), UrmlVisualIDRegistry
 					.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart.VISUAL_ID));
 		}

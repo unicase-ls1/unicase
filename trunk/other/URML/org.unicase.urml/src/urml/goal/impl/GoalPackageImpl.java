@@ -8,69 +8,71 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.urml.UrmlPackage;
-
 import org.unicase.model.urml.impl.UrmlPackageImpl;
 
 import urml.danger.DangerPackage;
-
 import urml.danger.impl.DangerPackageImpl;
-
+import urml.feature.FeaturePackage;
+import urml.feature.impl.FeaturePackageImpl;
 import urml.goal.Goal;
 import urml.goal.GoalFactory;
 import urml.goal.GoalPackage;
+import urml.goal.GoalReference;
+import urml.goal.GoalReferenceType;
 import urml.goal.GoalType;
-
 import urml.requirement.RequirementPackage;
-
 import urml.requirement.impl.RequirementPackageImpl;
-
 import urml.service.ServicePackage;
-
 import urml.service.impl.ServicePackageImpl;
-
 import urml.usecase.UsecasePackage;
-
 import urml.usecase.impl.UsecasePackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass goalEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass goalReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum goalTypeEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum goalReferenceTypeEEnum = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see urml.goal.GoalPackage#eNS_URI
 	 * @see #init()
@@ -81,19 +83,19 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link GoalPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link GoalPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -129,6 +131,9 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
+		FeaturePackageImpl theFeaturePackage = (FeaturePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) instanceof FeaturePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) : FeaturePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGoalPackage.createPackageContents();
@@ -137,6 +142,7 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		theUsecasePackage.createPackageContents();
 		theServicePackage.createPackageContents();
 		theDangerPackage.createPackageContents();
+		theFeaturePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGoalPackage.initializePackageContents();
@@ -145,6 +151,7 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		theUsecasePackage.initializePackageContents();
 		theServicePackage.initializePackageContents();
 		theDangerPackage.initializePackageContents();
+		theFeaturePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGoalPackage.freeze();
@@ -155,8 +162,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGoal() {
@@ -164,8 +171,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getGoal_Soft() {
@@ -173,8 +180,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getGoal_Type() {
@@ -182,8 +189,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGoal_Stakeholders() {
@@ -191,8 +198,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGoal_RealizedFeatures() {
@@ -200,8 +207,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGoal_DetailingUseCases() {
@@ -209,8 +216,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGoal_SubGoals() {
@@ -218,8 +225,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGoal_ParentGoal() {
@@ -227,8 +234,62 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGoal_InfluencingGoals() {
+		return (EReference) goalEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGoal_InfluencedGoals() {
+		return (EReference) goalEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getGoalReference() {
+		return goalReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGoalReference_Source() {
+		return (EReference) goalReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGoalReference_Target() {
+		return (EReference) goalReferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getGoalReference_Weight() {
+		return (EAttribute) goalReferenceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getGoalType() {
@@ -236,8 +297,17 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getGoalReferenceType() {
+		return goalReferenceTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GoalFactory getGoalFactory() {
@@ -245,17 +315,16 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -272,23 +341,30 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		createEReference(goalEClass, GOAL__DETAILING_USE_CASES);
 		createEReference(goalEClass, GOAL__SUB_GOALS);
 		createEReference(goalEClass, GOAL__PARENT_GOAL);
+		createEReference(goalEClass, GOAL__INFLUENCING_GOALS);
+		createEReference(goalEClass, GOAL__INFLUENCED_GOALS);
+
+		goalReferenceEClass = createEClass(GOAL_REFERENCE);
+		createEReference(goalReferenceEClass, GOAL_REFERENCE__SOURCE);
+		createEReference(goalReferenceEClass, GOAL_REFERENCE__TARGET);
+		createEAttribute(goalReferenceEClass, GOAL_REFERENCE__WEIGHT);
 
 		// Create enums
 		goalTypeEEnum = createEEnum(GOAL_TYPE);
+		goalReferenceTypeEEnum = createEEnum(GOAL_REFERENCE_TYPE);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -305,6 +381,8 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
+		FeaturePackage theFeaturePackage = (FeaturePackage) EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI);
 		UsecasePackage theUsecasePackage = (UsecasePackage) EPackage.Registry.INSTANCE
 			.getEPackage(UsecasePackage.eNS_URI);
 
@@ -314,6 +392,7 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 		// Add supertypes to classes
 		goalEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
+		goalReferenceEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -325,9 +404,9 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 			"stakeholders", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getGoal_Stakeholders().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getGoal_RealizedFeatures(), theUrmlPackage.getFeature(), theUrmlPackage.getFeature_Goals(),
-			"realizedFeatures", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGoal_RealizedFeatures(), theFeaturePackage.getAbstractFeature(), theFeaturePackage
+			.getAbstractFeature_Goals(), "realizedFeatures", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getGoal_RealizedFeatures().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_DetailingUseCases(), theUsecasePackage.getApplicationDomainUseCase(), theUsecasePackage
 			.getApplicationDomainUseCase_DetailedGoal(), "detailingUseCases", null, 0, 1, Goal.class, !IS_TRANSIENT,
@@ -337,10 +416,33 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		initEReference(getGoal_SubGoals(), this.getGoal(), this.getGoal_ParentGoal(), "subGoals", null, 0, -1,
 			Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGoal_SubGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_ParentGoal(), this.getGoal(), this.getGoal_SubGoals(), "parentGoal", null, 0, 1,
 			Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getGoal_ParentGoal().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getGoal_InfluencingGoals(), this.getGoalReference(), this.getGoalReference_Target(),
+			"influencingGoals", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGoal_InfluencingGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getGoal_InfluencedGoals(), this.getGoalReference(), this.getGoalReference_Source(),
+			"influencedGoals", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGoal_InfluencedGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(goalReferenceEClass, GoalReference.class, "GoalReference", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGoalReference_Source(), this.getGoal(), this.getGoal_InfluencedGoals(), "source", null, 0, 1,
+			GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGoalReference_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getGoalReference_Target(), this.getGoal(), this.getGoal_InfluencingGoals(), "target", null, 0,
+			1, GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGoalReference_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getGoalReference_Weight(), this.getGoalReferenceType(), "weight", null, 0, 1,
+			GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(goalTypeEEnum, GoalType.class, "GoalType");
@@ -348,6 +450,12 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		addEEnumLiteral(goalTypeEEnum, GoalType.PRODUCT_GOAL);
 		addEEnumLiteral(goalTypeEEnum, GoalType.CUSTOMER_GOAL);
 		addEEnumLiteral(goalTypeEEnum, GoalType.END_USER_GOAL);
+
+		initEEnum(goalReferenceTypeEEnum, GoalReferenceType.class, "GoalReferenceType");
+		addEEnumLiteral(goalReferenceTypeEEnum, GoalReferenceType.PLUS_PLUS);
+		addEEnumLiteral(goalReferenceTypeEEnum, GoalReferenceType.PLUS);
+		addEEnumLiteral(goalReferenceTypeEEnum, GoalReferenceType.MINUS);
+		addEEnumLiteral(goalReferenceTypeEEnum, GoalReferenceType.MINUS_MINUS);
 	}
 
-} //GoalPackageImpl
+} // GoalPackageImpl

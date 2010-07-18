@@ -53,6 +53,7 @@ public class UrmlPropertySection extends AdvancedPropertySection implements IPro
 
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {

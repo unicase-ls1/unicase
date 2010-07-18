@@ -30,12 +30,18 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference4EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramUpdater;
 import org.unicase.model.urml.ui.diagram.part.UrmlLinkDescriptor;
 import org.unicase.model.urml.ui.diagram.part.UrmlNodeDescriptor;
@@ -85,7 +91,9 @@ public class URMLDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 		case DangerEditPart.VISUAL_ID:
 		case ActorEditPart.VISUAL_ID:
 		case ProceduralMitigationEditPart.VISUAL_ID:
-		case ServiceProviderEditPart.VISUAL_ID:
+		case VariationPointEditPart.VISUAL_ID:
+		case VariationPointInstanceEditPart.VISUAL_ID:
+		case ProductEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -248,7 +256,7 @@ public class URMLDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 		}
 		case FeatureEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UrmlDiagramUpdater.getFeature_2005ContainedLinks(view));
+				result.addAll(UrmlDiagramUpdater.getFeature_2012ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -300,9 +308,63 @@ public class URMLDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 			}
 			break;
 		}
-		case ServiceProviderEditPart.VISUAL_ID: {
+		case VariationPointEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UrmlDiagramUpdater.getServiceProvider_2012ContainedLinks(view));
+				result.addAll(UrmlDiagramUpdater.getVariationPoint_2013ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case VariationPointInstanceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getVariationPointInstance_2014ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ProductEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getProduct_2015ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GoalReferenceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getGoalReference_4016ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GoalReference2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getGoalReference_4023ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GoalReference3EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getGoalReference_4024ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GoalReference4EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UrmlDiagramUpdater.getGoalReference_4025ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

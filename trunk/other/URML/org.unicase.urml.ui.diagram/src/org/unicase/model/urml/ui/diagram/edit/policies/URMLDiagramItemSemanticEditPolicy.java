@@ -13,9 +13,11 @@ import org.unicase.model.urml.ui.diagram.edit.commands.FunctionalRequirementCrea
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.NonFunctionalRequirementCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.ProceduralMitigationCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.ProductCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.ServiceCreateCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.ServiceProviderCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceCreateCommand;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
 /**
@@ -43,7 +45,7 @@ public class URMLDiagramItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 		if (UrmlElementTypes.FunctionalRequirement_2006 == req.getElementType()) {
 			return getGEFWrapper(new FunctionalRequirementCreateCommand(req));
 		}
-		if (UrmlElementTypes.Feature_2005 == req.getElementType()) {
+		if (UrmlElementTypes.Feature_2012 == req.getElementType()) {
 			return getGEFWrapper(new FeatureCreateCommand(req));
 		}
 		if (UrmlElementTypes.Service_2007 == req.getElementType()) {
@@ -61,8 +63,14 @@ public class URMLDiagramItemSemanticEditPolicy extends UrmlBaseItemSemanticEditP
 		if (UrmlElementTypes.ProceduralMitigation_2011 == req.getElementType()) {
 			return getGEFWrapper(new ProceduralMitigationCreateCommand(req));
 		}
-		if (UrmlElementTypes.ServiceProvider_2012 == req.getElementType()) {
-			return getGEFWrapper(new ServiceProviderCreateCommand(req));
+		if (UrmlElementTypes.VariationPoint_2013 == req.getElementType()) {
+			return getGEFWrapper(new VariationPointCreateCommand(req));
+		}
+		if (UrmlElementTypes.VariationPointInstance_2014 == req.getElementType()) {
+			return getGEFWrapper(new VariationPointInstanceCreateCommand(req));
+		}
+		if (UrmlElementTypes.Product_2015 == req.getElementType()) {
+			return getGEFWrapper(new ProductCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

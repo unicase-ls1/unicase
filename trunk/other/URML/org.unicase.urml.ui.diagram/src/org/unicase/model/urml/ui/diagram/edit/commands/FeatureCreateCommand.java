@@ -12,8 +12,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.urml.Feature;
-import org.unicase.model.urml.UrmlFactory;
+
+import urml.feature.Feature;
+import urml.feature.FeatureFactory;
 
 /**
  * @generated
@@ -29,6 +30,7 @@ public class FeatureCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
@@ -51,7 +53,7 @@ public class FeatureCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Feature newElement = UrmlFactory.eINSTANCE.createFeature();
+		Feature newElement = FeatureFactory.eINSTANCE.createFeature();
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);

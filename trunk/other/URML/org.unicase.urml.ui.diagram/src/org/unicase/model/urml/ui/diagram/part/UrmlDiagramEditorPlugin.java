@@ -51,6 +51,7 @@ import org.unicase.model.urml.provider.UrmlItemProviderAdapterFactory;
 import org.unicase.model.util.provider.UtilItemProviderAdapterFactory;
 
 import urml.danger.provider.DangerItemProviderAdapterFactory;
+import urml.feature.provider.FeatureItemProviderAdapterFactory;
 import urml.goal.provider.GoalItemProviderAdapterFactory;
 import urml.requirement.provider.RequirementItemProviderAdapterFactory;
 import urml.service.provider.ServiceItemProviderAdapterFactory;
@@ -138,6 +139,7 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new UsecaseItemProviderAdapterFactory());
 		factories.add(new ServiceItemProviderAdapterFactory());
 		factories.add(new DangerItemProviderAdapterFactory());
+		factories.add(new FeatureItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new EsmodelItemProviderAdapterFactory());
 		factories.add(new VersioningItemProviderAdapterFactory());
@@ -191,9 +193,8 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * 
 	 * @generated
 	 * @param path the path
 	 * @return the image descriptor
@@ -203,10 +204,9 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
-	 * path, first segment is taken as id of plug-in with image
-	 *
+	 * Respects images residing in any plug-in. If path is relative, then this bundle is looked up for the image,
+	 * otherwise, for absolute path, first segment is taken as id of plug-in with image
+	 * 
 	 * @generated
 	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
@@ -222,9 +222,9 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image for the image file at the given plug-in relative path.
-	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 *
+	 * Returns an image for the image file at the given plug-in relative path. Client do not need to dispose this image.
+	 * Images will be disposed automatically.
+	 * 
 	 * @generated
 	 * @param path the path
 	 * @return image instance
@@ -240,7 +240,7 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 *
+	 * 
 	 * @generated
 	 */
 	public static String getString(String key) {

@@ -8,9 +8,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
 
+import urml.feature.AbstractFeature;
 import urml.goal.Goal;
 
 /**
@@ -69,7 +69,7 @@ public class GoalRealizedFeaturesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Feature && newEnd instanceof Goal)) {
+		if (!(oldEnd instanceof AbstractFeature && newEnd instanceof Goal)) {
 			return false;
 		}
 		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalRealizedFeatures_4004(getNewSource(),
@@ -80,7 +80,7 @@ public class GoalRealizedFeaturesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
+		if (!(oldEnd instanceof AbstractFeature && newEnd instanceof AbstractFeature)) {
 			return false;
 		}
 		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistGoalRealizedFeatures_4004(getOldSource(),
@@ -138,14 +138,14 @@ public class GoalRealizedFeaturesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Feature getOldTarget() {
-		return (Feature) oldEnd;
+	protected AbstractFeature getOldTarget() {
+		return (AbstractFeature) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Feature getNewTarget() {
-		return (Feature) newEnd;
+	protected AbstractFeature getNewTarget() {
+		return (AbstractFeature) newEnd;
 	}
 }

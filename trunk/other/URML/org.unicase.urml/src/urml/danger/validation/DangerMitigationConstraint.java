@@ -5,8 +5,6 @@
  */
 package urml.danger.validation;
 
-
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -39,12 +37,12 @@ public class DangerMitigationConstraint extends AbstractModelConstraint {
 				Danger danger = (Danger) eObj;
 				if (danger.getMitigations().isEmpty()) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-							(UnicaseModelElement) eObj, "mitigations");
+						(UnicaseModelElement) eObj, "mitigations");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-							+ ((Danger) eObj).getName() + "'" });
+						+ ((Danger) eObj).getName() + "'" });
 				}
-			
+
 			}
 		}
 		return ctx.createSuccessStatus();

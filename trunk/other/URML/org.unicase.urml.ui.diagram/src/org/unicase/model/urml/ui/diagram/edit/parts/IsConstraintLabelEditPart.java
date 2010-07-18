@@ -55,7 +55,7 @@ public class IsConstraintLabelEditPart extends LabelEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6006;
+	public static final int VISUAL_ID = 6036;
 
 	/**
 	 * @generated
@@ -299,8 +299,9 @@ public class IsConstraintLabelEditPart extends LabelEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.FeatureConstrainingNonFunctionalRequirements_4010,
-				getParserElement(), UrmlVisualIDRegistry
+			parser = UrmlParserProvider.getParser(
+				UrmlElementTypes.AbstractFeatureConstrainingNonFunctionalRequirements_4036, getParserElement(),
+				UrmlVisualIDRegistry
 					.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsConstraintLabelEditPart.VISUAL_ID));
 		}
 		return parser;

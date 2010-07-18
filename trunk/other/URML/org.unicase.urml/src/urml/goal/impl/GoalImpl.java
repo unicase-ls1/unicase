@@ -7,57 +7,52 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.UrmlPackage;
-
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
+import urml.feature.AbstractFeature;
+import urml.feature.FeaturePackage;
 import urml.goal.Goal;
 import urml.goal.GoalPackage;
+import urml.goal.GoalReference;
 import urml.goal.GoalType;
-
 import urml.usecase.ApplicationDomainUseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Goal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Goal</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.goal.impl.GoalImpl#isSoft <em>Soft</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getType <em>Type</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getStakeholders <em>Stakeholders</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getRealizedFeatures <em>Realized Features</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getSubGoals <em>Sub Goals</em>}</li>
- *   <li>{@link urml.goal.impl.GoalImpl#getParentGoal <em>Parent Goal</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#isSoft <em>Soft</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getType <em>Type</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getStakeholders <em>Stakeholders</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getRealizedFeatures <em>Realized Features</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getSubGoals <em>Sub Goals</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getParentGoal <em>Parent Goal</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getInfluencingGoals <em>Influencing Goals</em>}</li>
+ * <li>{@link urml.goal.impl.GoalImpl#getInfluencedGoals <em>Influenced Goals</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	/**
-	 * The default value of the '{@link #isSoft() <em>Soft</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isSoft() <em>Soft</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isSoft()
 	 * @generated
 	 * @ordered
@@ -65,9 +60,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected static final boolean SOFT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isSoft() <em>Soft</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isSoft() <em>Soft</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isSoft()
 	 * @generated
 	 * @ordered
@@ -75,9 +70,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected boolean soft = SOFT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -85,9 +80,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected EList<GoalType> type;
 
 	/**
-	 * The cached value of the '{@link #getStakeholders() <em>Stakeholders</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getStakeholders() <em>Stakeholders</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStakeholders()
 	 * @generated
 	 * @ordered
@@ -95,19 +90,19 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected EList<Stakeholder> stakeholders;
 
 	/**
-	 * The cached value of the '{@link #getRealizedFeatures() <em>Realized Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRealizedFeatures() <em>Realized Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRealizedFeatures()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> realizedFeatures;
+	protected EList<AbstractFeature> realizedFeatures;
 
 	/**
-	 * The cached value of the '{@link #getDetailingUseCases() <em>Detailing Use Cases</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetailingUseCases() <em>Detailing Use Cases</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDetailingUseCases()
 	 * @generated
 	 * @ordered
@@ -115,9 +110,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected ApplicationDomainUseCase detailingUseCases;
 
 	/**
-	 * The cached value of the '{@link #getSubGoals() <em>Sub Goals</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubGoals() <em>Sub Goals</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubGoals()
 	 * @generated
 	 * @ordered
@@ -125,8 +120,28 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected EList<Goal> subGoals;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInfluencingGoals() <em>Influencing Goals</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getInfluencingGoals()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GoalReference> influencingGoals;
+
+	/**
+	 * The cached value of the '{@link #getInfluencedGoals() <em>Influenced Goals</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getInfluencedGoals()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GoalReference> influencedGoals;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GoalImpl() {
@@ -134,8 +149,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,8 +159,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isSoft() {
@@ -153,8 +168,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSoft(boolean newSoft) {
@@ -165,8 +180,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<GoalType> getType() {
@@ -177,34 +192,34 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stakeholder> getStakeholders() {
 		if (stakeholders == null) {
-			stakeholders = new EObjectWithInverseResolvingEList<Stakeholder>(Stakeholder.class, this,
+			stakeholders = new EObjectWithInverseResolvingEList.ManyInverse<Stakeholder>(Stakeholder.class, this,
 				GoalPackage.GOAL__STAKEHOLDERS, UrmlPackage.STAKEHOLDER__GOALS);
 		}
 		return stakeholders;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EList<Feature> getRealizedFeatures() {
+	public EList<AbstractFeature> getRealizedFeatures() {
 		if (realizedFeatures == null) {
-			realizedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this,
-				GoalPackage.GOAL__REALIZED_FEATURES, UrmlPackage.FEATURE__GOALS);
+			realizedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(AbstractFeature.class,
+				this, GoalPackage.GOAL__REALIZED_FEATURES, FeaturePackage.ABSTRACT_FEATURE__GOALS);
 		}
 		return realizedFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ApplicationDomainUseCase getDetailingUseCases() {
@@ -221,8 +236,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ApplicationDomainUseCase basicGetDetailingUseCases() {
@@ -230,8 +245,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDetailingUseCases(ApplicationDomainUseCase newDetailingUseCases,
@@ -250,8 +265,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDetailingUseCases(ApplicationDomainUseCase newDetailingUseCases) {
@@ -272,8 +287,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Goal> getSubGoals() {
@@ -285,8 +300,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Goal getParentGoal() {
@@ -296,8 +311,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Goal basicGetParentGoal() {
@@ -307,8 +322,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentGoal(Goal newParentGoal, NotificationChain msgs) {
@@ -317,8 +332,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentGoal(Goal newParentGoal) {
@@ -341,8 +356,34 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<GoalReference> getInfluencingGoals() {
+		if (influencingGoals == null) {
+			influencingGoals = new EObjectWithInverseResolvingEList<GoalReference>(GoalReference.class, this,
+				GoalPackage.GOAL__INFLUENCING_GOALS, GoalPackage.GOAL_REFERENCE__TARGET);
+		}
+		return influencingGoals;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<GoalReference> getInfluencedGoals() {
+		if (influencedGoals == null) {
+			influencedGoals = new EObjectWithInverseResolvingEList<GoalReference>(GoalReference.class, this,
+				GoalPackage.GOAL__INFLUENCED_GOALS, GoalPackage.GOAL_REFERENCE__SOURCE);
+		}
+		return influencedGoals;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -364,13 +405,17 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParentGoal((Goal) otherEnd, msgs);
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencingGoals()).basicAdd(otherEnd, msgs);
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencedGoals()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -386,13 +431,17 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			return ((InternalEList<?>) getSubGoals()).basicRemove(otherEnd, msgs);
 		case GoalPackage.GOAL__PARENT_GOAL:
 			return basicSetParentGoal(null, msgs);
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			return ((InternalEList<?>) getInfluencingGoals()).basicRemove(otherEnd, msgs);
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			return ((InternalEList<?>) getInfluencedGoals()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -405,8 +454,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -430,13 +479,17 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			if (resolve)
 				return getParentGoal();
 			return basicGetParentGoal();
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			return getInfluencingGoals();
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			return getInfluencedGoals();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -456,7 +509,7 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			return;
 		case GoalPackage.GOAL__REALIZED_FEATURES:
 			getRealizedFeatures().clear();
-			getRealizedFeatures().addAll((Collection<? extends Feature>) newValue);
+			getRealizedFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
 			return;
 		case GoalPackage.GOAL__DETAILING_USE_CASES:
 			setDetailingUseCases((ApplicationDomainUseCase) newValue);
@@ -468,13 +521,21 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 		case GoalPackage.GOAL__PARENT_GOAL:
 			setParentGoal((Goal) newValue);
 			return;
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			getInfluencingGoals().clear();
+			getInfluencingGoals().addAll((Collection<? extends GoalReference>) newValue);
+			return;
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			getInfluencedGoals().clear();
+			getInfluencedGoals().addAll((Collection<? extends GoalReference>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -501,13 +562,19 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 		case GoalPackage.GOAL__PARENT_GOAL:
 			setParentGoal((Goal) null);
 			return;
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			getInfluencingGoals().clear();
+			return;
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			getInfluencedGoals().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -527,13 +594,17 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			return subGoals != null && !subGoals.isEmpty();
 		case GoalPackage.GOAL__PARENT_GOAL:
 			return basicGetParentGoal() != null;
+		case GoalPackage.GOAL__INFLUENCING_GOALS:
+			return influencingGoals != null && !influencingGoals.isEmpty();
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
+			return influencedGoals != null && !influencedGoals.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -550,4 +621,4 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 		return result.toString();
 	}
 
-} //GoalImpl
+} // GoalImpl

@@ -6,69 +6,48 @@ package urml.service.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
-
+import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.urml.UrmlPackage;
-
 import org.unicase.model.urml.impl.UrmlPackageImpl;
 
 import urml.danger.DangerPackage;
-
 import urml.danger.impl.DangerPackageImpl;
-
+import urml.feature.FeaturePackage;
+import urml.feature.impl.FeaturePackageImpl;
 import urml.goal.GoalPackage;
-
 import urml.goal.impl.GoalPackageImpl;
-
 import urml.requirement.RequirementPackage;
-
 import urml.requirement.impl.RequirementPackageImpl;
-
 import urml.service.Service;
 import urml.service.ServiceFactory;
 import urml.service.ServicePackage;
-import urml.service.ServiceProvider;
-
 import urml.usecase.UsecasePackage;
-
 import urml.usecase.impl.UsecasePackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass serviceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass serviceProviderEClass = null;
-
-	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see urml.service.ServicePackage#eNS_URI
 	 * @see #init()
@@ -79,19 +58,19 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * <p>
+	 * This method is used to initialize {@link ServicePackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * <p>This method is used to initialize {@link ServicePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -127,6 +106,9 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		DangerPackageImpl theDangerPackage = (DangerPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) instanceof DangerPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DangerPackage.eNS_URI) : DangerPackage.eINSTANCE);
+		FeaturePackageImpl theFeaturePackage = (FeaturePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) instanceof FeaturePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(FeaturePackage.eNS_URI) : FeaturePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theServicePackage.createPackageContents();
@@ -135,6 +117,7 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		theRequirementPackage.createPackageContents();
 		theUsecasePackage.createPackageContents();
 		theDangerPackage.createPackageContents();
+		theFeaturePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theServicePackage.initializePackageContents();
@@ -143,6 +126,7 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		theRequirementPackage.initializePackageContents();
 		theUsecasePackage.initializePackageContents();
 		theDangerPackage.initializePackageContents();
+		theFeaturePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theServicePackage.freeze();
@@ -153,8 +137,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getService() {
@@ -162,44 +146,44 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EReference getService_ServiceProvider() {
+	public EReference getService_SatisfiedRequirements() {
 		return (EReference) serviceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EReference getService_SatisfiedRequirements() {
+	public EReference getService_UsedClasses() {
 		return (EReference) serviceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EClass getServiceProvider() {
-		return serviceProviderEClass;
+	public EReference getService_ParentService() {
+		return (EReference) serviceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EReference getServiceProvider_ProvidedServices() {
-		return (EReference) serviceProviderEClass.getEStructuralFeatures().get(0);
+	public EReference getService_SubServices() {
+		return (EReference) serviceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServiceFactory getServiceFactory() {
@@ -207,17 +191,16 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -227,25 +210,23 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 
 		// Create classes and their features
 		serviceEClass = createEClass(SERVICE);
-		createEReference(serviceEClass, SERVICE__SERVICE_PROVIDER);
 		createEReference(serviceEClass, SERVICE__SATISFIED_REQUIREMENTS);
-
-		serviceProviderEClass = createEClass(SERVICE_PROVIDER);
-		createEReference(serviceProviderEClass, SERVICE_PROVIDER__PROVIDED_SERVICES);
+		createEReference(serviceEClass, SERVICE__USED_CLASSES);
+		createEReference(serviceEClass, SERVICE__PARENT_SERVICE);
+		createEReference(serviceEClass, SERVICE__SUB_SERVICES);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -260,38 +241,38 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 
 		// Obtain other dependent packages
 		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 			.getEPackage(RequirementPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
+		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
+			.getEPackage(ClassesPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		serviceEClass.getESuperTypes().add(theDangerPackage.getMitigation());
-		serviceProviderEClass.getESuperTypes().add(theDangerPackage.getAsset());
+		serviceEClass.getESuperTypes().add(theDangerPackage.getAsset());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getService_ServiceProvider(), this.getServiceProvider(), this
-			.getServiceProvider_ProvidedServices(), "serviceProvider", null, 0, 1, Service.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getService_ServiceProvider().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getService_SatisfiedRequirements(), theRequirementPackage.getRequirement(),
 			theRequirementPackage.getRequirement_ImplementingServices(), "satisfiedRequirements", null, 0, -1,
 			Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getService_SatisfiedRequirements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-
-		initEClass(serviceProviderEClass, ServiceProvider.class, "ServiceProvider", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getServiceProvider_ProvidedServices(), this.getService(), this.getService_ServiceProvider(),
-			"providedServices", null, 0, -1, ServiceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getServiceProvider_ProvidedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getService_UsedClasses(), theClassesPackage.getClass_(), null, "usedClasses", null, 0, -1,
+			Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getService_ParentService(), this.getService(), this.getService_SubServices(), "parentService",
+			null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getService_ParentService().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getService_SubServices(), this.getService(), this.getService_ParentService(), "subServices",
+			null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getService_SubServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
-} //ServicePackageImpl
+} // ServicePackageImpl

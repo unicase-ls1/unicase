@@ -18,15 +18,28 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference2CreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference2ReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference3CreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference3ReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference4CreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReference4ReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReferenceCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.GoalReferenceReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalSubGoalsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalSubGoalsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderGoalsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.StakeholderGoalsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference4EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
@@ -78,6 +91,30 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalReference2EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalReference3EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalReference4EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
 		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
@@ -106,6 +143,30 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == GoalReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == GoalReference2EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == GoalReference3EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == GoalReference4EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -129,7 +190,7 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UrmlElementTypes.StakeholderGoals_4008 == req.getElementType()) {
@@ -138,14 +199,38 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UrmlElementTypes.GoalSubGoals_4009 == req.getElementType()) {
+		if (UrmlElementTypes.GoalSubGoals_4018 == req.getElementType()) {
 			return getGEFWrapper(new GoalSubGoalsCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UrmlElementTypes.GoalReference_4016 == req.getElementType()) {
+			return getGEFWrapper(new GoalReferenceCreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4023 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference2CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4024 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference3CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4025 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference4CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UrmlElementTypes.StakeholderGoals_4008 == req.getElementType()) {
@@ -154,15 +239,59 @@ public class GoalItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return null;
 		}
-		if (UrmlElementTypes.GoalSubGoals_4009 == req.getElementType()) {
+		if (UrmlElementTypes.GoalSubGoals_4018 == req.getElementType()) {
 			return getGEFWrapper(new GoalSubGoalsCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UrmlElementTypes.GoalReference_4016 == req.getElementType()) {
+			return getGEFWrapper(new GoalReferenceCreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4023 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference2CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4024 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference3CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
+		}
+		if (UrmlElementTypes.GoalReference_4025 == req.getElementType()) {
+			return getGEFWrapper(new GoalReference4CreateCommand(req, req.getSource(), req.getTarget(),
+			/* user code */
+			(EObject) getHost().getModel()));
+			/* user code */
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model element
+	 * associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case GoalReferenceEditPart.VISUAL_ID:
+			return getGEFWrapper(new GoalReferenceReorientCommand(req));
+		case GoalReference2EditPart.VISUAL_ID:
+			return getGEFWrapper(new GoalReference2ReorientCommand(req));
+		case GoalReference3EditPart.VISUAL_ID:
+			return getGEFWrapper(new GoalReference3ReorientCommand(req));
+		case GoalReference4EditPart.VISUAL_ID:
+			return getGEFWrapper(new GoalReference4ReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
