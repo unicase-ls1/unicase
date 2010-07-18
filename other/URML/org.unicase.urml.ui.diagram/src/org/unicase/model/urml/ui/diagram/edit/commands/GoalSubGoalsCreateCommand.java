@@ -52,7 +52,7 @@ public class GoalSubGoalsCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateGoalSubGoals_4009(getSource(), getTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateGoalSubGoals_4018(getSource(), getTarget());
 	}
 
 	/**

@@ -6,24 +6,23 @@ package urml.danger.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import urml.danger.*;
+import urml.danger.Danger;
+import urml.danger.DangerFactory;
+import urml.danger.DangerPackage;
+import urml.danger.ProceduralMitigation;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DangerFactory init() {
@@ -40,9 +39,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DangerFactoryImpl() {
@@ -50,8 +48,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,8 +65,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Danger createDanger() {
@@ -77,8 +75,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProceduralMitigation createProceduralMitigation() {
@@ -87,8 +85,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DangerPackage getDangerPackage() {
@@ -96,8 +94,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -106,4 +104,4 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 		return DangerPackage.eINSTANCE;
 	}
 
-} //DangerFactoryImpl
+} // DangerFactoryImpl

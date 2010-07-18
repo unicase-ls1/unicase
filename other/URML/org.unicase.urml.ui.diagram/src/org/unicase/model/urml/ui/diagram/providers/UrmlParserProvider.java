@@ -18,13 +18,21 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeight2EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeight3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceWeightEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointNameEditPart;
 import org.unicase.model.urml.ui.diagram.parsers.MessageFormatParser;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
+
+import urml.goal.GoalPackage;
 
 /**
  * @generated
@@ -85,18 +93,18 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 	/**
 	 * @generated
 	 */
-	private IParser featureName_5001Parser;
+	private IParser featureName_5011Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getFeatureName_5001Parser() {
-		if (featureName_5001Parser == null) {
+	private IParser getFeatureName_5011Parser() {
+		if (featureName_5011Parser == null) {
 			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			featureName_5001Parser = parser;
+			featureName_5011Parser = parser;
 		}
-		return featureName_5001Parser;
+		return featureName_5011Parser;
 	}
 
 	/**
@@ -187,18 +195,120 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 	/**
 	 * @generated
 	 */
-	private IParser serviceProviderName_5007Parser;
+	private IParser variationPointName_5012Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getServiceProviderName_5007Parser() {
-		if (serviceProviderName_5007Parser == null) {
+	private IParser getVariationPointName_5012Parser() {
+		if (variationPointName_5012Parser == null) {
 			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			serviceProviderName_5007Parser = parser;
+			variationPointName_5012Parser = parser;
 		}
-		return serviceProviderName_5007Parser;
+		return variationPointName_5012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser variationPointInstanceName_5013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getVariationPointInstanceName_5013Parser() {
+		if (variationPointInstanceName_5013Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			variationPointInstanceName_5013Parser = parser;
+		}
+		return variationPointInstanceName_5013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser productName_5014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProductName_5014Parser() {
+		if (productName_5014Parser == null) {
+			EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			productName_5014Parser = parser;
+		}
+		return productName_5014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser goalReferenceWeight_6013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGoalReferenceWeight_6013Parser() {
+		if (goalReferenceWeight_6013Parser == null) {
+			EAttribute[] features = new EAttribute[] { GoalPackage.eINSTANCE.getGoalReference_Weight() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			goalReferenceWeight_6013Parser = parser;
+		}
+		return goalReferenceWeight_6013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser goalReferenceWeight_6019Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGoalReferenceWeight_6019Parser() {
+		if (goalReferenceWeight_6019Parser == null) {
+			EAttribute[] features = new EAttribute[] { GoalPackage.eINSTANCE.getGoalReference_Weight() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			goalReferenceWeight_6019Parser = parser;
+		}
+		return goalReferenceWeight_6019Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser goalReferenceWeight_6020Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGoalReferenceWeight_6020Parser() {
+		if (goalReferenceWeight_6020Parser == null) {
+			EAttribute[] features = new EAttribute[] { GoalPackage.eINSTANCE.getGoalReference_Weight() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			goalReferenceWeight_6020Parser = parser;
+		}
+		return goalReferenceWeight_6020Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser goalReferenceWeight_6021Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGoalReferenceWeight_6021Parser() {
+		if (goalReferenceWeight_6021Parser == null) {
+			EAttribute[] features = new EAttribute[] { GoalPackage.eINSTANCE.getGoalReference_Weight() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			goalReferenceWeight_6021Parser = parser;
+		}
+		return goalReferenceWeight_6021Parser;
 	}
 
 	/**
@@ -213,7 +323,7 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 		case FunctionalRequirementNameEditPart.VISUAL_ID:
 			return getFunctionalRequirementName_5010Parser();
 		case FeatureNameEditPart.VISUAL_ID:
-			return getFeatureName_5001Parser();
+			return getFeatureName_5011Parser();
 		case ServiceNameEditPart.VISUAL_ID:
 			return getServiceName_5002Parser();
 		case NonFunctionalRequirementNameEditPart.VISUAL_ID:
@@ -224,14 +334,27 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 			return getActorName_5005Parser();
 		case ProceduralMitigationNameEditPart.VISUAL_ID:
 			return getProceduralMitigationName_5006Parser();
-		case ServiceProviderNameEditPart.VISUAL_ID:
-			return getServiceProviderName_5007Parser();
+		case VariationPointNameEditPart.VISUAL_ID:
+			return getVariationPointName_5012Parser();
+		case VariationPointInstanceNameEditPart.VISUAL_ID:
+			return getVariationPointInstanceName_5013Parser();
+		case ProductNameEditPart.VISUAL_ID:
+			return getProductName_5014Parser();
+		case IsDetailedLabel2EditPart.VISUAL_ID:
+			return getGoalReferenceWeight_6013Parser();
+		case GoalReferenceWeightEditPart.VISUAL_ID:
+			return getGoalReferenceWeight_6019Parser();
+		case GoalReferenceWeight2EditPart.VISUAL_ID:
+			return getGoalReferenceWeight_6020Parser();
+		case GoalReferenceWeight3EditPart.VISUAL_ID:
+			return getGoalReferenceWeight_6021Parser();
 		}
 		return null;
 	}
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

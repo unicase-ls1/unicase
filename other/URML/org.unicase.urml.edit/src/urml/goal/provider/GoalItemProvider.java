@@ -8,11 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,7 +19,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.model.urml.provider.UrmlEditPlugin;
 import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
 
@@ -31,17 +27,15 @@ import urml.goal.GoalFactory;
 import urml.goal.GoalPackage;
 
 /**
- * This is the item provider adapter for a {@link urml.goal.Goal} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link urml.goal.Goal} object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GoalItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GoalItemProvider(AdapterFactory adapterFactory) {
@@ -49,9 +43,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,14 +57,15 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 			addStakeholdersPropertyDescriptor(object);
 			addRealizedFeaturesPropertyDescriptor(object);
 			addDetailingUseCasesPropertyDescriptor(object);
+			addInfluencingGoalsPropertyDescriptor(object);
+			addInfluencedGoalsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Soft feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Soft feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSoftPropertyDescriptor(Object object) {
@@ -84,9 +78,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -99,9 +92,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Stakeholders feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Stakeholders feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addStakeholdersPropertyDescriptor(Object object) {
@@ -112,9 +104,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Realized Features feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Realized Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRealizedFeaturesPropertyDescriptor(Object object) {
@@ -125,9 +116,9 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailing Use Cases feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Detailing Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addDetailingUseCasesPropertyDescriptor(Object object) {
@@ -138,11 +129,35 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
+	 * This adds a property descriptor for the Influencing Goals feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addInfluencingGoalsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Goal_influencingGoals_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Goal_influencingGoals_feature", "_UI_Goal_type"),
+			GoalPackage.Literals.GOAL__INFLUENCING_GOALS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Influenced Goals feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addInfluencedGoalsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Goal_influencedGoals_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Goal_influencedGoals_feature", "_UI_Goal_type"),
+			GoalPackage.Literals.GOAL__INFLUENCED_GOALS, true, false, true, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,8 +170,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,33 +183,32 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This returns Goal.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns Goal.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/goal.jpg"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Goal) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Goal_type") :  label;
+		return label == null || label.length() == 0 ? getString("_UI_Goal_type") : getString("_UI_Goal_type") + " "
+			+ label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,10 +228,9 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,9 +242,8 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

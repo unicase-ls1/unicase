@@ -112,5 +112,20 @@
          </constraints>
       </constraintProvider>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="urml.feature.FeaturePackage"
+            genModel="model/urml.genmodel"
+            uri="http://unicase.org/model/urml/feature">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="urml.feature.util.FeatureResourceFactoryImpl"
+            type="feature">
+      </parser>
+   </extension>
 
 </plugin>

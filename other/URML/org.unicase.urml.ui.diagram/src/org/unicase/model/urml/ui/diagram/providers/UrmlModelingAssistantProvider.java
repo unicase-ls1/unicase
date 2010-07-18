@@ -27,10 +27,12 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPar
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.ServiceProviderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.part.Messages;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 
@@ -45,17 +47,19 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof URMLDiagramEditPart) {
-			ArrayList types = new ArrayList(10);
+			ArrayList types = new ArrayList(12);
 			types.add(UrmlElementTypes.Stakeholder_2002);
 			types.add(UrmlElementTypes.Goal_2001);
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
-			types.add(UrmlElementTypes.Feature_2005);
+			types.add(UrmlElementTypes.Feature_2012);
 			types.add(UrmlElementTypes.Service_2007);
 			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 			types.add(UrmlElementTypes.Danger_2009);
 			types.add(UrmlElementTypes.Actor_2010);
 			types.add(UrmlElementTypes.ProceduralMitigation_2011);
-			types.add(UrmlElementTypes.ServiceProvider_2012);
+			types.add(UrmlElementTypes.VariationPoint_2013);
+			types.add(UrmlElementTypes.VariationPointInstance_2014);
+			types.add(UrmlElementTypes.Product_2015);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -93,6 +97,15 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
 			return ((ProceduralMitigationEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof VariationPointEditPart) {
+			return ((VariationPointEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof VariationPointInstanceEditPart) {
+			return ((VariationPointInstanceEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ProductEditPart) {
+			return ((ProductEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -122,8 +135,11 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof ActorEditPart) {
 			return ((ActorEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
-		if (targetEditPart instanceof ServiceProviderEditPart) {
-			return ((ServiceProviderEditPart) targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof VariationPointEditPart) {
+			return ((VariationPointEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof VariationPointInstanceEditPart) {
+			return ((VariationPointInstanceEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -161,6 +177,15 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
 			return ((ProceduralMitigationEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof VariationPointEditPart) {
+			return ((VariationPointEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof VariationPointInstanceEditPart) {
+			return ((VariationPointInstanceEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ProductEditPart) {
+			return ((ProductEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -190,8 +215,11 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof ActorEditPart) {
 			return ((ActorEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof ServiceProviderEditPart) {
-			return ((ServiceProviderEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		if (targetEditPart instanceof VariationPointEditPart) {
+			return ((VariationPointEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof VariationPointInstanceEditPart) {
+			return ((VariationPointInstanceEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -227,6 +255,15 @@ public class UrmlModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof ProceduralMitigationEditPart) {
 			return ((ProceduralMitigationEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof VariationPointEditPart) {
+			return ((VariationPointEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof VariationPointInstanceEditPart) {
+			return ((VariationPointInstanceEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ProductEditPart) {
+			return ((ProductEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

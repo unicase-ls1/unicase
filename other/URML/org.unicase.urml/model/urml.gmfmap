@@ -80,7 +80,7 @@
         href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
-          href="urml.ecore#//Feature"/>
+          href="urml.ecore#//feature/Feature"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -206,6 +206,75 @@
           href="urml.gmfgraph#ProceduralMitigationNode"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//feature/VariationPoint"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="urml.gmfgraph#VariationPointNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.9"/>
+      <diagramNode
+          href="urml.gmfgraph#VariationPoint"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//feature/VariationPointInstance"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="urml.gmfgraph#VariationPointInstanceNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.10"/>
+      <diagramNode
+          href="urml.gmfgraph#VariationPointInstance"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="urml.ecore#//feature/Product"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="urml.gmfgraph#ProductNode_name"/>
+        <features
+            href="../../org.unicase.model/model/model.ecore#//UnicaseModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.0/@tools.11"/>
+      <diagramNode
+          href="urml.gmfgraph#Product"/>
+    </ownedChild>
+  </nodes>
   <links>
     <labelMappings
         readOnly="true">
@@ -228,7 +297,7 @@
         href="urml.gmfgraph#FeatureSubFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/subFeatures"/>
+        href="urml.ecore#//feature/AbstractFeature/subFeatures"/>
   </links>
   <links>
     <labelMappings
@@ -240,7 +309,7 @@
         href="urml.gmfgraph#FeatureFunctionalRequirement"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/detailingFunctionalRequirements"/>
+        href="urml.ecore#//feature/AbstractFeature/detailingFunctionalRequirements"/>
   </links>
   <links>
     <labelMappings
@@ -252,7 +321,7 @@
         href="urml.gmfgraph#FeatureNonFunctionalRequirement"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/constrainingNonFunctionalRequirements"/>
+        href="urml.ecore#//feature/AbstractFeature/constrainingNonFunctionalRequirements"/>
   </links>
   <links>
     <labelMappings
@@ -264,7 +333,7 @@
         href="urml.gmfgraph#FeatureRequiereFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/requieredFeatures"/>
+        href="urml.ecore#//feature/AbstractFeature/requieredFeatures"/>
   </links>
   <links>
     <labelMappings
@@ -276,7 +345,7 @@
         href="urml.gmfgraph#FeatureExcludeFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//Feature/excludedFeatures"/>
+        href="urml.ecore#//feature/AbstractFeature/excludedFeatures"/>
   </links>
   <links>
     <labelMappings
@@ -305,6 +374,143 @@
   <links>
     <domainMetaElement
         href="urml.ecore#//goal/GoalReference"/>
+    <domainSpecialization
+        body="self.weight = GoalReferenceType::PLUS_PLUS"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="urml.ecore#//goal/GoalReference/weight"/>
+        <value
+            body="GoalReferenceType::PLUS_PLUS"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+      <features
+          href="urml.ecore#//goal/GoalReference/weight"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Influences"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalInfluenceGoals"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/target"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="urml.ecore#//goal/GoalReference"/>
+    <domainSpecialization
+        body="self.weight = GoalReferenceType::PLUS"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="urml.ecore#//goal/GoalReference/weight"/>
+        <value
+            body="GoalReferenceType::PLUS"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+      <features
+          href="urml.ecore#//goal/GoalReference/weight"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Influences"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalInfluenceGoals"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/target"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="urml.ecore#//goal/GoalReference"/>
+    <domainSpecialization
+        body="self.weight = GoalReferenceType::MINUS"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="urml.ecore#//goal/GoalReference/weight"/>
+        <value
+            body="GoalReferenceType::MINUS"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+      <features
+          href="urml.ecore#//goal/GoalReference/weight"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Influences"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+    <diagramLink
+        href="urml.gmfgraph#GoalInfluenceGoals"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//goal/GoalReference/target"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="urml.ecore#//goal/GoalReference"/>
+    <domainSpecialization
+        body="self.weight = GoalReferenceType::MINUS_MINUS"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="urml.ecore#//goal/GoalReference/weight"/>
+        <value
+            body="GoalReferenceType::MINUS_MINUS"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+      <features
+          href="urml.ecore#//goal/GoalReference/weight"/>
+    </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
@@ -392,6 +598,54 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//service/Service/subServices"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Combine"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#VariationPointFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/VariationPoint/features"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Instantiate"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#VariationPointInstanceVariationPoint"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/VariationPointInstance/variationPoint"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Select"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#VariationPointInstanceFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/VariationPointInstance/selectedFeatures"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Combine"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#ProductVariationPointInstance"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/Product/variationPointInstances"/>
   </links>
   <diagram>
     <diagramCanvas

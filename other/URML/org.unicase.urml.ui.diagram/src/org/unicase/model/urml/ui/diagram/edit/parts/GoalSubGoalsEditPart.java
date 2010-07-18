@@ -19,7 +19,7 @@ public class GoalSubGoalsEditPart extends ConnectionNodeEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4009;
+	public static final int VISUAL_ID = 4018;
 
 	/**
 	 * @generated
@@ -71,10 +71,8 @@ public class GoalSubGoalsEditPart extends ConnectionNodeEditPart implements ITre
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

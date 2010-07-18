@@ -85,11 +85,23 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case ProceduralMitigationNameEditPart.VISUAL_ID:
 				return new ProceduralMitigationNameEditPart(view);
 
-			case ServiceProviderEditPart.VISUAL_ID:
-				return new ServiceProviderEditPart(view);
+			case VariationPointEditPart.VISUAL_ID:
+				return new VariationPointEditPart(view);
 
-			case ServiceProviderNameEditPart.VISUAL_ID:
-				return new ServiceProviderNameEditPart(view);
+			case VariationPointNameEditPart.VISUAL_ID:
+				return new VariationPointNameEditPart(view);
+
+			case VariationPointInstanceEditPart.VISUAL_ID:
+				return new VariationPointInstanceEditPart(view);
+
+			case VariationPointInstanceNameEditPart.VISUAL_ID:
+				return new VariationPointInstanceNameEditPart(view);
+
+			case ProductEditPart.VISUAL_ID:
+				return new ProductEditPart(view);
+
+			case ProductNameEditPart.VISUAL_ID:
+				return new ProductNameEditPart(view);
 
 			case StakeholderGoalsEditPart.VISUAL_ID:
 				return new StakeholderGoalsEditPart(view);
@@ -97,11 +109,35 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case ExpressesLabelEditPart.VISUAL_ID:
 				return new ExpressesLabelEditPart(view);
 
-			case FeatureSubFeaturesEditPart.VISUAL_ID:
-				return new FeatureSubFeaturesEditPart(view);
+			case AbstractFeatureSubFeaturesEditPart.VISUAL_ID:
+				return new AbstractFeatureSubFeaturesEditPart(view);
 
 			case IsRefinedLabel2EditPart.VISUAL_ID:
 				return new IsRefinedLabel2EditPart(view);
+
+			case AbstractFeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
+				return new AbstractFeatureDetailingFunctionalRequirementsEditPart(view);
+
+			case IsDetailedLabelEditPart.VISUAL_ID:
+				return new IsDetailedLabelEditPart(view);
+
+			case AbstractFeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
+				return new AbstractFeatureConstrainingNonFunctionalRequirementsEditPart(view);
+
+			case IsConstraintLabelEditPart.VISUAL_ID:
+				return new IsConstraintLabelEditPart(view);
+
+			case AbstractFeatureRequieredFeaturesEditPart.VISUAL_ID:
+				return new AbstractFeatureRequieredFeaturesEditPart(view);
+
+			case RequieresLabelEditPart.VISUAL_ID:
+				return new RequieresLabelEditPart(view);
+
+			case AbstractFeatureExcludedFeaturesEditPart.VISUAL_ID:
+				return new AbstractFeatureExcludedFeaturesEditPart(view);
+
+			case ExcludesLabelEditPart.VISUAL_ID:
+				return new ExcludesLabelEditPart(view);
 
 			case GoalRealizedFeaturesEditPart.VISUAL_ID:
 				return new GoalRealizedFeaturesEditPart(view);
@@ -109,35 +145,59 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case MotivatesLabelEditPart.VISUAL_ID:
 				return new MotivatesLabelEditPart(view);
 
-			case RequirementImplementingServicesEditPart.VISUAL_ID:
-				return new RequirementImplementingServicesEditPart(view);
-
-			case IsImplementedLabelEditPart.VISUAL_ID:
-				return new IsImplementedLabelEditPart(view);
-
-			case FeatureDetailingFunctionalRequirementsEditPart.VISUAL_ID:
-				return new FeatureDetailingFunctionalRequirementsEditPart(view);
-
-			case IsDetailedLabelEditPart.VISUAL_ID:
-				return new IsDetailedLabelEditPart(view);
-
 			case GoalSubGoalsEditPart.VISUAL_ID:
 				return new GoalSubGoalsEditPart(view);
 
 			case IsRefinedLabelEditPart.VISUAL_ID:
 				return new IsRefinedLabelEditPart(view);
 
-			case FeatureConstrainingNonFunctionalRequirementsEditPart.VISUAL_ID:
-				return new FeatureConstrainingNonFunctionalRequirementsEditPart(view);
+			case GoalReferenceEditPart.VISUAL_ID:
+				return new GoalReferenceEditPart(view);
 
-			case IsConstraintLabelEditPart.VISUAL_ID:
-				return new IsConstraintLabelEditPart(view);
+			case IsDetailedLabel2EditPart.VISUAL_ID:
+				return new IsDetailedLabel2EditPart(view);
 
-			case ServiceServiceProviderEditPart.VISUAL_ID:
-				return new ServiceServiceProviderEditPart(view);
+			case InfluencesLabelEditPart.VISUAL_ID:
+				return new InfluencesLabelEditPart(view);
 
-			case IsProvidedLabelEditPart.VISUAL_ID:
-				return new IsProvidedLabelEditPart(view);
+			case GoalReference2EditPart.VISUAL_ID:
+				return new GoalReference2EditPart(view);
+
+			case GoalReferenceWeightEditPart.VISUAL_ID:
+				return new GoalReferenceWeightEditPart(view);
+
+			case InfluencesLabel2EditPart.VISUAL_ID:
+				return new InfluencesLabel2EditPart(view);
+
+			case GoalReference3EditPart.VISUAL_ID:
+				return new GoalReference3EditPart(view);
+
+			case GoalReferenceWeight2EditPart.VISUAL_ID:
+				return new GoalReferenceWeight2EditPart(view);
+
+			case InfluencesLabel3EditPart.VISUAL_ID:
+				return new InfluencesLabel3EditPart(view);
+
+			case GoalReference4EditPart.VISUAL_ID:
+				return new GoalReference4EditPart(view);
+
+			case GoalReferenceWeight3EditPart.VISUAL_ID:
+				return new GoalReferenceWeight3EditPart(view);
+
+			case InfluencesLabel4EditPart.VISUAL_ID:
+				return new InfluencesLabel4EditPart(view);
+
+			case RequirementImplementingServicesEditPart.VISUAL_ID:
+				return new RequirementImplementingServicesEditPart(view);
+
+			case IsImplementedLabelEditPart.VISUAL_ID:
+				return new IsImplementedLabelEditPart(view);
+
+			case RequirementSubRequirementsEditPart.VISUAL_ID:
+				return new RequirementSubRequirementsEditPart(view);
+
+			case IsRefinedLabel5EditPart.VISUAL_ID:
+				return new IsRefinedLabel5EditPart(view);
 
 			case MitigationMitigatedDangersEditPart.VISUAL_ID:
 				return new MitigationMitigatedDangersEditPart(view);
@@ -151,11 +211,41 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case HarmsLabelEditPart.VISUAL_ID:
 				return new HarmsLabelEditPart(view);
 
-			case ActorTriggeredDangersEditPart.VISUAL_ID:
-				return new ActorTriggeredDangersEditPart(view);
+			case AssetTriggeredDangersEditPart.VISUAL_ID:
+				return new AssetTriggeredDangersEditPart(view);
 
 			case TriggersLabelEditPart.VISUAL_ID:
 				return new TriggersLabelEditPart(view);
+
+			case ServiceSubServicesEditPart.VISUAL_ID:
+				return new ServiceSubServicesEditPart(view);
+
+			case MotivatesLabel2EditPart.VISUAL_ID:
+				return new MotivatesLabel2EditPart(view);
+
+			case VariationPointFeaturesEditPart.VISUAL_ID:
+				return new VariationPointFeaturesEditPart(view);
+
+			case CombineLabel2EditPart.VISUAL_ID:
+				return new CombineLabel2EditPart(view);
+
+			case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
+				return new VariationPointInstanceVariationPointEditPart(view);
+
+			case InstantiateLabelEditPart.VISUAL_ID:
+				return new InstantiateLabelEditPart(view);
+
+			case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
+				return new VariationPointInstanceSelectedFeaturesEditPart(view);
+
+			case SelectLabelEditPart.VISUAL_ID:
+				return new SelectLabelEditPart(view);
+
+			case ProductVariationPointInstancesEditPart.VISUAL_ID:
+				return new ProductVariationPointInstancesEditPart(view);
+
+			case CombineLabelEditPart.VISUAL_ID:
+				return new CombineLabelEditPart(view);
 
 			}
 		}

@@ -7,9 +7,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.unicase.model.urml.Feature;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
 
+import urml.feature.AbstractFeature;
 import urml.goal.Goal;
 
 /**
@@ -46,7 +46,7 @@ public class GoalRealizedFeaturesCreateCommand extends EditElementCommand {
 		if (source != null && false == source instanceof Goal) {
 			return false;
 		}
-		if (target != null && false == target instanceof Feature) {
+		if (target != null && false == target instanceof AbstractFeature) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -89,7 +89,7 @@ public class GoalRealizedFeaturesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Feature getTarget() {
-		return (Feature) target;
+	protected AbstractFeature getTarget() {
+		return (AbstractFeature) target;
 	}
 }

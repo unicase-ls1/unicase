@@ -4,32 +4,29 @@
 package urml.danger.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import urml.danger.DangerPackage;
 import urml.danger.ProceduralMitigation;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Procedural Mitigation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Procedural Mitigation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
+ * <li>{@link urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProceduralMitigationImpl extends MitigationImpl implements ProceduralMitigation {
 	/**
-	 * The default value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMitigationProcedure()
 	 * @generated
 	 * @ordered
@@ -37,9 +34,9 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	protected static final String MITIGATION_PROCEDURE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMitigationProcedure()
 	 * @generated
 	 * @ordered
@@ -47,8 +44,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	protected String mitigationProcedure = MITIGATION_PROCEDURE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProceduralMitigationImpl() {
@@ -56,8 +53,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,8 +63,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getMitigationProcedure() {
@@ -75,8 +72,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMitigationProcedure(String newMitigationProcedure) {
@@ -88,8 +85,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,8 +99,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,8 +114,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,8 +129,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,8 +144,8 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,4 +160,4 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 		return result.toString();
 	}
 
-} //ProceduralMitigationImpl
+} // ProceduralMitigationImpl

@@ -8,18 +8,6 @@
   <genPackages prefix="Urml" basePackage="org.unicase.model" resource="XML" disposableProviderFactory="true"
       ecorePackage="urml.ecore#/">
     <genClasses ecoreClass="urml.ecore#//UrmlModelElement"/>
-    <genClasses ecoreClass="urml.ecore#//Feature">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/goals"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/detailingFunctionalRequirements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/constrainingNonFunctionalRequirements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/detailingUseCases"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//Feature/parentFeature"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/subFeatures"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/excludingFeatures"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/excludedFeatures"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/requieringFeatures"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Feature/requieredFeatures"/>
-    </genClasses>
     <genClasses ecoreClass="urml.ecore#//Stakeholder">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference urml.ecore#//Stakeholder/goals"/>
     </genClasses>
@@ -137,23 +125,58 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute urml.ecore#//danger/ProceduralMitigation/mitigationProcedure"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Product" basePackage="urml" resource="XML" disposableProviderFactory="true"
-        ecorePackage="urml.ecore#//product">
-      <genClasses ecoreClass="urml.ecore#//product/VariationPoint">
+    <nestedGenPackages prefix="Feature" basePackage="urml" resource="XML" disposableProviderFactory="true"
+        ecorePackage="urml.ecore#//feature">
+      <genClasses image="false" ecoreClass="urml.ecore#//feature/AbstractFeature">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//product/VariationPoint/features"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/goals"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//product/VariationPoint/variationPointInstance"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/detailingFunctionalRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/constrainingNonFunctionalRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/detailingUseCases"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/parentFeature"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/subFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/excludingFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/excludedFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/requieringFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/requieredFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/variationPoints"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/variationPointInstances"/>
       </genClasses>
-      <genClasses ecoreClass="urml.ecore#//product/VariationPointInstance">
+      <genClasses ecoreClass="urml.ecore#//feature/Feature"/>
+      <genClasses ecoreClass="urml.ecore#//feature/VariationPoint">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//product/VariationPointInstance/variationPoint"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/features"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//product/VariationPointInstance/product"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/instances"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/rules"/>
       </genClasses>
-      <genClasses ecoreClass="urml.ecore#//product/Product">
+      <genClasses ecoreClass="urml.ecore#//feature/VariationPointInstance">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//product/Product/variationPointInstances"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/variationPoint"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/product"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/selectedFeatures"/>
+      </genClasses>
+      <genClasses ecoreClass="urml.ecore#//feature/Product">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference urml.ecore#//feature/Product/variationPointInstances"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="urml.ecore#//feature/VariationPointRule">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointRule/variationPoint"/>
+      </genClasses>
+      <genClasses ecoreClass="urml.ecore#//feature/OneOutManyRule"/>
+      <genClasses ecoreClass="urml.ecore#//feature/ManyOutManyRule">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute urml.ecore#//feature/ManyOutManyRule/constraint"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

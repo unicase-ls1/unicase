@@ -57,7 +57,7 @@ public class FeatureNameEditPart extends CompartmentEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5001;
+	public static final int VISUAL_ID = 5011;
 
 	/**
 	 * @generated
@@ -294,7 +294,7 @@ public class FeatureNameEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.Feature_2005, getParserElement(),
+			parser = UrmlParserProvider.getParser(UrmlElementTypes.Feature_2012, getParserElement(),
 				UrmlVisualIDRegistry
 					.getType(org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart.VISUAL_ID));
 		}

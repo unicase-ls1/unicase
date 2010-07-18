@@ -105,8 +105,17 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="GoalInfluenceGoalsFigure"
-          lineKind="LINE_DASH"
-          targetDecoration="//@figures.0/@figures.0"/>
+          targetDecoration="//@figures.0/@figures.0">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="GoalInfluenceGoalsFigure_name"
+            text="null"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureGoalInfluenceGoalsFigure_name"
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="GoalParentGoalFigure">
@@ -514,6 +523,148 @@
           name="RequieresLabelFigure"
           text="requiere"/>
     </descriptors>
+    <descriptors
+        name="VariationPointFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          lineWidth="0">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointFigure"
+            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.VariationPointIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointFigure_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureVariationPointFigure_name"
+          figure="//@figures.0/@descriptors.39/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          lineWidth="0">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointInstanceFigure"
+            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.VariationPointInstanceIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointInstance_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureVariationPointInstance_name"
+          figure="//@figures.0/@descriptors.40/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="ProductFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          lineWidth="0">
+        <layout
+            xsi:type="gmfgraph:GridLayout">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ProductFigure"
+            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ProductIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ProductFigure_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getProductFigure_name"
+          figure="//@figures.0/@descriptors.41/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="VariationPointFeatureFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceVariationPointFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="VariationPointInstanceVariationPointFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="VariationPointInstanceFeatureFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="ProductVariationPointInstanceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ProductVariationPointInstanceFigure"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="InstantiateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InstantiateLabelFigure"
+          text="instantiate"/>
+    </descriptors>
+    <descriptors
+        name="CombineLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="CombineLabelFigure"
+          text="combines"/>
+    </descriptors>
+    <descriptors
+        name="SelectLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SelectLabelFigure"
+          text="selects"/>
+    </descriptors>
   </figures>
   <nodes
       name="Stakeholder"
@@ -542,6 +693,15 @@
   <nodes
       name="ProceduralMitigationNode"
       figure="ProceduralMitigationFigure"/>
+  <nodes
+      name="VariationPoint"
+      figure="VariationPointFigure"/>
+  <nodes
+      name="VariationPointInstance"
+      figure="VariationPointInstanceFigure"/>
+  <nodes
+      name="Product"
+      figure="ProductFigure"/>
   <connections
       name="StakeholderGoals"
       figure="StakeholderGoalsFigure"/>
@@ -590,6 +750,28 @@
   <connections
       name="AssetDanger"
       figure="AssetDangerFigure"/>
+  <connections
+      name="VariationPointFeature"
+      figure="VariationPointFeatureFigure"/>
+  <connections
+      name="VariationPointInstanceVariationPoint"
+      figure="VariationPointInstanceVariationPointFigure"/>
+  <connections
+      name="VariationPointInstanceFeature"
+      figure="VariationPointInstanceFeatureFigure"/>
+  <connections
+      name="ProductVariationPointInstance"
+      figure="ProductVariationPointInstanceFigure"/>
+  <labels
+      name="GoalInlfuenceGoalsLine_name"
+      figure="GoalInfluenceGoalsFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.5/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
   <labels
       name="FeatureNode_name"
       figure="FeatureFigure"
@@ -770,6 +952,54 @@
   <labels
       name="Requieres"
       figure="RequieresLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="VariationPointNode_name"
+      figure="VariationPointFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.39/@accessors.0"/>
+  <labels
+      name="VariationPointInstanceNode_name"
+      figure="VariationPointInstanceFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.40/@accessors.0"/>
+  <labels
+      name="ProductNode_name"
+      figure="ProductFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.41/@accessors.0"/>
+  <labels
+      name="Instantiate"
+      figure="InstantiateLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Combine"
+      figure="CombineLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Select"
+      figure="SelectLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"

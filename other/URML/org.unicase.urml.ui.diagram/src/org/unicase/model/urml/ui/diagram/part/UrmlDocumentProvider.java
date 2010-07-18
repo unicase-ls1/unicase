@@ -86,9 +86,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element. The
-	 * content of the document is not changed. This default implementation is empty.
-	 * Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element. The content of the document is not
+	 * changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element the blue-print element
 	 * @param document the document to set up
@@ -103,7 +102,7 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -156,8 +155,11 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
+																						 * <org.eclipse.core.resources.IFile
+																						 * >
+																						 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -183,7 +185,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 					updateCache(element);
 				} catch (CoreException ex) {
 					UrmlDiagramEditorPlugin.getInstance().logError(Messages.UrmlDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -207,7 +210,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 					updateCache(element);
 				} catch (CoreException ex) {
 					UrmlDiagramEditorPlugin.getInstance().logError(Messages.UrmlDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -221,7 +225,7 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -265,8 +269,11 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -285,8 +292,11 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -305,8 +315,11 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -325,8 +338,11 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -350,10 +366,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 		IResource parent = toCreateOrModify;
 		do {
 			/*
-			 * XXX This is a workaround for
-			 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy
-			 * itself.
+			 * XXX This is a workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
+			 * IResourceRuleFactory.createRule should iterate the hierarchy itself.
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
@@ -368,7 +382,7 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
@@ -393,8 +407,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 			fireElementStateChanging(element);
 			try {
 				monitor.beginTask(Messages.UrmlDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
-					.size() + 1); //"Saving diagram"
-				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
+					.size() + 1); // "Saving diagram"
+				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor.setTaskName(NLS.bind(Messages.UrmlDocumentProvider_SaveNextResourceTask, nextResource
@@ -481,7 +495,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 			} catch (CoreException ex) {
 				UrmlDiagramEditorPlugin.getInstance().logError(
 					Messages.UrmlDocumentProvider_handleElementContentChanged, ex);
-				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from
+				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -644,8 +659,8 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(getResourceSet().getResources())
+		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
+			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
 				.iterator();
 		}
 
@@ -657,16 +672,16 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			//			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it.hasNext();) {
-			//				Resource resource = (Resource) it.next();
-			//				resource.unload();
-			//			}
-			//			getEditingDomain().dispose();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it.hasNext();) {
+				Resource resource = (Resource) it.next();
+				resource.unload();
+			}
+			getEditingDomain().dispose();
 		}
 
 		/**
@@ -857,7 +872,7 @@ public class UrmlDocumentProvider extends ModelDocumentProvider implements IDiag
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
+						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
 							.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {

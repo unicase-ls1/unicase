@@ -5,45 +5,41 @@ package urml.usecase.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.unicase.model.urml.Feature;
-import org.unicase.model.urml.UrmlPackage;
-
+import urml.feature.AbstractFeature;
+import urml.feature.FeaturePackage;
 import urml.usecase.SolutionDomainUseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Solution Domain Use Case</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Solution Domain Use Case</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature</em>}</li>
+ * <li>{@link urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDomainUseCase {
 	/**
-	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDetailedFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature detailedFeature;
+	protected AbstractFeature detailedFeature;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SolutionDomainUseCaseImpl() {
@@ -51,8 +47,8 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,14 +57,14 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public Feature getDetailedFeature() {
+	public AbstractFeature getDetailedFeature() {
 		if (detailedFeature != null && detailedFeature.eIsProxy()) {
 			InternalEObject oldDetailedFeature = (InternalEObject) detailedFeature;
-			detailedFeature = (Feature) eResolveProxy(oldDetailedFeature);
+			detailedFeature = (AbstractFeature) eResolveProxy(oldDetailedFeature);
 			if (detailedFeature != oldDetailedFeature) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -79,21 +75,21 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public Feature basicGetDetailedFeature() {
+	public AbstractFeature basicGetDetailedFeature() {
 		return detailedFeature;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDetailedFeature(Feature newDetailedFeature, NotificationChain msgs) {
-		Feature oldDetailedFeature = detailedFeature;
+	public NotificationChain basicSetDetailedFeature(AbstractFeature newDetailedFeature, NotificationChain msgs) {
+		AbstractFeature oldDetailedFeature = detailedFeature;
 		detailedFeature = newDetailedFeature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -107,19 +103,19 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setDetailedFeature(Feature newDetailedFeature) {
+	public void setDetailedFeature(AbstractFeature newDetailedFeature) {
 		if (newDetailedFeature != detailedFeature) {
 			NotificationChain msgs = null;
 			if (detailedFeature != null)
 				msgs = ((InternalEObject) detailedFeature).eInverseRemove(this,
-					UrmlPackage.FEATURE__DETAILING_USE_CASES, Feature.class, msgs);
+					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
 			if (newDetailedFeature != null)
 				msgs = ((InternalEObject) newDetailedFeature).eInverseAdd(this,
-					UrmlPackage.FEATURE__DETAILING_USE_CASES, Feature.class, msgs);
+					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
 			msgs = basicSetDetailedFeature(newDetailedFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -129,8 +125,8 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,15 +135,15 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 		case UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE:
 			if (detailedFeature != null)
 				msgs = ((InternalEObject) detailedFeature).eInverseRemove(this,
-					UrmlPackage.FEATURE__DETAILING_USE_CASES, Feature.class, msgs);
-			return basicSetDetailedFeature((Feature) otherEnd, msgs);
+					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
+			return basicSetDetailedFeature((AbstractFeature) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -160,8 +156,8 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,38 +172,38 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE:
-			setDetailedFeature((Feature) newValue);
+			setDetailedFeature((AbstractFeature) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE:
-			setDetailedFeature((Feature) null);
+			setDetailedFeature((AbstractFeature) null);
 			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,4 +215,4 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 		return super.eIsSet(featureID);
 	}
 
-} //SolutionDomainUseCaseImpl
+} // SolutionDomainUseCaseImpl

@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,7 +16,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.model.urml.provider.UrmlEditPlugin;
 import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
 
@@ -26,17 +23,16 @@ import urml.danger.Danger;
 import urml.danger.DangerPackage;
 
 /**
- * This is the item provider adapter for a {@link urml.danger.Danger} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link urml.danger.Danger} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
+ * 
  * @generated
  */
 public class DangerItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DangerItemProvider(AdapterFactory adapterFactory) {
@@ -44,9 +40,8 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -54,30 +49,29 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTriggeringActorsPropertyDescriptor(object);
+			addTriggeringAssetsPropertyDescriptor(object);
 			addHarmedAssetsPropertyDescriptor(object);
+			addHarmedClassesPropertyDescriptor(object);
 			addMitigationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Triggering Actors feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Triggering Assets feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected void addTriggeringActorsPropertyDescriptor(Object object) {
+	protected void addTriggeringAssetsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_triggeringActors_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Danger_triggeringActors_feature", "_UI_Danger_type"),
-			DangerPackage.Literals.DANGER__TRIGGERING_ACTORS, true, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_triggeringAssets_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Danger_triggeringAssets_feature", "_UI_Danger_type"),
+			DangerPackage.Literals.DANGER__TRIGGERING_ASSETS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Harmed Assets feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Harmed Assets feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addHarmedAssetsPropertyDescriptor(Object object) {
@@ -88,9 +82,20 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Mitigations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Harmed Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addHarmedClassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Danger_harmedClasses_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Danger_harmedClasses_feature", "_UI_Danger_type"),
+			DangerPackage.Literals.DANGER__HARMED_CLASSES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mitigations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addMitigationsPropertyDescriptor(Object object) {
@@ -101,34 +106,32 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	}
 
 	/**
-	 * This returns Danger.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns Danger.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/danger.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Danger"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Danger) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Danger_type") : 
-		label;
+		return label == null || label.length() == 0 ? getString("_UI_Danger_type") : getString("_UI_Danger_type") + " "
+			+ label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,10 +141,9 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,9 +152,8 @@ public class DangerItemProvider extends UrmlModelElementItemProvider implements 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

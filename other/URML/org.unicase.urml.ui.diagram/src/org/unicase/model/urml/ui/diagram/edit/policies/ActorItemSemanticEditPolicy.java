@@ -14,11 +14,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.urml.ui.diagram.edit.commands.ActorTriggeredDangersCreateCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.ActorTriggeredDangersReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.AssetTriggeredDangersCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.AssetTriggeredDangersReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.DangerHarmedAssetsCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.DangerHarmedAssetsReorientCommand;
-import org.unicase.model.urml.ui.diagram.edit.parts.ActorTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -54,7 +54,7 @@ public class ActorItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy 
 		}
 		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == ActorTriggeredDangersEditPart.VISUAL_ID) {
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == AssetTriggeredDangersEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
 					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
@@ -90,8 +90,8 @@ public class ActorItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy 
 		if (UrmlElementTypes.DangerHarmedAssets_4013 == req.getElementType()) {
 			return null;
 		}
-		if (UrmlElementTypes.ActorTriggeredDangers_4014 == req.getElementType()) {
-			return getGEFWrapper(new ActorTriggeredDangersCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UrmlElementTypes.AssetTriggeredDangers_4017 == req.getElementType()) {
+			return getGEFWrapper(new AssetTriggeredDangersCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -103,15 +103,15 @@ public class ActorItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy 
 		if (UrmlElementTypes.DangerHarmedAssets_4013 == req.getElementType()) {
 			return getGEFWrapper(new DangerHarmedAssetsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UrmlElementTypes.ActorTriggeredDangers_4014 == req.getElementType()) {
+		if (UrmlElementTypes.AssetTriggeredDangers_4017 == req.getElementType()) {
 			return null;
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -119,8 +119,8 @@ public class ActorItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy 
 		switch (getVisualID(req)) {
 		case DangerHarmedAssetsEditPart.VISUAL_ID:
 			return getGEFWrapper(new DangerHarmedAssetsReorientCommand(req));
-		case ActorTriggeredDangersEditPart.VISUAL_ID:
-			return getGEFWrapper(new ActorTriggeredDangersReorientCommand(req));
+		case AssetTriggeredDangersEditPart.VISUAL_ID:
+			return getGEFWrapper(new AssetTriggeredDangersReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
