@@ -102,7 +102,8 @@ public class CreateProjectUITest extends MEEditorTest {
 	}
 
 	/**
-	 * @param newproject is used as a test setter method for the variable newproject.
+	 * @param newproject is used as test project for testing the new project creation functionality This method is a
+	 *            setter method for the variable newproject.
 	 */
 
 	public void setNewproject(Project newproject) {
@@ -111,6 +112,8 @@ public class CreateProjectUITest extends MEEditorTest {
 
 	/**
 	 * getter method for the variable newproject.
+	 * 
+	 * @return returns the reference of the variable newproject
 	 */
 	public Project getNewproject() {
 		return newproject;
