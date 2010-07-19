@@ -60,7 +60,7 @@ public class ActionItemEmbodiesRequirementConstraint extends AbstractModelConstr
 	}
 
 	private boolean containsKeywords(ActionItem actionItem) {
-		String[] keywords = { "should ", "must ", "require" };
+		String[] keywords = { "should " };
 		for (String keyword : keywords) {
 			if (actionItem.getName().toLowerCase().contains(keyword)) {
 				return true;

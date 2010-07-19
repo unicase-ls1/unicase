@@ -6,11 +6,8 @@
 package org.unicase.model.task.validation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
@@ -22,25 +19,17 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * This validation rule checks if a refining requirement has annotated tasks which have earlier due dates then the
- * refinied requirements.
+ * This validation rules checks if there is an annotation on the annotated model element which is from the activities
+ * analysis or design and has an earlier due date.
  * 
  * @author helming
  */
-public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
-	/**
-	 * default constructor.
-	 */
-	public RefiningAfterRefinedConstraint() {
-		// TODO Auto-generated constructor stub
-	}
-
+public class ImplementationActionItemDueDateAfterRelatedAnalysisOrDesignActionItem extends AbstractModelConstraint {
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -60,30 +49,22 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 		activity = TaskValidationHelper.getActivity(annotation);
 		dueDate = TaskValidationHelper.getDueDate(annotation);
 
-		if (dueDate == null || !activity.equals(ActivityType.IMPLEMENTATION)) {
+		if (!activity.equals(ActivityType.IMPLEMENTATION)) {
 			return ctx.createSuccessStatus();
 		}
 		EList<UnicaseModelElement> annotatedModelElements = annotation.getAnnotatedModelElements();
 		List<Annotation> otherAnnotations = new ArrayList<Annotation>();
 		for (UnicaseModelElement me : annotatedModelElements) {
-			if (me instanceof FunctionalRequirement) {
-				otherAnnotations.addAll(getRefiningAnnoations((FunctionalRequirement) me));
-			}
+			otherAnnotations.addAll(me.getAnnotations());
 		}
-		return toAvoidCyclomaticComplexity(ctx, eObj, dueDate, otherAnnotations);
-	}
-
-	private IStatus toAvoidCyclomaticComplexity(IValidationContext ctx, EObject eObj, Date dueDate,
-		List<Annotation> otherAnnotations) {
 		for (Annotation otherAnnotation : otherAnnotations) {
 			if ((!(otherAnnotation instanceof ActionItem) && !(otherAnnotation instanceof Issue))) {
 				continue;
 			}
 			ActivityType otherActivity = TaskValidationHelper.getActivity(otherAnnotation);
 			if (otherActivity.equals(ActivityType.ANALYSIS) || otherActivity.equals(ActivityType.SYSTEM_DESIGN)
-				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)
-				|| otherActivity.equals(ActivityType.IMPLEMENTATION)) {
-				if (TaskValidationHelper.getDueDate(otherAnnotation) != null
+				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)) {
+				if (dueDate != null && TaskValidationHelper.getDueDate(otherAnnotation) != null
 					&& TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(UnicaseModelElement) eObj, "dueDate");
@@ -93,17 +74,9 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 				}
 			}
 		}
-		return ctx.createSuccessStatus();
-	}
 
-	private Collection<? extends Annotation> getRefiningAnnoations(FunctionalRequirement fr) {
-		Set<Annotation> ret = new HashSet<Annotation>();
-		EList<FunctionalRequirement> refiningRequirements = fr.getRefiningRequirements();
-		for (FunctionalRequirement functionalRequirement : refiningRequirements) {
-			ret.addAll(functionalRequirement.getAnnotations());
-			ret.addAll(getRefiningAnnoations(functionalRequirement));
-		}
-		return ret;
+		return ctx.createSuccessStatus();
+
 	}
 
 }

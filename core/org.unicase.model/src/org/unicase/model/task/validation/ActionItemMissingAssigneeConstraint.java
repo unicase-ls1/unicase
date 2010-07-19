@@ -11,38 +11,39 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.task.WorkItem;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
  * This constraint checks whether a ActionItem has a assignee.
  * 
- * @author pfeifferc
+ * @author wesendonk
+ * @author naughton
  */
-public class CircularDependencyConstraint extends AbstractModelConstraint {
+public class ActionItemMissingAssigneeConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IStatus validate(IValidationContext validationContext) {
-		EObject eObject = validationContext.getTarget();
-		EMFEventType eType = validationContext.getEventType();
+	public IStatus validate(IValidationContext ctx) {
+
+		EObject eObj = ctx.getTarget();
+		EMFEventType eType = ctx.getEventType();
+
 		if (eType == EMFEventType.NULL) {
-			if (eObject instanceof WorkItem) {
-				WorkItem workItem = (WorkItem) eObject;
-				for (WorkItem successor : workItem.getSuccessors()) {
-					if (successor.getPredecessors().contains(workItem)) {
-						EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-							workItem, "name");
-						validationContext.addResult(errorFeature);
-						return validationContext.createFailureStatus(new Object[] { eObject.eClass().getName() + ": '"
-							+ workItem.getName() + "'" });
-					}
+			if (eObj instanceof ActionItem) {
+				if (((ActionItem) eObj).getAssignee() == null) {
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(UnicaseModelElement) eObj, "assignee");
+					ctx.addResult(errorFeature);
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ActionItem) eObj).getName() + "'" });
 				}
 			}
 		}
-		return validationContext.createSuccessStatus();
+		return ctx.createSuccessStatus();
 
 	}
 }

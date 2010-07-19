@@ -24,7 +24,7 @@ import org.unicase.model.util.ValidationConstraintHelper;
  * 
  * @author helming
  */
-public class ImplementationActionItemAnnotated extends AbstractModelConstraint {
+public class ImplementationActionItemMissingClassOrMethod extends AbstractModelConstraint {
 	/**
 	 * {@inheritDoc}
 	 * 
