@@ -20,8 +20,12 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Class to test the if a project is created correctly in UNICASE or not.
+ */
+
 public class CreateProjectUITest extends MEEditorTest {
-	Project newproject = null;
+	private Project newproject;
 
 	/**
 	 * Setup the environment for testing.
@@ -43,6 +47,10 @@ public class CreateProjectUITest extends MEEditorTest {
 		}.run();
 	}
 
+	/**
+	 * This method first creates a project programticaly and check if it appears in the UNICSAE Navigator UI or not.
+	 */
+
 	@Test
 	public void createProjectUpdate() {
 
@@ -55,7 +63,7 @@ public class CreateProjectUITest extends MEEditorTest {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				ProjectSpace projectSpace = currentWorkspace.createLocalProject("CreateProjectTest",
 					"Test project description");
-				newproject = projectSpace.getProject();
+				setNewproject(projectSpace.getProject());
 
 			}
 		}.run();
@@ -66,6 +74,11 @@ public class CreateProjectUITest extends MEEditorTest {
 		assertTrue(text[0].getText().startsWith("CreateProjectTest"));
 
 	}
+
+	/**
+	 * This method first creates a project through out the UNICSAE Navigator UI and check if it was created in the user
+	 * local workspace or not.
+	 */
 
 	@Test
 	public void createProjectChange() {
@@ -86,5 +99,20 @@ public class CreateProjectUITest extends MEEditorTest {
 			}
 		}.run();
 
+	}
+
+	/**
+	 * @param newproject is used as a test setter method for the variable newproject.
+	 */
+
+	public void setNewproject(Project newproject) {
+		this.newproject = newproject;
+	}
+
+	/**
+	 * getter method for the variable newproject.
+	 */
+	public Project getNewproject() {
+		return newproject;
 	}
 }
