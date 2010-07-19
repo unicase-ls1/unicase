@@ -23,7 +23,7 @@ import org.unicase.model.util.ValidationConstraintHelper;
  * 
  * @author helming
  */
-public class ActionItemAnnotated extends AbstractModelConstraint {
+public class ActionItemMissingFunctionalRequirementConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -34,7 +34,6 @@ public class ActionItemAnnotated extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext ctx) {
 		EObject eObj = ctx.getTarget();
 		EMFEventType eType = ctx.getEventType();
-
 		if (eType != EMFEventType.NULL || !(eObj instanceof ActionItem)) {
 			return ctx.createSuccessStatus();
 		}
@@ -53,7 +52,5 @@ public class ActionItemAnnotated extends AbstractModelConstraint {
 		ctx.addResult(errorFeature);
 		return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '" + ((ActionItem) eObj).getName()
 			+ "'" });
-
 	}
-
 }

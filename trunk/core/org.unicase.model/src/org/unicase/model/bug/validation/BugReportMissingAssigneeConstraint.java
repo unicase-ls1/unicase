@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.requirement.validation;
+package org.unicase.model.bug.validation;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -12,39 +12,38 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.ActorInstance;
+import org.unicase.model.bug.BugReport;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether a actor instance is connected to a actor.
+ * This constraint checks whether a ActionItem has a assignee.
  * 
  * @author wesendonk
  * @author naughton
  */
-public class ActorInstanceActorConstraint extends AbstractModelConstraint {
+public class BugReportMissingAssigneeConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public IStatus validate(IValidationContext ctx) {
+
 		EObject eObj = ctx.getTarget();
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof ActorInstance) {
-				Actor actor = ((ActorInstance) eObj).getInstantiatedActor();
-				if (actor == null) {
+			if (eObj instanceof BugReport) {
+				if (((BugReport) eObj).getAssignee() == null) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "instantiatedActor");
+						(UnicaseModelElement) eObj, "assignee");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((ActorInstance) eObj).getName() + "'" });
+						+ ((BugReport) eObj).getName() + "'" });
 				}
 			}
 		}
 		return ctx.createSuccessStatus();
-	}
 
+	}
 }

@@ -13,16 +13,17 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.Scenario;
+import org.unicase.model.classes.Class;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether a scenario is connected to a usecase.
+ * Checks whether a usecase is connected to a identified class.
  * 
- * @author wesendon
+ * @author wesendonk
+ * @author naughton
  */
-public class ScenarioUsecaseConstraint extends AbstractModelConstraint {
+public class UseCaseIdentifiedClassConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -33,14 +34,14 @@ public class ScenarioUsecaseConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof Scenario) {
-				EList<UseCase> useCases = ((Scenario) eObj).getInstantiatedUseCases();
-				if (useCases.size() < 1) {
+			if (eObj instanceof UseCase) {
+				EList<Class> identifiedClasses = ((UseCase) eObj).getIdentifiedClasses();
+				if (identifiedClasses.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "instantiatedUseCases");
+						(UnicaseModelElement) eObj, "identifiedClasses");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((Scenario) eObj).getName() + "'" });
+						+ ((UseCase) eObj).getName() + "'" });
 				}
 			}
 		}

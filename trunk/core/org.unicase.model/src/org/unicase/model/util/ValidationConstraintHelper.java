@@ -18,8 +18,9 @@ import org.unicase.model.UnicaseModelElement;
  */
 public final class ValidationConstraintHelper {
 
-	private ValidationConstraintHelper() {
+	private static AdapterFactoryItemDelegator adapterFactoryItemDelegator;
 
+	private ValidationConstraintHelper() {
 	}
 
 	/**
@@ -30,11 +31,17 @@ public final class ValidationConstraintHelper {
 	 * @return the structuralFeature
 	 */
 	public static EStructuralFeature getErrorFeatureForModelElement(UnicaseModelElement modelElement, String featureName) {
-		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		init();
 		IItemPropertyDescriptor itemPropertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(
 			modelElement, featureName);
 		EStructuralFeature errorFeature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		return errorFeature;
+	}
+
+	private static void init() {
+		if (adapterFactoryItemDelegator == null) {
+			adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		}
 	}
 }

@@ -6,23 +6,24 @@
 package org.unicase.model.requirement.validation;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.ActorInstance;
-import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- *Checks whether a scenario has a initial actor instance.
+ * Checks whether the name starts with a number followed by a dot.
  * 
- * @author wesendonk
- * @author naughton
+ * @author hoecht
  */
-public class ScenarioActorInstanceConstraint extends AbstractModelConstraint {
+public class RequirementMissingNameConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -33,18 +34,49 @@ public class ScenarioActorInstanceConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof Scenario) {
-				ActorInstance actorInstance = ((Scenario) eObj).getInitiatingActorInstance();
-				if (actorInstance == null) {
+			if (isRequirement(eObj)) {
+				UnicaseModelElement me = (UnicaseModelElement) eObj;
+				if (startsWithANumber(me.getName())) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "initiatingActorInstance");
+						(UnicaseModelElement) eObj, "name");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((Scenario) eObj).getName() + "'" });
+						+ ((UnicaseModelElement) eObj).getName() + "'" });
 				}
 			}
 		}
 		return ctx.createSuccessStatus();
 	}
 
+	private boolean isRequirement(EObject eObj) {
+		EList<EClassifier> classifiers = RequirementPackage.eINSTANCE.getEClassifiers();
+		for (EClassifier classifier : classifiers) {
+			if (classifier instanceof EClass) {
+				EClass eclass = (EClass) classifier;
+				if (eclass.isInstance(eObj)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean startsWithANumber(String string) {
+		if (string == null) {
+			return false;
+		}
+
+		if (string.startsWith(".") || string.startsWith(")")) {
+			return true;
+		}
+
+		for (int i = 1; i <= 9; i++) {
+			if (string.startsWith(String.valueOf(i))) {
+				return startsWithANumber(string.substring(1));
+			}
+		}
+
+		return false;
+	}
 }

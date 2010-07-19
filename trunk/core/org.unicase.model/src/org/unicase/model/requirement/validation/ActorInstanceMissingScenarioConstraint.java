@@ -12,15 +12,17 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.ActorInstance;
+import org.unicase.model.requirement.Scenario;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether a usecase has steps.
+ *Checks whether a scenario has a initial actor instance.
  * 
- * @author hoecht
+ * @author wesendonk
+ * @author naughton
  */
-public class UsecaseStepsConstraint extends AbstractModelConstraint {
+public class ActorInstanceMissingScenarioConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -31,13 +33,14 @@ public class UsecaseStepsConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof UseCase) {
-				if (((UseCase) eObj).getUseCaseSteps().size() < 1) {
+			if (eObj instanceof Scenario) {
+				ActorInstance actorInstance = ((Scenario) eObj).getInitiatingActorInstance();
+				if (actorInstance == null) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "useCaseSteps");
+						(UnicaseModelElement) eObj, "initiatingActorInstance");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((UseCase) eObj).getName() + "'" });
+						+ ((Scenario) eObj).getName() + "'" });
 				}
 			}
 		}

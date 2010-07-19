@@ -47,7 +47,7 @@ public class DiscussionShouldBeIssueConstraint extends AbstractModelConstraint {
 				count++;
 			}
 		}
-		if (count > 2) {
+		if (count > 6) {
 			EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 				(UnicaseModelElement) eObject, "comments");
 			context.addResult(errorFeature);

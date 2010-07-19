@@ -13,17 +13,18 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether a actor is connected to a usecase.
+ * Checks whether a nf-requirement is linked to a usecase.
  * 
  * @author wesendon
  * @author naughton
  */
-public class ActorUsecaseConstraint extends AbstractModelConstraint {
+public class FunctionalRequirementMissingUsecaseConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -34,16 +35,14 @@ public class ActorUsecaseConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof Actor) {
-				EList<UseCase> useCases = ((Actor) eObj).getInitiatedUseCases();
-				EList<UseCase> useCases2 = ((Actor) eObj).getParticipatedUseCases();
-				if (useCases.size() < 1 && useCases2.size() < 1) {
-					// HN: extend to both
+			if (eObj instanceof FunctionalRequirement) {
+				EList<UseCase> useCases = ((NonFunctionalRequirement) eObj).getRestrictedUseCases();
+				if (useCases.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "initiatedUseCases");
+						(UnicaseModelElement) eObj, "restrictedUseCases");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((Actor) eObj).getName() + "'" });
+						+ ((NonFunctionalRequirement) eObj).getName() + "'" });
 				}
 			}
 		}

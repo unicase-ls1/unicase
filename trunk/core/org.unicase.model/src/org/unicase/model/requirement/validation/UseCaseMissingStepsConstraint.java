@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.task.validation;
+package org.unicase.model.requirement.validation;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -12,17 +12,15 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.ActivityType;
+import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- * Checks whether a activity is set for this ActionItem.
+ * Checks whether a usecase has steps.
  * 
- * @author wesendonk
- * @author naughton
+ * @author hoecht
  */
-public class ActionItemActivityConstraint extends AbstractModelConstraint {
+public class UseCaseMissingStepsConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -33,14 +31,13 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof ActionItem) {
-				ActivityType activity = ((ActionItem) eObj).getActivity();
-				if (activity.getValue() == ActivityType.NONE_VALUE) {
+			if (eObj instanceof UseCase) {
+				if (((UseCase) eObj).getUseCaseSteps().size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(UnicaseModelElement) eObj, "activity");
+						(UnicaseModelElement) eObj, "useCaseSteps");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((ActionItem) eObj).getName() + "'" });
+						+ ((UseCase) eObj).getName() + "'" });
 				}
 			}
 		}
