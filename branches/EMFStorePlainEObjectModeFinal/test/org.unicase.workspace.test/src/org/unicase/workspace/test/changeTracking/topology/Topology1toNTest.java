@@ -1841,7 +1841,7 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().add(actor);
 
 		clearOperations();
-
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		section.getModelElements().remove(actor);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -1854,7 +1854,6 @@ public class Topology1toNTest extends TopologyTest {
 
 		assertEquals(2, subOperations.size());
 
-		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
 		assertTrue(subOperations.get(0) instanceof SingleReferenceOperation);
@@ -1897,7 +1896,8 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 
 		clearOperations();
-
+		ModelElementId actor1Id = ModelUtil.getProject(actor1).getModelElementId(actor1);
+		ModelElementId actor2Id = ModelUtil.getProject(actor2).getModelElementId(actor2);
 		section.getModelElements().removeAll(Arrays.asList(actors));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -1910,8 +1910,6 @@ public class Topology1toNTest extends TopologyTest {
 
 		assertEquals(3, subOperations.size());
 
-		ModelElementId actor1Id = ModelUtil.getProject(actor1).getModelElementId(actor1);
-		ModelElementId actor2Id = ModelUtil.getProject(actor2).getModelElementId(actor2);
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
 		assertTrue(subOperations.get(0) instanceof SingleReferenceOperation);
@@ -1961,6 +1959,7 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().add(actor);
 
 		clearOperations();
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 
 		section.getModelElements().remove(actor);
 
@@ -1974,7 +1973,6 @@ public class Topology1toNTest extends TopologyTest {
 
 		assertEquals(2, subOperations.size());
 
-		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
 		assertTrue(subOperations.get(0) instanceof SingleReferenceOperation);
@@ -2514,7 +2512,8 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 
 		clearOperations();
-
+		ModelElementId actor1Id = ModelUtil.getProject(actor1).getModelElementId(actor1);
+		ModelElementId actor2Id = ModelUtil.getProject(actor2).getModelElementId(actor2);
 		section.getModelElements().removeAll(Arrays.asList(actors));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -2527,8 +2526,6 @@ public class Topology1toNTest extends TopologyTest {
 
 		assertEquals(3, subOperations.size());
 
-		ModelElementId actor1Id = ModelUtil.getProject(actor1).getModelElementId(actor1);
-		ModelElementId actor2Id = ModelUtil.getProject(actor2).getModelElementId(actor2);
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
 		assertTrue(subOperations.get(0) instanceof SingleReferenceOperation);

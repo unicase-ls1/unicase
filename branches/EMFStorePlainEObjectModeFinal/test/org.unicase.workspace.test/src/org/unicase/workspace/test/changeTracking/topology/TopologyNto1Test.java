@@ -110,7 +110,7 @@ public class TopologyNto1Test extends TopologyTest {
 		assertTrue(section.getModelElements().contains(useCase));
 
 		clearOperations();
-
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 		useCase.setLeafSection(null);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -124,7 +124,6 @@ public class TopologyNto1Test extends TopologyTest {
 
 		assertEquals(2, operations.size());
 
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);

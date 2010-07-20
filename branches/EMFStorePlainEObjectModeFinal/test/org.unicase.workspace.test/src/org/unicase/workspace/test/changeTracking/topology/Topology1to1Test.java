@@ -226,6 +226,8 @@ public class Topology1to1Test extends TopologyTest {
 		getProject().addModelElement(solutionOld);
 		getProject().addModelElement(solutionNew);
 
+		ModelElementId solutionOldId = ModelUtil.getProject(solutionOld).getModelElementId(solutionOld);
+
 		issue.setSolution(solutionOld);
 		assertEquals(issue.getSolution(), solutionOld);
 
@@ -260,7 +262,6 @@ public class Topology1to1Test extends TopologyTest {
 
 		assertEquals(3, operations.size());
 
-		ModelElementId solutionOldId = ModelUtil.getProject(solutionOld).getModelElementId(solutionOld);
 		ModelElementId solutionNewId = ModelUtil.getProject(solutionNew).getModelElementId(solutionNew);
 		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 
@@ -315,6 +316,8 @@ public class Topology1to1Test extends TopologyTest {
 		assertEquals(issue1.getSolution(), solution1);
 		assertEquals(issue2.getSolution(), solution2);
 
+		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
+
 		clearOperations();
 
 		issue1.setSolution(solution2);
@@ -349,7 +352,6 @@ public class Topology1to1Test extends TopologyTest {
 		// the ops to be reversible! we need to track the parent of solution 2!
 		// 4 due to refactoring
 
-		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
 		ModelElementId solution2Id = ModelUtil.getProject(solution2).getModelElementId(solution2);
 		ModelElementId issue1Id = ModelUtil.getProject(issue1).getModelElementId(issue1);
 		ModelElementId issue2Id = ModelUtil.getProject(issue2).getModelElementId(issue2);
@@ -402,6 +404,8 @@ public class Topology1to1Test extends TopologyTest {
 
 		clearOperations();
 
+		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
+
 		solution2.setIssue(issue1);
 		assertSame(solution2, issue1.getSolution());
 		assertNull(issue2.getSolution());
@@ -434,7 +438,6 @@ public class Topology1to1Test extends TopologyTest {
 		// the ops to be reversible! we need to track the parent of solution 2!
 		// 4 due to refactoring
 
-		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
 		ModelElementId solution2Id = ModelUtil.getProject(solution2).getModelElementId(solution2);
 		ModelElementId issue1Id = ModelUtil.getProject(issue1).getModelElementId(issue1);
 		ModelElementId issue2Id = ModelUtil.getProject(issue2).getModelElementId(issue2);
@@ -620,6 +623,8 @@ public class Topology1to1Test extends TopologyTest {
 
 		clearOperations();
 
+		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
+
 		issue.setSolution(solution2);
 
 		assertSame(solution2, issue.getSolution());
@@ -657,7 +662,6 @@ public class Topology1to1Test extends TopologyTest {
 		// please note: 3 ops are necessary, this is because the oldvalues are necessary for
 		// the ops to be reversible! we also need track the index of issue 2 inside its former parent!
 
-		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
 		ModelElementId solution2Id = ModelUtil.getProject(solution2).getModelElementId(solution2);
 		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 		ModelElementId leafSectionId = ModelUtil.getProject(leafSection).getModelElementId(leafSection);
@@ -719,6 +723,7 @@ public class Topology1to1Test extends TopologyTest {
 
 		clearOperations();
 
+		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
 		solution2.setIssue(issue);
 		assertSame(solution2, issue.getSolution());
 		assertTrue(leafSection.getModelElements().isEmpty());
@@ -759,7 +764,6 @@ public class Topology1to1Test extends TopologyTest {
 		// 2. old parent of solution 2 must be tracked (the leafsection)
 		// 3. solution2 must announce its new issue
 
-		ModelElementId solution1Id = ModelUtil.getProject(solution1).getModelElementId(solution1);
 		ModelElementId solution2Id = ModelUtil.getProject(solution2).getModelElementId(solution2);
 		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 		ModelElementId leafSectionId = ModelUtil.getProject(leafSection).getModelElementId(leafSection);
@@ -994,6 +998,7 @@ public class Topology1to1Test extends TopologyTest {
 		clearOperations();
 
 		assertSame(solution, issue.getSolution());
+		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 		issue.setSolution(null);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -1006,7 +1011,6 @@ public class Topology1to1Test extends TopologyTest {
 
 		assertEquals(2, subOperations.size());
 
-		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 
 		AbstractOperation op = subOperations.get(0);
@@ -1048,6 +1052,7 @@ public class Topology1to1Test extends TopologyTest {
 		clearOperations();
 
 		assertSame(solution, issue.getSolution());
+		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 		solution.setIssue(null);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -1058,7 +1063,6 @@ public class Topology1to1Test extends TopologyTest {
 
 		List<AbstractOperation> subOperations = ((CompositeOperation) operation).getSubOperations();
 
-		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 
 		assertEquals(2, subOperations.size());
