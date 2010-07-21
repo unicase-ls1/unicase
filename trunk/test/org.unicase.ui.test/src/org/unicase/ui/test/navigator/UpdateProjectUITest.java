@@ -8,17 +8,14 @@ package org.unicase.ui.test.navigator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class UpdateProjectUITest extends MEEditorTest {
-	final CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
-	final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+	// final CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+	// final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
 
 	/**
 	 * Setup the environment for testing.
@@ -39,10 +36,9 @@ public class UpdateProjectUITest extends MEEditorTest {
 			@Override
 			protected void doRun() {
 
-				getProjectSpace().getProject().addModelElement(compositeSection);
-				// compositeSection.addModelElementChangeListener(listener)
-
-				leafSection.setName("TestLeafSection");
+				// getProjectSpace().getProject().addModelElement(compositeSection);
+				// getProjectSpace().getProject().getModelElements().get(1).
+				// leafSection.setName("TestLeafSection");
 			}
 		}.run();
 
