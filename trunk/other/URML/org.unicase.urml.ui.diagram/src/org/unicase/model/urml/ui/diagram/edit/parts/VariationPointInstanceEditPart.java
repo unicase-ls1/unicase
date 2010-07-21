@@ -3,6 +3,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -68,8 +69,7 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new VariationPointInstanceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -257,11 +257,8 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.VariationPointInstanceVariationPoint_4033);
 		types.add(UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040);
 		return types;
@@ -270,12 +267,9 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof VariationPointEditPart) {
 			types.add(UrmlElementTypes.VariationPointInstanceVariationPoint_4033);
 		}
@@ -291,12 +285,9 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.VariationPointInstanceVariationPoint_4033) {
 			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
@@ -312,11 +303,8 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.ProductVariationPointInstances_4032);
 		return types;
 	}
@@ -324,12 +312,9 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.ProductVariationPointInstances_4032) {
 			types.add(UrmlElementTypes.Product_2015);
 		}
@@ -350,17 +335,10 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public VariationPointInstanceFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(0);
+			this.setLineStyle(Graphics.LINE_CUSTOM);
 			createContents();
 		}
 
@@ -377,15 +355,7 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 
 			fFigureVariationPointInstance_name.setFont(FFIGUREVARIATIONPOINTINSTANCE_NAME_FONT);
 
-			GridData constraintFFigureVariationPointInstance_name = new GridData();
-			constraintFFigureVariationPointInstance_name.verticalAlignment = GridData.CENTER;
-			constraintFFigureVariationPointInstance_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureVariationPointInstance_name.horizontalIndent = 0;
-			constraintFFigureVariationPointInstance_name.horizontalSpan = 1;
-			constraintFFigureVariationPointInstance_name.verticalSpan = 1;
-			constraintFFigureVariationPointInstance_name.grabExcessHorizontalSpace = false;
-			constraintFFigureVariationPointInstance_name.grabExcessVerticalSpace = false;
-			this.add(fFigureVariationPointInstance_name, constraintFFigureVariationPointInstance_name);
+			this.add(fFigureVariationPointInstance_name);
 
 		}
 

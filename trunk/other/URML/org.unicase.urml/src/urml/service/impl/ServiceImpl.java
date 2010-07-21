@@ -28,20 +28,19 @@ import urml.service.ServicePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.service.impl.ServiceImpl#getSatisfiedRequirements <em>Satisfied Requirements</em>}</li>
- * <li>{@link urml.service.impl.ServiceImpl#getUsedClasses <em>Used Classes</em>}</li>
- * <li>{@link urml.service.impl.ServiceImpl#getParentService <em>Parent Service</em>}</li>
- * <li>{@link urml.service.impl.ServiceImpl#getSubServices <em>Sub Services</em>}</li>
+ *   <li>{@link urml.service.impl.ServiceImpl#getSatisfiedRequirements <em>Satisfied Requirements</em>}</li>
+ *   <li>{@link urml.service.impl.ServiceImpl#getUsedClasses <em>Used Classes</em>}</li>
+ *   <li>{@link urml.service.impl.ServiceImpl#getParentService <em>Parent Service</em>}</li>
+ *   <li>{@link urml.service.impl.ServiceImpl#getSubServices <em>Sub Services</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ServiceImpl extends AssetImpl implements Service {
 	/**
 	 * The cached value of the '{@link #getSatisfiedRequirements() <em>Satisfied Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getSatisfiedRequirements()
 	 * @generated
 	 * @ordered
@@ -49,9 +48,9 @@ public class ServiceImpl extends AssetImpl implements Service {
 	protected EList<Requirement> satisfiedRequirements;
 
 	/**
-	 * The cached value of the '{@link #getUsedClasses() <em>Used Classes</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUsedClasses() <em>Used Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getUsedClasses()
 	 * @generated
 	 * @ordered
@@ -70,7 +69,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServiceImpl() {
@@ -79,7 +77,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,7 +86,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Requirement> getSatisfiedRequirements() {
@@ -103,7 +99,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getUsedClasses() {
@@ -116,7 +111,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Service getParentService() {
@@ -127,7 +121,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Service basicGetParentService() {
@@ -138,7 +131,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentService(Service newParentService, NotificationChain msgs) {
@@ -148,7 +140,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentService(Service newParentService) {
@@ -172,7 +163,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Service> getSubServices() {
@@ -185,7 +175,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -207,7 +196,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,7 +213,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,7 +226,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,7 +247,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -289,7 +274,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,7 +297,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

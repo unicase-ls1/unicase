@@ -16,10 +16,10 @@ import urml.danger.ProceduralMitigation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
+ *   <li>{@link urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProceduralMitigationImpl extends MitigationImpl implements ProceduralMitigation {
@@ -45,7 +45,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProceduralMitigationImpl() {
@@ -54,7 +53,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +62,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getMitigationProcedure() {
@@ -73,7 +70,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMitigationProcedure(String newMitigationProcedure) {
@@ -86,7 +82,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +95,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +109,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,7 +123,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +137,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

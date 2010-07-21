@@ -22,17 +22,17 @@ import urml.goal.GoalPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.impl.StakeholderImpl#getGoals <em>Goals</em>}</li>
+ *   <li>{@link org.unicase.model.urml.impl.StakeholderImpl#getGoals <em>Goals</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder {
 	/**
-	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getGoals()
 	 * @generated
 	 * @ordered
@@ -41,7 +41,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StakeholderImpl() {
@@ -50,7 +49,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Goal> getGoals() {
@@ -73,7 +70,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,7 +84,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +97,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +110,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -133,7 +126,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +140,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

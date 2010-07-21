@@ -22,10 +22,10 @@ import urml.danger.Mitigation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.danger.impl.MitigationImpl#getMitigatedDangers <em>Mitigated Dangers</em>}</li>
+ *   <li>{@link urml.danger.impl.MitigationImpl#getMitigatedDangers <em>Mitigated Dangers</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class MitigationImpl extends UrmlModelElementImpl implements Mitigation {
@@ -41,7 +41,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MitigationImpl() {
@@ -50,7 +49,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getMitigatedDangers() {
@@ -73,7 +70,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,7 +84,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +97,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +110,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -133,7 +126,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +140,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -22,16 +22,16 @@ import urml.danger.DangerPackage;
 import urml.danger.ProceduralMitigation;
 
 /**
- * This is the item provider adapter for a {@link urml.danger.ProceduralMitigation} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link urml.danger.ProceduralMitigation} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ProceduralMitigationItemProvider extends MitigationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProceduralMitigationItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +39,8 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -69,8 +69,8 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	}
 
 	/**
-	 * This returns ProceduralMitigation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ProceduralMitigation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,8 +79,8 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,9 +110,9 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

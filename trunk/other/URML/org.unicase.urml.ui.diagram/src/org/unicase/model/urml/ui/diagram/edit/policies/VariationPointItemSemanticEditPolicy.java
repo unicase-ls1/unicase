@@ -32,8 +32,6 @@ import org.unicase.model.urml.ui.diagram.edit.commands.AbstractFeatureSubFeature
 import org.unicase.model.urml.ui.diagram.edit.commands.AbstractFeatureSubFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointFeaturesCreateCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceSelectedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceSelectedFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceVariationPointCreateCommand;
@@ -44,7 +42,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureExcludedFeatu
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureRequieredFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
@@ -104,13 +101,6 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 				continue;
 			}
 			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalRealizedFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-					incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == VariationPointFeaturesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
@@ -180,13 +170,6 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == VariationPointFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
-					outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -234,9 +217,6 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return null;
 		}
-		if (UrmlElementTypes.VariationPointFeatures_4039 == req.getElementType()) {
-			return getGEFWrapper(new VariationPointFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if (UrmlElementTypes.VariationPointInstanceVariationPoint_4033 == req.getElementType()) {
 			return null;
 		}
@@ -269,9 +249,6 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UrmlElementTypes.VariationPointFeatures_4039 == req.getElementType()) {
-			return getGEFWrapper(new VariationPointFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if (UrmlElementTypes.VariationPointInstanceVariationPoint_4033 == req.getElementType()) {
 			return getGEFWrapper(new VariationPointInstanceVariationPointCreateCommand(req, req.getSource(), req
 				.getTarget()));
@@ -284,8 +261,8 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
-	 * associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -303,8 +280,6 @@ public class VariationPointItemSemanticEditPolicy extends UrmlBaseItemSemanticEd
 			return getGEFWrapper(new AbstractFeatureExcludedFeaturesReorientCommand(req));
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new GoalRealizedFeaturesReorientCommand(req));
-		case VariationPointFeaturesEditPart.VISUAL_ID:
-			return getGEFWrapper(new VariationPointFeaturesReorientCommand(req));
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return getGEFWrapper(new VariationPointInstanceVariationPointReorientCommand(req));
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:

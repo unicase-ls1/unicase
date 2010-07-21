@@ -3,6 +3,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -68,8 +69,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -256,11 +256,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		return types;
 	}
@@ -268,12 +265,9 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof DangerEditPart) {
 			types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		}
@@ -283,12 +277,9 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.AssetTriggeredDangers_4017) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}
@@ -298,11 +289,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
 		return types;
 	}
@@ -310,12 +298,9 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}
@@ -336,17 +321,10 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ActorFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(0);
+			this.setLineStyle(Graphics.LINE_CUSTOM);
 			createContents();
 		}
 
@@ -357,29 +335,13 @@ public class ActorEditPart extends ShapeNodeEditPart {
 
 			StickMan actorFigure0 = new StickMan();
 
-			GridData constraintActorFigure0 = new GridData();
-			constraintActorFigure0.verticalAlignment = GridData.FILL;
-			constraintActorFigure0.horizontalAlignment = GridData.FILL;
-			constraintActorFigure0.horizontalIndent = 0;
-			constraintActorFigure0.horizontalSpan = 1;
-			constraintActorFigure0.verticalSpan = 1;
-			constraintActorFigure0.grabExcessHorizontalSpace = true;
-			constraintActorFigure0.grabExcessVerticalSpace = true;
-			this.add(actorFigure0, constraintActorFigure0);
+			this.add(actorFigure0);
 
 			fFigureActorFigure_name = new Label();
 
 			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
 
-			GridData constraintFFigureActorFigure_name = new GridData();
-			constraintFFigureActorFigure_name.verticalAlignment = GridData.CENTER;
-			constraintFFigureActorFigure_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureActorFigure_name.horizontalIndent = 0;
-			constraintFFigureActorFigure_name.horizontalSpan = 1;
-			constraintFFigureActorFigure_name.verticalSpan = 1;
-			constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;
-			constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;
-			this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);
+			this.add(fFigureActorFigure_name);
 
 		}
 

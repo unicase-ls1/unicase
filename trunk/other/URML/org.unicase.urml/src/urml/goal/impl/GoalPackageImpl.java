@@ -33,34 +33,29 @@ import urml.usecase.impl.UsecasePackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass goalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass goalReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum goalTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum goalReferenceTypeEEnum = null;
@@ -84,18 +79,17 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link GoalPackage#eINSTANCE} when that field is accessed. Clients should not
-	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link GoalPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -163,7 +157,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getGoal() {
@@ -172,7 +165,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getGoal_Soft() {
@@ -181,7 +173,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getGoal_Type() {
@@ -190,7 +181,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_Stakeholders() {
@@ -199,7 +189,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_RealizedFeatures() {
@@ -208,7 +197,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_DetailingUseCases() {
@@ -217,7 +205,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_SubGoals() {
@@ -226,7 +213,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_ParentGoal() {
@@ -235,7 +221,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_InfluencingGoals() {
@@ -244,7 +229,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoal_InfluencedGoals() {
@@ -253,7 +237,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getGoalReference() {
@@ -262,7 +245,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoalReference_Source() {
@@ -271,7 +253,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getGoalReference_Target() {
@@ -280,7 +261,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getGoalReference_Weight() {
@@ -289,7 +269,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getGoalType() {
@@ -298,7 +277,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getGoalReferenceType() {
@@ -307,7 +285,6 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GoalFactory getGoalFactory() {
@@ -316,15 +293,14 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -356,15 +332,14 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {

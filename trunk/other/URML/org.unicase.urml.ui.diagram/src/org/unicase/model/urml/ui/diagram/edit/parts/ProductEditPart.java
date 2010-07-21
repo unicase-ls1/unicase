@@ -3,6 +3,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -68,8 +69,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProductItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -256,11 +256,8 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.ProductVariationPointInstances_4032);
 		return types;
 	}
@@ -268,12 +265,9 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof VariationPointInstanceEditPart) {
 			types.add(UrmlElementTypes.ProductVariationPointInstances_4032);
 		}
@@ -283,12 +277,9 @@ public class ProductEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.ProductVariationPointInstances_4032) {
 			types.add(UrmlElementTypes.VariationPointInstance_2014);
 		}
@@ -309,17 +300,10 @@ public class ProductEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ProductFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(0);
+			this.setLineStyle(Graphics.LINE_CUSTOM);
 			createContents();
 		}
 
@@ -336,15 +320,7 @@ public class ProductEditPart extends ShapeNodeEditPart {
 
 			fProductFigure_name.setFont(FPRODUCTFIGURE_NAME_FONT);
 
-			GridData constraintFProductFigure_name = new GridData();
-			constraintFProductFigure_name.verticalAlignment = GridData.CENTER;
-			constraintFProductFigure_name.horizontalAlignment = GridData.CENTER;
-			constraintFProductFigure_name.horizontalIndent = 0;
-			constraintFProductFigure_name.horizontalSpan = 1;
-			constraintFProductFigure_name.verticalSpan = 1;
-			constraintFProductFigure_name.grabExcessHorizontalSpace = false;
-			constraintFProductFigure_name.grabExcessVerticalSpace = false;
-			this.add(fProductFigure_name, constraintFProductFigure_name);
+			this.add(fProductFigure_name);
 
 		}
 

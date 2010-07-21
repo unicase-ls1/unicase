@@ -12,7 +12,7 @@ import org.unicase.model.urml.UrmlPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>URML Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class URMLDiagramImpl extends MEDiagramImpl implements URMLDiagram {
@@ -23,7 +23,6 @@ public class URMLDiagramImpl extends MEDiagramImpl implements URMLDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected URMLDiagramImpl() {
@@ -32,7 +31,6 @@ public class URMLDiagramImpl extends MEDiagramImpl implements URMLDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

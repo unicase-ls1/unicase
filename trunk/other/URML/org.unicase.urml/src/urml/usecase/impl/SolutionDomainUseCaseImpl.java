@@ -20,17 +20,17 @@ import urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature</em>}</li>
+ *   <li>{@link urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDomainUseCase {
 	/**
-	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getDetailedFeature()
 	 * @generated
 	 * @ordered
@@ -39,7 +39,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SolutionDomainUseCaseImpl() {
@@ -48,7 +47,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,7 +56,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature getDetailedFeature() {
@@ -76,7 +73,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature basicGetDetailedFeature() {
@@ -85,7 +81,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDetailedFeature(AbstractFeature newDetailedFeature, NotificationChain msgs) {
@@ -104,7 +99,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDetailedFeature(AbstractFeature newDetailedFeature) {
@@ -126,7 +120,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,7 +136,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,7 +149,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,7 +164,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +178,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +192,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

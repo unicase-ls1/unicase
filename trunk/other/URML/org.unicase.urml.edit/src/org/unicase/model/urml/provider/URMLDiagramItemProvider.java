@@ -29,16 +29,16 @@ import urml.service.ServiceFactory;
 import urml.usecase.UsecaseFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.urml.URMLDiagram} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.urml.URMLDiagram} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public URMLDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -46,8 +46,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,8 +60,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This returns URMLDiagram.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns URMLDiagram.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,8 +70,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,9 +95,9 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -160,9 +160,9 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,8 +182,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

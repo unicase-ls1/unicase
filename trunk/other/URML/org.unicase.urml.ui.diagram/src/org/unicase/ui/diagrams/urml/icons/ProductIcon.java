@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class ProductIcon extends ImageFigure {
 
 	public ProductIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/stakeholder.jpg").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/product.jpg").createImage());
 	}
 
 	// @Override

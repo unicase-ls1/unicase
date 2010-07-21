@@ -9,29 +9,30 @@ import org.unicase.model.urml.UrmlModelElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Variation Point Instance</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link urml.feature.VariationPointInstance#getVariationPoint <em>Variation Point</em>}</li>
- * <li>{@link urml.feature.VariationPointInstance#getProduct <em>Product</em>}</li>
- * <li>{@link urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}</li>
+ *   <li>{@link urml.feature.VariationPointInstance#getVariationPoint <em>Variation Point</em>}</li>
+ *   <li>{@link urml.feature.VariationPointInstance#getProduct <em>Product</em>}</li>
+ *   <li>{@link urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see urml.feature.FeaturePackage#getVariationPointInstance()
  * @model
  * @generated
  */
 public interface VariationPointInstance extends UrmlModelElement {
 	/**
-	 * Returns the value of the '<em><b>Variation Point</b></em>' reference. It is bidirectional and its opposite is '
-	 * {@link urml.feature.VariationPoint#getInstances <em>Instances</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Variation Point</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link urml.feature.VariationPoint#getInstances <em>Instances</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variation Point</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Variation Point</em>' reference.
 	 * @see #setVariationPoint(VariationPoint)
 	 * @see urml.feature.FeaturePackage#getVariationPointInstance_VariationPoint()
@@ -42,9 +43,8 @@ public interface VariationPointInstance extends UrmlModelElement {
 	VariationPoint getVariationPoint();
 
 	/**
-	 * Sets the value of the '{@link urml.feature.VariationPointInstance#getVariationPoint <em>Variation Point</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link urml.feature.VariationPointInstance#getVariationPoint <em>Variation Point</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Variation Point</em>' reference.
 	 * @see #getVariationPoint()
 	 * @generated
@@ -52,15 +52,15 @@ public interface VariationPointInstance extends UrmlModelElement {
 	void setVariationPoint(VariationPoint value);
 
 	/**
-	 * Returns the value of the '<em><b>Product</b></em>' reference. It is bidirectional and its opposite is '
-	 * {@link urml.feature.Product#getVariationPointInstances <em>Variation Point Instances</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Product</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link urml.feature.Product#getVariationPointInstances <em>Variation Point Instances</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Product</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Product</em>' reference.
 	 * @see #setProduct(Product)
 	 * @see urml.feature.FeaturePackage#getVariationPointInstance_Product()

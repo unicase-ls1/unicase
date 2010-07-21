@@ -168,23 +168,17 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="requieredFeatures" upperBound="-1"
           eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requieringFeatures"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variationPoints" upperBound="-1"
-          eType="#//feature/VariationPoint" eOpposite="#//feature/VariationPoint/features"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variationPointInstances"
           upperBound="-1" eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/selectedFeatures"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//feature/AbstractFeature"/>
     <eClassifiers xsi:type="ecore:EClass" name="VariationPoint" eSuperTypes="#//feature/AbstractFeature">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/variationPoints"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
           eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/variationPoint"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-          eType="#//feature/VariationPointRule" containment="true" eOpposite="#//feature/VariationPointRule/variationPoint"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" eType="#//feature/VariationPointRule"
+          containment="true" eOpposite="#//feature/VariationPointRule/variationPoint"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariationPointInstance" eSuperTypes="#//UrmlModelElement">

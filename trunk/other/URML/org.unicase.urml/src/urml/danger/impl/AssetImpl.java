@@ -22,11 +22,11 @@ import urml.danger.DangerPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
- * <li>{@link urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
+ *   <li>{@link urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
+ *   <li>{@link urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
@@ -52,7 +52,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssetImpl() {
@@ -61,7 +60,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,7 +69,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getTriggeredDangers() {
@@ -84,7 +81,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getHarmingDangers() {
@@ -97,7 +93,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -114,7 +109,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,7 +124,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +139,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -167,7 +159,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +176,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

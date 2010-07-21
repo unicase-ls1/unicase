@@ -22,16 +22,16 @@ import urml.feature.FeaturePackage;
 import urml.feature.ManyOutManyRule;
 
 /**
- * This is the item provider adapter for a {@link urml.feature.ManyOutManyRule} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link urml.feature.ManyOutManyRule} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ManyOutManyRuleItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +39,8 @@ public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -54,8 +54,8 @@ public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraint feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Constraint feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addConstraintPropertyDescriptor(Object object) {
@@ -67,8 +67,8 @@ public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider 
 	}
 
 	/**
-	 * This returns ManyOutManyRule.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ManyOutManyRule.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,8 +77,8 @@ public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -108,9 +108,9 @@ public class ManyOutManyRuleItemProvider extends VariationPointRuleItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

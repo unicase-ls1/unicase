@@ -3,6 +3,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -68,8 +69,7 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new VariationPointItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -257,29 +257,22 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		types.add(UrmlElementTypes.AbstractFeatureDetailingFunctionalRequirements_4035);
 		types.add(UrmlElementTypes.AbstractFeatureConstrainingNonFunctionalRequirements_4036);
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
-		types.add(UrmlElementTypes.VariationPointFeatures_4039);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		}
@@ -304,24 +297,15 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart) {
 			types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
 		}
-		if (targetEditPart instanceof FeatureEditPart) {
-			types.add(UrmlElementTypes.VariationPointFeatures_4039);
-		}
-		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart) {
-			types.add(UrmlElementTypes.VariationPointFeatures_4039);
-		}
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.AbstractFeatureSubFeatures_4034) {
 			types.add(UrmlElementTypes.Feature_2012);
 		}
@@ -346,28 +330,18 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.AbstractFeatureExcludedFeatures_4038) {
 			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
-		if (relationshipType == UrmlElementTypes.VariationPointFeatures_4039) {
-			types.add(UrmlElementTypes.Feature_2012);
-		}
-		if (relationshipType == UrmlElementTypes.VariationPointFeatures_4039) {
-			types.add(UrmlElementTypes.VariationPoint_2013);
-		}
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
-		types.add(UrmlElementTypes.VariationPointFeatures_4039);
 		types.add(UrmlElementTypes.VariationPointInstanceVariationPoint_4033);
 		types.add(UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040);
 		return types;
@@ -376,12 +350,9 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.AbstractFeatureSubFeatures_4034) {
 			types.add(UrmlElementTypes.Feature_2012);
 		}
@@ -402,9 +373,6 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
 			types.add(UrmlElementTypes.Goal_2001);
-		}
-		if (relationshipType == UrmlElementTypes.VariationPointFeatures_4039) {
-			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
 		if (relationshipType == UrmlElementTypes.VariationPointInstanceVariationPoint_4033) {
 			types.add(UrmlElementTypes.VariationPointInstance_2014);
@@ -429,17 +397,10 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public VariationPointFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(0);
+			this.setLineStyle(Graphics.LINE_CUSTOM);
 			createContents();
 		}
 
@@ -456,15 +417,7 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 
 			fFigureVariationPointFigure_name.setFont(FFIGUREVARIATIONPOINTFIGURE_NAME_FONT);
 
-			GridData constraintFFigureVariationPointFigure_name = new GridData();
-			constraintFFigureVariationPointFigure_name.verticalAlignment = GridData.CENTER;
-			constraintFFigureVariationPointFigure_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureVariationPointFigure_name.horizontalIndent = 0;
-			constraintFFigureVariationPointFigure_name.horizontalSpan = 1;
-			constraintFFigureVariationPointFigure_name.verticalSpan = 1;
-			constraintFFigureVariationPointFigure_name.grabExcessHorizontalSpace = false;
-			constraintFFigureVariationPointFigure_name.grabExcessVerticalSpace = false;
-			this.add(fFigureVariationPointFigure_name, constraintFFigureVariationPointFigure_name);
+			this.add(fFigureVariationPointFigure_name);
 
 		}
 

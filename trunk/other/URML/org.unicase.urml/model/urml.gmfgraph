@@ -21,12 +21,13 @@
         name="StakeholderFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StakeholderFigure"
@@ -35,8 +36,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="StakeholderFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -59,12 +58,13 @@
         name="GoalFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="GoalFigure"
@@ -73,8 +73,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="GoalFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -135,12 +133,13 @@
         name="FunctionalRequirement">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="FunctionalRequirementFigure"
@@ -149,8 +148,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="FunctionalRequirementFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -166,12 +163,13 @@
         name="NonFunctionalRequirementFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="NonFunctionalRequirementFigure"
@@ -180,8 +178,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="NonFunctionalRequirementFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -211,12 +207,13 @@
         name="FeatureFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="FeatureFigure"
@@ -225,8 +222,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -277,12 +272,12 @@
         name="ServiceFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ServiceFigure"
@@ -291,8 +286,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="ServiceFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -315,12 +308,13 @@
         name="DangerFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="DangerFigure"
@@ -329,8 +323,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="DangerFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -353,29 +345,21 @@
         name="ActorFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.shapes.StickMan">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-        </children>
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.shapes.StickMan"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -391,12 +375,13 @@
         name="ProceduralMitigationFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ProceduralMitigationFigure"
@@ -405,8 +390,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="ProceduralMitigationFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -527,12 +510,13 @@
         name="VariationPointFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="VariationPointFigure"
@@ -541,8 +525,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="VariationPointFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -558,12 +540,13 @@
         name="VariationPointInstanceFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="VariationPointInstanceFigure"
@@ -572,8 +555,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="VariationPointInstance_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -589,12 +570,13 @@
         name="ProductFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          lineWidth="0">
-        <layout
-            xsi:type="gmfgraph:GridLayout">
-          <margins/>
-          <spacing/>
-        </layout>
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ProductFigure"
@@ -603,8 +585,6 @@
             xsi:type="gmfgraph:CustomFigure"
             name="ProductFigure_name"
             qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"

@@ -223,12 +223,6 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case MotivatesLabel2EditPart.VISUAL_ID:
 				return new MotivatesLabel2EditPart(view);
 
-			case VariationPointFeaturesEditPart.VISUAL_ID:
-				return new VariationPointFeaturesEditPart(view);
-
-			case CombineLabel2EditPart.VISUAL_ID:
-				return new CombineLabel2EditPart(view);
-
 			case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 				return new VariationPointInstanceVariationPointEditPart(view);
 

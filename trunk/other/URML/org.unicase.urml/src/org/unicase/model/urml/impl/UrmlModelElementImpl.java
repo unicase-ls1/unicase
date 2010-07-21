@@ -12,13 +12,12 @@ import org.unicase.model.urml.UrmlPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class UrmlModelElementImpl extends UnicaseModelElementImpl implements UrmlModelElement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UrmlModelElementImpl() {
@@ -27,7 +26,6 @@ public abstract class UrmlModelElementImpl extends UnicaseModelElementImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

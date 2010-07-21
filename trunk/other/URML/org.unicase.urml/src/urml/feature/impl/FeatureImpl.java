@@ -12,13 +12,12 @@ import urml.feature.FeaturePackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureImpl() {
@@ -27,7 +26,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

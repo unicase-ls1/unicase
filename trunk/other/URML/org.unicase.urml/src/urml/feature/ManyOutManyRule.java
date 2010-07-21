@@ -19,13 +19,13 @@ package urml.feature;
  */
 public interface ManyOutManyRule extends VariationPointRule {
 	/**
-	 * Returns the value of the '<em><b>Constraint</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Constraint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Constraint</em>' attribute.
 	 * @see #setConstraint(int)
 	 * @see urml.feature.FeaturePackage#getManyOutManyRule_Constraint()

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="org.unicase"
+            class="org.unicase.urml.ui.hypergraph.HypergraphView"
+            icon="icons/sample.gif"
+            id="org.unicase.urml.ui.hypergraph.HypergraphView"
+            name="Hypergraph View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.urml.ui.hypergraph.ShowHypergraphViewHandler"
+            id="org.unicase.urml.ui.hypergraph.ShowHypergraphView"
+            name="ShowHypergraphView">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+         <command
+               commandId="org.unicase.urml.ui.hypergraph.ShowHypergraphView"
+               icon="icons/sample.gif"
+               label="Show Hypergraph"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.unicase.model.urml.UrmlModelElement">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="ShowHypergraphView"
+            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+         <action
+               class="org.unicase.urml.ui.hypergraph.ShowHypergraphViewAction"
+               enablesFor="1"
+               icon="icons/sample.gif"
+               id="ShowHypergraphView"
+               label="Show Hypergraph">
+         </action>
+      </objectContribution>
+   </extension>
+
+
+</plugin>

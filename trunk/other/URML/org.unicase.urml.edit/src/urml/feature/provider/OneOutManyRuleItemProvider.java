@@ -18,16 +18,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import urml.feature.OneOutManyRule;
 
 /**
- * This is the item provider adapter for a {@link urml.feature.OneOutManyRule} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link urml.feature.OneOutManyRule} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class OneOutManyRuleItemProvider extends VariationPointRuleItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OneOutManyRuleItemProvider(AdapterFactory adapterFactory) {
@@ -35,8 +35,8 @@ public class OneOutManyRuleItemProvider extends VariationPointRuleItemProvider i
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -49,8 +49,8 @@ public class OneOutManyRuleItemProvider extends VariationPointRuleItemProvider i
 	}
 
 	/**
-	 * This returns OneOutManyRule.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns OneOutManyRule.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +59,8 @@ public class OneOutManyRuleItemProvider extends VariationPointRuleItemProvider i
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,9 +84,9 @@ public class OneOutManyRuleItemProvider extends VariationPointRuleItemProvider i
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

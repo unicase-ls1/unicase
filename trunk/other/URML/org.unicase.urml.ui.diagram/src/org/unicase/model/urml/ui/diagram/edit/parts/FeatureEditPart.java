@@ -3,6 +3,7 @@ package org.unicase.model.urml.ui.diagram.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -68,8 +69,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FeatureItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -256,11 +256,8 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		types.add(UrmlElementTypes.AbstractFeatureDetailingFunctionalRequirements_4035);
 		types.add(UrmlElementTypes.AbstractFeatureConstrainingNonFunctionalRequirements_4036);
@@ -272,12 +269,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart) {
 			types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		}
@@ -308,12 +302,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.AbstractFeatureSubFeatures_4034) {
 			types.add(UrmlElementTypes.Feature_2012);
 		}
@@ -344,16 +335,12 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AbstractFeatureSubFeatures_4034);
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
-		types.add(UrmlElementTypes.VariationPointFeatures_4039);
 		types.add(UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040);
 		return types;
 	}
@@ -361,12 +348,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 		IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse.gmf.runtime.emf
-																							 * .type.core.IElementType>
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UrmlElementTypes.AbstractFeatureSubFeatures_4034) {
 			types.add(UrmlElementTypes.Feature_2012);
 		}
@@ -388,9 +372,6 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
 			types.add(UrmlElementTypes.Goal_2001);
 		}
-		if (relationshipType == UrmlElementTypes.VariationPointFeatures_4039) {
-			types.add(UrmlElementTypes.VariationPoint_2013);
-		}
 		if (relationshipType == UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040) {
 			types.add(UrmlElementTypes.VariationPointInstance_2014);
 		}
@@ -411,17 +392,10 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public FeatureFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(0);
+			this.setLineStyle(Graphics.LINE_CUSTOM);
 			createContents();
 		}
 
@@ -438,15 +412,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 
 			fFigureFeatureFigure_name.setFont(FFIGUREFEATUREFIGURE_NAME_FONT);
 
-			GridData constraintFFigureFeatureFigure_name = new GridData();
-			constraintFFigureFeatureFigure_name.verticalAlignment = GridData.CENTER;
-			constraintFFigureFeatureFigure_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureFeatureFigure_name.horizontalIndent = 0;
-			constraintFFigureFeatureFigure_name.horizontalSpan = 1;
-			constraintFFigureFeatureFigure_name.verticalSpan = 1;
-			constraintFFigureFeatureFigure_name.grabExcessHorizontalSpace = false;
-			constraintFFigureFeatureFigure_name.grabExcessVerticalSpace = false;
-			this.add(fFigureFeatureFigure_name, constraintFFigureFeatureFigure_name);
+			this.add(fFigureFeatureFigure_name);
 
 		}
 

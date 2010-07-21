@@ -20,19 +20,19 @@ import urml.goal.GoalReferenceType;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.goal.impl.GoalReferenceImpl#getSource <em>Source</em>}</li>
- * <li>{@link urml.goal.impl.GoalReferenceImpl#getTarget <em>Target</em>}</li>
- * <li>{@link urml.goal.impl.GoalReferenceImpl#getWeight <em>Weight</em>}</li>
+ *   <li>{@link urml.goal.impl.GoalReferenceImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link urml.goal.impl.GoalReferenceImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link urml.goal.impl.GoalReferenceImpl#getWeight <em>Weight</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalReference {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -40,9 +40,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	protected Goal source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -50,9 +50,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	protected Goal target;
 
 	/**
-	 * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWeight()
 	 * @generated
 	 * @ordered
@@ -60,9 +60,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	protected static final GoalReferenceType WEIGHT_EDEFAULT = GoalReferenceType.PLUS_PLUS;
 
 	/**
-	 * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWeight()
 	 * @generated
 	 * @ordered
@@ -71,7 +71,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalReferenceImpl() {
@@ -80,7 +79,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,7 +88,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal getSource() {
@@ -108,7 +105,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal basicGetSource() {
@@ -117,7 +113,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(Goal newSource, NotificationChain msgs) {
@@ -136,7 +131,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(Goal newSource) {
@@ -158,7 +152,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal getTarget() {
@@ -176,7 +169,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal basicGetTarget() {
@@ -185,7 +177,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(Goal newTarget, NotificationChain msgs) {
@@ -204,7 +195,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(Goal newTarget) {
@@ -226,7 +216,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GoalReferenceType getWeight() {
@@ -235,7 +224,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWeight(GoalReferenceType newWeight) {
@@ -247,7 +235,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -269,7 +256,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,7 +271,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +292,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,7 +312,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -349,7 +332,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -367,7 +349,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

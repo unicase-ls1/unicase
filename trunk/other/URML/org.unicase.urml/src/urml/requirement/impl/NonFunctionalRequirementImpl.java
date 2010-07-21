@@ -23,10 +23,10 @@ import urml.requirement.RequirementPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>Constrained Features</em>}</li>
+ *   <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>Constrained Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class NonFunctionalRequirementImpl extends RequirementImpl implements NonFunctionalRequirement {
@@ -42,7 +42,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -51,7 +50,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getConstrainedFeatures() {
@@ -75,7 +72,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -91,7 +87,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +100,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +113,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -136,7 +129,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +143,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -27,19 +27,19 @@ import urml.feature.VariationPointInstance;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.feature.impl.VariationPointInstanceImpl#getVariationPoint <em>Variation Point</em>}</li>
- * <li>{@link urml.feature.impl.VariationPointInstanceImpl#getProduct <em>Product</em>}</li>
- * <li>{@link urml.feature.impl.VariationPointInstanceImpl#getSelectedFeatures <em>Selected Features</em>}</li>
+ *   <li>{@link urml.feature.impl.VariationPointInstanceImpl#getVariationPoint <em>Variation Point</em>}</li>
+ *   <li>{@link urml.feature.impl.VariationPointInstanceImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link urml.feature.impl.VariationPointInstanceImpl#getSelectedFeatures <em>Selected Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class VariationPointInstanceImpl extends UrmlModelElementImpl implements VariationPointInstance {
 	/**
-	 * The cached value of the '{@link #getVariationPoint() <em>Variation Point</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getVariationPoint() <em>Variation Point</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVariationPoint()
 	 * @generated
 	 * @ordered
@@ -47,9 +47,9 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 	protected VariationPoint variationPoint;
 
 	/**
-	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -68,7 +68,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VariationPointInstanceImpl() {
@@ -77,7 +76,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +85,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint getVariationPoint() {
@@ -105,7 +102,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint basicGetVariationPoint() {
@@ -114,7 +110,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVariationPoint(VariationPoint newVariationPoint, NotificationChain msgs) {
@@ -133,7 +128,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVariationPoint(VariationPoint newVariationPoint) {
@@ -155,7 +149,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Product getProduct() {
@@ -173,7 +166,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Product basicGetProduct() {
@@ -182,7 +174,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProduct(Product newProduct, NotificationChain msgs) {
@@ -201,7 +192,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProduct(Product newProduct) {
@@ -223,7 +213,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getSelectedFeatures() {
@@ -237,7 +226,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -262,7 +250,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -280,7 +267,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,7 +288,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -325,7 +310,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,7 +330,6 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class FunctionalRequirementIcon extends ImageFigure {
 
 	public FunctionalRequirementIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/functionalrequirement.png").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/functionalrequirement.jpg").createImage());
 	}
 
 	// @Override

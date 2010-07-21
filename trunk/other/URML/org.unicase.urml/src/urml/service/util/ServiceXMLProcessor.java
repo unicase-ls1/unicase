@@ -12,16 +12,16 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import urml.service.ServicePackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc --> <!--
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ServiceXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceXMLProcessor() {
@@ -30,9 +30,9 @@ public class ServiceXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the ServiceResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * Register for "*" and "xml" file extensions the ServiceResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

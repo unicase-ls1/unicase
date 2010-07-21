@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import urml.feature.*;
 import urml.feature.Feature;
 import urml.feature.FeatureFactory;
 import urml.feature.FeaturePackage;
@@ -20,13 +21,12 @@ import urml.feature.VariationPointInstance;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static FeatureFactory init() {
@@ -43,8 +43,8 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FeatureFactoryImpl() {
@@ -53,7 +53,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,7 +77,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Feature createFeature() {
@@ -88,7 +86,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint createVariationPoint() {
@@ -98,7 +95,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPointInstance createVariationPointInstance() {
@@ -108,7 +104,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Product createProduct() {
@@ -118,7 +113,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OneOutManyRule createOneOutManyRule() {
@@ -128,7 +122,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ManyOutManyRule createManyOutManyRule() {
@@ -138,7 +131,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeaturePackage getFeaturePackage() {
@@ -147,7 +139,6 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

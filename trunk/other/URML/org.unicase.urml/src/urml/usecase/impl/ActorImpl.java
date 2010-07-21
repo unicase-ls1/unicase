@@ -22,17 +22,17 @@ import urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
+ *   <li>{@link urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ActorImpl extends AssetImpl implements Actor {
 	/**
-	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getUseCases()
 	 * @generated
 	 * @ordered
@@ -41,7 +41,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActorImpl() {
@@ -50,7 +49,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getUseCases() {
@@ -73,7 +70,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,7 +84,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +97,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +110,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -133,7 +126,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +140,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

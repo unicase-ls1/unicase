@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class VariationPointIcon extends ImageFigure {
 
 	public VariationPointIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/stakeholder.jpg").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/variationpoint.jpg").createImage());
 	}
 
 	// @Override
