@@ -21,7 +21,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Class to test the if a project is created correctly in UNICASE or not.
+ * Class to test if a project is created correctly in UNICASE or not.
  */
 
 public class CreateProjectUITest extends MEEditorTest {
