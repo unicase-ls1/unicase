@@ -23,16 +23,16 @@ import urml.feature.FeaturePackage;
 import urml.feature.VariationPoint;
 
 /**
- * This is the item provider adapter for a {@link urml.feature.VariationPoint} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link urml.feature.VariationPoint} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class VariationPointItemProvider extends AbstractFeatureItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VariationPointItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -49,28 +49,14 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFeaturesPropertyDescriptor(object);
 			addInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VariationPoint_features_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_VariationPoint_features_feature",
-				"_UI_VariationPoint_type"), FeaturePackage.Literals.VARIATION_POINT__FEATURES, true, false, true, null,
-			null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instances feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Instances feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
@@ -84,9 +70,9 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +86,6 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,8 +97,8 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 	}
 
 	/**
-	 * This returns VariationPoint.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns VariationPoint.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -122,8 +107,8 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -153,9 +138,9 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

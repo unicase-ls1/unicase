@@ -12,15 +12,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Type</b></em>', and utility
  * methods for working with them. <!-- end-user-doc -->
- * 
  * @see urml.goal.GoalPackage#getGoalType()
  * @model
  * @generated
  */
 public enum GoalType implements Enumerator {
 	/**
-	 * The '<em><b>BUSINESS GOAL</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>BUSINESS GOAL</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #BUSINESS_GOAL_VALUE
 	 * @generated
 	 * @ordered
@@ -28,8 +27,8 @@ public enum GoalType implements Enumerator {
 	BUSINESS_GOAL(0, "BUSINESS_GOAL", "Business Goal"),
 
 	/**
-	 * The '<em><b>PRODUCT GOAL</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>PRODUCT GOAL</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #PRODUCT_GOAL_VALUE
 	 * @generated
 	 * @ordered
@@ -37,8 +36,8 @@ public enum GoalType implements Enumerator {
 	PRODUCT_GOAL(1, "PRODUCT_GOAL", "Product Goal"),
 
 	/**
-	 * The '<em><b>CUSTOMER GOAL</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>CUSTOMER GOAL</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #CUSTOMER_GOAL_VALUE
 	 * @generated
 	 * @ordered
@@ -46,8 +45,8 @@ public enum GoalType implements Enumerator {
 	CUSTOMER_GOAL(2, "CUSTOMER_GOAL", "Customer Goal"),
 
 	/**
-	 * The '<em><b>END USER GOAL</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>END USER GOAL</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #END_USER_GOAL_VALUE
 	 * @generated
 	 * @ordered
@@ -55,13 +54,13 @@ public enum GoalType implements Enumerator {
 	END_USER_GOAL(3, "END_USER_GOAL", "End User Goal");
 
 	/**
-	 * The '<em><b>BUSINESS GOAL</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>BUSINESS GOAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>BUSINESS GOAL</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BUSINESS_GOAL
 	 * @model literal="Business Goal"
 	 * @generated
@@ -70,13 +69,13 @@ public enum GoalType implements Enumerator {
 	public static final int BUSINESS_GOAL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PRODUCT GOAL</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>PRODUCT GOAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>PRODUCT GOAL</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #PRODUCT_GOAL
 	 * @model literal="Product Goal"
 	 * @generated
@@ -85,13 +84,13 @@ public enum GoalType implements Enumerator {
 	public static final int PRODUCT_GOAL_VALUE = 1;
 
 	/**
-	 * The '<em><b>CUSTOMER GOAL</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>CUSTOMER GOAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>CUSTOMER GOAL</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #CUSTOMER_GOAL
 	 * @model literal="Customer Goal"
 	 * @generated
@@ -100,13 +99,13 @@ public enum GoalType implements Enumerator {
 	public static final int CUSTOMER_GOAL_VALUE = 2;
 
 	/**
-	 * The '<em><b>END USER GOAL</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>END USER GOAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>END USER GOAL</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #END_USER_GOAL
 	 * @model literal="End User Goal"
 	 * @generated
@@ -115,8 +114,8 @@ public enum GoalType implements Enumerator {
 	public static final int END_USER_GOAL_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * An array of all the '<em><b>Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final GoalType[] VALUES_ARRAY = new GoalType[] { BUSINESS_GOAL, PRODUCT_GOAL, CUSTOMER_GOAL,
@@ -131,9 +130,9 @@ public enum GoalType implements Enumerator {
 	public static final List<GoalType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static GoalType get(String literal) {
@@ -147,8 +146,8 @@ public enum GoalType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the '<em><b>Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static GoalType getByName(String name) {
@@ -162,9 +161,9 @@ public enum GoalType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static GoalType get(int value) {
@@ -183,28 +182,25 @@ public enum GoalType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private GoalType(int value, String name, String literal) {
@@ -215,7 +211,6 @@ public enum GoalType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -224,7 +219,6 @@ public enum GoalType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -233,7 +227,6 @@ public enum GoalType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -241,9 +234,9 @@ public enum GoalType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

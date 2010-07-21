@@ -6,7 +6,7 @@ import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 public class DangerIcon extends ImageFigure {
 
 	public DangerIcon() {
-		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/danger.png").createImage());
+		super(UrmlDiagramEditorPlugin.getBundledImageDescriptor("/icons/danger.jpg").createImage());
 	}
 
 	// @Override

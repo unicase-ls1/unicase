@@ -24,9 +24,9 @@ import urml.feature.ManyOutManyRule;
  */
 public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyOutManyRule {
 	/**
-	 * The default value of the '{@link #getConstraint() <em>Constraint</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getConstraint() <em>Constraint</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
@@ -34,9 +34,9 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 	protected static final int CONSTRAINT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
@@ -45,7 +45,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ManyOutManyRuleImpl() {
@@ -54,7 +53,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +62,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getConstraint() {
@@ -73,7 +70,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setConstraint(int newConstraint) {
@@ -86,7 +82,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +95,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +109,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,7 +123,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +136,6 @@ public class ManyOutManyRuleImpl extends VariationPointRuleImpl implements ManyO
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

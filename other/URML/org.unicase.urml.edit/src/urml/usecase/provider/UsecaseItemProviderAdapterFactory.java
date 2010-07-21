@@ -34,17 +34,17 @@ import urml.usecase.util.UsecaseAdapterFactory;
 public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -58,8 +58,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsecaseItemProviderAdapterFactory() {
@@ -79,9 +79,9 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	protected ApplicationDomainUseCaseItemProvider applicationDomainUseCaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.usecase.ApplicationDomainUseCase}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link urml.usecase.ApplicationDomainUseCase}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,9 +102,9 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	protected SolutionDomainUseCaseItemProvider solutionDomainUseCaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.usecase.SolutionDomainUseCase}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link urml.usecase.SolutionDomainUseCase}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,16 +117,16 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.usecase.Actor} instances. <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link urml.usecase.Actor} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActorItemProvider actorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.usecase.Actor}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link urml.usecase.Actor}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,8 +139,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -148,8 +148,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -158,7 +158,6 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,9 +166,9 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,7 +178,6 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,8 +193,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -204,8 +202,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -213,9 +211,9 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -227,8 +225,8 @@ public class UsecaseItemProviderAdapterFactory extends UsecaseAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {

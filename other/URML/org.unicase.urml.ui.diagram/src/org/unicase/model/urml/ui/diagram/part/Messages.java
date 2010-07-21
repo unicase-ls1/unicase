@@ -613,16 +613,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_VariationPointFeatures_4039_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_VariationPointFeatures_4039_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_VariationPointInstanceVariationPoint_4033_target;
 
 	/**

@@ -47,7 +47,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
@@ -210,10 +209,6 @@ public class UrmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ServiceSubServices_4022 = getElementType("org.unicase.urml.ui.diagram.ServiceSubServices_4022"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType VariationPointFeatures_4039 = getElementType("org.unicase.urml.ui.diagram.VariationPointFeatures_4039"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -402,8 +397,6 @@ public class UrmlElementTypes extends ElementInitializers {
 
 			elements.put(ServiceSubServices_4022, ServicePackage.eINSTANCE.getService_SubServices());
 
-			elements.put(VariationPointFeatures_4039, FeaturePackage.eINSTANCE.getVariationPoint_Features());
-
 			elements.put(VariationPointInstanceVariationPoint_4033, FeaturePackage.eINSTANCE
 				.getVariationPointInstance_VariationPoint());
 
@@ -460,7 +453,6 @@ public class UrmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(DangerHarmedAssets_4013);
 			KNOWN_ELEMENT_TYPES.add(AssetTriggeredDangers_4017);
 			KNOWN_ELEMENT_TYPES.add(ServiceSubServices_4022);
-			KNOWN_ELEMENT_TYPES.add(VariationPointFeatures_4039);
 			KNOWN_ELEMENT_TYPES.add(VariationPointInstanceVariationPoint_4033);
 			KNOWN_ELEMENT_TYPES.add(VariationPointInstanceSelectedFeatures_4040);
 			KNOWN_ELEMENT_TYPES.add(ProductVariationPointInstances_4032);
@@ -535,8 +527,6 @@ public class UrmlElementTypes extends ElementInitializers {
 			return AssetTriggeredDangers_4017;
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return ServiceSubServices_4022;
-		case VariationPointFeaturesEditPart.VISUAL_ID:
-			return VariationPointFeatures_4039;
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return VariationPointInstanceVariationPoint_4033;
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:

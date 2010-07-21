@@ -37,62 +37,53 @@ import urml.usecase.impl.UsecasePackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass abstractFeatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass featureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass variationPointEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass variationPointInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass productEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass variationPointRuleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass oneOutManyRuleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass manyOutManyRuleEClass = null;
@@ -116,18 +107,17 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link FeaturePackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link FeaturePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -195,7 +185,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAbstractFeature() {
@@ -204,7 +193,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_Goals() {
@@ -213,7 +201,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_DetailingFunctionalRequirements() {
@@ -222,7 +209,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_ConstrainingNonFunctionalRequirements() {
@@ -231,7 +217,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_DetailingUseCases() {
@@ -240,7 +225,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_ParentFeature() {
@@ -249,7 +233,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_SubFeatures() {
@@ -258,7 +241,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_ExcludingFeatures() {
@@ -267,7 +249,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_ExcludedFeatures() {
@@ -276,7 +257,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_RequieringFeatures() {
@@ -285,7 +265,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractFeature_RequieredFeatures() {
@@ -294,25 +273,14 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EReference getAbstractFeature_VariationPoints() {
+	public EReference getAbstractFeature_VariationPointInstances() {
 		return (EReference) abstractFeatureEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAbstractFeature_VariationPointInstances() {
-		return (EReference) abstractFeatureEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getFeature() {
@@ -321,7 +289,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVariationPoint() {
@@ -330,34 +297,22 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EReference getVariationPoint_Features() {
+	public EReference getVariationPoint_Instances() {
 		return (EReference) variationPointEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EReference getVariationPoint_Instances() {
+	public EReference getVariationPoint_Rules() {
 		return (EReference) variationPointEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getVariationPoint_Rules() {
-		return (EReference) variationPointEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVariationPointInstance() {
@@ -366,7 +321,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVariationPointInstance_VariationPoint() {
@@ -375,7 +329,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVariationPointInstance_Product() {
@@ -384,7 +337,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVariationPointInstance_SelectedFeatures() {
@@ -393,7 +345,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProduct() {
@@ -402,7 +353,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProduct_VariationPointInstances() {
@@ -411,7 +361,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVariationPointRule() {
@@ -420,7 +369,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVariationPointRule_VariationPoint() {
@@ -429,7 +377,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOneOutManyRule() {
@@ -438,7 +385,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getManyOutManyRule() {
@@ -447,7 +393,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getManyOutManyRule_Constraint() {
@@ -456,7 +401,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureFactory getFeatureFactory() {
@@ -465,15 +409,14 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -493,13 +436,11 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 		createEReference(abstractFeatureEClass, ABSTRACT_FEATURE__EXCLUDED_FEATURES);
 		createEReference(abstractFeatureEClass, ABSTRACT_FEATURE__REQUIERING_FEATURES);
 		createEReference(abstractFeatureEClass, ABSTRACT_FEATURE__REQUIERED_FEATURES);
-		createEReference(abstractFeatureEClass, ABSTRACT_FEATURE__VARIATION_POINTS);
 		createEReference(abstractFeatureEClass, ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES);
 
 		featureEClass = createEClass(FEATURE);
 
 		variationPointEClass = createEClass(VARIATION_POINT);
-		createEReference(variationPointEClass, VARIATION_POINT__FEATURES);
 		createEReference(variationPointEClass, VARIATION_POINT__INSTANCES);
 		createEReference(variationPointEClass, VARIATION_POINT__RULES);
 
@@ -522,15 +463,14 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -622,11 +562,6 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		getAbstractFeature_RequieredFeatures().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getAbstractFeature_VariationPoints(), this.getVariationPoint(), this
-			.getVariationPoint_Features(), "variationPoints", null, 0, -1, AbstractFeature.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getAbstractFeature_VariationPoints().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAbstractFeature_VariationPointInstances(), this.getVariationPointInstance(), this
 			.getVariationPointInstance_SelectedFeatures(), "variationPointInstances", null, 0, -1,
 			AbstractFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
@@ -638,18 +573,13 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 		initEClass(variationPointEClass, VariationPoint.class, "VariationPoint", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariationPoint_Features(), this.getAbstractFeature(), this
-			.getAbstractFeature_VariationPoints(), "features", null, 0, -1, VariationPoint.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getVariationPoint_Features().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getVariationPoint_Instances(), this.getVariationPointInstance(), this
 			.getVariationPointInstance_VariationPoint(), "instances", null, 0, -1, VariationPoint.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getVariationPoint_Instances().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getVariationPoint_Rules(), this.getVariationPointRule(), this
-			.getVariationPointRule_VariationPoint(), "rules", null, 0, -1, VariationPoint.class, !IS_TRANSIENT,
+			.getVariationPointRule_VariationPoint(), "rules", null, 0, 1, VariationPoint.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getVariationPoint_Rules().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());

@@ -15,7 +15,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEd
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
@@ -74,7 +73,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
@@ -92,8 +90,9 @@ import urml.service.ServicePackage;
 import urml.usecase.UsecasePackage;
 
 /**
- * This registry is used to determine which type of visual object should be created for the corresponding Diagram, Node,
- * ChildNode or Link represented by a domain model object.
+ * This registry is used to determine which type of visual object should be
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
+ * by a domain model object.
  * 
  * @generated
  */
@@ -472,11 +471,6 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case VariationPointFeaturesEditPart.VISUAL_ID:
-			if (CombineLabel2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			if (InstantiateLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -523,7 +517,8 @@ public class UrmlVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific situations not covered by default logic.
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */

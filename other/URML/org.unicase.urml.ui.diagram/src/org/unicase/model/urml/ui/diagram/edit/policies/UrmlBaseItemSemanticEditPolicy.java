@@ -574,22 +574,6 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateVariationPointFeatures_4039(VariationPoint source, AbstractFeature target) {
-			if (source != null) {
-				if (source.getFeatures().contains(target)) {
-					return false;
-				}
-			}
-			if (target != null && (target.getVariationPoints().contains(target))) {
-				return false;
-			}
-
-			return canExistVariationPointFeatures_4039(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
 		public static boolean canCreateVariationPointInstanceVariationPoint_4033(VariationPointInstance source,
 			VariationPoint target) {
 			if (source != null) {
@@ -764,13 +748,6 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistServiceSubServices_4022(Service source, Service target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistVariationPointFeatures_4039(VariationPoint source, AbstractFeature target) {
 			return true;
 		}
 

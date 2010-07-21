@@ -18,16 +18,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import urml.feature.Feature;
 
 /**
- * This is the item provider adapter for a {@link urml.feature.Feature} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link urml.feature.Feature} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class FeatureItemProvider extends AbstractFeatureItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FeatureItemProvider(AdapterFactory adapterFactory) {
@@ -35,8 +35,8 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -49,8 +49,8 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This returns Feature.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Feature.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +59,8 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,9 +84,9 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

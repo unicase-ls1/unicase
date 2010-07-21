@@ -47,7 +47,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
@@ -408,7 +407,6 @@ public class UrmlDiagramUpdater {
 			.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ConstrainingNonFunctionalRequirements_4036(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_RequieredFeatures_4037(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_VariationPoint_Features_4039(modelElement));
 		return result;
 	}
 
@@ -512,7 +510,6 @@ public class UrmlDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Goal_RealizedFeatures_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_VariationPoint_Features_4039(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_SelectedFeatures_4040(modelElement,
 			crossReferences));
 		return result;
@@ -591,7 +588,6 @@ public class UrmlDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Goal_RealizedFeatures_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_VariationPoint_Features_4039(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_VariationPoint_4033(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_SelectedFeatures_4040(modelElement,
@@ -765,7 +761,6 @@ public class UrmlDiagramUpdater {
 			.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ConstrainingNonFunctionalRequirements_4036(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_RequieredFeatures_4037(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_VariationPoint_Features_4039(modelElement));
 		return result;
 	}
 
@@ -1244,23 +1239,6 @@ public class UrmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_VariationPoint_Features_4039(AbstractFeature target,
-		Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
-			if (setting.getEStructuralFeature() == FeaturePackage.eINSTANCE.getVariationPoint_Features()) {
-				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
-					UrmlElementTypes.VariationPointFeatures_4039, VariationPointFeaturesEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	private static Collection getIncomingFeatureModelFacetLinks_VariationPointInstance_VariationPoint_4033(
 		VariationPoint target, Map crossReferences) {
 		Collection result = new LinkedList();
@@ -1649,19 +1627,6 @@ public class UrmlDiagramUpdater {
 			Service destination = (Service) destinations.next();
 			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.ServiceSubServices_4022,
 				ServiceSubServicesEditPart.VISUAL_ID));
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_VariationPoint_Features_4039(VariationPoint source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getFeatures().iterator(); destinations.hasNext();) {
-			AbstractFeature destination = (AbstractFeature) destinations.next();
-			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.VariationPointFeatures_4039,
-				VariationPointFeaturesEditPart.VISUAL_ID));
 		}
 		return result;
 	}

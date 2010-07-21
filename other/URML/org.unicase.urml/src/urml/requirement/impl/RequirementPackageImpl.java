@@ -32,27 +32,23 @@ import urml.usecase.impl.UsecasePackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RequirementPackageImpl extends EPackageImpl implements RequirementPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass functionalRequirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass nonFunctionalRequirementEClass = null;
@@ -76,7 +72,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -155,7 +150,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getRequirement() {
@@ -164,7 +158,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getRequirement_ImplementingServices() {
@@ -173,7 +166,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getRequirement_SubRequirements() {
@@ -182,7 +174,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getRequirement_ParentRequirement() {
@@ -191,7 +182,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirement_Terminal() {
@@ -200,7 +190,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getFunctionalRequirement() {
@@ -209,7 +198,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_DetailedFeatures() {
@@ -218,7 +206,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getNonFunctionalRequirement() {
@@ -227,7 +214,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_ConstrainedFeatures() {
@@ -236,7 +222,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementFactory getRequirementFactory() {
@@ -245,15 +230,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -277,15 +261,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {

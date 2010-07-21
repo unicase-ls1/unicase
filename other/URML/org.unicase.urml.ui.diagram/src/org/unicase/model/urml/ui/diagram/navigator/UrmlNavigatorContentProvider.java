@@ -51,7 +51,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
@@ -326,9 +325,6 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 				.getType(ServiceSubServicesEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointFeaturesEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(VariationPointInstanceVariationPointEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
@@ -476,9 +472,6 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(GoalRealizedFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointFeaturesEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID));
@@ -654,12 +647,6 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(GoalRealizedFeaturesEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointFeaturesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(VariationPointInstanceVariationPointEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
@@ -1157,32 +1144,6 @@ public class UrmlNavigatorContentProvider implements ICommonContentProvider {
 			target.addChildren(createNavigatorItems(connectedViews, target, true));
 			connectedViews = getLinksSourceByType(Collections.singleton(view), UrmlVisualIDRegistry
 				.getType(ServiceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source, true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case VariationPointFeaturesEditPart.VISUAL_ID: {
-			Collection result = new ArrayList();
-			UrmlNavigatorGroup target = new UrmlNavigatorGroup(
-				Messages.NavigatorGroupName_VariationPointFeatures_4039_target,
-				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			UrmlNavigatorGroup source = new UrmlNavigatorGroup(
-				Messages.NavigatorGroupName_VariationPointFeatures_4039_source,
-				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getLinksTargetByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(FeatureEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target, true));
-			connectedViews = getLinksTargetByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target, true));
-			connectedViews = getLinksSourceByType(Collections.singleton(view), UrmlVisualIDRegistry
-				.getType(VariationPointEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source, true));
 			if (!target.isEmpty()) {
 				result.add(target);

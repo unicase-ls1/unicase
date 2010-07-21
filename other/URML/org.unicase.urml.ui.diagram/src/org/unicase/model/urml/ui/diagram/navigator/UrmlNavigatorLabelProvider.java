@@ -24,7 +24,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEd
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
@@ -79,7 +78,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.TriggersLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.URMLDiagramEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
@@ -235,9 +233,6 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/service?Service?subServices", UrmlElementTypes.ServiceSubServices_4022); //$NON-NLS-1$
-		case VariationPointFeaturesEditPart.VISUAL_ID:
-			return getImage(
-				"Navigator?Link?http://unicase.org/model/urml/feature?VariationPoint?features", UrmlElementTypes.VariationPointFeatures_4039); //$NON-NLS-1$
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/feature?VariationPointInstance?variationPoint", UrmlElementTypes.VariationPointInstanceVariationPoint_4033); //$NON-NLS-1$
@@ -359,8 +354,6 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getAssetTriggeredDangers_4017Text(view);
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return getServiceSubServices_4022Text(view);
-		case VariationPointFeaturesEditPart.VISUAL_ID:
-			return getVariationPointFeatures_4039Text(view);
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return getVariationPointInstanceVariationPoint_4033Text(view);
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
@@ -855,22 +848,6 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 				ParserOptions.NONE.intValue());
 		} else {
 			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6018); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getVariationPointFeatures_4039Text(View view) {
-		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.VariationPointFeatures_4039,
-			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
-				.getType(CombineLabel2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
-				ParserOptions.NONE.intValue());
-		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6039); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

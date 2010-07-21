@@ -24,18 +24,18 @@ import urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.usecase.impl.UseCaseImpl#getSteps <em>Steps</em>}</li>
- * <li>{@link urml.usecase.impl.UseCaseImpl#getActors <em>Actors</em>}</li>
+ *   <li>{@link urml.usecase.impl.UseCaseImpl#getSteps <em>Steps</em>}</li>
+ *   <li>{@link urml.usecase.impl.UseCaseImpl#getActors <em>Actors</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCase {
 	/**
-	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSteps()
 	 * @generated
 	 * @ordered
@@ -43,9 +43,9 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	protected EList<Step> steps;
 
 	/**
-	 * The cached value of the '{@link #getActors() <em>Actors</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getActors() <em>Actors</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActors()
 	 * @generated
 	 * @ordered
@@ -54,7 +54,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -63,7 +62,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +71,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getSteps() {
@@ -85,7 +82,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Actor> getActors() {
@@ -98,7 +94,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,7 +108,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +123,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +138,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -166,7 +158,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +175,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

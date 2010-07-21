@@ -34,17 +34,17 @@ import urml.goal.util.GoalAdapterFactory;
 public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -58,8 +58,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalItemProviderAdapterFactory() {
@@ -71,16 +71,16 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.goal.Goal} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link urml.goal.Goal} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalItemProvider goalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.goal.Goal}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link urml.goal.Goal}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -93,16 +93,16 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.goal.GoalReference} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link urml.goal.GoalReference} instances.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalReferenceItemProvider goalReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.goal.GoalReference}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link urml.goal.GoalReference}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,8 +115,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -124,8 +124,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -134,7 +134,6 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,9 +142,9 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,7 +154,6 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,8 +169,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -180,8 +178,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -189,9 +187,9 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -203,8 +201,8 @@ public class GoalItemProviderAdapterFactory extends GoalAdapterFactory implement
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {

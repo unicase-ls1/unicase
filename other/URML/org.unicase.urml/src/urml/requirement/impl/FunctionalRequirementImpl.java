@@ -23,10 +23,10 @@ import urml.requirement.RequirementPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getDetailedFeatures <em>Detailed Features</em>}</li>
+ *   <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getDetailedFeatures <em>Detailed Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class FunctionalRequirementImpl extends RequirementImpl implements FunctionalRequirement {
@@ -42,7 +42,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FunctionalRequirementImpl() {
@@ -51,7 +50,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getDetailedFeatures() {
@@ -75,7 +72,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -90,7 +86,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +99,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +112,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -135,7 +128,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,7 +142,6 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -40,15 +40,15 @@ import urml.usecase.SolutionDomainUseCase;
  */
 public interface AbstractFeature extends UrmlModelElement {
 	/**
-	 * Returns the value of the '<em><b>Goals</b></em>' reference list. The list contents are of type
-	 * {@link urml.goal.Goal}. It is bidirectional and its opposite is '{@link urml.goal.Goal#getRealizedFeatures
-	 * <em>Realized Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Goals</b></em>' reference list.
+	 * The list contents are of type {@link urml.goal.Goal}.
+	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getRealizedFeatures <em>Realized Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Goals</em>' reference list isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Goals</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_Goals()
 	 * @see urml.goal.Goal#getRealizedFeatures
@@ -96,15 +96,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<NonFunctionalRequirement> getConstrainingNonFunctionalRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Detailing Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link urml.usecase.SolutionDomainUseCase}. It is bidirectional and its opposite is '
-	 * {@link urml.usecase.SolutionDomainUseCase#getDetailedFeature <em>Detailed Feature</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Detailing Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link urml.usecase.SolutionDomainUseCase}.
+	 * It is bidirectional and its opposite is '{@link urml.usecase.SolutionDomainUseCase#getDetailedFeature <em>Detailed Feature</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Detailing Use Cases</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Detailing Use Cases</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_DetailingUseCases()
 	 * @see urml.usecase.SolutionDomainUseCase#getDetailedFeature
@@ -114,14 +114,14 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<SolutionDomainUseCase> getDetailingUseCases();
 
 	/**
-	 * Returns the value of the '<em><b>Parent Feature</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link urml.feature.AbstractFeature#getSubFeatures <em>Sub Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parent Feature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getSubFeatures <em>Sub Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent Feature</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Parent Feature</em>' container reference.
 	 * @see #setParentFeature(AbstractFeature)
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_ParentFeature()
@@ -132,9 +132,8 @@ public interface AbstractFeature extends UrmlModelElement {
 	AbstractFeature getParentFeature();
 
 	/**
-	 * Sets the value of the '{@link urml.feature.AbstractFeature#getParentFeature <em>Parent Feature</em>}' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link urml.feature.AbstractFeature#getParentFeature <em>Parent Feature</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Feature</em>' container reference.
 	 * @see #getParentFeature()
 	 * @generated
@@ -142,15 +141,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	void setParentFeature(AbstractFeature value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list. The list contents are of type
-	 * {@link urml.feature.AbstractFeature}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.AbstractFeature#getParentFeature <em>Parent Feature</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list.
+	 * The list contents are of type {@link urml.feature.AbstractFeature}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getParentFeature <em>Parent Feature</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Features</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Sub Features</em>' containment reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_SubFeatures()
 	 * @see urml.feature.AbstractFeature#getParentFeature
@@ -160,15 +159,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getSubFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Excluding Features</b></em>' reference list. The list contents are of type
-	 * {@link urml.feature.AbstractFeature}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.AbstractFeature#getExcludedFeatures <em>Excluded Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Excluding Features</b></em>' reference list.
+	 * The list contents are of type {@link urml.feature.AbstractFeature}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getExcludedFeatures <em>Excluded Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Excluding Features</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Excluding Features</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_ExcludingFeatures()
 	 * @see urml.feature.AbstractFeature#getExcludedFeatures
@@ -178,15 +177,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getExcludingFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Excluded Features</b></em>' reference list. The list contents are of type
-	 * {@link urml.feature.AbstractFeature}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.AbstractFeature#getExcludingFeatures <em>Excluding Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Excluded Features</b></em>' reference list.
+	 * The list contents are of type {@link urml.feature.AbstractFeature}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getExcludingFeatures <em>Excluding Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Excluded Features</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Excluded Features</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_ExcludedFeatures()
 	 * @see urml.feature.AbstractFeature#getExcludingFeatures
@@ -196,15 +195,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getExcludedFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Requiering Features</b></em>' reference list. The list contents are of type
-	 * {@link urml.feature.AbstractFeature}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.AbstractFeature#getRequieredFeatures <em>Requiered Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requiering Features</b></em>' reference list.
+	 * The list contents are of type {@link urml.feature.AbstractFeature}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getRequieredFeatures <em>Requiered Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requiering Features</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Requiering Features</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_RequieringFeatures()
 	 * @see urml.feature.AbstractFeature#getRequieredFeatures
@@ -214,15 +213,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getRequieringFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Requiered Features</b></em>' reference list. The list contents are of type
-	 * {@link urml.feature.AbstractFeature}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.AbstractFeature#getRequieringFeatures <em>Requiering Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requiered Features</b></em>' reference list.
+	 * The list contents are of type {@link urml.feature.AbstractFeature}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getRequieringFeatures <em>Requiering Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requiered Features</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Requiered Features</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_RequieredFeatures()
 	 * @see urml.feature.AbstractFeature#getRequieringFeatures
@@ -232,34 +231,16 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getRequieredFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Variation Points</b></em>' reference list. The list contents are of type
-	 * {@link urml.feature.VariationPoint}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.VariationPoint#getFeatures <em>Features</em>}'. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Variation Points</em>' reference list isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Variation Points</em>' reference list.
-	 * @see urml.feature.FeaturePackage#getAbstractFeature_VariationPoints()
-	 * @see urml.feature.VariationPoint#getFeatures
-	 * @model opposite="features" keys="identifier"
-	 * @generated
-	 */
-	EList<VariationPoint> getVariationPoints();
-
-	/**
-	 * Returns the value of the '<em><b>Variation Point Instances</b></em>' reference list. The list contents are of
-	 * type {@link urml.feature.VariationPointInstance}. It is bidirectional and its opposite is '
-	 * {@link urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Variation Point Instances</b></em>' reference list.
+	 * The list contents are of type {@link urml.feature.VariationPointInstance}.
+	 * It is bidirectional and its opposite is '{@link urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Variation Point Instances</em>' reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Variation Point Instances</em>' reference list.
 	 * @see urml.feature.FeaturePackage#getAbstractFeature_VariationPointInstances()
 	 * @see urml.feature.VariationPointInstance#getSelectedFeatures

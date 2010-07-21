@@ -27,13 +27,13 @@ import urml.service.ServicePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services</em>}</li>
- * <li>{@link urml.requirement.impl.RequirementImpl#getSubRequirements <em>Sub Requirements</em>}</li>
- * <li>{@link urml.requirement.impl.RequirementImpl#getParentRequirement <em>Parent Requirement</em>}</li>
- * <li>{@link urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
+ *   <li>{@link urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services</em>}</li>
+ *   <li>{@link urml.requirement.impl.RequirementImpl#getSubRequirements <em>Sub Requirements</em>}</li>
+ *   <li>{@link urml.requirement.impl.RequirementImpl#getParentRequirement <em>Parent Requirement</em>}</li>
+ *   <li>{@link urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class RequirementImpl extends MitigationImpl implements Requirement {
@@ -50,7 +50,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	/**
 	 * The cached value of the '{@link #getSubRequirements() <em>Sub Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getSubRequirements()
 	 * @generated
 	 * @ordered
@@ -58,9 +57,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected EList<Requirement> subRequirements;
 
 	/**
-	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -68,9 +67,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected static final boolean TERMINAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -79,7 +78,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RequirementImpl() {
@@ -88,7 +86,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +95,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Service> getImplementingServices() {
@@ -111,7 +107,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Requirement> getSubRequirements() {
@@ -124,7 +119,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Requirement getParentRequirement() {
@@ -135,7 +129,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Requirement basicGetParentRequirement() {
@@ -146,7 +139,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentRequirement(Requirement newParentRequirement, NotificationChain msgs) {
@@ -157,7 +149,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentRequirement(Requirement newParentRequirement) {
@@ -181,7 +172,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isTerminal() {
@@ -190,7 +180,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTerminal(boolean newTerminal) {
@@ -203,7 +192,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -225,7 +213,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +230,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,7 +244,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -280,7 +265,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -307,7 +291,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -331,7 +314,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,7 +333,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

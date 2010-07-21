@@ -21,16 +21,15 @@ import urml.feature.VariationPointRule;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link urml.feature.impl.VariationPointRuleImpl#getVariationPoint <em>Variation Point</em>}</li>
+ *   <li>{@link urml.feature.impl.VariationPointRuleImpl#getVariationPoint <em>Variation Point</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implements VariationPointRule {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VariationPointRuleImpl() {
@@ -39,7 +38,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,7 +47,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint getVariationPoint() {
@@ -60,7 +57,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint basicGetVariationPoint() {
@@ -71,7 +67,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVariationPoint(VariationPoint newVariationPoint, NotificationChain msgs) {
@@ -82,7 +77,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVariationPoint(VariationPoint newVariationPoint) {
@@ -106,7 +100,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +115,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +128,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +142,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +157,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,7 +171,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,7 +185,6 @@ public abstract class VariationPointRuleImpl extends UrmlModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

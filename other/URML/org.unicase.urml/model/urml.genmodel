@@ -147,14 +147,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/requieredFeatures"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/variationPoints"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/variationPointInstances"/>
       </genClasses>
       <genClasses ecoreClass="urml.ecore#//feature/Feature"/>
       <genClasses ecoreClass="urml.ecore#//feature/VariationPoint">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/features"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/instances"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/rules"/>

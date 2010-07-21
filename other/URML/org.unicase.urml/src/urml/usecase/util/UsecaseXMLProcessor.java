@@ -12,16 +12,16 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import urml.usecase.UsecasePackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc --> <!--
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class UsecaseXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsecaseXMLProcessor() {
@@ -30,9 +30,9 @@ public class UsecaseXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the UsecaseResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * Register for "*" and "xml" file extensions the UsecaseResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

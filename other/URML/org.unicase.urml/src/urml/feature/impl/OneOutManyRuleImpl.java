@@ -19,7 +19,6 @@ import urml.feature.OneOutManyRule;
 public class OneOutManyRuleImpl extends VariationPointRuleImpl implements OneOutManyRule {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OneOutManyRuleImpl() {
@@ -28,7 +27,6 @@ public class OneOutManyRuleImpl extends VariationPointRuleImpl implements OneOut
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
