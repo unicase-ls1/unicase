@@ -18,12 +18,16 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Class to test if a project is deleted correctly in UNICASE or not.
+ */
 public class DeleteProjectUITest extends MEEditorTest {
-	Project newproject = null;
-	boolean testcondition;
+	private Project newproject;
+	private boolean testcondition = true;
 
 	/**
-	 * Setup the environment for testing.
+	 * This method first deletes project programticaly and check if it was deleted correctly in the UNICSAE Navigator
+	 * UI.
 	 */
 	@Test
 	public void deleteProjectUpdate() {
@@ -50,6 +54,11 @@ public class DeleteProjectUITest extends MEEditorTest {
 		assertTrue(testcondition);
 
 	}
+
+	/**
+	 * This method first deletes a project using the UNICSAE Navigator UI and check it was updated in the project
+	 * workspace or not.
+	 */
 
 	@Test
 	public void deleteProjectChange() {
@@ -78,5 +87,23 @@ public class DeleteProjectUITest extends MEEditorTest {
 
 		}.run();
 
+	}
+
+	/**
+	 * @param newproject is used as test project for testing the new project creation functionality This method is a
+	 *            setter method for the variable newproject.
+	 */
+
+	public void setNewproject(Project newproject) {
+		this.newproject = newproject;
+	}
+
+	/**
+	 * getter method for the variable newproject.
+	 * 
+	 * @return returns the reference of the variable newproject
+	 */
+	public Project getNewproject() {
+		return newproject;
 	}
 }
