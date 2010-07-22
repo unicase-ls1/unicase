@@ -13,8 +13,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cutElements" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="eobjectsIdMap" upperBound="-1"
-        eType="#//EObjectToModelElementIdMap" transient="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eobjectsIdMap" ordered="false"
+        upperBound="-1" eType="#//EObjectToModelElementIdMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deletedEObjectsIdMap" upperBound="-1"
         eType="#//EObjectToModelElementIdMap" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newEObjectsIdMap" upperBound="-1"

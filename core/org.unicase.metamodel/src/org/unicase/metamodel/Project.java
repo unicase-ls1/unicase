@@ -23,10 +23,9 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  *             <ul>
  *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
  *             <li>{@link org.unicase.metamodel.Project#getCutElements <em>Cut Elements</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
  *             <li>{@link org.unicase.metamodel.Project#getEobjectsIdMap <em>Eobjects Id Map</em>}</li>
+ *             <li>{@link org.unicase.metamodel.Project#getDeletedEObjectsIdMap <em>Deleted EObjects Id Map</em>}</li>
  *             <li>{@link org.unicase.metamodel.Project#getNewEObjectsIdMap <em>New EObjects Id Map</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getDeletedEObjectIdMap <em>Deleted EObject Id Map</em>}</li>
  *             <li>{@link org.unicase.metamodel.Project#getDeletedModelElements <em>Deleted Model Elements</em>}</li>
  *             </ul>
  *             </p>
@@ -66,7 +65,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_EobjectsIdMap()
 	 * @model mapType=
 	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 *        transient="true"
+	 *        ordered="false"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getEobjectsIdMap();

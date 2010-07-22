@@ -36,11 +36,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.unicase.metamodel.EObjectToModelElementIdMap;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 
 /**
  * Utility class for ModelElements.
@@ -296,6 +298,10 @@ public final class ModelUtil {
 
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
+			// TODO: instanceof on interface not working?
+			if (content instanceof EObjectToModelElementIdMapImpl || content instanceof EObjectToModelElementIdMap) {
+				continue;
+			}
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
 				return false;
 			}
