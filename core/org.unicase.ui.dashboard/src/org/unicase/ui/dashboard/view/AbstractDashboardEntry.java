@@ -5,10 +5,10 @@
  */
 package org.unicase.ui.dashboard.view;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 
@@ -22,35 +22,27 @@ public abstract class AbstractDashboardEntry extends Composite {
 	private ESNotification n;
 	private ProjectSpace projectSpace;
 	private DashboardPage page;
-	private ModelElement firstModelElement;
+	private EObject firstModelElement;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent composite.
-	 * @param style
-	 *            the style.
-	 * @param notification
-	 *            the notification.
-	 * @param projectSpace
-	 *            the project.
-	 * @param page
-	 *            a back link to the dashboard page (needed only for layout
-	 *            purposes).
+	 * @param parent the parent composite.
+	 * @param style the style.
+	 * @param notification the notification.
+	 * @param projectSpace the project.
+	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public AbstractDashboardEntry(DashboardPage page, Composite parent,
-			int style, ESNotification notification, ProjectSpace projectSpace) {
+	public AbstractDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+		ProjectSpace projectSpace) {
 		super(parent, style);
 		this.page = page;
 		this.n = notification;
 		this.projectSpace = projectSpace;
 		this.setBackgroundMode(SWT.INHERIT_FORCE);
 		if (notification.getRelatedModelElements().size() > 0) {
-			ModelElementId modelElementId = notification
-					.getRelatedModelElements().get(0);
-			this.firstModelElement = projectSpace.getProject().getModelElement(
-					modelElementId);
+			ModelElementId modelElementId = notification.getRelatedModelElements().get(0);
+			this.firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
 		}
 	}
 
@@ -83,17 +75,15 @@ public abstract class AbstractDashboardEntry extends Composite {
 	}
 
 	/**
-	 * Since a lot of features (e.g. notification icon, presentation of
-	 * comments, etc) depend on the ModelElements which the notification is
-	 * based upon, it is useful to have a direct reference to this element.
-	 * Because a list of elements can be provided (e.g. from the
-	 * TaskNotificationProvider), we take the instance for the first element
-	 * with the implicit contract that all elements in the notification are
-	 * either of the same type or share a common supertype.
+	 * Since a lot of features (e.g. notification icon, presentation of comments, etc) depend on the ModelElements which
+	 * the notification is based upon, it is useful to have a direct reference to this element. Because a list of
+	 * elements can be provided (e.g. from the TaskNotificationProvider), we take the instance for the first element
+	 * with the implicit contract that all elements in the notification are either of the same type or share a common
+	 * supertype.
 	 * 
 	 * @return the first modelelement if it exists in the project
 	 */
-	protected ModelElement getFirstModelElement() {
+	protected EObject getFirstModelElement() {
 		return firstModelElement;
 	}
 }
