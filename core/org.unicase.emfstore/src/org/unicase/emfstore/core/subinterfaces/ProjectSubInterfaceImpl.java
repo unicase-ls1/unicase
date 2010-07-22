@@ -155,7 +155,6 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				projectHistory = createEmptyProject(name, description, logMessage);
 				Version lastVersion = projectHistory.getLastVersion();
 				lastVersion.setProjectState(project);
-				lastVersion.setProjectStateEObjectIdMap(project.getEobjectsIdMap().map());
 				getResourceHelper().createResourceForProject(project, lastVersion.getPrimarySpec(),
 					projectHistory.getProjectId());
 				// TODO: check if this is OK

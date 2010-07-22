@@ -6,11 +6,13 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -22,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
 /**
@@ -206,6 +209,10 @@ public class VersionImpl extends EObjectImpl implements Version {
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__PROJECT_STATE,
 				newProjectState, newProjectState));
+	}
+
+	public void setProjectStateEObjectIdMap(Map<EObject, ModelElementId> idMap) {
+		projectState.getEobjectsIdMap().putAll(idMap);
 	}
 
 	/**

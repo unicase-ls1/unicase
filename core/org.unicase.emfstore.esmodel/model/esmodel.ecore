@@ -157,7 +157,7 @@
             eType="#//versioning/operations/ReferenceOperation" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="eobjectsIdMap" upperBound="-1"
             eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//EObjectToModelElementIdMap"
-            transient="true" containment="true"/>
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
