@@ -47,7 +47,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void addAdapter(Notifier notifier) {
-		if (!isInitializing && notifier instanceof EObjectToModelElementIdMapImpl) {
+		if (notifier instanceof EObjectToModelElementIdMapImpl) {
 			return;
 		} else if (!isInitializing && notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
@@ -85,7 +85,13 @@ public class ProjectChangeNotifier extends EContentAdapter {
 
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
-			if (!isInProject(modelElement) && projectImpl.contains(modelElement)) {
+			// projectImpl.getDeletedEObjectsIdMap().containsKey(modelElement) => explicit delete (via
+			// Project#deleteModel..)
+			// projectImpl.contains(modelElement) => implicit delete, e.g. proposal.setIssue(null)
+			// TODO: check if ok; added additional check if a model element is contained in the map of deleted objects
+			if (!isInProject(modelElement)
+				&& (projectImpl.getDeletedEObjectsIdMap().containsKey(modelElement) || projectImpl
+					.contains(modelElement))) {
 				removedModelElement = modelElement;
 				// super.removeAdapter(modelElement);
 			}

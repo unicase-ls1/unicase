@@ -44,6 +44,8 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  */
 public class ProjectImpl extends EObjectImpl implements Project {
 
+	private boolean eObjectToIdMapLoaded = false;
+
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -488,14 +490,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public Map<ModelElementId, EObject> getModelElementsFromCache() {
 		initCacheAndNotifier();
+		// TODO: HACK, consistency between cache and map currently not fixed
+		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
+			modelElementIdToEObjectsCache.put(e.getValue(), e.getKey());
+		}
 		return modelElementIdToEObjectsCache.map();
 	}
-
-	// private Map<EObject, ModelElementId> getNewModelElementEObjectFromCache() {
-	// initCacheAndNotifier();
-	// return eobjectsIdMap;
-	// // return newModelElementIdToEObjects.map();
-	// }
 
 	private void initCacheAndNotifier() {
 		if (modelElementIdToEObjectsCache == null) {
@@ -504,7 +504,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			TreeIterator<EObject> allContents = this.eAllContents();
 			while (allContents.hasNext()) {
 				EObject next = allContents.next();
-				// TODO: EMFStore: instance check for model element
+				// TODO: do we need an replacement for the instanceof check?
 				// if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(next)) {
 				ModelElementId id = ModelUtil.getProject(next).getModelElementId(next);
 				modelElementIdToEObjectsCache.put(id, next);
@@ -522,7 +522,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
 		if (project != null) {
-			// TODO: EMFStore: is project alone not already sufficient to check for?
 			ModelElementId id = project.getModelElementId(eObject);
 			if (modelElementIdToEObjectsCache.containsKey(id) && id != null) {
 				throw new IllegalStateException("ModelElement is already in the project!");
@@ -596,30 +595,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		getEobjectsIdMap().put(eObject, id);
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
-			// ModelElementId childId = ModelUtil.getProject(child).getModelElementId(child);
-			//
-			// if (childId == null) {
-			// childId = MetamodelFactory.eINSTANCE.createModelElementId();
-			// }
-			//
-			// getModelElementsFromCache().put(childId, child);
-			// getEobjectsIdMap().put(child, childId);
 			addModelElementAndChildrenToCache(child);
 		}
-
-		// TODO: EMFStore
-		// if (!contains(eObject)) {
-		// ModelElementId id = getNewEObjectsIdMap().get(eObject);
-		// if (id == null) {
-		// id = MetamodelFactory.eINSTANCE.createModelElementId();
-		// }
-		// getModelElementsFromCache().put(id, eObject);
-		// getEobjectsIdMap().put(eObject, id);
-		//
-		// for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
-		// addModelElementAndChildrenToCache(child);
-		// }
-		// }
 	}
 
 	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
@@ -710,16 +687,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#deleteModelElement(org.unicase.model.ModelElement)
 	 */
 	public void deleteModelElement(final EObject element) {
+		// TODO: the body of this method currently is a mess, needs to be fixed soon
 		if (!this.contains(element)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
-		}
-
-		deleteOutgoingCrossReferences(element);
-		deleteIncomingCrossReferences(element);
-
-		for (EObject child : ModelUtil.getAllContainedModelElements(element, false)) {
-			deleteOutgoingCrossReferences(child);
-			deleteIncomingCrossReferences(child);
 		}
 
 		EObject eObject;
@@ -730,6 +700,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		ModelElementId objectId = getModelElementId(eObject);
+
+		deleteOutgoingCrossReferences(element);
+		deleteIncomingCrossReferences(element);
+
+		for (EObject child : ModelUtil.getAllContainedModelElements(element, false)) {
+			deleteOutgoingCrossReferences(child);
+			deleteIncomingCrossReferences(child);
+		}
 
 		if (element instanceof ModelElementId) {
 			EObject o = getModelElement((ModelElementId) element);
@@ -742,6 +720,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				ModelElementId id = getEobjectsIdMap().get(me);
 				getDeletedEObjectsIdMap().put(me, id);
 			}
+		}
+
+		if (element instanceof ModelElementId) {
+			EObject o = getModelElement((ModelElementId) element);
+
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
+				eobjectsIdMap.values().remove(me);
+			}
+		} else {
+
+			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(eObject, false)) {
+				eobjectsIdMap.values().remove(me);
+			}
+
+			eobjectsIdMap.values().remove(objectId);
+			getModelElementsFromCache().keySet().remove(objectId);
+			getDeletedEObjectsIdMap().put(element, objectId);
 		}
 
 		// remove containment
@@ -758,45 +753,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 		}
 
-		// ////////
-
-		if (element instanceof ModelElementId) {
-			EObject o = getModelElement((ModelElementId) element);
-
-			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
-				// getDeletedModelElements().add(me);
-				eobjectsIdMap.values().remove(me);
-				// getModelElementsFromCache().values().remove(me);
-			}
-
-			// getDeletedModelElements().add(o);
-			// eobjectsIdMap.values().remove(element);
-			// getModelElementsFromCache().keySet().remove(element);
-			// getDeletedEObjectsIdMap().put(o, (ModelElementId) element);
-
-			// TODO: EMFPlainEObjectTransition: NEW, zusammenfassen
-			// getNewEObjectsIdMap().put(ModelUtil.clone(eObject), (ModelElementId) element);
-			// getDeletedModelElements().add(eObject);
-		} else {
-
-			for (EObject me : ModelUtil.getAllContainedModelElementsAsList(eObject, false)) {
-				// getDeletedModelElements().add(me);
-				eobjectsIdMap.values().remove(me);
-				// getModelElementsFromCache().values().remove(me);
-			}
-
-			// getDeletedModelElements().add(element);
-			eobjectsIdMap.values().remove(objectId);
-			getModelElementsFromCache().keySet().remove(objectId);
-			getDeletedEObjectsIdMap().put(element, objectId);
-
-			// getNewEObjectsIdMap().put(ModelUtil.clone(eObject), id);
-			// getDeletedModelElements().add(eObject);
-		}
-
-		// TODO: EMFPlainEObjectTransition : unset durch deleteIncomingcrossreferences
-		// sind nicht containted, element wird dadurch geloescht?
-		// delete all unsetted elements
+		// TODO: unsure if this is still needed
 		List<ModelElementId> unsettedIds = new BasicEList<ModelElementId>();
 
 		for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap().entrySet()) {
