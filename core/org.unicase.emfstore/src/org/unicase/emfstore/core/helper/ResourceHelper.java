@@ -6,6 +6,7 @@
 package org.unicase.emfstore.core.helper;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -19,6 +20,8 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.ModelElementId;
@@ -80,8 +83,8 @@ public class ResourceHelper {
 	public void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
 		throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
-		// saveInResource(project, filename);
-		saveInResourceWithProject(project, filename, project);
+		// TODO:
+		saveInResourceWithProject(project, filename, project.getEobjectsIdMap().map());
 	}
 
 	/**
@@ -95,6 +98,21 @@ public class ResourceHelper {
 	public void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
 		ProjectId projectId) throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
+
+		// TODO: set IDs of each operation on resource to be saved
+		for (AbstractOperation op : changePackage.getOperations()) {
+			if (op instanceof CreateDeleteOperation) {
+				CreateDeleteOperation createDeleteOp = (CreateDeleteOperation) op;
+
+				for (Map.Entry<EObject, ModelElementId> e : createDeleteOp.getEobjectsIdMap()) {
+					XMIResource res = (XMIResource) e.getKey().eResource();
+					if (res != null) {
+						res.setID(e.getKey(), e.getValue().getId());
+					}
+				}
+			}
+		}
+
 		saveInResource(changePackage, filename);
 	}
 
@@ -179,9 +197,30 @@ public class ResourceHelper {
 		save(obj);
 	}
 
-	private void saveInResourceWithProject(EObject obj, String fileName, Project project) throws FatalEmfStoreException {
+	private void saveInResourceWithProject(EObject obj, String fileName, Map<EObject, ModelElementId> eObjectsIdMap)
+		throws FatalEmfStoreException {
 		Resource resource = serverSpace.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
 		resource.getContents().add(obj);
+
+		if (resource instanceof XMIResource) {
+			XMIResource xmiResource = (XMIResource) resource;
+			for (Map.Entry<EObject, ModelElementId> e : eObjectsIdMap.entrySet()) {
+				xmiResource.setID(e.getKey(), e.getValue().getId());
+			}
+		}
+
+		save(obj);
+	}
+
+	/**
+	 * Saves the given EObject and sets the IDs on the eObject's resource for all model elements contained in the given
+	 * project.
+	 * 
+	 * @param eObject the EObject to be saved
+	 * @param project the project, that is used to set the IDs of all model elements within the project on the resource
+	 */
+	public void saveWithProject(EObject eObject, Project project) {
+		Resource resource = eObject.eResource();
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
@@ -190,7 +229,11 @@ public class ResourceHelper {
 			}
 		}
 
-		save(obj);
+		try {
+			eObject.eResource().save(null);
+		} catch (IOException e1) {
+			ModelUtil.logException("Saving of resource failed.", e1);
+		}
 	}
 
 	/**
