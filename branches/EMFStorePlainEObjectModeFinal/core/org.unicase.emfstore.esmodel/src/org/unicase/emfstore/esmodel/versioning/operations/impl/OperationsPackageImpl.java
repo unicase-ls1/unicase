@@ -870,8 +870,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			null, 0, -1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCreateDeleteOperation_EobjectsIdMap(), theMetamodelPackage.getEObjectToModelElementIdMap(),
-			null, "eobjectsIdMap", null, 0, -1, CreateDeleteOperation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+			null, "eobjectsIdMap", null, 0, -1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeOperationEClass, AttributeOperation.class, "AttributeOperation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

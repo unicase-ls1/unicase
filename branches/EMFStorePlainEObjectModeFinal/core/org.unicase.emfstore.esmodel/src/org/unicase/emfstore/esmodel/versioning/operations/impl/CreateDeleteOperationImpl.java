@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -79,12 +80,16 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			// after clone the model element is not the same anymore as in EObjectIdMap,
 			// resemble map and model element
 			clone.getEobjectsIdMap().clear();
-			clone.getEobjectsIdMap().addAll(getEobjectsIdMap());
+
+			for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
+				ModelElementId clonedId = ModelUtil.clone(e.getValue());
+				clone.getEobjectsIdMap().put(e.getKey(), clonedId);
+			}
 
 			// set the model element of the operation such that it is the same as in the map
 			for (Entry<EObject, ModelElementId> e : clone.getEobjectsIdMap()) {
 				EObject element = e.getKey();
-				ModelElementId elementId = e.getValue();
+				ModelElementId elementId = ModelUtil.clone(e.getValue());
 				if (elementId.equals(clone.getModelElementId())) {
 					clone.setModelElement(element);
 					break;

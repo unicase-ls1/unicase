@@ -117,7 +117,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_EobjectsIdMap()
 	 * @model mapType=
 	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 *        transient="true"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getEobjectsIdMap();
