@@ -6,7 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Export-Package: org.unicase.model.urml.ui.diagram.edit.parts,
  org.unicase.model.urml.ui.diagram.part,
  org.unicase.model.urml.ui.diagram.providers
@@ -53,3 +52,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-LazyStart: true
 Import-Package: org.unicase.ui.unicasecommon.diagram.figures
+Bundle-Localization: plugin

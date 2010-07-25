@@ -6,22 +6,25 @@ package urml.requirement.util;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 import urml.requirement.RequirementPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class RequirementXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RequirementXMLProcessor() {
@@ -45,4 +48,4 @@ public class RequirementXMLProcessor extends XMLProcessor {
 		return registrations;
 	}
 
-} // RequirementXMLProcessor
+} //RequirementXMLProcessor

@@ -24,14 +24,14 @@ import org.unicase.model.urml.ui.diagram.edit.commands.AbstractFeatureConstraini
 import org.unicase.model.urml.ui.diagram.edit.commands.AbstractFeatureConstrainingNonFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.MitigationMitigatedDangersCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.MitigationMitigatedDangersReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.NonFunctionalRequirementSubNonFunctionalRequirementsCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.NonFunctionalRequirementSubNonFunctionalRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.RequirementImplementingServicesReorientCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.RequirementSubRequirementsCreateCommand;
-import org.unicase.model.urml.ui.diagram.edit.commands.RequirementSubRequirementsReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
@@ -63,7 +63,7 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == RequirementSubRequirementsEditPart.VISUAL_ID) {
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r) {
@@ -91,7 +91,7 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == RequirementSubRequirementsEditPart.VISUAL_ID) {
+			if (UrmlVisualIDRegistry.getVisualID(outgoingLink) == NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
 					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r) {
@@ -148,8 +148,9 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 		if (UrmlElementTypes.RequirementImplementingServices_4005 == req.getElementType()) {
 			return getGEFWrapper(new RequirementImplementingServicesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UrmlElementTypes.RequirementSubRequirements_4021 == req.getElementType()) {
-			return getGEFWrapper(new RequirementSubRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043 == req.getElementType()) {
+			return getGEFWrapper(new NonFunctionalRequirementSubNonFunctionalRequirementsCreateCommand(req, req
+				.getSource(), req.getTarget()));
 		}
 		if (UrmlElementTypes.MitigationMitigatedDangers_4012 == req.getElementType()) {
 			return getGEFWrapper(new MitigationMitigatedDangersCreateCommand(req, req.getSource(), req.getTarget()));
@@ -168,8 +169,9 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 		if (UrmlElementTypes.RequirementImplementingServices_4005 == req.getElementType()) {
 			return null;
 		}
-		if (UrmlElementTypes.RequirementSubRequirements_4021 == req.getElementType()) {
-			return getGEFWrapper(new RequirementSubRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043 == req.getElementType()) {
+			return getGEFWrapper(new NonFunctionalRequirementSubNonFunctionalRequirementsCreateCommand(req, req
+				.getSource(), req.getTarget()));
 		}
 		if (UrmlElementTypes.MitigationMitigatedDangers_4012 == req.getElementType()) {
 			return null;
@@ -178,8 +180,8 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
-	 * associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -189,8 +191,8 @@ public class NonFunctionalRequirementItemSemanticEditPolicy extends UrmlBaseItem
 			return getGEFWrapper(new AbstractFeatureConstrainingNonFunctionalRequirementsReorientCommand(req));
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementImplementingServicesReorientCommand(req));
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new RequirementSubRequirementsReorientCommand(req));
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new NonFunctionalRequirementSubNonFunctionalRequirementsReorientCommand(req));
 		case MitigationMitigatedDangersEditPart.VISUAL_ID:
 			return getGEFWrapper(new MitigationMitigatedDangersReorientCommand(req));
 		}

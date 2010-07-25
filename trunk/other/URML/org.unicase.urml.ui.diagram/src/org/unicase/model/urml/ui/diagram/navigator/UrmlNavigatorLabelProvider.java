@@ -24,6 +24,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEd
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
@@ -34,6 +35,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementSubFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -52,7 +54,8 @@ import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel4EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
@@ -60,6 +63,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
@@ -67,7 +71,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ProductNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequieresLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.SelectLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
@@ -83,6 +86,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEd
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
@@ -218,9 +222,12 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/requirement?Requirement?implementingServices", UrmlElementTypes.RequirementImplementingServices_4005); //$NON-NLS-1$
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
 			return getImage(
-				"Navigator?Link?http://unicase.org/model/urml/requirement?Requirement?subRequirements", UrmlElementTypes.RequirementSubRequirements_4021); //$NON-NLS-1$
+				"Navigator?Link?http://unicase.org/model/urml/requirement?NonFunctionalRequirement?subNonFunctionalRequirements", UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043); //$NON-NLS-1$
+		case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/requirement?FunctionalRequirement?subFunctionalRequirements", UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044); //$NON-NLS-1$
 		case MitigationMitigatedDangersEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/danger?Mitigation?mitigatedDangers", UrmlElementTypes.MitigationMitigatedDangers_4012); //$NON-NLS-1$
@@ -233,6 +240,9 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/service?Service?subServices", UrmlElementTypes.ServiceSubServices_4022); //$NON-NLS-1$
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Link?http://unicase.org/model/urml/feature?VariationPoint?variety", UrmlElementTypes.VariationPointVariety_4042); //$NON-NLS-1$
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Link?http://unicase.org/model/urml/feature?VariationPointInstance?variationPoint", UrmlElementTypes.VariationPointInstanceVariationPoint_4033); //$NON-NLS-1$
@@ -344,8 +354,10 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getGoalReference_4025Text(view);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return getRequirementImplementingServices_4005Text(view);
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
-			return getRequirementSubRequirements_4021Text(view);
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return getNonFunctionalRequirementSubNonFunctionalRequirements_4043Text(view);
+		case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+			return getFunctionalRequirementSubFunctionalRequirements_4044Text(view);
 		case MitigationMitigatedDangersEditPart.VISUAL_ID:
 			return getMitigationMitigatedDangers_4012Text(view);
 		case DangerHarmedAssetsEditPart.VISUAL_ID:
@@ -354,6 +366,8 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 			return getAssetTriggeredDangers_4017Text(view);
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return getServiceSubServices_4022Text(view);
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			return getVariationPointVariety_4042Text(view);
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return getVariationPointInstanceVariationPoint_4033Text(view);
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
@@ -775,15 +789,32 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 	/**
 	 * @generated
 	 */
-	private String getRequirementSubRequirements_4021Text(View view) {
-		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.RequirementSubRequirements_4021, view
-			.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
-			.getType(IsRefinedLabel5EditPart.VISUAL_ID));
+	private String getNonFunctionalRequirementSubNonFunctionalRequirements_4043Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(
+			UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(IsRefinedLabel3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 				ParserOptions.NONE.intValue());
 		} else {
-			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6017); //$NON-NLS-1$
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6043); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFunctionalRequirementSubFunctionalRequirements_4044Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(
+			UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044, view.getElement() != null ? view
+				.getElement() : view, UrmlVisualIDRegistry.getType(IsRefinedLabel4EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6044); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -848,6 +879,22 @@ public class UrmlNavigatorLabelProvider extends LabelProvider implements ICommon
 				ParserOptions.NONE.intValue());
 		} else {
 			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6018); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getVariationPointVariety_4042Text(View view) {
+		IParser parser = UrmlParserProvider.getParser(UrmlElementTypes.VariationPointVariety_4042,
+			view.getElement() != null ? view.getElement() : view, UrmlVisualIDRegistry
+				.getType(CombineLabel2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			UrmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6042); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

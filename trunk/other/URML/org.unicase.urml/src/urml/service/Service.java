@@ -6,10 +6,13 @@ package urml.service;
 import org.eclipse.emf.common.util.EList;
 
 import urml.danger.Asset;
+
 import urml.requirement.Requirement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Service</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Service</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -30,11 +33,10 @@ public interface Service extends Asset {
 	 * Returns the value of the '<em><b>Satisfied Requirements</b></em>' reference list.
 	 * The list contents are of type {@link urml.requirement.Requirement}.
 	 * It is bidirectional and its opposite is '{@link urml.requirement.Requirement#getImplementingServices <em>Implementing Services</em>}'.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Satisfied Requirements</em>' reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Satisfied Requirements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Satisfied Requirements</em>' reference list.
@@ -50,8 +52,8 @@ public interface Service extends Asset {
 	 * The list contents are of type {@link org.unicase.model.classes.Class}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Used Classes</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Used Classes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Used Classes</em>' reference list.
@@ -66,8 +68,8 @@ public interface Service extends Asset {
 	 * It is bidirectional and its opposite is '{@link urml.service.Service#getSubServices <em>Sub Services</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parent Service</em>' container reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Parent Service</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Service</em>' container reference.
@@ -81,7 +83,8 @@ public interface Service extends Asset {
 
 	/**
 	 * Sets the value of the '{@link urml.service.Service#getParentService <em>Parent Service</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Service</em>' container reference.
 	 * @see #getParentService()
 	 * @generated
@@ -94,8 +97,8 @@ public interface Service extends Asset {
 	 * It is bidirectional and its opposite is '{@link urml.service.Service#getParentService <em>Parent Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sub Services</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Sub Services</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Services</em>' containment reference list.

@@ -5,35 +5,43 @@ package urml.service.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
+
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.urml.UrmlModelElement;
 
 import urml.danger.Asset;
+
 import urml.service.*;
-import urml.service.Service;
-import urml.service.ServicePackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
- * method for each class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * @see urml.service.ServicePackage
  * @generated
  */
 public class ServiceAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ServicePackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceAdapterFactory() {
@@ -44,9 +52,9 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc --> This
-	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
-	 * the model. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+	 * <!-- end-user-doc -->
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -63,7 +71,8 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ServiceSwitch<Adapter> modelSwitch = new ServiceSwitch<Adapter>() {
@@ -105,7 +114,8 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -117,9 +127,10 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link urml.service.Service <em>Service</em>}'.
-	 * <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore cases; it's useful to ignore a case
-	 * when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see urml.service.Service
 	 * @generated
@@ -130,9 +141,10 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.metamodel.IdentifiableElement
 	 * @generated
@@ -143,8 +155,10 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
-	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.metamodel.ModelElement
 	 * @generated
@@ -155,9 +169,10 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
@@ -167,11 +182,11 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.urml.UrmlModelElement
-	 * <em>Model Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
-	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
-	 * -->
-	 * 
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.urml.UrmlModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.model.urml.UrmlModelElement
 	 * @generated
@@ -183,8 +198,9 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link urml.danger.Asset <em>Asset</em>}'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases; it's useful to ignore a case when
-	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see urml.danger.Asset
 	 * @generated
@@ -195,7 +211,8 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc --> This default implementation returns null.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @generated
@@ -204,4 +221,4 @@ public class ServiceAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} // ServiceAdapterFactory
+} //ServiceAdapterFactory

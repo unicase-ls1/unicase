@@ -32,7 +32,9 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.VariationPointInstanceItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
+import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.VariationPointInstanceIcon;
+import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
@@ -63,12 +65,13 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new VariationPointInstanceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -163,10 +166,13 @@ public class VariationPointInstanceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		/* user code */
+		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		/* user code */
 		return result;
 	}
 

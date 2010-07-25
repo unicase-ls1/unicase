@@ -32,7 +32,9 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.FeatureItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
+import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.FeatureIcon;
+import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
@@ -63,12 +65,13 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FeatureItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -162,10 +165,13 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		/* user code */
+		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		/* user code */
 		return result;
 	}
 
@@ -341,6 +347,7 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
+		types.add(UrmlElementTypes.VariationPointVariety_4042);
 		types.add(UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040);
 		return types;
 	}
@@ -371,6 +378,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
 			types.add(UrmlElementTypes.Goal_2001);
+		}
+		if (relationshipType == UrmlElementTypes.VariationPointVariety_4042) {
+			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
 		if (relationshipType == UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040) {
 			types.add(UrmlElementTypes.VariationPointInstance_2014);

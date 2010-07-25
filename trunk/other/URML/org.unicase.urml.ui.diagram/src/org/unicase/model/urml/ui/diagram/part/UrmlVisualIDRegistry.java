@@ -15,6 +15,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEd
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
@@ -25,6 +26,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementSubFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -47,7 +49,8 @@ import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel4EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
@@ -55,6 +58,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
@@ -62,7 +66,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ProductNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequieresLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.SelectLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
@@ -78,6 +81,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEd
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.expressions.UrmlAbstractExpression;
 import org.unicase.model.urml.ui.diagram.expressions.UrmlOCLFactory;
 
@@ -446,8 +450,13 @@ public class UrmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
-			if (IsRefinedLabel5EditPart.VISUAL_ID == nodeVisualID) {
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsRefinedLabel3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+			if (IsRefinedLabel4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -468,6 +477,11 @@ public class UrmlVisualIDRegistry {
 			break;
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			if (MotivatesLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			if (CombineLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

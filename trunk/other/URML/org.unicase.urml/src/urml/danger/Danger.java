@@ -4,10 +4,13 @@
 package urml.danger;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Danger</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Danger</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -30,8 +33,8 @@ public interface Danger extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.danger.Asset#getTriggeredDangers <em>Triggered Dangers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Triggering Assets</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Triggering Assets</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Triggering Assets</em>' reference list.
@@ -48,8 +51,8 @@ public interface Danger extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.danger.Asset#getHarmingDangers <em>Harming Dangers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Harmed Assets</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Harmed Assets</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Harmed Assets</em>' reference list.
@@ -65,8 +68,8 @@ public interface Danger extends UrmlModelElement {
 	 * The list contents are of type {@link org.unicase.model.classes.Class}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Harmed Classes</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Harmed Classes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Harmed Classes</em>' reference list.
@@ -82,8 +85,8 @@ public interface Danger extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.danger.Mitigation#getMitigatedDangers <em>Mitigated Dangers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mitigations</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Mitigations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mitigations</em>' reference list.

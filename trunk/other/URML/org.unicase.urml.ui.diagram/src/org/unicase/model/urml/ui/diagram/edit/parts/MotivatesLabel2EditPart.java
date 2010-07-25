@@ -544,18 +544,18 @@ public class MotivatesLabel2EditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new IsRefinedLabelFigure();
+		return new IsRefinedByLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class IsRefinedLabelFigure extends WrappingLabel {
+	public class IsRefinedByLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public IsRefinedLabelFigure() {
+		public IsRefinedByLabelFigure() {
 			this.setText("is refined by");
 		}
 

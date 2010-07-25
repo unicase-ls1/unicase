@@ -6,23 +6,26 @@ package urml.usecase;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
- * the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
+ * <!-- end-user-doc -->
  * @see urml.usecase.UsecasePackage
  * @generated
  */
 public interface UsecaseFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	UsecaseFactory eINSTANCE = urml.usecase.impl.UsecaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Application Domain Use Case</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * Returns a new object of class '<em>Application Domain Use Case</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Application Domain Use Case</em>'.
 	 * @generated
 	 */
@@ -30,7 +33,8 @@ public interface UsecaseFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>Solution Domain Use Case</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Solution Domain Use Case</em>'.
 	 * @generated
 	 */
@@ -38,7 +42,8 @@ public interface UsecaseFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>Actor</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Actor</em>'.
 	 * @generated
 	 */
@@ -46,10 +51,11 @@ public interface UsecaseFactory extends EFactory {
 
 	/**
 	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
 	UsecasePackage getUsecasePackage();
 
-} // UsecaseFactory
+} //UsecaseFactory

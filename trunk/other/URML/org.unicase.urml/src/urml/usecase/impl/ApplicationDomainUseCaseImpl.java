@@ -6,20 +6,25 @@ package urml.usecase.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import urml.goal.Goal;
 import urml.goal.GoalPackage;
+
 import urml.usecase.ApplicationDomainUseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Application Domain Use Case</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Application Domain Use Case</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -32,8 +37,8 @@ import urml.usecase.UsecasePackage;
 public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements ApplicationDomainUseCase {
 	/**
 	 * The cached value of the '{@link #getDetailedGoal() <em>Detailed Goal</em>}' reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDetailedGoal()
 	 * @generated
 	 * @ordered
@@ -41,7 +46,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	protected EList<Goal> detailedGoal;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ApplicationDomainUseCaseImpl() {
@@ -49,7 +55,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,7 +65,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Goal> getDetailedGoal() {
@@ -70,7 +78,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -84,7 +93,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,7 +107,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,7 +121,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,7 +138,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,7 +153,8 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,4 +166,4 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 		return super.eIsSet(featureID);
 	}
 
-} // ApplicationDomainUseCaseImpl
+} //ApplicationDomainUseCaseImpl

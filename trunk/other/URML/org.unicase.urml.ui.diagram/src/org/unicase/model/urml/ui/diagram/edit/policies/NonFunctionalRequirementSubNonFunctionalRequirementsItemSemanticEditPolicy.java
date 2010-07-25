@@ -14,13 +14,14 @@ import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 /**
  * @generated
  */
-public class RequirementSubRequirementsItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolicy {
+public class NonFunctionalRequirementSubNonFunctionalRequirementsItemSemanticEditPolicy extends
+	UrmlBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public RequirementSubRequirementsItemSemanticEditPolicy() {
-		super(UrmlElementTypes.RequirementSubRequirements_4021);
+	public NonFunctionalRequirementSubNonFunctionalRequirementsItemSemanticEditPolicy() {
+		super(UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043);
 	}
 
 	/**

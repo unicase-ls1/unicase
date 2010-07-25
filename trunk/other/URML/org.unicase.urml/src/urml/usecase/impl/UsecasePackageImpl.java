@@ -6,22 +6,37 @@ package urml.usecase.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.metamodel.MetamodelPackage;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.urml.UrmlPackage;
+
 import org.unicase.model.urml.impl.UrmlPackageImpl;
 
 import urml.danger.DangerPackage;
+
 import urml.danger.impl.DangerPackageImpl;
+
 import urml.feature.FeaturePackage;
+
 import urml.feature.impl.FeaturePackageImpl;
+
 import urml.goal.GoalPackage;
+
 import urml.goal.impl.GoalPackageImpl;
+
 import urml.requirement.RequirementPackage;
+
 import urml.requirement.impl.RequirementPackageImpl;
+
 import urml.service.ServicePackage;
+
 import urml.service.impl.ServicePackageImpl;
+
 import urml.usecase.Actor;
 import urml.usecase.ApplicationDomainUseCase;
 import urml.usecase.SolutionDomainUseCase;
@@ -30,42 +45,50 @@ import urml.usecase.UsecaseFactory;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass useCaseEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass applicationDomainUseCaseEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass solutionDomainUseCaseEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass actorEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
-	 * EPackage.Registry} by the package package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
-	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see urml.usecase.UsecasePackage#eNS_URI
 	 * @see #init()
@@ -76,7 +99,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -86,8 +110,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	 * 
 	 * <p>This method is used to initialize {@link UsecasePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -154,7 +178,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getUseCase() {
@@ -162,7 +187,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getUseCase_Steps() {
@@ -170,7 +196,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getUseCase_Actors() {
@@ -178,7 +205,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getApplicationDomainUseCase() {
@@ -186,7 +214,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getApplicationDomainUseCase_DetailedGoal() {
@@ -194,7 +223,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getSolutionDomainUseCase() {
@@ -202,7 +232,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getSolutionDomainUseCase_DetailedFeature() {
@@ -210,7 +241,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getActor() {
@@ -218,7 +250,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getActor_UseCases() {
@@ -226,7 +259,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsecaseFactory getUsecaseFactory() {
@@ -234,7 +268,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -242,7 +277,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -266,7 +302,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -274,7 +311,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -343,4 +381,4 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		getActor_UseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
-} // UsecasePackageImpl
+} //UsecasePackageImpl

@@ -49,6 +49,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEd
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ActorNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AssetTriggeredDangersEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.CombineLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
@@ -59,6 +60,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementSubFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
@@ -81,7 +83,8 @@ import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsDetailedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsImplementedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel2EditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel3EditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel4EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
@@ -89,6 +92,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabel2EditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MotivatesLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
@@ -96,7 +100,6 @@ import org.unicase.model.urml.ui.diagram.edit.parts.ProductNameEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequieresLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.SelectLabelEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceNameEditPart;
@@ -112,6 +115,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceNameEd
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointNameEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 
 /**
@@ -339,8 +343,12 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 				preferencesHint);
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return createRequirementImplementingServices_4005(containerView, index, persisted, preferencesHint);
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
-			return createRequirementSubRequirements_4021(containerView, index, persisted, preferencesHint);
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return createNonFunctionalRequirementSubNonFunctionalRequirements_4043(containerView, index, persisted,
+				preferencesHint);
+		case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+			return createFunctionalRequirementSubFunctionalRequirements_4044(containerView, index, persisted,
+				preferencesHint);
 		case MitigationMitigatedDangersEditPart.VISUAL_ID:
 			return createMitigationMitigatedDangers_4012(containerView, index, persisted, preferencesHint);
 		case DangerHarmedAssetsEditPart.VISUAL_ID:
@@ -349,6 +357,8 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 			return createAssetTriggeredDangers_4017(containerView, index, persisted, preferencesHint);
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return createServiceSubServices_4022(containerView, index, persisted, preferencesHint);
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			return createVariationPointVariety_4042(containerView, index, persisted, preferencesHint);
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return createVariationPointInstanceVariationPoint_4033(containerView, index, persisted, preferencesHint);
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
@@ -1414,8 +1424,8 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createRequirementSubRequirements_4021(View containerView, int index, boolean persisted,
-		PreferencesHint preferencesHint) {
+	public Edge createNonFunctionalRequirementSubNonFunctionalRequirements_4043(View containerView, int index,
+		boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -1425,7 +1435,8 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UrmlVisualIDRegistry.getType(RequirementSubRequirementsEditPart.VISUAL_ID));
+		edge.setType(UrmlVisualIDRegistry
+			.getType(NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
@@ -1449,11 +1460,57 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6017 = createLabel(edge, UrmlVisualIDRegistry.getType(IsRefinedLabel5EditPart.VISUAL_ID));
-		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6017 = (Location) label6017.getLayoutConstraint();
-		location6017.setX(0);
-		location6017.setY(20);
+		Node label6043 = createLabel(edge, UrmlVisualIDRegistry.getType(IsRefinedLabel3EditPart.VISUAL_ID));
+		label6043.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6043 = (Location) label6043.getLayoutConstraint();
+		location6043.setX(0);
+		location6043.setY(20);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createFunctionalRequirementSubFunctionalRequirements_4044(View containerView, int index,
+		boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UrmlVisualIDRegistry.getType(FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
+			IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
+			.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
+		}
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6044 = createLabel(edge, UrmlVisualIDRegistry.getType(IsRefinedLabel4EditPart.VISUAL_ID));
+		label6044.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6044 = (Location) label6044.getLayoutConstraint();
+		location6044.setX(0);
+		location6044.setY(20);
 		return edge;
 	}
 
@@ -1638,6 +1695,52 @@ public class UrmlViewProvider extends AbstractProvider implements IViewProvider 
 		Location location6018 = (Location) label6018.getLayoutConstraint();
 		location6018.setX(0);
 		location6018.setY(20);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createVariationPointVariety_4042(View containerView, int index, boolean persisted,
+		PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UrmlVisualIDRegistry.getType(VariationPointVarietyEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
+			IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
+			.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
+		}
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6042 = createLabel(edge, UrmlVisualIDRegistry.getType(CombineLabel2EditPart.VISUAL_ID));
+		label6042.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6042 = (Location) label6042.getLayoutConstraint();
+		location6042.setX(0);
+		location6042.setY(20);
 		return edge;
 	}
 

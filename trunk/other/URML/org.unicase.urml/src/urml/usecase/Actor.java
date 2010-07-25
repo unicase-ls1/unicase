@@ -8,7 +8,9 @@ import org.eclipse.emf.common.util.EList;
 import urml.danger.Asset;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Actor</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Actor</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -28,8 +30,8 @@ public interface Actor extends Asset {
 	 * It is bidirectional and its opposite is '{@link urml.usecase.UseCase#getActors <em>Actors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Use Cases</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Use Cases</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Use Cases</em>' reference list.

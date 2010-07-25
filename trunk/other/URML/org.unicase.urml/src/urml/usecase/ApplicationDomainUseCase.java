@@ -8,8 +8,9 @@ import org.eclipse.emf.common.util.EList;
 import urml.goal.Goal;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Application Domain Use Case</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Application Domain Use Case</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -29,8 +30,8 @@ public interface ApplicationDomainUseCase extends UseCase {
 	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getDetailingUseCases <em>Detailing Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Detailed Goal</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Detailed Goal</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Detailed Goal</em>' reference list.

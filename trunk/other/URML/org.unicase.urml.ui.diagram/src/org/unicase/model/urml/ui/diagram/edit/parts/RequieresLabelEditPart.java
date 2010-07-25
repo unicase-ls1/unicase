@@ -544,19 +544,19 @@ public class RequieresLabelEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new RequieresLabelFigure();
+		return new RequiresLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class RequieresLabelFigure extends WrappingLabel {
+	public class RequiresLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public RequieresLabelFigure() {
-			this.setText("requiere");
+		public RequiresLabelFigure() {
+			this.setText("requires");
 		}
 
 	}

@@ -57,21 +57,30 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="implementingServices"
           upperBound="-1" eType="#//service/Service" eOpposite="#//service/Service/satisfiedRequirements"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subRequirements" upperBound="-1"
-          eType="#//requirement/Requirement" containment="true" eOpposite="#//requirement/Requirement/parentRequirement"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentRequirement" eType="#//requirement/Requirement"
-          eOpposite="#//requirement/Requirement/subRequirements" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminal" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//requirement/Requirement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="detailedFeatures" upperBound="-1"
           eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/detailingFunctionalRequirements"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subFunctionalRequirements"
+          upperBound="-1" eType="#//requirement/FunctionalRequirement" containment="true"
+          eOpposite="#//requirement/FunctionalRequirement/parentFunctionalRequirement"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentFunctionalRequirement"
+          eType="#//requirement/FunctionalRequirement" eOpposite="#//requirement/FunctionalRequirement/subFunctionalRequirements"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#//requirement/Requirement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedFeatures"
           upperBound="-1" eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/constrainingNonFunctionalRequirements"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subNonFunctionalRequirements"
+          upperBound="-1" eType="#//requirement/NonFunctionalRequirement" containment="true"
+          eOpposite="#//requirement/NonFunctionalRequirement/parentNonFunctionalRequirement"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentNonFunctionalRequirement"
+          eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/subNonFunctionalRequirements"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
@@ -168,17 +177,21 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="requieredFeatures" upperBound="-1"
           eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requieringFeatures"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variationPoint" eType="#//feature/VariationPoint"
+          eOpposite="#//feature/VariationPoint/variety" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variationPointInstances"
           upperBound="-1" eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/selectedFeatures"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//feature/AbstractFeature"/>
     <eClassifiers xsi:type="ecore:EClass" name="VariationPoint" eSuperTypes="#//feature/AbstractFeature">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variety" upperBound="-1"
+          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/variationPoint"
+          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="varietyMultiplicity"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
           eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/variationPoint"
-          eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" eType="#//feature/VariationPointRule"
-          containment="true" eOpposite="#//feature/VariationPointRule/variationPoint"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariationPointInstance" eSuperTypes="#//UrmlModelElement">
@@ -194,15 +207,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="variationPointInstances"
           upperBound="-1" eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/product"
           eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VariationPointRule" abstract="true"
-        eSuperTypes="#//UrmlModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variationPoint" eType="#//feature/VariationPoint"
-          eOpposite="#//feature/VariationPoint/rules" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OneOutManyRule" eSuperTypes="#//feature/VariationPointRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ManyOutManyRule" eSuperTypes="#//feature/VariationPointRule">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraint" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

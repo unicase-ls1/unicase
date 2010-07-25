@@ -6,22 +6,24 @@ package urml.service.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import urml.service.*;
-import urml.service.Service;
-import urml.service.ServiceFactory;
-import urml.service.ServicePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ServiceFactory init() {
@@ -39,7 +41,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceFactoryImpl() {
@@ -47,7 +50,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,7 +65,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Service createService() {
@@ -70,7 +75,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServicePackage getServicePackage() {
@@ -78,7 +84,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -87,4 +94,4 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 		return ServicePackage.eINSTANCE;
 	}
 
-} // ServiceFactoryImpl
+} //ServiceFactoryImpl

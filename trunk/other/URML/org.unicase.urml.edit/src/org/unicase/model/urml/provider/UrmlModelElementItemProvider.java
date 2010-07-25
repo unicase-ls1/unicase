@@ -8,20 +8,24 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
+
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.urml.UrmlModelElement} object.
- * <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvider implements
@@ -29,7 +33,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 	IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrmlModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -38,7 +43,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,7 +58,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 
 	/**
 	 * This returns UrmlModelElement.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,7 +69,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -73,10 +81,10 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,7 +96,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -98,7 +107,8 @@ public class UrmlModelElementItemProvider extends UnicaseModelElementItemProvide
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

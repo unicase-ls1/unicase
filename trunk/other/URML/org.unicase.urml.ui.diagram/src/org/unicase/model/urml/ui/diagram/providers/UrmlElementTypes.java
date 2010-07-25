@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -27,6 +28,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementSubFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference2EditPart;
@@ -36,11 +38,11 @@ import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceSubServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
@@ -50,10 +52,13 @@ import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlDiagramEditorPlugin;
 
 import urml.danger.DangerPackage;
 import urml.feature.FeaturePackage;
+import urml.feature.provider.AbstractFeatureItemProvider;
+import urml.feature.provider.FeatureItemProviderAdapterFactory;
 import urml.goal.GoalPackage;
 import urml.requirement.RequirementPackage;
 import urml.service.ServicePackage;
@@ -192,7 +197,11 @@ public class UrmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RequirementSubRequirements_4021 = getElementType("org.unicase.urml.ui.diagram.RequirementSubRequirements_4021"); //$NON-NLS-1$
+	public static final IElementType NonFunctionalRequirementSubNonFunctionalRequirements_4043 = getElementType("org.unicase.urml.ui.diagram.NonFunctionalRequirementSubNonFunctionalRequirements_4043"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType FunctionalRequirementSubFunctionalRequirements_4044 = getElementType("org.unicase.urml.ui.diagram.FunctionalRequirementSubFunctionalRequirements_4044"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -209,6 +218,10 @@ public class UrmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ServiceSubServices_4022 = getElementType("org.unicase.urml.ui.diagram.ServiceSubServices_4022"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType VariationPointVariety_4042 = getElementType("org.unicase.urml.ui.diagram.VariationPointVariety_4042"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -240,7 +253,7 @@ public class UrmlElementTypes extends ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
@@ -252,6 +265,15 @@ public class UrmlElementTypes extends ElementInitializers {
 			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
+			/* user code */
+			// TODO : check implementation efficiency
+			else if (eContainingClass.getName().equals("AbstractFeature")) {
+				FeatureItemProviderAdapterFactory factory = new FeatureItemProviderAdapterFactory();
+				AbstractFeatureItemProvider provider = (AbstractFeatureItemProvider) factory
+					.createAbstractFeatureAdapter();
+				return ExtendedImageRegistry.getInstance().getImageDescriptor(provider.getImage(new Object()));
+			}
+			/* user code */
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
@@ -386,8 +408,11 @@ public class UrmlElementTypes extends ElementInitializers {
 			elements.put(RequirementImplementingServices_4005, RequirementPackage.eINSTANCE
 				.getRequirement_ImplementingServices());
 
-			elements
-				.put(RequirementSubRequirements_4021, RequirementPackage.eINSTANCE.getRequirement_SubRequirements());
+			elements.put(NonFunctionalRequirementSubNonFunctionalRequirements_4043, RequirementPackage.eINSTANCE
+				.getNonFunctionalRequirement_SubNonFunctionalRequirements());
+
+			elements.put(FunctionalRequirementSubFunctionalRequirements_4044, RequirementPackage.eINSTANCE
+				.getFunctionalRequirement_SubFunctionalRequirements());
 
 			elements.put(MitigationMitigatedDangers_4012, DangerPackage.eINSTANCE.getMitigation_MitigatedDangers());
 
@@ -396,6 +421,8 @@ public class UrmlElementTypes extends ElementInitializers {
 			elements.put(AssetTriggeredDangers_4017, DangerPackage.eINSTANCE.getAsset_TriggeredDangers());
 
 			elements.put(ServiceSubServices_4022, ServicePackage.eINSTANCE.getService_SubServices());
+
+			elements.put(VariationPointVariety_4042, FeaturePackage.eINSTANCE.getVariationPoint_Variety());
 
 			elements.put(VariationPointInstanceVariationPoint_4033, FeaturePackage.eINSTANCE
 				.getVariationPointInstance_VariationPoint());
@@ -448,11 +475,13 @@ public class UrmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(GoalReference_4024);
 			KNOWN_ELEMENT_TYPES.add(GoalReference_4025);
 			KNOWN_ELEMENT_TYPES.add(RequirementImplementingServices_4005);
-			KNOWN_ELEMENT_TYPES.add(RequirementSubRequirements_4021);
+			KNOWN_ELEMENT_TYPES.add(NonFunctionalRequirementSubNonFunctionalRequirements_4043);
+			KNOWN_ELEMENT_TYPES.add(FunctionalRequirementSubFunctionalRequirements_4044);
 			KNOWN_ELEMENT_TYPES.add(MitigationMitigatedDangers_4012);
 			KNOWN_ELEMENT_TYPES.add(DangerHarmedAssets_4013);
 			KNOWN_ELEMENT_TYPES.add(AssetTriggeredDangers_4017);
 			KNOWN_ELEMENT_TYPES.add(ServiceSubServices_4022);
+			KNOWN_ELEMENT_TYPES.add(VariationPointVariety_4042);
 			KNOWN_ELEMENT_TYPES.add(VariationPointInstanceVariationPoint_4033);
 			KNOWN_ELEMENT_TYPES.add(VariationPointInstanceSelectedFeatures_4040);
 			KNOWN_ELEMENT_TYPES.add(ProductVariationPointInstances_4032);
@@ -517,8 +546,10 @@ public class UrmlElementTypes extends ElementInitializers {
 			return GoalReference_4025;
 		case RequirementImplementingServicesEditPart.VISUAL_ID:
 			return RequirementImplementingServices_4005;
-		case RequirementSubRequirementsEditPart.VISUAL_ID:
-			return RequirementSubRequirements_4021;
+		case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+			return NonFunctionalRequirementSubNonFunctionalRequirements_4043;
+		case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+			return FunctionalRequirementSubFunctionalRequirements_4044;
 		case MitigationMitigatedDangersEditPart.VISUAL_ID:
 			return MitigationMitigatedDangers_4012;
 		case DangerHarmedAssetsEditPart.VISUAL_ID:
@@ -527,6 +558,8 @@ public class UrmlElementTypes extends ElementInitializers {
 			return AssetTriggeredDangers_4017;
 		case ServiceSubServicesEditPart.VISUAL_ID:
 			return ServiceSubServices_4022;
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			return VariationPointVariety_4042;
 		case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 			return VariationPointInstanceVariationPoint_4033;
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:

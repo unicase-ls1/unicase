@@ -9,7 +9,9 @@ import urml.feature.Feature;
 import urml.feature.FeaturePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Feature</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -17,7 +19,8 @@ import urml.feature.FeaturePackage;
  */
 public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FeatureImpl() {
@@ -25,7 +28,8 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -33,4 +37,4 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 		return FeaturePackage.Literals.FEATURE;
 	}
 
-} // FeatureImpl
+} //FeatureImpl

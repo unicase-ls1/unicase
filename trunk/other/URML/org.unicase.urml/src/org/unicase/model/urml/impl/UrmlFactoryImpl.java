@@ -6,22 +6,24 @@ package org.unicase.model.urml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.unicase.model.urml.*;
-import org.unicase.model.urml.Stakeholder;
-import org.unicase.model.urml.URMLDiagram;
-import org.unicase.model.urml.UrmlFactory;
-import org.unicase.model.urml.UrmlPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static UrmlFactory init() {
@@ -39,7 +41,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrmlFactoryImpl() {
@@ -47,7 +50,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,7 +67,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Stakeholder createStakeholder() {
@@ -72,7 +77,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public URMLDiagram createURMLDiagram() {
@@ -81,7 +87,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrmlPackage getUrmlPackage() {
@@ -89,7 +96,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -98,4 +106,4 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 		return UrmlPackage.eINSTANCE;
 	}
 
-} // UrmlFactoryImpl
+} //UrmlFactoryImpl

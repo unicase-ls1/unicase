@@ -8,8 +8,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.unicase.model.urml.provider.UrmlEditPlugin;
 import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
 
@@ -27,15 +31,16 @@ import urml.feature.FeaturePackage;
 
 /**
  * This is the item provider adapter for a {@link urml.feature.AbstractFeature} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AbstractFeatureItemProvider(AdapterFactory adapterFactory) {
@@ -44,7 +49,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,6 +66,7 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 			addExcludedFeaturesPropertyDescriptor(object);
 			addRequieringFeaturesPropertyDescriptor(object);
 			addRequieredFeaturesPropertyDescriptor(object);
+			addVariationPointPropertyDescriptor(object);
 			addVariationPointInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -67,7 +74,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Goals feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addGoalsPropertyDescriptor(Object object) {
@@ -79,8 +87,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Detailing Functional Requirements feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailingFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -110,9 +118,9 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailing Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This adds a property descriptor for the Detailing Use Cases feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailingUseCasesPropertyDescriptor(Object object) {
@@ -125,7 +133,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Excluding Features feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExcludingFeaturesPropertyDescriptor(Object object) {
@@ -138,7 +147,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Excluded Features feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExcludedFeaturesPropertyDescriptor(Object object) {
@@ -150,9 +160,9 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Requiering Features feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This adds a property descriptor for the Requiering Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addRequieringFeaturesPropertyDescriptor(Object object) {
@@ -166,7 +176,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Requiered Features feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addRequieredFeaturesPropertyDescriptor(Object object) {
@@ -178,9 +189,23 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
+	 * This adds a property descriptor for the Variation Point feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVariationPointPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_variationPoint_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_variationPoint_feature",
+				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__VARIATION_POINT, true, false,
+			true, null, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Variation Point Instances feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVariationPointInstancesPropertyDescriptor(Object object) {
@@ -196,8 +221,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -210,7 +235,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -222,8 +248,20 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
+	 * This returns AbstractFeature.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AbstractFeature"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -234,10 +272,10 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -255,7 +293,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,7 +310,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

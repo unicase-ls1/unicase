@@ -193,11 +193,17 @@ public class UrmlEditPartFactory implements EditPartFactory {
 			case IsImplementedLabelEditPart.VISUAL_ID:
 				return new IsImplementedLabelEditPart(view);
 
-			case RequirementSubRequirementsEditPart.VISUAL_ID:
-				return new RequirementSubRequirementsEditPart(view);
+			case NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID:
+				return new NonFunctionalRequirementSubNonFunctionalRequirementsEditPart(view);
 
-			case IsRefinedLabel5EditPart.VISUAL_ID:
-				return new IsRefinedLabel5EditPart(view);
+			case IsRefinedLabel3EditPart.VISUAL_ID:
+				return new IsRefinedLabel3EditPart(view);
+
+			case FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID:
+				return new FunctionalRequirementSubFunctionalRequirementsEditPart(view);
+
+			case IsRefinedLabel4EditPart.VISUAL_ID:
+				return new IsRefinedLabel4EditPart(view);
 
 			case MitigationMitigatedDangersEditPart.VISUAL_ID:
 				return new MitigationMitigatedDangersEditPart(view);
@@ -222,6 +228,12 @@ public class UrmlEditPartFactory implements EditPartFactory {
 
 			case MotivatesLabel2EditPart.VISUAL_ID:
 				return new MotivatesLabel2EditPart(view);
+
+			case VariationPointVarietyEditPart.VISUAL_ID:
+				return new VariationPointVarietyEditPart(view);
+
+			case CombineLabel2EditPart.VISUAL_ID:
+				return new CombineLabel2EditPart(view);
 
 			case VariationPointInstanceVariationPointEditPart.VISUAL_ID:
 				return new VariationPointInstanceVariationPointEditPart(view);

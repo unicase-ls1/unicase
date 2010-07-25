@@ -544,19 +544,19 @@ public class CombineLabelEditPart extends LabelEditPart implements ITextAwareEdi
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new CombineLabelFigure();
+		return new ConsistsOfLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class CombineLabelFigure extends WrappingLabel {
+	public class ConsistsOfLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public CombineLabelFigure() {
-			this.setText("combines");
+		public ConsistsOfLabelFigure() {
+			this.setText("consists of");
 		}
 
 	}

@@ -11,21 +11,11 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Stakeholder"
-          description="Create new Stakeholder">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
+          description="Create new Stakeholder"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Goal"
-          description="Create new Goal">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
+          description="Create new Goal"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="FunctionalRequirement"/>

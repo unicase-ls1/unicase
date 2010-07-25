@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -32,7 +30,9 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.StakeholderItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
+import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.StakeholderIcon;
+import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
@@ -63,12 +63,13 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StakeholderItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -162,10 +163,13 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		/* user code */
+		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		/* user code */
 		return result;
 	}
 

@@ -355,7 +355,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.shapes.StickMan"/>
+            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ActorIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure_name"
@@ -423,10 +423,10 @@
           text="expresses"/>
     </descriptors>
     <descriptors
-        name="IsRefinedLabelFigure">
+        name="IsRefinedByLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="IsRefinedLabelFigure"
+          name="IsRefinedByLabelFigure"
           text="is refined by"/>
     </descriptors>
     <descriptors
@@ -437,11 +437,11 @@
           text="motivates"/>
     </descriptors>
     <descriptors
-        name="IsDetailedLabelFigure">
+        name="IsDetailedByLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="IsDetailedLabelFigure"
-          text="is detailed"/>
+          name="IsDetailedByLabelFigure"
+          text="is detailed by"/>
     </descriptors>
     <descriptors
         name="IsConstraintLabelFigure">
@@ -490,21 +490,21 @@
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="InfluencesLabelFigure"
-          text="influence"/>
+          text="influences"/>
     </descriptors>
     <descriptors
         name="ExcludesLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
           name="ExcludesLabelFigure"
-          text="exclude"/>
+          text="excludes"/>
     </descriptors>
     <descriptors
-        name="RequieresLabelFigure">
+        name="RequiresLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="RequieresLabelFigure"
-          text="requiere"/>
+          name="RequiresLabelFigure"
+          text="requires"/>
     </descriptors>
     <descriptors
         name="VariationPointFigure">
@@ -632,11 +632,11 @@
           text="instantiate"/>
     </descriptors>
     <descriptors
-        name="CombineLabelFigure">
+        name="SuggestsLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="CombineLabelFigure"
-          text="combines"/>
+          name="SuggestsLabelFigure"
+          text="suggests"/>
     </descriptors>
     <descriptors
         name="SelectLabelFigure">
@@ -644,6 +644,13 @@
           xsi:type="gmfgraph:Label"
           name="SelectLabelFigure"
           text="selects"/>
+    </descriptors>
+    <descriptors
+        name="ConsistsOfLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ConsistsOfLabelFigure"
+          text="consists of"/>
     </descriptors>
   </figures>
   <nodes
@@ -809,8 +816,8 @@
         y="20"/>
   </labels>
   <labels
-      name="IsRefined"
-      figure="IsRefinedLabelFigure"
+      name="IsRefinedBy"
+      figure="IsRefinedByLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -831,8 +838,8 @@
         y="20"/>
   </labels>
   <labels
-      name="IsDetailed"
-      figure="IsDetailedLabelFigure"
+      name="IsDetailedBy"
+      figure="IsDetailedByLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -930,8 +937,8 @@
         y="20"/>
   </labels>
   <labels
-      name="Requieres"
-      figure="RequieresLabelFigure"
+      name="Requires"
+      figure="RequiresLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -967,8 +974,8 @@
         y="20"/>
   </labels>
   <labels
-      name="Combine"
-      figure="CombineLabelFigure"
+      name="Suggests"
+      figure="SuggestsLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -980,6 +987,17 @@
   <labels
       name="Select"
       figure="SelectLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="ConsistsOf"
+      figure="ConsistsOfLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
