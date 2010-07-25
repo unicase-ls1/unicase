@@ -9,22 +9,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.urml.ui.diagram.edit.policies.RequirementSubRequirementsItemSemanticEditPolicy;
+import org.unicase.model.urml.ui.diagram.edit.policies.NonFunctionalRequirementSubNonFunctionalRequirementsItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class RequirementSubRequirementsEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class NonFunctionalRequirementSubNonFunctionalRequirementsEditPart extends ConnectionNodeEditPart implements
+	ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4021;
+	public static final int VISUAL_ID = 4043;
 
 	/**
 	 * @generated
 	 */
-	public RequirementSubRequirementsEditPart(View view) {
+	public NonFunctionalRequirementSubNonFunctionalRequirementsEditPart(View view) {
 		super(view);
 	}
 
@@ -33,7 +34,8 @@ public class RequirementSubRequirementsEditPart extends ConnectionNodeEditPart i
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new RequirementSubRequirementsItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new NonFunctionalRequirementSubNonFunctionalRequirementsItemSemanticEditPolicy());
 	}
 
 	/**
@@ -71,8 +73,10 @@ public class RequirementSubRequirementsEditPart extends ConnectionNodeEditPart i
 	}
 
 	/**
-	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
-	 * safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

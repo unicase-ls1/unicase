@@ -34,6 +34,8 @@ import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesCreat
 import org.unicase.model.urml.ui.diagram.edit.commands.GoalRealizedFeaturesReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceSelectedFeaturesCreateCommand;
 import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointInstanceSelectedFeaturesReorientCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointVarietyCreateCommand;
+import org.unicase.model.urml.ui.diagram.edit.commands.VariationPointVarietyReorientCommand;
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureConstrainingNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureDetailingFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureExcludedFeaturesEditPart;
@@ -41,6 +43,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureRequieredFeat
 import org.unicase.model.urml.ui.diagram.edit.parts.AbstractFeatureSubFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
@@ -98,6 +101,13 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 				continue;
 			}
 			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == GoalRealizedFeaturesEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UrmlVisualIDRegistry.getVisualID(incomingLink) == VariationPointVarietyEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
@@ -207,6 +217,9 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return null;
 		}
+		if (UrmlElementTypes.VariationPointVariety_4042 == req.getElementType()) {
+			return null;
+		}
 		if (UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040 == req.getElementType()) {
 			return null;
 		}
@@ -236,6 +249,9 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 		if (UrmlElementTypes.GoalRealizedFeatures_4004 == req.getElementType()) {
 			return getGEFWrapper(new GoalRealizedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UrmlElementTypes.VariationPointVariety_4042 == req.getElementType()) {
+			return getGEFWrapper(new VariationPointVarietyCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040 == req.getElementType()) {
 			return getGEFWrapper(new VariationPointInstanceSelectedFeaturesCreateCommand(req, req.getSource(), req
 				.getTarget()));
@@ -263,6 +279,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 			return getGEFWrapper(new AbstractFeatureExcludedFeaturesReorientCommand(req));
 		case GoalRealizedFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new GoalRealizedFeaturesReorientCommand(req));
+		case VariationPointVarietyEditPart.VISUAL_ID:
+			return getGEFWrapper(new VariationPointVarietyReorientCommand(req));
 		case VariationPointInstanceSelectedFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new VariationPointInstanceSelectedFeaturesReorientCommand(req));
 		}

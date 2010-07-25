@@ -556,7 +556,7 @@ public class ExcludesLabelEditPart extends LabelEditPart implements ITextAwareEd
 		 * @generated
 		 */
 		public ExcludesLabelFigure() {
-			this.setText("exclude");
+			this.setText("excludes");
 		}
 
 	}

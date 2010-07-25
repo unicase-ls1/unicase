@@ -6,46 +6,67 @@ package urml.service.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.metamodel.MetamodelPackage;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.classes.ClassesPackage;
+
 import org.unicase.model.urml.UrmlPackage;
+
 import org.unicase.model.urml.impl.UrmlPackageImpl;
 
 import urml.danger.DangerPackage;
+
 import urml.danger.impl.DangerPackageImpl;
+
 import urml.feature.FeaturePackage;
+
 import urml.feature.impl.FeaturePackageImpl;
+
 import urml.goal.GoalPackage;
+
 import urml.goal.impl.GoalPackageImpl;
+
 import urml.requirement.RequirementPackage;
+
 import urml.requirement.impl.RequirementPackageImpl;
+
 import urml.service.Service;
 import urml.service.ServiceFactory;
 import urml.service.ServicePackage;
+
 import urml.usecase.UsecasePackage;
+
 import urml.usecase.impl.UsecasePackageImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass serviceEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
-	 * EPackage.Registry} by the package package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
-	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see urml.service.ServicePackage#eNS_URI
 	 * @see #init()
@@ -56,7 +77,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -66,8 +88,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	 * 
 	 * <p>This method is used to initialize {@link ServicePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -134,7 +156,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getService() {
@@ -142,7 +165,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getService_SatisfiedRequirements() {
@@ -150,7 +174,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getService_UsedClasses() {
@@ -158,7 +183,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getService_ParentService() {
@@ -166,7 +192,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getService_SubServices() {
@@ -174,7 +201,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceFactory getServiceFactory() {
@@ -182,7 +210,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -190,7 +219,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -207,7 +237,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -215,7 +246,8 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -264,4 +296,4 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		getService_SubServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
-} // ServicePackageImpl
+} //ServicePackageImpl

@@ -32,7 +32,9 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.VariationPointItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
+import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.VariationPointIcon;
+import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
@@ -63,12 +65,13 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new VariationPointItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -163,10 +166,13 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		/* user code */
+		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		/* user code */
 		return result;
 	}
 
@@ -264,6 +270,7 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		types.add(UrmlElementTypes.AbstractFeatureConstrainingNonFunctionalRequirements_4036);
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
+		types.add(UrmlElementTypes.VariationPointVariety_4042);
 		return types;
 	}
 
@@ -296,6 +303,12 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		}
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart) {
 			types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			types.add(UrmlElementTypes.VariationPointVariety_4042);
+		}
+		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart) {
+			types.add(UrmlElementTypes.VariationPointVariety_4042);
 		}
 		return types;
 	}
@@ -330,6 +343,12 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.AbstractFeatureExcludedFeatures_4038) {
 			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
+		if (relationshipType == UrmlElementTypes.VariationPointVariety_4042) {
+			types.add(UrmlElementTypes.Feature_2012);
+		}
+		if (relationshipType == UrmlElementTypes.VariationPointVariety_4042) {
+			types.add(UrmlElementTypes.VariationPoint_2013);
+		}
 		return types;
 	}
 
@@ -342,6 +361,7 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		types.add(UrmlElementTypes.AbstractFeatureRequieredFeatures_4037);
 		types.add(UrmlElementTypes.AbstractFeatureExcludedFeatures_4038);
 		types.add(UrmlElementTypes.GoalRealizedFeatures_4004);
+		types.add(UrmlElementTypes.VariationPointVariety_4042);
 		types.add(UrmlElementTypes.VariationPointInstanceVariationPoint_4033);
 		types.add(UrmlElementTypes.VariationPointInstanceSelectedFeatures_4040);
 		return types;
@@ -373,6 +393,9 @@ public class VariationPointEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UrmlElementTypes.GoalRealizedFeatures_4004) {
 			types.add(UrmlElementTypes.Goal_2001);
+		}
+		if (relationshipType == UrmlElementTypes.VariationPointVariety_4042) {
+			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
 		if (relationshipType == UrmlElementTypes.VariationPointInstanceVariationPoint_4033) {
 			types.add(UrmlElementTypes.VariationPointInstance_2014);

@@ -6,11 +6,15 @@ package org.unicase.model.urml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.UrmlPackage;
 
@@ -18,7 +22,9 @@ import urml.goal.Goal;
 import urml.goal.GoalPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stakeholder</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Stakeholder</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -31,8 +37,8 @@ import urml.goal.GoalPackage;
 public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder {
 	/**
 	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getGoals()
 	 * @generated
 	 * @ordered
@@ -40,7 +46,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	protected EList<Goal> goals;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected StakeholderImpl() {
@@ -48,7 +55,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +65,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Goal> getGoals() {
@@ -69,7 +78,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -83,7 +93,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,7 +107,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,7 +121,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -125,7 +138,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,7 +153,8 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,4 +166,4 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 		return super.eIsSet(featureID);
 	}
 
-} // StakeholderImpl
+} //StakeholderImpl

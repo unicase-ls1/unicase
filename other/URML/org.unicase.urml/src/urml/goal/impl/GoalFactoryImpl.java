@@ -7,25 +7,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import urml.goal.*;
-import urml.goal.Goal;
-import urml.goal.GoalFactory;
-import urml.goal.GoalPackage;
-import urml.goal.GoalReference;
-import urml.goal.GoalReferenceType;
-import urml.goal.GoalType;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static GoalFactory init() {
@@ -43,7 +42,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalFactoryImpl() {
@@ -51,7 +51,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,7 +68,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,7 +85,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,7 +102,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Goal createGoal() {
@@ -108,7 +112,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalReference createGoalReference() {
@@ -117,7 +122,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalType createGoalTypeFromString(EDataType eDataType, String initialValue) {
@@ -129,7 +135,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertGoalTypeToString(EDataType eDataType, Object instanceValue) {
@@ -137,7 +144,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalReferenceType createGoalReferenceTypeFromString(EDataType eDataType, String initialValue) {
@@ -149,7 +157,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertGoalReferenceTypeToString(EDataType eDataType, Object instanceValue) {
@@ -157,7 +166,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GoalPackage getGoalPackage() {
@@ -165,7 +175,8 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -174,4 +185,4 @@ public class GoalFactoryImpl extends EFactoryImpl implements GoalFactory {
 		return GoalPackage.eINSTANCE;
 	}
 
-} // GoalFactoryImpl
+} //GoalFactoryImpl

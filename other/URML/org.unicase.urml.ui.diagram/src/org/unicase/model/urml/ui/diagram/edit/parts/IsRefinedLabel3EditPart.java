@@ -50,12 +50,12 @@ import org.unicase.model.urml.ui.diagram.providers.UrmlParserProvider;
 /**
  * @generated
  */
-public class IsRefinedLabel5EditPart extends LabelEditPart implements ITextAwareEditPart {
+public class IsRefinedLabel3EditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6017;
+	public static final int VISUAL_ID = 6043;
 
 	/**
 	 * @generated
@@ -82,13 +82,13 @@ public class IsRefinedLabel5EditPart extends LabelEditPart implements ITextAware
 	 */
 	static {
 		registerSnapBackPosition(UrmlVisualIDRegistry
-			.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart.VISUAL_ID), new Point(0, 20));
+			.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel3EditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public IsRefinedLabel5EditPart(View view) {
+	public IsRefinedLabel3EditPart(View view) {
 		super(view);
 	}
 
@@ -298,9 +298,10 @@ public class IsRefinedLabel5EditPart extends LabelEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UrmlParserProvider.getParser(UrmlElementTypes.RequirementSubRequirements_4021, getParserElement(),
+			parser = UrmlParserProvider.getParser(
+				UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043, getParserElement(),
 				UrmlVisualIDRegistry
-					.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel5EditPart.VISUAL_ID));
+					.getType(org.unicase.model.urml.ui.diagram.edit.parts.IsRefinedLabel3EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -544,18 +545,18 @@ public class IsRefinedLabel5EditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new IsRefinedLabelFigure();
+		return new IsRefinedByLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class IsRefinedLabelFigure extends WrappingLabel {
+	public class IsRefinedByLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public IsRefinedLabelFigure() {
+		public IsRefinedByLabelFigure() {
 			this.setText("is refined by");
 		}
 

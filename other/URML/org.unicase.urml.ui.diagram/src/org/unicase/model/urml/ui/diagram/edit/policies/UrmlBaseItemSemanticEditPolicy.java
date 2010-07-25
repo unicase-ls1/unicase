@@ -488,20 +488,41 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateRequirementSubRequirements_4021(Requirement source, Requirement target) {
+		public static boolean canCreateNonFunctionalRequirementSubNonFunctionalRequirements_4043(
+			NonFunctionalRequirement source, NonFunctionalRequirement target) {
 			if (source != null) {
-				if (source.getSubRequirements().contains(target)) {
+				if (source.getSubNonFunctionalRequirements().contains(target)) {
 					return false;
 				}
 				if (source == target) {
 					return false;
 				}
 			}
-			if (target != null && (target.getParentRequirement() != null)) {
+			if (target != null && (target.getParentNonFunctionalRequirement() != null)) {
 				return false;
 			}
 
-			return canExistRequirementSubRequirements_4021(source, target);
+			return canExistNonFunctionalRequirementSubNonFunctionalRequirements_4043(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFunctionalRequirementSubFunctionalRequirements_4044(
+			FunctionalRequirement source, FunctionalRequirement target) {
+			if (source != null) {
+				if (source.getSubFunctionalRequirements().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getParentFunctionalRequirement() != null)) {
+				return false;
+			}
+
+			return canExistFunctionalRequirementSubFunctionalRequirements_4044(source, target);
 		}
 
 		/**
@@ -569,6 +590,22 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistServiceSubServices_4022(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateVariationPointVariety_4042(VariationPoint source, AbstractFeature target) {
+			if (source != null) {
+				if (source.getVariety().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getVariationPoint() != null)) {
+				return false;
+			}
+
+			return canExistVariationPointVariety_4042(source, target);
 		}
 
 		/**
@@ -719,7 +756,16 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistRequirementSubRequirements_4021(Requirement source, Requirement target) {
+		public static boolean canExistNonFunctionalRequirementSubNonFunctionalRequirements_4043(
+			NonFunctionalRequirement source, NonFunctionalRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFunctionalRequirementSubFunctionalRequirements_4044(FunctionalRequirement source,
+			FunctionalRequirement target) {
 			return true;
 		}
 
@@ -748,6 +794,13 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistServiceSubServices_4022(Service source, Service target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistVariationPointVariety_4042(VariationPoint source, AbstractFeature target) {
 			return true;
 		}
 

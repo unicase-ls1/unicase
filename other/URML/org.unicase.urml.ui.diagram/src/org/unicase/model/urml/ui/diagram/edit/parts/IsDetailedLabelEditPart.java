@@ -544,19 +544,19 @@ public class IsDetailedLabelEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new IsDetailedLabelFigure();
+		return new IsDetailedByLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class IsDetailedLabelFigure extends WrappingLabel {
+	public class IsDetailedByLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public IsDetailedLabelFigure() {
-			this.setText("is detailed");
+		public IsDetailedByLabelFigure() {
+			this.setText("is detailed by");
 		}
 
 	}

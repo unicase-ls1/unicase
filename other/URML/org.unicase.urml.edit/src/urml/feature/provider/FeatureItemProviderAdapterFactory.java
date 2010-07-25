@@ -34,17 +34,17 @@ import urml.feature.util.FeatureAdapterFactory;
 public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -58,8 +58,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeatureItemProviderAdapterFactory() {
@@ -70,17 +70,41 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 		supportedTypes.add(IItemPropertySource.class);
 	}
 
+	/* user code */
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.feature.Feature} instances.
-	 * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link urml.feature.AbstractFeature} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected AbstractFeatureItemProvider abstractFeatureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link urml.feature.AbstractFeature}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Adapter createAbstractFeatureAdapter() {
+		if (abstractFeatureItemProvider == null) {
+			abstractFeatureItemProvider = new AbstractFeatureItemProvider(this);
+		}
+		return abstractFeatureItemProvider;
+	}
+
+	/* user code */
+
+	/**
+	 * This keeps track of the one adapter used for all {@link urml.feature.Feature} instances. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureItemProvider featureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.feature.Feature}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link urml.feature.Feature}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,8 +125,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	protected VariationPointItemProvider variationPointItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.feature.VariationPoint}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link urml.feature.VariationPoint}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,9 +147,9 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	protected VariationPointInstanceItemProvider variationPointInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.feature.VariationPointInstance}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link urml.feature.VariationPointInstance}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,16 +162,16 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.feature.Product} instances.
-	 * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link urml.feature.Product} instances. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProductItemProvider productItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link urml.feature.Product}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link urml.feature.Product}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -160,52 +184,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link urml.feature.OneOutManyRule} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
-	 */
-	protected OneOutManyRuleItemProvider oneOutManyRuleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link urml.feature.OneOutManyRule}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOneOutManyRuleAdapter() {
-		if (oneOutManyRuleItemProvider == null) {
-			oneOutManyRuleItemProvider = new OneOutManyRuleItemProvider(this);
-		}
-
-		return oneOutManyRuleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link urml.feature.ManyOutManyRule} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ManyOutManyRuleItemProvider manyOutManyRuleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link urml.feature.ManyOutManyRule}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createManyOutManyRuleAdapter() {
-		if (manyOutManyRuleItemProvider == null) {
-			manyOutManyRuleItemProvider = new ManyOutManyRuleItemProvider(this);
-		}
-
-		return manyOutManyRuleItemProvider;
-	}
-
-	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -213,8 +193,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -223,6 +203,7 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,9 +212,9 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,6 +224,7 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,8 +240,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -267,8 +249,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -276,9 +258,9 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -290,8 +272,8 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
@@ -303,10 +285,6 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
 			variationPointInstanceItemProvider.dispose();
 		if (productItemProvider != null)
 			productItemProvider.dispose();
-		if (oneOutManyRuleItemProvider != null)
-			oneOutManyRuleItemProvider.dispose();
-		if (manyOutManyRuleItemProvider != null)
-			manyOutManyRuleItemProvider.dispose();
 	}
 
 }

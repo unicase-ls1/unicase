@@ -556,7 +556,7 @@ public class InfluencesLabel4EditPart extends LabelEditPart implements ITextAwar
 		 * @generated
 		 */
 		public InfluencesLabelFigure() {
-			this.setText("influence");
+			this.setText("influences");
 		}
 
 	}

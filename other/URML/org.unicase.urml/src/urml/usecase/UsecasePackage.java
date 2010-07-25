@@ -6,17 +6,20 @@ package urml.usecase;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.unicase.model.urml.UrmlPackage;
 
 import urml.danger.DangerPackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see urml.usecase.UsecaseFactory
@@ -26,36 +29,40 @@ import urml.danger.DangerPackage;
 public interface UsecasePackage extends EPackage {
 	/**
 	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "usecase";
 
 	/**
 	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/urml/usecase";
 
 	/**
 	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.urml.usecase";
 
 	/**
 	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	UsecasePackage eINSTANCE = urml.usecase.impl.UsecasePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link urml.usecase.impl.UseCaseImpl <em>Use Case</em>}' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see urml.usecase.impl.UseCaseImpl
 	 * @see urml.usecase.impl.UsecasePackageImpl#getUseCase()
 	 * @generated
@@ -64,7 +71,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -72,7 +80,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -80,7 +89,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -88,7 +98,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -96,25 +107,26 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USE_CASE__DESCRIPTION = UrmlPackage.URML_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USE_CASE__ANNOTATIONS = UrmlPackage.URML_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -131,8 +143,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -140,16 +152,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USE_CASE__STATE = UrmlPackage.URML_MODEL_ELEMENT__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -157,8 +170,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -166,8 +179,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -175,7 +188,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -183,7 +197,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Use Case</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -191,7 +206,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link urml.usecase.impl.ApplicationDomainUseCaseImpl <em>Application Domain Use Case</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see urml.usecase.impl.ApplicationDomainUseCaseImpl
 	 * @see urml.usecase.impl.UsecasePackageImpl#getApplicationDomainUseCase()
 	 * @generated
@@ -200,7 +216,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -208,7 +225,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -216,7 +234,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -224,7 +243,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -232,25 +252,26 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int APPLICATION_DOMAIN_USE_CASE__DESCRIPTION = USE_CASE__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int APPLICATION_DOMAIN_USE_CASE__ANNOTATIONS = USE_CASE__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -267,8 +288,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -276,16 +297,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int APPLICATION_DOMAIN_USE_CASE__STATE = USE_CASE__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -293,8 +315,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -302,8 +324,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -311,16 +333,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int APPLICATION_DOMAIN_USE_CASE__ACTORS = USE_CASE__ACTORS;
 
 	/**
-	 * The feature id for the '<em><b>Detailed Goal</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Detailed Goal</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -337,7 +360,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link urml.usecase.impl.SolutionDomainUseCaseImpl <em>Solution Domain Use Case</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see urml.usecase.impl.SolutionDomainUseCaseImpl
 	 * @see urml.usecase.impl.UsecasePackageImpl#getSolutionDomainUseCase()
 	 * @generated
@@ -346,7 +370,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -354,7 +379,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -362,7 +388,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -370,7 +397,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -378,25 +406,26 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SOLUTION_DOMAIN_USE_CASE__DESCRIPTION = USE_CASE__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SOLUTION_DOMAIN_USE_CASE__ANNOTATIONS = USE_CASE__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -413,8 +442,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -422,16 +451,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SOLUTION_DOMAIN_USE_CASE__STATE = USE_CASE__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -439,8 +469,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -448,8 +478,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -457,16 +487,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SOLUTION_DOMAIN_USE_CASE__ACTORS = USE_CASE__ACTORS;
 
 	/**
-	 * The feature id for the '<em><b>Detailed Feature</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Detailed Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -474,8 +505,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Solution Domain Use Case</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -493,7 +524,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -501,7 +533,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -509,7 +542,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -517,7 +551,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -525,25 +560,26 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ACTOR__DESCRIPTION = DangerPackage.ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ACTOR__ANNOTATIONS = DangerPackage.ASSET__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -560,8 +596,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -569,16 +605,17 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ACTOR__STATE = DangerPackage.ASSET__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -586,8 +623,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -595,8 +632,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Triggered Dangers</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -604,8 +641,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Harming Dangers</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -613,7 +650,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Use Cases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -621,7 +659,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Actor</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -629,8 +668,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link urml.usecase.UseCase <em>Use Case</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Use Case</em>'.
 	 * @see urml.usecase.UseCase
 	 * @generated
@@ -639,7 +678,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link urml.usecase.UseCase#getSteps <em>Steps</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Steps</em>'.
 	 * @see urml.usecase.UseCase#getSteps()
 	 * @see #getUseCase()
@@ -648,9 +688,9 @@ public interface UsecasePackage extends EPackage {
 	EReference getUseCase_Steps();
 
 	/**
-	 * Returns the meta object for the reference list '{@link urml.usecase.UseCase#getActors <em>Actors</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link urml.usecase.UseCase#getActors <em>Actors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Actors</em>'.
 	 * @see urml.usecase.UseCase#getActors()
 	 * @see #getUseCase()
@@ -660,7 +700,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link urml.usecase.ApplicationDomainUseCase <em>Application Domain Use Case</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Application Domain Use Case</em>'.
 	 * @see urml.usecase.ApplicationDomainUseCase
 	 * @generated
@@ -669,7 +710,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link urml.usecase.ApplicationDomainUseCase#getDetailedGoal <em>Detailed Goal</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Detailed Goal</em>'.
 	 * @see urml.usecase.ApplicationDomainUseCase#getDetailedGoal()
 	 * @see #getApplicationDomainUseCase()
@@ -679,7 +721,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link urml.usecase.SolutionDomainUseCase <em>Solution Domain Use Case</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Solution Domain Use Case</em>'.
 	 * @see urml.usecase.SolutionDomainUseCase
 	 * @generated
@@ -688,7 +731,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link urml.usecase.SolutionDomainUseCase#getDetailedFeature <em>Detailed Feature</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Detailed Feature</em>'.
 	 * @see urml.usecase.SolutionDomainUseCase#getDetailedFeature()
 	 * @see #getSolutionDomainUseCase()
@@ -698,8 +742,8 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link urml.usecase.Actor <em>Actor</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actor</em>'.
 	 * @see urml.usecase.Actor
 	 * @generated
@@ -707,9 +751,9 @@ public interface UsecasePackage extends EPackage {
 	EClass getActor();
 
 	/**
-	 * Returns the meta object for the reference list '{@link urml.usecase.Actor#getUseCases <em>Use Cases</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link urml.usecase.Actor#getUseCases <em>Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Use Cases</em>'.
 	 * @see urml.usecase.Actor#getUseCases()
 	 * @see #getActor()
@@ -719,28 +763,30 @@ public interface UsecasePackage extends EPackage {
 
 	/**
 	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	UsecaseFactory getUsecaseFactory();
 
 	/**
-	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link urml.usecase.impl.UseCaseImpl <em>Use Case</em>}' class. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link urml.usecase.impl.UseCaseImpl <em>Use Case</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see urml.usecase.impl.UseCaseImpl
 		 * @see urml.usecase.impl.UsecasePackageImpl#getUseCase()
 		 * @generated
@@ -748,24 +794,25 @@ public interface UsecasePackage extends EPackage {
 		EClass USE_CASE = eINSTANCE.getUseCase();
 
 		/**
-		 * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference USE_CASE__STEPS = eINSTANCE.getUseCase_Steps();
 
 		/**
 		 * The meta object literal for the '<em><b>Actors</b></em>' reference list feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference USE_CASE__ACTORS = eINSTANCE.getUseCase_Actors();
 
 		/**
 		 * The meta object literal for the '{@link urml.usecase.impl.ApplicationDomainUseCaseImpl <em>Application Domain Use Case</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see urml.usecase.impl.ApplicationDomainUseCaseImpl
 		 * @see urml.usecase.impl.UsecasePackageImpl#getApplicationDomainUseCase()
 		 * @generated
@@ -774,15 +821,16 @@ public interface UsecasePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Detailed Goal</b></em>' reference list feature.
-		 * <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL = eINSTANCE.getApplicationDomainUseCase_DetailedGoal();
 
 		/**
 		 * The meta object literal for the '{@link urml.usecase.impl.SolutionDomainUseCaseImpl <em>Solution Domain Use Case</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see urml.usecase.impl.SolutionDomainUseCaseImpl
 		 * @see urml.usecase.impl.UsecasePackageImpl#getSolutionDomainUseCase()
 		 * @generated
@@ -798,9 +846,9 @@ public interface UsecasePackage extends EPackage {
 		EReference SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE = eINSTANCE.getSolutionDomainUseCase_DetailedFeature();
 
 		/**
-		 * The meta object literal for the '{@link urml.usecase.impl.ActorImpl <em>Actor</em>}' class. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link urml.usecase.impl.ActorImpl <em>Actor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see urml.usecase.impl.ActorImpl
 		 * @see urml.usecase.impl.UsecasePackageImpl#getActor()
 		 * @generated
@@ -817,4 +865,4 @@ public interface UsecasePackage extends EPackage {
 
 	}
 
-} // UsecasePackage
+} //UsecasePackage

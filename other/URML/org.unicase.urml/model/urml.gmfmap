@@ -291,7 +291,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsRefined"/>
+          href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#FeatureSubFeatures"/>
@@ -303,7 +303,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsDetailed"/>
+          href="urml.gmfgraph#IsDetailedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#FeatureFunctionalRequirement"/>
@@ -327,7 +327,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#Requieres"/>
+          href="urml.gmfgraph#Requires"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#FeatureRequiereFeatures"/>
@@ -363,7 +363,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsRefined"/>
+          href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#GoalSubGoals"/>
@@ -543,13 +543,25 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsRefined"/>
+          href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#RequierementSubRequierements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//requirement/Requirement/subRequirements"/>
+        href="urml.ecore#//requirement/NonFunctionalRequirement/subNonFunctionalRequirements"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#IsRefinedBy"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#RequierementSubRequierements"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//requirement/FunctionalRequirement/subFunctionalRequirements"/>
   </links>
   <links>
     <labelMappings
@@ -591,13 +603,25 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#IsRefined"/>
+          href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#ServiceSubServices"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//service/Service/subServices"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#Suggests"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#VariationPointFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/VariationPoint/variety"/>
   </links>
   <links>
     <labelMappings
@@ -627,7 +651,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#Combine"/>
+          href="urml.gmfgraph#ConsistsOf"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#ProductVariationPointInstance"/>

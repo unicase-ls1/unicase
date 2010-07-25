@@ -10,12 +10,14 @@ import org.eclipse.emf.ecore.EReference;
 import urml.danger.DangerPackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see urml.service.ServiceFactory
@@ -25,36 +27,40 @@ import urml.danger.DangerPackage;
 public interface ServicePackage extends EPackage {
 	/**
 	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "service";
 
 	/**
 	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/urml/service";
 
 	/**
 	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.urml.service";
 
 	/**
 	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	ServicePackage eINSTANCE = urml.service.impl.ServicePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link urml.service.impl.ServiceImpl <em>Service</em>}' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see urml.service.impl.ServiceImpl
 	 * @see urml.service.impl.ServicePackageImpl#getService()
 	 * @generated
@@ -63,7 +69,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -71,7 +78,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -79,7 +87,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +96,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -95,25 +105,26 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__DESCRIPTION = DangerPackage.ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__ANNOTATIONS = DangerPackage.ASSET__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -130,8 +141,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -139,16 +150,17 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__STATE = DangerPackage.ASSET__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -156,8 +168,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -165,8 +177,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Triggered Dangers</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -174,8 +186,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Harming Dangers</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -183,17 +195,17 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Satisfied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__SATISFIED_REQUIREMENTS = DangerPackage.ASSET_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Used Classes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The feature id for the '<em><b>Used Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -201,8 +213,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Parent Service</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -210,8 +222,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Sub Services</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -219,7 +231,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -227,8 +240,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link urml.service.Service <em>Service</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Service</em>'.
 	 * @see urml.service.Service
 	 * @generated
@@ -237,7 +250,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link urml.service.Service#getSatisfiedRequirements <em>Satisfied Requirements</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Satisfied Requirements</em>'.
 	 * @see urml.service.Service#getSatisfiedRequirements()
 	 * @see #getService()
@@ -247,7 +261,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link urml.service.Service#getUsedClasses <em>Used Classes</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Used Classes</em>'.
 	 * @see urml.service.Service#getUsedClasses()
 	 * @see #getService()
@@ -257,7 +272,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the container reference '{@link urml.service.Service#getParentService <em>Parent Service</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Parent Service</em>'.
 	 * @see urml.service.Service#getParentService()
 	 * @see #getService()
@@ -267,7 +283,8 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link urml.service.Service#getSubServices <em>Sub Services</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Sub Services</em>'.
 	 * @see urml.service.Service#getSubServices()
 	 * @see #getService()
@@ -277,28 +294,30 @@ public interface ServicePackage extends EPackage {
 
 	/**
 	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	ServiceFactory getServiceFactory();
 
 	/**
-	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link urml.service.impl.ServiceImpl <em>Service</em>}' class. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link urml.service.impl.ServiceImpl <em>Service</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see urml.service.impl.ServiceImpl
 		 * @see urml.service.impl.ServicePackageImpl#getService()
 		 * @generated
@@ -306,37 +325,37 @@ public interface ServicePackage extends EPackage {
 		EClass SERVICE = eINSTANCE.getService();
 
 		/**
-		 * The meta object literal for the '<em><b>Satisfied Requirements</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Satisfied Requirements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICE__SATISFIED_REQUIREMENTS = eINSTANCE.getService_SatisfiedRequirements();
 
 		/**
 		 * The meta object literal for the '<em><b>Used Classes</b></em>' reference list feature.
-		 * <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICE__USED_CLASSES = eINSTANCE.getService_UsedClasses();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent Service</b></em>' container reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Parent Service</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICE__PARENT_SERVICE = eINSTANCE.getService_ParentService();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Services</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Sub Services</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICE__SUB_SERVICES = eINSTANCE.getService_SubServices();
 
 	}
 
-} // ServicePackage
+} //ServicePackage

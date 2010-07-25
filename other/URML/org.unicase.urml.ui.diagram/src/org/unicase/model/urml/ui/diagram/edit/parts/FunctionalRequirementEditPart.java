@@ -32,7 +32,9 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.model.urml.ui.diagram.edit.policies.FunctionalRequirementItemSemanticEditPolicy;
 import org.unicase.model.urml.ui.diagram.part.UrmlVisualIDRegistry;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
+import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.FunctionalRequirementIcon;
+import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
 
 /**
@@ -63,12 +65,13 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FunctionalRequirementItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -163,10 +166,13 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		/* user code */
+		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		/* user code */
 		return result;
 	}
 
@@ -260,7 +266,7 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.RequirementImplementingServices_4005);
-		types.add(UrmlElementTypes.RequirementSubRequirements_4021);
+		types.add(UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044);
 		types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
 		return types;
 	}
@@ -275,10 +281,7 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 			types.add(UrmlElementTypes.RequirementImplementingServices_4005);
 		}
 		if (targetEditPart instanceof org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart) {
-			types.add(UrmlElementTypes.RequirementSubRequirements_4021);
-		}
-		if (targetEditPart instanceof NonFunctionalRequirementEditPart) {
-			types.add(UrmlElementTypes.RequirementSubRequirements_4021);
+			types.add(UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044);
 		}
 		if (targetEditPart instanceof DangerEditPart) {
 			types.add(UrmlElementTypes.MitigationMitigatedDangers_4012);
@@ -295,11 +298,8 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.Service_2007);
 		}
-		if (relationshipType == UrmlElementTypes.RequirementSubRequirements_4021) {
+		if (relationshipType == UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044) {
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
-		}
-		if (relationshipType == UrmlElementTypes.RequirementSubRequirements_4021) {
-			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 		}
 		if (relationshipType == UrmlElementTypes.MitigationMitigatedDangers_4012) {
 			types.add(UrmlElementTypes.Danger_2009);
@@ -313,7 +313,7 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UrmlElementTypes.AbstractFeatureDetailingFunctionalRequirements_4035);
-		types.add(UrmlElementTypes.RequirementSubRequirements_4021);
+		types.add(UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044);
 		return types;
 	}
 
@@ -329,11 +329,8 @@ public class FunctionalRequirementEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UrmlElementTypes.AbstractFeatureDetailingFunctionalRequirements_4035) {
 			types.add(UrmlElementTypes.VariationPoint_2013);
 		}
-		if (relationshipType == UrmlElementTypes.RequirementSubRequirements_4021) {
+		if (relationshipType == UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044) {
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
-		}
-		if (relationshipType == UrmlElementTypes.RequirementSubRequirements_4021) {
-			types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 		}
 		return types;
 	}

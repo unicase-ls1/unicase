@@ -8,24 +8,35 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.diagram.DiagramPackage;
+
 import org.unicase.model.diagram.provider.MEDiagramItemProvider;
+
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlFactory;
 
 import urml.danger.DangerFactory;
+
 import urml.feature.FeatureFactory;
+
 import urml.goal.GoalFactory;
+
 import urml.requirement.RequirementFactory;
+
 import urml.service.ServiceFactory;
+
 import urml.usecase.UsecaseFactory;
 
 /**
@@ -38,7 +49,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public URMLDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -47,7 +59,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,7 +74,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 
 	/**
 	 * This returns URMLDiagram.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -71,7 +85,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,10 +97,10 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,7 +112,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,12 +167,6 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			FeatureFactory.eINSTANCE.createProduct()));
-
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-			FeatureFactory.eINSTANCE.createOneOutManyRule()));
-
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
-			FeatureFactory.eINSTANCE.createManyOutManyRule()));
 	}
 
 	/**
@@ -183,7 +193,8 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

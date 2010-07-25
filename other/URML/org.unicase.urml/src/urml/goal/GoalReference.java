@@ -6,7 +6,9 @@ package urml.goal;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Reference</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -27,8 +29,8 @@ public interface GoalReference extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
@@ -42,8 +44,8 @@ public interface GoalReference extends UrmlModelElement {
 
 	/**
 	 * Sets the value of the '{@link urml.goal.GoalReference#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
@@ -55,8 +57,8 @@ public interface GoalReference extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getInfluencingGoals <em>Influencing Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
@@ -70,8 +72,8 @@ public interface GoalReference extends UrmlModelElement {
 
 	/**
 	 * Sets the value of the '{@link urml.goal.GoalReference#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
@@ -83,8 +85,8 @@ public interface GoalReference extends UrmlModelElement {
 	 * The literals are from the enumeration {@link urml.goal.GoalReferenceType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Weight</em>' attribute isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Weight</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Weight</em>' attribute.
@@ -98,8 +100,8 @@ public interface GoalReference extends UrmlModelElement {
 
 	/**
 	 * Sets the value of the '{@link urml.goal.GoalReference#getWeight <em>Weight</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Weight</em>' attribute.
 	 * @see urml.goal.GoalReferenceType
 	 * @see #getWeight()

@@ -556,7 +556,7 @@ public class InfluencesLabelEditPart extends LabelEditPart implements ITextAware
 		 * @generated
 		 */
 		public InfluencesLabelFigure() {
-			this.setText("influence");
+			this.setText("influences");
 		}
 
 	}

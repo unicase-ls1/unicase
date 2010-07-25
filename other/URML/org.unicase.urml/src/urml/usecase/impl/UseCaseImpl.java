@@ -6,13 +6,18 @@ package urml.usecase.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.requirement.Step;
+
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.usecase.Actor;
@@ -20,7 +25,9 @@ import urml.usecase.UseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Use Case</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Use Case</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -44,8 +51,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * The cached value of the '{@link #getActors() <em>Actors</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getActors()
 	 * @generated
 	 * @ordered
@@ -53,7 +60,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	protected EList<Actor> actors;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -61,7 +69,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,7 +79,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Step> getSteps() {
@@ -81,7 +91,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Actor> getActors() {
@@ -93,7 +104,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -107,7 +119,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -122,7 +135,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,7 +151,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -157,7 +172,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,7 +190,8 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -188,4 +205,4 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 		return super.eIsSet(featureID);
 	}
 
-} // UseCaseImpl
+} //UseCaseImpl

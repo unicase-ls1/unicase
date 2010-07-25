@@ -9,12 +9,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
 
-import urml.requirement.Requirement;
+import urml.requirement.FunctionalRequirement;
 
 /**
  * @generated
  */
-public class RequirementSubRequirementsCreateCommand extends EditElementCommand {
+public class FunctionalRequirementSubFunctionalRequirementsCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -29,7 +29,8 @@ public class RequirementSubRequirementsCreateCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	public RequirementSubRequirementsCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public FunctionalRequirementSubFunctionalRequirementsCreateCommand(CreateRelationshipRequest request,
+		EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -42,18 +43,18 @@ public class RequirementSubRequirementsCreateCommand extends EditElementCommand 
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Requirement) {
+		if (source != null && false == source instanceof FunctionalRequirement) {
 			return false;
 		}
-		if (target != null && false == target instanceof Requirement) {
+		if (target != null && false == target instanceof FunctionalRequirement) {
 			return false;
 		}
 		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canCreateRequirementSubRequirements_4021(getSource(),
-			getTarget());
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints
+			.canCreateFunctionalRequirementSubFunctionalRequirements_4044(getSource(), getTarget());
 	}
 
 	/**
@@ -65,7 +66,7 @@ public class RequirementSubRequirementsCreateCommand extends EditElementCommand 
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().getSubRequirements().add(getTarget());
+			getSource().getSubFunctionalRequirements().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 
@@ -81,14 +82,14 @@ public class RequirementSubRequirementsCreateCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	protected Requirement getSource() {
-		return (Requirement) source;
+	protected FunctionalRequirement getSource() {
+		return (FunctionalRequirement) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getTarget() {
-		return (Requirement) target;
+	protected FunctionalRequirement getTarget() {
+		return (FunctionalRequirement) target;
 	}
 }

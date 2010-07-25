@@ -10,8 +10,10 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Reference Type</b></em>', and
- * utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the literals of the enumeration '<em><b>Reference Type</b></em>',
+ * and utility methods for working with them.
+ * <!-- end-user-doc -->
  * @see urml.goal.GoalPackage#getGoalReferenceType()
  * @model
  * @generated
@@ -19,7 +21,8 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum GoalReferenceType implements Enumerator {
 	/**
 	 * The '<em><b>PLUS PLUS</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #PLUS_PLUS_VALUE
 	 * @generated
 	 * @ordered
@@ -28,7 +31,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * The '<em><b>PLUS</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #PLUS_VALUE
 	 * @generated
 	 * @ordered
@@ -37,7 +41,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * The '<em><b>MINUS</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #MINUS_VALUE
 	 * @generated
 	 * @ordered
@@ -46,7 +51,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * The '<em><b>MINUS MINUS</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #MINUS_MINUS_VALUE
 	 * @generated
 	 * @ordered
@@ -57,8 +63,8 @@ public enum GoalReferenceType implements Enumerator {
 	 * The '<em><b>PLUS PLUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PLUS PLUS</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of '<em><b>PLUS PLUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PLUS_PLUS
@@ -72,8 +78,8 @@ public enum GoalReferenceType implements Enumerator {
 	 * The '<em><b>PLUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PLUS</b></em>' literal object isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of '<em><b>PLUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PLUS
@@ -87,8 +93,8 @@ public enum GoalReferenceType implements Enumerator {
 	 * The '<em><b>MINUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MINUS</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of '<em><b>MINUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #MINUS
@@ -102,8 +108,8 @@ public enum GoalReferenceType implements Enumerator {
 	 * The '<em><b>MINUS MINUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MINUS MINUS</b></em>' literal object isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of '<em><b>MINUS MINUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #MINUS_MINUS
@@ -115,7 +121,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * An array of all the '<em><b>Reference Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final GoalReferenceType[] VALUES_ARRAY = new GoalReferenceType[] { PLUS_PLUS, PLUS, MINUS,
@@ -123,8 +130,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * A public read-only list of all the '<em><b>Reference Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final List<GoalReferenceType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -147,8 +154,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * Returns the '<em><b>Reference Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static GoalReferenceType getByName(String name) {
@@ -182,26 +189,30 @@ public enum GoalReferenceType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private GoalReferenceType(int value, String name, String literal) {
@@ -211,7 +222,8 @@ public enum GoalReferenceType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getValue() {
@@ -219,7 +231,8 @@ public enum GoalReferenceType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getName() {
@@ -227,7 +240,8 @@ public enum GoalReferenceType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -236,8 +250,8 @@ public enum GoalReferenceType implements Enumerator {
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -245,4 +259,4 @@ public enum GoalReferenceType implements Enumerator {
 		return literal;
 	}
 
-} // GoalReferenceType
+} //GoalReferenceType

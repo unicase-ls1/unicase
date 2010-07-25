@@ -4,14 +4,18 @@
 package urml.goal;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.UrmlModelElement;
 
 import urml.feature.AbstractFeature;
+
 import urml.usecase.ApplicationDomainUseCase;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Goal</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Goal</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -37,7 +41,8 @@ public interface Goal extends UrmlModelElement {
 	 * Returns the value of the '<em><b>Soft</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Soft</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Soft</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Soft</em>' attribute.
@@ -50,8 +55,8 @@ public interface Goal extends UrmlModelElement {
 
 	/**
 	 * Sets the value of the '{@link urml.goal.Goal#isSoft <em>Soft</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Soft</em>' attribute.
 	 * @see #isSoft()
 	 * @generated
@@ -62,11 +67,10 @@ public interface Goal extends UrmlModelElement {
 	 * Returns the value of the '<em><b>Type</b></em>' attribute list.
 	 * The list contents are of type {@link urml.goal.GoalType}.
 	 * The literals are from the enumeration {@link urml.goal.GoalType}.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute list isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Type</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute list.
@@ -83,8 +87,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.Stakeholder#getGoals <em>Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Stakeholders</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Stakeholders</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stakeholders</em>' reference list.
@@ -101,8 +105,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.feature.AbstractFeature#getGoals <em>Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Realized Features</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Realized Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Realized Features</em>' reference list.
@@ -118,8 +122,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.usecase.ApplicationDomainUseCase#getDetailedGoal <em>Detailed Goal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Detailing Use Cases</em>' reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Detailing Use Cases</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Detailing Use Cases</em>' reference.
@@ -132,9 +136,9 @@ public interface Goal extends UrmlModelElement {
 	ApplicationDomainUseCase getDetailingUseCases();
 
 	/**
-	 * Sets the value of the '{@link urml.goal.Goal#getDetailingUseCases <em>Detailing Use Cases</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link urml.goal.Goal#getDetailingUseCases <em>Detailing Use Cases</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Detailing Use Cases</em>' reference.
 	 * @see #getDetailingUseCases()
 	 * @generated
@@ -147,8 +151,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getParentGoal <em>Parent Goal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sub Goals</em>' containment reference list isn't clear, there really should be more of
-	 * a description here...
+	 * If the meaning of the '<em>Sub Goals</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Goals</em>' containment reference list.
@@ -164,8 +168,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.Goal#getSubGoals <em>Sub Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parent Goal</em>' container reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Parent Goal</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Goal</em>' container reference.
@@ -178,9 +182,9 @@ public interface Goal extends UrmlModelElement {
 	Goal getParentGoal();
 
 	/**
-	 * Sets the value of the '{@link urml.goal.Goal#getParentGoal <em>Parent Goal</em>}' container reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link urml.goal.Goal#getParentGoal <em>Parent Goal</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Goal</em>' container reference.
 	 * @see #getParentGoal()
 	 * @generated
@@ -193,8 +197,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.GoalReference#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Influencing Goals</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Influencing Goals</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Influencing Goals</em>' reference list.
@@ -211,8 +215,8 @@ public interface Goal extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.goal.GoalReference#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Influenced Goals</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Influenced Goals</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Influenced Goals</em>' reference list.

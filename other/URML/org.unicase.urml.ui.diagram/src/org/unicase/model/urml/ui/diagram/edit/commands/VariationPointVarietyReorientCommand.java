@@ -10,12 +10,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.unicase.model.urml.ui.diagram.edit.policies.UrmlBaseItemSemanticEditPolicy;
 
-import urml.requirement.Requirement;
+import urml.feature.AbstractFeature;
+import urml.feature.VariationPoint;
 
 /**
  * @generated
  */
-public class RequirementSubRequirementsReorientCommand extends EditElementCommand {
+public class VariationPointVarietyReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -40,7 +41,7 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	/**
 	 * @generated
 	 */
-	public RequirementSubRequirementsReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public VariationPointVarietyReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -52,7 +53,7 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Requirement) {
+		if (false == referenceOwner instanceof VariationPoint) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -68,10 +69,10 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Requirement && newEnd instanceof Requirement)) {
+		if (!(oldEnd instanceof AbstractFeature && newEnd instanceof VariationPoint)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistRequirementSubRequirements_4021(getNewSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistVariationPointVariety_4042(getNewSource(),
 			getOldTarget());
 	}
 
@@ -79,10 +80,10 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Requirement && newEnd instanceof Requirement)) {
+		if (!(oldEnd instanceof AbstractFeature && newEnd instanceof AbstractFeature)) {
 			return false;
 		}
-		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistRequirementSubRequirements_4021(getOldSource(),
+		return UrmlBaseItemSemanticEditPolicy.LinkConstraints.canExistVariationPointVariety_4042(getOldSource(),
 			getNewTarget());
 	}
 
@@ -106,8 +107,8 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getSubRequirements().remove(getOldTarget());
-		getNewSource().getSubRequirements().add(getOldTarget());
+		getOldSource().getVariety().remove(getOldTarget());
+		getNewSource().getVariety().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -115,36 +116,36 @@ public class RequirementSubRequirementsReorientCommand extends EditElementComman
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getSubRequirements().remove(getOldTarget());
-		getOldSource().getSubRequirements().add(getNewTarget());
+		getOldSource().getVariety().remove(getOldTarget());
+		getOldSource().getVariety().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getOldSource() {
-		return (Requirement) referenceOwner;
+	protected VariationPoint getOldSource() {
+		return (VariationPoint) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getNewSource() {
-		return (Requirement) newEnd;
+	protected VariationPoint getNewSource() {
+		return (VariationPoint) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getOldTarget() {
-		return (Requirement) oldEnd;
+	protected AbstractFeature getOldTarget() {
+		return (AbstractFeature) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getNewTarget() {
-		return (Requirement) newEnd;
+	protected AbstractFeature getNewTarget() {
+		return (AbstractFeature) newEnd;
 	}
 }

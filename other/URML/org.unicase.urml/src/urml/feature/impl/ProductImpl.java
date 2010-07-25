@@ -6,11 +6,15 @@ package urml.feature.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.feature.FeaturePackage;
@@ -18,7 +22,9 @@ import urml.feature.Product;
 import urml.feature.VariationPointInstance;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Product</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Product</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -31,7 +37,8 @@ import urml.feature.VariationPointInstance;
 public class ProductImpl extends UrmlModelElementImpl implements Product {
 	/**
 	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getVariationPointInstances()
 	 * @generated
 	 * @ordered
@@ -39,7 +46,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	protected EList<VariationPointInstance> variationPointInstances;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ProductImpl() {
@@ -47,7 +55,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,7 +65,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getVariationPointInstances() {
@@ -69,7 +79,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -84,7 +95,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,7 +109,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,7 +123,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,7 +140,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,7 +155,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,4 +168,4 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 		return super.eIsSet(featureID);
 	}
 
-} // ProductImpl
+} //ProductImpl

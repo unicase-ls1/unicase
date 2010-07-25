@@ -6,11 +6,15 @@ package urml.danger.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.danger.Danger;
@@ -18,7 +22,9 @@ import urml.danger.DangerPackage;
 import urml.danger.Mitigation;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Mitigation</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -30,9 +36,9 @@ import urml.danger.Mitigation;
  */
 public abstract class MitigationImpl extends UrmlModelElementImpl implements Mitigation {
 	/**
-	 * The cached value of the '{@link #getMitigatedDangers() <em>Mitigated Dangers</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMitigatedDangers() <em>Mitigated Dangers</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getMitigatedDangers()
 	 * @generated
 	 * @ordered
@@ -40,7 +46,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	protected EList<Danger> mitigatedDangers;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MitigationImpl() {
@@ -48,7 +55,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +65,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Danger> getMitigatedDangers() {
@@ -69,7 +78,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -83,7 +93,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,7 +107,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,7 +121,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -125,7 +138,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,7 +153,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,4 +166,4 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 		return super.eIsSet(featureID);
 	}
 
-} // MitigationImpl
+} //MitigationImpl

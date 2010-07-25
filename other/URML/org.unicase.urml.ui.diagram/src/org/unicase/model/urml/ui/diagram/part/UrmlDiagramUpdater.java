@@ -27,6 +27,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.DangerEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.DangerHarmedAssetsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FeatureEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.FunctionalRequirementSubFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalRealizedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalReference2EditPart;
@@ -36,11 +37,11 @@ import org.unicase.model.urml.ui.diagram.edit.parts.GoalReferenceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.GoalSubGoalsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.MitigationMitigatedDangersEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.NonFunctionalRequirementSubNonFunctionalRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProceduralMitigationEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ProductVariationPointInstancesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.RequirementImplementingServicesEditPart;
-import org.unicase.model.urml.ui.diagram.edit.parts.RequirementSubRequirementsEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.ServiceSubServicesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.StakeholderEditPart;
@@ -50,6 +51,7 @@ import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceSelectedFeaturesEditPart;
 import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointInstanceVariationPointEditPart;
+import org.unicase.model.urml.ui.diagram.edit.parts.VariationPointVarietyEditPart;
 import org.unicase.model.urml.ui.diagram.providers.UrmlElementTypes;
 
 import urml.danger.Asset;
@@ -320,7 +322,8 @@ public class UrmlDiagramUpdater {
 		FunctionalRequirement modelElement = (FunctionalRequirement) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_ImplementingServices_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement));
+		result
+			.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_SubFunctionalRequirements_4044(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_MitigatedDangers_4012(modelElement));
 		return result;
 	}
@@ -359,7 +362,8 @@ public class UrmlDiagramUpdater {
 		NonFunctionalRequirement modelElement = (NonFunctionalRequirement) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_ImplementingServices_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement));
+		result
+			.addAll(getOutgoingFeatureModelFacetLinks_NonFunctionalRequirement_SubNonFunctionalRequirements_4043(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_MitigatedDangers_4012(modelElement));
 		return result;
 	}
@@ -407,6 +411,7 @@ public class UrmlDiagramUpdater {
 			.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ConstrainingNonFunctionalRequirements_4036(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_RequieredFeatures_4037(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_VariationPoint_Variety_4042(modelElement));
 		return result;
 	}
 
@@ -491,8 +496,8 @@ public class UrmlDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_DetailingFunctionalRequirements_4035(
 			modelElement, crossReferences));
-		result
-			.addAll(getIncomingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_SubFunctionalRequirements_4044(
+			modelElement, crossReferences));
 		return result;
 	}
 
@@ -510,6 +515,7 @@ public class UrmlDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Goal_RealizedFeatures_4004(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_VariationPoint_Variety_4042(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_SelectedFeatures_4040(modelElement,
 			crossReferences));
 		return result;
@@ -538,8 +544,8 @@ public class UrmlDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_ConstrainingNonFunctionalRequirements_4036(
 			modelElement, crossReferences));
-		result
-			.addAll(getIncomingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NonFunctionalRequirement_SubNonFunctionalRequirements_4043(
+			modelElement, crossReferences));
 		return result;
 	}
 
@@ -588,6 +594,7 @@ public class UrmlDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Goal_RealizedFeatures_4004(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_VariationPoint_Variety_4042(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_VariationPoint_4033(modelElement,
 			crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_VariationPointInstance_SelectedFeatures_4040(modelElement,
@@ -674,7 +681,8 @@ public class UrmlDiagramUpdater {
 		FunctionalRequirement modelElement = (FunctionalRequirement) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_ImplementingServices_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement));
+		result
+			.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_SubFunctionalRequirements_4044(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_MitigatedDangers_4012(modelElement));
 		return result;
 	}
@@ -713,7 +721,8 @@ public class UrmlDiagramUpdater {
 		NonFunctionalRequirement modelElement = (NonFunctionalRequirement) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_ImplementingServices_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SubRequirements_4021(modelElement));
+		result
+			.addAll(getOutgoingFeatureModelFacetLinks_NonFunctionalRequirement_SubNonFunctionalRequirements_4043(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_MitigatedDangers_4012(modelElement));
 		return result;
 	}
@@ -761,6 +770,7 @@ public class UrmlDiagramUpdater {
 			.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ConstrainingNonFunctionalRequirements_4036(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_RequieredFeatures_4037(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_AbstractFeature_ExcludedFeatures_4038(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_VariationPoint_Variety_4042(modelElement));
 		return result;
 	}
 
@@ -1154,15 +1164,36 @@ public class UrmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Requirement_SubRequirements_4021(Requirement target,
-		Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_NonFunctionalRequirement_SubNonFunctionalRequirements_4043(
+		NonFunctionalRequirement target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
-			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE.getRequirement_SubRequirements()) {
+			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
+				.getNonFunctionalRequirement_SubNonFunctionalRequirements()) {
 				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
-					UrmlElementTypes.RequirementSubRequirements_4021, RequirementSubRequirementsEditPart.VISUAL_ID));
+					UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043,
+					NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingFeatureModelFacetLinks_FunctionalRequirement_SubFunctionalRequirements_4044(
+		FunctionalRequirement target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
+				.getFunctionalRequirement_SubFunctionalRequirements()) {
+				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
+					UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044,
+					FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1231,6 +1262,23 @@ public class UrmlDiagramUpdater {
 			if (setting.getEStructuralFeature() == ServicePackage.eINSTANCE.getService_SubServices()) {
 				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
 					UrmlElementTypes.ServiceSubServices_4022, ServiceSubServicesEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingFeatureModelFacetLinks_VariationPoint_Variety_4042(AbstractFeature target,
+		Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() == FeaturePackage.eINSTANCE.getVariationPoint_Variety()) {
+				result.add(new UrmlLinkDescriptor(setting.getEObject(), target,
+					UrmlElementTypes.VariationPointVariety_4042, VariationPointVarietyEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1569,12 +1617,29 @@ public class UrmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Requirement_SubRequirements_4021(Requirement source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_NonFunctionalRequirement_SubNonFunctionalRequirements_4043(
+		NonFunctionalRequirement source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getSubRequirements().iterator(); destinations.hasNext();) {
-			Requirement destination = (Requirement) destinations.next();
-			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.RequirementSubRequirements_4021,
-				RequirementSubRequirementsEditPart.VISUAL_ID));
+		for (Iterator destinations = source.getSubNonFunctionalRequirements().iterator(); destinations.hasNext();) {
+			NonFunctionalRequirement destination = (NonFunctionalRequirement) destinations.next();
+			result.add(new UrmlLinkDescriptor(source, destination,
+				UrmlElementTypes.NonFunctionalRequirementSubNonFunctionalRequirements_4043,
+				NonFunctionalRequirementSubNonFunctionalRequirementsEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_FunctionalRequirement_SubFunctionalRequirements_4044(
+		FunctionalRequirement source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getSubFunctionalRequirements().iterator(); destinations.hasNext();) {
+			FunctionalRequirement destination = (FunctionalRequirement) destinations.next();
+			result.add(new UrmlLinkDescriptor(source, destination,
+				UrmlElementTypes.FunctionalRequirementSubFunctionalRequirements_4044,
+				FunctionalRequirementSubFunctionalRequirementsEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1627,6 +1692,19 @@ public class UrmlDiagramUpdater {
 			Service destination = (Service) destinations.next();
 			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.ServiceSubServices_4022,
 				ServiceSubServicesEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_VariationPoint_Variety_4042(VariationPoint source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getVariety().iterator(); destinations.hasNext();) {
+			AbstractFeature destination = (AbstractFeature) destinations.next();
+			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.VariationPointVariety_4042,
+				VariationPointVarietyEditPart.VISUAL_ID));
 		}
 		return result;
 	}

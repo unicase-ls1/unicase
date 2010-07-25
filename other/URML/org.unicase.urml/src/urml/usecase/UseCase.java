@@ -4,11 +4,15 @@
 package urml.usecase;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.requirement.Step;
+
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Use Case</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Use Case</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -28,8 +32,8 @@ public interface UseCase extends UrmlModelElement {
 	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Steps</em>' containment reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Steps</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
@@ -45,8 +49,8 @@ public interface UseCase extends UrmlModelElement {
 	 * It is bidirectional and its opposite is '{@link urml.usecase.Actor#getUseCases <em>Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Actors</em>' reference list isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Actors</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Actors</em>' reference list.

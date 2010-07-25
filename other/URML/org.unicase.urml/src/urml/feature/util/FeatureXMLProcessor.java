@@ -6,22 +6,25 @@ package urml.feature.util;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 import urml.feature.FeaturePackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class FeatureXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FeatureXMLProcessor() {
@@ -31,8 +34,8 @@ public class FeatureXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Register for "*" and "xml" file extensions the FeatureResourceFactoryImpl factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -45,4 +48,4 @@ public class FeatureXMLProcessor extends XMLProcessor {
 		return registrations;
 	}
 
-} // FeatureXMLProcessor
+} //FeatureXMLProcessor

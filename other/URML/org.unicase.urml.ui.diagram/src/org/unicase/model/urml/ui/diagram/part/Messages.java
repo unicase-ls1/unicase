@@ -563,12 +563,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_RequirementSubRequirements_4021_target;
+	public static String NavigatorGroupName_NonFunctionalRequirementSubNonFunctionalRequirements_4043_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_RequirementSubRequirements_4021_source;
+	public static String NavigatorGroupName_NonFunctionalRequirementSubNonFunctionalRequirements_4043_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementSubFunctionalRequirements_4044_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementSubFunctionalRequirements_4044_source;
 
 	/**
 	 * @generated
@@ -609,6 +619,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ServiceSubServices_4022_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointVariety_4042_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_VariationPointVariety_4042_source;
 
 	/**
 	 * @generated
