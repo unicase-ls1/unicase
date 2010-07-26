@@ -122,6 +122,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			URI fileURI = URI.createFileURI(newfileName);
 			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
 			newResource.getContents().add(modelElement);
+			save(modelElement);
 		}
 	}
 
