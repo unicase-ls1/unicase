@@ -30,6 +30,7 @@ Sub-projects:
 Step-by-step:
  * [Getting_started_as_developer Getting started as UNICASE Developer]
  * [EMFStoreGettingStarted Getting started as EMFStore Framework User]
+ * [EMFGettingStarted Getting started with EMF, ECP and EMFStore]
 
 General Content:
  * [Coding]
