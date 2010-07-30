@@ -16,52 +16,103 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.urml.ui.hypergraph.ShowHypergraphViewHandler"
             id="org.unicase.urml.ui.hypergraph.ShowHypergraphView"
             name="ShowHypergraphView">
       </command>
+      <command
+            id="org.unicase.urml.ui.hypergraph.ShowInNavigator"
+            name="ShowInNavigator">
+      </command>
+      <command
+            id="org.unicase.urml.ui.hypergraph.ShowInMEDiagram"
+            name="ShowInMEDiagram">
+      </command>
+      <command
+            id="org.unicase.urml.ui.hypergraph.ShowInMEEditor"
+            name="ShowInMEEditor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.urml.ui.hypergraph.ShowHypergraphViewHandler"
+            commandId="org.unicase.urml.ui.hypergraph.ShowHypergraphView">
+      </handler>
+      <handler
+            class="org.unicase.urml.ui.hypergraph.ShowInNavigatorHandler"
+            commandId="org.unicase.urml.ui.hypergraph.ShowInNavigator">
+      </handler>
+      <handler
+            class="org.unicase.urml.ui.hypergraph.ShowInMEEditorHandler"
+            commandId="org.unicase.urml.ui.hypergraph.ShowInMEEditor">
+      </handler>
+      <handler
+            class="org.unicase.urml.ui.hypergraph.ShowInMEDiagramHandler"
+            commandId="org.unicase.urml.ui.hypergraph.ShowInMEDiagram">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+            locationURI="popup:org.eclipse.ui.popup.any">
          <command
                commandId="org.unicase.urml.ui.hypergraph.ShowHypergraphView"
                icon="icons/sample.gif"
                label="Show Hypergraph"
                style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.urml.ui.hypergraph.HypergraphView">
+         <command
+               commandId="org.unicase.urml.ui.hypergraph.ShowInNavigator"
+               icon="icons/sample.gif"
+               label="Show in Navigator"
+               style="push">
             <visibleWhen
                   checkEnabled="false">
-               <and>
-                  <count
-                        value="1">
-                  </count>
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <instanceof
-                           value="org.unicase.model.urml.UrmlModelElement">
-                     </instanceof>
-                  </iterate>
-               </and>
+               <reference
+                     definitionId="org.unicase.urml.ui.hypergraph.SelectionCheck">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.urml.ui.hypergraph.ShowInMEEditor"
+               icon="icons/sample.gif"
+               label="Show in MEEditor"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.unicase.urml.ui.hypergraph.SelectionCheck">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.urml.ui.hypergraph.ShowInMEDiagram"
+               icon="icons/sample.gif"
+               label="Show in MEDiagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.unicase.urml.ui.hypergraph.SelectionCheck">
+               </reference>
             </visibleWhen>
          </command>
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="ShowHypergraphView"
-            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
-         <action
-               class="org.unicase.urml.ui.hypergraph.ShowHypergraphViewAction"
-               enablesFor="1"
-               icon="icons/sample.gif"
-               id="ShowHypergraphView"
-               label="Show Hypergraph">
-         </action>
-      </objectContribution>
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.unicase.urml.ui.hypergraph.SelectionCheck">
+         <with
+               variable="activeMenuSelection">
+            <count
+                  value="1">
+            </count>
+         </with>
+      </definition>
    </extension>
 
 

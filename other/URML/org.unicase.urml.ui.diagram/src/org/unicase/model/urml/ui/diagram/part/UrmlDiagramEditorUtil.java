@@ -187,8 +187,8 @@ public class UrmlDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static URMLDiagram createInitialModel() {
@@ -196,8 +196,8 @@ public class UrmlDiagramEditorUtil {
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(URMLDiagram model, Resource resource) {
@@ -207,7 +207,7 @@ public class UrmlDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List/*EditPart*/editParts) {
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List/* EditPart */editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;

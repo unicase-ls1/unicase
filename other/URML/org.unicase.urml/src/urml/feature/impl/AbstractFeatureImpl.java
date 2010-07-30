@@ -7,65 +7,58 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.feature.AbstractFeature;
 import urml.feature.FeaturePackage;
 import urml.feature.VariationPoint;
 import urml.feature.VariationPointInstance;
-
 import urml.goal.Goal;
 import urml.goal.GoalPackage;
-
 import urml.requirement.FunctionalRequirement;
 import urml.requirement.NonFunctionalRequirement;
 import urml.requirement.RequirementPackage;
-
 import urml.usecase.SolutionDomainUseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Abstract Feature</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getGoals <em>Goals</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getDetailingFunctionalRequirements <em>Detailing Functional Requirements</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getConstrainingNonFunctionalRequirements <em>Constraining Non Functional Requirements</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getParentFeature <em>Parent Feature</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getSubFeatures <em>Sub Features</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getExcludingFeatures <em>Excluding Features</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getExcludedFeatures <em>Excluded Features</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getRequieringFeatures <em>Requiering Features</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getRequieredFeatures <em>Requiered Features</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getVariationPoint <em>Variation Point</em>}</li>
- *   <li>{@link urml.feature.impl.AbstractFeatureImpl#getVariationPointInstances <em>Variation Point Instances</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getGoals <em>Goals</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getDetailingFunctionalRequirements <em>Detailing Functional
+ * Requirements</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getConstrainingNonFunctionalRequirements <em>Constraining Non
+ * Functional Requirements</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getParentFeature <em>Parent Feature</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getSubFeatures <em>Sub Features</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getExcludingFeatures <em>Excluding Features</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getExcludedFeatures <em>Excluded Features</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getRequieringFeatures <em>Requiering Features</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getRequieredFeatures <em>Requiered Features</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getVariationPoint <em>Variation Point</em>}</li>
+ * <li>{@link urml.feature.impl.AbstractFeatureImpl#getVariationPointInstances <em>Variation Point Instances</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implements AbstractFeature {
 	/**
-	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getGoals()
 	 * @generated
 	 * @ordered
@@ -73,9 +66,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<Goal> goals;
 
 	/**
-	 * The cached value of the '{@link #getDetailingFunctionalRequirements() <em>Detailing Functional Requirements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetailingFunctionalRequirements() <em>Detailing Functional Requirements</em>}
+	 * ' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDetailingFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -83,9 +76,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<FunctionalRequirement> detailingFunctionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getConstrainingNonFunctionalRequirements() <em>Constraining Non Functional Requirements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConstrainingNonFunctionalRequirements()
+	 * <em>Constraining Non Functional Requirements</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConstrainingNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -93,9 +86,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<NonFunctionalRequirement> constrainingNonFunctionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getDetailingUseCases() <em>Detailing Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetailingUseCases() <em>Detailing Use Cases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDetailingUseCases()
 	 * @generated
 	 * @ordered
@@ -103,9 +96,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<SolutionDomainUseCase> detailingUseCases;
 
 	/**
-	 * The cached value of the '{@link #getSubFeatures() <em>Sub Features</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubFeatures() <em>Sub Features</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubFeatures()
 	 * @generated
 	 * @ordered
@@ -113,9 +106,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> subFeatures;
 
 	/**
-	 * The cached value of the '{@link #getExcludingFeatures() <em>Excluding Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getExcludingFeatures() <em>Excluding Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExcludingFeatures()
 	 * @generated
 	 * @ordered
@@ -123,9 +116,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> excludingFeatures;
 
 	/**
-	 * The cached value of the '{@link #getExcludedFeatures() <em>Excluded Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getExcludedFeatures() <em>Excluded Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExcludedFeatures()
 	 * @generated
 	 * @ordered
@@ -133,9 +126,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> excludedFeatures;
 
 	/**
-	 * The cached value of the '{@link #getRequieringFeatures() <em>Requiering Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequieringFeatures() <em>Requiering Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRequieringFeatures()
 	 * @generated
 	 * @ordered
@@ -143,9 +136,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> requieringFeatures;
 
 	/**
-	 * The cached value of the '{@link #getRequieredFeatures() <em>Requiered Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequieredFeatures() <em>Requiered Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRequieredFeatures()
 	 * @generated
 	 * @ordered
@@ -153,9 +146,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> requieredFeatures;
 
 	/**
-	 * The cached value of the '{@link #getVariationPoint() <em>Variation Point</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVariationPoint() <em>Variation Point</em>}' reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVariationPoint()
 	 * @generated
 	 * @ordered
@@ -163,9 +156,9 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected VariationPoint variationPoint;
 
 	/**
-	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVariationPointInstances()
 	 * @generated
 	 * @ordered
@@ -173,8 +166,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<VariationPointInstance> variationPointInstances;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AbstractFeatureImpl() {
@@ -182,8 +175,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,8 +185,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Goal> getGoals() {
@@ -205,8 +198,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getDetailingFunctionalRequirements() {
@@ -219,8 +212,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getConstrainingNonFunctionalRequirements() {
@@ -234,8 +227,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SolutionDomainUseCase> getDetailingUseCases() {
@@ -248,8 +241,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AbstractFeature getParentFeature() {
@@ -259,8 +252,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AbstractFeature basicGetParentFeature() {
@@ -270,8 +263,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentFeature(AbstractFeature newParentFeature, NotificationChain msgs) {
@@ -281,8 +274,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentFeature(AbstractFeature newParentFeature) {
@@ -305,8 +298,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getSubFeatures() {
@@ -318,8 +311,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getExcludingFeatures() {
@@ -332,8 +325,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getExcludedFeatures() {
@@ -346,8 +339,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getRequieringFeatures() {
@@ -360,8 +353,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getRequieredFeatures() {
@@ -374,8 +367,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VariationPoint getVariationPoint() {
@@ -392,8 +385,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VariationPoint basicGetVariationPoint() {
@@ -401,8 +394,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVariationPoint(VariationPoint newVariationPoint, NotificationChain msgs) {
@@ -420,8 +413,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVariationPoint(VariationPoint newVariationPoint) {
@@ -442,8 +435,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getVariationPointInstances() {
@@ -456,8 +449,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -505,8 +498,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -541,8 +534,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -556,8 +549,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -596,8 +589,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -656,8 +649,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -704,8 +697,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -739,4 +732,4 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 		return super.eIsSet(featureID);
 	}
 
-} //AbstractFeatureImpl
+} // AbstractFeatureImpl

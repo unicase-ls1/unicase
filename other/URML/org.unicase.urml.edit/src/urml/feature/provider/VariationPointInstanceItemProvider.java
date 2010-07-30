@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,7 +16,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.model.urml.provider.UrmlEditPlugin;
 import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
 
@@ -26,18 +23,17 @@ import urml.feature.FeaturePackage;
 import urml.feature.VariationPointInstance;
 
 /**
- * This is the item provider adapter for a {@link urml.feature.VariationPointInstance} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link urml.feature.VariationPointInstance} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class VariationPointInstanceItemProvider extends UrmlModelElementItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VariationPointInstanceItemProvider(AdapterFactory adapterFactory) {
@@ -45,9 +41,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,9 +58,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Variation Point feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Variation Point feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addVariationPointPropertyDescriptor(Object object) {
@@ -78,9 +72,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Product feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Product feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addProductPropertyDescriptor(Object object) {
@@ -92,9 +85,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Selected Features feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Selected Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSelectedFeaturesPropertyDescriptor(Object object) {
@@ -107,9 +99,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This returns VariationPointInstance.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns VariationPointInstance.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,9 +109,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,10 +121,10 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,10 +134,9 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,9 +145,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

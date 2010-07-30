@@ -6,39 +6,33 @@ package urml.usecase.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import urml.danger.impl.AssetImpl;
-
 import urml.usecase.Actor;
 import urml.usecase.UseCase;
 import urml.usecase.UsecasePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actor</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Actor</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
+ * <li>{@link urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ActorImpl extends AssetImpl implements Actor {
 	/**
-	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getUseCases()
 	 * @generated
 	 * @ordered
@@ -46,8 +40,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	protected EList<UseCase> useCases;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorImpl() {
@@ -55,8 +49,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,8 +59,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getUseCases() {
@@ -78,8 +72,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -93,8 +87,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,8 +101,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,8 +115,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -138,8 +132,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,8 +147,8 @@ public class ActorImpl extends AssetImpl implements Actor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,4 +160,4 @@ public class ActorImpl extends AssetImpl implements Actor {
 		return super.eIsSet(featureID);
 	}
 
-} //ActorImpl
+} // ActorImpl

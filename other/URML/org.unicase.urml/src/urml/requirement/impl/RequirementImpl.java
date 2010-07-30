@@ -7,44 +7,36 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import urml.danger.impl.MitigationImpl;
-
 import urml.requirement.Requirement;
 import urml.requirement.RequirementPackage;
-
 import urml.service.Service;
 import urml.service.ServicePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Requirement</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Requirement</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services</em>}</li>
- *   <li>{@link urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
+ * <li>{@link urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services</em>}</li>
+ * <li>{@link urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RequirementImpl extends MitigationImpl implements Requirement {
 	/**
-	 * The cached value of the '{@link #getImplementingServices() <em>Implementing Services</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getImplementingServices() <em>Implementing Services</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getImplementingServices()
 	 * @generated
 	 * @ordered
@@ -52,9 +44,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected EList<Service> implementingServices;
 
 	/**
-	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -62,9 +54,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected static final boolean TERMINAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -72,8 +64,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected boolean terminal = TERMINAL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementImpl() {
@@ -81,8 +73,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,8 +83,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Service> getImplementingServices() {
@@ -104,8 +96,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isTerminal() {
@@ -113,8 +105,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTerminal(boolean newTerminal) {
@@ -126,8 +118,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -142,8 +134,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,8 +148,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,8 +164,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -192,8 +184,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,8 +202,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,8 +218,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -242,4 +234,4 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 		return result.toString();
 	}
 
-} //RequirementImpl
+} // RequirementImpl

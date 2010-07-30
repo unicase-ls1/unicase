@@ -50,7 +50,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStakeholder1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Stakeholder_2002);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Stakeholder1CreationTool_title,
 			Messages.Stakeholder1CreationTool_desc, types);
@@ -64,7 +64,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createGoal2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Goal_2001);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Goal2CreationTool_title, Messages.Goal2CreationTool_desc,
 			types);
@@ -78,7 +78,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFunctionalRequirement3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.FunctionalRequirement_2006);
 		NodeToolEntry entry = new NodeToolEntry(Messages.FunctionalRequirement3CreationTool_title, null, types);
 		entry.setId("createFunctionalRequirement3CreationTool"); //$NON-NLS-1$
@@ -91,7 +91,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFeature4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Feature_2012);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Feature4CreationTool_title, null, types);
 		entry.setId("createFeature4CreationTool"); //$NON-NLS-1$
@@ -104,7 +104,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createService5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Service_2007);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Service5CreationTool_title, null, types);
 		entry.setId("createService5CreationTool"); //$NON-NLS-1$
@@ -117,7 +117,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNonFunctionalRequirement6CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.NonFunctionalRequirement_2008);
 		NodeToolEntry entry = new NodeToolEntry(Messages.NonFunctionalRequirement6CreationTool_title, null, types);
 		entry.setId("createNonFunctionalRequirement6CreationTool"); //$NON-NLS-1$
@@ -130,7 +130,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDanger7CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Danger_2009);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Danger7CreationTool_title, null, types);
 		entry.setId("createDanger7CreationTool"); //$NON-NLS-1$
@@ -143,7 +143,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createActor8CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Actor_2010);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Actor8CreationTool_title, null, types);
 		entry.setId("createActor8CreationTool"); //$NON-NLS-1$
@@ -156,7 +156,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createProceduralMitigation9CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.ProceduralMitigation_2011);
 		NodeToolEntry entry = new NodeToolEntry(Messages.ProceduralMitigation9CreationTool_title, null, types);
 		entry.setId("createProceduralMitigation9CreationTool"); //$NON-NLS-1$
@@ -169,7 +169,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createVariationPoint10CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.VariationPoint_2013);
 		NodeToolEntry entry = new NodeToolEntry(Messages.VariationPoint10CreationTool_title, null, types);
 		entry.setId("createVariationPoint10CreationTool"); //$NON-NLS-1$
@@ -182,7 +182,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createVariationPointInstance11CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.VariationPointInstance_2014);
 		NodeToolEntry entry = new NodeToolEntry(Messages.VariationPointInstance11CreationTool_title, null, types);
 		entry.setId("createVariationPointInstance11CreationTool"); //$NON-NLS-1$
@@ -195,7 +195,7 @@ public class UrmlPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createProduct12CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UrmlElementTypes.Product_2015);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Product12CreationTool_title, null, types);
 		entry.setId("createProduct12CreationTool"); //$NON-NLS-1$

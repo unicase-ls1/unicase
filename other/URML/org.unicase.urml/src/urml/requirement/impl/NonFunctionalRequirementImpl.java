@@ -7,14 +7,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -22,30 +18,30 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import urml.feature.AbstractFeature;
 import urml.feature.FeaturePackage;
-
 import urml.requirement.NonFunctionalRequirement;
 import urml.requirement.RequirementPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Non Functional Requirement</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Non Functional Requirement</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>Constrained Features</em>}</li>
- *   <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getSubNonFunctionalRequirements <em>Sub Non Functional Requirements</em>}</li>
- *   <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getParentNonFunctionalRequirement <em>Parent Non Functional Requirement</em>}</li>
+ * <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>Constrained Features</em>}</li>
+ * <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getSubNonFunctionalRequirements <em>Sub Non Functional
+ * Requirements</em>}</li>
+ * <li>{@link urml.requirement.impl.NonFunctionalRequirementImpl#getParentNonFunctionalRequirement <em>Parent Non
+ * Functional Requirement</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class NonFunctionalRequirementImpl extends RequirementImpl implements NonFunctionalRequirement {
 	/**
-	 * The cached value of the '{@link #getConstrainedFeatures() <em>Constrained Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConstrainedFeatures() <em>Constrained Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConstrainedFeatures()
 	 * @generated
 	 * @ordered
@@ -53,9 +49,9 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	protected EList<AbstractFeature> constrainedFeatures;
 
 	/**
-	 * The cached value of the '{@link #getSubNonFunctionalRequirements() <em>Sub Non Functional Requirements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubNonFunctionalRequirements() <em>Sub Non Functional Requirements</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -63,8 +59,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	protected EList<NonFunctionalRequirement> subNonFunctionalRequirements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -72,8 +68,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,8 +78,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getConstrainedFeatures() {
@@ -96,8 +92,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getSubNonFunctionalRequirements() {
@@ -111,8 +107,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement getParentNonFunctionalRequirement() {
@@ -122,8 +118,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement basicGetParentNonFunctionalRequirement() {
@@ -133,8 +129,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentNonFunctionalRequirement(
@@ -145,8 +141,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentNonFunctionalRequirement(NonFunctionalRequirement newParentNonFunctionalRequirement) {
@@ -171,8 +167,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -194,8 +190,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,8 +208,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,8 +224,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -248,8 +244,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,8 +268,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -293,8 +289,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,4 +306,4 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 		return super.eIsSet(featureID);
 	}
 
-} //NonFunctionalRequirementImpl
+} // NonFunctionalRequirementImpl

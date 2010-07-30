@@ -7,14 +7,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -22,30 +18,30 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import urml.feature.AbstractFeature;
 import urml.feature.FeaturePackage;
-
 import urml.requirement.FunctionalRequirement;
 import urml.requirement.RequirementPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Functional Requirement</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Functional Requirement</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getDetailedFeatures <em>Detailed Features</em>}</li>
- *   <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getSubFunctionalRequirements <em>Sub Functional Requirements</em>}</li>
- *   <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getParentFunctionalRequirement <em>Parent Functional Requirement</em>}</li>
+ * <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getDetailedFeatures <em>Detailed Features</em>}</li>
+ * <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getSubFunctionalRequirements <em>Sub Functional
+ * Requirements</em>}</li>
+ * <li>{@link urml.requirement.impl.FunctionalRequirementImpl#getParentFunctionalRequirement <em>Parent Functional
+ * Requirement</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionalRequirementImpl extends RequirementImpl implements FunctionalRequirement {
 	/**
-	 * The cached value of the '{@link #getDetailedFeatures() <em>Detailed Features</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetailedFeatures() <em>Detailed Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDetailedFeatures()
 	 * @generated
 	 * @ordered
@@ -53,9 +49,9 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	protected EList<AbstractFeature> detailedFeatures;
 
 	/**
-	 * The cached value of the '{@link #getSubFunctionalRequirements() <em>Sub Functional Requirements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubFunctionalRequirements() <em>Sub Functional Requirements</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -63,8 +59,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	protected EList<FunctionalRequirement> subFunctionalRequirements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionalRequirementImpl() {
@@ -72,8 +68,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,8 +78,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getDetailedFeatures() {
@@ -96,8 +92,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getSubFunctionalRequirements() {
@@ -111,8 +107,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement getParentFunctionalRequirement() {
@@ -122,8 +118,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement basicGetParentFunctionalRequirement() {
@@ -133,8 +129,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentFunctionalRequirement(FunctionalRequirement newParentFunctionalRequirement,
@@ -145,8 +141,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentFunctionalRequirement(FunctionalRequirement newParentFunctionalRequirement) {
@@ -171,8 +167,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -193,8 +189,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,8 +207,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -227,8 +223,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,8 +243,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -271,8 +267,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -292,8 +288,8 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -309,4 +305,4 @@ public class FunctionalRequirementImpl extends RequirementImpl implements Functi
 		return super.eIsSet(featureID);
 	}
 
-} //FunctionalRequirementImpl
+} // FunctionalRequirementImpl

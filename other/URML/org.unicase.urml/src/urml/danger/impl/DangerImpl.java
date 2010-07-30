@@ -6,16 +6,12 @@ package urml.danger.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.danger.Asset;
@@ -24,26 +20,24 @@ import urml.danger.DangerPackage;
 import urml.danger.Mitigation;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Danger</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Danger</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.danger.impl.DangerImpl#getTriggeringAssets <em>Triggering Assets</em>}</li>
- *   <li>{@link urml.danger.impl.DangerImpl#getHarmedAssets <em>Harmed Assets</em>}</li>
- *   <li>{@link urml.danger.impl.DangerImpl#getHarmedClasses <em>Harmed Classes</em>}</li>
- *   <li>{@link urml.danger.impl.DangerImpl#getMitigations <em>Mitigations</em>}</li>
+ * <li>{@link urml.danger.impl.DangerImpl#getTriggeringAssets <em>Triggering Assets</em>}</li>
+ * <li>{@link urml.danger.impl.DangerImpl#getHarmedAssets <em>Harmed Assets</em>}</li>
+ * <li>{@link urml.danger.impl.DangerImpl#getHarmedClasses <em>Harmed Classes</em>}</li>
+ * <li>{@link urml.danger.impl.DangerImpl#getMitigations <em>Mitigations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	/**
-	 * The cached value of the '{@link #getTriggeringAssets() <em>Triggering Assets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTriggeringAssets() <em>Triggering Assets</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggeringAssets()
 	 * @generated
 	 * @ordered
@@ -51,9 +45,9 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	protected EList<Asset> triggeringAssets;
 
 	/**
-	 * The cached value of the '{@link #getHarmedAssets() <em>Harmed Assets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getHarmedAssets() <em>Harmed Assets</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHarmedAssets()
 	 * @generated
 	 * @ordered
@@ -61,9 +55,9 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	protected EList<Asset> harmedAssets;
 
 	/**
-	 * The cached value of the '{@link #getHarmedClasses() <em>Harmed Classes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getHarmedClasses() <em>Harmed Classes</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHarmedClasses()
 	 * @generated
 	 * @ordered
@@ -71,9 +65,9 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	protected EList<org.unicase.model.classes.Class> harmedClasses;
 
 	/**
-	 * The cached value of the '{@link #getMitigations() <em>Mitigations</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMitigations() <em>Mitigations</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMitigations()
 	 * @generated
 	 * @ordered
@@ -81,8 +75,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	protected EList<Mitigation> mitigations;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DangerImpl() {
@@ -90,8 +84,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,8 +94,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Asset> getTriggeringAssets() {
@@ -113,8 +107,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Asset> getHarmedAssets() {
@@ -126,8 +120,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getHarmedClasses() {
@@ -139,8 +133,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mitigation> getMitigations() {
@@ -152,8 +146,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -171,8 +165,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,8 +183,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,8 +203,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -238,8 +232,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,8 +256,8 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,4 +275,4 @@ public class DangerImpl extends UrmlModelElementImpl implements Danger {
 		return super.eIsSet(featureID);
 	}
 
-} //DangerImpl
+} // DangerImpl

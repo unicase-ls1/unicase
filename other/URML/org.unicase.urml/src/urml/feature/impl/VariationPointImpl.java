@@ -7,14 +7,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -24,25 +20,24 @@ import urml.feature.VariationPoint;
 import urml.feature.VariationPointInstance;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variation Point</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Variation Point</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.feature.impl.VariationPointImpl#getVariety <em>Variety</em>}</li>
- *   <li>{@link urml.feature.impl.VariationPointImpl#getVarietyMultiplicity <em>Variety Multiplicity</em>}</li>
- *   <li>{@link urml.feature.impl.VariationPointImpl#getInstances <em>Instances</em>}</li>
+ * <li>{@link urml.feature.impl.VariationPointImpl#getVariety <em>Variety</em>}</li>
+ * <li>{@link urml.feature.impl.VariationPointImpl#getVarietyMultiplicity <em>Variety Multiplicity</em>}</li>
+ * <li>{@link urml.feature.impl.VariationPointImpl#getInstances <em>Instances</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class VariationPointImpl extends AbstractFeatureImpl implements VariationPoint {
 	/**
-	 * The cached value of the '{@link #getVariety() <em>Variety</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVariety() <em>Variety</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVariety()
 	 * @generated
 	 * @ordered
@@ -50,9 +45,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected EList<AbstractFeature> variety;
 
 	/**
-	 * The default value of the '{@link #getVarietyMultiplicity() <em>Variety Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getVarietyMultiplicity() <em>Variety Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVarietyMultiplicity()
 	 * @generated
 	 * @ordered
@@ -60,9 +55,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected static final int VARIETY_MULTIPLICITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getVarietyMultiplicity() <em>Variety Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVarietyMultiplicity() <em>Variety Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVarietyMultiplicity()
 	 * @generated
 	 * @ordered
@@ -70,9 +65,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected int varietyMultiplicity = VARIETY_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getInstances()
 	 * @generated
 	 * @ordered
@@ -80,8 +75,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected EList<VariationPointInstance> instances;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VariationPointImpl() {
@@ -89,8 +84,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +94,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getVariety() {
@@ -112,8 +107,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getVarietyMultiplicity() {
@@ -121,8 +116,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVarietyMultiplicity(int newVarietyMultiplicity) {
@@ -134,8 +129,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getInstances() {
@@ -148,8 +143,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -165,8 +160,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,8 +176,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,8 +194,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -223,8 +218,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,8 +239,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,8 +257,8 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,4 +273,4 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 		return result.toString();
 	}
 
-} //VariationPointImpl
+} // VariationPointImpl
