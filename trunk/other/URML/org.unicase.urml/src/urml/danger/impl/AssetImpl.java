@@ -6,15 +6,11 @@ package urml.danger.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
 
 import urml.danger.Asset;
@@ -22,24 +18,22 @@ import urml.danger.Danger;
 import urml.danger.DangerPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Asset</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Asset</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
- *   <li>{@link urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
+ * <li>{@link urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
+ * <li>{@link urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	/**
-	 * The cached value of the '{@link #getTriggeredDangers() <em>Triggered Dangers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTriggeredDangers() <em>Triggered Dangers</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggeredDangers()
 	 * @generated
 	 * @ordered
@@ -47,9 +41,9 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	protected EList<Danger> triggeredDangers;
 
 	/**
-	 * The cached value of the '{@link #getHarmingDangers() <em>Harming Dangers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getHarmingDangers() <em>Harming Dangers</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHarmingDangers()
 	 * @generated
 	 * @ordered
@@ -57,8 +51,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	protected EList<Danger> harmingDangers;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AssetImpl() {
@@ -66,8 +60,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,8 +70,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Danger> getTriggeredDangers() {
@@ -89,8 +83,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Danger> getHarmingDangers() {
@@ -102,8 +96,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -119,8 +113,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,8 +129,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,8 +145,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -172,8 +166,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,8 +184,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,4 +199,4 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 		return super.eIsSet(featureID);
 	}
 
-} //AssetImpl
+} // AssetImpl

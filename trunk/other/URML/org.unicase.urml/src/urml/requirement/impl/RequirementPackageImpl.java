@@ -8,81 +8,63 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.urml.UrmlPackage;
-
 import org.unicase.model.urml.impl.UrmlPackageImpl;
 
 import urml.danger.DangerPackage;
-
 import urml.danger.impl.DangerPackageImpl;
-
 import urml.feature.FeaturePackage;
-
 import urml.feature.impl.FeaturePackageImpl;
-
 import urml.goal.GoalPackage;
-
 import urml.goal.impl.GoalPackageImpl;
-
 import urml.requirement.FunctionalRequirement;
 import urml.requirement.NonFunctionalRequirement;
 import urml.requirement.Requirement;
 import urml.requirement.RequirementFactory;
 import urml.requirement.RequirementPackage;
-
 import urml.service.ServicePackage;
-
 import urml.service.impl.ServicePackageImpl;
-
 import urml.usecase.UsecasePackage;
-
 import urml.usecase.impl.UsecasePackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementPackageImpl extends EPackageImpl implements RequirementPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionalRequirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass nonFunctionalRequirementEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see urml.requirement.RequirementPackage#eNS_URI
 	 * @see #init()
@@ -93,19 +75,19 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * <p>
+	 * This method is used to initialize {@link RequirementPackage#eINSTANCE} when that field is accessed. Clients
+	 * should not invoke it directly. Instead, they should simply access that field to obtain the package. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * <p>This method is used to initialize {@link RequirementPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -172,8 +154,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirement() {
@@ -181,8 +163,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirement_ImplementingServices() {
@@ -190,8 +172,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirement_Terminal() {
@@ -199,8 +181,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionalRequirement() {
@@ -208,8 +190,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_DetailedFeatures() {
@@ -217,8 +199,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_SubFunctionalRequirements() {
@@ -226,8 +208,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_ParentFunctionalRequirement() {
@@ -235,8 +217,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getNonFunctionalRequirement() {
@@ -244,8 +226,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_ConstrainedFeatures() {
@@ -253,8 +235,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_SubNonFunctionalRequirements() {
@@ -262,8 +244,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_ParentNonFunctionalRequirement() {
@@ -271,8 +253,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementFactory getRequirementFactory() {
@@ -280,17 +262,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -315,17 +296,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -412,4 +392,4 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
-} //RequirementPackageImpl
+} // RequirementPackageImpl

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -72,7 +70,8 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ServiceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -169,7 +168,7 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		/* user code */
-		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
 		/* user code */
 		return result;
@@ -262,8 +261,11 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		types.add(UrmlElementTypes.ServiceSubServices_4022);
 		return types;
@@ -272,9 +274,12 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (targetEditPart instanceof DangerEditPart) {
 			types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		}
@@ -287,9 +292,12 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.AssetTriggeredDangers_4017) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}
@@ -302,8 +310,11 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.RequirementImplementingServices_4005);
 		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
 		types.add(UrmlElementTypes.ServiceSubServices_4022);
@@ -313,9 +324,12 @@ public class ServiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.RequirementImplementingServices_4005) {
 			types.add(UrmlElementTypes.FunctionalRequirement_2006);
 		}

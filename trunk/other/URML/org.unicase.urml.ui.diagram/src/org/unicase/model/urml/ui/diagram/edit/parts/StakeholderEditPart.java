@@ -70,7 +70,8 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StakeholderItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -167,7 +168,7 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		/* user code */
-		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
 		/* user code */
 		return result;
@@ -260,8 +261,11 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.StakeholderGoals_4008);
 		return types;
 	}
@@ -269,9 +273,12 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (targetEditPart instanceof GoalEditPart) {
 			types.add(UrmlElementTypes.StakeholderGoals_4008);
 		}
@@ -281,9 +288,12 @@ public class StakeholderEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.StakeholderGoals_4008) {
 			types.add(UrmlElementTypes.Goal_2001);
 		}

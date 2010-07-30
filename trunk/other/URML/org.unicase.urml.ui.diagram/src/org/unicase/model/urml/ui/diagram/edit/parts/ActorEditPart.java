@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -36,7 +34,6 @@ import org.unicase.ui.diagrams.urml.figures.IconSizeNodeFigure;
 import org.unicase.ui.diagrams.urml.icons.ActorIcon;
 import org.unicase.ui.diagrams.urml.policies.MEEditorOpenPolicie;
 import org.unicase.ui.unicasecommon.diagram.figures.Label;
-import org.unicase.ui.unicasecommon.diagram.shapes.StickMan;
 
 /**
  * @generated
@@ -73,7 +70,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenPolicie());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -170,7 +168,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		/* user code */
-		//		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
 		/* user code */
 		return result;
@@ -263,8 +261,11 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		return types;
 	}
@@ -272,9 +273,12 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 		IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (targetEditPart instanceof DangerEditPart) {
 			types.add(UrmlElementTypes.AssetTriggeredDangers_4017);
 		}
@@ -284,9 +288,12 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.AssetTriggeredDangers_4017) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}
@@ -296,8 +303,11 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		types.add(UrmlElementTypes.DangerHarmedAssets_4013);
 		return types;
 	}
@@ -305,9 +315,12 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 		IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse.gmf.runtime.emf
+																							 * .type.core.IElementType>
+																							 */();
 		if (relationshipType == UrmlElementTypes.DangerHarmedAssets_4013) {
 			types.add(UrmlElementTypes.Danger_2009);
 		}

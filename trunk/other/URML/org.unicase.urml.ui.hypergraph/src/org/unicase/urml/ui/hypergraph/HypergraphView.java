@@ -1,31 +1,32 @@
 package org.unicase.urml.ui.hypergraph;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.zest.core.widgets.Graph;
-import org.eclipse.zest.core.widgets.GraphConnection;
-import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.layouts.LayoutStyles;
-import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.model.urml.UrmlModelElement;
+import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.workspace.ProjectSpace;
 
 public class HypergraphView extends ViewPart implements ISelectionListener {
 
@@ -33,17 +34,24 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 
 	// private Label label;
 	private Action autoRefresh;
-	private Graph g;
+	private GraphViewer graph;
 
 	public HypergraphView() {
 	}
 
 	@Override
 	public void createPartControl(Composite parent) {
-		// label = new Label(parent, 0);
+		graph = new GraphViewer(parent, SWT.NONE);
+		graph.setLayoutAlgorithm(new RadialLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING), true);
+		graph.setContentProvider(new UnicaseEntityContentProvider());
+		graph.setLabelProvider(UnicaseLabelProvider.getInstance());
 
-		g = new Graph(parent, SWT.NONE);
-		g.setLayoutAlgorithm(new SpringLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING), true);
+		MenuManager menuMgr = new MenuManager();
+		menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		getSite().registerContextMenu(menuMgr, graph);
+		Control control = graph.getControl();
+		Menu menu = menuMgr.createContextMenu(control);
+		control.setMenu(menu);
 
 		autoRefresh = new Action("Auto Refresh", IAction.AS_CHECK_BOX) {
 			@Override
@@ -62,46 +70,22 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 
 	@Override
 	public void setFocus() {
-		// label.setFocus();
-		g.setFocus();
 	}
 
-	public void setInput(UrmlModelElement element) {
-		// label.setText(urmlModelElement.getName());
-		List delNodes = g.getNodes();
-		int s = delNodes.size();
-		for (int i = s - 1; i >= 0; i--) {
-			((GraphNode) delNodes.get(i)).dispose();
+	public void setInput(Object element) {
+		LinkedList<Object> input = new LinkedList<Object>();
+		// if (element instanceof UnicaseModelElement) {
+		// element = ((UnicaseModelElement) element).getProject();
+		// } else if (element instanceof ProjectSpace) {
+		// element = ((ProjectSpace) element).getProject();
+		// }
+		input.add(element);
+		if (element instanceof ProjectSpace) {
+			input.addAll(((ProjectSpace) element).getProject().getAllModelElements());
+		} else if (element instanceof UnicaseModelElement) {
+			input.addAll(((UnicaseModelElement) element).getAllContainedModelElements());
 		}
-		connections = new HashMap<UrmlModelElement, List<UrmlModelElement>>();
-		nodes = new HashMap<UrmlModelElement, GraphNode>();
-		buildGraph(element);
-		g.setLayoutAlgorithm(new SpringLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING), true);
-	}
-
-	private HashMap<UrmlModelElement, List<UrmlModelElement>> connections;
-	private HashMap<UrmlModelElement, GraphNode> nodes;
-
-	private GraphNode buildGraph(UrmlModelElement element) {
-		GraphNode n1 = new GraphNode(g, SWT.NONE, element.getName());
-		connections.put(element, new LinkedList<UrmlModelElement>());
-		nodes.put(element, n1);
-		for (ModelElement tmp : element.getLinkedModelElements()) {
-			if (tmp instanceof UrmlModelElement) {
-				if (connections.containsKey(tmp)) {
-					if(!connections.get(tmp).contains(element)) {
-						new GraphConnection(g, SWT.NONE, n1, nodes.get(tmp));
-						connections.get(element).add((UrmlModelElement) tmp);
-					}
-				}
-				else {
-					GraphNode n2 = buildGraph((UrmlModelElement) tmp);
-					new GraphConnection(g, SWT.NONE, n1, n2);
-					connections.get(element).add((UrmlModelElement) tmp);
-				}
-			}
-		}
-		return n1;
+		graph.setInput(input);
 	}
 
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
@@ -113,10 +97,14 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 				} else if (element instanceof DelegatingWrapperItemProvider) {
 					element = ((DelegatingWrapperItemProvider) element).getValue();
 				}
-				if (element instanceof UrmlModelElement) {
-					setInput((UrmlModelElement) element);
+				if (element != null) {
+					setInput(element);
 				}
 			}
 		}
+	}
+
+	public GraphViewer getGraphViewer() {
+		return graph;
 	}
 }

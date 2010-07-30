@@ -260,8 +260,8 @@ public class FeatureItemSemanticEditPolicy extends UrmlBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
