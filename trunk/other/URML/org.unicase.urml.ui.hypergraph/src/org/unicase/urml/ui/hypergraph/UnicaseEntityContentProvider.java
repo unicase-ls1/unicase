@@ -15,7 +15,6 @@ public class UnicaseEntityContentProvider extends ArrayContentProvider implement
 			result.addAll(((ProjectSpace) arg0).getProject().getModelElements());
 		} else if (arg0 instanceof ModelElement) {
 			result.addAll(((ModelElement) arg0).getContainedElements());
-			result.addAll(((ModelElement) arg0).getCrossReferencedModelElements());
 		}
 		return result.toArray();
 	}
