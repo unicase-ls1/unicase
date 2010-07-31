@@ -6,6 +6,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.zest.core.viewers.EntityConnectionData;
 import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 
 public class UnicaseLabelProvider extends LabelProvider {
 
@@ -30,6 +31,8 @@ public class UnicaseLabelProvider extends LabelProvider {
 			return "";
 		} else if (element instanceof Project) {
 			return "Project";
+		} else if (element instanceof UnicaseModelElement) {
+			return ((UnicaseModelElement) element).getName();
 		}
 		return parent.getText(element);
 	}

@@ -9,6 +9,8 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
@@ -24,17 +26,17 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.layouts.LayoutStyles;
-import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.metamodel.ModelElement;
 
 public class HypergraphView extends ViewPart implements ISelectionListener {
+	public static final int MAX_DEPTH = 2;
 
 	public static final String ID = "org.unicase.urml.ui.hypergraph.HypergraphView";
 
 	// private Label label;
 	private Action autoRefresh;
 	private GraphViewer graph;
+	public Object selectedItem;
 
 	public HypergraphView() {
 	}
@@ -42,9 +44,21 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 	@Override
 	public void createPartControl(Composite parent) {
 		graph = new GraphViewer(parent, SWT.NONE);
-		graph.setLayoutAlgorithm(new RadialLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING), true);
 		graph.setContentProvider(new UnicaseEntityContentProvider());
 		graph.setLabelProvider(UnicaseLabelProvider.getInstance());
+		graph.setLayoutAlgorithm(new UnicaseLayoutAlgorithm(this, LayoutStyles.NONE), true);
+
+		graph.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object element = ((IStructuredSelection) selection).getFirstElement();
+					if (element != null) {
+						setInput(element);
+					}
+				}
+			}
+		});
 
 		MenuManager menuMgr = new MenuManager();
 		menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
@@ -73,19 +87,21 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 	}
 
 	public void setInput(Object element) {
-		LinkedList<Object> input = new LinkedList<Object>();
-		// if (element instanceof UnicaseModelElement) {
-		// element = ((UnicaseModelElement) element).getProject();
-		// } else if (element instanceof ProjectSpace) {
-		// element = ((ProjectSpace) element).getProject();
-		// }
-		input.add(element);
-		if (element instanceof ProjectSpace) {
-			input.addAll(((ProjectSpace) element).getProject().getAllModelElements());
-		} else if (element instanceof UnicaseModelElement) {
-			input.addAll(((UnicaseModelElement) element).getAllContainedModelElements());
+		selectedItem = element;
+		if (element instanceof ModelElement) {
+			graph.setInput(recAddModelElement((ModelElement) element, 0));
 		}
-		graph.setInput(input);
+	}
+
+	private LinkedList<Object> recAddModelElement(ModelElement element, int depth) {
+		LinkedList<Object> input = new LinkedList<Object>();
+		if (depth < MAX_DEPTH) {
+			input.add(element);
+			for (ModelElement tmp : element.getContainedElements()) {
+				input.addAll(recAddModelElement(tmp, depth + 1));
+			}
+		}
+		return input;
 	}
 
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
