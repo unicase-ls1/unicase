@@ -2,6 +2,7 @@ package org.unicase.urml.ui.hypergraph;
 
 import java.util.LinkedList;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -27,16 +28,17 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.layouts.LayoutStyles;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.workspace.ProjectSpace;
 
 public class HypergraphView extends ViewPart implements ISelectionListener {
-	public static final int MAX_DEPTH = 2;
+	public static final int MAX_DEPTH = 3;
 
 	public static final String ID = "org.unicase.urml.ui.hypergraph.HypergraphView";
 
 	// private Label label;
 	private Action autoRefresh;
 	private GraphViewer graph;
-	public Object selectedItem;
+	public EObject selectedItem;
 
 	public HypergraphView() {
 	}
@@ -87,18 +89,30 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 	}
 
 	public void setInput(Object element) {
-		selectedItem = element;
-		if (element instanceof ModelElement) {
-			graph.setInput(recAddModelElement((ModelElement) element, 0));
+		if (element instanceof ProjectSpace) {
+			element = ((ProjectSpace) element).getProject();
+		}
+		if (element instanceof EObject) {
+			selectedItem = (EObject) element;
+			graph.setInput(recAddModelElement((EObject) element, 0, null));
 		}
 	}
 
-	private LinkedList<Object> recAddModelElement(ModelElement element, int depth) {
+	private LinkedList<Object> recAddModelElement(EObject element, int depth, Object from) {
 		LinkedList<Object> input = new LinkedList<Object>();
 		if (depth < MAX_DEPTH) {
 			input.add(element);
-			for (ModelElement tmp : element.getContainedElements()) {
-				input.addAll(recAddModelElement(tmp, depth + 1));
+			for (EObject child : element.eContents()) {
+				if (!child.equals(from)) {
+					input.addAll(recAddModelElement(child, depth + 1, element));
+				}
+			}
+			EObject parent = element.eContainer();
+			if (parent == null && element instanceof ModelElement) {
+				parent = ((ModelElement) element).getProject();
+			}
+			if (parent != null && !(parent instanceof ProjectSpace) && (from == null || !from.equals(parent))) {
+				input.addAll(recAddModelElement(parent, depth + 1, element));
 			}
 		}
 		return input;
