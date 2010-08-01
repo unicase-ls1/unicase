@@ -2,8 +2,10 @@ package org.unicase.urml.ui.hypergraph;
 
 import java.util.LinkedList;
 
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
@@ -15,8 +17,14 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTargetAdapter;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISelectionListener;
@@ -26,6 +34,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
+import org.eclipse.zest.core.widgets.Graph;
 import org.eclipse.zest.layouts.LayoutStyles;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ProjectSpace;
@@ -56,6 +65,47 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 				if (selection instanceof IStructuredSelection) {
 					Object element = ((IStructuredSelection) selection).getFirstElement();
 					if (element != null) {
+						setInput(element);
+					}
+				}
+			}
+		});
+
+		((Graph)graph.getControl()).setScrollBarVisibility(FigureCanvas.NEVER);
+		Listener listener = new Listener() {
+			private boolean pressed = false;
+			private int pressedX, pressedY;
+			
+			public void handleEvent(Event event) {
+				if(event.type == SWT.MouseDown) {
+					pressed = true;
+					pressedX = event.x;
+					pressedY = event.y;
+				} else if(event.type == SWT.MouseMove) {
+					if(pressed) {
+						int deltaX = pressedX - event.x;
+						int deltaY = pressedY - event.y;
+						Graph graph = (Graph) HypergraphView.this.graph.getControl();
+						graph.scrollTo(deltaX, deltaY);
+					}
+				} else if(event.type == SWT.MouseUp) {
+					pressed = false;
+				}
+			}
+		};
+		graph.getControl().addListener(SWT.MouseDown, listener);
+		graph.getControl().addListener(SWT.MouseUp, listener);
+		graph.getControl().addListener(SWT.MouseMove, listener);
+		
+		graph.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK, new Transfer [] {LocalTransfer.getInstance()}, new DropTargetAdapter() {
+			@Override
+			public void drop(DropTargetEvent event) {
+				if (event.data instanceof IStructuredSelection) {
+					Object element = ((IStructuredSelection) event.data).getFirstElement();
+					if (element instanceof EditPart) {
+						element = ((View) ((EditPart) element).getModel()).getElement();
+					}
+					if (element instanceof EObject) {
 						setInput(element);
 					}
 				}
