@@ -19,7 +19,8 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Class to test if a project is deleted correctly in UNICASE or not.
+ * Class to test if a project is deleted correctly in UNICASE repository. Also it tests if the deleted project dosen't
+ * appear on the UNICASE Navigator.
  */
 public class DeleteProjectUITest extends MEEditorTest {
 	private Project newproject;

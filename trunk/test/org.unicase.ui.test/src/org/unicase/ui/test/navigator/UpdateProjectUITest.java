@@ -5,21 +5,18 @@
  */
 package org.unicase.ui.test.navigator;
 
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.unicase.metamodel.Project;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.SetupHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Class to test if a project is is updated correctly in a way that the project is successfully synchronized between the
+ * UI and the UNICASE repository .
+ */
 public class UpdateProjectUITest extends MEEditorTest {
 	/**
 	 * Setup the environment for testing.
@@ -29,22 +26,6 @@ public class UpdateProjectUITest extends MEEditorTest {
 	public static void beforeClass() throws Exception {
 
 		SetupHelper.startSever();
-
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-				ProjectSpace ps = currentWorkspace.getActiveProjectSpace();
-				Project project = ps.getProject();
-				CompositeSection document = DocumentFactory.eINSTANCE.createCompositeSection();
-				document.setName("Requirements Document");
-				project.addModelElement(document);
-				LeafSection ls = DocumentFactory.eINSTANCE.createLeafSection();
-				ls.setName("dodo");
-				document.getSubsections().add(ls);
-			}
-		}.run();
 	}
 
 	/**
@@ -53,21 +34,16 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void updateProjectUpdate() {
-
-		UITestCommon.openPerspective(getBot(), "Unicase");
-
-		/*
-		 * new UnicaseCommand() {
-		 * @Override protected void doRun() { } }.run();
-		 */
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
-
-		getBot().sleep(100000);
-
 	}
 
 	@Test
 	public void updateProjectChange() {
+
+		UITestCommon.openPerspective(getBot(), "Unicase");
+		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		SWTBotTreeItem[] treenode = getBot().activeView().bot().tree().getAllItems();
+
+		getBot().sleep(100000);
 
 	}
 
