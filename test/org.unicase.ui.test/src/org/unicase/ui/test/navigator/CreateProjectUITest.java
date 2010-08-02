@@ -21,7 +21,8 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Class to test if a project is created correctly in UNICASE or not.
+ * Class to test if a project is created correctly in UNICASE repository. Also it tests if the created project appears
+ * on the UNICASE Navigator.
  */
 
 public class CreateProjectUITest extends MEEditorTest {
