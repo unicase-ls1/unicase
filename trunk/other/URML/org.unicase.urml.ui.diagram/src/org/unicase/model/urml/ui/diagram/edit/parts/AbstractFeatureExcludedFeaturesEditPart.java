@@ -1,15 +1,13 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.policies.AbstractFeatureExcludedFeaturesItemSemanticEditPolicy;
+import org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection;
 
 /**
  * @generated
@@ -78,39 +76,14 @@ public class AbstractFeatureExcludedFeaturesEditPart extends ConnectionNodeEditP
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new FeatureExcludeFeatureFigure();
+		return new ShortenedPolylineConnection();
 	}
 
 	/**
 	 * @generated
 	 */
-	public FeatureExcludeFeatureFigure getPrimaryShape() {
-		return (FeatureExcludeFeatureFigure) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class FeatureExcludeFeatureFigure extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public FeatureExcludeFeatureFigure() {
-			this.setLineWidth(1);
-
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			return df;
-		}
-
+	public ShortenedPolylineConnection getPrimaryShape() {
+		return (ShortenedPolylineConnection) getFigure();
 	}
 
 }

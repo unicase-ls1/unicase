@@ -1,16 +1,15 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.policies.GoalReference2ItemSemanticEditPolicy;
+import org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection;
 
 /**
  * @generated
@@ -100,7 +99,7 @@ public class GoalReference2EditPart extends ConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public class GoalInfluenceGoalsFigure extends PolylineConnectionEx {
+	public class GoalInfluenceGoalsFigure extends ShortenedPolylineConnection {
 
 		/**
 		 * @generated
@@ -111,10 +110,19 @@ public class GoalReference2EditPart extends ConnectionNodeEditPart implements IT
 		 * @generated
 		 */
 		public GoalInfluenceGoalsFigure() {
-			this.setLineWidth(1);
+
+			FlowLayout layoutThis = new FlowLayout();
+			layoutThis.setStretchMinorAxis(false);
+			layoutThis.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
+
+			layoutThis.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
+			layoutThis.setMajorSpacing(5);
+			layoutThis.setMinorSpacing(5);
+			layoutThis.setHorizontal(true);
+
+			this.setLayoutManager(layoutThis);
 
 			createContents();
-			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -132,10 +140,20 @@ public class GoalReference2EditPart extends ConnectionNodeEditPart implements IT
 		/**
 		 * @generated
 		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			return df;
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**
