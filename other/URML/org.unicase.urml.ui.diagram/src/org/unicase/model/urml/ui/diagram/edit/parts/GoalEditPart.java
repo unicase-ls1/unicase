@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
@@ -169,7 +168,7 @@ public class GoalEditPart extends ShapeNodeEditPart {
 	protected NodeFigure createNodePlate() {
 		/* user code */
 		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
-		DefaultSizeNodeFigure result = new IconSizeNodeFigure(40, 40);
+		NodeFigure result = new IconSizeNodeFigure();
 		/* user code */
 		return result;
 	}

@@ -1,15 +1,13 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.urml.ui.diagram.edit.policies.DangerHarmedAssetsItemSemanticEditPolicy;
+import org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection;
 
 /**
  * @generated
@@ -78,39 +76,14 @@ public class DangerHarmedAssetsEditPart extends ConnectionNodeEditPart implement
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new DangerAssetFigure();
+		return new ShortenedPolylineConnection();
 	}
 
 	/**
 	 * @generated
 	 */
-	public DangerAssetFigure getPrimaryShape() {
-		return (DangerAssetFigure) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class DangerAssetFigure extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public DangerAssetFigure() {
-			this.setLineWidth(1);
-
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			return df;
-		}
-
+	public ShortenedPolylineConnection getPrimaryShape() {
+		return (ShortenedPolylineConnection) getFigure();
 	}
 
 }

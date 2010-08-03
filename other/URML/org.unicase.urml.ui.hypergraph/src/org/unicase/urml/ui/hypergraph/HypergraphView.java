@@ -71,24 +71,24 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 			}
 		});
 
-		((Graph)graph.getControl()).setScrollBarVisibility(FigureCanvas.NEVER);
+		((Graph) graph.getControl()).setScrollBarVisibility(FigureCanvas.NEVER);
 		Listener listener = new Listener() {
 			private boolean pressed = false;
 			private int pressedX, pressedY;
-			
+
 			public void handleEvent(Event event) {
-				if(event.type == SWT.MouseDown) {
+				if (event.type == SWT.MouseDown) {
 					pressed = true;
 					pressedX = event.x;
 					pressedY = event.y;
-				} else if(event.type == SWT.MouseMove) {
-					if(pressed) {
+				} else if (event.type == SWT.MouseMove) {
+					if (pressed) {
 						int deltaX = pressedX - event.x;
 						int deltaY = pressedY - event.y;
 						Graph graph = (Graph) HypergraphView.this.graph.getControl();
 						graph.scrollTo(deltaX, deltaY);
 					}
-				} else if(event.type == SWT.MouseUp) {
+				} else if (event.type == SWT.MouseUp) {
 					pressed = false;
 				}
 			}
@@ -96,8 +96,9 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 		graph.getControl().addListener(SWT.MouseDown, listener);
 		graph.getControl().addListener(SWT.MouseUp, listener);
 		graph.getControl().addListener(SWT.MouseMove, listener);
-		
-		graph.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK, new Transfer [] {LocalTransfer.getInstance()}, new DropTargetAdapter() {
+
+		graph.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK, new Transfer[] { LocalTransfer
+			.getInstance() }, new DropTargetAdapter() {
 			@Override
 			public void drop(DropTargetEvent event) {
 				if (event.data instanceof IStructuredSelection) {
