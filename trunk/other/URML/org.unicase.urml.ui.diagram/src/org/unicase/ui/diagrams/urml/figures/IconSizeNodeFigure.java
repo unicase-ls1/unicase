@@ -3,6 +3,7 @@ package org.unicase.ui.diagrams.urml.figures;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
@@ -28,5 +29,10 @@ public class IconSizeNodeFigure extends NodeFigure {
 				return getPolygonPoints().getFirstPoint();
 			}
 		};
+	}
+
+	@Override
+	protected ConnectionAnchor createAnchor(PrecisionPoint p) {
+		return createDefaultAnchor();
 	}
 }
