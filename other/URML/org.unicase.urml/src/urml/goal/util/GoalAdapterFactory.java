@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.urml.UrmlModelElement;
 
@@ -95,6 +96,11 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseUrmlModelElement(UrmlModelElement object) {
 			return createUrmlModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseNonDomainElement(NonDomainElement object) {
+			return createNonDomainElementAdapter();
 		}
 
 		@Override
@@ -193,6 +199,20 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUrmlModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.NonDomainElement
+	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.NonDomainElement
+	 * @generated
+	 */
+	public Adapter createNonDomainElementAdapter() {
 		return null;
 	}
 

@@ -1,6 +1,7 @@
 package org.unicase.ui.diagram.urml.meeditor;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -25,6 +26,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.ModelElementChangeListener;
@@ -39,8 +41,10 @@ import urml.goal.GoalReferenceType;
 public class GoalInfluenceLinkControl extends MELinkControl {
 	private Composite composite;
 	private ILabelProvider goalLabelProvider;
+	private ImageHyperlink imgHyperlink;
 	private Hyperlink goalHyperlink;
 	private Combo combobox;
+	private Hyperlink refHyperlink;
 	private Image deleteImage;
 	private ModelElementChangeListener goalChangeListener;
 	private ModelElementChangeListener refChangeListener;
@@ -48,7 +52,13 @@ public class GoalInfluenceLinkControl extends MELinkControl {
 	private IHyperlinkListener linkToRefListener;
 	private MEHyperLinkDeleteAdapter delRefListener;
 	private GoalReference goalRef;
+	private Goal thisGoal;
 	private Goal linkedGoal;
+	private EAttribute eAttribute;
+	private ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+	private EReference eReference;
+	private ModelElementContext context;
+	private Composite parent;
 
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
@@ -69,26 +79,14 @@ public class GoalInfluenceLinkControl extends MELinkControl {
 		final EObject link, EObject contextModelElement, FormToolkit toolkit, ModelElementContext context) {
 		if (link instanceof GoalReference) {
 			goalRef = (GoalReference) link;
-			if (goalRef.getSource().equals(contextModelElement)) {
-				linkedGoal = goalRef.getTarget();
-			} else if (goalRef.getTarget().equals(contextModelElement)) {
-				linkedGoal = goalRef.getSource();
-			}
-			EReference eReference = (EReference) itemPropertyDescriptor.getFeature(link);
-			linkToGoalListener = new MEHyperLinkAdapter(linkedGoal, contextModelElement, eReference.getName(), context);
-			linkToRefListener = new MEHyperLinkAdapter(goalRef, contextModelElement, eReference.getName(), context);
-			delRefListener = new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link, context);
+			thisGoal = (Goal) contextModelElement;
+			eReference = (EReference) itemPropertyDescriptor.getFeature(goalRef);
+			eAttribute = (EAttribute) goalRef.eClass().getEStructuralFeature("weight");
 			this.toolkit = toolkit;
-			composite = toolkit.createComposite(parent, style);
-			composite.setLayout(new GridLayout(5, false));
-			if (eReference.isContainment() && (context.isNonDomainElement(link))) {
-				deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
-			} else {
-				deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
-			}
-			if (linkedGoal != null) {
-				createComponents(parent, style);
-			}
+			this.context = context;
+			this.parent = parent;
+			createComponents(parent, style);
+			setupComponents();
 			return composite;
 		} else {
 			return super.createControl(parent, style, itemPropertyDescriptor, link, contextModelElement, toolkit,
@@ -96,71 +94,88 @@ public class GoalInfluenceLinkControl extends MELinkControl {
 		}
 	}
 
-	protected void createComponents(final Composite parent, int style) {
+	private boolean setupComponents() {
+		boolean changed = false;
+		if (composite != null && !composite.isDisposed()) {
+			Goal newLinkedGoal = null;
+			if (thisGoal.equals(goalRef.getSource())) {
+				newLinkedGoal = goalRef.getTarget();
+			} else if (thisGoal.equals(goalRef.getTarget())) {
+				newLinkedGoal = goalRef.getSource();
+			}
+			if (newLinkedGoal != null && !newLinkedGoal.equals(linkedGoal)) {
+				linkedGoal = newLinkedGoal;
+				if (linkToGoalListener != null) {
+					imgHyperlink.removeHyperlinkListener(linkToGoalListener);
+					goalHyperlink.removeHyperlinkListener(linkToGoalListener);
+				}
+				linkToGoalListener = new MEHyperLinkAdapter(linkedGoal, thisGoal, eReference.getName(), context);
+				imgHyperlink.addHyperlinkListener(linkToGoalListener);
+				goalHyperlink.addHyperlinkListener(linkToGoalListener);
+				if (goalChangeListener != null) {
+					goalChangeListener.remove();
+				}
+				goalChangeListener = new GoalRefChangeListener(linkedGoal);
+			} else if (newLinkedGoal == null && linkedGoal != null) {
+				linkedGoal = newLinkedGoal;
+				imgHyperlink.removeHyperlinkListener(linkToGoalListener);
+				goalHyperlink.removeHyperlinkListener(linkToGoalListener);
+			}
+			if (linkedGoal != null) {
+				imgHyperlink.setData(linkedGoal.eClass());
+				String text = shortLabelProvider.getText(linkedGoal);
+				goalHyperlink.setText(text);
+				goalHyperlink.setToolTipText(text);
+			} else {
+				imgHyperlink.setData(null);
+				goalHyperlink.setToolTipText("NULL");
+				goalHyperlink.setText("NULL");
+			}
+			imgHyperlink.setImage(goalLabelProvider.getImage(linkedGoal));
+			combobox.select(goalRef.getWeight().getValue());
+			refHyperlink.setToolTipText(shortLabelProvider.getText(goalRef));
+			changed = true;
+		}
+		return changed;
+	}
+
+	private void createComponents(final Composite parent, int style) {
+		composite = toolkit.createComposite(parent, style);
+		composite.setLayout(new GridLayout(5, false));
+		linkToRefListener = new MEHyperLinkAdapter(goalRef, thisGoal, eReference.getName(), context);
+		delRefListener = new MEHyperLinkDeleteAdapter(thisGoal, eReference, goalRef, context);
+		refChangeListener = new GoalRefChangeListener(goalRef);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		goalLabelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager
 			.getLabelDecorator());
-
-		goalChangeListener = new ModelElementChangeListener(linkedGoal) {
-			@Override
-			public void onChange(Notification notification) {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						if (goalHyperlink != null && !goalHyperlink.isDisposed()) {
-							ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
-							String text = shortLabelProvider.getText(linkedGoal);
-							goalHyperlink.setText(text);
-							goalHyperlink.setToolTipText(text);
-							composite.layout(true);
-							parent.getParent().layout(true);
-						}
-					}
-				});
-			}
-		};
-		refChangeListener = new ModelElementChangeListener(goalRef) {
-			@Override
-			public void onChange(Notification notification) {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						if (combobox != null && !combobox.isDisposed()) {
-							combobox.select(goalRef.getWeight().getValue());
-							composite.layout(true);
-							parent.getParent().layout(true);
-						}
-					}
-				});
-			}
-		};
-
-		ImageHyperlink imgHyperlink = toolkit.createImageHyperlink(composite, style);
-		imgHyperlink.setImage(goalLabelProvider.getImage(linkedGoal));
-		imgHyperlink.setData(linkedGoal.eClass());
-		imgHyperlink.addHyperlinkListener(linkToGoalListener);
+		imgHyperlink = toolkit.createImageHyperlink(composite, style);
 		ModelElementClassTooltip.enableFor(imgHyperlink);
-		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
-		goalHyperlink = toolkit.createHyperlink(composite, (shortLabelProvider.getText(linkedGoal)), style);
-		goalHyperlink.setToolTipText(shortLabelProvider.getText(linkedGoal));
-		goalHyperlink.addHyperlinkListener(linkToGoalListener);
-
+		goalHyperlink = toolkit.createHyperlink(composite, "", style);
 		combobox = new Combo(composite, SWT.DROP_DOWN);
 		String[] types = new String[GoalReferenceType.values().length];
 		for (GoalReferenceType type : GoalReferenceType.values()) {
 			types[type.getValue()] = type.getLiteral();
 		}
 		combobox.setItems(types);
-		combobox.select(goalRef.getWeight().getValue());
 		combobox.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				goalRef.setWeight(GoalReferenceType.get(combobox.getSelectionIndex()));
+				new ECPCommand(goalRef) {
+					@Override
+					protected void doRun() {
+						goalRef.eSet(eAttribute, GoalReferenceType.get(combobox.getSelectionIndex()));
+					}
+				}.run();
 			}
 		});
-
-		Hyperlink refHyperlink = toolkit.createHyperlink(composite, "(Ref)", style);
-		refHyperlink.setToolTipText(shortLabelProvider.getText(goalRef));
+		if (eReference.isContainment() && (context.isNonDomainElement(goalRef))) {
+			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
+		} else {
+			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
+		}
+		refHyperlink = toolkit.createHyperlink(composite, "(Ref)", style);
 		refHyperlink.addHyperlinkListener(linkToRefListener);
 		ImageHyperlink delHyperlink = toolkit.createImageHyperlink(composite, style);
 		delHyperlink.setImage(deleteImage);
@@ -180,6 +195,25 @@ public class GoalInfluenceLinkControl extends MELinkControl {
 		}
 		if (composite != null) {
 			composite.dispose();
+		}
+	}
+
+	private class GoalRefChangeListener extends ModelElementChangeListener {
+		public GoalRefChangeListener(EObject modelelement) {
+			super(modelelement);
+		}
+
+		@Override
+		public void onChange(Notification notification) {
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					if (setupComponents()) {
+						composite.pack();
+						composite.layout(true);
+						parent.getParent().layout(true);
+					}
+				}
+			});
 		}
 	}
 }
