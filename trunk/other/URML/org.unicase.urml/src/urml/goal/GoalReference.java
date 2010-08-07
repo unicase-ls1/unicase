@@ -3,6 +3,7 @@
  */
 package urml.goal;
 
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
@@ -20,7 +21,7 @@ import org.unicase.model.urml.UrmlModelElement;
  * @model
  * @generated
  */
-public interface GoalReference extends UrmlModelElement {
+public interface GoalReference extends UrmlModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'. <!-- begin-user-doc -->

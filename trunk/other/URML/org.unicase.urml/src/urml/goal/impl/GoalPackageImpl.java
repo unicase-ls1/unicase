@@ -393,6 +393,7 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		// Add supertypes to classes
 		goalEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 		goalReferenceEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
+		goalReferenceEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
