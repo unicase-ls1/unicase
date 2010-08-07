@@ -104,8 +104,6 @@
           xsi:type="gmfgraph:CustomConnection"
           name="GoalInfluenceGoalsFigure"
           qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection">
-        <layout
-            xsi:type="gmfgraph:FlowLayout"/>
         <children
             xsi:type="gmfgraph:Label"
             name="GoalInfluenceGoalsFigure_name"
