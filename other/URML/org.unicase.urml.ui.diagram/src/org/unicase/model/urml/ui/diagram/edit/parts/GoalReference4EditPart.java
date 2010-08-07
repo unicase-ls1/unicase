@@ -1,7 +1,6 @@
 package org.unicase.model.urml.ui.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -110,17 +109,6 @@ public class GoalReference4EditPart extends ConnectionNodeEditPart implements IT
 		 * @generated
 		 */
 		public GoalInfluenceGoalsFigure() {
-
-			FlowLayout layoutThis = new FlowLayout();
-			layoutThis.setStretchMinorAxis(false);
-			layoutThis.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
-
-			layoutThis.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
-			layoutThis.setMajorSpacing(5);
-			layoutThis.setMinorSpacing(5);
-			layoutThis.setHorizontal(true);
-
-			this.setLayoutManager(layoutThis);
 
 			createContents();
 		}
