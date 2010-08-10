@@ -173,6 +173,8 @@ public class MultiAttributeTest extends WorkspaceTest {
 
 				testElement.getStrings().removeAll(Arrays.asList("second", "third"));
 
+				assertTrue(getProjectSpace().getOperations().size() == 1);
+
 				AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
 				assertTrue(abstractOperation instanceof MultiAttributeOperation);
 				MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;

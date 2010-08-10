@@ -278,7 +278,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 					}
 				}
 			} else {
-				for (int i = getIndexes().size() - 1; i <= 0; i--) {
+				for (int i = getIndexes().size() - 1; i >= 0; i--) {
 					int index = getIndexes().get(i);
 					if (index >= 0 && list.size() > index) {
 						list.remove(index);
