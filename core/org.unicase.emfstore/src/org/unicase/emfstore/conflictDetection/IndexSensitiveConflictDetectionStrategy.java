@@ -21,8 +21,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElement;
@@ -90,31 +94,38 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		if (isMultiAtt(operationA) && isMultiAtt(operationB)) {
-			// TODO
+			return doConflictHardMultiAttributes((MultiAttributeOperation) operationA,
+				(MultiAttributeOperation) operationB);
 		}
 
 		if (isMultiAttSet(operationA) && isMultiAtt(operationB)) {
-			// TODO
+			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationB,
+				(MultiAttributeSetOperation) operationA);
 		}
 
 		if (isMultiAtt(operationA) && isMultiAttSet(operationB)) {
-			// TODO
+			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
 		}
 
 		if (isMultiAttMove(operationA) && isMultiAtt(operationB)) {
-			// TODO
+			return doConflictHardMultiAttAndMove((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeOperation) operationB);
 		}
 
 		if (isMultiAtt(operationA) && isMultiAttMove(operationB)) {
-			// TODO
+			return doConflictHardMultiAttAndMove((MultiAttributeMoveOperation) operationB,
+				(MultiAttributeOperation) operationA);
 		}
 
 		if (isMultiAttSet(operationA) && isMultiAttMove(operationB)) {
-			// TODO
+			return doConflictHardMultiAttMoveAndSet((MultiAttributeMoveOperation) operationB,
+				(MultiAttributeSetOperation) operationA);
 		}
 
 		if (isMultiAttMove(operationA) && isMultiAttSet(operationB)) {
-			// TODO
+			return doConflictHardMultiAttMoveAndSet((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
 		}
 
 		if (isSingleRef(operationA) && isSingleRef(operationB)) {
@@ -133,11 +144,13 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		if (isMultiRef(operationA) && isMultiRefSet(operationB)) {
-			// TODO
+			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
 		}
 
 		if (isMultiRefSet(operationA) && isMultiRef(operationB)) {
-			// TODO
+			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationB,
+				(MultiReferenceSetOperation) operationA);
 		}
 
 		if (isMultiRef(operationA) && isMultiRef(operationB)) {
@@ -145,6 +158,30 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(MultiReferenceOperation) operationB);
 		}
 
+		return false;
+	}
+
+	private boolean doConflictHardMultiReferenceAndSet(MultiReferenceOperation operationA,
+		MultiReferenceSetOperation operationB) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttAndMove(MultiAttributeMoveOperation operationB,
+		MultiAttributeOperation operationA) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttMoveAndSet(MultiAttributeMoveOperation operationA,
+		MultiAttributeSetOperation operationB) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttAndSet(MultiAttributeOperation operationB,
+		MultiAttributeSetOperation operationA) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributes(MultiAttributeOperation operationA, MultiAttributeOperation operationB) {
 		return false;
 	}
 
