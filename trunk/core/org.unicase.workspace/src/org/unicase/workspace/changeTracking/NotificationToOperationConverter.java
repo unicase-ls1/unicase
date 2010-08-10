@@ -6,7 +6,6 @@
 package org.unicase.workspace.changeTracking;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -133,7 +132,9 @@ public final class NotificationToOperationConverter {
 			break;
 		case Notification.REMOVE_MANY:
 			list = (List<Object>) n.getOldValue();
-			operation.getIndexes().addAll((Collection<? extends Integer>) n.getNewValue());
+			for (int value : ((int[]) n.getNewValue())) {
+				operation.getIndexes().add(value);
+			}
 			break;
 		default:
 			break;

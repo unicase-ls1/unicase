@@ -398,25 +398,33 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
 	public void apply(Project project) {
-		ModelElement modelElement = project.getModelElement(getModelElementId());
-		if (modelElement == null) {
+		ModelElement parentElement = project.getModelElement(getModelElementId());
+		if (parentElement == null) {
 			// fail silently
 			return;
 		}
 		EReference reference;
 		try {
-			reference = (EReference) this.getFeature(modelElement);
+			reference = (EReference) this.getFeature(parentElement);
 		} catch (UnkownFeatureException e) {
 			// fail silently
 			return;
 		}
-		Object object = modelElement.eGet(reference);
+		Object object = parentElement.eGet(reference);
 		@SuppressWarnings("unchecked")
-		EList<Object> list = (EList<Object>) object;
+		EList<ModelElement> list = (EList<ModelElement>) object;
 
+		ModelElement element = null;
+		if (getNewValue() != null) {
+			element = project.getModelElement(getNewValue());
+			if (element == null) {
+				// fail silently
+				return;
+			}
+		}
 		int i = getIndex();
-		if (i >= 0 && i < list.size() && !list.contains(getNewValue())) {
-			list.set(i, getNewValue());
+		if (i >= 0 && i < list.size() && !list.contains(element)) {
+			list.set(i, element);
 		}
 
 	}
