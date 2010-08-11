@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.workspace.ProjectSpace;
 
 public class GraphEClassFilter {
 	private TreeSet<EClass> classes;
@@ -42,8 +43,15 @@ public class GraphEClassFilter {
 
 	public GraphEClassFilter(List<? extends ECPProject> projects, GraphViewer graph) {
 		this(graph);
+		EClass projectEClass = null;
 		for (ECPProject project : projects) {
 			classes.addAll(project.getMetaModelElementContext().getAllModelElementEClasses());
+			if (projectEClass == null) {
+				projectEClass = ((ProjectSpace) project.getRootObject()).getProject().eClass();
+			}
+		}
+		if (projectEClass != null) {
+			classes.add(projectEClass);
 		}
 	}
 
