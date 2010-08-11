@@ -18,6 +18,7 @@ public class ShowInMEEditorHandler extends AbstractHandler {
 		ISelection selection = HandlerUtil.getActiveMenuSelection(event);
 		if (selection instanceof IStructuredSelection) {
 			Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
+			selectedElement = ((GraphEObjectLayouted) selectedElement).object;
 			EObject element = null;
 			if (selectedElement instanceof EditPart) {
 				element = ((View) ((EditPart) selectedElement).getModel()).getElement();

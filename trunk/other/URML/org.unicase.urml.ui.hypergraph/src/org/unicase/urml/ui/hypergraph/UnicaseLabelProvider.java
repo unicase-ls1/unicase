@@ -12,16 +12,8 @@ import org.unicase.model.UnicaseModelElement;
 public class UnicaseLabelProvider extends LabelProvider {
 
 	private AdapterFactoryLabelProvider parent;
-	private static UnicaseLabelProvider _instance;
 
-	public static UnicaseLabelProvider getInstance() {
-		if (_instance == null) {
-			_instance = new UnicaseLabelProvider();
-		}
-		return _instance;
-	}
-
-	private UnicaseLabelProvider() {
+	public UnicaseLabelProvider() {
 		parent = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
@@ -30,7 +22,9 @@ public class UnicaseLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 		if (element instanceof EntityConnectionData) {
 			return "";
-		} else if (element instanceof Project) {
+		}
+		element = ((GraphEObjectLayouted) element).object;
+		if (element instanceof Project) {
 			element = ((EObject) element).eContainer();
 		} else if (element instanceof UnicaseModelElement) {
 			return ((UnicaseModelElement) element).getName();
@@ -42,7 +36,9 @@ public class UnicaseLabelProvider extends LabelProvider {
 	public Image getImage(Object element) {
 		if (element instanceof EntityConnectionData) {
 			return null;
-		} else if (element instanceof Project) {
+		}
+		element = ((GraphEObjectLayouted) element).object;
+		if (element instanceof Project) {
 			element = ((EObject) element).eContainer();
 		}
 		return parent.getImage(element);
