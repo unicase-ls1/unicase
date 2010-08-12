@@ -98,6 +98,11 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(MultiAttributeOperation) operationB);
 		}
 
+		if (isMultiAttSet(operationA) && isMultiAttSet(operationB)) {
+			return doConflictHardMultiAttributeSets((MultiAttributeSetOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
+		}
+
 		if (isMultiAttSet(operationA) && isMultiAtt(operationB)) {
 			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationB,
 				(MultiAttributeSetOperation) operationA);
@@ -106,6 +111,11 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		if (isMultiAtt(operationA) && isMultiAttSet(operationB)) {
 			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationA,
 				(MultiAttributeSetOperation) operationB);
+		}
+
+		if (isMultiAttMove(operationA) && isMultiAttMove(operationB)) {
+			return doConflictHardMultiAttributeMoves((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeMoveOperation) operationB);
 		}
 
 		if (isMultiAttMove(operationA) && isMultiAtt(operationB)) {
@@ -153,9 +163,51 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(MultiReferenceSetOperation) operationA);
 		}
 
+		if (isMultiRefSet(operationA) && isMultiRefSet(operationB)) {
+			return doConflictHardMultiReferenceSet((MultiReferenceSetOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
+		}
+
 		if (isMultiRef(operationA) && isMultiRef(operationB)) {
 			return doConflictHardMultiReferences((MultiReferenceOperation) operationA,
 				(MultiReferenceOperation) operationB);
+		}
+
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributeMoves(MultiAttributeMoveOperation operationA,
+		MultiAttributeMoveOperation operationB) {
+		// this is a soft conflict
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributeSets(MultiAttributeSetOperation operationA,
+		MultiAttributeSetOperation operationB) {
+
+		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
+			.equals(operationB.getFeatureName()))) {
+			return false;
+		}
+
+		if (operationA.getIndex() == operationB.getIndex()
+			&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean doConflictHardMultiReferenceSet(MultiReferenceSetOperation operationA,
+		MultiReferenceSetOperation operationB) {
+		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
+			.equals(operationB.getFeatureName()))) {
+			return false;
+		}
+
+		if (operationA.getIndex() == operationB.getIndex()
+			&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
+			return true;
 		}
 
 		return false;
@@ -428,7 +480,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	/**
 	 * This method tests whether the both give operations change the same multifeature on the same object. If so, and
 	 * additionally the order of items in the multifeature depends on the serialization of the operations, there is an
-	 * index integrity conflict, and the method returns true.
+	 * index integrity conflict, and the method returns true. TODO: MultiAttribute and MultiReferenceSet operations only
+	 * implemented for hard conflict.
 	 * 
 	 * @param operationA any operation
 	 * @param operationB any operation
