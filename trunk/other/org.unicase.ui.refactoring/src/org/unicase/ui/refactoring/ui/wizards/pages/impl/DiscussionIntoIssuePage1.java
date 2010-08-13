@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizardPage;
+import org.unicase.ui.refactoring.ui.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 

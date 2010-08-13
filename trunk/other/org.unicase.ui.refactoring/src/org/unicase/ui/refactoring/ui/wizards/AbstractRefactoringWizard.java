@@ -18,6 +18,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
+import org.unicase.ui.refactoring.ui.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
