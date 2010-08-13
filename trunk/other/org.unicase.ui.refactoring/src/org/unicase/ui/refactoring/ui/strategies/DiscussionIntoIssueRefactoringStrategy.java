@@ -6,11 +6,8 @@
 
 package org.unicase.ui.refactoring.ui.strategies;
 
-import org.eclipse.swt.widgets.Shell;
 import org.unicase.ui.refactoring.strategies.AbstractRefactoringStrategy;
-import org.unicase.ui.refactoring.ui.dialogs.AbstractRefactoringDialog;
-import org.unicase.ui.refactoring.ui.dialogs.AbstractRefactoringWizardDialog;
-import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
+import org.unicase.ui.refactoring.ui.dialogs.impl.DiscussionIntoIssueRefactoringDialog;
 import org.unicase.ui.refactoring.ui.wizards.impl.DiscussionIntoIssueRefactoringWizard;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 
@@ -30,36 +27,7 @@ public class DiscussionIntoIssueRefactoringStrategy extends AbstractRefactoringS
 	public RefactoringResult performRefactoring() {
 		abstractRefactoringDialog = new DiscussionIntoIssueRefactoringDialog(getShell(), this, 
 			new DiscussionIntoIssueRefactoringWizard(this));
-		setTitleAndMessage();
 		abstractRefactoringDialog.open();
 		return abstractRefactoringDialog.getRefactoringResult();
 	}
-	
-	/**
-	 * Sets the dialog title and message.
-	 */
-	protected void setTitleAndMessage() {
-		abstractRefactoringDialog.setTitle(getName());
-		abstractRefactoringDialog.setMessage(getDescription());
-	}
-	
-	/**
-	 * @author pfeifferc
-	 */
-	public class DiscussionIntoIssueRefactoringDialog extends
-			AbstractRefactoringWizardDialog implements AbstractRefactoringDialog {
-
-		/**
-		 * @param parentShell the
-		 * @param abstractRefactoringStrategy the
-		 * @param newWizard the
-		 */
-		public DiscussionIntoIssueRefactoringDialog(Shell parentShell,
-				AbstractRefactoringStrategy abstractRefactoringStrategy,
-				AbstractRefactoringWizard newWizard) {
-			super(parentShell, abstractRefactoringStrategy, newWizard);
-		}
-
-	}
-
 }

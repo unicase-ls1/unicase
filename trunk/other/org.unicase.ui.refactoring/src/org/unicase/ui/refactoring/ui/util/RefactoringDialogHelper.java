@@ -9,7 +9,6 @@ package org.unicase.ui.refactoring.ui.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -67,27 +66,6 @@ public class RefactoringDialogHelper {
 	private void addControl(Control control) {
 		setDebugColor(control);
 		controls.add(control);
-	}
-
-	/**
-	 * @param parent the
-	 * @param invalidEObject the
-	 * @return composite
-	 */
-	public Composite createModelElementInformationWithDescriptionComposite(
-			Composite parent, EObject invalidEObject) {
-		// create composite to put other widgets on
-		Composite composite = createComposite(parent, SWT.TOP, new GridLayout(2, false), new GridData(SWT.FILL,
-				SWT.TOP, true, false));
-		// create model element icon
-		createIconLabel(composite, getLabelProvider().getImage(
-				invalidEObject));
-		// create affected model element text
-		createText(composite, "Affected model element: " + getLabelProvider().getText(invalidEObject),
-				true);
-		// create creator icon
-		createIconLabel(composite, "filtertouser.png");
-		return composite;
 	}
 	
 	/**
