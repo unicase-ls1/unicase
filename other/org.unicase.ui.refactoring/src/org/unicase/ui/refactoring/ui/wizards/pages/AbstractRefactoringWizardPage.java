@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.ui.wizards;
+package org.unicase.ui.refactoring.ui.wizards.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +32,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.refactoring.ui.util.controls.MERichTextControlWithoutToolbar;
+import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 

@@ -14,7 +14,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizardPage;
+import org.unicase.ui.refactoring.ui.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 
 /**

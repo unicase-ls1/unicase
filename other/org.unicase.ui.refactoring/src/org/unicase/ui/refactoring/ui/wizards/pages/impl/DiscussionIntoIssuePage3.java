@@ -22,7 +22,7 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.refactoring.ui.util.controls.MERichTextControlWithoutToolbar;
 import org.unicase.ui.refactoring.ui.util.controls.MESingeLinkControlWithoutNewReferenceAction;
 import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizardPage;
+import org.unicase.ui.refactoring.ui.wizards.pages.AbstractRefactoringWizardPage;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -51,7 +51,7 @@ public class DiscussionIntoIssuePage3 extends AbstractRefactoringWizardPage impl
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.refactoring.ui.wizards.refactoringstrategies.dialogs.wizards.pages.AbstractRefactoringWizardPage#createControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.unicase.ui.refactoring.ui.wizards.pages.refactoringstrategies.dialogs.wizards.pages.AbstractRefactoringWizardPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createControl(Composite parent) {

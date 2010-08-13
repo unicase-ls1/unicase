@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizard;
-import org.unicase.ui.refactoring.ui.wizards.AbstractRefactoringWizardPage;
+import org.unicase.ui.refactoring.ui.wizards.pages.AbstractRefactoringWizardPage;
 
 /**
  * @author pfeifferc
