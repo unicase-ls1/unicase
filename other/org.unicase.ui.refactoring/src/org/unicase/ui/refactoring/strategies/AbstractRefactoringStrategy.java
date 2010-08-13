@@ -9,6 +9,7 @@ package org.unicase.ui.refactoring.strategies;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
@@ -97,14 +98,11 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * @see org.unicase.ui.refactoring.strategies.RefactoringStrategy#startRefactoring()
 	 */
 	public RefactoringResult startRefactoring() {
-		if(!(getInvalidEObject() instanceof ModelElement)) {
-			performRefactoring();
-			return RefactoringResult.SUCCESS_NO_ACTION;
-		}
+		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		if (((ModelElement) getInvalidEObject()).getProject() == null) {
 			WorkspaceUtil.logException("Exception occured while refactoring the project: "
 				+ "invalid model element has no project", new UnkownProjectException());
-			return RefactoringResult.ABORT;
+			return refactoringResult;
 		}
 		// storage
 		childModelElementsCreated = new ArrayList<EObject>();
@@ -112,14 +110,19 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 		parentModelElementsCreated = new ArrayList<EObject>();
 		parentModelElementsReferenced = new ArrayList<EObject>();
 		// key, value storage
-		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		// start the operations
 		startOperations();
 		try {
+			if(operationHandle == null) {
+				throw new OperationCanceledException("Operation handle null, aborting...");
+			}
 			refactoringResult = performRefactoring();
 		} catch (Exception e) {
 			WorkspaceUtil.logException("Exception occured while refactoring the project", e);
 		} finally {
+			if(operationHandle == null) {
+				return refactoringResult;
+			}
 			if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
 				// end operations composite
 				endOperations();
