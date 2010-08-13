@@ -4,32 +4,53 @@
  <extension
        point="org.unicase.ui.validation.refactoring.strategies">
     <refactoringStrategy
-          applicableFor="org.unicase.model.task.ActionItemActivity"
-          strategy="org.unicase.ui.refactoring.strategies.impl.ActivityNotSetRefactoringStrategy">
-    </refactoringStrategy>
-    <refactoringStrategy
-          applicableFor="org.unicase.model.task.ActionItemAssignee"
-          strategy="org.unicase.ui.refactoring.strategies.impl.AssigneMissingRefactoringStrategy">
+          applicableFor="org.unicase.model.task.validation.ActionItemMissingActivityConstraint"
+          description="The activity has not been set"
+          id="org.unicase.refactoring.strategies.ActivityNotSetRefactoringStrategy"
+          name="The activity has not been set"
+          strategy="org.unicase.ui.refactoring.ui.strategies.ActivityNotSetRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
-          strategy="org.unicase.ui.refactoring.strategies.impl.AIEmbodiesFRRefactoringStrategy">
+          description="The action item resembles a requirement that should be formalized"
+          id="org.unicase.refactoring.strategies.AIEmbodiesFRRefactoringStrategy"
+          name="Action item resembles functional requirement"
+          strategy="org.unicase.ui.refactoring.ui.strategies.AIEmbodiesFRRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
-          applicableFor="org.unicase.model.task.validation.DiscussionInIssueConstraint"
-          strategy="org.unicase.ui.refactoring.strategies.impl.DiscussionIntoIssueRefactoringStrategy">
+          applicableFor="org.unicase.model.task.validation.ActionItemMissingAssigneeConstraint"
+          description="The action item does not have an assignee set"
+          id="org.unicase.refactoring.strategies.AssigneMissingRefactoringStrategy"
+          name="Action item assignee not set"
+          strategy="org.unicase.ui.refactoring.ui.strategies.AssigneMissingRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
-          applicableFor="org.unicase.model.ModelElementNewName"
-          strategy="org.unicase.ui.refactoring.strategies.impl.MENewNameRefactoringStrategy">
+          applicableFor="org.unicase.model.task.validation.ActionItemMissingWorkpackageConstraint"
+          description="The action item is missing a container work package"
+          id="org.unicase.refactoring.strategies.ActionItemNotInWorkPackageRefactoringStrategy"
+          name="Action item missing work package"
+          strategy="org.unicase.ui.refactoring.ui.strategies.ActionItemNotInWorkPackageRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
-          applicableFor="org.unicase.model.task.ActionItemAnnotated"
-          strategy="org.unicase.ui.refactoring.strategies.impl.ActionItemNotAnnotatedRefactoringStrategy">
+          applicableFor="org.unicase.model.rationale.validation.DiscussionShouldBeIssueConstraint"
+          description="The discussion in the model element could actually be an issue and therefore require to be moved to one"
+          id="org.unicase.refactoring.strategies.DiscussionIntoIssueRefactoringStrategy"
+          name="Discussion could be issue"
+          strategy="org.unicase.ui.refactoring.ui.strategies.DiscussionIntoIssueRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
-          applicableFor="org.unicase.model.task.ActionItemWorkpackage"
-          strategy="org.unicase.ui.refactoring.strategies.impl.ActionItemNotInWorkPackageRefactoringStrategy">
+          applicableFor="org.unicase.model.validation.ModelElementNewNameConstraint"
+          description="The model element has a default name which does not explain what it is about"
+          id="org.unicase.refactoring.strategies.MENewNameRefactoringStrategy"
+          name="Model element has a default name"
+          strategy="org.unicase.ui.refactoring.ui.strategies.MENewNameRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.task.validation.ActionItemMissingFunctionalRequirementConstraint"
+          description="The action item is not annotated to a functional requirement"
+          id="org.unicase.refactoring.strategies.ActionItemNotAnnotatedRefactoringStrategy"
+          name="Action item missing functional requirement"
+          strategy="org.unicase.ui.refactoring.ui.strategies.ActionItemNotAnnotatedRefactoringStrategy">
     </refactoringStrategy>
  </extension>
 </plugin>

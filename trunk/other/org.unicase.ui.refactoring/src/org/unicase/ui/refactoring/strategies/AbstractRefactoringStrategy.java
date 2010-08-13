@@ -7,17 +7,20 @@
 package org.unicase.ui.refactoring.strategies;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
-import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
+import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.ui.validation.refactoring.RefactoringResult;
+import org.unicase.ui.validation.refactoring.RefactoringStrategy;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -25,35 +28,63 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public abstract class AbstractRefactoringStrategy implements RefactoringStrategy {
 
+	// VALIDATION data objects
+
 	/**
 	 * The validation constraint status.
 	 */
-	private IConstraintStatus status;
+	private IConstraintStatus constraintStatus;
 
+	/**
+	 * The validation constraint status.
+	 */
+	private EStructuralFeature invalidStructuralFeature;
+
+	// REFACTORING data objects
+
+	/**
+	 * ID of the {@link RefactoringStrategy}.
+	 */
+	private String id;
+
+	/**
+	 * Description of the {@link RefactoringStrategy}.
+	 */
+	private String description;
+
+	/**
+	 * Name of the {@link RefactoringStrategy}.
+	 */
+	private String name;
+	
 	/**
 	 * Child model elements created.
 	 */
-	private ArrayList<ModelElement> childModelElementsCreated;
+	private List<EObject> childModelElementsCreated;
 
 	/**
 	 * Child model elements to be referenced.
 	 */
-	private ArrayList<ModelElement> childModelElementsReferenced;
+	private List<EObject> childModelElementsReferenced;
 
 	/**
 	 * Parent model elements created.
 	 */
-	private ArrayList<ModelElement> parentModelElementsCreated;
+	private List<EObject> parentModelElementsCreated;
 
 	/**
 	 * Parent model elements to be referenced.
 	 */
-	private ArrayList<ModelElement> parentModelElementsReferenced;
+	private List<EObject> parentModelElementsReferenced;
+
+	// UI objects
 
 	/**
 	 * The shell.
 	 */
 	private Shell shell;
+
+	// OPERATION objects
 
 	/**
 	 * The composite operation handle.
@@ -62,22 +93,24 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 
 	// BEGIN SUPRESS CATCH EXCEPTION
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#startRefactoring()
+	/* (non-Javadoc)
+	 * @see org.unicase.ui.refactoring.strategies.RefactoringStrategy#startRefactoring()
 	 */
 	public RefactoringResult startRefactoring() {
-		if(getInvalidModelElement().getProject() == null) {
-			WorkspaceUtil.logException("Exception occured while refactoring the project: " +
-					"invalid model element has no project", new UnkownProjectException());
+		if(!(getInvalidEObject() instanceof ModelElement)) {
+			performRefactoring();
+			return RefactoringResult.SUCCESS_NO_ACTION;
+		}
+		if (((ModelElement) getInvalidEObject()).getProject() == null) {
+			WorkspaceUtil.logException("Exception occured while refactoring the project: "
+				+ "invalid model element has no project", new UnkownProjectException());
 			return RefactoringResult.ABORT;
 		}
 		// storage
-		childModelElementsCreated = new ArrayList<ModelElement>();
-		childModelElementsReferenced = new ArrayList<ModelElement>();
-		parentModelElementsCreated = new ArrayList<ModelElement>();
-		parentModelElementsReferenced = new ArrayList<ModelElement>();
+		childModelElementsCreated = new ArrayList<EObject>();
+		childModelElementsReferenced = new ArrayList<EObject>();
+		parentModelElementsCreated = new ArrayList<EObject>();
+		parentModelElementsReferenced = new ArrayList<EObject>();
 		// key, value storage
 		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		// start the operations
@@ -111,49 +144,16 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	protected abstract RefactoringResult performRefactoring();
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getConstraintStatus()
-	 */
-	public IConstraintStatus getConstraintStatus() {
-		return status;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#setConstraintStatus(org.eclipse.emf.validation.model.IConstraintStatus)
-	 */
-	public void setConstraintStatus(IConstraintStatus status) {
-		this.status = status;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getDescription()
-	 */
-	public abstract String getDescription();
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getId()
-	 */
-	public abstract String getId();
-
-	/**
 	 * Start the operations composite.
 	 */
 	private void startOperations() {
-		new UnicaseCommand() {
+		new ECPCommand(getInvalidEObject()) {
 
 			@Override
 			protected void doRun() {
-				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) status.getTarget())
+				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) getConstraintStatus().getTarget())
 					.beginCompositeOperation();
 			}
-
 		}.run();
 	}
 
@@ -161,7 +161,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * Aborts the refactoring operation.
 	 */
 	private void abortOperations() {
-		new UnicaseCommand() {
+		new ECPCommand(getInvalidEObject()) {
 
 			@Override
 			protected void doRun() {
@@ -179,71 +179,145 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * Ends the refactoring operation.
 	 */
 	private void endOperations() {
-		new UnicaseCommand() {
+		new ECPCommand(getInvalidEObject()) {
 
 			@Override
 			protected void doRun() {
 				try {
-					operationHandle.end(getId(), "Refactored the project: "+ AbstractRefactoringStrategy.this.getDescription(), ((ModelElement) getConstraintStatus().getTarget())
-						.getModelElementId());
+					operationHandle.end(getId(), "Refactored the project: "
+						+ AbstractRefactoringStrategy.this.getDescription(), ((ModelElement) getConstraintStatus()
+						.getTarget()).getModelElementId());
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
 				}
+			}
+
+			private String getId() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 
 		}.run();
 	}
 
 	/**
-	 * @return the child model elements that were referenced
+	 * @return getChildModelElements
 	 */
-	public ArrayList<ModelElement> getChildModelElements() {
+	public List<EObject> getChildModelElements() {
 		return childModelElementsReferenced;
 	}
-
+	
 	/**
-	 * @return the parent model elements that were referenced
+	 * 
+	 * @return getParentModelElements
 	 */
-	public ArrayList<ModelElement> getParentModelElements() {
+	public List<EObject> getParentModelElements() {
 		return parentModelElementsReferenced;
 	}
-
+	
 	/**
-	 * @return the child model elements that were created
+	 * @return getChildModelElementsCreated
 	 */
-	public ArrayList<ModelElement> getChildModelElementsCreated() {
+	public List<EObject> getChildModelElementsCreated() {
 		return childModelElementsCreated;
 	}
 
 	/**
-	 * @return the parent model elements that were created
+	 * @return getParentModelElementsCreated
 	 */
-	public ArrayList<ModelElement> getParentModelElementsCreated() {
+	public List<EObject> getParentModelElementsCreated() {
 		return parentModelElementsCreated;
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#setShell(org.eclipse.swt.widgets.Shell)
+	 * Set shell.
+	 * @param shell {@link Shell}
 	 */
 	public void setShell(Shell shell) {
 		this.shell = shell;
 	}
 
 	/**
-	 * @return the shell
+	 * @return shell
 	 */
 	public Shell getShell() {
 		return shell;
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy#getInvalidModelElement()
+	 * @return getInvalidEObject
 	 */
-	public ModelElement getInvalidModelElement() {
+	public EObject getInvalidEObject() {
 		return (ModelElement) getConstraintStatus().getTarget();
+	}
+
+	/**
+	 * @return getConstraintStatus
+	 */
+	public IConstraintStatus getConstraintStatus() {
+		return constraintStatus;
+	}
+
+	/**
+	 * @param constraintStatus {@link IConstraintStatus}
+	 */
+	public void setConstraintStatus(IConstraintStatus constraintStatus) {
+		this.constraintStatus = constraintStatus;
+	}
+
+	/**
+	 * @param invalidStructuralFeature {@link EStructuralFeature}
+	 */
+	public void setInvalidStructuralFeature(EStructuralFeature invalidStructuralFeature) {
+		this.invalidStructuralFeature = invalidStructuralFeature;
+	}
+
+	/**
+	 * @return getInvalidStructuralFeature
+	 */
+	public EStructuralFeature getInvalidStructuralFeature() {
+		return invalidStructuralFeature;
+	}
+
+	/**
+	 * @param name the
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param description the
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	/**
+	 * @return getDescription
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param id the
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return getId
+	 */
+	public String getId() {
+		return id;
 	}
 }
