@@ -72,7 +72,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(1, initiatedUseCases.size());
 				assertEquals(useCase, initiatedUseCases.get(0));
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -195,7 +195,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(1, initiatedUseCases.size());
 				assertEquals(useCase, initiatedUseCases.get(0));
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -240,7 +240,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				reversedSingleReferenceOperation.apply(getProject());
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(oldActor, useCase.getInitiatingActor());
 
@@ -291,7 +291,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 
 				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 			}
-		}.run();
+		}.run(false);
 
 	}
 
@@ -329,7 +329,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(proposal, newIssue.getProposals().get(0));
 				assertEquals(newIssue, proposal.getIssue());
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -414,7 +414,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(getProject(), ModelUtil.getProject(proposal));
 				assertEquals(issue, proposal.eContainer());
 			}
-		}.run();
+		}.run(false);
 
 		ModelElementId proposalId = ModelUtil.getProject(proposal).getModelElementId(proposal);
 
@@ -424,7 +424,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				proposal.setIssue(null);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(issue));
 		assertEquals(false, getProject().contains(proposal));

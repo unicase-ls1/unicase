@@ -66,6 +66,8 @@ public class DirtyResourceSet {
 					for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap()) {
 						xmiResource.setID(e.getKey(), e.getValue().getId());
 					}
+					// remove project's own id map
+					project.getEobjectsIdMap().clear();
 					// TreeIterator<EObject> it = resource.getAllContents();
 					// while (it.hasNext()) {
 					// EObject o = it.next();

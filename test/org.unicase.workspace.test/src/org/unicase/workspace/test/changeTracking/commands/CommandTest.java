@@ -40,11 +40,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -78,7 +81,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -105,6 +108,41 @@ public class CommandTest extends WorkspaceTest {
 	}
 
 	/**
+	 * Tests to delete a workpackage with a containec command with a recipient. This test also the removal o
+	 * unicdirectional cross references
+	 */
+	@Test
+	public void testDeleteWithUnidirectionalCrossReference() {
+		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+		final LeafSection createLeafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		final WorkPackage createWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
+		final ActionItem createActionItem = TaskFactory.eINSTANCE.createActionItem();
+		final Comment createComment = RationaleFactory.eINSTANCE.createComment();
+		final User createUser = OrganizationFactory.eINSTANCE.createUser();
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(createCompositeSection);
+				createCompositeSection.getSubsections().add(createLeafSection);
+				createLeafSection.getModelElements().add(createWorkPackage);
+				createLeafSection.getModelElements().add(createUser);
+				createWorkPackage.getContainedWorkItems().add(createActionItem);
+				createActionItem.getComments().add(createComment);
+				createComment.getRecipients().add(createUser);
+
+			}
+		}.run(false);
+
+		Command delete = DeleteCommand.create(Configuration.getEditingDomain(), createWorkPackage);
+		Configuration.getEditingDomain().getCommandStack().execute(delete);
+
+		assertEquals(0, createComment.getRecipients().size());
+
+	}
+
+	/**
 	 * Tests the copy and paste commands.
 	 */
 	@Test
@@ -119,7 +157,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -163,7 +201,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -198,7 +236,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -240,7 +278,7 @@ public class CommandTest extends WorkspaceTest {
 				getProject().addModelElement(useCase);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		Command deleteCommand = DeleteCommand.create(Configuration.getEditingDomain(), useCase);
 		Configuration.getEditingDomain().getCommandStack().execute(deleteCommand);
@@ -295,7 +333,7 @@ public class CommandTest extends WorkspaceTest {
 				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		Command deleteCommand = DeleteCommand.create(Configuration.getEditingDomain(), useCase);
 		Configuration.getEditingDomain().getCommandStack().execute(deleteCommand);
@@ -448,7 +486,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -520,7 +558,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -591,7 +629,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -613,7 +651,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				editingDomain.getCommandStack().undo();
 			}
-		}.run();
+		}.run(false);
 		// does not work but is strange anyway
 		// assertTrue(editingDomain.getCommandStack().canRedo());
 	}
@@ -633,7 +671,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -673,7 +711,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -716,7 +754,7 @@ public class CommandTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
 			}
-		}.run();
+		}.run(false);
 
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
@@ -758,7 +796,7 @@ public class CommandTest extends WorkspaceTest {
 				getProject().addModelElement(leafSection);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
@@ -816,7 +854,7 @@ public class CommandTest extends WorkspaceTest {
 				getProject().addModelElement(leafSection);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 		ModelElementId workPackageId = getProject().getModelElementId(workPackage);
 
 		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
@@ -853,7 +891,7 @@ public class CommandTest extends WorkspaceTest {
 				getProject().addModelElement(leafSection);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 
@@ -880,15 +918,13 @@ public class CommandTest extends WorkspaceTest {
 				getProject().addModelElement(leafSection);
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// delete
-		// Command delCmd = DeleteCommand.create((new EMFStoreModelelementContext(actor)).getEditingDomain(), actor);
-		Command delCmd = DeleteCommand.create(AdapterFactoryEditingDomain.getEditingDomainFor(actor), actor);
-		delCmd.execute();
+		editingDomain.getCommandStack().execute(DeleteCommand.create(editingDomain, actor));
 
 		assertEquals(0, leafSection.getModelElements().size());
 		assertTrue(editingDomain.getCommandStack().canUndo());
@@ -906,44 +942,5 @@ public class CommandTest extends WorkspaceTest {
 		editingDomain.getCommandStack().redo();
 		assertEquals(0, leafSection.getModelElements().size());
 		// assertEquals(1, getProjectSpace().getOperations().size());
-	}
-
-	@Test
-	public void moveToWorkpackageCommand() {
-		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
-		final WorkPackage sourceWorkPackage = TaskFactory.eINSTANCE.createWorkPackage();
-		final ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
-		actionItem.setName("Move me anywhere you want!");
-		actionItem.setContainingWorkpackage(sourceWorkPackage);
-		final WorkPackage targetWorkpackage = TaskFactory.eINSTANCE.createWorkPackage();
-		targetWorkpackage.setName("target workpackage");
-		leafSection.getModelElements().add(sourceWorkPackage);
-		leafSection.getModelElements().add(targetWorkpackage);
-
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				getProject().addModelElement(leafSection);
-			}
-		}.run();
-
-		assertEquals(2, ModelUtil.getContainedElements(leafSection).size());
-		assertEquals(1, ModelUtil.getContainedElements(sourceWorkPackage).size());
-		assertEquals(0, ModelUtil.getContainedElements(targetWorkpackage).size());
-
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				clearOperations();
-				org.unicase.ui.workpackagetransfer.WorkItemTransferOperator.moveWorkItems(sourceWorkPackage
-					.getAllContainedWorkItems(), targetWorkpackage, sourceWorkPackage);
-			}
-		}.run();
-
-		assertEquals(2, ModelUtil.getContainedElements(leafSection).size());
-		assertEquals(0, ModelUtil.getContainedElements(sourceWorkPackage).size());
-		assertEquals(1, ModelUtil.getContainedElements(targetWorkpackage).size());
-		assertEquals(1, getProjectSpace().getOperations().size());
 	}
 }

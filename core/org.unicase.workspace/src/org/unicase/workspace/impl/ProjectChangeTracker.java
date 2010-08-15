@@ -75,6 +75,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private List<AbstractOperation> operations;
 	private List<EObject> removedElements;
 
+	private NotificationToOperationConverter converter;
+
 	/**
 	 * @return the removedElements
 	 */
@@ -107,7 +109,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 		operations = projectSpace.getOperations();
 		removedElements = new ArrayList<EObject>();
-
+		converter = new NotificationToOperationConverter(projectSpace.getProject());
 	}
 
 	/**
@@ -121,6 +123,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (this.getModelElementsFromClipboard().contains(modelElement)) {
 			return;
 		}
+
+		// TODO: problem still exists when only one document has been added
 		// TODO:
 		save(modelElement);
 
@@ -167,6 +171,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			URI fileURI = URI.createFileURI(newfileName);
 			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
 			newResource.getContents().add(modelElement);
+			save(modelElement);
 		}
 	}
 
@@ -247,7 +252,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 				WorkspaceUtil.log("INVALID NOTIFICATION MESSAGE DETECTED: " + n.getValidationMessage(), null, 0);
 				continue;
 			} else {
-				AbstractOperation op = NotificationToOperationConverter.convert(n);
+				AbstractOperation op = converter.convert(n);
 				if (op != null) {
 					ops.add(op);
 				} else {
@@ -400,6 +405,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
+		// TODO: results in test failures?
 		this.recordingFinished();
 		notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
@@ -625,7 +631,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	private void reassignModelElementIds(EObject copiedElement) {
-		ModelUtil.reassignModelElementIds(copiedElement);
+		// EM: see comment on reassignModelElementIds
+		// ModelUtil.reassignModelElementIds(copiedElement);
 	}
 
 	/**

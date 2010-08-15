@@ -46,7 +46,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -60,7 +60,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 				actor1.setName("change 1");
 				actor2.setName("change 2");
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -90,7 +90,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 				section.getModelElements().add(actor);
 				getProjectSpace().getOperations().clear();
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -104,7 +104,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 				actor1.setName("change 1");
 				actor2.setName("change 1");
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -136,7 +136,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 				getProjectSpace().getOperations().clear();
 
 			}
-		}.run();
+		}.run(false);
 
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
@@ -152,7 +152,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 				actor2.setDescription("unrelated change");
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();

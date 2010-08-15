@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -72,25 +73,14 @@ public final class ModelUtil {
 	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
 	 * Cross-referenced elements will not be copied.
 	 * 
+	 * @param <T> the type of the model element, must be a subtype of model element
 	 * @param modelElement the model element
 	 * @return a copy of the given model element and its containment tree
 	 */
 	public static EObject copy(EObject modelElement) {
-		EObject copy = EcoreUtil.copy(modelElement);
-
-		// TODO: no IDs left to clone, copy now seems to be obsolete?
-		// // reset ids
-		// ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-		// copy.setIdentifier(modelElementId.getId());
-
-		// // reset ids of containment children
-		// for (EObject child : ModelUtil.getAllContainedModelElements(copy, false)) {
-		// ModelElementId childId = MetamodelFactory.eINSTANCE.createModelElementId();
-		// // TODO: EMFPlainEObjectTransition, ModelElement class check
-		// // if (child instanceof ModelElement) {
-		// // ((IdentifiableElement) child).setIdentifier(childId.getId());
-		// // }
-		// }
+		// EObject copy = EcoreUtil.copy(modelElement);
+		EObject copy = clone(modelElement);
+		// reassignModelElementIds(copy);
 		return copy;
 	}
 
@@ -422,9 +412,13 @@ public final class ModelUtil {
 	 */
 	public static Set<EClass> getAllSubEClasses(EClass eClass) {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
+		if (EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
+			return allEClasses;
+		}
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass);
+			if (isSuperTypeOf && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
@@ -590,7 +584,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 * @param exception the exception
@@ -600,7 +594,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * Log a warning to the platform log. This will NOT create a popup in the ui.
 	 * 
 	 * @param message the message
 	 */
@@ -818,6 +812,73 @@ public final class ModelUtil {
 	}
 
 	/**
+	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a error string which will
+	 * be added to the errorStrings list. After the return from the method to the caller the return value contains the
+	 * loaded EObjects.
+	 * 
+	 * @param resource contains the items which should be loaded.
+	 * @param errorStrings contains all messages about items which couldn't be loaded by the method.
+	 * @return Set with the loaded an valid EObjects
+	 */
+	public static Set<EObject> loadFromResource(Resource resource, List<String> errorStrings) {
+		Set<EObject> result = new HashSet<EObject>();
+
+		result = validation(resource, errorStrings);
+
+		return result;
+	}
+
+	// Validates if the EObjects can be imported
+	private static Set<EObject> validation(Resource resource, List<String> errorStrings) {
+		Set<EObject> childrenSet = new HashSet<EObject>();
+		Set<EObject> rootNodes = new HashSet<EObject>();
+
+		TreeIterator<EObject> contents = resource.getAllContents();
+
+		// 1. Run: Put all children in set
+		while (contents.hasNext()) {
+			EObject content = contents.next();
+
+			if (!(content instanceof ModelElement)) {
+				errorStrings.add(content + " is not a org.unicase.metamodel.ModelElement\n");
+				continue;
+			}
+
+			childrenSet.addAll(content.eContents());
+
+		}
+
+		contents = resource.getAllContents();
+
+		// 2. Run: Check if RootNodes are children -> set.contains(RootNode) -- no: RootNode in rootNode-Set -- yes:
+		// Drop RootNode, will be imported as a child
+		while (contents.hasNext()) {
+			EObject content = contents.next();
+
+			if (!(content instanceof ModelElement)) {
+				// No report to errorStrings, because Run 1 will do this
+				continue;
+			}
+
+			if (!childrenSet.contains(content)) {
+				rootNodes.add(content);
+			}
+		}
+
+		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
+		Set<EObject> notSelfContained = new HashSet<EObject>();
+		for (EObject rootNode : rootNodes) {
+			if (!ModelUtil.isSelfContained(rootNode)) {
+				errorStrings.add(rootNode + " is not self contained\n");
+				notSelfContained.add(rootNode);
+			}
+		}
+		rootNodes.removeAll(notSelfContained);
+
+		return rootNodes;
+	}
+
+	/**
 	 * Retrieve the current model version number.
 	 * 
 	 * @return an integer identifing the current model version
@@ -829,7 +890,7 @@ public final class ModelUtil {
 		if (rawExtensions.length != 1) {
 			String message = "There is " + rawExtensions.length
 				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
-			logWarning(message, new MalformedModelVersionException(message));
+			logWarning(message);
 			return 0;
 		}
 		IConfigurationElement extension = rawExtensions[0];
@@ -849,16 +910,21 @@ public final class ModelUtil {
 	 * 
 	 * @param modelElement the element
 	 */
-	public static void reassignModelElementIds(EObject modelElement) {
-		Set<EObject> copiedElements = getAllContainedModelElements(modelElement, false);
-		copiedElements.add(modelElement);
-		for (EObject element : copiedElements) {
-			// turn off notification for id change
-			boolean eDeliver = element.eDeliver();
-			element.eSetDeliver(false);
-			element.eSetDeliver(eDeliver);
-		}
-	}
+	// EM: we can't set any ID on EObject..
+	// public static void reassignModelElementIds(EObject modelElement) {
+	// Set<EObject> copiedElements = modelElement.getAllContainedModelElements();
+	// copiedElements.add(modelElement);
+	// for (EObject element : copiedElements) {
+	// // turn off notification for id change
+	// boolean eDeliver = element.eDeliver();
+	// element.eSetDeliver(false);
+	// // change id
+	//
+	// // element.setIdentifier(MetamodelFactory.eINSTANCE.createModelElementId().getId());
+	// // set edeliver to previous state
+	// element.eSetDeliver(eDeliver);
+	// }
+	// }
 
 	/**
 	 * Get Project that contains a model element.

@@ -18,6 +18,9 @@ import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.test.WorkspaceTest;
@@ -53,7 +56,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -79,7 +82,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), ModelUtil.getProject(useCase));
@@ -120,7 +123,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 				clearOperations();
 			}
-		}.run();
+		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -144,7 +147,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());
@@ -154,5 +157,62 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 
+	}
+
+	/**
+	 * Test the creation and abort of a composite operation after some elements have been added. Check if the abort
+	 * reverses the last operation.
+	 */
+	@Test
+	public void beginAndAbortEmptyCompositeAfterSimpleOperation() {
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				clearOperations();
+				cleanProjectSpace();
+				final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+				final WorkPackage workPackage = TaskFactory.eINSTANCE.createWorkPackage();
+				final ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
+				getProject().addModelElement(section);
+				getProject().addModelElement(workPackage);
+				getProject().addModelElement(actionItem);
+				actionItem.setContainingWorkpackage(workPackage);
+				CompositeOperationHandle compositeOperationHandle = getProjectSpace().beginCompositeOperation();
+				try {
+					compositeOperationHandle.abort();
+				} catch (InvalidHandleException e) {
+					throw new IllegalStateException(e);
+				}
+
+				assertEquals(workPackage, actionItem.getContainingWorkpackage());
+
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Test the creation and abort of a composite operation.
+	 */
+	@Test
+	public void beginAndAbortEmptyComposite() {
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				clearOperations();
+				cleanProjectSpace();
+				CompositeOperationHandle compositeOperationHandle = getProjectSpace().beginCompositeOperation();
+				try {
+					compositeOperationHandle.abort();
+					compositeOperationHandle = getProjectSpace().beginCompositeOperation();
+					compositeOperationHandle.abort();
+					compositeOperationHandle = getProjectSpace().beginCompositeOperation();
+					compositeOperationHandle.abort();
+				} catch (InvalidHandleException e) {
+					fail();
+				}
+			}
+		}.run(false);
 	}
 }
