@@ -5,6 +5,15 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isAttribute;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isCreateDelete;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAtt;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttMove;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttSet;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRef;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRefSet;
+import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isSingleRef;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +22,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
@@ -69,38 +82,159 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	 */
 	private boolean doConflictHard(AbstractOperation operationA, AbstractOperation operationB) {
 
-		if (operationA instanceof CreateDeleteOperation) {
+		if (isCreateDelete(operationA)) {
 			return doConflictHardCreateDelete((CreateDeleteOperation) operationA, operationB);
 		}
 
-		if (operationB instanceof CreateDeleteOperation) {
+		if (isCreateDelete(operationB)) {
 			return doConflictHardCreateDelete((CreateDeleteOperation) operationB, operationA);
 		}
 
-		if (operationA instanceof AttributeOperation && operationB instanceof AttributeOperation) {
+		if (isAttribute(operationA) && isAttribute(operationB)) {
 			return doConflictHardAttributes((AttributeOperation) operationA, (AttributeOperation) operationB);
 		}
 
-		if (operationA instanceof SingleReferenceOperation && operationB instanceof SingleReferenceOperation) {
+		if (isMultiAtt(operationA) && isMultiAtt(operationB)) {
+			return doConflictHardMultiAttributes((MultiAttributeOperation) operationA,
+				(MultiAttributeOperation) operationB);
+		}
+
+		if (isMultiAttSet(operationA) && isMultiAttSet(operationB)) {
+			return doConflictHardMultiAttributeSets((MultiAttributeSetOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
+		}
+
+		if (isMultiAttSet(operationA) && isMultiAtt(operationB)) {
+			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationB,
+				(MultiAttributeSetOperation) operationA);
+		}
+
+		if (isMultiAtt(operationA) && isMultiAttSet(operationB)) {
+			return doConflictHardMultiAttAndSet((MultiAttributeOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
+		}
+
+		if (isMultiAttMove(operationA) && isMultiAttMove(operationB)) {
+			return doConflictHardMultiAttributeMoves((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeMoveOperation) operationB);
+		}
+
+		if (isMultiAttMove(operationA) && isMultiAtt(operationB)) {
+			return doConflictHardMultiAttAndMove((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeOperation) operationB);
+		}
+
+		if (isMultiAtt(operationA) && isMultiAttMove(operationB)) {
+			return doConflictHardMultiAttAndMove((MultiAttributeMoveOperation) operationB,
+				(MultiAttributeOperation) operationA);
+		}
+
+		if (isMultiAttSet(operationA) && isMultiAttMove(operationB)) {
+			return doConflictHardMultiAttMoveAndSet((MultiAttributeMoveOperation) operationB,
+				(MultiAttributeSetOperation) operationA);
+		}
+
+		if (isMultiAttMove(operationA) && isMultiAttSet(operationB)) {
+			return doConflictHardMultiAttMoveAndSet((MultiAttributeMoveOperation) operationA,
+				(MultiAttributeSetOperation) operationB);
+		}
+
+		if (isSingleRef(operationA) && isSingleRef(operationB)) {
 			return doConflictHardSingleReferences((SingleReferenceOperation) operationA,
 				(SingleReferenceOperation) operationB);
 		}
 
-		if (operationA instanceof SingleReferenceOperation && operationB instanceof MultiReferenceOperation) {
+		if (isSingleRef(operationA) && isMultiRef(operationB)) {
 			return doConflictHardSingleMultiReferences((SingleReferenceOperation) operationA,
 				(MultiReferenceOperation) operationB);
 		}
 
-		if (operationA instanceof MultiReferenceOperation && operationB instanceof SingleReferenceOperation) {
+		if (isMultiRef(operationA) && isSingleRef(operationB)) {
 			return doConflictHardSingleMultiReferences((SingleReferenceOperation) operationB,
 				(MultiReferenceOperation) operationA);
 		}
 
-		if (operationA instanceof MultiReferenceOperation && operationB instanceof MultiReferenceOperation) {
+		if (isMultiRef(operationA) && isMultiRefSet(operationB)) {
+			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
+		}
+
+		if (isMultiRefSet(operationA) && isMultiRef(operationB)) {
+			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationB,
+				(MultiReferenceSetOperation) operationA);
+		}
+
+		if (isMultiRefSet(operationA) && isMultiRefSet(operationB)) {
+			return doConflictHardMultiReferenceSet((MultiReferenceSetOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
+		}
+
+		if (isMultiRef(operationA) && isMultiRef(operationB)) {
 			return doConflictHardMultiReferences((MultiReferenceOperation) operationA,
 				(MultiReferenceOperation) operationB);
 		}
 
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributeMoves(MultiAttributeMoveOperation operationA,
+		MultiAttributeMoveOperation operationB) {
+		// this is a soft conflict
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributeSets(MultiAttributeSetOperation operationA,
+		MultiAttributeSetOperation operationB) {
+
+		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
+			.equals(operationB.getFeatureName()))) {
+			return false;
+		}
+
+		if (operationA.getIndex() == operationB.getIndex()
+			&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean doConflictHardMultiReferenceSet(MultiReferenceSetOperation operationA,
+		MultiReferenceSetOperation operationB) {
+		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
+			.equals(operationB.getFeatureName()))) {
+			return false;
+		}
+
+		if (operationA.getIndex() == operationB.getIndex()
+			&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean doConflictHardMultiReferenceAndSet(MultiReferenceOperation operationA,
+		MultiReferenceSetOperation operationB) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttAndMove(MultiAttributeMoveOperation operationB,
+		MultiAttributeOperation operationA) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttMoveAndSet(MultiAttributeMoveOperation operationA,
+		MultiAttributeSetOperation operationB) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttAndSet(MultiAttributeOperation operationB,
+		MultiAttributeSetOperation operationA) {
+		return false;
+	}
+
+	private boolean doConflictHardMultiAttributes(MultiAttributeOperation operationA, MultiAttributeOperation operationB) {
 		return false;
 	}
 
@@ -348,7 +482,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	/**
 	 * This method tests whether the both give operations change the same multifeature on the same object. If so, and
 	 * additionally the order of items in the multifeature depends on the serialization of the operations, there is an
-	 * index integrity conflict, and the method returns true.
+	 * index integrity conflict, and the method returns true. TODO: MultiAttribute and MultiReferenceSet operations only
+	 * implemented for hard conflict.
 	 * 
 	 * @param operationA any operation
 	 * @param operationB any operation

@@ -51,10 +51,10 @@ public class ProjectPropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterf
 			}
 		}
 		if (user == null) {
-			throw new EmfStoreException("The user does not exist on the server. Can not set the property.");
+			throw new EmfStoreException("The user does not exist on the server. Cannot set the property.");
 		}
 		for (OrgUnitProperty property : user.getProperties()) {
-			if (property.getName().equals(changedProperty.getName())) {
+			if (property.getName().equals(changedProperty.getName()) && isProjectEqual(property, changedProperty)) {
 				property.setValue(changedProperty.getValue());
 				save();
 				return;
@@ -64,11 +64,24 @@ public class ProjectPropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterf
 		save();
 	}
 
+	private boolean isProjectEqual(OrgUnitProperty property, OrgUnitProperty changedProperty) {
+		if ((property.getProject() == null) && (changedProperty.getProject() == null)) {
+			return true;
+		}
+		if (property.getProject() == null) {
+			return false;
+		}
+		if (changedProperty.getProject() == null) {
+			return false;
+		}
+		return (property.getProject().equals(changedProperty.getProject()));
+	}
+
 	private void save() throws EmfStoreException {
 		try {
 			getServerSpace().save();
 		} catch (IOException e) {
-			throw new EmfStoreException("Can not set the property on the server.");
+			throw new EmfStoreException("Cannot set the property on the server.");
 		}
 	}
 }

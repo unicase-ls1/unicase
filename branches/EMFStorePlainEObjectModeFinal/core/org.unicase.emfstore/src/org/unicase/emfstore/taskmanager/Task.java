@@ -7,6 +7,8 @@ package org.unicase.emfstore.taskmanager;
 
 import java.util.Date;
 
+import org.unicase.metamodel.util.ModelUtil;
+
 /**
  * Tasks are managed by the Taskmanager and are used to run certain tasks periodically.
  * 
@@ -58,7 +60,13 @@ public abstract class Task {
 	 * @return true if task will be executed again
 	 */
 	protected boolean runTask() {
-		executeTask();
+		// BEGIN SUPRESS CATCH EXCEPTION
+		try {
+			executeTask();
+		} catch (Exception e) {
+			ModelUtil.logException("An exception occurred while executing a server task.", e);
+		}
+		// END SUPRESS CATCH EXCEPTION
 		return calculateNextRun();
 	}
 
