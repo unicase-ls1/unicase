@@ -58,7 +58,7 @@ public class MultiReferenceOperationTest extends WorkspaceTest {
 				actor.getInitiatedUseCases().add(useCase);
 
 			}
-		}.run();
+		}.run(false);
 		assertEquals(actor, useCase.getInitiatingActor());
 		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
 		assertEquals(1, initiatedUseCases.size());
@@ -136,7 +136,7 @@ public class MultiReferenceOperationTest extends WorkspaceTest {
 				assertEquals(1, initiatedUseCases.size());
 				assertEquals(useCase, initiatedUseCases.get(0));
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -182,7 +182,7 @@ public class MultiReferenceOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				reversedMultiReferenceOperation.apply(getProject());
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(0, actor.getInitiatedUseCases().size());
 		assertEquals(null, useCase.getInitiatingActor());
@@ -229,7 +229,7 @@ public class MultiReferenceOperationTest extends WorkspaceTest {
 				assertEquals(useCase2, initiatedUseCases.get(1));
 				assertEquals(useCase3, initiatedUseCases.get(2));
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
@@ -326,14 +326,14 @@ public class MultiReferenceOperationTest extends WorkspaceTest {
 				assertEquals(useCase2, initiatedUseCases.get(1));
 				assertEquals(useCase3, initiatedUseCases.get(2));
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				actor.getInitiatedUseCases().removeAll(useCases);
 			}
-		}.run();
+		}.run(false);
 
 		assertEquals(null, useCase.getInitiatingActor());
 		assertEquals(null, useCase2.getInitiatingActor());

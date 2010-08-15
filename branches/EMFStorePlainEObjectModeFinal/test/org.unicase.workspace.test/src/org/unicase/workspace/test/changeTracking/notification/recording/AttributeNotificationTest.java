@@ -59,7 +59,7 @@ public class AttributeNotificationTest extends NotificationTest {
 				assertEquals(n.getAttribute().getName(), "name");
 				assertEquals(n.getOldValue(), "new UseCase");
 			}
-		}.run();
+		}.run(false);
 
 	}
 }

@@ -16,7 +16,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { AttributeOperationTest.class, SingleReferenceOperationTest.class,
 	MultiReferenceOperationTest.class, CreateDeleteOperationTest.class, MultiReferenceMoveOperationTest.class,
-	CompositeOperationTest.class })
+	CompositeOperationTest.class, MultiAttributeMoveOperationTest.class, MultiAttributeSetTest.class,
+	MultiAttributeTest.class, MultiReferenceSetOperationTest.class })
 public class AllOperationTests {
 
 }

@@ -52,7 +52,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().add(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -89,7 +89,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().remove(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -134,7 +134,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().move(0, actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -179,7 +179,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				actor.setName("this is a new name");
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -224,7 +224,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				actor.setInitiatedUserTask(task);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -269,7 +269,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				actor.getInitiatedUseCases().add(useCase);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -317,7 +317,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				issue.setSolution(solution2);
 
 			}
-		}.run();
+		}.run(false);
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops are [create solution1], [set solution 1], [set solution 2]
@@ -354,7 +354,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				getProject().deleteModelElement(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -402,7 +402,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				getProject().deleteModelElement(section);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -458,7 +458,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().move(0, actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -500,7 +500,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().remove(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -542,7 +542,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section2.getModelElements().add(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -584,7 +584,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section2.getModelElements().add(actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -624,7 +624,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().remove(actor);
 
 			}
-		}.run();
+		}.run(false);
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops are [add actor to section], [remove actor]
@@ -665,7 +665,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section.getModelElements().move(0, actor);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -720,7 +720,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -776,7 +776,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				}
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -832,7 +832,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 					fail();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -877,7 +877,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				section2.getModelElements().add(actor2);
 
 			}
-		}.run();
+		}.run(false);
 
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
@@ -932,7 +932,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 				useCase.getParticipatingActors().move(1, actor);
 				getProject().deleteModelElement(section);
 			}
-		}.run();
+		}.run(false);
 		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
 
 		// ops lineup

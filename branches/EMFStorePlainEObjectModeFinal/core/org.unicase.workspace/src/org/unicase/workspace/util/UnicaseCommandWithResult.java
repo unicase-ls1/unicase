@@ -17,6 +17,7 @@ import org.unicase.workspace.Configuration;
 public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 
 	private T result;
+	private RuntimeException runtimeException;
 
 	/**
 	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
@@ -32,7 +33,14 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 */
 	@Override
 	protected final void doExecute() {
-		this.result = doRun();
+		try {
+			this.result = doRun();
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
+			runtimeException = e;
+			throw e;
+		}
 	}
 
 	/**
@@ -48,8 +56,24 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 * @return the result
 	 */
 	public T run() {
-		// this.execute();
+		return run(true);
+	}
+
+	/**
+	 * Executes the command on the workspaces editing domain.
+	 * 
+	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
+	 * @return the result
+	 */
+	public T run(boolean ignoreExceptions) {
+		runtimeException = null;
+
 		Configuration.getEditingDomain().getCommandStack().execute(this);
+
+		if (!ignoreExceptions && runtimeException != null) {
+			throw runtimeException;
+		}
+
 		return this.result;
 	}
 

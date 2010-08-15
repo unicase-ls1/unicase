@@ -311,7 +311,7 @@ public class SetupHelper {
 				testProjectSpace = projectSpace;
 
 			}
-		}.run();
+		}.run(false);
 	}
 
 	/**
@@ -539,7 +539,7 @@ public class SetupHelper {
 				}
 				projectId = testProjectSpace.getProjectId();
 			}
-		}.run();
+		}.run(false);
 	}
 
 	/**
