@@ -179,7 +179,19 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
@@ -388,6 +400,10 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
 				.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
+				.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE

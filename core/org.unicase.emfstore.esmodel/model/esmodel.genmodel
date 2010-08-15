@@ -129,11 +129,31 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AttributeOperation/oldValue"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AttributeOperation/newValue"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/add"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/indexes"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/referencedValues"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeSetOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeSetOperation/index"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeSetOperation/oldValue"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeSetOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/oldIndex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/newIndex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/referencedValue"/>
+        </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/SingleReferenceOperation">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/SingleReferenceOperation/oldValue"/>
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/SingleReferenceOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiReferenceSetOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiReferenceSetOperation/index"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/MultiReferenceSetOperation/oldValue"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/MultiReferenceSetOperation/newValue"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiReferenceOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiReferenceOperation/add"/>
