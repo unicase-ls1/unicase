@@ -13,7 +13,6 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -113,12 +112,11 @@ public abstract class WorkspaceTest {
 		getProjectSpace().getOperations().clear();
 	}
 
-	protected void plotOperations() {
-		for (AbstractOperation op : getProjectSpace().getOperations()) {
-			System.out.println(op);
-		}
-	}
-
+	/**
+	 * Creates an test element.
+	 * 
+	 * @return test element
+	 */
 	protected TestElement getTestElement() {
 		TestElement element = TestmodelFactory.eINSTANCE.createTestElement();
 		getProject().getModelElements().add(element);

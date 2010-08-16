@@ -14,6 +14,11 @@ import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Tests for multiattributemove operations.
+ * 
+ * @author wesendon
+ */
 public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 
 	// TODO

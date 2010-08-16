@@ -17,6 +17,11 @@ import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Tests for multiattributeset operations.
+ * 
+ * @author wesendon
+ */
 public class MultiAttributeSetTest extends WorkspaceTest {
 
 	@Test
