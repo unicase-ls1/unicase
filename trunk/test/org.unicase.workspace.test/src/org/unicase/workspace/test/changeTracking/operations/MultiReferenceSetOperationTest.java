@@ -17,6 +17,11 @@ import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Tests for multireferenceset operations.
+ * 
+ * @author wesendon
+ */
 public class MultiReferenceSetOperationTest extends WorkspaceTest {
 
 	@Test
