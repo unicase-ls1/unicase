@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -169,7 +170,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			projectSpace.saveProjectSpaceOnly();
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
-			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
+			// put ID into resource
+			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
+			newResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
+
 			newResource.getContents().add(modelElement);
 			save(modelElement);
 		}

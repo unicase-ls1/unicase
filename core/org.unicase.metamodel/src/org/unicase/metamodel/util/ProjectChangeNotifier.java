@@ -47,10 +47,11 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void addAdapter(Notifier notifier) {
+		EObject modelElement = (EObject) notifier;
 		if (notifier instanceof EObjectToModelElementIdMapImpl) {
 			return;
 		} else if (!isInitializing && notifier instanceof EObject) {
-			EObject modelElement = (EObject) notifier;
+
 			// ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
 			// handle same id but different instance, probably copied element
 

@@ -113,6 +113,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private Set<ProjectChangeObserver> observersToRemove;
 	private Set<ProjectChangeObserver> undetachableObservers;
 
+	private boolean loaded;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -126,6 +128,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
 		observersToRemove = new HashSet<ProjectChangeObserver>();
 		undetachableObservers = new HashSet<ProjectChangeObserver>();
+
 	}
 
 	// end of custom code
@@ -150,6 +153,66 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
 				MetamodelPackage.PROJECT__MODEL_ELEMENTS);
 		}
+		// TODO: where to put code?
+
+		if (!loaded && modelElements != null && modelElements.size() != 0) {
+			for (EObject modelElement : modelElements) {
+				TreeIterator<EObject> it = modelElement.eAllContents();
+				while (it.hasNext()) {
+					EObject e = it.next();
+					try {
+						// TODO
+						XMIResource res = (XMIResource) e.eResource();
+						res.load(null);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						// Do NOT catch all Exceptions ("catch (Exception e)")
+						// Log AND handle Exceptions if possible
+						//
+						// You can just uncomment one of the lines below to log an exception:
+						// logException will show the logged excpetion to the user
+						// ModelUtil.logException(e1);
+						// ModelUtil.logException("YOUR MESSAGE HERE", e1);
+						// logWarning will only add the message to the error log
+						// ModelUtil.logWarning("YOUR MESSAGE HERE", e1);
+						// ModelUtil.logWarning("YOUR MESSAGE HERE");
+						//
+						// If handling is not possible declare and rethrow Exception
+					}
+				}
+			}
+
+			for (EObject modelElement : modelElements) {
+				ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
+				XMIResource res = (XMIResource) modelElement.eResource();
+				try {
+					res.load(null);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					// Do NOT catch all Exceptions ("catch (Exception e)")
+					// Log AND handle Exceptions if possible
+					//
+					// You can just uncomment one of the lines below to log an exception:
+					// logException will show the logged excpetion to the user
+					// ModelUtil.logException(e);
+					// ModelUtil.logException("YOUR MESSAGE HERE", e);
+					// logWarning will only add the message to the error log
+					// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+					// ModelUtil.logWarning("YOUR MESSAGE HERE");
+					//			
+					// If handling is not possible declare and rethrow Exception
+				}
+				if (res != null) {
+					id.setId(res.getID(modelElement));
+					// add checks when this case is ok
+					if (id.getId() != null) {
+						getEobjectsIdMap().put(modelElement, ModelUtil.clone(id));
+					}
+				}
+			}
+
+			loaded = true;
+		}
 		return modelElements;
 	}
 
@@ -171,7 +234,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	// TODO EM: remove NOT annotation
 	public EMap<EObject, ModelElementId> getEobjectsIdMap() {
@@ -180,44 +243,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			eobjectsIdMap = new EcoreEMap<EObject, ModelElementId>(
 				MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP, EObjectToModelElementIdMapImpl.class, this,
 				MetamodelPackage.PROJECT__EOBJECTS_ID_MAP);
-
-			// TODO: where to put code?
-			if (modelElements != null && modelElements.size() != 0) {
-				for (EObject modelElement : modelElements) {
-					TreeIterator<EObject> it = modelElement.eAllContents();
-					while (it.hasNext()) {
-						EObject e = it.next();
-						try {
-							// TODO
-							XMIResource res = (XMIResource) e.eResource();
-							res.load(null);
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							// Do NOT catch all Exceptions ("catch (Exception e)")
-							// Log AND handle Exceptions if possible
-							//
-							// You can just uncomment one of the lines below to log an exception:
-							// logException will show the logged excpetion to the user
-							// ModelUtil.logException(e1);
-							// ModelUtil.logException("YOUR MESSAGE HERE", e1);
-							// logWarning will only add the message to the error log
-							// ModelUtil.logWarning("YOUR MESSAGE HERE", e1);
-							// ModelUtil.logWarning("YOUR MESSAGE HERE");
-							//			
-							// If handling is not possible declare and rethrow Exception
-						}
-					}
-				}
-
-				for (EObject modelElement : modelElements) {
-					ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
-					XMIResource res = (XMIResource) modelElement.eResource();
-					if (res != null) {
-						id.setId(res.getID(modelElement));
-						eobjectsIdMap.put(modelElement, id);
-					}
-				}
-			}
 		}
 
 		return eobjectsIdMap;
@@ -271,7 +296,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		} else {
 			// first add to map in order to have an id
 			getModelElements().add(me);
-		//	addModelElementAndChildrenToCache(me);
+			// addModelElementAndChildrenToCache(me);
 		}
 	}
 
