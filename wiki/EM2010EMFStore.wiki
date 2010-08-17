@@ -10,4 +10,4 @@ Link 3, Example Library Model: http://help.eclipse.org/galileo/topic/org.eclipse
 
 Link 4, Installation Video Tutorial: http://code.google.com/p/unicase/wiki/InstallEMFStore
 
-Link 5, 
+Link 5, Model Preparation Video Tutorial: http://code.google.com/p/unicase/wiki/PrepareModelTutorial
