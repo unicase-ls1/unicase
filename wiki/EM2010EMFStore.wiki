@@ -1,6 +1,6 @@
 #summary Diese Seite enthält Links zu dem EMFStore Artikel im Eclipse Magazin 2010
 
-===Setup===
+===Setup and First Steps===
 
 Link 1, Eclipse Galileo - Modeling Edition: http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1
 
