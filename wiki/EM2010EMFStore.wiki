@@ -1,3 +1,4 @@
 #summary Diese Seite enthält Links zu dem EMFStore Artikel im Eclipse Magazin 2010
 
-http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1
+===Setup===
+Link 1: http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1
