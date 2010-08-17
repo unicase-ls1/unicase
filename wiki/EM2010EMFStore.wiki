@@ -5,3 +5,5 @@
 Link 1, Eclipse Galileo - Modeling Edition: http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1
 
 Link 2, EMFStore Update Site: http://unicase.googlecode.com/svn/updatesite/emfstoreNightly
+
+Link 3, Example Library Model: http://help.eclipse.org/galileo/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl
