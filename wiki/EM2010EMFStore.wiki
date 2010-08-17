@@ -16,5 +16,4 @@ Link 6, Example Model Edit Plugin (SVN): http://unicase.googlecode.com/svn/trunk
  
 Link 7, Model Preparation Video Tutorial: http://code.google.com/p/unicase/wiki/PrepareModelTutorial
 
-
-Link 8: 
+Link 8: Launch Configuration and First Steps Video Tutorial: http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel
