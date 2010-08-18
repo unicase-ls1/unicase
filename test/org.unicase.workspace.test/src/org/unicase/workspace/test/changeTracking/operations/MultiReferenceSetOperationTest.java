@@ -24,6 +24,9 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class MultiReferenceSetOperationTest extends WorkspaceTest {
 
+	/**
+	 * Set reference to filled list.
+	 */
 	@Test
 	public void setValueToFilledTest() {
 		new UnicaseCommand() {
@@ -50,6 +53,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Apply setoperation.
+	 */
 	@Test
 	public void applyValueToFilledTest() {
 		new UnicaseCommand() {
@@ -77,6 +83,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Apply setoperation with wrong index.
+	 */
 	@Test
 	public void applyValueToFilledWrongIndexTest() {
 		new UnicaseCommand() {
@@ -105,6 +114,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Set value to filled list.
+	 */
 	@Test
 	public void applyValueToMultiFilledTest() {
 		new UnicaseCommand() {
@@ -125,9 +137,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				operation.setNewValue(newValue.getModelElementId());
 				operation.setOldValue(second.getModelElementId());
 				operation.setModelElementId(testElement.getModelElementId());
-
 				operation.apply(getProject());
-
 				assertTrue(testElement.getReferences().size() == 3);
 				assertTrue(testElement.getReferences().get(0).equals(first));
 				assertTrue(testElement.getReferences().get(1).equals(newValue));
@@ -136,6 +146,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Set and reverse operation.
+	 */
 	@Test
 	public void setAndReverseTest() {
 		new UnicaseCommand() {

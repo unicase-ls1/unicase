@@ -24,6 +24,9 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class MultiAttributeTest extends WorkspaceTest {
 
+	/**
+	 * Add value to empty list.
+	 */
 	@Test
 	public void addValueToEmptyTest() {
 		new UnicaseCommand() {
@@ -48,6 +51,9 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Add value to filled list.
+	 */
 	@Test
 	public void addValueToFilledTest() {
 		new UnicaseCommand() {
@@ -74,6 +80,9 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Add multiple values.
+	 */
 	@Test
 	public void addMultipleValueToFilledTest() {
 		new UnicaseCommand() {
@@ -103,6 +112,9 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Remove last value.
+	 */
 	@Test
 	public void removeValueToEmptyTest() {
 		new UnicaseCommand() {
@@ -127,15 +139,16 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Test recorded operation.
+	 */
 	@Test
 	public void recordedAddOperationsTest() {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
-
 				getProjectSpace().getOperations().clear();
-
 				testElement.getStrings().add("first");
 				testElement.getStrings().addAll(Arrays.asList("second", "third"));
 
@@ -154,11 +167,13 @@ public class MultiAttributeTest extends WorkspaceTest {
 				assertTrue(ao.getReferencedValues().get(0).equals("second"));
 				assertTrue(ao.getReferencedValues().get(1).equals("third"));
 				assertTrue(ao.isAdd());
-
 			}
 		}.run(false);
 	}
 
+	/**
+	 * Test recorded remove operation.
+	 */
 	@Test
 	public void recordedRemoveOperationsTest() {
 		new UnicaseCommand() {
@@ -187,6 +202,9 @@ public class MultiAttributeTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Remove and reverse operation.
+	 */
 	@Test
 	public void removeAndReverseTest() {
 		new UnicaseCommand() {
