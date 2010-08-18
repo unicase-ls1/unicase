@@ -9,12 +9,12 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model.urml.provider,
- urml.danger.provider,
- urml.feature.provider,
- urml.goal.provider,
- urml.requirement.provider,
- urml.service.provider,
- urml.usecase.provider
+ org.unicase.model.urml.danger.provider,
+ org.unicase.model.urml.feature.provider,
+ org.unicase.model.urml.goal.provider,
+ org.unicase.model.urml.requirement.provider,
+ org.unicase.model.urml.service.provider,
+ org.unicase.model.urml.usecase.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.urml;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,

@@ -11,11 +11,11 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Stakeholder"
-          description="Create new Stakeholder"/>
+          description=""/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Goal"
-          description="Create new Goal"/>
+          description=""/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="FunctionalRequirement"/>

@@ -26,66 +26,66 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/urml/goal"
-            class="urml.goal.GoalPackage"
+            class="org.unicase.model.urml.goal.GoalPackage"
             genModel="model/urml.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="goal"
-            class="urml.goal.util.GoalResourceFactoryImpl"/>
+            class="org.unicase.model.urml.goal.util.GoalResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/urml/requirement"
-            class="urml.requirement.RequirementPackage"
+            class="org.unicase.model.urml.requirement.RequirementPackage"
             genModel="model/urml.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="requirement"
-            class="urml.requirement.util.RequirementResourceFactoryImpl"/>
+            class="org.unicase.model.urml.requirement.util.RequirementResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/urml/usecase"
-            class="urml.usecase.UsecasePackage"
+            class="org.unicase.model.urml.usecase.UsecasePackage"
             genModel="model/urml.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="usecase"
-            class="urml.usecase.util.UsecaseResourceFactoryImpl"/>
+            class="org.unicase.model.urml.usecase.util.UsecaseResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/urml/service"
-            class="urml.service.ServicePackage"
+            class="org.unicase.model.urml.service.ServicePackage"
             genModel="model/urml.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="service"
-            class="urml.service.util.ServiceResourceFactoryImpl"/>
+            class="org.unicase.model.urml.service.util.ServiceResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/urml/danger"
-            class="urml.danger.DangerPackage"
+            class="org.unicase.model.urml.danger.DangerPackage"
             genModel="model/urml.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="danger"
-            class="urml.danger.util.DangerResourceFactoryImpl"/>
+            class="org.unicase.model.urml.danger.util.DangerResourceFactoryImpl"/>
    </extension>
    <extension
          point="org.eclipse.emf.validation.constraintProviders">
@@ -98,7 +98,7 @@
          <constraints
                categories="org.unicase.model">
             <constraint
-                  class="urml.danger.validation.DangerMitigationConstraint"
+                  class="org.unicase.model.urml.danger.validation.DangerMitigationConstraint"
                   id="org.unicase.model.urml.danger.MitigationConstraint"
                   lang="Java"
                   mode="Batch"
@@ -115,7 +115,7 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="urml.feature.FeaturePackage"
+            class="org.unicase.model.urml.feature.FeaturePackage"
             genModel="model/urml.genmodel"
             uri="http://unicase.org/model/urml/feature">
       </package>
@@ -123,17 +123,9 @@
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
-            class="urml.feature.util.FeatureResourceFactoryImpl"
+            class="org.unicase.model.urml.feature.util.FeatureResourceFactoryImpl"
             type="feature">
       </parser>
-   </extension>
-   <extension
-         point="org.unicase.ui.meeditor.melinkcontrols">
-      <widget
-            class="org.unicase.ui.diagram.urml.meeditor.GoalInfluenceLinkControl"
-            name="org.unicase.ui.diagram.urml.meeditor.GoalInfluenceLinkControl"
-            type="org.unicase.metamodel.ModelElement">
-      </widget>
    </extension>
 
 </plugin>

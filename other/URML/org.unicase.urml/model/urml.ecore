@@ -3,12 +3,12 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="urml"
     nsURI="http://unicase.org/model/urml" nsPrefix="org.unicase.model.urml">
-  <eClassifiers xsi:type="ecore:EClass" name="UrmlModelElement" abstract="true" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UrmlModelElement" abstract="true" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Stakeholder" eSuperTypes="#//UrmlModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1"
         eType="#//goal/Goal" eOpposite="#//goal/Goal/stakeholders" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="URMLDiagram" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//diagram/MEDiagram"/>
+  <eClassifiers xsi:type="ecore:EClass" name="URMLDiagram" eSuperTypes="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram"/>
   <eSubpackages name="goal" nsURI="http://unicase.org/model/urml/goal" nsPrefix="org.unicase.model.urml.goal">
     <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//UrmlModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="soft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -87,7 +87,7 @@
   <eSubpackages name="usecase" nsURI="http://unicase.org/model/urml/usecase" nsPrefix="org.unicase.model.urml.usecase">
     <eClassifiers xsi:type="ecore:EClass" name="UseCase" abstract="true" eSuperTypes="#//UrmlModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//requirement/Step"
+          eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//requirement/Step"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
           eType="#//usecase/Actor" eOpposite="#//usecase/Actor/useCases" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -110,8 +110,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="satisfiedRequirements"
           upperBound="-1" eType="#//requirement/Requirement" eOpposite="#//requirement/Requirement/implementingServices"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="usedClasses" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//classes/Class"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentService" eType="#//service/Service"
           eOpposite="#//service/Service/subServices" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subServices" upperBound="-1"
@@ -131,9 +129,6 @@
           eType="#//danger/Asset" eOpposite="#//danger/Asset/triggeredDangers" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="harmedAssets" upperBound="-1"
           eType="#//danger/Asset" eOpposite="#//danger/Asset/harmingDangers" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="harmedClasses" upperBound="-1"
-          eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//classes/Class"
-          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mitigations" upperBound="-1"
           eType="#//danger/Mitigation" eOpposite="#//danger/Mitigation/mitigatedDangers"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -171,25 +166,28 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="excludedFeatures" upperBound="-1"
           eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/excludingFeatures"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="requieringFeatures" upperBound="-1"
-          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requieredFeatures"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiringFeatures" upperBound="-1"
+          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requiredFeatures"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="requieredFeatures" upperBound="-1"
-          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requieringFeatures"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredFeatures" upperBound="-1"
+          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/requiringFeatures"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variationPoint" eType="#//feature/VariationPoint"
-          eOpposite="#//feature/VariationPoint/variety" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="optionalParentVariationPoint"
+          eType="#//feature/VariationPoint" eOpposite="#//feature/VariationPoint/optionalSubFeatures"
+          eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variationPointInstances"
           upperBound="-1" eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/selectedFeatures"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//feature/AbstractFeature"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//feature/AbstractFeature">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="products" eType="#//feature/Product"
+          eOpposite="#//feature/Product/features" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariationPoint" eSuperTypes="#//feature/AbstractFeature">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variety" upperBound="-1"
-          eType="#//feature/AbstractFeature" eOpposite="#//feature/AbstractFeature/variationPoint"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="optionalSubFeatures"
+          upperBound="-1" eType="#//feature/AbstractFeature" containment="true" eOpposite="#//feature/AbstractFeature/optionalParentVariationPoint"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="varietyMultiplicity"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
           eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/variationPoint"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -207,6 +205,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="variationPointInstances"
           upperBound="-1" eType="#//feature/VariationPointInstance" eOpposite="#//feature/VariationPointInstance/product"
           eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="features" eType="#//feature/Feature"
+          eOpposite="#//feature/Feature/products" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

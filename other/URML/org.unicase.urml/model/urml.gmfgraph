@@ -4,19 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="URMLDiagram">
   <figures
-      name="Default">
-    <figures
-        xsi:type="gmfgraph:PolylineDecoration"
-        name="Arrow"/>
-    <figures
-        xsi:type="gmfgraph:PolylineDecoration"
-        name="Arrow"/>
-    <figures
-        xsi:type="gmfgraph:PolylineDecoration"
-        name="GoalSubGoalsTargetDecoration"/>
-    <figures
-        xsi:type="gmfgraph:PolylineDecoration"
-        name="GoalParentGoalTargetDecoration"/>
+      name="Nodes">
     <descriptors
         name="StakeholderFigure">
       <actualFigure
@@ -31,7 +19,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StakeholderFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.StakeholderIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.StakeholderIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StakeholderFigure_name"
@@ -48,13 +36,6 @@
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
-        name="StakeholderGoalsFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="StakeholderGoalsFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
         name="GoalFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
@@ -68,7 +49,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="GoalFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.GoalIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.GoalIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="GoalFigure_name"
@@ -82,50 +63,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureGoalFigure_name"
-          figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="GoalStakeholdersFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="GoalStakeholdersFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="GoalSubGoalsFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="GoalSubGoalsFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="GoalInfluenceGoalsFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="GoalInfluenceGoalsFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection">
-        <children
-            xsi:type="gmfgraph:Label"
-            name="GoalInfluenceGoalsFigure_name"
-            text="null"/>
-      </actualFigure>
-      <accessors
-          accessor="getFigureGoalInfluenceGoalsFigure_name"
-          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
-        name="GoalParentGoalFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="GoalParentGoalFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="GoalFeatureFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="GoalFeatureFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="FunctionalRequirement">
@@ -141,7 +79,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="FunctionalRequirementFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.FunctionalRequirementIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.FunctionalRequirementIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="FunctionalRequirementFigure_name"
@@ -155,7 +93,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureFunctionalRequirementFigure_name"
-          figure="//@figures.0/@descriptors.8/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="NonFunctionalRequirementFigure">
@@ -171,7 +109,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="NonFunctionalRequirementFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.NonFunctionalRequirementIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.NonFunctionalRequirementIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="NonFunctionalRequirementFigure_name"
@@ -185,21 +123,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureNonFunctionalRequirementFigure_name"
-          figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="RequirementServiceFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="RequirementServiceFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="RequirementSubRequirementsFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="RequirementSubRequirementsFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="FeatureFigure">
@@ -215,7 +139,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="FeatureFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.FeatureIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.FeatureIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure_name"
@@ -229,42 +153,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeatureFigure_name"
-          figure="//@figures.0/@descriptors.12/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="FeatureSubFeaturesFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="FeatureSubFeaturesFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="FeatureExcludeFeatureFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="FeatureExcludeFeatureFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="FeatureRequiereFeatureFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="FeatureRequiereFeatureFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="FeatureFunctionalRequirementFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="FeatureFunctionalRequirementFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="FeatureNonFunctionalRequirementFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="FeatureNonFunctionalRequirementFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ServiceFigure">
@@ -279,7 +168,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ServiceFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ServiceIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.ServiceIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ServiceFigure_name"
@@ -293,14 +182,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureServiceFigure_name"
-          figure="//@figures.0/@descriptors.18/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="ServiceSubServicesFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="ServiceSubServicesFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DangerFigure">
@@ -316,7 +198,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="DangerFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.DangerIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.DangerIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="DangerFigure_name"
@@ -330,14 +212,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureDangerFigure_name"
-          figure="//@figures.0/@descriptors.20/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="DangerAssetFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="DangerAssetFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ActorFigure">
@@ -353,7 +228,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ActorIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.ActorIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure_name"
@@ -367,7 +242,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureActorFigure_name"
-          figure="//@figures.0/@descriptors.22/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ProceduralMitigationFigure">
@@ -383,7 +258,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ProceduralMitigationFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ProceduralMitigationIcon"/>
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.ProceduralMitigationIcon"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ProceduralMitigationFigure_name"
@@ -397,21 +272,286 @@
       </actualFigure>
       <accessors
           accessor="getFigureProceduralMitigationFigure_name"
-          figure="//@figures.0/@descriptors.23/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.8/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointFigure"
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.VariationPointIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointFigure_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureVariationPointFigure_name"
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointInstanceFigure"
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.VariationPointInstanceIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="VariationPointInstance_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureVariationPointInstance_name"
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="ProductFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          outline="false"
+          fill="false"
+          lineWidth="0"
+          lineKind="LINE_CUSTOM">
+        <layoutData
+            xsi:type="gmfgraph:BorderLayoutData"
+            vertical="true"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ProductFigure"
+            qualifiedClassName="org.unicase.ui.diagram.urml.own.icons.ProductIcon"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ProductFigure_name"
+            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getProductFigure_name"
+          figure="//@figures.0/@descriptors.11/@actualFigure/@children.1"/>
+    </descriptors>
+  </figures>
+  <figures
+      name="Connections">
+    <descriptors
+        name="StakeholderGoalsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="StakeholderGoalsFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="GoalSubGoalsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="GoalSubGoalsFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="GoalInfluenceGoalsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="GoalInfluenceGoalsFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="GoalInfluenceGoalsFigure_weight"
+            text="null"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureGoalInfluenceGoalsFigure_weight"
+          figure="//@figures.1/@descriptors.2/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="GoalParentGoalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="GoalParentGoalFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="GoalFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="GoalFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="RequirementServiceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="RequirementServiceFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="RequirementSubRequirementsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="RequirementSubRequirementsFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="FeatureSubFeaturesFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="FeatureSubFeaturesFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="FeatureExcludeFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="FeatureExcludeFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="FeatureRequireFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="FeatureRequiereFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="FeatureFunctionalRequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="FeatureFunctionalRequirementFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="FeatureNonFunctionalRequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="FeatureNonFunctionalRequirementFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="ServiceSubServicesFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="ServiceSubServicesFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="DangerAssetFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="DangerAssetFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
     </descriptors>
     <descriptors
         name="MitigationDangerFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="MitigationDangerFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
     </descriptors>
     <descriptors
         name="AssetDangerFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="AssetDangerFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="VariationPointFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceVariationPointFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="VariationPointInstanceVariationPointFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="VariationPointInstanceFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="VariationPointInstanceFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="ProductVariationPointInstanceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="ProductVariationPointInstanceFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+    <descriptors
+        name="ProductFeatureFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="ProductFeatureFigure"
+          qualifiedClassName="org.unicase.ui.diagram.urml.own.figures.ShortenedPolylineConnection"/>
+    </descriptors>
+  </figures>
+  <figures
+      name="Labels">
+    <descriptors
+        name="InstantiateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="InstantiateLabelFigure"
+          text="instantiate"/>
+    </descriptors>
+    <descriptors
+        name="SuggestsLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SuggestsLabelFigure"
+          text="suggests"/>
+    </descriptors>
+    <descriptors
+        name="SelectLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SelectLabelFigure"
+          text="selects"/>
+    </descriptors>
+    <descriptors
+        name="ConsistsOfLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ConsistsOfLabelFigure"
+          text="consists of"/>
     </descriptors>
     <descriptors
         name="ExpressesLabelFigure">
@@ -504,152 +644,6 @@
           name="RequiresLabelFigure"
           text="requires"/>
     </descriptors>
-    <descriptors
-        name="VariationPointFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          outline="false"
-          fill="false"
-          lineWidth="0"
-          lineKind="LINE_CUSTOM">
-        <layoutData
-            xsi:type="gmfgraph:BorderLayoutData"
-            vertical="true"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="VariationPointFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.VariationPointIcon"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="VariationPointFigure_name"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureVariationPointFigure_name"
-          figure="//@figures.0/@descriptors.39/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="VariationPointInstanceFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          outline="false"
-          fill="false"
-          lineWidth="0"
-          lineKind="LINE_CUSTOM">
-        <layoutData
-            xsi:type="gmfgraph:BorderLayoutData"
-            vertical="true"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="VariationPointInstanceFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.VariationPointInstanceIcon"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="VariationPointInstance_name"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureVariationPointInstance_name"
-          figure="//@figures.0/@descriptors.40/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="ProductFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          outline="false"
-          fill="false"
-          lineWidth="0"
-          lineKind="LINE_CUSTOM">
-        <layoutData
-            xsi:type="gmfgraph:BorderLayoutData"
-            vertical="true"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ProductFigure"
-            qualifiedClassName="org.unicase.ui.diagrams.urml.icons.ProductIcon"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ProductFigure_name"
-            qualifiedClassName="org.unicase.ui.unicasecommon.diagram.figures.Label">
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getProductFigure_name"
-          figure="//@figures.0/@descriptors.41/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="VariationPointFeatureFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="VariationPointFeatureFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="VariationPointInstanceVariationPointFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="VariationPointInstanceVariationPointFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="VariationPointInstanceFeatureFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="VariationPointInstanceFeatureFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="ProductVariationPointInstanceFigure">
-      <actualFigure
-          xsi:type="gmfgraph:CustomConnection"
-          name="ProductVariationPointInstanceFigure"
-          qualifiedClassName="org.unicase.ui.diagrams.urml.figures.ShortenedPolylineConnection"/>
-    </descriptors>
-    <descriptors
-        name="InstantiateLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="InstantiateLabelFigure"
-          text="instantiate"/>
-    </descriptors>
-    <descriptors
-        name="SuggestsLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="SuggestsLabelFigure"
-          text="suggests"/>
-    </descriptors>
-    <descriptors
-        name="SelectLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="SelectLabelFigure"
-          text="selects"/>
-    </descriptors>
-    <descriptors
-        name="ConsistsOfLabelFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Label"
-          name="ConsistsOfLabelFigure"
-          text="consists of"/>
-    </descriptors>
   </figures>
   <nodes
       name="Stakeholder"
@@ -691,9 +685,6 @@
       name="StakeholderGoals"
       figure="StakeholderGoalsFigure"/>
   <connections
-      name="GoalStakeholders"
-      figure="GoalStakeholdersFigure"/>
-  <connections
       name="GoalSubGoals"
       figure="GoalSubGoalsFigure"/>
   <connections
@@ -706,7 +697,7 @@
       name="RequirementService"
       figure="RequirementServiceFigure"/>
   <connections
-      name="RequierementSubRequierements"
+      name="RequirementSubRequirements"
       figure="RequirementSubRequirementsFigure"/>
   <connections
       name="FeatureSubFeatures"
@@ -715,8 +706,8 @@
       name="FeatureExcludeFeatures"
       figure="FeatureExcludeFeatureFigure"/>
   <connections
-      name="FeatureRequiereFeatures"
-      figure="FeatureRequiereFeatureFigure"/>
+      name="FeatureRequireFeatures"
+      figure="FeatureRequireFeatureFigure"/>
   <connections
       name="FeatureFunctionalRequirement"
       figure="FeatureFunctionalRequirementFigure"/>
@@ -747,11 +738,14 @@
   <connections
       name="ProductVariationPointInstance"
       figure="ProductVariationPointInstanceFigure"/>
+  <connections
+      name="ProductFeature"
+      figure="ProductFeatureFigure"/>
   <labels
-      name="GoalInlfuenceGoalsLine_name"
+      name="GoalInlfuenceGoalsLine_weight"
       figure="GoalInfluenceGoalsFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.5/@accessors.0">
+      accessor="//@figures.1/@descriptors.2/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"/>
     <facets
@@ -761,32 +755,32 @@
       name="FeatureNode_name"
       figure="FeatureFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.12/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
   <labels
       name="ServiceNode_name"
       figure="ServiceFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.18/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
   <labels
       name="DangerNode_name"
       figure="DangerFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.20/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.6/@accessors.0"/>
   <labels
       name="NonFunctionalRequirementNode_name"
       figure="NonFunctionalRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
   <labels
       name="ActorNode_Name"
       figure="ActorFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.22/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.7/@accessors.0"/>
   <labels
       name="ProceduralMitigationNode_name"
       figure="ProceduralMitigationFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.23/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.8/@accessors.0"/>
   <labels
       name="StakeholderNode_name"
       figure="StakeholderFigure"
@@ -796,12 +790,27 @@
       name="GoalFigure_name"
       figure="GoalFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="FunctionalRequirementNode_name"
       figure="FunctionalRequirement"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.8/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels
+      name="VariationPointNode_name"
+      figure="VariationPointFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+  <labels
+      name="VariationPointInstanceNode_name"
+      figure="VariationPointInstanceFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.10/@accessors.0"/>
+  <labels
+      name="ProductNode_name"
+      figure="ProductFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.11/@accessors.0"/>
   <labels
       name="ExpressesLabel"
       figure="ExpressesLabelFigure"
@@ -945,21 +954,6 @@
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="20"/>
   </labels>
-  <labels
-      name="VariationPointNode_name"
-      figure="VariationPointFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.39/@accessors.0"/>
-  <labels
-      name="VariationPointInstanceNode_name"
-      figure="VariationPointInstanceFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.40/@accessors.0"/>
-  <labels
-      name="ProductNode_name"
-      figure="ProductFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.41/@accessors.0"/>
   <labels
       name="Instantiate"
       figure="InstantiateLabelFigure"

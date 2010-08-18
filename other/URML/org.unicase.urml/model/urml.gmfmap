@@ -330,10 +330,10 @@
           href="urml.gmfgraph#Requires"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#FeatureRequiereFeatures"/>
+        href="urml.gmfgraph#FeatureRequireFeatures"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//feature/AbstractFeature/requieredFeatures"/>
+        href="urml.ecore#//feature/AbstractFeature/requiredFeatures"/>
   </links>
   <links>
     <labelMappings
@@ -390,7 +390,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_weight"/>
       <features
           href="urml.ecore#//goal/GoalReference/weight"/>
     </labelMappings>
@@ -429,7 +429,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_weight"/>
       <features
           href="urml.ecore#//goal/GoalReference/weight"/>
     </labelMappings>
@@ -468,7 +468,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_weight"/>
       <features
           href="urml.ecore#//goal/GoalReference/weight"/>
     </labelMappings>
@@ -507,7 +507,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="urml.gmfgraph#GoalInlfuenceGoalsLine_name"/>
+          href="urml.gmfgraph#GoalInlfuenceGoalsLine_weight"/>
       <features
           href="urml.ecore#//goal/GoalReference/weight"/>
     </labelMappings>
@@ -534,7 +534,7 @@
           href="urml.gmfgraph#IsImplemented"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#GoalFeature"/>
+        href="urml.gmfgraph#RequirementService"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//requirement/Requirement/implementingServices"/>
@@ -546,7 +546,7 @@
           href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#RequierementSubRequierements"/>
+        href="urml.gmfgraph#RequirementSubRequirements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//requirement/NonFunctionalRequirement/subNonFunctionalRequirements"/>
@@ -558,7 +558,7 @@
           href="urml.gmfgraph#IsRefinedBy"/>
     </labelMappings>
     <diagramLink
-        href="urml.gmfgraph#RequierementSubRequierements"/>
+        href="urml.gmfgraph#RequirementSubRequirements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//requirement/FunctionalRequirement/subFunctionalRequirements"/>
@@ -621,7 +621,7 @@
         href="urml.gmfgraph#VariationPointFeature"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="urml.ecore#//feature/VariationPoint/variety"/>
+        href="urml.ecore#//feature/VariationPoint/optionalSubFeatures"/>
   </links>
   <links>
     <labelMappings
@@ -658,6 +658,18 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="urml.ecore#//feature/Product/variationPointInstances"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="urml.gmfgraph#ConsistsOf"/>
+    </labelMappings>
+    <diagramLink
+        href="urml.gmfgraph#ProductFeature"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="urml.ecore#//feature/Product/features"/>
   </links>
   <diagram>
     <diagramCanvas

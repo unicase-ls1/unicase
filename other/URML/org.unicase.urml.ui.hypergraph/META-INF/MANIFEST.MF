@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: UNICASE Hypergraph
-Bundle-SymbolicName: org.unicase.urml.ui.hypergraph;singleton:=true
+Bundle-SymbolicName: org.unicase.ui.urml;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.urml.ui.hypergraph.Activator
+Bundle-Activator: org.unicase.ui.urml.hypergraph.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.ui.unicasecommon;bundle-version="1.0.0",

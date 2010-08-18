@@ -218,13 +218,6 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4037"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'AbstractFeature') and _feature_.name = 'requieredFeatures')">
-    <linkLabelTraces
-        visualID="6037"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4038"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'AbstractFeature') and _feature_.name = 'excludedFeatures')">
     <linkLabelTraces
@@ -239,13 +232,6 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4042"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'VariationPoint') and _feature_.name = 'variety')">
-    <linkLabelTraces
-        visualID="6042"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4043"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/requirement' and _eClass_.name = 'NonFunctionalRequirement') and _feature_.name = 'subNonFunctionalRequirements')">
     <linkLabelTraces
@@ -257,6 +243,27 @@
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/requirement' and _eClass_.name = 'FunctionalRequirement') and _feature_.name = 'subFunctionalRequirements')">
     <linkLabelTraces
         visualID="6044"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4045"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'AbstractFeature') and _feature_.name = 'requiredFeatures')">
+    <linkLabelTraces
+        visualID="6045"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4046"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'VariationPoint') and _feature_.name = 'optionalSubFeatures')">
+    <linkLabelTraces
+        visualID="6046"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4047"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/urml/feature' and _eClass_.name = 'Product') and _feature_.name = 'features')">
+    <linkLabelTraces
+        visualID="6047"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>
