@@ -13,9 +13,8 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.urml.Stakeholder;
 import org.unicase.model.urml.UrmlPackage;
-
-import urml.goal.Goal;
-import urml.goal.GoalPackage;
+import org.unicase.model.urml.goal.Goal;
+import org.unicase.model.urml.goal.GoalPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stakeholder</b></em>'. <!-- end-user-doc -->

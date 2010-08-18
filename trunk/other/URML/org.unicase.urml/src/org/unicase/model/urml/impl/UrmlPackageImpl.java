@@ -15,19 +15,18 @@ import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlFactory;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
-
-import urml.danger.DangerPackage;
-import urml.danger.impl.DangerPackageImpl;
-import urml.feature.FeaturePackage;
-import urml.feature.impl.FeaturePackageImpl;
-import urml.goal.GoalPackage;
-import urml.goal.impl.GoalPackageImpl;
-import urml.requirement.RequirementPackage;
-import urml.requirement.impl.RequirementPackageImpl;
-import urml.service.ServicePackage;
-import urml.service.impl.ServicePackageImpl;
-import urml.usecase.UsecasePackage;
-import urml.usecase.impl.UsecasePackageImpl;
+import org.unicase.model.urml.danger.DangerPackage;
+import org.unicase.model.urml.danger.impl.DangerPackageImpl;
+import org.unicase.model.urml.feature.FeaturePackage;
+import org.unicase.model.urml.feature.impl.FeaturePackageImpl;
+import org.unicase.model.urml.goal.GoalPackage;
+import org.unicase.model.urml.goal.impl.GoalPackageImpl;
+import org.unicase.model.urml.requirement.RequirementPackage;
+import org.unicase.model.urml.requirement.impl.RequirementPackageImpl;
+import org.unicase.model.urml.service.ServicePackage;
+import org.unicase.model.urml.service.impl.ServicePackageImpl;
+import org.unicase.model.urml.usecase.UsecasePackage;
+import org.unicase.model.urml.usecase.impl.UsecasePackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->

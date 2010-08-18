@@ -20,13 +20,12 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.provider.MEDiagramItemProvider;
 import org.unicase.model.urml.URMLDiagram;
 import org.unicase.model.urml.UrmlFactory;
-
-import urml.danger.DangerFactory;
-import urml.feature.FeatureFactory;
-import urml.goal.GoalFactory;
-import urml.requirement.RequirementFactory;
-import urml.service.ServiceFactory;
-import urml.usecase.UsecaseFactory;
+import org.unicase.model.urml.danger.DangerFactory;
+import org.unicase.model.urml.feature.FeatureFactory;
+import org.unicase.model.urml.goal.GoalFactory;
+import org.unicase.model.urml.requirement.RequirementFactory;
+import org.unicase.model.urml.service.ServiceFactory;
+import org.unicase.model.urml.usecase.UsecaseFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.urml.URMLDiagram} object. <!-- begin-user-doc -->
