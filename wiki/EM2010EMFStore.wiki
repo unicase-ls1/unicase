@@ -1,7 +1,5 @@
 #summary Diese Seite enthält Links zu dem EMFStore Artikel im Eclipse Magazin 2010
 
-===Setup and First Steps===
-
 Link 1, Eclipse Galileo - Modeling Edition: http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1
 
 Link 2, EMFStore Update Site: http://unicase.googlecode.com/svn/updatesite/emfstoreNightly
@@ -19,3 +17,7 @@ Link 7, Model Preparation Video Tutorial: http://code.google.com/p/unicase/wiki/
 
 
 Link 8: Launch Configuration and First Steps Video Tutorial: http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel
+
+Link 9, Example Model Edit Plugin (SVN): http://unicase.googlecode.com/svn/trunk/developer/CodeExamples/exampleClient
+
+Link 10, Example Client Video Tutorial: http://code.google.com/p/unicase/wiki/CreateCustomClientTutorial
