@@ -46,14 +46,12 @@ public final class NotificationToOperationConverter {
 	 * @param n the notification to convert
 	 * @return the operation or null
 	 */
+	// BEGIN COMPLEX CODE
 	public static AbstractOperation convert(NotificationInfo n) {
-
 		if (n.isTouch() || n.isTransient() || !n.isValid()) {
 			return null;
 		}
-
 		switch (n.getEventType()) {
-
 		case Notification.SET:
 			if (n.isAttributeNotification()) {
 				return handleSetAttribute(n);
@@ -98,9 +96,10 @@ public final class NotificationToOperationConverter {
 
 		default:
 			return null;
-
 		}
 	}
+
+	// END COMPLEX CODE
 
 	@SuppressWarnings("unchecked")
 	private static AbstractOperation handleMultiAttribute(NotificationInfo n) {
