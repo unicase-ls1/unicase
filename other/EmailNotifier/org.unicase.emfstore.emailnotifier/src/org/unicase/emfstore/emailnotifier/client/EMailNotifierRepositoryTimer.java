@@ -36,8 +36,6 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.notification.NotificationProvider;
 
 /**
@@ -74,7 +72,7 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 	 */
 	public void run() {
 		try {
-			// I don't know really why this is necessary, but without the session is initialized.
+			// I don't know really why this is necessary, but without the session is not initialized.
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			Activator.logException(e);
@@ -89,26 +87,40 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 					// create new NotificationGroups if necessary - synchronization will do this if necessary
 					List<ACUser> acUsers = usersession.getAdminBroker().getUsers();
 					for(ProjectInfo remoteProjectInfo: usersession.getRemoteProjectList() ) {
-						// check if project is local also available
+						// check if project is also locally available
 						try {
 							Helper.getLocalProject(remoteProjectInfo.getProjectId());
+						
 						} catch(ProjectNotFoundException e) {
 							try {
 								// checkout
-								Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 								ProjectInfo remoteProject = Helper.getRemoteProject(usersession, remoteProjectInfo.getProjectId());
-								Helper.checkout(workspace, usersession, remoteProject);
+								Helper.checkout(usersession, remoteProject);
 							} catch(ProjectNotFoundException ex) {
 								// can only happen if the project has been created and than immediately deleted
 								Activator.logException(ex);
 							}
 						}
-							
+						
 						for(ACUser acUser: acUsers) {
 							ProjectId projectId = remoteProjectInfo.getProjectId();
 							PrimaryVersionSpec version = remoteProjectInfo.getVersion();
-							PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId, version);
+							boolean madeDirty = PropertySychronizer.synchronize(emailNotifierStore, acUser, projectId, version);
+							if( madeDirty ) {
+								isENSDirty = true;
+							}
 						}
+					}
+					
+					// save state
+					try {
+						if( isENSDirty ) {
+							save();
+							isENSDirty = false;
+						}
+						
+					} catch(IOException e) {
+						Activator.logException(e);
 					}
 					
 					// get max sleeping time
@@ -312,13 +324,18 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 		
 		try {
 			if( isENSDirty ) {
-				emailNotifierStore.eResource().save(Collections.EMPTY_MAP);
+				save();
 				isENSDirty = false;
 			}
 			
 		} catch(IOException e) {
 			Activator.logException(e);
 		}
+		
+	}
+	
+	private void save() throws IOException {
+		emailNotifierStore.eResource().save(Collections.EMPTY_MAP);
 	}
 	
 	/**
