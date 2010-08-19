@@ -8,6 +8,8 @@ package org.unicase.emfstore.emailnotifier.client;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.prefs.BackingStoreException;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
@@ -27,9 +29,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.ini4j.Ini;
-import org.ini4j.IniPreferences;
-import org.ini4j.InvalidFileFormatException;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.emailnotifier.Activator;
 import org.unicase.emfstore.emailnotifier.email.MailerInfo;
@@ -71,7 +70,7 @@ public class EMailNotifier implements IApplication {
 	/**
 	 * The file name of the configuration file for the notifier proxy client.
 	 */
-	private static final String NOTIFIER_CONFIG_FILE = "emailNotifierConfig.ini";
+	private static final String NOTIFIER_CONFIG_FILE = "emailNotifier.properties";
 	
 	/**
 	 * The path where the configuration file for the notification proxy client will be found.
@@ -86,7 +85,7 @@ public class EMailNotifier implements IApplication {
 	/**
 	 * The path to the sample ini file. This file will be created if no ini is found.
 	 */
-	private static final String SAMPLE_CONFIG_FILE_PATH = "emailNotifierConfig.example.ini";
+	private static final String SAMPLE_CONFIG_FILE_PATH = "emailNotifier.example.properties";
 	
 	/**
 	 * Constructor.
@@ -99,51 +98,82 @@ public class EMailNotifier implements IApplication {
 				createConfigFile(configFile);
 			}
 			
-			// are all mandatory iniPreferences set?
-			try {
-				Ini ini = new Ini( configFile );
-				IniPreferences iniPreferences = new IniPreferences(ini);
-				for (String section : iniPreferences.childrenNames()) {
-					// EMF store server properties
-					final String url = iniPreferences.node(section).get("url", null);
-					final int port = iniPreferences.node(section).getInt("port", 0);
-					final String certificate = iniPreferences.node(section).get("certificate", null);
-					final String username = iniPreferences.node(section).get("username", null);
-					final String password = iniPreferences.node(section).get("password", null);
-					final int backchannelPort = iniPreferences.node(section).getInt("backchannelPort", 0);
-					
-					// mailer properties
-		    		final String smtpHost = iniPreferences.node( section ).get("SMTPhost", null);
-		    		final int smtpPort = iniPreferences.node( section ).getInt("SMTPport", 0);
-		    		final String smtpUser = iniPreferences.node( section ).get("SMTPuser", null);
-		    		final String smtpPassword = iniPreferences.node( section ).get("SMTPpassword", null);
-		    		final boolean smtpUseSSL = iniPreferences.node( section ).getBoolean("SMTPuseSSL", false);
-		    		final String smtpSender = iniPreferences.node( section ).get("SMTPsender", null);
-					
-		    		// server info
-		    		final ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-					serverInfo.setUrl( url );
-					serverInfo.setPort( port );
-					serverInfo.setCertificateAlias( certificate );
-					
-					// mailer info
-					final MailerInfo mailerInfo = new MailerInfo(smtpHost, smtpPort, smtpUser, smtpPassword, smtpUseSSL, smtpSender);
-					
-					// validation of this section
-					EMFStoreInfo emfStoreInfo = new EMFStoreInfo(section, serverInfo, username, password, backchannelPort, mailerInfo);
-					
-					emfStoreInfos.add(emfStoreInfo);
+			Properties propertyFile = new Properties();
+			InputStream inStream = new FileInputStream(configFile);
+			propertyFile.load(inStream);
+			String allSections = propertyFile.getProperty("sections");
+			if( allSections == null ) {
+				throw new EMailNotifierException(NOTIFIER_CONFIG_FILE+ " has an invalid file format.");
+			}
+			
+			String[] sections = allSections.split(",");
+			for(String section: sections) {
+				section = section.trim();
+				
+				// if section is empty or contains whitespace it is invalid
+				if( section.length() == 0 || section.matches(".+\\s.+") ) {
+					throw new EMailNotifierException("Section '"+ section +"' is invalid.");
 				}
-				 
-			} catch (InvalidFileFormatException e) {
-				throw new EMailNotifierException( "INI file is not well formatted.", e );
-			} catch (BackingStoreException e) {
-				throw new EMailNotifierException( "Problem with the ini file. Please check if it is well formatted.", e );
-			} catch (IOException e) {
-				throw new EMailNotifierException( "IOException, couldn't read ini file.", e );
+				
+				// EMF store server properties
+				String url = propertyFile.getProperty(section+".url");
+				int port;
+				try {
+					String portString = propertyFile.getProperty(section+".port");
+					port = Integer.valueOf(portString);
+				} catch(NumberFormatException e) {
+					port = 0;
+				}
+				
+				String certificate = propertyFile.getProperty(section+".certificate");
+				String username = propertyFile.getProperty(section+".username");
+				String password = propertyFile.getProperty(section+".password");
+				int backchannelPort;
+				try {
+					String backchannelPortString = propertyFile.getProperty(section+".backchannelPort");
+					backchannelPort = Integer.valueOf(backchannelPortString);
+				} catch(NumberFormatException e) {
+					backchannelPort = 0;
+				}
+				
+				// mailer properties
+	    		String smtpHost = propertyFile.getProperty(section+".SMTPhost");
+	    		int smtpPort;
+	    		try {
+	    			String smtpPortString = propertyFile.getProperty(section+".SMTPport");
+	    			smtpPort = Integer.valueOf(smtpPortString);
+	    		} catch(NumberFormatException e) {
+	    			smtpPort = 0;
+	    		}
+	    		String smtpUser = propertyFile.getProperty(section+".SMTPuser");
+	    		String smtpPassword = propertyFile.getProperty(section+".SMTPpassword");
+	    		boolean smtpUseSSL = Boolean.valueOf( propertyFile.getProperty(section+".SMTPuseSSL") );
+	    		String smtpSender = propertyFile.getProperty(section+".SMTPsender");
+				
+	    		// server info
+	    		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+				serverInfo.setUrl( url );
+				serverInfo.setPort( port );
+				serverInfo.setCertificateAlias( certificate );
+				
+				// mailer info
+				MailerInfo mailerInfo = new MailerInfo(smtpHost, smtpPort, smtpUser, smtpPassword, smtpUseSSL, smtpSender);
+				
+				// validation of this section
+				EMFStoreInfo emfStoreInfo = new EMFStoreInfo(section, serverInfo, username, password, backchannelPort, mailerInfo);
+				
+				emfStoreInfos.add(emfStoreInfo);
 			}
 			
 		} catch(EMailNotifierException e) {
+			// log exception and terminate - serious error occurred
+			Activator.logException(e);
+			Thread.currentThread().interrupt();
+		} catch (FileNotFoundException e) {
+			// log exception and terminate - serious error occurred
+			Activator.logException(e);
+			Thread.currentThread().interrupt();
+		} catch (IOException e) {
 			// log exception and terminate - serious error occurred
 			Activator.logException(e);
 			Thread.currentThread().interrupt();

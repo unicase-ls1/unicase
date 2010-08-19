@@ -370,6 +370,10 @@ final class PropertySychronizer {
 		} else if( notificationGroup.getSendOption() == org.unicase.model.emailnotificationgroup.SendSettings.AGGREGATED ) {
 			if( notificationGroup.getAggregatedOption() == AggregatedSettings.DAYS ) {
 				int days = notificationGroup.getDaysCount();
+				// TODO remove, bug comes from preference setter
+				if( days <= 0 ) {
+					days = 1;
+				}
 				nextSending = Helper.addDays(new Date(), days);
 				
 			} else if( notificationGroup.getAggregatedOption() == AggregatedSettings.WEEKDAY ) {

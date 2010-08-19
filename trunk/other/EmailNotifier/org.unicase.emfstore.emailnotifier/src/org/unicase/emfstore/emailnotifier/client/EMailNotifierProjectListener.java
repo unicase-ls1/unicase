@@ -35,8 +35,6 @@ import org.unicase.emfstore.eventmanager.EMFStoreEventListener;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -71,9 +69,11 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 	 * This method will be called from the backchannel.
 	 * 
 	 * @param event the server event
-	 * @return event has been handled
+	 * @return event if the event has been handled
 	 */
 	public boolean handleEvent(ServerEvent event) {
+		System.out.println( "Backchannel: " + event.toString() );
+		
 		try {
 			if( event instanceof ProjectUpdatedEvent ) {
 				ProjectUpdatedEvent projectUpdatedEvent = (ProjectUpdatedEvent) event;
@@ -83,9 +83,8 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 					projectSpaceTmp = Helper.getLocalProject(projectId);
 				} catch(ProjectNotFoundException e) {
 					// checkout
-					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 					ProjectInfo remoteProject = Helper.getRemoteProject(usersession, projectId);
-					projectSpaceTmp = Helper.checkout(workspace, usersession, remoteProject);
+					projectSpaceTmp = Helper.checkout(usersession, remoteProject);
 				}
 				final ProjectSpace projectSpace = projectSpaceTmp;
 				

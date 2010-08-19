@@ -58,20 +58,24 @@ public final class Helper {
 	 * If a project exists on the server but not local, this project will be checked out.
 	 * This can be done with this method.
 	 * 
-	 * @param workspace the current workspace
 	 * @param usersession the admin user session
 	 * @param project a remote project info
 	 * @return the project space where the project has been checked out
 	 * @throws EMailNotifierException if the project can't be checked out
 	 */
-	public static ProjectSpace checkout(final Workspace workspace, final Usersession usersession, final ProjectInfo project) throws EMailNotifierException {
+	public static synchronized ProjectSpace checkout(final Usersession usersession, final ProjectInfo project) throws EMailNotifierException {
 		UnicaseCommandWithResult<ProjectSpace> comand = new UnicaseCommandWithResult<ProjectSpace>() {
 
 			@Override
 			protected ProjectSpace doRun() {
 				try {
-					ProjectSpace space = workspace.checkout(usersession, project);
-					return space;
+					try {
+						return getLocalProject(project.getProjectId());
+					
+					} catch (ProjectNotFoundException e) {
+						Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+						return currentWorkspace.checkout(usersession, project);
+					}
 
 				} catch (EmfStoreException e) {
 					Activator.logException(e);

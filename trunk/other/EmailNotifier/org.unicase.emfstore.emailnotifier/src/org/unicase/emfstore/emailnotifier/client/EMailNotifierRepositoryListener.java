@@ -18,13 +18,8 @@ import org.unicase.emfstore.emailnotifier.store.EMailNotifierStore;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.eventmanager.EMFStoreEventListener;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommandWithParameterAndResult;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * This class is responsible for a dedicated EMF store. Each of these repositories contains several projects.
@@ -61,26 +56,13 @@ public class EMailNotifierRepositoryListener {
 		try {
 			// get all remote projects
 			List<ProjectInfo> remoteProjectInfoList = usersession.getRemoteProjectList();
-			for (ProjectInfo projectInfo: remoteProjectInfoList) {
-				ProjectSpace projectSpace;
+			for (ProjectInfo remoteProject: remoteProjectInfoList) {
 				try {
-					projectSpace = Helper.getLocalProject( projectInfo.getProjectId() );
+					Helper.getLocalProject( remoteProject.getProjectId() );
 				
 				} catch(ProjectNotFoundException e) {
-					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-					projectSpace = checkout(workspace, usersession, projectInfo);
+					Helper.checkout(usersession, remoteProject);
 				}
-				
-				// projects exists now for sure
-				new UnicaseCommandWithParameterAndResult<ProjectSpace, ProjectSpace>() {
-
-					@Override
-					protected ProjectSpace doRun(ProjectSpace projectSpace) {
-						projectSpace.setUsersession( usersession );
-						return projectSpace;
-					}
-					
-				}.run(projectSpace);
 			}
 
 
@@ -111,40 +93,4 @@ public class EMailNotifierRepositoryListener {
 			Activator.logException(e);
 		}
 	}
-	
-	/**
-	 * If a project exists on the server but not local, this project will be checked out.
-	 * This can be done with this method.
-	 * 
-	 * @param workspace
-	 * @param usersession
-	 * @param project
-	 * @return
-	 * @throws EMailNotifierException 
-	 */
-	private static ProjectSpace checkout(final Workspace workspace, final Usersession usersession,
-		final ProjectInfo project) throws EMailNotifierException {
-		UnicaseCommandWithResult<ProjectSpace> comand = new UnicaseCommandWithResult<ProjectSpace>() {
-
-			@Override
-			protected ProjectSpace doRun() {
-				try {
-					ProjectSpace space = workspace.checkout(usersession, project);
-					return space;
-
-				} catch (EmfStoreException e) {
-					Activator.logException(e);
-				}
-				return null;
-			}
-		};
-
-		ProjectSpace space = comand.run();
-		if( space == null ) {
-			throw new EMailNotifierException( "EMF Store Exception during checkout." );
-		}
-		return space;
-	}
-
-
 }
