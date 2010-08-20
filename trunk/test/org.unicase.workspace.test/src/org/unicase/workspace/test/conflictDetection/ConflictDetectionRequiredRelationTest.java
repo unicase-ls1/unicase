@@ -309,7 +309,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 			protected void doRun() {
 				getProject().addModelElement(issue);
 				getProject().addModelElement(solution2);
-				issue.setSolution(solution2);
+				// issue.setSolution(solution2);
 
 				getProjectSpace().getOperations().clear();
 				getProject().addModelElement(solution1);
@@ -328,7 +328,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
 		assertEquals(1, cd.getRequired(ops, setSolution2).size());
-		assertEquals(2, cd.getRequiring(ops, createSolution1).size());
+		assertEquals(3, cd.getRequiring(ops, createSolution1).size());
 		assertSame(cd.getRequiring(ops, createSolution1).get(0), setSolution1);
 		assertSame(cd.getRequiring(ops, createSolution1).get(1), setSolution2);
 

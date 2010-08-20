@@ -19,6 +19,7 @@ import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -1940,7 +1941,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictAddRemoveDifferentObject() {
 
-		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
@@ -1950,15 +1951,15 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 			@Override
 			protected void doRun() {
-				getProject().addModelElement(section);
+				getProject().addModelElement(useCase);
 				getProject().addModelElement(actor);
 				getProject().addModelElement(dummy);
 				getProject().addModelElement(otherDummy);
 				getProject().addModelElement(anotherDummy);
 
-				section.getModelElements().add(anotherDummy);
-				section.getModelElements().add(otherDummy);
-				section.getModelElements().add(dummy);
+				useCase.getParticipatingActors().add(anotherDummy);
+				useCase.getParticipatingActors().add(otherDummy);
+				useCase.getParticipatingActors().add(dummy);
 
 				getProjectSpace().getOperations().clear();
 
@@ -1970,15 +1971,15 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
 		final Actor otherDummy2 = (Actor) project2.getModelElement(otherDummy.getModelElementId());
 
-		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCase.getModelElementId());
+		final UseCase useCase2 = (UseCase) project2.getModelElement(useCase.getModelElementId());
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				section1.getModelElements().add(2, actor1);
-				section2.getModelElements().remove(otherDummy2);
+				useCase1.getParticipatingActors().add(2, actor1);
+				useCase2.getParticipatingActors().remove(otherDummy2);
 
 			}
 		}.run(false);
@@ -2364,6 +2365,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProject().addModelElement(actor);
 				getProject().addModelElement(dummy);
 				getProject().addModelElement(otherDummy);
+				getProject().addModelElement(otherSection);
 
 				section.getModelElements().add(otherDummy);
 				section.getModelElements().add(dummy);
@@ -3104,7 +3106,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	@Test
 	public void conflictRemoveMoveDifferentObject() {
 
-		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
@@ -3115,16 +3117,16 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 			@Override
 			protected void doRun() {
-				getProject().addModelElement(section);
+				getProject().addModelElement(useCase);
 				getProject().addModelElement(actor);
 				getProject().addModelElement(dummy);
 				getProject().addModelElement(otherDummy);
 				getProject().addModelElement(anotherDummy);
 
-				section.getModelElements().add(actor);
-				section.getModelElements().add(dummy);
-				section.getModelElements().add(otherDummy);
-				section.getModelElements().add(anotherDummy);
+				useCase.getParticipatingActors().add(actor);
+				useCase.getParticipatingActors().add(dummy);
+				useCase.getParticipatingActors().add(otherDummy);
+				useCase.getParticipatingActors().add(anotherDummy);
 
 				getProjectSpace().getOperations().clear();
 
@@ -3136,15 +3138,15 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
 		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
-		final LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCase.getModelElementId());
+		final UseCase useCase2 = (UseCase) project2.getModelElement(useCase.getModelElementId());
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				section1.getModelElements().remove(actor1);
-				section2.getModelElements().move(1, anotherDummy2);
+				useCase1.getParticipatingActors().remove(actor1);
+				useCase2.getParticipatingActors().move(1, anotherDummy2);
 
 			}
 		}.run(false);
@@ -3373,6 +3375,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 				getProject().addModelElement(dummy);
 				getProject().addModelElement(otherDummy);
 				getProject().addModelElement(anotherDummy);
+				getProject().addModelElement(otherSection);
 
 				section.getModelElements().add(actor);
 				section.getModelElements().add(dummy);
