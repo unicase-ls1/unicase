@@ -5,30 +5,20 @@
  */
 package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
-import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotEditor;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotTabItem;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTable;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
@@ -39,7 +29,6 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -205,36 +194,36 @@ public class MEEditorOpenFromDifferentViewsTest {
 		}
 	}
 
-	/**
-	 * Opens the task view. Than the ActionItem B is is opened.
-	 * 
-	 * @throws PartInitException will be thrown if the active editor throws an exception
-	 */
-	@Test
-	public void taskView() throws PartInitException {
-		UITestCommon.openView(bot, UNICASE_NODE, TASKVIEW);
-		bot.sleep(2000);
-
-		// part of test that requires UI-thread
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				final SWTBotTable table = bot.activeView().bot().table();
-				select(table, "Action B");
-				table.widget.notifyListeners(SWT.DefaultSelection, new Event());
-			}
-
-		});
-		bot.sleep(2000);
-
-		// check which element was opened
-		SWTBotEditor activeEditor = bot.activeEditor();
-		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-		if (editorInput instanceof MEEditorInput) {
-			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-			EObject modelElement = meEditorInput.getModelElement();
-			assertTrue(modelElement.equals(actionItem));
-		}
-	}
+	// /**
+	// * Opens the task view. Than the ActionItem B is is opened.
+	// *
+	// * @throws PartInitException will be thrown if the active editor throws an exception
+	// */
+	// @Test
+	// public void taskView() throws PartInitException {
+	// UITestCommon.openView(bot, UNICASE_NODE, TASKVIEW);
+	// bot.sleep(2000);
+	//
+	// // part of test that requires UI-thread
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// final SWTBotTable table = bot.activeView().bot().table();
+	// select(table, "Action B");
+	// table.widget.notifyListeners(SWT.DefaultSelection, new Event());
+	// }
+	//
+	// });
+	// bot.sleep(2000);
+	//
+	// // check which element was opened
+	// SWTBotEditor activeEditor = bot.activeEditor();
+	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+	// if (editorInput instanceof MEEditorInput) {
+	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+	// EObject modelElement = meEditorInput.getModelElement();
+	// assertTrue(modelElement.equals(actionItem));
+	// }
+	// }
 
 	/**
 	 * Opens from the project the WorkPackage with name "Sprint 1" in the status view.
@@ -255,142 +244,142 @@ public class MEEditorOpenFromDifferentViewsTest {
 		bot.sleep(2000);
 	}
 
-	/**
-	 * Opens the status view and activates the flat view. Than the ActionItem B will be opened.
-	 * 
-	 * @throws PartInitException will be thrown if the active editor throws an exception
-	 */
-	@Test
-	public void statusViewFlatViewTest() throws PartInitException {
-		showStatusView();
-
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				SWTBotTabItem tabItemFlatView = bot.activeView().bot().tabItem("Flat view");
-				tabItemFlatView.activate();
-
-				SWTBotTable table = bot.activeView().bot().table();
-				select(table, "Action B");
-				table.widget.notifyListeners(SWT.DefaultSelection, new Event());
-			}
-		});
-		bot.sleep(2000);
-
-		// check which element was opened
-		SWTBotEditor activeEditor = bot.activeEditor();
-		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-		if (editorInput instanceof MEEditorInput) {
-			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-			EObject modelElement = meEditorInput.getModelElement();
-			assertTrue(modelElement.equals(actionItem));
-		}
-	}
-
-	/**
-	 * Opens the status view and activates the hierachical view. Than the ActionItem B will be opened.
-	 * 
-	 * @throws PartInitException will be thrown if the active editor throws an exception
-	 */
-	@Test
-	public void statusViewHierachicalViewTest() throws PartInitException {
-		// don't call the showStatusView() method.
-		// We need the leaf section as basis for the status view and not the WorkPackage status view.
-
-		UITestCommon.openView(bot, UNICASE_NODE, NAVIGATOR);
-		bot.sleep(2000);
-
-		// show status for the leaf node
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				SWTBotTreeItem projectNode = bot.activeView().bot().tree().getTreeItem("TestProject(Not shared)");
-				SWTBotTreeItem documentNode = projectNode.expand().getNode("Requirements Document");
-				SWTBotTreeItem leafNode = documentNode.expand().getNode("LeafSection");
-				leafNode.contextMenu("Show Status").click();
-			}
-		});
-		bot.sleep(2000);
-
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				SWTBotTabItem tabItemUsersView = bot.activeView().bot().tabItem("Hierachical view");
-				tabItemUsersView.activate();
-
-				SWTBotTreeItem nodeWorkPackage = bot.activeView().bot().tree().getTreeItem("Sprint 1");
-				SWTBotTreeItem nodeActionB = nodeWorkPackage.expand().getNode("Action B");
-				nodeActionB.doubleClick();
-			}
-		});
-		bot.sleep(2000);
-
-		// check which element was opened
-		SWTBotEditor activeEditor = bot.activeEditor();
-		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-		if (editorInput instanceof MEEditorInput) {
-			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-			EObject modelElement = meEditorInput.getModelElement();
-			assertTrue(modelElement.equals(actionItem));
-		}
-	}
-
-	/**
-	 * Opens the status view and activates the users view. Than the ActionItem B will be opened.
-	 * 
-	 * @throws PartInitException will be thrown if the active editor throws an exception
-	 */
-	@Test
-	public void statusViewUsersViewTest() throws PartInitException {
-		showStatusView();
-
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				SWTBotTabItem tabItemUsersView = bot.activeView().bot().tabItem("Users view");
-				tabItemUsersView.activate();
-
-				SWTBotTreeItem nodeActionItemB = bot.activeView().bot().tree().getTreeItem("Joker").expand().getNode(
-					"Action B");
-				nodeActionItemB.doubleClick();
-			}
-		});
-		bot.sleep(2000);
-
-		// check which element was opened
-		SWTBotEditor activeEditor = bot.activeEditor();
-		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-		if (editorInput instanceof MEEditorInput) {
-			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-			EObject modelElement = meEditorInput.getModelElement();
-			assertTrue(modelElement.equals(actionItem));
-		}
-	}
-
-	/**
-	 * Opens the status view and activates the activity view. Than the ActionItem B will be opened.
-	 * 
-	 * @throws PartInitException will be thrown if the active editor throws an exception
-	 */
-	@Test
-	public void statusViewActivityViewTest() throws PartInitException {
-		showStatusView();
-
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				SWTBotTabItem tabItemActivityView = bot.activeView().bot().tabItem("Activity view");
-				tabItemActivityView.activate();
-
-				SWTBotTreeItem nodeImplementation = bot.activeView().bot().tree().getTreeItem("Implementation");
-				SWTBotTreeItem nodeActionItemB = nodeImplementation.expand().getNode("Action B");
-				nodeActionItemB.doubleClick();
-			}
-		});
-		bot.sleep(2000);
-
-		// check which element was opened
-		SWTBotEditor activeEditor = bot.activeEditor();
-		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-		if (editorInput instanceof MEEditorInput) {
-			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-			EObject modelElement = meEditorInput.getModelElement();
-			assertTrue(modelElement.equals(actionItem));
-		}
-	}
+	// /**
+	// * Opens the status view and activates the flat view. Than the ActionItem B will be opened.
+	// *
+	// * @throws PartInitException will be thrown if the active editor throws an exception
+	// */
+	// @Test
+	// public void statusViewFlatViewTest() throws PartInitException {
+	// showStatusView();
+	//
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTabItem tabItemFlatView = bot.activeView().bot().tabItem("Flat view");
+	// tabItemFlatView.activate();
+	//
+	// SWTBotTable table = bot.activeView().bot().table();
+	// select(table, "Action B");
+	// table.widget.notifyListeners(SWT.DefaultSelection, new Event());
+	// }
+	// });
+	// bot.sleep(2000);
+	//
+	// // check which element was opened
+	// SWTBotEditor activeEditor = bot.activeEditor();
+	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+	// if (editorInput instanceof MEEditorInput) {
+	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+	// EObject modelElement = meEditorInput.getModelElement();
+	// assertTrue(modelElement.equals(actionItem));
+	// }
+	// }
+	//
+	// /**
+	// * Opens the status view and activates the hierachical view. Than the ActionItem B will be opened.
+	// *
+	// * @throws PartInitException will be thrown if the active editor throws an exception
+	// */
+	// @Test
+	// public void statusViewHierachicalViewTest() throws PartInitException {
+	// // don't call the showStatusView() method.
+	// // We need the leaf section as basis for the status view and not the WorkPackage status view.
+	//
+	// UITestCommon.openView(bot, UNICASE_NODE, NAVIGATOR);
+	// bot.sleep(2000);
+	//
+	// // show status for the leaf node
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTreeItem projectNode = bot.activeView().bot().tree().getTreeItem("TestProject(Not shared)");
+	// SWTBotTreeItem documentNode = projectNode.expand().getNode("Requirements Document");
+	// SWTBotTreeItem leafNode = documentNode.expand().getNode("LeafSection");
+	// leafNode.contextMenu("Show Status").click();
+	// }
+	// });
+	// bot.sleep(2000);
+	//
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTabItem tabItemUsersView = bot.activeView().bot().tabItem("Hierachical view");
+	// tabItemUsersView.activate();
+	//
+	// SWTBotTreeItem nodeWorkPackage = bot.activeView().bot().tree().getTreeItem("Sprint 1");
+	// SWTBotTreeItem nodeActionB = nodeWorkPackage.expand().getNode("Action B");
+	// nodeActionB.doubleClick();
+	// }
+	// });
+	// bot.sleep(2000);
+	//
+	// // check which element was opened
+	// SWTBotEditor activeEditor = bot.activeEditor();
+	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+	// if (editorInput instanceof MEEditorInput) {
+	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+	// EObject modelElement = meEditorInput.getModelElement();
+	// assertTrue(modelElement.equals(actionItem));
+	// }
+	// }
+	//
+	// /**
+	// * Opens the status view and activates the users view. Than the ActionItem B will be opened.
+	// *
+	// * @throws PartInitException will be thrown if the active editor throws an exception
+	// */
+	// @Test
+	// public void statusViewUsersViewTest() throws PartInitException {
+	// showStatusView();
+	//
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTabItem tabItemUsersView = bot.activeView().bot().tabItem("Users view");
+	// tabItemUsersView.activate();
+	//
+	// SWTBotTreeItem nodeActionItemB = bot.activeView().bot().tree().getTreeItem("Joker").expand().getNode(
+	// "Action B");
+	// nodeActionItemB.doubleClick();
+	// }
+	// });
+	// bot.sleep(2000);
+	//
+	// // check which element was opened
+	// SWTBotEditor activeEditor = bot.activeEditor();
+	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+	// if (editorInput instanceof MEEditorInput) {
+	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+	// EObject modelElement = meEditorInput.getModelElement();
+	// assertTrue(modelElement.equals(actionItem));
+	// }
+	// }
+	//
+	// /**
+	// * Opens the status view and activates the activity view. Than the ActionItem B will be opened.
+	// *
+	// * @throws PartInitException will be thrown if the active editor throws an exception
+	// */
+	// @Test
+	// public void statusViewActivityViewTest() throws PartInitException {
+	// showStatusView();
+	//
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTabItem tabItemActivityView = bot.activeView().bot().tabItem("Activity view");
+	// tabItemActivityView.activate();
+	//
+	// SWTBotTreeItem nodeImplementation = bot.activeView().bot().tree().getTreeItem("Implementation");
+	// SWTBotTreeItem nodeActionItemB = nodeImplementation.expand().getNode("Action B");
+	// nodeActionItemB.doubleClick();
+	// }
+	// });
+	// bot.sleep(2000);
+	//
+	// // check which element was opened
+	// SWTBotEditor activeEditor = bot.activeEditor();
+	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+	// if (editorInput instanceof MEEditorInput) {
+	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+	// EObject modelElement = meEditorInput.getModelElement();
+	// assertTrue(modelElement.equals(actionItem));
+	// }
+	// }
 }
