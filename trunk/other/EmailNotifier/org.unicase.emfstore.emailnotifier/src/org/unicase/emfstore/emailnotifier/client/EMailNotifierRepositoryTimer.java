@@ -82,6 +82,8 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 			try {
 				long maxWaitTime = 0;
 				synchronized (emailNotifierStore) {
+					// checks if there are NotificationGroups that must be send now, 
+					// if so they will be also send and on success removed from the ENS.
 					checkEmailNotifierStore();
 					
 					// create new NotificationGroups if necessary - synchronization will do this if necessary
@@ -89,7 +91,7 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 					for(ProjectInfo remoteProjectInfo: usersession.getRemoteProjectList() ) {
 						// check if project is also locally available
 						try {
-							Helper.getLocalProject(remoteProjectInfo.getProjectId());
+							Helper.getLocalProject(usersession, remoteProjectInfo.getProjectId());
 						
 						} catch(ProjectNotFoundException e) {
 							try {
@@ -191,7 +193,7 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 			final ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 			projectId.setId(ensNotificationProject.getId());
 			try {
-				Helper.getLocalProject(projectId);
+				Helper.getLocalProject(usersession, projectId);
 			
 			} catch (ProjectNotFoundException e) {
 				// project is in email notifier store still existent, but the project has been deleted on the server.
@@ -218,7 +220,7 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 			final ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 			projectId.setId(ensNotificationProject.getId());
 			try {
-				ProjectSpace projectSpace = Helper.getLocalProject(projectId);
+				ProjectSpace projectSpace = Helper.getLocalProject(usersession, projectId);
 				
 				for(ENSUser ensUser: ensNotificationProject.getUsers()) {
 					for(ENSNotificationGroup ensNotificationGroup: ensUser.getGroups()) {

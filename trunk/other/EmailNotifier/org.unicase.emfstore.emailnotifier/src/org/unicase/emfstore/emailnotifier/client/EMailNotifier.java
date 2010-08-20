@@ -260,11 +260,16 @@ public class EMailNotifier implements IApplication {
 			// create repository specific ProxyClient time supervisor
     		EMailNotifierRepositoryTimer notifierProxyClientRepositoryTimer = new EMailNotifierRepositoryTimer(emailNotifierStore, usersession, configSection.getMailerInfo());
     		Thread notifierProxyClientRepositoryTimerThread = new Thread(notifierProxyClientRepositoryTimer, "notifierProxyClientRepositoryTimerThread");
-    		notifierProxyClientRepositoryTimerThread.start();
-
+    					
     		// Create repository specific ProxyClient Notification gatherer
 			EMailNotifierRepositoryListener notifierProxyClientRepositoryListener = new EMailNotifierRepositoryListener(emailNotifierStore, usersession, backchannelServerInfo, configSection.getMailerInfo(), notifierProxyClientRepositoryTimerThread);
     		notifierProxyClientRepositoryListener.createBackchannels();
+
+			// start notifierProxyClientRepositoryTimerThread after EMailNotifierRepositoryListener, otherwise the WorkspaceManger will not be 
+    		// initialized correctly. The projects will be checked out first, than the WorkspaceManger can return
+    		// WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces()
+    		// with set usersession in a ProjectSpace object.
+    		notifierProxyClientRepositoryTimerThread.start();
 		}
 		
 		Activator.log(IStatus.INFO, "E-Mail Notifier is running...");

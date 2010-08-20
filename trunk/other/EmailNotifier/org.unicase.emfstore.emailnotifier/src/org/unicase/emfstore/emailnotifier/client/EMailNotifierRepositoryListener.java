@@ -58,7 +58,7 @@ public class EMailNotifierRepositoryListener {
 			List<ProjectInfo> remoteProjectInfoList = usersession.getRemoteProjectList();
 			for (ProjectInfo remoteProject: remoteProjectInfoList) {
 				try {
-					Helper.getLocalProject( remoteProject.getProjectId() );
+					Helper.getLocalProject(usersession, remoteProject.getProjectId() );
 				
 				} catch(ProjectNotFoundException e) {
 					Helper.checkout(usersession, remoteProject);

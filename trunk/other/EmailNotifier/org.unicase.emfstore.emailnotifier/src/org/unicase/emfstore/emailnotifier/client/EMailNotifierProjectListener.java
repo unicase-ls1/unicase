@@ -72,15 +72,13 @@ public class EMailNotifierProjectListener implements EMFStoreEventListener {
 	 * @return event if the event has been handled
 	 */
 	public boolean handleEvent(ServerEvent event) {
-		System.out.println( "Backchannel: " + event.toString() );
-		
 		try {
 			if( event instanceof ProjectUpdatedEvent ) {
 				ProjectUpdatedEvent projectUpdatedEvent = (ProjectUpdatedEvent) event;
 				final ProjectId projectId = projectUpdatedEvent.getProjectId();
 				ProjectSpace projectSpaceTmp;
 				try {
-					projectSpaceTmp = Helper.getLocalProject(projectId);
+					projectSpaceTmp = Helper.getLocalProject(usersession, projectId);
 				} catch(ProjectNotFoundException e) {
 					// checkout
 					ProjectInfo remoteProject = Helper.getRemoteProject(usersession, projectId);
