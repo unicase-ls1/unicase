@@ -277,7 +277,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * Aborts the current composite operation.
 	 */
 	public void abortCompositeOperation() {
-		recordingFinished();
+
 		projectSpace.undoLastOperation();
 		this.compositeOperation = null;
 		currentOperationListSize = operations.size();
@@ -376,7 +376,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
-		this.recordingFinished();
+
 		notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
@@ -412,6 +412,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
+
 		// means that we have not seen a command start yet
 		if (currentClipboard == null) {
 			return;
