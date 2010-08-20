@@ -43,6 +43,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
@@ -70,11 +71,13 @@ public final class Helper {
 			protected ProjectSpace doRun() {
 				try {
 					try {
-						return getLocalProject(project.getProjectId());
+						return getLocalProject(usersession, project.getProjectId());
 					
 					} catch (ProjectNotFoundException e) {
 						Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-						return currentWorkspace.checkout(usersession, project);
+						ProjectSpace projectSpace = currentWorkspace.checkout(usersession, project);
+						//ProjectSpace projectSpace = currentWorkspace.checkout( ModelUtil.clone(usersession) , project);
+						return projectSpace;
 					}
 
 				} catch (EmfStoreException e) {
@@ -136,10 +139,20 @@ public final class Helper {
 	 * @return the project space
 	 * @throws ProjectNotFoundException will be thrown if the project wasn't found in the local checked out projects
 	 */
-	public static ProjectSpace getLocalProject( ProjectId projectId ) throws ProjectNotFoundException {
+	public static ProjectSpace getLocalProject(final Usersession usersession, final ProjectId projectId ) throws ProjectNotFoundException {
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
-		for(ProjectSpace projectSpace: projectSpaces) {
+		for(final ProjectSpace projectSpace: projectSpaces) {
 			if( projectId.getId().equals( projectSpace.getProjectId().getId() ) ) {
+				
+				new UnicaseCommand() {
+					@Override
+					protected void doRun() {
+						if( projectSpace.getUsersession() == null ) {
+							projectSpace.setUsersession( usersession );
+						}
+					}
+				}.run();
+				
 				return projectSpace;
 			}
 		}

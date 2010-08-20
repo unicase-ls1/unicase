@@ -97,7 +97,7 @@ final class PropertySychronizer {
 					return isENSDirty;
 				}
 				
-				ProjectSpace projectSpace = Helper.getLocalProject(projectId);
+				ProjectSpace projectSpace = Helper.getLocalProject(null, projectId);
 				User user = OrgUnitHelper.getUser(projectSpace, acUser.getName());
 				Flag wasCreatedENSUser = new Flag(false);
 				ENSUser ensUser = Helper.obtainENSUser(ensNotificationProject, acUser, user, wasCreatedENSUser);
@@ -138,6 +138,7 @@ final class PropertySychronizer {
 	/**
 	 * Identifies if for this user all stored ENS NotificationGroups should be marked for instantly sending.
 	 * Instantly sending != immediately sending.
+	 * Instantly means that NotificationGroups of the type aggregated should be send now. Immediately stands for the type of NotificationGroups.
 	 * 
 	 * @param emailNotifierStore
 	 * @param acUser
