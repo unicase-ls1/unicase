@@ -3,11 +3,14 @@
  */
 package org.unicase.model.urml.feature.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.urml.feature.Feature;
 import org.unicase.model.urml.feature.FeaturePackage;
 import org.unicase.model.urml.feature.Product;
@@ -25,14 +28,14 @@ import org.unicase.model.urml.feature.Product;
  */
 public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	/**
-	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getProducts()
 	 * @generated
 	 * @ordered
 	 */
-	protected Product products;
+	protected EList<Product> products;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -58,15 +61,10 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	 * 
 	 * @generated
 	 */
-	public Product getProducts() {
-		if (products != null && products.eIsProxy()) {
-			InternalEObject oldProducts = (InternalEObject) products;
-			products = (Product) eResolveProxy(oldProducts);
-			if (products != oldProducts) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeaturePackage.FEATURE__PRODUCTS,
-						oldProducts, products));
-			}
+	public EList<Product> getProducts() {
+		if (products == null) {
+			products = new EObjectWithInverseResolvingEList.ManyInverse<Product>(Product.class, this,
+				FeaturePackage.FEATURE__PRODUCTS, FeaturePackage.PRODUCT__FEATURES);
 		}
 		return products;
 	}
@@ -76,64 +74,12 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	 * 
 	 * @generated
 	 */
-	public Product basicGetProducts() {
-		return products;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public NotificationChain basicSetProducts(Product newProducts, NotificationChain msgs) {
-		Product oldProducts = products;
-		products = newProducts;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				FeaturePackage.FEATURE__PRODUCTS, oldProducts, newProducts);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setProducts(Product newProducts) {
-		if (newProducts != products) {
-			NotificationChain msgs = null;
-			if (products != null)
-				msgs = ((InternalEObject) products).eInverseRemove(this, FeaturePackage.PRODUCT__FEATURES,
-					Product.class, msgs);
-			if (newProducts != null)
-				msgs = ((InternalEObject) newProducts).eInverseAdd(this, FeaturePackage.PRODUCT__FEATURES,
-					Product.class, msgs);
-			msgs = basicSetProducts(newProducts, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeaturePackage.FEATURE__PRODUCTS, newProducts,
-				newProducts));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			if (products != null)
-				msgs = ((InternalEObject) products).eInverseRemove(this, FeaturePackage.PRODUCT__FEATURES,
-					Product.class, msgs);
-			return basicSetProducts((Product) otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProducts()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -147,7 +93,7 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			return basicSetProducts(null, msgs);
+			return ((InternalEList<?>) getProducts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -161,9 +107,7 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			if (resolve)
-				return getProducts();
-			return basicGetProducts();
+			return getProducts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,11 +117,13 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			setProducts((Product) newValue);
+			getProducts().clear();
+			getProducts().addAll((Collection<? extends Product>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,7 +138,7 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			setProducts((Product) null);
+			getProducts().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -207,7 +153,7 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			return products != null;
+			return products != null && !products.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

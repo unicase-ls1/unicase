@@ -655,7 +655,7 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-			if (target != null && (target.getProduct() != null)) {
+			if (target != null && (target.getProducts().contains(target))) {
 				return false;
 			}
 
@@ -667,11 +667,11 @@ public class UrmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateProductFeatures_4047(Product source, Feature target) {
 			if (source != null) {
-				if (source.getFeatures() != null) {
+				if (source.getFeatures().contains(target)) {
 					return false;
 				}
 			}
-			if (target != null && (target.getProducts() != null)) {
+			if (target != null && (target.getProducts().contains(target))) {
 				return false;
 			}
 

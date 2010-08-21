@@ -362,7 +362,7 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getVariationPointInstance_Product() {
+	public EReference getVariationPointInstance_Products() {
 		return (EReference) variationPointInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -454,7 +454,7 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 		variationPointInstanceEClass = createEClass(VARIATION_POINT_INSTANCE);
 		createEReference(variationPointInstanceEClass, VARIATION_POINT_INSTANCE__VARIATION_POINT);
-		createEReference(variationPointInstanceEClass, VARIATION_POINT_INSTANCE__PRODUCT);
+		createEReference(variationPointInstanceEClass, VARIATION_POINT_INSTANCE__PRODUCTS);
 		createEReference(variationPointInstanceEClass, VARIATION_POINT_INSTANCE__SELECTED_FEATURES);
 
 		productEClass = createEClass(PRODUCT);
@@ -575,7 +575,7 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Products(), this.getProduct(), this.getProduct_Features(), "products", null, 0, 1,
+		initEReference(getFeature_Products(), this.getProduct(), this.getProduct_Features(), "products", null, 0, -1,
 			Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFeature_Products().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
@@ -604,11 +604,11 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 			IS_ORDERED);
 		getVariationPointInstance_VariationPoint().getEKeys().add(
 			theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getVariationPointInstance_Product(), this.getProduct(), this
-			.getProduct_VariationPointInstances(), "product", null, 0, 1, VariationPointInstance.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getVariationPointInstance_Product().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		initEReference(getVariationPointInstance_Products(), this.getProduct(), this
+			.getProduct_VariationPointInstances(), "products", null, 0, -1, VariationPointInstance.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getVariationPointInstance_Products().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getVariationPointInstance_SelectedFeatures(), this.getAbstractFeature(), this
 			.getAbstractFeature_VariationPointInstances(), "selectedFeatures", null, 0, -1,
 			VariationPointInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
@@ -618,11 +618,11 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProduct_VariationPointInstances(), this.getVariationPointInstance(), this
-			.getVariationPointInstance_Product(), "variationPointInstances", null, 0, -1, Product.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+			.getVariationPointInstance_Products(), "variationPointInstances", null, 0, -1, Product.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 		getProduct_VariationPointInstances().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
-		initEReference(getProduct_Features(), this.getFeature(), this.getFeature_Products(), "features", null, 0, 1,
+		initEReference(getProduct_Features(), this.getFeature(), this.getFeature_Products(), "features", null, 0, -1,
 			Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getProduct_Features().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());

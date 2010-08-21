@@ -764,6 +764,7 @@
         visualID="4045"
         editPartClassName="AbstractFeatureRequiredFeaturesEditPart"
         itemSemanticEditPolicyClassName="AbstractFeatureRequiredFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="AbstractFeatureRequiredFeaturesViewFactory"
         createCommandClassName="AbstractFeatureRequiredFeaturesCreateCommand"
         reorientCommandClassName="AbstractFeatureRequiredFeaturesReorientCommand">
       <diagramRunTimeClass
@@ -782,6 +783,7 @@
           visualID="6045"
           editPartClassName="RequiresLabelEditPart"
           itemSemanticEditPolicyClassName="RequiresLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="AbstractFeatureRequiredFeaturesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1515,6 +1517,7 @@
         visualID="4046"
         editPartClassName="VariationPointOptionalSubFeaturesEditPart"
         itemSemanticEditPolicyClassName="VariationPointOptionalSubFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="VariationPointOptionalSubFeaturesViewFactory"
         createCommandClassName="VariationPointOptionalSubFeaturesCreateCommand"
         reorientCommandClassName="VariationPointOptionalSubFeaturesReorientCommand">
       <diagramRunTimeClass
@@ -1533,6 +1536,7 @@
           visualID="6046"
           editPartClassName="SuggestsLabelEditPart"
           itemSemanticEditPolicyClassName="SuggestsLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="VariationPointOptionalSubFeaturesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1669,6 +1673,7 @@
         visualID="4047"
         editPartClassName="ProductFeaturesEditPart"
         itemSemanticEditPolicyClassName="ProductFeaturesItemSemanticEditPolicy"
+        notationViewFactoryClassName="ProductFeaturesViewFactory"
         createCommandClassName="ProductFeaturesCreateCommand"
         reorientCommandClassName="ProductFeaturesReorientCommand">
       <diagramRunTimeClass
@@ -1687,6 +1692,7 @@
           visualID="6047"
           editPartClassName="ConsistsOfLabelEditPart"
           itemSemanticEditPolicyClassName="ConsistsOfLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="ProductFeaturesLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

@@ -162,7 +162,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/variationPoint"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/product"/>
+            ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/products"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPointInstance/selectedFeatures"/>
       </genClasses>

@@ -64,7 +64,7 @@ public class ProductFeaturesCreateCommand extends EditElementCommand {
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setFeatures(getTarget());
+			getSource().getFeatures().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 
