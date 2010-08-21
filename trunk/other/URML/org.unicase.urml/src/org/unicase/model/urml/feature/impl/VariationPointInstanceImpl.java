@@ -28,7 +28,7 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * <ul>
  * <li>{@link org.unicase.model.urml.feature.impl.VariationPointInstanceImpl#getVariationPoint <em>Variation Point</em>}
  * </li>
- * <li>{@link org.unicase.model.urml.feature.impl.VariationPointInstanceImpl#getProduct <em>Product</em>}</li>
+ * <li>{@link org.unicase.model.urml.feature.impl.VariationPointInstanceImpl#getProducts <em>Products</em>}</li>
  * <li>{@link org.unicase.model.urml.feature.impl.VariationPointInstanceImpl#getSelectedFeatures <em>Selected Features
  * </em>}</li>
  * </ul>
@@ -48,14 +48,14 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 	protected VariationPoint variationPoint;
 
 	/**
-	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see #getProduct()
+	 * @see #getProducts()
 	 * @generated
 	 * @ordered
 	 */
-	protected Product product;
+	protected EList<Product> products;
 
 	/**
 	 * The cached value of the '{@link #getSelectedFeatures() <em>Selected Features</em>}' reference list. <!--
@@ -159,67 +159,12 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 	 * 
 	 * @generated
 	 */
-	public Product getProduct() {
-		if (product != null && product.eIsProxy()) {
-			InternalEObject oldProduct = (InternalEObject) product;
-			product = (Product) eResolveProxy(oldProduct);
-			if (product != oldProduct) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT, oldProduct, product));
-			}
+	public EList<Product> getProducts() {
+		if (products == null) {
+			products = new EObjectWithInverseResolvingEList.ManyInverse<Product>(Product.class, this,
+				FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS, FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES);
 		}
-		return product;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public Product basicGetProduct() {
-		return product;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public NotificationChain basicSetProduct(Product newProduct, NotificationChain msgs) {
-		Product oldProduct = product;
-		product = newProduct;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT, oldProduct, newProduct);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setProduct(Product newProduct) {
-		if (newProduct != product) {
-			NotificationChain msgs = null;
-			if (product != null)
-				msgs = ((InternalEObject) product).eInverseRemove(this,
-					FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES, Product.class, msgs);
-			if (newProduct != null)
-				msgs = ((InternalEObject) newProduct).eInverseAdd(this,
-					FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES, Product.class, msgs);
-			msgs = basicSetProduct(newProduct, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT,
-				newProduct, newProduct));
+		return products;
 	}
 
 	/**
@@ -250,11 +195,8 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 				msgs = ((InternalEObject) variationPoint).eInverseRemove(this,
 					FeaturePackage.VARIATION_POINT__INSTANCES, VariationPoint.class, msgs);
 			return basicSetVariationPoint((VariationPoint) otherEnd, msgs);
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			if (product != null)
-				msgs = ((InternalEObject) product).eInverseRemove(this,
-					FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES, Product.class, msgs);
-			return basicSetProduct((Product) otherEnd, msgs);
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProducts()).basicAdd(otherEnd, msgs);
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSelectedFeatures()).basicAdd(otherEnd, msgs);
 		}
@@ -271,8 +213,8 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT:
 			return basicSetVariationPoint(null, msgs);
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			return basicSetProduct(null, msgs);
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			return ((InternalEList<?>) getProducts()).basicRemove(otherEnd, msgs);
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			return ((InternalEList<?>) getSelectedFeatures()).basicRemove(otherEnd, msgs);
 		}
@@ -291,10 +233,8 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 			if (resolve)
 				return getVariationPoint();
 			return basicGetVariationPoint();
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			if (resolve)
-				return getProduct();
-			return basicGetProduct();
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			return getProducts();
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			return getSelectedFeatures();
 		}
@@ -313,8 +253,9 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 		case FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT:
 			setVariationPoint((VariationPoint) newValue);
 			return;
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			setProduct((Product) newValue);
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			getProducts().clear();
+			getProducts().addAll((Collection<? extends Product>) newValue);
 			return;
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			getSelectedFeatures().clear();
@@ -335,8 +276,8 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 		case FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT:
 			setVariationPoint((VariationPoint) null);
 			return;
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			setProduct((Product) null);
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			getProducts().clear();
 			return;
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			getSelectedFeatures().clear();
@@ -355,8 +296,8 @@ public class VariationPointInstanceImpl extends UrmlModelElementImpl implements 
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT:
 			return variationPoint != null;
-		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCT:
-			return product != null;
+		case FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS:
+			return products != null && !products.isEmpty();
 		case FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES:
 			return selectedFeatures != null && !selectedFeatures.isEmpty();
 		}

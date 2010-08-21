@@ -1784,12 +1784,11 @@ public class UrmlDiagramUpdater {
 	 */
 	private static Collection getOutgoingFeatureModelFacetLinks_Product_Features_4047(Product source) {
 		Collection result = new LinkedList();
-		Feature destination = source.getFeatures();
-		if (destination == null) {
-			return result;
+		for (Iterator destinations = source.getFeatures().iterator(); destinations.hasNext();) {
+			Feature destination = (Feature) destinations.next();
+			result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.ProductFeatures_4047,
+				ProductFeaturesEditPart.VISUAL_ID));
 		}
-		result.add(new UrmlLinkDescriptor(source, destination, UrmlElementTypes.ProductFeatures_4047,
-			ProductFeaturesEditPart.VISUAL_ID));
 		return result;
 	}
 

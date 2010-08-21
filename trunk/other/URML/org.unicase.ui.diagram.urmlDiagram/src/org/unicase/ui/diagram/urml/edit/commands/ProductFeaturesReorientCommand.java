@@ -106,8 +106,8 @@ public class ProductFeaturesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setFeatures(null);
-		getNewSource().setFeatures(getOldTarget());
+		getOldSource().getFeatures().remove(getOldTarget());
+		getNewSource().getFeatures().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -115,7 +115,8 @@ public class ProductFeaturesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setFeatures(getNewTarget());
+		getOldSource().getFeatures().remove(getOldTarget());
+		getOldSource().getFeatures().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

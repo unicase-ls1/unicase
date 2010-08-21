@@ -500,7 +500,7 @@ public interface FeaturePackage extends EPackage {
 	int FEATURE__VARIATION_POINT_INSTANCES = ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Products</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Products</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -889,12 +889,12 @@ public interface FeaturePackage extends EPackage {
 	int VARIATION_POINT_INSTANCE__VARIATION_POINT = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Product</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Products</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT_INSTANCE__PRODUCT = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int VARIATION_POINT_INSTANCE__PRODUCTS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Selected Features</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1036,7 +1036,7 @@ public interface FeaturePackage extends EPackage {
 	int PRODUCT__VARIATION_POINT_INSTANCES = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Features</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Features</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -1215,10 +1215,10 @@ public interface FeaturePackage extends EPackage {
 	EClass getFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.urml.feature.Feature#getProducts
+	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.feature.Feature#getProducts
 	 * <em>Products</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Products</em>'.
+	 * @return the meta object for the reference list '<em>Products</em>'.
 	 * @see org.unicase.model.urml.feature.Feature#getProducts()
 	 * @see #getFeature()
 	 * @generated
@@ -1293,16 +1293,16 @@ public interface FeaturePackage extends EPackage {
 	EReference getVariationPointInstance_VariationPoint();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.urml.feature.VariationPointInstance#getProduct <em>Product</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.urml.feature.VariationPointInstance#getProducts <em>Products</em>}'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Product</em>'.
-	 * @see org.unicase.model.urml.feature.VariationPointInstance#getProduct()
+	 * @return the meta object for the reference list '<em>Products</em>'.
+	 * @see org.unicase.model.urml.feature.VariationPointInstance#getProducts()
 	 * @see #getVariationPointInstance()
 	 * @generated
 	 */
-	EReference getVariationPointInstance_Product();
+	EReference getVariationPointInstance_Products();
 
 	/**
 	 * Returns the meta object for the reference list '
@@ -1339,10 +1339,10 @@ public interface FeaturePackage extends EPackage {
 	EReference getProduct_VariationPointInstances();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.urml.feature.Product#getFeatures
+	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.feature.Product#getFeatures
 	 * <em>Features</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Features</em>'.
+	 * @return the meta object for the reference list '<em>Features</em>'.
 	 * @see org.unicase.model.urml.feature.Product#getFeatures()
 	 * @see #getProduct()
 	 * @generated
@@ -1490,8 +1490,8 @@ public interface FeaturePackage extends EPackage {
 		EClass FEATURE = eINSTANCE.getFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Products</b></em>' reference feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Products</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -1550,12 +1550,12 @@ public interface FeaturePackage extends EPackage {
 		EReference VARIATION_POINT_INSTANCE__VARIATION_POINT = eINSTANCE.getVariationPointInstance_VariationPoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Product</b></em>' reference feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Products</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference VARIATION_POINT_INSTANCE__PRODUCT = eINSTANCE.getVariationPointInstance_Product();
+		EReference VARIATION_POINT_INSTANCE__PRODUCTS = eINSTANCE.getVariationPointInstance_Products();
 
 		/**
 		 * The meta object literal for the '<em><b>Selected Features</b></em>' reference list feature. <!--
@@ -1584,8 +1584,8 @@ public interface FeaturePackage extends EPackage {
 		EReference PRODUCT__VARIATION_POINT_INSTANCES = eINSTANCE.getProduct_VariationPointInstances();
 
 		/**
-		 * The meta object literal for the '<em><b>Features</b></em>' reference feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Features</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */

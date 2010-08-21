@@ -13,7 +13,7 @@ import org.unicase.model.urml.UrmlModelElement;
  * The following features are supported:
  * <ul>
  * <li>{@link org.unicase.model.urml.feature.VariationPointInstance#getVariationPoint <em>Variation Point</em>}</li>
- * <li>{@link org.unicase.model.urml.feature.VariationPointInstance#getProduct <em>Product</em>}</li>
+ * <li>{@link org.unicase.model.urml.feature.VariationPointInstance#getProducts <em>Products</em>}</li>
  * <li>{@link org.unicase.model.urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}</li>
  * </ul>
  * </p>
@@ -52,33 +52,23 @@ public interface VariationPointInstance extends UrmlModelElement {
 	void setVariationPoint(VariationPoint value);
 
 	/**
-	 * Returns the value of the '<em><b>Product</b></em>' reference. It is bidirectional and its opposite is '
+	 * Returns the value of the '<em><b>Products</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.urml.feature.Product}. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.urml.feature.Product#getVariationPointInstances <em>Variation Point Instances</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Product</em>' reference isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Products</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Product</em>' reference.
-	 * @see #setProduct(Product)
-	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPointInstance_Product()
+	 * @return the value of the '<em>Products</em>' reference list.
+	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPointInstance_Products()
 	 * @see org.unicase.model.urml.feature.Product#getVariationPointInstances
 	 * @model opposite="variationPointInstances" keys="identifier"
 	 * @generated
 	 */
-	Product getProduct();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.feature.VariationPointInstance#getProduct <em>Product</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Product</em>' reference.
-	 * @see #getProduct()
-	 * @generated
-	 */
-	void setProduct(Product value);
+	EList<Product> getProducts();
 
 	/**
 	 * Returns the value of the '<em><b>Selected Features</b></em>' reference list. The list contents are of type

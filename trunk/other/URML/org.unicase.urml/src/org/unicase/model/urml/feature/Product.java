@@ -24,7 +24,7 @@ public interface Product extends UrmlModelElement {
 	/**
 	 * Returns the value of the '<em><b>Variation Point Instances</b></em>' reference list. The list contents are of
 	 * type {@link org.unicase.model.urml.feature.VariationPointInstance}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.urml.feature.VariationPointInstance#getProduct <em>Product</em>}'. <!-- begin-user-doc
+	 * {@link org.unicase.model.urml.feature.VariationPointInstance#getProducts <em>Products</em>}'. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Variation Point Instances</em>' reference list isn't clear, there really should be
@@ -34,14 +34,15 @@ public interface Product extends UrmlModelElement {
 	 * 
 	 * @return the value of the '<em>Variation Point Instances</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getProduct_VariationPointInstances()
-	 * @see org.unicase.model.urml.feature.VariationPointInstance#getProduct
-	 * @model opposite="product" keys="identifier"
+	 * @see org.unicase.model.urml.feature.VariationPointInstance#getProducts
+	 * @model opposite="products" keys="identifier"
 	 * @generated
 	 */
 	EList<VariationPointInstance> getVariationPointInstances();
 
 	/**
-	 * Returns the value of the '<em><b>Features</b></em>' reference. It is bidirectional and its opposite is '
+	 * Returns the value of the '<em><b>Features</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.urml.feature.Feature}. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.urml.feature.Feature#getProducts <em>Products</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Features</em>' reference isn't clear, there really should be more of a description
@@ -49,23 +50,12 @@ public interface Product extends UrmlModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Features</em>' reference.
-	 * @see #setFeatures(Feature)
+	 * @return the value of the '<em>Features</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getProduct_Features()
 	 * @see org.unicase.model.urml.feature.Feature#getProducts
 	 * @model opposite="products" keys="identifier"
 	 * @generated
 	 */
-	Feature getFeatures();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.feature.Product#getFeatures <em>Features</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Features</em>' reference.
-	 * @see #getFeatures()
-	 * @generated
-	 */
-	void setFeatures(Feature value);
+	EList<Feature> getFeatures();
 
 } // Product

@@ -50,7 +50,7 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 			super.getPropertyDescriptors(object);
 
 			addVariationPointPropertyDescriptor(object);
-			addProductPropertyDescriptor(object);
+			addProductsPropertyDescriptor(object);
 			addSelectedFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -71,15 +71,15 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Product feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Products feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addProductPropertyDescriptor(Object object) {
+	protected void addProductsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VariationPointInstance_product_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_VariationPointInstance_product_feature",
-				"_UI_VariationPointInstance_type"), FeaturePackage.Literals.VARIATION_POINT_INSTANCE__PRODUCT, true,
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VariationPointInstance_products_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_VariationPointInstance_products_feature",
+				"_UI_VariationPointInstance_type"), FeaturePackage.Literals.VARIATION_POINT_INSTANCE__PRODUCTS, true,
 			false, true, null, null, null));
 	}
 
