@@ -217,7 +217,19 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferenceAndSet(MultiReferenceOperation operationA,
 		MultiReferenceSetOperation operationB) {
-		// TODO
+
+		if (!sameFeatureAndId(operationA, operationB)) {
+			return false;
+		}
+
+		if (!operationA.isAdd()) {
+			for (ModelElementId id : operationA.getReferencedModelElements()) {
+				if (id.equals(operationB.getModelElementId())) {
+					return true;
+				}
+			}
+		}
+
 		return false;
 	}
 
