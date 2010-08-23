@@ -64,7 +64,7 @@ public class ProceduralMitigationItemProvider extends MitigationItemProvider imp
 			getString("_UI_ProceduralMitigation_mitigationProcedure_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_ProceduralMitigation_mitigationProcedure_feature",
 				"_UI_ProceduralMitigation_type"), DangerPackage.Literals.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			true, true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**

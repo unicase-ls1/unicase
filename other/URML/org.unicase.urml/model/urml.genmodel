@@ -120,7 +120,7 @@
             ecoreFeature="ecore:EReference urml.ecore#//danger/Mitigation/mitigatedDangers"/>
       </genClasses>
       <genClasses ecoreClass="urml.ecore#//danger/ProceduralMitigation">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute urml.ecore#//danger/ProceduralMitigation/mitigationProcedure"/>
+        <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute urml.ecore#//danger/ProceduralMitigation/mitigationProcedure"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Feature" basePackage="org.unicase.model.urml" resource="XML"
