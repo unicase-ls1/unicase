@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.test.navigator;
 
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,9 +22,21 @@ public class UpdateProjectUITest extends MEEditorTest {
 	 */
 
 	@BeforeClass
-	public static void beforeClass() throws Exception {
+	public static void beforeClass() {
 
 		SetupHelper.startSever();
+	}
+
+	/**
+	 * Creates a project "TestProject" in the workspace and then adds a new composite and a leaf section. Then it
+	 * updates the server using UNICASE command. Then a check is performed to see if the project updated within the UI
+	 * or Not.
+	 */
+
+	@Test
+	public void updateProjectUpdate() {
+		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		getBot().sleep(1000);
 	}
 
 	/**
@@ -33,19 +44,12 @@ public class UpdateProjectUITest extends MEEditorTest {
 	 */
 
 	@Test
-	public void updateProjectUpdate() {
-	}
-
-	@Test
 	public void updateProjectChange() {
-
-		UITestCommon.openPerspective(getBot(), "Unicase");
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
-		SWTBotTreeItem[] treenode = getBot().activeView().bot().tree().getAllItems();
-
-		getBot().sleep(100000);
-
 	}
+
+	/**
+	 *stops the server after the caring out the test.
+	 */
 
 	@AfterClass
 	public static void afterClass() {
