@@ -97,8 +97,8 @@ public class UnicaseEntityContentProvider implements IGraphEntityContentProvider
 		// current final object
 		GraphEObjectLayouted thisEObjectLayouted = null;
 		int addOffset, elementsCount;
-		while (!toVisit.isEmpty() && toVisit.peekFirst().depth < edgeFilter.getDepth()) {
-			thisToVisitObject = toVisit.pollFirst();
+		while (!toVisit.isEmpty() && toVisit.peek().depth < edgeFilter.getDepth()) {
+			thisToVisitObject = toVisit.poll();
 			if (!elements.containsKey(thisToVisitObject.object)) {
 				// object is new in layout
 				elements.put(thisToVisitObject.object, new GraphEObjectLayouted(thisToVisitObject.object));

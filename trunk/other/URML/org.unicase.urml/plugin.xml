@@ -93,20 +93,42 @@
             cache="true"
             mode="Batch">
          <package
-               namespaceUri="http://unicase.org/model/urml/danger">
+               namespaceUri="http://unicase.org/model/urml">
          </package>
          <constraints
                categories="org.unicase.model">
             <constraint
-                  class="org.unicase.model.urml.danger.validation.DangerMitigationConstraint"
-                  id="org.unicase.model.urml.danger.MitigationConstraint"
+                  class="org.unicase.model.urml.validation.MissingReferenceConstraint"
+                  id="org.unicase.model.MissingReferenceConstraint"
                   lang="Java"
                   mode="Batch"
-                  name="Danger MItigation Constraint"
-                  severity="WARNING"
+                  name="Model Element Missing Reference"
+                  severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} has no mitigation.
+                  {0} has no {1}.
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://unicase.org/model/urml">
+         </package>
+         <constraints
+               categories="org.unicase.model">
+            <constraint
+                  class="org.unicase.model.urml.validation.WrongFieldDataConstraint"
+                  id="org.unicase.model.WrongFieldDataConstraint"
+                  lang="Java"
+                  mode="Batch"
+                  name="Wrong Field Data"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} - has wrong field data for {1}.
                </message>
             </constraint>
          </constraints>
