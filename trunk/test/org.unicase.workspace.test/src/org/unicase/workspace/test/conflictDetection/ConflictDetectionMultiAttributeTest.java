@@ -10,7 +10,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -29,7 +31,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 		return testElement;
 	}
 
-	private AbstractOperation checkAndGetOperation(Class<MultiAttributeOperation> clazz) {
+	private AbstractOperation checkAndGetOperation(Class<? extends AbstractOperation> clazz) {
 		assertEquals(getProjectSpace().getOperations().size(), 1);
 		assertTrue(clazz.isInstance(getProjectSpace().getOperations().get(0)));
 		AbstractOperation operation = getProjectSpace().getOperations().get(0);
@@ -59,8 +61,8 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 				testElement.getStrings().add(1, "inserted");
 				AbstractOperation addOp = checkAndGetOperation(MultiAttributeOperation.class);
 
-				assertEquals(doConflict(removeOp, addOp), true);
-				assertEquals(doConflict(addOp, removeOp), true);
+				assertEquals(true, doConflict(removeOp, addOp));
+				assertEquals(true, doConflict(addOp, removeOp));
 			}
 		}.run(false);
 	}
@@ -82,8 +84,8 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 				testElement.getStrings().add(1, "inserted2");
 				AbstractOperation add2 = checkAndGetOperation(MultiAttributeOperation.class);
 
-				assertEquals(doConflict(add1, add2), true);
-				assertEquals(doConflict(add2, add1), true);
+				assertEquals(true, doConflict(add1, add2));
+				assertEquals(true, doConflict(add2, add1));
 			}
 		}.run(false);
 	}
@@ -105,8 +107,239 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 				testElement.getStrings().remove(1);
 				AbstractOperation remove2 = checkAndGetOperation(MultiAttributeOperation.class);
 
-				assertEquals(doConflict(remove1, remove2), true);
-				assertEquals(doConflict(remove2, remove1), true);
+				assertEquals(true, doConflict(remove1, remove2));
+				assertEquals(true, doConflict(remove2, remove1));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Move vs add.
+	 */
+	@Test
+	public void multiAttMoveVsAdd() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(3);
+				clearOperations();
+
+				testElement.getStrings().add(0, "inserted");
+				AbstractOperation add = checkAndGetOperation(MultiAttributeOperation.class);
+
+				testElement.getStrings().move(1, 2);
+				AbstractOperation move = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				assertEquals(true, doConflict(add, move));
+				assertEquals(true, doConflict(move, add));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Move vs remove.
+	 */
+	@Test
+	public void multiAttMoveVsRemove() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(3);
+				clearOperations();
+
+				testElement.getStrings().move(2, 0);
+				AbstractOperation move = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				testElement.getStrings().remove(0);
+				AbstractOperation add = checkAndGetOperation(MultiAttributeOperation.class);
+
+				assertEquals(true, doConflict(add, move));
+				assertEquals(true, doConflict(move, add));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Move vs move - conflict.
+	 */
+	// Move vs move is a soft conflict
+	// @Test
+	// public void multiAttMoveVsMoveConflict() {
+	// new UnicaseCommand() {
+	// @Override
+	// protected void doRun() {
+	// TestElement testElement = getFilledTestElement(3);
+	// clearOperations();
+	//
+	// testElement.getStrings().move(1, 2);
+	// AbstractOperation move1 = checkAndGetOperation(MultiAttributeMoveOperation.class);
+	//
+	// testElement.getStrings().move(1, 0);
+	// AbstractOperation move2 = checkAndGetOperation(MultiAttributeMoveOperation.class);
+	//
+	// assertEquals(true, doConflict(move2, move1));
+	// assertEquals(true, doConflict(move1, move2));
+	// }
+	// }.run(false);
+	// }
+
+	/**
+	 * Move vs move - no conflict.
+	 */
+	@Test
+	public void multiAttMoveVsMoveNoConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().move(0, 1);
+				AbstractOperation move1 = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				testElement.getStrings().move(2, 3);
+				AbstractOperation move2 = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				assertEquals(false, doConflict(move2, move1));
+				assertEquals(false, doConflict(move1, move2));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs add - no conflict.
+	 */
+	@Test
+	public void multiAttSetVsAddNoConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(0, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().add(1, "added");
+				AbstractOperation add = checkAndGetOperation(MultiAttributeOperation.class);
+
+				assertEquals(false, doConflict(set, add));
+				assertEquals(false, doConflict(add, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs add - conflict.
+	 */
+	@Test
+	public void multiAttSetVsAddConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(1, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().add(0, "added");
+				AbstractOperation add = checkAndGetOperation(MultiAttributeOperation.class);
+
+				assertEquals(true, doConflict(set, add));
+				assertEquals(true, doConflict(add, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs remove - no conflict.
+	 */
+	@Test
+	public void multiAttSetVsRemoveNoConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(0, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().remove(1);
+				AbstractOperation remove = checkAndGetOperation(MultiAttributeOperation.class);
+
+				assertEquals(false, doConflict(set, remove));
+				assertEquals(false, doConflict(remove, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs remove - conflict.
+	 */
+	@Test
+	public void multiAttSetVsRemoveConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(1, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().remove(0);
+				AbstractOperation remove = checkAndGetOperation(MultiAttributeOperation.class);
+
+				assertEquals(true, doConflict(set, remove));
+				assertEquals(true, doConflict(remove, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Move vs Set - conflict.
+	 */
+	@Test
+	public void multiAttSetVsMoveConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(1, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().move(0, 2);
+				AbstractOperation move = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				assertEquals(true, doConflict(set, move));
+				assertEquals(true, doConflict(move, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Move vs Set - no conflict.
+	 */
+	@Test
+	public void multiAttSetVsMoveNoConflict() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getFilledTestElement(4);
+				clearOperations();
+
+				testElement.getStrings().set(1, "set");
+				AbstractOperation set = checkAndGetOperation(MultiAttributeSetOperation.class);
+
+				testElement.getStrings().move(2, 3);
+				AbstractOperation move = checkAndGetOperation(MultiAttributeMoveOperation.class);
+
+				assertEquals(false, doConflict(set, move));
+				assertEquals(false, doConflict(move, set));
 			}
 		}.run(false);
 	}

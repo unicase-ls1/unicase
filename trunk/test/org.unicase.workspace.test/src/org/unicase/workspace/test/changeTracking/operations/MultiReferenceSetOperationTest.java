@@ -84,7 +84,8 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	}
 
 	/**
-	 * Apply setoperation with wrong index.
+	 * Apply setoperation with wrong index. Note: The set function now operates with mainly the model element ids, the
+	 * index is only used for soft conflict detection.
 	 */
 	@Test
 	public void applyValueToFilledWrongIndexTest() {
@@ -109,7 +110,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				operation.apply(getProject());
 
 				assertTrue(testElement.getReferences().size() == 1);
-				assertTrue(testElement.getReferences().get(0).equals(oldValue));
+				assertTrue(testElement.getReferences().get(0).equals(newValue));
 			}
 		}.run(false);
 	}

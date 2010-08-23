@@ -414,18 +414,20 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		@SuppressWarnings("unchecked")
 		EList<ModelElement> list = (EList<ModelElement>) object;
 
-		ModelElement element = null;
-		if (getNewValue() != null) {
-			element = project.getModelElement(getNewValue());
-			if (element == null) {
-				// fail silently
-				return;
-			}
+		ModelElement newElement = project.getModelElement(getNewValue());
+		ModelElement oldElement = project.getModelElement(getOldValue());
+
+		if (newElement == null || oldElement == null) {
+			// fail silently
+			return;
 		}
-		int i = getIndex();
-		if (i >= 0 && i < list.size() && !list.contains(element)) {
-			list.set(i, element);
+
+		int indexOf = list.indexOf(oldElement);
+		if (indexOf == -1) {
+			return;
 		}
+		list.remove(indexOf);
+		list.add(indexOf, newElement);
 
 	}
 
