@@ -2,28 +2,20 @@
 
 = Obligatory Rules: Do´s and Dont´s =
 
-    * Do NOT use the URI "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//". Use the "http://..." URIs
-    * Do NOT use generics in the Ecore!
-    * Do NOT just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
-          o Rename generated setter or getter to get/setXGen
-          o Write your own getter/setter marked with @generated NOT and call the get/setXGen
-          o Your added code must be null safe for any input parameter!
-          o Emf will now always update the generated part but leave your code untouched 
- All model elements must have "ModelElement" set as superclass
-         2. All reference features of model elements must have the key property set to "identifier"
-         3. All model elements must either be contained by another model element or by project
-         4. The reference feature "lower bound" must NOT be greater than zero for any model element feature reference
-         5. The id property must NOT be set for any model element feature
-         6. Do NOT use simple attributes with a multiplicity greater than 1.
-         7. Do NOT set unsetable to true for any feature
-         8. Do NOT create non-transient reference to anything other than model element subtypes 
+   * All model elements *must* have "ModelElement" set as superclass in the Ecore
+   * All model elements *must* either be contained by another model element or by project
+   * The id property *must NOT* be set for any model element feature
+   * The property "resolveProxies" of References *must* be left at its default value "true". Please note that if you generate your Ecore from XML-Schemata the value might be set to false. Reset it to true in this case. 
+   * Do *NOT* use simple attributes with a multiplicity greater than 1.
+   * Do *NOT* set unsetable to true for any feature
+   * Do *NOT* create non-transient references to anything other than model element subtypes. Non-transient references are allowed since they will not be saved.
+   * Do *NOT* use the URI "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//". Use the "http://..." URIs
+   * Do *NOT* use generics in the Ecore!
+   * Do *NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
+      * Rename generated setter or getter to get/setXGen
+      * Write your own getter/setter marked with @generated NOT and call the get/setXGen
+      * Your added code must be null safe for any input parameter!
+      * Emf will now always update the generated part but leave your code untouched 
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Optional Rules =
+   * All reference features of model elements *should* have the key property set to "identifier". This makes the stored models more robust against failures.
