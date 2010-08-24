@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -57,6 +60,7 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.AutoSplitAndSaveResourceContainmentList;
@@ -1587,15 +1591,47 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		projectSpaceResource.getContents().add(this);
 		resources.add(projectSpaceResource);
 
-		// save all resources that have been created
-		for (Resource currentResource : resources) {
+		Resource projectResource = project.eResource();
+		EMap<EObject, ModelElementId> m = null;
+		for (Resource res : resources) {
 			try {
-				currentResource.save(Configuration.getResourceSaveOptions());
+				if (res instanceof XMIResource) {
+					XMIResource xmiResource = (XMIResource) res;
+					TreeIterator<EObject> it = xmiResource.getAllContents();
+					while (it.hasNext()) {
+						EObject o = it.next();
+						if (!(o instanceof Project) && !(o instanceof ModelElementId)
+							&& !(o instanceof EObjectToModelElementIdMapImpl)) {
+							ModelElementId id = project.getModelElementId(o);
+							if (id != null) {
+								xmiResource.setID(o, id.getId());
+							}
+						}
+					}
+				}
+				if (projectResource == res) {
+					m = project.getEobjectsIdMap();
+					project.setEObjectsIdMap(null);
+				}
+				res.save(Configuration.getResourceSaveOptions());
+				if (projectResource == res) {
+					project.setEObjectsIdMap(m);
+				}
 			} catch (IOException e) {
-				WorkspaceUtil.logException("Project Space resource init failed!", e);
-
+				String message = "Save failed on a resource of the workspace failed!";
+				WorkspaceUtil.logWarning(message, e);
 			}
 		}
+
+		// save all resources that have been created
+		// for (Resource currentResource : resources) {
+		// try {
+		// currentResource.save(Configuration.getResourceSaveOptions());
+		// } catch (IOException e) {
+		// WorkspaceUtil.logException("Project Space resource init failed!", e);
+		//
+		// }
+		// }
 		init();
 	}
 

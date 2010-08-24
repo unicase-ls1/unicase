@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -84,7 +85,7 @@ public class ResourceHelper {
 		throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
 		// TODO:
-		saveInResourceWithProject(project, filename, project.getEobjectsIdMap().map());
+		saveInResourceWithProject(project, filename, project);
 	}
 
 	/**
@@ -197,19 +198,31 @@ public class ResourceHelper {
 		save(obj);
 	}
 
-	private void saveInResourceWithProject(EObject obj, String fileName, Map<EObject, ModelElementId> eObjectsIdMap)
-		throws FatalEmfStoreException {
+	private void saveInResourceWithProject(EObject obj, String fileName, Project project) throws FatalEmfStoreException {
 		Resource resource = serverSpace.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
 		resource.getContents().add(obj);
 
+		Resource projectResource = project.eResource();
+		EMap<EObject, ModelElementId> m = null;
+
+		// TODO:
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : eObjectsIdMap.entrySet()) {
+			for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap().entrySet()) {
 				xmiResource.setID(e.getKey(), e.getValue().getId());
 			}
 		}
 
+		if (projectResource == resource) {
+			m = project.getEobjectsIdMap();
+			project.getEobjectsIdMap().clear();
+		}
+
 		save(obj);
+
+		if (projectResource == resource) {
+			project.getEobjectsIdMap().addAll(m);
+		}
 	}
 
 	/**
@@ -221,6 +234,8 @@ public class ResourceHelper {
 	 */
 	public void saveWithProject(EObject eObject, Project project) {
 		Resource resource = eObject.eResource();
+		Resource projectResource = project.eResource();
+		EMap<EObject, ModelElementId> m = null;
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
@@ -230,7 +245,14 @@ public class ResourceHelper {
 		}
 
 		try {
+			if (projectResource == resource) {
+				m = project.getEobjectsIdMap();
+				project.getEobjectsIdMap().clear();
+			}
 			eObject.eResource().save(null);
+			if (projectResource == resource) {
+				project.getEobjectsIdMap().addAll(m);
+			}
 		} catch (IOException e1) {
 			ModelUtil.logException("Saving of resource failed.", e1);
 		}

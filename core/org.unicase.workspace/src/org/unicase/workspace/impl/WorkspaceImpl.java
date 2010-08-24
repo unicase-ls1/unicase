@@ -257,6 +257,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// get Project from server
 		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo
 			.getProjectId(), projectInfoCopy.getVersion());
+
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
@@ -274,6 +275,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setUsersession(usersession);
 		usersession.addLoginObserver((ProjectSpaceImpl) projectSpace);
 		projectSpace.setProject(project);
+		// TODO
+		project.updateCaches();
 		projectSpace.setResourceCount(0);
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 

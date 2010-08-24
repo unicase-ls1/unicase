@@ -70,6 +70,11 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	EMap<EObject, ModelElementId> getEobjectsIdMap();
 
+	// TODO:
+	void setEObjectsIdMap(EMap<EObject, ModelElementId> map);
+
+	void updateCaches();
+
 	/**
 	 * Returns the value of the '<em><b>Deleted EObjects Id Map</b></em>' map. The key is of type
 	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
