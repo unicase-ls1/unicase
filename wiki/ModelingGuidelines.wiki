@@ -31,7 +31,7 @@ We have a workflow and a set of rules in place to work with the ecore models in 
 <br>
 *_Modeling Rules:_*
 
-The general [EMFStore Modeling Guidelines] apply, please read them carefully!
+The general [EMFStoreModelingGuidelines EMFStore Modeling Guidelines] apply, please read them carefully!
 
 *_For the individual models:_*
 
